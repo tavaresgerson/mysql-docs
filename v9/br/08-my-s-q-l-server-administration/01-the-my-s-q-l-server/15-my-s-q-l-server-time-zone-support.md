@@ -17,7 +17,7 @@ O MySQL Server mantém várias configurações de fuso horário:
 
 * O fuso horário do sistema do servidor. Quando o servidor é iniciado, ele tenta determinar o fuso horário da máquina hospedeira e usa-o para definir a variável de sistema `system_time_zone`.
 
-  Para especificar explicitamente o fuso horário do sistema do MySQL Server no início, defina a variável de ambiente `TZ` antes de iniciar o **mysqld**. Se você iniciar o servidor usando **mysqld\_safe**, sua opção `--timezone` fornece outra maneira de definir o fuso horário do sistema. Os valores permitidos para `TZ` e `--timezone` dependem do sistema operacional. Consulte a documentação do seu sistema operacional para ver quais valores são aceitáveis.
+  Para especificar explicitamente o fuso horário do sistema do MySQL Server no início, defina a variável de ambiente `TZ` antes de iniciar o **mysqld**. Se você iniciar o servidor usando **mysqld_safe**, sua opção `--timezone` fornece outra maneira de definir o fuso horário do sistema. Os valores permitidos para `TZ` e `--timezone` dependem do sistema operacional. Consulte a documentação do seu sistema operacional para ver quais valores são aceitáveis.
 
 * O fuso horário do horário atual do servidor. A variável de sistema global `time_zone` indica o fuso horário em que o servidor está operando atualmente. O valor inicial de `time_zone` é `'SYSTEM'`, o que indica que o fuso horário do servidor é o mesmo do fuso horário do sistema.
 
@@ -80,9 +80,9 @@ Nota
 
 Carregar as informações de fuso horário não é necessariamente uma operação única, pois as informações mudam ocasionalmente. Quando tais mudanças ocorrerem, as aplicações que usam as regras antigas ficam desatualizadas e você pode achar necessário recarregar as tabelas de fuso horário para manter as informações usadas pelo seu servidor MySQL atualizadas. Veja Como Manter-se Atualizado com Mudanças de Fuso Horário.
 
-Se o seu sistema tiver seu próprio banco de dados de zoneinfo (o conjunto de arquivos que descrevem os fusos horários), use o programa **mysql\_tzinfo\_to\_sql** para carregar as tabelas de fuso horário. Exemplos de sistemas que possuem esse tipo de banco de dados são Linux, macOS, FreeBSD e Solaris. Um local provável para esses arquivos é o diretório `/usr/share/zoneinfo`. Se o seu sistema não tiver um banco de dados de zoneinfo, você pode usar um pacote para download, conforme descrito mais adiante nesta seção.
+Se o seu sistema tiver seu próprio banco de dados de zoneinfo (o conjunto de arquivos que descrevem os fusos horários), use o programa **mysql_tzinfo_to_sql** para carregar as tabelas de fuso horário. Exemplos de sistemas que possuem esse tipo de banco de dados são Linux, macOS, FreeBSD e Solaris. Um local provável para esses arquivos é o diretório `/usr/share/zoneinfo`. Se o seu sistema não tiver um banco de dados de zoneinfo, você pode usar um pacote para download, conforme descrito mais adiante nesta seção.
 
-Para carregar as tabelas de fuso horário a partir da linha de comando, passe o nome do caminho do diretório de zoneinfo para o **mysql\_tzinfo\_to\_sql** e envie a saída para o programa **mysql**. Por exemplo:
+Para carregar as tabelas de fuso horário a partir da linha de comando, passe o nome do caminho do diretório de zoneinfo para o **mysql_tzinfo_to_sql** e envie a saída para o programa **mysql**. Por exemplo:
 
 ```
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
@@ -90,11 +90,11 @@ mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
 
 O comando **mysql** mostrado aqui assume que você se conecta ao servidor usando uma conta como `root` que tenha privilégios para modificar tabelas no esquema do sistema **mysql**. Ajuste os parâmetros de conexão conforme necessário.
 
-O **mysql\_tzinfo\_to\_sql** lê os arquivos de fuso horário do seu sistema e gera declarações SQL a partir deles. O **mysql** processa essas declarações para carregar as tabelas de fuso horário.
+O **mysql_tzinfo_to_sql** lê os arquivos de fuso horário do seu sistema e gera declarações SQL a partir deles. O **mysql** processa essas declarações para carregar as tabelas de fuso horário.
 
-O **mysql\_tzinfo\_to\_sql** também pode ser usado para carregar um único arquivo de fuso horário ou gerar informações sobre segundos intercalares:
+O **mysql_tzinfo_to_sql** também pode ser usado para carregar um único arquivo de fuso horário ou gerar informações sobre segundos intercalares:
 
-* Para carregar um único arquivo de fuso horário *`tz_file`* que corresponde a um nome de fuso horário *`tz_name`*, invocando o **mysql\_tzinfo\_to\_sql** da seguinte forma:
+* Para carregar um único arquivo de fuso horário *`tz_file`* que corresponde a um nome de fuso horário *`tz_name`*, invocando o **mysql_tzinfo_to_sql** da seguinte forma:
 
   ```
   mysql_tzinfo_to_sql tz_file tz_name | mysql -u root -p mysql
@@ -108,7 +108,7 @@ O **mysql\_tzinfo\_to\_sql** também pode ser usado para carregar um único arqu
   mysql_tzinfo_to_sql --leap tz_file | mysql -u root -p mysql
   ```
 
-Após executar o **mysql\_tzinfo\_to\_sql**, reinicie o servidor para que ele não continue a usar quaisquer dados de fuso horário cacheados anteriormente.
+Após executar o **mysql_tzinfo_to_sql**, reinicie o servidor para que ele não continue a usar quaisquer dados de fuso horário cacheados anteriormente.
 
 Se o seu sistema não tiver um banco de dados zoneinfo (por exemplo, no Windows), você pode usar um pacote que contém instruções SQL disponíveis para download na MySQL Developer Zone:
 
@@ -118,7 +118,7 @@ https://dev.mysql.com/downloads/timezones.html
 
 Aviso
 
-* **Não** use um pacote de fuso horário para download se o seu sistema tiver um banco de dados zoneinfo. Use o utilitário **mysql\_tzinfo\_to\_sql**. Caso contrário, você pode causar uma diferença no tratamento de datas e horas entre o MySQL e outras aplicações no seu sistema.
+* **Não** use um pacote de fuso horário para download se o seu sistema tiver um banco de dados zoneinfo. Use o utilitário **mysql_tzinfo_to_sql**. Caso contrário, você pode causar uma diferença no tratamento de datas e horas entre o MySQL e outras aplicações no seu sistema.
 
 Para usar um pacote de fuso horário com instruções SQL que você baixou, descompacte-o e, em seguida, carregue o conteúdo do arquivo descompactado nas tabelas de fuso horário:
 

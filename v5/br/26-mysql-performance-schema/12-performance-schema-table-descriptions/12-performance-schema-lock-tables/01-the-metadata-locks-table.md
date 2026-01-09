@@ -1,4 +1,4 @@
-#### 25.12.12.1 Tabela metadata\_locks
+#### 25.12.12.1 Tabela metadata_locks
 
 O MySQL utiliza o bloqueio de metadados para gerenciar o acesso concorrente a objetos de banco de dados e garantir a consistência dos dados; veja Seção 8.11.4, “Bloqueio de Metadados”. O bloqueio de metadados não se aplica apenas a tabelas, mas também a esquemas, programas armazenados (procedimentos, funções, gatilhos, eventos agendados), espaços de tabelas, bloqueios de usuário adquiridos com a função `GET_LOCK()` (veja Seção 12.14, “Funções de Bloqueio”), e bloqueios adquiridos com o serviço de bloqueio descrito em Seção 5.5.6.1, “O Serviço de Bloqueio”.
 

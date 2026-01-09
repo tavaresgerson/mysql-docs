@@ -28,8 +28,8 @@ MySQL 5.7 includes the `sys` schema, a set of objects that helps DBAs and develo
 
 For new installations, the `sys` schema is installed by default during data directory initialization if you use **mysqld** with the `--initialize` or `--initialize-insecure` option. You can drop the `sys` schema manually after initialization if it is unneeded.
 
-For upgrades, **mysql\_upgrade** installs the `sys` schema if it is not installed, and upgrades it to the current version otherwise. To permit this behavior to be suppressed, **mysql\_upgrade** has a `--skip-sys-schema` option.
+For upgrades, **mysql_upgrade** installs the `sys` schema if it is not installed, and upgrades it to the current version otherwise. To permit this behavior to be suppressed, **mysql_upgrade** has a `--skip-sys-schema` option.
 
-**mysql\_upgrade** returns an error if a `sys` schema exists but has no `version` view, on the assumption that absence of this view indicates a user-created `sys` schema. To upgrade in this case, remove or rename the existing `sys` schema first.
+**mysql_upgrade** returns an error if a `sys` schema exists but has no `version` view, on the assumption that absence of this view indicates a user-created `sys` schema. To upgrade in this case, remove or rename the existing `sys` schema first.
 
 `sys` schema objects have a `DEFINER` of `'mysql.sys'@'localhost'`. Use of the dedicated `mysql.sys` account avoids problems that occur if a DBA renames or removes the `root` account.

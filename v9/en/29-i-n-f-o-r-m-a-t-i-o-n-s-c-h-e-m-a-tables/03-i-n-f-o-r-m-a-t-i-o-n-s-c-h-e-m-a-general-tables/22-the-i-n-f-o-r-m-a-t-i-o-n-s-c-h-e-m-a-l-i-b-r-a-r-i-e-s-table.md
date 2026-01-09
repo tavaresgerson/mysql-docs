@@ -1,4 +1,4 @@
-### 28.3.22 The INFORMATION\_SCHEMA LIBRARIES Table
+### 28.3.22 The INFORMATION_SCHEMA LIBRARIES Table
 
 The `LIBRARIES` table contains information about JavaScript and WebAssembly libraries known to the MLE JavaScript component (see Section 7.5.7, “Multilingual Engine Component (MLE)”")).
 

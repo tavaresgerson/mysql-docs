@@ -1,10 +1,10 @@
-#### 25.12.6.2 A tabela events\_statements\_history
+#### 25.12.6.2 A tabela events_statements_history
 
 A tabela `events_statements_history` contém os *`N`* eventos de declaração mais recentes que terminaram por fio. Os eventos de declaração não são adicionados à tabela até que tenham terminado. Quando a tabela contém o número máximo de linhas para um determinado fio, a linha mais antiga do fio é descartada quando uma nova linha para esse fio é adicionada. Quando um fio termina, todas as suas linhas são descartadas.
 
 O Schema de Desempenho autodimensiona o valor de *`N`* durante o início do servidor. Para definir explicitamente o número de linhas por fio, defina a variável de sistema `performance_schema_events_statements_history_size` durante o início do servidor.
 
-A tabela `events_statements_history` tem as mesmas colunas que a tabela `events_statements_current`. Veja Seção 25.12.6.1, “A tabela events\_statements\_current”.
+A tabela `events_statements_history` tem as mesmas colunas que a tabela `events_statements_current`. Veja Seção 25.12.6.1, “A tabela events_statements_current”.
 
 A operação `TRUNCATE TABLE` é permitida para a tabela `events_statements_history`. Ela remove as linhas.
 

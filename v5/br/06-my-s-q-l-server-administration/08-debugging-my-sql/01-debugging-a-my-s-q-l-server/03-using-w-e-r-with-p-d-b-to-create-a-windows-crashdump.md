@@ -16,7 +16,7 @@ Importante
 
 Os arquivos `.exe` e `.pdb` devem ser idênticos (ambos o número da versão e a edição do servidor MySQL) ou o WinDBG reclamará ao tentar carregar os símbolos.
 
-1. Para gerar um minidump `mysqld.dmp`, habilite a opção `core-file` na seção \[mysqld] no `my.ini`. Reinicie o servidor MySQL após fazer essas alterações.
+1. Para gerar um minidump `mysqld.dmp`, habilite a opção `core-file` na seção [mysqld] no `my.ini`. Reinicie o servidor MySQL após fazer essas alterações.
 
 2. Crie um diretório para armazenar os arquivos gerados, como `c:\símbolos`
 

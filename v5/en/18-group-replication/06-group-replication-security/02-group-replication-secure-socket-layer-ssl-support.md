@@ -44,7 +44,7 @@ These options are MySQL Server configuration options which Group Replication rel
 * [`group_replication_ssl_mode`](group-replication-system-variables.html#sysvar_group_replication_ssl_mode)
   - specifies the security state of the connection between Group Replication members.
 
-**Table 17.3 group\_replication\_ssl\_mode configuration values**
+**Table 17.3 group_replication_ssl_mode configuration values**
 
 <table summary="Lists the possible values for group_replication_ssl_mode and describes their effect on how replication group members connect to each other."><col style="width: 43%"/><col style="width: 57%"/><thead><tr> <th><p> Value </p></th> <th><p> Description </p></th> </tr></thead><tbody><tr> <td><p> <span class="emphasis"><em>DISABLED</em></span> </p></td> <td><p> Establish an unencrypted connection (<span class="emphasis"><em>default</em></span>). </p></td> </tr><tr> <td><p> REQUIRED </p></td> <td><p> Establish a secure connection if the server supports secure connections. </p></td> </tr><tr> <td><p> VERIFY_CA </p></td> <td><p> Like REQUIRED, but additionally verify the server TLS certificate against the configured Certificate Authority (CA) certificates. </p></td> </tr><tr> <td><p> VERIFY_IDENTITY </p></td> <td><p> Like VERIFY_CA, but additionally verify that the server certificate matches the host to which the connection is attempted. </p></td> </tr></tbody></table>
 

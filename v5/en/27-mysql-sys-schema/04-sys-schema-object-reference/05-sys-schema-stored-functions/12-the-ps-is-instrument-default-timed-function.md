@@ -1,4 +1,4 @@
-#### 26.4.5.12 The ps\_is\_instrument\_default\_timed() Function
+#### 26.4.5.12 The ps_is_instrument_default_timed() Function
 
 Returns `YES` or `NO` to indicate whether a given Performance Schema instrument is timed by default.
 

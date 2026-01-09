@@ -44,7 +44,7 @@ The `READ ONLY` option controls whether to permit modification of the database a
 
 With NDB Cluster, making a database read only on one **mysqld** server is synchronized to other **mysqld** servers in the same cluster, so that the database becomes read only on all **mysqld** servers.
 
-The `READ ONLY` option, if enabled, is displayed in the `INFORMATION_SCHEMA` `SCHEMATA_EXTENSIONS` table. See Section 28.3.38, “The INFORMATION\_SCHEMA SCHEMATA\_EXTENSIONS Table”.
+The `READ ONLY` option, if enabled, is displayed in the `INFORMATION_SCHEMA` `SCHEMATA_EXTENSIONS` table. See Section 28.3.38, “The INFORMATION_SCHEMA SCHEMATA_EXTENSIONS Table”.
 
 The `READ ONLY` option cannot be enabled for these system schemas: `mysql`, `information_schema`, `performance_schema`.
 

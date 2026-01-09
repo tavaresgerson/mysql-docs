@@ -32,9 +32,9 @@ The syntax to create channel specific replication filters extends the existing S
 
 * *Global replication filters*: `do_db=db1,db3`; `ignore_db=db4`
 
-* *Channel specific filters on channel\_1*: `do_db=db2`; `ignore_db=db4`; `wild-do-table=db6.t1%`
+* *Channel specific filters on channel_1*: `do_db=db2`; `ignore_db=db4`; `wild-do-table=db6.t1%`
 
-* *Channel specific filters on channel\_2*: `do_db=db1,db3`; `ignore_db=db5`
+* *Channel specific filters on channel_2*: `do_db=db1,db3`; `ignore_db=db5`
 
 These same rules could be applied at startup when included in the replica's `my.cnf` file, like this:
 

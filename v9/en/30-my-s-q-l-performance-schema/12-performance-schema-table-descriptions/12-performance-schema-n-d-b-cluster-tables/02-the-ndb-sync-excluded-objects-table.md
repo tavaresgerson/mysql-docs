@@ -1,4 +1,4 @@
-#### 29.12.12.2 The ndb\_sync\_excluded\_objects Table
+#### 29.12.12.2 The ndb_sync_excluded_objects Table
 
 This table provides information about `NDB` database objects which cannot be automatically synchronized between NDB Cluster's dictionary and the MySQL data dictionary.
 

@@ -1,4 +1,4 @@
-#### 17.6.3.9 Configuração do tamanho de espaço de tabelas AUTOEXTEND\_SIZE
+#### 17.6.3.9 Configuração do tamanho de espaço de tabelas AUTOEXTEND_SIZE
 
 Por padrão, quando um espaço de tabelas por arquivo ou espaço de tabelas geral requer espaço adicional, o espaço de tabelas é estendido incrementalmente de acordo com as seguintes regras:
 

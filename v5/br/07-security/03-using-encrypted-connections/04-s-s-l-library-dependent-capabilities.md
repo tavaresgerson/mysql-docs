@@ -8,9 +8,9 @@ O MySQL pode ser compilado usando o OpenSSL ou o yaSSL, ambos os quais permitem 
 
 - As distribuições de código-fonte da MySQL Community Edition podem ser compiladas usando o OpenSSL ou o yaSSL (consulte Seção 2.8.6, “Configurando Suporte à Biblioteca SSL”).
 
-Nota
-
+::: info Nota
 É possível compilar o MySQL usando o yaSSL como alternativa ao OpenSSL apenas antes do MySQL 5.7.28. A partir do MySQL 5.7.28, o suporte ao yaSSL é removido e todas as compilações do MySQL usam o OpenSSL.
+:::
 
 OpenSSL e yaSSL oferecem a mesma funcionalidade básica, mas as distribuições do MySQL compiladas com OpenSSL têm recursos adicionais:
 

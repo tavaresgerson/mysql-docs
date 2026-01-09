@@ -1,4 +1,4 @@
-#### 21.6.15.9 A tabela ndbinfo config\_values
+#### 21.6.15.9 A tabela ndbinfo config_values
 
 A tabela `config_values`, implementada no NDB 7.5.0, fornece informações sobre o estado atual dos valores dos parâmetros de configuração do nó. Cada linha da tabela corresponde ao valor atual de um parâmetro em um nó específico.
 
@@ -25,7 +25,7 @@ SELECT    v.node_id AS 'Node Id',
 FROM      config_values v
 JOIN      config_params p
 ON        v.config_param=p.param_number
-WHERE     p.param_name NOT LIKE '\_\_%'
+WHERE     p.param_name NOT LIKE '__%'
 ORDER BY  v.node_id, p.param_name;
 ```
 

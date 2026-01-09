@@ -8,7 +8,7 @@
 
 22.3 Guia Rápido em JavaScript: Shell MySQL para Armazenadora de Documentos :   22.3.1 Shell MySQL
 
-    22.3.2 Baixar e Importar o banco de dados world\_x
+    22.3.2 Baixar e Importar o banco de dados world_x
 
     22.3.3 Documentos e Coleções
 
@@ -18,7 +18,7 @@
 
 22.4 Guia Rápido em Python: Shell MySQL para Armazenadora de Documentos :   22.4.1 Shell MySQL
 
-    22.4.2 Baixar e Importar o banco de dados world\_x
+    22.4.2 Baixar e Importar o banco de dados world_x
 
     22.4.3 Documentos e Coleções
 

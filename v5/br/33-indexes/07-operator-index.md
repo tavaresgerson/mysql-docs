@@ -4,7 +4,7 @@
 
 ### Símbolos
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### -
 
@@ -300,7 +300,7 @@
 
 ### A
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### E
 
@@ -334,7 +334,7 @@
 
 ### B
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### ENTRE
 
@@ -366,7 +366,7 @@
 
 ### C
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### CASO
 
@@ -378,7 +378,7 @@
 
 [Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
 
-### CASE valor\_caso WHEN valor\_comparar\_valor THEN resultado FIM
+### CASE valor_caso WHEN valor_comparar_valor THEN resultado FIM
 
 [Seção 12.5, “Funções de Controle de Fluxo”](flow-control-functions.html)
 
@@ -404,7 +404,7 @@
 
 ### D
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### DIV
 
@@ -414,7 +414,7 @@
 
 ### E
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### EXISTE()
 
@@ -466,7 +466,7 @@
 
 ### Eu
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### IN()
 
@@ -488,11 +488,11 @@
 
 [Seção 12.4.1, “Precedência do Operador”](operator-precedence.html)
 
-### IS boolean\_value
+### IS boolean_value
 
 [Seção 12.4.2, "Funções e Operadores de Comparação"](comparison-operators.html)
 
-### Não é boolean\_value
+### Não é boolean_value
 
 [Seção 12.4.2, "Funções e Operadores de Comparação"](comparison-operators.html)
 
@@ -526,7 +526,7 @@
 
 ### L
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### LIKE
 
@@ -582,7 +582,7 @@
 
 [Seção 13.7.5.28, "Declaração de Status do Procedimento"](show-procedure-status.html)
 
-\[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
+[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
 
 [Seção 13.7.5.36, "Declaração de Status da Tabela"](show-table-status.html)
 
@@ -602,19 +602,19 @@
 
 [Seção 11.3.2, “Os tipos CHAR e VARCHAR”](char.html)
 
-[Seção 26.4.4.5, “O procedimento ps\_setup\_disable\_consumer()”](sys-ps-setup-disable-consumer.html)
+[Seção 26.4.4.5, “O procedimento ps_setup_disable_consumer()”](sys-ps-setup-disable-consumer.html)
 
-[Seção 26.4.4.6, “O procedimento ps\_setup\_disable\_instrument()”](sys-ps-setup-disable-instrument.html)
+[Seção 26.4.4.6, “O procedimento ps_setup_disable_instrument()”](sys-ps-setup-disable-instrument.html)
 
-[Seção 26.4.4.9, “O procedimento ps\_setup\_enable\_consumer()”](sys-ps-setup-enable-consumer.html)
+[Seção 26.4.4.9, “O procedimento ps_setup_enable_consumer()”](sys-ps-setup-enable-consumer.html)
 
-[Seção 26.4.4.10, “O procedimento ps\_setup\_enable\_instrument()”](sys-ps-setup-enable-instrument.html)
+[Seção 26.4.4.10, “O procedimento ps_setup_enable_instrument()”](sys-ps-setup-enable-instrument.html)
 
 [Seção 11.3.6, “O Tipo SET”](set.html)
 
 [Seção 5.1.8, “Usando Variáveis do Sistema”](using-system-variables.html)
 
-### LIKE '\_A%'
+### LIKE '_A%'
 
 [Seção A.11, “Perguntas frequentes sobre o MySQL 5.7: conjuntos de caracteres chineses, japoneses e coreanos do MySQL”](faqs-cjk.html)
 
@@ -630,7 +630,7 @@
 
 ### N
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### N % M
 
@@ -680,7 +680,7 @@
 
 ### O
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### OU
 
@@ -712,7 +712,7 @@
 
 ### R
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### REGEXP
 
@@ -736,7 +736,7 @@
 
 ### X
 
-\[[index superior](dynindex-operator.html#op-index-superior)]
+[[index superior](dynindex-operator.html#op-index-superior)]
 
 ### XOR
 

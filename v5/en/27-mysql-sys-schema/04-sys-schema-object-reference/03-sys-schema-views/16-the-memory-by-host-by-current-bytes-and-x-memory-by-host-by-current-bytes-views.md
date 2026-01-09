@@ -1,4 +1,4 @@
-#### 26.4.3.16 The memory\_by\_host\_by\_current\_bytes and x$memory\_by\_host\_by\_current\_bytes Views
+#### 26.4.3.16 The memory_by_host_by_current_bytes and x$memory_by_host_by_current_bytes Views
 
 These views summarize memory use, grouped by host. By default, rows are sorted by descending amount of memory used.
 

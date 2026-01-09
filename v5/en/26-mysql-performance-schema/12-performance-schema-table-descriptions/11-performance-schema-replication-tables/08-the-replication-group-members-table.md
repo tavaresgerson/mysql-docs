@@ -1,4 +1,4 @@
-#### 25.12.11.8 The replication\_group\_members Table
+#### 25.12.11.8 The replication_group_members Table
 
 This table shows network and status information for replication group members. The network addresses shown are the addresses used to connect clients to the group, and should not be confused with the member's internal group communication address specified by [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address).
 

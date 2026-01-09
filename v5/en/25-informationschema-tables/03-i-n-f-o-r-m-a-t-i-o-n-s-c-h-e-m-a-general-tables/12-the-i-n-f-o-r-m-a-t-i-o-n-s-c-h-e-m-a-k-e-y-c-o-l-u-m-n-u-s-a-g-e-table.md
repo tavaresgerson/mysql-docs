@@ -1,4 +1,4 @@
-### 24.3.12 The INFORMATION\_SCHEMA KEY\_COLUMN\_USAGE Table
+### 24.3.12 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table
 
 The [`KEY_COLUMN_USAGE`](information-schema-key-column-usage-table.html "24.3.12 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table") table describes which key columns have constraints.
 

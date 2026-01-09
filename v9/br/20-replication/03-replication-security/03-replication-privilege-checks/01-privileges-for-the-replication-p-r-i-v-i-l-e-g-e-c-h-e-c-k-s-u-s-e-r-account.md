@@ -1,4 +1,4 @@
-#### 19.3.3.1 Prerrogativas para a Replicação PRIVILEGE\_CHECKS\_USER Conta
+#### 19.3.3.1 Prerrogativas para a Replicação PRIVILEGE_CHECKS_USER Conta
 
 A conta de usuário especificada usando a instrução `CHANGE REPLICATION SOURCE TO` como a conta `PRIVILEGE_CHECKS_USER` para um canal de replicação deve ter o privilégio `REPLICATION_APPLIER`, caso contrário, o thread do aplicador de replicação não será iniciado. Como explicado na Seção 19.3.3, “Verificações de Prerrogativas de Replicação”, a conta requer outros privilégios adicionais que sejam suficientes para aplicar todas as transações esperadas no canal de replicação. Esses privilégios são verificados apenas quando as transações relevantes são executadas.
 

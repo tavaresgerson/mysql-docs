@@ -83,7 +83,7 @@ mysql> ALTER TABLE tbl AUTO_INCREMENT = 100;
 
 #### Notas do InnoDB
 
-Para informações sobre o uso de `AUTO_INCREMENT` específico do `InnoDB`, consulte a Seção 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+Para informações sobre o uso de `AUTO_INCREMENT` específico do `InnoDB`, consulte a Seção 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
 #### Notas do MyISAM
 
@@ -138,7 +138,7 @@ Mais informações sobre `AUTO_INCREMENT` estão disponíveis aqui:
 
 * Definindo o valor `AUTO_INCREMENT` a ser usado: Seção 7.1.8, “Variáveis do Sistema do Servidor”.
 
-* Seção 17.6.1.6, “Tratamento de `AUTO\_INCREMENT` em InnoDB”
-* `AUTO_INCREMENT` e replicação: Seção 19.5.1.1, “Replicação e `AUTO\_INCREMENT`”.
+* Seção 17.6.1.6, “Tratamento de `AUTO_INCREMENT` em InnoDB”
+* `AUTO_INCREMENT` e replicação: Seção 19.5.1.1, “Replicação e `AUTO_INCREMENT`”.
 
 * Variáveis do sistema do servidor relacionadas a `AUTO_INCREMENT` (`auto_increment_increment` e `auto_increment_offset`) que podem ser usadas para replicação: Seção 7.1.8, “Variáveis do Sistema do Servidor”.

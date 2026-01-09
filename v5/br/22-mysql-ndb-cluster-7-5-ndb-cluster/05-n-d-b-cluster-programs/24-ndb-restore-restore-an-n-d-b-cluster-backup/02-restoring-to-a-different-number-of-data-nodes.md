@@ -38,7 +38,7 @@ Você pode restaurar para um clúster com menos nós de dados do que o original,
 
    Esses arquivos são encontrados em `BackupDataDir`/BACKUP/BACKUP-B\`, em cada nó de dados. Para o resto deste exemplo, assumimos que o ID de backup é 1.
 
-   Tenha todos esses arquivos disponíveis para serem copiados posteriormente para os novos nós de dados (onde eles podem ser acessados no sistema de arquivos local do nó de dados por **ndb\_restore**). É mais simples copiá-los para um único local; assumimos que você fez isso.
+   Tenha todos esses arquivos disponíveis para serem copiados posteriormente para os novos nós de dados (onde eles podem ser acessados no sistema de arquivos local do nó de dados por **ndb_restore**). É mais simples copiá-los para um único local; assumimos que você fez isso.
 
 4. O servidor de gerenciamento do clúster de destino está no host `host20`, e o destino tem dois nós de dados, com os IDs dos nós e os nomes dos hosts mostrados, a partir do arquivo `config.ini` do servidor de gerenciamento em `host20`:
 
@@ -74,7 +74,7 @@ Você pode restaurar para um clúster com menos nós de dados do que o original,
 
    Para o restante deste exemplo, assumimos que os arquivos de backup respectivos foram salvos no diretório `/BACKUP-1` em cada um dos nós 3 e 5.
 
-6. Em cada um dos dois nós de dados de destino, você deve restaurar a partir de ambos os conjuntos de backups. Primeiro, restaure os backups dos nós 2 e 4 para o nó 3, invocando **ndb\_restore** no `host3` conforme mostrado aqui:
+6. Em cada um dos dois nós de dados de destino, você deve restaurar a partir de ambos os conjuntos de backups. Primeiro, restaure os backups dos nós 2 e 4 para o nó 3, invocando **ndb_restore** no `host3` conforme mostrado aqui:
 
    ```sql
    $> ndb_restore -c host20 --nodeid=2 --backupid=1 --restore-data --backup-path=/BACKUP-1
@@ -82,7 +82,7 @@ Você pode restaurar para um clúster com menos nós de dados do que o original,
    $> ndb_restore -c host20 --nodeid=4 --backupid=1 --restore-data --backup-path=/BACKUP-1
    ```
 
-   Em seguida, restaure os backups dos nós 6 e 8 para o nó 5, invocando **ndb\_restore** no `host5`, da seguinte forma:
+   Em seguida, restaure os backups dos nós 6 e 8 para o nó 5, invocando **ndb_restore** no `host5`, da seguinte forma:
 
    ```sql
    $> ndb_restore -c host20 --nodeid=6 --backupid=1 --restore-data --backup-path=/BACKUP-1
@@ -92,13 +92,13 @@ Você pode restaurar para um clúster com menos nós de dados do que o original,
 
 ##### 21.5.24.2.2 Restauração em mais nós do que o original
 
-O ID do nó especificado para um comando **ndb\_restore** é o do nó no backup original e não o do nó de dados para o qual ele será restaurado. Ao realizar um backup usando o método descrito nesta seção, o **ndb\_restore** se conecta ao servidor de gerenciamento e obtém uma lista dos nós de dados no clúster para o qual o backup está sendo restaurado. Os dados restaurados são distribuídos de acordo, de modo que o número de nós no clúster de destino não precisa ser conhecido ou calculado ao realizar o backup.
+O ID do nó especificado para um comando **ndb_restore** é o do nó no backup original e não o do nó de dados para o qual ele será restaurado. Ao realizar um backup usando o método descrito nesta seção, o **ndb_restore** se conecta ao servidor de gerenciamento e obtém uma lista dos nós de dados no clúster para o qual o backup está sendo restaurado. Os dados restaurados são distribuídos de acordo, de modo que o número de nós no clúster de destino não precisa ser conhecido ou calculado ao realizar o backup.
 
 Nota
 
 Ao alterar o número total de threads LCP ou threads LQH por grupo de nós, você deve recriar o esquema a partir do backup criado usando **mysqldump**.
 
-1. *Crie o backup dos dados*. Você pode fazer isso invocando o comando **ndb\_mgm** do cliente `START BACKUP` no shell do sistema, da seguinte maneira:
+1. *Crie o backup dos dados*. Você pode fazer isso invocando o comando **ndb_mgm** do cliente `START BACKUP` no shell do sistema, da seguinte maneira:
 
    ```sql
    $> ndb_mgm -e "START BACKUP 1"
@@ -114,7 +114,7 @@ Ao alterar o número total de threads LCP ou threads LQH por grupo de nós, voc�
 
    Importante
 
-   Depois de criar o backup nativo `NDB` usando **ndb\_mgm**, você não deve fazer nenhuma alteração no esquema antes de criar o backup do esquema, caso contrário.
+   Depois de criar o backup nativo `NDB` usando **ndb_mgm**, você não deve fazer nenhuma alteração no esquema antes de criar o backup do esquema, caso contrário.
 
 3. Copie o diretório de backup para o novo clúster. Por exemplo, se o backup que você deseja restaurar tiver o ID 1 e `BackupDataDir` = `/backups/node_nodeid`, então o caminho do backup neste nó é `/backups/node_1/BACKUP/BACKUP-1`. Dentro deste diretório, há três arquivos, listados aqui:
 
@@ -140,13 +140,13 @@ Para restaurar a partir do backup recém-criado, siga os passos abaixo:
 
      Ao importar o arquivo do esquema, você pode precisar especificar as opções `--user` e `--password` (e possivelmente outras) além do que está mostrado, para que o cliente **mysql** possa se conectar ao servidor MySQL.
 
-   - Se você não precisasse criar um arquivo de esquema, você pode recriar o esquema usando **ndb\_restore** `--restore-meta` (forma abreviada `-m`), semelhante ao que está mostrado aqui:
+   - Se você não precisasse criar um arquivo de esquema, você pode recriar o esquema usando **ndb_restore** `--restore-meta` (forma abreviada `-m`), semelhante ao que está mostrado aqui:
 
      ```sql
      $> ndb_restore --nodeid=1 --backupid=1 --restore-meta --backup-path=/backups/node_1/BACKUP/BACKUP-1
      ```
 
-     **ndb\_restore** deve ser capaz de entrar em contato com o servidor de gerenciamento; adicione a opção `--ndb-connectstring` se e quando necessário para tornar isso possível.
+     **ndb_restore** deve ser capaz de entrar em contato com o servidor de gerenciamento; adicione a opção `--ndb-connectstring` se e quando necessário para tornar isso possível.
 
 2. *Restaure os dados*. Isso precisa ser feito uma vez para cada nó de dados no cluster original, cada vez usando o ID do nó do nó em questão. Supondo que originalmente houvesse 4 nós de dados, o conjunto de comandos necessários seria algo como:
 
@@ -167,4 +167,4 @@ Para restaurar a partir do backup recém-criado, siga os passos abaixo:
    $> ndb_restore --nodeid=1 --backupid=1 --backup-path=/backups/node_1/BACKUP/BACKUP-1 --rebuild-indexes
    ```
 
-   Como mencionado anteriormente, você pode precisar adicionar a opção `--ndb-connectstring`, para que o **ndb\_restore** possa entrar em contato com o servidor de gerenciamento.
+   Como mencionado anteriormente, você pode precisar adicionar a opção `--ndb-connectstring`, para que o **ndb_restore** possa entrar em contato com o servidor de gerenciamento.

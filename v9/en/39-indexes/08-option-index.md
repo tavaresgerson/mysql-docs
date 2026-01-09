@@ -12,11 +12,11 @@ Section 1.7.2.4, “'--' as the Start of a Comment”
 
 ### -#
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -24,7 +24,7 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -56,13 +56,13 @@ Section 6.8.1, “perror — Display MySQL Error Message Information”
 
 ### -?
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -72,9 +72,9 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -90,13 +90,13 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -122,9 +122,9 @@ Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 6.6.4.4, “Other myisamchk Options”
 
@@ -142,9 +142,9 @@ Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
 Section 6.6.4.4, “Other myisamchk Options”
 
@@ -154,9 +154,9 @@ Section 8.4.5.10, “Using the HashiCorp Vault Keyring Plugin”
 
 ### --abort-on-error
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
 ### --add-drop-database
 
@@ -182,43 +182,43 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --add-missing
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
 ### --admin-tls-version
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
-### --admin\_ssl\_ca
+### --admin_ssl_ca
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
-### --admin\_ssl\_capath
+### --admin_ssl_capath
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
-### --admin\_ssl\_cert
+### --admin_ssl_cert
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
-### --admin\_ssl\_crl
+### --admin_ssl_crl
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 ### --ai-increment
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --ai-offset
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --ai-prefetch-sz
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --all
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 ### --all-databases
 
@@ -262,7 +262,7 @@ Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
 ### --allow-pk-changes
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --allow-suspicious-udfs
 
@@ -292,7 +292,7 @@ Section 8.4.1.4, “PAM Pluggable Authentication”
 
 ### --append
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --apply-replica-statements
 
@@ -364,7 +364,7 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 ### --auto-inc
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
 ### --auto-rehash
 
@@ -412,15 +412,15 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 6.6.4.4, “Other myisamchk Options”
 
 Section 7.1.7, “Server Command Options”
 
-### --back\_log
+### --back_log
 
 Section 2.7, “Installing MySQL on Solaris”
 
@@ -432,37 +432,37 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 ### --backup-key
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --backup-key-from-stdin
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --backup-password
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”
 
 ### --backup-password-from-stdin
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”
 
 ### --backup-path
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### backup-path
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### backup-to-image
 
@@ -470,7 +470,7 @@ Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
 ### --backupid
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --base64-output
 
@@ -488,7 +488,7 @@ Section 2.9.1, “Initializing the Data Directory”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 25.2.7.1, “Noncompliance with SQL Syntax in NDB Cluster”
 
@@ -574,7 +574,7 @@ Section 6.5.5, “mysqlimport — A Data Import Program”
 
 Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -582,7 +582,7 @@ Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
 Section 25.6.19.5.2, “Creating a CA and Keys”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --binlog-checksum
 
@@ -628,7 +628,7 @@ Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”
 
 Section 25.7.3, “Known Issues in NDB Cluster Replication”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 19.1.6.3, “Replica Server Options and Variables”
 
@@ -652,7 +652,7 @@ Section 25.4.3.9.2, “NDB Cluster System Variables”
 
 ### --blob-info
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
 ### --block-search
 
@@ -666,7 +666,7 @@ Section 7.1.7, “Server Command Options”
 
 Section 25.6.19.5.2, “Creating a CA and Keys”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### C
 
@@ -676,7 +676,7 @@ Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and C
 
 Section 6.2.3, “Command Options for Connecting to the Server”
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
@@ -700,7 +700,7 @@ Section 6.5.8.1, “Options”
 
 ### -c
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
@@ -708,9 +708,9 @@ Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
 Section 25.3.2.1, “Installing NDB Cluster on Windows from a Binary Release”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 6.6.4.2, “myisamchk Check Options”
 
@@ -732,11 +732,11 @@ Section 6.5.5, “mysqlimport — A Data Import Program”
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -746,33 +746,33 @@ Section 8.4.5.10, “Using the HashiCorp Vault Keyring Plugin”
 
 ### --CA-cert
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --CA-days
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --CA-key
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --CA-ordinal
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --CA-search-path
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --CA-tool
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --cflags
 
 Section 2.8.8, “Dealing with Problems Compiling MySQL”
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
 ### --character-set-client-handshake
 
@@ -814,47 +814,47 @@ Section 6.5.5, “mysqlimport — A Data Import Program”
 
 Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 6.5.8.1, “Options”
 
 ### --charset
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 ### --check
 
@@ -862,11 +862,11 @@ Section 6.6.4.2, “myisamchk Check Options”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --check-missing
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
 ### --check-only-changed
 
@@ -876,7 +876,7 @@ Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
 ### --check-orphans
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
 ### --check-table-functions
 
@@ -896,15 +896,15 @@ Section 7.6.6.1, “Installing the Clone Plugin”
 
 ### cluster-config-suffix
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-### CMAKE\_BUILD\_TYPE
+### CMAKE_BUILD_TYPE
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### CMAKE\_C\_FLAGS
+### CMAKE_C_FLAGS
 
 Section 7.9.1.1, “Compiling MySQL for Debugging”
 
@@ -912,15 +912,15 @@ Section 2.8.8, “Dealing with Problems Compiling MySQL”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### CMAKE\_C\_FLAGS\_build\_type
+### CMAKE_C_FLAGS_build_type
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### CMAKE\_C\_FLAGS\_RELWITHDEBINFO
+### CMAKE_C_FLAGS_RELWITHDEBINFO
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### CMAKE\_CXX\_FLAGS
+### CMAKE_CXX_FLAGS
 
 Section 7.9.1.1, “Compiling MySQL for Debugging”
 
@@ -928,15 +928,15 @@ Section 2.8.8, “Dealing with Problems Compiling MySQL”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### CMAKE\_CXX\_FLAGS\_build\_type
+### CMAKE_CXX_FLAGS_build_type
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### CMAKE\_CXX\_FLAGS\_RELWITHDEBINFO
+### CMAKE_CXX_FLAGS_RELWITHDEBINFO
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### CMAKE\_INSTALL\_PREFIX
+### CMAKE_INSTALL_PREFIX
 
 Section 2.8.5, “Installing MySQL Using a Development Source Tree”
 
@@ -946,7 +946,7 @@ Section 7.8.3, “Running Multiple MySQL Instances on Unix”
 
 Section 7.1.8, “Server System Variables”
 
-### CMAKE\_PREFIX\_PATH
+### CMAKE_PREFIX_PATH
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
@@ -962,13 +962,13 @@ Section 12.5, “Configuring Application Character Set and Collation”
 
 Section 12.3.2, “Server Character Set and Collation”
 
-### --collation\_server
+### --collation_server
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
 ### --color
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --column-names
 
@@ -1014,11 +1014,11 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-### COMPILATION\_COMMENT
+### COMPILATION_COMMENT
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### COMPILATION\_COMMENT\_SERVER
+### COMPILATION_COMMENT_SERVER
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
@@ -1032,7 +1032,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 ### --compress
 
@@ -1090,17 +1090,17 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 ### --config-binary-file
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 ### --config-cache
 
 Section 25.4.3, “NDB Cluster Configuration Files”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --config-dir
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --config-file
 
@@ -1112,37 +1112,37 @@ Section 25.3.2.3, “Initial Startup of NDB Cluster on Windows”
 
 Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section A.10, “MySQL 9.5 FAQ: NDB Cluster”
 
 Section 25.4.3.1, “NDB Cluster Configuration: Basic Example”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 Section 25.6.19.5.3, “Using TLS Connections”
 
-### --config\_from\_node
+### --config_from_node
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 ### --configdir
 
 Section 25.4.3, “NDB Cluster Configuration Files”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --configinfo
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 ### --connect
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --connect-delay
 
@@ -1156,121 +1156,121 @@ Section 8.2.16, “Server Handling of Expired Passwords”
 
 ### --connect-retries
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 ### --connect-retry-delay
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 ### --connect-string
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 ### --connect-timeout
 
@@ -1296,13 +1296,13 @@ Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”
 
 ### --connection-timeout
 
-Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”
+Section 25.5.12, “ndb_error_reporter — NDB Error-Reporting Utility”
 
 ### --connections
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --console
 
@@ -1328,15 +1328,15 @@ Section 2.3.3.5, “Starting the Server for the First Time”
 
 ### --context
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
 ### --continue
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --control-directory-number
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### copy-back-and-apply-log
 
@@ -1350,41 +1350,41 @@ Section 17.8.3.7, “Excluding or Including Buffer Pool Pages from Core Files�
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 7.1.7, “Server Command Options”
 
@@ -1398,7 +1398,7 @@ Section 7.9.1.3, “Using WER with PDB to create a Windows crashdump”
 
 Section 2.5.9, “Managing MySQL Server with systemd”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 7.1.7, “Server Command Options”
 
@@ -1410,7 +1410,7 @@ Section 6.6.4.3, “myisamchk Repair Options”
 
 Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -1422,13 +1422,13 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 ### --create-CA
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --create-key
 
 Section 25.6.19.5.2, “Creating a CA and Keys”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 Section 25.6.19.5.3, “Using TLS Connections”
 
@@ -1446,17 +1446,17 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 ### --csvopt
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --curve
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --cxxflags
 
 Section 2.8.8, “Dealing with Problems Compiling MySQL”
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
 ### D
 
@@ -1470,7 +1470,7 @@ Section 25.3.1.4, “Building NDB Cluster from Source on Linux”
 
 Section B.3.2.15, “Can't initialize character set”
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”
 
@@ -1502,39 +1502,39 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -1544,7 +1544,7 @@ Section 7.1.7, “Server Command Options”
 
 Section 7.1.8, “Server System Variables”
 
-Section 15.7.7.27, “SHOW PARSE\_TREE Statement”
+Section 15.7.7.27, “SHOW PARSE_TREE Statement”
 
 Section 18.5, “The ARCHIVE Storage Engine”
 
@@ -1554,7 +1554,7 @@ Section 18.9, “The EXAMPLE Storage Engine”
 
 Section 18.8, “The FEDERATED Storage Engine”
 
-Section 7.9.3, “The LOCK\_ORDER Tool”
+Section 7.9.3, “The LOCK_ORDER Tool”
 
 Section B.3.3.3, “What to Do If MySQL Keeps Crashing”
 
@@ -1566,7 +1566,7 @@ Section 2.5.6.1, “Basic Steps for MySQL Server Deployment with Docker”
 
 Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -1576,29 +1576,29 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -1606,11 +1606,11 @@ Section 6.6.4.4, “Other myisamchk Options”
 
 Section 7.1.8, “Server System Variables”
 
-Section 8.4.5.6, “Using the keyring\_okv KMIP Plugin”
+Section 8.4.5.6, “Using the keyring_okv KMIP Plugin”
 
 ### --daemon
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -1628,25 +1628,25 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.29, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”
+Section 25.5.29, “ndb_size.pl — NDBCLUSTER Size Requirement Estimator”
 
 ### --databases
 
@@ -1676,7 +1676,7 @@ Section 2.9.1, “Initializing the Data Directory”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 25.6.19.3, “NDB Cluster and MySQL Security Procedures”
 
@@ -1708,23 +1708,23 @@ Section 2.3.6, “Windows Platform Restrictions”
 
 ### --db-workers
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --ddl-rewriter
 
-Section 7.6.5.2, “ddl\_rewriter Plugin Options”
+Section 7.6.5.2, “ddl_rewriter Plugin Options”
 
-Section 7.6.5.1, “Installing or Uninstalling ddl\_rewriter”
+Section 7.6.5.1, “Installing or Uninstalling ddl_rewriter”
 
 ### --debug
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 7.9.1.1, “Compiling MySQL for Debugging”
 
 Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -1734,7 +1734,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -1790,7 +1790,7 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 ### --debug-info
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.5.1.1, “mysql Client Options”
 
@@ -1818,7 +1818,7 @@ Section 7.1.8, “Server System Variables”
 
 ### --decrypt
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 25.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”
 
@@ -1906,17 +1906,17 @@ Section 7.1.7, “Server Command Options”
 
 Section 7.1.8, “Server System Variables”
 
-### --default.key\_buffer\_size
+### --default.key_buffer_size
 
 Section 7.1.9.5, “Structured System Variables”
 
-### DEFAULT\_CHARSET
+### DEFAULT_CHARSET
 
 Section 12.5, “Configuring Application Character Set and Collation”
 
 Section 12.3.2, “Server Character Set and Collation”
 
-### DEFAULT\_COLLATION
+### DEFAULT_COLLATION
 
 Section 12.5, “Configuring Application Character Set and Collation”
 
@@ -1928,7 +1928,7 @@ Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”
 
 Section 2.9.1, “Initializing the Data Directory”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -1936,9 +1936,9 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 2.3.2.2, “MySQL Configurator CLI”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -1946,9 +1946,9 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -1958,57 +1958,57 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
 Section 6.5.8.1, “Options”
 
-Section 29.12.14.3, “Performance Schema variables\_info Table”
+Section 29.12.14.3, “Performance Schema variables_info Table”
 
 Section 7.1.7, “Server Command Options”
 
@@ -2026,7 +2026,7 @@ Section 17.8.1, “InnoDB Startup Configuration”
 
 Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -2034,9 +2034,9 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -2044,9 +2044,9 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -2056,57 +2056,57 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
 Section 6.5.8.1, “Options”
 
-Section 29.12.14.3, “Performance Schema variables\_info Table”
+Section 29.12.14.3, “Performance Schema variables_info Table”
 
 Section B.3.3.2.2, “Resetting the Root Password: Unix and Unix-Like Systems”
 
@@ -2132,15 +2132,15 @@ Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”
 
 Section 6.9, “Environment Variables”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.1, “myisamchk General Options”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -2156,51 +2156,51 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -2210,7 +2210,7 @@ Section 7.1.7, “Server Command Options”
 
 ### --delay
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 6.5.8.1, “Options”
 
@@ -2218,7 +2218,7 @@ Section 6.5.8.1, “Options”
 
 Section 10.11.5, “External Locking”
 
-### delay\_key\_write
+### delay_key_write
 
 Section 18.2.1, “MyISAM Startup Options”
 
@@ -2226,7 +2226,7 @@ Section 18.2.1, “MyISAM Startup Options”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --delete-master-logs
 
@@ -2234,7 +2234,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --delete-orphans
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
 ### --delete-source-logs
 
@@ -2248,11 +2248,11 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --descending
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --description
 
@@ -2262,11 +2262,11 @@ Section 6.6.4.4, “Other myisamchk Options”
 
 Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 ### --destination-keyring-configuration-dir
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 ### --detach
 
@@ -2278,7 +2278,7 @@ Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt File
 
 ### --diff-default
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 ### --disable
 
@@ -2292,7 +2292,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 ### --disable-indexes
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --disable-keys
 
@@ -2304,7 +2304,7 @@ Section 19.1.6.4, “Binary Logging Options and Variables”
 
 Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 7.4.4.2, “Setting The Binary Log Format”
 
@@ -2316,29 +2316,29 @@ Section 7.4.4, “The Binary Log”
 
 Section 6.5.1.1, “mysql Client Options”
 
-### --disable-plugin\_name
+### --disable-plugin_name
 
 Section 7.6.1, “Installing and Uninstalling Plugins”
 
-### DISABLE\_PERFSCHEMA
+### DISABLE_PERFSCHEMA
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### DISABLE\_PSI\_\*
+### DISABLE_PSI_\*
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### DISABLE\_PSI\_THREAD
+### DISABLE_PSI_THREAD
 
 Section 29.12.22.9, “The processlist Table”
 
 ### --disk
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --diskscan
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
 ### --dns-srv-name
 
@@ -2354,21 +2354,21 @@ Section 19.2.5, “How Servers Evaluate Replication Filtering Rules”
 
 ### --dont-ignore-systab-0
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --drop-source
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
 ### --dry-scp
 
-Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”
+Section 25.5.12, “ndb_error_reporter — NDB Error-Reporting Utility”
 
 ### --dump
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --dump-date
 
@@ -2378,7 +2378,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
 ### --dump-replica
 
@@ -2392,7 +2392,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --duration
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### E
 
@@ -2408,7 +2408,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### -e
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 9.6.2, “How to Check MyISAM Tables for Errors”
 
@@ -2418,7 +2418,7 @@ Section 15.2.10, “LOAD XML Statement”
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.2, “myisamchk Check Options”
 
@@ -2438,9 +2438,9 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 6.6.4.5, “Obtaining Table Information with myisamchk”
 
@@ -2472,9 +2472,9 @@ Section 8.4.5.11, “Using the HashiCorp Vault Keyring Component”
 
 Section 8.4.5.10, “Using the HashiCorp Vault Keyring Plugin”
 
-Section 8.4.5.8, “Using the keyring\_aws Amazon Web Services Keyring Plugin”
+Section 8.4.5.8, “Using the keyring_aws Amazon Web Services Keyring Plugin”
 
-Section 8.4.5.6, “Using the keyring\_okv KMIP Plugin”
+Section 8.4.5.6, “Using the keyring_okv KMIP Plugin”
 
 ### --enable-cleartext-plugin
 
@@ -2500,7 +2500,7 @@ Section 6.5.8.1, “Options”
 
 Section 8.4.1.4, “PAM Pluggable Authentication”
 
-### --enable-plugin\_name
+### --enable-plugin_name
 
 Section 7.6.1, “Installing and Uninstalling Plugins”
 
@@ -2508,7 +2508,7 @@ Section 7.6.1, “Installing and Uninstalling Plugins”
 
 Section 2.5.1, “Installing MySQL on Linux Using the MySQL Yum Repository”
 
-### ENABLED\_LOCAL\_INFILE
+### ENABLED_LOCAL_INFILE
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
@@ -2516,7 +2516,7 @@ Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”
 
 ### --encrypt-backup
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
 ### --encrypt-block-size
 
@@ -2566,19 +2566,19 @@ Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
 ### --errins-delay
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --errins-type
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --errmsg-file
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 ### --error-insert
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
 ### --event-scheduler
 
@@ -2604,15 +2604,15 @@ Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”
 
 ### --example
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 ### --exclude-\*
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --exclude-databases
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --exclude-gtids
 
@@ -2620,21 +2620,21 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 ### --exclude-intermediate-sql-tables
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --exclude-missing-columns
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --exclude-missing-tables
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --exclude-tables
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --exclude-user
 
@@ -2642,11 +2642,11 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --excludedbs
 
-Section 25.5.29, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”
+Section 25.5.29, “ndb_size.pl — NDBCLUSTER Size Requirement Estimator”
 
 ### --excludetables
 
-Section 25.5.29, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”
+Section 25.5.29, “ndb_size.pl — NDBCLUSTER Size Requirement Estimator”
 
 ### --execute
 
@@ -2654,7 +2654,7 @@ Section 6.5.1.3, “mysql Client Logging”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
 Section 6.2.2.1, “Using Options on the Command Line”
 
@@ -2692,19 +2692,19 @@ Section 7.1.8, “Server System Variables”
 
 ### --extra-file
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 ### --extra-node-info
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
 ### --extra-partition-info
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.6.15.8, “The ndbinfo cluster\_operations Table”
+Section 25.6.15.8, “The ndbinfo cluster_operations Table”
 
-Section 25.6.15.55, “The ndbinfo server\_operations Table”
+Section 25.6.15.55, “The ndbinfo server_operations Table”
 
 ### F
 
@@ -2756,13 +2756,13 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 7.9.1.5, “Using a Stack Trace”
 
@@ -2778,7 +2778,7 @@ Section 18.8, “The FEDERATED Storage Engine”
 
 ### --fields
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 ### --fields-enclosed-by
 
@@ -2788,9 +2788,9 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --fields-escaped-by
 
@@ -2800,7 +2800,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --fields-optionally-enclosed-by
 
@@ -2810,9 +2810,9 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --fields-terminated-by
 
@@ -2822,9 +2822,9 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --fields-xxx
 
@@ -2832,15 +2832,15 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --file-key
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
 ### --file-key-from-stdin
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
 ### --filesystem-password
 
@@ -2848,7 +2848,7 @@ Section 25.4.3.6, “Defining NDB Cluster Data Nodes”
 
 Section 25.6.19.4.1, “NDB File System Encryption Setup and Usage”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -2858,7 +2858,7 @@ Section 25.4.3.6, “Defining NDB Cluster Data Nodes”
 
 Section 25.6.19.4.1, “NDB File System Encryption Setup and Usage”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -2920,23 +2920,23 @@ Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
 ### --format
 
-Section 25.5.29, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”
+Section 25.5.29, “ndb_size.pl — NDBCLUSTER Size Requirement Estimator”
 
-### FPROFILE\_GENERATE
+### FPROFILE_GENERATE
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### FPROFILE\_USE
+### FPROFILE_USE
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
 ### --fragment-id
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --fs
 
-Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”
+Section 25.5.12, “ndb_error_reporter — NDB Error-Reporting Utility”
 
 ### G
 
@@ -2946,27 +2946,27 @@ Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 ### -g
 
 Section 7.9.1.1, “Compiling MySQL for Debugging”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
 Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --gci
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --gci64
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --gdb
 
@@ -2984,7 +2984,7 @@ Section 6.2.2.1, “Using Options on the Command Line”
 
 Section 7.1.9, “Using System Variables”
 
-### --general\_log
+### --general_log
 
 Section 7.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”
 
@@ -2994,7 +2994,7 @@ Section 6.2.2.1, “Using Options on the Command Line”
 
 Section 7.1.9, “Using System Variables”
 
-### --general\_log\_file
+### --general_log_file
 
 Section 7.8, “Running Multiple MySQL Instances on One Machine”
 
@@ -3010,7 +3010,7 @@ Section 6.2.3, “Command Options for Connecting to the Server”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -3030,7 +3030,7 @@ Section 6.5.8.1, “Options”
 
 ### --graph
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### H
 
@@ -3038,7 +3038,7 @@ Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
 
 ### -H
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -3058,15 +3058,15 @@ Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
 Section 6.2.1, “Invoking MySQL Programs”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -3084,9 +3084,9 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 7.5.8.1, “Option Tracker Tables”
 
@@ -3098,11 +3098,11 @@ Section 6.2.2.1, “Using Options on the Command Line”
 
 ### --header
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --header-file
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 ### --HELP
 
@@ -3110,7 +3110,7 @@ Section 6.6.4.1, “myisamchk General Options”
 
 ### --help
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
@@ -3118,9 +3118,9 @@ Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
 Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -3128,11 +3128,11 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -3140,9 +3140,9 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -3154,57 +3154,57 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”
+Section 25.5.12, “ndb_error_reporter — NDB Error-Reporting Utility”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -3212,7 +3212,7 @@ Section 6.5.8.1, “Options”
 
 Section 6.1, “Overview of MySQL Programs”
 
-Section 29.12.14.4, “Performance Schema variables\_metadata Table”
+Section 29.12.14.4, “Performance Schema variables_metadata Table”
 
 Section 6.8.1, “perror — Display MySQL Error Message Information”
 
@@ -3236,7 +3236,7 @@ Section 35.3.1, “Configuring Trace Telemetry”
 
 ### --hex
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --hex-blob
 
@@ -3274,11 +3274,11 @@ Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -3294,9 +3294,9 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 6.2.2.6, “Option Defaults, Options Expecting Values, and the = Sign”
 
@@ -3318,7 +3318,7 @@ Section 22.5.6.2, “X Plugin Options and System Variables”
 
 ### host
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 Section 6.2.2.2, “Using Option Files”
 
@@ -3328,7 +3328,7 @@ Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”
 
 ### --hostname
 
-Section 25.5.29, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”
+Section 25.5.29, “ndb_size.pl — NDBCLUSTER Size Requirement Estimator”
 
 ### --html
 
@@ -3394,11 +3394,11 @@ Section 7.1.8, “Server System Variables”
 
 ### --idlesleep
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --idlespin
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --ignore
 
@@ -3414,13 +3414,13 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --ignore-extended-pk-updates
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --ignore-lines
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --ignore-spaces
 
@@ -3438,23 +3438,23 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --in-file-errlog
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 ### --in-file-toclient
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 ### --include
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
 ### --include-\*
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --include-databases
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --include-gtids
 
@@ -3470,11 +3470,11 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --include-stored-grants
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --include-tables
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --include-user
 
@@ -3518,7 +3518,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-### --init\_connect
+### --init_connect
 
 Section 12.5, “Configuring Application Character Set and Collation”
 
@@ -3558,11 +3558,11 @@ Section 25.4.3.10, “NDB Cluster TCP/IP Connections”
 
 Section 25.6.19.4.1, “NDB File System Encryption Setup and Usage”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -3662,17 +3662,17 @@ Section 17.14, “InnoDB Startup Options and System Variables”
 
 Section 7.1.7, “Server Command Options”
 
-### innodb\_file\_per\_table
+### innodb_file_per_table
 
 Section 19.1.2.5.2, “Creating a Data Snapshot Using Raw Data Files”
 
 ### --input-type
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --input-workers
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --insert-ignore
 
@@ -3684,7 +3684,7 @@ Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”
 
 Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -3702,27 +3702,27 @@ Section 7.8.2.2, “Starting Multiple MySQL Instances as Windows Services”
 
 Section 2.3.3.8, “Starting MySQL as a Windows Service”
 
-### INSTALL\_LAYOUT
+### INSTALL_LAYOUT
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
 Section 7.1.8, “Server System Variables”
 
-### INSTALL\_LIBDIR
+### INSTALL_LIBDIR
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### INSTALL\_PRIV\_LIBDIR
+### INSTALL_PRIV_LIBDIR
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### INSTALL\_SECURE\_FILE\_PRIVDIR
+### INSTALL_SECURE_FILE_PRIVDIR
 
 Section 7.1.8, “Server System Variables”
 
 ### --interactive
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --iterations
 
@@ -3754,11 +3754,11 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -3772,9 +3772,9 @@ Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt File
 
 ### --keep-state
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-### --keep\_files\_on\_create
+### --keep_files_on_create
 
 Section 15.1.24, “CREATE TABLE Statement”
 
@@ -3862,7 +3862,7 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 ### --keys-to-dir
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --keys-used
 
@@ -3878,7 +3878,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 2.10.3, “Problems Using the Perl DBI/DBD Interface”
 
@@ -3886,9 +3886,9 @@ Section 2.10.3, “Problems Using the Perl DBI/DBD Interface”
 
 Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
@@ -3900,15 +3900,15 @@ Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 ### --large-pages
 
@@ -3928,19 +3928,19 @@ Section 7.1.7, “Server Command Options”
 
 ### --ledir
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --length
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 ### --libs
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
-### --libs\_r
+### --libs_r
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
 ### --line-numbers
 
@@ -3954,11 +3954,11 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-### LINK\_RANDOMIZE
+### LINK_RANDOMIZE
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
@@ -3972,7 +3972,7 @@ Section 8.1.6, “Security Considerations for LOAD DATA LOCAL”
 
 ### --loadqueries
 
-Section 25.5.29, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”
+Section 25.5.29, “ndb_size.pl — NDBCLUSTER Size Requirement Estimator”
 
 ### --local
 
@@ -4004,7 +4004,7 @@ Section 2.3.3.8, “Starting MySQL as a Windows Service”
 
 ### --lock
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --lock-all-tables
 
@@ -4012,7 +4012,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --lock-order
 
-Section 7.9.3, “The LOCK\_ORDER Tool”
+Section 7.9.3, “The LOCK_ORDER Tool”
 
 ### --lock-tables
 
@@ -4024,7 +4024,7 @@ Section 6.5.5, “mysqlimport — A Data Import Program”
 
 Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 ### --log-bin
 
@@ -4090,7 +4090,7 @@ Section 7.4.2.1, “Error Log Configuration”
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -4118,11 +4118,11 @@ Section 7.1.7, “Server Command Options”
 
 ### --log-level
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --log-name
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --log-raw
 
@@ -4170,17 +4170,17 @@ Section 7.1.7, “Server Command Options”
 
 Section 7.1.10, “Server Status Variables”
 
-### --log\_bin
+### --log_bin
 
 Section 6.2.2.1, “Using Options on the Command Line”
 
-### --log\_output
+### --log_output
 
 Section 7.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”
 
-### --log\_timestamps
+### --log_timestamps
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --logbuffer-size
 
@@ -4190,13 +4190,13 @@ Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
 Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -4212,51 +4212,51 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -4266,11 +4266,11 @@ Section 6.2.2.2, “Using Option Files”
 
 ### --loops
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 ### --loose
 
@@ -4282,15 +4282,15 @@ Section 6.2.2.4, “Program Option Modifiers”
 
 Section 8.4.8.1.2, “Installing or Uninstalling the MySQL Enterprise Firewall Plugin”
 
-### --loose-opt\_name
+### --loose-opt_name
 
 Section 6.2.2.2, “Using Option Files”
 
 ### --lossy-conversions
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --low-priority
 
@@ -4324,17 +4324,17 @@ Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
 Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --malloc-lib
 
 Section 2.5.9, “Managing MySQL Server with systemd”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --master-data
 
@@ -4380,7 +4380,7 @@ Section 19.2.2.3, “Startup Options and Replication Channels”
 
 ### --max-rows
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --max-seeks-for-key
 
@@ -4392,11 +4392,11 @@ Section B.3.5, “Optimizer-Related Issues”
 
 Section 6.2.2.4, “Program Option Modifiers”
 
-### --maximum-back\_log
+### --maximum-back_log
 
 Section 6.2.2.4, “Program Option Modifiers”
 
-### --maximum-max\_heap\_table\_size
+### --maximum-max_heap_table_size
 
 Section 6.2.2.4, “Program Option Modifiers”
 
@@ -4404,7 +4404,7 @@ Section 6.2.2.4, “Program Option Modifiers”
 
 Section 7.1.9, “Using System Variables”
 
-### --maximum-var\_name
+### --maximum-var_name
 
 Section 7.1.7, “Server Command Options”
 
@@ -4412,7 +4412,7 @@ Section 7.1.9, “Using System Variables”
 
 ### --measured-load
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --medium-check
 
@@ -4430,11 +4430,11 @@ Section 17.6.3.1, “The System Tablespace”
 
 ### --missing-ai-column
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --monitor
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --mount
 
@@ -4444,15 +4444,15 @@ Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
 Section 7.6.1, “Installing and Uninstalling Plugins”
 
-### --my\_plugin
+### --my_plugin
 
 Section 7.6.1, “Installing and Uninstalling Plugins”
 
 ### --mycnf
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --myisam-block-size
 
@@ -4460,55 +4460,55 @@ Section 10.10.2.5, “Key Cache Block Size”
 
 Section 7.1.7, “Server Command Options”
 
-### --myisam\_sort\_buffer\_size
+### --myisam_sort_buffer_size
 
 Section 6.6.4.6, “myisamchk Memory Usage”
 
-### MYSQL\_ALLOW\_EMPTY\_PASSWORD
+### MYSQL_ALLOW_EMPTY_PASSWORD
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-### MYSQL\_DATABASE
+### MYSQL_DATABASE
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-### MYSQL\_LOG\_CONSOLE
+### MYSQL_LOG_CONSOLE
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-### MYSQL\_MAINTAINER\_MODE
+### MYSQL_MAINTAINER_MODE
 
 Section 2.8.8, “Dealing with Problems Compiling MySQL”
 
-### MYSQL\_ONETIME\_PASSWORD
+### MYSQL_ONETIME_PASSWORD
 
 Section 2.5.6.1, “Basic Steps for MySQL Server Deployment with Docker”
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-### MYSQL\_PASSWORD
+### MYSQL_PASSWORD
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-### MYSQL\_RANDOM\_ROOT\_PASSWORD
+### MYSQL_RANDOM_ROOT_PASSWORD
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-### MYSQL\_ROOT\_HOST
+### MYSQL_ROOT_HOST
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-### MYSQL\_ROOT\_PASSWORD
+### MYSQL_ROOT_PASSWORD
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
-### MYSQL\_TCP\_PORT
+### MYSQL_TCP_PORT
 
 Section 2.8.5, “Installing MySQL Using a Development Source Tree”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### MYSQL\_UNIX\_ADDR
+### MYSQL_UNIX_ADDR
 
 Section B.3.3.6, “How to Protect or Change the MySQL Unix Socket File”
 
@@ -4518,19 +4518,19 @@ Section 2.8.7, “MySQL Source-Configuration Options”
 
 Section 22.5.6.2, “X Plugin Options and System Variables”
 
-### MYSQL\_USER
+### MYSQL_USER
 
 Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
 ### --mysqladmin
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 ### --mysqld
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --mysqld-long-query-time
 
@@ -4540,11 +4540,11 @@ Section 7.1.8, “Server System Variables”
 
 ### --mysqld-safe-log-timestamps
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --mysqld-version
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --mysqlx
 
@@ -4560,7 +4560,7 @@ Section 22.5.2, “Disabling X Plugin”
 
 Section 2.3.2.2, “MySQL Configurator CLI”
 
-### MYSQLX\_UNIX\_ADDR
+### MYSQLX_UNIX_ADDR
 
 Section 22.5.6.2, “X Plugin Options and System Variables”
 
@@ -4570,7 +4570,7 @@ Section 22.5.6.2, “X Plugin Options and System Variables”
 
 ### -N
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.5.1.1, “mysql Client Options”
 
@@ -4584,7 +4584,7 @@ Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
 Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.3, “myisamchk Repair Options”
 
@@ -4594,15 +4594,15 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -4612,7 +4612,7 @@ Section 2.5.6.1, “Basic Steps for MySQL Server Deployment with Docker”
 
 ### --name-file
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 ### --named-commands
 
@@ -4620,7 +4620,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 ### --ndb
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
 ### --ndb-allow-copying-alter-table
 
@@ -4678,43 +4678,43 @@ Section 25.6.19.2, “NDB Cluster and MySQL Privileges”
 
 Section 25.2.1, “NDB Cluster Core Concepts”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.7.5, “Preparing the NDB Cluster for Replication”
 
@@ -4722,7 +4722,7 @@ Section 25.4.3.2, “Recommended Starting Configuration for NDB Cluster”
 
 ### ndb-connectstring
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 ### --ndb-default-column-format
 
@@ -4786,7 +4786,7 @@ Section 25.7.4, “NDB Cluster Replication Schema and Tables”
 
 ### --ndb-log-timestamps
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -4844,39 +4844,39 @@ Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”
 
 Section 25.6.19.1, “NDB Cluster Security and Networking Issues”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -4888,85 +4888,85 @@ Section 25.6.19.5.3, “Using TLS Connections”
 
 Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 ### --ndb-nodegroup-map
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --ndb-nodeid
 
 Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 ### --ndb-optimization-delay
 
@@ -4978,41 +4978,41 @@ Section 15.7.3.4, “OPTIMIZE TABLE Statement”
 
 Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 ### --ndb-replica-batch-size
 
@@ -5028,39 +5028,39 @@ Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”
 
 ### --ndb-tls-search-path
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -5074,7 +5074,7 @@ Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”
 
 Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”
 
-Section 28.3.23, “The INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map Table”
+Section 28.3.23, “The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table”
 
 ### --ndb-wait-connected
 
@@ -5108,7 +5108,7 @@ Section 7.1.7, “Server Command Options”
 
 Section 15.7.7.18, “SHOW ENGINES Statement”
 
-Section 28.3.13, “The INFORMATION\_SCHEMA ENGINES Table”
+Section 28.3.13, “The INFORMATION_SCHEMA ENGINES Table”
 
 ### --ndbinfo
 
@@ -5120,11 +5120,11 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-### net\_retry\_count
+### net_retry_count
 
 Section 19.2.3.1, “Monitoring Replication Main Threads”
 
-### net\_write\_timeout
+### net_write_timeout
 
 Section 19.2.3.1, “Monitoring Replication Main Threads”
 
@@ -5146,11 +5146,11 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 2.5.9, “Managing MySQL Server with systemd”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --no-asynch
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --no-auto-rehash
 
@@ -5168,7 +5168,7 @@ Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
 ### --no-binlog
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --no-check
 
@@ -5180,11 +5180,11 @@ Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
 Section 25.6.19.5.2, “Creating a CA and Keys”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --no-contact
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 ### --no-create-db
 
@@ -5206,17 +5206,17 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.1, “myisamchk General Options”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -5224,9 +5224,9 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -5236,51 +5236,51 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -5300,23 +5300,23 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 ### --no-hint
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --no-log
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 ### --no-login-paths
 
 Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -5332,51 +5332,51 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -5392,15 +5392,15 @@ Section 7.1.7, “Server Command Options”
 
 ### --no-nodeid-checks
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --no-print-rows
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --no-restore-disk-objects
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --no-set-names
 
@@ -5412,23 +5412,23 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --no-upgrade
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --nodaemon
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
 ### --nodata
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --node-id
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 25.6.19.5.3, “Using TLS Connections”
 
@@ -5436,19 +5436,19 @@ Section 25.6.19.5.3, “Using TLS Connections”
 
 Section 25.6.19.5.2, “Creating a CA and Keys”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 Section 25.6.19.5.3, “Using TLS Connections”
 
 ### --nodeid
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --nodes
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 ### --nostart
 
@@ -5458,7 +5458,7 @@ Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
 ### --not-started
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 ### --nowait-nodes
 
@@ -5466,15 +5466,15 @@ Section 25.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”
 
 Section 25.4.3.6, “Defining NDB Cluster Data Nodes”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
 ### --num-slices
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --number-char-cols
 
@@ -5494,7 +5494,7 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 ### -O
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
@@ -5510,9 +5510,9 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 10.12.1, “Optimizing Disk I/O”
 
@@ -5546,7 +5546,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 ### --only-print
 
@@ -5554,11 +5554,11 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 ### --opbatch
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --opbytes
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --open-files-limit
 
@@ -5568,7 +5568,7 @@ Section 2.5.9, “Managing MySQL Server with systemd”
 
 Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 7.1.8, “Server System Variables”
 
@@ -5578,7 +5578,7 @@ Section 10.5.5, “Bulk Data Loading for InnoDB Tables”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-### --opt\_name
+### --opt_name
 
 Section 6.2.2.2, “Using Option Files”
 
@@ -5596,7 +5596,7 @@ Section 14.16.6, “Geometry Format Conversion Functions”
 
 ### --order
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --order-by-primary
 
@@ -5604,67 +5604,67 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --os-load
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-### otel\_bsp\_max\_export\_batch\_size
-
-Section 35.3.1, “Configuring Trace Telemetry”
-
-### otel\_bsp\_max\_queue\_size
+### otel_bsp_max_export_batch_size
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_bsp\_schedule\_delay
+### otel_bsp_max_queue_size
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_exporter\_otlp\_traces\_certificates
+### otel_bsp_schedule_delay
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_exporter\_otlp\_traces\_client\_certificates
+### otel_exporter_otlp_traces_certificates
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_exporter\_otlp\_traces\_client\_key
+### otel_exporter_otlp_traces_client_certificates
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_exporter\_otlp\_traces\_compression
+### otel_exporter_otlp_traces_client_key
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_exporter\_otlp\_traces\_endpoint
+### otel_exporter_otlp_traces_compression
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_exporter\_otlp\_traces\_headers
+### otel_exporter_otlp_traces_endpoint
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_exporter\_otlp\_traces\_protocol
+### otel_exporter_otlp_traces_headers
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_exporter\_otlp\_traces\_timeout
+### otel_exporter_otlp_traces_protocol
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_log\_level
+### otel_exporter_otlp_traces_timeout
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
-### otel\_resource\_attributes
+### otel_log_level
+
+Section 35.3.1, “Configuring Trace Telemetry”
+
+### otel_resource_attributes
 
 Section 35.3.1, “Configuring Trace Telemetry”
 
 ### --out-dir
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 ### --out-file
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 ### --output-as-version
 
@@ -5676,11 +5676,11 @@ Section 6.5.8.1, “Options”
 
 ### --output-type
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --output-workers
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### P
 
@@ -5696,11 +5696,11 @@ Section 6.2.1, “Invoking MySQL Programs”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -5716,11 +5716,11 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 6.5.8.1, “Options”
 
@@ -5752,11 +5752,11 @@ Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -5772,17 +5772,17 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 6.5.8.1, “Options”
 
@@ -5796,9 +5796,9 @@ Section 2.3.3.9, “Testing The MySQL Installation”
 
 Section 2.9.3, “Testing the Server”
 
-Section 25.6.15.8, “The ndbinfo cluster\_operations Table”
+Section 25.6.15.8, “The ndbinfo cluster_operations Table”
 
-Section 25.6.15.55, “The ndbinfo server\_operations Table”
+Section 25.6.15.55, “The ndbinfo server_operations Table”
 
 Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”
 
@@ -5824,7 +5824,7 @@ Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
 ### --pagecnt
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --pager
 
@@ -5834,27 +5834,27 @@ Section 6.5.1.1, “mysql Client Options”
 
 ### --pagesize
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --parallelism
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### parallelism
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --parsable
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
 ### --passphrase
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --passwd
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --password
 
@@ -5880,11 +5880,11 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 2.3.2.2, “MySQL Configurator CLI”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -5892,7 +5892,7 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -5902,11 +5902,11 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -5926,7 +5926,7 @@ Section 6.2.2.1, “Using Options on the Command Line”
 
 Section 2.3.2.2, “MySQL Configurator CLI”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 Section 6.2.2.2, “Using Option Files”
 
@@ -5998,9 +5998,9 @@ Section 6.5.8.1, “Options”
 
 ### --pending
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-### --performance-schema-consumer-consumer\_name
+### --performance-schema-consumer-consumer_name
 
 Section 29.14, “Performance Schema Command Options”
 
@@ -6088,15 +6088,15 @@ Section 35.5.1, “Configuring Log Telemetry”
 
 Section 7.1.7, “Server Command Options”
 
-### performance\_schema\_max\_logger\_classes
+### performance_schema_max_logger_classes
 
 Section 35.5.1, “Configuring Log Telemetry”
 
-### --performance\_schema\_max\_mutex\_classes
+### --performance_schema_max_mutex_classes
 
 Section 29.7, “Performance Schema Status Monitoring”
 
-### --performance\_schema\_max\_mutex\_instances
+### --performance_schema_max_mutex_instances
 
 Section 29.7, “Performance Schema Status Monitoring”
 
@@ -6108,9 +6108,9 @@ Section 7.4.2.1, “Error Log Configuration”
 
 Section 2.5.9, “Managing MySQL Server with systemd”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 7.8, “Running Multiple MySQL Instances on One Machine”
 
@@ -6188,7 +6188,7 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -6210,7 +6210,7 @@ Section 7.1.7, “Server Command Options”
 
 Section 8.4.6.11, “Audit Log Reference”
 
-Section 7.6.5.2, “ddl\_rewriter Plugin Options”
+Section 7.6.5.2, “ddl_rewriter Plugin Options”
 
 Section 15.7.4.4, “INSTALL PLUGIN Statement”
 
@@ -6234,7 +6234,7 @@ Section 8.4.6.11, “Audit Log Reference”
 
 Section 8.4.3.1, “Connection Control Plugin Installation”
 
-Section 7.6.5.2, “ddl\_rewriter Plugin Options”
+Section 7.6.5.2, “ddl_rewriter Plugin Options”
 
 Section 7.5.6.2, “Group Replication Flow Control Statistics Component”
 
@@ -6292,25 +6292,25 @@ Section 7.1.7, “Server Command Options”
 
 Section 7.1.7, “Server Command Options”
 
-### --plugin\_dir
+### --plugin_dir
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### --plugin\_name
+### --plugin_name
 
 Section 7.6.1, “Installing and Uninstalling Plugins”
 
-### PLUGIN\_OPT\_ALLOW\_EARLY
+### PLUGIN_OPT_ALLOW_EARLY
 
 Section 7.1.7, “Server Command Options”
 
 ### --plugindir
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
 ### --polltimeout
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --port
 
@@ -6328,13 +6328,13 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -6342,7 +6342,7 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -6352,7 +6352,7 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 6.5.8.1, “Options”
 
@@ -6374,7 +6374,7 @@ Section 7.8.4, “Using Client Programs in a Multiple-Server Environment”
 
 Section 2.3.2.2, “MySQL Configurator CLI”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 Section 6.2.2.2, “Using Option Files”
 
@@ -6404,7 +6404,7 @@ Section 25.3.1.4, “Building NDB Cluster from Source on Linux”
 
 ### --preserve-trailing-spaces
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --pretty
 
@@ -6412,11 +6412,11 @@ Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
 ### --print
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --print-data
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --print-defaults
 
@@ -6426,9 +6426,9 @@ Section 6.6.4.1, “myisamchk General Options”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -6444,51 +6444,51 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -6500,57 +6500,57 @@ Section 3.13, “Upgrade Troubleshooting”
 
 ### --print-full-config
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --print-header-words
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --print-log
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --print-meta
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --print-restored-rows
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --print-rows
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --print-rows-per-page
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### print-sql-log
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --print-table-metadata
 
 Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
-### --print\_\*
+### --print_\*
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --progress-frequency
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --promote
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --promote-attributes
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --prompt
 
@@ -6568,7 +6568,7 @@ Section 6.2.7, “Connection Transport Protocols”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -6616,21 +6616,21 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
 ### --query
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --query-all
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 ### --quick
 
@@ -6654,7 +6654,7 @@ Section 6.2.2.2, “Using Option Files”
 
 ### --quiet
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
 ### --quote-names
 
@@ -6708,13 +6708,13 @@ Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -6766,7 +6766,7 @@ Section 6.6.4.2, “myisamchk Check Options”
 
 Section 25.4.3.6, “Defining NDB Cluster Data Nodes”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --reconnect
 
@@ -6792,7 +6792,7 @@ Section 8.4.1.11, “WebAuthn Pluggable Authentication”
 
 ### --rejects
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --relative
 
@@ -6846,7 +6846,7 @@ Section 25.4.3, “NDB Cluster Configuration Files”
 
 Section 25.6.19.4.1, “NDB File System Encryption Setup and Usage”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”
 
@@ -6854,21 +6854,21 @@ Section 25.6.19.5.3, “Using TLS Connections”
 
 ### --remap-column
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --remote-CA-host
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 Section 25.6.19.5.3, “Using TLS Connections”
 
 ### --remote-exec-path
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --remote-openssl
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 Section 25.6.19.5.3, “Using TLS Connections”
 
@@ -6876,7 +6876,7 @@ Section 25.6.19.5.3, “Using TLS Connections”
 
 Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -6898,7 +6898,7 @@ Section 6.5.5, “mysqlimport — A Data Import Program”
 
 ### --replace-by
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --replica-net-timeout
 
@@ -6944,9 +6944,9 @@ Section 19.1.6.3, “Replica Server Options and Variables”
 
 Section 19.2.5.4, “Replication Channel Based Filters”
 
-Section 29.12.11.3, “The replication\_applier\_filters Table”
+Section 29.12.11.3, “The replication_applier_filters Table”
 
-Section 29.12.11.4, “The replication\_applier\_global\_filters Table”
+Section 29.12.11.4, “The replication_applier_global_filters Table”
 
 ### --replicate-\*-db
 
@@ -6988,7 +6988,7 @@ Section 7.4.4, “The Binary Log”
 
 Section 15.3.8.1, “XA Transaction SQL Statements”
 
-### --replicate-do-db:channel\_1:db\_name
+### --replicate-do-db:channel_1:db_name
 
 Section 19.1.6.3, “Replica Server Options and Variables”
 
@@ -7012,7 +7012,7 @@ Section 15.7.7.36, “SHOW REPLICA STATUS Statement”
 
 Section 18.6, “The BLACKHOLE Storage Engine”
 
-### --replicate-do-table:channel\_1:db\_name.tbl\_name
+### --replicate-do-table:channel_1:db_name.tbl_name
 
 Section 19.1.6.3, “Replica Server Options and Variables”
 
@@ -7048,7 +7048,7 @@ Section 7.4.4, “The Binary Log”
 
 Section 15.3.8.1, “XA Transaction SQL Statements”
 
-### --replicate-ignore-db:channel\_1:db\_name
+### --replicate-ignore-db:channel_1:db_name
 
 Section 19.1.6.3, “Replica Server Options and Variables”
 
@@ -7072,7 +7072,7 @@ Section 15.7.7.36, “SHOW REPLICA STATUS Statement”
 
 Section 18.6, “The BLACKHOLE Storage Engine”
 
-### --replicate-ignore-table:channel\_1:db\_name.tbl\_name
+### --replicate-ignore-table:channel_1:db_name.tbl_name
 
 Section 19.1.6.3, “Replica Server Options and Variables”
 
@@ -7118,7 +7118,7 @@ Section 27.10, “Restrictions on Stored Programs”
 
 Section 15.7.7.36, “SHOW REPLICA STATUS Statement”
 
-### --replicate-wild-do-table:channel\_1:db\_name.tbl\_name
+### --replicate-wild-do-table:channel_1:db_name.tbl_name
 
 Section 19.1.6.3, “Replica Server Options and Variables”
 
@@ -7138,7 +7138,7 @@ Section 19.5.1.32, “Replication and Temporary Tables”
 
 Section 15.7.7.36, “SHOW REPLICA STATUS Statement”
 
-### --replicate-wild-ignore:channel\_1:db\_name.tbl\_name
+### --replicate-wild-ignore:channel_1:db_name.tbl_name
 
 Section 19.1.6.3, “Replica Server Options and Variables”
 
@@ -7182,19 +7182,19 @@ Section 2.5.6.1, “Basic Steps for MySQL Server Deployment with Docker”
 
 ### --restore-data
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --restore-epoch
 
 Section 25.7.9, “NDB Cluster Backups With NDB Cluster Replication”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 25.7.9.2, “Point-In-Time Recovery Using NDB Cluster Replication”
 
 ### --restore-meta
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --result-file
 
@@ -7206,15 +7206,15 @@ Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”
 
 ### --resume
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --retries
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
 ### --rewrite-database
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --rewrite-db
 
@@ -7226,7 +7226,7 @@ Section 2.5.6.2, “More Topics on Deploying MySQL Server with Docker”
 
 ### --rotate-CA
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --routines
 
@@ -7244,23 +7244,23 @@ Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”
 
 ### --rowbatch
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --rowbytes
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --rowid
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --rowid-file
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --rows
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 ### S
 
@@ -7280,11 +7280,11 @@ Section 6.5.1.2, “mysql Client Commands”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -7300,7 +7300,7 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 6.5.8.1, “Options”
 
@@ -7320,9 +7320,9 @@ Section 2.5.4, “Installing MySQL on Linux Using RPM Packages from Oracle”
 
 Section 2.2, “Installing MySQL on Unix/Linux Using Generic Binaries”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -7342,11 +7342,11 @@ Section 6.5.5, “mysqlimport — A Data Import Program”
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 6.8.1, “perror — Display MySQL Error Message Information”
 
@@ -7376,11 +7376,11 @@ Section 7.1.7, “Server Command Options”
 
 ### --savequeries
 
-Section 25.5.29, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator”
+Section 25.5.29, “ndb_size.pl — NDBCLUSTER Size Requirement Estimator”
 
 ### --schedule
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --secure-auth
 
@@ -7412,7 +7412,7 @@ Section 6.2.3, “Command Options for Connecting to the Server”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -7502,7 +7502,7 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 ### --show
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 ### --show-create-skip-secondary-engine
 
@@ -7510,7 +7510,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --show-ignored-rows
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --show-replica-auth-info
 
@@ -7530,7 +7530,7 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 ### --show-temp-status
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
 ### --show-warnings
 
@@ -7550,7 +7550,7 @@ Section 6.10, “Unix Signal Handling in MySQL”
 
 ### --sign
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --silent
 
@@ -7564,13 +7564,13 @@ Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
 Section 6.8.1, “perror — Display MySQL Error Message Information”
 
@@ -7590,7 +7590,7 @@ Section 17.8.9, “Purge Configuration”
 
 ### --single-user
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 ### --skip
 
@@ -7624,7 +7624,7 @@ Section 20.5.6, “Using MySQL Enterprise Backup with Group Replication”
 
 ### --skip-broken-objects
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --skip-character-set-client-handshake
 
@@ -7632,11 +7632,11 @@ Section A.11, “MySQL 9.5 FAQ: MySQL Chinese, Japanese, and Korean Character S
 
 ### --skip-color
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --skip-colors
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --skip-column-names
 
@@ -7650,11 +7650,11 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --skip-config-cache
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --skip-config-file
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
 ### --skip-data
 
@@ -7672,11 +7672,11 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-### --skip-engine\_name
+### --skip-engine_name
 
 Section 15.7.7.18, “SHOW ENGINES Statement”
 
-Section 28.3.13, “The INFORMATION\_SCHEMA ENGINES Table”
+Section 28.3.13, “The INFORMATION_SCHEMA ENGINES Table”
 
 ### --skip-events
 
@@ -7740,7 +7740,7 @@ Section 7.1.7, “Server Command Options”
 
 Section 7.1.8, “Server System Variables”
 
-Section 28.3.51, “The INFORMATION\_SCHEMA USER\_ATTRIBUTES Table”
+Section 28.3.51, “The INFORMATION_SCHEMA USER_ATTRIBUTES Table”
 
 Section 7.3, “The mysql System Schema”
 
@@ -7752,7 +7752,7 @@ Section 8.2.13, “When Privilege Changes Take Effect”
 
 ### --skip-graphs
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --skip-gtids
 
@@ -7768,7 +7768,7 @@ Section 17.14, “InnoDB Startup Options and System Variables”
 
 ### --skip-kill-mysqld
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --skip-line-numbers
 
@@ -7808,41 +7808,41 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 25.4.3.9.1, “MySQL Server Options for NDB Cluster”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 ### --skip-ndbcluster
 
@@ -7866,7 +7866,7 @@ Section 7.1.8, “Server System Variables”
 
 ### --skip-nodegroup
 
-Section 25.5.12, “ndb\_error\_reporter — NDB Error-Reporting Utility”
+Section 25.5.12, “ndb_error_reporter — NDB Error-Reporting Utility”
 
 ### --skip-opt
 
@@ -7884,7 +7884,7 @@ Section 6.2.4, “Connecting to the MySQL Server Using Command Options”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -7922,7 +7922,7 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 Section 7.1.7, “Server Command Options”
 
-### --skip-plugin\_name
+### --skip-plugin_name
 
 Section 7.6.1, “Installing and Uninstalling Plugins”
 
@@ -7998,7 +7998,7 @@ Section 15.7.7.16, “SHOW DATABASES Statement”
 
 ### --skip-sign
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --skip-slave-start
 
@@ -8006,7 +8006,7 @@ Section 19.1.6.3, “Replica Server Options and Variables”
 
 ### --skip-sort
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --skip-stack-trace
 
@@ -8036,7 +8036,7 @@ Section 10.12.2.2, “Using Symbolic Links for MyISAM Tables on Unix”
 
 ### --skip-syslog
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --skip-system-command
 
@@ -8044,7 +8044,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 ### --skip-table-check
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --skip-triggers
 
@@ -8058,17 +8058,17 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --skip-unknown-objects
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --skip-warn
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 ### --skip-write-binlog
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-### --skip\_grant\_tables
+### --skip_grant_tables
 
 Section 6.2.2.1, “Using Options on the Command Line”
 
@@ -8086,27 +8086,27 @@ Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
 ### --sleep-time
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --slice-id
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### slice-id
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --slow-start-timeout
 
 Section 7.1.7, “Server Command Options”
 
-### --slow\_query\_log
+### --slow_query_log
 
 Section 7.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”
 
 Section 7.4.5, “The Slow Query Log”
 
-### --slow\_query\_log\_file
+### --slow_query_log_file
 
 Section 7.8, “Running Multiple MySQL Instances on One Machine”
 
@@ -8132,13 +8132,13 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -8146,7 +8146,7 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -8156,7 +8156,7 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 6.5.8.1, “Options”
 
@@ -8174,13 +8174,13 @@ Section 7.8.4, “Using Client Programs in a Multiple-Server Environment”
 
 ### socket
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 Section 6.2.2.2, “Using Option Files”
 
 ### --sort
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --sort-index
 
@@ -8202,7 +8202,7 @@ Section 6.6.4.6, “myisamchk Memory Usage”
 
 Section 6.6.4.3, “myisamchk Repair Options”
 
-### --sort\_buffer\_size
+### --sort_buffer_size
 
 Section 7.1.7, “Server Command Options”
 
@@ -8228,11 +8228,11 @@ Section 6.6.9.3, “Using mysqlbinlog to Back Up Binary Log Files”
 
 Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 ### --source-keyring-configuration-dir
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 ### --sporadic-binlog-dump-fail
 
@@ -8258,9 +8258,9 @@ Section 7.1.11, “Server SQL Modes”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -8282,9 +8282,9 @@ Section 6.5.8.1, “Options”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -8364,9 +8364,9 @@ Section 8.8, “FIPS Support”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -8442,9 +8442,9 @@ Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -8464,25 +8464,25 @@ Section 6.5.8.1, “Options”
 
 Section 19.3.1, “Setting Up Replication to Use Encrypted Connections”
 
-### --ssl\_ca
+### --ssl_ca
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
-### --ssl\_capath
+### --ssl_capath
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
-### --ssl\_cert
+### --ssl_cert
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
-### --ssl\_crl
+### --ssl_crl
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 ### --staging-tries
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
 ### --standalone
 
@@ -8510,13 +8510,13 @@ Section 9.5.2, “Point-in-Time Recovery Using Event Positions”
 
 ### --state-dir
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --stats
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --status
 
@@ -8524,7 +8524,7 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 ### --stdio
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --stop-datetime
 
@@ -8572,35 +8572,35 @@ Section 10.12.2.2, “Using Symbolic Links for MyISAM Tables on Unix”
 
 ### --sys-\*
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --sys-check
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --sys-create
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --sys-create-if-not-exist
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --sys-create-if-not-valid
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --sys-drop
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --sys-skip-events
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --sys-skip-tables
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### SYSCONFDIR
 
@@ -8630,15 +8630,15 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 6.5.1.6, “mysql Client Tips”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --syslog-tag
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 ### --system
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 ### --system-command
 
@@ -8652,7 +8652,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 ### -T
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.6.4.2, “myisamchk Check Options”
 
@@ -8664,7 +8664,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 7.1.7, “Server Command Options”
 
@@ -8686,21 +8686,21 @@ Section 6.6.10, “mysqldumpslow — Summarize Slow Query Log Files”
 
 Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.22, “ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log”
+Section 25.5.22, “ndb_redo_log_reader — Check and Print Content of Cluster Redo Log”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 7.1.7, “Server Command Options”
 
@@ -8714,9 +8714,9 @@ Section 9.4.3, “Dumping Data in Delimited-Text Format with mysqldump”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 9.4, “Using mysqldump for Backups”
 
@@ -8724,13 +8724,13 @@ Section 9.4, “Using mysqldump for Backups”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --table-id
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
 ### --tables
 
@@ -8744,7 +8744,7 @@ Section 7.1.7, “Server Command Options”
 
 ### --tcp-ip
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 ### --tee
 
@@ -8752,21 +8752,21 @@ Section 6.5.1.2, “mysql Client Commands”
 
 Section 6.5.1.1, “mysql Client Options”
 
-### --telemetry\_client
+### --telemetry_client
 
 Section 35.1, “Installing OpenTelemetry Support”
 
-### telemetry\_client
+### telemetry_client
 
 Section 6.5.1.1, “mysql Client Options”
 
 ### --tempdelay
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --temperrors
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
 ### --test
 
@@ -8774,7 +8774,7 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 ### --test-tls
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
 Section 25.6.19.5.3, “Using TLS Connections”
 
@@ -8784,29 +8784,29 @@ Section 1.1, “About This Manual”
 
 ### --text
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --thread-pool-size
 
 Section 7.6.3.4, “Thread Pool Tuning”
 
-### --thread\_cache\_size
+### --thread_cache_size
 
 Section 7.9.1.4, “Debugging mysqld under gdb”
 
 ### --timeout
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 ### --timestamp-printouts
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 ### --timezone
 
 Section 7.1.15, “MySQL Server Time Zone Support”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 7.1.8, “Server System Variables”
 
@@ -8828,9 +8828,9 @@ Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -8852,9 +8852,9 @@ Section 6.5.8.1, “Options”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -8882,9 +8882,9 @@ Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -8906,7 +8906,7 @@ Section 6.5.8.1, “Options”
 
 Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”
 
-### tls\_version
+### tls_version
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
@@ -8934,7 +8934,7 @@ Section 2.3, “Installing MySQL on Microsoft Windows”
 
 ### --to-dir
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
 ### --to-last-log
 
@@ -8968,7 +8968,7 @@ Section 15.3.7, “SET TRANSACTION Statement”
 
 ### --transactional
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
 ### --triggers
 
@@ -8978,21 +8978,21 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### --try-reconnect
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
 ### --tupscan
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --type
 
 Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
 ### --tz-utc
 
@@ -9022,11 +9022,11 @@ Section 6.6.5, “myisamlog — Display MyISAM Log File Contents”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -9042,13 +9042,13 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 6.5.8.1, “Options”
 
@@ -9076,13 +9076,13 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 ### --unqualified
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
 ### --update
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
 ### --update-state
 
@@ -9108,57 +9108,57 @@ Section 6.2.5, “Connecting to the Server Using URI-Like Strings or Key-Value 
 
 ### --usage
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
 ### --use-default
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 ### --use-frm
 
@@ -9168,13 +9168,13 @@ Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
 Section 6.5.5, “mysqlimport — A Data Import Program”
 
-### USE\_LD\_LLD
+### USE_LD_LLD
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
 ### --useHexFormat
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --user
 
@@ -9202,11 +9202,11 @@ Section 6.5.1.3, “mysql Client Logging”
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -9214,9 +9214,9 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
-Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”
+Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -9228,7 +9228,7 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 Section 25.6.19.3, “NDB Cluster and MySQL Security Procedures”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 Section 6.2.2.6, “Option Defaults, Options Expecting Values, and the = Sign”
 
@@ -9252,7 +9252,7 @@ Section 6.2.2.2, “Using Option Files”
 
 ### user
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 Section 6.2.2.2, “Using Option Files”
 
@@ -9266,11 +9266,11 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 ### -V
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -9280,9 +9280,9 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -9298,9 +9298,9 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -9322,9 +9322,9 @@ Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
 Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -9334,9 +9334,9 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -9356,13 +9356,13 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
@@ -9374,7 +9374,7 @@ Section 7.1.7, “Server Command Options”
 
 Section 6.2.2.1, “Using Options on the Command Line”
 
-Section 8.4.5.6, “Using the keyring\_okv KMIP Plugin”
+Section 8.4.5.6, “Using the keyring_okv KMIP Plugin”
 
 ### --validate-config
 
@@ -9392,7 +9392,7 @@ Section 8.4.4.3, “Transitioning to the Password Validation Component”
 
 Section 7.1.7, “Server Command Options”
 
-### --var\_name
+### --var_name
 
 Section 17.14, “InnoDB Startup Options and System Variables”
 
@@ -9402,7 +9402,7 @@ Section 7.1.7, “Server Command Options”
 
 ### --variable
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
 ### --verbose
 
@@ -9418,9 +9418,9 @@ Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
 Section 7.4.4.5.3, “Monitoring Binary Log Transaction Compression”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
-Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”
+Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -9428,9 +9428,9 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -9440,7 +9440,7 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -9452,31 +9452,31 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
 Section 6.6.4.4, “Other myisamchk Options”
 
-Section 29.12.14.4, “Performance Schema variables\_metadata Table”
+Section 29.12.14.4, “Performance Schema variables_metadata Table”
 
 Section 6.8.1, “perror — Display MySQL Error Message Information”
 
@@ -9496,13 +9496,13 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 ### --version
 
-Section 6.4.1, “comp\_err — Compile MySQL Error Message File”
+Section 6.4.1, “comp_err — Compile MySQL Error Message File”
 
 Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
 Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”
 
-Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”
+Section 6.7.2, “my_print_defaults — Display Options from Option Files”
 
 Section 6.6.4.1, “myisamchk General Options”
 
@@ -9510,11 +9510,11 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”
+Section 6.7.1, “mysql_config — Display Options for Compiling Clients”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -9522,7 +9522,7 @@ Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
 Section 6.5.3, “mysqlcheck — A Table Maintenance Program”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
@@ -9532,51 +9532,51 @@ Section 6.5.6, “mysqlshow — Display Database, Table, and Column Information
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.6, “ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
+Section 25.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
-Section 25.5.8, “ndb\_delete\_all — Delete All Rows from an NDB Table”
+Section 25.5.8, “ndb_delete_all — Delete All Rows from an NDB Table”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.10, “ndb\_drop\_index — Drop Index from an NDB Table”
+Section 25.5.10, “ndb_drop_index — Drop Index from an NDB Table”
 
-Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”
+Section 25.5.11, “ndb_drop_table — Drop an NDB Table”
 
-Section 25.5.13, “ndb\_import — Import CSV Data Into NDB”
+Section 25.5.13, “ndb_import — Import CSV Data Into NDB”
 
-Section 25.5.14, “ndb\_index\_stat — NDB Index Statistics Utility”
+Section 25.5.14, “ndb_index_stat — NDB Index Statistics Utility”
 
-Section 25.5.5, “ndb\_mgm — The NDB Cluster Management Client”
+Section 25.5.5, “ndb_mgm — The NDB Cluster Management Client”
 
-Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”
+Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”
 
-Section 25.5.15, “ndb\_move\_data — NDB Data Copy Utility”
+Section 25.5.15, “ndb_move_data — NDB Data Copy Utility”
 
-Section 25.5.16, “ndb\_perror — Obtain NDB Error Message Information”
+Section 25.5.16, “ndb_perror — Obtain NDB Error Message Information”
 
-Section 25.5.17, “ndb\_print\_backup\_file — Print NDB Backup File Contents”
+Section 25.5.17, “ndb_print_backup_file — Print NDB Backup File Contents”
 
-Section 25.5.18, “ndb\_print\_file — Print NDB Disk Data File Contents”
+Section 25.5.18, “ndb_print_file — Print NDB Disk Data File Contents”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.24, “ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File”
+Section 25.5.24, “ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.26, “ndb\_select\_count — Print Row Counts for NDB Tables”
+Section 25.5.26, “ndb_select_count — Print Row Counts for NDB Tables”
 
-Section 25.5.27, “ndb\_show\_tables — Display List of NDB Tables”
+Section 25.5.27, “ndb_show_tables — Display List of NDB Tables”
 
-Section 25.5.28, “ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
+Section 25.5.28, “ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 Section 25.5.1, “ndbd — The NDB Cluster Data Node Daemon”
 
-Section 25.5.2, “ndbinfo\_select\_all — Select From ndbinfo Tables”
+Section 25.5.2, “ndbinfo_select_all — Select From ndbinfo Tables”
 
 Section 25.5.32, “ndbxfrm — Compress, Decompress, Encrypt, and Decrypt Files Created by NDB Cluster”
 
@@ -9632,13 +9632,13 @@ Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables�
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 ### --wait
 
@@ -9652,11 +9652,11 @@ Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
 ### --wait-nodes
 
-Section 25.5.31, “ndb\_waiter — Wait for NDB Cluster to Reach a Given Status”
+Section 25.5.31, “ndb_waiter — Wait for NDB Cluster to Reach a Given Status”
 
 ### --warn
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 ### --where
 
@@ -9666,27 +9666,27 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 25.7.4, “NDB Cluster Replication Schema and Tables”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-### WITH\_ANT
+### WITH_ANT
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_CLASSPATH
+### WITH_CLASSPATH
 
 Section 25.3.1.4, “Building NDB Cluster from Source on Linux”
 
 Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”
 
-### WITH\_CLIENT\_PROTOCOL\_TRACING
+### WITH_CLIENT_PROTOCOL_TRACING
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_CURL
+### WITH_CURL
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_DEBUG
+### WITH_DEBUG
 
 Section 6.6.1, “ibd2sdi — InnoDB Tablespace SDI Extraction Utility”
 
@@ -9700,7 +9700,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”
+Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -9720,45 +9720,45 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 Section 6.5.8.1, “Options”
 
-### WITH\_EDITLINE
+### WITH_EDITLINE
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_ICU
+### WITH_ICU
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_JEMALLOC
+### WITH_JEMALLOC
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_LIBEVENT
+### WITH_LIBEVENT
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_LOCK\_ORDER
+### WITH_LOCK_ORDER
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-Section 7.9.3, “The LOCK\_ORDER Tool”
+Section 7.9.3, “The LOCK_ORDER Tool”
 
-### WITH\_LTO
-
-Section 2.8.7, “MySQL Source-Configuration Options”
-
-### WITH\_LZ4
+### WITH_LTO
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_LZMA
+### WITH_LZ4
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_MECAB
+### WITH_LZMA
+
+Section 2.8.7, “MySQL Source-Configuration Options”
+
+### WITH_MECAB
 
 Section 14.9.9, “MeCab Full-Text Parser Plugin”
 
-### WITH\_NDB
+### WITH_NDB
 
 Section 25.3.1.4, “Building NDB Cluster from Source on Linux”
 
@@ -9766,31 +9766,31 @@ Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Window
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_NDB\_JAVA
+### WITH_NDB_JAVA
 
 Section 25.3.1.4, “Building NDB Cluster from Source on Linux”
 
 Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”
 
-### WITH\_NDBCLUSTER
+### WITH_NDBCLUSTER
 
 Section 25.3.2.2, “Compiling and Installing NDB Cluster from Source on Windows”
 
-### WITH\_NUMA
+### WITH_NUMA
 
 Section 17.14, “InnoDB Startup Options and System Variables”
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_PROTOBUF
+### WITH_PROTOBUF
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_RE2
+### WITH_RE2
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_SSL
+### WITH_SSL
 
 Section 2.8.6, “Configuring SSL Library Support”
 
@@ -9800,23 +9800,23 @@ Section 2.8.2, “Source Installation Prerequisites”
 
 Section 8.3, “Using Encrypted Connections”
 
-### WITH\_SYSTEMD
+### WITH_SYSTEMD
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_TCMALLOC
+### WITH_TCMALLOC
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_TEST\_TRACE\_PLUGIN
+### WITH_TEST_TRACE_PLUGIN
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_ZLIB
+### WITH_ZLIB
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
-### WITH\_ZSTD
+### WITH_ZSTD
 
 Section 2.8.7, “MySQL Source-Configuration Options”
 
@@ -9846,11 +9846,11 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
-Section 25.5.9, “ndb\_desc — Describe NDB Tables”
+Section 25.5.9, “ndb_desc — Describe NDB Tables”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
-Section 25.5.30, “ndb\_top — View CPU usage information for NDB threads”
+Section 25.5.30, “ndb_top — View CPU usage information for NDB threads”
 
 ### --xml
 
@@ -9860,7 +9860,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 6.5.4, “mysqldump — A Database Backup Program”
 
-Section 25.5.7, “ndb\_config — Extract NDB Cluster Configuration Information”
+Section 25.5.7, “ndb_config — Extract NDB Cluster Configuration Information”
 
 Section 14.11, “XML Functions”
 
@@ -9884,9 +9884,9 @@ Section 6.5.7, “mysqlslap — A Load Emulation Client”
 
 ### -z
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”
+Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”
 
 ### --zstd-compression-level
 

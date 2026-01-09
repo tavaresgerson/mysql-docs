@@ -1,7 +1,7 @@
-#### 25.6.15.47 A tabela ndbinfo memory\_per\_fragment
+#### 25.6.15.47 A tabela ndbinfo memory_per_fragment
 
-* tabela memory\_per\_fragment: Notas
-* tabela memory\_per\_fragment: Exemplos
+* tabela memory_per_fragment: Notas
+* tabela memory_per_fragment: Exemplos
 
 A tabela `memory_per_fragment` fornece informações sobre o uso da memória por fragmentos individuais. Veja as Notas mais adiante nesta seção para ver como você pode usar isso para descobrir quanto memória é usada pelas tabelas `NDB`.
 
@@ -73,7 +73,7 @@ Número de bytes alocados para elementos de tamanho variável
 
   Número de bytes alocados para índices de hash
 
-##### tabela memory\_per\_fragment: Notas
+##### tabela memory_per_fragment: Notas
 
 A tabela `memory_per_fragment` contém uma linha para cada replica de fragmento de tabela e cada replica de fragmento de índice no sistema; isso significa que, por exemplo, quando `NoOfReplicas=2`, normalmente existem duas réplicas de fragmento para cada fragmento. Isso é verdade enquanto todos os nós de dados estiverem em execução e conectados ao clúster; para um nó de dados ausente, não existem linhas para as réplicas de fragmento que ele hospeda.
 
@@ -157,7 +157,7 @@ Indeksos únicos secundários são implementados internamente como tabelas indep
 
 Essas tabelas são distribuídas e fragmentadas normalmente. Isso significa que suas réplicas de fragmentos usam páginas de índice fixo, variável e hash, como qualquer outra tabela `NDB`.
 
-Índices ordenados secundários são fragmentados e distribuídos da mesma maneira que a tabela base. Os fragmentos do índice ordenado são estruturas de T-tree que mantêm uma árvore equilibrada contendo referências de linha na ordem implícita pelas colunas indexadas. Como a árvore contém referências em vez de dados reais, o custo de armazenamento do T-tree não depende do tamanho ou número de colunas indexadas, mas é uma função do número de linhas. A árvore é construída usando estruturas de nó de tamanho fixo, cada uma das quais pode conter um número de referências de linha; o número de nós necessários depende do número de linhas na tabela e da estrutura de árvore necessária para representar a ordenação. Na tabela `memory\_per\_fragment`, podemos ver que os índices ordenados alocam apenas páginas de tamanho fixo, então, como de costume, as colunas relevantes desta tabela estão listadas aqui:
+Índices ordenados secundários são fragmentados e distribuídos da mesma maneira que a tabela base. Os fragmentos do índice ordenado são estruturas de T-tree que mantêm uma árvore equilibrada contendo referências de linha na ordem implícita pelas colunas indexadas. Como a árvore contém referências em vez de dados reais, o custo de armazenamento do T-tree não depende do tamanho ou número de colunas indexadas, mas é uma função do número de linhas. A árvore é construída usando estruturas de nó de tamanho fixo, cada uma das quais pode conter um número de referências de linha; o número de nós necessários depende do número de linhas na tabela e da estrutura de árvore necessária para representar a ordenação. Na tabela `memory_per_fragment`, podemos ver que os índices ordenados alocam apenas páginas de tamanho fixo, então, como de costume, as colunas relevantes desta tabela estão listadas aqui:
 
 * `fixed_elem_alloc_bytes`: Isso é igual a 32768 vezes o número de páginas de tamanho fixo.
 
@@ -171,7 +171,7 @@ Essas tabelas são distribuídas e fragmentadas normalmente. Isso significa que 
 
 Se o espaço livre em uma página for fragmentado, a página é desfragmentada. `OPTIMIZE TABLE` pode ser usado para desfragmentar páginas de tamanho variável de uma tabela; isso move partes variáveis de linha entre páginas para que algumas páginas inteiras possam ser liberadas para reutilização.
 
-##### tabela memory\_per\_fragment: Exemplos
+##### tabela memory_per_fragment: Exemplos
 
 * Obter informações gerais sobre fragmentos e uso de memória
 * Encontrar uma tabela e seus índices

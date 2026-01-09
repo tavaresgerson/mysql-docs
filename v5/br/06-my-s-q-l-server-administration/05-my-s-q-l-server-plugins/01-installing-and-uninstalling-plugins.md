@@ -33,7 +33,7 @@ Um plugin localizado em um arquivo de biblioteca de plugins pode ser carregado n
 
 As opções `--plugin-load` e `--plugin-load-add` carregam plugins após os plugins integrados e os motores de armazenamento terem sido inicializados durante a sequência de inicialização do servidor. A opção `--early-plugin-load` é usada para carregar plugins que devem estar disponíveis antes da inicialização dos plugins integrados e dos motores de armazenamento.
 
-O valor de cada opção de carregamento de plugin é uma lista separada por ponto e vírgula de valores de *`plugin_library`* e *`name`*=`*`plugin\_library\*`. Cada *`plugin\_library`* é o nome de um arquivo de biblioteca que contém o código do plugin, e cada *`name`* é o nome de um plugin a ser carregado. Se uma biblioteca de plugin tiver o nome sem nenhum nome de plugin anterior, o servidor carrega todos os plugins da biblioteca. Com um nome de plugin anterior, o servidor carrega apenas o plugin nomeado da biblioteca. O servidor procura por arquivos de biblioteca de plugin no diretório nomeado pela variável de sistema [`plugin\_dir\`]\(server-system-variables.html#sysvar\_plugin\_dir).
+O valor de cada opção de carregamento de plugin é uma lista separada por ponto e vírgula de valores de *`plugin_library`* e *`name`*=`*`plugin_library\*`. Cada *`plugin_library`* é o nome de um arquivo de biblioteca que contém o código do plugin, e cada *`name`* é o nome de um plugin a ser carregado. Se uma biblioteca de plugin tiver o nome sem nenhum nome de plugin anterior, o servidor carrega todos os plugins da biblioteca. Com um nome de plugin anterior, o servidor carrega apenas o plugin nomeado da biblioteca. O servidor procura por arquivos de biblioteca de plugin no diretório nomeado pela variável de sistema [`plugin_dir\`]\(server-system-variables.html#sysvar_plugin_dir).
 
 As opções de carregamento de plugins não registram nenhum plugin na tabela `mysql.plugin`. Para reinicializações subsequentes, o servidor carrega o plugin novamente apenas se `--plugin-load`, `--plugin-load-add` ou `--early-plugin-load` for fornecido novamente. Isso significa que a opção realiza uma operação de instalação de plugin única que persiste para uma única invocação do servidor.
 
@@ -98,7 +98,7 @@ Alternativamente, a declaração `INSTALL PLUGIN` faz com que o servidor carregu
 INSTALL PLUGIN myplugin SONAME 'somepluglib.so';
 ```
 
-O botão `INSTALE PLUGIN` também causa o registro permanente do plugin: o plugin é listado na tabela `mysql.plugin` para garantir que o servidor o carregue em reinicializações subsequentes.
+O botão `INSTALL PLUGIN` também causa o registro permanente do plugin: o plugin é listado na tabela `mysql.plugin` para garantir que o servidor o carregue em reinicializações subsequentes.
 
 Muitos plugins podem ser carregados tanto no início do servidor quanto durante o runtime. No entanto, se um plugin for projetado para ser carregado e inicializado durante o início do servidor, as tentativas de carregá-lo durante o runtime usando `INSTALL PLUGIN` geram um erro:
 

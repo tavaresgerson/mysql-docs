@@ -1,4 +1,4 @@
-### 12.8.7 Using Collation in INFORMATION\_SCHEMA Searches
+### 12.8.7 Using Collation in INFORMATION_SCHEMA Searches
 
 String columns in `INFORMATION_SCHEMA` tables have a collation of `utf8mb3_general_ci`, which is case-insensitive. However, for values that correspond to objects that are represented in the file system, such as databases and tables, searches in `INFORMATION_SCHEMA` string columns can be case-sensitive or case-insensitive, depending on the characteristics of the underlying file system and the `lower_case_table_names` system variable setting. For example, searches may be case-sensitive if the file system is case-sensitive. This section describes this behavior and how to modify it if necessary.
 

@@ -1,4 +1,4 @@
-#### 26.4.3.44 As visualizações user\_summary\_by\_stages e x$user\_summary\_by\_stages
+#### 26.4.3.44 As visualizações user_summary_by_stages e x$user_summary_by_stages
 
 Essas visualizações resumem as etapas, agrupadas por usuário. Por padrão, as linhas são ordenadas por usuário e pela latência total da etapa em ordem decrescente.
 

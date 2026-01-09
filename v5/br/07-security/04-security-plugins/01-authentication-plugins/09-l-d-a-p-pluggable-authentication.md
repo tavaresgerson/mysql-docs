@@ -1,10 +1,10 @@
 #### 6.4.1.9 Autenticação Pluggable LDAP
 
-Nota
-
+::: info Nota
 A autenticação plugável LDAP é uma extensão incluída na Edição Empresarial do MySQL, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
 A partir do MySQL 5.7.19, a Edição Empresarial do MySQL suporta um método de autenticação que permite ao MySQL Server usar o LDAP (Lightweight Directory Access Protocol) para autenticar usuários do MySQL acessando serviços de diretório, como o X.500. O MySQL usa o LDAP para buscar informações de usuário, credenciais e grupos.
+:::
 
 A autenticação plugável LDAP oferece essas capacidades:
 
@@ -18,11 +18,11 @@ As tabelas a seguir mostram os nomes dos arquivos de plugin e biblioteca para au
 
 **Tabela 6.15 Nomes de plugins e bibliotecas para autenticação LDAP simples**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha LDAP simples."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Nome do plugin no lado do servidor</td> <td>[[<code>authentication_ldap_simple</code>]]</td> </tr><tr> <td>Nome do plugin no lado do cliente</td> <td>[[<code>mysql_clear_password</code>]]</td> </tr><tr> <td>Nome do arquivo da biblioteca</td> <td>[[<code class="filename">authentication_ldap_simple.so</code>]]</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha LDAP simples."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Nome do plugin no lado do servidor</td> <td>[[<code>authentication_ldap_simple</code>]]</td> </tr><tr> <td>Nome do plugin no lado do cliente</td> <td>[[<code>mysql_clear_password</code>]]</td> </tr><tr> <td>Nome do arquivo da biblioteca</td> <td>[[<code>authentication_ldap_simple.so</code>]]</td> </tr></tbody></table>
 
 **Tabela 6.16 Nomes de plugins e bibliotecas para autenticação LDAP baseada em SASL**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha com base em SASL-LDAP."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Nome do plugin no lado do servidor</td> <td>[[<code>authentication_ldap_sasl</code>]]</td> </tr><tr> <td>Nome do plugin no lado do cliente</td> <td>[[<code>authentication_ldap_sasl_client</code>]]</td> </tr><tr> <td>Nomes de arquivos da biblioteca</td> <td>[[<code class="filename">authentication_ldap_sasl.so</code>]], [[<code class="filename">authentication_ldap_sasl_client.so</code>]]</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha com base em SASL-LDAP."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Nome do plugin no lado do servidor</td> <td>[[<code>authentication_ldap_sasl</code>]]</td> </tr><tr> <td>Nome do plugin no lado do cliente</td> <td>[[<code>authentication_ldap_sasl_client</code>]]</td> </tr><tr> <td>Nomes de arquivos da biblioteca</td> <td>[[<code>authentication_ldap_sasl.so</code>]], [[<code>authentication_ldap_sasl_client.so</code>]]</td> </tr></tbody></table>
 
 Os arquivos da biblioteca incluem apenas os plugins de autenticação `authentication_ldap_XXX`. O plugin `mysql_clear_password` do lado do cliente está integrado à biblioteca de clientes `libmysqlclient`.
 
@@ -117,7 +117,7 @@ Cada plugin LDAP do lado do servidor expõe um conjunto de variáveis de sistema
 
 Para carregar os plugins e definir o host do servidor LDAP e o nome distinto base para operações de vinculação LDAP, coloque linhas como estas no seu arquivo `my.cnf`, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
-```sql
+```
 [mysqld]
 plugin-load-add=authentication_ldap_simple.so
 authentication_ldap_simple_server_host=127.0.0.1
@@ -131,18 +131,18 @@ Depois de modificar o `my.cnf`, reinicie o servidor para que as novas configura�
 
 Como alternativa, para carregar os plugins em tempo de execução, use essas instruções, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
-```sql
+```
 INSTALL PLUGIN authentication_ldap_simple
   SONAME 'authentication_ldap_simple.so';
 INSTALL PLUGIN authentication_ldap_sasl
   SONAME 'authentication_ldap_sasl.so';
 ```
 
-`INSTALE O PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
+`INSTALL PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
 
 Após instalar os plugins durante a execução, suas variáveis de sistema ficam disponíveis e você pode adicionar configurações para eles ao seu arquivo `my.cnf` para configurar os plugins para reinicializações subsequentes. Por exemplo:
 
-```sql
+```
 [mysqld]
 authentication_ldap_simple_server_host=127.0.0.1
 authentication_ldap_simple_bind_base_dn="dc=example,dc=com"
@@ -176,7 +176,7 @@ Em sistemas que executam o EL6 ou o EL com o SELinux habilitado, são necessári
 
 1. Crie um arquivo `mysqlldap.te` com este conteúdo:
 
-   ```sql
+   ```
    module mysqlldap 1.0;
 
    require {
@@ -192,33 +192,33 @@ Em sistemas que executam o EL6 ou o EL com o SELinux habilitado, são necessári
 
 2. Compile o módulo de política de segurança em uma representação binária:
 
-   ```sql
-   checkmodule -M -m mysqlldap.te -o mysqlldap.mod
-   ```
+  ```sh
+  checkmodule -M -m mysqlldap.te -o mysqlldap.mod
+  ```
 
 3. Crie um pacote de módulo de política SELinux:
 
-   ```sql
-   semodule_package -m mysqlldap.mod  -o mysqlldap.pp
-   ```
+  ```sh
+  semodule_package -m mysqlldap.mod  -o mysqlldap.pp
+  ```
 
 4. Instale o pacote do módulo:
 
-   ```sql
-   semodule -i mysqlldap.pp
-   ```
+  ```sh
+  semodule -i mysqlldap.pp
+  ```
 
 5. Quando as alterações nas políticas do SELinux forem feitas, reinicie o servidor MySQL:
 
-   ```sql
-   service mysqld restart
-   ```
+  ```sh
+  service mysqld restart
+  ```
 
 ##### Desinstalação do LDAP Pluggable Authentication
 
 O método usado para desinstalar os plugins de autenticação LDAP depende de como você os instalou:
 
-- Se você instalou os plugins na inicialização do servidor usando as opções `--plugin-load-add` (server-options.html#option\_mysqld\_plugin-load-add), reinicie o servidor sem essas opções.
+- Se você instalou os plugins na inicialização do servidor usando as opções `--plugin-load-add` (server-options.html#option_mysqld_plugin-load-add), reinicie o servidor sem essas opções.
 
 - Se você instalou os plugins durante a execução usando `INSTALL PLUGIN`, eles permanecem instalados após a reinicialização do servidor. Para desinstalá-los, use `UNINSTALL PLUGIN`:
 
@@ -271,7 +271,7 @@ As instruções aqui assumem o seguinte cenário:
 
 - Essas entradas LDAP estão disponíveis no diretório gerenciado pelo servidor LDAP, para fornecer valores de nome distinto que identificam de forma única cada usuário:
 
-  ```sql
+  ```
   uid=betsy_ldap,ou=People,dc=example,dc=com
   uid=boris_ldap,ou=People,dc=example,dc=com
   ```
@@ -316,7 +316,7 @@ A string de autenticação especificada na cláusula `BY` não inclui a senha do
 
 Os clientes se conectam ao servidor MySQL fornecendo o nome de usuário do MySQL e a senha do LDAP, e habilitando o plugin `mysql_clear_password` no lado do cliente:
 
-```sql
+```sh
 $> mysql --user=betsy --password --enable-cleartext-plugin
 Enter password: betsy_ldap_password
 ```
@@ -377,7 +377,7 @@ A string de autenticação especificada na cláusula `BY` não inclui a senha do
 
 Os clientes se conectam ao servidor MySQL fornecendo o nome de usuário do MySQL e a senha do LDAP:
 
-```sql
+```sh
 $> mysql --user=boris --password
 Enter password: boris_ldap_password
 ```
@@ -459,7 +459,7 @@ GRANT PROXY
 
 Use o cliente de linha de comando **mysql** para se conectar ao servidor MySQL como `basha`.
 
-```sql
+```sh
 $> mysql --user=basha --password
 Enter password: basha_password (basha LDAP password)
 ```
@@ -470,7 +470,7 @@ A autenticação ocorre da seguinte forma:
 
 2. A entrada LDAP correspondente é:
 
-   ```sql
+   ```sh
    uid=basha,ou=People,dc=example,dc=com,cn=accounting
    ```
 
@@ -491,7 +491,7 @@ Isso demonstra que o `basha` utiliza os privilégios concedidos à conta `accoun
 
 Agora conecte-se como `basil` em vez disso:
 
-```sql
+```sh
 $> mysql --user=basil --password
 Enter password: basil_password (basil LDAP password)
 ```
@@ -502,7 +502,7 @@ O processo de autenticação para `basil` é semelhante ao descrito anteriorment
 
 2. A entrada LDAP correspondente é:
 
-   ```sql
+   ```sh
    uid=basil,ou=People,dc=example,dc=com,cn=front_office
    ```
 

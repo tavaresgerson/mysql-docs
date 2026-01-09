@@ -1,4 +1,4 @@
-#### 30.4.3.35 The statement\_analysis and x$statement\_analysis Views
+#### 30.4.3.35 The statement_analysis and x$statement_analysis Views
 
 These views list normalized statements with aggregated statistics. The content mimics the MySQL Enterprise Monitor Query Analysis view. By default, rows are sorted by descending total latency.
 

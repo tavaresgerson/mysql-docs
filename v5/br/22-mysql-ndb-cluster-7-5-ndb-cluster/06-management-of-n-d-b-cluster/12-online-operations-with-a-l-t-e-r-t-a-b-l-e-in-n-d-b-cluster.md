@@ -14,7 +14,7 @@ Para `ALGORITHM=COPY`, o manipulador do NDB Cluster **mysqld** executa as seguin
 
 As operações DML não são permitidas simultaneamente com uma cópia de `ALTER TABLE`.
 
-O **mysqld** no qual a instrução `ALTER TABLE` de cópia é emitida obtém uma restrição de metadados, mas isso ocorre apenas nesse **mysqld**. Outros clientes do \[**NDB**] podem modificar os dados das linhas durante uma cópia de `ALTER TABLE`, resultando em inconsistência.
+O **mysqld** no qual a instrução `ALTER TABLE` de cópia é emitida obtém uma restrição de metadados, mas isso ocorre apenas nesse **mysqld**. Outros clientes do [**NDB**] podem modificar os dados das linhas durante uma cópia de `ALTER TABLE`, resultando em inconsistência.
 
 Para `ALGORITHM=INPLACE`, o manipulador do NDB Cluster instrui os nós de dados a fazerem as alterações necessárias e não realiza nenhuma cópia de dados.
 

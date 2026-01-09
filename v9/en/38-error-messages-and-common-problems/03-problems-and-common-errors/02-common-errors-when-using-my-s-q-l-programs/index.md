@@ -26,7 +26,7 @@ B.3.2.12 Commands out of sync
 
 B.3.2.13 Ignoring user
 
-B.3.2.14 Table 'tbl\_name' doesn't exist
+B.3.2.14 Table 'tbl_name' doesn't exist
 
 B.3.2.15 Can't initialize character set
 

@@ -19,7 +19,7 @@ MySQL supports these capabilities without the use of workarounds such as special
 
 ### Defining and Accessing Query Attributes
 
-Applications that use the MySQL C API define query attributes by calling the  `mysql_bind_param()` function. See  mysql\_bind\_param(). Other MySQL connectors may also provide query-attribute support. See the documentation for individual connectors.
+Applications that use the MySQL C API define query attributes by calling the  `mysql_bind_param()` function. See  mysql_bind_param(). Other MySQL connectors may also provide query-attribute support. See the documentation for individual connectors.
 
 The `mysql` client has a `query_attributes` command that enables defining up to 32 pairs of attribute names and values. See Section 6.5.1.2, “mysql Client Commands”.
 

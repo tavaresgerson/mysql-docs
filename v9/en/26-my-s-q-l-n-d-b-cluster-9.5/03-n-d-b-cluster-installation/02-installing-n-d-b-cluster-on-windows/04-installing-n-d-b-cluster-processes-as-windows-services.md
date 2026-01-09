@@ -4,7 +4,7 @@ Once you are satisfied that NDB Cluster is running as desired, you can install t
 
 Installing programs as Windows services usually must be done using an account that has Administrator rights on the system.
 
-To install the management node as a service on Windows, invoke **ndb\_mgmd.exe** from the command line on the machine hosting the management node, using the `--install` option, as shown here:
+To install the management node as a service on Windows, invoke **ndb_mgmd.exe** from the command line on the machine hosting the management node, using the `--install` option, as shown here:
 
 ```
 C:\> C:\mysql\bin\ndb_mgmd.exe --install
@@ -17,7 +17,7 @@ Important
 
 When installing an NDB Cluster program as a Windows service, you should always specify the complete path; otherwise the service installation may fail with the error The system cannot find the file specified.
 
-The `--install` option must be used first, ahead of any other options that might be specified for **ndb\_mgmd.exe**. However, it is preferable to specify such options in an options file instead. If your options file is not in one of the default locations as shown in the output of **ndb\_mgmd.exe** `--help`, you can specify the location using the `--config-file` option.
+The `--install` option must be used first, ahead of any other options that might be specified for **ndb_mgmd.exe**. However, it is preferable to specify such options in an options file instead. If your options file is not in one of the default locations as shown in the output of **ndb_mgmd.exe** `--help`, you can specify the location using the `--config-file` option.
 
 Now you should be able to start and stop the management server like this:
 
@@ -64,7 +64,7 @@ To remove the management node service, use **SC DELETE *`service_name`***:
 C:\> SC DELETE mgmd1
 ```
 
-Alternatively, invoke **ndb\_mgmd.exe** with the `--remove` option, as shown here:
+Alternatively, invoke **ndb_mgmd.exe** with the `--remove` option, as shown here:
 
 ```
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove
@@ -72,7 +72,7 @@ Removing service 'NDB Cluster Management Server'
 Service successfully removed.
 ```
 
-If you installed the service using a service name other than the default, pass the service name as the value of the **ndb\_mgmd.exe** `--remove` option, like this:
+If you installed the service using a service name other than the default, pass the service name as the value of the **ndb_mgmd.exe** `--remove` option, like this:
 
 ```
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove=mgmd1
@@ -110,7 +110,7 @@ Removing service 'NDB Cluster Data Node Daemon'
 Service successfully removed.
 ```
 
-As with **ndb\_mgmd.exe** (and **mysqld.exe**), when installing **ndbd.exe** as a Windows service, you can also specify a name for the service as the value of `--install`, and then use it when starting or stopping the service, like this:
+As with **ndb_mgmd.exe** (and **mysqld.exe**), when installing **ndbd.exe** as a Windows service, you can also specify a name for the service as the value of `--install`, and then use it when starting or stopping the service, like this:
 
 ```
 C:\> C:\mysql\bin\ndbd.exe --install=dnode1

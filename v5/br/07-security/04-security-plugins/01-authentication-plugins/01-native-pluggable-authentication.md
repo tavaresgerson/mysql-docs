@@ -27,6 +27,6 @@ O plugin `mysql_native_password` existe em formas de servidor e cliente:
 
 Os programas clientes do MySQL usam `mysql_native_password` por padrão. A opção `--default-auth` pode ser usada como uma dica sobre qual plugin do lado do cliente o programa pode esperar que seja usado:
 
-```sql
+```sh
 $> mysql --default-auth=mysql_native_password ...
 ```

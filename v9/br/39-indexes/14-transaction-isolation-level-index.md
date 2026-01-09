@@ -36,7 +36,7 @@ Seção 15.3.7, “Instrução SET TRANSACTION”
 
 Seção 7.4.4.2, “Definindo o Formato do Log Binário”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 17.7.2.1, “Níveis de Isolamento de Transações”
 
@@ -82,7 +82,7 @@ Seção 15.3.7, “Instrução SET TRANSACTION”
 
 Seção 15.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 17.7.2.1, “Níveis de isolamento de transações”
 
@@ -122,7 +122,7 @@ Seção 15.3.7, “Instrução SET TRANSACTION”
 
 Seção 15.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 17.7.2.1, “Níveis de isolamento de transações”
 

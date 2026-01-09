@@ -83,7 +83,7 @@ This statement also displays information about views.
       AND   TABLE_NAME   = 'mytable';
   ```
 
-  For more information, see Section 28.3.26, “The INFORMATION\_SCHEMA PARTITIONS Table”.
+  For more information, see Section 28.3.26, “The INFORMATION_SCHEMA PARTITIONS Table”.
 
 * `Auto_increment`
 
@@ -143,4 +143,4 @@ This statement also displays information about views.
 
 * For views, most columns displayed by `SHOW TABLE STATUS` are 0 or `NULL` except that `Name` indicates the view name, `Create_time` indicates the creation time, and `Comment` says `VIEW`.
 
-Table information is also available from the `INFORMATION_SCHEMA` `TABLES` table. See Section 28.3.44, “The INFORMATION\_SCHEMA TABLES Table”.
+Table information is also available from the `INFORMATION_SCHEMA` `TABLES` table. See Section 28.3.44, “The INFORMATION_SCHEMA TABLES Table”.

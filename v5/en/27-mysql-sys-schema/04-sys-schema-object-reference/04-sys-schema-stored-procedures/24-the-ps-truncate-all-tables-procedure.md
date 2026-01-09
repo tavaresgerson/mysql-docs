@@ -1,4 +1,4 @@
-#### 26.4.4.24 The ps\_truncate\_all\_tables() Procedure
+#### 26.4.4.24 The ps_truncate_all_tables() Procedure
 
 Truncates all Performance Schema summary tables, resetting all aggregated instrumentation as a snapshot. Produces a result set indicating how many tables were truncated.
 

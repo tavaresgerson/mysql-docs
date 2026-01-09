@@ -1,4 +1,4 @@
-#### 26.4.4.23 The ps\_trace\_thread() Procedure
+#### 26.4.4.23 The ps_trace_thread() Procedure
 
 Dumps all Performance Schema data for an instrumented thread to a `.dot` formatted graph file (for the DOT graph description language). Each result set returned from the procedure should be used for a complete graph.
 

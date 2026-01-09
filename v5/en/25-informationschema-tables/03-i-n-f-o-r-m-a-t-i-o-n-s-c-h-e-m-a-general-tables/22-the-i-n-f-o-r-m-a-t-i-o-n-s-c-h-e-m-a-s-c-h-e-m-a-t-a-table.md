@@ -1,4 +1,4 @@
-### 24.3.22 The INFORMATION\_SCHEMA SCHEMATA Table
+### 24.3.22 The INFORMATION_SCHEMA SCHEMATA Table
 
 A schema is a database, so the [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table provides information about databases.
 

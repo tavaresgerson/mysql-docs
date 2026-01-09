@@ -16,12 +16,12 @@ Para tornar um sistema MySQL seguro, você deve considerar fortemente as seguint
 
   **mysqld** pode (e deve) ser executado como um usuário comum e não privilegiado. Você pode criar uma conta Unix separada chamada `mysql` para tornar tudo ainda mais seguro. Use essa conta apenas para administrar o MySQL. Para iniciar **mysqld** como um usuário Unix diferente, adicione uma opção `user` que especifique o nome do usuário no grupo `[mysqld]` do arquivo de opção `my.cnf` onde você especifica as opções do servidor. Por exemplo:
 
-  ```sql
+  ```
   [mysqld]
   user=mysql
   ```
 
-  Isso faz com que o servidor seja iniciado como o usuário designado, seja iniciado manualmente ou usando **mysqld\_safe** ou **mysql.server**. Para mais detalhes, consulte Seção 6.1.5, “Como executar o MySQL como um usuário normal”.
+  Isso faz com que o servidor seja iniciado como o usuário designado, seja iniciado manualmente ou usando **mysqld_safe** ou **mysql.server**. Para mais detalhes, consulte Seção 6.1.5, “Como executar o MySQL como um usuário normal”.
 
   Executar **mysqld** como um usuário Unix diferente de `root` não significa que você precise alterar o nome do usuário `root` na tabela `user`. *Os nomes de usuário para contas MySQL não têm nada a ver com os nomes de usuário para contas Unix*.
 

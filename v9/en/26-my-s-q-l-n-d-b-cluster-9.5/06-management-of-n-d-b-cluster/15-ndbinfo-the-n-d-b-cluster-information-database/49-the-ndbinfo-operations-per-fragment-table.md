@@ -1,4 +1,4 @@
-#### 25.6.15.49 The ndbinfo operations\_per\_fragment Table
+#### 25.6.15.49 The ndbinfo operations_per_fragment Table
 
 The `operations_per_fragment` table provides information about the operations performed on individual fragments and fragment replicas, as well as about some of the results from these operations.
 
@@ -116,7 +116,7 @@ The `operations_per_fragment` table contains the following columns:
 
   Number of scans currently queued for this fragment replica
 
-* tot\_commits
+* tot_commits
 
   Total number of row changes committed to this fragment replica
 
@@ -166,7 +166,7 @@ For indexes or `BLOB` tables, the `parent_fq_name` column contains the `fq_name`
 
 The `type` column shows the schema object type used for this fragment, which can take any one of the values `System table`, `User table`, `Unique hash index`, or `Ordered index`. `BLOB` tables are shown as `User table`.
 
-The `table_id` column value is unique at any given time, but can be reused if the corresponding object has been deleted. The same ID can be seen using the **ndb\_show\_tables** utility.
+The `table_id` column value is unique at any given time, but can be reused if the corresponding object has been deleted. The same ID can be seen using the **ndb_show_tables** utility.
 
 The `block_instance` column shows which LDM instance this fragment replica belongs to. You can use this to obtain information about specific threads from the `threadblocks` table. The first such instance is always numbered 0.
 

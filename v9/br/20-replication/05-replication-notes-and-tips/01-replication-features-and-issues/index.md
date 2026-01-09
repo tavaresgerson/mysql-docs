@@ -1,6 +1,6 @@
 ### 19.5.1 Funções e Problemas de Replicação
 
-19.5.1.1 Replicação e AUTO\_INCREMENT
+19.5.1.1 Replicação e AUTO_INCREMENT
 
 19.5.1.2 Replicação e Tabelas BLACKHOLE
 
@@ -14,7 +14,7 @@
 
 19.5.1.7 Replicação de Declarações CREATE TABLE ... SELECT
 
-19.5.1.8 Replicação de CURRENT\_USER()
+19.5.1.8 Replicação de CURRENT_USER()
 
 19.5.1.9 Replicação com Definições de Tabelas Diferentes na Fonte e na Replicação
 
@@ -40,7 +40,7 @@
 
 19.5.1.20 Replicação e LOAD DATA
 
-19.5.1.21 Replicação e max\_allowed\_packet
+19.5.1.21 Replicação e max_allowed_packet
 
 19.5.1.22 Replicação e Tabelas de MEMÓRIA
 

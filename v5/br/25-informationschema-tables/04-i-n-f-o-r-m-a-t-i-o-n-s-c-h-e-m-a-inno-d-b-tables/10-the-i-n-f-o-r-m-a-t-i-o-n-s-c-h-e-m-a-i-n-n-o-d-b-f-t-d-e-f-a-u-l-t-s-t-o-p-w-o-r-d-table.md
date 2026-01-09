@@ -1,4 +1,4 @@
-### 24.4.10 A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD
+### 24.4.10 A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD
 
 A tabela [`INNODB_FT_DEFAULT_STOPWORD`](https://pt.wikipedia.org/wiki/Tabela_INNODB_FT_DEFAULT_STOPWORD) contém uma lista de [stopwords](https://pt.wikipedia.org/wiki/Glos%C3%A7rio#stopword) que são usados por padrão ao criar um índice `FULLTEXT` em tabelas `InnoDB`. Para obter informações sobre a lista de stopwords padrão do `InnoDB` e como definir suas próprias listas de stopwords, consulte [Seção 12.9.4, “Stopwords de Texto Completo”](https://pt.wikipedia.org/wiki/Stopwords_de_Texto_Completo).
 

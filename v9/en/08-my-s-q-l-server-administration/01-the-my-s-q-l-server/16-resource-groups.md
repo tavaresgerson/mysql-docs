@@ -82,7 +82,7 @@ To manage resource group assignments, use these capabilities:
 
 Those operations require the `RESOURCE_GROUP_ADMIN` or `RESOURCE_GROUP_USER` privilege.
 
-Resource group definitions are stored in the `resource_groups` data dictionary table so that groups persist across server restarts. Because `resource_groups` is part of the data dictionary, it is not directly accessible by users. Resource group information is available using the Information Schema `RESOURCE_GROUPS` table, which is implemented as a view on the data dictionary table. See Section 28.3.31, “The INFORMATION\_SCHEMA RESOURCE\_GROUPS Table”.
+Resource group definitions are stored in the `resource_groups` data dictionary table so that groups persist across server restarts. Because `resource_groups` is part of the data dictionary, it is not directly accessible by users. Resource group information is available using the Information Schema `RESOURCE_GROUPS` table, which is implemented as a view on the data dictionary table. See Section 28.3.31, “The INFORMATION_SCHEMA RESOURCE_GROUPS Table”.
 
 Initially, the `RESOURCE_GROUPS` table has these rows describing the default groups:
 

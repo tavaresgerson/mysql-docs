@@ -1,4 +1,4 @@
-#### 29.12.18.1 The keyring\_component\_status Table
+#### 29.12.18.1 The keyring_component_status Table
 
 The `keyring_component_status` table provides status information about the properties of the keyring component in use, if one is installed. The table is empty if no keyring component is installed (for example, if the keyring is not being used, or is configured to manage the keystore using a keyring plugin rather than a keyring component).
 

@@ -75,7 +75,7 @@ An alias for `train()`"), and identical to it in all respects other than name. S
 
 This method predicts labels, acting as a wrapper for `sys.ML_PREDICT_ROW`.
 
-Predicts a label for a single sample of data, and returns the label. See ML\_PREDICT\_ROW, for more information.
+Predicts a label for a single sample of data, and returns the label. See ML_PREDICT_ROW, for more information.
 
 **Signature**
 

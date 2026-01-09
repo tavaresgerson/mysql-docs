@@ -1,8 +1,8 @@
-#### 30.4.3.28 The schema\_table\_lock\_waits and x$schema\_table\_lock\_waits Views
+#### 30.4.3.28 The schema_table_lock_waits and x$schema_table_lock_waits Views
 
 These views display which sessions are blocked waiting on metadata locks, and what is blocking them.
 
-The column descriptions here are brief. For additional information, see the description of the Performance Schema `metadata_locks` table at Section 29.12.13.3, “The metadata\_locks Table”.
+The column descriptions here are brief. For additional information, see the description of the Performance Schema `metadata_locks` table at Section 29.12.13.3, “The metadata_locks Table”.
 
 The `schema_table_lock_waits` and `x$schema_table_lock_waits` views have these columns:
 

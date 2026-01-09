@@ -8,7 +8,7 @@ A tabela a seguir mostra os nomes dos arquivos do plugin e da biblioteca. O arqu
 
 **Tabela 8.25 Nomes do Plugin e da Biblioteca para Autenticação de Credenciais de Peer de Soquete**
 
-<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação de senha de credenciais de peer de soquete."><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>auth_socket</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td>Nenhum, veja a discussão</td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">auth_socket.so</code></td> </tr></tbody></table>
+<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação de senha de credenciais de peer de soquete."><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>auth_socket</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td>Nenhum, veja a discussão</td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code>auth_socket.so</code></td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para a autenticação de soquete carregável:
 

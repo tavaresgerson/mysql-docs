@@ -1,6 +1,6 @@
 ### 16.4.1 Recursos e problemas de replicação
 
-16.4.1.1 Replicação e AUTO\_INCREMENT
+16.4.1.1 Replicação e AUTO_INCREMENT
 
 16.4.1.2 Replicação e tabelas BLACKHOLE
 
@@ -14,7 +14,7 @@
 
 16.4.1.7 Replicação de CREATE SERVER, ALTER SERVER e DROP SERVER
 
-16.4.1.8 Replicação de CURRENT\_USER()
+16.4.1.8 Replicação de CURRENT_USER()
 
 16.4.1.9 Replicação de declarações DROP ... IF EXISTS
 
@@ -36,7 +36,7 @@
 
 16.4.1.18 Replicação e CARREGAR DADOS
 
-16.4.1.19 Replicação e max\_allowed\_packet
+16.4.1.19 Replicação e max_allowed_packet
 
 16.4.1.2.20 Replicação e tabelas de MEMÓRIA
 

@@ -41,7 +41,7 @@ Para invocar um procedimento armazenado, use a instrução `CALL` (consulte Seç
 
 `CREATE PROCEDURE` e `CREATE FUNCTION` exigem o privilégio `CREATE ROUTINE`. Se a cláusula `DEFINER` estiver presente, os privilégios necessários dependem do valor do *`user`*, conforme discutido na Seção 23.6, “Controle de Acesso a Objetos Armazenados”. Se o registro binário estiver habilitado, `CREATE FUNCTION` pode exigir o privilégio `SUPER`, conforme discutido na Seção 23.7, “Registro Binário de Programas Armazenados”.
 
-Por padrão, o MySQL concede automaticamente os privilégios de `ALTER ROUTINE` e `EXECUTE` ao criador da rotina. Esse comportamento pode ser alterado desabilitando a variável de sistema `automatic_sp_privileges` (server-system-variables.html#sysvar\_automatic\_sp\_privileges). Consulte Seção 23.2.2, “Rotinas Armazenadas e Privilégios do MySQL”.
+Por padrão, o MySQL concede automaticamente os privilégios de `ALTER ROUTINE` e `EXECUTE` ao criador da rotina. Esse comportamento pode ser alterado desabilitando a variável de sistema `automatic_sp_privileges` (server-system-variables.html#sysvar_automatic_sp_privileges). Consulte Seção 23.2.2, “Rotinas Armazenadas e Privilégios do MySQL”.
 
 As cláusulas `DEFINER` e `SQL SECURITY` especificam o contexto de segurança a ser utilizado ao verificar os privilégios de acesso no momento da execução da rotina, conforme descrito mais adiante nesta seção.
 

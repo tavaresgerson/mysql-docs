@@ -53,7 +53,7 @@ TABLESPACE_NAME: innodb_temporary
    MAXIMUM_SIZE: NULL
 ```
 
-The `TotalSizeBytes` value reports the current size of the temporary tablespace data file. For information about other field values, see Section 24.3.9, “The INFORMATION\_SCHEMA FILES Table”.
+The `TotalSizeBytes` value reports the current size of the temporary tablespace data file. For information about other field values, see Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”.
 
 Alternatively, check the temporary tablespace data file size on your operating system. By default, the temporary tablespace data file is located in the directory defined by the `innodb_temp_data_file_path` configuration option. If a value was not specified for this option explicitly, a temporary tablespace data file named `ibtmp1` is created in `innodb_data_home_dir`, which defaults to the MySQL data directory if unspecified.
 

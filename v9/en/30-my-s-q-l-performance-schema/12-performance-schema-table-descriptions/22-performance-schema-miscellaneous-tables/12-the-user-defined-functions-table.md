@@ -1,4 +1,4 @@
-#### 29.12.22.12 The user\_defined\_functions Table
+#### 29.12.22.12 The user_defined_functions Table
 
 The `user_defined_functions` table contains a row for each loadable function registered automatically by a component or plugin, or manually by a `CREATE FUNCTION` statement. For information about operations that add or remove table rows, see Section 7.7.1, “Installing and Uninstalling Loadable Functions”.
 

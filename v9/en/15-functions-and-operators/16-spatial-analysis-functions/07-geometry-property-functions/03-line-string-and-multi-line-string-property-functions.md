@@ -112,7 +112,7 @@ These functions are available for obtaining linestring properties:
 
   + If a unit is not specified, the result is in the unit of the SRS of the geometries, whether Cartesian or geographic. Currently, all MySQL SRSs are expressed in meters.
 
-  A unit is supported if it is found in the `INFORMATION_SCHEMA` `ST_UNITS_OF_MEASURE` table. See Section 28.3.43, “The INFORMATION\_SCHEMA ST\_UNITS\_OF\_MEASURE Table”.
+  A unit is supported if it is found in the `INFORMATION_SCHEMA` `ST_UNITS_OF_MEASURE` table. See Section 28.3.43, “The INFORMATION_SCHEMA ST_UNITS_OF_MEASURE Table”.
 
   ```
   mysql> SET @ls = ST_GeomFromText('LineString(1 1,2 2,3 3)');

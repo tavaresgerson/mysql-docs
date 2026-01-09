@@ -26,7 +26,7 @@ Assim que o servidor que está se juntando ao grupo escolhe qual servidor no gru
 
 **Figura 17.12 Transferência de Estado: Atingindo o Tempo**
 
-![O servidor S4 escolheu o servidor S2 como doador. A transferência de estado é executada do servidor S2 para o servidor S4 até que a entrada de alteração de visualização VC4 seja alcançada (view\_id = VC4). O servidor S4 usa um buffer temporário de aplicação para a transferência de estado, e seu log binário está atualmente vazio.](images/gr-recovery-3.png)
+![O servidor S4 escolheu o servidor S2 como doador. A transferência de estado é executada do servidor S2 para o servidor S4 até que a entrada de alteração de visualização VC4 seja alcançada (view_id = VC4). O servidor S4 usa um buffer temporário de aplicação para a transferência de estado, e seu log binário está atualmente vazio.](images/gr-recovery-3.png)
 
 Como os identificadores de visualização são transmitidos a todos os membros do grupo no mesmo momento lógico, o servidor que se junta ao grupo sabe em qual identificador de visualização deve parar de replicar. Isso evita cálculos complexos de conjuntos de GTID, pois o ID de visualização marca claramente quais dados pertencem a cada visualização do grupo.
 

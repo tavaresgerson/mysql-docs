@@ -1,4 +1,4 @@
-### 28.3.15 The INFORMATION\_SCHEMA FILES Table
+### 28.3.15 The INFORMATION_SCHEMA FILES Table
 
 The `FILES` table provides information about the files in which MySQL tablespace data is stored.
 
@@ -251,7 +251,7 @@ The following notes apply to `InnoDB` data files.
 
 #### NDB Notes
 
-* The `FILES` table provides information about Disk Data *files* only; you cannot use it for determining disk space allocation or availability for individual `NDB` tables. However, it is possible to see how much space is allocated for each `NDB` table having data stored on disk—as well as how much remains available for storage of data on disk for that table—using **ndb\_desc**.
+* The `FILES` table provides information about Disk Data *files* only; you cannot use it for determining disk space allocation or availability for individual `NDB` tables. However, it is possible to see how much space is allocated for each `NDB` table having data stored on disk—as well as how much remains available for storage of data on disk for that table—using **ndb_desc**.
 
 * Much of the information contained in the `FILES` table can also be found in the `ndbinfo` `files` table.
 
@@ -289,6 +289,6 @@ The following notes apply to `InnoDB` data files.
 
   The extent size can be set in a `CREATE TABLESPACE` statement. For more information, see Section 15.1.25, “CREATE TABLESPACE Statement”.
 
-* You can obtain information about Disk Data tablespaces using the **ndb\_desc** utility. For more information, see Section 25.6.11.1, “NDB Cluster Disk Data Objects”, as well as the description of **ndb\_desc**.
+* You can obtain information about Disk Data tablespaces using the **ndb_desc** utility. For more information, see Section 25.6.11.1, “NDB Cluster Disk Data Objects”, as well as the description of **ndb_desc**.
 
 * For additional information, and examples of creating, dropping, and obtaining information about NDB Cluster Disk Data objects, see Section 25.6.11, “NDB Cluster Disk Data Tables”.

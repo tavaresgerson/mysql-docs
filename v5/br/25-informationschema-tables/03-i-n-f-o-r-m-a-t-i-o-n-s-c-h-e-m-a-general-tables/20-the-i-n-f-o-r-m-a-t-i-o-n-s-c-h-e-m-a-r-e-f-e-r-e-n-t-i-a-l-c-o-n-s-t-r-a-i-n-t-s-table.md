@@ -1,4 +1,4 @@
-### 24.3.20 Tabela INFORMATION\_SCHEMA REFERENTIAL\_CONSTRAINTS
+### 24.3.20 Tabela INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS
 
 A tabela [`REFERENTIAL_CONSTRAINTS`](https://information-schema-referential-constraints-table.html) fornece informações sobre as chaves estrangeiras.
 

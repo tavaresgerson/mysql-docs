@@ -1,4 +1,4 @@
-#### 29.12.2.3 The setup\_instruments Table
+#### 29.12.2.3 The setup_instruments Table
 
 The `setup_instruments` table lists classes of instrumented objects for which events can be collected:
 

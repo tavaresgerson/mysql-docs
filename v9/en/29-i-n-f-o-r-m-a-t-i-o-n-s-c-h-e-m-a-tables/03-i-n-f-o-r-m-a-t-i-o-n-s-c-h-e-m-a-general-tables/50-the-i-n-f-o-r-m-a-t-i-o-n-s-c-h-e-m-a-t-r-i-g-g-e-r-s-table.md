@@ -1,4 +1,4 @@
-### 28.3.50 The INFORMATION\_SCHEMA TRIGGERS Table
+### 28.3.50 The INFORMATION_SCHEMA TRIGGERS Table
 
 The `TRIGGERS` table provides information about triggers. To see information about a table's triggers, you must have the `TRIGGER` privilege for the table.
 

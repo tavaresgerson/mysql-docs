@@ -1,4 +1,4 @@
-#### 29.12.16.4 Tabela tp\_thread\_state
+#### 29.12.16.4 Tabela tp_thread_state
 
 A tabela `tp_thread_state` tem uma linha por thread criada pelo pool de threads para gerenciar as conexões.
 
@@ -22,7 +22,7 @@ A tabela `tp_thread_state` tem as seguintes colunas:
 
   O valor `WAIT_TYPE` é uma string que descreve o tipo de espera, conforme mostrado na tabela a seguir.
 
-**Tabela 29.4 Tabela tp\_thread\_state Valores de WAIT\_TYPE**
+**Tabela 29.4 Tabela tp_thread_state Valores de WAIT_TYPE**
 
 <table summary="valores do tipo de estado de thread TP_thread_state. A primeira coluna é o tipo de espera. A segunda coluna descreve o tipo de espera."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Tipo de Esperança</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>THD_WAIT_SLEEP</code></td> <td>Esperando por sono</td> </tr><tr> <td><code>THD_WAIT_DISKIO</code></td> <td>Esperando por I/O de disco</td> </tr><tr> <td><code>THD_WAIT_ROW_LOCK</code></td> <td>Esperando por bloqueio de linha</td> </tr><tr> <td><code>THD_WAIT_GLOBAL_LOCK</code></td> <td>Esperando por bloqueio global</td> </tr><tr> <td><code>THD_WAIT_META_DATA_LOCK</code></td> <td>Esperando por bloqueio de metadados</td> </tr><tr> <td><code>THD_WAIT_TABLE_LOCK</code></td> <td>Esperando por bloqueio de tabela</td> </tr><tr> <td><code>THD_WAIT_USER_LOCK</code></td> <td>Esperando por bloqueio de usuário</td> </tr><tr> <td><code>THD_WAIT_BINLOG</code></td> <td>Esperando por binlog</td> </tr><tr> <td><code>THD_WAIT_GROUP_COMMIT</code></td> <td>Esperando por commit de grupo</td> </tr><tr> <td><code>THD_WAIT_SYNC</code></td> <td>Esperando por fsync</td> </tr></tbody></table>
 

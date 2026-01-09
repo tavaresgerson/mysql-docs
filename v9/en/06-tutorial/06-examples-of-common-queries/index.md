@@ -16,7 +16,7 @@
 
 5.6.8 Calculating Visits Per Day
 
-5.6.9 Using AUTO\_INCREMENT
+5.6.9 Using AUTO_INCREMENT
 
 Here are examples of how to solve some common problems with MySQL.
 

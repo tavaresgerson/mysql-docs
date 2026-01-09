@@ -38,4 +38,4 @@ mysql-js> session.dropCollection("world_x", "citytest")
 
 * Veja TableDeleteFunction para a definição completa da sintaxe.
 
-* Veja Seção 22.3.2, “Baixar e Importar banco de dados world\_x” para instruções para recriar o banco de dados `world_x`.
+* Veja Seção 22.3.2, “Baixar e Importar banco de dados world_x” para instruções para recriar o banco de dados `world_x`.

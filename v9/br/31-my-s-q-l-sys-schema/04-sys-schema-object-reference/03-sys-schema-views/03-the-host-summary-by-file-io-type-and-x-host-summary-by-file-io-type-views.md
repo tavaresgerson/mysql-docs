@@ -1,4 +1,4 @@
-#### 30.4.3.3 As visualizações host\_summary\_by\_file\_io\_type e x$host\_summary\_by\_file\_io\_type
+#### 30.4.3.3 As visualizações host_summary_by_file_io_type e x$host_summary_by_file_io_type
 
 Essas visualizações resumem o I/O de arquivos, agrupadas por host e tipo de evento. Por padrão, as linhas são ordenadas por host e latência total descendente do evento.
 

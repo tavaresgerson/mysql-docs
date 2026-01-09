@@ -68,4 +68,4 @@ A client application program that wants to use WKB representations of geometry v
 
   Other programming interfaces may support a similar placeholder mechanism.
 
-* In a C program, you can escape a binary value using `mysql_real_escape_string_quote()` and include the result in a query string that is sent to the server. See mysql\_real\_escape\_string\_quote().
+* In a C program, you can escape a binary value using `mysql_real_escape_string_quote()` and include the result in a query string that is sent to the server. See mysql_real_escape_string_quote().

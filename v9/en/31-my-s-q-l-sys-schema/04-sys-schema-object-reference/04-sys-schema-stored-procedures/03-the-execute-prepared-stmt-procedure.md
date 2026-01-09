@@ -1,4 +1,4 @@
-#### 30.4.4.3 The execute\_prepared\_stmt() Procedure
+#### 30.4.4.3 The execute_prepared_stmt() Procedure
 
 Given an SQL statement as a string, executes it as a prepared statement. The prepared statement is deallocated after execution, so it is not subject to reuse. Thus, this procedure is useful primarily for executing dynamic statements on a one-time basis.
 
@@ -10,7 +10,7 @@ This procedure uses `sys_execute_prepared_stmt` as the prepared statement name. 
 
 ##### Configuration Options
 
-`execute_prepared_stmt()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys\_config Table”):
+`execute_prepared_stmt()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys_config Table”):
 
 * `debug`, `@sys.debug`
 

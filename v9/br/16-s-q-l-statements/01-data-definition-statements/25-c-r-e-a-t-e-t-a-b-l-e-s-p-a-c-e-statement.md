@@ -125,7 +125,7 @@ Quando vários nós de dados são executados no mesmo host físico, as seguintes
 
   Um extent é uma unidade de alocação de espaço em disco. Um extent é preenchido com tanto dados quanto esse extent pode conter antes que outro extent seja usado. Teoricamente, até 65.535 (64K) extents podem ser usados por arquivo de dados; no entanto, o tamanho máximo recomendado é de 32.768 (32K). O tamanho máximo recomendado para um único arquivo de dados é de 32G — ou seja, 32K extents × 1 MB por extent. Além disso, uma vez que um extent é alocado a uma partição específica, ele não pode ser usado para armazenar dados de uma partição diferente; um extent não pode armazenar dados de mais de uma partição. Isso significa, por exemplo, que um espaço de tabelas que tem um único arquivo de dados cujo `INITIAL_SIZE` (descrito no item seguinte) é de 256 MB e cujo `EXTENT_SIZE` é de 128M tem apenas dois extents, e, portanto, pode ser usado para armazenar dados de no máximo duas partições diferentes da tabela de dados do disco.
 
-  Você pode ver quantos extents permanecem livres em um arquivo de dados específico consultando a tabela do Esquema de Informações `FILES`, e assim derivar uma estimativa de quanto espaço ainda está livre no arquivo. Para mais discussões e exemplos, consulte a Seção 28.3.15, “O Tabela INFORMATION\_SCHEMA FILES”.
+  Você pode ver quantos extents permanecem livres em um arquivo de dados específico consultando a tabela do Esquema de Informações `FILES`, e assim derivar uma estimativa de quanto espaço ainda está livre no arquivo. Para mais discussões e exemplos, consulte a Seção 28.3.15, “O Tabela INFORMATION_SCHEMA FILES”.
 
 * `INITIAL_SIZE`: Esta opção é específica do `NDB` e não é suportada pelo `InnoDB`, onde falha com um erro.
 
@@ -135,7 +135,7 @@ O parâmetro `INITIAL_SIZE` define o tamanho total em bytes do arquivo de dados 
 
 Em sistemas de 32 bits, o valor máximo suportado para `INITIAL_SIZE` é 4294967296 (4 GB).
 
-* `AUTOEXTEND_SIZE`: Define a quantidade pela qual o `InnoDB` estende o tamanho do tablespace quando ele fica cheio. O ajuste deve ser um múltiplo de 4 MB. O ajuste padrão é 0, o que faz com que o tablespace seja estendido de acordo com o comportamento padrão implícito. Para mais informações, consulte a Seção 17.6.3.9, “Configuração de AUTOEXTEND\_SIZE do Tablespace”.
+* `AUTOEXTEND_SIZE`: Define a quantidade pela qual o `InnoDB` estende o tamanho do tablespace quando ele fica cheio. O ajuste deve ser um múltiplo de 4 MB. O ajuste padrão é 0, o que faz com que o tablespace seja estendido de acordo com o comportamento padrão implícito. Para mais informações, consulte a Seção 17.6.3.9, “Configuração de AUTOEXTEND_SIZE do Tablespace”.
 
 Não tem efeito em nenhuma versão do MySQL NDB Cluster, independentemente do motor de armazenamento usado.
 

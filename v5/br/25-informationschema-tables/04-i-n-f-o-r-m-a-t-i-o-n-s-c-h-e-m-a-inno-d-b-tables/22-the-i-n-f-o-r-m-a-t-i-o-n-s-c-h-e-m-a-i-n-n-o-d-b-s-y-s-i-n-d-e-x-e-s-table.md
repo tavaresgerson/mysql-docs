@@ -1,8 +1,8 @@
-### 24.4.22 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_INDEXES
+### 24.4.22 A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES
 
 A tabela [`INNODB_SYS_INDEXES`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-sys-indexes) fornece metadados sobre os índices do `InnoDB`, equivalentes às informações na tabela `SYS_INDEXES` interna do dicionário de dados do `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
 
 A tabela `INNODB_SYS_INDEXES` tem as seguintes colunas:
 

@@ -121,21 +121,21 @@ Se você usar replicação baseada em declarações ou em linhas, a cópia da ta
 
 **Modos de conversão de tipo.** O valor global da variável de sistema `replica_type_conversions` controla o modo de conversão de tipo usado na replica. Essa variável aceita um conjunto de valores da seguinte lista, que descreve os efeitos de cada modo no comportamento de conversão de tipo da replica:
 
-ALL\_LOSSY:   Neste modo, as conversões de tipo que significariam perda de informações são permitidas.
+ALL_LOSSY:   Neste modo, as conversões de tipo que significariam perda de informações são permitidas.
 
 Isso não implica que conversões sem perda de dados sejam permitidas, apenas que apenas casos que requerem conversões com perda de dados ou nenhuma conversão são permitidos; por exemplo, habilitar *apenas* este modo permite que uma coluna `INT` seja convertida para `TINYINT` (uma conversão com perda de dados), mas não uma coluna `TINYINT` para uma coluna `INT` (sem perda de dados). Tentar a conversão deste último caso causaria a parada da replicação com um erro na replica.
 
-ALL\_NON\_LOSSY:   Este modo permite conversões que não requerem truncação ou outro tratamento especial do valor de origem; ou seja, permite conversões onde o tipo de destino tem uma faixa mais ampla que o tipo de origem.
+ALL_NON_LOSSY:   Este modo permite conversões que não requerem truncação ou outro tratamento especial do valor de origem; ou seja, permite conversões onde o tipo de destino tem uma faixa mais ampla que o tipo de origem.
 
 Definir este modo não afeta se as conversões com perda de dados são permitidas; isso é controlado pelo modo `ALL_LOSSY`. Se apenas `ALL_NON_LOSSY` for definido, mas não `ALL_LOSSY`, então tentar uma conversão que resultaria na perda de dados (como `INT` para `TINYINT` ou `CHAR(25)` para `VARCHAR(20)`) faz com que a replica pare com um erro.
 
-ALL\_LOSSY,ALL\_NON\_LOSSY:   Quando este modo é definido, todas as conversões de tipos suportadas são permitidas, independentemente de serem conversões com perda de dados.
+ALL_LOSSY,ALL_NON_LOSSY:   Quando este modo é definido, todas as conversões de tipos suportadas são permitidas, independentemente de serem conversões com perda de dados.
 
-ALL\_SIGNED:   Trate os tipos de inteiro promovidos como valores assinados (o comportamento padrão).
+ALL_SIGNED:   Trate os tipos de inteiro promovidos como valores assinados (o comportamento padrão).
 
-ALL\_UNSIGNED:   Trate os tipos de inteiro promovidos como valores não assinados.
+ALL_UNSIGNED:   Trate os tipos de inteiro promovidos como valores não assinados.
 
-ALL\_SIGNED,ALL\_UNSIGNED:   Trate os tipos de inteiro promovidos como assinados, se possível; caso contrário, como não assinados.
+ALL_SIGNED,ALL_UNSIGNED:   Trate os tipos de inteiro promovidos como assinados, se possível; caso contrário, como não assinados.
 
 [*empty*]:   Quando `replica_type_conversions` não é definido, nenhuma promoção ou despromoção de atributos é permitida; isso significa que todas as colunas nas tabelas de origem e destino devem ter os mesmos tipos.
 

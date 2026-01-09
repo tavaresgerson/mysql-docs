@@ -1,10 +1,10 @@
-### 28.4.14 The INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED Table
+### 28.4.14 The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table
 
 The `INNODB_FT_BEING_DELETED` table provides a snapshot of the `INNODB_FT_DELETED` table; it is used only during an `OPTIMIZE TABLE` maintenance operation. When `OPTIMIZE TABLE` is run, the `INNODB_FT_BEING_DELETED` table is emptied, and `DOC_ID` values are removed from the `INNODB_FT_DELETED` table. Because the contents of `INNODB_FT_BEING_DELETED` typically have a short lifetime, this table has limited utility for monitoring or debugging. For information about running `OPTIMIZE TABLE` on tables with `FULLTEXT` indexes, see Section 14.9.6, “Fine-Tuning MySQL Full-Text Search”.
 
 This table is empty initially. Before querying it, set the value of the `innodb_ft_aux_table` system variable to the name (including the database name) of the table that contains the `FULLTEXT` index (for example, `test/articles`). The output appears similar to the example provided for the `INNODB_FT_DELETED` table.
 
-For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
 
 The `INNODB_FT_BEING_DELETED` table has these columns:
 

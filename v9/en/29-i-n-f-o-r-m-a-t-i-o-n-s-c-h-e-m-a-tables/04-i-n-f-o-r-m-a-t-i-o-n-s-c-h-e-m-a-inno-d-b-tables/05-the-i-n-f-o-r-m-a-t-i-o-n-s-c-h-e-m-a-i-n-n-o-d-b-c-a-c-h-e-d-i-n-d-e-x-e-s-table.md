@@ -1,8 +1,8 @@
-### 28.4.5 The INFORMATION\_SCHEMA INNODB\_CACHED\_INDEXES Table
+### 28.4.5 The INFORMATION_SCHEMA INNODB_CACHED_INDEXES Table
 
 The `INNODB_CACHED_INDEXES` table reports the number of index pages cached in the `InnoDB` buffer pool for each index.
 
-For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”.
+For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
 The `INNODB_CACHED_INDEXES` table has these columns:
 

@@ -20,7 +20,7 @@ As informações gerenciadas pelo servidor MySQL são armazenadas em um diretór
 
 - Arquivos de registro escritos pelo servidor. Consulte Seção 5.4, “Logs do Servidor MySQL”.
 
-- Espaço de armazenamento e arquivos de log do banco de dados \`InnoDB. Consulte o \[Capítulo 14, *O motor de armazenamento InnoDB*] (innodb-storage-engine.html).
+- Espaço de armazenamento e arquivos de log do banco de dados \`InnoDB. Consulte o [Capítulo 14, *O motor de armazenamento InnoDB*] (innodb-storage-engine.html).
 
 - Certificados e arquivos de chave SSL e RSA padrão/gerados automaticamente. Consulte Seção 6.3.3, “Criando Certificados e Chaves SSL e RSA”.
 

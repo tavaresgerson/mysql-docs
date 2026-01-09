@@ -8,6 +8,6 @@ SET GLOBAL audit_log_disable = true;
 
 Definir `audit_log_disable` para `true` desativa o plugin de registro de auditoria. O plugin é reativado quando `audit_log_disable` é definido de volta para `false`, que é o valor padrão.
 
-Iniciar o plugin de registro de auditoria com `audit_log_disable = true` gera um aviso (`ER_WARN_AUDIT_LOG_DISABLED`) com a seguinte mensagem: O registro de auditoria está desativado. Ative-o com audit\_log\_disable = false. Definir `audit_log_disable` para `false` também gera um aviso. Quando `audit_log_disable` é definido para `true`, as chamadas de função do registro de auditoria e as alterações de variáveis geram um aviso de sessão.
+Iniciar o plugin de registro de auditoria com `audit_log_disable = true` gera um aviso (`ER_WARN_AUDIT_LOG_DISABLED`) com a seguinte mensagem: O registro de auditoria está desativado. Ative-o com audit_log_disable = false. Definir `audit_log_disable` para `false` também gera um aviso. Quando `audit_log_disable` é definido para `true`, as chamadas de função do registro de auditoria e as alterações de variáveis geram um aviso de sessão.
 
 Definir o valor de tempo de execução de `audit_log_disable` requer o privilégio `AUDIT_ADMIN`, além do privilégio `SYSTEM_VARIABLES_ADMIN` (ou o privilégio `SUPER` desatualizado) normalmente necessário para definir o valor de tempo de execução de uma variável de sistema global.

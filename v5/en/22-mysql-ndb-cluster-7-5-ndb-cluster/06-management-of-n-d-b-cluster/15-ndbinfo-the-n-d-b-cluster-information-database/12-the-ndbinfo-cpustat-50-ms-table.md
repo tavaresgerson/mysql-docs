@@ -1,4 +1,4 @@
-#### 21.6.15.12 The ndbinfo cpustat\_50ms Table
+#### 21.6.15.12 The ndbinfo cpustat_50ms Table
 
 The `cpustat_50ms` table provides raw, per-thread CPU data obtained each 50 milliseconds for each thread running in the `NDB` kernel.
 

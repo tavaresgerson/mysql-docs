@@ -1,4 +1,4 @@
-#### 29.12.16.3 The tp\_thread\_group\_stats Table
+#### 29.12.16.3 The tp_thread_group_stats Table
 
 The `tp_thread_group_stats` table reports statistics per thread group. There is one row per group.
 

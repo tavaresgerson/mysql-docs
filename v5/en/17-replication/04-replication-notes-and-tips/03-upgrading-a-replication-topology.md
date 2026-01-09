@@ -35,9 +35,9 @@ To upgrade a replication topology, follow the instructions in [Section 2.10, �
    * Shut down MySQL Server.
    * Upgrade the MySQL Server binaries or packages.
    * Restart MySQL Server.
-   * If you have upgraded to a release earlier than MySQL 8.0.16, invoke [**mysql\_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") manually to upgrade the system tables and schemas. When the server is running with global transaction identifiers (GTIDs) enabled ([`gtid_mode=ON`](replication-options-gtids.html#sysvar_gtid_mode)), do not enable binary logging by [**mysql\_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") (so do not use the [`--write-binlog`](mysql-upgrade.html#option_mysql_upgrade_write-binlog) option). Then shut down and restart the server.
+   * If you have upgraded to a release earlier than MySQL 8.0.16, invoke [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") manually to upgrade the system tables and schemas. When the server is running with global transaction identifiers (GTIDs) enabled ([`gtid_mode=ON`](replication-options-gtids.html#sysvar_gtid_mode)), do not enable binary logging by [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") (so do not use the [`--write-binlog`](mysql-upgrade.html#option_mysql_upgrade_write-binlog) option). Then shut down and restart the server.
 
-   * If you have upgraded to MySQL 8.0.16 or later, do not invoke [**mysql\_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables"). From that release, MySQL Server performs the entire MySQL upgrade procedure, disabling binary logging during the upgrade.
+   * If you have upgraded to MySQL 8.0.16 or later, do not invoke [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables"). From that release, MySQL Server performs the entire MySQL upgrade procedure, disabling binary logging during the upgrade.
 
    * Restart replication using a [`START REPLICA`](/doc/refman/8.0/en/start-replica.html) or [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement.
 

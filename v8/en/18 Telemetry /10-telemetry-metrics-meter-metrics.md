@@ -25,7 +25,7 @@ The maximum number of metric instruments which can be created is set by  `perfor
 
 #### `mysql.stats.com` Metrics
 
-The `mysql.stats.com` metrics correspond to the `Com_xxx` statement counter variables. See  Section 7.1.10, “Server Status Variables” and  Com\_xxxfor more information.
+The `mysql.stats.com` metrics correspond to the `Com_xxx` statement counter variables. See  Section 7.1.10, “Server Status Variables” and  Com_xxxfor more information.
 
 The `mysql.stats.com` metrics are named for those variables, without the `Com_` prefix. For example, the `select` metric corresponds to the `Com_select` statement counter variable.
 

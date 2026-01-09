@@ -1,10 +1,10 @@
 ### 25.12.5 Tabelas de Eventos de Estágio do Schema de Desempenho
 
-25.12.5.1 Tabela events\_stages\_current
+25.12.5.1 Tabela events_stages_current
 
-25.12.5.2 A tabela events\_stages\_history
+25.12.5.2 A tabela events_stages_history
 
-25.12.5.3 A tabela events\_stages\_history\_long
+25.12.5.3 A tabela events_stages_history_long
 
 Os estágios dos instrumentos do Schema de Desempenho, que são etapas durante o processo de execução de declarações, como a análise de uma declaração, a abertura de uma tabela ou a execução de uma operação `filesort`. Os estágios correspondem aos estados do thread exibidos pelo `SHOW PROCESSLIST` ou que são visíveis na tabela do Schema de Informações `PROCESSLIST`. Os estágios começam e terminam quando os valores de estado mudam.
 

@@ -5,7 +5,7 @@ When running in `MIXED` logging format, the server automatically switches from s
 * When a function contains `UUID()`.
 * When one or more tables with `AUTO_INCREMENT` columns are updated and a trigger or stored function is invoked. Like all other unsafe statements, this generates a warning if `binlog_format = STATEMENT`.
 
-  For more information, see Section 19.5.1.1, “Replication and AUTO\_INCREMENT”.
+  For more information, see Section 19.5.1.1, “Replication and AUTO_INCREMENT”.
 * When the body of a view requires row-based replication, the statement creating the view also uses it. For example, this occurs when the statement creating a view uses the `UUID()` function.
 * When a call to a loadable function is involved.
 * When  `FOUND_ROWS()` or `ROW_COUNT()` is used. (Bug

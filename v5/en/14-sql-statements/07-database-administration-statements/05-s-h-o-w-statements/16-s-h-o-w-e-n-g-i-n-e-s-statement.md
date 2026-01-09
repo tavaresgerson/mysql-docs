@@ -113,4 +113,4 @@ The output from [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Stat
 
   Whether the storage engine supports savepoints.
 
-Storage engine information is also available from the `INFORMATION_SCHEMA` [`ENGINES`](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table") table. See [Section 24.3.7, “The INFORMATION\_SCHEMA ENGINES Table”](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table").
+Storage engine information is also available from the `INFORMATION_SCHEMA` [`ENGINES`](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table") table. See [Section 24.3.7, “The INFORMATION_SCHEMA ENGINES Table”](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table").

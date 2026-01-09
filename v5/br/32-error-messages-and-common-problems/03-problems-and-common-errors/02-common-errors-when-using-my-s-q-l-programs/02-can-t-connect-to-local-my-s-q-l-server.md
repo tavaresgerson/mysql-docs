@@ -1,4 +1,4 @@
-#### B.3.2.2 Não consigo me conectar ao servidor MySQL \[local]
+#### B.3.2.2 Não consigo me conectar ao servidor MySQL [local]
 
 Um cliente MySQL no Unix pode se conectar ao servidor [**mysqld**](mysqld.html) de duas maneiras diferentes: usando um arquivo de soquete Unix para se conectar por meio de um arquivo no sistema de arquivos (padrão `/tmp/mysql.sock`), ou usando TCP/IP, que se conecta por meio de um número de porta. Uma conexão por arquivo de soquete Unix é mais rápida que o TCP/IP, mas só pode ser usada ao se conectar a um servidor no mesmo computador. Um arquivo de soquete Unix é usado se você não especificar um nome de host ou se especificar o nome de host especial `localhost`.
 
@@ -47,7 +47,7 @@ Aqui estão algumas razões pelas quais o erro "Não é possível se conectar ao
 
 - O servidor ou o programa cliente podem não ter os privilégios de acesso adequados para o diretório que contém o arquivo de soquete Unix ou o próprio arquivo de soquete. Nesse caso, você deve alterar os privilégios de acesso para o diretório ou o arquivo de soquete para que o servidor e os clientes possam acessá-los, ou reiniciar [**mysqld**](mysqld.html) com uma opção [`--socket`](server-options.html#option_mysqld_socket) que especifica o nome de um arquivo de soquete em um diretório onde o servidor pode criá-lo e onde os programas cliente podem acessá-lo.
 
-Se você receber a mensagem de erro "Não consigo conectar ao servidor MySQL em algum\_host", você pode tentar as seguintes coisas para descobrir qual é o problema:
+Se você receber a mensagem de erro "Não consigo conectar ao servidor MySQL em algum_host", você pode tentar as seguintes coisas para descobrir qual é o problema:
 
 - Verifique se o servidor está em execução nesse host executando `telnet algum_host 3306` e pressionando a tecla Enter algumas vezes. (3306 é o número de porta padrão do MySQL. Altere o valor se o seu servidor estiver ouvindo uma porta diferente.) Se houver um servidor MySQL em execução e ouvindo a porta, você deve receber uma resposta que inclua o número da versão do servidor. Se você receber um erro como `telnet: Não foi possível conectar ao host remoto: Conexão recusada`, então não há nenhum servidor em execução na porta fornecida.
 

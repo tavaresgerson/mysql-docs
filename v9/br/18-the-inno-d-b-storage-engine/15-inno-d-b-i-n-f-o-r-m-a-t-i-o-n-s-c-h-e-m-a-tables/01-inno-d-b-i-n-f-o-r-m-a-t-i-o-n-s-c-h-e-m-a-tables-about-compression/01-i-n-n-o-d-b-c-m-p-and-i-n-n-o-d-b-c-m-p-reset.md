@@ -1,4 +1,4 @@
-#### 17.15.1.1 INNODB\_CMP e INNODB\_CMP\_RESET
+#### 17.15.1.1 INNODB_CMP e INNODB_CMP_RESET
 
 As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` fornecem informações de status sobre operações relacionadas a tabelas compactadas, que são descritas na Seção 17.9, “Compactação de Tabelas InnoDB e Páginas”. A coluna `PAGE_SIZE` relata o tamanho da página compactada.
 

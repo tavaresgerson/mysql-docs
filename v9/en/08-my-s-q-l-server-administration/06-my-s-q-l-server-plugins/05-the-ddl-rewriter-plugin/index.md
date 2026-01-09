@@ -1,12 +1,12 @@
-### 7.6.5 The ddl\_rewriter Plugin
+### 7.6.5 The ddl_rewriter Plugin
 
-7.6.5.1 Installing or Uninstalling ddl\_rewriter
+7.6.5.1 Installing or Uninstalling ddl_rewriter
 
-7.6.5.2 ddl\_rewriter Plugin Options
+7.6.5.2 ddl_rewriter Plugin Options
 
 MySQL 9.5 includes a `ddl_rewriter` plugin that modifies `CREATE TABLE` statements received by the server before it parses and executes them. The plugin removes `ENCRYPTION`, `DATA DIRECTORY`, and `INDEX DIRECTORY` clauses, which may be helpful when restoring tables from SQL dump files created from databases that are encrypted or that have their tables stored outside the data directory. For example, the plugin may enable restoring such dump files into an unencrypted instance or in an environment where the paths outside the data directory are not accessible.
 
-Before using the `ddl_rewriter` plugin, install it according to the instructions provided in Section 7.6.5.1, “Installing or Uninstalling ddl\_rewriter”.
+Before using the `ddl_rewriter` plugin, install it according to the instructions provided in Section 7.6.5.1, “Installing or Uninstalling ddl_rewriter”.
 
 `ddl_rewriter` examines SQL statements received by the server prior to parsing, rewriting them according to these conditions:
 

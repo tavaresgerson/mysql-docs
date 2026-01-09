@@ -176,7 +176,7 @@ Retorna informações serializadas do dicionário (SDI) que correspondem ao ID e
 
 * `--type=#`, `-t #`
 
-  <table frame="box" rules="all" summary="Propriedades para o formato de linha de comando"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--type=#</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o formato de linha de comando"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--type=#</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   Retorna informações serializadas do dicionário (SDI) que correspondem ao tipo de objeto especificado. A SDI é fornecida para objetos de tabela (tipo=1) e espaço de tabelas (tipo=2).
 
@@ -246,7 +246,7 @@ Para obter mais informações, consulte a documentação sobre os recursos inter
 
 * `--strict-check`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para strict-check"><tbody><tr><th>Formato de linha de comando</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>crc32</code></p><p class="valid-value"><code>innodb</code></p><p class="valid-value"><code>none</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para strict-check"><tbody><tr><th>Formato de linha de comando</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>crc32</code></p><p><code>innodb</code></p><p><code>none</code></p></td> </tr></tbody></table>
 
   Especifica um algoritmo de verificação de checksum rigoroso para validar o checksum das páginas que são lidas. As opções incluem `innodb`, `crc32` e `none`.
 

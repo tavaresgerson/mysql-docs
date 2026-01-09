@@ -38,4 +38,4 @@ A saída da declaração `SHOW CREATE TRIGGER` tem estas colunas:
 
 * `Created`: A data e hora em que o gatilho foi criado. Este é um valor `TIMESTAMP(2)` (com uma parte fracionária em centésimos de segundo) para gatilhos.
 
-As informações do gatilho também estão disponíveis na tabela `TRIGGERS` do `INFORMATION_SCHEMA`. Consulte a Seção 28.3.50, “A Tabela INFORMATION\_SCHEMA TRIGGERS”.
+As informações do gatilho também estão disponíveis na tabela `TRIGGERS` do `INFORMATION_SCHEMA`. Consulte a Seção 28.3.50, “A Tabela INFORMATION_SCHEMA TRIGGERS”.

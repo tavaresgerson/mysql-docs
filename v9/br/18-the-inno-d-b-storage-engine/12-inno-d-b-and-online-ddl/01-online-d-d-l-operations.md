@@ -620,31 +620,31 @@ As opções de partição de `ALTER TABLE` que usam `ALGORITHM=COPY` ou que perm
 <th>Notas</th>
 </tr></thead>
 <tbody><tr>
-<th><a class="link" href="alter-table.html" title="15.1.11 ALTER TABLE Statement"><code>PARTITION BY</code></a></th>
+<th><code>PARTITION BY</code></th>
 <td>Não</td>
 <td>Não</td>
 <td>Não</td>
 <td>Permite <code>ALGORITHM=COPY</code>, <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code></td>
 </tr><tr>
-<th><a class="link" href="alter-table.html" title="15.1.11 ALTER TABLE Statement"><code>ADD PARTITION</code></a></th>
+<th><code>ADD PARTITION</code></th>
 <td>Não</td>
 <td>Sim*</td>
 <td>Sim*</td>
 <td><code>ALGORITHM=INPLACE, LOCK={DEFAULT|NONE|SHARED|EXCLUSISVE}</code> é suportado para partições <code>RANGE</code> e <code>LIST</code>, <code>ALGORITHM=INPLACE, LOCK={DEFAULT|SHARED|EXCLUSISVE}</code> para partições <code>HASH</code> e <code>KEY</code>, e <code>ALGORITHM=COPY, LOCK={SHARED|EXCLUSIVE}</code> para todos os tipos de partições. Não copia dados para tabelas particionadas por <code>RANGE</code> ou <code>LIST</code>. Consultas concorrentes são permitidas com <code>ALGORITHM=COPY</code> para tabelas particionadas por <code>HASH</code> ou <code>LIST</code>, pois o MySQL copia os dados enquanto mantém um bloqueio compartilhado.</td>
 </tr><tr>
-<th><a class="link" href="alter-table.html" title="15.1.11 ALTER TABLE Statement"><code>DROP PARTITION</code></a></th>
+<th><code>DROP PARTITION</code></th>
 <td>Não</td>
 <td>Sim*</td>
 <td>Sim*</td>
-<td><p> <code>ALGORITHM=INPLACE, LOCK={DEFAULT|NONE|SHARED|EXCLUSISVE}</code> é suportado. Não copia dados para tabelas particionadas por <code>RANGE</code> ou <code>LIST</code>. </p><p> <code>DROP PARTITION</code> com <code>ALGORITHM=INPLACE</code> exclui os dados armazenados na partição e exclui a partição. No entanto, <code>DROP PARTITION</code> com <code>ALGORITHM=COPY</code> ou <a class="link" href="server-system-variables.html#sysvar_old_alter_table"><code>old_alter_table=ON</code></a> reconstrui a tabela particionada e tenta mover dados de uma partição excluída para outra partição com uma definição de <code>PARTITION ... VALUES</code> compatível. Os dados que não podem ser movidos para outra partição são excluídos. </p></td>
+<td><p> <code>ALGORITHM=INPLACE, LOCK={DEFAULT|NONE|SHARED|EXCLUSISVE}</code> é suportado. Não copia dados para tabelas particionadas por <code>RANGE</code> ou <code>LIST</code>. </p><p> <code>DROP PARTITION</code> com <code>ALGORITHM=INPLACE</code> exclui os dados armazenados na partição e exclui a partição. No entanto, <code>DROP PARTITION</code> com <code>ALGORITHM=COPY</code> ou <code>old_alter_table=ON</code> reconstrui a tabela particionada e tenta mover dados de uma partição excluída para outra partição com uma definição de <code>PARTITION ... VALUES</code> compatível. Os dados que não podem ser movidos para outra partição são excluídos. </p></td>
 </tr><tr>
-<th><a class="link" href="alter-table.html" title="15.1.11 ALTER TABLE Statement"><code>DISCARD PARTITION</code></a></th>
+<th><code>DISCARD PARTITION</code></th>
 <td>Não</td>
 <td>Não</td>
 <td>Não</td>
 <td>Permite apenas <code>ALGORITHM=DEFAULT</code>, <code>LOCK=DEFAULT</code></td>
 </tr><tr>
-<th><a class="link" href="alter-table.html" title="15.1.11 ALTER TABLE Statement"><code>IMPORT PARTITION</code></a></th>
+<th><code>IMPORT PARTITION</code></th>
 <td>Não</td>
 <td>Não</td>
 <td>Não</td>

@@ -1,4 +1,4 @@
-#### 29.12.14.1 Tabela de atributos de variáveis globais global\_variable\_attributes
+#### 29.12.14.1 Tabela de atributos de variáveis globais global_variable_attributes
 
 A tabela `global_variable_attributes` fornece informações sobre os atributos e seus valores que foram definidos pelo servidor para variáveis globais, como `offline_mode` ou `read_only`.
 

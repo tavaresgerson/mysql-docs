@@ -16,7 +16,7 @@ As funções nesta seção fornecem operações de conveniência em valores de g
 
   - Os valores de longitude devem estar na faixa (-180, 180]. Valores positivos estão a leste do meridiano principal.
 
-  - Os valores de latitude devem estar na faixa \[-90, 90]. Valores positivos estão ao norte do equador.
+  - Os valores de latitude devem estar na faixa [-90, 90]. Valores positivos estão ao norte do equador.
 
   As combinações de argumentos suportadas são (`Ponto`, `Ponto`), (`Ponto`, `MultiPonto`) e (`MultiPonto`, `Ponto`). Uma mensagem de erro `ER_GIS_UNSUPPORTED_ARGUMENT` ocorre para outras combinações.
 

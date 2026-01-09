@@ -4,7 +4,7 @@
 
 8.13.2 Usar seus próprios benchmarks
 
-8.13.3 Medição de desempenho com performance\_schema
+8.13.3 Medição de desempenho com performance_schema
 
 Para medir o desempenho, considere os seguintes fatores:
 

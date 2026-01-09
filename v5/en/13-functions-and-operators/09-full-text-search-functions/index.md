@@ -60,4 +60,4 @@ For more information about `InnoDB` `FULLTEXT` indexes, see Section 14.6.2.4, �
 
 Constraints on full-text searching are listed in Section 12.9.5, “Full-Text Restrictions”.
 
-The **myisam\_ftdump** utility dumps the contents of a `MyISAM` full-text index. This may be helpful for debugging full-text queries. See Section 4.6.2, “myisam\_ftdump — Display Full-Text Index information”.
+The **myisam_ftdump** utility dumps the contents of a `MyISAM` full-text index. This may be helpful for debugging full-text queries. See Section 4.6.2, “myisam_ftdump — Display Full-Text Index information”.

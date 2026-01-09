@@ -1,4 +1,4 @@
-#### 30.4.3.27 The schema\_redundant\_indexes and x$schema\_flattened\_keys Views
+#### 30.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views
 
 The `schema_redundant_indexes` view displays indexes that duplicate other indexes or are made redundant by them. The `x$schema_flattened_keys` view is a helper view for `schema_redundant_indexes`.
 

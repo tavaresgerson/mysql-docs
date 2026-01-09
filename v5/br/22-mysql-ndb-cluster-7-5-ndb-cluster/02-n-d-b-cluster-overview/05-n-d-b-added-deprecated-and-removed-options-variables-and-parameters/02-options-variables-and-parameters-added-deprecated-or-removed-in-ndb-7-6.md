@@ -35,7 +35,7 @@ Os seguintes parâmetros de configuração de nó foram adicionados no NDB 7.6.
 
 - `MaxUIBuildBatchSize`: Tamanho máximo do lote de varredura a ser usado para a construção de chaves únicas. Aumentar esse valor pode acelerar a construção de chaves únicas, mas também afeta o tráfego em andamento. Adicionado no NDB 7.6.4.
 
-- `ODirectSyncFlag`: As escritas O\_DIRECT são tratadas como escritas sincronizadas; são ignoradas quando o ODirect não está habilitado, o InitFragmentLogFiles está configurado para SPARSE ou ambos. Adicionada no NDB 7.6.4.
+- `ODirectSyncFlag`: As escritas O_DIRECT são tratadas como escritas sincronizadas; são ignoradas quando o ODirect não está habilitado, o InitFragmentLogFiles está configurado para SPARSE ou ambos. Adicionada no NDB 7.6.4.
 
 - `PreSendChecksum`: Se este parâmetro e o Checksum estiverem habilitados, realize verificações de checksum pré-envio e verifique todos os sinais SHM entre os nós em busca de erros. Adicionado no NDB 7.6.6.
 

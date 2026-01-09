@@ -98,7 +98,7 @@ Para obter mais informações, consulte Seção 5.1.13, “Suporte de Fuso Horá
 
 O servidor usa essas tabelas do sistema para suportar a replicação:
 
-- `gtid_executed`: Tabela para armazenar valores de GTID. Veja [Tabela mysql.gtid\_executed](https://pt.wikipedia.org/wiki/Replicação_de_GTID#Conceitos_de_GTID_executados).
+- `gtid_executed`: Tabela para armazenar valores de GTID. Veja [Tabela mysql.gtid_executed](https://pt.wikipedia.org/wiki/Replicação_de_GTID#Conceitos_de_GTID_executados).
 
   A tabela `gtid_executed` utiliza o mecanismo de armazenamento `InnoDB`.
 

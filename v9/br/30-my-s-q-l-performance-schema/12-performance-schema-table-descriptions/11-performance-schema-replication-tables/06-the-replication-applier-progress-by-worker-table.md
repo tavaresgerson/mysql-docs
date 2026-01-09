@@ -1,4 +1,4 @@
-#### 29.12.11.6 Tabela `replication\_applier\_progress\_by\_worker`
+#### 29.12.11.6 Tabela `replication_applier_progress_by_worker`
 
 Esta tabela fornece informações sobre a transação atualmente sendo aplicada por um determinado trabalhador. Se não houver tal transação, esta tabela estará vazia.
 

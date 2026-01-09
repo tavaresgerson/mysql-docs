@@ -1,4 +1,4 @@
-#### 21.6.15.12 Tabela ndbinfo cpustat\_50ms
+#### 21.6.15.12 Tabela ndbinfo cpustat_50ms
 
 A tabela `cpustat_50ms` fornece dados brutos de CPU por fio obtidos a cada 50 milissegundos para cada fio que está rodando no kernel `NDB`.
 

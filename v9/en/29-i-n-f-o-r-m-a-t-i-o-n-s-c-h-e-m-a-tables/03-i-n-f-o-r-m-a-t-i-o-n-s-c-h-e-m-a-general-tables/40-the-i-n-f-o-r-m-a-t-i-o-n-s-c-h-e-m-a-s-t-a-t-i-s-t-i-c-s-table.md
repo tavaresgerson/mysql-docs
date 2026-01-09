@@ -1,8 +1,8 @@
-### 28.3.40 The INFORMATION\_SCHEMA STATISTICS Table
+### 28.3.40 The INFORMATION_SCHEMA STATISTICS Table
 
 The `STATISTICS` table provides information about table indexes.
 
-Columns in `STATISTICS` that represent table statistics hold cached values. The `information_schema_stats_expiry` system variable defines the period of time before cached table statistics expire. The default is 86400 seconds (24 hours). If there are no cached statistics or statistics have expired, statistics are retrieved from storage engines when querying table statistics columns. To update cached values at any time for a given table, use `ANALYZE TABLE`. To always retrieve the latest statistics directly from storage engines, set `information_schema_stats_expiry=0`. For more information, see Section 10.2.3, “Optimizing INFORMATION\_SCHEMA Queries”.
+Columns in `STATISTICS` that represent table statistics hold cached values. The `information_schema_stats_expiry` system variable defines the period of time before cached table statistics expire. The default is 86400 seconds (24 hours). If there are no cached statistics or statistics have expired, statistics are retrieved from storage engines when querying table statistics columns. To update cached values at any time for a given table, use `ANALYZE TABLE`. To always retrieve the latest statistics directly from storage engines, set `information_schema_stats_expiry=0`. For more information, see Section 10.2.3, “Optimizing INFORMATION_SCHEMA Queries”.
 
 Note
 

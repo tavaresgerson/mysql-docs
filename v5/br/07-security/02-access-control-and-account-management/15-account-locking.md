@@ -12,7 +12,7 @@ O estado de bloqueio da conta é registrado na coluna `account_locked` da tabela
 
 Se um cliente tentar se conectar a uma conta bloqueada, a tentativa falha. O servidor incrementa a variável de status `Locked_connects`, que indica o número de tentativas de conexão a uma conta bloqueada, retorna um erro `ER_ACCOUNT_HAS_BEEN_LOCKED` e escreve uma mensagem no log de erro:
 
-```sql
+```
 Access denied for user 'user_name'@'host_name'.
 Account is locked.
 ```

@@ -1,14 +1,14 @@
 ### 25.7.4 NDB Cluster Replication Schema and Tables
 
-* ndb\_apply\_status Table
-* ndb\_binlog\_index Table
-* ndb\_replication Table
+* ndb_apply_status Table
+* ndb_binlog_index Table
+* ndb_replication Table
 
 Replication in NDB Cluster makes use of a number of dedicated tables in the `mysql` database on each MySQL Server instance acting as an SQL node in both the cluster being replicated and in the replica. This is true regardless of whether the replica is a single server or a cluster.
 
 The `ndb_binlog_index` and `ndb_apply_status` tables are created in the `mysql` database. They should not be explicitly replicated by the user. User intervention is normally not required to create or maintain either of these tables, since both are maintained by the `NDB` binary log (binlog) injector thread. This keeps the source **mysqld** process updated to changes performed by the `NDB` storage engine. The `NDB` binlog injector thread receives events directly from the `NDB` storage engine. The `NDB` injector is responsible for capturing all the data events within the cluster, and ensures that all events which change, insert, or delete data are recorded in the `ndb_binlog_index` table. The replica I/O (receiver) thread transfers the events from the source's binary log to the replica's relay log.
 
-The `ndb_replication` table must be created manually. This table can be updated by the user to perform filtering by database or table. See ndb\_replication Table, for more information. `ndb_replication` is also used in NDB Replication conflict detection and resolution for conflict resolution control; see Conflict Resolution Control.
+The `ndb_replication` table must be created manually. This table can be updated by the user to perform filtering by database or table. See ndb_replication Table, for more information. `ndb_replication` is also used in NDB Replication conflict detection and resolution for conflict resolution control; see Conflict Resolution Control.
 
 Even though `ndb_binlog_index` and `ndb_apply_status` are created and maintained automatically, it is advisable to check for the existence and integrity of these tables as an initial step in preparing an NDB Cluster for replication. It is possible to view event data recorded in the binary log by querying the `mysql.ndb_binlog_index` table directly on the source. This can be also be accomplished using the `SHOW BINLOG EVENTS` statement on either the source or replica SQL node. (See Section 15.7.7.3, “SHOW BINLOG EVENTS Statement”.)
 
@@ -18,9 +18,9 @@ Note
 
 When performing schema changes on `NDB` tables, applications should wait until the `ALTER TABLE` statement has returned in the MySQL client connection that issued the statement before attempting to use the updated definition of the table.
 
-#### ndb\_apply\_status Table
+#### ndb_apply_status Table
 
-`ndb_apply_status` is used to keep a record of the operations that have been replicated from the source to the replica. If the `ndb_apply_status` table does not exist on the replica, **ndb\_restore** re-creates it.
+`ndb_apply_status` is used to keep a record of the operations that have been replicated from the source to the replica. If the `ndb_apply_status` table does not exist on the replica, **ndb_restore** re-creates it.
 
 Unlike the case with `ndb_binlog_index`, the data in this table is not specific to any one SQL node in the (replica) cluster, and so `ndb_apply_status` can use the `NDBCLUSTER` storage engine, as shown here:
 
@@ -43,9 +43,9 @@ It is possible to delete this table, but this is not recommended. Deleting it pu
 
 `0` in the `epoch` column of this table indicates a transaction originating from a storage engine other than `NDB`.
 
-`ndb_apply_status` is used to record which epoch transactions have been replicated and applied to a replica cluster from an upstream source. This information is captured in an `NDB` online backup, but (by design) it is not restored by **ndb\_restore**. In some cases, it can be helpful to restore this information for use in new setups; you can do this by invoking **ndb\_restore** with the `--with-apply-status` option. See the description of the option for more information.
+`ndb_apply_status` is used to record which epoch transactions have been replicated and applied to a replica cluster from an upstream source. This information is captured in an `NDB` online backup, but (by design) it is not restored by **ndb_restore**. In some cases, it can be helpful to restore this information for use in new setups; you can do this by invoking **ndb_restore** with the `--with-apply-status` option. See the description of the option for more information.
 
-#### ndb\_binlog\_index Table
+#### ndb_binlog_index Table
 
 NDB Cluster Replication uses the `ndb_binlog_index` table for storing the binary log's indexing data. Since this table is local to each MySQL server and does not participate in clustering, it uses the `InnoDB` storage engine. This means that it must be created separately on each **mysqld** participating in the source cluster. (The binary log itself contains updates from all MySQL servers in the cluster.) This table is defined as follows:
 
@@ -98,7 +98,7 @@ The following figure shows the relationship of the NDB Cluster replication sourc
 
 ![Most concepts are described in the surrounding text. This complex image has three main areas. The top left area is divided into three sections: MySQL Server (mysqld), NDBCLUSTER table handler, and mutex. A connection thread connects these, and receiver and injector threads connect the NDBCLUSTER table handler and mutex. The bottom area shows four data nodes (ndbd). They all produce events represented by arrows pointing to the receiver thread, and the receiver thread also points to the connection and injector threads. One node sends and receives to the mutex area. The arrow representing the injector thread points to a binary log as well as the ndb_binlog_index table, which is described in the surrounding text.](images/cluster-replication-binlog-injector.png)
 
-#### ndb\_replication Table
+#### ndb_replication Table
 
 The `ndb_replication` table is used to control binary logging and conflict resolution, and acts on a per-table basis. Each row in this table corresponds to a table being replicated, determines how to log changes to the table and, if a conflict resolution function is specified, and determines how to resolve conflicts for that table.
 
@@ -152,7 +152,7 @@ The columns of this table are listed here, with descriptions:
 
 * `conflict_fn` column
 
-  The conflict resolution function to be applied; one of NDB$OLD()"), NDB$MAX()"), NDB$MAX\_DELETE\_WIN()"), NDB$EPOCH()"), NDB$EPOCH\_TRANS()"), NDB$EPOCH2()"), NDB$EPOCH2\_TRANS()") NDB$MAX\_INS()"), or NDB$MAX\_DEL\_WIN\_INS()"); `NULL` indicates that conflict resolution is not used for this table.
+  The conflict resolution function to be applied; one of NDB$OLD()"), NDB$MAX()"), NDB$MAX_DELETE_WIN()"), NDB$EPOCH()"), NDB$EPOCH_TRANS()"), NDB$EPOCH2()"), NDB$EPOCH2_TRANS()") NDB$MAX_INS()"), or NDB$MAX_DEL_WIN_INS()"); `NULL` indicates that conflict resolution is not used for this table.
 
   See Conflict Resolution Functions, for more information about these functions and their uses in NDB Replication conflict resolution.
 
@@ -162,9 +162,9 @@ To enable conflict resolution with NDB Replication, it is necessary to create an
 
 The `ndb_replication` table allows table-level control over binary logging outside the scope of conflict resolution, in which case `conflict_fn` is specified as `NULL`, while the remaining column values are used to control binary logging for a given table or set of tables matching a wildcard expression. By setting the proper value for the `binlog_type` column, you can make logging for a given table or tables use a desired binary log format, or disabling binary logging altogether. Possible values for this column, with values and descriptions, are shown in the following table:
 
-**Table 25.42 binlog\_type values, with values and descriptions**
+**Table 25.42 binlog_type values, with values and descriptions**
 
-<table><col width="10%"/><col width="55%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>Use server default</td> </tr><tr> <td>1</td> <td>Do not log this table in the binary log (same effect as <a class="link" href="replication-options-binary-log.html#sysvar_sql_log_bin"><code>sql_log_bin = 0</code></a>, but applies to one or more specified tables only)</td> </tr><tr> <td>2</td> <td>Log updated attributes only; log these as <code>WRITE_ROW</code> events</td> </tr><tr> <td>3</td> <td>Log full row, even if not updated (MySQL server default behavior)</td> </tr><tr> <td>6</td> <td>Use updated attributes, even if values are unchanged</td> </tr><tr> <td>7</td> <td>Log full row, even if no values are changed; log updates as <code>UPDATE_ROW</code> events</td> </tr><tr> <td>8</td> <td>Log update as <code>UPDATE_ROW</code>; log only primary key columns in before image, and only updated columns in after image (same effect as <a class="link" href="mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-minimal"><code>--ndb-log-update-minimal</code></a>, but applies to one or more specified tables only)</td> </tr><tr> <td>9</td> <td>Log update as <code>UPDATE_ROW</code>; log only primary key columns in before image, and all columns other than primary key columns in after image</td> </tr></tbody></table>
+<table><col width="10%"/><col width="55%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>Use server default</td> </tr><tr> <td>1</td> <td>Do not log this table in the binary log (same effect as <code>sql_log_bin = 0</code>, but applies to one or more specified tables only)</td> </tr><tr> <td>2</td> <td>Log updated attributes only; log these as <code>WRITE_ROW</code> events</td> </tr><tr> <td>3</td> <td>Log full row, even if not updated (MySQL server default behavior)</td> </tr><tr> <td>6</td> <td>Use updated attributes, even if values are unchanged</td> </tr><tr> <td>7</td> <td>Log full row, even if no values are changed; log updates as <code>UPDATE_ROW</code> events</td> </tr><tr> <td>8</td> <td>Log update as <code>UPDATE_ROW</code>; log only primary key columns in before image, and only updated columns in after image (same effect as <code>--ndb-log-update-minimal</code>, but applies to one or more specified tables only)</td> </tr><tr> <td>9</td> <td>Log update as <code>UPDATE_ROW</code>; log only primary key columns in before image, and all columns other than primary key columns in after image</td> </tr></tbody></table>
 
 Note
 
@@ -172,7 +172,7 @@ Note
 
 Several `binlog_type` values are equivalent to various combinations of the **mysqld** logging options `--ndb-log-updated-only`, `--ndb-log-update-as-write`, and `--ndb-log-update-minimal`, as shown in the following table:
 
-**Table 25.43 binlog\_type values with equivalent combinations of NDB logging options**
+**Table 25.43 binlog_type values with equivalent combinations of NDB logging options**
 
 <table><col width="10%"/><col width="30%"/><col width="30%"/><col width="30%"/><thead><tr> <th>Value</th> <th><code>--ndb-log-updated-only</code> Value</th> <th><code>--ndb-log-update-as-write</code> Value</th> <th><code>--ndb-log-update-minimal</code> Value</th> </tr></thead><tbody><tr> <th>0</th> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <th>1</th> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <th>2</th> <td>ON</td> <td>ON</td> <td>OFF</td> </tr><tr> <th>3</th> <td>OFF</td> <td>ON</td> <td>OFF</td> </tr><tr> <th>6</th> <td>ON</td> <td>OFF</td> <td>OFF</td> </tr><tr> <th>7</th> <td>OFF</td> <td>OFF</td> <td>OFF</td> </tr><tr> <th>8</th> <td>ON</td> <td>OFF</td> <td>ON</td> </tr><tr> <th>9</th> <td>OFF</td> <td>OFF</td> <td>ON</td> </tr></tbody></table>
 
@@ -253,7 +253,7 @@ The `server_id` column supports `0` as a wildcard equivalent to `_` (matches any
 
 A given row in the `ndb_replication` table can use wildcards to match any of the database name, table name, and server ID in any combination. Where there are multiple potential matches in the table, the best match is chosen, according to the table shown here, where *W* represents a wildcard match, *E* an exact match, and the greater the value in the *Quality* column, the better the match:
 
-**Table 25.44 Weights of different combinations of wildcard and exact matches on columns in the mysql.ndb\_replication table**
+**Table 25.44 Weights of different combinations of wildcard and exact matches on columns in the mysql.ndb_replication table**
 
 <table><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th><code>db</code></th> <th><code>table_name</code></th> <th><code>server_id</code></th> <th>Quality</th> </tr></thead><tbody><tr> <th>W</th> <td>W</td> <td>W</td> <td>1</td> </tr><tr> <th>W</th> <td>W</td> <td>E</td> <td>2</td> </tr><tr> <th>W</th> <td>E</td> <td>W</td> <td>3</td> </tr><tr> <th>W</th> <td>E</td> <td>E</td> <td>4</td> </tr><tr> <th>E</th> <td>W</td> <td>W</td> <td>5</td> </tr><tr> <th>E</th> <td>W</td> <td>E</td> <td>6</td> </tr><tr> <th>E</th> <td>E</td> <td>W</td> <td>7</td> </tr><tr> <th>E</th> <td>E</td> <td>E</td> <td>8</td> </tr></tbody></table>
 
@@ -280,4 +280,4 @@ To disable the option, start the source **mysqld** with `--ndb-log-update-as-wri
 
 Important
 
-For insert conflict resolution using `NDB$MAX_INS()` or `NDB$MAX_DEL_WIN_INS()`, an SQL node (that is, a **mysqld** process) can record row updates on the source cluster as `WRITE_ROW` events with the `--ndb-log-update-as-write` option enabled for idempotency and optimal size. This works for these algorithms since they both map a `WRITE_ROW` event to an insert or update depending on whether the row already exists, and the required metadata (the “after” image for the timestamp column) is present in the “WRITE\_ROW” event.
+For insert conflict resolution using `NDB$MAX_INS()` or `NDB$MAX_DEL_WIN_INS()`, an SQL node (that is, a **mysqld** process) can record row updates on the source cluster as `WRITE_ROW` events with the `--ndb-log-update-as-write` option enabled for idempotency and optimal size. This works for these algorithms since they both map a `WRITE_ROW` event to an insert or update depending on whether the row already exists, and the required metadata (the “after” image for the timestamp column) is present in the “WRITE_ROW” event.

@@ -1,4 +1,4 @@
-#### 21.6.15.8 Tabela ndbinfo config\_params
+#### 21.6.15.8 Tabela ndbinfo config_params
 
 A tabela `config_params` é uma tabela estática que fornece os nomes e os números de ID internos dos parâmetros de configuração do NDB Cluster, além de outras informações sobre esses parâmetros.
 

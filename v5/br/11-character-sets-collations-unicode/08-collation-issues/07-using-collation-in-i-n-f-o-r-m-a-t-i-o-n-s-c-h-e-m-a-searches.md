@@ -1,4 +1,4 @@
-### 10.8.7 Uso da Colagem em Pesquisas no INFORMATION\_SCHEMA
+### 10.8.7 Uso da Colagem em Pesquisas no INFORMATION_SCHEMA
 
 As colunas de texto nas tabelas do `INFORMATION_SCHEMA` têm uma concordância de `utf8_general_ci`, que é insensível a maiúsculas e minúsculas. No entanto, para valores que correspondem a objetos representados no sistema de arquivos, como bancos de dados e tabelas, as pesquisas nas colunas de texto do `INFORMATION_SCHEMA` podem ser sensíveis ou insensíveis a maiúsculas, dependendo das características do sistema de arquivos subjacente e do valor da variável de sistema `lower_case_table_names`. Por exemplo, as pesquisas podem ser sensíveis a maiúsculas se o sistema de arquivos for sensível a maiúsculas. Esta seção descreve esse comportamento e como modificá-lo, se necessário; veja também o Bug #34921.
 
@@ -42,7 +42,7 @@ mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
 
 O valor de `lower_case_table_names` não faz diferença neste contexto.
 
-Esse comportamento anterior ocorre porque a collation `utf8_general_ci` não é usada para consultas do `INFORMATION_SCHEMA` ao procurar valores que correspondem a objetos representados no sistema de arquivos. É um resultado das otimizações de varredura do sistema de arquivos implementadas para as pesquisas do `INFORMATION_SCHEMA`. Para obter informações sobre essas otimizações, consulte a Seção 8.2.3, “Otimizando consultas do INFORMATION\_SCHEMA”.
+Esse comportamento anterior ocorre porque a collation `utf8_general_ci` não é usada para consultas do `INFORMATION_SCHEMA` ao procurar valores que correspondem a objetos representados no sistema de arquivos. É um resultado das otimizações de varredura do sistema de arquivos implementadas para as pesquisas do `INFORMATION_SCHEMA`. Para obter informações sobre essas otimizações, consulte a Seção 8.2.3, “Otimizando consultas do INFORMATION_SCHEMA”.
 
 Se o resultado de uma operação de string em uma coluna do `INFORMATION_SCHEMA` for diferente das expectativas, uma solução é usar uma cláusula `COLLATE` explícita para forçar uma collation adequada (consulte a Seção 10.8.1, “Usando COLLATE em Instruções SQL”). Por exemplo, para realizar uma pesquisa não sensível ao caso, use `COLLATE` com o nome da coluna `INFORMATION_SCHEMA`:
 

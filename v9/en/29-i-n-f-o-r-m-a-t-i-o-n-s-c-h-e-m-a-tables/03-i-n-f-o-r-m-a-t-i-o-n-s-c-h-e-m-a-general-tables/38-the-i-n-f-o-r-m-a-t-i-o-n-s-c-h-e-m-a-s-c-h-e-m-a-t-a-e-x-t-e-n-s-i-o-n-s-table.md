@@ -1,4 +1,4 @@
-### 28.3.38 The INFORMATION\_SCHEMA SCHEMATA\_EXTENSIONS Table
+### 28.3.38 The INFORMATION_SCHEMA SCHEMATA_EXTENSIONS Table
 
 The `SCHEMATA_EXTENSIONS` table augments the `SCHEMATA` table with information about schema options.
 

@@ -1,4 +1,4 @@
-#### 16.4.1.8 Replication of CURRENT\_USER()
+#### 16.4.1.8 Replication of CURRENT_USER()
 
 The following statements support use of the [`CURRENT_USER()`](information-functions.html#function_current-user) function to take the place of the name of, and possibly the host for, an affected user or a definer:
 

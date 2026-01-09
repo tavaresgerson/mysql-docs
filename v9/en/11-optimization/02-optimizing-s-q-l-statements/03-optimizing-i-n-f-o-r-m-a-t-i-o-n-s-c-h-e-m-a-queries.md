@@ -1,4 +1,4 @@
-### 10.2.3 Optimizing INFORMATION\_SCHEMA Queries
+### 10.2.3 Optimizing INFORMATION_SCHEMA Queries
 
 Applications that monitor databases may make frequent use of `INFORMATION_SCHEMA` tables. To write queries for these tables most efficiently, use the following general guidelines:
 
@@ -8,7 +8,7 @@ Applications that monitor databases may make frequent use of `INFORMATION_SCHEMA
 
 Note
 
-Comparison behavior for database and table names in `INFORMATION_SCHEMA` queries might differ from what you expect. For details, see Section 12.8.7, “Using Collation in INFORMATION\_SCHEMA Searches”.
+Comparison behavior for database and table names in `INFORMATION_SCHEMA` queries might differ from what you expect. For details, see Section 12.8.7, “Using Collation in INFORMATION_SCHEMA Searches”.
 
 These `INFORMATION_SCHEMA` tables are implemented as views on data dictionary tables, so queries on them retrieve information from the data dictionary:
 

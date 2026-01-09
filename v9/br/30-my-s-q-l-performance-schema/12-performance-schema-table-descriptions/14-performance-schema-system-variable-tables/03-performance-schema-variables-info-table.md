@@ -80,7 +80,7 @@ Se uma variável com um valor de `VARIABLE_SOURCE` diferente de `DYNAMIC` for de
 
 Uma variável de sistema que tem apenas um valor de sessão (como `debug_sync`) não pode ser definida na inicialização ou persistente. Para variáveis de sistema que têm apenas valor de sessão, `VARIABLE_SOURCE` pode ser apenas `COMPILED` ou `DYNAMIC`.
 
-Se uma variável de sistema tiver um valor inesperado de `VARIABLE_SOURCE`, considere o método de inicialização do seu servidor. Por exemplo, **mysqld\_safe** lê arquivos de opções e passa certas opções que encontra lá como parte da linha de comando que ele usa para iniciar **mysqld**. Consequentemente, algumas variáveis de sistema que você define em arquivos de opções podem ser exibidas em `variables_info` como `COMMAND_LINE`, em vez de como `GLOBAL` ou `SERVER`, conforme você poderia esperar.
+Se uma variável de sistema tiver um valor inesperado de `VARIABLE_SOURCE`, considere o método de inicialização do seu servidor. Por exemplo, **mysqld_safe** lê arquivos de opções e passa certas opções que encontra lá como parte da linha de comando que ele usa para iniciar **mysqld**. Consequentemente, algumas variáveis de sistema que você define em arquivos de opções podem ser exibidas em `variables_info` como `COMMAND_LINE`, em vez de como `GLOBAL` ou `SERVER`, conforme você poderia esperar.
 
 Algumas consultas de exemplo que usam a tabela `variables_info`, com saída representativa:
 

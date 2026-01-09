@@ -4,7 +4,7 @@
 
 13.4.1.2 Declaração de RESET MASTER
 
-13.4.1.3 Declaração sql\_log\_bin do SET
+13.4.1.3 Declaração sql_log_bin do SET
 
 Esta seção discute declarações para gerenciar servidores de origem de replicação. Seção 13.4.2, "Declarações SQL para Controle de Servidores de Replicação", discute declarações para gerenciar servidores de replicação.
 

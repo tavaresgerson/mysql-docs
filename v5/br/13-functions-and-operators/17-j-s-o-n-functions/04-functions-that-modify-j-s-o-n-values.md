@@ -170,7 +170,7 @@ As funções nesta seção modificam os valores JSON e retornam o resultado.
 
   Nota
 
-  Para uma explicação e um exemplo das diferenças entre essa função e `JSON_MERGE_PRESERVE()`, consulte JSON\_MERGE\_PATCH() em comparação com JSON\_MERGE\_PRESERVE() em comparação com JSON\_MERGE\_PRESERVE()").
+  Para uma explicação e um exemplo das diferenças entre essa função e `JSON_MERGE_PRESERVE()`, consulte JSON_MERGE_PATCH() em comparação com JSON_MERGE_PRESERVE() em comparação com JSON_MERGE_PRESERVE()").
 
   `JSON_MERGE_PATCH()` realiza uma fusão da seguinte forma:
 
@@ -258,7 +258,7 @@ As funções nesta seção modificam os valores JSON e retornam o resultado.
 
   `JSON_MERGE_PATCH()` é suportado no MySQL 5.7.22 e versões posteriores.
 
-  **JSON\_MERGE\_PATCH() em comparação com JSON\_MERGE\_PRESERVE().** O comportamento do `JSON_MERGE_PATCH()` é o mesmo do `JSON_MERGE_PRESERVE()`, com as seguintes duas exceções:
+  **JSON_MERGE_PATCH() em comparação com JSON_MERGE_PRESERVE().** O comportamento do `JSON_MERGE_PATCH()` é o mesmo do `JSON_MERGE_PRESERVE()`, com as seguintes duas exceções:
 
   - `JSON_MERGE_PATCH()` remove qualquer membro do primeiro objeto com uma chave correspondente no segundo objeto, desde que o valor associado à chave no segundo objeto não seja `null` JSON.
 
@@ -340,7 +340,7 @@ As funções nesta seção modificam os valores JSON e retornam o resultado.
 
   Essa função foi adicionada no MySQL 5.7.22 como sinônimo de `JSON_MERGE()`. A função `JSON_MERGE()` já está desatualizada e está sujeita à remoção em uma futura versão do MySQL.
 
-  Essa função é semelhante, mas difere significativamente da `JSON_MERGE_PATCH()`; consulte JSON\_MERGE\_PATCH() em comparação com JSON\_MERGE\_PRESERVE() em comparação com JSON\_MERGE\_PRESERVE()"), para mais informações.
+  Essa função é semelhante, mas difere significativamente da `JSON_MERGE_PATCH()`; consulte JSON_MERGE_PATCH() em comparação com JSON_MERGE_PRESERVE() em comparação com JSON_MERGE_PRESERVE()"), para mais informações.
 
 - `JSON_REMOVE(json_doc, path[, path] ...)`
 
@@ -451,11 +451,11 @@ As funções nesta seção modificam os valores JSON e retornam o resultado.
 
   Desunquote o valor JSON e retorne o resultado como uma string `utf8mb4`. Retorna `NULL` se o argumento for `NULL`. Um erro ocorre se o valor começar e terminar com aspas duplas, mas não for um literal válido de string JSON.
 
-  Dentro de uma string, certas sequências têm um significado especial, a menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado. Cada uma dessas sequências começa com uma barra invertida (`\`), conhecida como *caractere de escape*. O MySQL reconhece as sequências de escape mostradas na Tabela 12.23, "Sequências de escape de caracteres especiais JSON\_UNQUOTE()". Para todas as outras sequências de escape, a barra invertida é ignorada. Ou seja, o caractere escapado é interpretado como se não tivesse sido escapado. Por exemplo, `\x` é apenas `x`. Essas sequências são sensíveis ao caso. Por exemplo, `\b` é interpretado como uma tecla de retrocesso, mas `\B` é interpretado como `B`.
+  Dentro de uma string, certas sequências têm um significado especial, a menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado. Cada uma dessas sequências começa com uma barra invertida (`\`), conhecida como *caractere de escape*. O MySQL reconhece as sequências de escape mostradas na Tabela 12.23, "Sequências de escape de caracteres especiais JSON_UNQUOTE()". Para todas as outras sequências de escape, a barra invertida é ignorada. Ou seja, o caractere escapado é interpretado como se não tivesse sido escapado. Por exemplo, `\x` é apenas `x`. Essas sequências são sensíveis ao caso. Por exemplo, `\b` é interpretado como uma tecla de retrocesso, mas `\B` é interpretado como `B`.
 
-  **Tabela 12.23 Sequências de escape de caracteres especiais JSON\_UNQUOTE()**
+  **Tabela 12.23 Sequências de escape de caracteres especiais JSON_UNQUOTE()**
 
-  <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Sequência de fuga</th> <th>Personagem representado pela sequência</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>XXXX</code>]<a class="indexterm" name="id197822"></a><a class="indexterm" name="id197824"></a></td> <td>Um caractere de citação dupla ([[PH_HTML_CODE_<code>XXXX</code>])</td> </tr><tr> <td>[[<code>\b</code>]]<a class="indexterm" name="id197831"></a><a class="indexterm" name="id197833"></a></td> <td>Um caractere de retrocesso</td> </tr><tr> <td>[[<code>\f</code>]]<a class="indexterm" name="id197839"></a><a class="indexterm" name="id197841"></a></td> <td>Um caractere de quebra de linha</td> </tr><tr> <td>[[<code>\n</code>]]<a class="indexterm" name="id197847"></a><a class="indexterm" name="id197849"></a><a class="indexterm" name="id197851"></a><a class="indexterm" name="id197853"></a></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td>[[<code>\r</code>]]<a class="indexterm" name="id197859"></a><a class="indexterm" name="id197861"></a><a class="indexterm" name="id197863"></a></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td>[[<code>\t</code>]]<a class="indexterm" name="id197869"></a><a class="indexterm" name="id197871"></a></td> <td>Um caractere de tabulação</td> </tr><tr> <td>[[<code>\\</code>]]<a class="indexterm" name="id197877"></a><a class="indexterm" name="id197879"></a></td> <td>Um caractere barra invertida ([[<code>\</code>]])</td> </tr><tr> <td>[[<code>\u<em class="replaceable"><code>XXXX</code>]]</em></code><a class="indexterm" name="id197887"></a><a class="indexterm" name="id197889"></a></td> <td>Bytes UTF-8 para o valor Unicode<em class="replaceable">[[<code>XXXX</code>]]</em></td> </tr></tbody></table>
+  <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Sequência de fuga</th> <th>Personagem representado pela sequência</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>XXXX</code>]</td> <td>Um caractere de citação dupla ([[PH_HTML_CODE_<code>XXXX</code>])</td> </tr><tr> <td>[[<code>\b</code>]]</td> <td>Um caractere de retrocesso</td> </tr><tr> <td>[[<code>\f</code>]]</td> <td>Um caractere de quebra de linha</td> </tr><tr> <td>[[<code>\n</code>]]</td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td>[[<code>\r</code>]]</td> <td>Um caractere de retorno de carro</td> </tr><tr> <td>[[<code>\t</code>]]</td> <td>Um caractere de tabulação</td> </tr><tr> <td>[[<code>\\</code>]]</td> <td>Um caractere barra invertida ([[<code>\</code>]])</td> </tr><tr> <td>[[<code>\u<em class="replaceable"><code>XXXX</code>]]</em></code></td> <td>Bytes UTF-8 para o valor Unicode<em class="replaceable">[[<code>XXXX</code>]]</em></td> </tr></tbody></table>
 
   Aqui estão dois exemplos simples do uso dessa função:
 

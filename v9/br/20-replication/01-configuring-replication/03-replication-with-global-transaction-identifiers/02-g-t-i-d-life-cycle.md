@@ -96,7 +96,7 @@ Quando você emite `RESET BINARY LOGS E GTIDS`, as seguintes operações de rese
 
 * O valor global (mas não o valor de sessão) da variável de sistema `gtid_executed` é definido como uma string vazia.
 
-* A tabela `mysql.gtid_executed` é limpa (veja a tabela mysql.gtid\_executed).
+* A tabela `mysql.gtid_executed` é limpa (veja a tabela mysql.gtid_executed).
 
 * Se o servidor tiver log binário habilitado, os arquivos de log binário existentes são excluídos e o arquivo de índice de log binário é limpo.
 

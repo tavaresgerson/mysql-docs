@@ -1,4 +1,4 @@
-#### 25.6.15.50 The ndbinfo pgman\_time\_track\_stats Table
+#### 25.6.15.50 The ndbinfo pgman_time_track_stats Table
 
 This table provides information regarding the latency of disk operations for NDB Cluster Disk Data tablespaces.
 

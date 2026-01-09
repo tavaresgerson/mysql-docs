@@ -1,4 +1,4 @@
-### 24.3.20 The INFORMATION\_SCHEMA REFERENTIAL\_CONSTRAINTS Table
+### 24.3.20 The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table
 
 The [`REFERENTIAL_CONSTRAINTS`](information-schema-referential-constraints-table.html "24.3.20 The INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS Table") table provides information about foreign keys.
 

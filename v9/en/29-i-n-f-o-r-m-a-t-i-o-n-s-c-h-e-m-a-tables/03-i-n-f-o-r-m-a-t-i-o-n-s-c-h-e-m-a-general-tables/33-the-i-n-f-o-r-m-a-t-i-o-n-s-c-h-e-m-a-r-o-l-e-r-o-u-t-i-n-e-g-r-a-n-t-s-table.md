@@ -1,4 +1,4 @@
-### 28.3.33 The INFORMATION\_SCHEMA ROLE\_ROUTINE\_GRANTS Table
+### 28.3.33 The INFORMATION_SCHEMA ROLE_ROUTINE_GRANTS Table
 
 The `ROLE_ROUTINE_GRANTS` table provides information about the routine privileges for roles that are available to or granted by the currently enabled roles.
 

@@ -14,7 +14,7 @@ Process information is available from these sources:
 
 * The **mysqladmin processlist** command: Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”
 
-* The `INFORMATION_SCHEMA` `PROCESSLIST` table: Section 24.3.18, “The INFORMATION\_SCHEMA PROCESSLIST Table”
+* The `INFORMATION_SCHEMA` `PROCESSLIST` table: Section 24.3.18, “The INFORMATION_SCHEMA PROCESSLIST Table”
 
 * The Performance Schema `processlist` table: Section 25.12.16.3, “The processlist Table”
 

@@ -10,7 +10,7 @@
 
 16.4 Dictionary Object Cache
 
-16.5 INFORMATION\_SCHEMA and Data Dictionary Integration
+16.5 INFORMATION_SCHEMA and Data Dictionary Integration
 
 16.6 Serialized Dictionary Information (SDI)
 
@@ -32,6 +32,6 @@ Benefits of the MySQL data dictionary include:
 
 * Uniform and centralized caching for dictionary objects. See Section 16.4, “Dictionary Object Cache”.
 
-* A simpler and improved implementation for some `INFORMATION_SCHEMA` tables. See Section 16.5, “INFORMATION\_SCHEMA and Data Dictionary Integration”.
+* A simpler and improved implementation for some `INFORMATION_SCHEMA` tables. See Section 16.5, “INFORMATION_SCHEMA and Data Dictionary Integration”.
 
 * Atomic DDL. See Section 15.1.1, “Atomic Data Definition Statement Support”.

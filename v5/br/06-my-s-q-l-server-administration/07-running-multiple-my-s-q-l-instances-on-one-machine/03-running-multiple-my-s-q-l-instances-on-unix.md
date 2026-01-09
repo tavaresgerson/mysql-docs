@@ -2,7 +2,7 @@
 
 Nota
 
-A discussão aqui usa **mysqld\_safe** para iniciar várias instâncias do MySQL. Para a instalação do MySQL usando uma distribuição RPM, o início e o desligamento do servidor são gerenciados pelo systemd em várias plataformas Linux. Nessas plataformas, **mysqld\_safe** não é instalado porque é desnecessário. Para obter informações sobre como usar o systemd para gerenciar várias instâncias do MySQL, consulte Seção 2.5.10, “Gerenciamento do Servidor MySQL com o systemd”.
+A discussão aqui usa **mysqld_safe** para iniciar várias instâncias do MySQL. Para a instalação do MySQL usando uma distribuição RPM, o início e o desligamento do servidor são gerenciados pelo systemd em várias plataformas Linux. Nessas plataformas, **mysqld_safe** não é instalado porque é desnecessário. Para obter informações sobre como usar o systemd para gerenciar várias instâncias do MySQL, consulte Seção 2.5.10, “Gerenciamento do Servidor MySQL com o systemd”.
 
 Uma maneira de executar várias instâncias do MySQL no Unix é compilar diferentes servidores com portas TCP/IP padrão diferentes e arquivos de soquete Unix, para que cada um ouça em diferentes interfaces de rede. A compilação em diretórios de base diferentes para cada instalação também resulta automaticamente em um diretório de dados separado, um arquivo de log e um arquivo de PID separados para cada servidor.
 
@@ -32,7 +32,7 @@ Você não precisa compilar um novo servidor MySQL apenas para começar com um a
 $> mysqld_safe --socket=file_name --port=port_number
 ```
 
-Para iniciar um segundo servidor, forneça diferentes valores para as opções `--socket` e `--port` e passe a opção `--datadir=dir_name` para o **mysqld\_safe** para que o servidor use um diretório de dados diferente.
+Para iniciar um segundo servidor, forneça diferentes valores para as opções `--socket` e `--port` e passe a opção `--datadir=dir_name` para o **mysqld_safe** para que o servidor use um diretório de dados diferente.
 
 Como alternativa, coloque as opções de cada servidor em um arquivo de opções diferente, e então inicie cada servidor usando a opção `--defaults-file` que especifica o caminho para o arquivo de opções apropriado. Por exemplo, se os arquivos de opções para duas instâncias do servidor forem chamados de `/usr/local/mysql/my.cnf` e `/usr/local/mysql/my.cnf2`, inicie os servidores da seguinte forma: comando:
 
@@ -56,4 +56,4 @@ Esta é uma maneira rápida de iniciar um segundo servidor para uso em testes. A
 
 Seção 4.9, “Variáveis de Ambiente”, inclui uma lista de outras variáveis de ambiente que você pode usar para afetar os programas do MySQL.
 
-No Unix, o script **mysqld\_multi** oferece outra maneira de iniciar vários servidores. Veja Seção 4.3.4, “mysqld\_multi — Gerenciar vários servidores MySQL”.
+No Unix, o script **mysqld_multi** oferece outra maneira de iniciar vários servidores. Veja Seção 4.3.4, “mysqld_multi — Gerenciar vários servidores MySQL”.

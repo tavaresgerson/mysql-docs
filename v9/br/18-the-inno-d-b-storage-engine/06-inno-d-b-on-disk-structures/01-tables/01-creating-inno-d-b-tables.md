@@ -44,7 +44,7 @@ CREATE TABLE t5 (id INT AUTO_INCREMENT, b CHAR (20), PRIMARY KEY (id));
 CREATE TABLE t6 (id INT AUTO_INCREMENT, a INT, b CHAR (20), PRIMARY KEY (id,a));
 ```
 
-Para mais informações sobre colunas de autoincremento, consulte a Seção 17.6.1.6, “Manipulação de AUTO\_INCREMENT no InnoDB”.
+Para mais informações sobre colunas de autoincremento, consulte a Seção 17.6.1.6, “Manipulação de AUTO_INCREMENT no InnoDB”.
 
 Embora uma tabela funcione corretamente sem definir uma chave primária, a chave primária está envolvida com muitos aspectos do desempenho e é um aspecto crucial do design para qualquer tabela grande ou frequentemente usada. Recomenda-se que você sempre especifique uma chave primária na declaração `CREATE TABLE`. Se você criar a tabela, carregar dados e depois executar `ALTER TABLE` para adicionar uma chave primária mais tarde, essa operação é muito mais lenta do que definir a chave primária ao criar a tabela. Para mais informações sobre chaves primárias, consulte a Seção 17.6.2.1, “Índices Agrupados e Secundários”.
 

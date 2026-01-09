@@ -1,4 +1,4 @@
-#### 30.4.3.6 The host\_summary\_by\_statement\_type and x$host\_summary\_by\_statement\_type Views
+#### 30.4.3.6 The host_summary_by_statement_type and x$host_summary_by_statement_type Views
 
 These views summarize information about statements executed, grouped by host and statement type. By default, rows are sorted by host and descending total latency.
 

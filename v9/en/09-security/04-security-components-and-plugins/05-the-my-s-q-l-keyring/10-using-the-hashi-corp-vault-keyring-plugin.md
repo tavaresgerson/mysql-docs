@@ -29,7 +29,7 @@ To install `keyring_hashicorp`, use the general instructions found in Section 8
 
 * Certificate and Key Preparation
 * HashiCorp Vault Setup
-* keyring\_hashicorp Configuration
+* keyring_hashicorp Configuration
 
 ##### Certificate and Key Preparation
 
@@ -333,13 +333,13 @@ These instructions assume availability of the certificate and key files created 
 
    After these AppRole role ID and secret ID credentials are generated, they are expected to remain valid indefinitely. They need not be generated again and the `keyring_hashicorp` plugin can be configured with them for use on an ongoing basis. For more information about AuthRole authentication, visit <https://www.vaultproject.io/docs/auth/approle.html>.
 
-##### keyring\_hashicorp Configuration
+##### keyring_hashicorp Configuration
 
 The plugin library file contains the `keyring_hashicorp` plugin and a loadable function, `keyring_hashicorp_update_config()`. When the plugin initializes and terminates, it automatically loads and unloads the function. There is no need to load and unload the function manually.
 
 The `keyring_hashicorp` plugin supports the configuration parameters shown in the following table. To specify these parameters, assign values to the corresponding system variables.
 
-<table summary="keyring_hashicorp configuration parameters and corresponding system variables."><col style="width: 35%"/><col style="width: 50%"/><col style="width: 15%"/><thead><tr> <th>Configuration Parameter</th> <th>System Variable</th> <th>Mandatory</th> </tr></thead><tbody><tr> <th>HashiCorp Server URL</th> <td><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_server_url"><code class="literal">keyring_hashicorp_server_url</code></a></td> <td>No</td> </tr><tr> <th>AppRole role ID</th> <td><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_role_id"><code class="literal">keyring_hashicorp_role_id</code></a></td> <td>Yes</td> </tr><tr> <th>AppRole secret ID</th> <td><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_secret_id"><code class="literal">keyring_hashicorp_secret_id</code></a></td> <td>Yes</td> </tr><tr> <th>Store path</th> <td><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_store_path"><code class="literal">keyring_hashicorp_store_path</code></a></td> <td>Yes</td> </tr><tr> <th>Authorization Path</th> <td><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_auth_path"><code class="literal">keyring_hashicorp_auth_path</code></a></td> <td>No</td> </tr><tr> <th>CA certificate file path</th> <td><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_ca_path"><code class="literal">keyring_hashicorp_ca_path</code></a></td> <td>No</td> </tr><tr> <th>Cache control</th> <td><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_caching"><code class="literal">keyring_hashicorp_caching</code></a></td> <td>No</td> </tr></tbody></table>
+<table summary="keyring_hashicorp configuration parameters and corresponding system variables."><col style="width: 35%"/><col style="width: 50%"/><col style="width: 15%"/><thead><tr> <th>Configuration Parameter</th> <th>System Variable</th> <th>Mandatory</th> </tr></thead><tbody><tr> <th>HashiCorp Server URL</th> <td><code class="literal">keyring_hashicorp_server_url</code></td> <td>No</td> </tr><tr> <th>AppRole role ID</th> <td><code class="literal">keyring_hashicorp_role_id</code></td> <td>Yes</td> </tr><tr> <th>AppRole secret ID</th> <td><code class="literal">keyring_hashicorp_secret_id</code></td> <td>Yes</td> </tr><tr> <th>Store path</th> <td><code class="literal">keyring_hashicorp_store_path</code></td> <td>Yes</td> </tr><tr> <th>Authorization Path</th> <td><code class="literal">keyring_hashicorp_auth_path</code></td> <td>No</td> </tr><tr> <th>CA certificate file path</th> <td><code class="literal">keyring_hashicorp_ca_path</code></td> <td>No</td> </tr><tr> <th>Cache control</th> <td><code class="literal">keyring_hashicorp_caching</code></td> <td>No</td> </tr></tbody></table>
 
 To be usable during the server startup process, `keyring_hashicorp` must be loaded using the `--early-plugin-load` option. As indicated by the preceding table, several plugin-related system variables are mandatory and must also be set. For example, use these lines in the server `my.cnf` file, adjusting the `.so` suffix and file locations for your platform as necessary:
 

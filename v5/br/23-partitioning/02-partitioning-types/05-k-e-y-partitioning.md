@@ -55,7 +55,7 @@ As regras de sintaxe para `CREATE TABLE ... PARTITION BY KEY` são semelhantes �
 
   Se você definir um esquema de particionamento explícito para uma tabela de `NDB`, a tabela deve ter uma chave primária explícita, e quaisquer colunas usadas na expressão de particionamento devem fazer parte dessa chave. No entanto, se a tabela usar uma expressão de particionamento "vazia" — ou seja, `PARTITION BY KEY()` sem referências de colunas — então não é necessário uma chave primária explícita.
 
-  Você pode observar essa partição usando o utilitário **ndb\_desc** (com a opção `-p`).
+  Você pode observar essa partição usando o utilitário **ndb_desc** (com a opção `-p`).
 
   Importante
 

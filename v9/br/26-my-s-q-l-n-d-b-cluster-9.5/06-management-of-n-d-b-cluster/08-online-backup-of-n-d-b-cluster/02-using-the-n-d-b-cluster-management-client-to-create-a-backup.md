@@ -50,21 +50,21 @@ A opção `PASSWORD` pode ser omitida de *`encryption_option`*. Neste caso, o cl
 
 Um backup criptografado pode ser descriptografado usando qualquer um dos seguintes comandos:
 
-* **ndb\_restore** `--decrypt` `--backup-password=password`
+* **ndb_restore** `--decrypt` `--backup-password=password`
 
 * **ndbxfrm** `--decrypt-password=password` *`input_file`* *`output_file`*
 
-* **ndb\_print\_backup\_file** `-P` *`password`* *`file_name`*
+* **ndb_print_backup_file** `-P` *`password`* *`file_name`*
 
-* **ndb\_restore** `--decrypt` `--backup-password-from-stdin`
+* **ndb_restore** `--decrypt` `--backup-password-from-stdin`
 
 * **ndbxfrm** `--decrypt-password-from-stdin` *`input_file`* *`output_file`*
 
-* **ndb\_print\_backup\_file** `--backup-password=password` *`file_name`*
+* **ndb_print_backup_file** `--backup-password=password` *`file_name`*
 
-* **ndb\_print\_backup\_file** `--backup-password-from-stdin` *`file_name`*
+* **ndb_print_backup_file** `--backup-password-from-stdin` *`file_name`*
 
-* **ndb\_mgm** `--backup-password-from-stdin` `--execute "START BACKUP ..."`
+* **ndb_mgm** `--backup-password-from-stdin` `--execute "START BACKUP ..."`
 
 Veja as descrições desses programas para obter mais informações, como opções adicionais que podem ser necessárias.
 
@@ -110,7 +110,7 @@ START BACKUP 4 NOWAIT SNAPSHOTSTART
 
 O procedimento para criar um backup consiste nas seguintes etapas:
 
-1. Inicie o cliente de gerenciamento (**ndb\_mgm**), se ele ainda não estiver em execução.
+1. Inicie o cliente de gerenciamento (**ndb_mgm**), se ele ainda não estiver em execução.
 
 2. Execute o comando **`START BACKUP`**. Isso produz várias linhas de saída indicando o progresso do backup, conforme mostrado aqui:
 
@@ -152,7 +152,7 @@ O procedimento para criar um backup consiste nas seguintes etapas:
     Data: 453648 bytes Log: 0 bytes
    ```
 
-   Também é possível realizar um backup a partir da shell do sistema invocando **ndb\_mgm** com a opção `-e` ou `--execute`, como mostrado neste exemplo:
+   Também é possível realizar um backup a partir da shell do sistema invocando **ndb_mgm** com a opção `-e` ou `--execute`, como mostrado neste exemplo:
 
 ```
 $> ndb_mgm -e "START BACKUP 6 WAIT COMPLETED SNAPSHOTSTART"

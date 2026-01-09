@@ -8,7 +8,7 @@ Esta declaração exclui a função carregável denominada *`nome_da_função`*.
 
 `DROP FUNCTION` é o complemento de `CREATE FUNCTION`. Requer o privilégio `DELETE` para o esquema de sistema `mysql` porque remove a linha da tabela de sistema `mysql.func` que registra a função.
 
-`DROP FUNCTION` também exclui a função da tabela do Schema de Desempenho `user_defined_functions` que fornece informações de tempo de execução sobre as funções carregáveis instaladas. Veja a Seção 29.12.22.12, “A tabela user\_defined\_functions”.
+`DROP FUNCTION` também exclui a função da tabela do Schema de Desempenho `user_defined_functions` que fornece informações de tempo de execução sobre as funções carregáveis instaladas. Veja a Seção 29.12.22.12, “A tabela user_defined_functions”.
 
 Durante a sequência de inicialização normal, o servidor carrega as funções registradas na tabela `mysql.func`. Como `DROP FUNCTION` exclui a linha `mysql.func` da função excluída, o servidor não carrega a função durante reinicializações subsequentes.
 

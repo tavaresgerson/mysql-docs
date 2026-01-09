@@ -11,7 +11,7 @@ This section describes options that control how client programs establish connec
 
 **Table 4.4 Connection-Establishment Option Summary**
 
-<table frame="box" rules="all" summary="Command-line options available for establishing connections to the server."><col style="width: 31%"/><col style="width: 56%"/><col style="width: 12%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><a class="link" href="connection-options.html#option_general_default-auth">--default-auth</a></th> <td>Authentication plugin to use</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_host">--host</a></th> <td>Host on which MySQL server is located</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_password">--password</a></th> <td>Password to use when connecting to server</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_pipe">--pipe</a></th> <td>Connect to server using named pipe (Windows only)</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_plugin-dir">--plugin-dir</a></th> <td>Directory where plugins are installed</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_port">--port</a></th> <td>TCP/IP port number for connection</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_protocol">--protocol</a></th> <td>Transport protocol to use</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_secure-auth">--secure-auth</a></th> <td>Do not send passwords to server in old (pre-4.1) format</td> <td>Yes</td> </tr><tr><th><a class="link" href="connection-options.html#option_general_shared-memory-base-name">--shared-memory-base-name</a></th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_socket">--socket</a></th> <td>Unix socket file or Windows named pipe to use</td> <td></td> </tr><tr><th><a class="link" href="connection-options.html#option_general_user">--user</a></th> <td>MySQL user name to use when connecting to server</td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for establishing connections to the server."><col style="width: 31%"/><col style="width: 56%"/><col style="width: 12%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th>--default-auth</th> <td>Authentication plugin to use</td> <td></td> </tr><tr><th>--host</th> <td>Host on which MySQL server is located</td> <td></td> </tr><tr><th>--password</th> <td>Password to use when connecting to server</td> <td></td> </tr><tr><th>--pipe</th> <td>Connect to server using named pipe (Windows only)</td> <td></td> </tr><tr><th>--plugin-dir</th> <td>Directory where plugins are installed</td> <td></td> </tr><tr><th>--port</th> <td>TCP/IP port number for connection</td> <td></td> </tr><tr><th>--protocol</th> <td>Transport protocol to use</td> <td></td> </tr><tr><th>--secure-auth</th> <td>Do not send passwords to server in old (pre-4.1) format</td> <td>Yes</td> </tr><tr><th>--shared-memory-base-name</th> <td>Shared-memory name for shared-memory connections (Windows only)</td> <td></td> </tr><tr><th>--socket</th> <td>Unix socket file or Windows named pipe to use</td> <td></td> </tr><tr><th>--user</th> <td>MySQL user name to use when connecting to server</td> <td></td> </tr></tbody></table>
 
 * `--default-auth=plugin`
 
@@ -55,7 +55,7 @@ This section describes options that control how client programs establish connec
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for protocol"><tbody><tr><th>Command-Line Format</th> <td><code>--protocol=type</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[see text]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>TCP</code></p><p class="valid-value"><code>SOCKET</code></p><p class="valid-value"><code>PIPE</code></p><p class="valid-value"><code>MEMORY</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for protocol"><tbody><tr><th>Command-Line Format</th> <td><code>--protocol=type</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[see text]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>TCP</code></p><p><code>SOCKET</code></p><p><code>PIPE</code></p><p><code>MEMORY</code></p></td> </tr></tbody></table>
 
   This option explicitly specifies which transport protocol to use for connecting to the server. It is useful when other connection parameters normally result in use of a protocol other than the one you want. For example, connections on Unix to `localhost` are made using a Unix socket file by default:
 
@@ -71,7 +71,7 @@ This section describes options that control how client programs establish connec
 
   The following table shows the permissible `--protocol` option values and indicates the applicable platforms for each value. The values are not case-sensitive.
 
-  <table summary="Permissible transport protocol values, the resulting transport protocol used, and the applicable platforms for each value."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th><a class="link" href="connection-options.html#option_general_protocol"><code>--protocol</code></a> Value</th> <th>Transport Protocol Used</th> <th>Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP transport to local or remote server</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket-file transport to local server</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named-pipe transport to local server</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared-memory transport to local server</td> <td>Windows</td> </tr></tbody></table>
+  <table summary="Permissible transport protocol values, the resulting transport protocol used, and the applicable platforms for each value."><col style="width: 20%"/><col style="width: 50%"/><col style="width: 30%"/><thead><tr> <th><code>--protocol</code> Value</th> <th>Transport Protocol Used</th> <th>Applicable Platforms</th> </tr></thead><tbody><tr> <th><code>TCP</code></th> <td>TCP/IP transport to local or remote server</td> <td>All</td> </tr><tr> <th><code>SOCKET</code></th> <td>Unix socket-file transport to local server</td> <td>Unix and Unix-like systems</td> </tr><tr> <th><code>PIPE</code></th> <td>Named-pipe transport to local server</td> <td>Windows</td> </tr><tr> <th><code>MEMORY</code></th> <td>Shared-memory transport to local server</td> <td>Windows</td> </tr></tbody></table>
 
   See also Section 4.2.5, “Connection Transport Protocols”
 
@@ -85,7 +85,7 @@ This section describes options that control how client programs establish connec
 
   Note
 
-  Passwords that use the pre-4.1 hashing method are less secure than passwords that use the native password hashing method and should be avoided. Pre-4.1 passwords are deprecated and support for them was removed in MySQL 5.7.5. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql\_old\_password Plugin”.
+  Passwords that use the pre-4.1 hashing method are less secure than passwords that use the native password hashing method and should be avoided. Pre-4.1 passwords are deprecated and support for them was removed in MySQL 5.7.5. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
 
 * `--shared-memory-base-name=name`
 
@@ -282,7 +282,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
     Note
 
-    Host name identity verification with `VERIFY_IDENTITY` does not work with self-signed certificates that are created automatically by the server or manually using **mysql\_ssl\_rsa\_setup** (see Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”). Such self-signed certificates do not contain the server name as the Common Name value.
+    Host name identity verification with `VERIFY_IDENTITY` does not work with self-signed certificates that are created automatically by the server or manually using **mysql_ssl_rsa_setup** (see Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”). Such self-signed certificates do not contain the server name as the Common Name value.
 
   Important
 
@@ -320,7 +320,7 @@ For information about using encrypted connections from the MySQL C API, see Supp
 
   Note
 
-  Host name identity verification does not work with self-signed certificates created automatically by the server, or manually using **mysql\_ssl\_rsa\_setup** (see Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”). Such self-signed certificates do not contain the server name as the Common Name value.
+  Host name identity verification does not work with self-signed certificates created automatically by the server, or manually using **mysql_ssl_rsa_setup** (see Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”). Such self-signed certificates do not contain the server name as the Common Name value.
 
   Host name identity verification also does not work with certificates that specify the Common Name using wildcards because that name is compared verbatim to the server name.
 

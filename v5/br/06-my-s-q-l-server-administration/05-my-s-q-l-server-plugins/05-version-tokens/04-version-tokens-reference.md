@@ -43,7 +43,7 @@ As seguintes funções permitem a criação, alteração, remoção e inspeção
   +------------------------------+
   ```
 
-- \`version\_tokens\_edit(token\_list)
+- \`version_tokens_edit(token_list)
 
   Modifica a lista de tokens de versão do servidor usando o argumento *`token_list`* e retorna uma string binária que indica o resultado da operação. *`token_list`* é uma lista separada por ponto-e-vírgula de pares `name=value`, especificando o nome de cada token a ser definido e seu valor. Se um token existir, seu valor é atualizado com o valor fornecido. Se um token não existir, ele é criado com o valor fornecido. Se o argumento for `NULL` ou uma string que não contenha tokens, a lista de tokens permanece inalterada.
 
@@ -151,7 +151,7 @@ Variáveis do sistema:
 
 - `version_tokens_session`
 
-  <table frame="box" rules="all" summary="Propriedades para version_tokens_session"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version-tokens-session=value</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="version-tokens-reference.html#sysvar_version_tokens_session">version_tokens_session</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para version_tokens_session"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version-tokens-session=value</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>version_tokens_session</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
 
   O valor da sessão desta variável especifica a lista de tokens da versão do cliente e indica os tokens que a sessão do cliente exige que a lista de tokens da versão do servidor tenha.
 
@@ -224,6 +224,6 @@ Variáveis do sistema:
 
 - `version_tokens_session_number`
 
-  <table frame="box" rules="all" summary="Propriedades para version_tokens_session_number"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version-tokens-session-number=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="version-tokens-reference.html#sysvar_version_tokens_session_number">version_tokens_session_number</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para version_tokens_session_number"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version-tokens-session-number=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>version_tokens_session_number</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
 
   Esta variável é para uso interno.

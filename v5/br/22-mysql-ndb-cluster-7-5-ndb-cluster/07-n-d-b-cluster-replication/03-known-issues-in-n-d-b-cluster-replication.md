@@ -98,7 +98,7 @@ Reiniciar o clúster com a opção `--initial` faz com que a sequência de núme
 
 - O uso de um mecanismo de armazenamento não transacional para tabelas na replica também requer um tratamento especial.
 
-- A fonte **mysqld** deve ser iniciada com `--ndb-log-update-as-write=0` (mysql-cluster-options-variables.html#option\_mysqld\_ndb-log-update-as-write) ou `--ndb-log-update-as-write=OFF`.
+- A fonte **mysqld** deve ser iniciada com `--ndb-log-update-as-write=0` (mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write) ou `--ndb-log-update-as-write=OFF`.
 
 Os próximos parágrafos fornecem informações adicionais sobre cada um dos problemas descritos acima.
 
@@ -112,9 +112,9 @@ Se você tentar replicar de um NDB Cluster para uma replica que usa um motor de 
 
 - **Desative o registro binário na replica.** Isso pode ser feito configurando `sql_log_bin = 0`.
 
-- **Altere o motor de armazenamento usado para a tabela mysql.ndb\_apply\_status.** Fazer com que essa tabela use um motor que não gerencie seu próprio registro binário também pode eliminar o conflito. Isso pode ser feito emitindo uma instrução como `ALTER TABLE mysql.ndb_apply_status ENGINE=MyISAM` na replica. É seguro fazer isso ao usar um motor de armazenamento diferente de `NDB` na replica, pois você não precisa se preocupar em manter múltiplas réplicas sincronizadas.
+- **Altere o motor de armazenamento usado para a tabela mysql.ndb_apply_status.** Fazer com que essa tabela use um motor que não gerencie seu próprio registro binário também pode eliminar o conflito. Isso pode ser feito emitindo uma instrução como `ALTER TABLE mysql.ndb_apply_status ENGINE=MyISAM` na replica. É seguro fazer isso ao usar um motor de armazenamento diferente de `NDB` na replica, pois você não precisa se preocupar em manter múltiplas réplicas sincronizadas.
 
-- **Filtre as alterações na tabela mysql.ndb\_apply\_status na replica.** Isso pode ser feito iniciando a replica com `--replicate-ignore-table=mysql.ndb_apply_status`. Se você precisar que outras tabelas sejam ignoradas pela replicação, talvez queira usar uma opção apropriada `--replicate-wild-ignore-table` em vez disso.
+- **Filtre as alterações na tabela mysql.ndb_apply_status na replica.** Isso pode ser feito iniciando a replica com `--replicate-ignore-table=mysql.ndb_apply_status`. Se você precisar que outras tabelas sejam ignoradas pela replicação, talvez queira usar uma opção apropriada `--replicate-wild-ignore-table` em vez disso.
 
 Importante
 
@@ -136,7 +136,7 @@ Você também deve lembrar que cada regra de replicação requer o seguinte:
 
 1. Sua própria opção `--replicate-do-*` ou `--replicate-ignore-*`, e que múltiplas regras não podem ser expressas em uma única opção de filtragem de replicação. Para obter informações sobre essas regras, consulte Seção 16.1.6, “Opções e variáveis de replicação e registro binário”.
 
-2. A opção `--binlog-do-db` (replicação-opções-binary-log.html#option\_mysqld\_binlog-do-db) ou `--binlog-ignore-db` (replicação-opções-binary-log.html#option\_mysqld\_binlog-ignore-db) do próprio MySQL, e que múltiplas regras não podem ser expressas em uma única opção de filtragem de log binário. Para obter informações sobre essas regras, consulte Seção 5.4.4, “O Log Binário”.
+2. A opção `--binlog-do-db` (replicação-opções-binary-log.html#option_mysqld_binlog-do-db) ou `--binlog-ignore-db` (replicação-opções-binary-log.html#option_mysqld_binlog-ignore-db) do próprio MySQL, e que múltiplas regras não podem ser expressas em uma única opção de filtragem de log binário. Para obter informações sobre essas regras, consulte Seção 5.4.4, “O Log Binário”.
 
 Se você estiver replicando um NDB Cluster para uma replica que usa um motor de armazenamento diferente de `NDB`, as considerações mencionadas anteriormente podem não se aplicar, conforme discutido em outras partes desta seção.
 

@@ -27,7 +27,7 @@ Os elementos do array `<ctype>` são valores de bits. Cada elemento descreve os 
 #define _MY_X   0200    /* heXadecimal digit */
 ```
 
-O valor `<ctype>` para um caractere específico deve ser a união dos valores de máscara de bits aplicáveis que descrevem o caractere. Por exemplo, `'A'` é um caractere maiúsculo (\_MY\_U) e também um dígito hexadecimal (\_MY\_X), então seu valor `ctype` deve ser definido da seguinte forma:
+O valor `<ctype>` para um caractere específico deve ser a união dos valores de máscara de bits aplicáveis que descrevem o caractere. Por exemplo, `'A'` é um caractere maiúsculo (_MY_U) e também um dígito hexadecimal (_MY_X), então seu valor `ctype` deve ser definido da seguinte forma:
 
 ```sql
 ctype['A'+1] = _MY_U | _MY_X = 01 | 0200 = 0201

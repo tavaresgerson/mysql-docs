@@ -1,4 +1,4 @@
-### 5.6.9 Using AUTO\_INCREMENT
+### 5.6.9 Using AUTO_INCREMENT
 
 The `AUTO_INCREMENT` attribute can be used to generate a unique identity for new rows:
 
@@ -83,7 +83,7 @@ mysql> ALTER TABLE tbl AUTO_INCREMENT = 100;
 
 #### InnoDB Notes
 
-For information about `AUTO_INCREMENT` usage specific to `InnoDB`, see Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+For information about `AUTO_INCREMENT` usage specific to `InnoDB`, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
 #### MyISAM Notes
 
@@ -138,7 +138,7 @@ More information about `AUTO_INCREMENT` is available here:
 
 * Setting the `AUTO_INCREMENT` value to be used: Section 7.1.8, “Server System Variables”.
 
-* Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”
-* `AUTO_INCREMENT` and replication: Section 19.5.1.1, “Replication and AUTO\_INCREMENT”.
+* Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”
+* `AUTO_INCREMENT` and replication: Section 19.5.1.1, “Replication and AUTO_INCREMENT”.
 
 * Server-system variables related to `AUTO_INCREMENT` (`auto_increment_increment` and `auto_increment_offset`) that can be used for replication: Section 7.1.8, “Server System Variables”.

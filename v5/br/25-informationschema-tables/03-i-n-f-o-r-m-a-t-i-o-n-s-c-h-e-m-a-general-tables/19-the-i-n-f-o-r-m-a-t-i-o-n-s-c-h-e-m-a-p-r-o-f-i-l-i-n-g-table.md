@@ -1,4 +1,4 @@
-### 24.3.19 A tabela INFORMATION\_SCHEMA PROFILING
+### 24.3.19 A tabela INFORMATION_SCHEMA PROFILING
 
 A tabela `PROFILING` fornece informações de perfilamento de declarações. Seu conteúdo corresponde às informações produzidas pelas declarações `SHOW PROFILE` e `SHOW PROFILES` (veja Seção 13.7.5.30, “Declaração SHOW PROFILE”). A tabela está vazia, a menos que a variável de sessão `profiling` esteja definida como 1.
 

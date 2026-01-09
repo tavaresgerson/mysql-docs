@@ -1,4 +1,4 @@
-#### 26.4.5.4 A função format\_path()
+#### 26.4.5.4 A função format_path()
 
 Dada um nome de caminho, retorna o nome de caminho modificado após a substituição de subcaminhos que correspondem aos valores das seguintes variáveis do sistema, na ordem:
 

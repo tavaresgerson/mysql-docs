@@ -26,7 +26,7 @@
 
 * The storage layout for table data is more efficient for `BLOB` and long text fields, with the `DYNAMIC` row format. See Section 17.10, “InnoDB Row Formats”.
 
-* You can monitor the internal workings of the storage engine by querying `INFORMATION_SCHEMA` tables. See Section 17.15, “InnoDB INFORMATION\_SCHEMA Tables”.
+* You can monitor the internal workings of the storage engine by querying `INFORMATION_SCHEMA` tables. See Section 17.15, “InnoDB INFORMATION_SCHEMA Tables”.
 
 * You can monitor the performance details of the storage engine by querying Performance Schema tables. See Section 17.16, “InnoDB Integration with MySQL Performance Schema”.
 

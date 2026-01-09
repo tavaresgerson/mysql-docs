@@ -58,7 +58,7 @@ START BACKUP 4 NOWAIT SNAPSHOTSTART
 
 The procedure for creating a backup consists of the following steps:
 
-1. Start the management client ([**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")), if it not running already.
+1. Start the management client ([**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")), if it not running already.
 
 2. Execute the **`START BACKUP`** command. This produces several lines of output indicating the progress of the backup, as shown here:
 
@@ -100,7 +100,7 @@ The procedure for creating a backup consists of the following steps:
     Data: 453648 bytes Log: 0 bytes
    ```
 
-It is also possible to perform a backup from the system shell by invoking [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") with the `-e` or [`--execute`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute) option, as shown in this example:
+It is also possible to perform a backup from the system shell by invoking [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") with the `-e` or [`--execute`](mysql-cluster-programs-ndb-mgm.html#option_ndb_mgm_execute) option, as shown in this example:
 
 ```sql
 $> ndb_mgm -e "START BACKUP 6 WAIT COMPLETED SNAPSHOTSTART"

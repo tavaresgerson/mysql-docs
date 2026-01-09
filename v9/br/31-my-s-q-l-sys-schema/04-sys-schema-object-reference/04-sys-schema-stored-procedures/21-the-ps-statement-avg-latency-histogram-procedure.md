@@ -1,4 +1,4 @@
-#### 30.4.4.21 O procedimento ps\_statement\_avg\_latency\_histogram()
+#### 30.4.4.21 O procedimento ps_statement_avg_latency_histogram()
 
 Exibe um gráfico de histograma textual dos valores de latência média em todas as declarações normalizadas rastreadas na tabela do Schema de Desempenho `eventos_declarações_resumo_por_digest`.
 

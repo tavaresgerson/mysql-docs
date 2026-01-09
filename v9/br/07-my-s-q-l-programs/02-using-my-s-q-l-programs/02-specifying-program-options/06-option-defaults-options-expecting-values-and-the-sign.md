@@ -49,7 +49,7 @@ ERROR 2005 (HY000): Unknown MySQL server host '--user' (1)
 
 Como o **mysql** assume que qualquer string que siga `--host` na linha de comando é um nome de host, `--host` `--user` é interpretado como `--host=--user`, e o cliente tenta se conectar a um servidor MySQL que está em execução em um host chamado “--user”.
 
-Opções com valores padrão sempre exigem um sinal de igual ao atribuir um valor; não fazer isso causa um erro. Por exemplo, a opção do servidor MySQL `--log-error` tem o valor padrão `host_name.err`, onde *`host_name`* é o nome do host em que o MySQL está rodando. Suponha que você esteja executando o MySQL em um computador cujo nome de host é “tonfisk”, e considere a seguinte invocação do **mysqld\_safe**:
+Opções com valores padrão sempre exigem um sinal de igual ao atribuir um valor; não fazer isso causa um erro. Por exemplo, a opção do servidor MySQL `--log-error` tem o valor padrão `host_name.err`, onde *`host_name`* é o nome do host em que o MySQL está rodando. Suponha que você esteja executando o MySQL em um computador cujo nome de host é “tonfisk”, e considere a seguinte invocação do **mysqld_safe**:
 
 ```
 $> mysqld_safe &

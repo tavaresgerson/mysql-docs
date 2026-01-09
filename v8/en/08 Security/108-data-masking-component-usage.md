@@ -300,7 +300,7 @@ A valid `masking_dictionaries` table has these characteristics:
       INDEX dictionary_idx (Dictionary)
   ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4;
   ```
-* MASKING\_DICTIONARY\_ADMIN privilege is required to add and remove terms, or to remove an entire dictionary.
+* MASKING_DICTIONARY_ADMIN privilege is required to add and remove terms, or to remove an entire dictionary.
 * The table may contain multiple dictionaries and their terms.
 * Any user account can view the dictionaries. Given enough queries, all of the terms in dictionaries are retrievable. Avoid adding sensitive data to the dictionary table.
 

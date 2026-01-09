@@ -112,6 +112,6 @@ For more information about `SLAVESIDE_DISABLED` and the `Originator` column, see
 
 Times displayed by [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") are given in the event time zone, as discussed in [Section 23.4.4, “Event Metadata”](events-metadata.html "23.4.4 Event Metadata").
 
-Event information is also available from the `INFORMATION_SCHEMA` [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table. See [Section 24.3.8, “The INFORMATION\_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table").
+Event information is also available from the `INFORMATION_SCHEMA` [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table. See [Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table").
 
 The event action statement is not shown in the output of [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement"). Use [`SHOW CREATE EVENT`](show-create-event.html "13.7.5.7 SHOW CREATE EVENT Statement") or the `INFORMATION_SCHEMA` [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table.

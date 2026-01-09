@@ -8,7 +8,7 @@ mysql> INSTALL PLUGIN group_replication SONAME 'group_replication.so';
 
 Important
 
-The `mysql.session` user must exist before you can load Group Replication. `mysql.session` was added in MySQL version 5.7.19. If your data dictionary was initialized using an earlier version you must perform the MySQL upgrade procedure (see [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL")). If the upgrade is not run, Group Replication fails to start with the error message There was an error when trying to access the server with user: mysql.session@localhost. Make sure the user is present in the server and that mysql\_upgrade was ran after a server update.
+The `mysql.session` user must exist before you can load Group Replication. `mysql.session` was added in MySQL version 5.7.19. If your data dictionary was initialized using an earlier version you must perform the MySQL upgrade procedure (see [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL")). If the upgrade is not run, Group Replication fails to start with the error message There was an error when trying to access the server with user: mysql.session@localhost. Make sure the user is present in the server and that mysql_upgrade was ran after a server update.
 
 To check that the plugin was installed successfully, issue `SHOW PLUGINS;` and check the output. It should show something like this:
 

@@ -112,6 +112,6 @@ Para obter mais informações sobre `SLAVESIDE_DISABLED` e a coluna `Originator`
 
 Os horários exibidos em `SHOW EVENTS` são fornecidos no fuso horário do evento, conforme discutido em Seção 23.4.4, “Metadados do Evento”.
 
-As informações sobre eventos também estão disponíveis na tabela `INFORMATION_SCHEMA` `EVENTS`. Veja Seção 24.3.8, “A Tabela INFORMATION\_SCHEMA EVENTS”.
+As informações sobre eventos também estão disponíveis na tabela `INFORMATION_SCHEMA` `EVENTS`. Veja Seção 24.3.8, “A Tabela INFORMATION_SCHEMA EVENTS”.
 
 A declaração de ação do evento não é exibida na saída de `SHOW EVENTS`. Use `SHOW CREATE EVENT` ou a tabela `INFORMATION_SCHEMA` `EVENTS`.

@@ -2,11 +2,11 @@
 
 24.5.1 Referência da Tabela do Conjunto de Filas de Tarefas do Schema de Informações
 
-Tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE
+Tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATE
 
-Tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS
+Tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATS
 
-Tabela INFORMATION\_SCHEMA TP\_THREAD\_STATE
+Tabela INFORMATION_SCHEMA TP_THREAD_STATE
 
 As seções a seguir descrevem as tabelas `INFORMATION_SCHEMA` associadas ao plugin de pool de threads (consulte Seção 5.5.3, “MySQL Enterprise Thread Pool”). Elas fornecem informações sobre o funcionamento do pool de threads:
 

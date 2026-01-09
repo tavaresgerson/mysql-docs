@@ -96,7 +96,7 @@ Cada formato de registro binário tem vantagens e desvantagens. Para a maioria d
 
   - [`INSERT ... SELECT`](insert-select.html)
 
-  - `[`INSERT`](insert.html) declarações com `AUTO\_INCREMENT\`
+  - `[`INSERT`](insert.html) declarações com `AUTO_INCREMENT\`
 
   - `[`UPDATE`](update.html) ou `[`DELETE`](delete.html) com cláusulas `WHERE` que não utilizam chaves ou não alteram a maioria das linhas examinadas.
 

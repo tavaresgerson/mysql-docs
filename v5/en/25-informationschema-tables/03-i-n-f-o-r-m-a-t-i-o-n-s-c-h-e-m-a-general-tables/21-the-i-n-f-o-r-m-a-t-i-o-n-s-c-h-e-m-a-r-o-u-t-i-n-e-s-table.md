@@ -1,4 +1,4 @@
-### 24.3.21 The INFORMATION\_SCHEMA ROUTINES Table
+### 24.3.21 The INFORMATION_SCHEMA ROUTINES Table
 
 The [`ROUTINES`](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table") table provides information about stored routines (stored procedures and stored functions). The [`ROUTINES`](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table") table does not include built-in (native) functions or loadable functions.
 

@@ -22,7 +22,7 @@ As seguintes são as variáveis de configuração de telemetria de rastreamento 
   Controla se o texto da consulta SQL é incluído na traça
 *  `telemetry.otel_log_level`
 
-  <table><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_log_level</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ERROR</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_log_level</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ERROR</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td> </tr></tbody></table>
 
   Controla quais logs do OpenTelemetry são impressos nos logs do servidor
 *  `telemetry.otel_resource_attributes`

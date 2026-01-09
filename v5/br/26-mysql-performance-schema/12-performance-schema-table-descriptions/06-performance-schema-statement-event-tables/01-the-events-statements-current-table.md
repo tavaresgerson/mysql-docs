@@ -1,4 +1,4 @@
-#### 25.12.6.1 A tabela events\_statements\_current
+#### 25.12.6.1 A tabela events_statements_current
 
 A tabela `events_statements_current` contém eventos de declarações atuais. A tabela armazena uma linha por thread, mostrando o status atual do evento de declaração mais recente monitorado da thread, portanto, não há uma variável do sistema para configurar o tamanho da tabela.
 
@@ -92,7 +92,7 @@ A tabela `events_statements_current` tem as seguintes colunas:
 
 - `ROWS_AFECTADAS`
 
-  O número de linhas afetadas pela declaração. Para uma descrição do significado de "afetada", consulte mysql\_affected\_rows().
+  O número de linhas afetadas pela declaração. Para uma descrição do significado de "afetada", consulte mysql_affected_rows().
 
 - `ROWS_SENT`
 

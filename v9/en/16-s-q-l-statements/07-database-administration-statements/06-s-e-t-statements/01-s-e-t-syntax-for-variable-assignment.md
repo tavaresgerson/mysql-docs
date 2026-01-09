@@ -149,9 +149,9 @@ To display system variable names and values:
 
 * Several Performance Schema tables provide system variable information. See Section 29.12.14, “Performance Schema System Variable Tables”.
 
-* The Performance Schema `variables_info` table contains information showing when and by which user each system variable was most recently set. See Section 29.12.14.3, “Performance Schema variables\_info Table”.
+* The Performance Schema `variables_info` table contains information showing when and by which user each system variable was most recently set. See Section 29.12.14.3, “Performance Schema variables_info Table”.
 
-* The Performance Schema `persisted_variables` table provides an SQL interface to the `mysqld-auto.cnf` file, enabling its contents to be inspected at runtime using `SELECT` statements. See Section 29.12.14.2, “Performance Schema persisted\_variables Table”.
+* The Performance Schema `persisted_variables` table provides an SQL interface to the `mysqld-auto.cnf` file, enabling its contents to be inspected at runtime using `SELECT` statements. See Section 29.12.14.2, “Performance Schema persisted_variables Table”.
 
 ##### SET Error Handling
 

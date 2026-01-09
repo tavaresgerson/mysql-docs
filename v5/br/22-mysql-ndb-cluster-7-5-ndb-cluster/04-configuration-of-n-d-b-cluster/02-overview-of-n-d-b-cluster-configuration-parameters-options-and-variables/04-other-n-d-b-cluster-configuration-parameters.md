@@ -38,13 +38,13 @@ Os seguintes parâmetros se aplicam à seção `[tcp]` do arquivo `config.ini`:
 
 - `SendSignalId`: Envia o ID em cada sinal. Usado em arquivos de registro. Tem o valor padrão true em compilações de depuração.
 
-- `TCP_MAXSEG_SIZE`: Valor usado para TCP\_MAXSEG.
+- `TCP_MAXSEG_SIZE`: Valor usado para TCP_MAXSEG.
 
-- `TCP_RCV_BUF_SIZE`: Valor usado para SO\_RCVBUF.
+- `TCP_RCV_BUF_SIZE`: Valor usado para SO_RCVBUF.
 
-- `TCP_SND_BUF_SIZE`: Valor usado para SO\_SNDBUF.
+- `TCP_SND_BUF_SIZE`: Valor usado para SO_SNDBUF.
 
-- `TcpBind_INADDR_ANY`: Vincule InADDR\_ANY em vez do nome do host para a parte do servidor da conexão.
+- `TcpBind_INADDR_ANY`: Vincule InADDR_ANY em vez do nome do host para a parte do servidor da conexão.
 
 Os seguintes parâmetros se aplicam à seção `[shm]` do arquivo `config.ini`:
 

@@ -1,6 +1,6 @@
 ## 25.20 Migrando para o Sistema de Schema de Desempenho e Tabelas de Variáveis de Status
 
-O `INFORMATION_SCHEMA` possui tabelas que contêm informações sobre variáveis de sistema e status (veja Seção 24.3.11, “As tabelas GLOBAL\_VARIABLES e SESSION\_VARIABLES do INFORMATION\_SCHEMA”, e Seção 24.3.10, “As tabelas GLOBAL\_STATUS e SESSION\_STATUS do INFORMATION\_SCHEMA”). O Schema de Desempenho também contém tabelas de variáveis de sistema e status (veja Seção 25.12.13, “Tabelas de variáveis de sistema do Schema de Desempenho”, e Seção 25.12.14, “Tabelas de variáveis de status do Schema de Desempenho”). As tabelas do Schema de Desempenho são destinadas a substituir as tabelas do `INFORMATION_SCHEMA`, que são desaconselhadas a partir do MySQL 5.7.6 e serão removidas no MySQL 8.0.
+O `INFORMATION_SCHEMA` possui tabelas que contêm informações sobre variáveis de sistema e status (veja Seção 24.3.11, “As tabelas GLOBAL_VARIABLES e SESSION_VARIABLES do INFORMATION_SCHEMA”, e Seção 24.3.10, “As tabelas GLOBAL_STATUS e SESSION_STATUS do INFORMATION_SCHEMA”). O Schema de Desempenho também contém tabelas de variáveis de sistema e status (veja Seção 25.12.13, “Tabelas de variáveis de sistema do Schema de Desempenho”, e Seção 25.12.14, “Tabelas de variáveis de status do Schema de Desempenho”). As tabelas do Schema de Desempenho são destinadas a substituir as tabelas do `INFORMATION_SCHEMA`, que são desaconselhadas a partir do MySQL 5.7.6 e serão removidas no MySQL 8.0.
 
 Esta seção descreve o caminho de migração previsto para se afastar das tabelas de variáveis do sistema `INFORMATION_SCHEMA` e das variáveis de status para as tabelas correspondentes do Schema de Desempenho. Os desenvolvedores de aplicativos devem usar essas informações como orientação sobre as alterações necessárias para acessar as variáveis de sistema e status no MySQL 5.7.6 e versões posteriores, à medida que as tabelas `INFORMATION_SCHEMA` se tornam desatualizadas e, eventualmente, serão removidas.
 
@@ -72,7 +72,7 @@ Quando `show_compatibility_56` está em `OFF`, a compatibilidade com o MySQL 5.6
   Slave_running
   ```
 
-  As aplicações que utilizam essas variáveis de status devem ser revisadas para obter essas informações usando as tabelas do Schema de Desempenho relacionadas à replicação. Para obter detalhes, consulte Efeito do show\_compatibility\_56 nas variáveis de status do Slave.
+  As aplicações que utilizam essas variáveis de status devem ser revisadas para obter essas informações usando as tabelas do Schema de Desempenho relacionadas à replicação. Para obter detalhes, consulte Efeito do show_compatibility_56 nas variáveis de status do Slave.
 
 - O Schema de Desempenho não coleta estatísticas para as variáveis de status `Com_xxx` nas tabelas de variáveis de status. Para obter contagem de execução de declarações globais e por sessão, use as tabelas `events_statements_summary_global_by_event_name` e `events_statements_summary_by_thread_by_event_name`, respectivamente.
 

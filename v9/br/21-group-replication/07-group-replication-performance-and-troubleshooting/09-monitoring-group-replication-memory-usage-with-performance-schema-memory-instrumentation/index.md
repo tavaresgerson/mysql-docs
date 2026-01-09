@@ -44,7 +44,7 @@ O instrumentação do Schema de Desempenho `memory/group_rpl/` contém os seguin
 
 * `certification_data`: Memória alocada para a certificação de transações recebidas.
 
-* `certification_data_gc`: Memória alocada para o GTID\_EXECUTED enviado por cada membro para coleta de lixo.
+* `certification_data_gc`: Memória alocada para o GTID_EXECUTED enviado por cada membro para coleta de lixo.
 
 * `certification_info`: Memória alocada para o armazenamento de informações de certificação alocadas para resolver conflitos entre transações concorrentes.
 

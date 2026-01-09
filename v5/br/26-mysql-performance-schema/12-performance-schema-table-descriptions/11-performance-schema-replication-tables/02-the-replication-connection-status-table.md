@@ -1,4 +1,4 @@
-#### 25.12.11.2 Tabela replication\_connection\_status
+#### 25.12.11.2 Tabela replication_connection_status
 
 Esta tabela mostra o status atual da thread de I/O de replicação que lida com a conexão da réplica com a fonte.
 

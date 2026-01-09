@@ -8,7 +8,7 @@ A number of concepts central to an understanding of this topic are discussed in 
 
 Each data node should be located on a separate computer. While it is also possible to host multiple data node processes on a single computer, such a configuration is not usually recommended.
 
-It is common for the terms “node” and “data node” to be used interchangeably when referring to an **ndbd** or **ndbmtd**") process; where mentioned, management nodes (**ndb\_mgmd** processes) and SQL nodes (**mysqld** processes) are specified as such in this discussion.
+It is common for the terms “node” and “data node” to be used interchangeably when referring to an **ndbd** or **ndbmtd**") process; where mentioned, management nodes (**ndb_mgmd** processes) and SQL nodes (**mysqld** processes) are specified as such in this discussion.
 
 **Node group.** A node group consists of one or more nodes, and stores partitions, or sets of fragment replicas (see next item).
 
@@ -54,7 +54,7 @@ The following diagram illustrates an NDB Cluster with four data nodes running **
 
 Note
 
-Only data nodes are shown here; although a working NDB Cluster requires an **ndb\_mgmd** process for cluster management and at least one SQL node to access the data stored by the cluster, these have been omitted from the figure for clarity.
+Only data nodes are shown here; although a working NDB Cluster requires an **ndb_mgmd** process for cluster management and at least one SQL node to access the data stored by the cluster, these have been omitted from the figure for clarity.
 
 **Figure 25.2 NDB Cluster with Two Node Groups**
 

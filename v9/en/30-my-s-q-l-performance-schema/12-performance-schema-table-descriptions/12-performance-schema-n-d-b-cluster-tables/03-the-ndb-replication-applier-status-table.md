@@ -1,4 +1,4 @@
-#### 29.12.12.3 The ndb\_replication\_applier\_status Table
+#### 29.12.12.3 The ndb_replication_applier_status Table
 
 `NDBCLUSTER` exposes its internal replication applier state for observation using global status variables such as `Ndb_replica_max_replicated_epoch` and `Ndb_api_trans_start_count_replica`, but these values reflect the state of the default replication channel only. The `ndb_replication_applier_status` provides the same information, but on a per-channel basis; with the exception of `CHANNEL_NAME`, each column in this table corresponds to a server status variable; where applicable, this information is included in the column descriptions provided later in this section.
 

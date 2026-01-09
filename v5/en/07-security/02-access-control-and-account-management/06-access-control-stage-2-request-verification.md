@@ -8,7 +8,7 @@ The `db` table grants database-specific privileges. Values in the scope columns 
 
 * A blank `User` value matches the anonymous user. A nonblank value matches literally; there are no wildcards in user names.
 
-* The wildcard characters `%` and `_` can be used in the `Host` and `Db` columns. These have the same meaning as for pattern-matching operations performed with the [`LIKE`](string-comparison-functions.html#operator_like) operator. If you want to use either character literally when granting privileges, you must escape it with a backslash. For example, to include the underscore character (`_`) as part of a database name, specify it as `\_` in the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement.
+* The wildcard characters `%` and `_` can be used in the `Host` and `Db` columns. These have the same meaning as for pattern-matching operations performed with the [`LIKE`](string-comparison-functions.html#operator_like) operator. If you want to use either character literally when granting privileges, you must escape it with a backslash. For example, to include the underscore character (`_`) as part of a database name, specify it as `_` in the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement.
 
 * A `'%'` or blank `Host` value means “any host.”
 

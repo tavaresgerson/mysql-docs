@@ -39,7 +39,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin do lado do servi
   Pode haver nomes de principais de serviço que diferem apenas pelo nome do reino.
 *  `authentication_ldap_sasl_auth_method_name`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>SCRAM-SHA-1</code></p><p class="valid-value"><code>SCRAM-SHA-256</code></p><p class="valid-value"><code>GSSAPI</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>SCRAM-SHA-1</code></p><p><code>SCRAM-SHA-256</code></p><p><code>GSSAPI</code></p></td> </tr></tbody></table>
 
 Para a autenticação SASL LDAP, o nome do método de autenticação. A comunicação entre o plugin de autenticação e o servidor LDAP ocorre de acordo com este método de autenticação para garantir a segurança da senha.
 
@@ -161,7 +161,7 @@ Em alguns casos, para o cenário do usuário, `memberOf` é um atributo de usuá
 
 Para a autenticação SASL LDAP, o nível de registro para as mensagens escritas no log de erro. A tabela a seguir mostra os valores permitidos do nível e seus significados.
 
-**Tabela 8.29 Níveis de registro para autenticação\_ldap\_sasl\_log\_status**
+**Tabela 8.29 Níveis de registro para autenticação_ldap_sasl_log_status**
 
 <table><thead><tr> <th>Opção</th> <th>Tipos de mensagens registradas</th> </tr></thead><tbody><tr> <td><code>1</code></td> <td>Sem mensagens</td> </tr><tr> <td><code>2</code></td> <td>Mensagens de erro</td> </tr><tr> <td><code>3</code></td> <td>Mensagens de erro e aviso</td> </tr><tr> <td><code>4</code></td> <td>Mensagens de erro, aviso e informações</td> </tr><tr> <td><code>5</code></td> <td>O mesmo que o nível anterior, mais mensagens de depuração do MySQL</td> </tr><tr> <td><code>6</code></td> <td>O mesmo que o nível anterior, mais mensagens de depuração da biblioteca LDAP</td> </tr></tbody></table>
 
@@ -217,7 +217,7 @@ Quando uma conta do MySQL autentica-se usando LDAP, o servidor MySQL envia uma s
 Para autenticação SASL LDAP, o nome do atributo que especifica os nomes de usuário nas entradas de diretório LDAP. Se o nome de distinção do usuário não for fornecido, o plugin de autenticação procura pelo nome usando este atributo. Por exemplo, se o valor de `authentication_ldap_sasl_user_search_attr` for `uid`, uma busca pelo nome do usuário `user1` encontra entradas com um valor de `uid` de `user1`.
 *  `authentication_ldap_simple_auth_method_name`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--authentication-ldap-simple-auth-method-name=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>authentication_ldap_simple_auth_method_name</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>SIMPLE</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>SIMPLE</code></p><p class="valid-value"><code>AD-FOREST</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--authentication-ldap-simple-auth-method-name=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>authentication_ldap_simple_auth_method_name</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>SIMPLE</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>SIMPLE</code></p><p><code>AD-FOREST</code></p></td> </tr></tbody></table>
 
   Para autenticação LDAP simples, o nome do método de autenticação. A comunicação entre o plugin de autenticação e o servidor LDAP ocorre de acordo com este método de autenticação.
 
@@ -330,7 +330,7 @@ Se `authentication_ldap_simple_max_pool_size=0` para desativar o pool, cada cone
 
 Para autenticação simples LDAP, o nível de registro para as mensagens escritas no log de erro. A tabela a seguir mostra os valores permitidos para o nível e seus significados.
 
-**Tabela 8.30 Níveis de registro para autenticação\_ldap\_simple\_log\_status**
+**Tabela 8.30 Níveis de registro para autenticação_ldap_simple_log_status**
 
 <table><thead><tr> <th>Opção</th> <th>Tipos de mensagens registradas</th> </tr></thead><tbody><tr> <td><code>1</code></td> <td>Sem mensagens</td> </tr><tr> <td><code>2</code></td> <td>Mensagens de erro</td> </tr><tr> <td><code>3</code></td> <td>Mensagens de erro e aviso</td> </tr><tr> <td><code>4</code></td> <td>Mensagens de erro, aviso e informações</td> </tr><tr> <td><code>5</code></td> <td>O mesmo que o nível anterior, mais mensagens de depuração do MySQL</td> </tr><tr> <td><code>6</code></td> <td>O mesmo que o nível anterior, mais mensagens de depuração da biblioteca LDAP</td> </tr></tbody></table>
 *  `authentication_ldap_simple_max_pool_size`

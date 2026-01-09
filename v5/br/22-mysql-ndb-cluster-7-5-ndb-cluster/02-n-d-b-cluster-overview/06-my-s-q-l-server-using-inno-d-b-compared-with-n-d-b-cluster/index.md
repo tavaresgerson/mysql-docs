@@ -16,4 +16,4 @@ Embora também seja verdade que alguns tipos de aplicações empresariais comuns
 
 Para obter informações sobre as características relativas dos motores de armazenamento `NDB` e `MEMORY`, consulte Quando usar MEMORY ou NDB Cluster.
 
-Consulte o \[Capítulo 15, *Motores de Armazenamento Alternativos*] (storage-engines.html) para obter informações adicionais sobre os motores de armazenamento do MySQL.
+Consulte o [Capítulo 15, *Motores de Armazenamento Alternativos*] (storage-engines.html) para obter informações adicionais sobre os motores de armazenamento do MySQL.

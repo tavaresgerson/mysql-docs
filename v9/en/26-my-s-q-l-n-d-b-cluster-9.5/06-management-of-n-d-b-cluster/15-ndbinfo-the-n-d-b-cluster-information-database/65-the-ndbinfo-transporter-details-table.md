@@ -1,4 +1,4 @@
-#### 25.6.15.65 The ndbinfo transporter\_details Table
+#### 25.6.15.65 The ndbinfo transporter_details Table
 
 This table contains information about individual NDB transporters, rather than aggregate information as shown by the `transporters` table.
 

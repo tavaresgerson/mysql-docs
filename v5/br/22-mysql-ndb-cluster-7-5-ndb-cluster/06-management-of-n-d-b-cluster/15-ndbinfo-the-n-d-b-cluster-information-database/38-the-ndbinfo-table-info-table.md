@@ -1,4 +1,4 @@
-#### 21.6.15.38 A tabela ndbinfo table\_info
+#### 21.6.15.38 A tabela ndbinfo table_info
 
 A tabela `table_info` fornece informações sobre opções de registro, verificação de ponto de controle, distribuição e armazenamento em vigor para tabelas individuais de `NDB`.
 

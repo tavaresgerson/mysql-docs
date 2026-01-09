@@ -4,7 +4,7 @@ This section describes how to rebuild or repair tables or indexes, which may be 
 
 * Changes to how MySQL handles data types or character sets. For example, an error in a collation might have been corrected, necessitating a table rebuild to update the indexes for character columns that use the collation.
 
-* Required table repairs or upgrades reported by `CHECK TABLE`, **mysqlcheck**, or **mysql\_upgrade**.
+* Required table repairs or upgrades reported by `CHECK TABLE`, **mysqlcheck**, or **mysql_upgrade**.
 
 Methods for rebuilding a table include:
 

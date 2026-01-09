@@ -32,7 +32,7 @@ Ao executar o MySQL, siga estas diretrizes:
 
   - Tente escanear seus ports da Internet usando uma ferramenta como o `nmap`. O MySQL usa a porta 3306 por padrão. Essa porta não deve ser acessível a hosts não confiáveis. Como uma maneira simples de verificar se sua porta MySQL está aberta, tente o seguinte comando a partir de uma máquina remota, onde *`server_host`* é o nome do host ou o endereço IP do host em que seu servidor MySQL está rodando:
 
-    ```sql
+    ```sh
     $> telnet server_host 3306
     ```
 
@@ -44,12 +44,12 @@ Ao executar o MySQL, siga estas diretrizes:
 
 - Aprenda a usar os utilitários **tcpdump** e **strings**. Na maioria dos casos, você pode verificar se os fluxos de dados do MySQL estão não criptografados emitindo um comando como o seguinte:
 
-  ```sql
+  ```sh
   $> tcpdump -l -i eth0 -w - src or dst port 3306 | strings
   ```
 
   Isso funciona no Linux e deve funcionar com pequenas modificações em outros sistemas.
 
-  Aviso
-
+  ::: warning Aviso
   Se você não ver dados em texto claro, isso nem sempre significa que as informações estão realmente criptografadas. Se você precisar de alta segurança, consulte um especialista em segurança.
+  :::

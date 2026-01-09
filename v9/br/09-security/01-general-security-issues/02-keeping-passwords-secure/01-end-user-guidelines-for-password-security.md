@@ -4,7 +4,7 @@ Os usuários do MySQL devem seguir as diretrizes abaixo para manter suas senhas 
 
 Quando você executa um programa cliente para se conectar ao servidor MySQL, não é recomendável especificar sua senha de uma maneira que a exponga à descoberta por outros usuários. Os métodos que você pode usar para especificar sua senha ao executar programas cliente estão listados aqui, juntamente com uma avaliação dos riscos de cada método. Em resumo, os métodos mais seguros são solicitar a senha ao programa cliente ou especificar a senha em um arquivo de opção de proteção adequada.
 
-* Use o utilitário **mysql\_config\_editor**, que permite que você armazene credenciais de autenticação em um arquivo de caminho de login criptografado chamado `.mylogin.cnf`. O arquivo pode ser lido mais tarde por programas clientes do MySQL para obter credenciais de autenticação para se conectar ao MySQL Server. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+* Use o utilitário **mysql_config_editor**, que permite que você armazene credenciais de autenticação em um arquivo de caminho de login criptografado chamado `.mylogin.cnf`. O arquivo pode ser lido mais tarde por programas clientes do MySQL para obter credenciais de autenticação para se conectar ao MySQL Server. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 * Use a opção `--password=password` ou `-ppassword` na linha de comando. Por exemplo:
 

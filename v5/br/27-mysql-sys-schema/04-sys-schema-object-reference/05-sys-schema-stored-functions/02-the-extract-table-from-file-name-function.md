@@ -1,4 +1,4 @@
-#### 26.4.5.2 A função extract\_table\_from\_file\_name()
+#### 26.4.5.2 A função extract_table_from_file_name()
 
 Dada um nome de caminho de arquivo, retorna o componente de caminho que representa o nome da tabela.
 

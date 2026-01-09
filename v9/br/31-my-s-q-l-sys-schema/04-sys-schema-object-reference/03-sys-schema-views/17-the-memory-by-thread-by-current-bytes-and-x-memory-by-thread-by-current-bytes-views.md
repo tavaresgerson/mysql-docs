@@ -1,4 +1,4 @@
-#### 30.4.3.17 Visões `memory\_by\_thread\_by\_current\_bytes` e `x$memory\_by\_thread\_by\_current\_bytes`
+#### 30.4.3.17 Visões `memory_by_thread_by_current_bytes` e `x$memory_by_thread_by_current_bytes`
 
 Essas visões resumem o uso da memória, agrupadas por thread. Por padrão, as linhas são ordenadas em ordem decrescente de quantidade de memória usada.
 

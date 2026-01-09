@@ -6,7 +6,7 @@ SHOW TABLE STATUS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-`SHOW TABLE STATUS` funciona como `SHOW TABLES`, mas fornece uma grande quantidade de informações sobre cada tabela que não é `TEMPORARY`. Você também pode obter essa lista usando o comando **mysqlshow --status *`db_name`***. A cláusula `LIKE` (funções de comparação de strings#operador\_like), se presente, indica quais nomes de tabela devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Declarações SHOW”.
+`SHOW TABLE STATUS` funciona como `SHOW TABLES`, mas fornece uma grande quantidade de informações sobre cada tabela que não é `TEMPORARY`. Você também pode obter essa lista usando o comando **mysqlshow --status *`db_name`***. A cláusula `LIKE` (funções de comparação de strings#operador_like), se presente, indica quais nomes de tabela devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Declarações SHOW”.
 
 Essa declaração também exibe informações sobre visualizações.
 
@@ -85,7 +85,7 @@ A saída `SHOW TABLE STATUS` tem essas colunas:
       AND   TABLE_NAME   = 'mytable';
   ```
 
-  Para mais informações, consulte Seção 24.3.16, “A Tabela INFORMATION\_SCHEMA PARTITIONS”.
+  Para mais informações, consulte Seção 24.3.16, “A Tabela INFORMATION_SCHEMA PARTITIONS”.
 
 - `Auto_increment`
 
@@ -139,7 +139,7 @@ A saída `SHOW TABLE STATUS` tem essas colunas:
 
 - Para as tabelas `NDB`, o resultado desta declaração mostra valores apropriados para as colunas `Avg_row_length` e `Data_length`, com a exceção de que as colunas `BLOB` não são consideradas.
 
-- Para as tabelas ``NDB`, `Data\_length`inclui dados armazenados apenas na memória principal; as colunas`Max\_data\_length`e`Data\_free\` se aplicam aos dados em disco.
+- Para as tabelas ``NDB`, `Data_length`inclui dados armazenados apenas na memória principal; as colunas`Max_data_length`e`Data_free\` se aplicam aos dados em disco.
 
 - Para as tabelas de dados de disco do NDB Cluster, o `Max_data_length` mostra o espaço alocado para a parte de disco de uma tabela ou fragmento de Dados de disco. (O uso do recurso de dados em memória é relatado pela coluna `Data_length`.)
 
@@ -147,4 +147,4 @@ A saída `SHOW TABLE STATUS` tem essas colunas:
 
 - Para as visualizações, todas as colunas exibidas por `SHOW TABLE STATUS` são `NULL`, exceto que `Nome` indica o nome da visualização e `Comentário` diz `VISUALIZAÇÃO`.
 
-As informações sobre as tabelas também estão disponíveis na tabela `INFORMATION_SCHEMA` `TABLES`. Veja Seção 24.3.25, “A Tabela INFORMATION\_SCHEMA TABLES”.
+As informações sobre as tabelas também estão disponíveis na tabela `INFORMATION_SCHEMA` `TABLES`. Veja Seção 24.3.25, “A Tabela INFORMATION_SCHEMA TABLES”.

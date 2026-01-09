@@ -1,4 +1,4 @@
-#### 26.4.5.1 A função extract\_schema\_from\_file\_name()
+#### 26.4.5.1 A função extract_schema_from_file_name()
 
 Dada um nome de caminho de arquivo, retorna o componente de caminho que representa o nome do esquema. Esta função assume que o nome do arquivo está dentro do diretório do esquema. Por essa razão, ela não funciona com partições ou tabelas definidas usando a opção `DATA_DIRECTORY` própria.
 

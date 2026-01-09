@@ -6,17 +6,17 @@
 
 8.4.5.3 Keyring Plugin Installation
 
-8.4.5.4 Using the component\_keyring\_file File-Based Keyring Component
+8.4.5.4 Using the component_keyring_file File-Based Keyring Component
 
-8.4.5.5 Using the component\_keyring\_encrypted\_file Encrypted File-Based Keyring Component
+8.4.5.5 Using the component_keyring_encrypted_file Encrypted File-Based Keyring Component
 
-8.4.5.6 Using the keyring\_okv KMIP Plugin
+8.4.5.6 Using the keyring_okv KMIP Plugin
 
-8.4.5.7 Using the component\_keyring\_kmip KMIP Component
+8.4.5.7 Using the component_keyring_kmip KMIP Component
 
-8.4.5.8 Using the keyring\_aws Amazon Web Services Keyring Plugin
+8.4.5.8 Using the keyring_aws Amazon Web Services Keyring Plugin
 
-8.4.5.9 Using the component\_keyring\_aws AWS Keyring Component
+8.4.5.9 Using the component_keyring_aws AWS Keyring Component
 
 8.4.5.10 Using the HashiCorp Vault Keyring Plugin
 
@@ -44,21 +44,21 @@ MySQL Server supports a keyring that enables internal server components and plug
 
   These keyring components are available:
 
-  + `component_keyring_file`: Stores keyring data in a file local to the server host. Available in MySQL Community Edition and MySQL Enterprise Edition distributions. See Section 8.4.5.4, “Using the component\_keyring\_file File-Based Keyring Component”.
+  + `component_keyring_file`: Stores keyring data in a file local to the server host. Available in MySQL Community Edition and MySQL Enterprise Edition distributions. See Section 8.4.5.4, “Using the component_keyring_file File-Based Keyring Component”.
 
-  + `component_keyring_encrypted_file`: Stores keyring data in an encrypted, password-protected file local to the server host. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.5, “Using the component\_keyring\_encrypted\_file Encrypted File-Based Keyring Component”.
+  + `component_keyring_encrypted_file`: Stores keyring data in an encrypted, password-protected file local to the server host. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.5, “Using the component_keyring_encrypted_file Encrypted File-Based Keyring Component”.
 
   + `component_keyring_oci`: Stores keyring data in the Oracle Cloud Infrastructure Vault. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.12, “Using the Oracle Cloud Infrastructure Vault Keyring Component”.
 
-  + `component_keyring_aws`: Communicates with the Amazon Web Services Key Management Service for key generation and uses a local file for key storage. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.9, “Using the component\_keyring\_aws AWS Keyring Component”.
+  + `component_keyring_aws`: Communicates with the Amazon Web Services Key Management Service for key generation and uses a local file for key storage. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.9, “Using the component_keyring_aws AWS Keyring Component”.
 
   + `component_keyring_hashicorp`: Communicates with HashiCorp Vault for back end storage. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.11, “Using the HashiCorp Vault Keyring Component”.
 
   These keyring plugins are available:
 
-  + `keyring_okv`: A KMIP 1.1 plugin for use with KMIP-compatible back end keyring storage products such as Oracle Key Vault and Gemalto SafeNet KeySecure Appliance. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.6, “Using the keyring\_okv KMIP Plugin”.
+  + `keyring_okv`: A KMIP 1.1 plugin for use with KMIP-compatible back end keyring storage products such as Oracle Key Vault and Gemalto SafeNet KeySecure Appliance. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.6, “Using the keyring_okv KMIP Plugin”.
 
-  + `keyring_aws`: (*Deprecated*) Communicates with the Amazon Web Services Key Management Service for key generation and encryption, using a local file for key storage. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.8, “Using the keyring\_aws Amazon Web Services Keyring Plugin”.
+  + `keyring_aws`: (*Deprecated*) Communicates with the Amazon Web Services Key Management Service for key generation and encryption, using a local file for key storage. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.8, “Using the keyring_aws Amazon Web Services Keyring Plugin”.
 
   + (*Deprecated*) `keyring_hashicorp`: Communicates with HashiCorp Vault for back end storage. Available in MySQL Enterprise Edition distributions. See Section 8.4.5.10, “Using the HashiCorp Vault Keyring Plugin”.
 
@@ -70,9 +70,9 @@ MySQL Server supports a keyring that enables internal server components and plug
 
 * Key metadata access:
 
-  + The Performance Schema `keyring_keys` table exposes metadata for keys in the keyring. Key metadata includes key IDs, key owners, and backend key IDs. The `keyring_keys` table does not expose any sensitive keyring data such as key contents. See Section 29.12.18.2, “The keyring\_keys table”.
+  + The Performance Schema `keyring_keys` table exposes metadata for keys in the keyring. Key metadata includes key IDs, key owners, and backend key IDs. The `keyring_keys` table does not expose any sensitive keyring data such as key contents. See Section 29.12.18.2, “The keyring_keys table”.
 
-  + The Performance Schema `keyring_component_status` table provides status information about the keyring component in use, if one is installed. See Section 29.12.18.1, “The keyring\_component\_status Table”.
+  + The Performance Schema `keyring_component_status` table provides status information about the keyring component in use, if one is installed. See Section 29.12.18.1, “The keyring_component_status Table”.
 
 * A key migration capability. MySQL supports migration of keys between keystores, enabling DBAs to switch a MySQL installation from one keystore to another. See Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”.
 

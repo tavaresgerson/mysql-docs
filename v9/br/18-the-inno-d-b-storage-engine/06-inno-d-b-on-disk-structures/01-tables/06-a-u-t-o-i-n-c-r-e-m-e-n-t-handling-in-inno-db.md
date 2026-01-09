@@ -244,7 +244,7 @@ Com qualquer configuração de `innodb_autoinc_lock_mode`, essa instrução gera
   +----+
   ```
 
-##### Inicialização do Contador InnoDB AUTO\_INCREMENT
+##### Inicialização do Contador InnoDB AUTO_INCREMENT
 
 Esta seção descreve como o `InnoDB` inicializa os contadores `AUTO_INCREMENT`.
 

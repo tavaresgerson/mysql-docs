@@ -1,4 +1,4 @@
-#### 30.4.3.26 The schema\_object\_overview View
+#### 30.4.3.26 The schema_object_overview View
 
 This view summarizes the types of objects within each schema. By default, rows are sorted by schema and object type.
 

@@ -1,10 +1,10 @@
 #### 6.4.1.7 Autenticação Pluggable PAM (PAM)
 
-Nota
-
+::: info Nota
 A autenticação pluggable do PAM é uma extensão incluída na Edição Empresarial do MySQL, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
 A Edição Empresarial do MySQL suporta um método de autenticação que permite que o MySQL Server use o PAM (Módulos de Autenticação Conectam) para autenticar os usuários do MySQL. O PAM permite que um sistema use uma interface padrão para acessar vários tipos de métodos de autenticação, como senhas tradicionais do Unix ou um diretório LDAP.
+:::
 
 A autenticação pluggable do PAM oferece essas capacidades:
 
@@ -18,7 +18,7 @@ A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O sufixo 
 
 **Tabela 6.13 Nomes de plugins e bibliotecas para autenticação PAM**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha do PAM."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>authentication_pam</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code>mysql_clear_password</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">authentication_pam.so</code>]]</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha do PAM."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>authentication_pam</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code>mysql_clear_password</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code>authentication_pam.so</code>]]</td> </tr></tbody></table>
 
 O plugin de criptografia `mysql_clear_password` do lado do cliente que se comunica com o plugin PAM do lado do servidor está integrado à biblioteca de clientes `libmysqlclient` e está incluído em todas as distribuições, incluindo as distribuições comunitárias. A inclusão do plugin de criptografia do lado do cliente em todas as distribuições do MySQL permite que clientes de qualquer distribuição se conectem a um servidor que tenha o plugin PAM do lado do servidor carregado.
 
@@ -79,7 +79,7 @@ O nome de base do arquivo da biblioteca de plugins é `authentication_pam`. O su
 
 Para carregar o plugin no início do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugins, a opção deve ser fornecida toda vez que o servidor for iniciado. Por exemplo, coloque essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
-```sql
+```
 [mysqld]
 plugin-load-add=authentication_pam.so
 ```
@@ -92,7 +92,7 @@ Como alternativa, para carregar o plugin em tempo de execução, use esta declar
 INSTALL PLUGIN authentication_pam SONAME 'authentication_pam.so';
 ```
 
-`INSTALE O PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
+`INSTALL PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
 
 Para verificar a instalação do plugin, examine a tabela Schema de Informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte Seção 5.5.2, “Obtendo Informações de Plugins do Servidor”). Por exemplo:
 
@@ -153,7 +153,7 @@ A sintaxe da string de autenticação para o plugin de autenticação PAM segue 
 
 - A cadeia consiste em um nome de serviço PAM, opcionalmente seguido de uma lista de mapeamento de grupo PAM, que consiste em um ou mais pares de palavras-chave/valores, cada um especificando um nome de grupo PAM e um nome de usuário MySQL:
 
-  ```sql
+  ```
   pam_service_name[,pam_group_name=mysql_user_name]...
   ```
 
@@ -201,15 +201,15 @@ O plugin de autenticação PAM verifica no momento da inicialização se o valor
 
 Este cenário de autenticação utiliza o PAM para verificar usuários externos definidos em termos de nomes de usuário do sistema operacional e senhas Unix, sem proxy. Todos os usuários externos autorizados a se conectar ao MySQL Server devem ter uma conta MySQL correspondente definida para usar a autenticação PAM através do armazenamento tradicional de senhas Unix.
 
-Nota
-
+::: info Nota
 As senhas tradicionais do Unix são verificadas usando o arquivo `/etc/shadow`. Para obter informações sobre possíveis problemas relacionados a este arquivo, consulte Autenticação PAM para Acesso à Armazenamento de Senhas do Unix.
+:::
 
 1. Verifique se a autenticação Unix permite logins no sistema operacional com o nome de usuário `antonio` e a senha *`antonio_password`*.
 
 2. Configure o PAM para autenticar as conexões do MySQL usando senhas Unix tradicionais, criando um arquivo de serviço PAM `mysql-unix` chamado `/etc/pam.d/mysql-unix`. O conteúdo do arquivo depende do sistema, então verifique os arquivos relacionados ao login no diretório `/etc/pam.d` para ver como eles estão. No Linux, o arquivo `mysql-unix` pode parecer assim:
 
-   ```sql
+   ```
    #%PAM-1.0
    auth            include         password-auth
    account         include         password-auth
@@ -219,7 +219,7 @@ As senhas tradicionais do Unix são verificadas usando o arquivo `/etc/shadow`. 
 
    O formato de arquivo PAM pode diferir em alguns sistemas. Por exemplo, em Ubuntu e outros sistemas baseados no Debian, use esses conteúdos de arquivo:
 
-   ```sql
+   ```
    @include common-auth
    @include common-account
    @include common-session-noninteractive
@@ -240,7 +240,7 @@ As senhas tradicionais do Unix são verificadas usando o arquivo `/etc/shadow`. 
 
 4. Use o cliente de linha de comando **mysql** para se conectar ao servidor MySQL como `antonio`. Por exemplo:
 
-   ```sql
+   ```sh
    $> mysql --user=antonio --password --enable-cleartext-plugin
    Enter password: antonio_password
    ```
@@ -258,13 +258,13 @@ As senhas tradicionais do Unix são verificadas usando o arquivo `/etc/shadow`. 
 
    Isso demonstra que o usuário do sistema operacional `antonio` está autenticado e possui os privilégios concedidos ao usuário MySQL `antonio`, e que não houve nenhum redirecionamento.
 
-Nota
-
+::: info Nota
 O plugin de autenticação `mysql_clear_password` do lado do cliente deixa a senha intacta, então os programas do cliente enviam-na para o servidor MySQL como texto não criptografado. Isso permite que a senha seja passada como está para o PAM. Uma senha não criptografada é necessária para usar a biblioteca PAM do lado do servidor, mas pode ser um problema de segurança em algumas configurações. Essas medidas minimizam o risco:
 
 - Para tornar menos provável o uso acidental do plugin `mysql_clear_password`, os clientes MySQL devem habilitá-lo explicitamente (por exemplo, com a opção `--enable-cleartext-plugin`). Veja Seção 6.4.1.6, “Autenticação com Autenticação de Texto Aberto no Lado do Cliente”.
 
 - Para evitar a exposição da senha com o plugin `mysql_clear_password` ativado, os clientes MySQL devem se conectar ao servidor MySQL usando uma conexão criptografada. Consulte Seção 6.3.1, “Configurando o MySQL para usar conexões criptografadas”.
+:::
 
 ##### Autenticação PAM LDAP sem usuários de proxy
 
@@ -286,7 +286,7 @@ Configure o MySQL para autenticação PAM LDAP da seguinte forma:
 
 2. Configure o PAM para autenticar conexões do MySQL usando LDAP criando um arquivo de serviço PAM `mysql-ldap` com o nome `/etc/pam.d/mysql-ldap`. O conteúdo do arquivo depende do sistema, então verifique os arquivos relacionados ao login no diretório `/etc/pam.d` para ver como eles estão. No Linux, o arquivo `mysql-ldap` pode parecer assim:
 
-   ```sql
+   ```
    #%PAM-1.0
    auth        required    pam_ldap.so
    account     required    pam_ldap.so
@@ -317,9 +317,9 @@ O esquema de autenticação descrito aqui utiliza o mapeamento de grupo PAM e o 
 
 O procedimento mostrado aqui utiliza autenticação de senha Unix. Para usar o LDAP, consulte os primeiros passos de Autenticação PAM LDAP sem Usuários Proxy.
 
-Nota
-
+::: info Nota
 As senhas tradicionais do Unix são verificadas usando o arquivo `/etc/shadow`. Para obter informações sobre possíveis problemas relacionados a este arquivo, consulte Autenticação PAM para Acesso à Armazenamento de Senhas do Unix.
+:::
 
 1. Verifique se a autenticação Unix permite logins no sistema operacional com o nome de usuário `antonio` e a senha *`antonio_password`*.
 
@@ -327,7 +327,7 @@ As senhas tradicionais do Unix são verificadas usando o arquivo `/etc/shadow`. 
 
 3. Configure o PAM para autenticar o serviço PAM `mysql-unix` por meio de usuários do sistema operacional, criando um arquivo chamado `/etc/pam.d/mysql-unix`. O conteúdo do arquivo depende do sistema, então verifique os arquivos relacionados ao login no diretório `/etc/pam.d` para ver como eles estão. No Linux, o arquivo `mysql-unix` pode parecer assim:
 
-   ```sql
+   ```
    #%PAM-1.0
    auth            include         password-auth
    account         include         password-auth
@@ -337,7 +337,7 @@ As senhas tradicionais do Unix são verificadas usando o arquivo `/etc/shadow`. 
 
    O formato de arquivo PAM pode diferir em alguns sistemas. Por exemplo, em Ubuntu e outros sistemas baseados no Debian, use esses conteúdos de arquivo:
 
-   ```sql
+   ```
    @include common-auth
    @include common-account
    @include common-session-noninteractive
@@ -390,7 +390,7 @@ As senhas tradicionais do Unix são verificadas usando o arquivo `/etc/shadow`. 
 
 7. Use o cliente de linha de comando **mysql** para se conectar ao servidor MySQL como `antonio`.
 
-   ```sql
+   ```sh
    $> mysql --user=antonio --password --enable-cleartext-plugin
    Enter password: antonio_password
    ```
@@ -421,13 +421,13 @@ As senhas tradicionais do Unix são verificadas usando o arquivo `/etc/shadow`. 
 
    Isso demonstra que o usuário do sistema operacional `antonio` está autenticado para ter os privilégios do usuário `data_entry` do MySQL, e que a proxy é realizada através da conta de proxy padrão.
 
-Nota
-
+::: info Nota
 O plugin de autenticação `mysql_clear_password` do lado do cliente deixa a senha intacta, então os programas do cliente enviam-na para o servidor MySQL como texto não criptografado. Isso permite que a senha seja passada como está para o PAM. Uma senha não criptografada é necessária para usar a biblioteca PAM do lado do servidor, mas pode ser um problema de segurança em algumas configurações. Essas medidas minimizam o risco:
 
 - Para tornar menos provável o uso acidental do plugin `mysql_clear_password`, os clientes MySQL devem habilitá-lo explicitamente (por exemplo, com a opção `--enable-cleartext-plugin`). Veja Seção 6.4.1.6, “Autenticação com Autenticação de Texto Aberto no Lado do Cliente”.
 
 - Para evitar a exposição da senha com o plugin `mysql_clear_password` ativado, os clientes MySQL devem se conectar ao servidor MySQL usando uma conexão criptografada. Consulte Seção 6.3.1, “Configurando o MySQL para usar conexões criptografadas”.
+:::
 
 ##### Autenticação PAM Acesso à Armazenamento de Senhas Unix
 
@@ -441,20 +441,20 @@ Em alguns sistemas, a autenticação Unix usa um repositório de senhas, como `/
 
   3. Atribua o diretório `/etc/group` ao grupo `shadow` e habilite a permissão de leitura do grupo:
 
-     ```sql
+     ```sh
      chgrp shadow /etc/shadow
      chmod g+r /etc/shadow
      ```
 
   4. Reinicie o servidor MySQL.
-- Se você estiver usando o módulo `pam_unix` e o utilitário **unix\_chkpwd**, habilite o acesso ao repositório de senhas da seguinte forma:
+- Se você estiver usando o módulo `pam_unix` e o utilitário **unix_chkpwd**, habilite o acesso ao repositório de senhas da seguinte forma:
 
-  ```sql
+  ```sh
   chmod u-s /usr/sbin/unix_chkpwd
   setcap cap_dac_read_search+ep /usr/sbin/unix_chkpwd
   ```
 
-  Ajuste o caminho para **unix\_chkpwd** conforme necessário para sua plataforma.
+  Ajuste o caminho para **unix_chkpwd** conforme necessário para sua plataforma.
 
 ##### Depuração da Autenticação PAM
 
@@ -468,7 +468,7 @@ Outra técnica para depurar falhas de conexão e determinar o que está acontece
 
 Configure um arquivo de serviço PAM chamado `/etc/pam.d/mysql-any-password` com este conteúdo (o formato pode variar em alguns sistemas):
 
-```sql
+```sh
 #%PAM-1.0
 auth        required    pam_permit.so
 account     required    pam_permit.so

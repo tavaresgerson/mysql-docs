@@ -55,7 +55,7 @@ Tabelas que usam o motor de armazenamento `NDB` são implicitamente particionada
 
 Se você definir um esquema de particionamento explícito para uma tabela `NDB`, a tabela deve ter uma chave primária explícita, e quaisquer colunas usadas na expressão de particionamento devem fazer parte desta chave. No entanto, se a tabela usar uma expressão de particionamento “vazia” — ou seja, `PARTITION BY KEY()` sem referências de coluna — então nenhuma chave primária explícita é necessária.
 
-Você pode observar essa particionamento usando o utilitário **ndb\_desc** (com a opção `-p`).
+Você pode observar essa particionamento usando o utilitário **ndb_desc** (com a opção `-p`).
 
 Importante
 

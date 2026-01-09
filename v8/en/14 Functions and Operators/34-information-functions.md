@@ -148,7 +148,7 @@
   +  `ALTER VIEW`
   +  `SET PASSWORD`
 
-  For information about the implications that this expansion of `CURRENT_USER()` has for replication, see Section 19.5.1.8, “Replication of CURRENT\_USER()”").
+  For information about the implications that this expansion of `CURRENT_USER()` has for replication, see Section 19.5.1.8, “Replication of CURRENT_USER()”").
 
   This function can be used for the default value of a `VARCHAR` or `TEXT` column, as shown in the following  `CREATE TABLE` statement:
 
@@ -381,7 +381,7 @@
   +------------------+
   ```
 
-  For more information, see Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+  For more information, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
   If *`expr`* is given as an argument to `LAST_INSERT_ID()`, the value of the argument is returned by the function and is remembered as the next value to be returned by `LAST_INSERT_ID()`. This can be used to simulate sequences:
 
@@ -398,7 +398,7 @@
      mysql> SELECT LAST_INSERT_ID();
      ```
 
-     The  `UPDATE` statement increments the sequence counter and causes the next call to  `LAST_INSERT_ID()` to return the updated value. The `SELECT` statement retrieves that value. The `mysql_insert_id()` C API function can also be used to get the value. See mysql\_insert\_id().
+     The  `UPDATE` statement increments the sequence counter and causes the next call to  `LAST_INSERT_ID()` to return the updated value. The `SELECT` statement retrieves that value. The `mysql_insert_id()` C API function can also be used to get the value. See mysql_insert_id().
 
   You can generate sequences without calling `LAST_INSERT_ID()`, but the utility of using the function this way is that the ID value is maintained in the server as the last automatically generated value. It is multi-user safe because multiple clients can issue the  `UPDATE` statement and get their own sequence value with the `SELECT` statement (or `mysql_insert_id()`), without affecting or being affected by other clients that generate their own sequence values.
 

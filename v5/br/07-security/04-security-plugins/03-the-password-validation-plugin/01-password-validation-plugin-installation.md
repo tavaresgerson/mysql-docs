@@ -12,7 +12,7 @@ O nome de base do arquivo da biblioteca de plugins é `validate_password`. O suf
 
 Para carregar o plugin no início do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugins, a opção deve ser fornecida toda vez que o servidor for iniciado. Por exemplo, coloque essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
-```sql
+```
 [mysqld]
 plugin-load-add=validate_password.so
 ```
@@ -25,7 +25,7 @@ Como alternativa, para carregar o plugin em tempo de execução, use esta declar
 INSTALL PLUGIN validate_password SONAME 'validate_password.so';
 ```
 
-`INSTALE O PLUGIN` carrega o plugin e também o registra na tabela `mysql.plugins` do sistema para que o plugin seja carregado em cada inicialização normal do servidor subsequente, sem a necessidade de `--plugin-load-add`.
+`INSTALL PLUGIN` carrega o plugin e também o registra na tabela `mysql.plugins` do sistema para que o plugin seja carregado em cada inicialização normal do servidor subsequente, sem a necessidade de `--plugin-load-add`.
 
 Para verificar a instalação do plugin, examine a tabela Schema de Informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte Seção 5.5.2, “Obtendo Informações de Plugins do Servidor”). Por exemplo:
 
@@ -44,7 +44,7 @@ Se o plugin não conseguir se inicializar, verifique o log de erro do servidor p
 
 Se o plugin tiver sido registrado anteriormente com `INSTALL PLUGIN` ou estiver carregado com `--plugin-load-add`, você pode usar a opção `--validate-password` na inicialização do servidor para controlar a ativação do plugin. Por exemplo, para carregar o plugin na inicialização e impedir que ele seja removido durante a execução, use essas opções:
 
-```sql
+```
 [mysqld]
 plugin-load-add=validate_password.so
 validate-password=FORCE_PLUS_PERMANENT

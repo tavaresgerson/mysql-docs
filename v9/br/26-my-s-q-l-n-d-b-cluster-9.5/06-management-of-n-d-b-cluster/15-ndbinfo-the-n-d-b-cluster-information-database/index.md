@@ -1,10 +1,10 @@
 ### 25.6.15 ndbinfo: Banco de Dados de Informações do Clúster NDB
 
-25.6.15.1 A tabela ndbinfo arbitrator\_validity\_detail
+25.6.15.1 A tabela ndbinfo arbitrator_validity_detail
 
-25.6.15.2 A tabela ndbinfo arbitrator\_validity\_summary
+25.6.15.2 A tabela ndbinfo arbitrator_validity_summary
 
-25.6.15.3 A tabela ndbinfo backup\_id
+25.6.15.3 A tabela ndbinfo backup_id
 
 25.6.15.4 A tabela ndbinfo blobs
 
@@ -12,77 +12,77 @@
 
 25.6.15.6 A tabela ndbinfo certificates
 
-25.6.15.7 A tabela ndbinfo cluster\_locks
+25.6.15.7 A tabela ndbinfo cluster_locks
 
-25.6.15.8 A tabela ndbinfo cluster\_operations
+25.6.15.8 A tabela ndbinfo cluster_operations
 
-25.6.15.9 A tabela ndbinfo cluster\_transactions
+25.6.15.9 A tabela ndbinfo cluster_transactions
 
-25.6.15.10 A tabela ndbinfo config\_nodes
+25.6.15.10 A tabela ndbinfo config_nodes
 
-25.6.15.11 A tabela ndbinfo config\_params
+25.6.15.11 A tabela ndbinfo config_params
 
-25.6.15.12 A tabela ndbinfo config\_values
+25.6.15.12 A tabela ndbinfo config_values
 
 25.6.15.13 A tabela ndbinfo counters
 
 25.6.15.14 A tabela ndbinfo cpudata
 
-25.6.15.15 A tabela ndbinfo cpudata\_1sec
+25.6.15.15 A tabela ndbinfo cpudata_1sec
 
-25.6.15.16 A tabela ndbinfo cpudata\_20sec
+25.6.15.16 A tabela ndbinfo cpudata_20sec
 
-25.6.15.17 A tabela ndbinfo cpudata\_50ms
+25.6.15.17 A tabela ndbinfo cpudata_50ms
 
 25.6.15.18 A tabela ndbinfo cpuinfo
 
 25.6.15.19 A tabela ndbinfo cpustat
 
-25.6.15.20 A tabela ndbinfo cpustat\_50ms
+25.6.15.20 A tabela ndbinfo cpustat_50ms
 
-25.6.15.21 A tabela ndbinfo cpustat\_1sec
+25.6.15.21 A tabela ndbinfo cpustat_1sec
 
-25.6.15.22 A tabela ndbinfo cpustat\_20sec
+25.6.15.22 A tabela ndbinfo cpustat_20sec
 
-25.6.15.23 A tabela ndbinfo dictionary\_columns
+25.6.15.23 A tabela ndbinfo dictionary_columns
 
-25.6.15.24 A tabela ndbinfo dictionary\_tables
+25.6.15.24 A tabela ndbinfo dictionary_tables
 
-25.6.15.25 A tabela ndbinfo dict\_obj\_info
+25.6.15.25 A tabela ndbinfo dict_obj_info
 
-25.6.15.26 A tabela ndbinfo dict\_obj\_tree
+25.6.15.26 A tabela ndbinfo dict_obj_tree
 
-25.6.15.27 A tabela ndbinfo dict\_obj\_types
+25.6.15.27 A tabela ndbinfo dict_obj_types
 
-25.6.15.28 A tabela ndbinfo disk\_write\_speed\_base
+25.6.15.28 A tabela ndbinfo disk_write_speed_base
 
-25.6.15.29 A tabela ndbinfo disk\_write\_speed\_aggregate
+25.6.15.29 A tabela ndbinfo disk_write_speed_aggregate
 
-25.6.15.30 A tabela ndbinfo disk\_write\_speed\_aggregate\_node
+25.6.15.30 A tabela ndbinfo disk_write_speed_aggregate_node
 
 25.6.15.31 A tabela ndbinfo diskpagebuffer
 
 25.6.15.32 A tabela ndbinfo diskstat
 
-25.6.15.33 A tabela ndbinfo diskstats\_1sec
+25.6.15.33 A tabela ndbinfo diskstats_1sec
 
-25.6.15.34 A tabela ndbinfo error\_messages
+25.6.15.34 A tabela ndbinfo error_messages
 
 25.6.15.35 A tabela ndbinfo events
 
 25.6.15.36 A tabela ndbinfo files
 
-25.6.15.37 A tabela ndbinfo foreign\_keys
+25.6.15.37 A tabela ndbinfo foreign_keys
 
-25.6.15.38 A tabela ndbinfo hash\_maps
+25.6.15.38 A tabela ndbinfo hash_maps
 
 25.6.15.39 A tabela ndbinfo hwinfo
 
-25.6.15.40 A tabela ndbinfo index\_columns
+25.6.15.40 A tabela ndbinfo index_columns
 
-25.6.15.41 A tabela ndbinfo index\_stats
+25.6.15.41 A tabela ndbinfo index_stats
 
-25.6.15.42 A tabela ndbinfo locks\_per\_fragment
+25.6.15.42 A tabela ndbinfo locks_per_fragment
 
 25.6.15.43 A tabela ndbinfo logbuffers
 
@@ -92,35 +92,35 @@
 
 25.6.15.46 A tabela ndbinfo memoryusage
 
-25.6.15.47 A tabela ndbinfo memory\_per\_fragment
+25.6.15.47 A tabela ndbinfo memory_per_fragment
 
 25.6.15.48 A tabela ndbinfo nodes
 
-25.6.15.49 A tabela ndbinfo operations\_per\_fragment
+25.6.15.49 A tabela ndbinfo operations_per_fragment
 
-25.6.15.50 A tabela ndbinfo pgman\_time\_track\_stats
+25.6.15.50 A tabela ndbinfo pgman_time_track_stats
 
 25.6.15.51 A tabela ndbinfo processes
 
 25.6.15.52 A tabela ndbinfo resources
 
-25.6.15.53 A tabela ndbinfo restart\_info
+25.6.15.53 A tabela ndbinfo restart_info
 
-25.6.15.54 A tabela ndbinfo server\_locks
+25.6.15.54 A tabela ndbinfo server_locks
 
-25.6.15.55 A tabela ndbinfo server\_operations
+25.6.15.55 A tabela ndbinfo server_operations
 
-25.6.15.56 A tabela ndbinfo server\_transactions
+25.6.15.56 A tabela ndbinfo server_transactions
 
-25.6.15.57 A tabela ndbinfo table\_distribution\_status
+25.6.15.57 A tabela ndbinfo table_distribution_status
 
-25.6.15.58 A tabela ndbinfo table\_fragments
+25.6.15.58 A tabela ndbinfo table_fragments
 
-25.6.15.59 A tabela ndbinfo table\_info
+25.6.15.59 A tabela ndbinfo table_info
 
-25.6.15.60 A tabela ndbinfo table\_replicas
+25.6.15.60 A tabela ndbinfo table_replicas
 
-25.6.15.61 A tabela ndbinfo tc\_time\_track\_stats
+25.6.15.61 A tabela ndbinfo tc_time_track_stats
 
 25.6.15.62 A tabela ndbinfo threadblocks
 

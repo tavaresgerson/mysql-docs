@@ -1,4 +1,4 @@
-#### 29.12.16.2 The tp\_thread\_group\_state Table
+#### 29.12.16.2 The tp_thread_group_state Table
 
 The `tp_thread_group_state` table has one row per thread group in the thread pool. Each row provides information about the current state of a group.
 
@@ -98,7 +98,7 @@ The `tp_thread_group_state` table has these columns:
 
 * `QUERY_THREADS_COUNT`
 
-  same as num\_query\_threads, but used for different purposes?
+  same as num_query_threads, but used for different purposes?
 
 * `TIME_OF_EARLIEST_CON_EXPIRE`
 

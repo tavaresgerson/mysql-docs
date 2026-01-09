@@ -50,7 +50,7 @@ As descrições a seguir listam as extensões do MySQL, organizadas por categori
 
   - A instrução `SET`. Veja a Seção 13.7.4.1, “Sintaxe SET para atribuição de variáveis”.
 
-  - A instrução `SHOW`. Veja a Seção 13.7.5, “Instruções SHOW”. As informações produzidas por muitas das instruções `SHOW` específicas do MySQL podem ser obtidas de maneira mais padrão usando `SELECT` para consultar o `INFORMATION_SCHEMA`. Veja o Capítulo 24, *Tabelas INFORMATION\_SCHEMA*.
+  - A instrução `SHOW`. Veja a Seção 13.7.5, “Instruções SHOW”. As informações produzidas por muitas das instruções `SHOW` específicas do MySQL podem ser obtidas de maneira mais padrão usando `SELECT` para consultar o `INFORMATION_SCHEMA`. Veja o Capítulo 24, *Tabelas INFORMATION_SCHEMA*.
 
   - Uso de `LOAD DATA`. Em muitos casos, essa sintaxe é compatível com o `LOAD DATA` do Oracle. Consulte a Seção 13.2.6, “Instrução LOAD DATA”.
 

@@ -2,7 +2,7 @@
 
 4.6.1 innochecksum — Offline InnoDB File Checksum Utility
 
-4.6.2 myisam\_ftdump — Display Full-Text Index information
+4.6.2 myisam_ftdump — Display Full-Text Index information
 
 4.6.3 myisamchk — MyISAM Table-Maintenance Utility
 
@@ -10,7 +10,7 @@
 
 4.6.5 myisampack — Generate Compressed, Read-Only MyISAM Tables
 
-4.6.6 mysql\_config\_editor — MySQL Configuration Utility
+4.6.6 mysql_config_editor — MySQL Configuration Utility
 
 4.6.7 mysqlbinlog — Utility for Processing Binary Log Files
 

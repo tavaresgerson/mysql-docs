@@ -1,8 +1,8 @@
 ### 25.12.12 Tabelas de bloqueio do esquema de desempenho
 
-25.12.12.1 A tabela metadata\_locks
+25.12.12.1 A tabela metadata_locks
 
-25.12.12.2 A tabela\_handles
+25.12.12.2 A tabela_handles
 
 O Schema de Desempenho expõe informações de bloqueio através dessas tabelas:
 

@@ -1,6 +1,6 @@
-### 25.5.8 ndb\_delete\_all — Delete All Rows from an NDB Table
+### 25.5.8 ndb_delete_all — Delete All Rows from an NDB Table
 
-**ndb\_delete\_all** deletes all rows from the given `NDB` table. In some cases, this can be much faster than `DELETE` or even `TRUNCATE TABLE`.
+**ndb_delete_all** deletes all rows from the given `NDB` table. In some cases, this can be much faster than `DELETE` or even `TRUNCATE TABLE`.
 
 #### Usage
 
@@ -10,7 +10,7 @@ ndb_delete_all -c connection_string tbl_name -d db_name
 
 This deletes all rows from the table named *`tbl_name`* in the database named *`db_name`*. It is exactly equivalent to executing `TRUNCATE db_name.tbl_name` in MySQL.
 
-Options that can be used with **ndb\_delete\_all** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_delete_all** are shown in the following table. Additional descriptions follow the table.
 
 * `--character-sets-dir`
 
@@ -94,7 +94,7 @@ Options that can be used with **ndb\_delete\_all** are shown in the following ta
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 

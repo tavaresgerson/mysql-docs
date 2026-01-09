@@ -1,4 +1,4 @@
-### 28.4.26 The INFORMATION\_SCHEMA INNODB\_TABLESTATS View
+### 28.4.26 The INFORMATION_SCHEMA INNODB_TABLESTATS View
 
 The `INNODB_TABLESTATS` table provides a view of low-level status information about `InnoDB` tables. This data is used by the MySQL optimizer to calculate which index to use when querying an `InnoDB` table. This information is derived from in-memory data structures rather than data stored on disk. There is no corresponding internal `InnoDB` system table.
 
@@ -8,7 +8,7 @@ Table statistics are updated only for `DELETE` or `UPDATE` operations that modif
 
 `ANALYZE TABLE` clears table statistics and sets the `STATS_INITIALIZED` column to `Uninitialized`. Statistics are collected again the next time the table is accessed.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_TABLESTATS` table has these columns:
 

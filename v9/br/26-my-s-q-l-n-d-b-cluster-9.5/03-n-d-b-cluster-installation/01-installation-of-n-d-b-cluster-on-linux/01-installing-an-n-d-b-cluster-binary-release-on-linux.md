@@ -40,7 +40,7 @@ Após completar a instalação, ainda não inicie nenhum dos binários. Mostramo
    $> mysqld --initialize
    ```
 
-   Isso gera uma senha aleatória para a conta `root` do MySQL. Se você *não* quiser que a senha aleatória seja gerada, pode substituir a opção `--initialize-insecure` por `--initialize`. Em qualquer caso, você deve revisar a Seção 2.9.1, “Inicializando o Diretório de Dados”, para obter informações adicionais antes de realizar essa etapa. Veja também a Seção 6.4.2, “mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL”.
+   Isso gera uma senha aleatória para a conta `root` do MySQL. Se você *não* quiser que a senha aleatória seja gerada, pode substituir a opção `--initialize-insecure` por `--initialize`. Em qualquer caso, você deve revisar a Seção 2.9.1, “Inicializando o Diretório de Dados”, para obter informações adicionais antes de realizar essa etapa. Veja também a Seção 6.4.2, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”.
 
 4. Defina as permissões necessárias para o servidor MySQL e os diretórios de dados:
 
@@ -78,7 +78,7 @@ Com o sistema como `root` (ou seja, após usar **sudo**, **su root** ou o equiva
    $> cp bin/ndbmtd /usr/local/bin/ndbmtd
    ```
 
-   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém de `/var/tmp` assim que **ndb\_mgm** e **ndb\_mgmd** forem copiados para o diretório de executações.)
+   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém de `/var/tmp` assim que **ndb_mgm** e **ndb_mgmd** forem copiados para o diretório de executações.)
 
 2. Mude para o diretório onde você copiou os arquivos e, em seguida, torne ambos os arquivos executáveis:
 
@@ -95,11 +95,11 @@ Nota
 
 O diretório de dados em cada máquina que hospeda um nó de dados é `/usr/local/mysql/data`. Essa informação é essencial ao configurar o nó de gerenciamento. (Veja a Seção 25.3.3, “Configuração Inicial do NDB Cluster”.)
 
-**Nodos de gerenciamento.** A instalação do nó de gerenciamento não requer o binário **mysqld**. Apenas o servidor de gerenciamento do NDB Cluster (**ndb\_mgmd**) é necessário; você provavelmente deseja instalar o cliente de gerenciamento (**ndb\_mgm**) também. Ambos os binários também podem ser encontrados no arquivo `.tar.gz`. Novamente, assumimos que você colocou esse arquivo em `/var/tmp`.
+**Nodos de gerenciamento.** A instalação do nó de gerenciamento não requer o binário **mysqld**. Apenas o servidor de gerenciamento do NDB Cluster (**ndb_mgmd**) é necessário; você provavelmente deseja instalar o cliente de gerenciamento (**ndb_mgm**) também. Ambos os binários também podem ser encontrados no arquivo `.tar.gz`. Novamente, assumimos que você colocou esse arquivo em `/var/tmp`.
 
-Como sistema `root`, execute as seguintes etapas para instalar **ndb\_mgmd** e **ndb\_mgm** no host do nó de gerenciamento:
+Como sistema `root`, execute as seguintes etapas para instalar **ndb_mgmd** e **ndb_mgm** no host do nó de gerenciamento:
 
-1. Mude para o diretório `/var/tmp` e extraia os arquivos **ndb\_mgm** e **ndb\_mgmd** do arquivo para um diretório adequado, como `/usr/local/bin`:
+1. Mude para o diretório `/var/tmp` e extraia os arquivos **ndb_mgm** e **ndb_mgmd** do arquivo para um diretório adequado, como `/usr/local/bin`:
 
    ```
    $> cd /var/tmp
@@ -108,7 +108,7 @@ Como sistema `root`, execute as seguintes etapas para instalar **ndb\_mgmd** e *
    $> cp bin/ndb_mgm* /usr/local/bin
    ```
 
-   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém de `/var/tmp` assim que **ndb\_mgm** e **ndb\_mgmd** forem copiados para o diretório de executaveis.)
+   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém de `/var/tmp` assim que **ndb_mgm** e **ndb_mgmd** forem copiados para o diretório de executaveis.)
 
 2. Mude para o diretório onde você copiou os arquivos e, em seguida, torne ambos os arquivos executáveis:
 

@@ -2,7 +2,7 @@
 
 A tabela a seguir mostra os servidores disponíveis para Windows no MySQL 9.5.
 
-<table summary="Servidores disponíveis para Windows no MySQL 9.5."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Binário</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><a class="link" href="mysqld.html" title="6.3.1 mysqld — O Servidor MySQL"><span><strong>mysqld</strong></span></a></td> <td>Binário otimizado com suporte a pipes nomeados</td> </tr><tr> <td><a class="link" href="mysqld.html" title="6.3.1 mysqld — O Servidor MySQL"><span><strong>mysqld-debug</strong></span></a></td> <td>Como <a class="link" href="mysqld.html" title="6.3.1 mysqld — O Servidor MySQL"><span><strong>mysqld</strong></span></a>, mas compilado com depuração completa e verificação automática de alocação de memória</td> </tr></tbody></table>
+<table summary="Servidores disponíveis para Windows no MySQL 9.5."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Binário</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><span><strong>mysqld</strong></span></td> <td>Binário otimizado com suporte a pipes nomeados</td> </tr><tr> <td><span><strong>mysqld-debug</strong></span></td> <td>Como <span><strong>mysqld</strong></span>, mas compilado com depuração completa e verificação automática de alocação de memória</td> </tr></tbody></table>
 
 Cada um dos servidores em uma distribuição suporta o mesmo conjunto de motores de armazenamento. A instrução `SHOW ENGINES` exibe quais motores um determinado servidor suporta.
 

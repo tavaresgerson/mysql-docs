@@ -1,4 +1,4 @@
-### 24.3.29 A tabela INFORMATION\_SCHEMA TRIGGERS
+### 24.3.29 A tabela INFORMATION_SCHEMA TRIGGERS
 
 A tabela `TRIGGERS` fornece informações sobre os gatilhos. Para ver informações sobre os gatilhos de uma tabela, você deve ter o privilégio `TRIGGER` para a tabela.
 

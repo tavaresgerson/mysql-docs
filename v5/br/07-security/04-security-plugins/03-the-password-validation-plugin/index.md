@@ -12,13 +12,13 @@ O plugin `validate_password` implementa essas funcionalidades:
 
 - Para as instruções de `CREATE USER`, `validate_password` exige que uma senha seja fornecida e que ela satisfaça a política de senha. Isso é verdadeiro mesmo que uma conta seja bloqueada inicialmente, pois caso contrário, desbloquear a conta mais tarde a tornaria acessível sem uma senha que satisfaça a política.
 
-- `validate_password` implementa uma função SQL [`VALIDATE_PASSWORD_STRENGTH()`](https://encryption-functions.html#function_validate-password-strength) que avalia a força das senhas potenciais. Esta função recebe um argumento de senha e retorna um inteiro de 0 (fraco) a 100 (forte).
+- `validate_password` implementa uma função SQL `VALIDATE_PASSWORD_STRENGTH()` que avalia a força das senhas potenciais. Esta função recebe um argumento de senha e retorna um inteiro de 0 (fraco) a 100 (forte).
 
 Nota
 
 Para declarações que atribuem, modificam ou geram senhas de conta (`ALTER USER`, `CREATE USER`, `GRANT` e `SET PASSWORD`; declarações que usam `PASSWORD()`, as capacidades `validate_password` descritas aqui se aplicam apenas a contas que usam um plugin de autenticação que armazena credenciais internamente no MySQL. Para contas que usam plugins que realizam autenticação contra um sistema de credenciais externo ao MySQL, a gestão de senhas deve ser realizada externamente contra esse sistema também. Para mais informações sobre o armazenamento interno de credenciais, consulte Seção 6.2.11, “Gestão de Senhas”.
 
-A restrição anterior não se aplica ao uso da função [`VALIDATE_PASSWORD_STRENGTH()`](https://docs.djangoproject.com/en/3.2/ref/cryptography/functions/validate-password-strength), pois ela não afeta diretamente as contas.
+A restrição anterior não se aplica ao uso da função `VALIDATE_PASSWORD_STRENGTH()`, pois ela não afeta diretamente as contas.
 
 Exemplos:
 
@@ -47,7 +47,7 @@ Exemplos:
   policy requirements
   ```
 
-- Para verificar uma senha, use a função [`VALIDATE_PASSWORD_STRENGTH()`](https://docs.djangoproject.com/en/3.2/ref/cryptography/functions/):
+- Para verificar uma senha, use a função `VALIDATE_PASSWORD_STRENGTH()`:
 
   ```sql
   mysql> SELECT VALIDATE_PASSWORD_STRENGTH('weak');

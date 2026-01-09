@@ -1,4 +1,4 @@
-#### 6.4.4.2 Using the keyring\_file File-Based Keyring Plugin
+#### 6.4.4.2 Using the keyring_file File-Based Keyring Plugin
 
 The `keyring_file` keyring plugin stores keyring data in a file local to the server host.
 

@@ -1,8 +1,8 @@
-#### 25.6.15.41 The ndbinfo index\_stats Table
+#### 25.6.15.41 The ndbinfo index_stats Table
 
 The `index_stats` table provides basic information about `NDB` index statistics.
 
-More complete index statistics information can be obtained using the **ndb\_index\_stat** utility.
+More complete index statistics information can be obtained using the **ndb_index_stat** utility.
 
 The `index_stats` table contains the following columns:
 

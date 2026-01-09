@@ -116,7 +116,7 @@ Tamanho total dos dados e metadados retornados ao cliente
 
   Número de varreduras atualmente em fila para essa replica de fragmento
 
-* tot\_commits
+* tot_commits
 
   Número total de alterações de linha comprometidas nessa replica de fragmento
 
@@ -166,7 +166,7 @@ Para índices ou tabelas `BLOB`, a coluna `parent_fq_name` contém o `fq_name` d
 
 A coluna `type` mostra o tipo do objeto do esquema usado para este fragmento, que pode assumir qualquer um dos valores `Tabela do sistema`, `Tabela do usuário`, `Índice hash único` ou `Índice ordenado`. As tabelas `BLOB` são mostradas como `Tabela do usuário`.
 
-O valor da coluna `table_id` é único em qualquer momento, mas pode ser reutilizado se o objeto correspondente tiver sido excluído. O mesmo ID pode ser visto usando o utilitário **ndb\_show\_tables**.
+O valor da coluna `table_id` é único em qualquer momento, mas pode ser reutilizado se o objeto correspondente tiver sido excluído. O mesmo ID pode ser visto usando o utilitário **ndb_show_tables**.
 
 A coluna `block_instance` mostra a qual instância do LDM pertence este fragmento de replica. Você pode usar isso para obter informações sobre threads específicas da tabela `threadblocks`. A primeira instância desse tipo é sempre numerada 0.
 

@@ -146,9 +146,9 @@ As regras para a conversão de tipos de variáveis de sessão do MySQL para vari
 <colgroup><col/><col/><col/></colgroup>
 <thead><tr><th>Tipo MySQL</th><th>Tipo JavaScript</th><th>Comentários</th></tr></thead>
 <tbody><tr><td><code>NULL</code></td><td><code>null</code></td><td>-</td></tr>
-<tr><td><a class="link" href="integer-types.html" title="13.1.2 Tipos inteiros (Valor exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code>BIGINT</code></a></td><td><code>Número</code>, <code>String</code> ou <code>BigInt</code></td><td>Depende do valor da opção <a class="link" href="srjsapi-session.html#srjsapi-session-sql"><code>integerType</code></a> do método <code>session.sql()</code></td></tr>
-<tr><td><a class="link" href="fixed-point-types.html" title="13.1.3 Tipos de ponto fixo (Valor exato) - DECIMAL, NUMERIC"><code>DECIMAL</code></a> ou <code>NUMERIC</code></td><td><code>String</code> ou <code>Número</code></td><td>Depende do valor da opção <a class="link" href="srjsapi-session.html#srjsapi-session-sql"><code>decimalType</code></a> do método <code>session.sql()</code></td></tr>
-<tr><td><a class="link" href="floating-point-types.html" title="13.1.4 Tipos de ponto flutuante (Valor aproximado) - FLOAT, DOUBLE"><code>DOUBLE</code></a></td><td><code>Número</code></td><td>-</td></tr>
+<tr><td><code>BIGINT</code></td><td><code>Número</code>, <code>String</code> ou <code>BigInt</code></td><td>Depende do valor da opção <code>integerType</code> do método <code>session.sql()</code></td></tr>
+<tr><td><code>DECIMAL</code> ou <code>NUMERIC</code></td><td><code>String</code> ou <code>Número</code></td><td>Depende do valor da opção <code>decimalType</code> do método <code>session.sql()</code></td></tr>
+<tr><td><code>DOUBLE</code></td><td><code>Número</code></td><td>-</td></tr>
 <tr><td>String binária</td><td><code>Uint8Array</code></td><td>-</td></tr>
 <tr><td>String</td><td><code>String</code></td><td>-</td></tr>
 </tbody></table>
@@ -159,12 +159,12 @@ As regras para a conversão de tipos de variáveis JavaScript para variáveis de
 <colgroup><col/><col/><col/></colgroup>
 <thead><tr><th>Tipo JavaScript</th><th>Tipo MySQL</th><th>Comentário</th></tr></thead>
 <tbody><tr><td><code>null</code> ou <code>undefined</code></td><td><code>NULL</code></td><td>-</td></tr>
-<tr><td><code>Boolean</code></td><td><a class="link" href="integer-types.html" title="13.1.2 Tipos de Inteiro (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code>BIGINT</code></a></td><td>-</td></tr>
-<tr><td><code>Number</code></td><td><a class="link" href="integer-types.html" title="13.1.2 Tipos de Inteiro (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code>BIGINT</code></a>, <a class="link" href="fixed-point-types.html" title="13.1.3 Tipos de Ponto Fijo (Valor Exato) - DECIMAL, NUMERIC"><code>DECIMAL</code></a>, ou <a class="link" href="floating-point-types.html" title="13.1.4 Tipos de Ponto Flutuante (Valor Aproximado) - FLOAT, DOUBLE"><code>DOUBLE</code></a></td><td>-</td></tr>
+<tr><td><code>Boolean</code></td><td><code>BIGINT</code></td><td>-</td></tr>
+<tr><td><code>Number</code></td><td><code>BIGINT</code>, <code>DECIMAL</code>, ou <code>DOUBLE</code></td><td>-</td></tr>
 <tr><td><code>Infinity</code>, <code>NaN</code>, ou <code>Symbol</code></td><td>-</td><td>Erro: Tipo não pode ser usado para variáveis de sessão</td></tr>
 <tr><td><code>String</code></td><td>string</td><td>-</td></tr>
-<tr><td><code>BigInt</code></td><td><a class="link" href="integer-types.html" title="13.1.2 Tipos de Inteiro (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code>BIGINT</code></a></td><td>-</td></tr>
-<tr><td><code>TypedArray</code> ou <code>Float32Array</code></td><td><a class="link" href="binary-varbinary.html" title="13.3.3 Os Tipos BINARY e VARBINARY"><code>BINARY</code></a></td><td>-</td></tr>
+<tr><td><code>BigInt</code></td><td><code>BIGINT</code></td><td>-</td></tr>
+<tr><td><code>TypedArray</code> ou <code>Float32Array</code></td><td><code>BINARY</code></td><td>-</td></tr>
 <tr><td><code>Object</code></td><td>string</td><td>-</td></tr>
 <tr><td><code>Array</code></td><td>string</td><td>-</td></tr></tbody></table>
 

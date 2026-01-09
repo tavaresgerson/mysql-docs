@@ -54,7 +54,7 @@ Seção 14.15, “Funções de Informação”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”)
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”)
 
 Seção 19.5.1.16, “Replicação de Recursos Invocáveis”
 
@@ -72,9 +72,9 @@ Seção 27.9, “Registro Binário de Programas Armazenados”
 
 Seção 27.5.6, “O Agendamento de Eventos e os Privilégios MySQL”
 
-Seção 28.3.14, “A Tabela INFORMATION\_SCHEMA EVENTS”
+Seção 28.3.14, “A Tabela INFORMATION_SCHEMA EVENTS”
 
-### ALTER EVENT event\_name ENABLE
+### ALTER EVENT event_name ENABLE
 
 Seção 19.5.1.16, “Replicação de Recursos Convocados”
 
@@ -106,11 +106,11 @@ Seção 14.18.1.1, “Função que Configura o Principal da Replicação de Gru
 
 Seção 17.6.5, “Registro de Refazer”
 
-### ALTER INSTANCE DISABLE INNODB REDO\_LOG
+### ALTER INSTANCE DISABLE INNODB REDO_LOG
 
 Seção 17.6.5, “Registro de Refazer”
 
-### ALTER INSTANCE INNODB REDO\_LOG
+### ALTER INSTANCE INNODB REDO_LOG
 
 Seção 15.1.5, “Instrução ALTER INSTANCE”
 
@@ -136,7 +136,7 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 29.12.22.11, “A Tabela tls\_channel\_status”
+Seção 29.12.22.11, “A Tabela tls_channel_status”
 
 ### ALTER INSTANCE ROTATE BINLOG MASTER KEY
 
@@ -148,7 +148,7 @@ Seção 17.13, “Criptografia dos Dados em Repouso do InnoDB”
 
 Seção A.17, “Perguntas Frequentes do MySQL 9.5: Criptografia dos Dados em Repouso do InnoDB”
 
-### ALTER INSTANCE {ENABLE|DISABLE} INNODB REDO\_LOG
+### ALTER INSTANCE {ENABLE|DISABLE} INNODB REDO_LOG
 
 Seção 10.5.5, “Carregamento de Dados em Massa para Tabelas InnoDB”
 
@@ -166,7 +166,7 @@ Seção 7.5.7.2, “Status do Componente MLE e Informações de Sessão”
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
-Seção 28.3.22, “A Tabela INFORMATION\_SCHEMA LIBRARIES”
+Seção 28.3.22, “A Tabela INFORMATION_SCHEMA LIBRARIES”
 
 ### ALTER LOGFILE GROUP
 
@@ -178,7 +178,7 @@ Seção 25.2.7.8, “Problemas Exclusivos do NDB Cluster”
 
 Seção 25.6.11.1, “Objetos de Dados de Disco do NDB Cluster”
 
-Seção 28.3.15, “A Tabela INFORMATION\_SCHEMA FILES”
+Seção 28.3.15, “A Tabela INFORMATION_SCHEMA FILES”
 
 ### ALTER PROCEDURE
 
@@ -404,9 +404,9 @@ Seção 25.7.4, “Esquema e Tabelas de Replicação do NDB Cluster”
 
 Seção 25.4.3.9.2, “Variáveis do Sistema do NDB Cluster”
 
-Seção 25.5.9, “ndb\_desc — Descrever Tabelas NDB”
+Seção 25.5.9, “ndb_desc — Descrever Tabelas NDB”
 
-Seção 25.5.23, “ndb\_restore — Restaurar um Backup do NDB Cluster”
+Seção 25.5.23, “ndb_restore — Restaurar um Backup do NDB Cluster”
 
 Seção 14.9.8, “Parser de Texto Completo ngram”
 
@@ -456,7 +456,7 @@ Seção 16.2, “Remoção do Armazenamento de Metadados Baseado em Arquivos”
 
 Seção 15.1.41, “Instrução RENAME TABLE”
 
-Seção 19.5.1.1, “Replicação e AUTO\_INCREMENT”
+Seção 19.5.1.1, “Replicação e AUTO_INCREMENT”
 
 Seção 19.5.1.27, “Replicação e Palavras Reservadas”
 
@@ -500,7 +500,7 @@ Seção 13.3.1, “Sintaxe do Tipo de Dados de Caracteres”
 
 Seção 12.3.4, “Conjunto de Caracteres da Tabela e Coligação”
 
-Seção 17.6.3.9, “Configuração do Tamanho de Espaço de Tabela AUTOEXTEND\_SIZE”
+Seção 17.6.3.9, “Configuração do Tamanho de Espaço de Tabela AUTOEXTEND_SIZE”
 
 Seção B.3.6.2, “Problemas com Tabelas TEMPORARY”
 
@@ -520,7 +520,7 @@ Seção 7.4.5, “O Log de Consultas Lentas”
 
 Seção 25.2.7.6, “Recursos Não Suportado ou Ausentes no NDB Cluster”
 
-Seção 5.6.9, “Usando AUTO\_INCREMENT”
+Seção 5.6.9, “Usando AUTO_INCREMENT”
 
 Seção 19.4.4, “Usando Replicação com Diferentes Motores de Armazenamento de Fonte e Replicação”
 
@@ -614,7 +614,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 19.5.1.22, “Replicação e Tabelas de MEMÓRIA”
 
-### ALTER TABLE ... ENGINE permitido\_engine
+### ALTER TABLE ... ENGINE permitido_engine
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -624,7 +624,7 @@ Seção 25.7.4, “Esquema de Replicação de NDB Cluster e Tabelas”
 
 ### ALTER TABLE ... ENGINE=NDB
 
-Seção 25.5.13, “ndb\_import — Importar Dados CSV em NDB”
+Seção 25.5.13, “ndb_import — Importar Dados CSV em NDB”
 
 ### ALTER TABLE ... PARTIÇÃO DE INTERLANCE
 
@@ -706,11 +706,11 @@ Seção 17.6.3.3, “Tablespaces Gerais”
 
 Seção 26.3.3, “Troca de Partições e Subpartições com Tabelas”
 
-### ALTER TABLE mysql.ndb\_apply\_status ENGINE=MyISAM
+### ALTER TABLE mysql.ndb_apply_status ENGINE=MyISAM
 
 Seção 25.7.3, “Problemas Conhecidos na Replicação do NDB Cluster”
 
-### ALTER TABLE ndb\_table ... ALGORITHM=INPLACE, TABLESPACE=new\_tablespace
+### ALTER TABLE ndb_table ... ALGORITHM=INPLACE, TABLESPACE=new_tablespace
 
 Seção 25.6.12, “Operações Online com ALTER TABLE no NDB Cluster”
 
@@ -718,19 +718,19 @@ Seção 25.6.12, “Operações Online com ALTER TABLE no NDB Cluster”
 
 Seção 15.2.2, “Instrução DELETE”
 
-### ALTER TABLE table\_name ENGINE=InnoDB;
+### ALTER TABLE table_name ENGINE=InnoDB;
 
 Seção 17.1.4, “Testes e Benchmarking com InnoDB”
 
-### ALTER TABLE table\_name REORGANIZE PARTITION
+### ALTER TABLE table_name REORGANIZE PARTITION
 
 Seção 25.6.7.3, “Adicionar Nodos de Dados do NDB Cluster Online: Exemplo Detalhado”
 
-### ALTER TABLE tbl\_name ENCRYPTION = 'Y'
+### ALTER TABLE tbl_name ENCRYPTION = 'Y'
 
 Seção A.17, “Perguntas Frequentes do MySQL 9.5: Criptografia de Dados em Repouso do InnoDB”
 
-### ALTER TABLE tbl\_name ENGINE=engine\_name
+### ALTER TABLE tbl_name ENGINE=engine_name
 
 Seção 17.8.2, “Configurando o InnoDB para Operação Apenas de Leitura”
 
@@ -738,17 +738,17 @@ Seção 16.7, “Diferenças de Uso do Dicionário de Dados”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### ALTER TABLE tbl\_name ENGINE=INNODB
+### ALTER TABLE tbl_name ENGINE=INNODB
 
 Seção 15.1.11, “Instrução ALTER TABLE”
 
 Seção 17.11.4, “Desfragmentação de uma Tabela”
 
-### ALTER TABLE tbl\_name FORCE
+### ALTER TABLE tbl_name FORCE
 
 Seção 15.1.11, “Instrução ALTER TABLE”
 
-### ALTER TABLE tbl\_name TABLESPACE tablespace\_name
+### ALTER TABLE tbl_name TABLESPACE tablespace_name
 
 Seção 15.1.25, “Instrução CREATE TABLESPACE”
 
@@ -778,9 +778,9 @@ Seção 25.6.11.1, “Objetos de Dados de Disco do NDB Cluster”
 
 Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
-Seção 17.6.3.9, “Configuração do Tamanho de AUTOEXTEND\_SIZE do Tablespace”
+Seção 17.6.3.9, “Configuração do Tamanho de AUTOEXTEND_SIZE do Tablespace”
 
-Seção 28.3.15, “A Tabela FILES do INFORMATION\_SCHEMA”
+Seção 28.3.15, “A Tabela FILES do INFORMATION_SCHEMA”
 
 ### ALTER TABLESPACE ... ADD DATAFILE
 
@@ -808,7 +808,7 @@ Seção 17.6.3.3, “Tablespaces Gerais”
 
 Seção 17.12.1, “Operações DDL Online”
 
-### ALTER TABLESPACE tablespace\_name ENCRYPTION = 'Y'
+### ALTER TABLESPACE tablespace_name ENCRYPTION = 'Y'
 
 Seção A.17, “Perguntas Frequentes do MySQL 9.5: Criptografia de Dados em Repouso do InnoDB”
 
@@ -818,13 +818,13 @@ Seção 17.6.3.4, “Undo Tablespaces”
 
 ### ALTER UNDO TABLESPACE ... SET INACTIVE
 
-Seção 28.4.24, “A Tabela INNODB\_TABLESPACES do INFORMATION\_SCHEMA”
+Seção 28.4.24, “A Tabela INNODB_TABLESPACES do INFORMATION_SCHEMA”
 
-### ALTER UNDO TABLESPACE tablespace\_name SET ACTIVE
+### ALTER UNDO TABLESPACE tablespace_name SET ACTIVE
 
 Seção 17.6.3.4, “Undo Tablespaces”
 
-### ALTER UNDO TABLESPACE tablespace\_name SET INACTIVE
+### ALTER UNDO TABLESPACE tablespace_name SET INACTIVE
 
 Seção 17.6.3.4, “Undo Tablespaces”
 
@@ -892,7 +892,7 @@ Seção 8.4.1.10, “Autenticação Pluggable de Peer-Credential de Soquete”
 
 Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
-Seção 28.3.51, “A Tabela USER\_ATTRIBUTES do INFORMATION\_SCHEMA”
+Seção 28.3.51, “A Tabela USER_ATTRIBUTES do INFORMATION_SCHEMA”
 
 Seção 8.4.4, “O Componente de Validação de Senhas”
 
@@ -944,7 +944,7 @@ Seção 14.15, “Funções de Informação”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”)
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”)
 
 Seção 27.10, “Restrições em Programas Armazenados”
 
@@ -1026,7 +1026,7 @@ Seção 6.5.3, “mysqlcheck — Um Programa de Manutenção de Tabelas”
 
 Seção 6.5.4, “mysqldump — Um Programa de Backup de Bancos de Dados”
 
-Seção 25.5.14, “ndb\_index\_stat — Ferramenta de Estatísticas de Índices NDB”
+Seção 25.5.14, “ndb_index_stat — Ferramenta de Estatísticas de Índices NDB”
 
 Seção 10.9.6, “Estatísticas do Otimizador”
 
@@ -1090,7 +1090,7 @@ Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
 Seção 27.9, “Registro Binário de Programas Armazenados”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 ### COMEÇO ... END
 
@@ -1144,7 +1144,7 @@ Seção 6.6.9.2, “Exibição de evento de linha mysqlbinlog”
 
 Seção 6.6.9, “mysqlbinlog — Ferramenta para processamento de arquivos de registro binário”
 
-Seção 19.3.3.1, “Privilégios para a conta de privilégios de replicação PRIVILEGE\_CHECKS\_USER”
+Seção 19.3.3.1, “Privilégios para a conta de privilégios de replicação PRIVILEGE_CHECKS_USER”
 
 Seção 8.2.2, “Privilégios fornecidos pelo MySQL”
 
@@ -1230,35 +1230,35 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 15.7.7.36, “Declaração SHOW REPLICA STATUS”
 
-Seção 29.12.11.3, “A tabela replication\_applier\_filters”
+Seção 29.12.11.3, “A tabela replication_applier_filters”
 
-Seção 29.12.11.4, “A tabela replication\_applier\_global\_filters”
+Seção 29.12.11.4, “A tabela replication_applier_global_filters”
 
-### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE\_DO\_DB
-
-Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
-
-### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE\_DO\_TABELA
+### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE_DO_DB
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
-### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE\_IGNORE\_DB
+### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE_DO_TABELA
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
-### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE\_IGNORE\_TABELA
+### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE_IGNORE_DB
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
-### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE\_REWRITE\_DB
+### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE_IGNORE_TABELA
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
-### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE\_WILD\_DO\_TABELA
+### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE_REWRITE_DB
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
-### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE\_WILD\_IGNORE\_TABELA
+### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE_WILD_DO_TABELA
+
+Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
+
+### FILTRO DE REPLICAÇÃO DE MUDANÇA REPLICATE_WILD_IGNORE_TABELA
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
@@ -1350,7 +1350,7 @@ Seção 20.5.4.2.1, “Pré-requisitos para Clonagem”
 
 Seção 19.3.3.2, “Verificações de Privilegios para Canais de Replicação de Grupo”
 
-Seção 19.3.3.1, “Privilegios para a Conta de Replicação PRIVILEGES\_CHECKS\_USER”
+Seção 19.3.3.1, “Privilegios para a Conta de Replicação PRIVILEGES_CHECKS_USER”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -1410,7 +1410,7 @@ Seção 19.1.7.3.1, “Saltando Transações com GTIDs”
 
 Seção 19.1.7.3.2, “Saltando Transações Sem GTIDs”
 
-Seção 15.4.3.1, “Instrução START GROUP\_REPLICATION”
+Seção 15.4.3.1, “Instrução START GROUP_REPLICATION”
 
 Seção 15.4.2.4, “Instrução START REPLICA”
 
@@ -1422,11 +1422,11 @@ Seção 19.4.9, “Alternando Fontes e Replicas com Failover de Conexão Assínc
 
 Seção 19.4.8, “Alternando Fontes Durante o Failover”
 
-Seção 29.12.11.2, “A tabela replication\_applier\_configuration”
+Seção 29.12.11.2, “A tabela replication_applier_configuration”
 
-Seção 29.12.11.12, “A tabela replication\_connection\_configuration”
+Seção 29.12.11.12, “A tabela replication_connection_configuration”
 
-Seção 29.12.11.13, “A tabela replication\_connection\_status”
+Seção 29.12.11.13, “A tabela replication_connection_status”
 
 Seção 19.2.1.2, “Uso do plugin de reescrita de consulta Rewriter”
 
@@ -1622,9 +1622,9 @@ Seção 27.9, “Log de Programas Armazenados”
 
 Seção 7.4.4, “O Log Binário”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
-Seção 28.3.44, “A tabela TABLES do Schema INFORMATION\_SCHEMA”
+Seção 28.3.44, “A tabela TABLES do Schema INFORMATION_SCHEMA”
 
 Seção 15.3, “Instruções Transacionais e de Bloqueio”
 
@@ -1720,7 +1720,7 @@ Seção 6.5.4, “mysqldump — Programa de Backup de Banco de Dados”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()")
+Seção 19.5.1.8, “Replicação de CURRENT_USER()")
 
 Seção 19.5.1.16, “Replicação de Recursos Convidados”
 
@@ -1794,7 +1794,7 @@ Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
 Seção 19.5.1.18, “Replicação e Programas Armazenados em JavaScript”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”)
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”)
 
 Seção 19.5.1.16, “Replicação de Recursos Invocáveis”
 
@@ -1836,7 +1836,7 @@ Seção 15.7.7.24, “Instrução SHOW INDEX”
 
 Seção 15.3.3, “Instruções que Causam um Commit Implícito”
 
-Seção 28.3.40, “A Tabela STATISTICS do INFORMATION\_SCHEMA”
+Seção 28.3.40, “A Tabela STATISTICS do INFORMATION_SCHEMA”
 
 Seção 7.4.5, “O Log de Consultas Lentas”
 
@@ -1884,7 +1884,7 @@ Seção 6.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”
 
 Seção 25.6.11.1, “Objetos de Dados de Disco do NDB Cluster”
 
-Seção 28.3.15, “A Tabela FILES do INFORMATION\_SCHEMA”
+Seção 28.3.15, “A Tabela FILES do INFORMATION_SCHEMA”
 
 Seção 25.6.15.52, “A Tabela ndbinfo resources”
 
@@ -1920,7 +1920,7 @@ Seção 8.2.2, "Privilegios Fornecidos pelo MySQL"
 
 Seção 19.5.1.18, "Replicação e Programas Armazenados em JavaScript"
 
-Seção 19.5.1.8, "Replicação de CURRENT\_USER()")
+Seção 19.5.1.8, "Replicação de CURRENT_USER()")
 
 Seção 19.5.1.16, "Replicação de Recursos Invocáveis"
 
@@ -1972,7 +1972,7 @@ Seção 13.4.5, “Suporte ao Sistema de Referência Espacial”
 
 Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
-Seção 28.3.42, “A Tabela INFORMATION\_SCHEMA ST\_SPATIAL\_REFERENCE\_SYSTEMS”
+Seção 28.3.42, “A Tabela INFORMATION_SCHEMA ST_SPATIAL_REFERENCE_SYSTEMS”
 
 ### CRIAR Tabela
 
@@ -2158,9 +2158,9 @@ Seção 25.6.11.1, “Objetos de dados de disco do NDB Cluster”
 
 Seção 25.4.3.9.2, “Variáveis do sistema do NDB Cluster”
 
-Seção 25.5.6, “ndb\_blob\_tool — Verificar e reparar colunas BLOB e TEXT de tabelas do NDB Cluster”
+Seção 25.5.6, “ndb_blob_tool — Verificar e reparar colunas BLOB e TEXT de tabelas do NDB Cluster”
 
-Seção 25.5.9, “ndb\_desc — Descrever tabelas do NDB”
+Seção 25.5.9, “ndb_desc — Descrever tabelas do NDB”
 
 Seção 14.9.8, “Parser de texto completo ngram”
 
@@ -2198,7 +2198,7 @@ Seção 9.4.4, “Recarregar backups no formato de texto delimitado”
 
 Seção 15.2.12, “Instrução REPLACE”
 
-Seção 19.5.1.1, “Replicação e AUTO\_INCREMENT”
+Seção 19.5.1.1, “Replicação e AUTO_INCREMENT”
 
 Seção 19.5.1.3, “Replicação e conjuntos de caracteres”
 
@@ -2248,19 +2248,19 @@ Seção 26.2.6, “Subpartição”
 
 Seção 12.3.4, “Conjunto de Caracteres da Tabela e Coligação”
 
-Seção 17.6.3.9, “Configuração do Espaço de Tabela AUTOEXTEND\_SIZE”
+Seção 17.6.3.9, “Configuração do Espaço de Tabela AUTOEXTEND_SIZE”
 
 Seção 17.1.4, “Testes e Benchmarking com InnoDB”
 
 Seção 18.5, “O Engenheiro de Armazenamento ARCHIVE”
 
-Seção 7.6.5, “O Plugin ddl\_rewriter”
+Seção 7.6.5, “O Plugin ddl_rewriter”
 
 Seção 13.3.6, “O Tipo ENUM”
 
-Seção 28.3.5, “A Tabela CHECK\_CONSTRAINTS do INFORMATION_SCHEMA”
+Seção 28.3.5, “A Tabela CHECK_CONSTRAINTS do INFORMATION_SCHEMA”
 
-Seção 28.4.23, “A Tabela INNODB\_TABLES do INFORMATION_SCHEMA”
+Seção 28.4.23, “A Tabela INNODB_TABLES do INFORMATION_SCHEMA”
 
 Seção 28.3.26, “A Tabela PARTITIONS do INFORMATION_SCHEMA”
 
@@ -2280,7 +2280,7 @@ Seção 15.7.4.6, “Instrução UNINSTALL PLUGIN”
 
 Seção 25.2.7.6, “Recursos não suportados ou ausentes no NDB Cluster”
 
-Seção 5.6.9, “Uso do AUTO\_INCREMENT”
+Seção 5.6.9, “Uso do AUTO_INCREMENT”
 
 Seção 5.3.4.9, “Uso de mais de uma tabela”
 
@@ -2318,7 +2318,7 @@ Seção 15.1.24.10, “Colunas invisíveis”
 
 Seção 15.3.6, “Instruções LOCK TABLES e UNLOCK TABLES”
 
-Seção 19.5.1.1, “Replicação e AUTO\_INCREMENT”
+Seção 19.5.1.1, “Replicação e AUTO_INCREMENT”
 
 Seção 18.7, “O motor de armazenamento MERGE”
 
@@ -2386,7 +2386,7 @@ Seção 17.6.1.1, “Criação de Tabelas InnoDB”
 
 Seção 17.6.1.2, “Criação de Tabelas Externamente”
 
-### CREATE TABLE dst\_tbl LIKE src\_tbl
+### CREATE TABLE dst_tbl LIKE src_tbl
 
 Seção 16.7, “Diferenças de Uso do Dicionário de Dados”
 
@@ -2404,15 +2404,15 @@ Seção 19.5.1.6, “Replicação de Instruções CREATE ... IF NOT EXISTS”
 
 ### CREATE TABLE LIKE
 
-Seção 25.5.13, “ndb\_import — Importar Dados CSV no NDB”
+Seção 25.5.13, “ndb_import — Importar Dados CSV no NDB”
 
-### CREATE TABLE new\_table SELECT ... FROM old\_table ...
+### CREATE TABLE new_table SELECT ... FROM old_table ...
 
 Seção 15.1.24.4, “Instrução CREATE TABLE ... SELECT”
 
 Seção 15.2.13, “Instrução SELECT”
 
-### CREATE TABLE tbl\_name ... TABLESPACE tablespace\_name
+### CREATE TABLE tbl_name ... TABLESPACE tablespace_name
 
 Seção 15.1.25, “Instrução CREATE TABLESPACE”
 
@@ -2460,7 +2460,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
-Seção 17.6.3.9, “Configuração do Tamanho AUTOEXTEND\_SIZE do Tablespace”
+Seção 17.6.3.9, “Configuração do Tamanho AUTOEXTEND_SIZE do Tablespace”
 
 Seção 28.3.15, “A Tabela FILES do INFORMATION_SCHEMA”
 
@@ -2522,7 +2522,7 @@ Seção 10.2.2.3, “Otimizando Subconsultas com a Estratégia EXISTS”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”")
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”")
 
 Seção 19.5.1.16, “Replicação de Recursos Invocáveis”
 
@@ -2616,7 +2616,7 @@ Seção 25.7.5, “Preparando o Clúster NDB para Replicação”
 
 Seção 8.2.12, “Restrição de Privilégios Usando Revocações Parciais”
 
-Seção 25.6.13, “Sincronização de Privilégios e NDB\_STORED\_USER”
+Seção 25.6.13, “Sincronização de Privilégios e NDB_STORED_USER”
 
 Seção 8.2.19, “Usuários de Proxy”
 
@@ -2640,7 +2640,7 @@ Seção 15.3.3, “Declarações que Causam um Compromisso Implícito”
 
 Seção 27.8, “Controle de Acesso a Objetos Armazenados”
 
-Seção 28.3.51, “A Tabela INFORMATION\_SCHEMA USER\_ATTRIBUTES”
+Seção 28.3.51, “A Tabela INFORMATION_SCHEMA USER_ATTRIBUTES”
 
 Seção 8.4.4, “O Componente de Validação de Senha”
 
@@ -2664,7 +2664,7 @@ Seção 10.2.2.4, “Otimização de tabelas derivadas, referências de visuali
 
 Seção 8.2.2, “Privilegios fornecidos pelo MySQL”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”)
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”)
 
 Seção 27.11, “Restrições para visualizações”
 
@@ -2674,7 +2674,7 @@ Seção 15.3.3, “Instruções que causam um commit implícito”
 
 Capítulo 27, *Objetos armazenados*
 
-Seção 28.3.53, “A tabela de visualizações do INFORMATION\_SCHEMA”
+Seção 28.3.53, “A tabela de visualizações do INFORMATION_SCHEMA”
 
 Seção 27.6.3, “Visualizações atualizáveis e inseríveis”
 
@@ -2706,7 +2706,7 @@ Seção 27.10, “Restrições para programas armazenados”
 
 Seção 7.1.10, “Variáveis de status do servidor”
 
-Seção 29.12.6.4, “A tabela prepared\_statements\_instances”
+Seção 29.12.6.4, “A tabela prepared_statements_instances”
 
 ### DECLARE
 
@@ -2856,7 +2856,7 @@ Seção 25.6.19.3, “NDB Cluster e Procedimentos de Segurança do MySQL”
 
 Seção 25.6.11.1, “Objetos de Dados em Disco do NDB Cluster”
 
-Seção 25.5.8, “ndb\_delete\_all — Deletar Todas as Linhas de uma Tabela do NDB”
+Seção 25.5.8, “ndb_delete_all — Deletar Todas as Linhas de uma Tabela do NDB”
 
 Seção 10.8.4, “Obter Informações do Plano de Execução para uma Conexão Nomeada”
 
@@ -2930,11 +2930,11 @@ Seção 7.4.4, “O Log Binário”
 
 Seção 18.6, “O Motor de Armazenamento BLACKHOLE”
 
-Seção 28.4.26, “A Visualização INFORMATION\_SCHEMA INNODB\_TABLESTATS”
+Seção 28.4.26, “A Visualização INFORMATION_SCHEMA INNODB_TABLESTATS”
 
-Seção 28.3.44, “A Tabela TABLES do INFORMATION\_SCHEMA”
+Seção 28.3.44, “A Tabela TABLES do INFORMATION_SCHEMA”
 
-Seção 28.3.53, “A Tabela VIEWS do INFORMATION\_SCHEMA”
+Seção 28.3.53, “A Tabela VIEWS do INFORMATION_SCHEMA”
 
 Seção 1.2.2, “As Principais Características do MySQL”
 
@@ -3028,7 +3028,7 @@ Seção 27.9, "Registro Binário de Programas Armazenados"
 
 Seção 15.2.15, "Subconsultas
 
-Seção 28.3.14, “A tabela INFORMATION\_SCHEMA EVENTS”
+Seção 28.3.14, “A tabela INFORMATION_SCHEMA EVENTS”
 
 Seção 10.15.3, “Declarações rastreáveis”
 
@@ -3064,7 +3064,7 @@ Seção 6.6.9, “mysqlbinlog — Ferramenta para Processar Arquivos de Registro
 
 Seção 6.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”
 
-Seção 25.6.13, “Sincronização de Privilegios e NDB\_STORED\_USER”
+Seção 25.6.13, “Sincronização de Privilegios e NDB_STORED_USER”
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
@@ -3168,7 +3168,7 @@ Seção 17.12.1, “Operações DDL Online”
 
 ### DROP PREPARE
 
-Seção 29.12.6.4, “A tabela prepared\_statements\_instances”
+Seção 29.12.6.4, “A tabela prepared_statements_instances”
 
 ### DROP PROCEDURE
 
@@ -3304,9 +3304,9 @@ Seção 1.7.1, “Extensões do MySQL para SQL Padrão”
 
 Glossário do MySQL
 
-Seção 25.5.10, “ndb\_drop\_index — Remover Índice de uma Tabela NDB”
+Seção 25.5.10, “ndb_drop_index — Remover Índice de uma Tabela NDB”
 
-Seção 25.5.11, “ndb\_drop\_table — Remover uma Tabela NDB”
+Seção 25.5.11, “ndb_drop_table — Remover uma Tabela NDB”
 
 Seção 10.5.7, “Otimização das Operações de Definição de DDL do InnoDB”
 
@@ -3362,7 +3362,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
-### DROP TABLESPACE tablespace\_name
+### DROP TABLESPACE tablespace_name
 
 Seção 17.6.3.3, “Tabelas Gerais”
 
@@ -3418,11 +3418,11 @@ Seção 6.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”
 
 Seção 25.6.19.2, “NDB Cluster e Privilegios do MySQL”
 
-Seção 25.6.13, “Sincronização de Privilegios e NDB\_STORED\_USER”
+Seção 25.6.13, “Sincronização de Privilegios e NDB_STORED_USER”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”)
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”)
 
 Seção 15.7.1.8, “Instrução REVOKE”
 
@@ -3508,7 +3508,7 @@ Seção 27.10, “Restrições para Programas Armazenados”
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
-Seção 29.12.6.4, “A tabela prepared\_statements\_instances”
+Seção 29.12.6.4, “A tabela prepared_statements_instances”
 
 ### EXPLAIN
 
@@ -3638,7 +3638,7 @@ Seção 10.9.2, “Otimizações comutadas”
 
 Seção 1.2.2, “As principais características do MySQL”
 
-Seção 30.4.4.22, “O procedimento ps\_trace\_statement\_digest()” (Procedimento")
+Seção 30.4.4.22, “O procedimento ps_trace_statement_digest()” (Procedimento")
 
 Seção 10.15.3, “Instruções traçáveis”
 
@@ -3694,7 +3694,7 @@ Seção 26.3.5, “Obtendo informações sobre partições”
 
 Seção 26.2.1, “Partição RANGE”
 
-### EXPLAIN tbl\_name
+### EXPLAIN tbl_name
 
 Seção 10.8.1, “Otimizando consultas com EXPLAIN”
 
@@ -3710,7 +3710,7 @@ Seção 15.6.6.3, “Instrução FETCH do cursor”
 
 Seção 27.10, “Restrições sobre programas armazenados”
 
-### FETCH ... INTO var\_list
+### FETCH ... INTO var_list
 
 Seção 15.6.4, “Variáveis em programas armazenados”
 
@@ -3792,7 +3792,7 @@ Seção 19.2.4.1, “O Log de Relay”
 
 Seção 19.1.3.5, “Usar GTIDs para Failover e Scaleout”
 
-### FLUSH OPTIMIZER\_COSTS
+### FLUSH OPTIMIZER_COSTS
 
 Seção 15.7.8.3, “Instrução FLUSH”
 
@@ -3924,21 +3924,21 @@ Glossário do MySQL
 
 Seção 15.7.8.3, “Instrução FLUSH”
 
-### FLUSH TABLES tbl\_name ...
+### FLUSH TABLES tbl_name ...
 
 Seção 15.7.8.3, “Instrução FLUSH”
 
-### FLUSH TABLES tbl\_name ... PARA EXPORTAÇÃO
+### FLUSH TABLES tbl_name ... PARA EXPORTAÇÃO
 
 Seção 15.7.8.3, “Instrução FLUSH”
 
-### FLUSH TABLES tbl\_name ... COM BLOQUEIO DE LEITURA
+### FLUSH TABLES tbl_name ... COM BLOQUEIO DE LEITURA
 
 Seção 15.7.8.3, “Instrução FLUSH”
 
 Seção 15.3.5, “LOCK INSTANCE FOR BACKUP e UNLOCK INSTANCE Instruções”
 
-### FLUSH TABLES tbl\_name COM BLOQUEIO DE LEITURA
+### FLUSH TABLES tbl_name COM BLOQUEIO DE LEITURA
 
 Seção 15.2.5, “Instrução HANDLER”
 
@@ -3972,9 +3972,9 @@ Seção 15.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”
 
 Seção 15.3.3, “Instruções que Causam um Commit Implícito”
 
-Seção 29.12.13.3, “A tabela metadata\_locks”
+Seção 29.12.13.3, “A tabela metadata_locks”
 
-### FLUSH USER\_RESOURCES
+### FLUSH USER_RESOURCES
 
 Seção 15.7.8.3, “Instrução FLUSH”
 
@@ -4064,7 +4064,7 @@ Seção 25.7.5, “Preparando o Clúster NDB para Replicação”
 
 Seção 8.2.12, “Restrição de Permissões Usando Revocações Parciais”
 
-Seção 25.6.13, “Sincronização de Permissões e NDB\_STORED\_USER”
+Seção 25.6.13, “Sincronização de Permissões e NDB_STORED_USER”
 
 Seção 8.2.2, “Permissões Fornecidas pelo MySQL”
 
@@ -4074,7 +4074,7 @@ Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
 Seção 19.5.1.13, “Replicação e FLUSH”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”")
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”")
 
 Seção 19.5.1.23, “Replicação do Esquema do Sistema mysql”
 
@@ -4178,7 +4178,7 @@ Seção 15.2.9, “Instrução LOAD DATA”
 
 Seção 16.6, “Informações do Dicionário Serializado (SDI”)")
 
-Seção 17.6.1.6, “Manipulação de AUTO\_INCREMENT em InnoDB”
+Seção 17.6.1.6, “Manipulação de AUTO_INCREMENT em InnoDB”
 
 Seção 17.7.2.2, “autocommit, Commit e Rollback”
 
@@ -4422,7 +4422,7 @@ Seção 15.2.16, “Instrução TABLE”
 
 Seção 18.5, “O mecanismo de armazenamento ARCHIVE”
 
-Seção 12.8.5, “A comparação da cotação binária com as cotações \_bin”
+Seção 12.8.5, “A comparação da cotação binária com as cotações _bin”
 
 Seção 7.4.4, “O log binário”
 
@@ -4470,7 +4470,7 @@ Seção 8.4.6.8, “Escrevendo Definições de Filtros de Log de Auditoria”
 
 ### INSERT ... ON DUPLICATE KEY UPDATE
 
-Seção 17.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”
+Seção 17.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”
 
 Seção 19.2.1.3, “Determinação de Declarações Seguras e Inseguras no Registro Binário de Auditoria”
 
@@ -4500,7 +4500,7 @@ Seção 15.2.19, “Instrução VALUES”
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linhas”
 
-Seção 17.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”
+Seção 17.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”
 
 Seção 10.11.3, “Inserções Concorrentes”
 
@@ -4592,7 +4592,7 @@ Seção 8.4.6.8, “Definições de Filtros de Log de Auditoria”
 
 Seção 1.7.24.10, “Colunas Invisíveis”
 
-### INSERT INTO ... SELECT FROM memory\_table
+### INSERT INTO ... SELECT FROM memory_table
 
 Seção 19.5.1.22, “Replicação e Tabelas MEMORY”
 
@@ -4638,11 +4638,11 @@ Seção 7.3, “O Esquema do Sistema mysql”
 
 Seção 15.7.4.5, “Instrução de DESINSTALAÇÃO de Componentes”
 
-### INSTALAR COMPONENTE 'file://component\_mle' SET GLOBAL mle.memory\_max = 1024\*1024\*512
+### INSTALAR COMPONENTE 'file://component_mle' SET GLOBAL mle.memory_max = 1024\*1024\*512
 
 Seção 7.5.7.3, “Memória do Componente MLE e Uso de Fios”
 
-### INSTALAR COMPONENTE 'file://component\_option\_tracker'
+### INSTALAR COMPONENTE 'file://component_option_tracker'
 
 Seção 7.5.8.1, “Tabelas do Rastreador de Opções”
 
@@ -4658,7 +4658,7 @@ Seção 17.8.2, “Configurando o InnoDB para Operação Apenas de Leitura”
 
 Seção 8.4.3.1, “Instalação do Plugin de Controle de Conexão”
 
-Seção 7.6.5.2, “Opções do Plugin ddl\_rewriter”
+Seção 7.6.5.2, “Opções do Plugin ddl_rewriter”
 
 Seção 15.7.8.3, “Instrução FLUSH”
 
@@ -4680,7 +4680,7 @@ Seção 7.5.1, “Instalação e Desinstalação de Componentes”
 
 Seção 7.6.1, “Instalação e Desinstalação de Plugins”
 
-Seção 7.6.5.1, “Instalação ou Desinstalação do ddl\_rewriter”
+Seção 7.6.5.1, “Instalação ou Desinstalação do ddl_rewriter”
 
 Seção 8.4.6.2, “Instalando ou Desinstalando o Auditoria do MySQL Enterprise”
 
@@ -4724,13 +4724,13 @@ Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
 Seção 8.4.1.12, “Autenticação de Teste Plugabele”
 
-Seção 28.3.27, “A Tabela de PLUGINS do INFORMATION\_SCHEMA”
+Seção 28.3.27, “A Tabela de PLUGINS do INFORMATION_SCHEMA”
 
 Seção 7.3, “O Esquema do Sistema mysql”
 
 Seção 15.7.4.6, “Instrução UNINSTALL PLUGIN”
 
-Seção 8.4.5.8, “Usando o Plugin keyring\_aws Amazon Web Services Keyring”
+Seção 8.4.5.8, “Usando o Plugin keyring_aws Amazon Web Services Keyring”
 
 Seção 8.4.1.11, “Autenticação Plugabele WebAuthn”
 
@@ -4794,9 +4794,9 @@ Seção 15.7.7.32, “Instrução SHOW PROCESSLIST”
 
 Seção 15.4.2.5, “Instrução STOP REPLICA”
 
-Seção 30.4.3.9, “As vistas innodb\_lock\_waits e x$innodb\_lock\_waits”
+Seção 30.4.3.9, “As vistas innodb_lock_waits e x$innodb_lock_waits”
 
-Seção 30.4.3.28, “As vistas schema\_table\_lock\_waits e x$schema\_table\_lock\_waits”
+Seção 30.4.3.28, “As vistas schema_table_lock_waits e x$schema_table_lock_waits”
 
 ### KILL CONNECTION
 
@@ -4850,7 +4850,7 @@ Seção 8.4.6.4, “Formas de Arquivo de Registro de Auditoria”
 
 Seção 8.4.6.12, “Restrições do Registro de Auditoria”
 
-Seção 17.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”
+Seção 17.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”
 
 Seção 19.4.1.2, “Fazer Backup de Dados Brutos de uma Replicação”
 
@@ -4908,9 +4908,9 @@ Seção 6.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”
 
 Seção 6.5.5, “mysqlimport — Um Programa de Importação de Dados”
 
-Seção 25.5.13, “ndb\_import — Importar Dados CSV no NDB”
+Seção 25.5.13, “ndb_import — Importar Dados CSV no NDB”
 
-Seção 25.5.27, “ndb\_show\_tables — Exibir Lista de Tabelas NDB”
+Seção 25.5.27, “ndb_show_tables — Exibir Lista de Tabelas NDB”
 
 Seção 11.1.7, “Valores NULL”
 
@@ -4926,7 +4926,7 @@ Seção 26.5, “Seleção de Partições”
 
 Seção 25.6.5, “Realizar um Reinício Rotativo de um Clúster NDB”
 
-Seção 19.3.3.1, “Privilégios para a Conta PRIVILEGE\_CHECKS\_USER de Replicação”
+Seção 19.3.3.1, “Privilégios para a Conta PRIVILEGE_CHECKS_USER de Replicação”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
@@ -5370,7 +5370,7 @@ Seção 29.12.7, “Tabelas de Transações do Schema de Desempenho”
 
 Seção 15.3.4, “Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 ### REMOVE PARTITIONING
 
@@ -5426,7 +5426,7 @@ Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
 Seção 15.7.1.7, “Instrução RENAME USER”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”")
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”")
 
 Seção 15.3.3, “Instruções que Causam um Commit Implícito”
 
@@ -5554,7 +5554,7 @@ Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Instru
 
 Seção 15.1.2, “Instrução ALTER DATABASE”
 
-Seção 17.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”
+Seção 17.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”
 
 Seção 15.1.24.6, “Restrições”
 
@@ -5614,7 +5614,7 @@ Seção 18.5, “O Motor de Armazenamento ARCHIVE”
 
 Seção 1.2.2, “Principais Recursos do MySQL”
 
-Seção 25.6.15.49, “A tabela ndbinfo\_operations\_per\_fragment”
+Seção 25.6.15.49, “A tabela ndbinfo_operations_per_fragment”
 
 Seção 7.6.4, “O Plugin de Reescrita de Consultas do Rewriter”
 
@@ -5662,11 +5662,11 @@ Seção 19.4.8, “Mudança de Fontes Durante o Failover”
 
 Seção 7.4.4, “O Log Binário”
 
-Seção 29.12.11.8, “A tabela replication\_applier\_status\_by\_coordinator”
+Seção 29.12.11.8, “A tabela replication_applier_status_by_coordinator”
 
-Seção 29.12.11.9, “A tabela replication\_applier\_status\_by\_worker”
+Seção 29.12.11.9, “A tabela replication_applier_status_by_worker”
 
-Seção 29.12.11.13, “A tabela replication\_connection\_status”
+Seção 29.12.11.13, “A tabela replication_connection_status”
 
 ### RESET PERSIST
 
@@ -5692,11 +5692,11 @@ Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
 Seção 7.1.9.1, “Privilegios de Variáveis de Sistema”
 
-Seção 8.4.5.7, “Uso do componente\_keyring\_kmip KMIP Component”
+Seção 8.4.5.7, “Uso do componente_keyring_kmip KMIP Component”
 
 Seção 8.4.5.11, “Uso do componente HashiCorp Vault Keyring”
 
-### RESET PERSIST var\_name
+### RESET PERSIST var_name
 
 Seção 7.6.1, “Instalando e Desinstalando Plugins”
 
@@ -5736,13 +5736,13 @@ Seção 15.7.7.36, “Declaração SHOW REPLICA STATUS”
 
 Seção 15.3.3, “Declarações que Causam um Compromisso Implícito”
 
-Seção 29.12.11.5, “A tabela replication\_applier\_metrics”
+Seção 29.12.11.5, “A tabela replication_applier_metrics”
 
-Seção 29.12.11.8, “A tabela replication\_applier\_status\_by\_coordinator”
+Seção 29.12.11.8, “A tabela replication_applier_status_by_coordinator”
 
-Seção 29.12.11.9, “A tabela replication\_applier\_status\_by\_worker”
+Seção 29.12.11.9, “A tabela replication_applier_status_by_worker”
 
-Seção 29.12.11.13, “A tabela replication\_connection\_status”
+Seção 29.12.11.13, “A tabela replication_connection_status”
 
 ### RESET REPLICA TODOS
 
@@ -5856,13 +5856,13 @@ Seção 25.6.19.2, “Clúster NDB e Permissões do MySQL”
 
 Seção 8.2.12, “Restrição de Permissões Usando Revocações Parciais”
 
-Seção 25.6.13, “Sincronização de Permissões e NDB\_STORED\_USER”
+Seção 25.6.13, “Sincronização de Permissões e NDB_STORED_USER”
 
 Seção 8.2.2, “Permissões Fornecidas pelo MySQL”
 
 Seção 8.2.19, “Usuários Proxy”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”)
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”)
 
 Seção 19.5.1.23, “Replicação do Esquema do Sistema mysql”
 
@@ -5930,7 +5930,7 @@ Seção 27.9, “Registro Binário de Programas Armazenados”
 
 Seção 7.4.4, “O Log Binário”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 15.3, “Instruções Transacionais e de Acionamento de Bloqueio”
 
@@ -5944,7 +5944,7 @@ Seção 29.12.7, “Tabelas de Transações do Schema de Desempenho”
 
 Seção 15.3.4, “Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 ### ROLLBACK para SAVEPOINT
 
@@ -6104,7 +6104,7 @@ Seção 25.4.3.9.3, “Variáveis de status do NDB Cluster”
 
 Seção 25.4.3.9.2, “Variáveis de sistema do NDB Cluster”
 
-Seção 25.5.25, “ndb\_select\_all — Imprimir linhas de uma tabela NDB”
+Seção 25.5.25, “ndb_select_all — Imprimir linhas de uma tabela NDB”
 
 Seção 25.6.15, “ndbinfo: O banco de dados de informações do NDB Cluster”
 
@@ -6216,7 +6216,7 @@ Seção 15.7.7.15, “Instrução SHOW CREATE VIEW”
 
 Seção 15.7.7.19, “Instrução SHOW ERRORS”
 
-Seção 15.7.7.27, “Instrução SHOW PARSE\_TREE”
+Seção 15.7.7.27, “Instrução SHOW PARSE_TREE”
 
 Seção 15.7.7.32, “Instrução SHOW PROCESSLIST”
 
@@ -6254,7 +6254,7 @@ Seção 7.4.4, “O Log Binário”
 
 Seção 13.3.6, “O Tipo ENUM”
 
-Seção 29.12.22.4, “A Tabela host\_cache”
+Seção 29.12.22.4, “A Tabela host_cache”
 
 Seção 28.3.8, “A Tabela COLUMNS do INFORMATION_SCHEMA”
 
@@ -6284,7 +6284,7 @@ Seção 15.2.15.1, “A Subconsulta como Operando Escalar”
 
 Seção 29.12.22.10, “A Tabela threads”
 
-Seção 29.12.16.1, “A Tabela tp\_connections”
+Seção 29.12.16.1, “A Tabela tp_connections”
 
 Seção 10.15.3, “Instruções Traçáveis”
 
@@ -6338,7 +6338,7 @@ Seção 13.3.4, “Os Tipos BLOB e TEXT”
 
 Seção 26.1, “Visão Geral da Partição no MySQL”
 
-### SELECT \* INTO OUTFILE 'nome\_do\_arquivo' FROM tbl\_name
+### SELECT \* INTO OUTFILE 'nome_do_arquivo' FROM tbl_name
 
 Seção 9.2, “Métodos de Backup de Banco de Dados”
 
@@ -6426,11 +6426,11 @@ Seção 8.2.22, “Resolvendo Problemas de Conexão ao MySQL”
 
 Seção 2.3.6, “Restrições da Plataforma Windows”
 
-### SELECT ... INTO 'nome\_do\_arquivo'
+### SELECT ... INTO 'nome_do_arquivo'
 
 Seção 15.2.13.1, “Instrução SELECT ... INTO”
 
-### SELECT ... INTO var\_list
+### SELECT ... INTO var_list
 
 Seção 27.10, “Restrições sobre Programas Armazenados”
 
@@ -6440,7 +6440,7 @@ Seção 15.6.4, “Variáveis em Programas Armazenados”
 
 Seção 25.2.7.3, “Limites Relacionados à Gerenciamento de Transações no NDB Cluster”
 
-### SELECT @@ssl\_fips\_mode
+### SELECT @@ssl_fips_mode
 
 Seção 8.8, “Suporte FIPS”
 
@@ -6454,7 +6454,7 @@ Seção 10.2.2.1, “Otimizando Predicados Subquery IN e EXISTS com Transformaç
 
 ### SELECT INTO ... OUTFILE
 
-Seção 25.5.13, “ndb\_import — Importar Dados CSV no NDB”
+Seção 25.5.13, “ndb_import — Importar Dados CSV no NDB”
 
 ### SELECT INTO DUMPFILE
 
@@ -6462,7 +6462,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 ### SELECT INTO OUTFILE
 
-Seção 25.5.13, “ndb\_import — Importar Dados CSV no NDB”
+Seção 25.5.13, “ndb_import — Importar Dados CSV no NDB”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -6588,7 +6588,7 @@ Seção 8.4.5.10, “Usando o Plugin de Keychain de HashiCorp”
 
 Seção 15.6.4, “Variáveis em Programas Armazenados”
 
-### SET @@GLOBAL.ndb\_conflict\_role = 'NONE'
+### SET @@GLOBAL.ndb_conflict_role = 'NONE'
 
 Seção 25.4.3.9.2, “Variáveis de Sistema do NDB Cluster”
 
@@ -6620,11 +6620,11 @@ Seção 15.7.6, “Instruções SET”
 
 Seção 12.9, “Suporte a Unicode”
 
-### SET CHARACTER SET 'charset\_name'
+### SET CHARACTER SET 'charset_name'
 
 Seção 12.4, “Conjunto de Caracteres de Conexão e Colagens”
 
-### SET CHARACTER SET charset\_name
+### SET CHARACTER SET charset_name
 
 Seção 12.4, “Conjunto de Caracteres de Conexão e Colagens”
 
@@ -6674,13 +6674,13 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 Seção 17.6.5, “Log de Refazer”
 
-Seção 7.4.2.6, “Filtragem do Log de Erros Baseada em Regras (log\_filter\_dragnet)”")
+Seção 7.4.2.6, “Filtragem do Log de Erros Baseada em Regras (log_filter_dragnet)”")
 
 Seção 15.7.6.1, “Sintaxe SET para Atribuição de Variáveis”
 
 Seção 7.1.9.1, “Privilegios de Variáveis do Sistema”
 
-Seção 8.4.5.8, “Usando o Plugin de Keychain\_AWS Amazon Web Services Keychain”
+Seção 8.4.5.8, “Usando o Plugin de Keychain_AWS Amazon Web Services Keychain”
 
 Seção A.11, “Perguntas Frequentes do MySQL 9.5: Conjuntos de Caracteres Chinês, Japonês e Coreano do MySQL”
 
@@ -6704,7 +6704,7 @@ Seção 12.9, “Suporte a Unicode”
 
 Seção 12.2.2, “UTF-8 para Metadados”
 
-### SET NAMES 'charset\_name'
+### SET NAMES 'charset_name'
 
 Seção 12.4, “Conjunto de Caracteres e Colagens de Conexão”
 
@@ -6712,11 +6712,11 @@ Seção 12.4, “Conjunto de Caracteres e Colagens de Conexão”
 
 Seção 12.4, “Conjunto de Caracteres e Colagens de Conexão”
 
-### SET NAMES charset\_name
+### SET NAMES charset_name
 
 Seção 6.6.9, “mysqlbinlog — Ferramenta para Processar Arquivos de Log Binário”
 
-### SET NAMES default\_character\_set
+### SET NAMES default_character_set
 
 Seção 6.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”
 
@@ -6738,7 +6738,7 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 Seção 19.5.1.40, “Replicação e Variáveis”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”)
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”)
 
 Seção B.3.3.2.3, “Redefinindo a Senha do Root: Instruções Gerais”
 
@@ -6788,7 +6788,7 @@ Seção 8.2.12, “Restrição de Privilégios Usando Revocações Parciais”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-Seção 7.4.2.6, “Filtragem do Log de Erros Baseada em Regras (log\_filter\_dragnet)”")
+Seção 7.4.2.6, “Filtragem do Log de Erros Baseada em Regras (log_filter_dragnet)”")
 
 Seção 7.1.8, “Variáveis de Sistema do Servidor”
 
@@ -6846,15 +6846,15 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### SET sql\_log\_bin = 0
+### SET sql_log_bin = 0
 
 Seção 6.6.9, “mysqlbinlog — Utilitário para Processamento de Arquivos de Log Binário”
 
-### SET sql\_log\_bin=OFF
+### SET sql_log_bin=OFF
 
 Seção 7.4.4, “O Log Binário”
 
-### SET sql\_mode='modes'
+### SET sql_mode='modes'
 
 Seção A.3, “Perguntas Frequentes do MySQL 9.5: Modo SQL do Servidor”
 
@@ -6890,7 +6890,7 @@ Seção 15.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### SET var\_name = value
+### SET var_name = value
 
 Seção 15.7.6, “Instruções SET”
 
@@ -7034,7 +7034,7 @@ Seção 12.10, "Conjunto de Caracteres e Colagens Suporteadas"
 
 Seção 12.3.4, "Conjunto de Caracteres e Colagem de uma Tabela"
 
-Seção 28.3.4, "A Tabela INFORMATION\_SCHEMA CARACTERES\_DE\_SET"
+Seção 28.3.4, "A Tabela INFORMATION_SCHEMA CARACTERES_DE_SET"
 
 ### SHOW COLLATION
 
@@ -7054,9 +7054,9 @@ Seção 7.1.8, "Variáveis do Sistema do Servidor"
 
 Seção 15.7.7.5, "Declaração SHOW COLLATION"
 
-Seção 28.3.7, "A Tabela INFORMATION\_SCHEMA COLLATION\_CHARACTER\_SET\_APPLICABILITY"
+Seção 28.3.7, "A Tabela INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY"
 
-Seção 28.3.6, "A Tabela INFORMATION\_SCHEMA COLLATIONS"
+Seção 28.3.6, "A Tabela INFORMATION_SCHEMA COLLATIONS"
 
 ### SHOW COLUMNS
 
@@ -7074,65 +7074,65 @@ Seção 29.1, "Início Rápido do Schema de Desempenho"
 
 Seção 15.7.7.6, "Declaração SHOW COLUMNS"
 
-Seção 28.3.8, "A Tabela INFORMATION\_SCHEMA COLUMNS"
+Seção 28.3.8, "A Tabela INFORMATION_SCHEMA COLUMNS"
 
-Seção 28.4.2, "A Tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE"
+Seção 28.4.2, "A Tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE"
 
-Seção 28.4.3, "A Tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU"
+Seção 28.4.3, "A Tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU"
 
-Seção 28.4.4, "A Tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS"
+Seção 28.4.4, "A Tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS"
 
-Seção 28.4.5, "A Tabela INFORMATION\_SCHEMA INNODB\_CACHED\_INDEXES"
+Seção 28.4.5, "A Tabela INFORMATION_SCHEMA INNODB_CACHED_INDEXES"
 
-Seção 28.4.6, "As tabelas INFORMATION\_SCHEMA INNODB\_CMP e INNODB\_CMP\_RESET"
+Seção 28.4.6, "As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET"
 
-Seção 28.4.8, "As tabelas INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET"
+Seção 28.4.8, "As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET"
 
-Seção 28.4.7, "As tabelas INFORMATION\_SCHEMA INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET"
+Seção 28.4.7, "As tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET"
 
-Seção 28.4.9, “A tabela INFORMATION\_SCHEMA INNODB\_COLUMNS”
+Seção 28.4.9, “A tabela INFORMATION_SCHEMA INNODB_COLUMNS”
 
-Seção 28.4.10, “A tabela INFORMATION\_SCHEMA INNODB\_DATAFILES”
+Seção 28.4.10, “A tabela INFORMATION_SCHEMA INNODB_DATAFILES”
 
-Seção 28.4.11, “A tabela INFORMATION\_SCHEMA INNODB\_FIELDS”
+Seção 28.4.11, “A tabela INFORMATION_SCHEMA INNODB_FIELDS”
 
-Seção 28.4.12, “A tabela INFORMATION\_SCHEMA INNODB\_FOREIGN”
+Seção 28.4.12, “A tabela INFORMATION_SCHEMA INNODB_FOREIGN”
 
-Seção 28.4.13, “A tabela INFORMATION\_SCHEMA INNODB\_FOREIGN\_COLS”
+Seção 28.4.13, “A tabela INFORMATION_SCHEMA INNODB_FOREIGN_COLS”
 
-Seção 28.4.14, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED”
+Seção 28.4.14, “A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED”
 
-Seção 28.4.15, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG”
+Seção 28.4.15, “A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG”
 
-Seção 28.4.16, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD”
+Seção 28.4.16, “A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD”
 
-Seção 28.4.17, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED”
+Seção 28.4.17, “A tabela INFORMATION_SCHEMA INNODB_FT_DELETED”
 
-Seção 28.4.18, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE”
+Seção 28.4.18, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”
 
-Seção 28.4.19, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE”
+Seção 28.4.19, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”
 
-Seção 28.4.20, “A tabela INFORMATION\_SCHEMA INNODB\_INDEXES”
+Seção 28.4.20, “A tabela INFORMATION_SCHEMA INNODB_INDEXES”
 
-Seção 28.4.21, “A tabela INFORMATION\_SCHEMA INNODB\_METRICS”
+Seção 28.4.21, “A tabela INFORMATION_SCHEMA INNODB_METRICS”
 
-Seção 28.4.22, “A tabela INFORMATION\_SCHEMA INNODB\_SESSION\_TEMP\_TABLESPACES”
+Seção 28.4.22, “A tabela INFORMATION_SCHEMA INNODB_SESSION_TEMP_TABLESPACES”
 
-Seção 28.4.23, “A tabela INFORMATION\_SCHEMA INNODB\_TABLES”
+Seção 28.4.23, “A tabela INFORMATION_SCHEMA INNODB_TABLES”
 
-Seção 28.4.24, “A tabela INFORMATION\_SCHEMA INNODB\_TABLESPACES”
+Seção 28.4.24, “A tabela INFORMATION_SCHEMA INNODB_TABLESPACES”
 
-Seção 28.4.25, “A tabela INFORMATION\_SCHEMA INNODB\_TABLESPACES\_BRIEF”
+Seção 28.4.25, “A tabela INFORMATION_SCHEMA INNODB_TABLESPACES_BRIEF”
 
-Seção 28.4.26, “A visualização TABLESTATS da INFORMATION\_SCHEMA INNODB”
+Seção 28.4.26, “A visualização TABLESTATS da INFORMATION_SCHEMA INNODB”
 
-Seção 28.4.27, “A tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO”
+Seção 28.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”
 
-Seção 28.4.28, “A tabela INFORMATION\_SCHEMA INNODB\_TRX”
+Seção 28.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”
 
-Seção 28.4.29, “A tabela INFORMATION\_SCHEMA INNODB\_VIRTUAL”
+Seção 28.4.29, “A tabela INFORMATION_SCHEMA INNODB_VIRTUAL”
 
-### SHOW COLUMNS FROM tbl\_name LIKE 'enum\_col'
+### SHOW COLUMNS FROM tbl_name LIKE 'enum_col'
 
 Seção 13.3.6, “O tipo ENUM”
 
@@ -7256,9 +7256,9 @@ Seção 25.6.11.1, “Objetos de Dados de Disco do NDB Cluster”
 
 Seção 25.4.3.9.2, “Variáveis do Sistema NDB Cluster”
 
-Seção 25.5.9, “ndb\_desc — Descrever Tabelas NDB”
+Seção 25.5.9, “ndb_desc — Descrever Tabelas NDB”
 
-Seção 25.5.23, “ndb\_restore — Restaurar um Backup de NDB Cluster”
+Seção 25.5.23, “ndb_restore — Restaurar um Backup de NDB Cluster”
 
 Seção 26.3.5, “Obtendo Informações sobre Partições”
 
@@ -7278,7 +7278,7 @@ Seção 15.7.7.12, “Instrução SHOW CREATE TABLE”
 
 Seção 15.1.24.7, “Alterações Silenciosas de Especificação de Colunas”
 
-Seção 17.6.3.9, “Configuração do Espaço de Tabelas AUTOEXTEND\_SIZE”
+Seção 17.6.3.9, “Configuração do Espaço de Tabelas AUTOEXTEND_SIZE”
 
 Seção 8.2.8, “Adicionar Contas, Atribuir Privilegios e Remover Contas”
 
@@ -7310,7 +7310,7 @@ Seção 27.11, “Restrições sobre Visualizações”
 
 Seção 15.7.7.15, “Instrução SHOW CREATE VIEW”
 
-Seção 28.3.53, “A Tabela de VISUALIZAÇÕES do INFORMATION\_SCHEMA”
+Seção 28.3.53, “A Tabela de VISUALIZAÇÕES do INFORMATION_SCHEMA”
 
 Seção 27.6.5, “Metadados da Visualização”
 
@@ -7328,7 +7328,7 @@ Seção 8.2.3, “Conceder Tabelas”
 
 Seção 11.2.3, “Sensibilidade do Identificador”
 
-Seção 16.5, “Integração do INFORMATION\_SCHEMA e do Dicionário de Dados”
+Seção 16.5, “Integração do INFORMATION_SCHEMA e do Dicionário de Dados”
 
 Seção 28.1, “Introdução”
 
@@ -7344,7 +7344,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 15.7.7.16, “Instrução SHOW DATABASES”
 
-Seção 28.3.37, “A Tabela de SCHEMATA do INFORMATION\_SCHEMA”
+Seção 28.3.37, “A Tabela de SCHEMATA do INFORMATION_SCHEMA”
 
 ### SHOW ENGINE
 
@@ -7378,11 +7378,11 @@ Seção 15.1.24.5, “Restrições de Chave Estrangeira”
 
 Seção 17.7.5.3, “Como Minimizar e Gerir Blo quedas”
 
-Seção 17.15.5, “Tabelas do Pool de Buffer do InnoDB INFORMATION\_SCHEMA”
+Seção 17.15.5, “Tabelas do Pool de Buffer do InnoDB INFORMATION_SCHEMA”
 
-Seção 17.15.6, “Tabela de Metátodos InnoDB INFORMATION\_SCHEMA”
+Seção 17.15.6, “Tabela de Metátodos InnoDB INFORMATION_SCHEMA”
 
-Seção 17.15.3, “Tabelas de Objetos do Schema InnoDB INFORMATION\_SCHEMA”
+Seção 17.15.3, “Tabelas de Objetos do Schema InnoDB INFORMATION_SCHEMA”
 
 Seção 17.7.1, “Blo quedas InnoDB”
 
@@ -7402,7 +7402,7 @@ Seção 17.8.9, “Configuração de Purga”
 
 Seção 35.4.3, “Metátodos do Servidor”
 
-Seção 28.4.4, “A Tabela de Metátodos INNODB_BUFFER_POOL_STATS do INFORMATION\_SCHEMA”
+Seção 28.4.4, “A Tabela de Metátodos INNODB_BUFFER_POOL_STATS do INFORMATION_SCHEMA”
 
 Seção A.10, “Perguntas Frequentes do MySQL 9.5: NDB Cluster”
 
@@ -7526,7 +7526,7 @@ Seção 8.2.3, “Conceder Tabelas”
 
 Seção 8.2.12, “Restrição de Privilegios Usando Revocações Parciais”
 
-Seção 25.6.13, “Sincronização de Privilegios e NDB\_STORED\_USER”
+Seção 25.6.13, “Sincronização de Privilegios e NDB_STORED_USER”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -7574,7 +7574,7 @@ Seção 10.3.8, “Coleta de Estatísticas de Índices InnoDB e MyISAM”
 
 Seção 10.3.12, “Índices Invisíveis”
 
-Seção 25.5.14, “ndb\_index\_stat — Ferramenta de Estatísticas de Índices NDB”
+Seção 25.5.14, “ndb_index_stat — Ferramenta de Estatísticas de Índices NDB”
 
 Seção 10.9.3, “Dicas do Otimizador”
 
@@ -7588,7 +7588,7 @@ Seção 15.7.7.24, “Declaração SHOW INDEX”
 
 Seção 28.3.40, “A Tabela STATISTICS_SCHEMA”
 
-Seção 28.3.47, “A Tabela TABLE\_CONSTRAINTS do INFORMATION_SCHEMA”
+Seção 28.3.47, “A Tabela TABLE_CONSTRAINTS do INFORMATION_SCHEMA”
 
 ### SHOW LIBRARY STATUS
 
@@ -7604,11 +7604,11 @@ Seção 27.3.8, “Uso de Bibliotecas JavaScript”
 
 Seção 15.7.7.26, “Declaração SHOW OPEN TABLES”
 
-### SHOW PARSE\_TREE
+### SHOW PARSE_TREE
 
 Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”
 
-Seção 15.7.7.27, “Declaração SHOW PARSE\_TREE”
+Seção 15.7.7.27, “Declaração SHOW PARSE_TREE”
 
 ### SHOW PLUGINS
 
@@ -7620,7 +7620,7 @@ Seção 15.7.4.4, “Declaração INSTALL PLUGIN”
 
 Seção 7.6.1, “Instalação e Desinstalação de Plugins”
 
-Seção 7.6.5.1, “Instalação ou Desinstalação do ddl\_rewriter”
+Seção 7.6.5.1, “Instalação ou Desinstalação do ddl_rewriter”
 
 Seção 8.4.6.2, “Instalação ou Desinstalação do MySQL Enterprise Audit”
 
@@ -7660,9 +7660,9 @@ Seção 8.4.1.10, “Autenticação Plugavel de Peer de Socket”
 
 Seção 8.4.1.12, “Testes de Autenticação Plugavel”
 
-Seção 28.3.23, “A Tabela INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map”
+Seção 28.3.23, “A Tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map”
 
-Seção 28.3.27, “A Tabela INFORMATION\_SCHEMA PLUGINS”
+Seção 28.3.27, “A Tabela INFORMATION_SCHEMA PLUGINS”
 
 Seção 7.6.3.2, “Instalação do Pool de Threads”
 
@@ -7766,29 +7766,29 @@ Seção 7.6.6.11, “Parar uma Operação de Clonagem”
 
 Seção 19.4.8, “Alternar Fontes Durante o Failover”
 
-Seção 29.12.22.3, “A Tabela error\_log
+Seção 29.12.22.3, “A Tabela error_log
 
-Seção 28.3.23, “A tabela INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map”
+Seção 28.3.23, “A tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map”
 
-Seção 28.3.28, “A tabela INFORMATION\_SCHEMA PROCESSLIST”
+Seção 28.3.28, “A tabela INFORMATION_SCHEMA PROCESSLIST”
 
-Seção 25.6.15.54, “A tabela ndbinfo server\_locks”
+Seção 25.6.15.54, “A tabela ndbinfo server_locks”
 
-Seção 25.6.15.55, “A tabela ndbinfo server\_operations”
+Seção 25.6.15.55, “A tabela ndbinfo server_operations”
 
-Seção 25.6.15.56, “A tabela ndbinfo server\_transactions”
+Seção 25.6.15.56, “A tabela ndbinfo server_transactions”
 
 Seção 30.4.3.22, “As visualizações processlist e x$processlist”
 
 Seção 29.12.22.9, “A tabela processlist”
 
-Seção 30.4.5.13, “A função ps\_is\_thread\_instrumented()” Function")
+Seção 30.4.5.13, “A função ps_is_thread_instrumented()” Function")
 
-Seção 30.4.4.7, “O procedimento ps\_setup\_disable\_thread()” Procedure")
+Seção 30.4.4.7, “O procedimento ps_setup_disable_thread()” Procedure")
 
-Seção 30.4.4.11, “O procedimento ps\_setup\_enable\_thread()” Procedure")
+Seção 30.4.4.11, “O procedimento ps_setup_enable_thread()” Procedure")
 
-Seção 30.4.5.15, “A função ps\_thread\_id()” Function")
+Seção 30.4.5.15, “A função ps_thread_id()” Function")
 
 Seção 29.12.22.10, “A tabela threads”
 
@@ -7810,7 +7810,7 @@ Seção 15.7.7.33, “Instrução SHOW PROFILE”
 
 Seção 15.7.7.34, “Instrução SHOW PROFILES”
 
-Seção 28.3.29, “A tabela INFORMATION\_SCHEMA PROFILING”
+Seção 28.3.29, “A tabela INFORMATION_SCHEMA PROFILING”
 
 ### SHOW PROFILES
 
@@ -7824,7 +7824,7 @@ Seção 15.7.7.33, “Instrução SHOW PROFILE”
 
 Seção 15.7.7.34, “Instrução SHOW PROFILES”
 
-Seção 28.3.29, “A tabela INFORMATION\_SCHEMA PROFILING”
+Seção 28.3.29, “A tabela INFORMATION_SCHEMA PROFILING”
 
 ### SHOW RELAYLOG EVENTS
 
@@ -7916,17 +7916,17 @@ Seção 15.4.2.4, “Instrução START REPLICA”
 
 Seção 19.1.5.5, “Iniciando Replicação de Múltiplos Fontes”
 
-Seção 29.12.11.2, “A tabela replication\_applier\_configuration”
+Seção 29.12.11.2, “A tabela replication_applier_configuration”
 
-Seção 29.12.11.7, “A tabela replication\_applier\_status”
+Seção 29.12.11.7, “A tabela replication_applier_status”
 
-Seção 29.12.11.8, “A tabela replication\_applier\_status\_by\_coordinator”
+Seção 29.12.11.8, “A tabela replication_applier_status_by_coordinator”
 
-Seção 29.12.11.9, “A tabela replication\_applier\_status\_by\_worker”
+Seção 29.12.11.9, “A tabela replication_applier_status_by_worker”
 
-Seção 29.12.11.12, “A tabela replication\_connection\_configuration”
+Seção 29.12.11.12, “A tabela replication_connection_configuration”
 
-Seção 29.12.11.13, “A tabela replication\_connection\_status”
+Seção 29.12.11.13, “A tabela replication_connection_status”
 
 Seção 19.5.4, “Depuração da Replicação”
 
@@ -7982,7 +7982,7 @@ Seção 29.7, “Monitoramento de status do Performance Schema”
 
 Seção 14.19.1, “Descrição das funções agregadas”
 
-Seção 17.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”
+Seção 17.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”
 
 Seção 17.8.10.2, “Configuração de parâmetros de estatísticas do otimizador não persistente”
 
@@ -8012,7 +8012,7 @@ Seção 15.7.7.39, “Declaração SHOW TABLE STATUS”
 
 Seção 18.5, “O mecanismo de armazenamento ARCHIVE”
 
-Seção 28.3.44, “A tabela TABELAS do esquema INFORMATION\_SCHEMA”
+Seção 28.3.44, “A tabela TABELAS do esquema INFORMATION_SCHEMA”
 
 ### SHOW TABLES
 
@@ -8032,7 +8032,7 @@ Glossário do MySQL
 
 Seção 25.7.10, “Replicação de NDB Cluster: Replicação Bidirecional e Circular”
 
-Seção 25.5.23, “ndb\_restore — Restaurar um Backup de NDB Cluster”
+Seção 25.5.23, “ndb_restore — Restaurar um Backup de NDB Cluster”
 
 Seção 25.6.15, “ndbinfo: O Banco de Dados de Informações do NDB Cluster”
 
@@ -8040,7 +8040,7 @@ Seção 15.7.7.39, “Instrução SHOW TABLE STATUS”
 
 Seção 15.7.7.40, “Instrução SHOW TABLES”
 
-Seção B.3.2.14, “A tabela 'tbl\_name' não existe”
+Seção B.3.2.14, “A tabela 'tbl_name' não existe”
 
 Seção B.3.6.2, “Problemas com Tabelas TEMPORARY”
 
@@ -8056,7 +8056,7 @@ Seção 8.4.8.1.3, “Uso do Plugin do Firewall Empresarial do MySQL”
 
 Seção B.3.3.5, “Onde o MySQL Armazena Arquivos Temporários”
 
-### SHOW TABLES FROM some\_ndb\_database
+### SHOW TABLES FROM some_ndb_database
 
 Seção 25.6.19.2, “Privilégios do NDB Cluster e MySQL”
 
@@ -8228,7 +8228,7 @@ Seção 15.6.7.7, “A Área de Diagnóstico do MySQL”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-### COMEÇAR\_REPLICAÇÃO\_EM\_GRUPO
+### COMEÇAR_REPLICAÇÃO_EM_GRUPO
 
 Seção 20.2.1.6.1, “Adicionando uma Segunda Instância”
 
@@ -8268,7 +8268,7 @@ Seção 20.6.2, “Segurando Conexões de Comunicação de Grupo com Secure Soc
 
 Seção 20.5.4.1.1, “Selecionando Endpoints de Pontos de Recuperação Distribuídos”
 
-Seção 15.4.3.2, “Instrução GROUP\_REPLICATION”
+Seção 15.4.3.2, “Instrução GROUP_REPLICATION”
 
 Seção 20.8.3.2, “Atualizando um Membro de Replicação de Grupo”
 
@@ -8305,7 +8305,7 @@ Seção 6.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”
 
 Seção 25.7.10, “Replicação de NDB Cluster: Replicação Bidirecional e Circular”
 
-Seção 25.5.23, “ndb\_restore — Restaurar um Backup de NDB Cluster”
+Seção 25.5.23, “ndb_restore — Restaurar um Backup de NDB Cluster”
 
 Seção 8.1.2.3, “Senhas e Registro”
 
@@ -8405,7 +8405,7 @@ Seção 15.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”
 
 Seção 15.3.3, “Instruções que Causam um Commit Implícito”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 15.3, “Instruções Transacionais e de Bloqueio”
 
@@ -8423,11 +8423,11 @@ Seção 10.5.3, “Otimizando Transações de Leitura Apenas de Leitura InnoDB�
 
 Seção 17.7.2.3, “Leitura Não Bloqueada Consistente”
 
-### STATS\_PERSISTENT=0
+### STATS_PERSISTENT=0
 
 Seção 17.8.10.2, “Configurando Parâmetros de Estatísticas do Otimizador Não Persistente”
 
-### STATS\_PERSISTENT=1
+### STATS_PERSISTENT=1
 
 Seção 17.8.10.1, “Configurando Parâmetros de Estatísticas do Otimizador Persistente”
 
@@ -8459,7 +8459,7 @@ Seção 20.5.2, “Reiniciando um Grupo”
 
 Seção 20.6.2, “Segurando Conexões de Comunicação de Grupo com Secure Socket Layer (SSL)”")
 
-Seção 15.4.3.2, “Instrução STOP GROUP\_REPLICATION”
+Seção 15.4.3.2, “Instrução STOP GROUP_REPLICATION”
 
 Seção 20.7.7.2, “Timeout de Maioridade Inatingível”
 
@@ -8511,17 +8511,17 @@ Seção 15.7.7.36, “Instrução SHOW REPLICA STATUS”
 
 Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
-Seção 15.4.3.2, “Instrução STOP GROUP\_REPLICATION”
+Seção 15.4.3.2, “Instrução STOP GROUP_REPLICATION”
 
 Seção 19.1.5.6, “Parar Replicas de Múltiplos Fontes”
 
 Seção 19.4.8, “Alternar Fontes Durante o Failover”
 
-Seção 29.12.11.9, “A tabela replication\_applier\_status\_by\_worker”
+Seção 29.12.11.9, “A tabela replication_applier_status_by_worker”
 
 Seção 19.2.1.2, “Uso do Registro de Linha e Replicação”
 
-### STOP REPLICA SQL\_THREAD
+### STOP REPLICA SQL_THREAD
 
 Seção 15.4.2.1, “Instrução CHANGE REPLICATION FILTER”
 
@@ -8555,7 +8555,7 @@ Seção 26.2.2, “Partitioning por Lista”
 
 Seção 15.2.11, “Expressões de Consulta Parenthetizadas”
 
-Seção 29.12.14.4, “Tabela variables\_metadata do Schema de Desempenho
+Seção 29.12.14.4, “Tabela variables_metadata do Schema de Desempenho
 
 Seção 15.2.12, "Instrução REPLACE"
 
@@ -8575,7 +8575,7 @@ Seção 15.2.15.10, "Erros de subconsulta"
 
 Seção 15.2.16, "Instrução TABLE"
 
-Seção 25.6.15.47, "A tabela ndbinfo memory\_per\_fragment"
+Seção 25.6.15.47, "A tabela ndbinfo memory_per_fragment"
 
 Seção 15.2.15.1, "A subconsulta como operando escalar"
 
@@ -8649,7 +8649,7 @@ Glossário do MySQL
 
 Seção 6.5.4, “mysqldump — Um programa de backup de banco de dados”
 
-Seção 25.5.8, “ndb\_delete\_all — Deletar todas as linhas de uma tabela NDB”
+Seção 25.5.8, “ndb_delete_all — Deletar todas as linhas de uma tabela NDB”
 
 Seção 29.12.20.6, “Tabela de resumo de espera de objeto”
 
@@ -8669,9 +8669,9 @@ Seção 29.12.14, “Tabelas de variáveis do sistema do Schema de desempenho�
 
 Seção 29.12.10, “Tabelas de variáveis definidas pelo usuário do Schema de desempenho”
 
-Seção 29.12.14.3, “Tabela de variáveis\_info do Schema de desempenho”
+Seção 29.12.14.3, “Tabela de variáveis_info do Schema de desempenho”
 
-Seção 29.12.14.4, “Tabela de variáveis\_metadata do Schema de desempenho”
+Seção 29.12.14.4, “Tabela de variáveis_metadata do Schema de desempenho”
 
 Seção 25.7.9.2, “Recuperação em ponto no tempo usando a replicação do clúster NDB”
 
@@ -8699,121 +8699,121 @@ Seção 29.12.20.12, “Tabelas de Resumo de Status Variável”
 
 Seção 29.12.8.1, “A Tabela de Contas”
 
-Seção 29.12.11.1, “A Tabela de bin\_log\_transaction\_compression\_stats”
+Seção 29.12.11.1, “A Tabela de bin_log_transaction_compression_stats”
 
-Seção 29.12.19.2, “A Tabela de clone\_progress”
+Seção 29.12.19.2, “A Tabela de clone_progress”
 
-Seção 29.12.19.1, “A Tabela de clone\_status”
+Seção 29.12.19.1, “A Tabela de clone_status”
 
-Seção 29.12.3.1, “A Tabela de cond\_instances”
+Seção 29.12.3.1, “A Tabela de cond_instances”
 
-Seção 29.12.13.2, “A Tabela de data\_lock\_waits”
+Seção 29.12.13.2, “A Tabela de data_lock_waits”
 
-Seção 29.12.13.1, “A Tabela de data\_locks”
+Seção 29.12.13.1, “A Tabela de data_locks”
 
-Seção 29.12.22.3, “A Tabela de error\_log”
+Seção 29.12.22.3, “A Tabela de error_log”
 
-Seção 29.12.5.1, “A Tabela de events\_stages\_current”
+Seção 29.12.5.1, “A Tabela de events_stages_current”
 
-Seção 29.12.5.2, “A Tabela de events\_stages\_history”
+Seção 29.12.5.2, “A Tabela de events_stages_history”
 
-Seção 29.12.5.3, “A Tabela de events\_stages\_history\_long”
+Seção 29.12.5.3, “A Tabela de events_stages_history_long”
 
-Seção 29.12.6.1, “A Tabela de events\_statements\_current”
+Seção 29.12.6.1, “A Tabela de events_statements_current”
 
-Seção 29.12.6.2, “A Tabela de events\_statements\_history”
+Seção 29.12.6.2, “A Tabela de events_statements_history”
 
-Seção 29.12.6.3, “A Tabela de events\_statements\_history\_long”
+Seção 29.12.6.3, “A Tabela de events_statements_history_long”
 
-Seção 29.12.7.1, “A Tabela de events\_transactions\_current”
+Seção 29.12.7.1, “A Tabela de events_transactions_current”
 
-Seção 29.12.7.2, “A Tabela de events\_transactions\_history”
+Seção 29.12.7.2, “A Tabela de events_transactions_history”
 
-Seção 29.12.7.3, “A Tabela de events\_transactions\_history\_long”
+Seção 29.12.7.3, “A Tabela de events_transactions_history_long”
 
-Seção 29.12.4.1, “A Tabela de events\_waits\_current”
+Seção 29.12.4.1, “A Tabela de events_waits_current”
 
-Seção 29.12.4.2, “A Tabela de events\_waits\_history”
+Seção 29.12.4.2, “A Tabela de events_waits_history”
 
-Seção 29.12.4.3, “A Tabela de events\_waits\_history\_long”
+Seção 29.12.4.3, “A Tabela de events_waits_history_long”
 
-Seção 29.12.3.2, “A Tabela de file\_instances”
+Seção 29.12.3.2, “A Tabela de file_instances”
 
-Seção 29.12.17.2, “A Tabela de firewall\_group\_allowlist”
+Seção 29.12.17.2, “A Tabela de firewall_group_allowlist”
 
-Seção 29.12.17.1, “A Tabela de firewall\_groups”
+Seção 29.12.17.1, “A Tabela de firewall_groups”
 
-Seção 29.12.17.3, “A Tabela de firewall\_membership”
+Seção 29.12.17.3, “A Tabela de firewall_membership”
 
-Seção 29.12.22.4, “A Tabela de host\_cache”
+Seção 29.12.22.4, “A Tabela de host_cache”
 
 Seção 29.12.8.2, “A Tabela de hosts”
 
-Seção 28.4.20, “A Tabela de INNODB\_INDEXES do INFORMATION\_SCHEMA”
+Seção 28.4.20, “A Tabela de INNODB_INDEXES do INFORMATION_SCHEMA”
 
-Seção 28.4.23, “A Tabela de INNODB\_TABLES do INFORMATION\_SCHEMA”
+Seção 28.4.23, “A Tabela de INNODB_TABLES do INFORMATION_SCHEMA”
 
-Seção 29.12.18.1, “A Tabela de keyring\_component\_status”
+Seção 29.12.18.1, “A Tabela de keyring_component_status”
 
-Seção 29.12.18.2, “A Tabela de keyring\_keys”
+Seção 29.12.18.2, “A Tabela de keyring_keys”
 
-Seção 29.12.22.6, “A tabela log\_status”
+Seção 29.12.22.6, “A tabela log_status”
 
 Seção 18.3, “O motor de armazenamento de MEMÓRIA”
 
-Seção 29.12.13.3, “A tabela metadata\_locks”
+Seção 29.12.13.3, “A tabela metadata_locks”
 
-Seção 29.12.3.3, “A tabela mutex\_instances”
+Seção 29.12.3.3, “A tabela mutex_instances”
 
-Seção 29.12.22.8, “A tabela performance\_timers”
+Seção 29.12.22.8, “A tabela performance_timers”
 
-Seção 29.12.6.4, “A tabela prepared\_statements\_instances”
+Seção 29.12.6.4, “A tabela prepared_statements_instances”
 
 Seção 29.12.22.9, “A tabela processlist”
 
-Seção 30.4.4.24, “O procedimento ps\_truncate\_all\_tables()” Procedimento")
+Seção 30.4.4.24, “O procedimento ps_truncate_all_tables()” Procedimento")
 
-Seção 29.12.11.2, “A tabela replication\_applier\_configuration”
+Seção 29.12.11.2, “A tabela replication_applier_configuration”
 
-Seção 29.12.11.7, “A tabela replication\_applier\_status”
+Seção 29.12.11.7, “A tabela replication_applier_status”
 
-Seção 29.12.11.10, “A tabela replication\_asynchronous\_connection\_failover”
+Seção 29.12.11.10, “A tabela replication_asynchronous_connection_failover”
 
-Seção 29.12.11.11, “A tabela replication\_asynchronous\_connection\_failover\_managed”
+Seção 29.12.11.11, “A tabela replication_asynchronous_connection_failover_managed”
 
-Seção 29.12.11.12, “A tabela replication\_connection\_configuration”
+Seção 29.12.11.12, “A tabela replication_connection_configuration”
 
-Seção 29.12.11.14, “A tabela replication\_group\_communication\_information”
+Seção 29.12.11.14, “A tabela replication_group_communication_information”
 
-Seção 29.12.11.15, “A tabela replication\_group\_configuration\_version”
+Seção 29.12.11.15, “A tabela replication_group_configuration_version”
 
-Seção 29.12.11.16, “A tabela replication\_group\_member\_actions”
+Seção 29.12.11.16, “A tabela replication_group_member_actions”
 
-Seção 29.12.11.17, “A tabela replication\_group\_member\_stats”
+Seção 29.12.11.17, “A tabela replication_group_member_stats”
 
-Seção 29.12.11.18, “A tabela replication\_group\_members”
+Seção 29.12.11.18, “A tabela replication_group_members”
 
-Seção 29.12.3.4, “A tabela rwlock\_instances”
+Seção 29.12.3.4, “A tabela rwlock_instances”
 
-Seção 29.12.9.1, “A tabela session\_account\_connect\_attrs”
+Seção 29.12.9.1, “A tabela session_account_connect_attrs”
 
-Seção 29.12.9.2, “A tabela session\_connect\_attrs”
+Seção 29.12.9.2, “A tabela session_connect_attrs”
 
-Seção 29.12.2.1, “A tabela setup\_actors”
+Seção 29.12.2.1, “A tabela setup_actors”
 
-Seção 29.12.2.2, “A tabela setup\_consumers”
+Seção 29.12.2.2, “A tabela setup_consumers”
 
-Seção 29.12.2.3, “A tabela setup\_instruments”
+Seção 29.12.2.3, “A tabela setup_instruments”
 
-Seção 29.12.2.4, “A tabela setup\_objects”
+Seção 29.12.2.4, “A tabela setup_objects”
 
-Seção 29.12.2.5, “A tabela setup\_threads”
+Seção 29.12.2.5, “A tabela setup_threads”
 
-Seção 29.12.3.5, “A tabela socket\_instances”
+Seção 29.12.3.5, “A tabela socket_instances”
 
-Seção 29.12.13.4, “A tabela table\_handles”
+Seção 29.12.13.4, “A tabela table_handles”
 
-Seção 29.12.20.8.2, “A tabela table\_io\_waits\_summary\_by\_index\_usage”
+Seção 29.12.20.8.2, “A tabela table_io_waits_summary_by_index_usage”
 
 Seção 29.12.20.8.1, “A tabela wait_summary_by_table”
 
@@ -8901,7 +8901,7 @@ Seção 15.7.4.4, “Instrução de INSTALAÇÃO do PLUGIN”
 
 Seção 7.6.1, “Instalando e Desinstalando Plugins”
 
-Seção 7.6.5.1, “Instalando ou Desinstalando o ddl\_rewriter”
+Seção 7.6.5.1, “Instalando ou Desinstalando o ddl_rewriter”
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
@@ -8923,15 +8923,15 @@ Seção 15.3.3, “Instruções que Causam um Compromisso Implícito”
 
 Seção 8.4.1.12, “Teste de Autenticação Pluggable”
 
-Seção 28.3.27, “A Tabela de PLUGINS do INFORMATION\_SCHEMA”
+Seção 28.3.27, “A Tabela de PLUGINS do INFORMATION_SCHEMA”
 
 Seção 15.7.4.6, “Instrução UNINSTALL PLUGIN”
 
-Seção 8.4.5.7, “Usando o componente\_keyring\_kmip Componente KMIP”
+Seção 8.4.5.7, “Usando o componente_keyring_kmip Componente KMIP”
 
 Seção 8.4.5.11, “Usando o Componente de Pendrive de Chave HashiCorp Vault”
 
-Seção 8.4.5.8, “Usando o Plugin de Pendrive de Chave Amazon Web Services keyring\_aws”
+Seção 8.4.5.8, “Usando o Plugin de Pendrive de Chave Amazon Web Services keyring_aws”
 
 Seção 8.4.1.5, “Autenticação Pluggable Windows”
 
@@ -9041,7 +9041,7 @@ Seção 8.4.6.7, “Filtragem do log de auditoria”
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
-Seção 17.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”
+Seção 17.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”
 
 Seção 17.1.2, “Melhores práticas para tabelas InnoDB”
 
@@ -9259,17 +9259,17 @@ Seção 10.11.2, “Problemas com o Bloqueio de Tabelas”
 
 Seção 18.5, “O Motor de Armazenamento ARCHIVE”
 
-Seção 12.8.5, “A Colagem Binária Comparada às Colagens \_bin”
+Seção 12.8.5, “A Colagem Binária Comparada às Colagens _bin”
 
 Seção 7.4.4, “O Log Binário”
 
 Seção 18.6, “O Motor de Armazenamento BLACKHOLE”
 
-Seção 28.4.26, “A Visualização INFORMATION\_SCHEMA INNODB\_TABLESTATS”
+Seção 28.4.26, “A Visualização INFORMATION_SCHEMA INNODB_TABLESTATS”
 
-Seção 28.3.44, “A Tabela TABLES do INFORMATION\_SCHEMA”
+Seção 28.3.44, “A Tabela TABLES do INFORMATION_SCHEMA”
 
-Seção 28.3.53, “A Tabela VIEWS do INFORMATION\_SCHEMA”
+Seção 28.3.53, “A Tabela VIEWS do INFORMATION_SCHEMA”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
@@ -9377,7 +9377,7 @@ Seção 15.8.4, “Instrução USE”
 
 Seção 6.6.9, “mysqlbinlog — Ferramenta para Processamento de Arquivos de Log Binário”
 
-### USE db\_name
+### USE db_name
 
 Seção 6.5.1.1, “Opções do Cliente do mysql”
 
@@ -9471,7 +9471,7 @@ Seção 29.12.7, “Tabelas de transações do Schema de desempenho”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 3.7, “Atualização de instalações binárias ou baseadas em pacotes do MySQL no Unix/Linux”
 
@@ -9485,7 +9485,7 @@ Seção 15.3.8.3, “Restrições para transações XA”
 
 Seção 15.3.8.3, “Restrições para transações XA”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 15.3.8.1, “Instruções SQL de transações XA”
 
@@ -9497,7 +9497,7 @@ Seção 20.3.1, “Requisitos de replicação por grupo”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 15.3.8.2, “Estados de transações XA”
 
@@ -9511,7 +9511,7 @@ Seção 8.2.2, “Privilegios fornecidos pelo MySQL”
 
 Seção 15.3.8.3, “Restrições para transações XA”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 3.7, “Atualização de instalações binárias ou baseadas em pacotes do MySQL no Unix/Linux”
 
@@ -9527,7 +9527,7 @@ Seção 29.12.7, “Tabelas de transações do Schema de desempenho”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-Seção 29.12.7.1, “Tabela eventos\_transações\_atual”
+Seção 29.12.7.1, “Tabela eventos_transações_atual”
 
 Seção 3.7, “Atualização de instalações binárias ou baseadas em pacotes do MySQL no Unix/Linux”
 
@@ -9541,7 +9541,7 @@ Seção 15.3.8.3, “Restrições para transações XA”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-Seção 29.12.7.1, “A tabela eventos\_transações\_atual”
+Seção 29.12.7.1, “A tabela eventos_transações_atual”
 
 Seção 15.3.8.1, “Instruções SQL de transações XA”
 

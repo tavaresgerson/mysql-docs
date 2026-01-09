@@ -4,7 +4,7 @@ Algumas funções não se replicam bem sob certas condições:
 
 - As funções `USER()`, `CURRENT_USER()` (ou `CURRENT_USER`), `UUID()`, `VERSION()` e `LOAD_FILE()` são replicadas sem alterações e, portanto, não funcionam de forma confiável na replica, a menos que a replicação baseada em linhas seja habilitada. (Veja Seção 16.2.1, “Formatos de Replicação”.)
 
-  `USER()` e `CURRENT_USER()` são replicados automaticamente usando replicação baseada em linhas quando o modo `MIXED` é usado, e geram um aviso no modo `STATEMENT`. (Veja também Seção 16.4.1.8, “Replicação de CURRENT\_USER()”.) Isso também é verdadeiro para `VERSION()` e `RAND()`.
+  `USER()` e `CURRENT_USER()` são replicados automaticamente usando replicação baseada em linhas quando o modo `MIXED` é usado, e geram um aviso no modo `STATEMENT`. (Veja também Seção 16.4.1.8, “Replicação de CURRENT_USER()”.) Isso também é verdadeiro para `VERSION()` e `RAND()`.
 
 - Para `NOW()`, o log binário inclui o timestamp. Isso significa que o valor *como retornado pela chamada a essa função na fonte* é replicado para a replica. Para evitar resultados inesperados ao replicar entre servidores MySQL em diferentes fusos horários, defina o fuso horário tanto na fonte quanto na replica. Para mais informações, consulte Seção 16.4.1.31, “Replicação e Fusos Horários”.
 
@@ -50,7 +50,7 @@ Algumas funções não se replicam bem sob certas condições:
 
   Essas funções são replicadas automaticamente usando a replicação baseada em linhas quando o modo `MIXED` é usado, e geram um aviso no modo `STATEMENT`.
 
-Como uma solução para as limitações anteriores quando a replicação baseada em declarações está em vigor, você pode usar a estratégia de salvar o resultado da função problemática em uma variável do usuário e referenciar a variável em uma declaração posterior. Por exemplo, a seguinte única linha de `[INSERT]` (insert.html) é problemática devido à referência à função `[UUID]` (functions.html#function\_uuid):
+Como uma solução para as limitações anteriores quando a replicação baseada em declarações está em vigor, você pode usar a estratégia de salvar o resultado da função problemática em uma variável do usuário e referenciar a variável em uma declaração posterior. Por exemplo, a seguinte única linha de `[INSERT]` (insert.html) é problemática devido à referência à função `[UUID]` (functions.html#function_uuid):
 
 ```sql
 INSERT INTO t VALUES(UUID());

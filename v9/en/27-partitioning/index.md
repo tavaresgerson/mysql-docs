@@ -64,7 +64,7 @@ Section 26.3, “Partition Management”, covers methods of adding, removing, a
 
 Section 26.3.4, “Maintenance of Partitions”, discusses table maintenance commands for use with partitioned tables.
 
-The `PARTITIONS` table in the `INFORMATION_SCHEMA` database provides information about partitions and partitioned tables. See Section 28.3.26, “The INFORMATION\_SCHEMA PARTITIONS Table”, for more information; for some examples of queries against this table, see Section 26.2.7, “How MySQL Partitioning Handles NULL”.
+The `PARTITIONS` table in the `INFORMATION_SCHEMA` database provides information about partitions and partitioned tables. See Section 28.3.26, “The INFORMATION_SCHEMA PARTITIONS Table”, for more information; for some examples of queries against this table, see Section 26.2.7, “How MySQL Partitioning Handles NULL”.
 
 For known issues with partitioning in MySQL 9.5, see Section 26.6, “Restrictions and Limitations on Partitioning”.
 

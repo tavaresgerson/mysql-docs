@@ -1,15 +1,15 @@
-#### 14.6.1.6 AUTO\_INCREMENT Handling in InnoDB
+#### 14.6.1.6 AUTO_INCREMENT Handling in InnoDB
 
 `InnoDB` provides a configurable locking mechanism that can significantly improve scalability and performance of SQL statements that add rows to tables with `AUTO_INCREMENT` columns. To use the `AUTO_INCREMENT` mechanism with an `InnoDB` table, an `AUTO_INCREMENT` column must be defined as the first or only column of some index such that it is possible to perform the equivalent of an indexed `SELECT MAX(ai_col)` lookup on the table to obtain the maximum column value. The index is not required to be a `PRIMARY KEY` or `UNIQUE`, but to avoid duplicate values in the `AUTO_INCREMENT` column, those index types are recommended.
 
 This section describes the `AUTO_INCREMENT` lock modes, usage implications of different `AUTO_INCREMENT` lock mode settings, and how `InnoDB` initializes the `AUTO_INCREMENT` counter.
 
-* InnoDB AUTO\_INCREMENT Lock Modes
-* InnoDB AUTO\_INCREMENT Lock Mode Usage Implications
-* InnoDB AUTO\_INCREMENT Counter Initialization
+* InnoDB AUTO_INCREMENT Lock Modes
+* InnoDB AUTO_INCREMENT Lock Mode Usage Implications
+* InnoDB AUTO_INCREMENT Counter Initialization
 * Notes
 
-##### InnoDB AUTO\_INCREMENT Lock Modes
+##### InnoDB AUTO_INCREMENT Lock Modes
 
 This section describes the `AUTO_INCREMENT` lock modes used to generate auto-increment values, and how each lock mode affects replication. The auto-increment lock mode is configured at startup using the `innodb_autoinc_lock_mode` variable.
 
@@ -94,7 +94,7 @@ There are three possible settings for the `innodb_autoinc_lock_mode` variable. T
 
   If the only statements executing are “simple inserts” where the number of rows to be inserted is known ahead of time, there are no gaps in the numbers generated for a single statement, except for “mixed-mode inserts”. However, when “bulk inserts” are executed, there may be gaps in the auto-increment values assigned by any given statement.
 
-##### InnoDB AUTO\_INCREMENT Lock Mode Usage Implications
+##### InnoDB AUTO_INCREMENT Lock Mode Usage Implications
 
 * Using auto-increment with replication
 
@@ -235,7 +235,7 @@ There are three possible settings for the `innodb_autoinc_lock_mode` variable. T
   ERROR 1062 (23000): Duplicate entry '4' for key 'PRIMARY'
   ```
 
-##### InnoDB AUTO\_INCREMENT Counter Initialization
+##### InnoDB AUTO_INCREMENT Counter Initialization
 
 This section describes how `InnoDB` initializes `AUTO_INCREMENT` counters.
 

@@ -8,7 +8,7 @@ Se ocorrerem problemas de conexão, como erros de comunicação ou conexões abo
 
 - As variáveis de status `Aborted_xxx` e `Connection_errors_xxx`. Consulte [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html).
 
-- O cache do host, que é acessível usando a tabela do Schema de Desempenho [`host_cache`](performance-schema-host-cache-table.html). Veja [Seção 5.1.11.2, “Consultas DNS e o Cache do Host”](host-cache.html) e [Seção 25.12.16.1, “A Tabela host\_cache”](performance-schema-host-cache-table.html).
+- O cache do host, que é acessível usando a tabela do Schema de Desempenho [`host_cache`](performance-schema-host-cache-table.html). Veja [Seção 5.1.11.2, “Consultas DNS e o Cache do Host”](host-cache.html) e [Seção 25.12.16.1, “A Tabela host_cache”](performance-schema-host-cache-table.html).
 
 Se a variável de sistema [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) estiver definida como 3, você pode encontrar mensagens como esta no seu log de erros:
 
@@ -24,7 +24,7 @@ Se um cliente não conseguir se conectar, o servidor incrementa a variável de s
 
 - Um pacote de conexão não contém as informações corretas.
 
-- Leva mais de \[`connect_timeout`]\(server-system-variables.html#sysvar\_connect\_timeout] segundos para obter um pacote de conexão. Veja [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html).
+- Leva mais de [`connect_timeout`]\(server-system-variables.html#sysvar_connect_timeout] segundos para obter um pacote de conexão. Veja [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html).
 
 Se esse tipo de coisa acontecer, pode indicar que alguém está tentando invadir seu servidor! Se o log de consulta geral estiver ativado, as mensagens desses tipos de problemas serão registradas nele.
 
@@ -32,7 +32,7 @@ Se um cliente se conectar com sucesso, mas depois se desconectar de forma inadeq
 
 - O programa cliente não chamou [`mysql_close()`](/doc/c-api/5.7/pt-BR/mysql-close.html) antes de sair.
 
-- O cliente havia dormido mais de \[`wait_timeout`]\(server-system-variables.html#sysvar\_wait\_timeout] ou \[`interactive_timeout`]\(server-system-variables.html#sysvar\_interactive\_timeout] segundos sem emitir quaisquer solicitações ao servidor. Veja [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html).
+- O cliente havia dormido mais de [`wait_timeout`]\(server-system-variables.html#sysvar_wait_timeout] ou [`interactive_timeout`]\(server-system-variables.html#sysvar_interactive_timeout] segundos sem emitir quaisquer solicitações ao servidor. Veja [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html).
 
 - O programa cliente terminou abruptamente no meio de uma transferência de dados.
 

@@ -19,7 +19,7 @@ O MySQL suporta essas capacidades sem o uso de soluções alternativas, como com
 
 ### Definindo e Acessando Atributos de Consulta
 
-Aplicações que usam a API C do MySQL definem atributos de consulta chamando a função  `mysql_bind_param()`. Veja  mysql\_bind\_param(). Outros conectores MySQL também podem fornecer suporte a atributos de consulta. Veja a documentação dos conectores individuais.
+Aplicações que usam a API C do MySQL definem atributos de consulta chamando a função  `mysql_bind_param()`. Veja  mysql_bind_param(). Outros conectores MySQL também podem fornecer suporte a atributos de consulta. Veja a documentação dos conectores individuais.
 
 O cliente `mysql` tem um comando `query_attributes` que permite definir até 32 pares de nomes e valores de atributos. Veja a Seção 6.5.1.2, “Comandos do Cliente MySQL”.
 

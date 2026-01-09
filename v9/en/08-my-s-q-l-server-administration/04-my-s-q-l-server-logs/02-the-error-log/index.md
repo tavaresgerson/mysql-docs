@@ -8,9 +8,9 @@
 
 7.4.2.4 Types of Error Log Filtering
 
-7.4.2.5 Priority-Based Error Log Filtering (log\_filter\_internal)
+7.4.2.5 Priority-Based Error Log Filtering (log_filter_internal)
 
-7.4.2.6 Rule-Based Error Log Filtering (log\_filter\_dragnet)
+7.4.2.6 Rule-Based Error Log Filtering (log_filter_dragnet)
 
 7.4.2.7 Error Logging in JSON Format
 
@@ -24,10 +24,10 @@ This section discusses how to configure the MySQL server for logging of diagnost
 
 The error log contains a record of **mysqld** startup and shutdown times. It also contains diagnostic messages such as errors, warnings, and notes that occur during server startup and shutdown, and while the server is running. For example, if **mysqld** notices that a table needs to be automatically checked or repaired, it writes a message to the error log.
 
-Depending on error log configuration, error messages may also populate the Performance Schema `error_log` table, to provide an SQL interface to the log and enable its contents to be queried. See Section 29.12.22.3, “The error\_log Table”.
+Depending on error log configuration, error messages may also populate the Performance Schema `error_log` table, to provide an SQL interface to the log and enable its contents to be queried. See Section 29.12.22.3, “The error_log Table”.
 
 On some operating systems, the error log contains a stack trace if **mysqld** exits abnormally. The trace can be used to determine where **mysqld** exited. See Section 7.9, “Debugging MySQL”.
 
-If used to start **mysqld**, **mysqld\_safe** may write messages to the error log. For example, when **mysqld\_safe** notices abnormal **mysqld** exits, it restarts **mysqld** and writes a `mysqld restarted` message to the error log.
+If used to start **mysqld**, **mysqld_safe** may write messages to the error log. For example, when **mysqld_safe** notices abnormal **mysqld** exits, it restarts **mysqld** and writes a `mysqld restarted` message to the error log.
 
 The following sections discuss aspects of configuring error logging.

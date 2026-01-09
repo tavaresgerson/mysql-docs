@@ -10,13 +10,13 @@ Depois que os executáveis do NDB Cluster e os arquivos de configuração necess
    2010-06-23 07:53:34 [MgmtSrvr] INFO -- Reading cluster configuration from 'config.ini'
    ```
 
-   O processo do nó de gerenciamento continua a imprimir a saída de registro no console. Isso é normal, porque o nó de gerenciamento não está rodando como um serviço do Windows. (Se você usou o NDB Cluster em uma plataforma semelhante ao Unix, como o Linux, você pode notar que o comportamento padrão do nó de gerenciamento nesse sentido no Windows é efetivamente o oposto do seu comportamento em sistemas Unix, onde ele roda por padrão como um processo de daemon do Unix. Esse comportamento também é verdadeiro para os processos de nó de dados do NDB Cluster rodando no Windows.) Por essa razão, não feche a janela na qual o **ndb\_mgmd.exe** está rodando; fazer isso mata o processo do nó de gerenciamento. (Veja Seção 21.3.2.4, “Instalando Processos do NDB Cluster como Serviços do Windows”, onde mostramos como instalar e rodar os processos do NDB Cluster como serviços do Windows.)
+   O processo do nó de gerenciamento continua a imprimir a saída de registro no console. Isso é normal, porque o nó de gerenciamento não está rodando como um serviço do Windows. (Se você usou o NDB Cluster em uma plataforma semelhante ao Unix, como o Linux, você pode notar que o comportamento padrão do nó de gerenciamento nesse sentido no Windows é efetivamente o oposto do seu comportamento em sistemas Unix, onde ele roda por padrão como um processo de daemon do Unix. Esse comportamento também é verdadeiro para os processos de nó de dados do NDB Cluster rodando no Windows.) Por essa razão, não feche a janela na qual o **ndb_mgmd.exe** está rodando; fazer isso mata o processo do nó de gerenciamento. (Veja Seção 21.3.2.4, “Instalando Processos do NDB Cluster como Serviços do Windows”, onde mostramos como instalar e rodar os processos do NDB Cluster como serviços do Windows.)
 
    A opção `-f` necessária indica ao nó de gerenciamento onde encontrar o arquivo de configuração global (`config.ini`). A forma longa desta opção é `--config-file`.
 
    Importante
 
-   Um nó de gerenciamento de cluster do NDB armazena em cache os dados de configuração que lê do `config.ini`; uma vez que ele cria um cache de configuração, ele ignora o arquivo `config.ini` em inicializações subsequentes, a menos que seja forçado a fazer o contrário. Isso significa que, se o nó de gerenciamento não conseguir iniciar devido a um erro neste arquivo, você deve fazer o nó de gerenciamento reler `config.ini` depois de corrigir quaisquer erros nele. Você pode fazer isso iniciando **ndb\_mgmd.exe** com a opção `--reload` ou `--initial` na linha de comando. Qualquer uma dessas opções funciona para atualizar o cache de configuração.
+   Um nó de gerenciamento de cluster do NDB armazena em cache os dados de configuração que lê do `config.ini`; uma vez que ele cria um cache de configuração, ele ignora o arquivo `config.ini` em inicializações subsequentes, a menos que seja forçado a fazer o contrário. Isso significa que, se o nó de gerenciamento não conseguir iniciar devido a um erro neste arquivo, você deve fazer o nó de gerenciamento reler `config.ini` depois de corrigir quaisquer erros nele. Você pode fazer isso iniciando **ndb_mgmd.exe** com a opção `--reload` ou `--initial` na linha de comando. Qualquer uma dessas opções funciona para atualizar o cache de configuração.
 
    Não é necessário nem aconselhável usar nenhuma dessas opções no arquivo `my.ini` do nó de gerenciamento.
 
@@ -29,7 +29,7 @@ Depois que os executáveis do NDB Cluster e os arquivos de configuração necess
 
    Em cada caso, a primeira linha de saída do processo do nó de dados deve se assemelhar ao que é mostrado no exemplo anterior, seguida por linhas adicionais de saída de registro. Como no processo do nó de gerenciamento, isso é normal, porque o nó de dados não está sendo executado como um serviço do Windows. Por essa razão, não feche a janela do console na qual o processo do nó de dados está sendo executado; isso mata o **ndbd.exe**. (Para mais informações, consulte Seção 21.3.2.4, “Instalando Processos do NDB Cluster como Serviços do Windows”).
 
-3. Não inicie o nó SQL ainda; ele não pode se conectar ao clúster até que os nós de dados tenham terminado de iniciar, o que pode levar algum tempo. Em vez disso, em uma nova janela do console no host do nó de gerenciamento, inicie o cliente de gerenciamento do NDB Cluster **ndb\_mgm.exe**, que deve estar em `C:\mysql\bin` no host do nó de gerenciamento. (Não tente reutilizar a janela do console onde **ndb\_mgmd.exe** está em execução digitando **CTRL**+**C**, pois isso interrompe o nó de gerenciamento.) A saída resultante deve parecer assim:
+3. Não inicie o nó SQL ainda; ele não pode se conectar ao clúster até que os nós de dados tenham terminado de iniciar, o que pode levar algum tempo. Em vez disso, em uma nova janela do console no host do nó de gerenciamento, inicie o cliente de gerenciamento do NDB Cluster **ndb_mgm.exe**, que deve estar em `C:\mysql\bin` no host do nó de gerenciamento. (Não tente reutilizar a janela do console onde **ndb_mgmd.exe** está em execução digitando **CTRL**+**C**, pois isso interrompe o nó de gerenciamento.) A saída resultante deve parecer assim:
 
    ```sql
    C:\mysql\bin> ndb_mgm
@@ -56,11 +56,11 @@ Depois que os executáveis do NDB Cluster e os arquivos de configuração necess
 
    Nota
 
-   Os comandos emitidos no cliente de gerenciamento não são sensíveis ao caso; usamos maiúsculas como a forma canônica desses comandos, mas você não precisa seguir essa convenção ao inseri-los no cliente **ndb\_mgm**. Para mais informações, consulte Seção 21.6.1, “Comandos no Cliente de Gerenciamento do NDB Cluster”.
+   Os comandos emitidos no cliente de gerenciamento não são sensíveis ao caso; usamos maiúsculas como a forma canônica desses comandos, mas você não precisa seguir essa convenção ao inseri-los no cliente **ndb_mgm**. Para mais informações, consulte Seção 21.6.1, “Comandos no Cliente de Gerenciamento do NDB Cluster”.
 
    A saída produzida por `ALL STATUS` provavelmente variará do que é mostrado aqui, de acordo com a velocidade com que os nós de dados conseguem iniciar, o número da versão de lançamento do software NDB Cluster que você está usando e outros fatores. O que é significativo é que, quando você ver que ambos os nós de dados iniciaram, você está pronto para iniciar o nó SQL.
 
-   Você pode deixar o **ndb\_mgm.exe** rodando; ele não tem impacto negativo no desempenho do NDB Cluster, e o usaremos no próximo passo para verificar se o nó SQL está conectado ao cluster depois de tê-lo iniciado.
+   Você pode deixar o **ndb_mgm.exe** rodando; ele não tem impacto negativo no desempenho do NDB Cluster, e o usaremos no próximo passo para verificar se o nó SQL está conectado ao cluster depois de tê-lo iniciado.
 
 4. No computador designado como anfitrião do nó SQL, abra uma janela de console e navegue até o diretório onde você desempacotou os binários do NDB Cluster (se você estiver seguindo nosso exemplo, este é `C:\mysql\bin`).
 
@@ -72,7 +72,7 @@ Depois que os executáveis do NDB Cluster e os arquivos de configuração necess
 
    A opção `--console` faz com que as informações de registro sejam escritas no console, o que pode ser útil em caso de problemas. (Depois de garantir que o nó SQL esteja funcionando de maneira satisfatória, você pode interromper e reiniciar sem a opção `--console`, para que o registro seja realizado normalmente.)
 
-   Na janela do console onde o cliente de gerenciamento (**ndb\_mgm.exe**) está rodando no host do nó de gerenciamento, insira o comando `SHOW`, que deve produzir uma saída semelhante à mostrada aqui:
+   Na janela do console onde o cliente de gerenciamento (**ndb_mgm.exe**) está rodando no host do nó de gerenciamento, insira o comando `SHOW`, que deve produzir uma saída semelhante à mostrada aqui:
 
    ```sql
    ndb_mgm> SHOW
@@ -94,4 +94,4 @@ Depois que os executáveis do NDB Cluster e os arquivos de configuração necess
 
 Agora você deve estar pronto para trabalhar com objetos de banco de dados e dados usando o mecanismo de armazenamento do NDB Cluster `NDBCLUSTER`. Consulte Seção 21.3.5, “Exemplo de NDB Cluster com Tabelas e Dados” para obter mais informações e exemplos.
 
-Você também pode instalar **ndb\_mgmd.exe**, **ndbd.exe** e **ndbmtd.exe** como serviços do Windows. Para obter informações sobre como fazer isso, consulte Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”).
+Você também pode instalar **ndb_mgmd.exe**, **ndbd.exe** e **ndbmtd.exe** como serviços do Windows. Para obter informações sobre como fazer isso, consulte Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”).

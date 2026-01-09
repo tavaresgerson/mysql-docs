@@ -1,4 +1,4 @@
-### 24.3.4 A tabela INFORMATION\_SCHEMA COLLATION\_CHARACTER\_SET\_APPLICABILITY
+### 24.3.4 A tabela INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY
 
 A tabela [`COLLATION_CHARACTER_SET_APPLICABILITY`](https://pt.wikipedia.org/wiki/Tabela_de_aplic%C3%A1bilidade_de_conjunto_de_caracteres_de_collation) indica qual conjunto de caracteres é aplicável para qual collation.
 

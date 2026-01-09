@@ -12,7 +12,7 @@ Se você precisar usar filtros de replicação de nível de banco de dados e de 
 
 1. Se você estiver usando o formato de registro binário baseado em linhas ([`binlog_format=ROW`](replication-options-binary-log.html#sysvar_binlog_format)), para instruções de DDL, confie na instrução [`USE`](use.html) para definir o banco de dados e não especifique o nome do banco de dados. Você pode considerar a mudança para o formato de registro binário baseado em linhas para melhorar a consistência com o filtro de replicação. Consulte [Seção 5.4.4.2, “Definindo o Formato do Registro Binário”](binary-log-setting.html) para as condições que se aplicam à mudança do formato de registro binário.
 
-2. Se você estiver usando o formato de registro binário baseado em instruções ou misto ([`binlog_format=STATEMENT`](replication-options-binary-log.html#sysvar_binlog_format) ou `MIXED`), para tanto DML quanto DDL, confie na instrução `USE` (\[use.html]) e não use o nome do banco de dados. Além disso, não use instruções DML de múltiplas tabelas que atualizem tanto tabelas filtradas quanto tabelas filtradas.
+2. Se você estiver usando o formato de registro binário baseado em instruções ou misto ([`binlog_format=STATEMENT`](replication-options-binary-log.html#sysvar_binlog_format) ou `MIXED`), para tanto DML quanto DDL, confie na instrução `USE` ([use.html]) e não use o nome do banco de dados. Além disso, não use instruções DML de múltiplas tabelas que atualizem tanto tabelas filtradas quanto tabelas filtradas.
 
 **Exemplo 16.7: Uma opção [`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db) e uma opção [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table)**
 

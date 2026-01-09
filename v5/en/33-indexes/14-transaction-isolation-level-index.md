@@ -36,7 +36,7 @@
 
 [Section 5.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "5.4.4.2 Setting The Binary Log Format")
 
-[Section 25.12.7.1, “The events\_transactions\_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
 [Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
@@ -58,7 +58,7 @@
 
 [Section 5.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "5.4.4.2 Setting The Binary Log Format")
 
-[Section 25.12.7.1, “The events\_transactions\_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
 [Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
@@ -102,7 +102,7 @@
 
 [Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Section 25.12.7.1, “The events\_transactions\_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
 [Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
@@ -144,7 +144,7 @@
 
 [Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Section 25.12.7.1, “The events\_transactions\_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
 [Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 

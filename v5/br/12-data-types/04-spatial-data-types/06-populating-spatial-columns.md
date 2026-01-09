@@ -68,4 +68,4 @@ Um programa de aplicativo cliente que deseja usar representações WKB de valore
 
   Outras interfaces de programação podem suportar um mecanismo de marcador de posição semelhante.
 
-- Em um programa C, você pode escapar um valor binário usando `mysql_real_escape_string_quote()` e incluir o resultado em uma string de consulta enviada ao servidor. Veja mysql\_real\_escape\_string\_quote().
+- Em um programa C, você pode escapar um valor binário usando `mysql_real_escape_string_quote()` e incluir o resultado em uma string de consulta enviada ao servidor. Veja mysql_real_escape_string_quote().

@@ -1,4 +1,4 @@
-#### 25.12.2.5 A tabela setup\_timers
+#### 25.12.2.5 A tabela setup_timers
 
 A tabela `setup_timers` mostra os temporizadores de evento atualmente selecionados:
 

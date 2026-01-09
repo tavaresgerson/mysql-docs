@@ -263,7 +263,7 @@ Para o conjunto de dados mostrado anteriormente, o algoritmo opera da seguinte f
 
 Usando essa estratégia, o número de linhas acessadas é reduzido, pois o MySQL ignora as linhas que não se qualificam para cada faixa construída. Esse método de acesso por escaneamento por saltos é aplicável nas seguintes condições:
 
-* A tabela T tem pelo menos um índice composto com partes-chave do formulário (`[A_1, ..., A_k,] B\_1, ..., B_m, C [, D_1, ..., D_n]`). As partes-chave A e D podem estar vazias, mas B e C devem estar preenchidas.
+* A tabela T tem pelo menos um índice composto com partes-chave do formulário (`[A_1, ..., A_k,] B_1, ..., B_m, C [, D_1, ..., D_n]`). As partes-chave A e D podem estar vazias, mas B e C devem estar preenchidas.
 * A consulta faz referência a apenas uma tabela.
 * A consulta não usa `GROUP BY` ou `DISTINCT`.
 * A consulta faz referência apenas a colunas do índice.

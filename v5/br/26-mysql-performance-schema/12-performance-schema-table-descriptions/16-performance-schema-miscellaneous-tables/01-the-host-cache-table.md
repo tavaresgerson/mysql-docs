@@ -1,4 +1,4 @@
-#### 25.12.16.1 Tabela host\_cache
+#### 25.12.16.1 Tabela host_cache
 
 O servidor MySQL mantém um cache de hosts em memória que contém informações sobre o nome do host e o endereço IP do cliente e é usado para evitar consultas no Sistema de Nomes de Domínio (DNS). A tabela `host_cache` expõe o conteúdo desse cache. A variável de sistema `host_cache_size` controla o tamanho do cache de hosts, bem como o tamanho da tabela `host_cache`. Para informações operacionais e de configuração sobre o cache de hosts, consulte Seção 5.1.11.2, “Consultas DNS e o Cache de Hosts”.
 

@@ -26,7 +26,7 @@ B.3.2.12 Comandos fora de sincronia
 
 B.3.2.13 Ignorando o usuário
 
-B.3.2.14 A tabela 'tbl\_name' não existe
+B.3.2.14 A tabela 'tbl_name' não existe
 
 B.3.2.15 Não consigo inicializar o conjunto de caracteres
 

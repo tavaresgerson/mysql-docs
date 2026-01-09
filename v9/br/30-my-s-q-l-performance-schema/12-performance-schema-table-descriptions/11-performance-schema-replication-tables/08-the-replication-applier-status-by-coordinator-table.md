@@ -1,4 +1,4 @@
-#### 29.12.11.8 A tabela `replication\_applier\_status\_by\_coordinator`
+#### 29.12.11.8 A tabela `replication_applier_status_by_coordinator`
 
 Para uma replica multithread, a replica usa vários threads de trabalho e um thread de coordenador para gerenciá-los, e essa tabela mostra o status do thread de coordenador. Para uma replica de único thread, essa tabela está vazia. Para uma replica multithread, a tabela `replication_applier_status_by_worker` mostra o status dos threads de trabalho. Essa tabela fornece informações sobre a última transação que foi armazenada na fila de um trabalhador pelo thread de coordenador, bem como a transação que está sendo armazenada atualmente. O timestamp de início refere-se ao momento em que esse thread leu o primeiro evento da transação do log de retransmissão para armazená-lo na fila de um trabalhador, enquanto o timestamp de fim refere-se ao momento em que o último evento terminou de ser armazenado na fila de um trabalhador.
 

@@ -88,11 +88,11 @@ Antes do MySQL 5.7.5, o suporte para `YEAR(2)` foi reduzido. A partir do MySQL 5
 
   - `REPAIR TABLE` (que `CHECK TABLE` recomenda que você use, se encontrar uma tabela que contém colunas `YEAR(2)`)
 
-  - **mysql\_upgrade** (que usa `REPAIR TABLE`).
+  - **mysql_upgrade** (que usa `REPAIR TABLE`).
 
   - Exportação com **mysqldump** e recarga do arquivo de exportação. Diferente das conversões realizadas pelos três itens anteriores, uma exportação e recarga pode alterar os valores dos dados.
 
-  Uma atualização do MySQL geralmente envolve pelo menos um dos dois últimos itens. No entanto, em relação ao `YEAR(2)`, **mysql\_upgrade** é preferível a **mysqldump**, que, como mencionado, pode alterar os valores dos dados.
+  Uma atualização do MySQL geralmente envolve pelo menos um dos dois últimos itens. No entanto, em relação ao `YEAR(2)`, **mysql_upgrade** é preferível a **mysqldump**, que, como mencionado, pode alterar os valores dos dados.
 
 #### Migrando de YEAR(2) para ANO de 4 dígitos
 
@@ -112,7 +112,7 @@ ALTER TABLE t1 FORCE;
 
 A instrução `ALTER TABLE` converte a tabela sem alterar os valores de `YEAR(2)`. Se o servidor for uma fonte de replicação, a instrução `ALTER TABLE` replica para as réplicas e faz a mudança correspondente na tabela de cada uma delas.
 
-Outro método de migração é realizar uma atualização binária: Atualize o MySQL in loco sem drenar e recarregar seus dados. Em seguida, execute o **mysql\_upgrade**, que usa o comando `REPAIR TABLE` para converter colunas `YEAR(2)` de 2 dígitos em colunas `YEAR` de 4 dígitos, sem alterar os valores dos dados. Se o servidor for uma fonte de replicação, as instruções `REPAIR TABLE` são replicadas para as réplicas e fazem as alterações correspondentes na tabela de cada uma, a menos que você invoque o **mysql\_upgrade** com a opção `--skip-write-binlog`.
+Outro método de migração é realizar uma atualização binária: Atualize o MySQL in loco sem drenar e recarregar seus dados. Em seguida, execute o **mysql_upgrade**, que usa o comando `REPAIR TABLE` para converter colunas `YEAR(2)` de 2 dígitos em colunas `YEAR` de 4 dígitos, sem alterar os valores dos dados. Se o servidor for uma fonte de replicação, as instruções `REPAIR TABLE` são replicadas para as réplicas e fazem as alterações correspondentes na tabela de cada uma, a menos que você invoque o **mysql_upgrade** com a opção `--skip-write-binlog`.
 
 As atualizações dos servidores de replicação geralmente envolvem a atualização das réplicas para uma versão mais recente do MySQL, seguida da atualização da fonte. Por exemplo, se uma fonte e uma réplica executam o MySQL 5.5, uma sequência típica de atualização envolve a atualização da réplica para 5.6 e, em seguida, a atualização da fonte para 5.6. No que diz respeito ao tratamento diferente de `YEAR(2)` a partir do MySQL 5.6.6, essa sequência de atualização resulta em um problema: Suponha que a réplica tenha sido atualizada, mas ainda não a fonte. Então, ao criar uma tabela contendo uma coluna `YEAR(2)` de 2 dígitos na fonte, resulta em uma tabela contendo uma coluna `YEAR` de 4 dígitos na réplica. Consequentemente, as seguintes operações têm um resultado diferente na fonte e na réplica, se você usar a replicação baseada em declarações:
 

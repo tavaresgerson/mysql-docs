@@ -43,7 +43,7 @@ Algumas das visualizações do esquema `sys` são calculadas como valores inicia
 
 ##### Opções de Configuração
 
-A operação `diagnostics()` do procedimento") pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 30.4.2.1, “A Tabela sys\_config”):
+A operação `diagnostics()` do procedimento") pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 30.4.2.1, “A Tabela sys_config”):
 
 * `debug`, `@sys.debug`
 

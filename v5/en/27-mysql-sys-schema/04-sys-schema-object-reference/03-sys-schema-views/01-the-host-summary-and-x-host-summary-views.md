@@ -1,4 +1,4 @@
-#### 26.4.3.1 The host\_summary and x$host\_summary Views
+#### 26.4.3.1 The host_summary and x$host_summary Views
 
 These views summarize statement activity, file I/O, and connections, grouped by host.
 

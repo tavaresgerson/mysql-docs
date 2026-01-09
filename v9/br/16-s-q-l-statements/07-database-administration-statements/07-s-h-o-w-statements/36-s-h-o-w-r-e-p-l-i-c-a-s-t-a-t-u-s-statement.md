@@ -79,7 +79,7 @@ O Schema de Desempenho fornece tabelas que exibem informações de replicação.
 
 Você pode definir a opção `GTID_ONLY` para a declaração `CHANGE REPLICATION SOURCE TO` para impedir que um canal de replicação persista nomes de arquivos e posições de arquivo nos repositórios de metadados de replicação. Com essa configuração, as posições de arquivo do log binário de origem e do log de relevo são rastreadas na memória. A declaração `SHOW REPLICA STATUS` ainda exibe as posições de arquivo no uso normal. No entanto, como as posições de arquivo não estão sendo atualizadas regularmente no repositório de metadados de conexão e no repositório de metadados do aplicador, exceto em algumas situações, elas provavelmente estarão desatualizadas se o servidor for reiniciado.
 
-Para um canal de replicação com a configuração `GTID_ONLY` após o início do servidor, as posições de arquivo de leitura e aplicada do arquivo binário de log de origem (`Read_Source_Log_Pos` e `Exec_Source_Log_Pos`) são definidas como zero, e os nomes dos arquivos (`Source_Log_File` e `Relay_Source_Log_File`) são definidos como `INVALID`. O nome do arquivo de log de retransmissão (`Relay_Log_File`) é definido de acordo com a configuração relay\_log\_recovery, seja um novo arquivo que foi criado no início do servidor ou o primeiro arquivo de log de retransmissão presente. A posição do arquivo (`Relay_Log_Pos`) é definida na posição 4, e o auto-salto do GTID é usado para pular quaisquer transações no arquivo que já foram aplicadas.
+Para um canal de replicação com a configuração `GTID_ONLY` após o início do servidor, as posições de arquivo de leitura e aplicada do arquivo binário de log de origem (`Read_Source_Log_Pos` e `Exec_Source_Log_Pos`) são definidas como zero, e os nomes dos arquivos (`Source_Log_File` e `Relay_Source_Log_File`) são definidos como `INVALID`. O nome do arquivo de log de retransmissão (`Relay_Log_File`) é definido de acordo com a configuração relay_log_recovery, seja um novo arquivo que foi criado no início do servidor ou o primeiro arquivo de log de retransmissão presente. A posição do arquivo (`Relay_Log_Pos`) é definida na posição 4, e o auto-salto do GTID é usado para pular quaisquer transações no arquivo que já foram aplicadas.
 
 Quando o thread receptor entra em contato com a origem e obtém informações de posição válidas, a posição de leitura (`Read_Source_Log_Pos`) e o nome do arquivo (`Source_Log_File`) são atualizados com os dados corretos e tornam-se válidos. Quando o thread aplicador aplica uma transação da origem ou pula uma transação já executada, a posição executada (`Exec_Source_Log_Pos`) e o nome do arquivo (`Relay_Source_Log_File`) são atualizados com os dados corretos e tornam-se válidos. A posição do arquivo de log de retransmissão (`Relay_Log_Pos`) também é atualizada nesse momento.
 
@@ -129,11 +129,11 @@ O hospedeiro de origem ao qual a replica está conectada.
 
   Se o thread de I/O de replicação (receptor) foi iniciado e se conectou com sucesso à origem. Internamente, o estado desse thread é representado por um dos seguintes três valores:
 
-+ **MYSQL\_REPLICA\_REPLICA\_NOT\_EXECUTADA.** A thread de I/O de replicação (receptor) não está sendo executada. Para este estado, `Replica_IO_Running` é `No`.
++ **MYSQL_REPLICA_REPLICA_NOT_EXECUTADA.** A thread de I/O de replicação (receptor) não está sendo executada. Para este estado, `Replica_IO_Running` é `No`.
 
-+ **MYSQL\_REPLICA\_EXECUTADA\_NÃO\_CONECTADA.** A thread de I/O de replicação (receptor) está sendo executada, mas não está conectada a uma fonte de replicação. Para este estado, `Replica_IO_Running` é `Conectando`.
++ **MYSQL_REPLICA_EXECUTADA_NÃO_CONECTADA.** A thread de I/O de replicação (receptor) está sendo executada, mas não está conectada a uma fonte de replicação. Para este estado, `Replica_IO_Running` é `Conectando`.
 
-+ **MYSQL\_REPLICA\_EXECUTADA\_CONECTADA.** A thread de I/O de replicação (receptor) está sendo executada e está conectada a uma fonte de replicação. Para este estado, `Replica_IO_Running` é `Sim`.
++ **MYSQL_REPLICA_EXECUTADA_CONECTADA.** A thread de I/O de replicação (receptor) está sendo executada e está conectada a uma fonte de replicação. Para este estado, `Replica_IO_Running` é `Sim`.
 
 * `Replica_SQL_EXECUTADA`
 

@@ -1,4 +1,4 @@
-### 24.4.28 A tabela INFORMATION\_SCHEMA INNODB\_TRX
+### 24.4.28 A tabela INFORMATION_SCHEMA INNODB_TRX
 
 A tabela `INNODB_TRX` fornece informações sobre todas as transações atualmente em execução no `InnoDB`, incluindo se a transação está aguardando um bloqueio, quando a transação começou e o comando SQL que a transação está executando, se houver.
 

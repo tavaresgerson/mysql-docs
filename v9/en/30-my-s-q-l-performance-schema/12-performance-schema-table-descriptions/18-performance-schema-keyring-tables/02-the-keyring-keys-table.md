@@ -1,4 +1,4 @@
-#### 29.12.18.2 The keyring\_keys table
+#### 29.12.18.2 The keyring_keys table
 
 MySQL Server supports a keyring that enables internal server components and plugins to securely store sensitive information for later retrieval. See Section 8.4.5, “The MySQL Keyring”.
 

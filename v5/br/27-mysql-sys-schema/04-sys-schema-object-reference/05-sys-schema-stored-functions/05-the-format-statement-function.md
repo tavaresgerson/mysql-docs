@@ -1,4 +1,4 @@
-#### 26.4.5.5 A função format\_statement()
+#### 26.4.5.5 A função format_statement()
 
 Dado uma string (normalmente representando uma instrução SQL), reduz-a ao comprimento especificado pela opção de configuração `statement_truncate_len` e retorna o resultado. Não ocorre nenhuma redução se a string for mais curta que `statement_truncate_len`. Caso contrário, a parte central da string é substituída por um ponto de elipse (`...`).
 
@@ -10,7 +10,7 @@ Essa função é útil para formatar declarações possivelmente longas recupera
 
 ##### Opções de configuração
 
-A operação `format_statement()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, "A Tabela sys\_config"):
+A operação `format_statement()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, "A Tabela sys_config"):
 
 - `statement_truncate_len`, `@sys.statement_truncate_len`
 

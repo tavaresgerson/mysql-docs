@@ -6,7 +6,7 @@ A | E | H | I | N | O | P | R | S | T
 
 [índice superior]
 
-### ALLOW\_INVALID\_DATES
+### ALLOW_INVALID_DATES
 
 Seção 13.2, “Tipos de Dados de Data e Hora”
 
@@ -28,7 +28,7 @@ Seção 15.7.7.15, “Instrução SHOW CREATE VIEW”
 
 Seção 28.3.53, “A Tabela de VISTAS do INFORMATION_SCHEMA”
 
-### ANSI\_QUOTES
+### ANSI_QUOTES
 
 Seção 15.1.19, “Instrução CREATE LIBRARY”
 
@@ -48,7 +48,7 @@ Seção 11.2, “Nomes de Objetos do Esquema”
 
 [índice superior]
 
-### ERROR\_FOR\_DIVISION\_BY\_ZERO
+### ERROR_FOR_DIVISION_BY_ZERO
 
 Seção 14.25.3, “Tratamento de Expressões”
 
@@ -62,7 +62,7 @@ Seção 7.1.11, “Modos SQL do Servidor”
 
 [índice superior]
 
-### HIGH\_NOT\_PRECEDENCE
+### HIGH_NOT_PRECEDENCE
 
 Seção 11.5, “Expressões”
 
@@ -74,7 +74,7 @@ Seção 7.1.11, “Modos SQL do Servidor”
 
 [índice superior]
 
-### IGNORE\_SPACE
+### IGNORE_SPACE
 
 Seção 15.1.21, “Instruções CREATE PROCEDURE e CREATE FUNCTION”
 
@@ -88,7 +88,7 @@ Seção 7.1.11, “Modos SQL do Servidor”
 
 [índice superior]
 
-### NO\_AUTO\_VALUE\_ON\_ZERO
+### NO_AUTO_VALUE_ON_ZERO
 
 Seção 15.1.24, “Instrução CREATE TABLE”
 
@@ -96,9 +96,9 @@ Seção 13.1.6, “Atributos do Tipo Numérico”
 
 Seção 7.1.11, “Modos SQL do Servidor”
 
-Seção 5.6.9, “Usando AUTO\_INCREMENT”
+Seção 5.6.9, “Usando AUTO_INCREMENT”
 
-### NO\_BACKSLASH\_ESCAPES
+### NO_BACKSLASH_ESCAPES
 
 Seção 14.17.4, “Funções que modificam valores JSON”
 
@@ -112,7 +112,7 @@ Seção 11.1.1, “Literais de string”
 
 Seção 13.5, “O tipo de dados JSON”
 
-### NO\_DIR\_IN\_CREATE
+### NO_DIR_IN_CREATE
 
 Seção 15.1.24, “Instrução CREATE TABLE”
 
@@ -124,7 +124,7 @@ Seção 7.1.11, “Modos SQL do servidor”
 
 Seção 7.4.4, “O log binário”
 
-### NO\_ENGINE\_SUBSTITUTION
+### NO_ENGINE_SUBSTITUTION
 
 Seção 15.1.11, “Instrução ALTER TABLE”
 
@@ -140,7 +140,7 @@ Seção 18.1, “Configurando o motor de armazenamento”
 
 Seção 19.4.4, “Usando replicação com diferentes motores de armazenamento de origem e replica”
 
-### NO\_UNSIGNED\_SUBTRACTION
+### NO_UNSIGNED_SUBTRACTION
 
 Seção 14.6.1, “Operadores aritméticos”
 
@@ -154,7 +154,7 @@ Seção 26.6, “Restrições e limitações na partição”
 
 Seção 7.1.11, “Modos SQL do servidor”
 
-### NO\_ZERO\_DATE
+### NO_ZERO_DATE
 
 Seção 13.2.5, “Inicialização e atualização automáticas para TIMESTAMP e DATETIME”
 
@@ -194,7 +194,7 @@ Seção 7.1.11, “Modos SQL do servidor”
 
 [índice superior]
 
-### ONLY\_FULL\_GROUP\_BY
+### ONLY_FULL_GROUP_BY
 
 Seção 5.3.4.8, “Contagem de linhas”
 
@@ -212,7 +212,7 @@ Seção 7.1.11, “Modos SQL do servidor”
 
 [índice superior]
 
-### PAD\_CHAR\_TO\_FULL\_LENGTH
+### PAD_CHAR_TO_FULL_LENGTH
 
 Seção 7.1.11, “Modos SQL do servidor”
 
@@ -220,7 +220,7 @@ Seção 13.3.1, “Sintaxe do tipo de dados de string”
 
 Seção 13.3.2, “Os tipos CHAR e VARCHAR”
 
-### PIPES\_AS\_CONCAT
+### PIPES_AS_CONCAT
 
 Seção 11.5, “Expressões”
 
@@ -234,7 +234,7 @@ Seção 7.1.11, “Modos SQL do servidor”
 
 [índice superior]
 
-### REAL\_AS\_FLOAT
+### REAL_AS_FLOAT
 
 Seção 14.10, “Funções e operadores de cast”
 
@@ -248,7 +248,7 @@ Seção 7.1.11, “Modos SQL do servidor”
 
 [índice superior]
 
-### STRICT\_ALL\_TABLES
+### STRICT_ALL_TABLES
 
 Seção 14.25.3, “Tratamento de expressões”
 
@@ -256,7 +256,7 @@ Seção A.3, “Perguntas frequentes do MySQL 9.5: Modo SQL do servidor”
 
 Seção 7.1.11, “Modos SQL do servidor”
 
-### STRICT\_TRANS\_TABLES
+### STRICT_TRANS_TABLES
 
 Seção 14.25.3, “Tratamento de expressões”
 
@@ -268,7 +268,7 @@ Seção 7.1.11, “Modos SQL do servidor”
 
 [índice superior]
 
-### TIME\_TRUNCATE\_FRACTIONAL
+### TIME_TRUNCATE_FRACTIONAL
 
 Seção 13.2.6, “Segundos fracionários em valores de data e hora”
 

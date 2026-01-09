@@ -1,4 +1,4 @@
-### 24.4.9 A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG
+### 24.4.9 A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG
 
 A tabela `INNODB_FT_CONFIG` fornece metadados sobre o índice `FULLTEXT` e o processamento associado a uma tabela `InnoDB`.
 

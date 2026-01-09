@@ -1,4 +1,4 @@
-#### 30.4.3.29 The schema\_table\_statistics and x$schema\_table\_statistics Views
+#### 30.4.3.29 The schema_table_statistics and x$schema_table_statistics Views
 
 These views summarize table statistics. By default, rows are sorted by descending total wait time (tables with most contention first).
 

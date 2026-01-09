@@ -114,7 +114,7 @@ Para um desempenho ótimo, você pode definir um tempo de rotação para o trans
   </tr>
   <tr>
     <th>Tipo de reinício</th>
-    <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td>
+    <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td>
   </tr>
 </table>
 
@@ -143,7 +143,7 @@ Esta funcionalidade previne que as mensagens sejam corrompidas enquanto aguardam
   </tr>
   <tr>
     <th>Tipo de reinício</th>
-    <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td>
+    <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td>
   </tr>
 </table>
 
@@ -151,49 +151,49 @@ Determina a proximidade do grupo; um valor menor é interpretado como estando ma
 
 * `HostName1`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada HostName1 tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada HostName1 tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Os parâmetros `HostName1` e `HostName2` podem ser usados para especificar interfaces de rede específicas a serem usadas para uma conexão SHM específica entre dois nós. Os valores usados para esses parâmetros podem ser nomes de host ou endereços IP.
 
 * `HostName2`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada HostName2 tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada HostName2 tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Os parâmetros `HostName1` e `HostName2` podem ser usados para especificar interfaces de rede específicas a serem usadas para uma conexão SHM específica entre dois nós. Os valores usados para esses parâmetros podem ser nomes de host ou endereços IP.
 
 * `NodeId1`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada NodeId1 tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>numérico</td></tr><tr><th>Padrão</th><td>[nenhum]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada NodeId1 tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>numérico</td></tr><tr><th>Padrão</th><td>[nenhum]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
   Para identificar uma conexão entre dois nós, é necessário fornecer identificadores de nó para cada um deles, como `NodeId1` e `NodeId2`.
 
 * `NodeId2`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada NodeId2 tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>numérico</td></tr><tr><th>Padrão</th><td>[nenhum]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada NodeId2 tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>numérico</td></tr><tr><th>Padrão</th><td>[nenhum]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Para identificar uma conexão entre dois nós, é necessário fornecer os identificadores dos nós para cada um deles, como `NodeId1` e `NodeId2`.
 
 * `NodeIdServer`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada `NodeIdServer` tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>numérico</td></tr><tr><th>Padrão</th><td>[nenhum]</td></tr><tr><th>Intervalo</th><td>1 - 63</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um NDB Cluster" target="_blank">reinício rotativo</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada `NodeIdServer` tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>numérico</td></tr><tr><th>Padrão</th><td>[nenhum]</td></tr><tr><th>Intervalo</th><td>1 - 63</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício do Nó: </strong></span>Requer um reinício rotativo do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
   Identifique o final do servidor de uma conexão de memória compartilhada. Por padrão, este é o ID do nó do nó de dados.
 
 * `OverloadLimit`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada `OverloadLimit` tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>bytes</td></tr><tr><th>Padrão</th><td>0</td></tr><tr><th>Intervalo</th><td>0 - 4294967039 (0xFFFFFEFF)</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um NDB Cluster" target="_blank">reinício rotativo</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada `OverloadLimit` tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>bytes</td></tr><tr><th>Padrão</th><td>0</td></tr><tr><th>Intervalo</th><td>0 - 4294967039 (0xFFFFFEFF)</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício do Nó: </strong></span>Requer um reinício rotativo do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Quando houver mais de esse número de bytes não enviados no buffer de envio, a conexão será considerada sobrecarregada. Consulte a Seção 25.4.3.14, “Configurando Parâmetros do Buffer de Envio do NDB Cluster”, e a Seção 25.6.15.66, “A Tabela de Transportadores ndbinfo”, para obter mais informações.
 
 * `PreSendChecksum`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração de memória compartilhada PreSendChecksum" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>booleano</td> </tr><tr><th>Padrão</th> <td>false</td> </tr><tr><th>Intervalo</th> <td>true, false</td> </tr><tr><th>Tipo de Reinício</th> <td><p> <span class="bold"><strong>Reinício de Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um NDB Cluster" target="_blank">reinício rotativo</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração de memória compartilhada PreSendChecksum" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>booleano</td> </tr><tr><th>Padrão</th> <td>false</td> </tr><tr><th>Intervalo</th> <td>true, false</td> </tr><tr><th>Tipo de Reinício</th> <td><p> <span><strong>Reinício de Nó: </strong></span>Requer um reinício rotativo do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Se este parâmetro e `Checksum` estiverem habilitados, realize verificações de checksum pré-envio e verifique todos os sinais SHM entre os nós em busca de erros. Não tem efeito se `Checksum` não estiver também habilitado.
 
 * `SendBufferMemory`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do buffer de memória compartilhada SendBufferMemory tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>inteiro</td></tr><tr><th>Padrão</th><td>2M</td></tr><tr><th>Intervalo</th><td>256K - 4294967039 (0xFFFFFEFF)</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" class="link">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+<table frame="box" rules="all" summary="Parâmetro de configuração do buffer de memória compartilhada SendBufferMemory tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>inteiro</td></tr><tr><th>Padrão</th><td>2M</td></tr><tr><th>Intervalo</th><td>256K - 4294967039 (0xFFFFFEFF)</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Tamanho (em bytes) do buffer de memória compartilhada para sinais enviados a partir deste nó usando uma conexão de memória compartilhada.
 
@@ -203,22 +203,22 @@ Para rastrear o caminho de uma mensagem distribuída, é necessário fornecer a 
 
 * `ShmKey`
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração da memória compartilhada" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>35</td> </tr><tr><th>Intervalo</th> <td>0 - 200</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração da memória compartilhada" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>35</td> </tr><tr><th>Intervalo</th> <td>0 - 200</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   Ao configurar segmentos de memória compartilhada, um ID de nó, expresso como um inteiro, é usado para identificar de forma única o segmento de memória compartilhada a ser usado para a comunicação. Não há valor padrão. Se `UseShm` estiver habilitado, a chave da memória compartilhada é calculada automaticamente pelo `NDB`.
 
 * `ShmSize`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do segmento de memória compartilhada do grupo e informações sobre o tipo e o valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>35</td></tr><tr><th>Intervalo</th><td>0 - 200</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+<table frame="box" rules="all" summary="Parâmetros de configuração do segmento de memória compartilhada do grupo e informações sobre o tipo e o valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>35</td></tr><tr><th>Intervalo</th><td>0 - 200</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Cada conexão SHM tem um segmento de memória compartilhada onde as mensagens entre os nós são colocadas pelo remetente e lidas pelo leitor. O tamanho desse segmento é definido por `ShmSize`. O valor padrão é de 4 MB.
 
 * `ShmSpinTime`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do segmento de memória compartilhada do grupo e informações sobre o tipo e o valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>35</td></tr><tr><th>Intervalo</th><td>0 - 200</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+<table frame="box" rules="all" summary="Parâmetros de configuração do segmento de memória compartilhada do grupo e informações sobre o tipo e o valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>35</td></tr><tr><th>Intervalo</th><td>0 - 200</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Ao receber, o tempo de espera antes de dormir, em microsegundos.
 
 * `SigNum`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do tipo e valor da memória compartilhada do grupo" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>35</td></tr><tr><th>Intervalo</th><td>0 - 200</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+<table frame="box" rules="all" summary="Parâmetro de configuração do tipo e valor da memória compartilhada do grupo" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>35</td></tr><tr><th>Intervalo</th><td>0 - 200</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>

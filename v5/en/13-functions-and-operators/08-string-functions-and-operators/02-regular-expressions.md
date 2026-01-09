@@ -2,7 +2,7 @@
 
 **Table 12.14 Regular Expression Functions and Operators**
 
-<table frame="box" rules="all" summary="A reference that lists regular expression functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="regexp.html#operator_not-regexp"><code>NOT REGEXP</code></a></td> <td> Negation of REGEXP </td> </tr><tr><td><a class="link" href="regexp.html#operator_regexp"><code>REGEXP</code></a></td> <td> Whether string matches regular expression </td> </tr><tr><td><a class="link" href="regexp.html#operator_regexp"><code>RLIKE</code></a></td> <td> Whether string matches regular expression </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists regular expression functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>NOT REGEXP</code></td> <td> Negation of REGEXP </td> </tr><tr><td><code>REGEXP</code></td> <td> Whether string matches regular expression </td> </tr><tr><td><code>RLIKE</code></td> <td> Whether string matches regular expression </td> </tr></tbody></table>
 
 A regular expression is a powerful way of specifying a pattern for a complex search. This section discusses the operators available for regular expression matching and illustrates, with examples, some of the special characters and constructs that can be used for regular expression operations. See also Section 3.3.4.7, “Pattern Matching”.
 

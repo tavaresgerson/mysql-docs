@@ -109,7 +109,7 @@ As funções administrativas do MySQL Enterprise Firewall fornecem uma API para 
 
 Essas funções realizam operações de gerenciamento em perfis de contas de firewall:
 
-- \`read\_firewall\_users(user, mode)
+- \`read_firewall_users(user, mode)
 
   Essa função agregada atualiza o cache do perfil da conta do firewall por meio de uma instrução `SELECT` na tabela `mysql.firewall_users`. Ela requer o privilégio `SUPER`.
 
@@ -120,7 +120,7 @@ Essas funções realizam operações de gerenciamento em perfis de contas de fir
   FROM mysql.firewall_users;
   ```
 
-- \`read\_firewall\_whitelist(usuário, regra)
+- \`read_firewall_whitelist(usuário, regra)
 
   Essa função agregada atualiza o cache de declarações registradas para o perfil de conta nomeado por meio de uma instrução `SELECT` na tabela `mysql.firewall_whitelist`. Ela requer o privilégio `SUPER`.
 
@@ -178,13 +178,13 @@ O MySQL Enterprise Firewall suporta as seguintes variáveis de sistema. Use-as p
 
 - `mysql_firewall_mode`
 
-  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_mode"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--mysql-firewall-mode[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="firewall-reference.html#sysvar_mysql_firewall_mode">mysql_firewall_mode</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_mode"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--mysql-firewall-mode[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>mysql_firewall_mode</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
 
   Se o MySQL Enterprise Firewall está habilitado (o padrão) ou desabilitado.
 
 - `mysql_firewall_trace`
 
-  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_trace"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--mysql-firewall-trace[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="firewall-reference.html#sysvar_mysql_firewall_trace">mysql_firewall_trace</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_trace"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--mysql-firewall-trace[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>mysql_firewall_trace</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
   Se o rastreamento do Firewall Empresarial do MySQL estiver habilitado ou desabilitado (o padrão). Quando o `mysql_firewall_trace` está habilitado, para o modo `PROTECTING`, o firewall escreve declarações rejeitadas no log de erro.
 

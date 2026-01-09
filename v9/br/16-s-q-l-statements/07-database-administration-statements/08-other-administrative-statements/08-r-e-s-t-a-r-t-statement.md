@@ -22,7 +22,7 @@ Essas plataformas fornecem o suporte de monitoramento necessário para a declara
 
 * Windows, quando o **mysqld** é iniciado como um serviço do Windows ou de forma independente. (O **mysqld** se divide, e um processo atua como monitor para o outro, que atua como o servidor.)
 
-* Sistemas Unix e semelhantes que usam systemd ou **mysqld\_safe** para gerenciar o **mysqld**.
+* Sistemas Unix e semelhantes que usam systemd ou **mysqld_safe** para gerenciar o **mysqld**.
 
 Para configurar um ambiente de monitoramento de modo que o **mysqld** habilite a declaração `RESTART`:
 

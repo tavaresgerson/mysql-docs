@@ -62,7 +62,7 @@ A Seção 26.3, “Gestão de partições”, aborda métodos para adicionar, re
 
 A Seção 26.3.4, “Manutenção de partições”, discute comandos de manutenção de tabelas para uso com tabelas particionadas.
 
-A tabela `PARTITIONS` no banco de dados `INFORMATION_SCHEMA` fornece informações sobre partições e tabelas particionadas. Consulte a Seção 28.3.26, “A tabela INFORMATION\_SCHEMA PARTITIONS”, para mais informações; para alguns exemplos de consultas contra essa tabela, consulte a Seção 26.2.7, “Como o MySQL de Partição lida com NULL”.
+A tabela `PARTITIONS` no banco de dados `INFORMATION_SCHEMA` fornece informações sobre partições e tabelas particionadas. Consulte a Seção 28.3.26, “A tabela INFORMATION_SCHEMA PARTITIONS”, para mais informações; para alguns exemplos de consultas contra essa tabela, consulte a Seção 26.2.7, “Como o MySQL de Partição lida com NULL”.
 
 Para problemas conhecidos com a partição no MySQL 9.5, consulte a Seção 26.6, “Restrições e limitações na partição”.
 

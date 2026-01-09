@@ -290,7 +290,7 @@ The ""BIG"" boss    -> The ""BIG"" boss
 
 * For input, if the `FIELDS ESCAPED BY` character is not empty, occurrences of that character are stripped and the following character is taken literally as part of a field value. Some two-character sequences that are exceptions, where the first character is the escape character. These sequences are shown in the following table (using `\` for the escape character). The rules for `NULL` handling are described later in this section.
 
-  <table summary="Two-character sequences for which the first character (a \) is the escape character."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Character</th> <th>Escape Sequence</th> </tr></thead><tbody><tr> <td><code class="literal">\0</code><a class="indexterm" name="id257260"></a><a class="indexterm" name="id257262"></a></td> <td>An ASCII NUL (<code class="literal">X'00'</code>) character</td> </tr><tr> <td><code class="literal">\b</code><a class="indexterm" name="id257269"></a><a class="indexterm" name="id257271"></a></td> <td>A backspace character</td> </tr><tr> <td><code class="literal">\n</code><a class="indexterm" name="id257277"></a><a class="indexterm" name="id257279"></a><a class="indexterm" name="id257281"></a><a class="indexterm" name="id257283"></a></td> <td>A newline (linefeed) character</td> </tr><tr> <td><code class="literal">\r</code><a class="indexterm" name="id257289"></a><a class="indexterm" name="id257291"></a><a class="indexterm" name="id257293"></a></td> <td>A carriage return character</td> </tr><tr> <td><code class="literal">\t</code><a class="indexterm" name="id257299"></a><a class="indexterm" name="id257301"></a></td> <td>A tab character.</td> </tr><tr> <td><code class="literal">\Z</code><a class="indexterm" name="id257307"></a><a class="indexterm" name="id257309"></a></td> <td>ASCII 26 (Control+Z)</td> </tr><tr> <td><code class="literal">\N</code><a class="indexterm" name="id257315"></a></td> <td>NULL</td> </tr></tbody></table>
+  <table summary="Two-character sequences for which the first character (a \) is the escape character."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Character</th> <th>Escape Sequence</th> </tr></thead><tbody><tr> <td><code class="literal">\0</code></td> <td>An ASCII NUL (<code class="literal">X'00'</code>) character</td> </tr><tr> <td><code class="literal">\b</code></td> <td>A backspace character</td> </tr><tr> <td><code class="literal">\n</code></td> <td>A newline (linefeed) character</td> </tr><tr> <td><code class="literal">\r</code></td> <td>A carriage return character</td> </tr><tr> <td><code class="literal">\t</code></td> <td>A tab character.</td> </tr><tr> <td><code class="literal">\Z</code></td> <td>ASCII 26 (Control+Z)</td> </tr><tr> <td><code class="literal">\N</code></td> <td>NULL</td> </tr></tbody></table>
 
   For more information about `\`-escape syntax, see Section 11.1.1, “String Literals”.
 
@@ -507,7 +507,7 @@ Warnings occur under the same circumstances as when values are inserted using th
 
 You can use `SHOW WARNINGS` to get a list of the first `max_error_count` warnings as information about what went wrong. See Section 15.7.7.43, “SHOW WARNINGS Statement”.
 
-If you are using the C API, you can get information about the statement by calling the `mysql_info()` function. See mysql\_info().
+If you are using the C API, you can get information about the statement by calling the `mysql_info()` function. See mysql_info().
 
 #### Replication Considerations
 

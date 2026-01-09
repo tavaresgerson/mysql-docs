@@ -130,7 +130,7 @@ que acontece (se o diretório de dados do servidor estiver vazio
 quando o processo de inicialização começar):
 
 * Os arquivos de certificado SSL e chave são gerados no diretório de dados.
-* O plugin [validate\_password
+* O plugin [validate_password
   plugin](validate-password.html "8.4.4 O Componente de Validação de Senha") é instalado e habilitado.
 * Uma conta de superusuário `'root'@'localhost'` é
   criada. Uma senha para o superusuário é definida e armazenada no
@@ -154,7 +154,7 @@ quando o processo de inicialização começar):
 
 Nota
 
-O plugin `validate\_password` do MySQL é instalado por padrão. Isso exigirá que as senhas contenham pelo menos uma letra maiúscula, uma letra minúscula, um dígito e um caractere especial, e que o comprimento total da senha seja de pelo menos 8 caracteres.
+O plugin `validate_password` do MySQL é instalado por padrão. Isso exigirá que as senhas contenham pelo menos uma letra maiúscula, uma letra minúscula, um dígito e um caractere especial, e que o comprimento total da senha seja de pelo menos 8 caracteres.
 
 Você pode parar o servidor MySQL com o seguinte comando:
 

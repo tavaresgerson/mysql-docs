@@ -1,4 +1,4 @@
-#### 30.4.3.19 As visualizações \_global\_memória\_por\_bytes\_curto\_atual e \_x$memória\_global\_por\_bytes\_curto\_atual
+#### 30.4.3.19 As visualizações _global_memória_por_bytes_curto_atual e _x$memória_global_por_bytes_curto_atual
 
 Essas visualizações resumem o uso da memória, agrupadas por tipo de alocação (ou seja, por evento). Por padrão, as linhas são ordenadas em ordem decrescente de quantidade de memória usada.
 

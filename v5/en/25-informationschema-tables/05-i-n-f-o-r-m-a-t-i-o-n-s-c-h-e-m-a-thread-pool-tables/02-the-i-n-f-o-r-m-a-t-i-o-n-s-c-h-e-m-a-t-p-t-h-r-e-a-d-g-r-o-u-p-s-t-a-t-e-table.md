@@ -1,4 +1,4 @@
-### 24.5.2 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE Table
+### 24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table
 
 The [`TP_THREAD_GROUP_STATE`](information-schema-tp-thread-group-state-table.html "24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table") table has one row per thread group in the thread pool. Each row provides information about the current state of a group.
 

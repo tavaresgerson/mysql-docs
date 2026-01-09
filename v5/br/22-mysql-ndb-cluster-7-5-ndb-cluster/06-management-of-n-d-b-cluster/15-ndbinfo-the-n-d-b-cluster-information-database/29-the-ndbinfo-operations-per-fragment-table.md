@@ -1,4 +1,4 @@
-#### 21.6.15.29 Tabela ndbinfo operations\_per\_fragment
+#### 21.6.15.29 Tabela ndbinfo operations_per_fragment
 
 A tabela `operações_por_fragmento` fornece informações sobre as operações realizadas em fragmentos individuais e réplicas de fragmentos, bem como sobre alguns dos resultados dessas operações.
 
@@ -167,7 +167,7 @@ Para índices ou tabelas `BLOB`, a coluna `parent_fq_name` contém o `fq_name` d
 
 A coluna `type` mostra o tipo do objeto de esquema usado para este fragmento, que pode ser qualquer um dos valores `Tabela do sistema`, `Tabela do usuário`, `Índice de hash único` ou `Índice ordenado`. As tabelas `BLOB` são mostradas como `Tabela do usuário`.
 
-O valor da coluna `table_id` é único em qualquer momento, mas pode ser reutilizado se o objeto correspondente tiver sido excluído. O mesmo ID pode ser visualizado usando o utilitário **ndb\_show\_tables**.
+O valor da coluna `table_id` é único em qualquer momento, mas pode ser reutilizado se o objeto correspondente tiver sido excluído. O mesmo ID pode ser visualizado usando o utilitário **ndb_show_tables**.
 
 A coluna `block_instance` mostra para qual instância do LDM pertence essa replica do fragmento. Você pode usar isso para obter informações sobre threads específicas da tabela `threadblocks`. A primeira instância desse tipo sempre é numerada como 0.
 

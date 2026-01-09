@@ -1,4 +1,4 @@
-### 24.3.8 A tabela INFORMATION\_SCHEMA EVENTS
+### 24.3.8 A tabela INFORMATION_SCHEMA EVENTS
 
 A tabela `EVENTS` fornece informações sobre os eventos do Gerenciador de Eventos, que são discutidos em Seção 23.4, “Usando o Agendamento de Eventos”.
 

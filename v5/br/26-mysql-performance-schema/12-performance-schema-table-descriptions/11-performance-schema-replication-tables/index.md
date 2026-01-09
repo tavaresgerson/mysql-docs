@@ -2,19 +2,19 @@
 
 25.12.11.1 Tabela de configuração de conexão de replicação
 
-25.12.11.2 Tabela de status\_de\_conexão\_de\_replicação
+25.12.11.2 Tabela de status_de_conexão_de_replicação
 
-25.12.11.3 A tabela replication\_applier\_configuration
+25.12.11.3 A tabela replication_applier_configuration
 
-25.12.11.4 A tabela replication\_applier\_status
+25.12.11.4 A tabela replication_applier_status
 
-25.12.11.5 A tabela replication\_applier\_status\_by\_coordinator
+25.12.11.5 A tabela replication_applier_status_by_coordinator
 
-25.12.11.6 A tabela replication\_applier\_status\_by\_worker
+25.12.11.6 A tabela replication_applier_status_by_worker
 
-25.12.11.7 A tabela replication\_group\_member\_stats
+25.12.11.7 A tabela replication_group_member_stats
 
-25.12.11.8 A tabela replication\_group\_members
+25.12.11.8 A tabela replication_group_members
 
 O Schema de Desempenho fornece tabelas que exibem informações de replicação. Isso é semelhante às informações disponíveis a partir da declaração `SHOW SLAVE STATUS`, mas a representação em formato de tabela é mais acessível e oferece benefícios de usabilidade:
 
@@ -74,7 +74,7 @@ O esquema de desempenho popula as tabelas de replicação da seguinte forma:
 
 - As tabelas são preservadas após `STOP SLAVE` ou quando os threads morrem devido a um erro.
 
-- A tabela `replication_applier_status_by_worker` não está vazia apenas quando a replica está operando no modo multithreading. Ou seja, se a variável de sistema \[`slave_parallel_workers`]\(replication-options-replica.html#sysvar\_slave\_parallel\_workers] for maior que 0, esta tabela é preenchida quando o comando `START SLAVE` é executado, e o número de linhas mostra o número de trabalhadores.
+- A tabela `replication_applier_status_by_worker` não está vazia apenas quando a replica está operando no modo multithreading. Ou seja, se a variável de sistema [`slave_parallel_workers`]\(replication-options-replica.html#sysvar_slave_parallel_workers] for maior que 0, esta tabela é preenchida quando o comando `START SLAVE` é executado, e o número de linhas mostra o número de trabalhadores.
 
 #### `Mostrar Status de Escravo` Informações Não na Tabelas de Replicação
 

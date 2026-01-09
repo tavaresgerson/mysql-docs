@@ -20,23 +20,23 @@ The following list includes command-line options, system variables, and status v
 
 * `ndb-connectstring`: Address of NDB management server distributing configuration information for this cluster.
 
-* `ndb-default-column-format`: Use this value (FIXED or DYNAMIC) by default for COLUMN\_FORMAT and ROW\_FORMAT options when creating or adding table columns.
+* `ndb-default-column-format`: Use this value (FIXED or DYNAMIC) by default for COLUMN_FORMAT and ROW_FORMAT options when creating or adding table columns.
 
 * `ndb-deferred-constraints`: Specifies that constraint checks on unique indexes (where these are supported) should be deferred until commit time. Not normally needed or used; for testing purposes only.
 
 * `ndb-distribution`: Default distribution for new tables in NDBCLUSTER (KEYHASH or LINHASH, default is KEYHASH).
 
-* `ndb-log-apply-status`: Cause MySQL server acting as replica to log mysql.ndb\_apply\_status updates received from its immediate source in its own binary log, using its own server ID. Effective only if server is started with --ndbcluster option.
+* `ndb-log-apply-status`: Cause MySQL server acting as replica to log mysql.ndb_apply_status updates received from its immediate source in its own binary log, using its own server ID. Effective only if server is started with --ndbcluster option.
 
-* `ndb-log-empty-epochs`: When enabled, causes epochs in which there were no changes to be written to ndb\_apply\_status and ndb\_binlog\_index tables, even when --log-slave-updates is enabled.
+* `ndb-log-empty-epochs`: When enabled, causes epochs in which there were no changes to be written to ndb_apply_status and ndb_binlog_index tables, even when --log-slave-updates is enabled.
 
-* `ndb-log-empty-update`: When enabled, causes updates that produced no changes to be written to ndb\_apply\_status and ndb\_binlog\_index tables, even when --log-slave-updates is enabled.
+* `ndb-log-empty-update`: When enabled, causes updates that produced no changes to be written to ndb_apply_status and ndb_binlog_index tables, even when --log-slave-updates is enabled.
 
 * `ndb-log-exclusive-reads`: Log primary key reads with exclusive locks; allow conflict resolution based on read conflicts.
 
 * `ndb-log-fail-terminate`: Terminate mysqld process if complete logging of all found row events is not possible.
 
-* `ndb-log-orig`: Log originating server id and epoch in mysql.ndb\_binlog\_index table.
+* `ndb-log-orig`: Log originating server id and epoch in mysql.ndb_binlog_index table.
 
 * `ndb-log-row-slice-count`: Number of slices to be calculated by this server when subscribing to NDB table change event streams used for writing binary logs.
 
@@ -62,7 +62,7 @@ The following list includes command-line options, system variables, and status v
 
 * `ndb-tls-search-path`: Directories to search for NDB TLS CAs and private keys.
 
-* `ndb-transid-mysql-connection-map`: Enable or disable ndb\_transid\_mysql\_connection\_map plugin; that is, enable or disable INFORMATION\_SCHEMA table having that name.
+* `ndb-transid-mysql-connection-map`: Enable or disable ndb_transid_mysql_connection_map plugin; that is, enable or disable INFORMATION_SCHEMA table having that name.
 
 * `ndb-wait-connected`: Time (in seconds) for MySQL server to wait for connection to cluster management and data nodes before accepting MySQL client connections.
 
@@ -252,7 +252,7 @@ The following list includes command-line options, system variables, and status v
 
 * `ndb_autoincrement_prefetch_sz`: NDB auto-increment prefetch size.
 
-* `ndb_clear_apply_status`: Causes RESET SLAVE/RESET REPLICA to clear all rows from ndb\_apply\_status table; ON by default.
+* `ndb_clear_apply_status`: Causes RESET SLAVE/RESET REPLICA to clear all rows from ndb_apply_status table; ON by default.
 
 * `Ndb_cluster_node_id`: Node ID of this server when acting as NDB Cluster SQL node.
 
@@ -266,17 +266,17 @@ The following list includes command-line options, system variables, and status v
 
 * `Ndb_conflict_fn_epoch2`: Number of rows that have been found in conflict by NDB replication NDB$EPOCH2() conflict detection function.
 
-* `Ndb_conflict_fn_epoch2_trans`: Number of rows that have been found in conflict by NDB replication NDB$EPOCH2\_TRANS() conflict detection function.
+* `Ndb_conflict_fn_epoch2_trans`: Number of rows that have been found in conflict by NDB replication NDB$EPOCH2_TRANS() conflict detection function.
 
-* `Ndb_conflict_fn_epoch_trans`: Number of rows that have been found in conflict by NDB$EPOCH\_TRANS() conflict detection function.
+* `Ndb_conflict_fn_epoch_trans`: Number of rows that have been found in conflict by NDB$EPOCH_TRANS() conflict detection function.
 
 * `Ndb_conflict_fn_max`: Number of times that NDB replication conflict resolution based on "greater timestamp wins" has been applied to update and delete operations.
 
-* `Ndb_conflict_fn_max_del_win`: Number of times that NDB replication conflict resolution based on outcome of NDB$MAX\_DELETE\_WIN() has been applied to update and delete operations.
+* `Ndb_conflict_fn_max_del_win`: Number of times that NDB replication conflict resolution based on outcome of NDB$MAX_DELETE_WIN() has been applied to update and delete operations.
 
 * `Ndb_conflict_fn_max_ins`: Number of times that NDB replication conflict resolution based on "greater timestamp wins" has been applied to insert operations.
 
-* `Ndb_conflict_fn_max_del_win_ins`: Number of times that NDB replication conflict resolution based on outcome of NDB$MAX\_DEL\_WIN\_INS() has been applied to insert operations.
+* `Ndb_conflict_fn_max_del_win_ins`: Number of times that NDB replication conflict resolution based on outcome of NDB$MAX_DEL_WIN_INS() has been applied to insert operations.
 
 * `Ndb_conflict_fn_old`: Number of times that NDB replication "same timestamp wins" conflict resolution has been applied.
 
@@ -294,13 +294,13 @@ The following list includes command-line options, system variables, and status v
 
 * `Ndb_conflict_trans_conflict_commit_count`: Number of epoch transactions committed after requiring transactional conflict handling.
 
-* `Ndb_conflict_trans_detect_iter_count`: Number of internal iterations required to commit epoch transaction. Should be (slightly) greater than or equal to Ndb\_conflict\_trans\_conflict\_commit\_count.
+* `Ndb_conflict_trans_detect_iter_count`: Number of internal iterations required to commit epoch transaction. Should be (slightly) greater than or equal to Ndb_conflict_trans_conflict_commit_count.
 
 * `Ndb_conflict_trans_reject_count`: Number of transactions rejected after being found in conflict by transactional conflict function.
 
 * `Ndb_conflict_trans_row_conflict_count`: Number of rows found in conflict by transactional conflict function. Includes any rows included in or dependent on conflicting transactions.
 
-* `Ndb_conflict_trans_row_reject_count`: Total number of rows realigned after being found in conflict by transactional conflict function. Includes Ndb\_conflict\_trans\_row\_conflict\_count and any rows included in or dependent on conflicting transactions.
+* `Ndb_conflict_trans_row_reject_count`: Total number of rows realigned after being found in conflict by transactional conflict function. Includes Ndb_conflict_trans_row_conflict_count and any rows included in or dependent on conflicting transactions.
 
 * `ndb_data_node_neighbour`: Specifies cluster data node "closest" to this MySQL Server, for transaction hinting and fully replicated tables.
 
@@ -316,7 +316,7 @@ The following list includes command-line options, system variables, and status v
 
 * `Ndb_epoch_delete_delete_count`: Number of delete-delete conflicts detected (delete operation is applied, but row does not exist).
 
-* `ndb_eventbuffer_free_percent`: Percentage of free memory that should be available in event buffer before resumption of buffering, after reaching limit set by ndb\_eventbuffer\_max\_alloc.
+* `ndb_eventbuffer_free_percent`: Percentage of free memory that should be available in event buffer before resumption of buffering, after reaching limit set by ndb_eventbuffer_max_alloc.
 
 * `ndb_eventbuffer_max_alloc`: Maximum memory that can be allocated for buffering events by NDB API. Defaults to 0 (no limit).
 
@@ -338,21 +338,21 @@ The following list includes command-line options, system variables, and status v
 
 * `Ndb_last_commit_epoch_session`: Epoch most recently committed by this NDB client.
 
-* `ndb_log_apply_status`: Whether or not MySQL server acting as replica logs mysql.ndb\_apply\_status updates received from its immediate source in its own binary log, using its own server ID.
+* `ndb_log_apply_status`: Whether or not MySQL server acting as replica logs mysql.ndb_apply_status updates received from its immediate source in its own binary log, using its own server ID.
 
 * `ndb_log_bin`: Write updates to NDB tables in binary log. Effective only if binary logging is enabled with --log-bin.
 
-* `ndb_log_binlog_index`: Insert mapping between epochs and binary log positions into ndb\_binlog\_index table. Defaults to ON. Effective only if binary logging is enabled.
+* `ndb_log_binlog_index`: Insert mapping between epochs and binary log positions into ndb_binlog_index table. Defaults to ON. Effective only if binary logging is enabled.
 
 * `ndb_log_cache_size`: Set size of transaction cache used for recording NDB binary log.
 
-* `ndb_log_empty_epochs`: When enabled, epochs in which there were no changes are written to ndb\_apply\_status and ndb\_binlog\_index tables, even when log\_replica\_updates or log\_slave\_updates is enabled.
+* `ndb_log_empty_epochs`: When enabled, epochs in which there were no changes are written to ndb_apply_status and ndb_binlog_index tables, even when log_replica_updates or log_slave_updates is enabled.
 
-* `ndb_log_empty_update`: When enabled, updates which produce no changes are written to ndb\_apply\_status and ndb\_binlog\_index tables, even when log\_replica\_updates or log\_slave\_updates is enabled.
+* `ndb_log_empty_update`: When enabled, updates which produce no changes are written to ndb_apply_status and ndb_binlog_index tables, even when log_replica_updates or log_slave_updates is enabled.
 
 * `ndb_log_exclusive_reads`: Log primary key reads with exclusive locks; allow conflict resolution based on read conflicts.
 
-* `ndb_log_orig`: Whether id and epoch of originating server are recorded in mysql.ndb\_binlog\_index table. Set using --ndb-log-orig option when starting mysqld.
+* `ndb_log_orig`: Whether id and epoch of originating server are recorded in mysql.ndb_binlog_index table. Set using --ndb-log-orig option when starting mysqld.
 
 * `ndb_log_transaction_id`: Whether NDB transaction IDs are written into binary log (Read-only).
 
@@ -368,7 +368,7 @@ The following list includes command-line options, system variables, and status v
 
 * `Ndb_metadata_excluded_count`: Number of NDB metadata objects that NDB binlog thread has failed to synchronize.
 
-* `ndb_metadata_sync`: Triggers immediate synchronization of all changes between NDB dictionary and MySQL data dictionary; causes ndb\_metadata\_check and ndb\_metadata\_check\_interval values to be ignored. Resets to false when synchronization is complete.
+* `ndb_metadata_sync`: Triggers immediate synchronization of all changes between NDB dictionary and MySQL data dictionary; causes ndb_metadata_check and ndb_metadata_check_interval values to be ignored. Resets to false when synchronization is complete.
 
 * `Ndb_metadata_synced_count`: Number of NDB metadata objects which have been synchronized.
 
@@ -388,17 +388,17 @@ The following list includes command-line options, system variables, and status v
 
 * `Ndb_pushed_reads`: Number of reads executed on data nodes by pushed-down joins.
 
-* `ndb_read_backup`: Enable read from any replica for all NDB tables; use NDB\_TABLE=READ\_BACKUP={0|1} with CREATE TABLE or ALTER TABLE to enable or disable for individual NDB tables.
+* `ndb_read_backup`: Enable read from any replica for all NDB tables; use NDB_TABLE=READ_BACKUP={0|1} with CREATE TABLE or ALTER TABLE to enable or disable for individual NDB tables.
 
 * `ndb_recv_thread_activation_threshold`: Activation threshold when receive thread takes over polling of cluster connection (measured in concurrently active threads).
 
 * `ndb_recv_thread_cpu_mask`: CPU mask for locking receiver threads to specific CPUs; specified as hexadecimal. See documentation for details.
 
-* `Ndb_replica_max_replicated_epoch`: Most recently committed NDB epoch on this replica. When this value is greater than or equal to Ndb\_conflict\_last\_conflict\_epoch, no conflicts have yet been detected.
+* `Ndb_replica_max_replicated_epoch`: Most recently committed NDB epoch on this replica. When this value is greater than or equal to Ndb_conflict_last_conflict_epoch, no conflicts have yet been detected.
 
 * `ndb_replica_batch_size`: Batch size in bytes for replica applier.
 
-* `ndb_report_thresh_binlog_epoch_slip`: NDB 7.5 and later: Threshold for number of epochs completely buffered, but not yet consumed by binlog injector thread which when exceeded generates BUFFERED\_EPOCHS\_OVER\_THRESHOLD event buffer status message; prior to NDB 7.5: Threshold for number of epochs to lag behind before reporting binary log status.
+* `ndb_report_thresh_binlog_epoch_slip`: NDB 7.5 and later: Threshold for number of epochs completely buffered, but not yet consumed by binlog injector thread which when exceeded generates BUFFERED_EPOCHS_OVER_THRESHOLD event buffer status message; prior to NDB 7.5: Threshold for number of epochs to lag behind before reporting binary log status.
 
 * `ndb_report_thresh_binlog_mem_usage`: Threshold for percentage of free memory remaining before reporting binary log status.
 
@@ -414,11 +414,11 @@ The following list includes command-line options, system variables, and status v
 
 * `Ndb_schema_participant_count`: Number of MySQL servers participating in NDB schema change distribution.
 
-* `ndb_show_foreign_key_mock_tables`: Show mock tables used to support foreign\_key\_checks=0.
+* `ndb_show_foreign_key_mock_tables`: Show mock tables used to support foreign_key_checks=0.
 
 * `ndb_slave_conflict_role`: Role for replica to play in conflict detection and resolution. Value is one of PRIMARY, SECONDARY, PASS, or NONE (default). Can be changed only when replication SQL thread is stopped. See documentation for further information.
 
-* `Ndb_slave_max_replicated_epoch`: Most recently committed NDB epoch on this replica. When this value is greater than or equal to Ndb\_conflict\_last\_conflict\_epoch, no conflicts have yet been detected.
+* `Ndb_slave_max_replicated_epoch`: Most recently committed NDB epoch on this replica. When this value is greater than or equal to Ndb_conflict_last_conflict_epoch, no conflicts have yet been detected.
 
 * `Ndb_system_name`: Configured cluster system name; empty if server not connected to NDB.
 
@@ -458,7 +458,7 @@ The following list includes command-line options, system variables, and status v
 
 * `replica_allow_batching`: Turns update batching on and off for replica.
 
-* `server_id_bits`: Number of least significant bits in server\_id actually used for identifying server, permitting NDB API applications to store application data in most significant bits. server\_id must be less than 2 to power of this value.
+* `server_id_bits`: Number of least significant bits in server_id actually used for identifying server, permitting NDB API applications to store application data in most significant bits. server_id must be less than 2 to power of this value.
 
 * `skip-ndbcluster`: Disable NDB Cluster storage engine.
 

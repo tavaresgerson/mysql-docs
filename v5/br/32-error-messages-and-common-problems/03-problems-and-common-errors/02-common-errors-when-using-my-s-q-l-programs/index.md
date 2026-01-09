@@ -2,7 +2,7 @@
 
 [B.3.2.1 Acesso negado](error-access-denied.html)
 
-\[B.3.2.2 Não consigo me conectar ao servidor MySQL [local](can-not-connect-to-server.html)
+[B.3.2.2 Não consigo me conectar ao servidor MySQL [local](can-not-connect-to-server.html)
 
 [B.3.2.3 Perda de conexão com o servidor MySQL](error-lost-connection.html)
 
@@ -12,7 +12,7 @@
 
 [B.3.2.6 Sem memória](out-of-memory.html)
 
-[O servidor MySQL \[B.3.2.7\] desapareceu](gone-away.html)
+[O servidor MySQL [B.3.2.7\] desapareceu](gone-away.html)
 
 [B.3.2.8 Pacote muito grande](packet-too-large.html)
 
@@ -26,7 +26,7 @@
 
 [B.3.2.13 Ignorar o usuário](ignorar-usuario.html)
 
-[A tabela 'tbl\_name' não existe](cannot-find-table.html)
+[A tabela 'tbl_name' não existe](cannot-find-table.html)
 
 [B.3.2.15 Não é possível inicializar o conjunto de caracteres](cannot-initialize-character-set.html)
 

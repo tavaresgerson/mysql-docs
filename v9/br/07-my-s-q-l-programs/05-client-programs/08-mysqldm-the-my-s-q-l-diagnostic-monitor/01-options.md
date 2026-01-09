@@ -8,24 +8,24 @@ O **mysqldm** aceita as opções padrão de conexão do MySQL e várias opções
 
 <table frame="box" rules="all" summary="Referência para opções do mysqldm.">
 <tr><th>Nome da Opção</th> <th>Descrição</th> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_authentication-oci-client-config-profile">--authentication-oci-client-config-profile</a></td> <td>Nome do perfil OCI definido no arquivo de configuração OCI a ser usado</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_authentication-openid-connect-client-id-token-file">--authentication-openid-connect-client-id-token-file</a></td> <td>Caminho completo do arquivo de token de identidade OpenID Connect do cliente</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres são instalados</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_compress">--compress</a></td> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_debug">--debug</a></td> <td>Escrever o log de depuração; suportado apenas se o MySQL foi compilado com suporte a depuração</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_default-auth">--default-auth</a></td> <td>Plugin de autenticação a ser usado</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_defaults-extra-file">--defaults-extra-file</a></td> <td>Ler o arquivo de opção adicional além dos arquivos de opção usuais</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_defaults-file">--defaults-file</a></td> <td>Ler o arquivo de opção apenas</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_delay">--delay</a></td> <td>Número de segundos entre iterações</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Ativar o plugin de autenticação sem criptografia</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_get-server-public-key">--get-server-public-key</a></td> <td>Solicitar a chave pública do servidor do servidor</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_help">--help</a></td> <td>Exibir a mensagem de ajuda e sair</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_host">--host</a></td> <td>Host em que o servidor MySQL está localizado</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_iterations">--iterations</a></td> <td>Número de iterações</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_login-path">--login-path</a></td> <td>Ler as opções de caminho de login a partir de .mylogin.cnf</td> </tr>
-<tr><td><a class="link" href="mysqldm-options.html#option_mysqldm_no-defaults">--no-defaults</a></td> <td>Ler sem arquivos de opção</td> </tr>
+<tr><td>--authentication-oci-client-config-profile</td> <td>Nome do perfil OCI definido no arquivo de configuração OCI a ser usado</td> </tr>
+<tr><td>--authentication-openid-connect-client-id-token-file</td> <td>Caminho completo do arquivo de token de identidade OpenID Connect do cliente</td> </tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres são instalados</td> </tr>
+<tr><td>--compress</td> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> </tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td> </tr>
+<tr><td>--debug</td> <td>Escrever o log de depuração; suportado apenas se o MySQL foi compilado com suporte a depuração</td> </tr>
+<tr><td>--default-auth</td> <td>Plugin de autenticação a ser usado</td> </tr>
+<tr><td>--defaults-extra-file</td> <td>Ler o arquivo de opção adicional além dos arquivos de opção usuais</td> </tr>
+<tr><td>--defaults-file</td> <td>Ler o arquivo de opção apenas</td> </tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td> </tr>
+<tr><td>--delay</td> <td>Número de segundos entre iterações</td> </tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Ativar o plugin de autenticação sem criptografia</td> </tr>
+<tr><td>--get-server-public-key</td> <td>Solicitar a chave pública do servidor do servidor</td> </tr>
+<tr><td>--help</td> <td>Exibir a mensagem de ajuda e sair</td> </tr>
+<tr><td>--host</td> <td>Host em que o servidor MySQL está localizado</td> </tr>
+<tr><td>--iterations</td> <td>Número de iterações</td> </tr>
+<tr><td>--login-path</td> <td>Ler as opções de caminho de login a partir de .mylogin.cnf</td> </tr>
+<tr><td>--no-defaults</td> <td>Ler sem arquivos de opção</td> </tr>
 <tr><td><a class="link"
 
 * `--delay=númeroDeSegundos`
@@ -113,7 +113,7 @@ Exibir uma mensagem de ajuda e sair.
     </tr>
     <tr>
       <th>Valores válidos</th>
-      <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td>
+      <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>uncompressed</code></p></td>
     </tr>
   </table>
 
@@ -189,7 +189,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
   <table frame="box" rules="all" summary="Propriedades para atraso"><tbody><tr><th>Formato de linha de comando</th> <td><code>--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>30</code></td> </tr></tbody></table>
 
-  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um "caminho de login" é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de configuração do MySQL”.
+  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um "caminho de login" é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de configuração do MySQL”.
 
   Para obter informações adicionais sobre isso e outras opções de arquivos de opções, veja a Seção 6.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivos de opções”.
 
@@ -209,7 +209,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
   Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas.
 
-  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de configuração do MySQL”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de configuração do MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o tratamento de opções de arquivo”.
 

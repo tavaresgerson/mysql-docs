@@ -1,4 +1,4 @@
-#### 26.4.3.3 The host\_summary\_by\_file\_io\_type and x$host\_summary\_by\_file\_io\_type Views
+#### 26.4.3.3 The host_summary_by_file_io_type and x$host_summary_by_file_io_type Views
 
 These views summarize file I/O, grouped by host and event type. By default, rows are sorted by host and descending total I/O latency.
 

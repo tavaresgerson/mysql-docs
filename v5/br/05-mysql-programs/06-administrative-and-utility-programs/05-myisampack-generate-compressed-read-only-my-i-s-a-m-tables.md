@@ -16,7 +16,7 @@ Por favor, observe o seguinte:
 
 Invoque o **myisampack** da seguinte forma:
 
-```sql
+```sh
 myisampack [options] file_name ...
 ```
 
@@ -296,15 +296,15 @@ O **myisampack** exibe os seguintes tipos de informações:
 
   O número de colunas para as quais não é utilizada embalagem extra.
 
-- `espaço vazio`
+- `empty-space`
 
   O número de colunas que contêm valores que são apenas espaços. Essas ocupam um bit.
 
-- `vazio-zero`
+- `empty-zero`
 
   O número de colunas que contêm valores que são apenas zeros binários. Essas ocupam um bit.
 
-- `vazio-preenchimento`
+- `empty-fill`
 
   O número de colunas inteiras que não ocupam a faixa completa de bytes do seu tipo. Essas são alteradas para um tipo menor. Por exemplo, uma coluna `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (oito bytes) pode ser armazenada como uma coluna `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (um byte) se todos os seus valores estiverem no intervalo de `-128` a `127`.
 
@@ -312,11 +312,11 @@ O **myisampack** exibe os seguintes tipos de informações:
 
   O número de colunas decimais armazenadas com espaços em branco no início. Neste caso, cada valor contém um contador para o número de espaços em branco no início.
 
-- `espaço final`
+- `end-space`
 
   O número de colunas que têm muitos espaços em branco no final. Neste caso, cada valor contém um número de contagem para o número de espaços em branco no final.
 
-- `tabela de consulta`
+- `table-lookup`
 
   A coluna tinha apenas um pequeno número de valores diferentes, que foram convertidos em `ENUM` antes da compressão de Huffman.
 
@@ -324,37 +324,37 @@ O **myisampack** exibe os seguintes tipos de informações:
 
   O número de colunas para as quais todos os valores são zero.
 
-- "Árvores originais"
+- `Original trees`
 
   O número inicial de árvores de Huffman.
 
-- `Após a adesão`
+- `After join`
 
   O número de árvores de Huffman distintas que restam após a junção de árvores para economizar espaço no cabeçalho.
 
 Após a compactação de uma tabela, as linhas de `Field` exibidas pelo **myisamchk -dvv** incluem informações adicionais sobre cada coluna:
 
-- `Tipo`
+- `Type`
 
   O tipo de dado. O valor pode conter qualquer um dos seguintes descritores:
 
-  - `constante`
+  - `constant`
 
     Todas as linhas têm o mesmo valor.
 
-  - `sem espaço de término`
+  - `no endspace`
 
     Não armazene o espaço final.
 
-  - `sem espaço final, não_sempre`
+  - `no endspace, not_always`
 
     Não armazene o espaço final e não faça compressão de espaço final para todos os valores.
 
-  - `sem espaço final, sem vazio`
+  - `no endspace, no empty`
 
     Não armazene o espaço final. Não armazene valores vazios.
 
-  - `tabela de consulta`
+  - `table-lookup`
 
     A coluna foi convertida em `ENUM`.
 
@@ -362,25 +362,25 @@ Após a compactação de uma tabela, as linhas de `Field` exibidas pelo **myisam
 
     Os bytes *`N`* mais significativos no valor são sempre 0 e não são armazenados.
 
-  - `sem zeros`
+  - `no zeros`
 
     Não armazene zeros.
 
-  - "sempre zero"
+  - `always zero`
 
     Os valores zero são armazenados usando um bit.
 
-- "árvore de hifas"
+- `Huff tree`
 
   O número da árvore de Huffman associada à coluna.
 
-- "Bits"
+- `Bits`
 
   O número de bits utilizados na árvore de Huffman.
 
 Depois de executar o **myisampack**, use o **myisamchk** para recriar quaisquer índices. Neste momento, você também pode ordenar os blocos do índice e criar estatísticas necessárias para que o otimizador do MySQL funcione de forma mais eficiente:
 
-```sql
+```sh
 myisamchk -rq --sort-index --analyze tbl_name.MYI
 ```
 

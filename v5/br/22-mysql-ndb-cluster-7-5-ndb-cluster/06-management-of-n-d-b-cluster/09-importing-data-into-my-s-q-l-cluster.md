@@ -4,9 +4,9 @@
 
 - Um arquivo de exclusão SQL, como o produzido por **mysqldump** ou **mysqlpump**. Este pode ser importado usando o cliente **mysql**, conforme mostrado mais adiante nesta seção.
 
-- Um arquivo CSV produzido por **mysqldump** ou outro programa de exportação. Esses arquivos podem ser importados no `NDB` usando `LOAD DATA INFILE` no cliente \[**mysql**]\(mysql.html], ou com o utilitário **ndb\_import** fornecido com a distribuição do NDB Cluster. Para mais informações sobre este último, consulte Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”.
+- Um arquivo CSV produzido por **mysqldump** ou outro programa de exportação. Esses arquivos podem ser importados no `NDB` usando `LOAD DATA INFILE` no cliente [**mysql**]\(mysql.html], ou com o utilitário **ndb_import** fornecido com a distribuição do NDB Cluster. Para mais informações sobre este último, consulte Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”.
 
-- Um backup nativo do `NDB` produzido usando `START BACKUP` no cliente de gerenciamento do `NDB`. Para importar um backup nativo, você deve usar o programa **ndb\_restore** que vem como parte do NDB Cluster. Veja Seção 21.5.24, “ndb\_restore — Restaurar um backup do NDB Cluster” para obter mais informações sobre como usar esse programa.
+- Um backup nativo do `NDB` produzido usando `START BACKUP` no cliente de gerenciamento do `NDB`. Para importar um backup nativo, você deve usar o programa **ndb_restore** que vem como parte do NDB Cluster. Veja Seção 21.5.24, “ndb_restore — Restaurar um backup do NDB Cluster” para obter mais informações sobre como usar esse programa.
 
 Ao importar dados de um arquivo SQL, muitas vezes não é necessário impor transações ou chaves estrangeiras, e desativar temporariamente essas funcionalidades pode acelerar muito o processo de importação. Isso pode ser feito usando o cliente **mysql**, seja a partir de uma sessão do cliente ou invocando-o na linha de comando. Dentro de uma sessão do cliente **mysql**, você pode realizar a importação usando as seguintes instruções SQL:
 

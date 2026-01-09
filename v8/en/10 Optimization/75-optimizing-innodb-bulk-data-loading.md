@@ -36,7 +36,7 @@ These performance tips supplement the general guidelines for fast inserts in  Se
   ```
 
   This tip is valid for inserts into any table, not just `InnoDB` tables.
-* When doing bulk inserts into tables with auto-increment columns, set `innodb_autoinc_lock_mode` to 2 (interleaved) instead of 1 (consecutive). See Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB” for details.
+* When doing bulk inserts into tables with auto-increment columns, set `innodb_autoinc_lock_mode` to 2 (interleaved) instead of 1 (consecutive). See Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB” for details.
 * When performing bulk inserts, it is faster to insert rows in `PRIMARY KEY` order. `InnoDB` tables use a clustered index, which makes it relatively fast to use data in the order of the `PRIMARY KEY`. Performing bulk inserts in `PRIMARY KEY` order is particularly important for tables that do not fit entirely within the buffer pool.
 * For optimal performance when loading data into an `InnoDB` `FULLTEXT` index, follow this set of steps:
 

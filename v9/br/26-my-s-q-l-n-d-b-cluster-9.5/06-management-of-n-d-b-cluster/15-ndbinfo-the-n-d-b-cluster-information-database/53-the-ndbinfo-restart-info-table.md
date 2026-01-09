@@ -1,4 +1,4 @@
-#### 25.6.15.53 Tabela ndbinfo restart\_info
+#### 25.6.15.53 Tabela ndbinfo restart_info
 
 A tabela `restart_info` contém informações sobre operações de reinício de nós. Cada entrada na tabela corresponde a um relatório de status de reinício de nó em tempo real de um nó de dados com o ID de nó fornecido. Apenas o relatório mais recente para qualquer nó dado é mostrado.
 

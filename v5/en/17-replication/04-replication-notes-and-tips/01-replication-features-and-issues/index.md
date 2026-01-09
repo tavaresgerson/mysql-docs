@@ -1,6 +1,6 @@
 ### 16.4.1 Replication Features and Issues
 
-[16.4.1.1 Replication and AUTO\_INCREMENT](replication-features-auto-increment.html)
+[16.4.1.1 Replication and AUTO_INCREMENT](replication-features-auto-increment.html)
 
 [16.4.1.2 Replication and BLACKHOLE Tables](replication-features-blackhole.html)
 
@@ -14,7 +14,7 @@
 
 [16.4.1.7 Replication of CREATE SERVER, ALTER SERVER, and DROP SERVER](replication-features-create-alter-drop-server.html)
 
-[16.4.1.8 Replication of CURRENT\_USER()](replication-features-current-user.html)
+[16.4.1.8 Replication of CURRENT_USER()](replication-features-current-user.html)
 
 [16.4.1.9 Replication of DROP ... IF EXISTS Statements](replication-features-drop-if-exists.html)
 
@@ -36,7 +36,7 @@
 
 [16.4.1.18 Replication and LOAD DATA](replication-features-load-data.html)
 
-[16.4.1.19 Replication and max\_allowed\_packet](replication-features-max-allowed-packet.html)
+[16.4.1.19 Replication and max_allowed_packet](replication-features-max-allowed-packet.html)
 
 [16.4.1.20 Replication and MEMORY Tables](replication-features-memory.html)
 

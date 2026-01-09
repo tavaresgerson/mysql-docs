@@ -52,7 +52,7 @@ mysql> SELECT FILE_NAME, LOGFILE_GROUP_NUMBER, EXTRA
 4 rows in set (0.01 sec)
 ```
 
-(Veja Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”.)
+(Veja Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.)
 
 A memória usada para `UNDO_BUFFER_SIZE` vem do pool global, cujo tamanho é determinado pelo valor do parâmetro de configuração do nó de dados `SharedGlobalMemory`. Isso inclui qualquer valor padrão implícito para esta opção pelo ajuste do parâmetro de configuração do nó de dados `InitialLogFileGroup`.
 

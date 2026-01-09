@@ -4,7 +4,7 @@
 
 <table frame="box" rules="all" summary="Uma referência que lista os operadores lógicos.">
 <col style="width: 28%"/><col style="width: 71%"/>
-<thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="operadores-lógicos.html#operador_e"><code>E</code>, <code>&amp;&amp;</code></a></td> <td> E lógico</td> </tr><tr><td><a class="link" href="operadores-lógicos.html#operador_nao"><code>NÃO</code>, <code>!</code></a></td> <td> Nega o valor</td> </tr><tr><td><a class="link" href="operadores-lógicos.html#operador_ou"><code>OU</code>, <code>||</code></a></td> <td> E lógico OU</td> </tr><tr><td><a class="link" href="operadores-lógicos.html#operador_xor"><code>XOR</code></a></td> <td> E lógico XOR</td> </tr></tbody></table>
+<thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>E</code>, <code>&amp;&amp;</code></td> <td> E lógico</td> </tr><tr><td><code>NÃO</code>, <code>!</code></td> <td> Nega o valor</td> </tr><tr><td><code>OU</code>, <code>||</code></td> <td> E lógico OU</td> </tr><tr><td><code>XOR</code></td> <td> E lógico XOR</td> </tr></tbody></table>
 
 No SQL, todos os operadores lógicos avaliam como `TRUE`, `FALSE` ou `NULL` (`DESCONHECIDO`). No MySQL, esses são implementados como 1 (`TRUE`), 0 (`FALSE`) e `NULL`. A maior parte disso é comum a diferentes servidores de banco de dados SQL, embora alguns servidores possam retornar qualquer valor não nulo para `TRUE`.
 

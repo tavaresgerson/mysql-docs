@@ -25,9 +25,9 @@
 17.4 Monitoramento do Grupo de Replicação:   17.4.1 Estados dos Servidores de Replicação do Grupo
 
 ```
-17.4.2 The replication\_group\_members Table
+17.4.2 The replication_group_members Table
 
-17.4.3 The replication\_group\_member\_stats Table
+17.4.3 The replication_group_member_stats Table
 ```
 
 Operações de Replicação em Grupo:   17.5.1 Implantação no Modo Multi-Primario ou Simples-Primario

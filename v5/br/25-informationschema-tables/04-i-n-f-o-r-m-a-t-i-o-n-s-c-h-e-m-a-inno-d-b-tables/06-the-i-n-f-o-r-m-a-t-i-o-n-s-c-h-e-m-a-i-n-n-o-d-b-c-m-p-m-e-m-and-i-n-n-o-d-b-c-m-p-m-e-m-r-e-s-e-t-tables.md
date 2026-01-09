@@ -1,4 +1,4 @@
-### 24.4.6 As tabelas INFORMATION\_SCHEMA INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET
+### 24.4.6 As tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET
 
 As tabelas `INNODB_CMPMEM` e `INNODB_CMPMEM_RESET` fornecem informações de status sobre as páginas compactadas (`glossary.html#glos_page`) dentro do `buffer pool` (`glossary.html#glos_buffer_pool`) do `InnoDB`.
 

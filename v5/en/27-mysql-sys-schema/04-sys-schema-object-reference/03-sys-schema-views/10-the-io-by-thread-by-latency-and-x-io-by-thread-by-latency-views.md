@@ -1,4 +1,4 @@
-#### 26.4.3.10 The io\_by\_thread\_by\_latency and x$io\_by\_thread\_by\_latency Views
+#### 26.4.3.10 The io_by_thread_by_latency and x$io_by_thread_by_latency Views
 
 These views summarize I/O consumers to display time waiting for I/O, grouped by thread. By default, rows are sorted by descending total I/O latency.
 

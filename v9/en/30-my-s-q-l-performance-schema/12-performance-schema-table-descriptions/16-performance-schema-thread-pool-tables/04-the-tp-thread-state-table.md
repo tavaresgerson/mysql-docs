@@ -1,4 +1,4 @@
-#### 29.12.16.4 The tp\_thread\_state Table
+#### 29.12.16.4 The tp_thread_state Table
 
 The `tp_thread_state` table has one row per thread created by the thread pool to handle connections.
 
@@ -22,7 +22,7 @@ The `tp_thread_state` table has these columns:
 
   The `WAIT_TYPE` value is a string that describes the type of wait, as shown in the following table.
 
-  **Table 29.4 tp\_thread\_state Table WAIT\_TYPE Values**
+  **Table 29.4 tp_thread_state Table WAIT_TYPE Values**
 
   <table summary="tp_thread_state table WAIT_TYPE values. The first column is the wait type. The second column describes the wait type."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Wait Type</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code class="literal">THD_WAIT_SLEEP</code></td> <td>Waiting for sleep</td> </tr><tr> <td><code class="literal">THD_WAIT_DISKIO</code></td> <td>Waiting for Disk IO</td> </tr><tr> <td><code class="literal">THD_WAIT_ROW_LOCK</code></td> <td>Waiting for row lock</td> </tr><tr> <td><code class="literal">THD_WAIT_GLOBAL_LOCK</code></td> <td>Waiting for global lock</td> </tr><tr> <td><code class="literal">THD_WAIT_META_DATA_LOCK</code></td> <td>Waiting for metadata lock</td> </tr><tr> <td><code class="literal">THD_WAIT_TABLE_LOCK</code></td> <td>Waiting for table lock</td> </tr><tr> <td><code class="literal">THD_WAIT_USER_LOCK</code></td> <td>Waiting for user lock</td> </tr><tr> <td><code class="literal">THD_WAIT_BINLOG</code></td> <td>Waiting for binlog</td> </tr><tr> <td><code class="literal">THD_WAIT_GROUP_COMMIT</code></td> <td>Waiting for group commit</td> </tr><tr> <td><code class="literal">THD_WAIT_SYNC</code></td> <td>Waiting for fsync</td> </tr></tbody></table>
 

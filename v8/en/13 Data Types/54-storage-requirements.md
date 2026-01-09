@@ -32,7 +32,7 @@ While a `NULL` itself does not require any storage space,  `NDB` reserves 4 byte
 
 Every table using the  `NDB` storage engine requires a primary key; if you do not define a primary key, a “hidden” primary key is created by `NDB`. This hidden primary key consumes 31-35 bytes per table record.
 
-You can use the  **ndb\_size.pl** Perl script to estimate  `NDB` storage requirements. It connects to a current MySQL (not NDB Cluster) database and creates a report on how much space that database would require if it used the  `NDB` storage engine. See  Section 25.5.29, “ndb\_size.pl — NDBCLUSTER Size Requirement Estimator” for more information.
+You can use the  **ndb_size.pl** Perl script to estimate  `NDB` storage requirements. It connects to a current MySQL (not NDB Cluster) database and creates a report on how much space that database would require if it used the  `NDB` storage engine. See  Section 25.5.29, “ndb_size.pl — NDBCLUSTER Size Requirement Estimator” for more information.
 
 ### Numeric Type Storage Requirements
 
@@ -88,7 +88,7 @@ This means that the size of a `TEXT` column is 256 if *`size`* <= 256 (where *`s
 
 No blob parts are stored separately by `NDB` for `TINYBLOB` or `TINYTEXT` column values.
 
-You can increase the size of an `NDB` blob column's blob part to the maximum of 13948 using `NDB_COLUMN` in a column comment when creating or altering the parent table. `NDB` also supports setting the inline size for a `TEXT`, `BLOB`, or `JSON` column, using `NDB_TABLE` in a column comment. See NDB\_COLUMN Options, for more information.
+You can increase the size of an `NDB` blob column's blob part to the maximum of 13948 using `NDB_COLUMN` in a column comment when creating or altering the parent table. `NDB` also supports setting the inline size for a `TEXT`, `BLOB`, or `JSON` column, using `NDB_TABLE` in a column comment. See NDB_COLUMN Options, for more information.
 
 The size of an  `ENUM` object is determined by the number of different enumeration values. One byte is used for enumerations with up to 255 possible values. Two bytes are used for enumerations having between 256 and 65,535 possible values. See  Section 13.3.5, “The ENUM Type”.
 

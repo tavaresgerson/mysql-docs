@@ -8,6 +8,6 @@ Existem vários estados que uma instância do servidor pode estar. Se os servido
 
 Importante
 
-Quando uma instância entra no estado `ERROR`, a opção `super_read_only` é configurada para `ON`. Para sair do estado `ERROR`, você deve configurar manualmente a instância com `super_read_only=OFF` (server-system-variables.html#sysvar\_super\_read\_only).
+Quando uma instância entra no estado `ERROR`, a opção `super_read_only` é configurada para `ON`. Para sair do estado `ERROR`, você deve configurar manualmente a instância com `super_read_only=OFF` (server-system-variables.html#sysvar_super_read_only).
 
 Observe que a Replicação em Grupo não é *síncrona*, mas eventualmente síncrona. Mais precisamente, as transações são entregues a todos os membros do grupo na mesma ordem, mas sua execução não é sincronizada, o que significa que, após uma transação ser aceita para ser comprometida, cada membro compromete em seu próprio ritmo.

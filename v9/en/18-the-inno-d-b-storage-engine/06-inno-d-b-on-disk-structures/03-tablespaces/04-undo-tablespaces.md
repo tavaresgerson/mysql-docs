@@ -24,7 +24,7 @@ Additional undo tablespaces can be created at runtime using SQL statements. See 
 
 The initial undo tablespace size is normally 16MiB. The initial size may differ when a new undo tablespace is created by a truncate operation. In this case, if the file extension size is larger than 16MB, and the previous file extension occurred within the last second, the new undo tablespace is created at a quarter of the size defined by the `innodb_max_undo_log_size` variable.
 
-An undo tablespace is extended by a minimum of 16MB. To handle aggressive growth, the file extension size is doubled if the previous file extension happened less than 0.1 seconds earlier. Doubling of the extension size can occur multiple times to a maximum of 256MB. If the previous file extension occurred more than 0.1 seconds earlier, the extension size is reduced by half, which can also occur multiple times, to a minimum of 16MB. If the `AUTOEXTEND_SIZE` option is defined for an undo tablespace, it is extended by the greater of the `AUTOEXTEND_SIZE` setting and the extension size determined by the logic described above. For information about the `AUTOEXTEND_SIZE` option, see Section 17.6.3.9, “Tablespace AUTOEXTEND\_SIZE Configuration”.
+An undo tablespace is extended by a minimum of 16MB. To handle aggressive growth, the file extension size is doubled if the previous file extension happened less than 0.1 seconds earlier. Doubling of the extension size can occur multiple times to a maximum of 256MB. If the previous file extension occurred more than 0.1 seconds earlier, the extension size is reduced by half, which can also occur multiple times, to a minimum of 16MB. If the `AUTOEXTEND_SIZE` option is defined for an undo tablespace, it is extended by the greater of the `AUTOEXTEND_SIZE` setting and the extension size determined by the logic described above. For information about the `AUTOEXTEND_SIZE` option, see Section 17.6.3.9, “Tablespace AUTOEXTEND_SIZE Configuration”.
 
 ##### Adding Undo Tablespaces
 
@@ -222,7 +222,7 @@ The easiest way to avoid the potential performance impact is to increase the num
 SELECT NAME, SUBSYSTEM, COMMENT FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME LIKE '%truncate%';
 ```
 
-For information about enabling counters and querying counter data, see Section 17.15.6, “InnoDB INFORMATION\_SCHEMA Metrics Table”.
+For information about enabling counters and querying counter data, see Section 17.15.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
 
 ###### Undo Tablespace Truncation Limit
 

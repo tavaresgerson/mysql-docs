@@ -14,31 +14,31 @@ The MySQL server, **mysqld**, is the main program that does most of the work in 
 
   The SQL daemon (that is, the MySQL server). To use client programs, **mysqld** must be running, because clients gain access to databases by connecting to the server. See Section 6.3.1, “mysqld — The MySQL Server”.
 
-* **mysqld\_safe**
+* **mysqld_safe**
 
-  A server startup script. **mysqld\_safe** attempts to start **mysqld**. See Section 6.3.2, “mysqld\_safe — MySQL Server Startup Script”.
+  A server startup script. **mysqld_safe** attempts to start **mysqld**. See Section 6.3.2, “mysqld_safe — MySQL Server Startup Script”.
 
 * **mysql.server**
 
-  A server startup script. This script is used on systems that use System V-style run directories containing scripts that start system services for particular run levels. It invokes **mysqld\_safe** to start the MySQL server. See Section 6.3.3, “mysql.server — MySQL Server Startup Script”.
+  A server startup script. This script is used on systems that use System V-style run directories containing scripts that start system services for particular run levels. It invokes **mysqld_safe** to start the MySQL server. See Section 6.3.3, “mysql.server — MySQL Server Startup Script”.
 
-* **mysqld\_multi**
+* **mysqld_multi**
 
-  A server startup script that can start or stop multiple servers installed on the system. See Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”.
+  A server startup script that can start or stop multiple servers installed on the system. See Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”.
 
 Several programs perform setup operations during MySQL installation or upgrading:
 
-* **comp\_err**
+* **comp_err**
 
-  This program is used during the MySQL build/installation process. It compiles error message files from the error source files. See Section 6.4.1, “comp\_err — Compile MySQL Error Message File”.
+  This program is used during the MySQL build/installation process. It compiles error message files from the error source files. See Section 6.4.1, “comp_err — Compile MySQL Error Message File”.
 
-* **mysql\_secure\_installation**
+* **mysql_secure_installation**
 
-  This program enables you to improve the security of your MySQL installation. See Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”.
+  This program enables you to improve the security of your MySQL installation. See Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”.
 
-* **mysql\_tzinfo\_to\_sql**
+* **mysql_tzinfo_to_sql**
 
-  This program loads the time zone tables in the `mysql` database using the contents of the host system zoneinfo database (the set of files describing time zones). See Section 6.4.3, “mysql\_tzinfo\_to\_sql — Load the Time Zone Tables”.
+  This program loads the time zone tables in the `mysql` database using the contents of the host system zoneinfo database (the set of files describing time zones). See Section 6.4.3, “mysql_tzinfo_to_sql — Load the Time Zone Tables”.
 
 MySQL client programs that connect to the MySQL server:
 
@@ -80,9 +80,9 @@ MySQL administrative and utility programs:
 
   An offline `InnoDB` offline file checksum utility. See Section 6.6.2, “innochecksum — Offline InnoDB File Checksum Utility”.
 
-* **myisam\_ftdump**
+* **myisam_ftdump**
 
-  A utility that displays information about full-text indexes in `MyISAM` tables. See Section 6.6.3, “myisam\_ftdump — Display Full-Text Index information”.
+  A utility that displays information about full-text indexes in `MyISAM` tables. See Section 6.6.3, “myisam_ftdump — Display Full-Text Index information”.
 
 * **myisamchk**
 
@@ -96,13 +96,13 @@ MySQL administrative and utility programs:
 
   A utility that compresses `MyISAM` tables to produce smaller read-only tables. See Section 6.6.6, “myisampack — Generate Compressed, Read-Only MyISAM Tables”.
 
-* **mysql\_config\_editor**
+* **mysql_config_editor**
 
-  A utility that enables you to store authentication credentials in a secure, encrypted login path file named `.mylogin.cnf`. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  A utility that enables you to store authentication credentials in a secure, encrypted login path file named `.mylogin.cnf`. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
-* **mysql\_migrate\_keyring**
+* **mysql_migrate_keyring**
 
-  A utility for migrating keys between one keyring component and another. See Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”.
+  A utility for migrating keys between one keyring component and another. See Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”.
 
 * **mysqlbinlog**
 
@@ -114,13 +114,13 @@ MySQL administrative and utility programs:
 
 MySQL program-development utilities:
 
-* **mysql\_config**
+* **mysql_config**
 
-  A shell script that produces the option values needed when compiling MySQL programs. See Section 6.7.1, “mysql\_config — Display Options for Compiling Clients”.
+  A shell script that produces the option values needed when compiling MySQL programs. See Section 6.7.1, “mysql_config — Display Options for Compiling Clients”.
 
-* **my\_print\_defaults**
+* **my_print_defaults**
 
-  A utility that shows which options are present in option groups of option files. See Section 6.7.2, “my\_print\_defaults — Display Options from Option Files”.
+  A utility that shows which options are present in option groups of option files. See Section 6.7.2, “my_print_defaults — Display Options from Option Files”.
 
 Miscellaneous utilities:
 

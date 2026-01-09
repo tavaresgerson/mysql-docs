@@ -6,9 +6,9 @@ As duas seções a seguir fornecem informações básicas sobre as opções e va
 
 As opções e variáveis do prompt de comando na lista a seguir estão relacionadas aos servidores de origem da replicação e às réplicas. A seção 19.1.6.2, “Opções e Variáveis de Fonte de Replicação”, fornece informações mais detalhadas sobre opções e variáveis relacionadas aos servidores de origem da replicação. Para mais informações sobre opções e variáveis relacionadas às réplicas, consulte a seção 19.1.6.3, “Opções e Variáveis de Servidor de Replicação”.
 
-* `auto_increment_increment`: Colunas AUTO\_INCREMENT são incrementadas por este valor.
+* `auto_increment_increment`: Colunas AUTO_INCREMENT são incrementadas por este valor.
 
-* `auto_increment_offset`: Deslocamento adicionado às colunas AUTO\_INCREMENT.
+* `auto_increment_offset`: Deslocamento adicionado às colunas AUTO_INCREMENT.
 
 * `Com_change_replication_source`: Número de instruções CHANGE REPLICATION SOURCE TO e CHANGE MASTER TO.
 
@@ -16,7 +16,7 @@ As opções e variáveis do prompt de comando na lista a seguir estão relaciona
 
 * `Com_replica_stop`: Número de instruções STOP REPLICA e STOP SLAVE.
 
-* `Com_show_binary_log_status`: Número de instruções SHOW BINARY LOG STATUS; use em vez de Com\_show\_master\_status.
+* `Com_show_binary_log_status`: Número de instruções SHOW BINARY LOG STATUS; use em vez de Com_show_master_status.
 
 * `Com_show_replica_status`: Número de instruções SHOW REPLICA STATUS e SHOW SLAVE STATUS.
 
@@ -26,7 +26,7 @@ As opções e variáveis do prompt de comando na lista a seguir estão relaciona
 
 * `gtid_executed`: Global: Todos os GTIDs no log binário (global) ou na transação atual (sessão). Apenas leitura.
 
-* `gtid_executed_compression_period`: Compress a tabela gtid\_executed a cada vez que ocorrer essa quantidade de transações. 0 significa nunca comprimir essa tabela. Aplica-se apenas quando o registro binário está desativado.
+* `gtid_executed_compression_period`: Compress a tabela gtid_executed a cada vez que ocorrer essa quantidade de transações. 0 significa nunca comprimir essa tabela. Aplica-se apenas quando o registro binário está desativado.
 
 * `gtid_mode`: Controla se o registro baseado em GTID está habilitado e que tipo de logs de transações podem conter.
 
@@ -48,7 +48,7 @@ As opções e variáveis do prompt de comando na lista a seguir estão relaciona
 
 * `master-retry_count`: Número de tentativas que a replica faz para se conectar à fonte antes de desistir.
 
-* `max_relay_log_size`: Se não nulo, o log de relay é rotado automaticamente quando seu tamanho exceder esse valor. Se zero, o tamanho em que a rotação ocorre é determinado pelo valor de max\_binlog\_size.
+* `max_relay_log_size`: Se não nulo, o log de relay é rotado automaticamente quando seu tamanho exceder esse valor. Se zero, o tamanho em que a rotação ocorre é determinado pelo valor de max_binlog_size.
 
 * `original_commit_timestamp`: Hora em que a transação foi comprometida na fonte original.
 
@@ -92,7 +92,7 @@ As opções e variáveis do prompt de comando na lista a seguir estão relaciona
 
 * `replica_transaction_retries`: Número de vezes que o thread SQL de replicação tenta a transação novamente se ela falhar com um deadlock ou timeout de espera de bloqueio, antes de desistir e parar.
 
-* `replica_type_conversions`: Controla o modo de conversão de tipo na replica. O valor é uma lista de zero ou mais elementos desta lista: ALL\_LOSSY, ALL\_NON\_LOSSY. Defina para uma string vazia para não permitir conversões de tipo entre a fonte e a replica.
+* `replica_type_conversions`: Controla o modo de conversão de tipo na replica. O valor é uma lista de zero ou mais elementos desta lista: ALL_LOSSY, ALL_NON_LOSSY. Defina para uma string vazia para não permitir conversões de tipo entre a fonte e a replica.
 
 * `replicate-do-db`: Diz ao thread SQL de replicação para restringir a replicação ao banco de dados especificado.
 
@@ -214,7 +214,7 @@ As opções e variáveis do prompt de comando na lista a seguir estão relaciona
 
 * `slave_transaction_retries`: Número de vezes que o thread de SQL do replicador tenta a transação novamente caso ela falhe com um deadlock ou o tempo de espera de bloqueio esgotado, antes de desistir e parar.
 
-* `slave_type_conversions`: Controla o modo de conversão de tipo no replicador. O valor é uma lista de zero ou mais elementos desta lista: ALL\_LOSSY, ALL\_NON\_LOSSY. Defina para uma string vazia para impedir conversões de tipo entre a fonte e o replicador.
+* `slave_type_conversions`: Controla o modo de conversão de tipo no replicador. O valor é uma lista de zero ou mais elementos desta lista: ALL_LOSSY, ALL_NON_LOSSY. Defina para uma string vazia para impedir conversões de tipo entre a fonte e o replicador.
 
 * `sql_log_bin`: Controla o registro binário para a sessão atual.
 
@@ -260,7 +260,7 @@ As opções de linha de comando e as variáveis de sistema na lista a seguir est
 
 * `binlog_error_action`: Controla o que acontece quando o servidor não consegue escrever no registro binário.
 
-* `binlog_expire_logs_auto_purge`: Controla a purga automática de arquivos de registro binário; pode ser sobrescrito quando habilitado, definindo tanto binlog\_expire\_logs\_seconds quanto expire\_logs\_days para 0.
+* `binlog_expire_logs_auto_purge`: Controla a purga automática de arquivos de registro binário; pode ser sobrescrito quando habilitado, definindo tanto binlog_expire_logs_seconds quanto expire_logs_days para 0.
 
 * `binlog_expire_logs_seconds`: Purga os registros binários após esse número de segundos.
 

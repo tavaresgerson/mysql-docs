@@ -164,7 +164,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--type=#`, `-t #`
 
-  <table frame="box" rules="all" summary="Properties for type"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--type=#</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">1</code></p><p class="valid-value"><code class="literal">2</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for type"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--type=#</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Valid Values</th> <td><p><code class="literal">1</code></p><p><code class="literal">2</code></p></td> </tr></tbody></table>
 
   Retrieves serialized dictionary information (SDI) matching the specified object type. SDI is provided for table (type=1) and tablespace (type=2) objects.
 
@@ -234,7 +234,7 @@ The files of a multi-file tablespace must be specified in order of the ascending
 
 * `--strict-check`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for strict-check"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">crc32</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">crc32</code></p><p class="valid-value"><code class="literal">innodb</code></p><p class="valid-value"><code class="literal">none</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for strict-check"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">crc32</code></td> </tr><tr><th>Valid Values</th> <td><p><code class="literal">crc32</code></p><p><code class="literal">innodb</code></p><p><code class="literal">none</code></p></td> </tr></tbody></table>
 
   Specifies a strict checksum algorithm for validating the checksum of pages that are read. Options include `innodb`, `crc32`, and `none`.
 

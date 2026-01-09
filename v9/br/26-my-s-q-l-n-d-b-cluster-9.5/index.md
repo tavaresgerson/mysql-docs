@@ -42,65 +42,65 @@
 
 25.5 Programas do NDB Cluster:   25.5.1 ndbd — O Daemon do Nó de Dados do NDB Cluster
 
-    25.5.2 ndbinfo\_select\_all — Selecionar de Tabelas ndbinfo
+    25.5.2 ndbinfo_select_all — Selecionar de Tabelas ndbinfo
 
     25.5.3 ndbmtd — O Daemon do Nó de Dados do NDB Cluster (Multi-Thread)
 
-    25.5.4 ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster
+    25.5.4 ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster
 
-    25.5.5 ndb\_mgm — O Cliente de Gerenciamento do NDB Cluster
+    25.5.5 ndb_mgm — O Cliente de Gerenciamento do NDB Cluster
 
-    25.5.6 ndb\_blob\_tool — Verificar e Reparar Colunas BLOB e TEXT das Tabelas do NDB Cluster
+    25.5.6 ndb_blob_tool — Verificar e Reparar Colunas BLOB e TEXT das Tabelas do NDB Cluster
 
-    25.5.7 ndb\_config — Extrair Informações de Configuração do NDB Cluster
+    25.5.7 ndb_config — Extrair Informações de Configuração do NDB Cluster
 
-    25.5.8 ndb\_delete\_all — Deletar Todas as Linhas de uma Tabela NDB
+    25.5.8 ndb_delete_all — Deletar Todas as Linhas de uma Tabela NDB
 
-    25.5.9 ndb\_desc — Descrever Tabelas NDB
+    25.5.9 ndb_desc — Descrever Tabelas NDB
 
-25.5.10 ndb\_drop\_index — Remover índice de uma tabela NDB
+25.5.10 ndb_drop_index — Remover índice de uma tabela NDB
 
-    25.5.11 ndb\_drop\_table — Remover uma tabela NDB
+    25.5.11 ndb_drop_table — Remover uma tabela NDB
 
-    25.5.12 ndb\_error\_reporter — Ferramenta de Relatório de Erros NDB
+    25.5.12 ndb_error_reporter — Ferramenta de Relatório de Erros NDB
 
-    25.5.13 ndb\_import — Importar dados CSV em NDB
+    25.5.13 ndb_import — Importar dados CSV em NDB
 
-    25.5.14 ndb\_index\_stat — Ferramenta de Estatísticas de Índices NDB
+    25.5.14 ndb_index_stat — Ferramenta de Estatísticas de Índices NDB
 
-    25.5.15 ndb\_move\_data — Ferramenta de Cópia de Dados NDB
+    25.5.15 ndb_move_data — Ferramenta de Cópia de Dados NDB
 
-    25.5.16 ndb\_perror — Obter informações da mensagem de erro NDB
+    25.5.16 ndb_perror — Obter informações da mensagem de erro NDB
 
-    25.5.17 ndb\_print\_backup\_file — Imprimir o conteúdo do arquivo de backup NDB
+    25.5.17 ndb_print_backup_file — Imprimir o conteúdo do arquivo de backup NDB
 
-    25.5.18 ndb\_print\_file — Imprimir o conteúdo do arquivo de dados do disco NDB
+    25.5.18 ndb_print_file — Imprimir o conteúdo do arquivo de dados do disco NDB
 
-    25.5.19 ndb\_print\_frag\_file — Imprimir o conteúdo do arquivo de lista de fragmentos NDB
+    25.5.19 ndb_print_frag_file — Imprimir o conteúdo do arquivo de lista de fragmentos NDB
 
-    25.5.20 ndb\_print\_schema\_file — Imprimir o conteúdo do arquivo de esquema NDB
+    25.5.20 ndb_print_schema_file — Imprimir o conteúdo do arquivo de esquema NDB
 
-    25.5.21 ndb\_print\_sys\_file — Imprimir o conteúdo do arquivo de sistema NDB
+    25.5.21 ndb_print_sys_file — Imprimir o conteúdo do arquivo de sistema NDB
 
-    25.5.22 ndb\_redo\_log\_reader — Verificar e imprimir o conteúdo do log de refazimento de cluster
+    25.5.22 ndb_redo_log_reader — Verificar e imprimir o conteúdo do log de refazimento de cluster
 
-    25.5.23 ndb\_restore — Restaurar um backup de cluster NDB
+    25.5.23 ndb_restore — Restaurar um backup de cluster NDB
 
-    25.5.24 ndb\_secretsfile\_reader — Obter informações chave de um arquivo de dados NDB criptografado
+    25.5.24 ndb_secretsfile_reader — Obter informações chave de um arquivo de dados NDB criptografado
 
-    25.5.25 ndb\_select\_all — Imprimir linhas de uma tabela NDB
+    25.5.25 ndb_select_all — Imprimir linhas de uma tabela NDB
 
-    25.5.26 ndb\_select\_count — Imprimir contagem de linhas para tabelas NDB
+    25.5.26 ndb_select_count — Imprimir contagem de linhas para tabelas NDB
 
-    25.5.27 ndb\_show\_tables — Exibir a lista de tabelas NDB
+    25.5.27 ndb_show_tables — Exibir a lista de tabelas NDB
 
-    25.5.28 ndb\_sign\_keys — Criar, assinar e gerenciar chaves e certificados TLS para o cluster NDB
+    25.5.28 ndb_sign_keys — Criar, assinar e gerenciar chaves e certificados TLS para o cluster NDB
 
-    25.5.29 ndb\_size.pl — Estimador de Requisitos de Tamanho NDBCLUSTER
+    25.5.29 ndb_size.pl — Estimador de Requisitos de Tamanho NDBCLUSTER
 
-    25.5.30 ndb\_top — Visualizar informações de uso de CPU para threads NDB
+    25.5.30 ndb_top — Visualizar informações de uso de CPU para threads NDB
 
-    25.5.31 ndb\_waiter — Esperar que o cluster NDB atinja um determinado estado
+    25.5.31 ndb_waiter — Esperar que o cluster NDB atinja um determinado estado
 
     25.5.32 ndbxfrm — Comprimir, descomprimir, criptografar e descriptografar arquivos criados pelo cluster NDB
 
@@ -120,13 +120,13 @@
 
     25.6.12 Operações Online com ALTER TABLE no Clúster NDB
 
-    25.6.13 Sincronização de Privilegios e NDB\_STORED\_USER
+    25.6.13 Sincronização de Privilegios e NDB_STORED_USER
 
     25.6.14 Contadores e Variáveis de Estatísticas da API NDB
 
     25.6.15 ndbinfo: O Banco de Dados de Informações do Clúster NDB
 
-    25.6.16 Tabelas do Schema INFORMATION\_SCHEMA para o Clúster NDB
+    25.6.16 Tabelas do Schema INFORMATION_SCHEMA para o Clúster NDB
 
     25.6.17 Clúster NDB e o Schema Performance Schema
 

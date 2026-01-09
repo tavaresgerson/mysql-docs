@@ -55,7 +55,7 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 - `ndb-cluster-connection-pool-nodeids`: Lista separada por vírgula dos IDs de nó para conexões ao cluster usadas pelo MySQL; o número de nós na lista deve corresponder ao valor definido para `--ndb-cluster-connection-pool`. Adicionada no NDB 5.7.10-ndb-7.5.0.
 
-- `ndb-default-column-format`: Use este valor (FIXED ou DYNAMIC) como padrão para as opções COLUMN\_FORMAT e ROW\_FORMAT ao criar ou adicionar colunas de tabela. Adicionado no NDB 5.7.11-ndb-7.5.1.
+- `ndb-default-column-format`: Use este valor (FIXED ou DYNAMIC) como padrão para as opções COLUMN_FORMAT e ROW_FORMAT ao criar ou adicionar colunas de tabela. Adicionado no NDB 5.7.11-ndb-7.5.1.
 
 - `ndb-log-fail-terminate`: Finalizar o processo mysqld se a conclusão do registro completo de todos os eventos das linhas encontradas não for possível. Adicionado no NDB 5.7.29-ndb-7.5.18.
 
@@ -67,7 +67,7 @@ As seguintes variáveis de sistema, variáveis de status e opções de servidor 
 
 - `ndb_fully_replicated`: Se as novas tabelas NDB são totalmente replicadas. Adicionada no NDB 5.7.12-ndb-7.5.2.
 
-- `ndb_read_backup`: Habilitar a leitura de qualquer replica para todas as tabelas NDB; use NDB\_TABLE=READ\_BACKUP={0|1} com CREATE TABLE ou ALTER TABLE para habilitar ou desabilitar para tabelas NDB individuais. Adicionada no NDB 5.7.12-ndb-7.5.2.
+- `ndb_read_backup`: Habilitar a leitura de qualquer replica para todas as tabelas NDB; use NDB_TABLE=READ_BACKUP={0|1} com CREATE TABLE ou ALTER TABLE para habilitar ou desabilitar para tabelas NDB individuais. Adicionada no NDB 5.7.12-ndb-7.5.2.
 
 ##### Opções e variáveis descontinuadas no NDB 7.5
 

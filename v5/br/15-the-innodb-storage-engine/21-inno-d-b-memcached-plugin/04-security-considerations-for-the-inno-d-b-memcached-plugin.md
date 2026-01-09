@@ -14,7 +14,7 @@ SASL significa “Camada de Segurança e Autenticação Simples”, um padrão p
 
 A autenticação SASL é suportada apenas com o protocolo binário.
 
-Os clientes do **memcached** só conseguem acessar as tabelas do **InnoDB** que estão registradas na tabela **innodb\_memcache.containers**. Embora um DBA possa aplicar restrições de acesso a essas tabelas, o acesso através das aplicações do **memcached** não pode ser controlado. Por essa razão, o suporte SASL é fornecido para controlar o acesso às tabelas do **InnoDB** associadas ao plugin **daemon\_memcached**.
+Os clientes do **memcached** só conseguem acessar as tabelas do **InnoDB** que estão registradas na tabela **innodb_memcache.containers**. Embora um DBA possa aplicar restrições de acesso a essas tabelas, o acesso através das aplicações do **memcached** não pode ser controlado. Por essa razão, o suporte SASL é fornecido para controlar o acesso às tabelas do **InnoDB** associadas ao plugin **daemon_memcached**.
 
 A seção a seguir mostra como construir, habilitar e testar um plugin `daemon_memcached` habilitado para SASL.
 

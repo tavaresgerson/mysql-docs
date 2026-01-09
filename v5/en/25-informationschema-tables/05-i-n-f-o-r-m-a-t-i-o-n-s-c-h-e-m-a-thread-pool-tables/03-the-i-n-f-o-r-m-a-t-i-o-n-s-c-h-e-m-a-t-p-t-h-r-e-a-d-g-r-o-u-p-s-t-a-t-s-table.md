@@ -1,4 +1,4 @@
-### 24.5.3 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS Table
+### 24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table
 
 The [`TP_THREAD_GROUP_STATS`](information-schema-tp-thread-group-stats-table.html "24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table") table reports statistics per thread group. There is one row per group.
 

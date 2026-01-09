@@ -1,6 +1,6 @@
-### 10.15.8 A variável de sistema optimizer\_trace
+### 10.15.8 A variável de sistema optimizer_trace
 
-A variável de sistema optimizer\_trace tem esses interruptores de ativação/desativação:
+A variável de sistema optimizer_trace tem esses interruptores de ativação/desativação:
 
 * `enabled`: Ativa (`ON`) ou desativa (`OFF`) o rastreamento
 

@@ -6,7 +6,7 @@ This section describes options for monitoring cloning operations.
 * Monitoring Cloning Operations Using Performance Schema Stage Events
 * Monitoring Cloning Operations Using Performance Schema Clone Instrumentation
 
-* The Com\_clone Status Variable
+* The Com_clone Status Variable
 
 ##### Monitoring Cloning Operations using Performance Schema Clone Tables
 
@@ -214,7 +214,7 @@ Performance Schema memory instruments track memory usage. Clone memory usage ins
 
 For information about monitoring memory usage using Performance Schema, see Section 29.12.20.10, “Memory Summary Tables”.
 
-##### The Com\_clone Status Variable
+##### The Com_clone Status Variable
 
 The `Com_clone` status variable provides a count of `CLONE` statement executions.
 

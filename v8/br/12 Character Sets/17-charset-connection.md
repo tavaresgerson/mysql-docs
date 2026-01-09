@@ -61,8 +61,8 @@ WHERE VARIABLE_NAME IN (
 As seguintes declarações mais simples também exibem as variáveis de conexão, mas incluem outras variáveis relacionadas também. Elas podem ser úteis para ver *todos* os conjuntos de caracteres e variáveis de collation:
 
 ```
-SHOW SESSION VARIABLES LIKE 'character\_set\_%';
-SHOW SESSION VARIABLES LIKE 'collation\_%';
+SHOW SESSION VARIABLES LIKE 'character_set_%';
+SHOW SESSION VARIABLES LIKE 'collation_%';
 ```
 
 Os clientes podem ajustar as configurações dessas variáveis ou depender dos padrões (neste caso, você pode ignorar o restante desta seção). Se você não usar os padrões, deve alterar as configurações de caracteres *para cada conexão com o servidor*.
@@ -171,7 +171,7 @@ not specified in the '/usr/local/mysql/share/charsets/Index.xml' file
 ERROR 2019 (HY000): Can't initialize character set bogus
 (path: /usr/local/mysql/share/charsets/)
 ```zWiKhe5rnG```
-mysql> SHOW SESSION VARIABLES LIKE 'character\_set\_%';
+mysql> SHOW SESSION VARIABLES LIKE 'character_set_%';
 +--------------------------+--------+
 | Variable_name            | Value  |
 +--------------------------+--------+

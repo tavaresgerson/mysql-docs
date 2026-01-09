@@ -22,7 +22,7 @@ collation_connection: utf8mb4_0900_ai_ci
 
 Use of `SHOW CREATE VIEW` requires the `SHOW VIEW` privilege, and the `SELECT` privilege for the view in question.
 
-View information is also available from the `INFORMATION_SCHEMA` `VIEWS` table. See Section 28.3.53, “The INFORMATION\_SCHEMA VIEWS Table”.
+View information is also available from the `INFORMATION_SCHEMA` `VIEWS` table. See Section 28.3.53, “The INFORMATION_SCHEMA VIEWS Table”.
 
 This statement also works to show the `CREATE JSON DUALITY VIEW` statement required to create a JSON duality view. You can also obtain information about JSON duality views from the `INFORMATION_SCHEMA` tables `JSON_DUALITY_VIEWS`, `JSON_DUALITY_VIEW_COLUMNS`, `JSON_DUALITY_VIEW_LINKS`, and `JSON_DUALITY_VIEW_TABLES`. See also Section 27.7.3, “JSON Duality View Metadata”.
 

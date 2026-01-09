@@ -1,12 +1,12 @@
 ### 25.12.6 Tabelas de Eventos da Declaração do Schema de Desempenho
 
-25.12.6.1 Tabela events\_statements\_current
+25.12.6.1 Tabela events_statements_current
 
-Tabela de histórico de declarações de eventos \_events\_statements\_history
+Tabela de histórico de declarações de eventos _events_statements_history
 
-Tabela de histórico de declarações de eventos\_events\_statements\_history\_long
+Tabela de histórico de declarações de eventos_events_statements_history_long
 
-25.12.6.4 A tabela prepared\_statements\_instances
+25.12.6.4 A tabela prepared_statements_instances
 
 A execução da declaração do Instrumento do Schema de Desempenho. Os eventos de declaração ocorrem em um nível elevado da hierarquia de eventos. Dentro da hierarquia de eventos, os eventos de espera estão dentro dos eventos de estágio, que estão dentro dos eventos de declaração, que estão dentro dos eventos de transação.
 

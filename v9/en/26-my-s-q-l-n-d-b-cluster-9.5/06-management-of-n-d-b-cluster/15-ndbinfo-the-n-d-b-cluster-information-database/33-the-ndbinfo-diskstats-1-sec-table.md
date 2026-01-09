@@ -1,4 +1,4 @@
-#### 25.6.15.33 The ndbinfo diskstats\_1sec Table
+#### 25.6.15.33 The ndbinfo diskstats_1sec Table
 
 The `diskstats_1sec` table provides information about writes to Disk Data tablespaces over the past 20 seconds.
 

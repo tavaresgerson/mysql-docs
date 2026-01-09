@@ -180,7 +180,7 @@ As descrições aqui que indicam que as tabelas são limpas ao serem fechadas se
 
   Fecha todas as tabelas abertas, obriga todas as tabelas em uso a serem fechadas e descarrega o cache de consultas e o cache de declarações preparadas. `FLUSH TABLES` também remove todos os resultados das consultas do cache de consultas, como a declaração `RESET QUERY CACHE`. Para obter informações sobre o cache de consultas e o cache de declarações preparadas, consulte Seção 8.10.3, “O Cache de Consultas MySQL” e Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”.
 
-  `FLUSH TABLES` não é permitido quando há um `LOCK TABLES ... READ` ativo. Para esvaziar e bloquear tabelas, use \[`FLUSH TABLES tbl_name ... WITH READ LOCK`]\(flush.html#flush-tables-with-read-lock-with-list] em vez disso.
+  `FLUSH TABLES` não é permitido quando há um `LOCK TABLES ... READ` ativo. Para esvaziar e bloquear tabelas, use [`FLUSH TABLES tbl_name ... WITH READ LOCK`]\(flush.html#flush-tables-with-read-lock-with-list] em vez disso.
 
 - `FLUSH TABLES tbl_name [, tbl_name] ...`
 
@@ -210,7 +210,7 @@ As descrições aqui que indicam que as tabelas são limpas ao serem fechadas se
 
   A operação primeiro obtém bloqueios de metadados exclusivos para as tabelas, então ela aguarda por transações que tenham essas tabelas abertas para serem concluídas. Em seguida, a operação descarrega as tabelas do cache de tabelas, reabre as tabelas, obtém bloqueios de tabela (como `LOCK TABLES ... READ`), e desvaloriza os bloqueios de metadados de exclusivos para compartilhados. Após a operação obter os bloqueios e desvalorizar os bloqueios de metadados, outras sessões podem ler, mas não modificar as tabelas.
 
-  Esta operação só se aplica a tabelas de base existentes (não `TEMPORARY`). Se um nome se refere a uma tabela de base, essa tabela é usada. Se se refere a uma tabela `TEMPORARY`, ela é ignorada. Se um nome se aplica a uma visualização, ocorre um erro `[ER_WRONG_OBJECT]` (/doc/mysql-errors/5.7/en/server-error-reference.html#error\_er\_wrong\_object). Caso contrário, ocorre um erro `[ER_NO_SUCH_TABLE]` (/doc/mysql-errors/5.7/en/server-error-reference.html#error\_er\_no\_such\_table).
+  Esta operação só se aplica a tabelas de base existentes (não `TEMPORARY`). Se um nome se refere a uma tabela de base, essa tabela é usada. Se se refere a uma tabela `TEMPORARY`, ela é ignorada. Se um nome se aplica a uma visualização, ocorre um erro `[ER_WRONG_OBJECT]` (/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_wrong_object). Caso contrário, ocorre um erro `[ER_NO_SUCH_TABLE]` (/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_no_such_table).
 
   Use `UNLOCK TABLES` para liberar as bloqueadas, `LOCK TABLES` para liberar as bloqueadas e adquirir outras bloqueadas, ou `START TRANSACTION` para liberar as bloqueadas e iniciar uma nova transação.
 
@@ -224,7 +224,7 @@ As descrições aqui que indicam que as tabelas são limpas ao serem fechadas se
 
   Esta variante de `FLUSH TABLES` se aplica a tabelas `InnoDB`. Ela garante que as alterações nas tabelas nomeadas tenham sido descarregadas no disco, para que cópias binárias das tabelas possam ser feitas enquanto o servidor estiver em execução.
 
-  Como a operação `FLUSH TABLES ... FOR EXPORT` adquire travamentos nas tabelas em preparação para a exportação, ela requer os privilégios \[`LOCK TABLES`]\(privileges-provided.html#priv\_lock-tables] e \[`SELECT`]\(privileges-provided.html#priv\_select] para cada tabela, além do privilégio \[`RELOAD`]\(privileges-provided.html#priv\_reload].
+  Como a operação `FLUSH TABLES ... FOR EXPORT` adquire travamentos nas tabelas em preparação para a exportação, ela requer os privilégios [`LOCK TABLES`]\(privileges-provided.html#priv_lock-tables] e [`SELECT`]\(privileges-provided.html#priv_select] para cada tabela, além do privilégio [`RELOAD`]\(privileges-provided.html#priv_reload].
 
   A operação funciona da seguinte maneira:
 
@@ -236,7 +236,7 @@ As descrições aqui que indicam que as tabelas são limpas ao serem fechadas se
 
   4. A operação coloca a sessão no modo de bloqueio de tabelas, para que as bloqueadas de metadados adquiridas anteriormente não sejam liberadas quando a operação `FOR EXPORT` for concluída.
 
-  Esta operação só se aplica a tabelas de base existentes (não `TEMPORARY`). Se um nome se refere a uma tabela de base, essa tabela é usada. Se se refere a uma tabela `TEMPORARY`, ela é ignorada. Se um nome se aplica a uma visualização, ocorre um erro `[ER_WRONG_OBJECT]` (/doc/mysql-errors/5.7/en/server-error-reference.html#error\_er\_wrong\_object). Caso contrário, ocorre um erro `[ER_NO_SUCH_TABLE]` (/doc/mysql-errors/5.7/en/server-error-reference.html#error\_er\_no\_such\_table).
+  Esta operação só se aplica a tabelas de base existentes (não `TEMPORARY`). Se um nome se refere a uma tabela de base, essa tabela é usada. Se se refere a uma tabela `TEMPORARY`, ela é ignorada. Se um nome se aplica a uma visualização, ocorre um erro `[ER_WRONG_OBJECT]` (/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_wrong_object). Caso contrário, ocorre um erro `[ER_NO_SUCH_TABLE]` (/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_no_such_table).
 
   O `InnoDB` suporta `FOR EXPORT` para tabelas que possuem seu próprio arquivo `.ibd` (ou seja, tabelas criadas com a configuração `innodb_file_per_table` habilitada). O `InnoDB` garante que, quando notificado pela operação `FOR EXPORT`, quaisquer alterações sejam descarregadas no disco. Isso permite que uma cópia binária do conteúdo da tabela seja feita enquanto a operação `FOR EXPORT` estiver em vigor, porque o arquivo `.ibd` é consistente com as transações e pode ser copiado enquanto o servidor estiver em execução. O `FOR EXPORT` não se aplica aos arquivos de espaço de tabela do `InnoDB` ou às tabelas `InnoDB` que possuem índices `FULLTEXT`.
 

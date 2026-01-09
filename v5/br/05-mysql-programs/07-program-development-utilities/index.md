@@ -1,14 +1,8 @@
 ## 4.7 Ferramentas de desenvolvimento de programas
 
-4.7.1 mysql\_config — Exibir opções para a compilação de clientes
-
-4.7.2 my\_print\_defaults — Opções de exibição a partir de arquivos de opção
-
-4.7.3 resolve\_stack\_dump — Resolver o dump da pilha numérica para símbolos
-
 Esta seção descreve algumas ferramentas que você pode achar úteis ao desenvolver programas do MySQL.
 
-Em scripts de shell, você pode usar o programa **my\_print\_defaults** para analisar arquivos de opções e ver quais opções seriam usadas por um programa específico. O exemplo a seguir mostra a saída que **my\_print\_defaults** pode produzir quando solicitado a mostrar as opções encontradas nos grupos `[client]` e `[mysql]`:
+Em scripts de shell, você pode usar o programa **my_print_defaults** para analisar arquivos de opções e ver quais opções seriam usadas por um programa específico. O exemplo a seguir mostra a saída que **my_print_defaults** pode produzir quando solicitado a mostrar as opções encontradas nos grupos `[client]` e `[mysql]`:
 
 ```sql
 $> my_print_defaults client mysql

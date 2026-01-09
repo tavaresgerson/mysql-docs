@@ -1,4 +1,4 @@
-#### 26.4.3.37 As declarações com varreduras completas da tabela e as visualizações x$declarativas\_com\_varreduras\_completos\_da\_tabela
+#### 26.4.3.37 As declarações com varreduras completas da tabela e as visualizações x$declarativas_com_varreduras_completos_da_tabela
 
 Essas visualizações exibem declarações normalizadas que realizaram varreduras completas da tabela. Por padrão, as linhas são ordenadas por porcentagem decrescente de tempo em que uma varredura completa foi realizada e latência total decrescente.
 

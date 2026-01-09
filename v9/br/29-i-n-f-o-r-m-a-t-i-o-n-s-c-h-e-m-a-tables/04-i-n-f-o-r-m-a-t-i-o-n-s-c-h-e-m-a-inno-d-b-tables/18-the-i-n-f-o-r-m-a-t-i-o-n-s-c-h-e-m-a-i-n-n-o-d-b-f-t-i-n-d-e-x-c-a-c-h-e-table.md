@@ -1,4 +1,4 @@
-### 28.4.18 A Tabela `INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE`
+### 28.4.18 A Tabela `INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE`
 
 A tabela `INNODB_FT_INDEX_CACHE` fornece informações sobre tokens de novas linhas inseridas em um índice `FULLTEXT`. Para evitar a reorganização cara do índice durante operações DML, as informações sobre as palavras recém-indexadas são armazenadas separadamente e combinadas com o índice de busca principal apenas quando a instrução `OPTIMIZE TABLE` é executada, quando o servidor é desligado ou quando o tamanho do cache excede um limite definido pela variável de sistema `innodb_ft_cache_size` ou `innodb_ft_total_cache_size`.
 

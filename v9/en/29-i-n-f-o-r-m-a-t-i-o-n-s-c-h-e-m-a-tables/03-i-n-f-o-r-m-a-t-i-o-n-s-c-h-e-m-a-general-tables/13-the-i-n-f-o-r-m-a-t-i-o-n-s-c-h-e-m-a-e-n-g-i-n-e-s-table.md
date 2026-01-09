@@ -1,4 +1,4 @@
-### 28.3.13 The INFORMATION\_SCHEMA ENGINES Table
+### 28.3.13 The INFORMATION_SCHEMA ENGINES Table
 
 The `ENGINES` table provides information about storage engines. This is particularly useful for checking whether a storage engine is supported, or to see what the default engine is.
 

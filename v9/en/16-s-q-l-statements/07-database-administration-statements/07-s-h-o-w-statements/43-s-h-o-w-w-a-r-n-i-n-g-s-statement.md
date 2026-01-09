@@ -110,7 +110,7 @@ mysql> SHOW WARNINGS;
 Empty set (0.00 sec)
 ```
 
-The MySQL server sends to each client a count indicating the total number of errors, warnings, and notes resulting from the most recent statement executed by that client. From the C API, this value can be obtained by calling `mysql_warning_count()`. See mysql\_warning\_count().
+The MySQL server sends to each client a count indicating the total number of errors, warnings, and notes resulting from the most recent statement executed by that client. From the C API, this value can be obtained by calling `mysql_warning_count()`. See mysql_warning_count().
 
 In the **mysql** client, you can enable and disable automatic warnings display using the `warnings` and `nowarning` commands, respectively, or their shortcuts, `\W` and `\w` (see Section 6.5.1.2, “mysql Client Commands”). For example:
 

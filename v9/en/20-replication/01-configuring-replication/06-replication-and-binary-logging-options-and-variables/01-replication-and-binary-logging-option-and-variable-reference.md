@@ -6,9 +6,9 @@ The following two sections provide basic information about the MySQL command-lin
 
 The command-line options and system variables in the following list relate to replication source servers and replicas. Section 19.1.6.2, “Replication Source Options and Variables” provides more detailed information about options and variables relating to replication source servers. For more information about options and variables relating to replicas, see Section 19.1.6.3, “Replica Server Options and Variables”.
 
-* `auto_increment_increment`: AUTO\_INCREMENT columns are incremented by this value.
+* `auto_increment_increment`: AUTO_INCREMENT columns are incremented by this value.
 
-* `auto_increment_offset`: Offset added to AUTO\_INCREMENT columns.
+* `auto_increment_offset`: Offset added to AUTO_INCREMENT columns.
 
 * `Com_change_replication_source`: Count of CHANGE REPLICATION SOURCE TO and CHANGE MASTER TO statements.
 
@@ -16,7 +16,7 @@ The command-line options and system variables in the following list relate to re
 
 * `Com_replica_stop`: Count of STOP REPLICA and STOP SLAVE statements.
 
-* `Com_show_binary_log_status`: Count of SHOW BINARY LOG STATUS statements; use instead of Com\_show\_master\_status.
+* `Com_show_binary_log_status`: Count of SHOW BINARY LOG STATUS statements; use instead of Com_show_master_status.
 
 * `Com_show_replica_status`: Count of SHOW REPLICA STATUS and SHOW SLAVE STATUS statements.
 
@@ -26,7 +26,7 @@ The command-line options and system variables in the following list relate to re
 
 * `gtid_executed`: Global: All GTIDs in binary log (global) or current transaction (session). Read-only.
 
-* `gtid_executed_compression_period`: Compress gtid\_executed table each time this many transactions have occurred. 0 means never compress this table. Applies only when binary logging is disabled.
+* `gtid_executed_compression_period`: Compress gtid_executed table each time this many transactions have occurred. 0 means never compress this table. Applies only when binary logging is disabled.
 
 * `gtid_mode`: Controls whether GTID based logging is enabled and what type of transactions logs can contain.
 
@@ -48,7 +48,7 @@ The command-line options and system variables in the following list relate to re
 
 * `master-retry-count`: Number of tries replica makes to connect to source before giving up.
 
-* `max_relay_log_size`: If nonzero, relay log is rotated automatically when its size exceeds this value. If zero, size at which rotation occurs is determined by value of max\_binlog\_size.
+* `max_relay_log_size`: If nonzero, relay log is rotated automatically when its size exceeds this value. If zero, size at which rotation occurs is determined by value of max_binlog_size.
 
 * `original_commit_timestamp`: Time when transaction was committed on original source.
 
@@ -76,7 +76,7 @@ The command-line options and system variables in the following list relate to re
 
 * `replica_load_tmpdir`: Location where replica should put its temporary files when replicating LOAD DATA statements.
 
-* `replica_max_allowed_packet`: Maximum size, in bytes, of packet that can be sent from replication source server to replica; overrides max\_allowed\_packet.
+* `replica_max_allowed_packet`: Maximum size, in bytes, of packet that can be sent from replication source server to replica; overrides max_allowed_packet.
 
 * `replica_net_timeout`: Number of seconds to wait for more data from source/replica connection before aborting read.
 
@@ -92,7 +92,7 @@ The command-line options and system variables in the following list relate to re
 
 * `replica_transaction_retries`: Number of times replication SQL thread retries transaction in case it failed with deadlock or elapsed lock wait timeout, before giving up and stopping.
 
-* `replica_type_conversions`: Controls type conversion mode on replica. Value is list of zero or more elements from this list: ALL\_LOSSY, ALL\_NON\_LOSSY. Set to empty string to disallow type conversions between source and replica.
+* `replica_type_conversions`: Controls type conversion mode on replica. Value is list of zero or more elements from this list: ALL_LOSSY, ALL_NON_LOSSY. Set to empty string to disallow type conversions between source and replica.
 
 * `replicate-do-db`: Tells replication SQL thread to restrict replication to specified database.
 
@@ -198,7 +198,7 @@ The command-line options and system variables in the following list relate to re
 
 * `slave_load_tmpdir`: Location where replica should put its temporary files when replicating LOAD DATA statements.
 
-* `slave_max_allowed_packet`: Maximum size, in bytes, of packet that can be sent from replication source server to replica; overrides max\_allowed\_packet.
+* `slave_max_allowed_packet`: Maximum size, in bytes, of packet that can be sent from replication source server to replica; overrides max_allowed_packet.
 
 * `slave_net_timeout`: Number of seconds to wait for more data from source/replica connection before aborting read.
 
@@ -214,7 +214,7 @@ The command-line options and system variables in the following list relate to re
 
 * `slave_transaction_retries`: Number of times replication SQL thread retries transaction in case it failed with deadlock or elapsed lock wait timeout, before giving up and stopping.
 
-* `slave_type_conversions`: Controls type conversion mode on replica. Value is list of zero or more elements from this list: ALL\_LOSSY, ALL\_NON\_LOSSY. Set to empty string to disallow type conversions between source and replica.
+* `slave_type_conversions`: Controls type conversion mode on replica. Value is list of zero or more elements from this list: ALL_LOSSY, ALL_NON_LOSSY. Set to empty string to disallow type conversions between source and replica.
 
 * `sql_log_bin`: Controls binary logging for current session.
 
@@ -260,7 +260,7 @@ The command-line options and system variables in the following list relate to th
 
 * `binlog_error_action`: Controls what happens when server cannot write to binary log.
 
-* `binlog_expire_logs_auto_purge`: Controls automatic purging of binary log files; can be overridden when enabled, by setting both binlog\_expire\_logs\_seconds and expire\_logs\_days to 0.
+* `binlog_expire_logs_auto_purge`: Controls automatic purging of binary log files; can be overridden when enabled, by setting both binlog_expire_logs_seconds and expire_logs_days to 0.
 
 * `binlog_expire_logs_seconds`: Purge binary logs after this many seconds.
 
@@ -268,7 +268,7 @@ The command-line options and system variables in the following list relate to th
 
 * `binlog_group_commit_sync_delay`: Sets number of microseconds to wait before synchronizing transactions to disk.
 
-* `binlog_group_commit_sync_no_delay_count`: Sets maximum number of transactions to wait for before aborting current delay specified by binlog\_group\_commit\_sync\_delay.
+* `binlog_group_commit_sync_no_delay_count`: Sets maximum number of transactions to wait for before aborting current delay specified by binlog_group_commit_sync_delay.
 
 * `binlog_max_flush_queue_time`: How long to read transactions before flushing to binary log.
 

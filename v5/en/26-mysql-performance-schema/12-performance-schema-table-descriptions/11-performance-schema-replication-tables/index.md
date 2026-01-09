@@ -1,20 +1,20 @@
 ### 25.12.11 Performance Schema Replication Tables
 
-[25.12.11.1 The replication\_connection\_configuration Table](performance-schema-replication-connection-configuration-table.html)
+[25.12.11.1 The replication_connection_configuration Table](performance-schema-replication-connection-configuration-table.html)
 
-[25.12.11.2 The replication\_connection\_status Table](performance-schema-replication-connection-status-table.html)
+[25.12.11.2 The replication_connection_status Table](performance-schema-replication-connection-status-table.html)
 
-[25.12.11.3 The replication\_applier\_configuration Table](performance-schema-replication-applier-configuration-table.html)
+[25.12.11.3 The replication_applier_configuration Table](performance-schema-replication-applier-configuration-table.html)
 
-[25.12.11.4 The replication\_applier\_status Table](performance-schema-replication-applier-status-table.html)
+[25.12.11.4 The replication_applier_status Table](performance-schema-replication-applier-status-table.html)
 
-[25.12.11.5 The replication\_applier\_status\_by\_coordinator Table](performance-schema-replication-applier-status-by-coordinator-table.html)
+[25.12.11.5 The replication_applier_status_by_coordinator Table](performance-schema-replication-applier-status-by-coordinator-table.html)
 
-[25.12.11.6 The replication\_applier\_status\_by\_worker Table](performance-schema-replication-applier-status-by-worker-table.html)
+[25.12.11.6 The replication_applier_status_by_worker Table](performance-schema-replication-applier-status-by-worker-table.html)
 
-[25.12.11.7 The replication\_group\_member\_stats Table](performance-schema-replication-group-member-stats-table.html)
+[25.12.11.7 The replication_group_member_stats Table](performance-schema-replication-group-member-stats-table.html)
 
-[25.12.11.8 The replication\_group\_members Table](performance-schema-replication-group-members-table.html)
+[25.12.11.8 The replication_group_members Table](performance-schema-replication-group-members-table.html)
 
 The Performance Schema provides tables that expose replication information. This is similar to the information available from the [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") statement, but representation in table form is more accessible and has usability benefits:
 

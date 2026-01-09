@@ -76,7 +76,7 @@ A tabela a seguir resume as dicas de otimização disponíveis, as estratégias 
 </tr>
 <tr>
 <th>INDEX</th>
-<td>Atua como combinação de <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>JOIN_INDEX</code></a>, <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>GROUP_INDEX</code></a> e <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>ORDER_INDEX</code></a>, ou como combinação de <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>NO_JOIN_INDEX</code></a>, <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>NO_GROUP_INDEX</code></a> e <a class="link" href="optimizer-hints.html#optimizer-hints-index-level" title="Index-Level Optimizer Hints"><code>NO_ORDER_INDEX</code></a></td>
+<td>Atua como combinação de <code>JOIN_INDEX</code>, <code>GROUP_INDEX</code> e <code>ORDER_INDEX</code>, ou como combinação de <code>NO_JOIN_INDEX</code>, <code>NO_GROUP_INDEX</code> e <code>NO_ORDER_INDEX</code></td>
 <td>Índice</td>
 </tr>
 <tr>

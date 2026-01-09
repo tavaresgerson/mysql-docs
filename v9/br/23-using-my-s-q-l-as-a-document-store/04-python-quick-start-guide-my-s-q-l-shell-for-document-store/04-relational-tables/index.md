@@ -43,7 +43,7 @@ mysql-py> db.get_tables()
 
 As operações básicas por tabelas incluem:
 
-<table summary="Operações CRUD para uso interativo em tabelas no MySQL Shell"><col style="width: 32%"/><col style="width: 68%"/><thead><tr> <th>Formulário da operação</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.insert()</code></td> <td>O método <a class="link" href="mysql-shell-tutorial-python-table-insert.html" title="22.4.4.1 Inserir registros em tabelas">insert()</a> insere um ou mais registros na tabela nomeada.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.select()</code></td> <td>O método <a class="link" href="mysql-shell-tutorial-python-table-select.html" title="22.4.4.2 Selecionar tabelas">select()</a> retorna alguns ou todos os registros na tabela nomeada.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.update()</code></td> <td>O método <a class="link" href="mysql-shell-tutorial-python-table-update.html" title="22.4.4.3 Atualizar tabelas">update()</a> atualiza registros na tabela nomeada.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.delete()</code></td> <td>O método <a class="link" href="mysql-shell-tutorial-python-table-delete.html" title="22.4.4.4 Deletar tabelas">delete()</a> exclui um ou mais registros da tabela nomeada.</td> </tr></tbody></table>
+<table summary="Operações CRUD para uso interativo em tabelas no MySQL Shell"><col style="width: 32%"/><col style="width: 68%"/><thead><tr> <th>Formulário da operação</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.insert()</code></td> <td>O método insert() insere um ou mais registros na tabela nomeada.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.select()</code></td> <td>O método select() retorna alguns ou todos os registros na tabela nomeada.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.update()</code></td> <td>O método update() atualiza registros na tabela nomeada.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.delete()</code></td> <td>O método delete() exclui um ou mais registros da tabela nomeada.</td> </tr></tbody></table>
 
 #### Informações Relacionadas
 
@@ -51,4 +51,4 @@ As operações básicas por tabelas incluem:
 
 * Definições EBNF de CRUD fornecem uma lista completa das operações.
 
-* Veja a Seção 22.4.2, “Baixar e importar o banco de dados world\_x” para instruções sobre a configuração da amostra de esquema `world_x`.
+* Veja a Seção 22.4.2, “Baixar e importar o banco de dados world_x” para instruções sobre a configuração da amostra de esquema `world_x`.

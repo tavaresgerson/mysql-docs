@@ -1,8 +1,8 @@
-### 25.5.30 ndb\_top — Ver informações de uso da CPU para threads do NDB
+### 25.5.30 ndb_top — Ver informações de uso da CPU para threads do NDB
 
-O **ndb\_top** exibe informações em execução no terminal sobre o uso da CPU por threads do NDB em um nó de dados do NDB Cluster. Cada thread é representado por duas linhas no resultado, a primeira mostrando estatísticas do sistema e a segunda mostrando as estatísticas medidas para o thread.
+O **ndb_top** exibe informações em execução no terminal sobre o uso da CPU por threads do NDB em um nó de dados do NDB Cluster. Cada thread é representado por duas linhas no resultado, a primeira mostrando estatísticas do sistema e a segunda mostrando as estatísticas medidas para o thread.
 
-O **ndb\_top** está disponível a partir do MySQL NDB Cluster 7.6.3.
+O **ndb_top** está disponível a partir do MySQL NDB Cluster 7.6.3.
 
 #### Uso
 
@@ -10,7 +10,7 @@ O **ndb\_top** está disponível a partir do MySQL NDB Cluster 7.6.3.
 ndb_top [-h hostname] [-t port] [-u user] [-p pass] [-n node_id]
 ```
 
-O **ndb\_top** se conecta a um servidor MySQL que está rodando como um nó SQL do cluster. Por padrão, ele tenta se conectar a um **mysqld** rodando em `localhost` e na porta 3306, como o usuário `root` do MySQL sem senha especificada. Você pode substituir o host e a porta padrão usando, respectivamente, as opções `--host` (`-h`) e `--port` (`-t`). Para especificar um usuário e senha do MySQL, use as opções `--user` (`-u`) e `--passwd` (`-p`). Esse usuário deve ser capaz de ler tabelas no banco de dados `ndbinfo` (o **ndb\_top** usa informações do `ndbinfo.cpustat` e tabelas relacionadas).
+O **ndb_top** se conecta a um servidor MySQL que está rodando como um nó SQL do cluster. Por padrão, ele tenta se conectar a um **mysqld** rodando em `localhost` e na porta 3306, como o usuário `root` do MySQL sem senha especificada. Você pode substituir o host e a porta padrão usando, respectivamente, as opções `--host` (`-h`) e `--port` (`-t`). Para especificar um usuário e senha do MySQL, use as opções `--user` (`-u`) e `--passwd` (`-p`). Esse usuário deve ser capaz de ler tabelas no banco de dados `ndbinfo` (o **ndb_top** usa informações do `ndbinfo.cpustat` e tabelas relacionadas).
 
 Para obter mais informações sobre contas e senhas do MySQL, consulte a Seção 8.2, “Controle de Acesso e Gerenciamento de Contas”.
 
@@ -20,17 +20,17 @@ A exibição colorida do gráfico é suportada e ativada por padrão (`opção `
 
 A visualização ordenada (`--sort`, `-r`) é baseada no máximo da carga medida e da carga relatada pelo sistema operacional. A exibição desses valores pode ser ativada e desativada usando as opções `--measured-load` (`-m`) e `--os-load` (`-o`). A exibição de pelo menos um desses carregamentos deve ser ativada.
 
-O programa tenta obter estatísticas de um nó de dados com o ID de nó fornecido pela opção `--node-id` (`-n`); se não especificado, este é 1. **ndb\_top** não pode fornecer informações sobre outros tipos de nós.
+O programa tenta obter estatísticas de um nó de dados com o ID de nó fornecido pela opção `--node-id` (`-n`); se não especificado, este é 1. **ndb_top** não pode fornecer informações sobre outros tipos de nós.
 
 A visualização ajusta-se à altura e largura da janela do terminal; a largura mínima suportada é de 76 caracteres.
 
-Uma vez iniciado, **ndb\_top** funciona continuamente até ser forçado a sair; você pode encerrar o programa usando `Ctrl-C`. A exibição é atualizada uma vez por segundo; para definir um intervalo de atraso diferente, use `--sleep-time` (`-s`).
+Uma vez iniciado, **ndb_top** funciona continuamente até ser forçado a sair; você pode encerrar o programa usando `Ctrl-C`. A exibição é atualizada uma vez por segundo; para definir um intervalo de atraso diferente, use `--sleep-time` (`-s`).
 
 Nota
 
-**ndb\_top** está disponível no macOS, Linux e Solaris. Não é atualmente suportado em plataformas Windows.
+**ndb_top** está disponível no macOS, Linux e Solaris. Não é atualmente suportado em plataformas Windows.
 
-A tabela a seguir inclui todas as opções específicas do programa do NDB Cluster **ndb\_top**. Descrições adicionais seguem a tabela.
+A tabela a seguir inclui todas as opções específicas do programa do NDB Cluster **ndb_top**. Descrições adicionais seguem a tabela.
 
 #### Opções Adicionais
 
@@ -230,10 +230,10 @@ Exiba dados usando texto. Esta opção ou `--graph` deve ser verdadeira; ambas a
 
   Conecte-se como este usuário do MySQL. Normalmente, requer uma senha fornecida pela opção `--password`.
 
-**Saída de exemplo.** A figura a seguir mostra o **ndb\_top** em execução em uma janela de terminal em um sistema Linux com um nó de dados **ndbmtd** sob uma carga moderada. Aqui, o programa foi invocado usando **ndb\_top** `-n8` `-x` para fornecer saída de texto e gráfico:
+**Saída de exemplo.** A figura a seguir mostra o **ndb_top** em execução em uma janela de terminal em um sistema Linux com um nó de dados **ndbmtd** sob uma carga moderada. Aqui, o programa foi invocado usando **ndb_top** `-n8` `-x` para fornecer saída de texto e gráfico:
 
-**Figura 25.5 ndb\_top em execução em uma janela de terminal**
+**Figura 25.5 ndb_top em execução em uma janela de terminal**
 
 ![Exibição de ndb_top, em execução em uma janela de terminal. Mostra informações para cada nó, incluindo os recursos utilizados.](images/ndb-top-1.png)
 
-O **ndb\_top** também mostra os tempos de espera dos threads, exibidos em verde.
+O **ndb_top** também mostra os tempos de espera dos threads, exibidos em verde.

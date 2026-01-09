@@ -16,6 +16,6 @@
 
 17.6.3.8 Otimizando a Alocação de Espaço de Tablespace no Linux
 
-17.6.3.9 Configuração AUTOEXTEND\_SIZE de Tablespace
+17.6.3.9 Configuração AUTOEXTEND_SIZE de Tablespace
 
 Esta seção abrange tópicos relacionados aos tablespaces do `InnoDB`.

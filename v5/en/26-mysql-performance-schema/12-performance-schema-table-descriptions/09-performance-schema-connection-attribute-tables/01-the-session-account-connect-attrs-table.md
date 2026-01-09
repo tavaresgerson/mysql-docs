@@ -1,4 +1,4 @@
-#### 25.12.9.1 The session\_account\_connect\_attrs Table
+#### 25.12.9.1 The session_account_connect_attrs Table
 
 Application programs can provide key-value connection attributes to be passed to the server at connect time. For descriptions of common attributes, see [Section 25.12.9, “Performance Schema Connection Attribute Tables”](performance-schema-connection-attribute-tables.html "25.12.9 Performance Schema Connection Attribute Tables").
 

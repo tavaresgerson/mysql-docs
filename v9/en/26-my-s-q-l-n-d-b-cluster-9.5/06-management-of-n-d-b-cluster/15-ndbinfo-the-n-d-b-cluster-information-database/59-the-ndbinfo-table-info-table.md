@@ -1,4 +1,4 @@
-#### 25.6.15.59 The ndbinfo table\_info Table
+#### 25.6.15.59 The ndbinfo table_info Table
 
 The `table_info` table provides information about logging, checkpointing, distribution, and storage options in effect for individual `NDB` tables.
 

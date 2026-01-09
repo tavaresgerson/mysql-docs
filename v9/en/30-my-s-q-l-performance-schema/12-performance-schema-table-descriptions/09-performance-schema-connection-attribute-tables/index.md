@@ -1,8 +1,8 @@
 ### 29.12.9 Performance Schema Connection Attribute Tables
 
-29.12.9.1 The session\_account\_connect\_attrs Table
+29.12.9.1 The session_account_connect_attrs Table
 
-29.12.9.2 The session\_connect\_attrs Table
+29.12.9.2 The session_connect_attrs Table
 
 Connection attributes are key-value pairs that application programs can pass to the server at connect time. For applications based on the C API implemented by the `libmysqlclient` client library, the `mysql_options()` and `mysql_options4()` functions define the connection attribute set. Other MySQL Connectors may provide their own attribute-definition methods.
 

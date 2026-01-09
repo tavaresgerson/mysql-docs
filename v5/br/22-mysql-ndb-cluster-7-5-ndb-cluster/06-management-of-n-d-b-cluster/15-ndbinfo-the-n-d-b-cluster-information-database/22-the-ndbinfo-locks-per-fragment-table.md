@@ -1,4 +1,4 @@
-#### 21.6.15.22 Tabela ndbinfo locks\_per\_fragment
+#### 21.6.15.22 Tabela ndbinfo locks_per_fragment
 
 A tabela `locks_per_fragment` fornece informações sobre o número de solicitações de bloqueio e os resultados dessas solicitações por fragmento, servindo como uma tabela complementar a `operations_per_fragment` e `memory_per_fragment`. Esta tabela também mostra o tempo total gasto esperando por bloqueios com sucesso e sem sucesso desde a criação do fragmento ou da tabela, ou desde o reinício mais recente.
 
@@ -80,7 +80,7 @@ A tabela `locks_per_fragment` contém as seguintes colunas:
 
 `parent_fq_name` é o nome completo do objeto pai (tabela) deste objeto.
 
-`table_id` é o ID interno da tabela gerado pelo `NDB`. Este é o mesmo ID interno da tabela exibido em outras tabelas `ndbinfo`; também é visível na saída do **ndb\_show\_tables**.
+`table_id` é o ID interno da tabela gerado pelo `NDB`. Este é o mesmo ID interno da tabela exibido em outras tabelas `ndbinfo`; também é visível na saída do **ndb_show_tables**.
 
 A coluna `type` mostra o tipo de tabela. Isso é sempre um dos `Tabela do sistema`, `Tabela do usuário`, `Índice de hash único`, `Índice de hash`, `Índice ordenado único`, `Índice ordenado`, `Trigger de índice de hash`, `Trigger de assinatura`, `Restrição de leitura apenas`, `Trigger de índice`, `Trigger de reorganização`, `Tablespace`, `Grupo de arquivos de log`, `Arquivo de dados`, `Arquivo de desfazer`, `Mapa de hash`, `Definição de chave estrangeira`, `Trigger pai de chave estrangeira`, `Trigger filho de chave estrangeira` ou `Transação de esquema`.
 

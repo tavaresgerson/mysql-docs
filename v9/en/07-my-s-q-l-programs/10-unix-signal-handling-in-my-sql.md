@@ -31,4 +31,4 @@ MySQL client programs respond to signals as follows:
 
   + Client can install their own `SIGPIPE` handler to override the default behavior. See Writing C API Threaded Client Programs.
 
-  + Clients can prevent installation of `SIGPIPE` handlers by specifying the `CLIENT_IGNORE_SIGPIPE` option to `mysql_real_connect()` at connect time. See mysql\_real\_connect().
+  + Clients can prevent installation of `SIGPIPE` handlers by specifying the `CLIENT_IGNORE_SIGPIPE` option to `mysql_real_connect()` at connect time. See mysql_real_connect().

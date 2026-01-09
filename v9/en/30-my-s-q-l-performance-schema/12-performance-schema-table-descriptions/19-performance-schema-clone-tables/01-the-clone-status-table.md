@@ -1,4 +1,4 @@
-#### 29.12.19.1 The clone\_status Table
+#### 29.12.19.1 The clone_status Table
 
 The `clone_status` table shows the status of the current or last executed cloning operation only. The table only ever contains one row of data, or is empty.
 

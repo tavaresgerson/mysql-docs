@@ -1,4 +1,4 @@
-#### 26.4.4.13 O procedimento ps\_setup\_reset\_to\_default()
+#### 26.4.4.13 O procedimento ps_setup_reset_to_default()
 
 Redefine a configuração do Schema de Desempenho para as configurações padrão.
 

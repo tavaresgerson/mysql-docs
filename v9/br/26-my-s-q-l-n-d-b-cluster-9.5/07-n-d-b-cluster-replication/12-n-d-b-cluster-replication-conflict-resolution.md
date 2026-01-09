@@ -18,15 +18,15 @@ Você também deve ter em mente que é responsabilidade do aplicativo garantir q
 
 As preparações para a resolução de conflitos devem ser feitas tanto na fonte quanto na replica. Essas tarefas são descritas na lista a seguir:
 
-* Na fonte, ao escrever os logs binários, você deve determinar quais colunas serão enviadas (todas as colunas ou apenas aquelas que foram atualizadas). Isso é feito para o MySQL Server como um todo, aplicando a opção de inicialização **mysqld** `--ndb-log-updated-only` (descrita mais adiante nesta seção), ou em uma ou mais tabelas específicas, colocando as entradas apropriadas na tabela `mysql.ndb_replication` (veja a tabela ndb\_replication).
+* Na fonte, ao escrever os logs binários, você deve determinar quais colunas serão enviadas (todas as colunas ou apenas aquelas que foram atualizadas). Isso é feito para o MySQL Server como um todo, aplicando a opção de inicialização **mysqld** `--ndb-log-updated-only` (descrita mais adiante nesta seção), ou em uma ou mais tabelas específicas, colocando as entradas apropriadas na tabela `mysql.ndb_replication` (veja a tabela ndb_replication).
 
   Nota
 
   Se você está replicando tabelas com colunas muito grandes (como colunas `TEXT` ou `BLOB`), `--ndb-log-updated-only` também pode ser útil para reduzir o tamanho dos logs binários e evitar possíveis falhas de replicação devido ao excedente de `max_allowed_packet`.
 
-  Veja a Seção 19.5.1.21, “Replicação e max\_allowed\_packet”, para mais informações sobre esse problema.
+  Veja a Seção 19.5.1.21, “Replicação e max_allowed_packet”, para mais informações sobre esse problema.
 
-* Na replica, você deve determinar qual tipo de resolução de conflitos aplicar (“o timestamp mais recente vence”, “o mesmo timestamp vence”, “o primário vence”, “o primário vence, transação completa” ou nenhum). Isso é feito usando a tabela de sistema `mysql.ndb_replication`, e se aplica a uma ou mais tabelas específicas (veja a tabela ndb\_replication).
+* Na replica, você deve determinar qual tipo de resolução de conflitos aplicar (“o timestamp mais recente vence”, “o mesmo timestamp vence”, “o primário vence”, “o primário vence, transação completa” ou nenhum). Isso é feito usando a tabela de sistema `mysql.ndb_replication`, e se aplica a uma ou mais tabelas específicas (veja a tabela ndb_replication).
 
 * O NDB Cluster também suporta a detecção de conflitos de leitura, ou seja, a detecção de conflitos entre leituras de uma linha específica em um cluster e atualizações ou exclusões da mesma linha em outro cluster. Isso requer bloqueios de leitura exclusivos obtidos definindo `ndb_log_exclusive_reads` igual a 1 na replica. Todas as linhas lidas por uma leitura em conflito são registradas na tabela de exceções. Para mais informações, consulte Detecção e resolução de conflitos de leitura.
 
@@ -59,13 +59,13 @@ Esta seção fornece informações detalhadas sobre as funções que podem ser u
 
 * NDB$OLD()")
 * NDB$MAX()")
-* NDB$MAX\_DELETE\_WIN()")
-* NDB$MAX\_INS()")
-* NDB$MAX\_DEL\_WIN\_INS()")
+* NDB$MAX_DELETE_WIN()")
+* NDB$MAX_INS()")
+* NDB$MAX_DEL_WIN_INS()")
 * NDB$EPOCH()")
-* NDB$EPOCH\_TRANS()")
+* NDB$EPOCH_TRANS()")
 * NDB$EPOCH2()")
-* NDB$EPOCH2\_TRANS()")
+* NDB$EPOCH2_TRANS()")
 
 ##### NDB$OLD()
 
@@ -101,7 +101,7 @@ Importante
 
 O valor da coluna da imagem "depois" das fontes é usado por essa função.
 
-##### NDB$MAX\_DELETE\_WIN()
+##### NDB$MAX_DELETE_WIN()
 
 Esta é uma variação do `NDB$MAX()`. Devido ao fato de que não há um timestamp disponível para uma operação de exclusão, uma exclusão usando `NDB$MAX()` é, na verdade, processada como `NDB$OLD`, mas, para alguns casos de uso, isso não é ótimo. Para `NDB$MAX_DELETE_WIN()`, se o valor da coluna "timestamp" para uma determinada linha que adiciona ou atualiza uma linha existente proveniente da fonte for maior que o da replica, ele é aplicado. No entanto, as operações de exclusão são tratadas como sempre tendo o valor mais alto. Isso é ilustrado pelo seguinte pseudocodigo:
 
@@ -232,7 +232,7 @@ Para os valores padrão desses parâmetros de configuração (2000 e 100 milisse
 
 Tanto o `NDB$EPOCH()` quanto o `NDB$EPOCH_TRANS()` inserem entradas para linhas conflitantes nas tabelas de exceções relevantes, desde que essas tabelas tenham sido definidas de acordo com as mesmas regras de esquema de tabela de exceções descritas em outras partes desta seção (veja NDB$OLD()). Você deve criar qualquer tabela de exceção antes de criar a tabela de dados com a qual ela será usada.
 
-Assim como as outras funções de detecção de conflitos discutidas nesta seção, o `NDB$EPOCH()` e o `NDB$EPOCH_TRANS()` são ativados incluindo entradas relevantes na tabela `mysql.ndb_replication` (veja tabela ndb\_replication). Os papéis dos clusters NDB primários e secundários neste cenário são totalmente determinados pelas entradas da tabela `mysql.ndb_replication`.
+Assim como as outras funções de detecção de conflitos discutidas nesta seção, o `NDB$EPOCH()` e o `NDB$EPOCH_TRANS()` são ativados incluindo entradas relevantes na tabela `mysql.ndb_replication` (veja tabela ndb_replication). Os papéis dos clusters NDB primários e secundários neste cenário são totalmente determinados pelas entradas da tabela `mysql.ndb_replication`.
 
 Como os algoritmos de detecção de conflitos empregados pelo `NDB$EPOCH()` e pelo `NDB$EPOCH_TRANS()` são assimétricos, você deve usar valores diferentes para as entradas `server_id` das réplicas primária e secundária.
 
@@ -390,7 +390,7 @@ Os seguintes exemplos assumem que você já tem uma configuração de replicaç�
 
    Observação
 
-   Se a tabela `ndb_replication` ainda não existir, você deve criá-la. Consulte ndb\_replication Table.
+   Se a tabela `ndb_replication` ainda não existir, você deve criá-la. Consulte ndb_replication Table.
 
    Inserir 0 na coluna `server_id` indica que todos os nós SQL que acessam esta tabela devem usar a resolução de conflitos. Se você quiser usar a resolução de conflitos apenas em um **mysqld** específico, use o ID do servidor real.
 
@@ -645,7 +645,7 @@ INSERT INTO mysql.ndb_replication VALUES ("test", "t1", 0, 7, "NDB$MAX_INS(X)");
 INSERT INTO mysql.ndb_replication VALUES ("test", "t2", 0, 7, "NDB$MAX_DEL_WIN_INS(X)");
 ```
 
-Aqui, definimos o binlog\_type como `NBT_FULL_USE_UPDATE` (`7`), o que significa que as linhas completas são sempre registradas. Veja a tabela ndb\_replication para outros valores possíveis.
+Aqui, definimos o binlog_type como `NBT_FULL_USE_UPDATE` (`7`), o que significa que as linhas completas são sempre registradas. Veja a tabela ndb_replication para outros valores possíveis.
 
 Você também pode criar uma tabela de exceções correspondente a cada tabela `NDB` para a qual a resolução de conflitos deve ser aplicada. Uma tabela de exceções registra todas as linhas rejeitadas pela função de resolução de conflitos para uma determinada tabela. Tabelas de exceções para detecção de conflitos de replicação para as tabelas `t1` e `t2` podem ser criadas usando as seguintes duas instruções SQL:
 

@@ -1,4 +1,4 @@
-#### 29.12.11.9 A tabela `replication\_applier\_status\_by\_worker`
+#### 29.12.11.9 A tabela `replication_applier_status_by_worker`
 
 Esta tabela fornece detalhes das transações manipuladas pelos threads de aplicador em um membro de um grupo de replicação ou de um grupo de replicação em grupo. Para uma replica com um único thread, os dados são mostrados para o único thread de aplicador da replica. Para uma replica com múltiplos threads, os dados são mostrados individualmente para cada thread de aplicador. Os threads de aplicador em uma replica com múltiplos threads são às vezes chamados de trabalhadores. O número de threads de aplicador em um membro de uma replica ou de um grupo de replicação em grupo é definido pela variável de sistema `replica_parallel_workers`. Uma replica com múltiplos threads também tem um thread coordenador para gerenciar os threads de aplicador, e o status deste thread é mostrado na tabela `replication_applier_status_by_coordinator`.
 

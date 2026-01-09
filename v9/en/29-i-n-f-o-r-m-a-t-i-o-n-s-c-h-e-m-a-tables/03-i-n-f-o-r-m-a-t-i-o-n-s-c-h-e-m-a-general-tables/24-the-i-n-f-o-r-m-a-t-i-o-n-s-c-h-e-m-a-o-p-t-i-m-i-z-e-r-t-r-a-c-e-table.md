@@ -1,4 +1,4 @@
-### 28.3.24 The INFORMATION\_SCHEMA OPTIMIZER\_TRACE Table
+### 28.3.24 The INFORMATION_SCHEMA OPTIMIZER_TRACE Table
 
 The `OPTIMIZER_TRACE` table provides information produced by the optimizer tracing capability for traced statements. To enable tracking, use the `optimizer_trace` system variable. For details, see Section 10.15, “Tracing the Optimizer”.
 

@@ -56,7 +56,7 @@ As conexões aos nós de API e de gerenciamento que estão configurados, mas atu
 
 O `remote_address` é o nome do host ou endereço do nó cujo ID está exibido na coluna `remote_node_id`. Os valores `bytes_sent` (bytes enviados) e `bytes_received` (bytes recebidos) desse nó são, respectivamente, o número de bytes enviados e recebidos pelo nó usando essa conexão desde que ela foi estabelecida. Para nós cujo status é `CONNECTING` (conectando) ou `DISCONNECTED` (desconectado), essas colunas sempre exibem `0`.
 
-Suponha que você tenha um clúster de 5 nós, composto por 2 nós de dados, 2 nós SQL e 1 nó de gerenciamento, conforme mostrado na saída do comando `SHOW` no cliente **ndb\_mgm**:
+Suponha que você tenha um clúster de 5 nós, composto por 2 nós de dados, 2 nós SQL e 1 nó de gerenciamento, conforme mostrado na saída do comando `SHOW` no cliente **ndb_mgm**:
 
 ```sql
 ndb_mgm> SHOW
@@ -97,7 +97,7 @@ mysql> SELECT node_id, remote_node_id, status
 10 rows in set (0.04 sec)
 ```
 
-Se você desligar um dos nós de dados neste clúster usando o comando `2 STOP` no cliente **ndb\_mgm**, então repita a consulta anterior (novamente usando o cliente **mysql**), esta tabela agora mostra apenas 5 linhas — 1 linha para cada conexão do nó de gerenciamento restante para outro nó, incluindo tanto ele quanto o nó de dados que está atualmente offline — e exibe `CONNECTING` (conectando) para o status de cada conexão restante ao nó de dados que está atualmente offline, como mostrado aqui:
+Se você desligar um dos nós de dados neste clúster usando o comando `2 STOP` no cliente **ndb_mgm**, então repita a consulta anterior (novamente usando o cliente **mysql**), esta tabela agora mostra apenas 5 linhas — 1 linha para cada conexão do nó de gerenciamento restante para outro nó, incluindo tanto ele quanto o nó de dados que está atualmente offline — e exibe `CONNECTING` (conectando) para o status de cada conexão restante ao nó de dados que está atualmente offline, como mostrado aqui:
 
 ```sql
 mysql> SELECT node_id, remote_node_id, status
@@ -116,7 +116,7 @@ mysql> SELECT node_id, remote_node_id, status
 
 Os contadores `connect_count`, `overloaded`, `overload_count`, `slowdown` e `slowdown_count` são zerados na conexão e mantêm seus valores após o nó remoto se desconectar. Os contadores `bytes_sent` e `bytes_received` também são zerados na conexão e, portanto, mantêm seus valores após a desconexão (até que a próxima conexão os redefina).
 
-O estado de *sobrecarga* referido pelas colunas `overloaded` e `overload_count` ocorre quando o buffer de envio deste transportador contém mais de \[`OVerloadLimit`]\(mysql-cluster-tcp-definition.html#ndbparam-tcp-overloadlimit] bytes (o valor padrão é 80% de `SendBufferMemory`, ou seja, 0,8 \* 2097152 = 1677721 bytes). Quando um transportador específico está em estado de sobrecarga, qualquer nova transação que tente usar este transportador falha com o erro 1218 (Buffers de envio sobrecarregados no kernel NDB). Isso afeta tanto as pesquisas quanto as operações de chave primária.
+O estado de *sobrecarga* referido pelas colunas `overloaded` e `overload_count` ocorre quando o buffer de envio deste transportador contém mais de [`OVerloadLimit`]\(mysql-cluster-tcp-definition.html#ndbparam-tcp-overloadlimit] bytes (o valor padrão é 80% de `SendBufferMemory`, ou seja, 0,8 \* 2097152 = 1677721 bytes). Quando um transportador específico está em estado de sobrecarga, qualquer nova transação que tente usar este transportador falha com o erro 1218 (Buffers de envio sobrecarregados no kernel NDB). Isso afeta tanto as pesquisas quanto as operações de chave primária.
 
 O estado de *redução de velocidade* referido pelas colunas `slowdown` e `slowdown_count` desta tabela ocorre quando o buffer de envio do transportador contém mais de 60% do limite de sobrecarga (igual a 0,6 \* 2097152 = 1258291 bytes por padrão). Nesse estado, qualquer nova varredura usando este transportador reduz o tamanho do lote para minimizar a carga no transportador.
 

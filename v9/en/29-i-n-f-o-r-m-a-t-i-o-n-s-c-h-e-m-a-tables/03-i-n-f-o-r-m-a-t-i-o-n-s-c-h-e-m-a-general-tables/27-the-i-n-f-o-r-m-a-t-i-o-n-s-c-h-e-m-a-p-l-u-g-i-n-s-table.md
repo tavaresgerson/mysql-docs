@@ -1,4 +1,4 @@
-### 28.3.27 The INFORMATION\_SCHEMA PLUGINS Table
+### 28.3.27 The INFORMATION_SCHEMA PLUGINS Table
 
 The `PLUGINS` table provides information about server plugins.
 

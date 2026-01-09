@@ -1,4 +1,4 @@
-### 24.3.28 The INFORMATION\_SCHEMA TABLE\_PRIVILEGES Table
+### 24.3.28 The INFORMATION_SCHEMA TABLE_PRIVILEGES Table
 
 The [`TABLE_PRIVILEGES`](information-schema-table-privileges-table.html "24.3.28 The INFORMATION_SCHEMA TABLE_PRIVILEGES Table") table provides information about table privileges. It takes its values from the `mysql.tables_priv` system table.
 

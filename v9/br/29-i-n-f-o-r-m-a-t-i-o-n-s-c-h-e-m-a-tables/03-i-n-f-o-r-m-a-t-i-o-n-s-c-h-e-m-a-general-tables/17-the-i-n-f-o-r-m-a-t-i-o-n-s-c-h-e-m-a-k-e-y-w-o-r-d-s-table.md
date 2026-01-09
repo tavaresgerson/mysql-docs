@@ -1,4 +1,4 @@
-### 28.3.17 A Tabela `INFORMATION\_SCHEMA\_KEYWORDS`
+### 28.3.17 A Tabela `INFORMATION_SCHEMA_KEYWORDS`
 
 A tabela `KEYWORDS` lista as palavras consideradas palavras-chave pelo MySQL e, para cada uma delas, indica se ela é reservada. Palavras-chave reservadas podem exigir tratamento especial em alguns contextos, como a citação especial quando usadas como identificadores (veja a Seção 11.3, “Palavras-chave e Palavras Reservadas”). Esta tabela fornece às aplicações uma fonte de tempo de execução de informações sobre palavras-chave do MySQL.
 

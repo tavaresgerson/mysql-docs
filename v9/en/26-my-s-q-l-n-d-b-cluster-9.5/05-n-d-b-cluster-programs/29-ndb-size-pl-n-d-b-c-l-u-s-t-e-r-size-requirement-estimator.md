@@ -1,10 +1,10 @@
-### 25.5.29 ndb\_size.pl — NDBCLUSTER Size Requirement Estimator
+### 25.5.29 ndb_size.pl — NDBCLUSTER Size Requirement Estimator
 
 This is a Perl script that can be used to estimate the amount of space that would be required by a MySQL database if it were converted to use the `NDBCLUSTER` storage engine. Unlike the other utilities discussed in this section, it does not require access to an NDB Cluster (in fact, there is no reason for it to do so). However, it does need to access the MySQL server on which the database to be tested resides.
 
 Note
 
-**ndb\_size.pl** is no longer supported; you should expect it to be removed from a future version of the NDB Cluster distribution, and modify any dependent applications accordingly.
+**ndb_size.pl** is no longer supported; you should expect it to be removed from a future version of the NDB Cluster distribution, and modify any dependent applications accordingly.
 
 #### Requirements
 
@@ -17,7 +17,7 @@ Note
 
 `ndb_size.pl` can also be found in the MySQL sources in `storage/ndb/tools`.
 
-Options that can be used with **ndb\_size.pl** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_size.pl** are shown in the following table. Additional descriptions follow the table.
 
 #### Usage
 

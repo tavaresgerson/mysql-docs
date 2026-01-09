@@ -1,4 +1,4 @@
-### 28.5.2 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE Table
+### 28.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table
 
 Note
 
@@ -16,4 +16,4 @@ SELECT * FROM performance_schema.tp_thread_group_state;
 
 The `TP_THREAD_GROUP_STATE` table has one row per thread group in the thread pool. Each row provides information about the current state of a group.
 
-For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_GROUP_STATE` table, see Section 29.12.16.2, “The tp\_thread\_group\_state Table”. The Performance Schema `tp_thread_group_state` table has equivalent columns.
+For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_GROUP_STATE` table, see Section 29.12.16.2, “The tp_thread_group_state Table”. The Performance Schema `tp_thread_group_state` table has equivalent columns.

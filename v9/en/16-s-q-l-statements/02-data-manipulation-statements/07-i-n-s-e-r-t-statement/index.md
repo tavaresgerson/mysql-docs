@@ -128,7 +128,7 @@ INSERT INTO tbl_name (a,b,c)
     VALUES ROW(1,2,3), ROW(4,5,6), ROW(7,8,9);
 ```
 
-The affected-rows value for an `INSERT` can be obtained using the `ROW_COUNT()` SQL function or the `mysql_affected_rows()` C API function. See Section 14.15, “Information Functions”, and mysql\_affected\_rows().
+The affected-rows value for an `INSERT` can be obtained using the `ROW_COUNT()` SQL function or the `mysql_affected_rows()` C API function. See Section 14.15, “Information Functions”, and mysql_affected_rows().
 
 If you use `INSERT ... VALUES` or `INSERT ... VALUES ROW()` with multiple value lists, or `INSERT ... SELECT` or `INSERT ... TABLE`, the statement returns an information string in this format:
 
@@ -136,7 +136,7 @@ If you use `INSERT ... VALUES` or `INSERT ... VALUES ROW()` with multiple value 
 Records: N1 Duplicates: N2 Warnings: N3
 ```
 
-If you are using the C API, the information string can be obtained by invoking the `mysql_info()` function. See mysql\_info().
+If you are using the C API, the information string can be obtained by invoking the `mysql_info()` function. See mysql_info().
 
 `Records` indicates the number of rows processed by the statement. (This is not necessarily the number of rows actually inserted because `Duplicates` can be nonzero.) `Duplicates` indicates the number of rows that could not be inserted because they would duplicate some existing unique index value. `Warnings` indicates the number of attempts to insert column values that were problematic in some way. Warnings can occur under any of the following conditions:
 
@@ -150,13 +150,13 @@ If you are using the C API, the information string can be obtained by invoking t
 
 * Inserting a value into a date or time column that is illegal for the data type. The column is set to the appropriate zero value for the type.
 
-* For `INSERT` examples involving `AUTO_INCREMENT` column values, see Section 5.6.9, “Using AUTO\_INCREMENT”.
+* For `INSERT` examples involving `AUTO_INCREMENT` column values, see Section 5.6.9, “Using AUTO_INCREMENT”.
 
   If `INSERT` inserts a row into a table that has an `AUTO_INCREMENT` column, you can find the value used for that column by using the `LAST_INSERT_ID()` SQL function or the `mysql_insert_id()` C API function.
 
   Note
 
-  These two functions do not always behave identically. The behavior of `INSERT` statements with respect to `AUTO_INCREMENT` columns is discussed further in Section 14.15, “Information Functions”, and mysql\_insert\_id().
+  These two functions do not always behave identically. The behavior of `INSERT` statements with respect to `AUTO_INCREMENT` columns is discussed further in Section 14.15, “Information Functions”, and mysql_insert_id().
 
 The `INSERT` statement supports the following modifiers:
 

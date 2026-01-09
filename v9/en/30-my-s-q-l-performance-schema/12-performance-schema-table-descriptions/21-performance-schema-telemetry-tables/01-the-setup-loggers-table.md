@@ -1,4 +1,4 @@
-#### 29.12.21.1 The setup\_loggers Table
+#### 29.12.21.1 The setup_loggers Table
 
 The `setup_loggers` table lists the registered loggers:
 

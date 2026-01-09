@@ -1,12 +1,12 @@
 ### 29.12.16 Performance Schema Thread Pool Tables
 
-29.12.16.1 The tp\_connections Table
+29.12.16.1 The tp_connections Table
 
-29.12.16.2 The tp\_thread\_group\_state Table
+29.12.16.2 The tp_thread_group_state Table
 
-29.12.16.3 The tp\_thread\_group\_stats Table
+29.12.16.3 The tp_thread_group_stats Table
 
-29.12.16.4 The tp\_thread\_state Table
+29.12.16.4 The tp_thread_state Table
 
 The following sections describe the Performance Schema tables associated with the thread pool plugin (see Section 7.6.3, “MySQL Enterprise Thread Pool”). They provide information about thread pool operation:
 

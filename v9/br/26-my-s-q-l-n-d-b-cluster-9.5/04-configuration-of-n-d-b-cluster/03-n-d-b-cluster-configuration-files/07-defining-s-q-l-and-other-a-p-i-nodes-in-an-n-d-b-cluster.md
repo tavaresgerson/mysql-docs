@@ -10,7 +10,7 @@ Para uma discussão sobre as opções do servidor MySQL para o NDB Cluster, cons
 
 * `Id`
 
-  <table frame="box" rules="all" summary="Parâmetros de configuração do nó API Id e informações sobre tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span></p>Requer um desligamento completo do cluster, apagando e restaurando o sistema de arquivos do cluster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup Online do NDB Cluster">backup</a>, e depois reiniciando o cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetros de configuração do nó API Id e informações sobre tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício Inicial do Sistema: </strong></span></p>Requer um desligamento completo do cluster, apagando e restaurando o sistema de arquivos do cluster a partir de um backup, e depois reiniciando o cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 O `Id` é um valor inteiro usado para identificar o nó em todas as mensagens internas do cluster. A faixa permitida de valores é de 1 a 255, inclusive. Esse valor deve ser único para cada nó no cluster, independentemente do tipo do nó.
 
@@ -22,7 +22,7 @@ Os IDs dos nós de dados devem ser menores que 145. Se você planeja implantar u
 
 * `ConnectionMap`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de API do `ConnectionMap`, com informações sobre versão, tipo ou unidades, valor padrão, faixa e tipo de reinício" width="35%"> <col style="width: 50%"/><col style="width: 50%"> <tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Faixa</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um Cluster NDB" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr> </tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó de API do `ConnectionMap`, com informações sobre versão, tipo ou unidades, valor padrão, faixa e tipo de reinício" width="35%"> <col style="width: 50%"/><col style="width: 50%"> <tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Faixa</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício de nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td> </tr> </tbody></table>
 
   Especifica quais nós de dados devem ser conectados.
 
@@ -47,7 +47,7 @@ Os IDs dos nós de dados devem ser menores que 145. Se você planeja implantar u
   </tr>
   <tr>
     <th>Tipo de reinício</th>
-    <td><p> <span class="bold"><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup online do clúster NDB" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</p></td>
+    <td><p> <span><strong>Reinício inicial do sistema: </strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um backup, e depois reiniciando o clúster. (NDB 9.5.0)</p></td>
   </tr>
 </table>
 
@@ -84,7 +84,7 @@ Os IDs dos nós de dados devem ser menores que 145. Se você planeja implantar u
   </tr>
   <tr>
     <th>Tipo de reinício</th>
-    <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
+    <td><p> <span><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
 </table>
 
@@ -117,7 +117,7 @@ Este parâmetro está desatualizado e está sujeito à remoção em uma futura v
   </tr>
   <tr>
     <th>Tipo de reinício</th>
-    <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício contínuo de um cluster NDB" target="_blank">reinício contínuo</a> do cluster. (NDB 9.5.0)</p></td>
+    <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício contínuo do cluster. (NDB 9.5.0)</p></td>
   </tr>
 </table>
 
@@ -146,7 +146,7 @@ Este parâmetro está desatualizado e está sujeito à remoção em uma futura v
   </tr>
   <tr>
     <th>Tipo de reinício</th>
-    <td><p> <span class="bold"><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
+    <td><p> <span><strong>Reinício do sistema: </strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 9.5.0)</p></td>
   </tr>
 </table>
 
@@ -164,7 +164,7 @@ Este parâmetro está desatualizado e está sujeito à remoção em uma futura v
 
 * `ArbitrationRank`
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ArbitrationRank: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>0-2</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 2</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ArbitrationRank: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou superior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>0-2</td> </tr><tr><th>Padrão</th> <td>0</td> </tr><tr><th>Intervalo</th> <td>0 - 2</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro define quais nós podem atuar como árbitros. Tanto os nós de gerenciamento quanto os nós SQL podem ser árbitros. Um valor de 0 significa que o nó especificado nunca é usado como árbitro, um valor de 1 dá ao nó alta prioridade como árbitro, e um valor de 2 dá a ele baixa prioridade. Uma configuração normal usa o servidor de gerenciamento como árbitro, definindo sua `ArbitrationRank` para 1 (o padrão para nós de gerenciamento) e os de todos os nós SQL para 0 (o padrão para nós SQL).
 
@@ -191,7 +191,7 @@ Ao definir `ArbitrationRank` para 0 em todos os nós de gerenciamento e SQL, voc
   </tr>
   <tr>
     <th>Tipo de reinício</th>
-    <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício em rolagem de um NDB Cluster">reinício em rolagem</a> do cluster. (NDB 9.5.0)</p></td>
+    <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício em rolagem do cluster. (NDB 9.5.0)</p></td>
   </tr>
 </table>
 
@@ -207,7 +207,7 @@ Este parâmetro é medido em bytes. O valor padrão é 16K.
 
 * `BatchSize`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API BatchSize e informações sobre tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>registros</td> </tr><tr> <th>Padrão</th> <td>256</td> </tr><tr> <th>Intervalo</th> <td>1 - 992</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API BatchSize e informações sobre tipo e valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>registros</td> </tr><tr> <th>Padrão</th> <td>256</td> </tr><tr> <th>Intervalo</th> <td>1 - 992</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
 Este parâmetro é medido em número de registros e, por padrão, é definido para 256. O tamanho máximo é 992.
 
@@ -232,7 +232,7 @@ Este parâmetro é medido em número de registros e, por padrão, é definido pa
   </tr>
   <tr>
     <th>Tipo de reinício</th>
-    <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td>
+    <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td>
   </tr>
 </table>
 
@@ -259,7 +259,7 @@ Este parâmetro é medido em número de registros e, por padrão, é definido pa
     </tr>
     <tr>
       <th>Tipo de reinício</th>
-      <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td>
+      <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td>
     </tr>
   </table>
 
@@ -276,7 +276,7 @@ Ao definir este parâmetro, você deve especificar uma política. Isso é um dos
 
 * `MaxScanBatchSize`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ConnectionMap tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>string</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ConnectionMap tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>string</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>...</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
 
   O tamanho do lote é o tamanho de cada lote enviado de cada nó de dados. A maioria das varreduras é realizada em paralelo para proteger o MySQL Server de receber muito dados de muitos nós em paralelo; este parâmetro define um limite para o tamanho total do lote em todos os nós.
 
@@ -284,17 +284,17 @@ Ao definir este parâmetro, você deve especificar uma política. Isso é um dos
 
 * `TotalSendBufferMemory`
 
-<table frame="box" rules="all" summary="Parâmetros de configuração do nó da API ConnectionMap: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>string</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+<table frame="box" rules="all" summary="Parâmetros de configuração do nó da API ConnectionMap: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>string</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 Este parâmetro é `false` por padrão. Isso força os nós de API desconectados (incluindo servidores MySQL que atuam como nós SQL) a usar uma nova conexão com o clúster em vez de tentar reutilizar uma existente, pois a reutilização de conexões pode causar problemas ao usar IDs de nó alocados dinamicamente. (Bug #45921)
 
 Nota
 
-Este parâmetro pode ser sobrescrito usando a API NDB. Para mais informações, consulte Ndb\_cluster\_connection::set\_auto\_reconnect() e Ndb\_cluster\_connection::get\_auto\_reconnect().
+Este parâmetro pode ser sobrescrito usando a API NDB. Para mais informações, consulte Ndb_cluster_connection::set_auto_reconnect() e Ndb_cluster_connection::get_auto_reconnect().
 
 * `DefaultOperationRedoProblemAction`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ConnectionMap tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>string</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um Clúster NDB" target="_blank">reinício Rolling</a> do clúster. (NDB 9.5.0)</p></td></tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ConnectionMap tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>string</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do clúster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
   Este parâmetro (junto com `RedoOverCommitLimit` e `RedoOverCommitCounter`) controla a manipulação das operações pelo nó de dados quando leva muito tempo para esvaziar os logs de redo para o disco. Isso ocorre quando um determinado esvaziamento de log de redo leva mais tempo do que `RedoOverCommitLimit` segundos, mais do que `RedoOverCommitCounter` vezes, fazendo com que quaisquer transações pendentes sejam abortadas.
 
@@ -302,17 +302,17 @@ Este parâmetro pode ser sobrescrito usando a API NDB. Para mais informações, 
 
 + `ABORT`: Todas as operações pendentes de transações abortadas também são abortadas.
 
-+ `QUEUE`: Operações pendentes de transações que foram abortadas são colocadas em fila para serem re-probatas. Isso é o padrão. As operações pendentes ainda são abortadas quando o log de revisão fica sem espaço — ou seja, quando ocorrem erros P\_TAIL\_PROBLEM.
++ `QUEUE`: Operações pendentes de transações que foram abortadas são colocadas em fila para serem re-probatas. Isso é o padrão. As operações pendentes ainda são abortadas quando o log de revisão fica sem espaço — ou seja, quando ocorrem erros P_TAIL_PROBLEM.
 
 * `DefaultHashMapSize`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ConnectionMap tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do Nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um Reinício Rotativo de um NDB Cluster" target="_blank">reinício rotativo</a> do cluster. (NDB 9.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ConnectionMap tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Intervalo</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do Nó: </strong></span>Requer um reinício rotativo do cluster. (NDB 9.5.0) </p></td> </tr></tbody></table>
 
   O tamanho dos mapas de hash da tabela usados pelo `NDB` é configurável usando este parâmetro. `DefaultHashMapSize` pode assumir qualquer um dos três valores possíveis (0, 240, 3840). Esses valores e seus efeitos são descritos na tabela a seguir.
 
 **Tabela 25.16 Valores do parâmetro `DefaultHashMapSize`**
 
-<table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ConnectionMap: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>string</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício de nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício em rolagem de um NDB Cluster" target="_blank">reinício em rolagem</a> do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
+<table frame="box" rules="all" summary="Parâmetro de configuração do nó da API ConnectionMap: tipo e informações de valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>string</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>...</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício de nó: </strong></span>Requer um reinício em rolagem do cluster. (NDB 9.5.0)</p></td></tr></tbody></table>
 
 O uso padrão do parâmetro de configuração do nó da API ConnectionMap é o WAN TCP.
 
@@ -323,7 +323,7 @@ O uso padrão do parâmetro de configuração do nó da API ConnectionMap é o W
   <tr> <th>Tipo ou unidades</th> <td>string</td> </tr>
   <tr> <th>Valor padrão</th> <td>[...]</td> </tr>
   <tr> <th>Intervalo</th> <td>...</td> </tr>
-  <tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício do nó: </strong></span>Requer um <a class="link" href="mysql-cluster-rolling-restart.html" title="25.6.5 Realizando um reinício Rolling de um NDB Cluster" target="_blank">reinício Rolling</a> do cluster. (NDB 9.5.0)</p></td> </tr>
+  <tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do nó: </strong></span>Requer um reinício Rolling do cluster. (NDB 9.5.0)</p></td> </tr>
 </table>
 
   Em um NDB Cluster com muitos nós de dados não iniciados, o valor deste parâmetro pode ser aumentado para contornar tentativas de conexão com nós de dados que ainda não começaram a funcionar no cluster, bem como para moderar o tráfego alto nos nós de gerenciamento. Enquanto o nó da API não estiver conectado a nenhum novo nó de dados, o valor do parâmetro `StartConnectBackoffMaxTime` é aplicado; caso contrário, `ConnectBackoffMaxTime` é usado para determinar o tempo em milissegundos a ser aguardado entre as tentativas de conexão.
@@ -334,7 +334,7 @@ Uma vez que o nó da API esteja conectado a um nó de dados e esse nó informe (
 
 * `StartConnectBackoffMaxTime`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API do NDB Cluster e informações sobre o tipo e o valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span class="bold"><strong>Reinício Inicial do Sistema: </strong></span></p>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um <a class="link" href="mysql-cluster-backup.html" title="Backup Online do NDB Cluster" target="_blank">backup</a>, e depois reiniciando o clúster. (NDB 9.5.0)</a></td></tr></tbody></table>
+  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API do NDB Cluster e informações sobre o tipo e o valor" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"><tbody><tr><th>Versão (ou posterior)</th><td>NDB 9.5.0</td></tr><tr><th>Tipo ou unidades</th><td>unsigned</td></tr><tr><th>Padrão</th><td>[...]</td></tr><tr><th>Intervalo</th><td>1 - 255</td></tr><tr><th>Tipo de reinício</th><td><p><span><strong>Reinício Inicial do Sistema: </strong></span></p>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir de um backup, e depois reiniciando o clúster. (NDB 9.5.0)</a></td></tr></tbody></table>
 
   Em um NDB Cluster com muitos nós de dados não iniciados, o valor desse parâmetro pode ser aumentado para contornar as tentativas de conexão com nós de dados que ainda não começaram a funcionar no clúster, bem como o tráfego moderado de alto tráfego para nós de gerenciamento. Enquanto o nó da API não estiver conectado a nenhum novo nó de dados, o valor do parâmetro `StartConnectBackoffMaxTime` é aplicado; caso contrário, `ConnectBackoffMaxTime` é usado para determinar o tempo em milissegundos a ser esperado entre as tentativas de conexão.
 
@@ -371,4 +371,4 @@ Não é *necessário* realizar nenhum reinício do cluster se novos nós SQL ou 
 
 **Tabela 25.17 Tipos de reinício do NDB Cluster**
 
-<table frame="box" rules="all" summary="Informações sobre o tipo de reinício e o valor dos parâmetros de configuração do nó API do NDB Cluster" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>1 - 255</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do cluster, apagando e restaurando o sistema de arquivos do cluster a partir de um <a class="link" href="mysql-cluster-backup.html" title="25.6.8 Backup Online do NDB Cluster">backup</a>, e depois reiniciando o cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Informações sobre o tipo de reinício e o valor dos parâmetros de configuração do nó API do NDB Cluster" width="35%"><tr><col style="width: 50%"/><col style="width: 50%"/><tbody><tr><th>Versão (ou posterior)</th> <td>NDB 9.5.0</td> </tr><tr><th>Tipo ou unidades</th> <td>unsigned</td> </tr><tr><th>Padrão</th> <td>[...]</td> </tr><tr><th>Intervalo</th> <td>1 - 255</td> </tr><tr><th>Tipo de reinício</th> <td><p> <span><strong>Reinício Inicial do Sistema: </strong></span>Requer o desligamento completo do cluster, apagando e restaurando o sistema de arquivos do cluster a partir de um backup, e depois reiniciando o cluster. (NDB 9.5.0)</p></td> </tr></tbody></table>

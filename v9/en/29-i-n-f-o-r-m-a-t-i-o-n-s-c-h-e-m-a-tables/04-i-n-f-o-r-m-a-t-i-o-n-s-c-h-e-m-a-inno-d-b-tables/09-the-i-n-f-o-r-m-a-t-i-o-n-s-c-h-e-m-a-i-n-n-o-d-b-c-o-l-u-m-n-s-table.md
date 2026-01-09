@@ -1,8 +1,8 @@
-### 28.4.9 The INFORMATION\_SCHEMA INNODB\_COLUMNS Table
+### 28.4.9 The INFORMATION_SCHEMA INNODB_COLUMNS Table
 
 The `INNODB_COLUMNS` table provides metadata about `InnoDB` table columns.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_COLUMNS` table has these columns:
 
@@ -16,7 +16,7 @@ The `INNODB_COLUMNS` table has these columns:
 
 * `POS`
 
-  The ordinal position of the column within the table, starting from 0 and incrementing sequentially. When a column is dropped, the remaining columns are reordered so that the sequence has no gaps. The `POS` value for a virtual generated column encodes the column sequence number and ordinal position of the column. For more information, see the `POS` column description in Section 28.4.29, “The INFORMATION\_SCHEMA INNODB\_VIRTUAL Table”.
+  The ordinal position of the column within the table, starting from 0 and incrementing sequentially. When a column is dropped, the remaining columns are reordered so that the sequence has no gaps. The `POS` value for a virtual generated column encodes the column sequence number and ordinal position of the column. For more information, see the `POS` column description in Section 28.4.29, “The INFORMATION_SCHEMA INNODB_VIRTUAL Table”.
 
 * `MTYPE`
 

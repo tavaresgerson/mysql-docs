@@ -32,7 +32,7 @@ Embora uma `NULL` em si não exija espaço de armazenamento, a `NDB` reserva 4 b
 
 Cada tabela que usa o motor de armazenamento `NDB` requer uma chave primária; se você não definir uma chave primária, a `NDB` cria uma chave primária “oculta”. Esta chave primária oculta consome 31-35 bytes por registro da tabela.
 
-Você pode usar o script Perl **ndb\_size.pl** para estimar os requisitos de armazenamento `NDB`. Ele se conecta a um banco de dados MySQL atual (não NDB Cluster) e cria um relatório sobre o espaço que esse banco de dados exigiria se usasse o motor de armazenamento `NDB`. Veja a Seção 25.5.29, “ndb\_size.pl — Estimator de Requisitos de Tamanho NDBCLUSTER” para mais informações.
+Você pode usar o script Perl **ndb_size.pl** para estimar os requisitos de armazenamento `NDB`. Ele se conecta a um banco de dados MySQL atual (não NDB Cluster) e cria um relatório sobre o espaço que esse banco de dados exigiria se usasse o motor de armazenamento `NDB`. Veja a Seção 25.5.29, “ndb_size.pl — Estimator de Requisitos de Tamanho NDBCLUSTER” para mais informações.
 
 ### Requisitos de Armazenamento de Tipo Numérico
 

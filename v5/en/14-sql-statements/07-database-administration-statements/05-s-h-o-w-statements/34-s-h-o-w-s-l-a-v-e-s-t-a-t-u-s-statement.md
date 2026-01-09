@@ -118,11 +118,11 @@ The following list describes the fields returned by [`SHOW SLAVE STATUS`](show-s
 
   Whether the I/O thread is started and has connected successfully to the source. Internally, the state of this thread is represented by one of the following three values:
 
-  + **MYSQL\_SLAVE\_NOT\_RUN.** The replica I/O thread is not running. For this state, `Slave_IO_Running` is `No`.
+  + **MYSQL_SLAVE_NOT_RUN.** The replica I/O thread is not running. For this state, `Slave_IO_Running` is `No`.
 
-  + **MYSQL\_SLAVE\_RUN\_NOT\_CONNECT.** The replica I/O thread is running, but is not connected to a replication source. For this state, `Slave_IO_Running` is `Connecting`.
+  + **MYSQL_SLAVE_RUN_NOT_CONNECT.** The replica I/O thread is running, but is not connected to a replication source. For this state, `Slave_IO_Running` is `Connecting`.
 
-  + **MYSQL\_SLAVE\_RUN\_CONNECT.** The replica I/O thread is running, and is connected to a replication source. For this state, `Slave_IO_Running` is `Yes`.
+  + **MYSQL_SLAVE_RUN_CONNECT.** The replica I/O thread is running, and is connected to a replication source. For this state, `Slave_IO_Running` is `Yes`.
 
   The value of the [`Slave_running`](server-status-variables.html#statvar_Slave_running) system status variable corresponds with this value.
 
@@ -150,7 +150,7 @@ The following list describes the fields returned by [`SHOW SLAVE STATUS`](show-s
 
 * `Skip_Counter`
 
-  The current value of the [`sql_slave_skip_counter`](replication-options-replica.html#sysvar_sql_slave_skip_counter) system variable. See [Section 13.4.2.4, “SET GLOBAL sql\_slave\_skip\_counter Syntax”](set-global-sql-slave-skip-counter.html "13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax").
+  The current value of the [`sql_slave_skip_counter`](replication-options-replica.html#sysvar_sql_slave_skip_counter) system variable. See [Section 13.4.2.4, “SET GLOBAL sql_slave_skip_counter Syntax”](set-global-sql-slave-skip-counter.html "13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax").
 
 * `Exec_Master_Log_Pos`
 

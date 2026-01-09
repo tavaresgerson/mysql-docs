@@ -182,25 +182,25 @@ O **mysqladmin** suporta as seguintes opções, que podem ser especificadas na l
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqladmin">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_bind-address">--bind-address</a></td> <td>Utilize a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres podem ser encontrados</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_compress">--compress</a></td> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_connect-timeout">--connect-timeout</a></td> <td>Número de segundos antes do timeout da conexão</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_count">--count</a></td> <td>Número de iterações para executar o comando repetidamente</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_debug">--debug</a></td> <td>Escrever o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_debug-check">--debug-check</a></td> <td>Imprimir informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_debug-info">--debug-info</a></td> <td>Imprimir informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_default-auth">--default-auth</a></td> <td>Plugin de autenticação a usar</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_default-character-set">--default-character-set</a></td> <td>Especificar o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_defaults-extra-file">--defaults-extra-file</a></td> <td>Ler o arquivo de opções nomeado adicionalmente aos arquivos de opções usuais</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_defaults-file">--defaults-file</a></td> <td>Ler apenas o arquivo de opções nomeado</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Ativar o plugin de autenticação sem criptografia</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_force">--force</a></td> <td>Continuar mesmo se ocorrer um erro SQL</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_get-server-public-key">--get-server-public-key</a></td> <td>Solicitar a chave pública do servidor RSA</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_help">--help</a></td> <td>Mostrar a mensagem de ajuda e sair</td></tr>
-<tr><td><a class="link" href="mysqladmin.html#option_mysqladmin_host">--host</a></td> <td>Host em que o servidor MySQL está localizado</td></tr>
+<tr><td>--bind-address</td> <td>Utilize a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres podem ser encontrados</td></tr>
+<tr><td>--compress</td> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--connect-timeout</td> <td>Número de segundos antes do timeout da conexão</td></tr>
+<tr><td>--count</td> <td>Número de iterações para executar o comando repetidamente</td></tr>
+<tr><td>--debug</td> <td>Escrever o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprimir informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprimir informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-auth</td> <td>Plugin de autenticação a usar</td></tr>
+<tr><td>--default-character-set</td> <td>Especificar o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Ler o arquivo de opções nomeado adicionalmente aos arquivos de opções usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Ler apenas o arquivo de opções nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Ativar o plugin de autenticação sem criptografia</td></tr>
+<tr><td>--force</td> <td>Continuar mesmo se ocorrer um erro SQL</td></tr>
+<tr><td>--get-server-public-key</td> <td>Solicitar a chave pública do servidor RSA</td></tr>
+<tr><td>--help</td> <td>Mostrar a mensagem de ajuda e sair</td></tr>
+<tr><td>--host</td> <td>Host em que o servidor MySQL está localizado</td></tr>
 <tr><td><a class="link" href="mysqladmin.
 
 * `--help`, `-?`
@@ -231,7 +231,7 @@ Esta opção está desatualizada. Espera-se que ela seja removida em uma versão
 
 * `--compression-algorithms=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para compression-algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definível</td> </tr><tr><th>Valor Padrão</th> <td><code>não comprimido</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não comprimido</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para compression-algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definível</td> </tr><tr><th>Valor Padrão</th> <td><code>não comprimido</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não comprimido</code></p></td> </tr></tbody></table>
 
   Os algoritmos de compressão permitidos para conexões com o servidor. Os algoritmos disponíveis são os mesmos da variável de sistema `protocol_compression_algorithms`. O valor padrão é `não comprimido`.
 
@@ -388,7 +388,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
   <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Leia opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e com qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de configuração do MySQL”.
+  Leia opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e com qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de configuração do MySQL”.
 
   Para obter informações adicionais sobre isso e outras opções de arquivos de opções, veja a Seção 6.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivos de opções”.
 
@@ -426,7 +426,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
   Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que sejam lidas.
 
-  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivos de opções, consulte a Seção 6.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 

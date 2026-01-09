@@ -1,6 +1,6 @@
 ### 19.5.1 Replication Features and Issues
 
-19.5.1.1 Replication and AUTO\_INCREMENT
+19.5.1.1 Replication and AUTO_INCREMENT
 
 19.5.1.2 Replication and BLACKHOLE Tables
 
@@ -14,7 +14,7 @@
 
 19.5.1.7 Replication of CREATE TABLE ... SELECT Statements
 
-19.5.1.8 Replication of CURRENT\_USER()
+19.5.1.8 Replication of CURRENT_USER()
 
 19.5.1.9 Replication with Differing Table Definitions on Source and Replica
 
@@ -40,7 +40,7 @@
 
 19.5.1.20 Replication and LOAD DATA
 
-19.5.1.21 Replication and max\_allowed\_packet
+19.5.1.21 Replication and max_allowed_packet
 
 19.5.1.22 Replication and MEMORY Tables
 

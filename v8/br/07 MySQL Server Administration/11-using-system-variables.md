@@ -132,7 +132,7 @@ SHOW VARIABLES LIKE '%size%';
 SHOW GLOBAL VARIABLES LIKE '%size%';
 ```
 
-Os caracteres curinga podem ser usados em qualquer posição dentro do padrão a ser correspondido. De forma estrita, porque `_` é um curinga que corresponde a qualquer único caractere, você deve escapar `_` como `\_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.
+Os caracteres curinga podem ser usados em qualquer posição dentro do padrão a ser correspondido. De forma estrita, porque `_` é um curinga que corresponde a qualquer único caractere, você deve escapar `_` como `_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.
 
 Para `SHOW VARIABLES`, se você não especificar `GLOBAL` nem `SESSION`, o MySQL retorna os valores `SESSION`.
 

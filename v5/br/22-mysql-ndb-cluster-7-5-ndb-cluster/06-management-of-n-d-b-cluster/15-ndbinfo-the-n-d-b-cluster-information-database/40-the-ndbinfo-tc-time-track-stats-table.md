@@ -1,4 +1,4 @@
-#### 21.6.15.40 A tabela ndbinfo tc\_time\_track\_stats
+#### 21.6.15.40 A tabela ndbinfo tc_time_track_stats
 
 A tabela `tc_time_track_stats` fornece informações de rastreamento de tempo obtidas das instâncias do bloco `TC` (TC) nos nós de dados, por meio do acesso ao `NDB` (NDB) através dos nós de API. Cada instância TC rastreia as latências para um conjunto de atividades que realiza em nome dos nós de API ou outros nós de dados; essas atividades incluem transações, erros de transação, leituras de chaves, escritas de chaves, operações de índices únicos, operações de chave falhas de qualquer tipo, varreduras, varreduras falhas, varreduras de fragmentos e varreduras de fragmentos falhas.
 

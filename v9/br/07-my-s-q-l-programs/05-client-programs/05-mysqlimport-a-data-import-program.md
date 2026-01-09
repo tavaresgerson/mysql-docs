@@ -16,25 +16,25 @@ O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na 
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlimport.">
 <tr><th>Nome da opção</th><th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_bind-address">--bind-address</a></td><td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_character-sets-dir">--character-sets-dir</a></td><td>Diretório onde os conjuntos de caracteres podem ser encontrados</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_columns">--columns</a></td><td>Esta opção recebe uma lista de nomes de colunas separada por vírgula como seu valor</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_compress">--compress</a></td><td>Compressar todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_compression-algorithms">--compression-algorithms</a></td><td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_debug">--debug</a></td><td>Escrever o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_debug-check">--debug-check</a></td><td>Imprimir informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_debug-info">--debug-info</a></td><td>Imprimir informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_default-character-set">--default-character-set</a></td><td>Especificar o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_defaults-extra-file">--defaults-extra-file</a></td><td>Ler o arquivo de opções nomeadas em vez dos arquivos de opções usuais</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_defaults-file">--defaults-file</a></td><td>Ler apenas o arquivo de opções nomeadas</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_defaults-group-suffix">--defaults-group-suffix</a></td><td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_delete">--delete</a></td><td>Limpar a tabela antes de importar o arquivo de texto</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_enable-cleartext-plugin">--enable-cleartext-plugin</a></td><td>Ativar o plugin de autenticação sem criptografia</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_fields">--fields-enclosed-by</a></td><td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_fields">--fields-escaped-by</a></td><td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_fields">--fields-optionally-enclosed-by</a></td><td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_fields">--fields-terminated-by</a></td><td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td></tr>
-<tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_force">--force</a></td><td>Continuar mesmo se ocorrer um erro SQL</td></tr>
+<tr><td>--bind-address</td><td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td><td>Diretório onde os conjuntos de caracteres podem ser encontrados</td></tr>
+<tr><td>--columns</td><td>Esta opção recebe uma lista de nomes de colunas separada por vírgula como seu valor</td></tr>
+<tr><td>--compress</td><td>Compressar todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td><td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--debug</td><td>Escrever o log de depuração</td></tr>
+<tr><td>--debug-check</td><td>Imprimir informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td><td>Imprimir informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td><td>Especificar o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td><td>Ler o arquivo de opções nomeadas em vez dos arquivos de opções usuais</td></tr>
+<tr><td>--defaults-file</td><td>Ler apenas o arquivo de opções nomeadas</td></tr>
+<tr><td>--defaults-group-suffix</td><td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--delete</td><td>Limpar a tabela antes de importar o arquivo de texto</td></tr>
+<tr><td>--enable-cleartext-plugin</td><td>Ativar o plugin de autenticação sem criptografia</td></tr>
+<tr><td>--fields-enclosed-by</td><td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td></tr>
+<tr><td>--fields-escaped-by</td><td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td></tr>
+<tr><td>--fields-optionally-enclosed-by</td><td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td></tr>
+<tr><td>--fields-terminated-by</td><td>Esta opção tem o mesmo significado que a cláusula correspondente para LOAD DATA</td></tr>
+<tr><td>--force</td><td>Continuar mesmo se ocorrer um erro SQL</td></tr>
 <tr><td><a class="link" href="mysqlimport.html#option_mysqlimport_get-server-public-key">
 
 * `--help`, `-?`
@@ -102,7 +102,7 @@ O **mysqlimport** suporta as seguintes opções, que podem ser especificadas na 
     </tr>
     <tr>
       <th>Valores válidos</th>
-      <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td>
+      <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>uncompressed</code></p></td>
     </tr>
   </table>
 
@@ -313,7 +313,7 @@ Ative o plugin de autenticação de texto claro `mysql_clear_password`. (Veja a 
 
   <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=ip_address</code></td> </tr></tbody></table>
 
-  Ler opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+  Ler opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
   Para obter informações adicionais sobre essa e outras opções de arquivos de opções, veja a Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opções”.
 
@@ -339,7 +339,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
   Não leia nenhum arquivo de configuração. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de configuração, o `--no-defaults` pode ser usado para evitar que sejam lidas.
 
-  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de configuração MySQL”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de configuração MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivo de configuração, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o gerenciamento de arquivos de configuração”.
 

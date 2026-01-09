@@ -21,7 +21,7 @@ Select package(s) you wish to process (or 'all' to process
 all packages). (default: all) [?,??,q]:
 ```
 
-The PKG installer installs all of the files and tools needed, and then initializes your database if one does not exist. To complete the installation, you should set the root password for MySQL as provided in the instructions at the end of the installation. Alternatively, you can run the **mysql\_secure\_installation** script that comes with the installation.
+The PKG installer installs all of the files and tools needed, and then initializes your database if one does not exist. To complete the installation, you should set the root password for MySQL as provided in the instructions at the end of the installation. Alternatively, you can run the **mysql_secure_installation** script that comes with the installation.
 
 By default, the PKG package installs MySQL under the root path `/opt/mysql`. You can change only the installation root path when using **pkgadd**, which can be used to install MySQL in a different Solaris zone. If you need to install in a specific directory, use a binary **tar** file distribution.
 

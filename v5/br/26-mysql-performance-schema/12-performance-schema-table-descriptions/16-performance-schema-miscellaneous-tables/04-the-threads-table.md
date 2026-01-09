@@ -74,7 +74,7 @@ A tabela `threads` tem essas colunas:
 
 - `PROCESSLIST_ID`
 
-  Para um fio de plano de fundo (associado a uma conexão de usuário), este é o identificador de conexão. Este é o mesmo valor exibido na coluna `ID` da tabela `INFORMATION_SCHEMA `PROCESSLIST``, exibida na coluna `Id` do `SHOW PROCESSLIST` (show-processlist.html) saída, e retornada pela função `[`CONNECTION\_ID()\`]\(information-functions.html#function\_connection-id) dentro do fio.
+  Para um fio de plano de fundo (associado a uma conexão de usuário), este é o identificador de conexão. Este é o mesmo valor exibido na coluna `ID` da tabela `INFORMATION_SCHEMA `PROCESSLIST``, exibida na coluna `Id` do `SHOW PROCESSLIST` (show-processlist.html) saída, e retornada pela função `[`CONNECTION_ID()\`]\(information-functions.html#function_connection-id) dentro do fio.
 
   Para um fio de plano de fundo (não associado a uma conexão de usuário), `PROCESSLIST_ID` é `NULL`, então os valores não são únicos.
 
@@ -86,7 +86,7 @@ A tabela `threads` tem essas colunas:
 
   O nome do host do cliente associado a uma thread em primeiro plano, `NULL` para uma thread em segundo plano.
 
-  Ao contrário da coluna `HOST` da tabela `INFORMATION_SCHEMA `PROCESSLIST` ou da coluna `Host`da saída de`SHOW PROCESSLIST`(show-processlist.html), a coluna`PROCESSLIST\_HOST`não inclui o número da porta para conexões TCP/IP. Para obter essa informação do Schema de Desempenho, habilite a instrumentação de soquetes (que não está habilitada por padrão) e examine a tabela`socket\_instances\` (performance-schema-socket-instances-table.html):
+  Ao contrário da coluna `HOST` da tabela `INFORMATION_SCHEMA `PROCESSLIST` ou da coluna `Host`da saída de`SHOW PROCESSLIST`(show-processlist.html), a coluna`PROCESSLIST_HOST`não inclui o número da porta para conexões TCP/IP. Para obter essa informação do Schema de Desempenho, habilite a instrumentação de soquetes (que não está habilitada por padrão) e examine a tabela`socket_instances\` (performance-schema-socket-instances-table.html):
 
   ```sql
   mysql> SELECT * FROM performance_schema.setup_instruments
@@ -134,7 +134,7 @@ A tabela `threads` tem essas colunas:
 
 - `PROCESSLIST_STATE`
 
-  Uma ação, evento ou estado que indica o que o fio está fazendo. Para descrições dos valores de `PROCESSLIST_STATE`, consulte \[Seção 8.14, “Examinando Informações do Fio do Servidor (Processo”] (thread-information.html). Se o valor for `NULL`, o fio pode corresponder a uma sessão de cliente inativo ou o trabalho que ele está fazendo não está instrumentado com estágios.
+  Uma ação, evento ou estado que indica o que o fio está fazendo. Para descrições dos valores de `PROCESSLIST_STATE`, consulte [Seção 8.14, “Examinando Informações do Fio do Servidor (Processo”] (thread-information.html). Se o valor for `NULL`, o fio pode corresponder a uma sessão de cliente inativo ou o trabalho que ele está fazendo não está instrumentado com estágios.
 
   A maioria dos estados corresponde a operações muito rápidas. Se um fio permanecer em um determinado estado por muitos segundos, pode haver um problema que precisa ser investigado.
 

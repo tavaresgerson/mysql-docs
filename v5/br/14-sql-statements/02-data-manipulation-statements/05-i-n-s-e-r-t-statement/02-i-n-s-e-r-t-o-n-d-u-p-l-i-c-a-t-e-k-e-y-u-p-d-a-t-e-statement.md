@@ -21,7 +21,7 @@ Se `a=1 OU b=2` corresponder a várias linhas, apenas *uma* linha é atualizada.
 
 Com `ON DUPLICATE KEY UPDATE`, o valor affected-rows por linha é 1 se a linha for inserida como uma nova linha, 2 se uma linha existente for atualizada e 0 se uma linha existente for definida com seus valores atuais. Se você especificar a flag `CLIENT_FOUND_ROWS` na função C API `mysql_real_connect()` ao se conectar ao **mysqld**, o valor affected-rows é 1 (e não 0) se uma linha existente for definida com seus valores atuais.
 
-Se uma tabela contiver uma coluna `AUTO_INCREMENT` e a instrução `INSERT ... ON DUPLICATE KEY UPDATE` (insert-on-duplicate.html) inserir ou atualizar uma linha, a função `LAST_INSERT_ID()` (information-functions.html#function\_last-insert-id) retorna o valor `AUTO_INCREMENT`.
+Se uma tabela contiver uma coluna `AUTO_INCREMENT` e a instrução `INSERT ... ON DUPLICATE KEY UPDATE` (insert-on-duplicate.html) inserir ou atualizar uma linha, a função `LAST_INSERT_ID()` (information-functions.html#function_last-insert-id) retorna o valor `AUTO_INCREMENT`.
 
 A cláusula `ON DUPLICATE KEY UPDATE` pode conter várias atribuições de coluna, separadas por vírgulas.
 

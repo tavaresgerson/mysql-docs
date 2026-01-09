@@ -4,7 +4,7 @@ O MySQL inclui dois plugins que implementam autenticação nativa; ou seja, aute
 
 Nota
 
-Senhas que usam o método de hashing pré-4.1 são menos seguras do que senhas que usam o método de hashing de senha nativo e devem ser evitadas. Senhas pré-4.1 estão desatualizadas e o suporte para elas (incluindo o plugin `mysql_old_password`) foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
+Senhas que usam o método de hashing pré-4.1 são menos seguras do que senhas que usam o método de hashing de senha nativo e devem ser evitadas. Senhas pré-4.1 estão desatualizadas e o suporte para elas (incluindo o plugin `mysql_old_password`) foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql_old_password”.
 
 A tabela a seguir mostra os nomes dos plugins no lado do servidor e no lado do cliente.
 
@@ -31,6 +31,6 @@ O plugin `mysql_old_password` existe em formas de servidor e cliente:
 
 Os programas clientes do MySQL podem usar a opção `--default-auth` para especificar o plugin `mysql_old_password` como uma dica sobre qual plugin do lado do cliente o programa pode esperar usar:
 
-```sql
+```sh
 $> mysql --default-auth=mysql_old_password ...
 ```

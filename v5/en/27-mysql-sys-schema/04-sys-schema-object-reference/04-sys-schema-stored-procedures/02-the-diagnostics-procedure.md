@@ -46,7 +46,7 @@ Some of the sys schema views are calculated as initial (optional), overall, and 
 
 ##### Configuration Options
 
-`diagnostics()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys\_config Table”):
+`diagnostics()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys_config Table”):
 
 * `debug`, `@sys.debug`
 

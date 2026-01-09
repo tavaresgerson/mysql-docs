@@ -1,4 +1,4 @@
-#### 26.4.3.43 As visualizações user\_summary\_by\_file\_io\_type e x$user\_summary\_by\_file\_io\_type do usuário
+#### 26.4.3.43 As visualizações user_summary_by_file_io_type e x$user_summary_by_file_io_type do usuário
 
 Essas visualizações resumem o acesso e a gravação de arquivos, agrupados por usuário e tipo de evento. Por padrão, as linhas são ordenadas por usuário e por latência total decrescente.
 

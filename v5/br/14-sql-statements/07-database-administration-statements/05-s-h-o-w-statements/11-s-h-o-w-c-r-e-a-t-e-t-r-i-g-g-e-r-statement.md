@@ -39,4 +39,4 @@ A saída de `SHOW CREATE TRIGGER` tem essas colunas:
 
 - `Criado`: A data e a hora em que o gatilho foi criado. Este é um valor `TIMESTAMP(2)` (com uma parte fracionária em centésimos de segundo) para gatilhos criados no MySQL 5.7.2 ou posterior, `NULL` para gatilhos criados antes de 5.7.2.
 
-As informações sobre gatilhos também estão disponíveis na tabela `INFORMATION_SCHEMA [`TRIGGERS\`]\(information-schema-triggers-table.html). Veja Seção 24.3.29, “A Tabela INFORMATION\_SCHEMA TRIGGERS”.
+As informações sobre gatilhos também estão disponíveis na tabela `INFORMATION_SCHEMA [`TRIGGERS\`]\(information-schema-triggers-table.html). Veja Seção 24.3.29, “A Tabela INFORMATION_SCHEMA TRIGGERS”.

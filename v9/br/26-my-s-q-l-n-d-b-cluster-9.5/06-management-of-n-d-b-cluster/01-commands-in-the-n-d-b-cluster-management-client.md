@@ -1,12 +1,12 @@
 ### 25.6.1 Comandos no Cliente de Gerenciamento do NDB Cluster
 
-Além do arquivo de configuração central, um cluster também pode ser controlado por meio de uma interface de linha de comando disponível através do cliente de gerenciamento **ndb\_mgm**. Esta é a interface administrativa principal para um cluster em execução.
+Além do arquivo de configuração central, um cluster também pode ser controlado por meio de uma interface de linha de comando disponível através do cliente de gerenciamento **ndb_mgm**. Esta é a interface administrativa principal para um cluster em execução.
 
 Os comandos para os logs de eventos estão fornecidos na Seção 25.6.3, “Relatórios de Eventos Gerados no NDB Cluster”; os comandos para criar backups e restaurá-los estão fornecidos na Seção 25.6.8, “Backup Online do NDB Cluster”.
 
-**Usando o ndb\_mgm com o MySQL Cluster Manager.**
+**Usando o ndb_mgm com o MySQL Cluster Manager.**
 
-O MySQL Cluster Manager gerencia o início e o término de processos e rastreia seus estados internamente, portanto, não é necessário usar **ndb\_mgm** para essas tarefas em um NDB Cluster sob controle do MySQL Cluster Manager. Recomenda-se *não* usar o cliente de linha de comando **ndb\_mgm** que vem com a distribuição do NDB Cluster para realizar operações que envolvam o início ou o término de nós. Isso inclui, mas não se limita aos comandos `START`, `STOP`, `RESTART` e `SHUTDOWN`. Para mais informações, consulte os comandos de processo do MySQL Cluster Manager.
+O MySQL Cluster Manager gerencia o início e o término de processos e rastreia seus estados internamente, portanto, não é necessário usar **ndb_mgm** para essas tarefas em um NDB Cluster sob controle do MySQL Cluster Manager. Recomenda-se *não* usar o cliente de linha de comando **ndb_mgm** que vem com a distribuição do NDB Cluster para realizar operações que envolvam o início ou o término de nós. Isso inclui, mas não se limita aos comandos `START`, `STOP`, `RESTART` e `SHUTDOWN`. Para mais informações, consulte os comandos de processo do MySQL Cluster Manager.
 
 O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir, *`node_id`* denota um ID de nó de dados ou a palavra-chave `ALL`, que indica que o comando deve ser aplicado a todos os nós de dados do cluster.
 
@@ -36,9 +36,9 @@ Este comando pode ser usado para remover um grupo de nós de um NDB Cluster. `DR
   id=3    @10.100.2.67  (9.5.0-ndb-9.5.0, no nodegroup)
   ```
 
-`DROP NODEGROUP` só funciona quando todos os nós de dados do grupo de nós a serem removidos estão completamente vazios de qualquer dado de tabela e definições de tabela. Como atualmente não há como usar o **ndb\_mgm** ou o cliente **mysql** para remover todos os dados de um nó de dados específico ou grupo de nós, isso significa que o comando só tem sucesso nos dois casos seguintes:
+`DROP NODEGROUP` só funciona quando todos os nós de dados do grupo de nós a serem removidos estão completamente vazios de qualquer dado de tabela e definições de tabela. Como atualmente não há como usar o **ndb_mgm** ou o cliente **mysql** para remover todos os dados de um nó de dados específico ou grupo de nós, isso significa que o comando só tem sucesso nos dois casos seguintes:
 
-  1. Após emitir `CREATE NODEGROUP` no cliente **ndb\_mgm**, mas antes de emitir quaisquer declarações `ALTER TABLE ... REORGANIZE PARTITION` no cliente **mysql**.
+  1. Após emitir `CREATE NODEGROUP` no cliente **ndb_mgm**, mas antes de emitir quaisquer declarações `ALTER TABLE ... REORGANIZE PARTITION` no cliente **mysql**.
 
   2. Após remover todas as tabelas `NDBCLUSTER` usando `DROP TABLE`.
 
@@ -50,7 +50,7 @@ Para obter mais informações sobre `DROP NODEGROUP`, consulte a Seção 25.6.7,
 
   Entra no modo de usuário único, permitindo que apenas o servidor MySQL identificado pelo ID de nó *`node_id`* acesse o banco de dados.
 
-  O cliente **ndb\_mgm** fornece um reconhecimento claro de que este comando foi emitido e teve efeito, conforme mostrado aqui:
+  O cliente **ndb_mgm** fornece um reconhecimento claro de que este comando foi emitido e teve efeito, conforme mostrado aqui:
 
   ```
   ndb_mgm> ENTER SINGLE USER MODE 100
@@ -94,7 +94,7 @@ Para obter mais informações sobre `DROP NODEGROUP`, consulte a Seção 25.6.7,
 
 * `PROMPT [prompt]`
 
-  Altera o prompt exibido pelo **ndb\_mgm** para a literal de string *`prompt`*.
+  Altera o prompt exibido pelo **ndb_mgm** para a literal de string *`prompt`*.
 
   *`prompt`* não deve ser citado (a menos que você queira que o prompt inclua as aspas). Ao contrário do caso do cliente **mysql**, sequências de caracteres especiais e escapamentos não são reconhecidos. Se chamado sem argumento, o comando redefini o prompt para o valor padrão (`ndb_mgm>`).
 
@@ -262,7 +262,7 @@ Nota
 
 `ALL STOP` funciona para interromper apenas todos os nós de dados e não afeta os nós de gerenciamento.
 
-Um nó afetado por este comando se desconecta do clúster e seu processo associado **ndbd** ou **ndb\_mgmd** é encerrado.
+Um nó afetado por este comando se desconecta do clúster e seu processo associado **ndbd** ou **ndb_mgmd** é encerrado.
 
 A opção `-a` faz com que o nó seja interrompido imediatamente, sem esperar pela conclusão de quaisquer transações pendentes.
 
@@ -297,9 +297,9 @@ Exibe informações do TLS do clúster, como se a conexão atual esteja usando T
 
 Para mais informações, consulte a Seção 25.6.19.5, “Encriptação de Link TLS para Clúster NDB”.
 
-**Comandos adicionais.** Vários outros comandos disponíveis no cliente **ndb\_mgm** são descritos em outros lugares, conforme mostrado na lista a seguir:
+**Comandos adicionais.** Vários outros comandos disponíveis no cliente **ndb_mgm** são descritos em outros lugares, conforme mostrado na lista a seguir:
 
-* O comando `START BACKUP` é usado para realizar um backup online no cliente **ndb\_mgm**. O comando `ABORT BACKUP` é usado para cancelar um backup já em andamento. Para obter mais informações, consulte a Seção 25.6.8, “Backup Online do NDB Cluster”.
+* O comando `START BACKUP` é usado para realizar um backup online no cliente **ndb_mgm**. O comando `ABORT BACKUP` é usado para cancelar um backup já em andamento. Para obter mais informações, consulte a Seção 25.6.8, “Backup Online do NDB Cluster”.
 
 * O comando `CLUSTERLOG` é usado para realizar várias funções de registro. Consulte a Seção 25.6.3, “Relatórios de Eventos Gerados no NDB Cluster”, para obter mais informações e exemplos. O `NODELOG DEBUG` ativa ou desativa impressões de depuração nos logs dos nós, conforme descrito anteriormente nesta seção.
 

@@ -1,4 +1,4 @@
-#### 29.12.17.3 The firewall\_membership Table
+#### 29.12.17.3 The firewall_membership Table
 
 The `firewall_membership` table provides a view into the in-memory data cache for MySQL Enterprise Firewall. It lists the members (accounts) of registered firewall group profiles. It is used in conjunction with the `mysql.firewall_membership` system table that provides persistent storage of firewall data; see MySQL Enterprise Firewall Tables.
 

@@ -1,4 +1,4 @@
-#### 26.4.3.24 A visão schema\_auto\_increment\_columns
+#### 26.4.3.24 A visão schema_auto_increment_columns
 
 Essa visualização indica quais tabelas têm colunas `AUTO_INCREMENT` e fornece informações sobre essas colunas, como os valores atuais e máximos da coluna e a proporção de uso (proporção de valores usados para possíveis valores). Por padrão, as linhas são ordenadas pelo menor índice de uso e pelo valor máximo da coluna.
 

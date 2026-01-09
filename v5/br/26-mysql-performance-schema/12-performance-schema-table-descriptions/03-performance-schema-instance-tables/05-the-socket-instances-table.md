@@ -1,4 +1,4 @@
-#### 25.12.3.5 A tabela socket\_instances
+#### 25.12.3.5 A tabela socket_instances
 
 A tabela `socket_instances` fornece um instantâneo em tempo real das conexões ativas ao servidor MySQL. A tabela contém uma linha por conexão de arquivo de socket TCP/IP ou Unix. As informações disponíveis nesta tabela fornecem um instantâneo em tempo real das conexões ativas ao servidor. (Informações adicionais estão disponíveis em tabelas de resumo de sockets, incluindo atividade de rede, como operações de socket e número de bytes transmitidos e recebidos; consulte Seção 25.12.15.8, “Tabelas de Resumo de Sockets”).
 

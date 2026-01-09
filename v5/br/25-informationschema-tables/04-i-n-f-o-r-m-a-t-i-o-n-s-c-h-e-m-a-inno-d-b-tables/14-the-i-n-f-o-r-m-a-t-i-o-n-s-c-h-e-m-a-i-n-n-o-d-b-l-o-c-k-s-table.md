@@ -1,4 +1,4 @@
-### 24.4.14 A tabela INFORMATION\_SCHEMA INNODB\_LOCKS
+### 24.4.14 A tabela INFORMATION_SCHEMA INNODB_LOCKS
 
 A tabela [`INNODB_LOCKS`](https://pt.wikipedia.org/wiki/Tabela_innodb_locks) fornece informações sobre cada bloqueio que uma transação `InnoDB` solicitou, mas ainda não adquiriu, e sobre cada bloqueio que uma transação mantém e está bloqueando outra transação.
 

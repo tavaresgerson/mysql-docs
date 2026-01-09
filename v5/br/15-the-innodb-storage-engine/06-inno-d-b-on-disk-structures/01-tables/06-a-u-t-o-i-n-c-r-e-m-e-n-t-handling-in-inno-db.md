@@ -1,15 +1,15 @@
-#### 14.6.1.6 Gerenciamento de AUTO\_INCREMENT no InnoDB
+#### 14.6.1.6 Gerenciamento de AUTO_INCREMENT no InnoDB
 
 O `InnoDB` oferece um mecanismo de bloqueio configurável que pode melhorar significativamente a escalabilidade e o desempenho das instruções SQL que adicionam linhas a tabelas com colunas `AUTO_INCREMENT`. Para usar o mecanismo `AUTO_INCREMENT` com uma tabela `InnoDB`, uma coluna `AUTO_INCREMENT` deve ser definida como a primeira ou a única coluna de algum índice, de modo que seja possível realizar a consulta equivalente a um `SELECT MAX(ai_col)` indexado na tabela para obter o valor máximo da coluna. O índice não precisa ser um `PRIMARY KEY` ou `UNIQUE`, mas para evitar valores duplicados na coluna `AUTO_INCREMENT`, esses tipos de índice são recomendados.
 
 Esta seção descreve os modos de bloqueio `AUTO_INCREMENT`, as implicações de uso das diferentes configurações dos modos de bloqueio `AUTO_INCREMENT` e como o `InnoDB` inicializa o contador `AUTO_INCREMENT`.
 
-- Modos de bloqueio do AUTO\_INCREMENT do InnoDB
-- Implicações do uso do modo de bloqueio AUTO\_INCREMENT do InnoDB
-- Inicialização do contador de AUTO\_INCREMENT do InnoDB
+- Modos de bloqueio do AUTO_INCREMENT do InnoDB
+- Implicações do uso do modo de bloqueio AUTO_INCREMENT do InnoDB
+- Inicialização do contador de AUTO_INCREMENT do InnoDB
 - Notas
 
-##### Modos de bloqueio do AUTO\_INCREMENT do InnoDB
+##### Modos de bloqueio do AUTO_INCREMENT do InnoDB
 
 Esta seção descreve os modos de bloqueio `AUTO_INCREMENT` usados para gerar valores de autoincremento e como cada modo de bloqueio afeta a replicação. O modo de bloqueio de autoincremento é configurado durante a inicialização usando a variável `innodb_autoinc_lock_mode`.
 
@@ -94,7 +94,7 @@ Existem três configurações possíveis para a variável `innodb_autoinc_lock_m
 
   Se as únicas instruções que executam são "inserções simples", onde o número de linhas a serem inseridas é conhecido antecipadamente, não há lacunas nos números gerados para uma única instrução, exceto para "inserções em modo misto". No entanto, quando as "inserções em lote" são executadas, podem haver lacunas nos valores de autoincremento atribuídos por qualquer instrução dada.
 
-##### Implicações do uso do modo de bloqueio AUTO\_INCREMENT do InnoDB
+##### Implicações do uso do modo de bloqueio AUTO_INCREMENT do InnoDB
 
 - Usando o autoincremento com replicação
 
@@ -104,7 +104,7 @@ Existem três configurações possíveis para a variável `innodb_autoinc_lock_m
 
 - Valores de autoincremento “perdidos” e lacunas na sequência
 
-  Em todos os modos de bloqueio (0, 1 e 2), se uma transação que gerou valores de autoincremento for revertida, esses valores de autoincremento são “perdidos”. Uma vez que um valor é gerado para uma coluna de autoincremento, ele não pode ser revertido, independentemente de a instrução “`INSERT`-like`” ser concluída ou não, e independentemente de a transação contendo ser revertida ou não. Esses valores perdidos não são reutilizados. Assim, pode haver lacunas nos valores armazenados em uma coluna `AUTO\_INCREMENT\` de uma tabela.
+  Em todos os modos de bloqueio (0, 1 e 2), se uma transação que gerou valores de autoincremento for revertida, esses valores de autoincremento são “perdidos”. Uma vez que um valor é gerado para uma coluna de autoincremento, ele não pode ser revertido, independentemente de a instrução “`INSERT`-like`” ser concluída ou não, e independentemente de a transação contendo ser revertida ou não. Esses valores perdidos não são reutilizados. Assim, pode haver lacunas nos valores armazenados em uma coluna `AUTO_INCREMENT\` de uma tabela.
 
 - Especificar NULL ou 0 para a coluna `AUTO_INCREMENT`
 
@@ -235,7 +235,7 @@ Existem três configurações possíveis para a variável `innodb_autoinc_lock_m
   ERROR 1062 (23000): Duplicate entry '4' for key 'PRIMARY'
   ```
 
-##### Inicialização do contador de AUTO\_INCREMENT do InnoDB
+##### Inicialização do contador de AUTO_INCREMENT do InnoDB
 
 Esta seção descreve como o `InnoDB` inicializa os contadores `AUTO_INCREMENT`.
 

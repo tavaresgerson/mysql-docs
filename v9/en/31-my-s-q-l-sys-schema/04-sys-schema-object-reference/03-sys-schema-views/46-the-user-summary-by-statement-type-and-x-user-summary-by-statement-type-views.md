@@ -1,4 +1,4 @@
-#### 30.4.3.46 The user\_summary\_by\_statement\_type and x$user\_summary\_by\_statement\_type Views
+#### 30.4.3.46 The user_summary_by_statement_type and x$user_summary_by_statement_type Views
 
 These views summarize information about statements executed, grouped by user and statement type. By default, rows are sorted by user and descending total latency.
 

@@ -113,7 +113,7 @@ These functions are described in detail in the following list:
   1 row in set (0.00 sec)
   ```
 
-  **JSON\_SCHEMA\_VALID() and CHECK constraints.** `JSON_SCHEMA_VALID()` can also be used to enforce `CHECK` constraints.
+  **JSON_SCHEMA_VALID() and CHECK constraints.** `JSON_SCHEMA_VALID()` can also be used to enforce `CHECK` constraints.
 
   Consider the table `geo` created as shown here, with a JSON column `coordinate` representing a point of latitude and longitude on a map, governed by the JSON schema used as an argument in a `JSON_SCHEMA_VALID()` call which is passed as the expression for a `CHECK` constraint on this table:
 
@@ -218,7 +218,7 @@ These functions are described in detail in the following list:
 
 * `JSON_SCHEMA_VALIDATION_REPORT(schema,document)`
 
-  Validates a JSON *`document`* against a JSON *`schema`*. Both *`schema`* and *`document`* are required. As with JSON\_VALID\_SCHEMA(), the schema must be a valid JSON object, and the document must be a valid JSON document. Provided that these conditions are met, the function returns a report, as a JSON document, on the outcome of the validation. If the JSON document is considered valid according to the JSON Schema, the function returns a JSON object with one property `valid` having the value "true". If the JSON document fails validation, the function returns a JSON object which includes the properties listed here:
+  Validates a JSON *`document`* against a JSON *`schema`*. Both *`schema`* and *`document`* are required. As with JSON_VALID_SCHEMA(), the schema must be a valid JSON object, and the document must be a valid JSON document. Provided that these conditions are met, the function returns a report, as a JSON document, on the outcome of the validation. If the JSON document is considered valid according to the JSON Schema, the function returns a JSON object with one property `valid` having the value "true". If the JSON document fails validation, the function returns a JSON object which includes the properties listed here:
 
   + `valid`: Always "false" for a failed schema validation
 

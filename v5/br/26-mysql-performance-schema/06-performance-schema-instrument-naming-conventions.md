@@ -64,7 +64,7 @@ A parte do sufixo dos nomes dos instrumentos vem do código dos próprios instru
 
 ### Elementos de instrumento em repouso
 
-O instrumento `idle` é usado para eventos de inatividade, que o Schema de Desempenho gera conforme discutido na descrição da coluna `socket_instances.STATE` em Seção 25.12.3.5, “A Tabela socket\_instances”.
+O instrumento `idle` é usado para eventos de inatividade, que o Schema de Desempenho gera conforme discutido na descrição da coluna `socket_instances.STATE` em Seção 25.12.3.5, “A Tabela socket_instances”.
 
 ### Elementos de Instrumento de Memória
 
@@ -136,7 +136,7 @@ Os instrumentos de estágio têm nomes na forma `estágio/área_código/nome_est
 
   - `wait/synch/rwlock`
 
-    Um objeto de bloqueio de leitura/escrita (glossary.html#glos\_rw\_lock) usado para bloquear uma variável específica para acesso, impedindo seu uso por outros threads. Um bloqueio de leitura compartilhado pode ser adquirido simultaneamente por vários threads. Um bloqueio de escrita exclusivo pode ser adquirido por apenas um thread de cada vez.
+    Um objeto de bloqueio de leitura/escrita (glossary.html#glos_rw_lock) usado para bloquear uma variável específica para acesso, impedindo seu uso por outros threads. Um bloqueio de leitura compartilhado pode ser adquirido simultaneamente por vários threads. Um bloqueio de escrita exclusivo pode ser adquirido por apenas um thread de cada vez.
 
   - `wait/synch/sxlock`
 

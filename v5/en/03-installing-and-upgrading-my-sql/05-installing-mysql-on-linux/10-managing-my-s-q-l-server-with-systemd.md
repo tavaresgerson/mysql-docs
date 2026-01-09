@@ -20,15 +20,15 @@ The following discussion covers these topics:
 * Overview of systemd
 * Configuring systemd for MySQL
 * Configuring Multiple MySQL Instances Using systemd
-* Migrating from mysqld\_safe to systemd
+* Migrating from mysqld_safe to systemd
 
 Note
 
-On platforms for which systemd support for MySQL is installed, scripts such as **mysqld\_safe** and the System V initialization script are unnecessary and are not installed. For example, **mysqld\_safe** can handle server restarts, but systemd provides the same capability, and does so in a manner consistent with management of other services rather than by using an application-specific program.
+On platforms for which systemd support for MySQL is installed, scripts such as **mysqld_safe** and the System V initialization script are unnecessary and are not installed. For example, **mysqld_safe** can handle server restarts, but systemd provides the same capability, and does so in a manner consistent with management of other services rather than by using an application-specific program.
 
-One implication of the non-use of **mysqld\_safe** on platforms that use systemd for server management is that use of `[mysqld_safe]` or `[safe_mysqld]` sections in option files is not supported and might lead to unexpected behavior.
+One implication of the non-use of **mysqld_safe** on platforms that use systemd for server management is that use of `[mysqld_safe]` or `[safe_mysqld]` sections in option files is not supported and might lead to unexpected behavior.
 
-Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support for MySQL is installed, **mysqld\_multi** and **mysqld\_multi.server** are unnecessary and are not installed.
+Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support for MySQL is installed, **mysqld_multi** and **mysqld_multi.server** are unnecessary and are not installed.
 
 #### Overview of systemd
 
@@ -98,9 +98,9 @@ With systemd, the `override.conf` configuration method must be used for certain 
 
 * For some parameters, `override.conf` must be used because systemd itself must know their values and it cannot read MySQL option files to get them.
 
-* Parameters that specify values otherwise settable only using options known to **mysqld\_safe** must be specified using systemd because there is no corresponding **mysqld** parameter.
+* Parameters that specify values otherwise settable only using options known to **mysqld_safe** must be specified using systemd because there is no corresponding **mysqld** parameter.
 
-For additional information about using systemd rather than **mysqld\_safe**, see Migrating from mysqld\_safe to systemd.
+For additional information about using systemd rather than **mysqld_safe**, see Migrating from mysqld_safe to systemd.
 
 You can set the following parameters in `override.conf`:
 
@@ -115,13 +115,13 @@ You can set the following parameters in `override.conf`:
     ExecStart=/usr/sbin/mysqld --pid-file=/var/run/mysqld/mysqld-custom.pid $MYSQLD_OPTS
     ```
 
-  + Before MySQL 5.7.10: Use `PIDFile` in `override.conf` rather than the `--pid-file` option for **mysqld** or **mysqld\_safe**. systemd must know the PID file location so that it can restart or stop the server. If the PID file value is specified in a MySQL option file, the value must match the `PIDFile` value or MySQL startup may fail.
+  + Before MySQL 5.7.10: Use `PIDFile` in `override.conf` rather than the `--pid-file` option for **mysqld** or **mysqld_safe**. systemd must know the PID file location so that it can restart or stop the server. If the PID file value is specified in a MySQL option file, the value must match the `PIDFile` value or MySQL startup may fail.
 
-* To set the number of file descriptors available to the MySQL server, use `LimitNOFILE` in `override.conf` rather than the `open_files_limit` system variable for **mysqld** or `--open-files-limit` option for **mysqld\_safe**.
+* To set the number of file descriptors available to the MySQL server, use `LimitNOFILE` in `override.conf` rather than the `open_files_limit` system variable for **mysqld** or `--open-files-limit` option for **mysqld_safe**.
 
-* To set the maximum core file size, use `LimitCore` in `override.conf` rather than the `--core-file-size` option for **mysqld\_safe**.
+* To set the maximum core file size, use `LimitCore` in `override.conf` rather than the `--core-file-size` option for **mysqld_safe**.
 
-* To set the scheduling priority for the MySQL server, use `Nice` in `override.conf` rather than the `--nice` option for **mysqld\_safe**.
+* To set the scheduling priority for the MySQL server, use `Nice` in `override.conf` rather than the `--nice` option for **mysqld_safe**.
 
 Some MySQL parameters are configured using environment variables:
 
@@ -175,7 +175,7 @@ This section describes how to configure systemd for multiple instances of MySQL.
 
 Note
 
-Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support is installed, **mysqld\_multi** and **mysqld\_multi.server** are unnecessary and are not installed. This is true as of MySQL 5.7.13 for RPM platforms, 5.7.19 for Debian platforms.
+Because systemd has the capability of managing multiple MySQL instances on platforms for which systemd support is installed, **mysqld_multi** and **mysqld_multi.server** are unnecessary and are not installed. This is true as of MySQL 5.7.13 for RPM platforms, 5.7.19 for Debian platforms.
 
 To use multiple-instance capability, modify the `my.cnf` option file to include configuration of key options for each instance. These file locations are typical:
 
@@ -267,16 +267,16 @@ Note
 
 On Debian platforms, the packaging scripts for MySQL uninstallation cannot currently handle `mysqld@` instances. Before removing or upgrading the package, you must stop any extra instances manually first.
 
-#### Migrating from mysqld\_safe to systemd
+#### Migrating from mysqld_safe to systemd
 
-Because **mysqld\_safe** is not installed on platforms that use systemd to manage MySQL, options previously specified for that program (for example, in an `[mysqld_safe]` or `[safe_mysqld]` option group) must be specified another way:
+Because **mysqld_safe** is not installed on platforms that use systemd to manage MySQL, options previously specified for that program (for example, in an `[mysqld_safe]` or `[safe_mysqld]` option group) must be specified another way:
 
-* Some **mysqld\_safe** options are also understood by **mysqld** and can be moved from the `[mysqld_safe]` or `[safe_mysqld]` option group to the `[mysqld]` group. This does *not* include `--pid-file`, `--open-files-limit`, or `--nice`. To specify those options, use the `override.conf` systemd file, described previously.
+* Some **mysqld_safe** options are also understood by **mysqld** and can be moved from the `[mysqld_safe]` or `[safe_mysqld]` option group to the `[mysqld]` group. This does *not* include `--pid-file`, `--open-files-limit`, or `--nice`. To specify those options, use the `override.conf` systemd file, described previously.
 
   Note
 
   On systemd platforms, use of `[mysqld_safe]` and `[safe_mysqld]` option groups is not supported and may lead to unexpected behavior.
 
-* For some **mysqld\_safe** options, there are similar **mysqld** options. For example, the **mysqld\_safe** option for enabling `syslog` logging is `--syslog`, which is deprecated. For **mysqld**, enable the `log_syslog` system variable instead. For details, see Section 5.4.2, “The Error Log”.
+* For some **mysqld_safe** options, there are similar **mysqld** options. For example, the **mysqld_safe** option for enabling `syslog` logging is `--syslog`, which is deprecated. For **mysqld**, enable the `log_syslog` system variable instead. For details, see Section 5.4.2, “The Error Log”.
 
-* **mysqld\_safe** options not understood by **mysqld** can be specified in `override.conf` or environment variables. For example, with **mysqld\_safe**, if the server should use a specific memory allocation library, this is specified using the `--malloc-lib` option. For installations that manage the server with systemd, arrange to set the `LD_PRELOAD` environment variable instead, as described previously.
+* **mysqld_safe** options not understood by **mysqld** can be specified in `override.conf` or environment variables. For example, with **mysqld_safe**, if the server should use a specific memory allocation library, this is specified using the `--malloc-lib` option. For installations that manage the server with systemd, arrange to set the `LD_PRELOAD` environment variable instead, as described previously.

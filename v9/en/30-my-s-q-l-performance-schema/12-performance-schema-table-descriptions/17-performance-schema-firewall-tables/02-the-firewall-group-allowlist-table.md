@@ -1,4 +1,4 @@
-#### 29.12.17.2 The firewall\_group\_allowlist Table
+#### 29.12.17.2 The firewall_group_allowlist Table
 
 The `firewall_group_allowlist` table provides a view into the in-memory data cache for MySQL Enterprise Firewall. It lists allowlist rules of registered firewall group profiles. It is used in conjunction with the `mysql.firewall_group_allowlist` system table that provides persistent storage of firewall data; see MySQL Enterprise Firewall Tables.
 

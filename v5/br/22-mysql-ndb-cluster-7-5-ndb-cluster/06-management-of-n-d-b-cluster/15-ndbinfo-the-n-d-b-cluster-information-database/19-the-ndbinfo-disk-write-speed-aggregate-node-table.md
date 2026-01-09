@@ -1,4 +1,4 @@
-#### 21.6.15.19 Tabela ndbinfo disk\_write\_speed\_aggregate\_node
+#### 21.6.15.19 Tabela ndbinfo disk_write_speed_aggregate_node
 
 A tabela `disk_write_speed_aggregate_node` fornece informações agregadas por nó sobre a velocidade de escrita em discos durante operações de LCP, backup e restauração.
 

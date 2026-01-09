@@ -1,4 +1,4 @@
-#### 26.4.3.20 Visões de memory\_global\_total e x$memory\_global\_total
+#### 26.4.3.20 Visões de memory_global_total e x$memory_global_total
 
 Esses pontos resumem o uso total da memória dentro do servidor.
 

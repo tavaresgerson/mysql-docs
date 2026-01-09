@@ -96,7 +96,7 @@ Quando você emite `RESET MASTER`, as seguintes operações de reinicialização
 
 - O valor global (mas não o valor da sessão) da variável de sistema `gtid_executed` está definido como uma string vazia.
 
-- A tabela `mysql.gtid_executed` é limpa (consulte tabela mysql.gtid\_executed).
+- A tabela `mysql.gtid_executed` é limpa (consulte tabela mysql.gtid_executed).
 
 - Se o servidor tiver o registro binário habilitado, os arquivos de registro binário existentes serão excluídos e o arquivo de índice do registro binário será limpo.
 

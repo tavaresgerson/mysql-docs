@@ -2,7 +2,7 @@
 
 **Table 14.15 Cast Functions and Operators**
 
-<table frame="box" rules="all" summary="A reference that lists cast functions and operators."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><a class="link" href="cast-functions.html#operator_binary"><code class="literal">BINARY</code></a></th> <td> Cast a string to a binary string </td> <td>Yes</td> </tr><tr><th><a class="link" href="cast-functions.html#function_cast"><code class="literal">CAST()</code></a></th> <td> Cast a value as a certain type </td> <td></td> </tr><tr><th><a class="link" href="cast-functions.html#function_convert"><code class="literal">CONVERT()</code></a></th> <td> Cast a value as a certain type </td> <td></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists cast functions and operators."><col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/><thead><tr><th>Name</th> <th>Description</th> <th>Deprecated</th> </tr></thead><tbody><tr><th><code class="literal">BINARY</code></th> <td> Cast a string to a binary string </td> <td>Yes</td> </tr><tr><th><code class="literal">CAST()</code></th> <td> Cast a value as a certain type </td> <td></td> </tr><tr><th><code class="literal">CONVERT()</code></th> <td> Cast a value as a certain type </td> <td></td> </tr></tbody></table>
 
 Cast functions and operators enable conversion of values from one data type to another.
 
@@ -16,7 +16,7 @@ Cast functions and operators enable conversion of values from one data type to a
 
 * `BINARY` *`expr`*
 
-  The `BINARY` operator converts the expression to a binary string (a string that has the `binary` character set and `binary` collation). A common use for `BINARY` is to force a character string comparison to be done byte by byte using numeric byte values rather than character by character. The `BINARY` operator also causes trailing spaces in comparisons to be significant. For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see Section 12.8.5, “The binary Collation Compared to \_bin Collations”.
+  The `BINARY` operator converts the expression to a binary string (a string that has the `binary` character set and `binary` collation). A common use for `BINARY` is to force a character string comparison to be done byte by byte using numeric byte values rather than character by character. The `BINARY` operator also causes trailing spaces in comparisons to be significant. For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see Section 12.8.5, “The binary Collation Compared to _bin Collations”.
 
   The `BINARY` operator is deprecated; you should expect its removal in a future version of MySQL. Use `CAST(... AS BINARY)` instead.
 

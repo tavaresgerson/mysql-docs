@@ -25,7 +25,7 @@ Essas fases são as mesmas que as relatadas na saída do comando `node_id STATUS
 3. Atribua os ports a serem usados para comunicações entre nós
 4. Alocar memória de acordo com as configurações obtidas do arquivo de configuração
 
-Quando um nó de dados ou um nó SQL se conecta pela primeira vez ao nó de gerenciamento, ele reserva um ID de nó do cluster. Para garantir que nenhum outro nó aloque o mesmo ID de nó, esse ID é mantido até que o nó tenha conseguido se conectar ao cluster e pelo menos um relatório **ndbd** indique que esse nó está conectado. Essa retenção do ID de nó é protegida pela conexão entre o nó em questão e **ndb\_mgmd**.
+Quando um nó de dados ou um nó SQL se conecta pela primeira vez ao nó de gerenciamento, ele reserva um ID de nó do cluster. Para garantir que nenhum outro nó aloque o mesmo ID de nó, esse ID é mantido até que o nó tenha conseguido se conectar ao cluster e pelo menos um relatório **ndbd** indique que esse nó está conectado. Essa retenção do ID de nó é protegida pela conexão entre o nó em questão e **ndb_mgmd**.
 
 Após a inicialização de cada nó de dados, o processo de inicialização do clúster pode prosseguir. As etapas pelas quais o clúster passa durante esse processo estão listadas aqui:
 

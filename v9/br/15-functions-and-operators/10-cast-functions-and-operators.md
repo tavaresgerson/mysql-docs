@@ -5,9 +5,9 @@
 <table frame="box" rules="all" summary="Uma referência que lista as funções e operadores de castagem.">
 <col style="width: 25%"/><col style="width: 62%"/><col style="width: 12%"/>
 <thead><tr><th>Nome</th> <th>Descrição</th> <th>Desatualizado</th> </tr></thead><tbody>
-<tr><th><a class="link" href="cast-functions.html#operator_binary"><code>BINARY</code></a></th> <td> Casta uma string para uma string binária </td> <td>Sim</td> </tr>
-<tr><th><a class="link" href="cast-functions.html#function_cast"><code>CAST()</code></a></th> <td> Casta um valor como um determinado tipo </td> <td></td> </tr>
-<tr><th><a class="link" href="cast-functions.html#function_convert"><code>CONVERT()</code></a></th> <td> Casta um valor como um determinado tipo </td> <td></td> </tr>
+<tr><th><code>BINARY</code></th> <td> Casta uma string para uma string binária </td> <td>Sim</td> </tr>
+<tr><th><code>CAST()</code></th> <td> Casta um valor como um determinado tipo </td> <td></td> </tr>
+<tr><th><code>CONVERT()</code></th> <td> Casta um valor como um determinado tipo </td> <td></td> </tr>
 </tbody></table>
 
 As funções e operadores de castagem permitem a conversão de valores de um tipo de dado para outro.
@@ -22,7 +22,7 @@ As funções e operadores de castagem permitem a conversão de valores de um tip
 
 * `BINARY` *`expr`*
 
-O operador `BINARY` converte a expressão em uma string binária (uma string que tem o conjunto de caracteres `binary` e a collation `binary`). Um uso comum do `BINARY` é forçar uma comparação de string de caracteres a ser feita caractere por caractere usando valores de byte numéricos em vez de byte por byte. O operador `BINARY` também faz com que os espaços finais nas comparações sejam significativos. Para informações sobre as diferenças entre a collation `binary` do conjunto de caracteres `binary` e as collation `_bin` dos conjuntos de caracteres não binários, consulte a Seção 12.8.5, “A collation binária comparada às collation \_bin”.
+O operador `BINARY` converte a expressão em uma string binária (uma string que tem o conjunto de caracteres `binary` e a collation `binary`). Um uso comum do `BINARY` é forçar uma comparação de string de caracteres a ser feita caractere por caractere usando valores de byte numéricos em vez de byte por byte. O operador `BINARY` também faz com que os espaços finais nas comparações sejam significativos. Para informações sobre as diferenças entre a collation `binary` do conjunto de caracteres `binary` e as collation `_bin` dos conjuntos de caracteres não binários, consulte a Seção 12.8.5, “A collation binária comparada às collation _bin”.
 
 O operador `BINARY` está desatualizado; você deve esperar sua remoção em uma versão futura do MySQL. Use `CAST(... AS BINARY)` em vez disso.
 

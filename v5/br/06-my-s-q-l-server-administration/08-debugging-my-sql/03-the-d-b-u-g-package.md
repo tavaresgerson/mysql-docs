@@ -22,7 +22,7 @@ Aqui estão alguns exemplos de strings de controle de depuração, conforme pode
 --debug=d:t:i:O,\\mysqld.trace
 ```
 
-Para o **mysqld**, também é possível alterar as configurações do `DBUG` em tempo de execução, definindo a variável de sistema `debug` (server-system-variables.html#sysvar\_debug). Essa variável tem valores globais e de sessão:
+Para o **mysqld**, também é possível alterar as configurações do `DBUG` em tempo de execução, definindo a variável de sistema `debug` (server-system-variables.html#sysvar_debug). Essa variável tem valores globais e de sessão:
 
 ```sql
 mysql> SET GLOBAL debug = 'debug_options';

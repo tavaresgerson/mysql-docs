@@ -1,10 +1,10 @@
 ### 25.6.6 NDB Cluster Single User Mode
 
-Single user mode enables the database administrator to restrict access to the database system to a single API node, such as a MySQL server (SQL node) or an instance of **ndb\_restore**. When entering single user mode, connections to all other API nodes are closed gracefully and all running transactions are aborted. No new transactions are permitted to start.
+Single user mode enables the database administrator to restrict access to the database system to a single API node, such as a MySQL server (SQL node) or an instance of **ndb_restore**. When entering single user mode, connections to all other API nodes are closed gracefully and all running transactions are aborted. No new transactions are permitted to start.
 
 Once the cluster has entered single user mode, only the designated API node is granted access to the database.
 
-You can use the `ALL STATUS` command in the **ndb\_mgm** client to see when the cluster has entered single user mode. You can also check the `status` column of the `ndbinfo.nodes` table (see Section 25.6.15.48, “The ndbinfo nodes Table”, for more information).
+You can use the `ALL STATUS` command in the **ndb_mgm** client to see when the cluster has entered single user mode. You can also check the `status` column of the `ndbinfo.nodes` table (see Section 25.6.15.48, “The ndbinfo nodes Table”, for more information).
 
 Example:
 

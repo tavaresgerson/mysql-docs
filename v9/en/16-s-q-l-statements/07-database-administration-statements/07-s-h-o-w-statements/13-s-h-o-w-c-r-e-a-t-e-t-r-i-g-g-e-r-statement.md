@@ -38,4 +38,4 @@ SQL Original Statement: CREATE DEFINER=`me`@`localhost` TRIGGER `ins_sum`
 
 * `Created`: The date and time when the trigger was created. This is a `TIMESTAMP(2)` value (with a fractional part in hundredths of seconds) for triggers.
 
-Trigger information is also available from the `INFORMATION_SCHEMA` `TRIGGERS` table. See Section 28.3.50, “The INFORMATION\_SCHEMA TRIGGERS Table”.
+Trigger information is also available from the `INFORMATION_SCHEMA` `TRIGGERS` table. See Section 28.3.50, “The INFORMATION_SCHEMA TRIGGERS Table”.

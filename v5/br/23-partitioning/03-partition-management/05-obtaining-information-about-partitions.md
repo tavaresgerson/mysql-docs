@@ -32,7 +32,7 @@ PARTITION BY RANGE (YEAR(purchased)) (
 
 A saída do comando `SHOW TABLE STATUS` para tabelas particionadas é a mesma da saída para tabelas não particionadas, exceto que a coluna `Create_options` contém a string `partitioned`. A coluna `Engine` contém o nome do motor de armazenamento usado por todas as partições da tabela. (Consulte Seção 13.7.5.36, “Instrução SHOW TABLE STATUS” para obter mais informações sobre essa instrução.)
 
-Você também pode obter informações sobre partições do `INFORMATION_SCHEMA`, que contém uma tabela `PARTITIONS`. Veja Seção 24.3.16, “A Tabela INFORMATION\_SCHEMA PARTITIONS”.
+Você também pode obter informações sobre partições do `INFORMATION_SCHEMA`, que contém uma tabela `PARTITIONS`. Veja Seção 24.3.16, “A Tabela INFORMATION_SCHEMA PARTITIONS”.
 
 É possível determinar quais partições de uma tabela particionada estão envolvidas em uma consulta específica do `SELECT` usando o `EXPLAIN`. A coluna `partitions` no resultado do `EXPLAIN` lista as partições das quais os registros seriam correspondidos pela consulta.
 

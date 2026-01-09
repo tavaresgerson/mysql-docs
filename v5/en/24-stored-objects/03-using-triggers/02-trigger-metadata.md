@@ -2,7 +2,7 @@
 
 To obtain metadata about triggers:
 
-* Query the `TRIGGERS` table of the `INFORMATION_SCHEMA` database. See Section 24.3.29, “The INFORMATION\_SCHEMA TRIGGERS Table”.
+* Query the `TRIGGERS` table of the `INFORMATION_SCHEMA` database. See Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”.
 
 * Use the `SHOW CREATE TRIGGER` statement. See Section 13.7.5.11, “SHOW CREATE TRIGGER Statement”.
 

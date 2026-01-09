@@ -39,6 +39,6 @@ Se você não conseguir identificar o problema no log de erros, experimente as s
 
      O valor de *`N`* deve ser 1 se a próxima declaração da fonte não usar `AUTO_INCREMENT` ou `LAST_INSERT_ID()`. Caso contrário, o valor deve ser 2. A razão para usar um valor de 2 para declarações que usam `AUTO_INCREMENT` ou `LAST_INSERT_ID()` é que elas registram dois eventos no log binário da fonte.
 
-     Veja também Seção 13.4.2.4, “Sintaxe de SET GLOBAL sql\_slave\_skip\_counter”.
+     Veja também Seção 13.4.2.4, “Sintaxe de SET GLOBAL sql_slave_skip_counter”.
 
   4. Se você tem certeza de que a réplica começou perfeitamente sincronizada com a fonte e que ninguém atualizou as tabelas envolvidas fora dos threads de replicação, então, presumivelmente, a discrepância é o resultado de um bug. Se você estiver executando a versão mais recente do MySQL, por favor, informe o problema. Se você estiver executando uma versão mais antiga, tente atualizar para a versão mais recente de produção para determinar se o problema persiste.

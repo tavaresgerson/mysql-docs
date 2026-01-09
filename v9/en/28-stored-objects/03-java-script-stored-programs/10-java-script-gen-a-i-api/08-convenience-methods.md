@@ -179,7 +179,7 @@ This static method loads an existing (and already trained) MySQL HeatWave AutoML
   on the type of model loaded.
 
 For more information, see
-ML\_MODEL\_LOAD.
+ML_MODEL_LOAD.
 
 ##### ml.rag()
 

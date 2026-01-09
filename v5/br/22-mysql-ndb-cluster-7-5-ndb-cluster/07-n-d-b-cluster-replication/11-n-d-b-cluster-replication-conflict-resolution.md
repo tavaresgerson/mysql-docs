@@ -18,15 +18,15 @@ Você também deve ter em mente que é responsabilidade do aplicativo garantir q
 
 As preparações para a resolução de conflitos devem ser feitas tanto na fonte quanto na replica. Essas tarefas estão descritas na lista a seguir:
 
-- Ao escrever os logs binários na fonte, você deve determinar quais colunas serão enviadas (todas as colunas ou apenas aquelas que foram atualizadas). Isso é feito para o MySQL Server como um todo, aplicando a opção de inicialização **mysqld** `--ndb-log-updated-only` (descrita mais adiante nesta seção), ou em uma ou mais tabelas específicas, colocando as entradas apropriadas na tabela `mysql.ndb_replication` (veja Tabela ndb\_replication).
+- Ao escrever os logs binários na fonte, você deve determinar quais colunas serão enviadas (todas as colunas ou apenas aquelas que foram atualizadas). Isso é feito para o MySQL Server como um todo, aplicando a opção de inicialização **mysqld** `--ndb-log-updated-only` (descrita mais adiante nesta seção), ou em uma ou mais tabelas específicas, colocando as entradas apropriadas na tabela `mysql.ndb_replication` (veja Tabela ndb_replication).
 
   Nota
 
   Se você estiver replicando tabelas com colunas muito grandes (como as colunas `TEXT` ou `BLOB`), `--ndb-log-updated-only` também pode ser útil para reduzir o tamanho dos logs binários e evitar possíveis falhas de replicação devido ao excedente de `max_allowed_packet`.
 
-  Para obter mais informações sobre esse problema, consulte Seção 16.4.1.19, “Replicação e max\_allowed\_packet”.
+  Para obter mais informações sobre esse problema, consulte Seção 16.4.1.19, “Replicação e max_allowed_packet”.
 
-- Na replica, você deve determinar qual tipo de resolução de conflitos aplicar (“o último timestamp vence”, “o mesmo timestamp vence”, “o primário vence”, “o primário vence, transação completa” ou nenhum). Isso é feito usando a tabela de sistema `mysql.ndb_replication`, e se aplica a uma ou mais tabelas específicas (consulte tabela ndb\_replication).
+- Na replica, você deve determinar qual tipo de resolução de conflitos aplicar (“o último timestamp vence”, “o mesmo timestamp vence”, “o primário vence”, “o primário vence, transação completa” ou nenhum). Isso é feito usando a tabela de sistema `mysql.ndb_replication`, e se aplica a uma ou mais tabelas específicas (consulte tabela ndb_replication).
 
 - O NDB Cluster também suporta a detecção de conflitos de leitura, ou seja, a detecção de conflitos entre leituras de uma determinada linha em um cluster e atualizações ou exclusões da mesma linha em outro cluster. Isso requer bloqueios de leitura exclusivos obtidos definindo `ndb_log_exclusive_reads` igual a 1 na replica. Todas as linhas lidas por uma leitura conflitante são registradas na tabela de exceções. Para mais informações, consulte Detecção e resolução de conflitos de leitura.
 
@@ -56,11 +56,11 @@ Esta seção fornece informações detalhadas sobre as funções que podem ser u
 
 - NDB$OLD()
 - NDB$MAX()
-- NDB$MAX\_DELETE\_WIN()
+- NDB$MAX_DELETE_WIN()
 - NDB$EPOCH()
-- NDB$EPOCH\_TRANS
+- NDB$EPOCH_TRANS
 - NDB$EPOCH2
-- NDB$EPOCH2\_TRANS
+- NDB$EPOCH2_TRANS
 
 ##### NDB$OLD()
 
@@ -94,7 +94,7 @@ Importante
 
 O valor da coluna da imagem "after" das fontes é usado por esta função.
 
-##### NDB$MAX\_DELETE\_WIN()
+##### NDB$MAX_DELETE_WIN()
 
 Esta é uma variação do `NDB$MAX()`. Devido ao fato de que não há um timestamp disponível para uma operação de exclusão, uma exclusão usando `NDB$MAX()` é, na verdade, processada como `NDB$OLD`, mas, para alguns casos de uso, isso não é ótimo. Para `NDB$MAX_DELETE_WIN()`, se o valor da coluna “timestamp” para uma determinada linha que adiciona ou atualiza uma linha existente proveniente da fonte for maior que o da replica, ele é aplicado. No entanto, as operações de exclusão são tratadas como tendo sempre o valor mais alto. Isso é ilustrado pelo seguinte pseudocodigo:
 
@@ -145,7 +145,7 @@ Para os valores padrão desses parâmetros de configuração (2000 e 100 milisse
 
 Tanto o `NDB$EPOCH()` quanto o `NDB$EPOCH_TRANS()` inserem entradas para linhas conflitantes nas tabelas de exceções relevantes, desde que essas tabelas tenham sido definidas de acordo com as mesmas regras do esquema da tabela de exceções, conforme descrito em outras partes desta seção (veja NDB$OLD()). Você deve criar qualquer tabela de exceção antes de criar a tabela de dados com a qual ela será usada.
 
-Assim como as outras funções de detecção de conflitos discutidas nesta seção, `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` são ativadas ao incluir entradas relevantes na tabela `mysql.ndb_replication` (veja tabela ndb\_replication). Os papéis dos Clustres NDB primários e secundários neste cenário são totalmente determinados pelas entradas da tabela `mysql.ndb_replication`.
+Assim como as outras funções de detecção de conflitos discutidas nesta seção, `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` são ativadas ao incluir entradas relevantes na tabela `mysql.ndb_replication` (veja tabela ndb_replication). Os papéis dos Clustres NDB primários e secundários neste cenário são totalmente determinados pelas entradas da tabela `mysql.ndb_replication`.
 
 Como os algoritmos de detecção de conflitos empregados por `NDB$EPOCH()` e `NDB$EPOCH_TRANS()` são assimétricos, você deve usar valores diferentes para as entradas `server_id` das réplicas primária e secundária.
 
@@ -167,13 +167,13 @@ As seguintes limitações atualmente se aplicam ao uso da função `NDB$EPOCH()`
 
 - As tabelas com colunas `BLOB` ou `TEXT` não são atualmente suportadas com `NDB$EPOCH()` ou `NDB$EPOCH_TRANS()`.
 
-##### NDB$EPOCH\_TRANS()
+##### NDB$EPOCH_TRANS()
 
 `NDB$EPOCH_TRANS()` estende a função `NDB$EPOCH()`. Os conflitos são detectados e tratados da mesma maneira, usando a regra "o primário vence sempre" (veja NDB$EPOCH()), mas com a condição adicional de que quaisquer outras linhas atualizadas na mesma transação em que o conflito ocorreu também são consideradas em conflito. Em outras palavras, onde `NDB$EPOCH()` realinha linhas conflitantes individuais no secundário, `NDB$EPOCH_TRANS()` realinha transações conflitantes.
 
 Além disso, quaisquer transações que sejam dependentes de forma detectável de uma transação conflitante também são consideradas conflitantes, essas dependências sendo determinadas pelo conteúdo do log binário do cluster secundário. Como o log binário contém apenas operações de modificação de dados (inserções, atualizações e exclusões), apenas as modificações de dados sobrepostos são usadas para determinar as dependências entre as transações.
 
-`NDB$EPOCH_TRANS()` está sujeito às mesmas condições e limitações que `NDB$EPOCH()`, e, além disso, exige que sejam usados eventos de linha de log binário da versão 2 (`log_bin_use_v1_row_events` igual a 0), o que adiciona um custo de armazenamento de 2 bytes por evento no log binário. Além disso, todos os IDs de transação devem ser registrados no log binário do secundário, usando `--ndb-log-transaction-id` (variável de sistema `log_bin_use_v1_row_events` no arquivo `replication-options-binary-log.html`#sysvar\_log\_bin\_use\_v1\_row\_events) definido como `ON`. Isso adiciona uma quantidade variável de overhead (até 13 bytes por linha).
+`NDB$EPOCH_TRANS()` está sujeito às mesmas condições e limitações que `NDB$EPOCH()`, e, além disso, exige que sejam usados eventos de linha de log binário da versão 2 (`log_bin_use_v1_row_events` igual a 0), o que adiciona um custo de armazenamento de 2 bytes por evento no log binário. Além disso, todos os IDs de transação devem ser registrados no log binário do secundário, usando `--ndb-log-transaction-id` (variável de sistema `log_bin_use_v1_row_events` no arquivo `replication-options-binary-log.html`#sysvar_log_bin_use_v1_row_events) definido como `ON`. Isso adiciona uma quantidade variável de overhead (até 13 bytes por linha).
 
 Veja NDB$EPOCH().
 
@@ -181,7 +181,7 @@ Veja NDB$EPOCH().
 
 A função `NDB$EPOCH2()` é semelhante à `NDB$EPOCH()`, exceto que `NDB$EPOCH2()` oferece suporte à manipulação de apagamento-apagamento com uma topologia de replicação bidirecional. Nesse cenário, os papéis primário e secundário são atribuídos às duas fontes ao definir a variável de sistema `ndb_slave_conflict_role` para o valor apropriado em cada fonte (geralmente um para cada `PRIMARY` e `SECONDARY`). Quando isso é feito, as modificações feitas pelo secundário são refletidas pelo primário para o secundário, que as aplica condicionalmente.
 
-##### NDB$EPOCH2\_TRANS()
+##### NDB$EPOCH2_TRANS()
 
 `NDB$EPOCH2_TRANS()` estende a função `NDB$EPOCH2()`. Os conflitos são detectados e tratados da mesma maneira, e a atribuição de papéis primários e secundários aos clústeres replicados, mas com a condição adicional de que quaisquer outras linhas atualizadas na mesma transação em que o conflito ocorreu também são consideradas em conflito. Ou seja, `NDB$EPOCH2()` realinha as linhas conflitantes individuais no secundário, enquanto `NDB$EPOCH_TRANS()` realinha as transações conflitantes.
 
@@ -270,7 +270,7 @@ Colunas de referência adicionais que não fazem parte da chave primária da tab
 
 Importante
 
-A tabela `mysql.ndb_replication` é lida quando uma tabela de dados é configurada para replicação, portanto, a linha correspondente a uma tabela a ser replicada deve ser inserida em \`mysql.ndb\_replication *antes* de a tabela a ser replicada ser criada.
+A tabela `mysql.ndb_replication` é lida quando uma tabela de dados é configurada para replicação, portanto, a linha correspondente a uma tabela a ser replicada deve ser inserida em \`mysql.ndb_replication *antes* de a tabela a ser replicada ser criada.
 
 #### Variáveis de Status de Detecção de Conflitos
 
@@ -301,7 +301,7 @@ Os exemplos a seguir pressupõem que você já tenha uma configuração de repli
 
    Nota
 
-   Se a tabela `ndb_replication` ainda não existir, você deve criá-la. Consulte Tabela ndb\_replication.
+   Se a tabela `ndb_replication` ainda não existir, você deve criá-la. Consulte Tabela ndb_replication.
 
    Inserir um 0 na coluna `server_id` indica que todos os nós SQL que acessam essa tabela devem usar a resolução de conflitos. Se você deseja usar a resolução de conflitos apenas em um **mysqld** específico, use o ID do servidor real.
 

@@ -38,4 +38,4 @@ mysql-py> db.drop_collection("citytest")
 
 * See TableDeleteFunction for the full syntax definition.
 
-* See Section 22.4.2, “Download and Import world\_x Database” for instructions to recreate the `world_x` database.
+* See Section 22.4.2, “Download and Import world_x Database” for instructions to recreate the `world_x` database.

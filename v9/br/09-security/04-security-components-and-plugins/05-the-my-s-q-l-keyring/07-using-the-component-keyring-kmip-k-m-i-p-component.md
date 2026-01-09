@@ -40,7 +40,7 @@ Os arquivos de configuração do `component_keyring_kmip` têm essas propriedade
 
     - `CA.pem`
     - `cert.pem`
-    - `key.pem` (se a chave estiver protegida por senha, consulte Protegendo a senha do arquivo de chave do componente\_keyring\_kmip)
+    - `key.pem` (se a chave estiver protegida por senha, consulte Protegendo a senha do arquivo de chave do componente_keyring_kmip)
 
 Apenas os certificados do subdiretório `ssl/` são usados. Se os certificados estiverem protegidos por senha, então o `password.txt` precisa estar presente no subdiretório `ssl/`.
 
@@ -67,7 +67,7 @@ A configuração parece assim:
 }
 ```
 
-##### Configurando o componente\_keyring\_kmip para o Oracle Key Vault
+##### Configurando o componente_keyring_kmip para o Oracle Key Vault
 
 A discussão aqui assume que você está familiarizado com o Oracle Key Vault (OKV). Algumas fontes de informações pertinentes:
 
@@ -103,7 +103,7 @@ Um arquivo de exemplo `component_keyring_kmip.cnf` parece o seguinte:
 }
 ```
 
-##### Protegendo a senha do arquivo de chave component\_keyring\_kmip
+##### Protegendo a senha do arquivo de chave component_keyring_kmip
 
 Você pode, opcionalmente, proteger o arquivo de chave com uma senha e fornecer um arquivo contendo a senha para permitir que o arquivo de chave seja descriptografado. Para fazer isso, mude para o diretório `ssl` e execute as seguintes etapas:
 

@@ -1,4 +1,4 @@
-#### 30.4.5.11 A função `ps\_is\_instrument\_default\_enabled()`
+#### 30.4.5.11 A função `ps_is_instrument_default_enabled()`
 
 Retorna `YES` ou `NO` para indicar se um instrumento do Schema de Desempenho está habilitado por padrão.
 

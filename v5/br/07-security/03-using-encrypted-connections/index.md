@@ -1,15 +1,5 @@
 ## 6.3 Usando Conexões Encriptadas
 
-6.3.1 Configurando o MySQL para usar conexões criptografadas
-
-6.3.2 Conexão Encriptada Protocolos e Cifras TLS
-
-6.3.3 Criação de Certificados e Chaves SSL e RSA
-
-6.3.4 Capacidades dependentes da biblioteca SSL
-
-6.3.5 Conectar-se ao MySQL remotamente a partir do Windows com SSH
-
 Com uma conexão não criptografada entre o cliente MySQL e o servidor, alguém com acesso à rede poderia monitorar todo o seu tráfego e inspecionar os dados enviados ou recebidos entre o cliente e o servidor.
 
 Quando você precisa transferir informações por uma rede de maneira segura, uma conexão não criptografada é inaceitável. Para tornar qualquer tipo de dado ilegível, use criptografia. Os algoritmos de criptografia devem incluir elementos de segurança para resistir a muitos tipos de ataques conhecidos, como alterar a ordem das mensagens criptografadas ou reproduzir dados duas vezes.
@@ -22,9 +12,9 @@ O X.509 permite identificar alguém na Internet. Em termos básicos, deve haver 
 
 O MySQL pode ser compilado para suporte a conexões criptografadas usando OpenSSL ou yaSSL. Para uma comparação entre os dois pacotes, consulte Seção 6.3.4, “Capacidades Dependentes da Biblioteca SSL”. Para informações sobre os protocolos de criptografia e cifra que cada pacote suporta, consulte Seção 6.3.2, “Protocolos e cifra de conexão criptografada TLS”.
 
-Nota
-
+::: info Nota
 É possível compilar o MySQL usando o yaSSL como alternativa ao OpenSSL apenas antes do MySQL 5.7.28. A partir do MySQL 5.7.28, o suporte ao yaSSL é removido e todas as compilações do MySQL usam o OpenSSL.
+:::
 
 Por padrão, os programas do MySQL tentam se conectar usando criptografia se o servidor suportar conexões criptografadas, revertendo para uma conexão não criptografada se uma conexão criptografada não puder ser estabelecida. Para obter informações sobre as opções que afetam o uso de conexões criptografadas, consulte Seção 6.3.1, “Configurando o MySQL para Usar Conexões Criptografadas” e Opções de Comando para Conexões Criptografadas.
 
@@ -40,13 +30,13 @@ Várias melhorias foram feitas no suporte para conexões criptografadas no MySQL
 
 - 5.7.3: No lado do cliente, a opção explícita `--ssl` deixou de ser apenas recomendável e passou a ser obrigatória. Dado que um servidor está habilitado para suportar conexões criptografadas, um programa cliente pode exigir uma conexão criptografada especificando apenas a opção `--ssl`. (Anteriormente, era necessário que o cliente especificasse a opção `--ssl-ca`, ou as três opções `--ssl-ca`, `--ssl-key` e `--ssl-cert`. Se não for especificada a opção `--ssl`, a tentativa de conexão falha se não for possível estabelecer uma conexão criptografada. Outras opções `--ssl-xxx` no lado do cliente são recomendadas na ausência de `--ssl`: O cliente tenta se conectar usando criptografia, mas retorna a uma conexão não criptografada se não for possível estabelecer uma conexão criptografada.
 
-- 5.7.5: A opção `--ssl` no lado do servidor (server-options.html#option\_mysqld\_ssl) é ativada por padrão.
+- 5.7.5: A opção `--ssl` no lado do servidor (server-options.html#option_mysqld_ssl) é ativada por padrão.
 
   Para servidores compilados com OpenSSL, as variáveis de sistema `auto_generate_certs` e `sha256_password_auto_generate_rsa_keys` estão disponíveis para habilitar a autogeração e autodescoberta de arquivos de certificado e chave SSL/RSA no momento do início. Para a autodescoberta de certificados e chaves, se `--ssl` estiver habilitado e outras opções `--ssl-xxx` *não* forem fornecidas para configurar conexões criptografadas explicitamente, o servidor tentará habilitar o suporte para conexões criptografadas automaticamente no momento do início, se descobrir os arquivos de certificado e chave necessários no diretório de dados.
 
-- 5.7.6: O utilitário **mysql\_ssl\_rsa\_setup** está disponível para facilitar a geração manual de arquivos de certificado e chave SSL/RSA. A autodescoberta de arquivos SSL/RSA ao iniciar é expandida para aplicar a todos os servidores, independentemente de serem compilados com o OpenSSL ou o yaSSL. (Isso significa que o `auto_generate_certs` não precisa ser habilitado para que a autodescoberta ocorra.)
+- 5.7.6: O utilitário **mysql_ssl_rsa_setup** está disponível para facilitar a geração manual de arquivos de certificado e chave SSL/RSA. A autodescoberta de arquivos SSL/RSA ao iniciar é expandida para aplicar a todos os servidores, independentemente de serem compilados com o OpenSSL ou o yaSSL. (Isso significa que o `auto_generate_certs` não precisa ser habilitado para que a autodescoberta ocorra.)
 
-  Se o servidor descobrir, durante a inicialização, que o certificado da CA é autoassinado, ele escreve uma mensagem de alerta no log de erros. (O certificado é autoassinado se for criado automaticamente pelo servidor ou manualmente usando **mysql\_ssl\_rsa\_setup**.)
+  Se o servidor descobrir, durante a inicialização, que o certificado da CA é autoassinado, ele escreve uma mensagem de alerta no log de erros. (O certificado é autoassinado se for criado automaticamente pelo servidor ou manualmente usando **mysql_ssl_rsa_setup**.)
 
 - 5.7.7: A biblioteca de cliente C tenta estabelecer uma conexão criptografada por padrão, se o servidor suportar conexões criptografadas. Isso afeta os programas cliente da seguinte forma:
 

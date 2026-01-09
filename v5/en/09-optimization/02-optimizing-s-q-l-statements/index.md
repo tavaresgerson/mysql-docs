@@ -4,7 +4,7 @@
 
 8.2.2 Optimizing Subqueries, Derived Tables, and View References
 
-8.2.3 Optimizing INFORMATION\_SCHEMA Queries
+8.2.3 Optimizing INFORMATION_SCHEMA Queries
 
 8.2.4 Optimizing Data Change Statements
 

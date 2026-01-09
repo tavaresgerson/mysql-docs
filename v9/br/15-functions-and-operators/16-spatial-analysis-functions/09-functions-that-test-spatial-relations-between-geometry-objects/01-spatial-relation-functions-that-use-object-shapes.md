@@ -28,11 +28,11 @@ Os intervalos mostrados são em graus. Se um SRS usar outra unidade, o intervalo
 
 Algumas funções nesta seção permitem um argumento de unidade que especifica a unidade de comprimento para o valor de retorno. A menos que especificado de outra forma, as funções tratam seu argumento de unidade da seguinte forma:
 
-* Uma unidade é suportada se ela for encontrada na tabela `INFORMATION_SCHEMA` `ST_UNITS_OF_MEASURE`. Veja a Seção 28.3.43, “A Tabela INFORMATION\_SCHEMA ST\_UNITS\_OF\_MEASURE”.
+* Uma unidade é suportada se ela for encontrada na tabela `INFORMATION_SCHEMA` `ST_UNITS_OF_MEASURE`. Veja a Seção 28.3.43, “A Tabela INFORMATION_SCHEMA ST_UNITS_OF_MEASURE”.
 
 * Se uma unidade for especificada, mas não suportada pelo MySQL, ocorre um erro `ER_UNIT_NOT_FOUND`.
 
-* Se uma unidade suportada for especificada e o SRID for 0, ocorre um erro `ER_GEOMETRY\_IN\_UNKNOWN\_LENGTH\_UNIT`.
+* Se uma unidade suportada for especificada e o SRID for 0, ocorre um erro `ER_GEOMETRY_IN_UNKNOWN_LENGTH_UNIT`.
 
 * Se uma unidade suportada for especificada e o SRID não for 0, o resultado está naquela unidade.
 

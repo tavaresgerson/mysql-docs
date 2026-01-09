@@ -2,7 +2,7 @@
 
 When you start the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server, you can specify program options using any of the methods described in [Section 4.2.2, “Specifying Program Options”](program-options.html "4.2.2 Specifying Program Options"). The most common methods are to provide options in an option file or on the command line. However, in most cases it is desirable to make sure that the server uses the same options each time it runs. The best way to ensure this is to list them in an option file. See [Section 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files"). That section also describes option file format and syntax.
 
-[**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") reads options from the `[mysqld]` and `[server]` groups. [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") reads options from the `[mysqld]`, `[server]`, `[mysqld_safe]`, and `[safe_mysqld]` groups. [**mysql.server**](mysql-server.html "4.3.3 mysql.server — MySQL Server Startup Script") reads options from the `[mysqld]` and `[mysql.server]` groups.
+[**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") reads options from the `[mysqld]` and `[server]` groups. [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") reads options from the `[mysqld]`, `[server]`, `[mysqld_safe]`, and `[safe_mysqld]` groups. [**mysql.server**](mysql-server.html "4.3.3 mysql.server — MySQL Server Startup Script") reads options from the `[mysqld]` and `[mysql.server]` groups.
 
 An embedded MySQL server usually reads options from the `[server]`, `[embedded]`, and `[xxxxx_SERVER]` groups, where *`xxxxx`* is the name of the application into which the server is embedded.
 
@@ -69,7 +69,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--basedir=dir_name`](server-system-variables.html#sysvar_basedir), [`-b dir_name`](server-system-variables.html#sysvar_basedir)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The path to the MySQL installation directory. This option sets the [`basedir`](server-system-variables.html#sysvar_basedir) system variable.
 
@@ -77,11 +77,11 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
   <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
 
-  This option is used by the [**mysql\_install\_db**](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory") program to create the MySQL privilege tables without having to start a full MySQL server.
+  This option is used by the [**mysql_install_db**](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory") program to create the MySQL privilege tables without having to start a full MySQL server.
 
   Note
 
-  [**mysql\_install\_db**](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory") is deprecated because its functionality has been integrated into [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), the MySQL server. Consequently, the [`--bootstrap`](server-options.html#option_mysqld_bootstrap) server option that [**mysql\_install\_db**](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory") passes to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is also deprecated. To initialize a MySQL installation, invoke [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--initialize`](server-options.html#option_mysqld_initialize) or [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure) option. For more information, see [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory"). Expect [**mysql\_install\_db**](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory") and the [`--bootstrap`](server-options.html#option_mysqld_bootstrap) server option to be removed in a future release of MySQL.
+  [**mysql_install_db**](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory") is deprecated because its functionality has been integrated into [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), the MySQL server. Consequently, the [`--bootstrap`](server-options.html#option_mysqld_bootstrap) server option that [**mysql_install_db**](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory") passes to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is also deprecated. To initialize a MySQL installation, invoke [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--initialize`](server-options.html#option_mysqld_initialize) or [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure) option. For more information, see [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory"). Expect [**mysql_install_db**](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory") and the [`--bootstrap`](server-options.html#option_mysqld_bootstrap) server option to be removed in a future release of MySQL.
 
   [`--bootstrap`](server-options.html#option_mysqld_bootstrap) is mutually exclusive with [`--daemonize`](server-options.html#option_mysqld_daemonize), [`--initialize`](server-options.html#option_mysqld_initialize), and [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure).
 
@@ -116,7 +116,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
   When this option is used, write a core file if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") dies; no arguments are needed (or accepted). The name and location of the core file is system dependent. On Linux, a core file named `core.pid` is written to the current working directory of the process, which for [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is the data directory. *`pid`* represents the process ID of the server process. On macOS, a core file named `core.pid` is written to the `/cores` directory. On Solaris, use the **coreadm** command to specify where to write the core file and how to name it.
 
-  For some systems, to get a core file you must also specify the [`--core-file-size`](mysqld-safe.html#option_mysqld_safe_core-file-size) option to [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"). See [Section 4.3.2, “mysqld\_safe — MySQL Server Startup Script”](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"). On some systems, such as Solaris, you do not get a core file if you are also using the [`--user`](server-options.html#option_mysqld_user) option. There might be additional restrictions or limitations. For example, it might be necessary to execute **ulimit -c unlimited** before starting the server. Consult your system documentation.
+  For some systems, to get a core file you must also specify the [`--core-file-size`](mysqld-safe.html#option_mysqld_safe_core-file-size) option to [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"). See [Section 4.3.2, “mysqld_safe — MySQL Server Startup Script”](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"). On some systems, such as Solaris, you do not get a core file if you are also using the [`--user`](server-options.html#option_mysqld_user) option. There might be additional restrictions or limitations. For example, it might be necessary to execute **ulimit -c unlimited** before starting the server. Consult your system documentation.
 
 * [`--daemonize`](server-options.html#option_mysqld_daemonize)
 
@@ -370,13 +370,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--local-service`](server-options.html#option_mysqld_local-service)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   (Windows only) A `--local-service` option following the service name causes the server to run using the `LocalService` Windows account that has limited system privileges. If both [`--defaults-file`](option-file-options.html#option_general_defaults-file) and `--local-service` are given following the service name, they can be in any order. See [Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service").
 
 * [`--log-error[=file_name]`](server-options.html#option_mysqld_log-error)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Write the error log and startup messages to this file. See [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log").
 
@@ -388,13 +388,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--log-isam[=file_name]`](server-options.html#option_mysqld_log-isam)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Log all `MyISAM` changes to this file (used only when debugging `MyISAM`).
 
 * [`--log-raw`](server-options.html#option_mysqld_log-raw)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Passwords in certain statements written to the general query log, slow query log, and binary log are rewritten by the server not to occur literally in plain text. Password rewriting can be suppressed for the general query log by starting the server with the [`--log-raw`](server-options.html#option_mysqld_log-raw) option. This option may be useful for diagnostic purposes, to see the exact text of statements as received by the server, but for security reasons is not recommended for production use.
 
@@ -408,25 +408,25 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--log-short-format`](server-options.html#option_mysqld_log-short-format)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Log less information to the slow query log, if it has been activated.
 
 * [`--log-tc=file_name`](server-options.html#option_mysqld_log-tc)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The name of the memory-mapped transaction coordinator log file (for XA transactions that affect multiple storage engines when the binary log is disabled). The default name is `tc.log`. The file is created under the data directory if not given as a full path name. This option is unused.
 
 * [`--log-tc-size=size`](server-options.html#option_mysqld_log-tc-size)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The size in bytes of the memory-mapped transaction coordinator log. The default and minimum values are 6 times the page size, and the value must be a multiple of the page size. (Before MySQL 5.7.21, the default size is 24KB.)
 
 * [`--log-warnings[=level]`](server-options.html#option_mysqld_log-warnings), `-W [level]`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Note
 
@@ -436,7 +436,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--memlock`](server-options.html#option_mysqld_memlock)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Lock the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process in memory. This option might help if you have a problem where the operating system is causing [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to swap to disk.
 
@@ -462,7 +462,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--myisam-block-size=N`](server-options.html#option_mysqld_myisam-block-size)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code>basedir</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The block size to be used for `MyISAM` index pages.
 
@@ -606,7 +606,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
     - Execute a [**mysqladmin flush-privileges**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") or [**mysqladmin reload**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command from the command line.
 
-    Privilege flushing might also occur implicitly as a result of other actions performed after startup, thus causing the server to start using the grant tables. For example, [**mysql\_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") flushes the privileges during the upgrade procedure.
+    Privilege flushing might also occur implicitly as a result of other actions performed after startup, thus causing the server to start using the grant tables. For example, [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") flushes the privileges during the upgrade procedure.
 
   + [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) causes the server not to load certain other objects registered in the `mysql` system database:
 

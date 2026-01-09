@@ -1,4 +1,4 @@
-### 28.3.49 The INFORMATION\_SCHEMA TABLE\_PRIVILEGES Table
+### 28.3.49 The INFORMATION_SCHEMA TABLE_PRIVILEGES Table
 
 The `TABLE_PRIVILEGES` table provides information about table privileges. It takes its values from the `mysql.tables_priv` system table.
 

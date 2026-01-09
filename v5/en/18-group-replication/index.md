@@ -18,9 +18,9 @@
 
 [17.4 Monitoring Group Replication](group-replication-monitoring.html) :   [17.4.1 Group Replication Server States](group-replication-server-states.html)
 
-    [17.4.2 The replication\_group\_members Table](group-replication-replication-group-members.html)
+    [17.4.2 The replication_group_members Table](group-replication-replication-group-members.html)
 
-    [17.4.3 The replication\_group\_member\_stats Table](group-replication-replication-group-member-stats.html)
+    [17.4.3 The replication_group_member_stats Table](group-replication-replication-group-member-stats.html)
 
 [17.5 Group Replication Operations](group-replication-operations.html) :   [17.5.1 Deploying in Multi-Primary or Single-Primary Mode](group-replication-deploying-in-multi-primary-or-single-primary-mode.html)
 

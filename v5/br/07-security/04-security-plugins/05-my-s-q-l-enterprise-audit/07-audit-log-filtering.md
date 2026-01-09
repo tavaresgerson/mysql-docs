@@ -33,7 +33,7 @@ O plugin de registro de auditoria tem a capacidade de controlar o registro de ev
 
 - Os filtros de log de auditoria podem ser definidos e modificados usando uma interface SQL com base em chamadas de função. Por padrão, as definições dos filtros de log de auditoria são armazenadas no banco de dados do sistema `mysql`, e você pode exibir os filtros de auditoria consultando a tabela `mysql.audit_log_filter`. É possível usar um banco de dados diferente para esse propósito, nesse caso, você deve consultar a tabela `database_name.audit_log_filter` em vez disso. Consulte Seção 6.4.5.2, “Instalando ou Desinstalando Auditoria do MySQL Enterprise” para obter mais informações.
 
-- Durante uma sessão, o valor da variável de sistema `[audit_log_filter_id]` (audit-log-reference.html#sysvar\_audit\_log\_filter\_id) em modo somente leitura indica se um filtro está atribuído à sessão.
+- Durante uma sessão, o valor da variável de sistema `[audit_log_filter_id]` (audit-log-reference.html#sysvar_audit_log_filter_id) em modo somente leitura indica se um filtro está atribuído à sessão.
 
 Nota
 
@@ -101,7 +101,7 @@ Quando uma conexão chega, o plugin do log de auditoria determina qual filtro us
 
 - Caso contrário, o registro de auditoria não seleciona nenhum evento de auditoria da sessão para processamento.
 
-Se uma operação de mudança de usuário ocorrer durante uma sessão (consulte mysql\_change\_user()), a atribuição de filtros para a sessão é atualizada usando as mesmas regras, mas para o novo usuário.
+Se uma operação de mudança de usuário ocorrer durante uma sessão (consulte mysql_change_user()), a atribuição de filtros para a sessão é atualizada usando as mesmas regras, mas para o novo usuário.
 
 Por padrão, nenhuma conta tem um filtro atribuído, portanto, nenhum processamento de eventos audíveis ocorre para nenhuma conta.
 
@@ -166,7 +166,7 @@ A função `audit_log_filter_flush()` deve ser usada apenas após a modificaçã
 
 `audit_log_filter_flush()` afeta todas as sessões atuais e as desliga de seus filtros anteriores. As sessões atuais não são mais registradas, a menos que elas desconectem e se reconectem ou executem uma operação de mudança de usuário.
 
-Para determinar se um filtro está atribuído à sessão atual, verifique o valor da variável de sistema `[audit_log_filter_id]` (audit-log-reference.html#sysvar\_audit\_log\_filter\_id) de leitura somente. Se o valor for 0, nenhum filtro está atribuído. Um valor diferente de 0 indica o ID mantido internamente do filtro atribuído:
+Para determinar se um filtro está atribuído à sessão atual, verifique o valor da variável de sistema `[audit_log_filter_id]` (audit-log-reference.html#sysvar_audit_log_filter_id) de leitura somente. Se o valor for 0, nenhum filtro está atribuído. Um valor diferente de 0 indica o ID mantido internamente do filtro atribuído:
 
 ```sql
 mysql> SELECT @@audit_log_filter_id;

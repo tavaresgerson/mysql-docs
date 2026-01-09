@@ -1,4 +1,4 @@
-### 24.3.25 The INFORMATION\_SCHEMA TABLES Table
+### 24.3.25 The INFORMATION_SCHEMA TABLES Table
 
 The [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") table provides information about tables in databases.
 
@@ -91,7 +91,7 @@ The [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SC
       AND   TABLE_NAME   = 'mytable';
   ```
 
-  For more information, see [Section 24.3.16, “The INFORMATION\_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").
+  For more information, see [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").
 
 * `AUTO_INCREMENT`
 

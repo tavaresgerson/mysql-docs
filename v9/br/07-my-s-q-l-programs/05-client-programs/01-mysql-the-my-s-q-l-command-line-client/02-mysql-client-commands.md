@@ -113,13 +113,13 @@ Altere o conjunto de caracteres padrão e execute uma declaração `SET NAMES`. 
   (user@host) [database]>
   ```66UT7XLFTC```
   [mysql]
-  prompt=(\\u@\\h) [\\d]>\\_
+  prompt=(\\u@\\h) [\\d]>_
   ```kYSsVpOEfW```
   [mysql]
   prompt="\\r:\\m:\\s> "
   ```IrpiELX1Jw```
-  mysql> prompt (\u@\h) [\d]>\_
-  PROMPT set to '(\u@\h) [\d]>\_'
+  mysql> prompt (\u@\h) [\d]>_
+  PROMPT set to '(\u@\h) [\d]>_'
   (user@host) [database]>
   (user@host) [database]> prompt
   Returning to default PROMPT of mysql>

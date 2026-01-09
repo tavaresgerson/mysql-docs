@@ -6,7 +6,7 @@ The following items apply to Disk Data storage requirements:
 
   For general information about calculating these values, see Section 13.7, “Data Type Storage Requirements”.
 
-  You can obtain an estimate the amount of space available in data files and undo log files by querying the Information Schema `FILES` table. For more information and examples, see Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.
+  You can obtain an estimate the amount of space available in data files and undo log files by querying the Information Schema `FILES` table. For more information and examples, see Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.
 
   Note
 

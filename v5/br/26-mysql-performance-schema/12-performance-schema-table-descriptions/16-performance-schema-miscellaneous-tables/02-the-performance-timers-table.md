@@ -1,4 +1,4 @@
-#### 25.12.16.2 Tabela performance\_timers
+#### 25.12.16.2 Tabela performance_timers
 
 A tabela `performance_timers` mostra quais temporizadores de evento estão disponíveis:
 

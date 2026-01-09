@@ -1,4 +1,4 @@
-#### 21.6.15.37 A tabela ndbinfo table\_fragments
+#### 21.6.15.37 A tabela ndbinfo table_fragments
 
 A tabela `table_fragments` fornece informações sobre a fragmentação, particionamento, distribuição e (replicação interna) das tabelas `NDB`.
 

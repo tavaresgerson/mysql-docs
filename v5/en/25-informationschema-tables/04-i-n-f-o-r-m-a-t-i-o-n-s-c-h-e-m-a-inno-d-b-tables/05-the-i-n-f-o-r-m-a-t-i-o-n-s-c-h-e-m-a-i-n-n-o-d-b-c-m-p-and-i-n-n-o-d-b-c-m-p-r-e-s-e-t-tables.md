@@ -1,4 +1,4 @@
-### 24.4.5 The INFORMATION\_SCHEMA INNODB\_CMP and INNODB\_CMP\_RESET Tables
+### 24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables
 
 The [`INNODB_CMP`](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables") and [`INNODB_CMP_RESET`](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables") tables provide status information on operations related to [compressed](glossary.html#glos_compression "compression") `InnoDB` tables.
 

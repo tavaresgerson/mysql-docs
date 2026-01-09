@@ -14,6 +14,6 @@ O MySQL Server inclui uma biblioteca de plugins que permite que os administrador
 
   O plugin `CONNECTION_CONTROL` usa a interface do plugin de auditoria (veja Escrevendo Plugins de Auditoria). Para coletar informações, ele se inscreve na classe de eventos `MYSQL_AUDIT_CONNECTION_CLASSMASK` e processa os subeventos `MYSQL_AUDIT_CONNECTION_CONNECT` e `MYSQL_AUDIT_CONNECTION_CHANGE_USER` para verificar se o servidor deve introduzir um atraso antes de responder às tentativas de conexão.
 
-* `CONNECTION_CONTROL_FAILED\_LOGIN\_ATTEMPTS` implementa uma tabela do `INFORMATION_SCHEMA` que expõe informações de monitoramento mais detalhadas para tentativas de conexão falhas. Para mais informações sobre essa tabela, consulte a Seção 28.6.2, “A Tabela de MONITORAMENTO DE TENTATIVAS DE CONEXÃO COM SUCESSO DO `CONNECTION\_CONTROL\_FAILED\_LOGIN\_ATTEMPTS`”.
+* `CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS` implementa uma tabela do `INFORMATION_SCHEMA` que expõe informações de monitoramento mais detalhadas para tentativas de conexão falhas. Para mais informações sobre essa tabela, consulte a Seção 28.6.2, “A Tabela de MONITORAMENTO DE TENTATIVAS DE CONEXÃO COM SUCESSO DO `CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS`”.
 
 As seções a seguir fornecem informações sobre a instalação e configuração do plugin de controle de conexão.

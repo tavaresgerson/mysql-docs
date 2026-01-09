@@ -33,7 +33,7 @@ Esta seção discute várias declarações SQL que podem ser úteis para gerenci
   +------------+---------+
   ```
 
-  Se o suporte `NDB` não estiver habilitado, a consulta anterior retorna um conjunto vazio. Veja a Seção 28.3.13, “A Tabela INFORMATION\_SCHEMA ENGINES”, para mais informações.
+  Se o suporte `NDB` não estiver habilitado, a consulta anterior retorna um conjunto vazio. Veja a Seção 28.3.13, “A Tabela INFORMATION_SCHEMA ENGINES”, para mais informações.
 
 * `SHOW VARIABLES LIKE 'NDB%'`
 

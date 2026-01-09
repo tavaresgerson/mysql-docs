@@ -1,4 +1,4 @@
-### 25.6.13 Privilege Synchronization and NDB\_STORED\_USER
+### 25.6.13 Privilege Synchronization and NDB_STORED_USER
 
 Privilege synchronization is the mechanism used by NDB Cluster for sharing and synchronizing users, roles, and privileges between SQL nodes. This can be enabled by granting the `NDB_STORED_USER` privilege. See the description of the privilege for usage information.
 
@@ -14,7 +14,7 @@ mysql> SHOW GRANTS for 'jon'@'localhost';
 +---------------------------------------------------+
 ```
 
-You can also verify that privileges are shared for this account using the **ndb\_select\_all** utility supplied with NDB Cluster, like this (some output wrapped to preserve formatting):
+You can also verify that privileges are shared for this account using the **ndb_select_all** utility supplied with NDB Cluster, like this (some output wrapped to preserve formatting):
 
 ```
 $> ndb_select_all -d mysql ndb_sql_metadata | grep '`jon`@`localhost`'

@@ -1,20 +1,20 @@
-### 6.4.1 comp\_err — Arquivo de Mensagem de Erro do MySQL
+### 6.4.1 comp_err — Arquivo de Mensagem de Erro do MySQL
 
-O **comp\_err** cria o arquivo `errmsg.sys` que é usado pelo **mysqld** para determinar as mensagens de erro a serem exibidas para diferentes códigos de erro. O **comp\_err** normalmente é executado automaticamente quando o MySQL é compilado. Ele compila o arquivo `errmsg.sys` a partir das informações de erro no formato de texto nas distribuições de código-fonte do MySQL:
+O **comp_err** cria o arquivo `errmsg.sys` que é usado pelo **mysqld** para determinar as mensagens de erro a serem exibidas para diferentes códigos de erro. O **comp_err** normalmente é executado automaticamente quando o MySQL é compilado. Ele compila o arquivo `errmsg.sys` a partir das informações de erro no formato de texto nas distribuições de código-fonte do MySQL:
 
 As informações de erro vêm dos arquivos `messages_to_error_log.txt` e `messages_to_clients.txt` no diretório `share`.
 
 Para mais informações sobre a definição de mensagens de erro, consulte os comentários dentro desses arquivos, juntamente com o arquivo `errmsg_readme.txt`.
 
-O **comp\_err** também gera os arquivos de cabeçalho `mysqld_error.h`, `mysqld_ername.h` e `mysqld_errmsg.h`.
+O **comp_err** também gera os arquivos de cabeçalho `mysqld_error.h`, `mysqld_ername.h` e `mysqld_errmsg.h`.
 
-Inicie o **comp\_err** da seguinte forma:
+Inicie o **comp_err** da seguinte forma:
 
 ```
 comp_err [options]
 ```
 
-O **comp\_err** suporta as seguintes opções.
+O **comp_err** suporta as seguintes opções.
 
 * `--help`, `-?`
 

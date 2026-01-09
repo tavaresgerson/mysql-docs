@@ -1,4 +1,4 @@
-#### 25.12.16.2 The performance\_timers Table
+#### 25.12.16.2 The performance_timers Table
 
 The [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") table shows which event timers are available:
 

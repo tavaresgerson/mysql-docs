@@ -43,9 +43,9 @@ Note
 
 Before starting the server, check the notes for your chosen keyring plugin for configuration instructions specific to that plugin:
 
-* `keyring_okv`: Section 8.4.5.6, “Using the keyring\_okv KMIP Plugin”.
+* `keyring_okv`: Section 8.4.5.6, “Using the keyring_okv KMIP Plugin”.
 
-* `keyring_aws`: Section 8.4.5.8, “Using the keyring\_aws Amazon Web Services Keyring Plugin”
+* `keyring_aws`: Section 8.4.5.8, “Using the keyring_aws Amazon Web Services Keyring Plugin”
 
 * `keyring_hashicorp`: Section 8.4.5.10, “Using the HashiCorp Vault Keyring Plugin”
 

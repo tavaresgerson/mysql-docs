@@ -92,7 +92,7 @@ As variáveis de status `Com_stmt_xxx` são as seguintes:
 + `Com_stmt_reset`
 + `Com_stmt_close`
 
-Essas variáveis representam comandos de declaração preparada. Seus nomes referem-se ao conjunto de comandos `COM_xxx` usado na camada de rede. Em outras palavras, seus valores aumentam sempre que chamadas da API de declaração preparada, como **mysql\_stmt\_prepare()**, **mysql\_stmt\_execute()**, e assim por diante, são executadas. No entanto, `Com_stmt_prepare`, `Com_stmt_execute` e `Com_stmt_close` também aumentam para `PREPARE`, `EXECUTE` ou `DEALLOCATE PREPARE`, respectivamente. Além disso, os valores das variáveis de contador de declarações mais antigas `Com_prepare_sql`, `Com_execute_sql` e `Com_dealloc_sql` aumentam para as declarações `PREPARE`, `EXECUTE` e `DEALLOCATE PREPARE`. `Com_stmt_fetch` representa o número total de viagens de ida e volta da rede emitidas ao buscar em cursors.
+Essas variáveis representam comandos de declaração preparada. Seus nomes referem-se ao conjunto de comandos `COM_xxx` usado na camada de rede. Em outras palavras, seus valores aumentam sempre que chamadas da API de declaração preparada, como **mysql_stmt_prepare()**, **mysql_stmt_execute()**, e assim por diante, são executadas. No entanto, `Com_stmt_prepare`, `Com_stmt_execute` e `Com_stmt_close` também aumentam para `PREPARE`, `EXECUTE` ou `DEALLOCATE PREPARE`, respectivamente. Além disso, os valores das variáveis de contador de declarações mais antigas `Com_prepare_sql`, `Com_execute_sql` e `Com_dealloc_sql` aumentam para as declarações `PREPARE`, `EXECUTE` e `DEALLOCATE PREPARE`. `Com_stmt_fetch` representa o número total de viagens de ida e volta da rede emitidas ao buscar em cursors.
 
 `Com_stmt_reprepare` indica o número de vezes que as declarações foram automaticamente repreparadas pelo servidor, por exemplo, após alterações de metadados em tabelas ou visualizações referenciadas pela declaração. Uma operação de repreparação incrementa `Com_stmt_reprepare`, e também `Com_stmt_prepare`.
 
@@ -206,7 +206,7 @@ Veja também a Seção 10.4.4, “Uso de Tabelas Temporárias Internas no MySQL�
 
   O valor ativo `ssl_ca` no contexto SSL que o servidor usa para novas conexões. Esse valor de contexto pode diferir do valor atual da variável de sistema `ssl_ca` se a variável de sistema tiver sido alterada, mas o `ALTER INSTANCE RELOAD TLS` não tiver sido executado subsequentemente para reconfigurar o contexto SSL a partir dos valores das variáveis de sistema relacionadas ao contexto e atualizar as variáveis de status correspondentes. (Essa possível diferença de valores se aplica a cada par correspondente de variáveis de sistema e variáveis de status relacionadas ao contexto. Veja Configuração e Monitoramento de Execução no Lado do Servidor para Conexões Encriptadas.)
 
-  Os valores das variáveis de status `Current_tls_xxx` também estão disponíveis através da tabela `tls_channel_status` do Schema de Desempenho. Veja a Seção 29.12.22.11, “A tabela tls\_channel\_status”.
+  Os valores das variáveis de status `Current_tls_xxx` também estão disponíveis através da tabela `tls_channel_status` do Schema de Desempenho. Veja a Seção 29.12.22.11, “A tabela tls_channel_status”.
 
 * `Current_tls_capath`
 

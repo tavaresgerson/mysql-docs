@@ -154,7 +154,7 @@ A declaração `ALTER TABLE` altera a estrutura de uma tabela. Por exemplo, voc�
 
 * O `InnoDB` suporta a adição de índices de múltiplos valores em colunas JSON usando uma especificação de *`key_part`* que pode ter a forma `(CAST json_path AS type ARRAY)`. Consulte Índices de Múltiplos Valores, para informações detalhadas sobre a criação e o uso de índices de múltiplos valores, bem como restrições e limitações em índices de múltiplos valores.
 
-* Com a função C API `mysql_info()`, você pode descobrir quantos registros foram copiados por `ALTER TABLE`. Consulte mysql\_info().
+* Com a função C API `mysql_info()`, você pode descobrir quantos registros foram copiados por `ALTER TABLE`. Consulte mysql_info().
 
 Há vários aspectos adicionais da instrução `ALTER TABLE`, descritos nos seguintes tópicos nesta seção:
 
@@ -583,7 +583,7 @@ O servidor proíbe alterações nas colunas da chave estrangeira que possam caus
 
 * Alterar uma coluna `NULL` para `NOT NULL` no modo não estrito é proibido para evitar a conversão de valores `NULL` para valores padrão `NOT NULL`, para os quais não existem valores correspondentes na tabela referenciada. A operação é permitida no modo estrito, mas um erro é retornado se alguma conversão for necessária.
 
-`ALTER TABLE tbl_name RENAME new_tbl_name` altera internamente os nomes das restrições de chave estrangeira geradas e os nomes de restrições de chave estrangeira definidas pelo usuário que começam com a string “*`tbl_name`*\_ibfk\_” para refletir o novo nome da tabela. O `InnoDB` interpreta os nomes das restrições de chave estrangeira que começam com a string “*`tbl_name`*\_ibfk\_” como nomes gerados internamente.
+`ALTER TABLE tbl_name RENAME new_tbl_name` altera internamente os nomes das restrições de chave estrangeira geradas e os nomes de restrições de chave estrangeira definidas pelo usuário que começam com a string “*`tbl_name`*_ibfk_” para refletir o novo nome da tabela. O `InnoDB` interpreta os nomes das restrições de chave estrangeira que começam com a string “*`tbl_name`*_ibfk_” como nomes gerados internamente.
 
 `ALTER TABLE` permite que restrições `CHECK` para tabelas existentes sejam adicionadas, removidas ou alteradas:
 
@@ -642,7 +642,7 @@ Se uma alteração na tabela causar uma violação de uma restrição `CHECK` ap
 
 * Tentativas de modificar, renomear ou excluir uma coluna que seja usada em uma restrição `CHECK`, a menos que essa restrição também seja excluída na mesma instrução. Exceção: Se uma restrição `CHECK` se referir apenas a uma única coluna, a exclusão da coluna exclui automaticamente a restrição.
 
-`ALTER TABLE tbl_name RENAME new_tbl_name` altera internamente os nomes das restrições `CHECK` geradas pelo usuário e definidos pelo usuário que começam com a string “*`tbl_name`*\_chk\_” para refletir o novo nome da tabela. O MySQL interpreta os nomes das restrições `CHECK` que começam com a string “*`tbl_name`*\_chk\_” como nomes gerados internamente.
+`ALTER TABLE tbl_name RENAME new_tbl_name` altera internamente os nomes das restrições `CHECK` geradas pelo usuário e definidos pelo usuário que começam com a string “*`tbl_name`*_chk_” para refletir o novo nome da tabela. O MySQL interpreta os nomes das restrições `CHECK` que começam com a string “*`tbl_name`*_chk_” como nomes gerados internamente.
 
 #### Mudando o Conjunto de Caracteres
 

@@ -2,7 +2,7 @@
 
 To obtain metadata about events:
 
-* Query the `EVENTS` table of the `INFORMATION_SCHEMA` database. See Section 28.3.14, “The INFORMATION\_SCHEMA EVENTS Table”.
+* Query the `EVENTS` table of the `INFORMATION_SCHEMA` database. See Section 28.3.14, “The INFORMATION_SCHEMA EVENTS Table”.
 
 * Use the `SHOW CREATE EVENT` statement. See Section 15.7.7.8, “SHOW CREATE EVENT Statement”.
 
@@ -18,4 +18,4 @@ For representation of event information in the data dictionary, the `execute_at`
 
 Event times can be obtained by selecting from the Information Schema `EVENTS` table or from `SHOW EVENTS`, but they are reported as ETZ or STZ values. The following table summarizes representation of event times.
 
-<table summary="Summary of event time representation (as UTC, EZT, or STZ values) from INFORMATION_SCHEMA.EVENTS, and SHOW EVENTS."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Value</th> <th><a class="link" href="information-schema-events-table.html" title="28.3.14 The INFORMATION_SCHEMA EVENTS Table"><code class="literal">EVENTS</code></a> Table</th> <th><a class="link" href="show-events.html" title="15.7.7.20 SHOW EVENTS Statement"><code class="literal">SHOW EVENTS</code></a></th> </tr></thead><tbody><tr> <th>Execute at</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Starts</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Ends</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Last executed</th> <td>ETZ</td> <td>n/a</td> </tr><tr> <th>Created</th> <td>STZ</td> <td>n/a</td> </tr><tr> <th>Last altered</th> <td>STZ</td> <td>n/a</td> </tr></tbody></table>
+<table summary="Summary of event time representation (as UTC, EZT, or STZ values) from INFORMATION_SCHEMA.EVENTS, and SHOW EVENTS."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Value</th> <th><code class="literal">EVENTS</code> Table</th> <th><code class="literal">SHOW EVENTS</code></th> </tr></thead><tbody><tr> <th>Execute at</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Starts</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Ends</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Last executed</th> <td>ETZ</td> <td>n/a</td> </tr><tr> <th>Created</th> <td>STZ</td> <td>n/a</td> </tr><tr> <th>Last altered</th> <td>STZ</td> <td>n/a</td> </tr></tbody></table>

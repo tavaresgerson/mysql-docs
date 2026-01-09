@@ -512,7 +512,7 @@ tname: "country"
 1 row in set (0.00 sec)
 ```
 
-This form of `EXPLAIN ANALYZE` requires an explicit `FORMAT=JSON` clause, and is supported only with `SELECT` statements. An optional `FOR SCHEMA` option is also supported, but not required. (`FOR DATABASE` can also be used, instead.) The `INTO` clause is supported with `FORMAT=JSON` only when `explain_json_format_version` is equal to 2; otherwise the statement fails with EXPLAIN ANALYZE does not support FORMAT=JSON with explain\_json\_format\_version=1 (`ER_EXPLAIN_ANALYZE_JSON_FORMAT_VERSION_NOT_SUPPORTED`).
+This form of `EXPLAIN ANALYZE` requires an explicit `FORMAT=JSON` clause, and is supported only with `SELECT` statements. An optional `FOR SCHEMA` option is also supported, but not required. (`FOR DATABASE` can also be used, instead.) The `INTO` clause is supported with `FORMAT=JSON` only when `explain_json_format_version` is equal to 2; otherwise the statement fails with EXPLAIN ANALYZE does not support FORMAT=JSON with explain_json_format_version=1 (`ER_EXPLAIN_ANALYZE_JSON_FORMAT_VERSION_NOT_SUPPORTED`).
 
 After using the Version 2 format, you can cause the JSON output from all subsequent `EXPLAIN FORMAT=JSON` statements to revert to the Version 1 format by setting `explain_json_format_version` back to `1` (the default).
 

@@ -1,4 +1,4 @@
-### 28.3.16 The INFORMATION\_SCHEMA KEY\_COLUMN\_USAGE Table
+### 28.3.16 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table
 
 The `KEY_COLUMN_USAGE` table describes which key columns have constraints. This table provides no information about functional key parts because they are expressions and the table provides information only about columns.
 

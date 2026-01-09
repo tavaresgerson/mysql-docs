@@ -1,4 +1,4 @@
-#### 16.4.1.19 Replicação e max\_allowed\_packet
+#### 16.4.1.19 Replicação e max_allowed_packet
 
 `max_allowed_packet` define um limite superior para o tamanho de qualquer mensagem única entre o servidor MySQL e os clientes, incluindo as réplicas. Se você estiver replicando valores de coluna grandes (como os encontrados nas colunas `TEXT` ou `BLOB` e `max_allowed_packet` for muito pequeno na fonte, a fonte falhará com um erro e a replica encerrará o fio de I/O de replicação. Se `max_allowed_packet` for muito pequeno na replica, isso também fará com que a replica pare o fio de I/O de replicação.
 

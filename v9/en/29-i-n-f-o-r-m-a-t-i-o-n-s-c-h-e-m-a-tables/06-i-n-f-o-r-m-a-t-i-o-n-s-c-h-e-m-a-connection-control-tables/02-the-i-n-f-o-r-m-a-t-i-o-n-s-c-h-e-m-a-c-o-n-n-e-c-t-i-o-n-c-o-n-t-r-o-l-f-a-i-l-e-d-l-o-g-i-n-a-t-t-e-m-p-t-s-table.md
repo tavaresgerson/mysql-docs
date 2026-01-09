@@ -1,4 +1,4 @@
-### 28.6.2 The INFORMATION\_SCHEMA CONNECTION\_CONTROL\_FAILED\_LOGIN\_ATTEMPTS Table
+### 28.6.2 The INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS Table
 
 This table provides information about the current number of consecutive failed connection attempts per account (user/host combination).
 

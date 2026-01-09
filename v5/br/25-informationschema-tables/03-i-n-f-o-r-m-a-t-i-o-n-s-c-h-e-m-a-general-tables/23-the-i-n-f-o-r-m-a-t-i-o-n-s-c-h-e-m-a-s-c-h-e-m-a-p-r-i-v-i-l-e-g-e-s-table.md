@@ -1,4 +1,4 @@
-### 24.3.23 A tabela INFORMATION\_SCHEMA SCHEMA\_PRIVILEGES
+### 24.3.23 A tabela INFORMATION_SCHEMA SCHEMA_PRIVILEGES
 
 A tabela [`SCHEMA_PRIVILEGES`](https://pt.wikipedia.org/wiki/Tabela_Schema_Privileges) fornece informações sobre privilégios de esquema (banco de dados). Ela obtém seus valores da tabela `mysql.db` do sistema.
 

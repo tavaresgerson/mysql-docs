@@ -44,7 +44,7 @@ The following descriptions list MySQL extensions, organized by category.
 
   + The `SET` statement. See Section 15.7.6.1, “SET Syntax for Variable Assignment”.
 
-  + The `SHOW` statement. See Section 15.7.7, “SHOW Statements”. The information produced by many of the MySQL-specific `SHOW` statements can be obtained in more standard fashion by using `SELECT` to query `INFORMATION_SCHEMA`. See Chapter 28, *INFORMATION\_SCHEMA Tables*.
+  + The `SHOW` statement. See Section 15.7.7, “SHOW Statements”. The information produced by many of the MySQL-specific `SHOW` statements can be obtained in more standard fashion by using `SELECT` to query `INFORMATION_SCHEMA`. See Chapter 28, *INFORMATION_SCHEMA Tables*.
 
   + Use of `LOAD DATA`. In many cases, this syntax is compatible with Oracle `LOAD DATA`. See Section 15.2.9, “LOAD DATA Statement”.
 

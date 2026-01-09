@@ -1,4 +1,4 @@
-### 24.3.29 The INFORMATION\_SCHEMA TRIGGERS Table
+### 24.3.29 The INFORMATION_SCHEMA TRIGGERS Table
 
 The [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") table provides information about triggers. To see information about a table's triggers, you must have the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the table.
 

@@ -1,8 +1,8 @@
 #### 6.1.2.4 Hash de senha no MySQL
 
-Nota
-
+::: info Nota
 As informações nesta seção se aplicam apenas antes do MySQL 5.7.5 e apenas para contas que utilizam os plugins de autenticação `mysql_native_password` ou `mysql_old_password`. O suporte para hashes de senhas anteriores a 4.1 foi removido no MySQL 5.7.5. Isso inclui a remoção do plugin de autenticação `mysql_old_password` e da função `OLD_PASSWORD()`. Além disso, `secure_auth` não pode ser desativado e `old_passwords` não pode ser definido como 1.
+:::
 
 A partir do MySQL 5.7.5, apenas as informações sobre os hashes de senha 4.1 e o plugin de autenticação `mysql_native_password` permanecem relevantes.
 
@@ -76,9 +76,9 @@ As mudanças no MySQL 4.1 ocorreram em duas etapas:
 
   - Para fins de compatibilidade, a variável de sistema `old_passwords` foi adicionada, para permitir que DBA e aplicativos controlem o método de hashing. O valor padrão de `old_passwords` de 0 faz com que o hashing use o método 4.1 (valores de hash de 41 bytes), mas definir `old_passwords=1` faz com que o hashing use o método pré-4.1. Neste caso, `PASSWORD()` produz valores de 16 bytes e é equivalente a `OLD_PASSWORD()`
 
-  Para permitir que os administradores de banco de dados controlem como os clientes podem se conectar, a variável de sistema `secure_auth` foi adicionada. Iniciar o servidor com essa variável desabilitada ou habilitada permite ou proíbe que os clientes se conectem usando o método de hashing de senha anterior à versão 4.1. Antes do MySQL 5.6.5, `secure_auth` está desabilitado por padrão. A partir do 5.6.5, `secure_auth` está habilitado por padrão para promover uma configuração padrão mais segura. Os administradores de banco de dados podem desabilitá-lo a seu critério, mas isso não é recomendado, e os hashes de senha anteriores à versão 4.1 estão desatualizados e devem ser evitados. (Para instruções de atualização de conta, consulte Seção 6.4.1.3, “Migrando para fora do hashing de senha anterior à versão 4.1 e do plugin mysql\_old\_password”.)
+  Para permitir que os administradores de banco de dados controlem como os clientes podem se conectar, a variável de sistema `secure_auth` foi adicionada. Iniciar o servidor com essa variável desabilitada ou habilitada permite ou proíbe que os clientes se conectem usando o método de hashing de senha anterior à versão 4.1. Antes do MySQL 5.6.5, `secure_auth` está desabilitado por padrão. A partir do 5.6.5, `secure_auth` está habilitado por padrão para promover uma configuração padrão mais segura. Os administradores de banco de dados podem desabilitá-lo a seu critério, mas isso não é recomendado, e os hashes de senha anteriores à versão 4.1 estão desatualizados e devem ser evitados. (Para instruções de atualização de conta, consulte Seção 6.4.1.3, “Migrando para fora do hashing de senha anterior à versão 4.1 e do plugin mysql_old_password”.)
 
-  Além disso, o cliente **mysql** suporta a opção `--secure-auth` (mysql-command-options.html#option\_mysql\_secure-auth), que é análoga a `secure_auth` (server-system-variables.html#sysvar\_secure\_auth), mas do lado do cliente. Pode ser usada para impedir conexões a contas menos seguras que utilizam hashing de senhas anterior a 4.1. Esta opção está desativada por padrão antes do MySQL 5.6.7, mas é ativada posteriormente.
+  Além disso, o cliente **mysql** suporta a opção `--secure-auth` (mysql-command-options.html#option_mysql_secure-auth), que é análoga a `secure_auth` (server-system-variables.html#sysvar_secure_auth), mas do lado do cliente. Pode ser usada para impedir conexões a contas menos seguras que utilizam hashing de senhas anterior a 4.1. Esta opção está desativada por padrão antes do MySQL 5.6.7, mas é ativada posteriormente.
 
 ##### Problemas de compatibilidade relacionados aos métodos de hashing
 
@@ -88,11 +88,11 @@ O aumento da coluna `Password` no MySQL 4.1 de 16 bytes para 41 bytes afeta as o
 
 - As atualizações de MySQL 4.1 ou versões posteriores para as versões atuais do MySQL não devem causar problemas em relação à coluna `Password`, pois ambas as versões usam o mesmo comprimento da coluna e o mesmo método de hashing de senha.
 
-- Para atualizações de uma versão anterior à 4.1 para a 4.1 ou versões posteriores, você deve atualizar as tabelas do sistema após a atualização. (Consulte Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”).
+- Para atualizações de uma versão anterior à 4.1 para a 4.1 ou versões posteriores, você deve atualizar as tabelas do sistema após a atualização. (Consulte Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”).
 
 O método de hashing 4.1 é entendido apenas pelos servidores e clientes do MySQL 4.1 (e superiores) e pode resultar em alguns problemas de compatibilidade. Um cliente 4.1 ou superior pode se conectar a um servidor pré-4.1, porque o cliente entende tanto o método de hashing de senha pré-4.1 quanto o 4.1. No entanto, um cliente pré-4.1 que tente se conectar a um servidor 4.1 ou superior pode encontrar dificuldades. Por exemplo, um cliente **mysql** 4.0 pode falhar com a seguinte mensagem de erro:
 
-```sql
+```sh
 $> mysql -h localhost -u root
 Client does not support authentication protocol requested
 by server; consider upgrading MySQL client
@@ -122,7 +122,7 @@ A forma como o servidor gera hashes de senhas para clientes conectados é afetad
 
 Essas condições se aplicam da seguinte forma:
 
-- A coluna `Senha` deve ser suficientemente larga para armazenar hashes longos (41 bytes). Se a coluna não tiver sido atualizada e ainda tiver o tamanho pré-4.1 de 16 bytes, o servidor percebe que os hashes longos não cabem nela e gera apenas hashes curtos quando um cliente executa operações de alteração de senha usando a função `PASSWORD()` ou uma instrução de geração de senha. Esse é o comportamento que ocorre se você tiver atualizado uma versão do MySQL anterior a 4.1 para 4.1 ou posterior, mas ainda não tiver executado o programa **mysql\_upgrade** para ampliar a coluna `Password`.
+- A coluna `Senha` deve ser suficientemente larga para armazenar hashes longos (41 bytes). Se a coluna não tiver sido atualizada e ainda tiver o tamanho pré-4.1 de 16 bytes, o servidor percebe que os hashes longos não cabem nela e gera apenas hashes curtos quando um cliente executa operações de alteração de senha usando a função `PASSWORD()` ou uma instrução de geração de senha. Esse é o comportamento que ocorre se você tiver atualizado uma versão do MySQL anterior a 4.1 para 4.1 ou posterior, mas ainda não tiver executado o programa **mysql_upgrade** para ampliar a coluna `Password`.
 
 - Se a coluna `Senha` for larga, ela pode armazenar hashes de senhas curtos ou longos. Nesse caso, a função [`PASSWORD()`](https://docs.djangoproject.com/en/3.2/ref/functions/encryption/password/) e as declarações de geração de senha geram hashes longos, a menos que o servidor tenha sido iniciado com a variável de sistema [`old_passwords`](https://docs.djangoproject.com/en/3.2/ref/server-system-variables/#sysvar_old_passwords) definida como 1 para forçar o servidor a gerar hashes de senha curtos.
 
@@ -169,7 +169,7 @@ Os seguintes cenários são possíveis no MySQL 4.1 ou posterior. Os fatores sã
 
 - O valor de `old_passwords` é irrelevante, pois, com uma coluna `Password` curta, o servidor gera apenas hashes de senha curtos de qualquer forma.
 
-Esse cenário ocorre quando uma instalação pré-4.1 do MySQL é atualizada para 4.1 ou uma versão posterior, mas o **mysql\_upgrade** não é executado para atualizar as tabelas do sistema no banco de dados `mysql`. (Essa não é uma configuração recomendada, pois não permite o uso de hashing de senha mais seguro do 4.1.)
+Esse cenário ocorre quando uma instalação pré-4.1 do MySQL é atualizada para 4.1 ou uma versão posterior, mas o **mysql_upgrade** não é executado para atualizar as tabelas do sistema no banco de dados `mysql`. (Essa não é uma configuração recomendada, pois não permite o uso de hashing de senha mais seguro do 4.1.)
 
 **Cenário 2:** Coluna `Senha` longa; o servidor foi iniciado com `old_passwords=1`:
 

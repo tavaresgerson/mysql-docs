@@ -4,14 +4,14 @@
 
 - Notas de uso do esquema de informações
 - Considerações sobre o conjunto de caracteres
-- INFORMATION\_SCHEMA como alternativa às declarações SHOW
+- INFORMATION_SCHEMA como alternativa às declarações SHOW
 - SCHEMA DE INFORMAÇÕES e Privilegios
 - Considerações de desempenho
 - Considerações sobre Padrões
 - Convenções nas seções de referência do esquema de informações
 - Informações Relacionadas
 
-### Notas de uso do INFORMATION\_SCHEMA
+### Notas de uso do INFORMATION_SCHEMA
 
 `INFORMATION_SCHEMA` é um banco de dados dentro de cada instância do MySQL, o local que armazena informações sobre todos os outros bancos de dados que o servidor MySQL mantém. O banco de dados `INFORMATION_SCHEMA` contém várias tabelas de leitura somente, que são, na verdade, visualizações, não tabelas de base, portanto, não há arquivos associados a elas, e você não pode definir gatilhos nelas. Além disso, não há um diretório de banco de dados com esse nome.
 
@@ -56,9 +56,9 @@ A definição para as colunas de caracteres (por exemplo, `TABLES.TABLE_NAME`) �
 
 64. O MySQL usa a collation padrão para este conjunto de caracteres (`utf8_general_ci`) para todas as pesquisas, ordenações, comparações e outras operações de string nessas colunas.
 
-Como alguns objetos do MySQL são representados como arquivos, as pesquisas nas colunas de texto do `INFORMATION_SCHEMA` podem ser afetadas pela sensibilidade ao caso do sistema de arquivos. Para mais informações, consulte Seção 10.8.7, “Usando a Cotação em Pesquisas no INFORMATION\_SCHEMA”.
+Como alguns objetos do MySQL são representados como arquivos, as pesquisas nas colunas de texto do `INFORMATION_SCHEMA` podem ser afetadas pela sensibilidade ao caso do sistema de arquivos. Para mais informações, consulte Seção 10.8.7, “Usando a Cotação em Pesquisas no INFORMATION_SCHEMA”.
 
-### INFORMATION\_SCHEMA como alternativa às instruções SHOW
+### INFORMATION_SCHEMA como alternativa às instruções SHOW
 
 A instrução `SELECT ... FROM INFORMATION_SCHEMA` é uma maneira mais consistente de fornecer acesso às informações fornecidas pelas várias instruções `SHOW` que o MySQL suporta (`SHOW DATABASES`, `SHOW TABLES`, e assim por diante). Usar `SELECT` tem essas vantagens em comparação com `SHOW`:
 
@@ -74,15 +74,15 @@ A instrução `SELECT ... FROM INFORMATION_SCHEMA` é uma maneira mais consisten
 
 Como o `SHOW` é familiar e amplamente utilizado, as instruções `SHOW` permanecem como uma alternativa. Na verdade, juntamente com a implementação do `INFORMATION_SCHEMA`, há melhorias nas instruções `SHOW`, conforme descrito na Seção 24.8, “Extensões para Instruções SHOW”.
 
-### INFORMATION\_SCHEMA e Privilegios
+### INFORMATION_SCHEMA e Privilegios
 
-Para a maioria das tabelas do `INFORMATION_SCHEMA`, cada usuário do MySQL tem o direito de acessá-las, mas pode ver apenas as linhas nas tabelas que correspondem aos objetos para os quais o usuário tenha os privilégios de acesso adequados. Em alguns casos (por exemplo, a coluna `ROUTINE_DEFINITION` na tabela `INFORMATION_SCHEMA `ROUTINES`), os usuários que têm privilégios insuficientes veem `NULL`. Algumas tabelas têm requisitos de privilégio diferentes; para essas, os requisitos são mencionados nas descrições das tabelas aplicáveis. Por exemplo, as tabelas `\[InnoDB]`(tabelas com nomes que começam com`INNODB\_`) requerem o privilégio `\[PROCESS]\` (privileges-provided.html#priv\_process).
+Para a maioria das tabelas do `INFORMATION_SCHEMA`, cada usuário do MySQL tem o direito de acessá-las, mas pode ver apenas as linhas nas tabelas que correspondem aos objetos para os quais o usuário tenha os privilégios de acesso adequados. Em alguns casos (por exemplo, a coluna `ROUTINE_DEFINITION` na tabela `INFORMATION_SCHEMA `ROUTINES`), os usuários que têm privilégios insuficientes veem `NULL`. Algumas tabelas têm requisitos de privilégio diferentes; para essas, os requisitos são mencionados nas descrições das tabelas aplicáveis. Por exemplo, as tabelas `[InnoDB]`(tabelas com nomes que começam com`INNODB_`) requerem o privilégio `[PROCESS]\` (privileges-provided.html#priv_process).
 
 Os mesmos privilégios se aplicam à seleção de informações da `INFORMATION_SCHEMA` e à visualização das mesmas informações por meio das instruções `SHOW`. Em ambos os casos, você deve ter algum privilégio em um objeto para ver informações sobre ele.
 
 ### Considerações sobre o desempenho
 
-As consultas do `INFORMATION_SCHEMA` que buscam informações de mais de um banco de dados podem demorar muito e afetar o desempenho. Para verificar a eficiência de uma consulta, você pode usar `EXPLAIN`. Para obter informações sobre como usar a saída do `EXPLAIN` para ajustar as consultas do `INFORMATION_SCHEMA`, consulte Seção 8.2.3, “Otimizando consultas do INFORMATION\_SCHEMA”.
+As consultas do `INFORMATION_SCHEMA` que buscam informações de mais de um banco de dados podem demorar muito e afetar o desempenho. Para verificar a eficiência de uma consulta, você pode usar `EXPLAIN`. Para obter informações sobre como usar a saída do `EXPLAIN` para ajustar as consultas do `INFORMATION_SCHEMA`, consulte Seção 8.2.3, “Otimizando consultas do INFORMATION_SCHEMA”.
 
 ### Considerações sobre Padrões
 
@@ -94,7 +94,7 @@ Embora outros SGBDs use uma variedade de nomes, como `syscat` ou `system`, o nom
 
 Para evitar o uso de qualquer nome reservado no padrão ou no DB2, SQL Server ou Oracle, alteramos os nomes de algumas colunas marcadas como “extensão MySQL”. (Por exemplo, alteramos `COLLATION` para `TABLE_COLLATION` na tabela `TABLES`. Veja a lista de palavras reservadas no final deste artigo: <https://web.archive.org/web/20070428032454/http://www.dbazine.com/db2/db2-disarticles/gulutzan5>.
 
-### Convenções nas seções de Referência do INFORMATION\_SCHEMA
+### Convenções nas seções de Referência do INFORMATION_SCHEMA
 
 As seções a seguir descrevem cada uma das tabelas e colunas na `INFORMATION_SCHEMA`. Para cada coluna, há três informações:
 
@@ -110,14 +110,14 @@ Muitas seções indicam que a instrução `SHOW` é equivalente a uma instruçã
 
 Essas seções discutem tópicos adicionais relacionados ao `INFORMATION_SCHEMA`:
 
-- informações sobre as tabelas do esquema de informações `INFORMATION_SCHEMA` específicas para o mecanismo de armazenamento `InnoDB`: Seção 24.4, “Tabelas do Esquema de Informações INFORMATION\_SCHEMA”
+- informações sobre as tabelas do esquema de informações `INFORMATION_SCHEMA` específicas para o mecanismo de armazenamento `InnoDB`: Seção 24.4, “Tabelas do Esquema de Informações INFORMATION_SCHEMA”
 
-- informações sobre as tabelas `INFORMATION_SCHEMA` específicas do plugin de pool de threads: Seção 24.5, “Tabelas de Pool de Threads do INFORMATION\_SCHEMA”
+- informações sobre as tabelas `INFORMATION_SCHEMA` específicas do plugin de pool de threads: Seção 24.5, “Tabelas de Pool de Threads do INFORMATION_SCHEMA”
 
-- informações sobre as tabelas `INFORMATION_SCHEMA` específicas do plugin `CONNECTION_CONTROL`: Seção 24.6, “Tabelas de Controle de Conexão do INFORMATION\_SCHEMA”
+- informações sobre as tabelas `INFORMATION_SCHEMA` específicas do plugin `CONNECTION_CONTROL`: Seção 24.6, “Tabelas de Controle de Conexão do INFORMATION_SCHEMA”
 
-- Respostas a perguntas frequentemente feitas sobre o banco de dados `INFORMATION_SCHEMA`: Seção A.7, “Perguntas Frequentes do MySQL 5.7: INFORMATION\_SCHEMA”
+- Respostas a perguntas frequentemente feitas sobre o banco de dados `INFORMATION_SCHEMA`: Seção A.7, “Perguntas Frequentes do MySQL 5.7: INFORMATION_SCHEMA”
 
-- Consultas do `INFORMATION_SCHEMA` e o otimizador: Seção 8.2.3, “Otimização das consultas do INFORMATION\_SCHEMA”
+- Consultas do `INFORMATION_SCHEMA` e o otimizador: Seção 8.2.3, “Otimização das consultas do INFORMATION_SCHEMA”
 
-- O efeito da ordenação nas comparações do `INFORMATION_SCHEMA`: Seção 10.8.7, “Usando ordenação em pesquisas do INFORMATION\_SCHEMA”
+- O efeito da ordenação nas comparações do `INFORMATION_SCHEMA`: Seção 10.8.7, “Usando ordenação em pesquisas do INFORMATION_SCHEMA”

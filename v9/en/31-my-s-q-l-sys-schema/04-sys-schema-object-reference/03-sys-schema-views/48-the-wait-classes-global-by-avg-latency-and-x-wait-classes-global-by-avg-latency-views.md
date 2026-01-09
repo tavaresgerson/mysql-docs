@@ -1,4 +1,4 @@
-#### 30.4.3.48 The wait\_classes\_global\_by\_avg\_latency and x$wait\_classes\_global\_by\_avg\_latency Views
+#### 30.4.3.48 The wait_classes_global_by_avg_latency and x$wait_classes_global_by_avg_latency Views
 
 These views summarize wait class average latencies, grouped by event class. By default, rows are sorted by descending average latency. Idle events are ignored.
 

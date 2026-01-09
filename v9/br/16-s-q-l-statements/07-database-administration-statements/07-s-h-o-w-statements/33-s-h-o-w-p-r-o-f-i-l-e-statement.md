@@ -134,7 +134,7 @@ Nota
 
 O perfilamento é parcialmente funcional em algumas arquiteturas. Para valores que dependem da chamada de sistema `getrusage()`, `NULL` é retornado em sistemas como o Windows que não suportam a chamada. Além disso, o perfilamento é por processo e não por thread. Isso significa que a atividade em threads dentro do servidor, além do seu próprio, pode afetar as informações de temporização que você vê.
 
-As informações de perfilamento também estão disponíveis na tabela `INFORMATION_SCHEMA` `PROFILING`. Consulte a Seção 28.3.29, “A Tabela INFORMATION\_SCHEMA PROFILING”. Por exemplo, as seguintes consultas são equivalentes:
+As informações de perfilamento também estão disponíveis na tabela `INFORMATION_SCHEMA` `PROFILING`. Consulte a Seção 28.3.29, “A Tabela INFORMATION_SCHEMA PROFILING”. Por exemplo, as seguintes consultas são equivalentes:
 
 ```
 SHOW PROFILE FOR QUERY 2;

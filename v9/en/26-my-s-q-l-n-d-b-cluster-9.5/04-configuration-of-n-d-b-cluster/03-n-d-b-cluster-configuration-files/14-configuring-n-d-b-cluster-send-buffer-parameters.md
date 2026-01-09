@@ -8,7 +8,7 @@ The `NDB` kernel employs a unified send buffer whose memory is allocated dynamic
 
   **Table 25.22 Transporter types with maximum send buffer sizes**
 
-  <table><thead><tr> <th>Transporter</th> <th>Maximum Send Buffer Size (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td><a class="link" href="mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory"><code>SendBufferMemory</code></a> (default = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
+  <table><thead><tr> <th>Transporter</th> <th>Maximum Send Buffer Size (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td><code>SendBufferMemory</code> (default = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
 
   This enables existing configurations to function in close to the same way as they did with NDB Cluster 6.3 and earlier, with the same amount of memory and send buffer space available to each transporter. However, memory that is unused by one transporter is not available to other transporters.
 

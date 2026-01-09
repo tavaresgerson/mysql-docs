@@ -1,10 +1,10 @@
-### 25.5.2 ndbinfo\_select\_all — Select From ndbinfo Tables
+### 25.5.2 ndbinfo_select_all — Select From ndbinfo Tables
 
-**ndbinfo\_select\_all** is a client program that selects all rows and columns from one or more tables in the `ndbinfo` database
+**ndbinfo_select_all** is a client program that selects all rows and columns from one or more tables in the `ndbinfo` database
 
-Not all `ndbinfo` tables available in the **mysql** client can be read by this program (see later in this section). In addition, **ndbinfo\_select\_all** can show information about some tables internal to `ndbinfo` which cannot be accessed using SQL, including the `tables` and `columns` metadata tables.
+Not all `ndbinfo` tables available in the **mysql** client can be read by this program (see later in this section). In addition, **ndbinfo_select_all** can show information about some tables internal to `ndbinfo` which cannot be accessed using SQL, including the `tables` and `columns` metadata tables.
 
-To select from one or more `ndbinfo` tables using **ndbinfo\_select\_all**, it is necessary to supply the names of the tables when invoking the program as shown here:
+To select from one or more `ndbinfo` tables using **ndbinfo_select_all**, it is necessary to supply the names of the tables when invoking the program as shown here:
 
 ```
 $> ndbinfo_select_all table_name1  [table_name2] [...]
@@ -41,7 +41,7 @@ node_id log_type        log_id  log_part        total   used    high
 $>
 ```
 
-Options that can be used with **ndbinfo\_select\_all** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndbinfo_select_all** are shown in the following table. Additional descriptions follow the table.
 
 * `--character-sets-dir`
 
@@ -125,7 +125,7 @@ Options that can be used with **ndbinfo\_select\_all** are shown in the followin
 
   <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgmd-host`
 
@@ -169,7 +169,7 @@ Options that can be used with **ndbinfo\_select\_all** are shown in the followin
 
   Display version information and exit.
 
-**ndbinfo\_select\_all** is unable to read the following tables:
+**ndbinfo_select_all** is unable to read the following tables:
 
 * `arbitrator_validity_detail`
 * `arbitrator_validity_summary`

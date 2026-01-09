@@ -61,7 +61,7 @@ semanage fcontext -a -t mysqld_var_run_t "/path/to/my/custom/mysql\.sock"
 restorecon -Rv /path/to/my/custom/mysql.sock
 ```
 
-#### Setting the secure\_file\_priv Directory Context
+#### Setting the secure_file_priv Directory Context
 
 For MySQL versions since 5.6.34, 5.7.16, and 8.0.11.
 

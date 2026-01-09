@@ -22,7 +22,7 @@ O MySQL suporta as seguintes opções de linha de comando relacionadas ao cartel
 
 Indica que uma migração importante é de um componente de chaveiro para um plugin de chaveiro. Esta opção permite migrar chaves de um componente de chaveiro para um plugin de chaveiro.
 
-Para a migração de um plugin de chaveiro para um componente de chaveiro, use a opção `--keyring-migration-to-component`. Para a migração de chaves de um componente de chaveiro para outro, use o utilitário **mysql\_migrate\_keyring**. Veja a Seção 8.4.5.14, “Migrando Chaves Entre Keystores de Chaveiro”.
+Para a migração de um plugin de chaveiro para um componente de chaveiro, use a opção `--keyring-migration-to-component`. Para a migração de chaves de um componente de chaveiro para outro, use o utilitário **mysql_migrate_keyring**. Veja a Seção 8.4.5.14, “Migrando Chaves Entre Keystores de Chaveiro”.
 
 * `--keyring-migration-host=host_name`
 
@@ -77,7 +77,7 @@ Para conexões de arquivo de soquete Unix ou tubo nomeado do Windows, o arquivo 
 
 Indica que a migração de uma chave é de um plugin de chave para um componente de chave. Esta opção permite migrar chaves de um plugin de chave para um componente de chave.
 
-Para a migração de um componente de chave para um plugin de chave, use a opção `--keyring-migration-from-component`. Para a migração de uma chave de um componente de chave para outro, use o utilitário **mysql\_migrate\_keyring**. Consulte a Seção 8.4.5.14, “Migração de Chaves entre Keystores de Chave”.
+Para a migração de um componente de chave para um plugin de chave, use a opção `--keyring-migration-from-component`. Para a migração de uma chave de um componente de chave para outro, use o utilitário **mysql_migrate_keyring**. Consulte a Seção 8.4.5.14, “Migração de Chaves entre Keystores de Chave”.
 
 * `--keyring-migration-user=user_name`
 

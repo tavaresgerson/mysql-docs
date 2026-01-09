@@ -18,7 +18,7 @@ O log de erros contém um registro dos tempos de inicialização e desligamento 
 
 Em alguns sistemas operacionais, o log de erros contém uma traça de pilha se o **mysqld** sair anormalmente. A traça pode ser usada para determinar onde o **mysqld** saiu. Veja Seção 5.8, “Depuração do MySQL”.
 
-Se usado para iniciar o **mysqld**, o **mysqld\_safe** pode escrever mensagens no log de erro. Por exemplo, quando o **mysqld\_safe** detecta uma saída anormal do **mysqld**, ele reinicia o **mysqld** e escreve uma mensagem de `mysqld reiniciado` no log de erro.
+Se usado para iniciar o **mysqld**, o **mysqld_safe** pode escrever mensagens no log de erro. Por exemplo, quando o **mysqld_safe** detecta uma saída anormal do **mysqld**, ele reinicia o **mysqld** e escreve uma mensagem de `mysqld reiniciado` no log de erro.
 
 As seções a seguir discutem aspectos da configuração do registro de erros. Na discussão, "console" significa `stderr`, a saída padrão de erro. Este é seu terminal ou janela de console, a menos que a saída padrão de erro tenha sido redirecionada para um destino diferente.
 

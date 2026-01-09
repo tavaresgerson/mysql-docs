@@ -145,9 +145,9 @@ Para exibir os nomes e valores das variáveis de sistema:
 
 * Use a instrução `SHOW VARIABLES`; veja a Seção 15.7.7.42, “Instrução SHOW VARIABLES”.
 * Várias tabelas do Schema de Desempenho fornecem informações sobre variáveis de sistema. Veja a Seção 29.12.14, “Tabelas de Variáveis de Sistema do Schema de Desempenho”.
-* A tabela `variables\_info` do Schema de Desempenho contém informações sobre quando e por qual usuário cada variável de sistema foi definida mais recentemente. Veja a Seção 29.12.14.3, “Tabela variables\_info do Schema de Desempenho”.
+* A tabela `variables_info` do Schema de Desempenho contém informações sobre quando e por qual usuário cada variável de sistema foi definida mais recentemente. Veja a Seção 29.12.14.3, “Tabela variables_info do Schema de Desempenho”.
 
-* A tabela do Schema de Desempenho `persisted_variables` fornece uma interface SQL ao arquivo `mysqld-auto.cnf`, permitindo que seu conteúdo seja inspecionado em tempo de execução usando instruções `SELECT`. Veja a Seção 29.12.14.2, “Tabela Schema de Desempenho persisted\_variables”.
+* A tabela do Schema de Desempenho `persisted_variables` fornece uma interface SQL ao arquivo `mysqld-auto.cnf`, permitindo que seu conteúdo seja inspecionado em tempo de execução usando instruções `SELECT`. Veja a Seção 29.12.14.2, “Tabela Schema de Desempenho persisted_variables”.
 
 ##### SET Gerenciamento de Erros
 

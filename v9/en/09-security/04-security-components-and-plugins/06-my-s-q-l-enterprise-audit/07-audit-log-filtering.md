@@ -107,7 +107,7 @@ When a connection arrives, the audit log plugin determines which filter to use f
 
 * Otherwise, the audit log selects no audit events from the session for processing.
 
-If a change-user operation occurs during a session (see mysql\_change\_user()), filter assignment for the session is updated using the same rules but for the new user.
+If a change-user operation occurs during a session (see mysql_change_user()), filter assignment for the session is updated using the same rules but for the new user.
 
 By default, no accounts have a filter assigned, so no processing of auditable events occurs for any account.
 

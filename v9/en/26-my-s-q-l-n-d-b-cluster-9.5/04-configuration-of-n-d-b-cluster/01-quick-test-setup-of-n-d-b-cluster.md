@@ -41,7 +41,7 @@ DataDir= /var/lib/mysql-cluster
 [mysqld]
 ```
 
-You can now start the **ndb\_mgmd** management server. By default, it attempts to read the `config.ini` file in its current working directory, so change location into the directory where the file is located and then invoke **ndb\_mgmd**:
+You can now start the **ndb_mgmd** management server. By default, it attempts to read the `config.ini` file in its current working directory, so change location into the directory where the file is located and then invoke **ndb_mgmd**:
 
 ```
 $> cd /var/lib/mysql-cluster
@@ -58,7 +58,7 @@ By default, **ndbd** looks for the management server at `localhost` on port 1186
 
 Note
 
-If you have installed MySQL from a binary tarball, you must to specify the path of the **ndb\_mgmd** and **ndbd** servers explicitly. (Normally, these can be found in `/usr/local/mysql/bin`.)
+If you have installed MySQL from a binary tarball, you must to specify the path of the **ndb_mgmd** and **ndbd** servers explicitly. (Normally, these can be found in `/usr/local/mysql/bin`.)
 
 Finally, change location to the MySQL data directory (usually `/var/lib/mysql` or `/usr/local/mysql/data`), and make sure that the `my.cnf` file contains the option necessary to enable the NDB storage engine:
 

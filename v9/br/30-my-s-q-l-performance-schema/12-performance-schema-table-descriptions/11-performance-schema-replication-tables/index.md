@@ -1,40 +1,40 @@
 ### 29.12.11 Tabelas de Replicação do Schema de Desempenho
 
-29.12.11.1 A tabela `binary\_log\_transaction\_compression\_stats`
+29.12.11.1 A tabela `binary_log_transaction_compression_stats`
 
-29.12.11.2 A tabela `replication\_applier\_configuration`
+29.12.11.2 A tabela `replication_applier_configuration`
 
-29.12.11.3 A tabela `replication\_applier\_filters`
+29.12.11.3 A tabela `replication_applier_filters`
 
-29.12.11.4 A tabela `replication\_applier\_global\_filters`
+29.12.11.4 A tabela `replication_applier_global_filters`
 
-29.12.11.5 A tabela `replication\_applier\_metrics`
+29.12.11.5 A tabela `replication_applier_metrics`
 
-29.12.11.6 A tabela `replication\_applier\_progress\_by\_worker`
+29.12.11.6 A tabela `replication_applier_progress_by_worker`
 
-29.12.11.7 A tabela `replication\_applier\_status`
+29.12.11.7 A tabela `replication_applier_status`
 
-29.12.11.8 A tabela `replication\_applier\_status\_by\_coordinator`
+29.12.11.8 A tabela `replication_applier_status_by_coordinator`
 
-29.12.11.9 A tabela `replication\_applier\_status\_by\_worker`
+29.12.11.9 A tabela `replication_applier_status_by_worker`
 
-29.12.11.10 A tabela `replication\_asynchronous\_connection\_failover`
+29.12.11.10 A tabela `replication_asynchronous_connection_failover`
 
-29.12.11.11 A tabela `replication\_asynchronous\_connection\_failover\_managed`
+29.12.11.11 A tabela `replication_asynchronous_connection_failover_managed`
 
-29.12.11.12 A tabela `replication\_connection\_configuration`
+29.12.11.12 A tabela `replication_connection_configuration`
 
-29.12.11.13 A tabela `replication\_connection\_status`
+29.12.11.13 A tabela `replication_connection_status`
 
-29.12.11.14 A tabela `replication\_group\_communication\_information`
+29.12.11.14 A tabela `replication_group_communication_information`
 
-29.12.11.15 A tabela `replication\_group\_configuration\_version`
+29.12.11.15 A tabela `replication_group_configuration_version`
 
-29.12.11.16 A tabela `replication\_group\_member\_actions`
+29.12.11.16 A tabela `replication_group_member_actions`
 
-29.12.11.17 A tabela `replication\_group\_member\_stats`
+29.12.11.17 A tabela `replication_group_member_stats`
 
-29.12.11.18 A tabela `replication\_group\_members`
+29.12.11.18 A tabela `replication_group_members`
 
 O Schema de Desempenho fornece tabelas que exibem informações de replicação. Isso é semelhante às informações disponíveis a partir da instrução `SHOW REPLICA STATUS`, mas a representação em formato de tabela é mais acessível e tem benefícios de usabilidade:
 

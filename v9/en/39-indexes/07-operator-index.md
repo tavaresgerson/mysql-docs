@@ -398,7 +398,7 @@ Section 15.5.1, “PREPARE Statement”
 
 Section 13.3.5, “The VECTOR Type”
 
-### CASE value WHEN compare\_value THEN result END
+### CASE value WHEN compare_value THEN result END
 
 Section 14.5, “Flow Control Functions”
 
@@ -516,11 +516,11 @@ Section 14.3, “Type Conversion in Expression Evaluation”
 
 Section 14.4.1, “Operator Precedence”
 
-### IS boolean\_value
+### IS boolean_value
 
 Section 14.4.2, “Comparison Functions and Operators”
 
-### IS NOT boolean\_value
+### IS NOT boolean_value
 
 Section 14.4.2, “Comparison Functions and Operators”
 
@@ -630,21 +630,21 @@ Section 11.1.1, “String Literals”
 
 Section 7.1.9.5, “Structured System Variables”
 
-Section 12.8.5, “The binary Collation Compared to \_bin Collations”
+Section 12.8.5, “The binary Collation Compared to _bin Collations”
 
-Section 30.4.4.5, “The ps\_setup\_disable\_consumer() Procedure” Procedure")
+Section 30.4.4.5, “The ps_setup_disable_consumer() Procedure” Procedure")
 
-Section 30.4.4.6, “The ps\_setup\_disable\_instrument() Procedure” Procedure")
+Section 30.4.4.6, “The ps_setup_disable_instrument() Procedure” Procedure")
 
-Section 30.4.4.9, “The ps\_setup\_enable\_consumer() Procedure” Procedure")
+Section 30.4.4.9, “The ps_setup_enable_consumer() Procedure” Procedure")
 
-Section 30.4.4.10, “The ps\_setup\_enable\_instrument() Procedure” Procedure")
+Section 30.4.4.10, “The ps_setup_enable_instrument() Procedure” Procedure")
 
 Section 13.3.7, “The SET Type”
 
 Section 7.1.9, “Using System Variables”
 
-### LIKE '\_A%'
+### LIKE '_A%'
 
 Section A.11, “MySQL 9.5 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”
 

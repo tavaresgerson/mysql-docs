@@ -1,4 +1,4 @@
-#### 29.12.22.6 The log\_status Table
+#### 29.12.22.6 The log_status Table
 
 The `log_status` table provides information that enables an online backup tool to copy the required log files without locking those resources for the duration of the copy process.
 

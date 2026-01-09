@@ -1,12 +1,12 @@
 ### 13/12/28 Tabelas de Bloqueio do Schema de Desempenho
 
-13/12/28.1 Tabela data\_locks
+13/12/28.1 Tabela data_locks
 
-13/12/28.2 Tabela data\_lock\_waits
+13/12/28.2 Tabela data_lock_waits
 
-13/12/28.3 Tabela metadata\_locks
+13/12/28.3 Tabela metadata_locks
 
-13/12/28.4 Tabela table\_handles
+13/12/28.4 Tabela table_handles
 
 O Schema de Desempenho expõe informações de bloqueio através dessas tabelas:
 

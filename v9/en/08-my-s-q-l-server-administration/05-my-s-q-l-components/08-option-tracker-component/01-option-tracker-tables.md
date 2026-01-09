@@ -6,7 +6,7 @@ The Option Tracker supplies option information in the form of two tables, listed
 
   This table, like other Performance Schema tables, is read-only, and thus cannot be updated or truncated by users.
 
-  See Section 29.12.22.7, “The mysql\_option Table”, for more detailed information about this table, such as columns and their possible values.
+  See Section 29.12.22.7, “The mysql_option Table”, for more detailed information about this table, such as columns and their possible values.
 
 * `mysql_option.option_usage`: Shows, for each option installed, the name of the associated feature, feature usage data in `JSON` format, and other information. This table is installed by executing the SQL script `option_tracker_install.sql`, and uninstalled by executing `option_tracker_uninstall.sql`, both found in the MySQL `share` directory.
 

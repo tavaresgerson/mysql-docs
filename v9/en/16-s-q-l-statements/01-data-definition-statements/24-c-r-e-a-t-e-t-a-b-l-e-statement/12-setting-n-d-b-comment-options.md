@@ -1,7 +1,7 @@
 #### 15.1.24.12 Setting NDB Comment Options
 
-* NDB\_COLUMN Options
-* NDB\_TABLE Options
+* NDB_COLUMN Options
+* NDB_TABLE Options
 
 It is possible to set a number of options specific to NDB Cluster in the table comment or column comments of an `NDB` table. Table-level options for controlling read from any replica and partition balance can be embedded in a table comment using `NDB_TABLE`.
 
@@ -11,7 +11,7 @@ It is possible to set a number of options specific to NDB Cluster in the table c
 
 The remainder of this section describes these options and their use.
 
-##### NDB\_COLUMN Options
+##### NDB_COLUMN Options
 
 In NDB Cluster, a column comment in a `CREATE TABLE` or `ALTER TABLE` statement can also be used to specify an `NDB_COLUMN` option. `NDB` supports two column comment options `BLOB_INLINE_SIZE` and `MAX_BLOB_PART_SIZE`. Syntax for these options is shown here:
 
@@ -60,7 +60,7 @@ mysql> SELECT
 2 rows in set (0.01 sec)
 ```
 
-You can also check the output from the **ndb\_desc** utility, as shown here, with the relevant lines displayed using emphasized text:
+You can also check the output from the **ndb_desc** utility, as shown here, with the relevant lines displayed using emphasized text:
 
 ```
 $> ndb_desc -d test t1
@@ -113,7 +113,7 @@ mysql> CREATE TABLE test.t2 (
 Query OK, 0 rows affected (0.32 sec)
 ```
 
-From the system shell, run the **ndb\_desc** utility to obtain information about the table just created, as shown in this example:
+From the system shell, run the **ndb_desc** utility to obtain information about the table just created, as shown in this example:
 
 ```
 $> ndb_desc -d test t2
@@ -190,7 +190,7 @@ mysql> EXIT
 Bye
 ```
 
-The output of **ndb\_desc** shows that the blob part sizes of the columns have been changed as expected:
+The output of **ndb_desc** shows that the blob part sizes of the columns have been changed as expected:
 
 ```
 $> ndb_desc -d test t2
@@ -269,13 +269,13 @@ mysql> SELECT
 2 rows in set (0.00 sec)
 ```
 
-You can also verify that the statement worked by checking the output of **ndb\_desc**.
+You can also verify that the statement worked by checking the output of **ndb_desc**.
 
 Changing a column's blob part size must be done using a copying `ALTER TABLE`; this operation cannot be performed online (see Section 25.6.12, “Online Operations with ALTER TABLE in NDB Cluster”).
 
 For more information about how `NDB` stores columns of blob types, see String Type Storage Requirements.
 
-##### NDB\_TABLE Options
+##### NDB_TABLE Options
 
 For an NDB Cluster table, the table comment in a `CREATE TABLE` or `ALTER TABLE` statement can also be used to specify an `NDB_TABLE` option, which consists of one or more name-value pairs, separated by commas if need be, following the string `NDB_TABLE=`. Complete syntax for names and values syntax is shown here:
 
@@ -424,4 +424,4 @@ mysql> SELECT TABLE_NAME, TABLE_SCHEMA, TABLE_COMMENT
 2 rows in set (0.01 sec)
 ```
 
-You can also see the value of the `PARTITION_BALANCE` option in the output of **ndb\_desc**. **ndb\_desc** also shows whether the `READ_BACKUP` and `FULLY_REPLICATED` options are set for the table. See the description of this program for more information.
+You can also see the value of the `PARTITION_BALANCE` option in the output of **ndb_desc**. **ndb_desc** also shows whether the `READ_BACKUP` and `FULLY_REPLICATED` options are set for the table. See the description of this program for more information.

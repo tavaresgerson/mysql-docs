@@ -1,4 +1,4 @@
-#### 26.4.4.25 Procedimento statement\_performance\_analyzer()
+#### 26.4.4.25 Procedimento statement_performance_analyzer()
 
 Cria um relatório das declarações em execução no servidor. As visualizações são calculadas com base na atividade geral e/ou delta.
 
@@ -44,7 +44,7 @@ Esse procedimento desabilita o registro binário durante sua execução, manipul
 
 ##### Opções de configuração
 
-A operação `statement_performance_analyzer()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, "A Tabela sys\_config"):
+A operação `statement_performance_analyzer()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, "A Tabela sys_config"):
 
 - `debug`, `@sys.debug`
 

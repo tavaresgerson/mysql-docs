@@ -10,7 +10,7 @@ A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O sufixo 
 
 **Tabela 8.24 Nomes de Plugin e Biblioteca para Autenticação Conectada a OpenID**
 
-<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação conectada a OpenID."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>authentication_openid_connect</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code>authentication_openid_connect_client</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">authentication_openid_connect.so</code>, <code class="filename">authentication_openid_connect_client.so</code></td> </tr></tbody></table>
+<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação conectada a OpenID."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>authentication_openid_connect</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code>authentication_openid_connect_client</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code>authentication_openid_connect.so</code>, <code>authentication_openid_connect_client.so</code></td> </tr></tbody></table>
 
 O plugin de autenticação OpenID Connect no lado do servidor está incluído na Edição Empresarial do MySQL. Ele não está incluído nas distribuições comunitárias do MySQL. O plugin no lado do cliente está incluído em todas as distribuições, incluindo as comunitárias. Isso permite que clientes de qualquer distribuição se conectem a um servidor que tenha o plugin no lado do servidor carregado.
 

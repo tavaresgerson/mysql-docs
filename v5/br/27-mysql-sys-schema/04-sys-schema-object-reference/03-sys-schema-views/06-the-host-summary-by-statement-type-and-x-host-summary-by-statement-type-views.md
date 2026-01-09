@@ -1,4 +1,4 @@
-#### 26.4.3.6 As visualizações host\_summary\_by\_statement\_type e x$host\_summary\_by\_statement\_type
+#### 26.4.3.6 As visualizações host_summary_by_statement_type e x$host_summary_by_statement_type
 
 Essas visualizações resumem informações sobre declarações executadas, agrupadas por host e tipo de declaração. Por padrão, as linhas são ordenadas por host e latência total decrescente.
 

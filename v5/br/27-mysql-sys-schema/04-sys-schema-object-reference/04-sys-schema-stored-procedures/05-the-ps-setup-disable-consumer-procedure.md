@@ -1,4 +1,4 @@
-#### 26.4.4.5 O procedimento ps\_setup\_disable\_consumer()
+#### 26.4.4.5 O procedimento ps_setup_disable_consumer()
 
 Desabilita os consumidores do Schema de Desempenho com nomes que contêm o argumento. Produz um conjunto de resultados indicando quantos consumidores foram desativados. Os consumidores já desativados não são contabilizados.
 

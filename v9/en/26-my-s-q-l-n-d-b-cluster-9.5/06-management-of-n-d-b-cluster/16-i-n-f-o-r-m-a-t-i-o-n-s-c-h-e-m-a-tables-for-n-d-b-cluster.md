@@ -1,4 +1,4 @@
-### 25.6.16 INFORMATION\_SCHEMA Tables for NDB Cluster
+### 25.6.16 INFORMATION_SCHEMA Tables for NDB Cluster
 
 Two `INFORMATION_SCHEMA` tables provide information that is of particular use when managing an NDB Cluster. The `FILES` table provides information about NDB Cluster Disk Data files (see Section 25.6.11.1, “NDB Cluster Disk Data Objects”). The `ndb_transid_mysql_connection_map` table provides a mapping between transactions, transaction coordinators, and API nodes.
 

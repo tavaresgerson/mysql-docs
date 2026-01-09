@@ -1,4 +1,4 @@
-#### 21.6.15.37 The ndbinfo table\_fragments Table
+#### 21.6.15.37 The ndbinfo table_fragments Table
 
 The `table_fragments` table provides information about the fragmentation, partitioning, distribution, and (internal) replication of `NDB` tables.
 

@@ -154,7 +154,7 @@ Leia o caminho de login do arquivo de login.
 
   <table frame="box" rules="all" summary="Propriedades para tentativas-de-conexão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina as entradas em `NDB_CONNECTSTRING` e `my.cnf`.
+Defina a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina as entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -190,7 +190,7 @@ Se não for fornecido um caminho de busca, o valor padrão integrado é usado. E
 
 * `--no-contact`, `-n`
 
-Em vez de esperar pelo estado `STARTED`, o **ndb\_waiter** continua rodando até que o cluster atinja o estado `NO_CONTACT` antes de sair.
+Em vez de esperar pelo estado `STARTED`, o **ndb_waiter** continua rodando até que o cluster atinja o estado `NO_CONTACT` antes de sair.
 
 * `--no-defaults`
 
@@ -200,11 +200,11 @@ Não leia opções padrão de nenhum arquivo de opção que não seja o arquivo 
 
 * `--not-started`
 
-Em vez de esperar pelo estado `STARTED`, o **ndb\_waiter** continua rodando até que o clúster atinja o estado `NOT_STARTED` antes de sair.
+Em vez de esperar pelo estado `STARTED`, o **ndb_waiter** continua rodando até que o clúster atinja o estado `NOT_STARTED` antes de sair.
 
 * `--nowait-nodes=list`
 
-  Quando esta opção é usada, o **ndb\_waiter** não aguarda pelos nós cujos IDs estão listados. A lista é delimitada por vírgulas; intervalos podem ser indicados por travessões, como mostrado aqui:
+  Quando esta opção é usada, o **ndb_waiter** não aguarda pelos nós cujos IDs estão listados. A lista é delimitada por vírgulas; intervalos podem ser indicados por travessões, como mostrado aqui:
 
   ```
   $> ndb_waiter --nowait-nodes=1,3,7-9
@@ -260,7 +260,7 @@ Em vez de esperar pelo estado `STARTED`, o **ndb\_waiter** continua rodando até
 
   Este é o mesmo comportamento das versões do NDB Cluster anteriores à 8.4.
 
-  Os códigos de saída retornados pelo **ndb\_waiter** estão listados aqui, com seus significados:
+  Os códigos de saída retornados pelo **ndb_waiter** estão listados aqui, com seus significados:
 
   + `0`: Sucesso.
   + `1`: O tempo de espera expirou.

@@ -1,4 +1,4 @@
-#### 30.4.3.48 As visualizações wait\_classes\_global\_by\_avg\_latency e x$wait\_classes\_global\_by\_avg\_latency
+#### 30.4.3.48 As visualizações wait_classes_global_by_avg_latency e x$wait_classes_global_by_avg_latency
 
 Essas visualizações resumem as latências médias das classes de espera, agrupadas por classe de evento. Por padrão, as linhas são ordenadas em ordem decrescente de latência média. Os eventos em espera são ignorados.
 

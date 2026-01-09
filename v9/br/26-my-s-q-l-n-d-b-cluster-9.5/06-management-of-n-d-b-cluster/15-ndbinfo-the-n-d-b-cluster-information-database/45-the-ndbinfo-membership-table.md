@@ -62,7 +62,7 @@ A tabela `membership` contém as seguintes colunas:
 
 ##### Notas
 
-O ID de nó e o ID do grupo de nós são os mesmos relatados pelo **ndb\_mgm -e "SHOW"**.
+O ID de nó e o ID do grupo de nós são os mesmos relatados pelo **ndb_mgm -e "SHOW"**.
 
 `left_node` e `right_node` são definidos em termos de um modelo que conecta todos os nós de dados em um círculo, em ordem de seus IDs de nó, semelhante à ordem dos números em um mostrador de relógio, conforme mostrado aqui:
 

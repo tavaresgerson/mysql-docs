@@ -8,9 +8,9 @@ The command-line options and system variables in the following list relate to re
 
 * `abort-slave-event-count`: Option used by mysql-test for debugging and testing of replication.
 
-* `auto_increment_increment`: AUTO\_INCREMENT columns are incremented by this value.
+* `auto_increment_increment`: AUTO_INCREMENT columns are incremented by this value.
 
-* `auto_increment_offset`: Offset added to AUTO\_INCREMENT columns.
+* `auto_increment_offset`: Offset added to AUTO_INCREMENT columns.
 
 * `Com_change_master`: Count of CHANGE REPLICATION SOURCE TO and CHANGE MASTER TO statements.
 
@@ -32,7 +32,7 @@ The command-line options and system variables in the following list relate to re
 
 * `gtid_executed`: Global: All GTIDs in binary log (global) or current transaction (session). Read-only.
 
-* `gtid_executed_compression_period`: Compress gtid\_executed table each time this many transactions have occurred. 0 means never compress this table. Applies only when binary logging is disabled.
+* `gtid_executed_compression_period`: Compress gtid_executed table each time this many transactions have occurred. 0 means never compress this table. Applies only when binary logging is disabled.
 
 * `gtid_mode`: Controls whether GTID based logging is enabled and what type of transactions logs can contain.
 
@@ -56,7 +56,7 @@ The command-line options and system variables in the following list relate to re
 
 * `master_info_repository`: Whether to write connection metadata repository, containing source information and replication I/O thread location in source's binary log, to file or table.
 
-* `max_relay_log_size`: If nonzero, relay log is rotated automatically when its size exceeds this value. If zero, size at which rotation occurs is determined by value of max\_binlog\_size.
+* `max_relay_log_size`: If nonzero, relay log is rotated automatically when its size exceeds this value. If zero, size at which rotation occurs is determined by value of max_binlog_size.
 
 * `relay_log`: Location and base name to use for relay logs.
 
@@ -172,13 +172,13 @@ The command-line options and system variables in the following list relate to re
 
 * `slave_load_tmpdir`: Location where replica should put its temporary files when replicating LOAD DATA statements.
 
-* `slave_max_allowed_packet`: Maximum size, in bytes, of packet that can be sent from replication source server to replica; overrides max\_allowed\_packet.
+* `slave_max_allowed_packet`: Maximum size, in bytes, of packet that can be sent from replication source server to replica; overrides max_allowed_packet.
 
 * `slave_net_timeout`: Number of seconds to wait for more data from source/replica connection before aborting read.
 
 * `Slave_open_temp_tables`: Number of temporary tables that replication SQL thread currently has open.
 
-* `slave_parallel_type`: Tells replica to use timestamp information (LOGICAL\_CLOCK) or database partioning (DATABASE) to parallelize transactions.
+* `slave_parallel_type`: Tells replica to use timestamp information (LOGICAL_CLOCK) or database partioning (DATABASE) to parallelize transactions.
 
 * `slave_parallel_workers`: Number of applier threads for executing replication transactions in parallel; 0 or 1 disables replica multithreading. NDB Cluster: see documentation.
 
@@ -192,13 +192,13 @@ The command-line options and system variables in the following list relate to re
 
 * `Slave_rows_last_search_algorithm_used`: Search algorithm most recently used by this replica to locate rows for row-based replication (index, table, or hash scan).
 
-* `slave_rows_search_algorithms`: Determines search algorithms used for replica update batching. Any 2 or 3 from this list: INDEX\_SEARCH, TABLE\_SCAN, HASH\_SCAN.
+* `slave_rows_search_algorithms`: Determines search algorithms used for replica update batching. Any 2 or 3 from this list: INDEX_SEARCH, TABLE_SCAN, HASH_SCAN.
 
 * `Slave_running`: State of this server as replica (replication I/O thread status).
 
 * `slave_transaction_retries`: Number of times replication SQL thread retries transaction in case it failed with deadlock or elapsed lock wait timeout, before giving up and stopping.
 
-* `slave_type_conversions`: Controls type conversion mode on replica. Value is list of zero or more elements from this list: ALL\_LOSSY, ALL\_NON\_LOSSY. Set to empty string to disallow type conversions between source and replica.
+* `slave_type_conversions`: Controls type conversion mode on replica. Value is list of zero or more elements from this list: ALL_LOSSY, ALL_NON_LOSSY. Set to empty string to disallow type conversions between source and replica.
 
 * `sql_log_bin`: Controls binary logging for current session.
 
@@ -242,7 +242,7 @@ The command-line options and system variables in the following list relate to th
 
 * `binlog_group_commit_sync_delay`: Sets number of microseconds to wait before synchronizing transactions to disk.
 
-* `binlog_group_commit_sync_no_delay_count`: Sets maximum number of transactions to wait for before aborting current delay specified by binlog\_group\_commit\_sync\_delay.
+* `binlog_group_commit_sync_no_delay_count`: Sets maximum number of transactions to wait for before aborting current delay specified by binlog_group_commit_sync_delay.
 
 * `binlog_gtid_simple_recovery`: Controls how binary logs are iterated during GTID recovery.
 

@@ -9,14 +9,12 @@ A conta usada para autenticar um cliente determina quais privilégios o cliente 
 No entanto, existem circunstâncias em que o valor de `CURRENT_USER()` não corresponde ao usuário do cliente, mas a uma conta diferente. Isso ocorre em contextos em que a verificação de privilégios não é baseada na conta do cliente:
 
 - Rotinas armazenadas (procedimentos e funções) definidas com a característica `SQL SECURITY DEFINER`
-
 - Visões definidas com a característica `SQL SECURITY DEFINER`
-
 - Causas e eventos
 
 Nesses contextos, o controle de privilégios é feito contra a conta `DEFINER` e `CURRENT_USER()` refere-se àquela conta, e não à conta do cliente que invocou a rotina ou visualização armazenada ou que causou o disparo para ser ativado. Para determinar o usuário que está invocando, você pode chamar a função `USER()`, que retorna um valor que indica o nome real do usuário fornecido pelo cliente e o host a partir do qual o cliente se conectou. No entanto, esse valor não corresponde necessariamente diretamente a uma conta na tabela `user`, porque o valor de `USER()` nunca contém asteriscos, enquanto os valores das contas (como retornados por `CURRENT_USER()`) podem conter asteriscos de nome de usuário e nome de host.
 
-Por exemplo, um nome de usuário em branco corresponde a qualquer usuário, então uma conta de `''@'localhost'` permite que os clientes se conectem como um usuário anônimo do host local com qualquer nome de usuário. Nesse caso, se um cliente se conectar como `user1` do host local, `[USER()]` (informações-funções.html#função\_user) e `[CURRENT_USER()]` (informações-funções.html#função\_current-user) retornam valores diferentes:
+Por exemplo, um nome de usuário em branco corresponde a qualquer usuário, então uma conta de `''@'localhost'` permite que os clientes se conectem como um usuário anônimo do host local com qualquer nome de usuário. Nesse caso, se um cliente se conectar como `user1` do host local, `[USER()]` (informações-funções.html#função_user) e `[CURRENT_USER()]` (informações-funções.html#função_current-user) retornam valores diferentes:
 
 ```sql
 mysql> SELECT USER(), CURRENT_USER();

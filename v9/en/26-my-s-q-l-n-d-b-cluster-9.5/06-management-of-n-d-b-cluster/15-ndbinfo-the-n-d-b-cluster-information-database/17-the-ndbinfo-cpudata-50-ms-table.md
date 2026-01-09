@@ -1,4 +1,4 @@
-#### 25.6.15.17 The ndbinfo cpudata\_50ms Table
+#### 25.6.15.17 The ndbinfo cpudata_50ms Table
 
 The `cpudata_50ms` table provides data about CPU usage per 50-millisecond interval over the last second.
 

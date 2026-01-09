@@ -1,16 +1,16 @@
-### 25.5.14 ndb\_index\_stat — NDB Index Statistics Utility
+### 25.5.14 ndb_index_stat — NDB Index Statistics Utility
 
-**ndb\_index\_stat** provides per-fragment statistical information about indexes on `NDB` tables. This includes cache version and age, number of index entries per partition, and memory consumption by indexes.
+**ndb_index_stat** provides per-fragment statistical information about indexes on `NDB` tables. This includes cache version and age, number of index entries per partition, and memory consumption by indexes.
 
 #### Usage
 
-To obtain basic index statistics about a given `NDB` table, invoke **ndb\_index\_stat** as shown here, with the name of the table as the first argument and the name of the database containing this table specified immediately following it, using the `--database` (`-d`) option:
+To obtain basic index statistics about a given `NDB` table, invoke **ndb_index_stat** as shown here, with the name of the table as the first argument and the name of the database containing this table specified immediately following it, using the `--database` (`-d`) option:
 
 ```
 ndb_index_stat table -d database
 ```
 
-In this example, we use **ndb\_index\_stat** to obtain such information about an `NDB` table named `mytable` in the `test` database:
+In this example, we use **ndb_index_stat** to obtain such information about an `NDB` table named `mytable` in the `test` database:
 
 ```
 $> ndb_index_stat -d test mytable
@@ -20,13 +20,13 @@ query cache: valid:1 sampleCount:1994 totalBytes:27916
 times in ms: save: 7.133 sort: 1.974 sort per sample: 0.000
 ```
 
-`sampleVersion` is the version number of the cache from which the statistics data is taken. Running **ndb\_index\_stat** with the `--update` option causes sampleVersion to be incremented.
+`sampleVersion` is the version number of the cache from which the statistics data is taken. Running **ndb_index_stat** with the `--update` option causes sampleVersion to be incremented.
 
 `loadTime` shows when the cache was last updated. This is expressed as seconds since the Unix Epoch.
 
 `sampleCount` is the number of index entries found per partition. You can estimate the total number of entries by multiplying this by the number of fragments (shown as `fragCount`).
 
-`sampleCount` can be compared with the cardinality of `SHOW INDEX` or `INFORMATION_SCHEMA.STATISTICS`, although the latter two provide a view of the table as a whole, while **ndb\_index\_stat** provides a per-fragment average.
+`sampleCount` can be compared with the cardinality of `SHOW INDEX` or `INFORMATION_SCHEMA.STATISTICS`, although the latter two provide a view of the table as a whole, while **ndb_index_stat** provides a per-fragment average.
 
 `keyBytes` is the number of bytes used by the index. In this example, the primary key is an integer, which requires four bytes for each index, so `keyBytes` can be calculated in this case as shown here:
 
@@ -38,7 +38,7 @@ This information can also be obtained using the corresponding column definitions
 
 `totalBytes` is the total memory consumed by all indexes on the table, in bytes.
 
-Timings shown in the preceding examples are specific to each invocation of **ndb\_index\_stat**.
+Timings shown in the preceding examples are specific to each invocation of **ndb_index_stat**.
 
 The `--verbose` option provides some additional output, as shown here:
 
@@ -58,11 +58,11 @@ disconnected
 $>
 ```
 
-If the output from the program is empty, this may indicate that no statistics yet exist. To force them to be created (or updated if they already exist), invoke **ndb\_index\_stat** with the `--update` option, or execute `ANALYZE TABLE` on the table in the **mysql** client.
+If the output from the program is empty, this may indicate that no statistics yet exist. To force them to be created (or updated if they already exist), invoke **ndb_index_stat** with the `--update` option, or execute `ANALYZE TABLE` on the table in the **mysql** client.
 
 #### Options
 
-The following table includes options that are specific to the NDB Cluster **ndb\_index\_stat** utility. Additional descriptions are listed following the table.
+The following table includes options that are specific to the NDB Cluster **ndb_index_stat** utility. Additional descriptions are listed following the table.
 
 * `--character-sets-dir`
 
@@ -158,7 +158,7 @@ The following table includes options that are specific to the NDB Cluster **ndb\
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -278,7 +278,7 @@ The following table includes options that are specific to the NDB Cluster **ndb\
 
   Display version information and exit.
 
-**ndb\_index\_stat system options.** The following options are used to generate and update the statistics tables in the NDB kernel. None of these options can be mixed with statistics options (see ndb\_index\_stat statistics options).
+**ndb_index_stat system options.** The following options are used to generate and update the statistics tables in the NDB kernel. None of these options can be mixed with statistics options (see ndb_index_stat statistics options).
 
 * `--sys-drop`
 * `--sys-create`
@@ -288,7 +288,7 @@ The following table includes options that are specific to the NDB Cluster **ndb\
 * `--sys-skip-tables`
 * `--sys-skip-events`
 
-**ndb\_index\_stat statistics options.** The options listed here are used to generate index statistics. They work with a given table and database. They cannot be mixed with system options (see ndb\_index\_stat system options).
+**ndb_index_stat statistics options.** The options listed here are used to generate index statistics. They work with a given table and database. They cannot be mixed with system options (see ndb_index_stat system options).
 
 * `--database`
 * `--delete`

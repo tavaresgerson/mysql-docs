@@ -12,7 +12,7 @@ As seguintes são as variáveis de configuração de telemetria de rastreamento 
 
 * `telemetry.trace_enabled`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetry.trace_enabled"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.trace_enabled">telemetry.trace_enabled</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetry.trace_enabled"><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.trace_enabled</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Controla se as traças de telemetria são coletadas ou não.
 
@@ -21,7 +21,7 @@ Controla se as traças de telemetria são coletadas ou não.
 <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.query_text_enabled">telemetry.query_text_enabled</a></code></td>
+    <td><code>telemetry.query_text_enabled</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -32,7 +32,7 @@ Controla se as traças de telemetria são coletadas ou não.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -48,7 +48,7 @@ Controla se as traças de telemetria são coletadas ou não.
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_log_level">telemetry.otel_log_level</a></code></td>
+    <td><code>telemetry.otel_log_level</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -59,7 +59,7 @@ Controla se as traças de telemetria são coletadas ou não.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -72,7 +72,7 @@ Controla se as traças de telemetria são coletadas ou não.
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td>
+    <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td>
   </tr>
 </table>
 
@@ -83,7 +83,7 @@ Controla se as traças de telemetria são coletadas ou não.
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_resource_attributes">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_resource_attributes">telemetry.otel_resource_attributes</a></code></td>
+    <td><code>telemetry.otel_resource_attributes</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -94,7 +94,7 @@ Controla se as traças de telemetria são coletadas ou não.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -107,14 +107,14 @@ Controla se as traças de telemetria são coletadas ou não.
   </tr>
 </table>
 
-Veja a variável correspondente do OpenTelemetry OTEL\_RESOURCE\_ATTRIBUTES.
+Veja a variável correspondente do OpenTelemetry OTEL_RESOURCE_ATTRIBUTES.
 
 * `telemetry.otel_exporter_otlp_traces_protocol`
 
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_exporter_otlp_traces_protocol">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_exporter_otlp_traces_protocol">telemetry.otel_exporter_otlp_traces_protocol</a></code></td>
+    <td><code>telemetry.otel_exporter_otlp_traces_protocol</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -125,7 +125,7 @@ Veja a variável correspondente do OpenTelemetry OTEL\_RESOURCE\_ATTRIBUTES.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -138,7 +138,7 @@ Veja a variável correspondente do OpenTelemetry OTEL\_RESOURCE\_ATTRIBUTES.
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td>
+    <td><p><code>http/protobuf</code></p><p><code>http/json</code></p></td>
   </tr>
 </table>
 
@@ -146,25 +146,25 @@ Veja a variável correspondente do OpenTelemetry OTEL\_RESOURCE\_ATTRIBUTES.
 
 * `telemetry.otel_exporter_otlp_traces_endpoint`
 
-<table frame="box" rules="all" summary="Propriedades para a exportação de traços de telemetry.otel_exporter_otlp_traces_endpoint"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_exporter_otlp_traces_endpoint">telemetry.otel_exporter_otlp_traces_endpoint</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para a exportação de traços de telemetry.otel_exporter_otlp_traces_endpoint"><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_exporter_otlp_traces_endpoint</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
   URL de destino para a qual o exportador envia os traços
 
 * `telemetry.otel_exporter_otlp_traces_network_namespace`
 
-  <table frame="box" rules="all" summary="Propriedades para o namespace de rede telemetry.otel_exporter_otlp_traces_network_namespace"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_exporter_otlp_traces_network_namespace">telemetry.otel_exporter_otlp_traces_network_namespace</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o namespace de rede telemetry.otel_exporter_otlp_traces_network_namespace"><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_exporter_otlp_traces_network_namespace</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   (Apenas para Linux) Namespace de rede a ser usado ao enviar dados para o endpoint de traços.
 
 * `telemetry.otel_exporter_otlp_traces_certificates`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_traces_certificates"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_exporter_otlp_traces_certificates">telemetry.otel_exporter_otlp_traces_certificates</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_traces_certificates"><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_exporter_otlp_traces_certificates</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
   O certificado confiável a ser usado ao verificar as credenciais TLS de um servidor.
 
 * `telemetry.otel_exporter_otlp_traces_client_key`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_traces_client_key"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_exporter_otlp_traces_client_key">telemetry.otel_exporter_otlp_traces_client_key</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetry.otel_exporter_otlp_traces_client_key"><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_exporter_otlp_traces_client_key</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
 Chave privada do cliente no formato PEM.
 
@@ -175,7 +175,7 @@ Chave privada do cliente no formato PEM.
     <tbody>
       <tr>
         <th>Variável do Sistema</th>
-        <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_exporter_otlp_traces_client_certificates">telemetry.otel_exporter_otlp_traces_client_certificates</a></code></td>
+        <td><code>telemetry.otel_exporter_otlp_traces_client_certificates</code></td>
       </tr>
       <tr>
         <th>Alcance</th>
@@ -186,7 +186,7 @@ Chave privada do cliente no formato PEM.
         <td>Não</td>
       </tr>
       <tr>
-        <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas de Configuração Aplica-se</a></td>
+        <code>SET_VAR</code> Dicas de Configuração Aplica-se</a></td>
         <td>Não</td>
       </tr>
       <tr>
@@ -209,7 +209,7 @@ Chave privada do cliente no formato PEM.
     <tbody>
       <tr>
         <th>Variável do Sistema</th>
-        <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.query_text_enabled">telemetry.query_text_enabled</a></code></td>
+        <td><code>telemetry.query_text_enabled</code></td>
       </tr>
       <tr>
         <th>Alcance</th>
@@ -220,7 +220,7 @@ Chave privada do cliente no formato PEM.
         <td>Sim</td>
       </tr>
       <tr>
-        <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas de Configuração Aplica-se</a></td>
+        <code>SET_VAR</code> Dicas de Configuração Aplica-se</a></td>
         <td>Não</td>
       </tr>
       <tr>
@@ -234,11 +234,11 @@ Chave privada do cliente no formato PEM.
     </tbody>
   </table>
 
-Veja a variável correspondente do OpenTelemetry OTEL\_EXPORTER\_TRACES\_HEADERS.
+Veja a variável correspondente do OpenTelemetry OTEL_EXPORTER_TRACES_HEADERS.
 
 * `telemetry.otel_exporter_otlp_traces_secret_headers`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled"><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.query_text_enabled">telemetry.query_text_enabled</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled"><tr><th>Variável do Sistema</th> <td><code>telemetry.query_text_enabled</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></table>
 
   Nome de um segredo que contém os dados sensíveis para cabeçalhos de rastreamento. O conteúdo e o formato dos dados dependem da implementação do provedor de segredos fornecida com a variável do sistema `telemetry.secret_provider`.
 
@@ -247,7 +247,7 @@ Veja a variável correspondente do OpenTelemetry OTEL\_EXPORTER\_TRACES\_HEADERS
 <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.query_text_enabled">telemetry.query_text_enabled</a></code></td>
+    <td><code>telemetry.query_text_enabled</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -258,7 +258,7 @@ Veja a variável correspondente do OpenTelemetry OTEL\_EXPORTER\_TRACES\_HEADERS
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -279,7 +279,7 @@ Veja a variável correspondente do OpenTelemetry OTEL\_EXPORTER\_TRACES\_HEADERS
   <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled">
     <tr>
       <th>Variável do Sistema</th>
-      <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.query_text_enabled">telemetry.query_text_enabled</a></code></td>
+      <td><code>telemetry.query_text_enabled</code></td>
     </tr>
     <tr>
       <th>Alcance</th>
@@ -290,7 +290,7 @@ Veja a variável correspondente do OpenTelemetry OTEL\_EXPORTER\_TRACES\_HEADERS
       <td>Sim</td>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+      <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
       <td>Não</td>
     </tr>
     <tr>
@@ -312,7 +312,7 @@ Intervalo de atraso entre duas exportações consecutivas em milissegundos
 
 * `telemetry.otel_bsp_max_queue_size`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.query_text_enabled">telemetry.query_text_enabled</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled"><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.query_text_enabled</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Tamanho máximo da fila
 
@@ -322,15 +322,15 @@ Tamanho máximo do lote
 
 * `telemetry.otel_exporter_otlp_traces_min_tls`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled"><tbody><tr><th>Variável do sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.query_text_enabled">telemetry.query_text_enabled</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</code></a></code> Dicas de definição de variável aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled"><tbody><tr><th>Variável do sistema</th> <td><code>telemetry.query_text_enabled</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code></code> Dicas de definição de variável aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
 * `telemetry.otel_exporter_otlp_traces_max_tls`
 
 <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled">
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.query_text_enabled">telemetry.query_text_enabled</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>telemetry.query_text_enabled</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -339,10 +339,10 @@ Tamanho máximo do lote
 * `telemetry.otel_exporter_otlp_traces_cipher`
 
   <table frame="box" rules="all" summary="Propriedades para telemetry.query_text_enabled">
-    <tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.query_text_enabled">telemetry.query_text_enabled</a></code></td> </tr>
+    <tr><th>Variável do Sistema</th> <td><code>telemetry.query_text_enabled</code></td> </tr>
     <tr><th>Alcance</th> <td>Global</td> </tr>
     <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+    <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
     <tr><th>Tipo</th> <td>Booleano</td> </tr>
     <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
   </table>
@@ -363,7 +363,7 @@ Lista atual de criptografadores TLS 1.2 a serem usados para traços. O valor pad
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_log_level">telemetry.otel_log_level</a></code></td>
+    <td><code>telemetry.otel_log_level</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -374,7 +374,7 @@ Lista atual de criptografadores TLS 1.2 a serem usados para traços. O valor pad
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -387,7 +387,7 @@ Lista atual de criptografadores TLS 1.2 a serem usados para traços. O valor pad
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td>
+    <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td>
   </tr>
 </table>
 
@@ -405,7 +405,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
 
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
   <tr>
-    <th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_log_level">telemetry.otel_log_level</a></code></td>
+    <th>Variável do Sistema</th> <td><code>telemetry.otel_log_level</code></td>
   </tr>
   <tr>
     <th>Âmbito</th> <td>Global</td>
@@ -414,7 +414,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
     <th>Dinâmico</th> <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td>
   </tr>
   <tr>
     <th>Tipo</th> <td>Enumeração</td>
@@ -423,18 +423,18 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
     <th>Valor Padrão</th> <td><code>ERROR</code></td>
   </tr>
   <tr>
-    <th>Valores Válidos</th> <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td>
+    <th>Valores Válidos</th> <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td>
   </tr>
 </table>
 
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_log_level">telemetry.otel_log_level</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>telemetry.otel_log_level</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ERROR</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td> </tr>
 </table>
 
   Controla se as traças de telemetria são coletadas ou não.
@@ -442,7 +442,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_log_level">telemetry.otel_log_level</a></code></td>
+    <td><code>telemetry.otel_log_level</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -453,7 +453,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -466,7 +466,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td>
+    <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td>
   </tr>
 </table>
 3. Quando ativado, imprime ajuda sobre as opções do cliente de telemetria.
@@ -474,34 +474,34 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
 * `otel_log_level`
 
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_otel_log_level">telemetry.otel_log_level</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>telemetry.otel_log_level</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ERROR</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td> </tr>
 </table>
 
   Controla quais logs do OpenTelemetry são impressos nos logs do servidor
 
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_otel_log_level">telemetry.otel_log_level</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>telemetry.otel_log_level</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ERROR</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td> </tr>
 </table>
-5. Veja a variável correspondente do OpenTelemetry OTEL\_RESOURCE\_ATTRIBUTES.
+5. Veja a variável correspondente do OpenTelemetry OTEL_RESOURCE_ATTRIBUTES.
 
 * `otel_exporter_otlp_traces_protocol`
 
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_otel_log_level">otel_exporter_otlp_traces_endpoint</a></code></td>
+    <td><code>otel_exporter_otlp_traces_endpoint</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -512,7 +512,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -525,7 +525,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td>
+    <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td>
   </tr>
 </table>
 
@@ -536,7 +536,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_log_level">telemetry.otel_log_level</a></code></td>
+    <td><code>telemetry.otel_log_level</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -547,7 +547,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -560,7 +560,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td>
+    <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td>
   </tr>
 </table>
 7. URL de destino para o qual o exportador envia as traças
@@ -570,7 +570,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_otel_log_level">telemetry.otel_log_level</a></code></td>
+    <td><code>telemetry.otel_log_level</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -581,7 +581,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -594,7 +594,7 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td>
+    <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td>
   </tr>
 </table>
 
@@ -603,13 +603,13 @@ O cliente MySQL lê a configuração de telemetria da seção `[telemetry_client
 * `otel_exporter_otlp_traces_client_key`
 
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_log_level">
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_otel_log_level">telemetry.otel_log_level</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>telemetry.otel_log_level</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ERROR</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td> </tr>
 </table>
 9
 Chave privada do cliente no formato PEM.
@@ -619,7 +619,7 @@ Chave privada do cliente no formato PEM.
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_resource_attributes">
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_resource_attributes">telemetry.otel_resource_attributes</a></code></td>
+    <td><code>telemetry.otel_resource_attributes</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -630,7 +630,7 @@ Chave privada do cliente no formato PEM.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -651,7 +651,7 @@ Chave privada do cliente no formato PEM.
   <table frame="box" rules="all" summary="Propriedades para telemetria.otel_resource_attributes">
     <tr>
       <th>Variável do sistema</th>
-      <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_resource_attributes">telemetry.otel_resource_attributes</a></code></td>
+      <td><code>telemetry.otel_resource_attributes</code></td>
     </tr>
     <tr>
       <th>Alcance</th>
@@ -662,7 +662,7 @@ Chave privada do cliente no formato PEM.
       <td>Não</td>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+      <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
       <td>Não</td>
     </tr>
     <tr>
@@ -676,13 +676,13 @@ Chave privada do cliente no formato PEM.
   </table>
 1
 
-  Veja a variável correspondente OpenTelemetry OTEL\_EXPORTER\_TRACES\_HEADERS.
+  Veja a variável correspondente OpenTelemetry OTEL_EXPORTER_TRACES_HEADERS.
 
 * `otel_exporter_otlp_traces_compression`
 
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_resource_attributes">
   <tr>
-    <th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_resource_attributes">telemetry.otel_resource_attributes</a></code></td>
+    <th>Variável do Sistema</th> <td><code>telemetry.otel_resource_attributes</code></td>
   </tr>
   <tr>
     <th>Alcance</th> <td>Global</td>
@@ -691,7 +691,7 @@ Chave privada do cliente no formato PEM.
     <th>Dinâmica</th> <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td>
   </tr>
   <tr>
     <th>Tipo</th> <td>String</td>
@@ -708,7 +708,7 @@ Chave privada do cliente no formato PEM.
 
   <table frame="box" rules="all" summary="Propriedades para telemetria.otel_resource_attributes">
     <tr>
-      <th>Variável do Sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_resource_attributes">telemetry.otel_resource_attributes</a></code></td>
+      <th>Variável do Sistema</th> <td><code>telemetry.otel_resource_attributes</code></td>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td>
@@ -717,7 +717,7 @@ Chave privada do cliente no formato PEM.
       <th>Dinâmica</th> <td>Não</td>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td>
+      <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td>
     </tr>
     <tr>
       <th>Tipo</th> <td>String</td>
@@ -736,7 +736,7 @@ Intervalo de atraso entre duas exportações consecutivas em milissegundos
 
 * `otel_bsp_max_queue_size`
 
-  <table frame="box" rules="all" summary="Propriedades para telemetria.otel_resource_attributes"><tbody><tr><th>Variável do sistema</th> <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_resource_attributes">telemetry.otel_resource_attributes</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>empty</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para telemetria.otel_resource_attributes"><tbody><tr><th>Variável do sistema</th> <td><code>telemetry.otel_resource_attributes</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code></a> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>empty</code></td> </tr></tbody></table>
 
   Tamanho máximo da fila
 
@@ -745,7 +745,7 @@ Intervalo de atraso entre duas exportações consecutivas em milissegundos
 <table frame="box" rules="all" summary="Propriedades para telemetria.otel_resource_attributes">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="telemetry-trace-configuration.html#sysvar_telemetry.otel_resource_attributes">telemetry.otel_resource_attributes</a></code></td>
+    <td><code>telemetry.otel_resource_attributes</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -756,7 +756,7 @@ Intervalo de atraso entre duas exportações consecutivas em milissegundos
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>

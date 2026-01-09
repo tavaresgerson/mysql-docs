@@ -1,6 +1,6 @@
-### 25.5.26 ndb\_select\_count — Print Row Counts for NDB Tables
+### 25.5.26 ndb_select_count — Print Row Counts for NDB Tables
 
-**ndb\_select\_count** prints the number of rows in one or more `NDB` tables. With a single table, the result is equivalent to that obtained by using the MySQL statement `SELECT COUNT(*) FROM tbl_name`.
+**ndb_select_count** prints the number of rows in one or more `NDB` tables. With a single table, the result is equivalent to that obtained by using the MySQL statement `SELECT COUNT(*) FROM tbl_name`.
 
 #### Usage
 
@@ -8,7 +8,7 @@
 ndb_select_count [-c connection_string] -ddb_name tbl_name[, tbl_name2[, ...]]
 ```
 
-Options that can be used with **ndb\_select\_count** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_select_count** are shown in the following table. Additional descriptions follow the table.
 
 * `--character-sets-dir`
 
@@ -80,7 +80,7 @@ Options that can be used with **ndb\_select\_count** are shown in the following 
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 

@@ -32,7 +32,7 @@ Você não precisa compilar um novo servidor MySQL apenas para começar com um a
 $> mysqld_safe --socket=file_name --port=port_number
 ```
 
-Para iniciar um segundo servidor, forneça diferentes valores de opções `--socket` e `--port`, e passe uma opção `--datadir=dir_name` para **mysqld\_safe** para que o servidor use um diretório de dados diferente.
+Para iniciar um segundo servidor, forneça diferentes valores de opções `--socket` e `--port`, e passe uma opção `--datadir=dir_name` para **mysqld_safe** para que o servidor use um diretório de dados diferente.
 
 Alternativamente, coloque as opções para cada servidor em um arquivo de opção diferente, e inicie cada servidor usando uma opção `--defaults-file` que especifica o caminho para o arquivo de opção apropriado. Por exemplo, se os arquivos de opção para duas instâncias do servidor forem chamados de `/usr/local/mysql/my.cnf` e `/usr/local/mysql/my.cnf2`, inicie os servidores da seguinte forma: comando:
 

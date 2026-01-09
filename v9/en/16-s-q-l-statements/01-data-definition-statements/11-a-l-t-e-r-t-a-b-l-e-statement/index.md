@@ -154,7 +154,7 @@ partition_options:
 
 * `InnoDB` supports addition of multi-valued indexes on JSON columns using a *`key_part`* specification can take the form `(CAST json_path AS type ARRAY)`. See Multi-Valued Indexes, for detailed information regarding multi-valued index creation and usage of, as well as restrictions and limitations on multi-valued indexes.
 
-* With the `mysql_info()` C API function, you can find out how many rows were copied by `ALTER TABLE`. See mysql\_info().
+* With the `mysql_info()` C API function, you can find out how many rows were copied by `ALTER TABLE`. See mysql_info().
 
 There are several additional aspects to the `ALTER TABLE` statement, described under the following topics in this section:
 
@@ -264,7 +264,7 @@ Use of table options with `ALTER TABLE` provides a convenient way of altering si
       COMMENT = 'NDB_COLUMN=BLOB_INLINE_SIZE=4096,MAX_BLOB_PART_SIZE';
   ```
 
-  Bear in mind that `ALTER TABLE ... COMMENT ...` discards any existing comment for the table. See Setting NDB\_TABLE options, for additional information and examples.
+  Bear in mind that `ALTER TABLE ... COMMENT ...` discards any existing comment for the table. See Setting NDB_TABLE options, for additional information and examples.
 
 * `ENGINE_ATTRIBUTE` and `SECONDARY_ENGINE_ATTRIBUTE` options are used to specify table, column, and index attributes for primary and secondary storage engines. These options are reserved for future use. Index attributes cannot be altered. An index must be dropped and added back with the desired change, which can be performed in a single `ALTER TABLE` statement.
 
@@ -588,7 +588,7 @@ The server prohibits changes to foreign key columns that have the potential to c
 
 * Changing a `NULL` column to `NOT NULL` in non-strict mode is prohibited to prevent converting `NULL` values to default non-`NULL` values, for which there are no corresponding values in the referenced table. The operation is permitted in strict mode, but an error is returned if any such conversion is required.
 
-`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*\_ibfk\_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*\_ibfk\_” as internally generated names.
+`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” as internally generated names.
 
 `ALTER TABLE` permits `CHECK` constraints for existing tables to be added, dropped, or altered:
 
@@ -647,7 +647,7 @@ If a table alteration causes a violation of an enforced `CHECK` constraint, an e
 
 * Attempts to modify, rename, or drop a column that is used in a `CHECK` constraint, unless that constraint is also dropped in the same statement. Exception: If a `CHECK` constraint refers only to a single column, dropping the column automatically drops the constraint.
 
-`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated and user-defined `CHECK` constraint names that begin with the string “*`tbl_name`*\_chk\_” to reflect the new table name. MySQL interprets `CHECK` constraint names that begin with the string “*`tbl_name`*\_chk\_” as internally generated names.
+`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated and user-defined `CHECK` constraint names that begin with the string “*`tbl_name`*_chk_” to reflect the new table name. MySQL interprets `CHECK` constraint names that begin with the string “*`tbl_name`*_chk_” as internally generated names.
 
 #### Changing the Character Set
 

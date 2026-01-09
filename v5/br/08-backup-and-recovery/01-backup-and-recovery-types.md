@@ -34,7 +34,7 @@ Os métodos de backup físico têm essas características:
 
   - O MySQL Enterprise Backup restaura as tabelas `InnoDB` e outras tabelas que foram restauradas.
 
-  - O **ndb\_restore** restaura as tabelas `NDB`.
+  - O **ndb_restore** restaura as tabelas `NDB`.
 
   - Os arquivos copiados no nível do sistema de arquivos podem ser copiados de volta para seus locais originais com comandos do sistema de arquivos.
 

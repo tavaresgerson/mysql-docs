@@ -1,4 +1,4 @@
-#### 30.4.3.39 The statements\_with\_sorting and x$statements\_with\_sorting Views
+#### 30.4.3.39 The statements_with_sorting and x$statements_with_sorting Views
 
 These views list normalized statements that have performed sorts. By default, rows are sorted by descending total latency.
 

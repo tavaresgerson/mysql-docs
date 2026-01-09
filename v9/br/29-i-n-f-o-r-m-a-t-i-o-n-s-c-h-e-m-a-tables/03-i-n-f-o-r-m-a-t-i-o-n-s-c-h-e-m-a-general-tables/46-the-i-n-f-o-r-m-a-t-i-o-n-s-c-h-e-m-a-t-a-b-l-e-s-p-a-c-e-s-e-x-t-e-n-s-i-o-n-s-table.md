@@ -1,4 +1,4 @@
-### 28.3.46 A tabela TABLESPACES\_EXTENSIONS do esquema INFORMATION\_SCHEMA
+### 28.3.46 A tabela TABLESPACES_EXTENSIONS do esquema INFORMATION_SCHEMA
 
 A tabela `TABLESPACES_EXTENSIONS` fornece informações sobre os atributos do tablespace definidos para os motores de armazenamento primário.
 

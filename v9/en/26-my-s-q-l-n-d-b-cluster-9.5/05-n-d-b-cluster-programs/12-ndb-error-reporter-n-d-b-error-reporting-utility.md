@@ -1,8 +1,8 @@
-### 25.5.12 ndb\_error\_reporter — NDB Error-Reporting Utility
+### 25.5.12 ndb_error_reporter — NDB Error-Reporting Utility
 
-**ndb\_error\_reporter** creates an archive from data node and management node log files that can be used to help diagnose bugs or other problems with a cluster. *It is highly recommended that you make use of this utility when filing reports of bugs in NDB Cluster*.
+**ndb_error_reporter** creates an archive from data node and management node log files that can be used to help diagnose bugs or other problems with a cluster. *It is highly recommended that you make use of this utility when filing reports of bugs in NDB Cluster*.
 
-Options that can be used with **ndb\_error\_reporter** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_error_reporter** are shown in the following table. Additional descriptions follow the table.
 
 #### Usage
 
@@ -10,9 +10,9 @@ Options that can be used with **ndb\_error\_reporter** are shown in the followin
 ndb_error_reporter path/to/config-file [username] [options]
 ```
 
-This utility is intended for use on a management node host, and requires the path to the management host configuration file (usually named `config.ini`). Optionally, you can supply the name of a user that is able to access the cluster's data nodes using SSH, to copy the data node log files. **ndb\_error\_reporter** then includes all of these files in archive that is created in the same directory in which it is run. The archive is named `ndb_error_report_YYYYMMDDhhmmss.tar.bz2`, where *`YYYYMMDDhhmmss`* is a datetime string.
+This utility is intended for use on a management node host, and requires the path to the management host configuration file (usually named `config.ini`). Optionally, you can supply the name of a user that is able to access the cluster's data nodes using SSH, to copy the data node log files. **ndb_error_reporter** then includes all of these files in archive that is created in the same directory in which it is run. The archive is named `ndb_error_report_YYYYMMDDhhmmss.tar.bz2`, where *`YYYYMMDDhhmmss`* is a datetime string.
 
-**ndb\_error\_reporter** also accepts the options listed here:
+**ndb_error_reporter** also accepts the options listed here:
 
 * `--connection-timeout=timeout`
 
@@ -24,7 +24,7 @@ This utility is intended for use on a management node host, and requires the pat
 
   <table frame="box" rules="all" summary="Properties for dry-scp"><tbody><tr><th>Command-Line Format</th> <td><code>--dry-scp</code></td> </tr></tbody></table>
 
-  Run **ndb\_error\_reporter** without using scp from remote hosts. Used for testing only.
+  Run **ndb_error_reporter** without using scp from remote hosts. Used for testing only.
 
 * `--help`
 

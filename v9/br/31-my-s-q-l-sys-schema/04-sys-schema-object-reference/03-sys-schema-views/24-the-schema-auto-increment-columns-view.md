@@ -1,4 +1,4 @@
-#### 30.4.3.24 A visão `schema\_auto\_increment\_columns`
+#### 30.4.3.24 A visão `schema_auto_increment_columns`
 
 Essa visão indica quais tabelas possuem colunas `AUTO_INCREMENT` e fornece informações sobre essas colunas, como os valores atuais e máximos da coluna e a proporção de uso (proporção de valores usados para os possíveis). Por padrão, as linhas são ordenadas em ordem decrescente de proporção de uso e valor máximo da coluna.
 

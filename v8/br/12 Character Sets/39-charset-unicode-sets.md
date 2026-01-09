@@ -34,7 +34,7 @@ O suporte à cotação para `utf16le` é limitado. As únicas cotações dispon�
 *  Algoritmo de Cotação Unicode (UCA) Versões
 *  Atributos de Alinhamento de Caracteres
 *  Cotações Específicas de Idioma
-*  Cotações `_general\_ci` versus `_unicode\_ci`
+*  Cotações `_general_ci` versus `_unicode_ci`
 
 O MySQL implementa as colatações `xxx_unicode_ci` de acordo com o Algoritmo de Colatação Unicode (UCA) descrito em <http://www.unicode.org/reports/tr10/>. A colatação utiliza as chaves de peso das versões 4.0.0 do UCA: <http://www.unicode.org/Public/UCA/4.0.0/allkeys-4.0.0.txt>. As colatações `xxx_unicode_ci` têm suporte parcial apenas para o Algoritmo de Colatação Unicode. Alguns caracteres não são suportados, e as marcas de combinação não são totalmente suportadas. Isso afeta idiomas como o vietnamita, o iorubá e o navajo. Um caractere combinado é considerado diferente do mesmo caractere escrito com um único caractere Unicode em comparações de strings, e os dois caracteres são considerados ter um comprimento diferente (por exemplo, conforme retornado pela função `CHAR_LENGTH()` ou nos metadados do conjunto de resultados).
 
@@ -144,7 +144,7 @@ As collationes suecas incluem as regras suecas. Por exemplo, em sueco, a seguint
 Ü = Y < Ö
 ```
 
-#### \_general\_ci Versus \_unicode\_ci Collations
+#### _general_ci Versus _unicode_ci Collations
 
 Para qualquer conjunto de caracteres Unicode, as operações realizadas usando a collation `xxx_general_ci` são mais rápidas do que as realizadas para a collation `xxx_unicode_ci`. Por exemplo, as comparações para a collation `utf8mb4_general_ci` são mais rápidas, mas um pouco menos corretas, do que as comparações para `utf8mb4_unicode_ci`. A razão é que `utf8mb4_unicode_ci` suporta mapeamentos como expansões; ou seja, quando um caractere compara como igual a combinações de outros caracteres. Por exemplo, `ß` é igual a `ss` em alemão e em algumas outras línguas. `utf8mb4_unicode_ci` também suporta contrações e caracteres ignoráveis. `utf8mb4_general_ci` é uma collation de legado que não suporta expansões, contrações ou caracteres ignoráveis. Ela pode realizar apenas comparações um-para-um entre caracteres.
 
@@ -279,7 +279,7 @@ Code point  Character                    utf8mb4      utf16
 ```
 Os dois caracteres no gráfico estão em ordem pelo valor do ponto de código porque `0xff9d` < `0x10384`. E estão em ordem pelo valor do `utf8mb4` porque `0xef` < `0xf0`. Mas não estão em ordem pelo valor do `utf16`, se usarmos a comparação byte por byte, porque `0xff` > `0xd8`.
 
-Portanto, a cotação `utf16_bin` do MySQL não é “byte por byte”. É “por ponto de código”. Quando o MySQL vê uma codificação de caracteres suplementar em `utf16`, ele converte o valor do ponto de código do caractere e, em seguida, compara. Portanto, `utf8mb4_bin` e `utf16_bin` têm a mesma ordem. Isso está de acordo com o requisito do padrão SQL:2008 para uma cotação UCS\_BASIC: “UCS\_BASIC é uma cotação na qual a ordem é determinada inteiramente pelos valores escalares Unicode dos caracteres nas strings que estão sendo ordenadas. É aplicável ao repertório de caracteres UCS. Como todo repertório de caracteres é um subconjunto do repertório UCS, a cotação UCS\_BASIC é potencialmente aplicável a todos os conjuntos de caracteres. NOTA 11: O valor escalar Unicode de um caractere é seu ponto de código tratado como um inteiro não assinado.”
+Portanto, a cotação `utf16_bin` do MySQL não é “byte por byte”. É “por ponto de código”. Quando o MySQL vê uma codificação de caracteres suplementar em `utf16`, ele converte o valor do ponto de código do caractere e, em seguida, compara. Portanto, `utf8mb4_bin` e `utf16_bin` têm a mesma ordem. Isso está de acordo com o requisito do padrão SQL:2008 para uma cotação UCS_BASIC: “UCS_BASIC é uma cotação na qual a ordem é determinada inteiramente pelos valores escalares Unicode dos caracteres nas strings que estão sendo ordenadas. É aplicável ao repertório de caracteres UCS. Como todo repertório de caracteres é um subconjunto do repertório UCS, a cotação UCS_BASIC é potencialmente aplicável a todos os conjuntos de caracteres. NOTA 11: O valor escalar Unicode de um caractere é seu ponto de código tratado como um inteiro não assinado.”
 
 Se o conjunto de caracteres for `ucs2`, a comparação é byte por byte, mas as strings `ucs2` não devem conter surrogados, de qualquer forma.
 

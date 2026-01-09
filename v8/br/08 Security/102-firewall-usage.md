@@ -56,7 +56,7 @@ SHOW VARIABLES LIKE 'component_scheduler%';
 +-----------------------------+-------+
 ```
 
-Com o firewall instalado, defina a variável de sistema global `mysql_firewall_reload_interval_seconds` no início do servidor para um número entre 60 e o valor da macro INT\_MAX da plataforma que hospeda o servidor. Valores entre zero e 60 (1 a 59) são redefinidos para 60. Por exemplo:
+Com o firewall instalado, defina a variável de sistema global `mysql_firewall_reload_interval_seconds` no início do servidor para um número entre 60 e o valor da macro INT_MAX da plataforma que hospeda o servidor. Valores entre zero e 60 (1 a 59) são redefinidos para 60. Por exemplo:
 
 ```
 $> mysqld [server-options] --mysql-firewall-reload-interval-seconds=40
@@ -180,7 +180,7 @@ Quando um perfil é atribuído a qualquer um dos valores de modo anteriores, o f
 
 ::: info Nota
 
-Mensagens escritas no log de erro no modo `DETECTING` ou porque o `mysql_firewall_trace` está habilitado são escritas como Notas, que são mensagens de informação. Para garantir que essas mensagens apareçam no log de erro e não sejam descartadas, certifique-se de que a granularidade do registro de erros é suficiente para incluir mensagens de informação. Por exemplo, se você estiver usando a filtragem de log com base na prioridade, conforme descrito na Seção 7.4.2.5, “Filtragem de Log de Erro com Base em Prioridade (log\_filter\_internal)”), defina a variável de sistema `log_error_verbosity` para um valor de 3.
+Mensagens escritas no log de erro no modo `DETECTING` ou porque o `mysql_firewall_trace` está habilitado são escritas como Notas, que são mensagens de informação. Para garantir que essas mensagens apareçam no log de erro e não sejam descartadas, certifique-se de que a granularidade do registro de erros é suficiente para incluir mensagens de informação. Por exemplo, se você estiver usando a filtragem de log com base na prioridade, conforme descrito na Seção 7.4.2.5, “Filtragem de Log de Erro com Base em Prioridade (log_filter_internal)”), defina a variável de sistema `log_error_verbosity` para um valor de 3.
 
 :::
 

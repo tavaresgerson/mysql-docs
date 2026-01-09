@@ -1,4 +1,4 @@
-### 24.3.12 A tabela INFORMATION\_SCHEMA KEY\_COLUMN\_USAGE
+### 24.3.12 A tabela INFORMATION_SCHEMA KEY_COLUMN_USAGE
 
 A tabela `[KEY_COLUMN_USAGE]` (information-schema-key-column-usage-table.html) descreve quais colunas-chave têm restrições.
 

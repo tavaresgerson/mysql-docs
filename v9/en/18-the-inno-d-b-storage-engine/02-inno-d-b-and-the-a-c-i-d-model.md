@@ -32,7 +32,7 @@ The **isolation** aspect of the ACID model mainly involves `InnoDB` transactions
 * The `autocommit` setting.
 * Transaction isolation levels and the `SET TRANSACTION` statement. See Section 17.7.2.1, “Transaction Isolation Levels”.
 
-* The low-level details of `InnoDB` locking. Details can be viewed in the `INFORMATION_SCHEMA` tables (see Section 17.15.2, “InnoDB INFORMATION\_SCHEMA Transaction and Locking Information”) and Performance Schema `data_locks` and `data_lock_waits` tables.
+* The low-level details of `InnoDB` locking. Details can be viewed in the `INFORMATION_SCHEMA` tables (see Section 17.15.2, “InnoDB INFORMATION_SCHEMA Transaction and Locking Information”) and Performance Schema `data_locks` and `data_lock_waits` tables.
 
 ### Durability
 

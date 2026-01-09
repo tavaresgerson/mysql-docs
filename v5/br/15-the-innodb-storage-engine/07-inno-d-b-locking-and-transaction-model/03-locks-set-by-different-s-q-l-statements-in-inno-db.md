@@ -108,7 +108,7 @@ O `InnoDB` define tipos específicos de bloqueios da seguinte forma.
 
 - O `InnoDB` define um bloqueio exclusivo no final do índice associado à coluna `AUTO_INCREMENT` durante a inicialização de uma coluna `AUTO_INCREMENT` especificada anteriormente em uma tabela.
 
-  Com `innodb_autoinc_lock_mode=0`, o `InnoDB` usa um modo especial de bloqueio da tabela `AUTO-INC`, onde o bloqueio é obtido e mantido até o final da instrução SQL atual (e não até o final de toda a transação) ao acessar o contador de autoincremento. Outros clientes não podem inserir na tabela enquanto o bloqueio da tabela `AUTO-INC` estiver sendo mantido. O mesmo comportamento ocorre para as inserções em lote com `innodb_autoinc_lock_mode=1`. Os bloqueios de `AUTO-INC` a nível de tabela não são usados com `innodb_autoinc_lock_mode=2`. Para mais informações, consulte a Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”.
+  Com `innodb_autoinc_lock_mode=0`, o `InnoDB` usa um modo especial de bloqueio da tabela `AUTO-INC`, onde o bloqueio é obtido e mantido até o final da instrução SQL atual (e não até o final de toda a transação) ao acessar o contador de autoincremento. Outros clientes não podem inserir na tabela enquanto o bloqueio da tabela `AUTO-INC` estiver sendo mantido. O mesmo comportamento ocorre para as inserções em lote com `innodb_autoinc_lock_mode=1`. Os bloqueios de `AUTO-INC` a nível de tabela não são usados com `innodb_autoinc_lock_mode=2`. Para mais informações, consulte a Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”.
 
   O `InnoDB` recupera o valor de uma coluna `AUTO_INCREMENT` previamente inicializada sem definir nenhum bloqueio.
 

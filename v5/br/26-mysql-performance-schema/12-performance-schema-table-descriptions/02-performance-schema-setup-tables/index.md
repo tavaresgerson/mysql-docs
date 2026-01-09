@@ -1,14 +1,14 @@
 ### 25.12.1 Tabelas de configuração do esquema de desempenho
 
-25.12.1.1 A tabela setup\_actors
+25.12.1.1 A tabela setup_actors
 
-25.12.2.2 Tabela setup\_consumers
+25.12.2.2 Tabela setup_consumers
 
-25.12.2.3 A tabela setup\_instruments
+25.12.2.3 A tabela setup_instruments
 
-25.12.1.4 A tabela setup\_objects
+25.12.1.4 A tabela setup_objects
 
-25.12.2.5 A tabela setup\_timers
+25.12.2.5 A tabela setup_timers
 
 As tabelas de configuração fornecem informações sobre a instrumentação atual e permitem que a configuração de monitoramento seja alterada. Por essa razão, algumas colunas nessas tabelas podem ser alteradas se você tiver o privilégio `UPDATE`.
 

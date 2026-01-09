@@ -1,4 +1,4 @@
-#### 26.4.4.12 The ps\_setup\_reload\_saved() Procedure
+#### 26.4.4.12 The ps_setup_reload_saved() Procedure
 
 Reloads a Performance Schema configuration saved earlier within the same session using `ps_setup_save()` Procedure"). For more information, see the description of `ps_setup_save()` Procedure").
 

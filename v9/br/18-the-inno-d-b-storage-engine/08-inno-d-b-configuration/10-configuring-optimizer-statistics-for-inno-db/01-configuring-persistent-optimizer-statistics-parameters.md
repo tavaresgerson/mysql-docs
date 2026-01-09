@@ -73,7 +73,7 @@ Quando o `innodb_stats_include_delete_marked` está habilitado, o `ANALYZE TABLE
 
 O recurso de estatísticas persistentes depende das tabelas gerenciadas internamente no banco de dados `mysql`, chamadas `innodb_table_stats` e `innodb_index_stats`. Essas tabelas são configuradas automaticamente em todos os procedimentos de instalação, atualização e construção a partir da fonte.
 
-**Tabela 17.6 Colunas de innodb\_table\_stats**
+**Tabela 17.6 Colunas de innodb_table_stats**
 
 <table summary="Colunas da tabela mysql.innodb_table_stats."><thead><tr> <th>Nome da coluna</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Nome do banco de dados</td> </tr><tr> <td><code>table_name</code></td> <td>Nome da tabela, nome da partição ou nome da subpartição</td> </tr><tr> <td><code>last_update</code></td> <td>Um timestamp indicando a última vez que o <code>InnoDB</code> atualizou esta linha</td> </tr><tr> <td><code>n_rows</code></td> <td>O número de linhas na tabela</td> </tr><tr> <td><code>clustered_index_size</code></td> <td>O tamanho do índice primário, em páginas</td> </tr><tr> <td><code>sum_of_other_index_sizes</code></td> <td>O tamanho total de outros índices (não primários), em páginas</td> </tr></tbody></table>
 

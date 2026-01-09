@@ -137,7 +137,7 @@ Once you have made the necessary changes, save the file.
    2008-12-08 17:29:23 [MgmSrvr] INFO     -- Reading cluster configuration from 'config.ini'
    ```
 
-If you check the output of [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) in the management client after restarting the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") process, you should now see something like this:
+If you check the output of [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) in the management client after restarting the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") process, you should now see something like this:
 
 ```sql
 -- NDB Cluster -- Management Client --
@@ -186,7 +186,7 @@ After issuing each `X RESTART` command, wait until the management client reports
 
 You can verify that all existing data nodes were restarted using the updated configuration by checking the [`ndbinfo.nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table") table in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client.
 
-**Step 4: Perform a rolling restart of all cluster API nodes.** Shut down and restart each MySQL server acting as an SQL node in the cluster using [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") followed by [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") (or another startup script). This should be similar to what is shown here, where *`password`* is the MySQL `root` password for a given MySQL server instance:
+**Step 4: Perform a rolling restart of all cluster API nodes.** Shut down and restart each MySQL server acting as an SQL node in the cluster using [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") followed by [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") (or another startup script). This should be similar to what is shown here, where *`password`* is the MySQL `root` password for a given MySQL server instance:
 
 ```sql
 $> mysqladmin -uroot -ppassword shutdown
@@ -274,7 +274,7 @@ Node 4: Data usage is 0%(0 32K pages of total 3200)
 Node 4: Index usage is 0%(0 8K pages of total 12832)
 ```
 
-By using [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") with the `-p` option, which causes the output to include partitioning information, you can see that the table still uses only 2 partitions (in the `Per partition info` section of the output, shown here in bold text):
+By using [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") with the `-p` option, which causes the output to include partitioning information, you can see that the table still uses only 2 partitions (in the `Per partition info` section of the output, shown here in bold text):
 
 ```sql
 $> ndb_desc -c 198.51.100.10 -d n ips -p
@@ -322,7 +322,7 @@ Important
 
 Keep in mind that using `MAX_ROWS` to set the number of partitions per table is deprecated in NDB 7.5.4 and later, where you should use `PARTITION_BALANCE` instead; see [Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options"), for more information.
 
-After issuing the statement `ALTER TABLE ips ALGORITHM=INPLACE, REORGANIZE PARTITION`, you can see using [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") that the data for this table is now stored using 4 partitions, as shown here (with the relevant portions of the output in bold type):
+After issuing the statement `ALTER TABLE ips ALGORITHM=INPLACE, REORGANIZE PARTITION`, you can see using [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") that the data for this table is now stored using 4 partitions, as shown here (with the relevant portions of the output in bold type):
 
 ```sql
 $> ndb_desc -c 198.51.100.10 -d n ips -p

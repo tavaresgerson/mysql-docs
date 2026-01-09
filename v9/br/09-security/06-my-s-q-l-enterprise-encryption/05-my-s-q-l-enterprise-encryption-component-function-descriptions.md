@@ -18,7 +18,7 @@ Para exemplos adicionais e discussões, consulte a Seção 8.6.3, “Uso e Exem
 
 * Para a versão legada desta função em uso antes do MySQL 8.0.29, consulte as Descrições das Funções Legadas de Criptografia da MySQL Enterprise.
 
-Por padrão, a função `component_enterprise_encryption` assume que o texto criptografado usa o esquema de enchimento RSAES-OAEP. A função suporta a descriptografia de conteúdo criptografado pelas antigas funções da biblioteca compartilhada `openssl_udf` se a variável de sistema `enterprise_encryption.rsa_support_legacy_padding` estiver definida como `ON` (o padrão é `OFF`). Quando esta é `ON`, a função também suporta o esquema de enchimento RSAES-PKCS1-v1\_5, como usado pelas funções da biblioteca compartilhada `openssl_udf` antigas. Quando a variável é definida como `OFF`, o conteúdo criptografado pelas funções legadas não pode ser descriptografado, e a função retorna uma saída nulo para tal conteúdo.
+Por padrão, a função `component_enterprise_encryption` assume que o texto criptografado usa o esquema de enchimento RSAES-OAEP. A função suporta a descriptografia de conteúdo criptografado pelas antigas funções da biblioteca compartilhada `openssl_udf` se a variável de sistema `enterprise_encryption.rsa_support_legacy_padding` estiver definida como `ON` (o padrão é `OFF`). Quando esta é `ON`, a função também suporta o esquema de enchimento RSAES-PKCS1-v1_5, como usado pelas funções da biblioteca compartilhada `openssl_udf` antigas. Quando a variável é definida como `OFF`, o conteúdo criptografado pelas funções legadas não pode ser descriptografado, e a função retorna uma saída nulo para tal conteúdo.
 
 *`algorithm`* é o algoritmo de criptografia usado para criar a chave. O valor do algoritmo suportado é `'RSA'`.
 
@@ -86,7 +86,7 @@ Para um exemplo de uso, consulte a descrição de `asymmetric_verify()`.
 
   Verifica se a string de assinatura corresponde à string de digest, e retorna 1 ou 0 para indicar se a verificação foi bem-sucedida ou não. Se a verificação falhar, o resultado é `NULL`.
 
-  Por padrão, a função `component_enterprise_encryption` assume que as assinaturas usam o esquema de assinatura RSASSA-PSS. A função suporta a verificação de assinaturas produzidas pelas antigas funções da biblioteca compartilhada `openssl_udf` se a variável de sistema `enterprise_encryption.rsa_support_legacy_padding` estiver definida como `ON` (o padrão é `OFF`). Quando isso é `ON`, a função também suporta o esquema de assinatura RSASSA-PKCS1-v1\_5, como usado pelas funções da biblioteca compartilhada `openssl_udf` antigas; quando é `OFF`, as assinaturas produzidas pelas funções legadas não podem ser verificadas, e a função retorna uma saída nulo para esse conteúdo.
+  Por padrão, a função `component_enterprise_encryption` assume que as assinaturas usam o esquema de assinatura RSASSA-PSS. A função suporta a verificação de assinaturas produzidas pelas antigas funções da biblioteca compartilhada `openssl_udf` se a variável de sistema `enterprise_encryption.rsa_support_legacy_padding` estiver definida como `ON` (o padrão é `OFF`). Quando isso é `ON`, a função também suporta o esquema de assinatura RSASSA-PKCS1-v1_5, como usado pelas funções da biblioteca compartilhada `openssl_udf` antigas; quando é `OFF`, as assinaturas produzidas pelas funções legadas não podem ser verificadas, e a função retorna uma saída nulo para esse conteúdo.
 
   *`algorithm`* é o algoritmo de criptografia usado para criar a chave. O valor do algoritmo suportado é `'RSA'`.
 

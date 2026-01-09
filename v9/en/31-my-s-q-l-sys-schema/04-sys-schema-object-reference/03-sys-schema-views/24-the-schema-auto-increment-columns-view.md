@@ -1,4 +1,4 @@
-#### 30.4.3.24 The schema\_auto\_increment\_columns View
+#### 30.4.3.24 The schema_auto_increment_columns View
 
 This view indicates which tables have `AUTO_INCREMENT` columns and provides information about those columns, such as the current and maximum column values and the usage ratio (ratio of used to possible values). By default, rows are sorted by descending usage ratio and maximum column value.
 

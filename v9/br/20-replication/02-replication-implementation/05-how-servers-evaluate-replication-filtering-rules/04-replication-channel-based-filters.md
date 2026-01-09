@@ -29,9 +29,9 @@ A sintaxe para criar filtros de replicação específicos do canal estende as de
 
 * *Filtros de replicação globais*: `do_db=db1,db3`; `ignore_db=db4`
 
-* *Filtros específicos do canal em canal\_1*: `do_db=db2`; `ignore_db=db4`; `wild-do-table=db6.t1%`
+* *Filtros específicos do canal em canal_1*: `do_db=db2`; `ignore_db=db4`; `wild-do-table=db6.t1%`
 
-* *Filtros específicos do canal em canal\_2*: `do_db=db1,db3`; `ignore_db=db5`
+* *Filtros específicos do canal em canal_2*: `do_db=db1,db3`; `ignore_db=db5`
 
 Essas mesmas regras poderiam ser aplicadas no momento do início, quando incluídas no arquivo `my.cnf` da replica, assim:
 

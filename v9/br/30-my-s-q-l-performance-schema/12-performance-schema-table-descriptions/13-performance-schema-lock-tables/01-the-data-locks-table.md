@@ -1,6 +1,6 @@
 #### 29.12.13.1 A tabela `data_locks`
 
-A tabela `data_locks` mostra as bloqueadoras de dados mantidas e solicitadas. Para obter informações sobre quais solicitações de bloqueio são bloqueadas por quais bloqueadores mantidos, consulte a Seção 29.12.13.2, “A tabela `data_lock\_waits`”.
+A tabela `data_locks` mostra as bloqueadoras de dados mantidas e solicitadas. Para obter informações sobre quais solicitações de bloqueio são bloqueadas por quais bloqueadores mantidos, consulte a Seção 29.12.13.2, “A tabela `data_lock_waits`”.
 
 Exemplo de informações sobre bloqueadores de dados:
 

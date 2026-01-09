@@ -1,4 +1,4 @@
-### 24.4.15 The INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS Table
+### 24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table
 
 The [`INNODB_LOCK_WAITS`](information-schema-innodb-lock-waits-table.html "24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table") table contains one or more rows for each blocked `InnoDB` transaction, indicating the lock it has requested and any locks that are blocking that request.
 

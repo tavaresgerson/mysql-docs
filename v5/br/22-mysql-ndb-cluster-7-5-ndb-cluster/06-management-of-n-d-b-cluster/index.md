@@ -30,7 +30,7 @@
 
 21.6.15 ndbinfo: A Base de Dados de Informações do NDB Cluster
 
-21.6.16 INFORMAÇÕES\_SCHEMA Tabelas para NDB Cluster
+21.6.16 INFORMAÇÕES_SCHEMA Tabelas para NDB Cluster
 
 21.6.17 Referência Rápida: Declarações SQL do NDB Cluster
 

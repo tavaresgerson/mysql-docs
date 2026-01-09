@@ -1,4 +1,4 @@
-#### 26.4.3.29 As visualizações schema\_table\_statistics e x$schema\_table\_statistics
+#### 26.4.3.29 As visualizações schema_table_statistics e x$schema_table_statistics
 
 Essas visualizações resumem as estatísticas da tabela. Por padrão, as linhas são ordenadas em ordem decrescente de tempo de espera total (as tabelas com mais concorrência primeiro).
 

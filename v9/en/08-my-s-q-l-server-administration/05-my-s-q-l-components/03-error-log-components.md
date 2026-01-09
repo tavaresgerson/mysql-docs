@@ -6,7 +6,7 @@ A log component can be a filter or a sink:
 
 * A filter processes log events, to add, remove, or modify event fields, or to delete events entirely. The resulting events pass to the next log component in the list of enabled components.
 
-* A sink is a destination (writer) for log events. Typically, a sink processes log events into log messages that have a particular format and writes these messages to its associated output, such as a file or the system log. A sink may also write to the Performance Schema `error_log` table; see Section 29.12.22.3, “The error\_log Table”. Events pass unmodified to the next log component in the list of enabled components (that is, although a sink formats events to produce output messages, it does not modify events as they pass internally to the next component).
+* A sink is a destination (writer) for log events. Typically, a sink processes log events into log messages that have a particular format and writes these messages to its associated output, such as a file or the system log. A sink may also write to the Performance Schema `error_log` table; see Section 29.12.22.3, “The error_log Table”. Events pass unmodified to the next log component in the list of enabled components (that is, although a sink formats events to produce output messages, it does not modify events as they pass internally to the next component).
 
 The `log_error_services` system variable lists the enabled log components. Components not named in the list are disabled. `log_error_services` also implicitly loads error log components if they are not already loaded. For more information, see Section 7.4.2.1, “Error Log Configuration”.
 
@@ -32,18 +32,18 @@ Error log filter components implement filtering of error log events. If no filte
 
 Any enabled filter component affects log events only for components listed later in the `log_error_services` value. In particular, for any log sink component listed in `log_error_services` earlier than any filter component, no log event filtering occurs.
 
-##### The log\_filter\_internal Component
+##### The log_filter_internal Component
 
-* Purpose: Implements filtering based on log event priority and error code, in combination with the `log_error_verbosity` and `log_error_suppression_list` system variables. See Section 7.4.2.5, “Priority-Based Error Log Filtering (log\_filter\_internal)”").
+* Purpose: Implements filtering based on log event priority and error code, in combination with the `log_error_verbosity` and `log_error_suppression_list` system variables. See Section 7.4.2.5, “Priority-Based Error Log Filtering (log_filter_internal)”").
 
 * URN: This component is built in and need not be loaded.
 * Multiple uses permitted: No.
 
 If `log_filter_internal` is disabled, `log_error_verbosity` and `log_error_suppression_list` have no effect.
 
-##### The log\_filter\_dragnet Component
+##### The log_filter_dragnet Component
 
-* Purpose: Implements filtering based on the rules defined by the `dragnet.log_error_filter_rules` system variable setting. See Section 7.4.2.6, “Rule-Based Error Log Filtering (log\_filter\_dragnet)”").
+* Purpose: Implements filtering based on the rules defined by the `dragnet.log_error_filter_rules` system variable setting. See Section 7.4.2.6, “Rule-Based Error Log Filtering (log_filter_dragnet)”").
 
 * URN: `file://component_log_filter_dragnet`
 * Multiple uses permitted: No.
@@ -54,7 +54,7 @@ Error log sink components are writers that implement error log output. If no sin
 
 Some sink component descriptions refer to the default error log destination. This is the console or a file and is indicated by the value of the `log_error` system variable, determined as described in Section 7.4.2.2, “Default Error Log Destination Configuration”.
 
-##### The log\_sink\_internal Component
+##### The log_sink_internal Component
 
 * Purpose: Implements traditional error log message output format.
 
@@ -64,7 +64,7 @@ Some sink component descriptions refer to the default error log destination. Thi
 
 * Performance Schema support: Writes to the `error_log` table. Provides a parser for reading error log files created by previous server instances.
 
-##### The log\_sink\_json Component
+##### The log_sink_json Component
 
 * Purpose: Implements JSON-format error logging. See Section 7.4.2.7, “Error Logging in JSON Format”.
 
@@ -80,7 +80,7 @@ Some sink component descriptions refer to the default error log destination. Thi
 
 * Performance Schema support: Writes to the `error_log` table. Provides a parser for reading error log files created by previous server instances.
 
-##### The log\_sink\_syseventlog Component
+##### The log_sink_syseventlog Component
 
 * Purpose: Implements error logging to the system log. This is the Event Log on Windows, and `syslog` on Unix and Unix-like systems. See Section 7.4.2.8, “Error Logging to the System Log”.
 
@@ -91,7 +91,7 @@ Some sink component descriptions refer to the default error log destination. Thi
 
 * Performance Schema support: Does not write to the `error_log` table. Does not provide a parser for reading error log files created by previous server instances.
 
-##### The log\_sink\_test Component
+##### The log_sink_test Component
 
 * Purpose: Intended for internal use in writing test cases, not for production use.
 

@@ -31,7 +31,62 @@ Do ponto de vista do servidor MySQL, a senha criptografada é a *real* senha, en
 
 A tabela a seguir mostra como várias combinações de valores de `User` e `Host` na tabela `user` se aplicam às conexões de entrada.
 
-<table summary="Como as várias combinações de valores de Usuário e Host na tabela de usuários se aplicam às conexões recebidas em um servidor MySQL."><col style="width: 15%"/><col style="width: 35%"/><col style="width: 50%"/><thead><tr> <th>[[PH_HTML_CODE_<code>'%'</code>] Valor</th> <th>[[PH_HTML_CODE_<code>'%'</code>] Valor</th> <th>Conexões Permitidas</th> </tr></thead><tbody><tr> <th>[[PH_HTML_CODE_<code>''</code>]</th> <td>[[PH_HTML_CODE_<code>'%'</code>]</td> <td>[[PH_HTML_CODE_<code>'fred'</code>], conectando-se a partir de [[PH_HTML_CODE_<code>'%.example.net'</code>]</td> </tr><tr> <th>[[PH_HTML_CODE_<code>fred</code>]</th> <td>[[PH_HTML_CODE_<code>example.net</code>]</td> <td>Qualquer usuário, conectando-se a partir de [[PH_HTML_CODE_<code>'fred'</code>]</td> </tr><tr> <th>[[PH_HTML_CODE_<code>'x.example.%'</code>]</th> <td>[[<code>'%'</code>]]</td> <td>[[<code>Host</code><code>'%'</code>], conectando-se a partir de qualquer host</td> </tr><tr> <th>[[<code>''</code>]]</th> <td>[[<code>'%'</code>]]</td> <td>Qualquer usuário, conectando-se a partir de qualquer host</td> </tr><tr> <th>[[<code>'fred'</code>]]</th> <td>[[<code>'%.example.net'</code>]]</td> <td>[[<code>fred</code>]], conectando-se a partir de qualquer host no domínio [[<code>example.net</code>]]</td> </tr><tr> <th>[[<code>'fred'</code>]]</th> <td>[[<code>'x.example.%'</code>]]</td> <td>[[<code>'fred'</code><code>'%'</code>], conectando-se a partir de [[<code>'fred'</code><code>'%'</code>], [[<code>'fred'</code><code>''</code>], [[<code>'fred'</code><code>'%'</code>], e assim por diante; isso provavelmente não é útil</td> </tr><tr> <th>[[<code>'fred'</code><code>'fred'</code>]</th> <td>[[<code>'fred'</code><code>'%.example.net'</code>]</td> <td>[[<code>'fred'</code><code>fred</code>], conectando-se do host com o endereço IP [[<code>'fred'</code><code>example.net</code>]</td> </tr><tr> <th>[[<code>'fred'</code><code>'fred'</code>]</th> <td>[[<code>'fred'</code><code>'x.example.%'</code>]</td> <td>[[<code>'h1.example.net'</code><code>'%'</code>], conectando-se a partir de qualquer host na sub-rede classe C [[<code>'h1.example.net'</code><code>'%'</code>]</td> </tr><tr> <th>[[<code>'h1.example.net'</code><code>''</code>]</th> <td>[[<code>'h1.example.net'</code><code>'%'</code>]</td> <td>O mesmo que no exemplo anterior</td> </tr></tbody></table>
+<table summary="Como as várias combinações de valores de Usuário e Host na tabela de usuários se aplicam às conexões recebidas em um servidor MySQL.">
+  <thead>
+    <tr>
+      <th>Valor <code>User</code></th>
+      <th>Valor <code>Host</code></th>
+      <th>Conexões permitidas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><code>'fred'</code></th>
+      <td><code>'h1.example.net'</code></td>
+      <td><code>fred</code>, connecting from <code>h1.example.net</code></td>
+    </tr>
+    <tr>
+      <th><code>''</code></th>
+      <td><code>'h1.example.net'</code></td>
+      <td>Any user, connecting from <code>h1.example.net</code></td>
+    </tr>
+    <tr>
+      <th><code>'fred'</code></th>
+      <td><code>'%'</code></td>
+      <td><code>fred</code>, connecting from any host</td>
+    </tr>
+    <tr>
+      <th><code>''</code></th>
+      <td><code>'%'</code></td>
+      <td>Any user, connecting from any host</td>
+    </tr>
+    <tr>
+      <th><code>'fred'</code></th>
+      <td><code>'%.example.net'</code></td>
+      <td><code>fred</code>, connecting from any host in the <code>example.net</code> domain</td>
+    </tr>
+    <tr>
+      <th><code>'fred'</code></th>
+      <td><code>'x.example.%'</code></td>
+      <td><code>fred</code>, connecting from <code>x.example.net</code>, <code>x.example.com</code>, <code>x.example.edu</code>, and so on; this is probably not useful</td>
+    </tr>
+    <tr>
+      <th><code>'fred'</code></th>
+      <td><code>'198.51.100.177'</code></td>
+      <td><code>fred</code>, connecting from the host with IP address <code>198.51.100.177</code></td>
+    </tr>
+    <tr>
+      <th><code>'fred'</code></th>
+      <td><code>'198.51.100.%'</code></td>
+      <td><code>fred</code>, connecting from any host in the <code>198.51.100</code> class C subnet</td>
+    </tr>
+    <tr>
+      <th><code>'fred'</code></th>
+      <td><code>'198.51.100.0/255.255.255.0'</code></td>
+      <td>Same as previous example</td>
+    </tr>
+  </tbody>
+</table>
 
 É possível que o nome do host do cliente e o nome do usuário de uma conexão de entrada correspondam a mais de uma linha na tabela `user`. O conjunto de exemplos anteriores demonstra isso: Várias das entradas mostradas correspondem a uma conexão de `h1.example.net` por `fred`.
 
@@ -111,9 +166,9 @@ A tabela ordenada parece assim:
 
 A primeira linha corresponde a uma conexão por qualquer usuário de `h1.example.net`, enquanto a segunda linha corresponde a uma conexão por `jeffrey` de qualquer host.
 
-Nota
-
+::: info Nota
 É um equívoco comum pensar que, para um nome de usuário específico, todas as linhas que explicitamente nomeiam esse usuário são usadas primeiro quando o servidor tenta encontrar uma correspondência para a conexão. Isso não é verdade. O exemplo anterior ilustra isso, onde uma conexão de `h1.example.net` por `jeffrey` é primeiro correspondida não pela linha que contém `'jeffrey'` como valor da coluna `User`, mas pela linha sem nome de usuário. Como resultado, `jeffrey` é autenticado como um usuário anônimo, mesmo que ele tenha especificado um nome de usuário ao se conectar.
+:::
 
 Se você conseguir se conectar ao servidor, mas seus privilégios não forem os esperados, provavelmente você está sendo autenticado como outra conta. Para descobrir qual conta o servidor usou para autenticar você, use a função `CURRENT_USER()`. (Veja Seção 12.15, “Funções de Informação”.) Ela retorna um valor no formato `user_name@host_name` que indica os valores `User` e `Host` da linha da tabela `user` correspondente. Suponha que `jeffrey` se conecte e execute a seguinte consulta:
 

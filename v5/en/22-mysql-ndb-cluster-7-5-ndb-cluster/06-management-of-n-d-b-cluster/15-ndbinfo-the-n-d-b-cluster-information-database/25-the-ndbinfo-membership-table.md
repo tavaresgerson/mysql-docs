@@ -62,7 +62,7 @@ The `membership` table contains the following columns:
 
 ##### Notes
 
-The node ID and node group ID are the same as reported by [**ndb\_mgm -e "SHOW"**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client").
+The node ID and node group ID are the same as reported by [**ndb_mgm -e "SHOW"**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client").
 
 `left_node` and `right_node` are defined in terms of a model that connects all data nodes in a circle, in order of their node IDs, similar to the ordering of the numbers on a clock dial, as shown here:
 

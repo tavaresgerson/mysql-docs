@@ -1,4 +1,4 @@
-#### 25.12.7.1 Tabela events\_transactions\_current
+#### 25.12.7.1 Tabela events_transactions_current
 
 A tabela `events_transactions_current` contém eventos de transações atuais. A tabela armazena uma linha por thread, mostrando o status atual do evento de transação mais recente monitorado da thread, portanto, não há uma variável de sistema para configurar o tamanho da tabela. Por exemplo:
 

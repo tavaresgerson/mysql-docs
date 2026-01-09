@@ -299,7 +299,7 @@ A valid `masking_dictionaries` table has these characteristics:
   ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4;
   ```
 
-* MASKING\_DICTIONARY\_ADMIN privilege is required to add and remove terms, or to remove an entire dictionary.
+* MASKING_DICTIONARY_ADMIN privilege is required to add and remove terms, or to remove an entire dictionary.
 
 * The table may contain multiple dictionaries and their terms.
 

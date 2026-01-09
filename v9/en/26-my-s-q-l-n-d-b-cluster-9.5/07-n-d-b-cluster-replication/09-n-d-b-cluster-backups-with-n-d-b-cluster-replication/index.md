@@ -52,14 +52,14 @@ This section discusses making backups and restoring from them using NDB Cluster 
    mysqlR> RESET REPLICA;
    ```
 
-5. You can now start the cluster restoration process on the replica using the **ndb\_restore** command for each backup file in turn. For the first of these, it is necessary to include the `-m` option to restore the cluster metadata, as shown here:
+5. You can now start the cluster restoration process on the replica using the **ndb_restore** command for each backup file in turn. For the first of these, it is necessary to include the `-m` option to restore the cluster metadata, as shown here:
 
    ```
    shellR> ndb_restore -c replica_host:port -n node-id \
            -b backup-id -m -r dir
    ```
 
-   *`dir`* is the path to the directory where the backup files have been placed on the replica. For the **ndb\_restore** commands corresponding to the remaining backup files, the `-m` option should *not* be used.
+   *`dir`* is the path to the directory where the backup files have been placed on the replica. For the **ndb_restore** commands corresponding to the remaining backup files, the `-m` option should *not* be used.
 
    For restoring from a source cluster with four data nodes (as shown in the figure in Section 25.7, “NDB Cluster Replication”) where the backup files have been copied to the directory `/var/BACKUPS/BACKUP-1`, the proper sequence of commands to be executed on the replica might look like this:
 
@@ -76,7 +76,7 @@ This section discusses making backups and restoring from them using NDB Cluster 
 
    Important
 
-   The `-e` (or `--restore-epoch`) option in the final invocation of **ndb\_restore** in this example is required to make sure that the epoch is written to the replica's `mysql.ndb_apply_status` table. Without this information, the replica cannot synchronize properly with the source. (See Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”.)
+   The `-e` (or `--restore-epoch`) option in the final invocation of **ndb_restore** in this example is required to make sure that the epoch is written to the replica's `mysql.ndb_apply_status` table. Without this information, the replica cannot synchronize properly with the source. (See Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”.)
 
 6. Now you need to obtain the most recent epoch from the `ndb_apply_status` table on the replica (as discussed in Section 25.7.8, “Implementing Failover with NDB Cluster Replication”):
 

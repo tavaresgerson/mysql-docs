@@ -1,4 +1,4 @@
-### 24.4.28 The INFORMATION\_SCHEMA INNODB\_TRX Table
+### 24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table
 
 The [`INNODB_TRX`](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table") table provides information about every transaction currently executing inside `InnoDB`, including whether the transaction is waiting for a lock, when the transaction started, and the SQL statement the transaction is executing, if any.
 

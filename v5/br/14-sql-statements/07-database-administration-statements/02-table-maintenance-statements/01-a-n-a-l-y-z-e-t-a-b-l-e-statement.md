@@ -35,7 +35,7 @@ Se a tabela não tiver sido alterada desde a última análise de distribuição 
 
 O MySQL utiliza a distribuição de chaves armazenadas para decidir a ordem de junção da tabela para junções em algo que não seja uma constante. Além disso, as distribuições de chaves podem ser usadas ao decidir quais índices usar para uma tabela específica dentro de uma consulta.
 
-Para verificar a cardinalidade da distribuição de chaves armazenadas, use a instrução `SHOW INDEX` ou a tabela `INFORMATION_SCHEMA [`STATISTICS\`]\(information-schema-statistics-table.html). Veja Seção 13.7.5.22, “Instrução SHOW INDEX” e Seção 24.3.24, “A Tabela INFORMATION\_SCHEMA STATISTICS”.
+Para verificar a cardinalidade da distribuição de chaves armazenadas, use a instrução `SHOW INDEX` ou a tabela `INFORMATION_SCHEMA [`STATISTICS\`]\(information-schema-statistics-table.html). Veja Seção 13.7.5.22, “Instrução SHOW INDEX” e Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”.
 
 Para as tabelas do `InnoDB`, o `ANALYZE TABLE` determina a cardinalidade do índice executando mergulhos aleatórios em cada um dos árvores de índice e atualizando as estimativas da cardinalidade do índice conforme necessário. Como essas são apenas estimativas, execuções repetidas do `ANALYZE TABLE` podem produzir números diferentes. Isso torna o `ANALYZE TABLE` rápido em tabelas do `InnoDB`, mas não 100% preciso, porque ele não leva em conta todas as linhas.
 

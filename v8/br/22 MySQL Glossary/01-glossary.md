@@ -54,9 +54,9 @@ interface de programação de aplicativos (API):   Um conjunto de funções ou p
 
 aplicar:   Quando um backup produzido pelo produto **MySQL Enterprise Backup** não inclui as alterações mais recentes que ocorreram enquanto o backup estava em andamento, o processo de atualização dos arquivos do backup para incluir essas alterações é conhecido como a etapa de **aplicação**. É especificado pela opção `apply-log` do comando `mysqlbackup`.
 
-Antes que as alterações sejam aplicadas, referimo-nos aos arquivos como um **backup bruto**. Após as alterações serem aplicadas, referimo-nos aos arquivos como um **backup preparado**. As alterações são registradas no arquivo **ibbackup\_logfile**. Uma vez que a etapa de aplicação for concluída, este arquivo deixa de ser necessário.
+Antes que as alterações sejam aplicadas, referimo-nos aos arquivos como um **backup bruto**. Após as alterações serem aplicadas, referimo-nos aos arquivos como um **backup preparado**. As alterações são registradas no arquivo **ibbackup_logfile**. Uma vez que a etapa de aplicação for concluída, este arquivo deixa de ser necessário.
 
-Veja também  backup quente,  ibbackup\_logfile,  MySQL Enterprise Backup,  backup preparado,  backup bruto.
+Veja também  backup quente,  ibbackup_logfile,  MySQL Enterprise Backup,  backup preparado,  backup bruto.
 
 AS :   O servidor de autenticação Kerberos. AS também pode se referir ao serviço de autenticação fornecido por um servidor de autenticação.
 
@@ -100,11 +100,11 @@ As colunas de autoincremento podem ser problemáticas com a replicação baseada
 
 O modo de bloqueio consecutivo ( `innodb_autoinc_lock_mode=1`) é a configuração padrão antes do MySQL 8.0.3. A partir do MySQL 8.0.3, o modo de bloqueio intercalado ( `innodb_autoinc_lock_mode=2`) é a configuração padrão, o que reflete a mudança da replicação baseada em declarações para replicação baseada em linhas como o tipo de replicação padrão.
 
-Veja também  bloqueio de autoincremento,  innodb\_autoinc\_lock\_mode,  chave primária,  replicação baseada em linhas,  replicação baseada em declarações.
+Veja também  bloqueio de autoincremento,  innodb_autoinc_lock_mode,  chave primária,  replicação baseada em linhas,  replicação baseada em declarações.
 
 bloqueio de autoincremento :   A conveniência de uma **chave primária de autoincremento** envolve algum compromisso com a concorrência. No caso mais simples, se uma transação está inserindo valores na tabela, qualquer outra transação deve esperar para fazer suas próprias inserções naquela tabela, para que as linhas inseridas pela primeira transação recebam valores consecutivos da chave primária. O  `InnoDB` inclui otimizações e a opção  `innodb_autoinc_lock_mode` para que você possa configurar um equilíbrio ótimo entre sequências previsíveis de valores de autoincremento e **concorrência** máxima para operações de inserção.
 
-Veja também  autoincremento,  concorrência,  innodb\_autoinc\_lock\_mode.
+Veja também  autoincremento,  concorrência,  innodb_autoinc_lock_mode.
 
 autocommit:   Uma configuração que realiza uma operação de **commit** após cada **SQL** (instrução SQL). Esse modo não é recomendado para trabalhar com tabelas `InnoDB` com **transações** que abrangem várias instruções. Ele pode ajudar no desempenho de **transações de leitura apenas** em tabelas `InnoDB`, minimizando o overhead do **bloqueio** e a geração de dados de **undo**, especialmente no MySQL 5.6.4 e versões posteriores. Também é apropriado para trabalhar com tabelas `MyISAM`, onde as transações não são aplicáveis.
 
@@ -876,7 +876,7 @@ Se um espaço de tabelas por arquivo ou espaço de tabelas geral for criado com 
 
 Quando um arquivo `.ibd` é incluído em um backup comprimido pelo produto **MySQL Enterprise Backup**, o equivalente comprimido é um arquivo `.ibz`.
 
-Veja também  database,  file-per-table,  general tablespace,  arquivo ibdata,  arquivo .ibz,  innodb\_file\_per\_table,  MySQL Enterprise Backup,  espaço de tabelas do sistema.
+Veja também  database,  file-per-table,  general tablespace,  arquivo ibdata,  arquivo .ibz,  innodb_file_per_table,  MySQL Enterprise Backup,  espaço de tabelas do sistema.
 
 .ibz file :   Quando o produto **MySQL Enterprise Backup** realiza um **backup comprimido**, ele transforma cada **arquivo de espaço de tabelas** que é criado usando a configuração **file-per-table** de uma extensão `.ibd` para uma extensão `.ibz`.
 
@@ -904,7 +904,7 @@ arquivo ibtmp:   O **arquivo de dados do espaço de tabelas temporário** do **I
 
     Veja também  arquivos de dados,  tabela temporária,  espaço de tabelas temporário.
 
-ib\_logfile:   Um conjunto de arquivos, tipicamente nomeados `ib_logfile0` e `ib_logfile1`, que formam o **log de refazer**. Também às vezes referidos como o **grupo de log**. Esses arquivos registram declarações que tentam alterar dados em tabelas do `InnoDB`. Essas declarações são regravadas automaticamente para corrigir dados escritos por transações incompletas, ao inicializar após um crash.
+ib_logfile:   Um conjunto de arquivos, tipicamente nomeados `ib_logfile0` e `ib_logfile1`, que formam o **log de refazer**. Também às vezes referidos como o **grupo de log**. Esses arquivos registram declarações que tentam alterar dados em tabelas do `InnoDB`. Essas declarações são regravadas automaticamente para corrigir dados escritos por transações incompletas, ao inicializar após um crash.
 
 Este dado não pode ser usado para recuperação manual; para esse tipo de operação, use o **log binário**.
 
@@ -976,13 +976,13 @@ InnoDB:   Um componente do MySQL que combina alto desempenho com capacidade **tr
 
     Veja também ACID, backup rápido, MySQL Enterprise Backup, motor de armazenamento, transação.
 
-innodb\_autoinc\_lock\_mode:   A opção `innodb_autoinc_lock_mode` controla o algoritmo usado para **bloqueio de autoincremento**. Quando você tem uma chave primária com autoincremento, você pode usar a replicação baseada em declarações apenas com o ajuste `innodb_autoinc_lock_mode=1`. Esse ajuste é conhecido como modo de bloqueio *consecutivo*, porque as inserções de múltiplas linhas dentro de uma transação recebem valores de autoincremento consecutivos. Se você tiver `innodb_autoinc_lock_mode=2`, que permite maior concorrência para operações de inserção, use a replicação baseada em linhas em vez da replicação baseada em declarações. Esse ajuste é conhecido como modo de bloqueio *intercalado*, porque múltiplas declarações de inserção de múltiplas linhas em execução ao mesmo tempo podem receber valores de **autoincremento** que são intercalados. O ajuste `innodb_autoinc_lock_mode=0` não deve ser usado, exceto por motivos de compatibilidade.
+innodb_autoinc_lock_mode:   A opção `innodb_autoinc_lock_mode` controla o algoritmo usado para **bloqueio de autoincremento**. Quando você tem uma chave primária com autoincremento, você pode usar a replicação baseada em declarações apenas com o ajuste `innodb_autoinc_lock_mode=1`. Esse ajuste é conhecido como modo de bloqueio *consecutivo*, porque as inserções de múltiplas linhas dentro de uma transação recebem valores de autoincremento consecutivos. Se você tiver `innodb_autoinc_lock_mode=2`, que permite maior concorrência para operações de inserção, use a replicação baseada em linhas em vez da replicação baseada em declarações. Esse ajuste é conhecido como modo de bloqueio *intercalado*, porque múltiplas declarações de inserção de múltiplas linhas em execução ao mesmo tempo podem receber valores de **autoincremento** que são intercalados. O ajuste `innodb_autoinc_lock_mode=0` não deve ser usado, exceto por motivos de compatibilidade.
 
 O modo de bloqueio consecutivo ( `innodb_autoinc_lock_mode=1`) é a configuração padrão antes do MySQL 8.0.3. A partir do MySQL 8.0.3, o modo de bloqueio intercalado ( `innodb_autoinc_lock_mode=2`) é a configuração padrão, o que reflete a mudança do tipo de replicação baseado em declarações para o baseado em linhas como o tipo de replicação padrão.
 
 Veja também  auto-incremento,  bloqueio de auto-incremento,  inserção em modo misto,  chave primária.
 
-innodb\_file\_per\_table :   Uma opção de configuração importante que afeta muitos aspectos do armazenamento de arquivos do `InnoDB`, da disponibilidade de recursos e das características de I/O. No MySQL 5.6.7 e versões posteriores, ela é habilitada por padrão. A opção  `innodb_file_per_table` habilita o modo **file-per-table**. Com esse modo habilitado, uma tabela `InnoDB` recém-criada e os índices associados podem ser armazenados em um arquivo **.ibd** por tabela, fora do **espaço de tabelas do sistema**.
+innodb_file_per_table :   Uma opção de configuração importante que afeta muitos aspectos do armazenamento de arquivos do `InnoDB`, da disponibilidade de recursos e das características de I/O. No MySQL 5.6.7 e versões posteriores, ela é habilitada por padrão. A opção  `innodb_file_per_table` habilita o modo **file-per-table**. Com esse modo habilitado, uma tabela `InnoDB` recém-criada e os índices associados podem ser armazenados em um arquivo **.ibd** por tabela, fora do **espaço de tabelas do sistema**.
 
 Esta opção afeta o desempenho e as considerações de armazenamento para vários comandos SQL, como  `DROP TABLE` e  `TRUNCATE TABLE`.
 
@@ -992,11 +992,11 @@ Para mais informações, consulte  `innodb_file_per_table` e  Seção 17.6.3.2, 
 
 Veja também  compressão,  file-per-table,  arquivo .ibd,  MySQL Enterprise Backup,  espaço de tabelas do sistema.
 
-innodb\_lock\_wait\_timeout :   A opção  `innodb_lock_wait_timeout` define o equilíbrio entre **esperar** que os recursos compartilhados fiquem disponíveis ou **desistir** e lidar com o erro, tentar novamente ou realizar processamento alternativo em sua aplicação. Reverte qualquer transação `InnoDB` que espera mais de um tempo especificado para adquirir um **bloqueio**. Especialmente útil se **bloqueios** forem causados por atualizações em múltiplas tabelas controladas por diferentes motores de armazenamento; tais bloqueios não são **detectados** automaticamente.
+innodb_lock_wait_timeout :   A opção  `innodb_lock_wait_timeout` define o equilíbrio entre **esperar** que os recursos compartilhados fiquem disponíveis ou **desistir** e lidar com o erro, tentar novamente ou realizar processamento alternativo em sua aplicação. Reverte qualquer transação `InnoDB` que espera mais de um tempo especificado para adquirir um **bloqueio**. Especialmente útil se **bloqueios** forem causados por atualizações em múltiplas tabelas controladas por diferentes motores de armazenamento; tais bloqueios não são **detectados** automaticamente.
 
 Veja também  bloqueio,  detecção de bloqueio,  bloqueio,  espera.
 
-innodb\_strict\_mode:   A opção `innodb_strict_mode` controla se o `InnoDB` opera no **modo estrito**, onde condições que normalmente são tratadas como avisos causam erros (e as instruções subjacentes falham).
+innodb_strict_mode:   A opção `innodb_strict_mode` controla se o `InnoDB` opera no **modo estrito**, onde condições que normalmente são tratadas como avisos causam erros (e as instruções subjacentes falham).
 
 Veja também  modo estrito.
 
@@ -1092,7 +1092,7 @@ centro de distribuição de chaves :   No Kerberos, o centro de distribuição d
 
 keystore :   Veja também  SSL.
 
-KEY\_BLOCK\_SIZE :   Uma opção para especificar o tamanho das páginas de dados dentro de uma tabela `InnoDB` que usa o **formato de linha compactado**. O padrão é de 8 kilobytes. Valores menores correm o risco de atingir limites internos que dependem da combinação do tamanho da linha e da porcentagem de compressão.
+KEY_BLOCK_SIZE :   Uma opção para especificar o tamanho das páginas de dados dentro de uma tabela `InnoDB` que usa o **formato de linha compactado**. O padrão é de 8 kilobytes. Valores menores correm o risco de atingir limites internos que dependem da combinação do tamanho da linha e da porcentagem de compressão.
 
     Para tabelas `MyISAM`, `KEY_BLOCK_SIZE` especifica opcionalmente o tamanho em bytes a ser usado para blocos de chaves de índice. O valor é tratado como um indicativo; um tamanho diferente pode ser usado se necessário. Um valor de `KEY_BLOCK_SIZE` especificado para uma definição de índice individual substitui um valor de `KEY_BLOCK_SIZE` em nível de tabela.
 
@@ -1162,13 +1162,13 @@ buffer de log:   A área de memória que contém dados para serem escritos nos *
 
 Veja também  arquivo de log,  arquivo de log de reescrita.
 
-arquivo de log:   Um dos arquivos **ib\_logfile*`N`*** que compõem o **arquivo de log de reescrita**. Os dados são escritos nesses arquivos a partir da área de memória **buffer de log**.
+arquivo de log:   Um dos arquivos **ib_logfile*`N`*** que compõem o **arquivo de log de reescrita**. Os dados são escritos nesses arquivos a partir da área de memória **buffer de log**.
 
-Veja também  ib\_logfile,  buffer de log,  arquivo de log de reescrita.
+Veja também  ib_logfile,  buffer de log,  arquivo de log de reescrita.
 
-grupo de logs:   O conjunto de arquivos que compõem o **log de refazer**, tipicamente nomeados `ib_logfile0` e `ib_logfile1`. (Por esse motivo, às vezes referidos coletivamente como **ib\_logfile**.)
+grupo de logs:   O conjunto de arquivos que compõem o **log de refazer**, tipicamente nomeados `ib_logfile0` e `ib_logfile1`. (Por esse motivo, às vezes referidos coletivamente como **ib_logfile**.)
 
-    Veja também  ib\_logfile,  log de refazer.
+    Veja também  ib_logfile,  log de refazer.
 
 lógico:   Um tipo de operação que envolve aspectos de alto nível e abstratos, como tabelas, consultas, índices e outros conceitos SQL. Tipicamente, os aspectos lógicos são importantes para tornar a administração de bancos de dados e o desenvolvimento de aplicações convenientes e utilizáveis. Contrasta com **físico**.
 
@@ -1262,9 +1262,9 @@ Veja também  commit,  recuperação de falha,  DML,  físico,  purga,  log de r
 
 inserção em modo misto:   Uma instrução `INSERT` onde os valores de **auto-incremento** são especificados para algumas, mas não para todas, das novas linhas. Por exemplo, uma `INSERT` de múltiplos valores pode especificar um valor para a coluna de auto-incremento em alguns casos e `NULL` em outros casos. O `InnoDB` gera valores de auto-incremento para as linhas onde o valor da coluna foi especificado como `NULL`. Outro exemplo é uma instrução `INSERT ... ON DUPLICATE KEY UPDATE`, onde os valores de auto-incremento podem ser gerados, mas não utilizados, para quaisquer linhas duplicadas que sejam processadas como instruções `UPDATE` em vez de `INSERT`.
 
-Pode causar problemas de consistência entre os **servidores de origem** e **replica** em uma **configuração de replicação**. Pode exigir ajustes no valor da opção de configuração **innodb\_autoinc\_lock\_mode**.
+Pode causar problemas de consistência entre os **servidores de origem** e **replica** em uma **configuração de replicação**. Pode exigir ajustes no valor da opção de configuração **innodb_autoinc_lock_mode**.
 
-Veja também  auto-incremento,  innodb\_autoinc\_lock\_mode,  replica,  replicação,  origem.
+Veja também  auto-incremento,  innodb_autoinc_lock_mode,  replica,  replicação,  origem.
 
 MM.MySQL :   Um driver JDBC mais antigo para MySQL que evoluiu para o **Connector/J** quando foi integrado ao produto MySQL.
 
@@ -1699,7 +1699,7 @@ log de redo:   Uma estrutura de dados baseada em disco usada durante a **recuper
 
     Para mais informações, consulte  Seção 17.6.5, “Log de Redo”
 
-Veja também  recuperação de falhas,  arquivos de dados,  ib\_logfile,  buffer de log,  LSN,  redo,  shutdown,  transação.
+Veja também  recuperação de falhas,  arquivos de dados,  ib_logfile,  buffer de log,  LSN,  redo,  shutdown,  transação.
 
 arquivamento de log de redo:   Uma funcionalidade do `InnoDB` que, quando habilitada, escreve sequencialmente registros do log de redo em um arquivo de arquivamento para evitar a perda potencial de dados que pode ocorrer quando uma ferramenta de backup não consegue acompanhar a geração do log de redo enquanto uma operação de backup está em andamento. Para mais informações, consulte  Arquivamento de Log de Redo.
 
@@ -1785,7 +1785,7 @@ Veja também DDL, DML, InnoDB, bloqueio, bloqueio de acesso, DDL online, bloquei
 
 Replicação baseada em linhas:   Uma forma de **replicação** em que os eventos são propagados a partir da **fonte**, especificando como alterar linhas individuais na **replica**. É seguro usar para todas as configurações da opção `innodb_autoinc_lock_mode`.
 
-Veja também auto-incremento de bloqueio, `innodb\_autoinc\_lock\_mode`, replica, fonte, replicação baseada em declarações.
+Veja também auto-incremento de bloqueio, `innodb_autoinc_lock_mode`, replica, fonte, replicação baseada em declarações.
 
 Bloqueio de nível de linha:   O mecanismo de bloqueio usado para tabelas do `InnoDB`, que depende de **bloqueios de linha** em vez de **bloqueiras de tabela**. Múltiplas **transações** podem modificar a mesma tabela de forma concorrente. Somente se duas transações tentarem modificar a mesma linha, uma das transações aguarda a conclusão da outra (e libera seus bloqueios de linha).
 
@@ -1831,7 +1831,7 @@ escalar para cima:   Uma técnica para aumentar a **escalabilidade** aumentando 
 
     Veja também  escalabilidade,  escalar para fora.
 
-esquema:   Conceitualmente, um esquema é um conjunto de objetos de banco de dados interconectados, como tabelas, colunas de tabelas, tipos de dados das colunas, índices, chaves estrangeiras, e assim por diante. Esses objetos são conectados através da sintaxe SQL, porque as colunas compõem as tabelas, as chaves estrangeiras referenciam tabelas e colunas, e assim por diante. Idealmente, eles também estão conectados logicamente, trabalhando juntos como parte de uma aplicação unificada ou estrutura flexível. Por exemplo, as bases de dados **`INFORMATION_SCHEMA`** e **performance\_schema** usam “esquema” em seus nomes para enfatizar as relações próximas entre as tabelas e colunas que contêm.
+esquema:   Conceitualmente, um esquema é um conjunto de objetos de banco de dados interconectados, como tabelas, colunas de tabelas, tipos de dados das colunas, índices, chaves estrangeiras, e assim por diante. Esses objetos são conectados através da sintaxe SQL, porque as colunas compõem as tabelas, as chaves estrangeiras referenciam tabelas e colunas, e assim por diante. Idealmente, eles também estão conectados logicamente, trabalhando juntos como parte de uma aplicação unificada ou estrutura flexível. Por exemplo, as bases de dados **`INFORMATION_SCHEMA`** e **performance_schema** usam “esquema” em seus nomes para enfatizar as relações próximas entre as tabelas e colunas que contêm.
 
 No MySQL, fisicamente, um **esquema** é sinônimo de um **banco de dados**. Você pode substituir a palavra-chave `SCHEMA` pelo `DATABASE` na sintaxe do SQL do MySQL, por exemplo, usando `CREATE SCHEMA` em vez de `CREATE DATABASE`.
 
@@ -1995,7 +1995,7 @@ Veja também  intérprete de comandos,  string de conexão,  Connector/J,  Conne
 
 replicação baseada em declarações: Uma forma de **replicação** em que as declarações SQL são enviadas do **fonte** e regravadas no **replica**. Requer algum cuidado com a configuração da opção  `innodb_autoinc_lock_mode`, para evitar potenciais problemas de sincronização com o **bloqueio de autoincremento**.
 
-Veja também  bloqueio de autoincremento,  innodb\_autoinc\_lock\_mode,  replica,  replicação,  replicação baseada em linha,  fonte.
+Veja também  bloqueio de autoincremento,  innodb_autoinc_lock_mode,  replica,  replicação,  replicação baseada em linha,  fonte.
 
 estatísticas:   Valores estimados relacionados a cada **tabela** e **índice** do **InnoDB**, usados para construir um plano de execução de consultas eficiente. Os principais valores são a **cardinalidade** (número de valores distintos) e o número total de linhas da tabela ou entradas de índice. As estatísticas da tabela representam os dados em seu **índice de chave primária**. As estatísticas de um **índice secundário** representam as linhas cobertas por esse índice.
 
@@ -2037,7 +2037,7 @@ modo estrito:   O nome genérico para a configuração controlada pela opção `
 
     O MySQL também tem algo chamado modo estrito. Veja  Seção 7.1.11, “Modos SQL do servidor”.
 
-    Veja também  formato de arquivo,  innodb\_strict\_mode,  formato de linha.
+    Veja também  formato de arquivo,  innodb_strict_mode,  formato de linha.
 
 registro máximo:   Um **registro pseudo** em um índice, representando o **gap** acima do maior valor nesse índice. Se uma transação tiver uma instrução como `SELECT ... FROM ... WHERE col > 10 FOR UPDATE;`, e o maior valor na coluna for 20, é um bloqueio no registro máximo que impede que outras transações insiram valores ainda maiores, como 50, 100, e assim por diante.
 
@@ -2061,7 +2061,7 @@ Manter todos os dados da tabela no espaço de tabelas do sistema ou em arquivos 
 
 O `InnoDB` introduziu espaços de tabelas gerais no MySQL 5.7.6, que também são representados por arquivos **.ibd**. Os espaços de tabelas gerais são espaços de tabelas compartilhados criados usando a sintaxe `CREATE TABLESPACE`. Eles podem ser criados fora do diretório de dados, são capazes de conter múltiplas tabelas e suportam tabelas de todos os formatos de linha.
 
-Veja também  mudar buffer,  compressão,  dicionário de dados,  banco de dados,  buffer de escrita dupla,  formato de linha dinâmico,  arquivo por tabela,  espaço de tabelas geral,  arquivo .ibd,  arquivo ibdata,  innodb\_file\_per\_table,  instância,  MySQL Enterprise Backup,  coluna fora da página,  espaço de tabelas,  registro de desfazer.
+Veja também  mudar buffer,  compressão,  dicionário de dados,  banco de dados,  buffer de escrita dupla,  formato de linha dinâmico,  arquivo por tabela,  espaço de tabelas geral,  arquivo .ibd,  arquivo ibdata,  innodb_file_per_table,  instância,  MySQL Enterprise Backup,  coluna fora da página,  espaço de tabelas,  registro de desfazer.
 
 * O espaço de sistema compartilhado `InnoDB`, que é composto por um ou mais arquivos `ibdata`.
 * Um espaço de tabela por arquivo, composto por um arquivo `.ibd` individual.
@@ -2099,7 +2099,7 @@ espaço de tabelas:   Um arquivo de dados que pode armazenar dados para uma ou m
 
     O MySQL NDB Cluster também agrupa suas tabelas em espaços de tabelas. Veja  Seção 25.6.11.1, “Objetos de Dados de Disco do NDB Cluster” para detalhes.
 
-Veja também formato de linha compactada, dicionário de dados, arquivos de dados, arquivo por tabela, espaço de tabela geral, índice, innodb\_file\_per\_table, espaço de tabela do sistema, tabela.
+Veja também formato de linha compactada, dicionário de dados, arquivos de dados, arquivo por tabela, espaço de tabela geral, índice, innodb_file_per_table, espaço de tabela do sistema, tabela.
 
 Tcl:   Uma linguagem de programação originária do mundo de scripts Unix. Às vezes, é estendida por código escrito em **C**, **C++** ou **Java**. Para a **API** de código aberto do Tcl para o MySQL, consulte  Seção 31.12, “API Tcl do MySQL”.
 
@@ -2257,7 +2257,7 @@ vítima:   A **transação** que é automaticamente escolhida para ser **reverti
 
 A detecção de **bloqueio** pode ser desativada usando a opção de configuração `innodb_deadlock_detect`.
 
-Veja também **bloqueio**, detecção de bloqueio, `innodb\_lock\_wait\_timeout`, transação.
+Veja também **bloqueio**, detecção de bloqueio, `innodb_lock_wait_timeout`, transação.
 
 **Consulta armazenada** que, quando invocada, produz um conjunto de resultados. Uma consulta armazenada atua como uma tabela virtual.
 

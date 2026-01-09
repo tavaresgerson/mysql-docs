@@ -4,7 +4,7 @@
 
 10.2.2 Optimizing Subqueries, Derived Tables, View References, and Common Table Expressions
 
-10.2.3 Optimizing INFORMATION\_SCHEMA Queries
+10.2.3 Optimizing INFORMATION_SCHEMA Queries
 
 10.2.4 Optimizing Performance Schema Queries
 

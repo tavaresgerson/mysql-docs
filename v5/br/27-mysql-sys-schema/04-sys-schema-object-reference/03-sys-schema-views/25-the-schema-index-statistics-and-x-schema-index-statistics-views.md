@@ -1,4 +1,4 @@
-#### 26.4.3.25 As visualizações schema\_index\_statistics e x$schema\_index\_statistics
+#### 26.4.3.25 As visualizações schema_index_statistics e x$schema_index_statistics
 
 Essas visualizações fornecem estatísticas de índice. Por padrão, as linhas são ordenadas por latência total do índice em ordem decrescente.
 

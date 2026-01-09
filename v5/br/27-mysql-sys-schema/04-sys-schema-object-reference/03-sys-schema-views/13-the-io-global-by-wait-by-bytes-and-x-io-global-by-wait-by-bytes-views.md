@@ -1,4 +1,4 @@
-#### 26.4.3.13 As visualizações io\_global\_by\_wait\_by\_bytes e x$io\_global\_by\_wait\_by\_bytes
+#### 26.4.3.13 As visualizações io_global_by_wait_by_bytes e x$io_global_by_wait_by_bytes
 
 Esses pontos de vista resumem os consumidores globais de E/S para exibir a quantidade de E/S e o tempo de espera para E/S, agrupados por evento. Por padrão, as linhas são ordenadas em ordem decrescente de total de E/S (bytes lidos e escritos).
 

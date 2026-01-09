@@ -1,4 +1,4 @@
-### 12.8.5 A Cotação Binária Comparada às Cotações \_bin
+### 12.8.5 A Cotação Binária Comparada às Cotações _bin
 
 Esta seção descreve como a cotação `binary` para strings binárias compara-se com as cotações `_bin` para strings não binárias.
 

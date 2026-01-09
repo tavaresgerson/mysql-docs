@@ -1,4 +1,4 @@
-#### 29.12.11.5 The replication\_applier\_metrics Table
+#### 29.12.11.5 The replication_applier_metrics Table
 
 This table provides replication applier statistics such as wait times, wait counts, transaction counts, event counts, and byte counts for the applier coordinator.
 

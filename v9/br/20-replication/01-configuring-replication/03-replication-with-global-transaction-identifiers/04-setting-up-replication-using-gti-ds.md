@@ -47,7 +47,7 @@ $> mysqladmin -uusername -p shutdown
 
 Inicie cada replica com `--skip-replica-start`. Para obter mais informações sobre as opções e variáveis relacionadas a GTID, consulte a Seção 19.1.6.5, “Variáveis do Sistema de Identificador de Transação Global”.
 
-Não é obrigatório ter o registro binário habilitado para usar GTIDs ao usar a Tabela mysql.gtid\_executed. Os servidores de origem devem sempre ter o registro binário habilitado para poderem ser replicados. No entanto, os servidores de replica podem usar GTIDs, mas sem registro binário. Se você precisar desabilitar o registro binário em um servidor de replica, pode fazer isso especificando as opções `--skip-log-bin` e `--log-replica-updates=OFF` para a replica.
+Não é obrigatório ter o registro binário habilitado para usar GTIDs ao usar a Tabela mysql.gtid_executed. Os servidores de origem devem sempre ter o registro binário habilitado para poderem ser replicados. No entanto, os servidores de replica podem usar GTIDs, mas sem registro binário. Se você precisar desabilitar o registro binário em um servidor de replica, pode fazer isso especificando as opções `--skip-log-bin` e `--log-replica-updates=OFF` para a replica.
 
 **Passo 4: Configure a replica para usar a autoposição baseada em GTID.** Diga à replica para usar a fonte com transações baseadas em GTID como a fonte de dados de replicação e para usar a autoposição baseada em GTID em vez da posição baseada em arquivos. Emite uma `ALTERE A FONTE DE REPLICA PARA` na replica, incluindo a opção `SOURCE_AUTO_POSITION` na declaração para dizer à replica que as transações da fonte são identificadas por GTIDs.
 

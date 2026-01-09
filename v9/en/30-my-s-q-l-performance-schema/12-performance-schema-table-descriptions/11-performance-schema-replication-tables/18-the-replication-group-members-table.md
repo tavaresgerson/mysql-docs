@@ -1,4 +1,4 @@
-#### 29.12.11.18 The replication\_group\_members Table
+#### 29.12.11.18 The replication_group_members Table
 
 This table shows network and status information for replication group members. The network addresses shown are the addresses used to connect clients to the group, and should not be confused with the member's internal group communication address specified by `group_replication_local_address`.
 
@@ -14,7 +14,7 @@ The `replication_group_members` table has these columns:
 
 * `MEMBER_HOST`
 
-  Network address of this member (host name or IP address). Retrieved from the member's `hostname` variable. This is the address which clients connect to, unlike the group\_replication\_local\_address which is used for internal group communication.
+  Network address of this member (host name or IP address). Retrieved from the member's `hostname` variable. This is the address which clients connect to, unlike the group_replication_local_address which is used for internal group communication.
 
 * `MEMBER_PORT`
 

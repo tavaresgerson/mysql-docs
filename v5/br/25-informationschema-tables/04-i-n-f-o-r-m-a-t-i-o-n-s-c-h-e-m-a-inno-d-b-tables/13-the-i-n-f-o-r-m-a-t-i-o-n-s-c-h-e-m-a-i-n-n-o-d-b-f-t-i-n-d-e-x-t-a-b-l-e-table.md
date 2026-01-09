@@ -1,4 +1,4 @@
-### 24.4.13 A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE
+### 24.4.13 A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE
 
 A tabela [`INNODB_FT_INDEX_TABLE`](https://docs.oracle.com/en/database/sql/information-schema/innodb/ft-index-table.html) fornece informações sobre o índice invertido usado para processar pesquisas de texto contra o índice `FULLTEXT` de uma tabela `InnoDB`.
 

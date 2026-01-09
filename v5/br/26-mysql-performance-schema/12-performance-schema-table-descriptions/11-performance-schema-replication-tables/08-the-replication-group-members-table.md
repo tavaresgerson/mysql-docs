@@ -1,4 +1,4 @@
-#### 25.12.11.8 A tabela replication\_group\_members
+#### 25.12.11.8 A tabela replication_group_members
 
 Esta tabela mostra informações de rede e status dos membros do grupo de replicação. Os endereços de rede mostrados são os endereços usados para conectar os clientes ao grupo e não devem ser confundidos com o endereço interno de comunicação do grupo do membro especificado por `group_replication_local_address`.
 

@@ -6,7 +6,7 @@ A | E | H | I | N | O | P | R | S | T
 
 [index top]
 
-### ALLOW\_INVALID\_DATES
+### ALLOW_INVALID_DATES
 
 Section 13.2, “Date and Time Data Types”
 
@@ -26,9 +26,9 @@ Section 7.1.11, “Server SQL Modes”
 
 Section 15.7.7.15, “SHOW CREATE VIEW Statement”
 
-Section 28.3.53, “The INFORMATION\_SCHEMA VIEWS Table”
+Section 28.3.53, “The INFORMATION_SCHEMA VIEWS Table”
 
-### ANSI\_QUOTES
+### ANSI_QUOTES
 
 Section 15.1.19, “CREATE LIBRARY Statement”
 
@@ -52,7 +52,7 @@ Section 11.1.1, “String Literals”
 
 [index top]
 
-### ERROR\_FOR\_DIVISION\_BY\_ZERO
+### ERROR_FOR_DIVISION_BY_ZERO
 
 Section 14.25.3, “Expression Handling”
 
@@ -66,7 +66,7 @@ Section 7.1.11, “Server SQL Modes”
 
 [index top]
 
-### HIGH\_NOT\_PRECEDENCE
+### HIGH_NOT_PRECEDENCE
 
 Section 11.5, “Expressions”
 
@@ -78,7 +78,7 @@ Section 7.1.11, “Server SQL Modes”
 
 [index top]
 
-### IGNORE\_SPACE
+### IGNORE_SPACE
 
 Section 15.1.21, “CREATE PROCEDURE and CREATE FUNCTION Statements”
 
@@ -92,7 +92,7 @@ Section 7.1.11, “Server SQL Modes”
 
 [index top]
 
-### NO\_AUTO\_VALUE\_ON\_ZERO
+### NO_AUTO_VALUE_ON_ZERO
 
 Section 15.1.24, “CREATE TABLE Statement”
 
@@ -100,9 +100,9 @@ Section 13.1.6, “Numeric Type Attributes”
 
 Section 7.1.11, “Server SQL Modes”
 
-Section 5.6.9, “Using AUTO\_INCREMENT”
+Section 5.6.9, “Using AUTO_INCREMENT”
 
-### NO\_BACKSLASH\_ESCAPES
+### NO_BACKSLASH_ESCAPES
 
 Section 14.17.4, “Functions That Modify JSON Values”
 
@@ -116,7 +116,7 @@ Section 11.1.1, “String Literals”
 
 Section 13.5, “The JSON Data Type”
 
-### NO\_DIR\_IN\_CREATE
+### NO_DIR_IN_CREATE
 
 Section 15.1.24, “CREATE TABLE Statement”
 
@@ -128,7 +128,7 @@ Section 7.1.11, “Server SQL Modes”
 
 Section 7.4.4, “The Binary Log”
 
-### NO\_ENGINE\_SUBSTITUTION
+### NO_ENGINE_SUBSTITUTION
 
 Section 15.1.11, “ALTER TABLE Statement”
 
@@ -144,7 +144,7 @@ Section 18.1, “Setting the Storage Engine”
 
 Section 19.4.4, “Using Replication with Different Source and Replica Storage Engines”
 
-### NO\_UNSIGNED\_SUBTRACTION
+### NO_UNSIGNED_SUBTRACTION
 
 Section 14.6.1, “Arithmetic Operators”
 
@@ -158,7 +158,7 @@ Section 26.6, “Restrictions and Limitations on Partitioning”
 
 Section 7.1.11, “Server SQL Modes”
 
-### NO\_ZERO\_DATE
+### NO_ZERO_DATE
 
 Section 13.2.5, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”
 
@@ -182,7 +182,7 @@ Section 7.1.8, “Server System Variables”
 
 Section 13.2.2, “The DATE, DATETIME, and TIMESTAMP Types”
 
-### NO\_ZERO\_IN\_DATE
+### NO_ZERO_IN_DATE
 
 Section 15.1.24, “CREATE TABLE Statement”
 
@@ -200,7 +200,7 @@ Section 7.1.11, “Server SQL Modes”
 
 [index top]
 
-### ONLY\_FULL\_GROUP\_BY
+### ONLY_FULL_GROUP_BY
 
 Section 5.3.4.8, “Counting Rows”
 
@@ -218,7 +218,7 @@ Section 7.1.11, “Server SQL Modes”
 
 [index top]
 
-### PAD\_CHAR\_TO\_FULL\_LENGTH
+### PAD_CHAR_TO_FULL_LENGTH
 
 Section 7.1.11, “Server SQL Modes”
 
@@ -226,7 +226,7 @@ Section 13.3.1, “String Data Type Syntax”
 
 Section 13.3.2, “The CHAR and VARCHAR Types”
 
-### PIPES\_AS\_CONCAT
+### PIPES_AS_CONCAT
 
 Section 11.5, “Expressions”
 
@@ -240,7 +240,7 @@ Section 7.1.11, “Server SQL Modes”
 
 [index top]
 
-### REAL\_AS\_FLOAT
+### REAL_AS_FLOAT
 
 Section 14.10, “Cast Functions and Operators”
 
@@ -254,7 +254,7 @@ Section 7.1.11, “Server SQL Modes”
 
 [index top]
 
-### STRICT\_ALL\_TABLES
+### STRICT_ALL_TABLES
 
 Section 14.25.3, “Expression Handling”
 
@@ -262,7 +262,7 @@ Section A.3, “MySQL 9.5 FAQ: Server SQL Mode”
 
 Section 7.1.11, “Server SQL Modes”
 
-### STRICT\_TRANS\_TABLES
+### STRICT_TRANS_TABLES
 
 Section 14.25.3, “Expression Handling”
 
@@ -274,7 +274,7 @@ Section 7.1.11, “Server SQL Modes”
 
 [index top]
 
-### TIME\_TRUNCATE\_FRACTIONAL
+### TIME_TRUNCATE_FRACTIONAL
 
 Section 13.2.6, “Fractional Seconds in Time Values”
 

@@ -50,21 +50,21 @@ It is possible using `PASSWORD` to set an empty password (`''` or `""`), but thi
 
 An encrypted backup can be decrypted using any of the following commands:
 
-* **ndb\_restore** `--decrypt` `--backup-password=password`
+* **ndb_restore** `--decrypt` `--backup-password=password`
 
 * **ndbxfrm** `--decrypt-password=password` *`input_file`* *`output_file`*
 
-* **ndb\_print\_backup\_file** `-P` *`password`* *`file_name`*
+* **ndb_print_backup_file** `-P` *`password`* *`file_name`*
 
-* **ndb\_restore** `--decrypt` `--backup-password-from-stdin`
+* **ndb_restore** `--decrypt` `--backup-password-from-stdin`
 
 * **ndbxfrm** `--decrypt-password-from-stdin` *`input_file`* *`output_file`*
 
-* **ndb\_print\_backup\_file** `--backup-password=password` *`file_name`*
+* **ndb_print_backup_file** `--backup-password=password` *`file_name`*
 
-* **ndb\_print\_backup\_file** `--backup-password-from-stdin` *`file_name`*
+* **ndb_print_backup_file** `--backup-password-from-stdin` *`file_name`*
 
-* **ndb\_mgm** `--backup-password-from-stdin` `--execute "START BACKUP ..."`
+* **ndb_mgm** `--backup-password-from-stdin` `--execute "START BACKUP ..."`
 
 See the descriptions of these programs for more information, such as additional options that may be required.
 
@@ -110,7 +110,7 @@ START BACKUP 4 NOWAIT SNAPSHOTSTART
 
 The procedure for creating a backup consists of the following steps:
 
-1. Start the management client (**ndb\_mgm**), if it not running already.
+1. Start the management client (**ndb_mgm**), if it not running already.
 
 2. Execute the **`START BACKUP`** command. This produces several lines of output indicating the progress of the backup, as shown here:
 
@@ -152,7 +152,7 @@ The procedure for creating a backup consists of the following steps:
     Data: 453648 bytes Log: 0 bytes
    ```
 
-It is also possible to perform a backup from the system shell by invoking **ndb\_mgm** with the `-e` or `--execute` option, as shown in this example:
+It is also possible to perform a backup from the system shell by invoking **ndb_mgm** with the `-e` or `--execute` option, as shown in this example:
 
 ```
 $> ndb_mgm -e "START BACKUP 6 WAIT COMPLETED SNAPSHOTSTART"

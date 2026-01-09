@@ -335,7 +335,7 @@ When a profile is assigned any of the preceding mode values, the firewall stores
 
 Note
 
-Messages written to the error log in `DETECTING` mode or because `mysql_firewall_trace` is enabled are written as Notes, which are information messages. To ensure that such messages appear in the error log and are not discarded, make sure that error-logging verbosity is sufficient to include information messages. For example, if you are using priority-based log filtering, as described in Section 7.4.2.5, “Priority-Based Error Log Filtering (log\_filter\_internal)”"), set the `log_error_verbosity` system variable to `3`.
+Messages written to the error log in `DETECTING` mode or because `mysql_firewall_trace` is enabled are written as Notes, which are information messages. To ensure that such messages appear in the error log and are not discarded, make sure that error-logging verbosity is sufficient to include information messages. For example, if you are using priority-based log filtering, as described in Section 7.4.2.5, “Priority-Based Error Log Filtering (log_filter_internal)”"), set the `log_error_verbosity` system variable to `3`.
 
 ###### Firewall Statement Handling When Multiple Profiles Apply
 
@@ -727,7 +727,7 @@ Use an administrative MySQL account to perform the steps in this procedure, exce
    +----------------------------------------------------------------------------+
    ```
 
-   See Section 28.7, “INFORMATION\_SCHEMA MySQL Enterprise Firewall Plugin Tables”, for more information about these tables.
+   See Section 28.7, “INFORMATION_SCHEMA MySQL Enterprise Firewall Plugin Tables”, for more information about these tables.
 
    Note
 
@@ -907,7 +907,7 @@ The following sections provide a reference to the following MySQL Enterprise Fir
 
 The MySQL Enterprise Firewall plugin maintains profile information on a per-group and per-account basis, using tables in the firewall database for persistent storage, and Information Schema tables to provide views into in-memory cached data. When enabled, the firewall bases operational decisions on the cached data. The firewall database can be the `mysql` system database or one determined during installation (see Installing the MySQL Enterprise Firewall Plugin).
 
-Tables in the firewall database are covered in this section. For information about MySQL Enterprise Firewall plugin Information Schema tables, see Section 28.7, “INFORMATION\_SCHEMA MySQL Enterprise Firewall Plugin Tables”; for information about MySQL Enterprise Firewall Performance Schema tables, see Section 29.12.17, “Performance Schema Firewall Tables”.
+Tables in the firewall database are covered in this section. For information about MySQL Enterprise Firewall plugin Information Schema tables, see Section 28.7, “INFORMATION_SCHEMA MySQL Enterprise Firewall Plugin Tables”; for information about MySQL Enterprise Firewall Performance Schema tables, see Section 29.12.17, “Performance Schema Firewall Tables”.
 
 * Firewall Group Profile Tables
 * Firewall Account Profile Tables
@@ -1347,19 +1347,19 @@ The MySQL Enterprise Firewall plugin supports the following system variables for
 
 * `mysql_firewall_database`
 
-  <table frame="box" rules="all" summary="Properties for mysql_firewall_database"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--mysql-firewall-database[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_database">mysql_firewall_database</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">mysql</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for mysql_firewall_database"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--mysql-firewall-database[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code class="literal">mysql_firewall_database</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">mysql</code></td> </tr></tbody></table>
 
   Specifies the database from which the MySQL Enterprise Firewall plugin reads data. Typically, the `MYSQL_FIREWALL` server-side plugin stores its internal data (tables, stored procedures, and functions) in the `mysql` system database, but you can create and use a custom schema instead (see Installing the MySQL Enterprise Firewall Plugin). This variable permits specifying an alternative database name at startup.
 
 * `mysql_firewall_mode`
 
-  <table frame="box" rules="all" summary="Properties for mysql_firewall_mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_mode">mysql_firewall_mode</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for mysql_firewall_mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code class="literal">mysql_firewall_mode</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr></tbody></table>
 
   Whether the MySQL Enterprise Firewall plugin is enabled (the default) or disabled.
 
 * `mysql_firewall_reload_interval_seconds`
 
-  <table frame="box" rules="all" summary="Properties for mysql_firewall_reload_interval_seconds"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--mysql-firewall-reload-interval-seconds[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_reload_interval_seconds">mysql_firewall_reload_interval_seconds</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">60 (unless 0: OFF)</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">INT_MAX</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for mysql_firewall_reload_interval_seconds"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--mysql-firewall-reload-interval-seconds[=value]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code class="literal">mysql_firewall_reload_interval_seconds</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">60 (unless 0: OFF)</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">INT_MAX</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
 
   Specifies the interval (in seconds) that the server-side plugin uses to reload its internal cache from firewall tables. When `mysql_firewall_reload_interval_seconds` has a value of zero (the default), no periodic reloading of data from tables occurs at runtime. Values between `0` and `60` (1 to 59) are not acknowledged by the plugin. Instead, these values adjust to `60` automatically.
 
@@ -1367,7 +1367,7 @@ The MySQL Enterprise Firewall plugin supports the following system variables for
 
 * `mysql_firewall_trace`
 
-  <table frame="box" rules="all" summary="Properties for mysql_firewall_trace"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--mysql-firewall-trace[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_trace">mysql_firewall_trace</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for mysql_firewall_trace"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--mysql-firewall-trace[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code class="literal">mysql_firewall_trace</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   Whether the MySQL Enterprise Firewall trace is enabled or disabled (the default). When `mysql_firewall_trace` is enabled, for `PROTECTING` mode, the firewall writes rejected statements to the error log.
 

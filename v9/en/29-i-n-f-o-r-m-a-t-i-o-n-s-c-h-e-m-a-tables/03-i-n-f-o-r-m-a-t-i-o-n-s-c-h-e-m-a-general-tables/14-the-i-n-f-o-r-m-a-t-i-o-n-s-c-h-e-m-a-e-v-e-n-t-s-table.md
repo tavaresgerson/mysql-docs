@@ -1,4 +1,4 @@
-### 28.3.14 The INFORMATION\_SCHEMA EVENTS Table
+### 28.3.14 The INFORMATION_SCHEMA EVENTS Table
 
 The `EVENTS` table provides information about Event Manager events, which are discussed in Section 27.5, “Using the Event Scheduler”.
 

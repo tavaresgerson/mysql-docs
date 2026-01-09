@@ -8,7 +8,7 @@
 
 7.6.4 O Plugin de Reescrita de Consultas Rewriter Query
 
-7.6.5 O Plugin ddl\_rewriter
+7.6.5 O Plugin ddl_rewriter
 
 7.6.6 O Plugin Clone
 
@@ -38,7 +38,7 @@ As distribuições do MySQL incluem vários plugins que implementam extensões d
 
 * A Edição Empresarial do MySQL inclui um plugin de firewall que implementa um firewall de nível de aplicativo para permitir que os administradores de banco de dados permitam ou negam a execução de instruções SQL com base na correspondência com listas de permissões de padrões de instruções aceitos. Veja a Seção 8.4.8, “MySQL Enterprise Firewall”.
 
-* Os plugins de reescrita de consultas examinam as instruções recebidas pelo MySQL Server e, possivelmente, as reescrevem antes de o servidor executá-las. Veja a Seção 7.6.4, “O Plugin de Reescrita de Consultas Rewriter”, e a Seção 7.6.5, “O Plugin ddl\_rewriter”.
+* Os plugins de reescrita de consultas examinam as instruções recebidas pelo MySQL Server e, possivelmente, as reescrevem antes de o servidor executá-las. Veja a Seção 7.6.4, “O Plugin de Reescrita de Consultas Rewriter”, e a Seção 7.6.5, “O Plugin ddl_rewriter”.
 
 * Tokens de Versão permite a criação e sincronização de tokens de servidor que as aplicações podem usar para evitar o acesso a dados incorretos ou desatualizados. Tokens de Versão é baseado em uma biblioteca de plugins que implementa um plugin `version_tokens` e um conjunto de funções carregáveis. Veja Tokens de Versão.
 

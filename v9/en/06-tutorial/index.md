@@ -34,7 +34,7 @@
 
     5.6.8 Calculating Visits Per Day
 
-    5.6.9 Using AUTO\_INCREMENT
+    5.6.9 Using AUTO_INCREMENT
 
 5.7 Using MySQL with Apache
 

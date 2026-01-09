@@ -18,7 +18,7 @@ As definições de colunas para os tipos de dados de cadeias de caracteres `CHAR
   );
   ```
 
-  Esta definição de tabela cria uma coluna chamada `c1` que tem um conjunto de caracteres de `utf8` com a collation padrão para esse conjunto de caracteres, e uma coluna chamada `c2` que tem um conjunto de caracteres de `latin1` e uma collation sensível a maiúsculas e minúsculas (\_cs).
+  Esta definição de tabela cria uma coluna chamada `c1` que tem um conjunto de caracteres de `utf8` com a collation padrão para esse conjunto de caracteres, e uma coluna chamada `c2` que tem um conjunto de caracteres de `latin1` e uma collation sensível a maiúsculas e minúsculas (_cs).
 
   As regras para atribuir o conjunto de caracteres e a ordenação quando o atributo `CHARACTER SET` ou `COLLATE` está ausente ou ambos estão ausentes são descritas na Seção 10.3.5, “Conjunto de caracteres da coluna e ordenação”.
 
@@ -46,7 +46,7 @@ As definições de colunas para os tipos de dados de cadeias de caracteres `CHAR
   );
   ```
 
-- O atributo `BINARY` é uma extensão não padrão do MySQL que é uma abreviação para especificar a collation binária (\_bin) do conjunto de caracteres da coluna (ou do conjunto de caracteres padrão da tabela, se nenhum conjunto de caracteres da coluna for especificado). Neste caso, a comparação e ordenação são baseadas em valores de código de caracteres numéricos. Suponha que você especifique uma tabela usando esta definição:
+- O atributo `BINARY` é uma extensão não padrão do MySQL que é uma abreviação para especificar a collation binária (_bin) do conjunto de caracteres da coluna (ou do conjunto de caracteres padrão da tabela, se nenhum conjunto de caracteres da coluna for especificado). Neste caso, a comparação e ordenação são baseadas em valores de código de caracteres numéricos. Suponha que você especifique uma tabela usando esta definição:
 
   ```sql
   CREATE TABLE t
@@ -69,7 +69,7 @@ As definições de colunas para os tipos de dados de cadeias de caracteres `CHAR
 
 - O atributo `UNICODE` é uma abreviação para `CHARACTER SET ucs2`.
 
-A comparação e ordenação de colunas de caracteres são baseadas na collation atribuída à coluna. Para os tipos de dados `CHAR`, `VARCHAR`, `TEXT`, `ENUM` e `SET`, você pode declarar uma coluna com uma collation binária (\_bin) ou o atributo BINARY para fazer com que a comparação e ordenação usem os valores subjacentes dos códigos de caracteres em vez de uma ordem lexical.
+A comparação e ordenação de colunas de caracteres são baseadas na collation atribuída à coluna. Para os tipos de dados `CHAR`, `VARCHAR`, `TEXT`, `ENUM` e `SET`, você pode declarar uma coluna com uma collation binária (_bin) ou o atributo BINARY para fazer com que a comparação e ordenação usem os valores subjacentes dos códigos de caracteres em vez de uma ordem lexical.
 
 Para obter informações adicionais sobre o uso de conjuntos de caracteres no MySQL, consulte o Capítulo 10, *Conjunto de caracteres, Colagens, Unicode*.
 

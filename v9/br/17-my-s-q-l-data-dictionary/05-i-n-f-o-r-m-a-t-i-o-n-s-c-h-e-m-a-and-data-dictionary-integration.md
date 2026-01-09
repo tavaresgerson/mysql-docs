@@ -52,6 +52,6 @@ Além da introdução de visualizações em tabelas do dicionário de dados, as 
 
 `information_schema_stats_expiry` pode ser definido como `0` para que as consultas do `INFORMATION_SCHEMA` recuperem as estatísticas mais recentes diretamente do mecanismo de armazenamento, o que não é tão rápido quanto recuperar estatísticas armazenadas.
 
-Para mais informações, consulte a Seção 10.2.3, “Otimizando consultas do INFORMATION\_SCHEMA”.
+Para mais informações, consulte a Seção 10.2.3, “Otimizando consultas do INFORMATION_SCHEMA”.
 
 As tabelas `INFORMATION_SCHEMA` no MySQL 9.5 estão intimamente ligadas ao dicionário de dados, resultando em várias diferenças de uso. Veja a Seção 16.7, “Diferenças de uso do dicionário de dados”.

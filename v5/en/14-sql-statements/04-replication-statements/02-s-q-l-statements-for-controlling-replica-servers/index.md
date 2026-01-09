@@ -6,7 +6,7 @@
 
 [13.4.2.3 RESET SLAVE Statement](reset-slave.html)
 
-[13.4.2.4 SET GLOBAL sql\_slave\_skip\_counter Syntax](set-global-sql-slave-skip-counter.html)
+[13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax](set-global-sql-slave-skip-counter.html)
 
 [13.4.2.5 START SLAVE Statement](start-slave.html)
 

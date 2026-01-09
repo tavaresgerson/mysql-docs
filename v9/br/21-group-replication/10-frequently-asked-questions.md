@@ -10,7 +10,7 @@ Um grupo pode conter no máximo 9 servidores. Tentar adicionar outro servidor a 
 
 Os servidores em um grupo se conectam aos outros servidores do grupo abrindo uma conexão TCP ponto a ponto. Essas conexões são usadas apenas para comunicação interna e passagem de mensagens entre os servidores do grupo. Esse endereço é configurado pela variável `group_replication_local_address`.
 
-### Para que serve a opção group\_replication\_bootstrap\_group?
+### Para que serve a opção group_replication_bootstrap_group?
 
 A bandeira bootstrap instrui um membro a *criar* um grupo e atuar como o servidor inicial de semente. O segundo membro que se junta ao grupo precisa pedir ao membro que iniciou o grupo para alterar dinamicamente a configuração para que ele possa ser adicionado ao grupo.
 

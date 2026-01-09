@@ -1,4 +1,4 @@
-#### 29.12.11.12 The replication\_connection\_configuration Table
+#### 29.12.11.12 The replication_connection_configuration Table
 
 This table shows the configuration parameters used by the replica for connecting to the source. Parameters stored in the table can be changed at runtime with the `CHANGE REPLICATION SOURCE TO` statement.
 

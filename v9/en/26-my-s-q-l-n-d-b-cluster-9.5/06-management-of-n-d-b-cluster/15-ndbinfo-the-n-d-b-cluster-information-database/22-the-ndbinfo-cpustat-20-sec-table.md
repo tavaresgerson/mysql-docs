@@ -1,4 +1,4 @@
-#### 25.6.15.22 The ndbinfo cpustat\_20sec Table
+#### 25.6.15.22 The ndbinfo cpustat_20sec Table
 
 The `cpustat_20sec` table provides raw, per-thread CPU data obtained each 20 seconds, for each thread running in the `NDB` kernel.
 

@@ -30,7 +30,7 @@ Se você estiver fazendo login na mesma máquina em que o MySQL está rodando, p
 $> mysql -u user -p
 ```
 
-Se, ao tentar fazer login, você receber uma mensagem de erro como ERRO 2002 (HY000): Não é possível se conectar ao servidor MySQL local através do soquete '/tmp/mysql.sock' (2), isso significa que o daemon do servidor MySQL (Unix) ou serviço (Windows) não está em execução. Consulte o administrador ou consulte a seção de \[Capítulo 2, *Instalando e Atualizando o MySQL*] (installing.html) que é apropriada para o seu sistema operacional.
+Se, ao tentar fazer login, você receber uma mensagem de erro como ERRO 2002 (HY000): Não é possível se conectar ao servidor MySQL local através do soquete '/tmp/mysql.sock' (2), isso significa que o daemon do servidor MySQL (Unix) ou serviço (Windows) não está em execução. Consulte o administrador ou consulte a seção de [Capítulo 2, *Instalando e Atualizando o MySQL*] (installing.html) que é apropriada para o seu sistema operacional.
 
 Para obter ajuda com outros problemas frequentemente encontrados ao tentar fazer login, consulte Seção B.3.2, “Erros Comuns ao Usar Programas MySQL”.
 

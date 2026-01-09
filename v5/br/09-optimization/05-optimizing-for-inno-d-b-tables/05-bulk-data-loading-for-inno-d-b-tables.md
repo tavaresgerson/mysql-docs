@@ -40,7 +40,7 @@ Esses conselhos de desempenho complementam as diretrizes gerais para inserções
 
   Essa dica é válida para inserções em qualquer tabela, não apenas em tabelas `InnoDB`.
 
-- Ao realizar inserções em massa em tabelas com colunas de autoincremento, defina `innodb_autoinc_lock_mode` para 2, em vez do valor padrão 1. Consulte a Seção 14.6.1.6, “Tratamento do AUTO\_INCREMENT no InnoDB”, para obter detalhes.
+- Ao realizar inserções em massa em tabelas com colunas de autoincremento, defina `innodb_autoinc_lock_mode` para 2, em vez do valor padrão 1. Consulte a Seção 14.6.1.6, “Tratamento do AUTO_INCREMENT no InnoDB”, para obter detalhes.
 
 - Ao realizar inserções em massa, é mais rápido inserir linhas na ordem do `PRIMARY KEY`. As tabelas do `InnoDB` usam um índice agrupado, o que torna relativamente rápido o uso dos dados na ordem do `PRIMARY KEY`. Realizar inserções em massa na ordem do `PRIMARY KEY` é particularmente importante para tabelas que não cabem inteiramente no pool de buffers.
 

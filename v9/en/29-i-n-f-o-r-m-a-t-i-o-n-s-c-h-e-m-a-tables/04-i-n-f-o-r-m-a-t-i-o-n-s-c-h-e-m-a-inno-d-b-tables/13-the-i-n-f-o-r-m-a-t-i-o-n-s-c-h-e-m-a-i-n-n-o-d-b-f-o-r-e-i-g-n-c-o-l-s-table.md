@@ -1,8 +1,8 @@
-### 28.4.13 The INFORMATION\_SCHEMA INNODB\_FOREIGN\_COLS Table
+### 28.4.13 The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table
 
 The `INNODB_FOREIGN_COLS` table provides status information about `InnoDB` foreign key columns.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_FOREIGN_COLS` table has these columns:
 

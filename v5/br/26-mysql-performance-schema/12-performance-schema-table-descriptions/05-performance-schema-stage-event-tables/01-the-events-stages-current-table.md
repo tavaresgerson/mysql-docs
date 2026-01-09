@@ -1,4 +1,4 @@
-#### 25.12.5.1 Tabela events\_stages\_current
+#### 25.12.5.1 Tabela events_stages_current
 
 A tabela `events_stages_current` contém eventos de estágio atual. A tabela armazena uma linha por thread, mostrando o status atual do evento de estágio mais recente monitorado da thread, portanto, não há uma variável de sistema para configurar o tamanho da tabela.
 

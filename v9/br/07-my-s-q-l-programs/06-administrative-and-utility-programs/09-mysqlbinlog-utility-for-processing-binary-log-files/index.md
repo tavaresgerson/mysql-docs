@@ -66,24 +66,24 @@ O **mysqlbinlog** suporta as seguintes opções, que podem ser especificadas na 
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlbinlog">
 <tr><th>Nome da opção</th> <th>Descrição</th> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_base64-output">--base64-output</a></td> <td>Imprima entradas de log binário usando codificação base64</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_binlog-row-event-max-size">--binlog-row-event-max-size</a></td> <td>Tamanho máximo de evento de log binário</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres são instalados</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_connection-server-id">--connection-server-id</a></td> <td>Usado para testes e depuração. Consulte o texto para valores aplicáveis e outras informações detalhadas</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_database">--database</a></td> <td>Listar entradas para apenas esta base de dados</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_debug">--debug</a></td> <td>Escrever log de depuração</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_debug-check">--debug-check</a></td> <td>Imprimir informações de depuração quando o programa sai</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_debug-info">--debug-info</a></td> <td>Imprimir informações de depuração, estatísticas de memória e CPU quando o programa sai</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção adicional além dos arquivos de opção usuais</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo de grupo de opção</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_disable-log-bin">--disable-log-bin</a></td> <td>Desabilitar o log binário</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_force-if-open">--force-if-open</a></td> <td>Ler arquivos de log binário mesmo se estiverem abertos ou não fechados corretamente</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_force-read">--force-read</a></td> <td>Se mysqlbinlog ler um evento de log binário que não reconhece, imprima um aviso</td> </tr>
-<tr><td><a class="link" href="mysqlbinlog.html#option_mysqlbinlog_get-server-public-key">--get-server-public-key</a></td> <td>Solicitar a chave pública do servidor MySQL</td> </tr>
+<tr><td>--base64-output</td> <td>Imprima entradas de log binário usando codificação base64</td> </tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td> </tr>
+<tr><td>--binlog-row-event-max-size</td> <td>Tamanho máximo de evento de log binário</td> </tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres são instalados</td> </tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td> </tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td> </tr>
+<tr><td>--connection-server-id</td> <td>Usado para testes e depuração. Consulte o texto para valores aplicáveis e outras informações detalhadas</td> </tr>
+<tr><td>--database</td> <td>Listar entradas para apenas esta base de dados</td> </tr>
+<tr><td>--debug</td> <td>Escrever log de depuração</td> </tr>
+<tr><td>--debug-check</td> <td>Imprimir informações de depuração quando o programa sai</td> </tr>
+<tr><td>--debug-info</td> <td>Imprimir informações de depuração, estatísticas de memória e CPU quando o programa sai</td> </tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção adicional além dos arquivos de opção usuais</td> </tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção</td> </tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo de grupo de opção</td> </tr>
+<tr><td>--disable-log-bin</td> <td>Desabilitar o log binário</td> </tr>
+<tr><td>--force-if-open</td> <td>Ler arquivos de log binário mesmo se estiverem abertos ou não fechados corretamente</td> </tr>
+<tr><td>--force-read</td> <td>Se mysqlbinlog ler um evento de log binário que não reconhece, imprima um aviso</td> </tr>
+<tr><td>--get-server-public-key</td> <td>Solicitar a chave pública do servidor MySQL</td> </tr>
 <tr><td><a class="link" href="mysqlbinlog.html#option_mysql
 
 * `--help`, `-?`
@@ -94,7 +94,7 @@ O **mysqlbinlog** suporta as seguintes opções, que podem ser especificadas na 
 
 * `--base64-output=value`
 
-  <table frame="box" rules="all" summary="Propriedades para base64-output"><tr><th>Formato de Linha de Comando</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para base64-output"><tr><th>Formato de Linha de Comando</th> <td><code>--base64-output=value</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr></table>
 
   Esta opção determina quando os eventos devem ser exibidos codificados como strings base64 usando as instruções `BINLOG`. A opção tem esses valores permitidos (não case-sensitive):
 
@@ -142,7 +142,7 @@ Especifique o tamanho máximo de um evento de log binário baseado em linhas, em
   <tr><th>Formato de Linha de Comando</th> <td><code>--compression-algorithms=valor</code></td> </tr>
   <tr><th>Tipo</th> <td>Definido</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>não comprimido</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não comprimido</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não comprimido</code></p></td> </tr>
 </table>
 
   Os algoritmos de compressão permitidos para conexões com o servidor. Os algoritmos disponíveis são os mesmos da variável de sistema `protocol_compression_algorithms`. O valor padrão é `não comprimido`.
@@ -308,14 +308,14 @@ Quando usado juntamente com a opção `--rewrite-db`, a opção `--rewrite-db` �
     <tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
     <tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr>
-    <tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr>
+    <tr><th>Valores válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr>
   </table>
 
 Com esta opção, se o **mysqlbinlog** ler um evento de log binário que ele não reconhece, ele imprime um aviso, ignora o evento e continua. Sem esta opção, o **mysqlbinlog** para se ele ler tal evento.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Propriedades para saída em base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para saída em base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Peça ao servidor para obter a chave pública necessária para a troca de senha com base em um par de chaves RSA. Esta opção se aplica a clientes que se autenticam com o plugin de autenticação `caching_sha2_password`. Para esse plugin, o servidor não envia a chave pública a menos que seja solicitado. Esta opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -325,19 +325,19 @@ Com esta opção, se o **mysqlbinlog** ler um evento de log binário que ele nã
 
 * `--hexdump`, `-H`
 
-<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Exibir um dump hexadecimal do log em comentários, conforme descrito na Seção 6.6.9.1, “Formato de Dump Hexadecimal de mysqlbinlog”. A saída hexadecimal pode ser útil para depuração de replicação.
 
 * `--host=nome_do_host`, `-h nome_do_host`
 
-  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Obter o log binário do servidor MySQL no host fornecido.
 
 * `--idempotent`
 
-<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Informe ao servidor MySQL para usar o modo idempotente durante o processamento de atualizações; isso causa a supressão de quaisquer erros de chave duplicada ou chave não encontrada que o servidor encontre na sessão atual durante o processamento de atualizações. Esta opção pode ser útil sempre que seja desejável ou necessário reproduzir um ou mais logs binários para um servidor MySQL que pode não conter todos os dados a que os logs se referem.
 
@@ -345,13 +345,13 @@ Com esta opção, se o **mysqlbinlog** ler um evento de log binário que ele nã
 
 * `--include-gtids=gtid_set`
 
-  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Exiba apenas os grupos listados no *`gtid_set`*.
 
 * `--local-load=nome_diretório`, `-l nome_diretório`
 
-  <table frame="box" rules="all" summary="Propriedades para saída em base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para saída em base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Para operações de carregamento de dados correspondentes às instruções `LOAD DATA`, o **mysqlbinlog** extrai os arquivos dos eventos do log binário, escreve-os como arquivos temporários no sistema de arquivos local e escreve instruções `LOAD DATA LOCAL` para carregar os arquivos. Por padrão, o **mysqlbinlog** escreve esses arquivos temporários em um diretório específico do sistema operacional. A opção `--local-load` pode ser usada para especificar explicitamente o diretório onde o **mysqlbinlog** deve preparar arquivos temporários locais.
 
@@ -366,9 +366,9 @@ Com esta opção, se o **mysqlbinlog** ler um evento de log binário que ele nã
 
   Esses arquivos temporários não são removidos automaticamente pelo **mysqlbinlog** ou por qualquer outro programa do MySQL.
 
-<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
-Leia opções de entrada do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e com qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+Leia opções de entrada do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam para qual servidor MySQL se conectar e com qual conta se autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
 Para obter informações adicionais sobre esta e outras opções de arquivos de opções, veja a Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opções”.
 
@@ -380,11 +380,11 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>AUTO</code></p><p class="valid-value"><code>NEVER</code></p><p class="valid-value"><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para saída base64"><tbody><tr><th>Formato de linha de comando</th> <td><code>--base64-output=valor</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>AUTO</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AUTO</code></p><p><code>NEVER</code></p><p><code>DECODE-ROWS</code></p></td> </tr></tbody></table>
 
   Não leia nenhum arquivo de configuração. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de configuração, o `--no-defaults` pode ser usado para evitar que sejam lidas.
 
-  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de configuração do MySQL”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de configuração do MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivo de configuração, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivos de configuração”.
 

@@ -8,7 +8,7 @@ As seções a seguir descrevem as tabelas de resumo de espera de I/O e bloqueio:
 
 - `table_lock_waits_summary_by_table`: Esperas de bloqueio de tabela por tabela
 
-##### 25.12.15.7.1 A tabela table\_io\_waits\_summary\_by\_table
+##### 25.12.15.7.1 A tabela table_io_waits_summary_by_table
 
 A tabela `table_io_waits_summary_by_table` agrega todos os eventos de espera de I/O de tabela, conforme gerado pelo instrumento `wait/io/table/sql/handler`. O agrupamento é por tabela.
 
@@ -46,7 +46,7 @@ A tabela `table_io_waits_summary_by_table` tem essas colunas de agrupamento para
 
 A opção `TRUNCATE TABLE` é permitida para tabelas de resumo de E/S de tabela. Ela redefini o número das colunas de resumo para zero, em vez de remover linhas. O truncamento desta tabela também trunca a tabela `table_io_waits_summary_by_index_usage`.
 
-##### 25.12.15.7.2 A tabela table\_io\_waits\_summary\_by\_index\_usage
+##### 25.12.15.7.2 A tabela table_io_waits_summary_by_index_usage
 
 A tabela `table_io_waits_summary_by_index_usage` agrega todos os eventos de espera de I/O de índice de tabela, conforme gerado pelo instrumento `wait/io/table/sql/handler`. O agrupamento é por índice de tabela.
 
@@ -60,7 +60,7 @@ As colunas de `table_io_waits_summary_by_index_usage` são quase idênticas às 
 
 A operação `TRUNCATE TABLE` é permitida para tabelas de resumo de I/O. Ela redefine as colunas de resumo para zero, em vez de remover linhas. Esta tabela também é truncada pela truncagem da tabela `table_io_waits_summary_by_table`. Uma operação DDL que altera a estrutura de índice de uma tabela pode fazer com que as estatísticas por índice sejam redefinidas.
 
-##### 25.12.15.7.3 A tabela table\_lock\_waits\_summary\_by\_table
+##### 25.12.15.7.3 A tabela table_lock_waits_summary_by_table
 
 A tabela `table_lock_waits_summary_by_table` agrega todos os eventos de espera por bloqueio de tabela, conforme gerado pelo instrumento `wait/lock/table/sql/handler`. O agrupamento é por tabela.
 

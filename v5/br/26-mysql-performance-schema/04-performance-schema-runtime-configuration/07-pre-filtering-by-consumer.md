@@ -78,7 +78,7 @@ Esses consumidores exigem que `global_instrumentation` e `thread_instrumentation
 
 Esses consumidores exigem que `global_instrumentation` e `thread_instrumentation` estejam configurados como `YES` ou eles não serão verificados. Se configurados, eles atuam da seguinte forma:
 
-- `events_stages_current`, se `NO`, desabilita a coleta de eventos individuais de estágio na tabela ``events\_stages\_current`. Se `YES`, habilita a coleta de eventos de estágio e o Schema de Desempenho verifica os consumidores `events\_stages\_history`e`events\_stages\_history\_long\`.
+- `events_stages_current`, se `NO`, desabilita a coleta de eventos individuais de estágio na tabela ``events_stages_current`. Se `YES`, habilita a coleta de eventos de estágio e o Schema de Desempenho verifica os consumidores `events_stages_history`e`events_stages_history_long\`.
 
 - `events_stages_history` não é verificado se `event_stages_current` for `NO`. Caso contrário, um valor de `events_stages_history` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de estágios na tabela `[events_stages_history]` (performance-schema-events-stages-history-table.html).
 
@@ -98,7 +98,7 @@ Esses consumidores exigem que `global_instrumentation` e `thread_instrumentation
 
 Esses consumidores exigem que `global_instrumentation` e `thread_instrumentation` estejam configurados como `YES` ou eles não serão verificados. Se configurados, eles atuam da seguinte forma:
 
-- `events_transactions_current`, se `NO`, desabilita a coleta de eventos de transações individuais na tabela ``events\_transactions\_current`. Se `YES`, habilita a coleta de eventos de transações e o Schema de Desempenho verifica os consumidores `events\_transactions\_history`e`events\_transactions\_history\_long\`.
+- `events_transactions_current`, se `NO`, desabilita a coleta de eventos de transações individuais na tabela ``events_transactions_current`. Se `YES`, habilita a coleta de eventos de transações e o Schema de Desempenho verifica os consumidores `events_transactions_history`e`events_transactions_history_long\`.
 
 - `events_transactions_history` não é verificado se `events_transactions_current` for `NO`. Caso contrário, um valor de `events_transactions_history` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de transações na tabela `[events_transactions_history]` (performance-schema-events-transactions-history-table.html).
 

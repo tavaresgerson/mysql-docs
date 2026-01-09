@@ -14,7 +14,7 @@
 
 [A.6 MySQL 5.7 FAQ: Views](faqs-views.html)
 
-[A.7 MySQL 5.7 FAQ: INFORMATION\_SCHEMA](faqs-information-schema.html)
+[A.7 MySQL 5.7 FAQ: INFORMATION_SCHEMA](faqs-information-schema.html)
 
 [A.8 MySQL 5.7 FAQ: Migration](faqs-migration.html)
 

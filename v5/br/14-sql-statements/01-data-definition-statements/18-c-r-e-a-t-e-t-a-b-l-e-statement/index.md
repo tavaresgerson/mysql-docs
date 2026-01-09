@@ -239,7 +239,7 @@ Há um limite máximo de 4096 colunas por tabela, mas o limite efetivo pode ser 
 
 - `data_type`
 
-  *`data_type`* representa o tipo de dados em uma definição de coluna. Para uma descrição completa da sintaxe disponível para especificar tipos de dados de coluna, bem como informações sobre as propriedades de cada tipo, consulte \[Capítulo 11, *Tipos de Dados*] (data-types.html).
+  *`data_type`* representa o tipo de dados em uma definição de coluna. Para uma descrição completa da sintaxe disponível para especificar tipos de dados de coluna, bem como informações sobre as propriedades de cada tipo, consulte [Capítulo 11, *Tipos de Dados*] (data-types.html).
 
   - Alguns atributos não se aplicam a todos os tipos de dados. `AUTO_INCREMENT` só se aplica aos tipos inteiro e ponto flutuante. `DEFAULT` não se aplica aos tipos `BLOB`, `TEXT`, `GEOMETRY` e `JSON`.
 
@@ -283,13 +283,13 @@ Há um limite máximo de 4096 colunas por tabela, mas o limite efetivo pode ser 
 
   Uma coluna de número inteiro ou de ponto flutuante pode ter o atributo adicional `AUTO_INCREMENT`. Quando você insere um valor de `NULL` (recomendado) ou `0` em uma coluna `AUTO_INCREMENT` indexada, a coluna é definida para o próximo valor da sequência. Normalmente, isso é `valor + 1`, onde *`valor`* é o maior valor para a coluna atualmente na tabela. As sequências `AUTO_INCREMENT` começam com `1`.
 
-  Para recuperar um valor `AUTO_INCREMENT` após inserir uma linha, use a função SQL `LAST_INSERT_ID()` ou a função C API `mysql_insert_id()`. Veja Seção 12.15, “Funções de Informação” e mysql\_insert\_id().
+  Para recuperar um valor `AUTO_INCREMENT` após inserir uma linha, use a função SQL `LAST_INSERT_ID()` ou a função C API `mysql_insert_id()`. Veja Seção 12.15, “Funções de Informação” e mysql_insert_id().
 
   Se o modo SQL `NO_AUTO_VALUE_ON_ZERO` estiver habilitado, você pode armazenar `0` em colunas `AUTO_INCREMENT` como `0` sem gerar um novo valor da sequência. Veja Seção 5.1.10, “Modos SQL do Servidor”.
 
   Só pode haver uma coluna `AUTO_INCREMENT` por tabela, ela deve ser indexada e não pode ter um valor `DEFAULT`. Uma coluna `AUTO_INCREMENT` funciona corretamente apenas se contiver apenas valores positivos. Inserir um número negativo é considerado como inserir um número positivo muito grande. Isso é feito para evitar problemas de precisão quando os números "voltam" de positivo para negativo e também para garantir que você não obtenha acidentalmente uma coluna `AUTO_INCREMENT` que contenha `0`.
 
-  Para tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos campos. Veja Seção 3.6.9, “Usando AUTO\_INCREMENT”.
+  Para tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos campos. Veja Seção 3.6.9, “Usando AUTO_INCREMENT”.
 
   Para tornar o MySQL compatível com algumas aplicações ODBC, você pode encontrar o valor `AUTO_INCREMENT` para a última linha inserida com a seguinte consulta:
 
@@ -299,7 +299,7 @@ Há um limite máximo de 4096 colunas por tabela, mas o limite efetivo pode ser 
 
   Esse método exige que a variável `sql_auto_is_null` não esteja definida como 0. Consulte Seção 5.1.7, "Variáveis do Sistema do Servidor".
 
-  Para obter informações sobre `InnoDB` e `AUTO_INCREMENT`, consulte Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”. Para obter informações sobre `AUTO_INCREMENT` e a Replicação do MySQL, consulte Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”.
+  Para obter informações sobre `InnoDB` e `AUTO_INCREMENT`, consulte Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”. Para obter informações sobre `AUTO_INCREMENT` e a Replicação do MySQL, consulte Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”.
 
 - `COMENTÁRIO`
 
@@ -341,7 +341,7 @@ Há um limite máximo de 4096 colunas por tabela, mas o limite efetivo pode ser 
 
   Usado para especificar uma expressão de coluna gerada. Para obter informações sobre colunas geradas, consulte Seção 13.1.18.7, “CREATE TABLE e Colunas Geradas”.
 
-  As colunas geradas armazenadas (glossary.html#glos\_stored\_generated\_column) podem ser indexadas. O `InnoDB` suporta índices secundários em colunas geradas virtuais (glossary.html#glos\_virtual\_generated\_column). Veja Seção 13.1.18.8, “Indekses Secundários e Colunas Geradas”.
+  As colunas geradas armazenadas (glossary.html#glos_stored_generated_column) podem ser indexadas. O `InnoDB` suporta índices secundários em colunas geradas virtuais (glossary.html#glos_virtual_generated_column). Veja Seção 13.1.18.8, “Indekses Secundários e Colunas Geradas”.
 
 #### Índices e Chaves Estrangeiras
 
@@ -475,7 +475,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
   Especifica o mecanismo de armazenamento para a tabela, usando um dos nomes mostrados na tabela a seguir. O nome do mecanismo pode ser não citado ou citado. O nome citado `'DEFAULT'` é reconhecido, mas ignorado.
 
-  <table summary="Nomes dos motores de armazenamento permitidos para a opção de tabela ENGINE e uma descrição de cada motor."><col style="width: 25%"/><col style="width: 70%"/><thead><tr> <th>Motor de Armazenamento</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>MERGE</code>]</td> <td>Tabelas seguras para transações com bloqueio de linhas e chaves estrangeiras. O mecanismo de armazenamento padrão para novas tabelas. Veja<a class="xref" href="innodb-storage-engine.html" title="Capítulo 14: O Motor de Armazenamento InnoDB">Capítulo 14,<i>O Motor de Armazenamento InnoDB</i></a>, e em particular<a class="xref" href="innodb-introduction.html" title="14.1 Introdução ao InnoDB">Seção 14.1, “Introdução ao InnoDB”</a>se você tem experiência com MySQL, mas é novo em [[PH_HTML_CODE_<code>MERGE</code>].</td> </tr><tr> <td>[[PH_HTML_CODE_<code>MRG_MyISAM</code>]</td> <td>O motor de armazenamento portátil binário que é usado principalmente para cargas de trabalho de leitura apenas ou quase exclusivamente de leitura. Veja<a class="xref" href="myisam-storage-engine.html" title="15.2 O Motor de Armazenamento MyISAM">Seção 15.2, “O Motor de Armazenamento MyISAM”</a>.</td> </tr><tr> <td>[[PH_HTML_CODE_<code>NDB</code>]</td> <td>Os dados deste mecanismo de armazenamento são armazenados apenas na memória. Veja<a class="xref" href="memory-storage-engine.html" title="15.3 O Motor de Armazenamento de MEMÓRIA">Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”</a>.</td> </tr><tr> <td>[[PH_HTML_CODE_<code>NDBCLUSTER</code>]</td> <td>Tabelas que armazenam linhas no formato de valores separados por vírgula. Veja<a class="xref" href="csv-storage-engine.html" title="15.4 O Motor de Armazenamento CSV">Seção 15.4, “O Motor de Armazenamento CSV”</a>.</td> </tr><tr> <td>[[<code>ARCHIVE</code>]]</td> <td>O mecanismo de armazenamento de arquivamento. Veja<a class="xref" href="archive-storage-engine.html" title="15.5 O Motor de Armazenamento ARCHIVE">Seção 15.5, “O Motor de Armazenamento ARCHIVE”</a>.</td> </tr><tr> <td>[[<code>EXAMPLE</code>]]</td> <td>Um exemplo de motor. Veja<a class="xref" href="example-storage-engine.html" title="15.9 O Motor de Armazenamento EXAMPLE">Seção 15.9, “O Motor de Armazenamento EXAMPLE”</a>.</td> </tr><tr> <td>[[<code>FEDERATED</code>]]</td> <td>Motor de armazenamento que acessa tabelas remotas. Veja<a class="xref" href="federated-storage-engine.html" title="15.8 O Motor de Armazenamento FEDERATED">Seção 15.8, “O Motor de Armazenamento FEDERATED”</a>.</td> </tr><tr> <td>[[<code>HEAP</code>]]</td> <td>Este é um sinônimo de [[<code>MEMORY</code>]].</td> </tr><tr> <td>[[<code>MERGE</code>]]</td> <td>Uma coleção de tabelas [[<code>InnoDB</code><code>MERGE</code>] usadas como uma única tabela. Também conhecida como [[<code>MRG_MyISAM</code>]]. Veja<a class="xref" href="merge-storage-engine.html" title="15.7 O Motor de Armazenamento MERGE">Seção 15.7, “O Motor de Armazenamento MERGE”</a>.</td> </tr><tr> <td><a class="link" href="mysql-cluster.html" title="Capítulo 21 MySQL NDB Cluster 7.5 e NDB Cluster 7.6">[[<code>NDB</code>]]</a></td> <td>Tabelas baseadas em memória, distribuídas, tolerantes a falhas e que suportam transações e chaves estrangeiras. Também conhecidas como<a class="link" href="mysql-cluster.html" title="Capítulo 21 MySQL NDB Cluster 7.5 e NDB Cluster 7.6">[[<code>NDBCLUSTER</code>]]</a>Veja<a class="xref" href="mysql-cluster.html" title="Capítulo 21 MySQL NDB Cluster 7.5 e NDB Cluster 7.6">Capítulo 21,<i>MySQL NDB Cluster 7.5 e NDB Cluster 7.6</i></a>.</td> </tr></tbody></table>
+  <table summary="Nomes dos motores de armazenamento permitidos para a opção de tabela ENGINE e uma descrição de cada motor."><col style="width: 25%"/><col style="width: 70%"/><thead><tr> <th>Motor de Armazenamento</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>MERGE</code>]</td> <td>Tabelas seguras para transações com bloqueio de linhas e chaves estrangeiras. O mecanismo de armazenamento padrão para novas tabelas. VejaCapítulo 14,<i>O Motor de Armazenamento InnoDB</i>, e em particularSeção 14.1, “Introdução ao InnoDB”se você tem experiência com MySQL, mas é novo em [[PH_HTML_CODE_<code>MERGE</code>].</td> </tr><tr> <td>[[PH_HTML_CODE_<code>MRG_MyISAM</code>]</td> <td>O motor de armazenamento portátil binário que é usado principalmente para cargas de trabalho de leitura apenas ou quase exclusivamente de leitura. VejaSeção 15.2, “O Motor de Armazenamento MyISAM”.</td> </tr><tr> <td>[[PH_HTML_CODE_<code>NDB</code>]</td> <td>Os dados deste mecanismo de armazenamento são armazenados apenas na memória. VejaSeção 15.3, “O Motor de Armazenamento de MEMÓRIA”.</td> </tr><tr> <td>[[PH_HTML_CODE_<code>NDBCLUSTER</code>]</td> <td>Tabelas que armazenam linhas no formato de valores separados por vírgula. VejaSeção 15.4, “O Motor de Armazenamento CSV”.</td> </tr><tr> <td>[[<code>ARCHIVE</code>]]</td> <td>O mecanismo de armazenamento de arquivamento. VejaSeção 15.5, “O Motor de Armazenamento ARCHIVE”.</td> </tr><tr> <td>[[<code>EXAMPLE</code>]]</td> <td>Um exemplo de motor. VejaSeção 15.9, “O Motor de Armazenamento EXAMPLE”.</td> </tr><tr> <td>[[<code>FEDERATED</code>]]</td> <td>Motor de armazenamento que acessa tabelas remotas. VejaSeção 15.8, “O Motor de Armazenamento FEDERATED”.</td> </tr><tr> <td>[[<code>HEAP</code>]]</td> <td>Este é um sinônimo de [[<code>MEMORY</code>]].</td> </tr><tr> <td>[[<code>MERGE</code>]]</td> <td>Uma coleção de tabelas [[<code>InnoDB</code><code>MERGE</code>] usadas como uma única tabela. Também conhecida como [[<code>MRG_MyISAM</code>]]. VejaSeção 15.7, “O Motor de Armazenamento MERGE”.</td> </tr><tr> <td>[[<code>NDB</code>]]</td> <td>Tabelas baseadas em memória, distribuídas, tolerantes a falhas e que suportam transações e chaves estrangeiras. Também conhecidas como[[<code>NDBCLUSTER</code>]]VejaCapítulo 21,<i>MySQL NDB Cluster 7.5 e NDB Cluster 7.6</i>.</td> </tr></tbody></table>
 
   Por padrão, se um mecanismo de armazenamento for especificado que não está disponível, a instrução falha com um erro. Você pode sobrepor esse comportamento removendo `NO_ENGINE_SUBSTITUTION` do modo SQL do servidor (consulte Seção 5.1.10, “Modos SQL do Servidor”) para que o MySQL permita a substituição do mecanismo especificado pelo mecanismo de armazenamento padrão, em vez disso. Normalmente, nesse caso, é o `InnoDB`, que é o valor padrão para a variável de sistema `default_storage_engine`. Quando `NO_ENGINE_SUBSTITUTION` é desativado, um aviso ocorre se a especificação do mecanismo de armazenamento não for atendida.
 
@@ -509,7 +509,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
   Você pode definir o valor `MERGE_THRESHOLD` de `InnoDB` para uma tabela usando a cláusula `COMMENT` da opção `table_option`. Veja Seção 14.8.12, “Configurando o Limite de Fusão para Páginas de Índices”.
 
-  **Definindo as opções NDB\_TABLE.**
+  **Definindo as opções NDB_TABLE.**
 
   No MySQL NDB Cluster 7.5.2 e versões posteriores, o comentário da tabela em uma instrução `CREATE TABLE` ou `ALTER TABLE` também pode ser usado para especificar um a quatro das opções `NDB_TABLE` `NOLOGGING`, `READ_BACKUP`, `PARTITION_BALANCE` ou `FULLY_REPLICATED` como um conjunto de pares nome-valor, separados por vírgulas, se necessário, imediatamente após a string `NDB_TABLE=` que inicia o texto do comentário citado. Um exemplo de instrução usando essa sintaxe é mostrado aqui (texto em destaque):
 
@@ -556,7 +556,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
   As opções de diretório de dados e diretório de índice de nível de tabela são ignoradas para tabelas particionadas. (Bug #32091)
 
-  Essas opções funcionam apenas quando você não estiver usando a opção `--skip-symbolic-links` (server-options.html#option\_mysqld\_symbolic-links). Seu sistema operacional também deve ter uma chamada `realpath()` segura e compatível com threads. Consulte Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix” para obter informações mais completas.
+  Essas opções funcionam apenas quando você não estiver usando a opção `--skip-symbolic-links` (server-options.html#option_mysqld_symbolic-links). Seu sistema operacional também deve ter uma chamada `realpath()` segura e compatível com threads. Consulte Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix” para obter informações mais completas.
 
   Se uma tabela `MyISAM` for criada sem a opção `DATA DIRECTORY`, o arquivo `.MYD` será criado no diretório do banco de dados. Por padrão, se o `MyISAM` encontrar um arquivo `.MYD` existente nesse caso, ele o sobrescreverá. O mesmo se aplica aos arquivos `.MYI` para tabelas criadas sem a opção `INDEX DIRECTORY`. Para suprimir esse comportamento, inicie o servidor com a opção `--keep_files_on_create`, caso em que o `MyISAM` não sobrescreverá os arquivos existentes e retornará um erro.
 
@@ -584,7 +584,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
   Para as tabelas `[MyISAM]` (myisam-storage-engine.html), o `KEY_BLOCK_SIZE` especifica opcionalmente o tamanho em bytes a ser usado para os blocos de chave do índice. O valor é tratado como um indicativo; um tamanho diferente pode ser usado, se necessário. Um valor de `KEY_BLOCK_SIZE` especificado para uma definição de índice individual substitui o valor de `KEY_BLOCK_SIZE` do nível da tabela.
 
-  Para as tabelas de `InnoDB` (innodb-storage-engine.html), o valor `KEY_BLOCK_SIZE` especifica o tamanho da página em kilobytes a ser usado para as tabelas `InnoDB` comprimidos. O valor `KEY_BLOCK_SIZE` é tratado como um indicativo; o `InnoDB` pode usar um tamanho diferente, se necessário. O valor `KEY_BLOCK_SIZE` só pode ser menor ou igual ao valor de `innodb_page_size` (innodb-parameters.html#sysvar\_innodb\_page\_size). Um valor de 0 representa o tamanho de página comprimida padrão, que é metade do valor de `innodb_page_size` (innodb-parameters.html#sysvar\_innodb\_page\_size). Dependendo de `innodb_page_size` (innodb-parameters.html#sysvar\_innodb\_page\_size), os possíveis valores de `KEY_BLOCK_SIZE` incluem 0, 1, 2, 4, 8 e 16. Consulte Seção 14.9.1, “Compressão de Tabelas InnoDB” para obter mais informações.
+  Para as tabelas de `InnoDB` (innodb-storage-engine.html), o valor `KEY_BLOCK_SIZE` especifica o tamanho da página em kilobytes a ser usado para as tabelas `InnoDB` comprimidos. O valor `KEY_BLOCK_SIZE` é tratado como um indicativo; o `InnoDB` pode usar um tamanho diferente, se necessário. O valor `KEY_BLOCK_SIZE` só pode ser menor ou igual ao valor de `innodb_page_size` (innodb-parameters.html#sysvar_innodb_page_size). Um valor de 0 representa o tamanho de página comprimida padrão, que é metade do valor de `innodb_page_size` (innodb-parameters.html#sysvar_innodb_page_size). Dependendo de `innodb_page_size` (innodb-parameters.html#sysvar_innodb_page_size), os possíveis valores de `KEY_BLOCK_SIZE` incluem 0, 1, 2, 4, 8 e 16. Consulte Seção 14.9.1, “Compressão de Tabelas InnoDB” para obter mais informações.
 
   A Oracle recomenda a ativação de `innodb_strict_mode` ao especificar `KEY_BLOCK_SIZE` para tabelas `InnoDB`. Quando o `innodb_strict_mode` está ativado, especificar um valor inválido para `KEY_BLOCK_SIZE` retorna um erro. Se o `innodb_strict_mode` estiver desativado, um valor inválido para `KEY_BLOCK_SIZE` resulta em um aviso, e a opção `KEY_BLOCK_SIZE` é ignorada.
 
@@ -592,7 +592,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
   O `InnoDB` só suporta `KEY_BLOCK_SIZE` no nível da tabela.
 
-  O `KEY_BLOCK_SIZE` não é suportado com os valores de `32KB` e `64KB` de `[innodb_page_size`]\(innodb-parameters.html#sysvar\_innodb\_page\_size). A compressão de tabelas do `InnoDB` não suporta esses tamanhos de páginas.
+  O `KEY_BLOCK_SIZE` não é suportado com os valores de `32KB` e `64KB` de `[innodb_page_size`]\(innodb-parameters.html#sysvar_innodb_page_size). A compressão de tabelas do `InnoDB` não suporta esses tamanhos de páginas.
 
 - `MAX_ROWS`
 
@@ -600,7 +600,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
   Importante
 
-  O uso de `MAX_ROWS` com tabelas `NDB` para controlar o número de partições da tabela é desaconselhável a partir do NDB Cluster 7.5.4. Ele ainda é suportado em versões posteriores para compatibilidade com versões anteriores, mas está sujeito à remoção em uma futura versão. Use PARTITION\_BALANCE; veja Definindo opções de NDB\_TABLE.
+  O uso de `MAX_ROWS` com tabelas `NDB` para controlar o número de partições da tabela é desaconselhável a partir do NDB Cluster 7.5.4. Ele ainda é suportado em versões posteriores para compatibilidade com versões anteriores, mas está sujeito à remoção em uma futura versão. Use PARTITION_BALANCE; veja Definindo opções de NDB_TABLE.
 
   O mecanismo de armazenamento `NDB` trata esse valor como um máximo. Se você planeja criar tabelas do NDB Cluster muito grandes (contendo milhões de linhas), você deve usar essa opção para garantir que o `NDB` aloque um número suficiente de slots de índice na tabela hash usada para armazenar hashes das chaves primárias da tabela, definindo `MAX_ROWS = 2 * rows`, onde *`rows`* é o número de linhas que você espera inserir na tabela.
 
@@ -656,7 +656,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
   Para as tabelas `MyISAM`, o valor da opção pode ser `FIXED` ou `DYNAMIC` para formatos de linha estáticos ou de comprimento variável. **myisampack** define o tipo como `COMPRESSED`. Veja Seção 15.2.3, “Formatos de Armazenamento de Tabelas MyISAM”.
 
-  Para as tabelas ``NDB`, o `ROW\_FORMAT`padrão no MySQL NDB Cluster 7.5.1 e versões posteriores é`DINÂMICO`. (Anteriormente, era `FIXO\`.)
+  Para as tabelas ``NDB`, o `ROW_FORMAT`padrão no MySQL NDB Cluster 7.5.1 e versões posteriores é`DINÂMICO`. (Anteriormente, era `FIXO\`.)
 
 - `STATS_AUTO_RECALC`
 
@@ -680,7 +680,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
   O espaço de tabela geral que você especificar deve existir antes de usar a cláusula `TABLESPACE`. Para obter informações sobre espaços de tabela gerais, consulte Seção 14.6.3.3, “Espaços de Tabela Geral”.
 
-  O `tablespace_name` é um identificador sensível a maiúsculas e minúsculas. Ele pode ser citado ou não. O caractere barra invertida (“/”) não é permitido. Os nomes que começam com “innodb\_” são reservados para uso especial.
+  O `tablespace_name` é um identificador sensível a maiúsculas e minúsculas. Ele pode ser citado ou não. O caractere barra invertida (“/”) não é permitido. Os nomes que começam com “innodb_” são reservados para uso especial.
 
   Para criar uma tabela no espaço de tabela do sistema, especifique `innodb_system` como o nome do espaço de tabela.
 
@@ -688,7 +688,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
   CREATE TABLE tbl_name ... TABLESPACE [=] innodb_system
   ```
 
-  Usando `TABLESPACE [=] innodb_system`, você pode colocar uma tabela de qualquer formato de linha não compactada no espaço de tabelas do sistema, independentemente da configuração de `[innodb_file_per_table]` (innodb-parameters.html#sysvar\_innodb\_file\_per\_table). Por exemplo, você pode adicionar uma tabela com `ROW_FORMAT=DYNAMIC` ao espaço de tabelas do sistema usando `TABLESPACE [=] innodb_system`.
+  Usando `TABLESPACE [=] innodb_system`, você pode colocar uma tabela de qualquer formato de linha não compactada no espaço de tabelas do sistema, independentemente da configuração de `[innodb_file_per_table]` (innodb-parameters.html#sysvar_innodb_file_per_table). Por exemplo, você pode adicionar uma tabela com `ROW_FORMAT=DYNAMIC` ao espaço de tabelas do sistema usando `TABLESPACE [=] innodb_system`.
 
   Para criar uma tabela em um espaço de tabela por arquivo, especifique `innodb_file_per_table` como o nome do espaço de tabela.
 
@@ -732,7 +732,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
 *`partition_options`* pode ser usado para controlar a partição da tabela criada com `CREATE TABLE`.
 
-Nem todas as opções exibidas na sintaxe para *`partition_options`* no início desta seção estão disponíveis para todos os tipos de particionamento. Consulte as listagens para os seguintes tipos individuais para obter informações específicas para cada tipo, e consulte \[Capítulo 22, *Partitioning*] (partitioning.html), para obter informações mais completas sobre o funcionamento e os usos do particionamento no MySQL, além de exemplos adicionais de criação de tabelas e outras declarações relacionadas ao particionamento do MySQL.
+Nem todas as opções exibidas na sintaxe para *`partition_options`* no início desta seção estão disponíveis para todos os tipos de particionamento. Consulte as listagens para os seguintes tipos individuais para obter informações específicas para cada tipo, e consulte [Capítulo 22, *Partitioning*] (partitioning.html), para obter informações mais completas sobre o funcionamento e os usos do particionamento no MySQL, além de exemplos adicionais de criação de tabelas e outras declarações relacionadas ao particionamento do MySQL.
 
 As partições podem ser modificadas, unidas, adicionadas a tabelas e removidas delas. Para obter informações básicas sobre as instruções MySQL para realizar essas tarefas, consulte Seção 13.1.8, “Instrução ALTER TABLE”. Para descrições e exemplos mais detalhados, consulte Seção 22.3, “Gestão de Partições”.
 
@@ -760,7 +760,7 @@ As partições podem ser modificadas, unidas, adicionadas a tabelas e removidas 
 
   `PARTITION BY HASH` usa o resto de *`expr`* dividido pelo número de partições (ou seja, o módulo). Para exemplos e informações adicionais, consulte Seção 22.2.4, "Partição HASH".
 
-  A palavra-chave `LINEAR` implica em um algoritmo um pouco diferente. Neste caso, o número da partição em que uma linha é armazenada é calculado como o resultado de uma ou mais operações lógicas `AND` (operadores lógicos.html#operador\_and). Para discussão e exemplos de hashing linear, consulte Seção 22.2.4.1, “Partição de Hash LINEAR”.
+  A palavra-chave `LINEAR` implica em um algoritmo um pouco diferente. Neste caso, o número da partição em que uma linha é armazenada é calculado como o resultado de uma ou mais operações lógicas `AND` (operadores lógicos.html#operador_and). Para discussão e exemplos de hashing linear, consulte Seção 22.2.4.1, “Partição de Hash LINEAR”.
 
 - `KEY(lista_colunas)`
 
@@ -772,7 +772,7 @@ As partições podem ser modificadas, unidas, adicionadas a tabelas e removidas 
       PARTITIONS 4;
   ```
 
-  Para tabelas que são particionadas por chave, você pode usar a particionamento linear usando a palavra-chave `LINEAR`. Isso tem o mesmo efeito que as tabelas que são particionadas por `HASH`. Ou seja, o número de partição é encontrado usando o operador `&` (bit-functions.html#operator\_bitwise-and) em vez do módulo (veja Seção 22.2.4.1, “Particionamento LINEAR HASH”, e Seção 22.2.5, “Particionamento por CHAVE”, para detalhes). Este exemplo usa o particionamento linear por chave para distribuir os dados entre 5 partições:
+  Para tabelas que são particionadas por chave, você pode usar a particionamento linear usando a palavra-chave `LINEAR`. Isso tem o mesmo efeito que as tabelas que são particionadas por `HASH`. Ou seja, o número de partição é encontrado usando o operador `&` (bit-functions.html#operator_bitwise-and) em vez do módulo (veja Seção 22.2.4.1, “Particionamento LINEAR HASH”, e Seção 22.2.5, “Particionamento por CHAVE”, para detalhes). Este exemplo usa o particionamento linear por chave para distribuir os dados entre 5 partições:
 
   ```sql
   CREATE TABLE tk (col1 INT, col2 CHAR(5), col3 DATE)
@@ -933,7 +933,7 @@ As partições podem ser modificadas, unidas, adicionadas a tabelas e removidas 
 
   - `VALORES`
 
-    Para a partição por intervalo, cada partição deve incluir uma cláusula `VALUES LESS THAN` (MENOS QUE); para a partição por lista, você deve especificar uma cláusula `VALUES IN` (IN) para cada partição. Isso é usado para determinar quais linhas devem ser armazenadas nesta partição. Consulte as discussões sobre os tipos de partição no \[Capítulo 22, *Partição*] (partitioning.html), para exemplos de sintaxe.
+    Para a partição por intervalo, cada partição deve incluir uma cláusula `VALUES LESS THAN` (MENOS QUE); para a partição por lista, você deve especificar uma cláusula `VALUES IN` (IN) para cada partição. Isso é usado para determinar quais linhas devem ser armazenadas nesta partição. Consulte as discussões sobre os tipos de partição no [Capítulo 22, *Partição*] (partitioning.html), para exemplos de sintaxe.
 
   - `[ARMAZENAMENTO] MOTOR`
 
@@ -992,7 +992,7 @@ As partições podem ser modificadas, unidas, adicionadas a tabelas e removidas 
 
   - `TABLESPACE`
 
-    Pode ser usado para designar um espaço de tabela para a partição. Suportado pelo NDB Cluster. Para tabelas `InnoDB`, pode ser usado para designar um espaço de tabela por arquivo para a partição, especificando `TABLESPACE `innodb\_file\_per\_table\`. Todas as partições devem pertencer ao mesmo mecanismo de armazenamento.
+    Pode ser usado para designar um espaço de tabela para a partição. Suportado pelo NDB Cluster. Para tabelas `InnoDB`, pode ser usado para designar um espaço de tabela por arquivo para a partição, especificando `TABLESPACE `innodb_file_per_table\`. Todas as partições devem pertencer ao mesmo mecanismo de armazenamento.
 
     Nota
 

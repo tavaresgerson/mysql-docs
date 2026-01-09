@@ -1,4 +1,4 @@
-#### 25.6.15.40 The ndbinfo index\_columns Table
+#### 25.6.15.40 The ndbinfo index_columns Table
 
 This table provides information about indexes on `NDB` tables. The columns of the `index_columns` table are listed here, along with brief descriptions:
 

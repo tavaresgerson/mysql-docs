@@ -1,8 +1,8 @@
-### 25.5.12 ndb\_error\_reporter — Ferramenta de Relatório de Erros do NDB
+### 25.5.12 ndb_error_reporter — Ferramenta de Relatório de Erros do NDB
 
-O **ndb\_error\_reporter** cria um arquivo a partir dos arquivos de log do nó de gerenciamento e do nó de dados, que podem ser usados para ajudar a diagnosticar bugs ou outros problemas no cluster. **É altamente recomendado que você utilize essa ferramenta ao registrar relatórios de bugs no NDB Cluster**.
+O **ndb_error_reporter** cria um arquivo a partir dos arquivos de log do nó de gerenciamento e do nó de dados, que podem ser usados para ajudar a diagnosticar bugs ou outros problemas no cluster. **É altamente recomendado que você utilize essa ferramenta ao registrar relatórios de bugs no NDB Cluster**.
 
-As opções que podem ser usadas com o **ndb\_error\_reporter** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com o **ndb_error_reporter** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 #### Uso
 
@@ -10,9 +10,9 @@ As opções que podem ser usadas com o **ndb\_error\_reporter** estão mostradas
 ndb_error_reporter path/to/config-file [username] [options]
 ```
 
-Essa ferramenta é destinada ao uso em um host do nó de gerenciamento e requer o caminho para o arquivo de configuração do host de gerenciamento (geralmente chamado `config.ini`). Opcionalmente, você pode fornecer o nome de um usuário que possa acessar os nós de dados do cluster usando SSH, para copiar os arquivos de log do nó de dados. O **ndb\_error\_reporter** inclui então todos esses arquivos no arquivo que é criado no mesmo diretório em que é executado. O arquivo é chamado `ndb_error_report_YYYYMMDDhhmmss.tar.bz2`, onde *`YYYYMMDDhhmmss`* é uma string de data e hora.
+Essa ferramenta é destinada ao uso em um host do nó de gerenciamento e requer o caminho para o arquivo de configuração do host de gerenciamento (geralmente chamado `config.ini`). Opcionalmente, você pode fornecer o nome de um usuário que possa acessar os nós de dados do cluster usando SSH, para copiar os arquivos de log do nó de dados. O **ndb_error_reporter** inclui então todos esses arquivos no arquivo que é criado no mesmo diretório em que é executado. O arquivo é chamado `ndb_error_report_YYYYMMDDhhmmss.tar.bz2`, onde *`YYYYMMDDhhmmss`* é uma string de data e hora.
 
-O **ndb\_error\_reporter** também aceita as opções listadas aqui:
+O **ndb_error_reporter** também aceita as opções listadas aqui:
 
 * `--connection-timeout=timeout`
 

@@ -95,6 +95,6 @@ Iniciar o servidor MySQL com a opção `--skip-grant-tables` faz com que `event_
 
 Para instruções SQL usadas para criar, alterar e excluir eventos, consulte a Seção 23.4.3, “Sintaxe de Evento”.
 
-O MySQL fornece uma tabela `EVENTS` no banco de dados `INFORMATION_SCHEMA`. Essa tabela pode ser consultada para obter informações sobre eventos agendados que foram definidos no servidor. Consulte a Seção 23.4.4, “Metadados de Eventos”, e a Seção 24.3.8, “A Tabela INFORMATION\_SCHEMA EVENTS”, para obter mais informações.
+O MySQL fornece uma tabela `EVENTS` no banco de dados `INFORMATION_SCHEMA`. Essa tabela pode ser consultada para obter informações sobre eventos agendados que foram definidos no servidor. Consulte a Seção 23.4.4, “Metadados de Eventos”, e a Seção 24.3.8, “A Tabela INFORMATION_SCHEMA EVENTS”, para obter mais informações.
 
 Para obter informações sobre a programação de eventos e o sistema de privilégios do MySQL, consulte a Seção 23.4.6, “O Agendamento de Eventos e Privilégios do MySQL”.

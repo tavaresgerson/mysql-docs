@@ -1,4 +1,4 @@
-#### 6.4.4.5 Usando o plugin Amazon Web Services Keyring do keyring\_aws
+#### 6.4.4.5 Usando o plugin Amazon Web Services Keyring do keyring_aws
 
 Nota
 
@@ -19,11 +19,11 @@ A discussão aqui pressupõe que você está familiarizado com o AWS em geral e 
 
 As seções a seguir fornecem informações de configuração e uso para o plugin `keyring_aws`.
 
-- Configuração do keychain\_aws
-- operação do keychain\_aws
+- Configuração do keychain_aws
+- operação do keychain_aws
 - mudanças de credenciais do Keychain AWS
 
-##### chaveiro\_aws Configuração
+##### chaveiro_aws Configuração
 
 Para instalar o `keyring_aws`, use as instruções gerais encontradas em Seção 6.4.4.1, “Instalação do Plugin de Keychain”, juntamente com as informações de configuração específicas do plugin encontradas aqui.
 
@@ -63,7 +63,7 @@ Para configurar o `keyring_aws`, você deve obter uma chave de acesso secreta qu
    xxxxxxxxxxxxx/yyyyyyy/zzzzzzzzEXAMPLEKEY
    ```
 
-Para ser utilizado durante o processo de inicialização do servidor, o `keyring_aws` deve ser carregado usando a opção `--early-plugin-load` (opções do servidor.html#opção\_mysqld\_early-plugin-load). A variável de sistema `keyring_aws_cmk_id` (variáveis de sistema.html#sysvar\_keyring\_aws\_cmk\_id) é obrigatória e configura o ID da chave mestre do cliente (CMK) obtido do servidor AWS KMS. As variáveis de sistema `keyring_aws_conf_file` (variáveis de sistema.html#sysvar\_keyring\_aws\_conf\_file) e `keyring_aws_data_file` (variáveis de sistema.html#sysvar\_keyring\_aws\_data\_file) opcionalmente configuram os locais dos arquivos usados pelo plugin `keyring_aws` para armazenamento de informações de configuração e dados. Os valores padrão das variáveis de localização de arquivos são específicos da plataforma. Para configurar os locais explicitamente, defina os valores da variável durante o início. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e os locais dos arquivos para sua plataforma conforme necessário:
+Para ser utilizado durante o processo de inicialização do servidor, o `keyring_aws` deve ser carregado usando a opção `--early-plugin-load` (opções do servidor.html#opção_mysqld_early-plugin-load). A variável de sistema `keyring_aws_cmk_id` (variáveis de sistema.html#sysvar_keyring_aws_cmk_id) é obrigatória e configura o ID da chave mestre do cliente (CMK) obtido do servidor AWS KMS. As variáveis de sistema `keyring_aws_conf_file` (variáveis de sistema.html#sysvar_keyring_aws_conf_file) e `keyring_aws_data_file` (variáveis de sistema.html#sysvar_keyring_aws_data_file) opcionalmente configuram os locais dos arquivos usados pelo plugin `keyring_aws` para armazenamento de informações de configuração e dados. Os valores padrão das variáveis de localização de arquivos são específicos da plataforma. Para configurar os locais explicitamente, defina os valores da variável durante o início. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e os locais dos arquivos para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]
@@ -92,7 +92,7 @@ CREATE FUNCTION keyring_aws_rotate_keys RETURNS INTEGER
 
 Para obter informações adicionais sobre as funções `keyring_aws`, consulte Seção 6.4.4.9, “Funções de gerenciamento de chaves do carteiro de plug-in”.
 
-##### chaveiro\_aws Operação
+##### chaveiro_aws Operação
 
 Ao iniciar o plugin, o plugin `keyring_aws` lê o ID da chave de acesso secreta da AWS e a chave de seu arquivo de configuração. Ele também lê quaisquer chaves criptografadas contidas em seu arquivo de armazenamento em seu cache de memória.
 
@@ -117,7 +117,7 @@ Além disso, as funções `keyring_aws_rotate_cmk()` e `keyring_aws_rotate_keys(
 
 Para obter informações sobre as características dos valores-chave permitidos pelo `keyring_aws`, consulte Seção 6.4.4.6, “Tipos e comprimentos de chave de carteiro suportado”.
 
-##### chave\_aws Alterações de credenciais
+##### chave_aws Alterações de credenciais
 
 Supondo que o plugin `keyring_aws` tenha sido inicializado corretamente ao iniciar o servidor, é possível alterar as credenciais usadas para se comunicar com o AWS KMS:
 
@@ -142,4 +142,4 @@ Supondo que o plugin `keyring_aws` tenha sido inicializado corretamente ao inici
 
      Além de carregar um plugin em tempo de execução, `INSTALL PLUGIN` tem como efeito colateral registrar o plugin no sistema `mysql.plugin`. Por isso, se você decidir parar de usar `keyring_aws`, não é suficiente remover a opção `--early-plugin-load` do conjunto de opções usadas para iniciar o servidor. Isso impede que o plugin seja carregado precocemente, mas o servidor ainda tenta carregá-lo quando chega ao ponto da sequência de inicialização onde ele carrega os plugins registrados no `mysql.plugin`.
 
-     Portanto, se você executar a sequência de comandos `UNINSTALL PLUGIN` mais `INSTALL PLUGIN` descrita acima para alterar as credenciais do AWS KMS, então para parar de usar o `keyring_aws`, é necessário executar novamente `UNINSTALL PLUGIN` para desinscrever o plugin, além de remover a opção `--early-plugin-load` (server-options.html#option\_mysqld\_early-plugin-load).
+     Portanto, se você executar a sequência de comandos `UNINSTALL PLUGIN` mais `INSTALL PLUGIN` descrita acima para alterar as credenciais do AWS KMS, então para parar de usar o `keyring_aws`, é necessário executar novamente `UNINSTALL PLUGIN` para desinscrever o plugin, além de remover a opção `--early-plugin-load` (server-options.html#option_mysqld_early-plugin-load).

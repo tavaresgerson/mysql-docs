@@ -1,4 +1,4 @@
-#### 30.4.3.23 The ps\_check\_lost\_instrumentation View
+#### 30.4.3.23 The ps_check_lost_instrumentation View
 
 This view returns information about lost Performance Schema instruments, to indicate whether the Performance Schema is unable to monitor all runtime data.
 

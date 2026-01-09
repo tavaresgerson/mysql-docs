@@ -1,4 +1,4 @@
-#### 29.12.3.1 The cond\_instances Table
+#### 29.12.3.1 The cond_instances Table
 
 The `cond_instances` table lists all the conditions seen by the Performance Schema while the server executes. A condition is a synchronization mechanism used in the code to signal that a specific event has happened, so that a thread waiting for this condition can resume work.
 

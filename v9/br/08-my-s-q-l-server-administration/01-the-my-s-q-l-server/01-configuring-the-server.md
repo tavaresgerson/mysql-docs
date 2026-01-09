@@ -60,6 +60,6 @@ Para uma descrição completa de todas as opções de comando, variáveis de sis
 
 Informações mais detalhadas de monitoramento estão disponíveis no Schema de Desempenho; consulte o Capítulo 29, *MySQL Schema de Desempenho*. Além disso, o esquema `sys` do MySQL é um conjunto de objetos que fornece acesso conveniente aos dados coletados pelo Schema de Desempenho; consulte o Capítulo 30, *MySQL Schema sys*.
 
-Se você especificar uma opção na linha de comando para **mysqld** ou **mysqld\_safe**, ela permanecerá em vigor apenas para essa invocação do servidor. Para usar a opção toda vez que o servidor for executado, coloque-a em um arquivo de opção. Consulte a Seção 6.2.2.2, “Usando Arquivos de Opção”.
+Se você especificar uma opção na linha de comando para **mysqld** ou **mysqld_safe**, ela permanecerá em vigor apenas para essa invocação do servidor. Para usar a opção toda vez que o servidor for executado, coloque-a em um arquivo de opção. Consulte a Seção 6.2.2.2, “Usando Arquivos de Opção”.
 
 Os usuários do Windows podem executar a Seção 2.3.2, “Configuração: Usando o Configurável MySQL”, para ajudar a configurar uma instalação do servidor MySQL. Isso inclui tarefas como configurar usuários do MySQL, arquivos de log, o nome do serviço do Windows e bancos de dados de exemplo.

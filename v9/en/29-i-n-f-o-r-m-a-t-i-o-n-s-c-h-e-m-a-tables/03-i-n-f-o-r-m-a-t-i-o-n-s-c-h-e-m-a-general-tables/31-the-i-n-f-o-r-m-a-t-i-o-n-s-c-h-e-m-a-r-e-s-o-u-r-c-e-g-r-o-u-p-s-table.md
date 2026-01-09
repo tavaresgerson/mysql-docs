@@ -1,4 +1,4 @@
-### 28.3.31 The INFORMATION\_SCHEMA RESOURCE\_GROUPS Table
+### 28.3.31 The INFORMATION_SCHEMA RESOURCE_GROUPS Table
 
 The `RESOURCE_GROUPS` table provides access to information about resource groups. For general discussion of the resource group capability, see Section 7.1.16, “Resource Groups”.
 

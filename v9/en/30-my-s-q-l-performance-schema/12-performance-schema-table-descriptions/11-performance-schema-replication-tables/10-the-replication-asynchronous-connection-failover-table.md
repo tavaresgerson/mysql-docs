@@ -1,4 +1,4 @@
-#### 29.12.11.10 The replication\_asynchronous\_connection\_failover Table
+#### 29.12.11.10 The replication_asynchronous_connection_failover Table
 
 This table holds the replica's source lists for each replication channel for the asynchronous connection failover mechanism. The asynchronous connection failover mechanism automatically establishes an asynchronous (source to replica) replication connection to a new source from the appropriate list after the existing connection from the replica to its source fails. When asynchronous connection failover is enabled for a group of replicas managed by Group Replication, the source lists are broadcast to all group members when they join, and also when the lists change.
 

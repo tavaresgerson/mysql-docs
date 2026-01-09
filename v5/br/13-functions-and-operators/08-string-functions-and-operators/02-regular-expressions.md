@@ -2,7 +2,7 @@
 
 **Tabela 12.14 Funções e operadores de expressão regular**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de expressão regular."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="regexp.html#operator_not-regexp">[[<code>NOT REGEXP</code>]]</a></td> <td>Negação de REGEXP</td> </tr><tr><td><a class="link" href="regexp.html#operator_regexp">[[<code>REGEXP</code>]]</a></td> <td>Se a cadeia corresponde à expressão regular</td> </tr><tr><td><a class="link" href="regexp.html#operator_regexp">[[<code>RLIKE</code>]]</a></td> <td>Se a cadeia corresponde à expressão regular</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de expressão regular."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>NOT REGEXP</code>]]</td> <td>Negação de REGEXP</td> </tr><tr><td>[[<code>REGEXP</code>]]</td> <td>Se a cadeia corresponde à expressão regular</td> </tr><tr><td>[[<code>RLIKE</code>]]</td> <td>Se a cadeia corresponde à expressão regular</td> </tr></tbody></table>
 
 Uma expressão regular é uma maneira poderosa de especificar um padrão para uma busca complexa. Esta seção discute os operadores disponíveis para a correspondência com expressões regulares e ilustra, com exemplos, alguns dos caracteres especiais e construções que podem ser usados para operações com expressões regulares. Veja também a Seção 3.3.4.7, “Correspondência de Padrões”.
 

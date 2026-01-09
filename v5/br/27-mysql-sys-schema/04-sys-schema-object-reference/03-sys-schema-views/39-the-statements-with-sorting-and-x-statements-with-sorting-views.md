@@ -1,4 +1,4 @@
-#### 26.4.3.39 As visualizações \_statements\_with\_sorting e x$statements\_with\_sorting
+#### 26.4.3.39 As visualizações _statements_with_sorting e x$statements_with_sorting
 
 Essas visualizações listam declarações normalizadas que realizaram ordenamentos. Por padrão, as linhas são ordenadas por latência total decrescente.
 

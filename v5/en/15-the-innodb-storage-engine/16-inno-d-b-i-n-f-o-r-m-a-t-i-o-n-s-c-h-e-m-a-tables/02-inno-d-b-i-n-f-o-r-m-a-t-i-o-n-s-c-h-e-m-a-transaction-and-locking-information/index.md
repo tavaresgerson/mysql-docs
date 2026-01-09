@@ -1,4 +1,4 @@
-### 14.16.2 InnoDB INFORMATION\_SCHEMA Transaction and Locking Information
+### 14.16.2 InnoDB INFORMATION_SCHEMA Transaction and Locking Information
 
 14.16.2.1 Using InnoDB Transaction and Locking Information
 
@@ -14,4 +14,4 @@ Three `InnoDB` `INFORMATION_SCHEMA` tables enable you to monitor transactions an
 
 * `INNODB_LOCK_WAITS`: This table indicates which transactions are waiting for a given lock, or for which lock a given transaction is waiting. This table contains one or more rows for each blocked transaction, indicating the lock it has requested and any locks that are blocking that request. The `REQUESTED_LOCK_ID` value refers to the lock requested by a transaction, and the `BLOCKING_LOCK_ID` value refers to the lock (held by another transaction) that prevents the first transaction from proceeding. For any given blocked transaction, all rows in `INNODB_LOCK_WAITS` have the same value for `REQUESTED_LOCK_ID` and different values for `BLOCKING_LOCK_ID`.
 
-For more information about the preceding tables, see Section 24.4.28, “The INFORMATION\_SCHEMA INNODB\_TRX Table”, Section 24.4.14, “The INFORMATION\_SCHEMA INNODB\_LOCKS Table”, and Section 24.4.15, “The INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS Table”.
+For more information about the preceding tables, see Section 24.4.28, “The INFORMATION_SCHEMA INNODB_TRX Table”, Section 24.4.14, “The INFORMATION_SCHEMA INNODB_LOCKS Table”, and Section 24.4.15, “The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table”.

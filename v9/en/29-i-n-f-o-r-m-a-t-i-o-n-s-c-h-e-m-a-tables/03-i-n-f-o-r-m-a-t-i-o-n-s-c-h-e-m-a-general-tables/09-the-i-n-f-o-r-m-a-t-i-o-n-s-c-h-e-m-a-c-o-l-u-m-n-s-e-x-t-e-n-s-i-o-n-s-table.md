@@ -1,4 +1,4 @@
-### 28.3.9 The INFORMATION\_SCHEMA COLUMNS\_EXTENSIONS Table
+### 28.3.9 The INFORMATION_SCHEMA COLUMNS_EXTENSIONS Table
 
 The `COLUMNS_EXTENSIONS` table provides information about column attributes defined for primary and secondary storage engines.
 

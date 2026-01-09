@@ -1,4 +1,4 @@
-#### 29.12.22.7 The mysql\_option Table
+#### 29.12.22.7 The mysql_option Table
 
 The `mysql_option` table provides information about options available in the MySQL Server, or in components and plugins that are currently or previously have been installed:
 

@@ -150,8 +150,8 @@ As funções e operadores de bits permitem argumentos de tipos de string binári
 * Exemplos de operações de bits em strings binárias
 * Operações de E e OU com bits, e XOR com bits
 * Operações de complemento e deslocamento com bits
-* Operações BIT\_COUNT()
-* Operações BIT\_AND(), BIT\_OR() e BIT\_XOR(), BIT_OR() e BIT_XOR()
+* Operações BIT_COUNT()
+* Operações BIT_AND(), BIT_OR() e BIT_XOR(), BIT_OR() e BIT_XOR()
 * Tratamento especial de literais hexadecimais, literais de bits e literais NULL
 
 ### Operações com bits
@@ -492,7 +492,7 @@ mysql> SELECT HEX(~@var1);
 +-------------+
 ```
 
-### Operações BIT\_COUNT()
+### Operações BIT_COUNT()
 
 A função  `BIT_COUNT()` sempre retorna um inteiro de 64 bits não nulo, ou `NULL` se o argumento for `NULL`.
 
@@ -511,7 +511,7 @@ mysql> SELECT BIT_COUNT(b'010101'), BIT_COUNT(_binary b'010101');
 +----------------------+------------------------------+
 ```
 
-### Operações BIT\_AND(), BIT\_OR() e BIT\_XOR()
+### Operações BIT_AND(), BIT_OR() e BIT_XOR()
 
 Para as funções de bitwise `BIT_AND()`, `BIT_OR()` e `BIT_XOR()`, o tipo do resultado depende se os valores dos argumentos da função são avaliados como strings binárias ou números:
 

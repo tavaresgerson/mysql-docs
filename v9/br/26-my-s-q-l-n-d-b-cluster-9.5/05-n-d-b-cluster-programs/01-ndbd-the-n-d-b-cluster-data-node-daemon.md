@@ -141,7 +141,7 @@ Ao usar esta opção, você também deve especificar o ID do nó para o nó de d
 
 Importante
 
-Não confunda esta opção com a opção `--nowait-nodes` para **ndb\_mgmd**, que pode ser usada para habilitar o início de um clúster configurado com múltiplos servidores de gerenciamento sem que todos os servidores de gerenciamento estejam online.
+Não confunda esta opção com a opção `--nowait-nodes` para **ndb_mgmd**, que pode ser usada para habilitar o início de um clúster configurado com múltiplos servidores de gerenciamento sem que todos os servidores de gerenciamento estejam online.
 
 * `--install[=name]`
 

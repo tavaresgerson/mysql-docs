@@ -1,4 +1,4 @@
-#### 25.12.11.3 The replication\_applier\_configuration Table
+#### 25.12.11.3 The replication_applier_configuration Table
 
 This table shows the configuration parameters that affect transactions applied by the replica. Parameters stored in the table can be changed at runtime with the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement, as indicated in the column descriptions.
 

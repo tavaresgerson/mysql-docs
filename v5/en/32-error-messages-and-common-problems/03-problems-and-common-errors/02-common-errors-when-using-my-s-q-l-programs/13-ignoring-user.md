@@ -8,7 +8,7 @@ As a result, the account is simply ignored by the permission system.
 
 The following list indicates possible causes of and fixes for this problem:
 
-* You may be running a new version of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with an old `user` table. Check whether the `Password` column of that table is shorter than 16 characters. If so, correct this condition by running [**mysql\_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables").
+* You may be running a new version of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with an old `user` table. Check whether the `Password` column of that table is shorter than 16 characters. If so, correct this condition by running [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables").
 
 * The account has an old password (eight characters long). Update the account in the `user` table to have a new password.
 

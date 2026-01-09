@@ -9,7 +9,7 @@
 ```
 8.2.2 Optimizing Subqueries, Derived Tables, and View References
 
-8.2.3 Optimizing INFORMATION\_SCHEMA Queries
+8.2.3 Optimizing INFORMATION_SCHEMA Queries
 
 8.2.4 Optimizing Data Change Statements
 
@@ -151,7 +151,7 @@
 ```
 8.13.2 Using Your Own Benchmarks
 
-8.13.3 Measuring Performance with performance\_schema
+8.13.3 Measuring Performance with performance_schema
 ```
 
 8.14 Exame das informações do fio (processo) do servidor:   8.14.1 Acesso à lista de processos
@@ -191,9 +191,9 @@
 
 8.15.7 Interaction with the --debug Option
 
-8.15.8 The optimizer\_trace System Variable
+8.15.8 The optimizer_trace System Variable
 
-8.15.9 The end\_markers\_in\_json System Variable
+8.15.9 The end_markers_in_json System Variable
 
 8.15.10 Selecting Optimizer Features to Trace
 

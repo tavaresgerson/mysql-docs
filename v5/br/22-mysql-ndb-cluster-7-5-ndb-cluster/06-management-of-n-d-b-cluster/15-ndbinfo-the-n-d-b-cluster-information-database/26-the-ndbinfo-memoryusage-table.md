@@ -1,6 +1,6 @@
 #### 21.6.15.26 Tabela ndbinfo memoryusage
 
-A consulta a esta tabela fornece informações semelhantes às fornecidas pelo comando `ALL REPORT MemoryUsage` no cliente **ndb\_mgm**, ou registradas pelo comando `ALL DUMP 1000`.
+A consulta a esta tabela fornece informações semelhantes às fornecidas pelo comando `ALL REPORT MemoryUsage` no cliente **ndb_mgm**, ou registradas pelo comando `ALL DUMP 1000`.
 
 A tabela `memoryusage` contém as seguintes colunas:
 

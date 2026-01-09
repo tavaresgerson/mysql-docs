@@ -17,7 +17,7 @@ A tabela a seguir mostra as opções e variáveis de sistema do **mysqld** que a
 </tr></thead>
 <tbody>
 <tr>
-<th><a class="link" href="server-options.html#option_mysqld_allow-suspicious-udfs">allow-suspicious-udfs</a></th>
+<th>allow-suspicious-udfs</th>
 <td>Sim</td>
 <td>Sim</td>
 <td></td>
@@ -26,7 +26,7 @@ A tabela a seguir mostra as opções e variáveis de sistema do **mysqld** que a
 <td></td>
 </tr>
 <tr>
-<th><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></th>
+<th>automatic_sp_privileges</th>
 <td>Sim</td>
 <td>Sim</td>
 <td>Sim</td>
@@ -35,7 +35,7 @@ A tabela a seguir mostra as opções e variáveis de sistema do **mysqld** que a
 <td>Sim</td>
 </tr>
 <tr>
-<th><a class="link" href="server-system-variables.html#sysvar_local_infile">local_infile</a></th>
+<th>local_infile</th>
 <td>Sim</td>
 <td>Sim</td>
 <td>Sim</td>
@@ -44,7 +44,7 @@ A tabela a seguir mostra as opções e variáveis de sistema do **mysqld** que a
 <td>Sim</td>
 </tr>
 <tr>
-<th><a class="link" href="server-options.html#option_mysqld_safe-user-create">safe-user-create</a></th>
+<th>safe-user-create</th>
 <td>Sim</td>
 <td>Sim</td>
 <td></td>
@@ -53,25 +53,7 @@ A tabela a seguir mostra as opções e variáveis de sistema do **mysqld** que a
 <td></td>
 </tr>
 <tr>
-<th><a class="link" href="server-system-variables.html#sysvar_secure_file_priv">secure_file_priv</a></th>
-<td>Sim</td>
-<td>Sim</td>
-<td>Sim</td>
-<td></td>
-<td>Global</td>
-<td>Não</td>
-</tr>
-<tr>
-<th><a class="link" href="server-options.html#option_mysqld_skip-grant-tables">skip-grant-tables</a></th>
-<td>Sim</td>
-<td>Sim</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<th><a class="link" href="server-system-variables.html#sysvar_skip_name_resolve">skip_name_resolve</a></th>
+<th>secure_file_priv</th>
 <td>Sim</td>
 <td>Sim</td>
 <td>Sim</td>
@@ -80,7 +62,16 @@ A tabela a seguir mostra as opções e variáveis de sistema do **mysqld** que a
 <td>Não</td>
 </tr>
 <tr>
-<th><a class="link" href="server-system-variables.html#sysvar_skip_networking">skip_networking</a></th>
+<th>skip-grant-tables</th>
+<td>Sim</td>
+<td>Sim</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<th>skip_name_resolve</th>
 <td>Sim</td>
 <td>Sim</td>
 <td>Sim</td>
@@ -89,7 +80,16 @@ A tabela a seguir mostra as opções e variáveis de sistema do **mysqld** que a
 <td>Não</td>
 </tr>
 <tr>
-<th><a class="link" href="server-system-variables.html#sysvar_skip_show_database">skip_show_database</a></th>
+<th>skip_networking</th>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sim</td>
+<td></td>
+<td>Global</td>
+<td>Não</td>
+</tr>
+<tr>
+<th>skip_show_database</th>
 <td>Sim</td>
 <td>Sim</td>
 <td>Sim</td>

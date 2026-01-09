@@ -1,4 +1,4 @@
-#### 30.4.5.7 The list\_add() Function
+#### 30.4.5.7 The list_add() Function
 
 Adds a value to a comma-separated list of values and returns the result.
 

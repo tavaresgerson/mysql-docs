@@ -1,4 +1,4 @@
-### 24.6.2 A tabela INFORMATION\_SCHEMA CONNECTION\_CONTROL\_FAILED\_LOGIN\_ATTEMPTS
+### 24.6.2 A tabela INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS
 
 Esta tabela fornece informações sobre o número atual de tentativas de conexão consecutivas falhas por conta (combinação de usuário/host). A tabela foi adicionada no MySQL 5.7.17.
 

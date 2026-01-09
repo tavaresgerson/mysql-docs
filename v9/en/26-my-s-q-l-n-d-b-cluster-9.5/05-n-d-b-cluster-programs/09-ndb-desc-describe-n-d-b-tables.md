@@ -1,6 +1,6 @@
-### 25.5.9 ndb\_desc — Describe NDB Tables
+### 25.5.9 ndb_desc — Describe NDB Tables
 
-**ndb\_desc** provides a detailed description of one or more `NDB` tables.
+**ndb_desc** provides a detailed description of one or more `NDB` tables.
 
 #### Usage
 
@@ -10,7 +10,7 @@ ndb_desc -c connection_string tbl_name -d db_name [options]
 ndb_desc -c connection_string index_name -d db_name -t tbl_name
 ```
 
-Additional options that can be used with **ndb\_desc** are listed later in this section.
+Additional options that can be used with **ndb_desc** are listed later in this section.
 
 #### Sample Output
 
@@ -35,7 +35,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-Output from **ndb\_desc**:
+Output from **ndb_desc**:
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -78,9 +78,9 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 1               4               4               32768                   32768                   0               0
 ```
 
-Information about multiple tables can be obtained in a single invocation of **ndb\_desc** by using their names, separated by spaces. All of the tables must be in the same database.
+Information about multiple tables can be obtained in a single invocation of **ndb_desc** by using their names, separated by spaces. All of the tables must be in the same database.
 
-You can obtain additional information about a specific index using the `--table` (short form: `-t`) option and supplying the name of the index as the first argument to **ndb\_desc**, as shown here:
+You can obtain additional information about a specific index using the `--table` (short form: `-t`) option and supplying the name of the index as the first argument to **ndb_desc**, as shown here:
 
 ```
 $> ./ndb_desc uk -d test -t fish
@@ -126,7 +126,7 @@ When an index is specified in this way, the `--extra-partition-info` and `--extr
 
 The `Version` column in the output contains the table's schema object version. For information about interpreting this value, see NDB Schema Object Versions.
 
-Three of the table properties that can be set using `NDB_TABLE` comments embedded in `CREATE TABLE` and `ALTER TABLE` statements are also visible in **ndb\_desc** output. The table's `FRAGMENT_COUNT_TYPE` is always shown in the `FragmentCountType` column. `READ_ONLY` and `FULLY_REPLICATED`, if set to 1, are shown in the `Table options` column. You can see this after executing the following `ALTER TABLE` statement in the **mysql** client:
+Three of the table properties that can be set using `NDB_TABLE` comments embedded in `CREATE TABLE` and `ALTER TABLE` statements are also visible in **ndb_desc** output. The table's `FRAGMENT_COUNT_TYPE` is always shown in the `FragmentCountType` column. `READ_ONLY` and `FULLY_REPLICATED`, if set to 1, are shown in the `Table options` column. You can see this after executing the following `ALTER TABLE` statement in the **mysql** client:
 
 ```
 mysql> ALTER TABLE fish COMMENT='NDB_TABLE=READ_ONLY=1,FULLY_REPLICATED=1';
@@ -159,7 +159,7 @@ COMMENT='NDB_TABLE=READ_BACKUP=1,FULLY_REPLICATED=1'
 1 row in set (0.01 sec)
 ```
 
-Because `FRAGMENT_COUNT_TYPE` was not set explicitly, its value is not shown in the comment text printed by `SHOW CREATE TABLE`. **ndb\_desc**, however, displays the updated value for this attribute. The `Table options` column shows the binary properties just enabled. You can see this in the output shown here (emphasized text):
+Because `FRAGMENT_COUNT_TYPE` was not set explicitly, its value is not shown in the comment text printed by `SHOW CREATE TABLE`. **ndb_desc**, however, displays the updated value for this attribute. The `Table options` column shows the binary properties just enabled. You can see this in the output shown here (emphasized text):
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -254,7 +254,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-When run against this version of the table, **ndb\_desc** displays the following output:
+When run against this version of the table, **ndb_desc** displays the following output:
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -303,9 +303,9 @@ This means that 1048576 bytes are allocated from the tablespace for this table o
 
 `Tablespace id` and `Tablespace` are also displayed for Disk Data tables.
 
-For fully replicated tables, **ndb\_desc** shows only the nodes holding primary partition fragment replicas; nodes with copy fragment replicas (only) are ignored. You can obtain such information, using the **mysql** client, from the `table_distribution_status`, `table_fragments`, `table_info`, and `table_replicas` tables in the `ndbinfo` database.
+For fully replicated tables, **ndb_desc** shows only the nodes holding primary partition fragment replicas; nodes with copy fragment replicas (only) are ignored. You can obtain such information, using the **mysql** client, from the `table_distribution_status`, `table_fragments`, `table_info`, and `table_replicas` tables in the `ndbinfo` database.
 
-All options that can be used with **ndb\_desc** are shown in the following table. Additional descriptions follow the table.
+All options that can be used with **ndb_desc** are shown in the following table. Additional descriptions follow the table.
 
 * `--auto-inc`, `-a`
 
@@ -405,7 +405,7 @@ All options that can be used with **ndb\_desc** are shown in the following table
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set connect string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connect string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 

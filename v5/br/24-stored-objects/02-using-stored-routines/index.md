@@ -6,11 +6,11 @@
 
 23.2.3 Metadados de rotina armazenados
 
-23.2.4 Procedimentos Armazenados, Funções, Descodificadores e LAST\_INSERT\_ID()
+23.2.4 Procedimentos Armazenados, Funções, Descodificadores e LAST_INSERT_ID()
 
 O MySQL suporta rotinas armazenadas (procedimentos e funções). Uma rotina armazenada é um conjunto de instruções SQL que podem ser armazenadas no servidor. Uma vez feito isso, os clientes não precisam emitir as instruções individuais novamente, mas podem se referir à rotina armazenada.
 
-Rotinas armazenadas exigem a tabela `proc` no banco de dados `mysql`. Essa tabela é criada durante o procedimento de instalação do MySQL. Se você estiver atualizando para o MySQL 5.7 a partir de uma versão anterior, certifique-se de atualizar suas tabelas de concessão para garantir que a tabela `proc` exista. Veja a Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”.
+Rotinas armazenadas exigem a tabela `proc` no banco de dados `mysql`. Essa tabela é criada durante o procedimento de instalação do MySQL. Se você estiver atualizando para o MySQL 5.7 a partir de uma versão anterior, certifique-se de atualizar suas tabelas de concessão para garantir que a tabela `proc` exista. Veja a Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”.
 
 As rotinas armazenadas podem ser particularmente úteis em certas situações:
 

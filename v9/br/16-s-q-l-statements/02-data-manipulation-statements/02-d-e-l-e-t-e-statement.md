@@ -66,9 +66,9 @@ Para mais informações e exemplos, consulte a Seção 26.5, “Seleção de Par
 
 #### Colunas de Incremento Automático
 
-Se você excluir a linha que contém o valor máximo para uma coluna `AUTO_INCREMENT`, o valor não será reutilizado para uma tabela `MyISAM` ou `InnoDB`. Se você excluir todas as linhas da tabela com `DELETE FROM tbl_name` (sem uma cláusula `WHERE`) no modo `autocommit`, a sequência será reiniciada para todos os motores de armazenamento, exceto `InnoDB` e `MyISAM`. Há algumas exceções a esse comportamento para tabelas `InnoDB`, conforme discutido na Seção 17.6.1.6, “Tratamento de AUTO\_INCREMENT em InnoDB”.
+Se você excluir a linha que contém o valor máximo para uma coluna `AUTO_INCREMENT`, o valor não será reutilizado para uma tabela `MyISAM` ou `InnoDB`. Se você excluir todas as linhas da tabela com `DELETE FROM tbl_name` (sem uma cláusula `WHERE`) no modo `autocommit`, a sequência será reiniciada para todos os motores de armazenamento, exceto `InnoDB` e `MyISAM`. Há algumas exceções a esse comportamento para tabelas `InnoDB`, conforme discutido na Seção 17.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”.
 
-Para tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos colunas. Nesse caso, o reuso de valores excluídos do topo da sequência ocorre mesmo para tabelas `MyISAM`. Veja a Seção 5.6.9, “Usando AUTO\_INCREMENT”.
+Para tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos colunas. Nesse caso, o reuso de valores excluídos do topo da sequência ocorre mesmo para tabelas `MyISAM`. Veja a Seção 5.6.9, “Usando AUTO_INCREMENT”.
 
 #### Modificadores
 

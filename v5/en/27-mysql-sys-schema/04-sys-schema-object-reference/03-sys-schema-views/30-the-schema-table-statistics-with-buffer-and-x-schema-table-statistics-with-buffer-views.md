@@ -1,4 +1,4 @@
-#### 26.4.3.30 The schema\_table\_statistics\_with\_buffer and x$schema\_table\_statistics\_with\_buffer Views
+#### 26.4.3.30 The schema_table_statistics_with_buffer and x$schema_table_statistics_with_buffer Views
 
 These views summarize table statistics, including `InnoDB` buffer pool statistics. By default, rows are sorted by descending total wait time (tables with most contention first).
 

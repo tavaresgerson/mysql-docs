@@ -1,4 +1,4 @@
-#### 25.12.2.2 The setup\_consumers Table
+#### 25.12.2.2 The setup_consumers Table
 
 The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table lists the types of consumers for which event information can be stored and which are enabled:
 

@@ -1,4 +1,4 @@
-### 24.3.2 The INFORMATION\_SCHEMA CHARACTER\_SETS Table
+### 24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table
 
 The [`CHARACTER_SETS`](information-schema-character-sets-table.html "24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table") table provides information about available character sets.
 

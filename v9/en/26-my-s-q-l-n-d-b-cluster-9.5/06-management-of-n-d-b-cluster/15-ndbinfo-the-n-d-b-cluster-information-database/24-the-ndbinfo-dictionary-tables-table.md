@@ -1,4 +1,4 @@
-#### 25.6.15.24 The ndbinfo dictionary\_tables Table
+#### 25.6.15.24 The ndbinfo dictionary_tables Table
 
 This table provides `NDB` dictionary information for `NDB` tables. `dictionary_tables` contains the columns listed here:
 

@@ -31,11 +31,11 @@ For more information, see [Section 16.2.1, “Replication Formats”](replicati
 * **Fulltext plugin.** This plugin may behave differently on different MySQL servers; therefore, statements depending on it could have different results. For this reason, all statements relying on the fulltext plugin are treated as unsafe (Bug
   #11756280, Bug #48183).
 
-* **Trigger or stored program updates a table having an AUTO\_INCREMENT column.** This is unsafe because the order in which the rows are updated may differ on the source and the replica.
+* **Trigger or stored program updates a table having an AUTO_INCREMENT column.** This is unsafe because the order in which the rows are updated may differ on the source and the replica.
 
   In addition, an [`INSERT`](insert.html "13.2.5 INSERT Statement") into a table that has a composite primary key containing an `AUTO_INCREMENT` column that is not the first column of this composite key is unsafe.
 
-  For more information, see [Section 16.4.1.1, “Replication and AUTO\_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT").
+  For more information, see [Section 16.4.1.1, “Replication and AUTO_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT").
 
 * **INSERT ... ON DUPLICATE KEY UPDATE statements on tables with multiple primary or unique keys.** When executed against a table that contains more than one primary or unique key, this statement is considered unsafe, being sensitive to the order in which the storage engine checks the keys, which is not deterministic, and on which the choice of rows updated by the MySQL Server depends.
 

@@ -21,7 +21,7 @@ Para tornar um sistema MySQL seguro, você deve considerar fortemente as seguint
   user=mysql
   ```
 
-  Isso faz com que o servidor seja iniciado como o usuário designado, seja iniciado manualmente ou usando o **mysqld\_safe** ou **mysql.server**. Para mais detalhes, consulte a Seção 8.1.5, “Como executar o MySQL como um usuário normal”.
+  Isso faz com que o servidor seja iniciado como o usuário designado, seja iniciado manualmente ou usando o **mysqld_safe** ou **mysql.server**. Para mais detalhes, consulte a Seção 8.1.5, “Como executar o MySQL como um usuário normal”.
 
   Executar o **mysqld** como um usuário Unix diferente de `root` não significa que você precise alterar o nome do usuário `root` na tabela `user`. *Os nomes de usuário para contas MySQL não têm nada a ver com os nomes de usuário para contas Unix*.
 * Não conceda o privilégio `FILE` a usuários não administrativos. Qualquer usuário que tenha esse privilégio pode escrever um arquivo em qualquer lugar do sistema de arquivos com os privilégios do daemon **mysqld**. Isso inclui o diretório de dados do servidor, que contém os arquivos que implementam as tabelas de privilégios. Para tornar as operações de privilégio `FILE` um pouco mais seguras, os arquivos gerados com `SELECT ... INTO OUTFILE` não sobrescrevem arquivos existentes e são legíveis por todos.

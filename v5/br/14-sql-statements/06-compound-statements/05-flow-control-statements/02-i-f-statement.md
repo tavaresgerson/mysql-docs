@@ -11,7 +11,7 @@ A instrução `IF` para programas armazenados implementa uma construção condic
 
 Nota
 
-Existe também uma função *`IF()`* (flow-control-functions.html#function\_if), que difere da declaração *`IF`* (if.html) descrita aqui. Veja Seção 12.5, “Funções de Controle de Fluxo”. A declaração *`IF`* (if.html) pode ter cláusulas `THEN`, `ELSE` e `ELSEIF`, e é finalizada com `END IF`.
+Existe também uma função *`IF()`* (flow-control-functions.html#function_if), que difere da declaração *`IF`* (if.html) descrita aqui. Veja Seção 12.5, “Funções de Controle de Fluxo”. A declaração *`IF`* (if.html) pode ter cláusulas `THEN`, `ELSE` e `ELSEIF`, e é finalizada com `END IF`.
 
 Se uma *`search_condition`* dada avaliar como verdadeira, a cláusula correspondente `THEN` ou `ELSEIF` *`statement_list`* é executada. Se nenhuma *`search_condition`* corresponder, a cláusula `ELSE` *`statement_list`* é executada.
 

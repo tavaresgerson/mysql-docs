@@ -1,4 +1,4 @@
-#### 25.6.15.34 The ndbinfo error\_messages Table
+#### 25.6.15.34 The ndbinfo error_messages Table
 
 The `error_messages` table provides information about
 
@@ -22,7 +22,7 @@ The `error_messages` table contains the following columns:
 
 ##### Notes
 
-`error_code` is a numeric NDB error code. This is the same error code that can be supplied to **ndb\_perror**.
+`error_code` is a numeric NDB error code. This is the same error code that can be supplied to **ndb_perror**.
 
 `error_description` provides a basic description of the condition causing the error.
 
@@ -57,4 +57,4 @@ The `error_status` column provides status information relating to the error. Pos
 
 * `Unknown`
 
-The error\_classification column shows the error classification. See NDB Error Classifications, for information about classification codes and their meanings.
+The error_classification column shows the error classification. See NDB Error Classifications, for information about classification codes and their meanings.

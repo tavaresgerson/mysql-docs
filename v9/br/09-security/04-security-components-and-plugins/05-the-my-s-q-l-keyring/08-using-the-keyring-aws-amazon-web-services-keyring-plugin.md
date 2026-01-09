@@ -98,7 +98,7 @@ CREATE FUNCTION keyring_aws_rotate_keys RETURNS INTEGER
 
 Para obter informações adicionais sobre as funções `keyring_aws`, consulte a Seção 8.4.5.16, “Funções de gerenciamento de chaves do keyring específicas do plugin”.
 
-##### operação keyring\_aws
+##### operação keyring_aws
 
 Ao iniciar o plugin, o plugin `keyring_aws` lê o ID e a chave de acesso secreta do AWS de seu arquivo de configuração. Ele também lê quaisquer chaves criptografadas contidas em seu arquivo de armazenamento no cache de memória.
 
@@ -123,7 +123,7 @@ Além disso, as funções `keyring_aws_rotate_cmk()` e `keyring_aws_rotate_keys(
 
 Para informações sobre as características dos valores de chave permitidos pelo `keyring_aws`, consulte a Seção 8.4.5.13, “Tipos e Comprimentos de Chaves de Conjunto de Chaves Suportáveis”.
 
-##### keyring\_aws Alterações de Credenciais
+##### keyring_aws Alterações de Credenciais
 
 Supondo que o plugin `keyring_aws` tenha sido inicializado corretamente no início do servidor, é possível alterar as credenciais usadas para se comunicar com o AWS KMS:
 

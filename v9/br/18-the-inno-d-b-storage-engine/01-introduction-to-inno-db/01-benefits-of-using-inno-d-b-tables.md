@@ -26,7 +26,7 @@ As tabelas `InnoDB` têm os seguintes benefícios:
 
 * O layout de armazenamento para dados de tabela é mais eficiente para campos `BLOB` e texto longo, com o formato de linha `DYNAMIC`. Veja a Seção 17.10, “Formatos de Linha do InnoDB”.
 
-* Você pode monitorar o funcionamento interno do motor de armazenamento consultando tabelas do `INFORMATION_SCHEMA`. Veja a Seção 17.15, “Tabelas do InnoDB INFORMATION\_SCHEMA”.
+* Você pode monitorar o funcionamento interno do motor de armazenamento consultando tabelas do `INFORMATION_SCHEMA`. Veja a Seção 17.15, “Tabelas do InnoDB INFORMATION_SCHEMA”.
 
 * Você pode monitorar os detalhes de desempenho do motor de armazenamento consultando tabelas do Schema de Desempenho. Veja a Seção 17.16, “Integração do InnoDB com o Schema de Desempenho do MySQL”.
 

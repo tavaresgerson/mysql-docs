@@ -48,7 +48,7 @@ stack_bottom = 0x41fd0110 thread_stack 0x40000
 [0x66e05e]
 ```
 
-No último caso, você pode usar o utilitário **resolve\_stack\_dump** para determinar onde o **mysqld** morreu, seguindo o procedimento a seguir:
+No último caso, você pode usar o utilitário **resolve_stack_dump** para determinar onde o **mysqld** morreu, seguindo o procedimento a seguir:
 
 1. Copie os números da traça de pilha para um arquivo, por exemplo, `mysqld.stack`. Os números não devem incluir as chaves quadradas ao redor:
 
@@ -87,7 +87,7 @@ No último caso, você pode usar o utilitário **resolve\_stack\_dump** para det
    $> resolve_stack_dump -s /tmp/mysqld.sym -n mysqld.stack
    ```
 
-   Se você não conseguiu incluir nomes C++ desambiguais em seu arquivo de símbolos, processe a saída do **resolve\_stack\_dump** usando **c++filt**:
+   Se você não conseguiu incluir nomes C++ desambiguais em seu arquivo de símbolos, processe a saída do **resolve_stack_dump** usando **c++filt**:
 
    ```sql
    $> resolve_stack_dump -s /tmp/mysqld.sym -n mysqld.stack | c++filt

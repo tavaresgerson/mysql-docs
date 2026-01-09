@@ -1,4 +1,4 @@
-### 24.7.2 A tabela INFORMATION\_SCHEMA MYSQL\_FIREWALL\_USERS
+### 24.7.2 A tabela INFORMATION_SCHEMA MYSQL_FIREWALL_USERS
 
 A tabela `MYSQL_FIREWALL_USERS` oferece uma visão do cache de dados em memória para o MySQL Enterprise Firewall. Ela lista nomes e modos operacionais dos perfis de contas de firewall registrados. Ela é usada em conjunto com a tabela `mysql.firewall_users` do sistema, que fornece armazenamento persistente dos dados do firewall; veja Tabelas do MySQL Enterprise Firewall.
 

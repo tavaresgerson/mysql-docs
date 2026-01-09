@@ -16,7 +16,7 @@ Os nomes das cotas MySQL seguem estas convenções:
 
   Para ordenações japonesas, o sufixo `_ks` indica que uma ordenação é sensível ao kana; ou seja, distingue caracteres Katakana de caracteres Hiragana. Ordenações japonesas sem o sufixo `_ks` não são sensíveis ao kana e tratam caracteres Katakana e Hiragana como iguais para a ordenação.
 
-Para a ordenação `binary` do conjunto de caracteres `binary`, as comparações são baseadas em valores numéricos de bytes. Para a ordenação `_bin` de um conjunto de caracteres não binário, as comparações são baseadas em valores de código de caracteres numéricos, que diferem dos valores de byte para caracteres multibyte. Para obter informações sobre as diferenças entre a ordenação `binary` do conjunto de caracteres `binary` e as ordenações `_bin` de conjuntos de caracteres não binários, consulte a Seção 12.8.5, “A ordenação binária comparada às ordenações \_bin”.
+Para a ordenação `binary` do conjunto de caracteres `binary`, as comparações são baseadas em valores numéricos de bytes. Para a ordenação `_bin` de um conjunto de caracteres não binário, as comparações são baseadas em valores de código de caracteres numéricos, que diferem dos valores de byte para caracteres multibyte. Para obter informações sobre as diferenças entre a ordenação `binary` do conjunto de caracteres `binary` e as ordenações `_bin` de conjuntos de caracteres não binários, consulte a Seção 12.8.5, “A ordenação binária comparada às ordenações _bin”.
 
 * Os nomes das ordenações para conjuntos de caracteres Unicode podem incluir um número de versão para indicar a versão do Algoritmo de Ordenação Unicode (UCA) em que a ordenação é baseada. Ordenações baseadas no UCA sem número de versão no nome usam as chaves de peso UCA-4.0.0. Por exemplo:
 

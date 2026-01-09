@@ -1,12 +1,12 @@
-### 6.7.1 mysql\_config — Display Options for Compiling Clients
+### 6.7.1 mysql_config — Display Options for Compiling Clients
 
-**mysql\_config** provides you with useful information for compiling your MySQL client and connecting it to MySQL. It is a shell script, so it is available only on Unix and Unix-like systems.
+**mysql_config** provides you with useful information for compiling your MySQL client and connecting it to MySQL. It is a shell script, so it is available only on Unix and Unix-like systems.
 
 Note
 
-**pkg-config** can be used as an alternative to **mysql\_config** for obtaining information such as compiler flags or link libraries required to compile MySQL applications. For more information, see Building C API Client Programs Using pkg-config.
+**pkg-config** can be used as an alternative to **mysql_config** for obtaining information such as compiler flags or link libraries required to compile MySQL applications. For more information, see Building C API Client Programs Using pkg-config.
 
-**mysql\_config** supports the following options.
+**mysql_config** supports the following options.
 
 * `--cflags`
 
@@ -48,7 +48,7 @@ Note
 
   Version number for the MySQL distribution.
 
-If you invoke **mysql\_config** with no options, it displays a list of all options that it supports, and their values:
+If you invoke **mysql_config** with no options, it displays a list of all options that it supports, and their values:
 
 ```
 $> mysql_config
@@ -73,7 +73,7 @@ Options:
           plugindir     [/usr/local/mysql/lib/plugin]
 ```
 
-You can use **mysql\_config** within a command line using backticks to include the output that it produces for particular options. For example, to compile and link a MySQL client program, use **mysql\_config** as follows:
+You can use **mysql_config** within a command line using backticks to include the output that it produces for particular options. For example, to compile and link a MySQL client program, use **mysql_config** as follows:
 
 ```
 gcc -c `mysql_config --cflags` progname.c

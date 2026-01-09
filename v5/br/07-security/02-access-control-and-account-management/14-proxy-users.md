@@ -3,7 +3,6 @@
 O servidor MySQL autentica as conexões do cliente usando plugins de autenticação. O plugin que autentica uma conexão específica pode solicitar que o usuário conectado (externo) seja tratado como um usuário diferente para fins de verificação de privilégios. Isso permite que o usuário externo seja um proxy para o segundo usuário; ou seja, assuma os privilégios do segundo usuário:
 
 - O usuário externo é um "usuário proxy" (um usuário que pode se passar por outro usuário ou se tornar conhecido como outro usuário).
-
 - O segundo usuário é um "usuário proxy" (um usuário cuja identidade e privilégios podem ser assumidos por um usuário proxy).
 
 Esta seção descreve como a capacidade de usuário proxy funciona. Para informações gerais sobre plugins de autenticação, consulte Seção 6.2.13, “Autenticação Conectada”. Para informações sobre plugins específicos, consulte Seção 6.4.1, “Plugins de Autenticação”. Para informações sobre como escrever plugins de autenticação que suportam usuários proxy, consulte Implementando Suporte a Usuários Proxy em Plugins de Autenticação.
@@ -186,7 +185,7 @@ GRANT PROXY
 
 Agora, suponha que um cliente se conecte da seguinte forma:
 
-```sql
+```sh
 $> mysql --user=myuser --password ...
 Enter password: myuser_password
 ```
@@ -314,7 +313,7 @@ Alguns plugins de autenticação implementam mapeamento de usuários proxy para 
 
 Por exemplo, para habilitar todas as capacidades anteriores, inicie o servidor com essas linhas no arquivo `my.cnf`:
 
-```sql
+```
 [mysqld]
 check_proxy_users=ON
 mysql_native_password_proxy_users=ON
@@ -347,7 +346,7 @@ GRANT PROXY
 
 Para usar a conta de proxy, conecte-se ao servidor usando seu nome e senha:
 
-```sql
+```sh
 $> mysql -u proxy_user -p
 Enter password: (enter proxy_user password here)
 ```

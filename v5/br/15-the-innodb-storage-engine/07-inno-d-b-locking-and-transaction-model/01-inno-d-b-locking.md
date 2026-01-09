@@ -177,7 +177,7 @@ Um bloqueio `AUTO-INC` é um bloqueio especial de nível de tabela tomado por tr
 
 A variável `innodb_autoinc_lock_mode` controla o algoritmo usado para o bloqueio de autoincremento. Ela permite que você escolha como equilibrar entre sequências previsíveis de valores de autoincremento e a concorrência máxima para operações de inserção.
 
-Para obter mais informações, consulte a Seção 14.6.1.6, “Tratamento do AUTO\_INCREMENT no InnoDB”.
+Para obter mais informações, consulte a Seção 14.6.1.6, “Tratamento do AUTO_INCREMENT no InnoDB”.
 
 #### Lås de predicado para índices espaciais
 

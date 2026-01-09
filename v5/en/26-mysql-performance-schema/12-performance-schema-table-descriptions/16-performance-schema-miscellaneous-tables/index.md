@@ -1,8 +1,8 @@
 ### 25.12.16 Performance Schema Miscellaneous Tables
 
-[25.12.16.1 The host\_cache Table](performance-schema-host-cache-table.html)
+[25.12.16.1 The host_cache Table](performance-schema-host-cache-table.html)
 
-[25.12.16.2 The performance\_timers Table](performance-schema-performance-timers-table.html)
+[25.12.16.2 The performance_timers Table](performance-schema-performance-timers-table.html)
 
 [25.12.16.3 The processlist Table](performance-schema-processlist-table.html)
 

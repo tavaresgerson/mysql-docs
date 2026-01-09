@@ -6,7 +6,7 @@ MySQL Enterprise Thread Pool comprises these elements:
 
   + In MySQL 9.5, the monitoring tables are Performance Schema tables; see Section 29.12.16, “Performance Schema Thread Pool Tables”.
 
-  + In older versions of MySQL, the monitoring tables were `INFORMATION_SCHEMA` tables (see Section 28.5, “INFORMATION\_SCHEMA Thread Pool Tables”). The `INFORMATION_SCHEMA` tables are deprecated; expect them to be removed in a future version of MySQL. Applications should transition away from the `INFORMATION_SCHEMA` tables to the Performance Schema tables. For example, if an application uses this query:
+  + In older versions of MySQL, the monitoring tables were `INFORMATION_SCHEMA` tables (see Section 28.5, “INFORMATION_SCHEMA Thread Pool Tables”). The `INFORMATION_SCHEMA` tables are deprecated; expect them to be removed in a future version of MySQL. Applications should transition away from the `INFORMATION_SCHEMA` tables to the Performance Schema tables. For example, if an application uses this query:
 
     ```
     SELECT * FROM INFORMATION_SCHEMA.TP_THREAD_STATE;

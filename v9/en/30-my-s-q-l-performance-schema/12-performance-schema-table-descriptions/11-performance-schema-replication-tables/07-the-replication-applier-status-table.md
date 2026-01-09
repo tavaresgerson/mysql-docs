@@ -1,4 +1,4 @@
-#### 29.12.11.7 The replication\_applier\_status Table
+#### 29.12.11.7 The replication_applier_status Table
 
 This table shows the current general transaction execution status on the replica. The table provides information about general aspects of transaction applier status that are not specific to any thread involved. Thread-specific status information is available in the `replication_applier_status_by_coordinator` table (and `replication_applier_status_by_worker` if the replica is multithreaded).
 

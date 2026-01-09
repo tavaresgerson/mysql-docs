@@ -1,4 +1,4 @@
-#### 13.7.4.3 Declaração de NOME\_SET
+#### 13.7.4.3 Declaração de NOME_SET
 
 ```sql
 SET NAMES {'charset_name'

@@ -1,4 +1,4 @@
-#### 25.12.11.3 A tabela replication\_applier\_configuration
+#### 25.12.11.3 A tabela replication_applier_configuration
 
 Esta tabela mostra os parâmetros de configuração que afetam as transações aplicadas pela replica. Os parâmetros armazenados na tabela podem ser alterados em tempo de execução com a instrução `CHANGE MASTER TO`, conforme indicado nas descrições das colunas.
 

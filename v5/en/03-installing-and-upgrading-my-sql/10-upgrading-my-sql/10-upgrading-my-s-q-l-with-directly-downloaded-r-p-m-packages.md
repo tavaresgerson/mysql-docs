@@ -16,7 +16,7 @@ For an upgrade installation using RPM packages, the MySQL server is automaticall
 service mysqld start
 ```
 
-Once the server restarts, run **mysql\_upgrade** to check and possibly resolve any incompatibilities between the old data and the upgraded software. **mysql\_upgrade** also performs other functions; see Section 4.4.7, “mysql\_upgrade — Check and Upgrade MySQL Tables” for details.
+Once the server restarts, run **mysql_upgrade** to check and possibly resolve any incompatibilities between the old data and the upgraded software. **mysql_upgrade** also performs other functions; see Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables” for details.
 
 Note
 
@@ -26,7 +26,7 @@ Because of the dependency relationships among the RPM packages, all of the insta
 
 **Table 2.16 Differences Between the Previous and the Current RPM Packages for Installing MySQL**
 
-<table frame="all" summary="The differences between the previous and current RPM Packages for installing MySQL."><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Feature</th> <th>Behavior of Previous Packages</th> <th>Behavior of Current Packages</th> </tr></thead><tbody><tr> <th>Service starts after installation is finished</th> <td>Yes</td> <td>No, unless it is an upgrade installation, and the server was running when the upgrade began.</td> </tr><tr> <th>Service name</th> <td>mysql</td> <td><p> For RHEL, Oracle Linux, CentOS, and Fedora: <a class="link" href="mysqld.html" title="4.3.1 mysqld — The MySQL Server"><span><strong>mysqld</strong></span></a> </p><p> For SLES: <a class="link" href="mysql.html" title="4.5.1 mysql — The MySQL Command-Line Client"><span><strong>mysql</strong></span></a> </p></td> </tr><tr> <th>Error log file</th> <td>At <code class="filename">/var/lib/mysql/<em class="replaceable"><code>hostname</code></em>.err</code></td> <td><p> For RHEL, Oracle Linux, CentOS, and Fedora: at <code class="filename">/var/log/mysqld.log</code> </p><p> For SLES: at <code class="filename">/var/log/mysql/mysqld.log</code> </p></td> </tr><tr> <th>Shipped with the <code class="filename">/etc/my.cnf</code> file</th> <td>No</td> <td>Yes</td> </tr><tr> <th>Multilib support</th> <td>No</td> <td>Yes</td> </tr></tbody></table>
+<table frame="all" summary="The differences between the previous and current RPM Packages for installing MySQL."><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Feature</th> <th>Behavior of Previous Packages</th> <th>Behavior of Current Packages</th> </tr></thead><tbody><tr> <th>Service starts after installation is finished</th> <td>Yes</td> <td>No, unless it is an upgrade installation, and the server was running when the upgrade began.</td> </tr><tr> <th>Service name</th> <td>mysql</td> <td><p> For RHEL, Oracle Linux, CentOS, and Fedora: <span><strong>mysqld</strong></span> </p><p> For SLES: <span><strong>mysql</strong></span> </p></td> </tr><tr> <th>Error log file</th> <td>At <code>/var/lib/mysql/<em class="replaceable"><code>hostname</code></em>.err</code></td> <td><p> For RHEL, Oracle Linux, CentOS, and Fedora: at <code>/var/log/mysqld.log</code> </p><p> For SLES: at <code>/var/log/mysql/mysqld.log</code> </p></td> </tr><tr> <th>Shipped with the <code>/etc/my.cnf</code> file</th> <td>No</td> <td>Yes</td> </tr><tr> <th>Multilib support</th> <td>No</td> <td>Yes</td> </tr></tbody></table>
 
 Note
 

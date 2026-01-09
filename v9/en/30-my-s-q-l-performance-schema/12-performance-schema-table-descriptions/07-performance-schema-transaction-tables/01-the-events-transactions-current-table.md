@@ -1,4 +1,4 @@
-#### 29.12.7.1 The events\_transactions\_current Table
+#### 29.12.7.1 The events_transactions_current Table
 
 The `events_transactions_current` table contains current transaction events. The table stores one row per thread showing the current status of the thread's most recent monitored transaction event, so there is no system variable for configuring the table size. For example:
 

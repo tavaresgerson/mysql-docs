@@ -63,9 +63,9 @@ For descriptions of the tracker-related system variables, see [SectionÂ 5.1.7, â
 
 To enable client applications to extract state-change information from OK packets returned by the server, the MySQL C API provides a pair of functions:
 
-* [`mysql_session_track_get_first()`](/doc/c-api/5.7/en/mysql-session-track-get-first.html) fetches the first part of the state-change information received from the server. See [mysql\_session\_track\_get\_first()](/doc/c-api/5.7/en/mysql-session-track-get-first.html).
+* [`mysql_session_track_get_first()`](/doc/c-api/5.7/en/mysql-session-track-get-first.html) fetches the first part of the state-change information received from the server. See [mysql_session_track_get_first()](/doc/c-api/5.7/en/mysql-session-track-get-first.html).
 
-* [`mysql_session_track_get_next()`](/doc/c-api/5.7/en/mysql-session-track-get-next.html) fetches any remaining state-change information received from the server. Following a successful call to [`mysql_session_track_get_first()`](/doc/c-api/5.7/en/mysql-session-track-get-first.html), call this function repeatedly as long as it returns success. See [mysql\_session\_track\_get\_next()](/doc/c-api/5.7/en/mysql-session-track-get-next.html).
+* [`mysql_session_track_get_next()`](/doc/c-api/5.7/en/mysql-session-track-get-next.html) fetches any remaining state-change information received from the server. Following a successful call to [`mysql_session_track_get_first()`](/doc/c-api/5.7/en/mysql-session-track-get-first.html), call this function repeatedly as long as it returns success. See [mysql_session_track_get_next()](/doc/c-api/5.7/en/mysql-session-track-get-next.html).
 
 #### Test Suite Session State Tracker Support
 
@@ -90,7 +90,7 @@ INSERT INTO test.t1 () VALUES(1, RAND());
 COMMIT;
 ```
 
-Run the script as follows to see the information provided by the enabled trackers. For a description of the `Tracker:` information displayed by **mysqltest** for the various trackers, see [mysql\_session\_track\_get\_first()](/doc/c-api/5.7/en/mysql-session-track-get-first.html).
+Run the script as follows to see the information provided by the enabled trackers. For a description of the `Tracker:` information displayed by **mysqltest** for the various trackers, see [mysql_session_track_get_first()](/doc/c-api/5.7/en/mysql-session-track-get-first.html).
 
 ```sql
 $> mysqltest < testscript

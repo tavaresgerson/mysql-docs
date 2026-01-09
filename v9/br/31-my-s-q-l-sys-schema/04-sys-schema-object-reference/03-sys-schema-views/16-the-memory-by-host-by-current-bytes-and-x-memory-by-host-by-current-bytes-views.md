@@ -1,4 +1,4 @@
-#### 30.4.3.16 As visualizações `memory\_by\_host\_by\_current\_bytes` e `x$memory\_by\_host\_by\_current\_bytes`
+#### 30.4.3.16 As visualizações `memory_by_host_by_current_bytes` e `x$memory_by_host_by_current_bytes`
 
 Essas visualizações resumem o uso da memória, agrupadas por host. Por padrão, as linhas são ordenadas em ordem decrescente de quantidade de memória usada.
 

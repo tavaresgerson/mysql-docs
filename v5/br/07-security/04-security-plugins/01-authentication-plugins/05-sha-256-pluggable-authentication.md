@@ -12,9 +12,9 @@ Importante
 
 Para se conectar ao servidor usando uma conta que autentica com o plugin `sha256_password`, você deve usar uma conexão TLS ou uma conexão não criptografada que suporte a troca de senha usando um par de chaves RSA, conforme descrito mais adiante nesta seção. De qualquer forma, o plugin `sha256_password` utiliza as capacidades de criptografia do MySQL. Veja Seção 6.3, “Usando Conexões Criptografadas”.
 
-Nota
-
+::: info Nota
 No nome `sha256_password`, “sha256” refere-se ao comprimento de digestão de 256 bits que o plugin usa para criptografia. No nome `caching_sha2_password`, “sha2” refere-se mais genericamente à classe de algoritmos de criptografia SHA-2, da qual a criptografia de 256 bits é uma instância. A escolha desse nome permite espaço para futuras expansões de possíveis comprimentos de digestão sem alterar o nome do plugin.
+:::
 
 A tabela a seguir mostra os nomes dos plugins no lado do servidor e no lado do cliente.
 
@@ -52,7 +52,7 @@ As instruções anteriores não assumem que `sha256_password` é o plugin de aut
 
 Para iniciar o servidor com o plugin de autenticação padrão definido como `sha256_password`, coloque essas linhas no arquivo de opções do servidor:
 
-```sql
+```
 [mysqld]
 default_authentication_plugin=sha256_password
 ```
@@ -74,9 +74,9 @@ IDENTIFIED WITH mysql_native_password BY 'password';
 
 - O MySQL é compilado usando o OpenSSL, não o yaSSL. O `sha256_password` funciona com distribuições compiladas usando qualquer um desses pacotes, mas o suporte ao RSA requer o OpenSSL.
 
-  Nota
-
+  ::: info Nota
   É possível compilar o MySQL usando o yaSSL como alternativa ao OpenSSL apenas antes do MySQL 5.7.28. A partir do MySQL 5.7.28, o suporte ao yaSSL é removido e todas as compilações do MySQL usam o OpenSSL.
+  :::
 
 - O servidor MySQL ao qual você deseja se conectar está configurado para suportar RSA (usando o procedimento de configuração RSA fornecido mais adiante nesta seção).
 
@@ -102,9 +102,9 @@ Para clientes que usam o plugin `sha256_password`, as senhas nunca são exibidas
 
 - Se a conexão for segura, um par de chaves RSA não é necessário e não é usado. Isso se aplica a conexões criptografadas usando TLS. A senha é enviada em texto simples, mas não pode ser interceptada porque a conexão é segura.
 
-  Nota
-
+  ::: info Nota
   Ao contrário do `caching_sha2_password`, o plugin `sha256_password` não considera as conexões de memória compartilhada como seguras, mesmo que o transporte de memória compartilhada seja seguro por padrão.
+  :::
 
 - Se a conexão não for segura e um par de chaves RSA estiver disponível, a conexão permanecerá não criptografada. Isso se aplica a conexões não criptografadas usando TLS. O RSA é usado apenas para a troca de senhas entre o cliente e o servidor, para evitar a escuta de senhas. Quando o servidor recebe a senha criptografada, ele a descriptografa. Uma confusão é usada na criptografia para evitar ataques repetidos.
 
@@ -112,9 +112,9 @@ Para clientes que usam o plugin `sha256_password`, as senhas nunca são exibidas
 
 Como mencionado anteriormente, o criptoamento de senhas RSA está disponível apenas se o MySQL foi compilado com o OpenSSL. A implicação para as distribuições do MySQL compiladas com o yaSSL é que, para usar senhas SHA-256, os clientes *devem* usar uma conexão criptografada para acessar o servidor. Veja Seção 6.3.1, “Configurando o MySQL para Usar Conexões Criptografadas”.
 
-Nota
-
+::: info Nota
 Para usar a criptografia de senha RSA com `sha256_password`, o cliente e o servidor devem ser compilados usando o OpenSSL, e não apenas um deles.
+:::
 
 Supondo que o MySQL tenha sido compilado com o OpenSSL, use o procedimento a seguir para habilitar o uso de um par de chaves RSA para a troca de senhas durante o processo de conexão do cliente:
 
@@ -124,7 +124,7 @@ Supondo que o MySQL tenha sido compilado com o OpenSSL, use o procedimento a seg
 
    Caso contrário, para nomear os arquivos-chave explicitamente, defina as variáveis do sistema com os nomes dos arquivos-chave no arquivo de opção do servidor. Se os arquivos estiverem localizados no diretório de dados do servidor, você não precisa especificar seus nomes completos de caminho:
 
-   ```sql
+   ```
    [mysqld]
    sha256_password_private_key_path=myprivkey.pem
    sha256_password_public_key_path=mypubkey.pem
@@ -132,7 +132,7 @@ Supondo que o MySQL tenha sido compilado com o OpenSSL, use o procedimento a seg
 
    Se os arquivos de chave não estiverem localizados no diretório de dados, ou para tornar suas localizações explícitas nos valores da variável do sistema, use nomes de caminho completos:
 
-   ```sql
+   ```
    [mysqld]
    sha256_password_private_key_path=/usr/local/mysql/myprivkey.pem
    sha256_password_public_key_path=/usr/local/mysql/mypubkey.pem
@@ -156,7 +156,7 @@ Supondo que o MySQL tenha sido compilado com o OpenSSL, use o procedimento a seg
 
 Depois que o servidor foi configurado com os arquivos de chave RSA, as contas que se autenticam com o plugin `sha256_password` têm a opção de usar esses arquivos de chave para se conectar ao servidor. Como mencionado anteriormente, tais contas podem usar uma conexão segura (neste caso, o RSA não é usado) ou uma conexão não criptografada que realiza a troca de senha usando RSA. Suponha que uma conexão não criptografada seja usada. Por exemplo:
 
-```sql
+```sh
 $> mysql --ssl-mode=DISABLED -u sha256user -p
 Enter password: password
 ```
@@ -165,7 +165,7 @@ Para essa tentativa de conexão do `sha256user`, o servidor determina que `sha25
 
 O servidor envia a chave pública RSA para o cliente conforme necessário. No entanto, se o cliente tiver um arquivo contendo uma cópia local da chave pública RSA necessária pelo servidor, ele pode especificar o arquivo usando a opção `--server-public-key-path`:
 
-```sql
+```sh
 $> mysql --ssl-mode=DISABLED -u sha256user -p --server-public-key-path=file_name
 Enter password: password
 ```

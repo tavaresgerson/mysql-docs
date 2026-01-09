@@ -128,7 +128,7 @@ ERROR 2 (HY000): File '/person.xml' not found (Errcode: 2)
 
 A cláusula `ROWS IDENTIFIED BY '<pessoa>'` significa que cada elemento `<pessoa>` no arquivo XML é considerado equivalente a uma linha na tabela na qual os dados devem ser importados. Neste caso, esta é a tabela `pessoa` no banco de dados `test`.
 
-Como pode ser visto na resposta do servidor, 8 linhas foram importadas para a tabela `test.person`. Isso pode ser verificado por meio de uma simples instrução `SELECT`: \[select.html]
+Como pode ser visto na resposta do servidor, 8 linhas foram importadas para a tabela `test.person`. Isso pode ser verificado por meio de uma simples instrução `SELECT`: [select.html]
 
 ```sql
 mysql> SELECT * FROM person;

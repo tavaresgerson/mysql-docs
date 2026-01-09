@@ -38,7 +38,7 @@ A string de versão exibida por outros programas do NDB Cluster que normalmente 
 mysql-mysql_server_version ndb-ndb_engine_version
 ```
 
-*`mysql_server_version`* representa a versão do MySQL Server em que o lançamento do NDB Cluster é baseado. Para o NDB Cluster 9.5, isso é `9.5.n`, onde *`n`* é o número do lançamento. *`ndb_engine_version`* é a versão do motor de armazenamento `NDB` usado por este lançamento do software do NDB Cluster. Para o NDB 9.5, esse número é o mesmo que a versão do MySQL Server. Você pode ver este formato usado na saída do comando **SHOW** no cliente **ndb\_mgm**, assim:
+*`mysql_server_version`* representa a versão do MySQL Server em que o lançamento do NDB Cluster é baseado. Para o NDB Cluster 9.5, isso é `9.5.n`, onde *`n`* é o número do lançamento. *`ndb_engine_version`* é a versão do motor de armazenamento `NDB` usado por este lançamento do software do NDB Cluster. Para o NDB 9.5, esse número é o mesmo que a versão do MySQL Server. Você pode ver este formato usado na saída do comando **SHOW** no cliente **ndb_mgm**, assim:
 
 ```
 ndb_mgm> SHOW

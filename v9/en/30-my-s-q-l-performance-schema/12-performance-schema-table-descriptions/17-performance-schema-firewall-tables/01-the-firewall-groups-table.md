@@ -1,4 +1,4 @@
-#### 29.12.17.1 The firewall\_groups Table
+#### 29.12.17.1 The firewall_groups Table
 
 The `firewall_groups` table provides a view into the in-memory data cache for MySQL Enterprise Firewall. It lists names and operational modes of registered firewall group profiles. It is used in conjunction with the `mysql.firewall_groups` system table that provides persistent storage of firewall data; see MySQL Enterprise Firewall Tables.
 

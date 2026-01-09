@@ -27,7 +27,7 @@ SELECT    v.node_id AS 'Node Id',
 FROM      config_values v
 JOIN      config_params p
 ON        v.config_param=p.param_number
-WHERE     p.param_name NOT LIKE '\_\_%'
+WHERE     p.param_name NOT LIKE '__%'
 ORDER BY  v.node_id, p.param_name;
 ```
 

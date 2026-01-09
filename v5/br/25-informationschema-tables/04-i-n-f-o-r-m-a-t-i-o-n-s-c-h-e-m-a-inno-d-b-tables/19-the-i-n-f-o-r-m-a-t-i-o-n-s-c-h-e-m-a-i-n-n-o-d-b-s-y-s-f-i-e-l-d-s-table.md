@@ -1,8 +1,8 @@
-### 24.4.19 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FIELDS
+### 24.4.19 A tabela INFORMATION_SCHEMA INNODB_SYS_FIELDS
 
 A tabela [`INNODB_SYS_FIELDS`](https://pt.wikipedia.org/wiki/Tabela_SYS_FIELDS) fornece metadados sobre as colunas-chave (campos) dos índices do `InnoDB`, equivalentes às informações da tabela `SYS_FIELDS` no dicionário de dados do `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
 
 A tabela [`INNODB_SYS_FIELDS`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-sys-fields) tem essas colunas:
 

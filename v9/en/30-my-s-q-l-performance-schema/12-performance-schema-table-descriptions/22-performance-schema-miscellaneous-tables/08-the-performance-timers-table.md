@@ -1,4 +1,4 @@
-#### 29.12.22.8 The performance\_timers Table
+#### 29.12.22.8 The performance_timers Table
 
 The `performance_timers` table shows which event timers are available:
 

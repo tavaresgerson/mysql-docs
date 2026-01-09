@@ -36,4 +36,4 @@ As operações DDL online podem usar arquivos de registro temporários para regi
 
 As tabelas temporárias não compactadas, criadas pelo usuário, do tipo `InnoDB` e as tabelas temporárias internas no disco são criadas em um arquivo de espaço de tabelas temporárias chamado `ibtmp1` no diretório de dados do MySQL. Para mais informações, consulte [Seção 14.6.3.5, “O Espaço de Tabelas Temporárias”](innodb-temporary-tablespace.html).
 
-Veja também [Seção 14.16.7, “Tabela de Informações Temporárias do Schema INFORMATION\_SCHEMA da InnoDB”](innodb-information-schema-temp-table-info.html). [Tabelas Temporárias Órfãs](innodb-troubleshooting-datadict.html#innodb-orphan-temporary-tables).
+Veja também [Seção 14.16.7, “Tabela de Informações Temporárias do Schema INFORMATION_SCHEMA da InnoDB”](innodb-information-schema-temp-table-info.html). [Tabelas Temporárias Órfãs](innodb-troubleshooting-datadict.html#innodb-orphan-temporary-tables).

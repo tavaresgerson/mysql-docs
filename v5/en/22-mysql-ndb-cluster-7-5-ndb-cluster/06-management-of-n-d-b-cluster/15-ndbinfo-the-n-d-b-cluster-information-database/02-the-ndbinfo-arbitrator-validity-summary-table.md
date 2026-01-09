@@ -1,4 +1,4 @@
-#### 21.6.15.2 The ndbinfo arbitrator\_validity\_summary Table
+#### 21.6.15.2 The ndbinfo arbitrator_validity_summary Table
 
 The `arbitrator_validity_summary` table provides a composite view of the arbitrator with regard to the cluster's data nodes.
 

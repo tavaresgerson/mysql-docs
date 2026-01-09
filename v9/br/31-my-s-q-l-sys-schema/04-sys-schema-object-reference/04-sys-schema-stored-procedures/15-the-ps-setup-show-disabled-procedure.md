@@ -1,4 +1,4 @@
-#### 30.4.4.15 O procedimento ps\_setup\_show\_disabled()
+#### 30.4.4.15 O procedimento ps_setup_show_disabled()
 
 Exibe todas as configurações da Schema de Desempenho atualmente desativadas.
 

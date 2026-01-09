@@ -43,7 +43,7 @@ mysql-js> db.getTables()
 
 Basic operations scoped by tables include:
 
-<table summary="CRUD operations to use interactively on tables within MySQL Shell"><col style="width: 32%"/><col style="width: 68%"/><thead><tr> <th>Operation form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.insert()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-javascript-table-insert.html" title="22.3.4.1 Insert Records into Tables">insert()</a> method inserts one or more records into the named table.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.select()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-javascript-table-select.html" title="22.3.4.2 Select Tables">select()</a> method returns some or all records in the named table.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.update()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-javascript-table-update.html" title="22.3.4.3 Update Tables">update()</a> method updates records in the named table.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.delete()</code></td> <td>The <a class="link" href="mysql-shell-tutorial-javascript-table-delete.html" title="22.3.4.4 Delete Tables">delete()</a> method deletes one or more records from the named table.</td> </tr></tbody></table>
+<table summary="CRUD operations to use interactively on tables within MySQL Shell"><col style="width: 32%"/><col style="width: 68%"/><thead><tr> <th>Operation form</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.insert()</code></td> <td>The insert() method inserts one or more records into the named table.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.select()</code></td> <td>The select() method returns some or all records in the named table.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.update()</code></td> <td>The update() method updates records in the named table.</td> </tr><tr> <td><code>db.<em class="replaceable"><code>name</code></em>.delete()</code></td> <td>The delete() method deletes one or more records from the named table.</td> </tr></tbody></table>
 
 #### Related Information
 
@@ -51,4 +51,4 @@ Basic operations scoped by tables include:
 
 * CRUD EBNF Definitions provides a complete list of operations.
 
-* See Section 22.3.2, “Download and Import world\_x Database” for instructions on setting up the `world_x` schema sample.
+* See Section 22.3.2, “Download and Import world_x Database” for instructions on setting up the `world_x` schema sample.

@@ -4,7 +4,7 @@ Once you are satisfied that NDB Cluster is running as desired, you can install t
 
 Installing programs as Windows services usually must be done using an account that has Administrator rights on the system.
 
-To install the management node as a service on Windows, invoke [**ndb\_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") from the command line on the machine hosting the management node, using the [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install) option, as shown here:
+To install the management node as a service on Windows, invoke [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") from the command line on the machine hosting the management node, using the [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install) option, as shown here:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --install
@@ -17,7 +17,7 @@ Important
 
 When installing an NDB Cluster program as a Windows service, you should always specify the complete path; otherwise the service installation may fail with the error The system cannot find the file specified.
 
-The [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install) option must be used first, ahead of any other options that might be specified for [**ndb\_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"). However, it is preferable to specify such options in an options file instead. If your options file is not in one of the default locations as shown in the output of [**ndb\_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") [`--help`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_help), you can specify the location using the [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) option.
+The [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install) option must be used first, ahead of any other options that might be specified for [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"). However, it is preferable to specify such options in an options file instead. If your options file is not in one of the default locations as shown in the output of [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") [`--help`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_help), you can specify the location using the [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) option.
 
 Now you should be able to start and stop the management server like this:
 
@@ -64,7 +64,7 @@ To remove the management node service, use **SC DELETE *`service_name`***:
 C:\> SC DELETE mgmd1
 ```
 
-Alternatively, invoke [**ndb\_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") with the [`--remove`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_remove) option, as shown here:
+Alternatively, invoke [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") with the [`--remove`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_remove) option, as shown here:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove
@@ -72,7 +72,7 @@ Removing service 'NDB Cluster Management Server'
 Service successfully removed.
 ```
 
-If you installed the service using a service name other than the default, pass the service name as the value of the [**ndb\_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") [`--remove`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_remove) option, like this:
+If you installed the service using a service name other than the default, pass the service name as the value of the [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") [`--remove`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_remove) option, like this:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove=mgmd1
@@ -110,7 +110,7 @@ Removing service 'NDB Cluster Data Node Daemon'
 Service successfully removed.
 ```
 
-As with [**ndb\_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") (and [**mysqld.exe**](mysqld.html "4.3.1 mysqld — The MySQL Server")), when installing [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") as a Windows service, you can also specify a name for the service as the value of [`--install`](mysql-cluster-programs-ndbd.html#option_ndbd_install), and then use it when starting or stopping the service, like this:
+As with [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") (and [**mysqld.exe**](mysqld.html "4.3.1 mysqld — The MySQL Server")), when installing [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") as a Windows service, you can also specify a name for the service as the value of [`--install`](mysql-cluster-programs-ndbd.html#option_ndbd_install), and then use it when starting or stopping the service, like this:
 
 ```sql
 C:\> C:\mysql\bin\ndbd.exe --install=dnode1

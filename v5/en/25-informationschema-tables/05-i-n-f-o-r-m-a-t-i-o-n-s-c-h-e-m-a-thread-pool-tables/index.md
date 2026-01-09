@@ -1,12 +1,12 @@
-## 24.5 INFORMATION\_SCHEMA Thread Pool Tables
+## 24.5 INFORMATION_SCHEMA Thread Pool Tables
 
-[24.5.1 INFORMATION\_SCHEMA Thread Pool Table Reference](information-schema-thread-pool-table-reference.html)
+[24.5.1 INFORMATION_SCHEMA Thread Pool Table Reference](information-schema-thread-pool-table-reference.html)
 
-[24.5.2 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE Table](information-schema-tp-thread-group-state-table.html)
+[24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table](information-schema-tp-thread-group-state-table.html)
 
-[24.5.3 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS Table](information-schema-tp-thread-group-stats-table.html)
+[24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table](information-schema-tp-thread-group-stats-table.html)
 
-[24.5.4 The INFORMATION\_SCHEMA TP\_THREAD\_STATE Table](information-schema-tp-thread-state-table.html)
+[24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table](information-schema-tp-thread-state-table.html)
 
 The following sections describe the `INFORMATION_SCHEMA` tables associated with the thread pool plugin (see [Section 5.5.3, “MySQL Enterprise Thread Pool”](thread-pool.html "5.5.3 MySQL Enterprise Thread Pool")). They provide information about thread pool operation:
 

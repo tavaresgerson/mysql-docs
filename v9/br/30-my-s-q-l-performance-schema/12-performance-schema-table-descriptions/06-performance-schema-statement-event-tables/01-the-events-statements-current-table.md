@@ -90,7 +90,7 @@ Esta coluna identifica a declaração. O valor é o endereço de um objeto na me
 
 * `ROWS_AFFECTED`
 
-  O número de linhas afetadas pela declaração. Para uma descrição do significado de “afetada”, consulte mysql\_affected\_rows().
+  O número de linhas afetadas pela declaração. Para uma descrição do significado de “afetada”, consulte mysql_affected_rows().
 
 * `ROWS_SENT`
 

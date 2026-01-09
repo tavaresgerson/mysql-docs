@@ -8,7 +8,7 @@ Starting the cluster is not very difficult after it has been configured. Each cl
    $> ndb_mgmd --initial -f /var/lib/mysql-cluster/config.ini
    ```
 
-   The first time that it is started, [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") must be told where to find its configuration file, using the `-f` or [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) option. This option requires that [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) or [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) also be specified; see [Section 21.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), for details.
+   The first time that it is started, [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") must be told where to find its configuration file, using the `-f` or [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) option. This option requires that [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) or [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) also be specified; see [Section 21.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), for details.
 
 2. On each of the data node hosts, run this command to start the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process:
 
@@ -18,7 +18,7 @@ Starting the cluster is not very difficult after it has been configured. Each cl
 
 3. If you used RPM files to install MySQL on the cluster host where the SQL node is to reside, you can (and should) use the supplied startup script to start the MySQL server process on the SQL node.
 
-If all has gone well, and the cluster has been set up correctly, the cluster should now be operational. You can test this by invoking the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") management node client. The output should look like that shown here, although you might see some slight differences in the output depending upon the exact version of MySQL that you are using:
+If all has gone well, and the cluster has been set up correctly, the cluster should now be operational. You can test this by invoking the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") management node client. The output should look like that shown here, although you might see some slight differences in the output depending upon the exact version of MySQL that you are using:
 
 ```sql
 $> ndb_mgm

@@ -6,7 +6,7 @@ O MySQL Enterprise Thread Pool compreende esses elementos:
 
   Para uma descrição detalhada de como o pool de threads funciona, consulte Seção 5.5.3.3, “Operação do Pool de Threads”.
 
-  As tabelas `INFORMATION_SCHEMA` são chamadas de `TP_THREAD_STATE`, `TP_THREAD_GROUP_STATE` e `TP_THREAD_GROUP_STATS`. Essas tabelas fornecem informações sobre a operação do pool de threads. Para mais informações, consulte Seção 24.5, “Tabelas do Pool de Threads do INFORMATION\_SCHEMA”.
+  As tabelas `INFORMATION_SCHEMA` são chamadas de `TP_THREAD_STATE`, `TP_THREAD_GROUP_STATE` e `TP_THREAD_GROUP_STATS`. Essas tabelas fornecem informações sobre a operação do pool de threads. Para mais informações, consulte Seção 24.5, “Tabelas do Pool de Threads do INFORMATION_SCHEMA”.
 
 - Várias variáveis do sistema estão relacionadas ao pool de threads. A variável de sistema `thread_handling` tem o valor `loaded-dynamically` quando o servidor carrega com sucesso o plugin do pool de threads.
 
@@ -19,4 +19,4 @@ O MySQL Enterprise Thread Pool compreende esses elementos:
   WHERE NAME LIKE '%thread_pool%';
   ```
 
-  Para obter mais informações, consulte \[Capítulo 25, *MySQL Performance Schema*] (performance-schema.html).
+  Para obter mais informações, consulte [Capítulo 25, *MySQL Performance Schema*] (performance-schema.html).

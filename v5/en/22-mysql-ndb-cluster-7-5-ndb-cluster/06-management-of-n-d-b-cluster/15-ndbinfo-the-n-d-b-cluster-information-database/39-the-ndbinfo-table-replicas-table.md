@@ -1,4 +1,4 @@
-#### 21.6.15.39 The ndbinfo table\_replicas Table
+#### 21.6.15.39 The ndbinfo table_replicas Table
 
 The `table_replicas` table provides information about the copying, distribution, and checkpointing of `NDB` table fragments and fragment replicas.
 

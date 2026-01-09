@@ -30,7 +30,7 @@ ALTER USER USER() IDENTIFIED BY 'password';
 
 Para alterar a senha de uma conta a partir da linha de comando, use o comando **mysqladmin**:
 
-```sql
+```sh
 mysqladmin -u user_name -h host_name password "password"
 ```
 

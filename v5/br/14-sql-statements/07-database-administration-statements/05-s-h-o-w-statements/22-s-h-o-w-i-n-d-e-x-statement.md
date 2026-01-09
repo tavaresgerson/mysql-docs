@@ -112,6 +112,6 @@ A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais g
 
   Qualquer comentário fornecido para o índice com o atributo `COMMENT` quando o índice foi criado.
 
-Informações sobre índices de tabelas também estão disponíveis na tabela `INFORMATION_SCHEMA` `STATISTICS`. Veja Seção 24.3.24, “A Tabela STATISTICS do INFORMATION\_SCHEMA”.
+Informações sobre índices de tabelas também estão disponíveis na tabela `INFORMATION_SCHEMA` `STATISTICS`. Veja Seção 24.3.24, “A Tabela STATISTICS do INFORMATION_SCHEMA”.
 
-Você pode listar os índices de uma tabela com o comando **mysqlshow -k *`db_name`* *\`tbl\_name***.
+Você pode listar os índices de uma tabela com o comando **mysqlshow -k *`db_name`* *\`tbl_name***.

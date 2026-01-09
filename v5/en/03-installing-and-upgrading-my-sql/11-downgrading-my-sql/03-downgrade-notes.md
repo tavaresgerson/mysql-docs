@@ -79,11 +79,11 @@ Before downgrading from MySQL 5.7, review the information in this section. Some 
   DROP DATABASE sys;
   ```
 
-  If you are downgrading to a release that includes the `sys` schema, **mysql\_upgrade** recreates the `sys` schema in a compatible form. The `sys` schema is not included in MySQL 5.6.
+  If you are downgrading to a release that includes the `sys` schema, **mysql_upgrade** recreates the `sys` schema in a compatible form. The `sys` schema is not included in MySQL 5.6.
 
 #### InnoDB Changes
 
-* As of MySQL 5.7.5, the `FIL_PAGE_FLUSH_LSN` field, written to the first page of each `InnoDB` system tablespace file and to `InnoDB` undo tablespace files, is only written to the first file of the `InnoDB` system tablespace (page number 0:0). As a result, if you have a multiple-file system tablespace and decide to downgrade from MySQL 5.7 to MySQL 5.6, you may encounter an invalid message on MySQL 5.6 startup stating that the log sequence numbers *`x`* and *`y`* in ibdata files do not match the log sequence number *`y`* in the ib\_logfiles. If you encounter this message, restart MySQL 5.6. The invalid message should no longer appear.
+* As of MySQL 5.7.5, the `FIL_PAGE_FLUSH_LSN` field, written to the first page of each `InnoDB` system tablespace file and to `InnoDB` undo tablespace files, is only written to the first file of the `InnoDB` system tablespace (page number 0:0). As a result, if you have a multiple-file system tablespace and decide to downgrade from MySQL 5.7 to MySQL 5.6, you may encounter an invalid message on MySQL 5.6 startup stating that the log sequence numbers *`x`* and *`y`* in ibdata files do not match the log sequence number *`y`* in the ib_logfiles. If you encounter this message, restart MySQL 5.6. The invalid message should no longer appear.
 
 * To simplify `InnoDB` tablespace discovery during crash recovery, new redo log record types were introduced in MySQL 5.7.5. This enhancement changes the redo log format. Before performing an in-place downgrade from MySQL 5.7.5 or later, perform a clean shutdown using an `innodb_fast_shutdown` setting of `0` or `1`. A slow shutdown using `innodb_fast_shutdown=0` is a recommended step in In-Place Downgrade.
 
@@ -92,13 +92,13 @@ Before downgrading from MySQL 5.7, review the information in this section. Some 
 * MySQL 5.7.8 undo logs could contain insufficient information about virtual columns and virtual column indexes (Bug
   #21869656). Before performing an in-place downgrade from MySQL 5.7.9 or later to MySQL 5.7.8 or earlier, perform a slow shutdown using `innodb_fast_shutdown=0` to clear the undo logs. A slow shutdown using `innodb_fast_shutdown=0` is a recommended step in In-Place Downgrade.
 
-* As of MySQL 5.7.9, the redo log header of the first redo log file (`ib_logfile0`) includes a format version identifier and a text string that identifies the MySQL version that created the redo log files. This enhancement changes the redo log format. To prevent older versions of MySQL from starting on redo log files created in MySQL 5.7.9 or later, the checksum for redo log checkpoint pages was changed. As a result, you must perform a slow shutdown of MySQL (using innodb\_fast\_shutdown=0) and remove the redo log files (the `ib_logfile*` files) before performing an in-place downgrade. A slow shutdown using `innodb_fast_shutdown=0` and removing the redo log files are recommended steps in In-Place Downgrade.
+* As of MySQL 5.7.9, the redo log header of the first redo log file (`ib_logfile0`) includes a format version identifier and a text string that identifies the MySQL version that created the redo log files. This enhancement changes the redo log format. To prevent older versions of MySQL from starting on redo log files created in MySQL 5.7.9 or later, the checksum for redo log checkpoint pages was changed. As a result, you must perform a slow shutdown of MySQL (using innodb_fast_shutdown=0) and remove the redo log files (the `ib_logfile*` files) before performing an in-place downgrade. A slow shutdown using `innodb_fast_shutdown=0` and removing the redo log files are recommended steps in In-Place Downgrade.
 
 * A new compression version used by the `InnoDB` page compression feature was added in MySQL 5.7.32. The new compression version is not compatible with earlier MySQL releases. Creating a page compressed table in MySQL 5.7.32 or higher and accessing the table after downgrading to a release earlier than MySQL 5.7.32 causes a failure. As a workaround, uncompress such tables before downgrading. To uncompress a table, run `ALTER TABLE tbl_name COMPRESSION='None'` and `OPTIMIZE TABLE`. For information about the `InnoDB` page compression feature, see Section 14.9.2, “InnoDB Page Compression”.
 
 #### Logging Changes
 
-* Support for sending the server error log to `syslog` in MySQL 5.7.5 and up differs from older versions. If you use `syslog` and downgrade to a version older than 5.7.5, you must stop using the relevant **mysqld** system variables and use the corresponding **mysqld\_safe** command options instead. Suppose that you use `syslog` by setting these system variables in the `[mysqld]` group of an option file:
+* Support for sending the server error log to `syslog` in MySQL 5.7.5 and up differs from older versions. If you use `syslog` and downgrade to a version older than 5.7.5, you must stop using the relevant **mysqld** system variables and use the corresponding **mysqld_safe** command options instead. Suppose that you use `syslog` by setting these system variables in the `[mysqld]` group of an option file:
 
   ```sql
   [mysqld]
@@ -114,7 +114,7 @@ Before downgrading from MySQL 5.7, review the information in this section. Some 
   syslog-tag=mytag
   ```
 
-  `syslog`-related system variables that have no corresponding **mysqld\_safe** option cannot be used after a downgrade.
+  `syslog`-related system variables that have no corresponding **mysqld_safe** option cannot be used after a downgrade.
 
 #### SQL Changes
 

@@ -1,8 +1,8 @@
-### 14.16.6 InnoDB INFORMATION\_SCHEMA Metrics Table
+### 14.16.6 InnoDB INFORMATION_SCHEMA Metrics Table
 
 The `INNODB_METRICS` table provides information about `InnoDB` performance and resource-related counters.
 
-`INNODB_METRICS` table columns are shown below. For column descriptions, see Section 24.4.16, “The INFORMATION\_SCHEMA INNODB\_METRICS Table”.
+`INNODB_METRICS` table columns are shown below. For column descriptions, see Section 24.4.16, “The INFORMATION_SCHEMA INNODB_METRICS Table”.
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts" \G
@@ -376,7 +376,7 @@ Module names and corresponding `SUBSYSTEM` names are listed below.
 
 * `module_trx` (subsystem = `transaction`)
 
-**Example 14.11 Working with INNODB\_METRICS Table Counters**
+**Example 14.11 Working with INNODB_METRICS Table Counters**
 
 This example demonstrates enabling, disabling, and resetting a counter, and querying counter data in the `INNODB_METRICS` table.
 

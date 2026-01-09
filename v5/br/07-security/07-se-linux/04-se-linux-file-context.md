@@ -61,7 +61,7 @@ semanage fcontext -a -t mysqld_var_run_t "/path/to/my/custom/mysql\.sock"
 restorecon -Rv /path/to/my/custom/mysql.sock
 ```
 
-#### Definindo o contexto de diretório secure\_file\_priv
+#### Definindo o contexto de diretório secure_file_priv
 
 Para as versões do MySQL a partir de 5.6.34, 5.7.16 e 8.0.11.
 

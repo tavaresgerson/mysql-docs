@@ -16,7 +16,7 @@ As funções e operadores de castagem permitem a conversão de valores de um tip
 
 *  `BINARY` *`expr`*
 
-  O operador  `BINARY` converte a expressão para uma string binária (uma string que tem o conjunto de caracteres `binary` e a collation `binary`). Um uso comum para `BINARY` é forçar uma comparação de string a ser feita byte por byte usando valores de byte numéricos em vez de caracteres por caractere. O operador `BINARY` também faz com que os espaços finais nas comparações sejam significativos. Para informações sobre as diferenças entre a collation `binary` do conjunto de caracteres `binary` e as collation `_bin` dos conjuntos de caracteres não binários, consulte  Seção 12.8.5, “A collation binary Comparada às collation \_bin”.
+  O operador  `BINARY` converte a expressão para uma string binária (uma string que tem o conjunto de caracteres `binary` e a collation `binary`). Um uso comum para `BINARY` é forçar uma comparação de string a ser feita byte por byte usando valores de byte numéricos em vez de caracteres por caractere. O operador `BINARY` também faz com que os espaços finais nas comparações sejam significativos. Para informações sobre as diferenças entre a collation `binary` do conjunto de caracteres `binary` e as collation `_bin` dos conjuntos de caracteres não binários, consulte  Seção 12.8.5, “A collation binary Comparada às collation _bin”.
 
   O operador `BINARY` está desatualizado; você deve esperar sua remoção em uma versão futura do MySQL. Use `CAST(... AS BINARY)` em vez disso.
 

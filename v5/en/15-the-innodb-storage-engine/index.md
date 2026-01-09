@@ -114,21 +114,21 @@
 
 14.15 InnoDB Startup Options and System Variables
 
-14.16 InnoDB INFORMATION\_SCHEMA Tables :   14.16.1 InnoDB INFORMATION\_SCHEMA Tables about Compression
+14.16 InnoDB INFORMATION_SCHEMA Tables :   14.16.1 InnoDB INFORMATION_SCHEMA Tables about Compression
 
-    14.16.2 InnoDB INFORMATION\_SCHEMA Transaction and Locking Information
+    14.16.2 InnoDB INFORMATION_SCHEMA Transaction and Locking Information
 
-    14.16.3 InnoDB INFORMATION\_SCHEMA System Tables
+    14.16.3 InnoDB INFORMATION_SCHEMA System Tables
 
-    14.16.4 InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables
+    14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables
 
-    14.16.5 InnoDB INFORMATION\_SCHEMA Buffer Pool Tables
+    14.16.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables
 
-    14.16.6 InnoDB INFORMATION\_SCHEMA Metrics Table
+    14.16.6 InnoDB INFORMATION_SCHEMA Metrics Table
 
-    14.16.7 InnoDB INFORMATION\_SCHEMA Temporary Table Info Table
+    14.16.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table
 
-    14.16.8 Retrieving InnoDB Tablespace Metadata from INFORMATION\_SCHEMA.FILES
+    14.16.8 Retrieving InnoDB Tablespace Metadata from INFORMATION_SCHEMA.FILES
 
 14.17 InnoDB Integration with MySQL Performance Schema :   14.17.1 Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema
 

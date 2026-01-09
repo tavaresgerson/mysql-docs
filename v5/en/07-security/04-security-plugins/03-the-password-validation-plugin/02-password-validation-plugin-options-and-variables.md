@@ -12,7 +12,7 @@ To control activation of the `validate_password` plugin, use this option:
 
 * [`--validate-password[=value]`](validate-password-options-variables.html#option_mysqld_validate-password)
 
-  <table frame="box" rules="all" summary="Properties for validate-password"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for validate-password"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   This option controls how the server loads the `validate_password` plugin at startup. The value should be one of those available for plugin-loading options, as described in [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins"). For example, [`--validate-password=FORCE_PLUS_PERMANENT`](validate-password-options-variables.html#option_mysqld_validate-password) tells the server to load the plugin at startup and prevents it from being removed while the server is running.
 
@@ -41,7 +41,7 @@ To change how passwords are checked, you can set these system variables at serve
 
 * [`validate_password_check_user_name`](validate-password-options-variables.html#sysvar_validate_password_check_user_name)
 
-  <table frame="box" rules="all" summary="Properties for validate_password_check_user_name"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-check-user-name[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.15</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password_check_user_name">validate_password_check_user_name</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for validate_password_check_user_name"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-check-user-name[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.15</td> </tr><tr><th>System Variable</th> <td><code>validate_password_check_user_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Whether `validate_password` compares passwords to the user name part of the effective user account for the current session and rejects them if they match. This variable is unavailable unless `validate_password` is installed.
 
@@ -63,7 +63,7 @@ To change how passwords are checked, you can set these system variables at serve
 
 * [`validate_password_dictionary_file`](validate-password-options-variables.html#sysvar_validate_password_dictionary_file)
 
-  <table frame="box" rules="all" summary="Properties for validate_password_dictionary_file"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-dictionary-file=file_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password_dictionary_file">validate_password_dictionary_file</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for validate_password_dictionary_file"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-dictionary-file=file_name</code></td> </tr><tr><th>System Variable</th> <td><code>validate_password_dictionary_file</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>File name</td> </tr></tbody></table>
 
   The path name of the dictionary file that `validate_password` uses for checking passwords. This variable is unavailable unless `validate_password` is installed.
 
@@ -77,7 +77,7 @@ To change how passwords are checked, you can set these system variables at serve
 
 * [`validate_password_length`](validate-password-options-variables.html#sysvar_validate_password_length)
 
-  <table frame="box" rules="all" summary="Properties for validate_password_length"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-length=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password_length">validate_password_length</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>8</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for validate_password_length"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-length=#</code></td> </tr><tr><th>System Variable</th> <td><code>validate_password_length</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>8</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   The minimum number of characters that `validate_password` requires passwords to have. This variable is unavailable unless `validate_password` is installed.
 
@@ -93,7 +93,7 @@ To change how passwords are checked, you can set these system variables at serve
 
 * [`validate_password_mixed_case_count`](validate-password-options-variables.html#sysvar_validate_password_mixed_case_count)
 
-  <table frame="box" rules="all" summary="Properties for validate_password_mixed_case_count"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-mixed-case-count=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password_mixed_case_count">validate_password_mixed_case_count</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for validate_password_mixed_case_count"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-mixed-case-count=#</code></td> </tr><tr><th>System Variable</th> <td><code>validate_password_mixed_case_count</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   The minimum number of lowercase and uppercase characters that `validate_password` requires passwords to have if the password policy is `MEDIUM` or stronger. This variable is unavailable unless `validate_password` is installed.
 
@@ -101,13 +101,13 @@ To change how passwords are checked, you can set these system variables at serve
 
 * [`validate_password_number_count`](validate-password-options-variables.html#sysvar_validate_password_number_count)
 
-  <table frame="box" rules="all" summary="Properties for validate_password_number_count"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-number-count=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password_number_count">validate_password_number_count</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for validate_password_number_count"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-number-count=#</code></td> </tr><tr><th>System Variable</th> <td><code>validate_password_number_count</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   The minimum number of numeric (digit) characters that `validate_password` requires passwords to have if the password policy is `MEDIUM` or stronger. This variable is unavailable unless `validate_password` is installed.
 
 * [`validate_password_policy`](validate-password-options-variables.html#sysvar_validate_password_policy)
 
-  <table frame="box" rules="all" summary="Properties for validate_password_policy"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-policy=value</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password_policy">validate_password_policy</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for validate_password_policy"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-policy=value</code></td> </tr><tr><th>System Variable</th> <td><code>validate_password_policy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Valid Values</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   The password policy enforced by `validate_password`. This variable is unavailable unless `validate_password` is installed.
 
@@ -119,7 +119,7 @@ To change how passwords are checked, you can set these system variables at serve
 
 * [`validate_password_special_char_count`](validate-password-options-variables.html#sysvar_validate_password_special_char_count)
 
-  <table frame="box" rules="all" summary="Properties for validate_password_special_char_count"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-special-char-count=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password_special_char_count">validate_password_special_char_count</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for validate_password_special_char_count"><tbody><tr><th>Command-Line Format</th> <td><code>--validate-password-special-char-count=#</code></td> </tr><tr><th>System Variable</th> <td><code>validate_password_special_char_count</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr></tbody></table>
 
   The minimum number of nonalphanumeric characters that `validate_password` requires passwords to have if the password policy is `MEDIUM` or stronger. This variable is unavailable unless `validate_password` is installed.
 

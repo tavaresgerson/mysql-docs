@@ -51,7 +51,7 @@ mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGT
 7 rows in set (0.00 sec)
 ```
 
-(For more information about this table, see [Section 24.3.16, “The INFORMATION\_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").) Now let us populate each of these tables with a single row containing a `NULL` in the column used as the partitioning key, and verify that the rows were inserted using a pair of [`SELECT`](select.html "13.2.9 SELECT Statement") statements:
+(For more information about this table, see [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").) Now let us populate each of these tables with a single row containing a `NULL` in the column used as the partitioning key, and verify that the rows were inserted using a pair of [`SELECT`](select.html "13.2.9 SELECT Statement") statements:
 
 ```sql
 mysql> INSERT INTO t1 VALUES (NULL, 'mothra');

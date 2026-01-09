@@ -1,4 +1,4 @@
-#### 30.4.3.38 The statements\_with\_runtimes\_in\_95th\_percentile and x$statements\_with\_runtimes\_in\_95th\_percentile Views
+#### 30.4.3.38 The statements_with_runtimes_in_95th_percentile and x$statements_with_runtimes_in_95th_percentile Views
 
 These views list statements with runtimes in the 95th percentile. By default, rows are sorted by descending average latency.
 

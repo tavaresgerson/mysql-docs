@@ -4,7 +4,7 @@ Certain functions do not replicate well under some conditions:
 
 * The `USER()`, `CURRENT_USER()` (or `CURRENT_USER`), `UUID()`, `VERSION()`, and `LOAD_FILE()` functions are replicated without change and thus do not work reliably on the replica unless row-based replication is enabled. (See Section 19.2.1, “Replication Formats”.)
 
-  `USER()` and `CURRENT_USER()` are automatically replicated using row-based replication when using `MIXED` mode, and generate a warning in `STATEMENT` mode. (See also Section 19.5.1.8, “Replication of CURRENT\_USER()”").) This is also true for `VERSION()` and `RAND()`.
+  `USER()` and `CURRENT_USER()` are automatically replicated using row-based replication when using `MIXED` mode, and generate a warning in `STATEMENT` mode. (See also Section 19.5.1.8, “Replication of CURRENT_USER()”").) This is also true for `VERSION()` and `RAND()`.
 
 * For `NOW()`, the binary log includes the timestamp. This means that the value *as returned by the call to this function on the source* is replicated to the replica. To avoid unexpected results when replicating between MySQL servers in different time zones, set the time zone on both source and replica. For more information, see Section 19.5.1.34, “Replication and Time Zones”.
 

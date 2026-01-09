@@ -2,7 +2,7 @@
 
 A porta TCP padrão para **mysqld** é `3306`; e o tipo de contexto SELinux usado é `mysqld_port_t`.
 
-Se você configurar o **mysqld** para usar uma porta TCP diferente (`[**port**]` - server-system-variables.html#sysvar\_port), você pode precisar definir o contexto para a nova porta. Por exemplo, para definir o contexto SELinux para uma porta não padrão, como a porta 3307:
+Se você configurar o **mysqld** para usar uma porta TCP diferente (`[**port**]` - server-system-variables.html#sysvar_port), você pode precisar definir o contexto para a nova porta. Por exemplo, para definir o contexto SELinux para uma porta não padrão, como a porta 3307:
 
 ```sql
 semanage port -a -t mysqld_port_t -p tcp 3307

@@ -1,4 +1,4 @@
-#### 25.12.2.5 The setup\_timers Table
+#### 25.12.2.5 The setup_timers Table
 
 The [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table shows the currently selected event timers:
 

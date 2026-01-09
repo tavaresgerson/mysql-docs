@@ -1,4 +1,4 @@
-#### 25.12.11.1 The replication\_connection\_configuration Table
+#### 25.12.11.1 The replication_connection_configuration Table
 
 This table shows the configuration parameters used by the replica for connecting to the source. Parameters stored in the table can be changed at runtime with the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement, as indicated in the column descriptions.
 

@@ -1,4 +1,4 @@
-#### 30.4.4.13 The ps\_setup\_reset\_to\_default() Procedure
+#### 30.4.4.13 The ps_setup_reset_to_default() Procedure
 
 Resets the Performance Schema configuration to its default settings.
 

@@ -1,4 +1,4 @@
-#### 29.12.14.1 Performance Schema global\_variable\_attributes Table
+#### 29.12.14.1 Performance Schema global_variable_attributes Table
 
 The `global_variable_attributes` table provides information about attributes and their values that have been set by the server for global variables such as `offline_mode` or `read_only`.
 

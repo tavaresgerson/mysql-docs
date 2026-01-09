@@ -18,7 +18,7 @@ The error log contains a record of [**mysqld**](mysqld.html "4.3.1 mysqld — T
 
 On some operating systems, the error log contains a stack trace if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") exits abnormally. The trace can be used to determine where [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") exited. See [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
 
-If used to start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") may write messages to the error log. For example, when [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") notices abnormal [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") exits, it restarts [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") and writes a `mysqld restarted` message to the error log.
+If used to start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") may write messages to the error log. For example, when [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") notices abnormal [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") exits, it restarts [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") and writes a `mysqld restarted` message to the error log.
 
 The following sections discuss aspects of configuring error logging. In the discussion, “console” means `stderr`, the standard error output. This is your terminal or console window unless the standard error output has been redirected to a different destination.
 

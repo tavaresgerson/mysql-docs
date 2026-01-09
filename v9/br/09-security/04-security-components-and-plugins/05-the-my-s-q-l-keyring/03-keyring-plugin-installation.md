@@ -43,8 +43,8 @@ Observação
 
 Antes de iniciar o servidor, verifique as notas do seu plugin keyring escolhido para obter instruções de configuração específicas para esse plugin:
 
-* `keyring_okv`: Seção 8.4.5.6, “Usando o plugin keyring\_okv KMIP”.
-* `keyring_aws`: Seção 8.4.5.8, “Usando o plugin keyring\_aws Amazon Web Services Keyring”
+* `keyring_okv`: Seção 8.4.5.6, “Usando o plugin keyring_okv KMIP”.
+* `keyring_aws`: Seção 8.4.5.8, “Usando o plugin keyring_aws Amazon Web Services Keyring”
 
 * `keyring_hashicorp`: Seção 8.4.5.10, “Usando o Plugin de Cadê-Chefe da HashiCorp Vault”
 

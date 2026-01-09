@@ -10,13 +10,13 @@ Once the NDB Cluster executables and needed configuration files are in place, pe
    2010-06-23 07:53:34 [MgmtSrvr] INFO -- Reading cluster configuration from 'config.ini'
    ```
 
-   The management node process continues to print logging output to the console. This is normal, because the management node is not running as a Windows service. (If you have used NDB Cluster on a Unix-like platform such as Linux, you may notice that the management node's default behavior in this regard on Windows is effectively the opposite of its behavior on Unix systems, where it runs by default as a Unix daemon process. This behavior is also true of NDB Cluster data node processes running on Windows.) For this reason, do not close the window in which **ndb\_mgmd.exe** is running; doing so kills the management node process. (See Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”, where we show how to install and run NDB Cluster processes as Windows services.)
+   The management node process continues to print logging output to the console. This is normal, because the management node is not running as a Windows service. (If you have used NDB Cluster on a Unix-like platform such as Linux, you may notice that the management node's default behavior in this regard on Windows is effectively the opposite of its behavior on Unix systems, where it runs by default as a Unix daemon process. This behavior is also true of NDB Cluster data node processes running on Windows.) For this reason, do not close the window in which **ndb_mgmd.exe** is running; doing so kills the management node process. (See Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”, where we show how to install and run NDB Cluster processes as Windows services.)
 
    The required `-f` option tells the management node where to find the global configuration file (`config.ini`). The long form of this option is `--config-file`.
 
    Important
 
-   An NDB Cluster management node caches the configuration data that it reads from `config.ini`; once it has created a configuration cache, it ignores the `config.ini` file on subsequent starts unless forced to do otherwise. This means that, if the management node fails to start due to an error in this file, you must make the management node re-read `config.ini` after you have corrected any errors in it. You can do this by starting **ndb\_mgmd.exe** with the `--reload` or `--initial` option on the command line. Either of these options works to refresh the configuration cache.
+   An NDB Cluster management node caches the configuration data that it reads from `config.ini`; once it has created a configuration cache, it ignores the `config.ini` file on subsequent starts unless forced to do otherwise. This means that, if the management node fails to start due to an error in this file, you must make the management node re-read `config.ini` after you have corrected any errors in it. You can do this by starting **ndb_mgmd.exe** with the `--reload` or `--initial` option on the command line. Either of these options works to refresh the configuration cache.
 
    It is not necessary or advisable to use either of these options in the management node's `my.ini` file.
 
@@ -29,7 +29,7 @@ Once the NDB Cluster executables and needed configuration files are in place, pe
 
    In each case, the first line of output from the data node process should resemble what is shown in the preceding example, and is followed by additional lines of logging output. As with the management node process, this is normal, because the data node is not running as a Windows service. For this reason, do not close the console window in which the data node process is running; doing so kills **ndbd.exe**. (For more information, see Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”.)
 
-3. Do not start the SQL node yet; it cannot connect to the cluster until the data nodes have finished starting, which may take some time. Instead, in a new console window on the management node host, start the NDB Cluster management client **ndb\_mgm.exe**, which should be in `C:\mysql\bin` on the management node host. (Do not try to re-use the console window where **ndb\_mgmd.exe** is running by typing **CTRL**+**C**, as this kills the management node.) The resulting output should look like this:
+3. Do not start the SQL node yet; it cannot connect to the cluster until the data nodes have finished starting, which may take some time. Instead, in a new console window on the management node host, start the NDB Cluster management client **ndb_mgm.exe**, which should be in `C:\mysql\bin` on the management node host. (Do not try to re-use the console window where **ndb_mgmd.exe** is running by typing **CTRL**+**C**, as this kills the management node.) The resulting output should look like this:
 
    ```
    C:\mysql\bin> ndb_mgm
@@ -56,11 +56,11 @@ Once the NDB Cluster executables and needed configuration files are in place, pe
 
    Note
 
-   Commands issued in the management client are not case-sensitive; we use uppercase as the canonical form of these commands, but you are not required to observe this convention when inputting them into the **ndb\_mgm** client. For more information, see Section 25.6.1, “Commands in the NDB Cluster Management Client”.
+   Commands issued in the management client are not case-sensitive; we use uppercase as the canonical form of these commands, but you are not required to observe this convention when inputting them into the **ndb_mgm** client. For more information, see Section 25.6.1, “Commands in the NDB Cluster Management Client”.
 
    The output produced by `ALL STATUS` is likely to vary from what is shown here, according to the speed at which the data nodes are able to start, the release version number of the NDB Cluster software you are using, and other factors. What is significant is that, when you see that both data nodes have started, you are ready to start the SQL node.
 
-   You can leave **ndb\_mgm.exe** running; it has no negative impact on the performance of the NDB Cluster, and we use it in the next step to verify that the SQL node is connected to the cluster after you have started it.
+   You can leave **ndb_mgm.exe** running; it has no negative impact on the performance of the NDB Cluster, and we use it in the next step to verify that the SQL node is connected to the cluster after you have started it.
 
 4. On the computer designated as the SQL node host, open a console window and navigate to the directory where you unpacked the NDB Cluster binaries (if you are following our example, this is `C:\mysql\bin`).
 
@@ -72,7 +72,7 @@ Once the NDB Cluster executables and needed configuration files are in place, pe
 
    The `--console` option causes logging information to be written to the console, which can be helpful in the event of problems. (Once you are satisfied that the SQL node is running in a satisfactory manner, you can stop it and restart it out without the `--console` option, so that logging is performed normally.)
 
-   In the console window where the management client (**ndb\_mgm.exe**) is running on the management node host, enter the `SHOW` command, which should produce output similar to what is shown here:
+   In the console window where the management client (**ndb_mgm.exe**) is running on the management node host, enter the `SHOW` command, which should produce output similar to what is shown here:
 
    ```
    ndb_mgm> SHOW
@@ -94,4 +94,4 @@ Once the NDB Cluster executables and needed configuration files are in place, pe
 
 You should now be ready to work with database objects and data using NDB Cluster 's `NDBCLUSTER` storage engine. See Section 25.3.5, “NDB Cluster Example with Tables and Data”, for more information and examples.
 
-You can also install **ndb\_mgmd.exe**, **ndbd.exe**, and **ndbmtd.exe**") as Windows services. For information on how to do this, see Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”).
+You can also install **ndb_mgmd.exe**, **ndbd.exe**, and **ndbmtd.exe**") as Windows services. For information on how to do this, see Section 25.3.2.4, “Installing NDB Cluster Processes as Windows Services”).

@@ -124,7 +124,7 @@ As seguintes opções estão disponíveis para monitoramento do buffer de altera
   +---------------------+-------------+-------------------------------+
   ```
 
-  Para obter informações sobre outros dados fornecidos pela tabela `INNODB_BUFFER_PAGE`, consulte a Seção 24.4.2, “A Tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE”. Para informações sobre o uso relacionado, consulte a Seção 14.16.5, “Tabelas de Banco de Armazenamento de Buffer do INFORMATION\_SCHEMA InnoDB”.
+  Para obter informações sobre outros dados fornecidos pela tabela `INNODB_BUFFER_PAGE`, consulte a Seção 24.4.2, “A Tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE”. Para informações sobre o uso relacionado, consulte a Seção 14.16.5, “Tabelas de Banco de Armazenamento de Buffer do INFORMATION_SCHEMA InnoDB”.
 
 - O Schema de Desempenho fornece instrumentação de espera por mutex de buffer de alterações para monitoramento avançado de desempenho. Para visualizar a instrumentação do buffer de alterações, execute a seguinte consulta:
 

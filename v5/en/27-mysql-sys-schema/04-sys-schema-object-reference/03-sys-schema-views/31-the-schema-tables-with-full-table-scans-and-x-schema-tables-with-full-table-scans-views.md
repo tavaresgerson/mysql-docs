@@ -1,4 +1,4 @@
-#### 26.4.3.31 The schema\_tables\_with\_full\_table\_scans and x$schema\_tables\_with\_full\_table\_scans Views
+#### 26.4.3.31 The schema_tables_with_full_table_scans and x$schema_tables_with_full_table_scans Views
 
 These views display which tables are being accessed with full table scans. By default, rows are sorted by descending rows scanned.
 

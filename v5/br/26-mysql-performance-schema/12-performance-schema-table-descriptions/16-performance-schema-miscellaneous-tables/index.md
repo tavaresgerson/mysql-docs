@@ -1,8 +1,8 @@
 ### 25.12.16 Tabelas Diversas do Schema de Desempenho
 
-25.12.16.1 A tabela host\_cache
+25.12.16.1 A tabela host_cache
 
-25.12.16.2 Tabela performance\_timers
+25.12.16.2 Tabela performance_timers
 
 25.12.16.3 Tabela processlist
 

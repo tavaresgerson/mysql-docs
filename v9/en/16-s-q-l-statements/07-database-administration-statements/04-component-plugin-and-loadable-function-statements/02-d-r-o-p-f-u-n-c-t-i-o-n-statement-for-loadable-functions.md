@@ -8,7 +8,7 @@ This statement drops the loadable function named *`function_name`*. (`DROP FUNCT
 
 `DROP FUNCTION` is the complement of `CREATE FUNCTION`. It requires the `DELETE` privilege for the `mysql` system schema because it removes the row from the `mysql.func` system table that registers the function.
 
-`DROP FUNCTION` also removes the function from the Performance Schema `user_defined_functions` table that provides runtime information about installed loadable functions. See Section 29.12.22.12, “The user\_defined\_functions Table”.
+`DROP FUNCTION` also removes the function from the Performance Schema `user_defined_functions` table that provides runtime information about installed loadable functions. See Section 29.12.22.12, “The user_defined_functions Table”.
 
 During the normal startup sequence, the server loads functions registered in the `mysql.func` table. Because `DROP FUNCTION` removes the `mysql.func` row for the dropped function, the server does not load the function during subsequent restarts.
 

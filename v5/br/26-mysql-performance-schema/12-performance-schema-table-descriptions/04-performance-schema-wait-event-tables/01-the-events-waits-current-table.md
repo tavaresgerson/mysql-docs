@@ -1,4 +1,4 @@
-#### 25.12.4.1 A tabela events\_waits\_current
+#### 25.12.4.1 A tabela events_waits_current
 
 A tabela `events_waits_current` contém eventos de espera atuais. A tabela armazena uma linha por thread, mostrando o status atual do evento de espera mais recente monitorado da thread, portanto, não há uma variável do sistema para configurar o tamanho da tabela.
 

@@ -1,4 +1,4 @@
-### 24.3.13 A tabela INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map
+### 24.3.13 A tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map
 
 A tabela `ndb_transid_mysql_connection_map` fornece uma associação entre as transações `NDB`, os coordenadores de transações `NDB` e os servidores MySQL ligados a um NDB Cluster como nós da API. Essas informações são usadas ao preencher as tabelas `server_operations` e `server_transactions` do banco de dados de informações do NDB Cluster `ndbinfo`.
 

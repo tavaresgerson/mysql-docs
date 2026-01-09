@@ -1,6 +1,6 @@
-### 25.5.16 ndb\_perror — Obter informações da mensagem de erro do NDB
+### 25.5.16 ndb_perror — Obter informações da mensagem de erro do NDB
 
-O **ndb\_perror** exibe informações sobre um erro do NDB, dado seu código de erro. Isso inclui a mensagem de erro, o tipo de erro e se o erro é permanente ou temporário. Isso é destinado como um substituto direto para **perror** `--ndb`, que não é mais suportado.
+O **ndb_perror** exibe informações sobre um erro do NDB, dado seu código de erro. Isso inclui a mensagem de erro, o tipo de erro e se o erro é permanente ou temporário. Isso é destinado como um substituto direto para **perror** `--ndb`, que não é mais suportado.
 
 #### Uso
 
@@ -8,21 +8,21 @@ O **ndb\_perror** exibe informações sobre um erro do NDB, dado seu código de 
 ndb_perror [options] error_code
 ```
 
-O **ndb\_perror** não precisa acessar um NDB Cluster em execução, ou quaisquer nós (incluindo nós SQL). Para visualizar informações sobre um erro específico do NDB, inicie o programa, usando o código de erro como argumento, assim:
+O **ndb_perror** não precisa acessar um NDB Cluster em execução, ou quaisquer nós (incluindo nós SQL). Para visualizar informações sobre um erro específico do NDB, inicie o programa, usando o código de erro como argumento, assim:
 
 ```
 $> ndb_perror 323
 NDB error code 323: Invalid nodegroup id, nodegroup already existing: Permanent error: Application error
 ```
 
-Para exibir apenas a mensagem de erro, inicie o **ndb\_perror** com a opção `--silent` (forma abreviada `-s`), como mostrado aqui:
+Para exibir apenas a mensagem de erro, inicie o **ndb_perror** com a opção `--silent` (forma abreviada `-s`), como mostrado aqui:
 
 ```
 $> ndb_perror -s 323
 Invalid nodegroup id, nodegroup already existing: Permanent error: Application error
 ```
 
-Como o **perror**, o **ndb\_perror** aceita múltiplos códigos de erro:
+Como o **perror**, o **ndb_perror** aceita múltiplos códigos de erro:
 
 ```
 $> ndb_perror 321 1001
@@ -30,11 +30,11 @@ NDB error code 321: Invalid nodegroup id: Permanent error: Application error
 NDB error code 1001: Illegal connect string
 ```
 
-Outras opções de programa para o **ndb\_perror** são descritas mais adiante nesta seção.
+Outras opções de programa para o **ndb_perror** são descritas mais adiante nesta seção.
 
-O **ndb\_perror** substitui **perror** `--ndb`, que não é mais suportado pelo NDB Cluster. Para facilitar a substituição em scripts e outras aplicações que possam depender do **perror** para obter informações de erro do NDB, o **ndb\_perror** suporta sua própria opção "falsa" `--ndb`, que não faz nada.
+O **ndb_perror** substitui **perror** `--ndb`, que não é mais suportado pelo NDB Cluster. Para facilitar a substituição em scripts e outras aplicações que possam depender do **perror** para obter informações de erro do NDB, o **ndb_perror** suporta sua própria opção "falsa" `--ndb`, que não faz nada.
 
-A tabela a seguir inclui todas as opções específicas do programa do NDB Cluster **ndb\_perror**. Descrições adicionais seguem a tabela.
+A tabela a seguir inclui todas as opções específicas do programa do NDB Cluster **ndb_perror**. Descrições adicionais seguem a tabela.
 
 #### Opções Adicionais
 
@@ -82,7 +82,7 @@ Leia o arquivo fornecido após a leitura dos arquivos globais.
     <tr><th>Formato de linha de comando</th> <td><code>--ndb</code></td> </tr>
   </table>
 
-  Para compatibilidade com aplicativos que dependem de versões antigas do **perror** que usam a opção `--ndb` desse programa. A opção, quando usada com **ndb\_perror**, não faz nada e é ignorada por ele.
+  Para compatibilidade com aplicativos que dependem de versões antigas do **perror** que usam a opção `--ndb` desse programa. A opção, quando usada com **ndb_perror**, não faz nada e é ignorada por ele.
 
 * `--no-defaults`
 

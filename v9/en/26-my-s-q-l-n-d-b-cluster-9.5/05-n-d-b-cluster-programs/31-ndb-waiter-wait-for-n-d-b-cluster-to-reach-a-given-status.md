@@ -1,6 +1,6 @@
-### 25.5.31 ndb\_waiter — Wait for NDB Cluster to Reach a Given Status
+### 25.5.31 ndb_waiter — Wait for NDB Cluster to Reach a Given Status
 
-**ndb\_waiter** repeatedly (each 100 milliseconds) prints out the status of all cluster data nodes until either the cluster reaches a given status or the `--timeout` limit is exceeded, then exits. By default, it waits for the cluster to achieve `STARTED` status, in which all nodes have started and connected to the cluster. This can be overridden using the `--no-contact` and `--not-started` options.
+**ndb_waiter** repeatedly (each 100 milliseconds) prints out the status of all cluster data nodes until either the cluster reaches a given status or the `--timeout` limit is exceeded, then exits. By default, it waits for the cluster to achieve `STARTED` status, in which all nodes have started and connected to the cluster. This can be overridden using the `--no-contact` and `--not-started` options.
 
 The node states reported by this utility are as follows:
 
@@ -16,7 +16,7 @@ The node states reported by this utility are as follows:
 * `SHUTTING_DOWN`: The node is shutting down.
 * `SINGLE USER MODE`: This is shown for all cluster data nodes when the cluster is in single user mode.
 
-Options that can be used with **ndb\_waiter** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_waiter** are shown in the following table. Additional descriptions follow the table.
 
 #### Usage
 
@@ -96,7 +96,7 @@ ndb_waiter [-c connection_string]
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -134,7 +134,7 @@ ndb_waiter [-c connection_string]
 
 * `--no-contact`, `-n`
 
-  Instead of waiting for the `STARTED` state, **ndb\_waiter** continues running until the cluster reaches `NO_CONTACT` status before exiting.
+  Instead of waiting for the `STARTED` state, **ndb_waiter** continues running until the cluster reaches `NO_CONTACT` status before exiting.
 
 * `--no-defaults`
 
@@ -144,11 +144,11 @@ ndb_waiter [-c connection_string]
 
 * `--not-started`
 
-  Instead of waiting for the `STARTED` state, **ndb\_waiter** continues running until the cluster reaches `NOT_STARTED` status before exiting.
+  Instead of waiting for the `STARTED` state, **ndb_waiter** continues running until the cluster reaches `NOT_STARTED` status before exiting.
 
 * `--nowait-nodes=list`
 
-  When this option is used, **ndb\_waiter** does not wait for the nodes whose IDs are listed. The list is comma-delimited; ranges can be indicated by dashes, as shown here:
+  When this option is used, **ndb_waiter** does not wait for the nodes whose IDs are listed. The list is comma-delimited; ranges can be indicated by dashes, as shown here:
 
   ```
   $> ndb_waiter --nowait-nodes=1,3,7-9
@@ -192,7 +192,7 @@ ndb_waiter [-c connection_string]
 
     This is the same behavior as in versions of NDB Cluster previous to 8.4.
 
-  Exit codes returned by **ndb\_waiter** are listed here, with their meanings:
+  Exit codes returned by **ndb_waiter** are listed here, with their meanings:
 
   + `0`: Success.
   + `1`: Wait timed out.
@@ -208,7 +208,7 @@ ndb_waiter [-c connection_string]
 
 * `--wait-nodes=list`, `-w list`
 
-  When this option is used, **ndb\_waiter** waits only for the nodes whose IDs are listed. The list is comma-delimited; ranges can be indicated by dashes, as shown here:
+  When this option is used, **ndb_waiter** waits only for the nodes whose IDs are listed. The list is comma-delimited; ranges can be indicated by dashes, as shown here:
 
   ```
   $> ndb_waiter --wait-nodes=2,4-6,10
@@ -218,7 +218,7 @@ ndb_waiter [-c connection_string]
 
   Do *not* use this option together with the `--nowait-nodes` option.
 
-**Sample Output.** Shown here is the output from **ndb\_waiter** when run against a 4-node cluster in which two nodes have been shut down and then started again manually. Duplicate reports (indicated by `...`) are omitted.
+**Sample Output.** Shown here is the output from **ndb_waiter** when run against a 4-node cluster in which two nodes have been shut down and then started again manually. Duplicate reports (indicated by `...`) are omitted.
 
 ```
 $> ./ndb_waiter -c localhost
@@ -281,4 +281,4 @@ Waiting for cluster enter state STARTED
 
 Note
 
-If no connection string is specified, then **ndb\_waiter** tries to connect to a management on `localhost`, and reports `Connecting to mgmsrv at (null)`.
+If no connection string is specified, then **ndb_waiter** tries to connect to a management on `localhost`, and reports `Connecting to mgmsrv at (null)`.

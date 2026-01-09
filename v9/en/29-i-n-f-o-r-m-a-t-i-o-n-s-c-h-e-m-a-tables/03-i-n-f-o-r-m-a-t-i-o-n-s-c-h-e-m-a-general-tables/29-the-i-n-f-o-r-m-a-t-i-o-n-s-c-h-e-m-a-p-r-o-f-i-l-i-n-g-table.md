@@ -1,4 +1,4 @@
-### 28.3.29 The INFORMATION\_SCHEMA PROFILING Table
+### 28.3.29 The INFORMATION_SCHEMA PROFILING Table
 
 The `PROFILING` table provides statement profiling information. Its contents correspond to the information produced by the `SHOW PROFILE` and `SHOW PROFILES` statements (see Section 15.7.7.33, “SHOW PROFILE Statement”). The table is empty unless the `profiling` session variable is set to 1.
 

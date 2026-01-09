@@ -1,4 +1,4 @@
-#### 30.4.3.2 As visualizações host\_summary\_by\_file\_io e x$host\_summary\_by\_file\_io
+#### 30.4.3.2 As visualizações host_summary_by_file_io e x$host_summary_by_file_io
 
 Essas visualizações resumem o I/O de arquivos, agrupados por host. Por padrão, as linhas são ordenadas em ordem decrescente de latência total de I/O de arquivos.
 

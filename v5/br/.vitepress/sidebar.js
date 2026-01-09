@@ -4,22 +4,6 @@ export default [
 		link: '/01-preface-and-legal-notices.md',
 	},
 	{
-		text: 'Capítulo 18 MySQL Shell',
-		link: '/19-mysql-shell.md',
-	},
-	{
-		text: 'Capítulo 20: Cluster InnoDB',
-		link: '/21-innodb-cluster.md',
-	},
-	{
-		text: 'Capítulo 29 MySQL Workbench',
-		link: '/30-mysql-workbench.md',
-	},
-	{
-		text: 'Glossário do MySQL',
-		link: '/34-mysql-glossary.md',
-	},
-	{
 		text: 'Capítulo 1 Informações Gerais',
 		collapsed: true,
 		items: [
@@ -812,7 +796,7 @@ export default [
 						link: '/05-mysql-programs/04-installation-related-programs/03-mysql-plugin-configure-my-s-q-l-server-plugins.md',
 					},
 					{
-						text: '4.4.4 mysql\_secure\_installation — Melhorar a segurança da instalação do MySQL',
+						text: '4.4.4 mysql_secure_installation — Melhorar a segurança da instalação do MySQL',
 						link: '/05-mysql-programs/04-installation-related-programs/04-mysql-secure-installation-improve-my-s-q-l-installation-security.md',
 					},
 					{
@@ -905,7 +889,7 @@ export default [
 						link: '/05-mysql-programs/06-administrative-and-utility-programs/01-innochecksum-offline-inno-d-b-file-checksum-utility.md',
 					},
 					{
-						text: '4.6.2 myisam\_ftdump — Exibir informações do índice de texto completo',
+						text: '4.6.2 myisam_ftdump — Exibir informações do índice de texto completo',
 						link: '/05-mysql-programs/06-administrative-and-utility-programs/02-myisam-ftdump-display-full-text-index-information.md',
 					},
 					{
@@ -917,7 +901,7 @@ export default [
 						link: '/05-mysql-programs/06-administrative-and-utility-programs/05-myisampack-generate-compressed-read-only-my-i-s-a-m-tables.md',
 					},
 					{
-						text: '4.6.6 mysql\_config\_editor — Ferramenta de configuração do MySQL',
+						text: '4.6.6 mysql_config_editor — Ferramenta de configuração do MySQL',
 						link: '/05-mysql-programs/06-administrative-and-utility-programs/06-mysql-config-editor-my-s-q-l-configuration-utility.md',
 					},
 					{
@@ -986,15 +970,15 @@ export default [
 				collapsed: true,
 				items: [
 					{
-						text: '4.7.1 mysql\_config — Exibir opções para a compilação de clientes',
+						text: '4.7.1 mysql_config — Exibir opções para a compilação de clientes',
 						link: '/05-mysql-programs/07-program-development-utilities/01-mysql-config-display-options-for-compiling-clients.md',
 					},
 					{
-						text: '4.7.2 my\_print\_defaults — Opções de exibição a partir de arquivos de opção',
+						text: '4.7.2 my_print_defaults — Opções de exibição a partir de arquivos de opção',
 						link: '/05-mysql-programs/07-program-development-utilities/02-my-print-defaults-display-options-from-option-files.md',
 					},
 					{
-						text: '4.7.3 resolve\_stack\_dump — Resolver o dump da pilha numérica para símbolos',
+						text: '4.7.3 resolve_stack_dump — Resolver o dump da pilha numérica para símbolos',
 						link: '/05-mysql-programs/07-program-development-utilities/03-resolve-stack-dump-resolve-numeric-stack-trace-dump-to-symbols.md',
 					},
 				],
@@ -1005,7 +989,7 @@ export default [
 				collapsed: true,
 				items: [
 					{
-						text: '4.8.1 lz4\_decompress — Descompactar saída comprimida do mysqlpump com LZ4',
+						text: '4.8.1 lz4_decompress — Descompactar saída comprimida do mysqlpump com LZ4',
 						link: '/05-mysql-programs/08-miscellaneous-programs/01-lz4-decompress-decompress-mysqlpump-l-z-4-compressed-output.md',
 					},
 					{
@@ -1021,7 +1005,7 @@ export default [
 						link: '/05-mysql-programs/08-miscellaneous-programs/04-resolveip-resolve-host-name-to-i-p-address-or-vice-versa.md',
 					},
 					{
-						text: '4.8.5 zlib\_decompress — Descompactar o resultado comprimido do mysqlpump com o formato ZLIB',
+						text: '4.8.5 zlib_decompress — Descompactar o resultado comprimido do mysqlpump com o formato ZLIB',
 						link: '/05-mysql-programs/08-miscellaneous-programs/05-zlib-decompress-decompress-mysqlpump-zlib-compressed-output.md',
 					},
 				],
@@ -1647,7 +1631,7 @@ export default [
 								link: '/07-security/04-security-plugins/01-authentication-plugins/02-old-native-pluggable-authentication.md',
 							},
 							{
-								text: '6.4.1.3 Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql\_old\_password',
+								text: '6.4.1.3 Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql_old_password',
 								link: '/07-security/04-security-plugins/01-authentication-plugins/03-migrating-away-from-pre-4-1-password-hashing-and-the-mysql-old-password-plugin.md',
 							},
 							{
@@ -1732,7 +1716,7 @@ export default [
 								link: '/07-security/04-security-plugins/04-the-my-s-q-l-keyring/01-keyring-plugin-installation.md',
 							},
 							{
-								text: '6.4.4.2 Usando o plugin de cartela de chaves baseado em arquivo keyring\_file',
+								text: '6.4.4.2 Usando o plugin de cartela de chaves baseado em arquivo keyring_file',
 								link: '/07-security/04-security-plugins/04-the-my-s-q-l-keyring/02-using-the-keyring-file-file-based-keyring-plugin.md',
 							},
 							{
@@ -1740,11 +1724,11 @@ export default [
 								link: '/07-security/04-security-plugins/04-the-my-s-q-l-keyring/03-using-the-keyring-encrypted-file-encrypted-file-based-keyring-plugin.md',
 							},
 							{
-								text: '6.4.4.4 Usando o plugin KMIP keyring\_okv',
+								text: '6.4.4.4 Usando o plugin KMIP keyring_okv',
 								link: '/07-security/04-security-plugins/04-the-my-s-q-l-keyring/04-using-the-keyring-okv-k-m-i-p-plugin.md',
 							},
 							{
-								text: '6.4.4.5 Usando o plugin Amazon Web Services Keyring do keyring\_aws',
+								text: '6.4.4.5 Usando o plugin Amazon Web Services Keyring do keyring_aws',
 								link: '/07-security/04-security-plugins/04-the-my-s-q-l-keyring/05-using-the-keyring-aws-amazon-web-services-keyring-plugin.md',
 							},
 							{
@@ -2097,7 +2081,7 @@ export default [
 				collapsed: true,
 				items: [
 					{
-						text: '8.2.3 Otimizando consultas do INFORMATION\_SCHEMA',
+						text: '8.2.3 Otimizando consultas do INFORMATION_SCHEMA',
 						link: '/09-optimization/02-optimizing-s-q-l-statements/03-optimizing-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-queries.md',
 					},
 					{
@@ -2638,7 +2622,7 @@ export default [
 						link: '/09-optimization/13-measuring-performance-benchmarking/02-using-your-own-benchmarks.md',
 					},
 					{
-						text: '8.13.3 Medindo o desempenho com o performance\_schema',
+						text: '8.13.3 Medindo o desempenho com o performance_schema',
 						link: '/09-optimization/13-measuring-performance-benchmarking/03-measuring-performance-with-performance-schema.md',
 					},
 				],
@@ -2724,11 +2708,11 @@ export default [
 						link: '/09-optimization/15-tracing-the-optimizer/07-interaction-with-the-debug-option.md',
 					},
 					{
-						text: '8.15.8 A variável de sistema optimizer\_trace',
+						text: '8.15.8 A variável de sistema optimizer_trace',
 						link: '/09-optimization/15-tracing-the-optimizer/08-the-optimizer-trace-system-variable.md',
 					},
 					{
-						text: '8.15.9 A variável de sistema end\_markers\_in\_json',
+						text: '8.15.9 A variável de sistema end_markers_in_json',
 						link: '/09-optimization/15-tracing-the-optimizer/09-the-end-markers-in-json-system-variable.md',
 					},
 					{
@@ -2973,7 +2957,7 @@ export default [
 						link: '/11-character-sets-collations-unicode/08-collation-issues/04-collation-coercibility-in-expressions.md',
 					},
 					{
-						text: '10.8.5 A Colagem Binária Comparada às Colagens \_bin',
+						text: '10.8.5 A Colagem Binária Comparada às Colagens _bin',
 						link: '/11-character-sets-collations-unicode/08-collation-issues/05-the-binary-collation-compared-to-bin-collations.md',
 					},
 					{
@@ -2981,7 +2965,7 @@ export default [
 						link: '/11-character-sets-collations-unicode/08-collation-issues/06-examples-of-the-effect-of-collation.md',
 					},
 					{
-						text: '10.8.7 Uso da Colagem em Pesquisas no INFORMATION\_SCHEMA',
+						text: '10.8.7 Uso da Colagem em Pesquisas no INFORMATION_SCHEMA',
 						link: '/11-character-sets-collations-unicode/08-collation-issues/07-using-collation-in-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-searches.md',
 					},
 				],
@@ -4107,7 +4091,7 @@ export default [
 								link: '/14-sql-statements/04-replication-statements/01-s-q-l-statements-for-controlling-replication-source-servers/02-r-e-s-e-t-m-a-s-t-e-r-statement.md',
 							},
 							{
-								text: '13.4.1.3 Declaração sql\_log\_bin do SET',
+								text: '13.4.1.3 Declaração sql_log_bin do SET',
 								link: '/14-sql-statements/04-replication-statements/01-s-q-l-statements-for-controlling-replication-source-servers/03-s-e-t-sql-log-bin-statement.md',
 							},
 						],
@@ -4130,7 +4114,7 @@ export default [
 								link: '/14-sql-statements/04-replication-statements/02-s-q-l-statements-for-controlling-replica-servers/03-r-e-s-e-t-s-l-a-v-e-statement.md',
 							},
 							{
-								text: '13.4.2.4 Sintaxe do parâmetro global sql\_slave\_skip\_counter',
+								text: '13.4.2.4 Sintaxe do parâmetro global sql_slave_skip_counter',
 								link: '/14-sql-statements/04-replication-statements/02-s-q-l-statements-for-controlling-replica-servers/04-s-e-t-g-l-o-b-a-l-sql-slave-skip-counter-syntax.md',
 							},
 							{
@@ -4153,7 +4137,7 @@ export default [
 								link: '/14-sql-statements/04-replication-statements/03-s-q-l-statements-for-controlling-group-replication/01-s-t-a-r-t-g-r-o-u-p-r-e-p-l-i-c-a-t-i-o-n-statement.md',
 							},
 							{
-								text: '13.4.3.2. Declaração STOP GROUP\_REPLICATION',
+								text: '13.4.3.2. Declaração STOP GROUP_REPLICATION',
 								link: '/14-sql-statements/04-replication-statements/03-s-q-l-statements-for-controlling-group-replication/02-s-t-o-p-g-r-o-u-p-r-e-p-l-i-c-a-t-i-o-n-statement.md',
 							},
 						],
@@ -4426,7 +4410,7 @@ export default [
 								link: '/14-sql-statements/07-database-administration-statements/04-s-e-t-statements/02-s-e-t-c-h-a-r-a-c-t-e-r-s-e-t-statement.md',
 							},
 							{
-								text: '13.7.4.3 Declaração de NOME\_SET',
+								text: '13.7.4.3 Declaração de NOME_SET',
 								link: '/14-sql-statements/07-database-administration-statements/04-s-e-t-statements/03-s-e-t-n-a-m-e-s-statement.md',
 							},
 						],
@@ -4798,7 +4782,7 @@ export default [
 								link: '/15-the-innodb-storage-engine/06-inno-d-b-on-disk-structures/01-tables/05-converting-tables-from-my-i-s-a-m-to-inno-db.md',
 							},
 							{
-								text: '14.6.1.6 Gerenciamento de AUTO\_INCREMENT no InnoDB',
+								text: '14.6.1.6 Gerenciamento de AUTO_INCREMENT no InnoDB',
 								link: '/15-the-innodb-storage-engine/06-inno-d-b-on-disk-structures/01-tables/06-a-u-t-o-i-n-c-r-e-m-e-n-t-handling-in-inno-db.md',
 							},
 						],
@@ -5178,7 +5162,7 @@ export default [
 						link: '/15-the-innodb-storage-engine/16-inno-d-b-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-tables/07-inno-d-b-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-temporary-table-info-table.md',
 					},
 					{
-						text: '14.16.8 Recuperação dos metadados do espaço de tabela InnoDB a partir do INFORMATION\_SCHEMA.FILES',
+						text: '14.16.8 Recuperação dos metadados do espaço de tabela InnoDB a partir do INFORMATION_SCHEMA.FILES',
 						link: '/15-the-innodb-storage-engine/16-inno-d-b-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-tables/08-retrieving-inno-d-b-tablespace-metadata-from-i-n-f-o-r-m-a-t-i-o-n-schema-files.md',
 					},
 					{
@@ -5186,11 +5170,11 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '14.16.1.1 INNODB\_CMP e INNODB\_CMP\_RESET',
+								text: '14.16.1.1 INNODB_CMP e INNODB_CMP_RESET',
 								link: '/15-the-innodb-storage-engine/16-inno-d-b-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-tables/01-inno-d-b-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-tables-about-compression/01-i-n-n-o-d-b-c-m-p-and-i-n-n-o-d-b-c-m-p-reset.md',
 							},
 							{
-								text: '14.16.1.2 INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET',
+								text: '14.16.1.2 INNODB_CMPMEM e INNODB_CMPMEM_RESET',
 								link: '/15-the-innodb-storage-engine/16-inno-d-b-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-tables/01-inno-d-b-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-tables-about-compression/02-i-n-n-o-d-b-c-m-p-m-e-m-and-i-n-n-o-d-b-c-m-p-m-e-m-reset.md',
 							},
 							{
@@ -5911,7 +5895,7 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '16.4.1.1 Replicação e AUTO\_INCREMENT',
+								text: '16.4.1.1 Replicação e AUTO_INCREMENT',
 								link: '/17-replication/04-replication-notes-and-tips/01-replication-features-and-issues/01-replication-and-a-u-t-o-increment.md',
 							},
 							{
@@ -5939,7 +5923,7 @@ export default [
 								link: '/17-replication/04-replication-notes-and-tips/01-replication-features-and-issues/07-replication-of-c-r-e-a-t-e-server-a-l-t-e-r-server-and-d-r-o-p-server.md',
 							},
 							{
-								text: '16.4.1.8 Replicação de CURRENT\_USER()',
+								text: '16.4.1.8 Replicação de CURRENT_USER()',
 								link: '/17-replication/04-replication-notes-and-tips/01-replication-features-and-issues/08-replication-of-c-u-r-r-e-n-t-user.md',
 							},
 							{
@@ -5983,7 +5967,7 @@ export default [
 								link: '/17-replication/04-replication-notes-and-tips/01-replication-features-and-issues/18-replication-and-l-o-a-d-data.md',
 							},
 							{
-								text: '16.4.1.19 Replicação e max\_allowed\_packet',
+								text: '16.4.1.19 Replicação e max_allowed_packet',
 								link: '/17-replication/04-replication-notes-and-tips/01-replication-features-and-issues/19-replication-and-max-allowed-packet.md',
 							},
 							{
@@ -6197,11 +6181,11 @@ export default [
 						link: '/18-group-replication/04-monitoring-group-replication/01-group-replication-server-states.md',
 					},
 					{
-						text: '17.4.2 A tabela replication\_group\_members',
+						text: '17.4.2 A tabela replication_group_members',
 						link: '/18-group-replication/04-monitoring-group-replication/02-the-replication-group-members-table.md',
 					},
 					{
-						text: '17.4.3 A tabela replication\_group\_member\_stats',
+						text: '17.4.3 A tabela replication_group_member_stats',
 						link: '/18-group-replication/04-monitoring-group-replication/03-the-replication-group-member-stats-table.md',
 					},
 				],
@@ -6355,6 +6339,10 @@ export default [
 		],
 		link: '/18-group-replication/index.md',
 	},
+  	{
+		text: 'Capítulo 18 MySQL Shell',
+		link: '/19-mysql-shell.md',
+	},
 	{
 		text: 'Capítulo 19 Usando o MySQL como uma Armazenadora de Documentos',
 		collapsed: true,
@@ -6433,6 +6421,10 @@ export default [
 			},
 		],
 		link: '/20-using-mysql-as-a-document-store/index.md',
+	},
+  	{
+		text: 'Capítulo 20: Cluster InnoDB',
+		link: '/21-innodb-cluster.md',
 	},
 	{
 		text: 'Capítulo 21 MySQL NDB Cluster 7.5 e NDB Cluster 7.6',
@@ -6763,7 +6755,7 @@ export default [
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/01-ndbd-the-n-d-b-cluster-data-node-daemon.md',
 					},
 					{
-						text: '21.5.2 ndbinfo\_select\_all — Selecionar de tabelas ndbinfo',
+						text: '21.5.2 ndbinfo_select_all — Selecionar de tabelas ndbinfo',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/02-ndbinfo-select-all-select-from-ndbinfo-tables.md',
 					},
 					{
@@ -6771,111 +6763,111 @@ export default [
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/03-ndbmtd-the-n-d-b-cluster-data-node-daemon-multi-threaded.md',
 					},
 					{
-						text: '21.5.4 ndb\_mgmd — O daemon do servidor de gerenciamento de cluster NDB',
+						text: '21.5.4 ndb_mgmd — O daemon do servidor de gerenciamento de cluster NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/04-ndb-mgmd-the-n-d-b-cluster-management-server-daemon.md',
 					},
 					{
-						text: '21.5.5 ndb\_mgm — O cliente de gerenciamento de cluster NDB',
+						text: '21.5.5 ndb_mgm — O cliente de gerenciamento de cluster NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/05-ndb-mgm-the-n-d-b-cluster-management-client.md',
 					},
 					{
-						text: '21.5.6 ndb\_blob\_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster',
+						text: '21.5.6 ndb_blob_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/06-ndb-blob-tool-check-and-repair-b-l-o-b-and-t-e-x-t-columns-of-n-d-b-cluster-tables.md',
 					},
 					{
-						text: '21.5.7 ndb\_config — Extrair informações de configuração do cluster NDB',
+						text: '21.5.7 ndb_config — Extrair informações de configuração do cluster NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/07-ndb-config-extract-n-d-b-cluster-configuration-information.md',
 					},
 					{
-						text: '21.5.8 ndb\_cpcd — Automatizar testes para o desenvolvimento do NDB',
+						text: '21.5.8 ndb_cpcd — Automatizar testes para o desenvolvimento do NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/08-ndb-cpcd-automate-testing-for-n-d-b-development.md',
 					},
 					{
-						text: '21.5.9 ndb\_delete\_all — Excluir todas as linhas de uma tabela NDB',
+						text: '21.5.9 ndb_delete_all — Excluir todas as linhas de uma tabela NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/09-ndb-delete-all-delete-all-rows-from-an-n-d-b-table.md',
 					},
 					{
-						text: '21.5.10 ndb\_desc — Descreva as tabelas NDB',
+						text: '21.5.10 ndb_desc — Descreva as tabelas NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/10-ndb-desc-describe-n-d-b-tables.md',
 					},
 					{
-						text: '21.5.11 ndb\_drop\_index — Remover índice de uma tabela NDB',
+						text: '21.5.11 ndb_drop_index — Remover índice de uma tabela NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/11-ndb-drop-index-drop-index-from-an-n-d-b-table.md',
 					},
 					{
-						text: '21.5.12 ndb\_drop\_table — Remover uma tabela NDB',
+						text: '21.5.12 ndb_drop_table — Remover uma tabela NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/12-ndb-drop-table-drop-an-n-d-b-table.md',
 					},
 					{
-						text: '21.5.13 ndb\_error\_reporter — Ferramenta de Relatório de Erros do NDB',
+						text: '21.5.13 ndb_error_reporter — Ferramenta de Relatório de Erros do NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/13-ndb-error-reporter-n-d-b-error-reporting-utility.md',
 					},
 					{
-						text: '21.5.14 ndb\_import — Importar dados CSV no NDB',
+						text: '21.5.14 ndb_import — Importar dados CSV no NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/14-ndb-import-import-c-s-v-data-into-ndb.md',
 					},
 					{
-						text: '21.5.15 ndb\_index\_stat — Ferramenta de estatísticas do índice NDB',
+						text: '21.5.15 ndb_index_stat — Ferramenta de estatísticas do índice NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/15-ndb-index-stat-n-d-b-index-statistics-utility.md',
 					},
 					{
-						text: '21.5.16 ndb\_move\_data — Ferramenta de cópia de dados do NDB',
+						text: '21.5.16 ndb_move_data — Ferramenta de cópia de dados do NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/16-ndb-move-data-n-d-b-data-copy-utility.md',
 					},
 					{
-						text: '21.5.17 ndb\_perror — Obter informações da mensagem de erro do NDB',
+						text: '21.5.17 ndb_perror — Obter informações da mensagem de erro do NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/17-ndb-perror-obtain-n-d-b-error-message-information.md',
 					},
 					{
-						text: '21.5.18 ndb\_print\_backup\_file — Imprimir o conteúdo do arquivo de backup do NDB',
+						text: '21.5.18 ndb_print_backup_file — Imprimir o conteúdo do arquivo de backup do NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/18-ndb-print-backup-file-print-n-d-b-backup-file-contents.md',
 					},
 					{
-						text: '21.5.19 ndb\_print\_file — Imprimir o conteúdo do arquivo de dados do disco NDB',
+						text: '21.5.19 ndb_print_file — Imprimir o conteúdo do arquivo de dados do disco NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/19-ndb-print-file-print-n-d-b-disk-data-file-contents.md',
 					},
 					{
-						text: '21.5.20 ndb\_print\_frag\_file — Imprimir o conteúdo do arquivo de lista de fragmentos do NDB',
+						text: '21.5.20 ndb_print_frag_file — Imprimir o conteúdo do arquivo de lista de fragmentos do NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/20-ndb-print-frag-file-print-n-d-b-fragment-list-file-contents.md',
 					},
 					{
-						text: '21.5.21 ndb\_print\_schema\_file — Imprimir o conteúdo do arquivo de esquema do NDB',
+						text: '21.5.21 ndb_print_schema_file — Imprimir o conteúdo do arquivo de esquema do NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/21-ndb-print-schema-file-print-n-d-b-schema-file-contents.md',
 					},
 					{
-						text: '21.5.22 ndb\_print\_sys\_file — Imprimir o conteúdo do arquivo do sistema NDB',
+						text: '21.5.22 ndb_print_sys_file — Imprimir o conteúdo do arquivo do sistema NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/22-ndb-print-sys-file-print-n-d-b-system-file-contents.md',
 					},
 					{
-						text: '21.5.23 ndb\_redo\_log\_reader — Verificar e imprimir o conteúdo do log de refazer do cluster',
+						text: '21.5.23 ndb_redo_log_reader — Verificar e imprimir o conteúdo do log de refazer do cluster',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/23-ndb-redo-log-reader-check-and-print-content-of-cluster-redo-log.md',
 					},
 					{
-						text: '21.5.25 ndb\_select\_all — Imprimir linhas de uma tabela NDB',
+						text: '21.5.25 ndb_select_all — Imprimir linhas de uma tabela NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/25-ndb-select-all-print-rows-from-an-n-d-b-table.md',
 					},
 					{
-						text: '21.5.26 ndb\_select\_count — Imprimir contagem de linhas para tabelas NDB',
+						text: '21.5.26 ndb_select_count — Imprimir contagem de linhas para tabelas NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/26-ndb-select-count-print-row-counts-for-n-d-b-tables.md',
 					},
 					{
-						text: '21.5.27 ndb\_show\_tables — Exibir a lista de tabelas NDB',
+						text: '21.5.27 ndb_show_tables — Exibir a lista de tabelas NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/27-ndb-show-tables-display-list-of-n-d-b-tables.md',
 					},
 					{
-						text: '21.5.28 ndb\_size.pl — Estimator de Requisitos de Tamanho do NDBCLUSTER',
+						text: '21.5.28 ndb_size.pl — Estimator de Requisitos de Tamanho do NDBCLUSTER',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/28-ndb-size-pl-n-d-b-c-l-u-s-t-e-r-size-requirement-estimator.md',
 					},
 					{
-						text: '21.5.29 ndb\_top — Visualizar informações de uso da CPU para os threads do NDB',
+						text: '21.5.29 ndb_top — Visualizar informações de uso da CPU para os threads do NDB',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/29-ndb-top-view-c-p-u-usage-information-for-n-d-b-threads.md',
 					},
 					{
-						text: '21.5.30 ndb\_waiter — Aguarde o NDB Cluster atingir um status específico',
+						text: '21.5.30 ndb_waiter — Aguarde o NDB Cluster atingir um status específico',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/05-n-d-b-cluster-programs/30-ndb-waiter-wait-for-n-d-b-cluster-to-reach-a-given-status.md',
 					},
 					{
-						text: '21.5.24 ndb\_restore — Restaurar um backup de um cluster NDB',
+						text: '21.5.24 ndb_restore — Restaurar um backup de um cluster NDB',
 						collapsed: true,
 						items: [
 							{
@@ -6933,7 +6925,7 @@ export default [
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/14-n-d-b-a-p-i-statistics-counters-and-variables.md',
 					},
 					{
-						text: '21.6.16 INFORMATION\_SCHEMA Tabelas para NDB Cluster',
+						text: '21.6.16 INFORMATION_SCHEMA Tabelas para NDB Cluster',
 						link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/16-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-tables-for-n-d-b-cluster.md',
 					},
 					{
@@ -7048,11 +7040,11 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '21.6.15.1 Tabela ndbinfo arbitrator\_validity\_detail',
+								text: '21.6.15.1 Tabela ndbinfo arbitrator_validity_detail',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/01-the-ndbinfo-arbitrator-validity-detail-table.md',
 							},
 							{
-								text: '21.6.15.2 A tabela ndbinfo arbitrator\_validity\_summary',
+								text: '21.6.15.2 A tabela ndbinfo arbitrator_validity_summary',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/02-the-ndbinfo-arbitrator-validity-summary-table.md',
 							},
 							{
@@ -7060,27 +7052,27 @@ export default [
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/03-the-ndbinfo-blocks-table.md',
 							},
 							{
-								text: '21.6.15.4 A tabela ndbinfo cluster\_locks',
+								text: '21.6.15.4 A tabela ndbinfo cluster_locks',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/04-the-ndbinfo-cluster-locks-table.md',
 							},
 							{
-								text: '21.6.15.5 A tabela ndbinfo cluster\_operations',
+								text: '21.6.15.5 A tabela ndbinfo cluster_operations',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/05-the-ndbinfo-cluster-operations-table.md',
 							},
 							{
-								text: '21.6.15.6 A tabela ndbinfo cluster\_transactions',
+								text: '21.6.15.6 A tabela ndbinfo cluster_transactions',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/06-the-ndbinfo-cluster-transactions-table.md',
 							},
 							{
-								text: '21.6.15.7 Tabela ndbinfo config\_nodes',
+								text: '21.6.15.7 Tabela ndbinfo config_nodes',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/07-the-ndbinfo-config-nodes-table.md',
 							},
 							{
-								text: '21.6.15.8 Tabela ndbinfo config\_params',
+								text: '21.6.15.8 Tabela ndbinfo config_params',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/08-the-ndbinfo-config-params-table.md',
 							},
 							{
-								text: '21.6.15.9 A tabela ndbinfo config\_values',
+								text: '21.6.15.9 A tabela ndbinfo config_values',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/09-the-ndbinfo-config-values-table.md',
 							},
 							{
@@ -7092,35 +7084,35 @@ export default [
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/11-the-ndbinfo-cpustat-table.md',
 							},
 							{
-								text: '21.6.15.12 Tabela ndbinfo cpustat\_50ms',
+								text: '21.6.15.12 Tabela ndbinfo cpustat_50ms',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/12-the-ndbinfo-cpustat-50-ms-table.md',
 							},
 							{
-								text: '21.6.15.13 Tabela ndbinfo cpustat\_1sec',
+								text: '21.6.15.13 Tabela ndbinfo cpustat_1sec',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/13-the-ndbinfo-cpustat-1-sec-table.md',
 							},
 							{
-								text: '21.6.15.14 Tabela ndbinfo cpustat\_20sec',
+								text: '21.6.15.14 Tabela ndbinfo cpustat_20sec',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/14-the-ndbinfo-cpustat-20-sec-table.md',
 							},
 							{
-								text: '21.6.15.15 Tabela ndbinfo dict\_obj\_info',
+								text: '21.6.15.15 Tabela ndbinfo dict_obj_info',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/15-the-ndbinfo-dict-obj-info-table.md',
 							},
 							{
-								text: '21.6.15.16 Tabela ndbinfo dict\_obj\_types',
+								text: '21.6.15.16 Tabela ndbinfo dict_obj_types',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/16-the-ndbinfo-dict-obj-types-table.md',
 							},
 							{
-								text: '21.6.15.17 Tabela ndbinfo disk\_write\_speed\_base',
+								text: '21.6.15.17 Tabela ndbinfo disk_write_speed_base',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/17-the-ndbinfo-disk-write-speed-base-table.md',
 							},
 							{
-								text: '21.6.15.18 Tabela ndbinfo disk\_write\_speed\_aggregate',
+								text: '21.6.15.18 Tabela ndbinfo disk_write_speed_aggregate',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/18-the-ndbinfo-disk-write-speed-aggregate-table.md',
 							},
 							{
-								text: '21.6.15.19 Tabela ndbinfo disk\_write\_speed\_aggregate\_node',
+								text: '21.6.15.19 Tabela ndbinfo disk_write_speed_aggregate_node',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/19-the-ndbinfo-disk-write-speed-aggregate-node-table.md',
 							},
 							{
@@ -7128,11 +7120,11 @@ export default [
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/20-the-ndbinfo-diskpagebuffer-table.md',
 							},
 							{
-								text: '21.6.15.21 Tabela de mensagens de erro ndbinfo\_messages',
+								text: '21.6.15.21 Tabela de mensagens de erro ndbinfo_messages',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/21-the-ndbinfo-error-messages-table.md',
 							},
 							{
-								text: '21.6.15.22 Tabela ndbinfo locks\_per\_fragment',
+								text: '21.6.15.22 Tabela ndbinfo locks_per_fragment',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/22-the-ndbinfo-locks-per-fragment-table.md',
 							},
 							{
@@ -7152,7 +7144,7 @@ export default [
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/26-the-ndbinfo-memoryusage-table.md',
 							},
 							{
-								text: '21.6.15.27 Tabela ndbinfo memory\_per\_fragment',
+								text: '21.6.15.27 Tabela ndbinfo memory_per_fragment',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/27-the-ndbinfo-memory-per-fragment-table.md',
 							},
 							{
@@ -7160,7 +7152,7 @@ export default [
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/28-the-ndbinfo-nodes-table.md',
 							},
 							{
-								text: '21.6.15.29 Tabela ndbinfo operations\_per\_fragment',
+								text: '21.6.15.29 Tabela ndbinfo operations_per_fragment',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/29-the-ndbinfo-operations-per-fragment-table.md',
 							},
 							{
@@ -7172,39 +7164,39 @@ export default [
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/31-the-ndbinfo-resources-table.md',
 							},
 							{
-								text: '21.6.15.32 Tabela ndbinfo restart\_info',
+								text: '21.6.15.32 Tabela ndbinfo restart_info',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/32-the-ndbinfo-restart-info-table.md',
 							},
 							{
-								text: '21.6.15.33 Tabela ndbinfo server\_locks',
+								text: '21.6.15.33 Tabela ndbinfo server_locks',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/33-the-ndbinfo-server-locks-table.md',
 							},
 							{
-								text: '21.6.15.34 Tabela servidor\_operações ndbinfo',
+								text: '21.6.15.34 Tabela servidor_operações ndbinfo',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/34-the-ndbinfo-server-operations-table.md',
 							},
 							{
-								text: '21.6.15.35 A tabela ndbinfo server\_transactions',
+								text: '21.6.15.35 A tabela ndbinfo server_transactions',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/35-the-ndbinfo-server-transactions-table.md',
 							},
 							{
-								text: '21.6.15.36 A tabela ndbinfo table\_distribution\_status',
+								text: '21.6.15.36 A tabela ndbinfo table_distribution_status',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/36-the-ndbinfo-table-distribution-status-table.md',
 							},
 							{
-								text: '21.6.15.37 A tabela ndbinfo table\_fragments',
+								text: '21.6.15.37 A tabela ndbinfo table_fragments',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/37-the-ndbinfo-table-fragments-table.md',
 							},
 							{
-								text: '21.6.15.38 A tabela ndbinfo table\_info',
+								text: '21.6.15.38 A tabela ndbinfo table_info',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/38-the-ndbinfo-table-info-table.md',
 							},
 							{
-								text: '21.6.15.39 A tabela ndbinfo table\_replicas',
+								text: '21.6.15.39 A tabela ndbinfo table_replicas',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/39-the-ndbinfo-table-replicas-table.md',
 							},
 							{
-								text: '21.6.15.40 A tabela ndbinfo tc\_time\_track\_stats',
+								text: '21.6.15.40 A tabela ndbinfo tc_time_track_stats',
 								link: '/22-mysql-ndb-cluster-7-5-ndb-cluster/06-management-of-n-d-b-cluster/15-ndbinfo-the-n-d-b-cluster-information-database/40-the-ndbinfo-tc-time-track-stats-table.md',
 							},
 							{
@@ -7476,7 +7468,7 @@ export default [
 						link: '/24-stored-objects/02-using-stored-routines/03-stored-routine-metadata.md',
 					},
 					{
-						text: '23.2.4 Procedimentos armazenados, funções, gatilhos e LAST\_INSERT\_ID()',
+						text: '23.2.4 Procedimentos armazenados, funções, gatilhos e LAST_INSERT_ID()',
 						link: '/24-stored-objects/02-using-stored-routines/04-stored-procedures-functions-triggers-and-l-a-s-t-i-n-s-e-r-t-id.md',
 					},
 				],
@@ -7559,7 +7551,7 @@ export default [
 		link: '/24-stored-objects/index.md',
 	},
 	{
-		text: 'Capítulo 24 PLANO DE TABELAS INFORMATION\_SCHEMA',
+		text: 'Capítulo 24 PLANO DE TABELAS INFORMATION_SCHEMA',
 		collapsed: true,
 		items: [
 			{
@@ -7575,7 +7567,7 @@ export default [
 				link: '/25-informationschema-tables/08-extensions-to-s-h-o-w-statements.md',
 			},
 			{
-				text: '24.3 INFORMATION\_SCHEMA Tabelas Gerais',
+				text: '24.3 INFORMATION_SCHEMA Tabelas Gerais',
 				collapsed: true,
 				items: [
 					{
@@ -7583,79 +7575,79 @@ export default [
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/01-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-table-reference.md',
 					},
 					{
-						text: '24.3.2 A tabela INFORMATION\_SCHEMA CHARACTER\_SETS',
+						text: '24.3.2 A tabela INFORMATION_SCHEMA CHARACTER_SETS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/02-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-c-h-a-r-a-c-t-e-r-s-e-t-s-table.md',
 					},
 					{
-						text: '24.3.3 A tabela INFORMATION\_SCHEMA COLLATIONS',
+						text: '24.3.3 A tabela INFORMATION_SCHEMA COLLATIONS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/03-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-c-o-l-l-a-t-i-o-n-s-table.md',
 					},
 					{
-						text: '24.3.4 A tabela INFORMATION\_SCHEMA COLLATION\_CHARACTER\_SET\_APPLICABILITY',
+						text: '24.3.4 A tabela INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/04-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-c-o-l-l-a-t-i-o-n-c-h-a-r-a-c-t-e-r-s-e-t-a-p-p-l-i-c-a-b-i-l-i-t-y-table.md',
 					},
 					{
-						text: '24.3.5 A tabela INFORMATION\_SCHEMA COLUMNS',
+						text: '24.3.5 A tabela INFORMATION_SCHEMA COLUMNS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/05-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-c-o-l-u-m-n-s-table.md',
 					},
 					{
-						text: '24.3.6 A tabela INFORMATION\_SCHEMA COLUMN\_PRIVILEGES',
+						text: '24.3.6 A tabela INFORMATION_SCHEMA COLUMN_PRIVILEGES',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/06-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-c-o-l-u-m-n-p-r-i-v-i-l-e-g-e-s-table.md',
 					},
 					{
-						text: '24.3.7 A Tabela INFORMATION\_SCHEMA ENGINES',
+						text: '24.3.7 A Tabela INFORMATION_SCHEMA ENGINES',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/07-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-e-n-g-i-n-e-s-table.md',
 					},
 					{
-						text: '24.3.8 A tabela INFORMATION\_SCHEMA EVENTS',
+						text: '24.3.8 A tabela INFORMATION_SCHEMA EVENTS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/08-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-e-v-e-n-t-s-table.md',
 					},
 					{
-						text: '24.3.9 A tabela INFORMATION\_SCHEMA FILES',
+						text: '24.3.9 A tabela INFORMATION_SCHEMA FILES',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/09-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-f-i-l-e-s-table.md',
 					},
 					{
-						text: '24.3.10 Tabelas INFORMATION\_SCHEMA GLOBAL\_STATUS e SESSION\_STATUS',
+						text: '24.3.10 Tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/10-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-g-l-o-b-a-l-s-t-a-t-u-s-and-s-e-s-s-i-o-n-s-t-a-t-u-s-tables.md',
 					},
 					{
-						text: '24.3.11 Tabelas INFORMATION\_SCHEMA GLOBAL\_VARIABLES e SESSION\_VARIABLES',
+						text: '24.3.11 Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/11-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-g-l-o-b-a-l-v-a-r-i-a-b-l-e-s-and-s-e-s-s-i-o-n-v-a-r-i-a-b-l-e-s-tables.md',
 					},
 					{
-						text: '24.3.12 A tabela INFORMATION\_SCHEMA KEY\_COLUMN\_USAGE',
+						text: '24.3.12 A tabela INFORMATION_SCHEMA KEY_COLUMN_USAGE',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/12-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-k-e-y-c-o-l-u-m-n-u-s-a-g-e-table.md',
 					},
 					{
-						text: '24.3.13 A tabela INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map',
+						text: '24.3.13 A tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/13-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-ndb-transid-mysql-connection-map-table.md',
 					},
 					{
-						text: '24.3.14 A tabela INFORMATION\_SCHEMA OPTIMIZER\_TRACE',
+						text: '24.3.14 A tabela INFORMATION_SCHEMA OPTIMIZER_TRACE',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/14-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-o-p-t-i-m-i-z-e-r-t-r-a-c-e-table.md',
 					},
 					{
-						text: '24.3.15 A tabela INFORMATION\_SCHEMA PARAMETERS',
+						text: '24.3.15 A tabela INFORMATION_SCHEMA PARAMETERS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/15-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-p-a-r-a-m-e-t-e-r-s-table.md',
 					},
 					{
-						text: '24.3.16 A tabela INFORMATION\_SCHEMA PARTITIONS',
+						text: '24.3.16 A tabela INFORMATION_SCHEMA PARTITIONS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/16-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-p-a-r-t-i-t-i-o-n-s-table.md',
 					},
 					{
-						text: '24.3.17 A tabela INFORMATION\_SCHEMA PLUGINS',
+						text: '24.3.17 A tabela INFORMATION_SCHEMA PLUGINS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/17-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-p-l-u-g-i-n-s-table.md',
 					},
 					{
-						text: '24.3.18 A tabela INFORMATION\_SCHEMA PROCESSLIST',
+						text: '24.3.18 A tabela INFORMATION_SCHEMA PROCESSLIST',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/18-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-p-r-o-c-e-s-s-l-i-s-t-table.md',
 					},
 					{
-						text: '24.3.19 A tabela INFORMATION\_SCHEMA PROFILING',
+						text: '24.3.19 A tabela INFORMATION_SCHEMA PROFILING',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/19-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-p-r-o-f-i-l-i-n-g-table.md',
 					},
 					{
-						text: '24.3.20 Tabela INFORMATION\_SCHEMA REFERENTIAL\_CONSTRAINTS',
+						text: '24.3.20 Tabela INFORMATION_SCHEMA REFERENTIAL_CONSTRAINTS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/20-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-r-e-f-e-r-e-n-t-i-a-l-c-o-n-s-t-r-a-i-n-t-s-table.md',
 					},
 					{
@@ -7663,162 +7655,162 @@ export default [
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/21-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-r-o-u-t-i-n-e-s-table.md',
 					},
 					{
-						text: '24.3.22 A tabela INFORMATION\_SCHEMA SCHEMATA',
+						text: '24.3.22 A tabela INFORMATION_SCHEMA SCHEMATA',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/22-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-s-c-h-e-m-a-t-a-table.md',
 					},
 					{
-						text: '24.3.23 A tabela INFORMATION\_SCHEMA SCHEMA\_PRIVILEGES',
+						text: '24.3.23 A tabela INFORMATION_SCHEMA SCHEMA_PRIVILEGES',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/23-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-s-c-h-e-m-a-p-r-i-v-i-l-e-g-e-s-table.md',
 					},
 					{
-						text: '24.3.24 A tabela INFORMATION\_SCHEMA STATISTICS',
+						text: '24.3.24 A tabela INFORMATION_SCHEMA STATISTICS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/24-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-s-t-a-t-i-s-t-i-c-s-table.md',
 					},
 					{
-						text: '24.3.25 A tabela INFORMATION\_SCHEMA TABLES',
+						text: '24.3.25 A tabela INFORMATION_SCHEMA TABLES',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/25-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-t-a-b-l-e-s-table.md',
 					},
 					{
-						text: '24.3.26 A tabela INFORMATION\_SCHEMA TABLESPACES',
+						text: '24.3.26 A tabela INFORMATION_SCHEMA TABLESPACES',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/26-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-t-a-b-l-e-s-p-a-c-e-s-table.md',
 					},
 					{
-						text: '24.3.27 A tabela INFORMATION\_SCHEMA TABLE\_CONSTRAINTS',
+						text: '24.3.27 A tabela INFORMATION_SCHEMA TABLE_CONSTRAINTS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/27-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-t-a-b-l-e-c-o-n-s-t-r-a-i-n-t-s-table.md',
 					},
 					{
-						text: '24.3.28 A tabela INFORMATION\_SCHEMA TABLE\_PRIVILEGES',
+						text: '24.3.28 A tabela INFORMATION_SCHEMA TABLE_PRIVILEGES',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/28-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-t-a-b-l-e-p-r-i-v-i-l-e-g-e-s-table.md',
 					},
 					{
-						text: '24.3.29 A tabela INFORMATION\_SCHEMA TRIGGERS',
+						text: '24.3.29 A tabela INFORMATION_SCHEMA TRIGGERS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/29-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-t-r-i-g-g-e-r-s-table.md',
 					},
 					{
-						text: '24.3.30 A tabela INFORMATION\_SCHEMA USER\_PRIVILEGES',
+						text: '24.3.30 A tabela INFORMATION_SCHEMA USER_PRIVILEGES',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/30-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-u-s-e-r-p-r-i-v-i-l-e-g-e-s-table.md',
 					},
 					{
-						text: '24.3.31 A tabela INFORMATION\_SCHEMA VIEWS',
+						text: '24.3.31 A tabela INFORMATION_SCHEMA VIEWS',
 						link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/31-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-v-i-e-w-s-table.md',
 					},
 				],
 				link: '/25-informationschema-tables/03-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-general-tables/index.md',
 			},
 			{
-				text: '24.4 INFORMATION\_SCHEMA Tabelas InnoDB',
+				text: '24.4 INFORMATION_SCHEMA Tabelas InnoDB',
 				collapsed: true,
 				items: [
 					{
-						text: '24.4.1 INFORMATION\_SCHEMA Referência da Tabela InnoDB',
+						text: '24.4.1 INFORMATION_SCHEMA Referência da Tabela InnoDB',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/01-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-table-reference.md',
 					},
 					{
-						text: '24.4.2 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE',
+						text: '24.4.2 A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/02-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-b-u-f-f-e-r-p-a-g-e-table.md',
 					},
 					{
-						text: '24.4.3 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU',
+						text: '24.4.3 A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/03-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-b-u-f-f-e-r-p-a-g-e-l-r-u-table.md',
 					},
 					{
-						text: '24.4.4 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS',
+						text: '24.4.4 A tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/04-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-b-u-f-f-e-r-p-o-o-l-s-t-a-t-s-table.md',
 					},
 					{
-						text: '24.4.5 As tabelas INFORMATION\_SCHEMA INNODB\_CMP e INNODB\_CMP\_RESET',
+						text: '24.4.5 As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/05-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-c-m-p-and-i-n-n-o-d-b-c-m-p-r-e-s-e-t-tables.md',
 					},
 					{
-						text: '24.4.6 As tabelas INFORMATION\_SCHEMA INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET',
+						text: '24.4.6 As tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/06-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-c-m-p-m-e-m-and-i-n-n-o-d-b-c-m-p-m-e-m-r-e-s-e-t-tables.md',
 					},
 					{
-						text: '24.4.7 As tabelas INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET',
+						text: '24.4.7 As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/07-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-c-m-p-p-e-r-i-n-d-e-x-and-i-n-n-o-d-b-c-m-p-p-e-r-i-n-d-e-x-r-e-s-e-t-tables.md',
 					},
 					{
-						text: '24.4.8 A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED',
+						text: '24.4.8 A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/08-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-f-t-b-e-i-n-g-d-e-l-e-t-e-d-table.md',
 					},
 					{
-						text: '24.4.9 A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG',
+						text: '24.4.9 A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/09-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-f-t-c-o-n-f-i-g-table.md',
 					},
 					{
-						text: '24.4.10 A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD',
+						text: '24.4.10 A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/10-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-f-t-d-e-f-a-u-l-t-s-t-o-p-w-o-r-d-table.md',
 					},
 					{
-						text: '24.4.11 A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED',
+						text: '24.4.11 A tabela INFORMATION_SCHEMA INNODB_FT_DELETED',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/11-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-f-t-d-e-l-e-t-e-d-table.md',
 					},
 					{
-						text: '24.4.12 A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE',
+						text: '24.4.12 A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/12-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-f-t-i-n-d-e-x-c-a-c-h-e-table.md',
 					},
 					{
-						text: '24.4.13 A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE',
+						text: '24.4.13 A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/13-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-f-t-i-n-d-e-x-t-a-b-l-e-table.md',
 					},
 					{
-						text: '24.4.14 A tabela INFORMATION\_SCHEMA INNODB\_LOCKS',
+						text: '24.4.14 A tabela INFORMATION_SCHEMA INNODB_LOCKS',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/14-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-l-o-c-k-s-table.md',
 					},
 					{
-						text: '24.4.15 A tabela INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS',
+						text: '24.4.15 A tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/15-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-l-o-c-k-w-a-i-t-s-table.md',
 					},
 					{
-						text: '24.4.16 A tabela INFORMATION\_SCHEMA INNODB\_METRICS',
+						text: '24.4.16 A tabela INFORMATION_SCHEMA INNODB_METRICS',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/16-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-m-e-t-r-i-c-s-table.md',
 					},
 					{
-						text: '24.4.17 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_COLUMNS',
+						text: '24.4.17 A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/17-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-c-o-l-u-m-n-s-table.md',
 					},
 					{
-						text: '24.4.18 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_DATAFILES',
+						text: '24.4.18 A tabela INFORMATION_SCHEMA INNODB_SYS_DATAFILES',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/18-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-d-a-t-a-f-i-l-e-s-table.md',
 					},
 					{
-						text: '24.4.19 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FIELDS',
+						text: '24.4.19 A tabela INFORMATION_SCHEMA INNODB_SYS_FIELDS',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/19-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-f-i-e-l-d-s-table.md',
 					},
 					{
-						text: '24.4.20 Tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN',
+						text: '24.4.20 Tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/20-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-f-o-r-e-i-g-n-table.md',
 					},
 					{
-						text: '24.4.21 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN\_COLS',
+						text: '24.4.21 A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/21-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-f-o-r-e-i-g-n-c-o-l-s-table.md',
 					},
 					{
-						text: '24.4.22 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_INDEXES',
+						text: '24.4.22 A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/22-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-i-n-d-e-x-e-s-table.md',
 					},
 					{
-						text: '24.4.23 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES',
+						text: '24.4.23 A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/23-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-t-a-b-l-e-s-table.md',
 					},
 					{
-						text: '24.4.24 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLESPACES',
+						text: '24.4.24 A tabela INFORMATION_SCHEMA INNODB_SYS_TABLESPACES',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/24-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-t-a-b-l-e-s-p-a-c-e-s-table.md',
 					},
 					{
-						text: '24.4.25 A visão INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS',
+						text: '24.4.25 A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/25-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-t-a-b-l-e-s-t-a-t-s-view.md',
 					},
 					{
-						text: '24.4.26 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL',
+						text: '24.4.26 A tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/26-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-s-y-s-v-i-r-t-u-a-l-table.md',
 					},
 					{
-						text: '24.4.27 A tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO',
+						text: '24.4.27 A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/27-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-t-e-m-p-t-a-b-l-e-i-n-f-o-table.md',
 					},
 					{
-						text: '24.4.28 A tabela INFORMATION\_SCHEMA INNODB\_TRX',
+						text: '24.4.28 A tabela INFORMATION_SCHEMA INNODB_TRX',
 						link: '/25-informationschema-tables/04-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-inno-d-b-tables/28-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-i-n-n-o-d-b-t-r-x-table.md',
 					},
 				],
@@ -7829,19 +7821,19 @@ export default [
 				collapsed: true,
 				items: [
 					{
-						text: '24.5.1 Informações\_Schema Referência da Tabela do Conjunto de Filas Thread',
+						text: '24.5.1 Informações_Schema Referência da Tabela do Conjunto de Filas Thread',
 						link: '/25-informationschema-tables/05-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-thread-pool-tables/01-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-thread-pool-table-reference.md',
 					},
 					{
-						text: '24.5.2 A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE',
+						text: '24.5.2 A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATE',
 						link: '/25-informationschema-tables/05-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-thread-pool-tables/02-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-t-p-t-h-r-e-a-d-g-r-o-u-p-s-t-a-t-e-table.md',
 					},
 					{
-						text: '24.5.3 A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS',
+						text: '24.5.3 A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATS',
 						link: '/25-informationschema-tables/05-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-thread-pool-tables/03-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-t-p-t-h-r-e-a-d-g-r-o-u-p-s-t-a-t-s-table.md',
 					},
 					{
-						text: '24.5.4 A tabela INFORMATION\_SCHEMA TP\_THREAD\_STATE',
+						text: '24.5.4 A tabela INFORMATION_SCHEMA TP_THREAD_STATE',
 						link: '/25-informationschema-tables/05-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-thread-pool-tables/04-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-t-p-t-h-r-e-a-d-s-t-a-t-e-table.md',
 					},
 				],
@@ -7856,14 +7848,14 @@ export default [
 						link: '/25-informationschema-tables/06-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-connection-control-tables/01-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-connection-control-table-reference.md',
 					},
 					{
-						text: '24.6.2 A tabela INFORMATION\_SCHEMA CONNECTION\_CONTROL\_FAILED\_LOGIN\_ATTEMPTS',
+						text: '24.6.2 A tabela INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS',
 						link: '/25-informationschema-tables/06-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-connection-control-tables/02-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-c-o-n-n-e-c-t-i-o-n-c-o-n-t-r-o-l-f-a-i-l-e-d-l-o-g-i-n-a-t-t-e-m-p-t-s-table.md',
 					},
 				],
 				link: '/25-informationschema-tables/06-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-connection-control-tables/index.md',
 			},
 			{
-				text: '24.7 INFORMATION\_SCHEMA MySQL Enterprise Firewall Tables',
+				text: '24.7 INFORMATION_SCHEMA MySQL Enterprise Firewall Tables',
 				collapsed: true,
 				items: [
 					{
@@ -7871,11 +7863,11 @@ export default [
 						link: '/25-informationschema-tables/07-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-my-s-q-l-enterprise-firewall-tables/01-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-firewall-table-reference.md',
 					},
 					{
-						text: '24.7.2 A tabela INFORMATION\_SCHEMA MYSQL\_FIREWALL\_USERS',
+						text: '24.7.2 A tabela INFORMATION_SCHEMA MYSQL_FIREWALL_USERS',
 						link: '/25-informationschema-tables/07-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-my-s-q-l-enterprise-firewall-tables/02-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-m-y-s-q-l-f-i-r-e-w-a-l-l-u-s-e-r-s-table.md',
 					},
 					{
-						text: '24.7.3 A tabela INFORMATION\_SCHEMA MYSQL\_FIREWALL\_WHITELIST',
+						text: '24.7.3 A tabela INFORMATION_SCHEMA MYSQL_FIREWALL_WHITELIST',
 						link: '/25-informationschema-tables/07-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-my-s-q-l-enterprise-firewall-tables/03-the-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-m-y-s-q-l-f-i-r-e-w-a-l-l-w-h-i-t-e-l-i-s-t-table.md',
 					},
 				],
@@ -8032,23 +8024,23 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '25.12.2.1 A tabela setup\_actors',
+								text: '25.12.2.1 A tabela setup_actors',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/02-performance-schema-setup-tables/01-the-setup-actors-table.md',
 							},
 							{
-								text: '25.12.2.2 A tabela setup\_consumers',
+								text: '25.12.2.2 A tabela setup_consumers',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/02-performance-schema-setup-tables/02-the-setup-consumers-table.md',
 							},
 							{
-								text: '25.12.2.3 A tabela setup\_instruments',
+								text: '25.12.2.3 A tabela setup_instruments',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/02-performance-schema-setup-tables/03-the-setup-instruments-table.md',
 							},
 							{
-								text: '25.12.2.4 A tabela setup\_objects',
+								text: '25.12.2.4 A tabela setup_objects',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/02-performance-schema-setup-tables/04-the-setup-objects-table.md',
 							},
 							{
-								text: '25.12.2.5 A tabela setup\_timers',
+								text: '25.12.2.5 A tabela setup_timers',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/02-performance-schema-setup-tables/05-the-setup-timers-table.md',
 							},
 						],
@@ -8059,23 +8051,23 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '25.12.3.1 A tabela cond\_instances',
+								text: '25.12.3.1 A tabela cond_instances',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/03-performance-schema-instance-tables/01-the-cond-instances-table.md',
 							},
 							{
-								text: '25.12.3.2 A tabela file\_instances',
+								text: '25.12.3.2 A tabela file_instances',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/03-performance-schema-instance-tables/02-the-file-instances-table.md',
 							},
 							{
-								text: '25.12.3.3 A tabela mutex\_instances',
+								text: '25.12.3.3 A tabela mutex_instances',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/03-performance-schema-instance-tables/03-the-mutex-instances-table.md',
 							},
 							{
-								text: '25.12.3.4 A tabela rwlock\_instances',
+								text: '25.12.3.4 A tabela rwlock_instances',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/03-performance-schema-instance-tables/04-the-rwlock-instances-table.md',
 							},
 							{
-								text: '25.12.3.5 A tabela socket\_instances',
+								text: '25.12.3.5 A tabela socket_instances',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/03-performance-schema-instance-tables/05-the-socket-instances-table.md',
 							},
 						],
@@ -8086,15 +8078,15 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '25.12.4.1 A tabela events\_waits\_current',
+								text: '25.12.4.1 A tabela events_waits_current',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/04-performance-schema-wait-event-tables/01-the-events-waits-current-table.md',
 							},
 							{
-								text: '25.12.4.2 A tabela events\_waits\_history',
+								text: '25.12.4.2 A tabela events_waits_history',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/04-performance-schema-wait-event-tables/02-the-events-waits-history-table.md',
 							},
 							{
-								text: '25.12.4.3 A tabela events\_waits\_history\_long',
+								text: '25.12.4.3 A tabela events_waits_history_long',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/04-performance-schema-wait-event-tables/03-the-events-waits-history-long-table.md',
 							},
 						],
@@ -8105,15 +8097,15 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '25.12.5.1 Tabela events\_stages\_current',
+								text: '25.12.5.1 Tabela events_stages_current',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/05-performance-schema-stage-event-tables/01-the-events-stages-current-table.md',
 							},
 							{
-								text: '25.12.5.2 A tabela events\_stages\_history',
+								text: '25.12.5.2 A tabela events_stages_history',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/05-performance-schema-stage-event-tables/02-the-events-stages-history-table.md',
 							},
 							{
-								text: '25.12.5.3 A tabela events\_stages\_history\_long',
+								text: '25.12.5.3 A tabela events_stages_history_long',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/05-performance-schema-stage-event-tables/03-the-events-stages-history-long-table.md',
 							},
 						],
@@ -8124,19 +8116,19 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '25.12.6.1 A tabela events\_statements\_current',
+								text: '25.12.6.1 A tabela events_statements_current',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/06-performance-schema-statement-event-tables/01-the-events-statements-current-table.md',
 							},
 							{
-								text: '25.12.6.2 A tabela events\_statements\_history',
+								text: '25.12.6.2 A tabela events_statements_history',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/06-performance-schema-statement-event-tables/02-the-events-statements-history-table.md',
 							},
 							{
-								text: '25.12.6.3 A tabela events\_statements\_history\_long',
+								text: '25.12.6.3 A tabela events_statements_history_long',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/06-performance-schema-statement-event-tables/03-the-events-statements-history-long-table.md',
 							},
 							{
-								text: '25.12.6.4 A tabela prepared\_statements\_instances',
+								text: '25.12.6.4 A tabela prepared_statements_instances',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/06-performance-schema-statement-event-tables/04-the-prepared-statements-instances-table.md',
 							},
 						],
@@ -8147,15 +8139,15 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '25.12.7.1 Tabela events\_transactions\_current',
+								text: '25.12.7.1 Tabela events_transactions_current',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/07-performance-schema-transaction-tables/01-the-events-transactions-current-table.md',
 							},
 							{
-								text: '25.12.7.2 A tabela events\_transactions\_history',
+								text: '25.12.7.2 A tabela events_transactions_history',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/07-performance-schema-transaction-tables/02-the-events-transactions-history-table.md',
 							},
 							{
-								text: '25.12.7.3 A tabela events\_transactions\_history\_long',
+								text: '25.12.7.3 A tabela events_transactions_history_long',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/07-performance-schema-transaction-tables/03-the-events-transactions-history-long-table.md',
 							},
 						],
@@ -8185,11 +8177,11 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '25.12.9.1 Tabela session\_account\_connect\_attrs',
+								text: '25.12.9.1 Tabela session_account_connect_attrs',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/09-performance-schema-connection-attribute-tables/01-the-session-account-connect-attrs-table.md',
 							},
 							{
-								text: '25.12.9.2 Tabela session\_connect\_attrs',
+								text: '25.12.9.2 Tabela session_connect_attrs',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/09-performance-schema-connection-attribute-tables/02-the-session-connect-attrs-table.md',
 							},
 						],
@@ -8204,31 +8196,31 @@ export default [
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/11-performance-schema-replication-tables/01-the-replication-connection-configuration-table.md',
 							},
 							{
-								text: '25.12.11.2 Tabela replication\_connection\_status',
+								text: '25.12.11.2 Tabela replication_connection_status',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/11-performance-schema-replication-tables/02-the-replication-connection-status-table.md',
 							},
 							{
-								text: '25.12.11.3 A tabela replication\_applier\_configuration',
+								text: '25.12.11.3 A tabela replication_applier_configuration',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/11-performance-schema-replication-tables/03-the-replication-applier-configuration-table.md',
 							},
 							{
-								text: '25.12.11.4 A tabela replication\_applier\_status',
+								text: '25.12.11.4 A tabela replication_applier_status',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/11-performance-schema-replication-tables/04-the-replication-applier-status-table.md',
 							},
 							{
-								text: '25.12.11.5 Tabela replication\_applier\_status\_by\_coordinator',
+								text: '25.12.11.5 Tabela replication_applier_status_by_coordinator',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/11-performance-schema-replication-tables/05-the-replication-applier-status-by-coordinator-table.md',
 							},
 							{
-								text: '25.12.11.6 Tabela replication\_applier\_status\_by\_worker',
+								text: '25.12.11.6 Tabela replication_applier_status_by_worker',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/11-performance-schema-replication-tables/06-the-replication-applier-status-by-worker-table.md',
 							},
 							{
-								text: '25.12.11.7 Tabela replication\_group\_member\_stats',
+								text: '25.12.11.7 Tabela replication_group_member_stats',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/11-performance-schema-replication-tables/07-the-replication-group-member-stats-table.md',
 							},
 							{
-								text: '25.12.11.8 A tabela replication\_group\_members',
+								text: '25.12.11.8 A tabela replication_group_members',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/11-performance-schema-replication-tables/08-the-replication-group-members-table.md',
 							},
 						],
@@ -8239,11 +8231,11 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '25.12.12.1 Tabela metadata\_locks',
+								text: '25.12.12.1 Tabela metadata_locks',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/12-performance-schema-lock-tables/01-the-metadata-locks-table.md',
 							},
 							{
-								text: '25.12.12.2 A tabela\_handles',
+								text: '25.12.12.2 A tabela_handles',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/12-performance-schema-lock-tables/02-the-table-handles-table.md',
 							},
 						],
@@ -8301,11 +8293,11 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '25.12.16.1 Tabela host\_cache',
+								text: '25.12.16.1 Tabela host_cache',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/16-performance-schema-miscellaneous-tables/01-the-host-cache-table.md',
 							},
 							{
-								text: '25.12.16.2 Tabela performance\_timers',
+								text: '25.12.16.2 Tabela performance_timers',
 								link: '/26-mysql-performance-schema/12-performance-schema-table-descriptions/16-performance-schema-miscellaneous-tables/02-the-performance-timers-table.md',
 							},
 							{
@@ -8365,15 +8357,15 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '26.4.2.1 A Tabela sys\_config',
+								text: '26.4.2.1 A Tabela sys_config',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/02-sys-schema-tables-and-triggers/01-the-sys-config-table.md',
 							},
 							{
-								text: '26.4.2.2 O gatilho sys\_config\_insert\_set\_user',
+								text: '26.4.2.2 O gatilho sys_config_insert_set_user',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/02-sys-schema-tables-and-triggers/02-the-sys-config-insert-set-user-trigger.md',
 							},
 							{
-								text: '26.4.2.3 O gatilho sys\_config\_update\_set\_user',
+								text: '26.4.2.3 O gatilho sys_config_update_set_user',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/02-sys-schema-tables-and-triggers/03-the-sys-config-update-set-user-trigger.md',
 							},
 						],
@@ -8384,83 +8376,83 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '26.4.3.1 As visualizações host\_summary e x$host\_summary',
+								text: '26.4.3.1 As visualizações host_summary e x$host_summary',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/01-the-host-summary-and-x-host-summary-views.md',
 							},
 							{
-								text: '26.4.3.2 As visualizações host\_summary\_by\_file\_io e x$host\_summary\_by\_file\_io',
+								text: '26.4.3.2 As visualizações host_summary_by_file_io e x$host_summary_by_file_io',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/02-the-host-summary-by-file-io-and-x-host-summary-by-file-io-views.md',
 							},
 							{
-								text: '26.4.3.3 As visualizações host\_summary\_by\_file\_io\_type e x$host\_summary\_by\_file\_io\_type',
+								text: '26.4.3.3 As visualizações host_summary_by_file_io_type e x$host_summary_by_file_io_type',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/03-the-host-summary-by-file-io-type-and-x-host-summary-by-file-io-type-views.md',
 							},
 							{
-								text: '26.4.3.4 As visualizações host\_summary\_by\_stages e x$host\_summary\_by\_stages',
+								text: '26.4.3.4 As visualizações host_summary_by_stages e x$host_summary_by_stages',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/04-the-host-summary-by-stages-and-x-host-summary-by-stages-views.md',
 							},
 							{
-								text: '26.4.3.5 As visualizações host\_summary\_by\_statement\_latency e x$host\_summary\_by\_statement\_latency',
+								text: '26.4.3.5 As visualizações host_summary_by_statement_latency e x$host_summary_by_statement_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/05-the-host-summary-by-statement-latency-and-x-host-summary-by-statement-latency-views.md',
 							},
 							{
-								text: '26.4.3.6 As visualizações host\_summary\_by\_statement\_type e x$host\_summary\_by\_statement\_type',
+								text: '26.4.3.6 As visualizações host_summary_by_statement_type e x$host_summary_by_statement_type',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/06-the-host-summary-by-statement-type-and-x-host-summary-by-statement-type-views.md',
 							},
 							{
-								text: '26.4.3.7 As visualizações innodb\_buffer\_stats\_by\_schema e x$innodb\_buffer\_stats\_by\_schema',
+								text: '26.4.3.7 As visualizações innodb_buffer_stats_by_schema e x$innodb_buffer_stats_by_schema',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/07-the-innodb-buffer-stats-by-schema-and-x-innodb-buffer-stats-by-schema-views.md',
 							},
 							{
-								text: '26.4.3.8 As visualizações innodb\_buffer\_stats\_by\_table e x$innodb\_buffer\_stats\_by\_table',
+								text: '26.4.3.8 As visualizações innodb_buffer_stats_by_table e x$innodb_buffer_stats_by_table',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/08-the-innodb-buffer-stats-by-table-and-x-innodb-buffer-stats-by-table-views.md',
 							},
 							{
-								text: '26.4.3.9 As visualizações innodb\_lock\_waits e x$innodb\_lock\_waits',
+								text: '26.4.3.9 As visualizações innodb_lock_waits e x$innodb_lock_waits',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/09-the-innodb-lock-waits-and-x-innodb-lock-waits-views.md',
 							},
 							{
-								text: '26.4.3.10 As visualizações io\_by\_thread\_by\_latency e x$io\_by\_thread\_by\_latency',
+								text: '26.4.3.10 As visualizações io_by_thread_by_latency e x$io_by_thread_by_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/10-the-io-by-thread-by-latency-and-x-io-by-thread-by-latency-views.md',
 							},
 							{
-								text: '26.4.3.11 As visualizações io\_global\_by\_file\_by\_bytes e x$io\_global\_by\_file\_by\_bytes',
+								text: '26.4.3.11 As visualizações io_global_by_file_by_bytes e x$io_global_by_file_by_bytes',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/11-the-io-global-by-file-by-bytes-and-x-io-global-by-file-by-bytes-views.md',
 							},
 							{
-								text: '26.4.3.12 As visualizações io\_global\_by\_file\_by\_latency e x$io\_global\_by\_file\_by\_latency',
+								text: '26.4.3.12 As visualizações io_global_by_file_by_latency e x$io_global_by_file_by_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/12-the-io-global-by-file-by-latency-and-x-io-global-by-file-by-latency-views.md',
 							},
 							{
-								text: '26.4.3.13 As visualizações io\_global\_by\_wait\_by\_bytes e x$io\_global\_by\_wait\_by\_bytes',
+								text: '26.4.3.13 As visualizações io_global_by_wait_by_bytes e x$io_global_by_wait_by_bytes',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/13-the-io-global-by-wait-by-bytes-and-x-io-global-by-wait-by-bytes-views.md',
 							},
 							{
-								text: '26.4.3.14 As visualizações io\_global\_by\_wait\_by\_latency e x$io\_global\_by\_wait\_by\_latency',
+								text: '26.4.3.14 As visualizações io_global_by_wait_by_latency e x$io_global_by_wait_by_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/14-the-io-global-by-wait-by-latency-and-x-io-global-by-wait-by-latency-views.md',
 							},
 							{
-								text: '26.4.3.15 As vistas latest\_file\_io e x$latest\_file\_io',
+								text: '26.4.3.15 As vistas latest_file_io e x$latest_file_io',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/15-the-latest-file-io-and-x-latest-file-io-views.md',
 							},
 							{
-								text: '26.4.3.16 As visualizações memory\_by\_host\_by\_current\_bytes e x$memory\_by\_host\_by\_current\_bytes',
+								text: '26.4.3.16 As visualizações memory_by_host_by_current_bytes e x$memory_by_host_by_current_bytes',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/16-the-memory-by-host-by-current-bytes-and-x-memory-by-host-by-current-bytes-views.md',
 							},
 							{
-								text: '26.4.3.17 As visualizações memory\_by\_thread\_by\_current\_bytes e x$memory\_by\_thread\_by\_current\_bytes',
+								text: '26.4.3.17 As visualizações memory_by_thread_by_current_bytes e x$memory_by_thread_by_current_bytes',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/17-the-memory-by-thread-by-current-bytes-and-x-memory-by-thread-by-current-bytes-views.md',
 							},
 							{
-								text: '26.4.3.18 As visualizações memory\_by\_user\_by\_current\_bytes e x$memory\_by\_user\_by\_current\_bytes',
+								text: '26.4.3.18 As visualizações memory_by_user_by_current_bytes e x$memory_by_user_by_current_bytes',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/18-the-memory-by-user-by-current-bytes-and-x-memory-by-user-by-current-bytes-views.md',
 							},
 							{
-								text: '26.4.3.19 As visualizações memory\_global\_by\_current\_bytes e x$memory\_global\_by\_current\_bytes',
+								text: '26.4.3.19 As visualizações memory_global_by_current_bytes e x$memory_global_by_current_bytes',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/19-the-memory-global-by-current-bytes-and-x-memory-global-by-current-bytes-views.md',
 							},
 							{
-								text: '26.4.3.20 Visões de memory\_global\_total e x$memory\_global\_total',
+								text: '26.4.3.20 Visões de memory_global_total e x$memory_global_total',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/20-the-memory-global-total-and-x-memory-global-total-views.md',
 							},
 							{
@@ -8472,43 +8464,43 @@ export default [
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/22-the-processlist-and-x-processlist-views.md',
 							},
 							{
-								text: '26.4.3.23 A visualização ps\_check\_lost\_instrumentation',
+								text: '26.4.3.23 A visualização ps_check_lost_instrumentation',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/23-the-ps-check-lost-instrumentation-view.md',
 							},
 							{
-								text: '26.4.3.24 A visão schema\_auto\_increment\_columns',
+								text: '26.4.3.24 A visão schema_auto_increment_columns',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/24-the-schema-auto-increment-columns-view.md',
 							},
 							{
-								text: '26.4.3.25 As visualizações schema\_index\_statistics e x$schema\_index\_statistics',
+								text: '26.4.3.25 As visualizações schema_index_statistics e x$schema_index_statistics',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/25-the-schema-index-statistics-and-x-schema-index-statistics-views.md',
 							},
 							{
-								text: '26.4.3.26 A visualização schema\_object\_overview',
+								text: '26.4.3.26 A visualização schema_object_overview',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/26-the-schema-object-overview-view.md',
 							},
 							{
-								text: '26.4.3.27 As visualizações schema\_redundant\_indexes e x$schema\_flattened\_keys',
+								text: '26.4.3.27 As visualizações schema_redundant_indexes e x$schema_flattened_keys',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/27-the-schema-redundant-indexes-and-x-schema-flattened-keys-views.md',
 							},
 							{
-								text: '26.4.3.28 As vistas schema\_table\_lock\_waits e x$schema\_table\_lock\_waits',
+								text: '26.4.3.28 As vistas schema_table_lock_waits e x$schema_table_lock_waits',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/28-the-schema-table-lock-waits-and-x-schema-table-lock-waits-views.md',
 							},
 							{
-								text: '26.4.3.29 As visualizações schema\_table\_statistics e x$schema\_table\_statistics',
+								text: '26.4.3.29 As visualizações schema_table_statistics e x$schema_table_statistics',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/29-the-schema-table-statistics-and-x-schema-table-statistics-views.md',
 							},
 							{
-								text: '26.4.3.30 As visualizações schema\_table\_statistics\_with\_buffer e x$schema\_table\_statistics\_with\_buffer',
+								text: '26.4.3.30 As visualizações schema_table_statistics_with_buffer e x$schema_table_statistics_with_buffer',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/30-the-schema-table-statistics-with-buffer-and-x-schema-table-statistics-with-buffer-views.md',
 							},
 							{
-								text: '26.4.3.31 As vistas schema\_tables\_with\_full\_table\_scans e x$schema\_tables\_with\_full\_table\_scans',
+								text: '26.4.3.31 As vistas schema_tables_with_full_table_scans e x$schema_tables_with_full_table_scans',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/31-the-schema-tables-with-full-table-scans-and-x-schema-tables-with-full-table-scans-views.md',
 							},
 							{
-								text: '26.4.3.32 A visão schema\_unused\_indexes',
+								text: '26.4.3.32 A visão schema_unused_indexes',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/32-the-schema-unused-indexes-view.md',
 							},
 							{
@@ -8516,27 +8508,27 @@ export default [
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/33-the-session-and-x-session-views.md',
 							},
 							{
-								text: '26.4.3.34 A visualização session\_ssl\_status',
+								text: '26.4.3.34 A visualização session_ssl_status',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/34-the-session-ssl-status-view.md',
 							},
 							{
-								text: '26.4.3.35 A análise da declaração e as visualizações x$statement\_analysis',
+								text: '26.4.3.35 A análise da declaração e as visualizações x$statement_analysis',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/35-the-statement-analysis-and-x-statement-analysis-views.md',
 							},
 							{
-								text: '26.4.3.36 As visualizações statements\_with\_errors\_or\_warnings e x$statements\_with\_errors\_or\_warnings',
+								text: '26.4.3.36 As visualizações statements_with_errors_or_warnings e x$statements_with_errors_or_warnings',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/36-the-statements-with-errors-or-warnings-and-x-statements-with-errors-or-warnings-views.md',
 							},
 							{
-								text: '26.4.3.37 As declarações com varreduras completas da tabela e as visualizações x$declarativas\_com\_varreduras\_completos\_da\_tabela',
+								text: '26.4.3.37 As declarações com varreduras completas da tabela e as visualizações x$declarativas_com_varreduras_completos_da_tabela',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/37-the-statements-with-full-table-scans-and-x-statements-with-full-table-scans-views.md',
 							},
 							{
-								text: '26.4.3.38 declarações\_com\_runtimes\_no\_95º percentil e x$declarações\_com\_runtimes\_no\_95º percentil Visualizações',
+								text: '26.4.3.38 declarações_com_runtimes_no_95º percentil e x$declarações_com_runtimes_no_95º percentil Visualizações',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/38-the-statements-with-runtimes-in-95-th-percentile-and-x-statements-with-runtimes-in-95-th-percentile-v.md',
 							},
 							{
-								text: '26.4.3.39 As visualizações \_statements\_with\_sorting e x$statements\_with\_sorting',
+								text: '26.4.3.39 As visualizações _statements_with_sorting e x$statements_with_sorting',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/39-the-statements-with-sorting-and-x-statements-with-sorting-views.md',
 							},
 							{
@@ -8548,23 +8540,23 @@ export default [
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/41-the-user-summary-and-x-user-summary-views.md',
 							},
 							{
-								text: '26.4.3.42 As visualizações user\_summary\_by\_file\_io e x$user\_summary\_by\_file\_io',
+								text: '26.4.3.42 As visualizações user_summary_by_file_io e x$user_summary_by_file_io',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/42-the-user-summary-by-file-io-and-x-user-summary-by-file-io-views.md',
 							},
 							{
-								text: '26.4.3.43 As visualizações user\_summary\_by\_file\_io\_type e x$user\_summary\_by\_file\_io\_type do usuário',
+								text: '26.4.3.43 As visualizações user_summary_by_file_io_type e x$user_summary_by_file_io_type do usuário',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/43-the-user-summary-by-file-io-type-and-x-user-summary-by-file-io-type-views.md',
 							},
 							{
-								text: '26.4.3.44 As visualizações user\_summary\_by\_stages e x$user\_summary\_by\_stages',
+								text: '26.4.3.44 As visualizações user_summary_by_stages e x$user_summary_by_stages',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/44-the-user-summary-by-stages-and-x-user-summary-by-stages-views.md',
 							},
 							{
-								text: '26.4.3.45 As visualizações user\_summary\_by\_statement\_latency e x$user\_summary\_by\_statement\_latency',
+								text: '26.4.3.45 As visualizações user_summary_by_statement_latency e x$user_summary_by_statement_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/45-the-user-summary-by-statement-latency-and-x-user-summary-by-statement-latency-views.md',
 							},
 							{
-								text: '26.4.3.46 As visualizações user\_summary\_by\_statement\_type e x$user\_summary\_by\_statement\_type',
+								text: '26.4.3.46 As visualizações user_summary_by_statement_type e x$user_summary_by_statement_type',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/46-the-user-summary-by-statement-type-and-x-user-summary-by-statement-type-views.md',
 							},
 							{
@@ -8572,23 +8564,23 @@ export default [
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/47-the-version-view.md',
 							},
 							{
-								text: '26.4.3.48 As visualizações wait\_classes\_global\_by\_avg\_latency e x$wait\_classes\_global\_by\_avg\_latency',
+								text: '26.4.3.48 As visualizações wait_classes_global_by_avg_latency e x$wait_classes_global_by_avg_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/48-the-wait-classes-global-by-avg-latency-and-x-wait-classes-global-by-avg-latency-views.md',
 							},
 							{
-								text: '26.4.3.49 As visualizações wait\_classes\_global\_by\_latency e x$wait\_classes\_global\_by\_latency',
+								text: '26.4.3.49 As visualizações wait_classes_global_by_latency e x$wait_classes_global_by_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/49-the-wait-classes-global-by-latency-and-x-wait-classes-global-by-latency-views.md',
 							},
 							{
-								text: '26.4.3.50 As visualizações waits\_by\_host\_by\_latency e x$waits\_by\_host\_by\_latency',
+								text: '26.4.3.50 As visualizações waits_by_host_by_latency e x$waits_by_host_by_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/50-the-waits-by-host-by-latency-and-x-waits-by-host-by-latency-views.md',
 							},
 							{
-								text: '26.4.3.51 As visualizações waits\_by\_user\_by\_latency e x$waits\_by\_user\_by\_latency',
+								text: '26.4.3.51 As visualizações waits_by_user_by_latency e x$waits_by_user_by_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/51-the-waits-by-user-by-latency-and-x-waits-by-user-by-latency-views.md',
 							},
 							{
-								text: '26.4.3.52 As visualizações waits\_global\_by\_latency e x$waits\_global\_by\_latency',
+								text: '26.4.3.52 As visualizações waits_global_by_latency e x$waits_global_by_latency',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/03-sys-schema-views/52-the-waits-global-by-latency-and-x-waits-global-by-latency-views.md',
 							},
 						],
@@ -8599,7 +8591,7 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '26.4.4.1 O procedimento create\_synonym\_db()',
+								text: '26.4.4.1 O procedimento create_synonym_db()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/01-the-create-synonym-db-procedure.md',
 							},
 							{
@@ -8607,99 +8599,99 @@ export default [
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/02-the-diagnostics-procedure.md',
 							},
 							{
-								text: '26.4.4.3 O procedimento execute\_prepared\_stmt()',
+								text: '26.4.4.3 O procedimento execute_prepared_stmt()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/03-the-execute-prepared-stmt-procedure.md',
 							},
 							{
-								text: '26.4.4.4 O procedimento ps\_setup\_disable\_background\_threads()',
+								text: '26.4.4.4 O procedimento ps_setup_disable_background_threads()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/04-the-ps-setup-disable-background-threads-procedure.md',
 							},
 							{
-								text: '26.4.4.5 O procedimento ps\_setup\_disable\_consumer()',
+								text: '26.4.4.5 O procedimento ps_setup_disable_consumer()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/05-the-ps-setup-disable-consumer-procedure.md',
 							},
 							{
-								text: '26.4.4.6 O procedimento ps\_setup\_disable\_instrument()',
+								text: '26.4.4.6 O procedimento ps_setup_disable_instrument()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/06-the-ps-setup-disable-instrument-procedure.md',
 							},
 							{
-								text: '26.4.4.7 O procedimento ps\_setup\_disable\_thread()',
+								text: '26.4.4.7 O procedimento ps_setup_disable_thread()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/07-the-ps-setup-disable-thread-procedure.md',
 							},
 							{
-								text: '26.4.4.8 O procedimento ps\_setup\_enable\_background\_threads()',
+								text: '26.4.4.8 O procedimento ps_setup_enable_background_threads()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/08-the-ps-setup-enable-background-threads-procedure.md',
 							},
 							{
-								text: '26.4.4.9 O procedimento ps\_setup\_enable\_consumer()',
+								text: '26.4.4.9 O procedimento ps_setup_enable_consumer()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/09-the-ps-setup-enable-consumer-procedure.md',
 							},
 							{
-								text: '26.4.4.10 O procedimento ps\_setup\_enable\_instrument()',
+								text: '26.4.4.10 O procedimento ps_setup_enable_instrument()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/10-the-ps-setup-enable-instrument-procedure.md',
 							},
 							{
-								text: '26.4.4.11 O procedimento ps\_setup\_enable\_thread()',
+								text: '26.4.4.11 O procedimento ps_setup_enable_thread()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/11-the-ps-setup-enable-thread-procedure.md',
 							},
 							{
-								text: '26.4.4.12 O procedimento ps\_setup\_reload\_saved()',
+								text: '26.4.4.12 O procedimento ps_setup_reload_saved()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/12-the-ps-setup-reload-saved-procedure.md',
 							},
 							{
-								text: '26.4.4.13 O procedimento ps\_setup\_reset\_to\_default()',
+								text: '26.4.4.13 O procedimento ps_setup_reset_to_default()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/13-the-ps-setup-reset-to-default-procedure.md',
 							},
 							{
-								text: '26.4.4.14 O procedimento ps\_setup\_save()',
+								text: '26.4.4.14 O procedimento ps_setup_save()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/14-the-ps-setup-save-procedure.md',
 							},
 							{
-								text: '26.4.4.15 O procedimento ps\_setup\_show\_disabled()',
+								text: '26.4.4.15 O procedimento ps_setup_show_disabled()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/15-the-ps-setup-show-disabled-procedure.md',
 							},
 							{
-								text: '26.4.4.16 O procedimento ps\_setup\_show\_disabled\_consumers()',
+								text: '26.4.4.16 O procedimento ps_setup_show_disabled_consumers()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/16-the-ps-setup-show-disabled-consumers-procedure.md',
 							},
 							{
-								text: '26.4.4.17 O procedimento ps\_setup\_show\_disabled\_instruments()',
+								text: '26.4.4.17 O procedimento ps_setup_show_disabled_instruments()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/17-the-ps-setup-show-disabled-instruments-procedure.md',
 							},
 							{
-								text: '26.4.4.18 O procedimento ps\_setup\_show\_enabled()',
+								text: '26.4.4.18 O procedimento ps_setup_show_enabled()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/18-the-ps-setup-show-enabled-procedure.md',
 							},
 							{
-								text: '26.4.4.19 O procedimento ps\_setup\_show\_enabled\_consumers()',
+								text: '26.4.4.19 O procedimento ps_setup_show_enabled_consumers()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/19-the-ps-setup-show-enabled-consumers-procedure.md',
 							},
 							{
-								text: '26.4.4.20 O procedimento ps\_setup\_show\_enabled\_instruments()',
+								text: '26.4.4.20 O procedimento ps_setup_show_enabled_instruments()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/20-the-ps-setup-show-enabled-instruments-procedure.md',
 							},
 							{
-								text: '26.4.4.21 O procedimento ps\_statement\_avg\_latency\_histogram()',
+								text: '26.4.4.21 O procedimento ps_statement_avg_latency_histogram()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/21-the-ps-statement-avg-latency-histogram-procedure.md',
 							},
 							{
-								text: '26.4.4.22 O procedimento ps\_trace\_statement\_digest()',
+								text: '26.4.4.22 O procedimento ps_trace_statement_digest()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/22-the-ps-trace-statement-digest-procedure.md',
 							},
 							{
-								text: '26.4.4.23 O procedimento ps\_trace\_thread()',
+								text: '26.4.4.23 O procedimento ps_trace_thread()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/23-the-ps-trace-thread-procedure.md',
 							},
 							{
-								text: '26.4.4.24 O procedimento ps\_truncate\_all\_tables()',
+								text: '26.4.4.24 O procedimento ps_truncate_all_tables()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/24-the-ps-truncate-all-tables-procedure.md',
 							},
 							{
-								text: '26.4.4.25 Procedimento statement\_performance\_analyzer()',
+								text: '26.4.4.25 Procedimento statement_performance_analyzer()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/25-the-statement-performance-analyzer-procedure.md',
 							},
 							{
-								text: '26.4.4.26 Procedimento table\_exists()',
+								text: '26.4.4.26 Procedimento table_exists()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/04-sys-schema-stored-procedures/26-the-table-exists-procedure.md',
 							},
 						],
@@ -8710,91 +8702,91 @@ export default [
 						collapsed: true,
 						items: [
 							{
-								text: '26.4.5.1 A função extract\_schema\_from\_file\_name()',
+								text: '26.4.5.1 A função extract_schema_from_file_name()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/01-the-extract-schema-from-file-name-function.md',
 							},
 							{
-								text: '26.4.5.2 A função extract\_table\_from\_file\_name()',
+								text: '26.4.5.2 A função extract_table_from_file_name()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/02-the-extract-table-from-file-name-function.md',
 							},
 							{
-								text: '26.4.5.3 A função format\_bytes()',
+								text: '26.4.5.3 A função format_bytes()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/03-the-format-bytes-function.md',
 							},
 							{
-								text: '26.4.5.4 A função format\_path()',
+								text: '26.4.5.4 A função format_path()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/04-the-format-path-function.md',
 							},
 							{
-								text: '26.4.5.5 A função format\_statement()',
+								text: '26.4.5.5 A função format_statement()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/05-the-format-statement-function.md',
 							},
 							{
-								text: '26.4.5.6 A função format\_time()',
+								text: '26.4.5.6 A função format_time()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/06-the-format-time-function.md',
 							},
 							{
-								text: '26.4.5.7 A função list\_add()',
+								text: '26.4.5.7 A função list_add()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/07-the-list-add-function.md',
 							},
 							{
-								text: '26.4.5.8 A função list\_drop()',
+								text: '26.4.5.8 A função list_drop()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/08-the-list-drop-function.md',
 							},
 							{
-								text: '26.4.5.9 A função ps\_is\_account\_enabled()',
+								text: '26.4.5.9 A função ps_is_account_enabled()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/09-the-ps-is-account-enabled-function.md',
 							},
 							{
-								text: '26.4.5.10 A função ps\_is\_consumer\_enabled()',
+								text: '26.4.5.10 A função ps_is_consumer_enabled()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/10-the-ps-is-consumer-enabled-function.md',
 							},
 							{
-								text: '26.4.5.11 A função ps\_is\_instrument\_default\_enabled()',
+								text: '26.4.5.11 A função ps_is_instrument_default_enabled()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/11-the-ps-is-instrument-default-enabled-function.md',
 							},
 							{
-								text: '26.4.5.12 A função ps\_is\_instrument\_default\_timed()',
+								text: '26.4.5.12 A função ps_is_instrument_default_timed()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/12-the-ps-is-instrument-default-timed-function.md',
 							},
 							{
-								text: '26.4.5.13 A função ps\_is\_thread\_instrumented()',
+								text: '26.4.5.13 A função ps_is_thread_instrumented()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/13-the-ps-is-thread-instrumented-function.md',
 							},
 							{
-								text: '26.4.5.14 A função ps\_thread\_account()',
+								text: '26.4.5.14 A função ps_thread_account()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/14-the-ps-thread-account-function.md',
 							},
 							{
-								text: '26.4.5.15 A função ps\_thread\_id()',
+								text: '26.4.5.15 A função ps_thread_id()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/15-the-ps-thread-id-function.md',
 							},
 							{
-								text: '26.4.5.16 A função ps\_thread\_stack()',
+								text: '26.4.5.16 A função ps_thread_stack()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/16-the-ps-thread-stack-function.md',
 							},
 							{
-								text: '26.4.5.17 A função ps\_thread\_trx\_info()',
+								text: '26.4.5.17 A função ps_thread_trx_info()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/17-the-ps-thread-trx-info-function.md',
 							},
 							{
-								text: '26.4.5.18 A função quote\_identifier()',
+								text: '26.4.5.18 A função quote_identifier()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/18-the-quote-identifier-function.md',
 							},
 							{
-								text: '26.4.5.19 A função sys\_get\_config()',
+								text: '26.4.5.19 A função sys_get_config()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/19-the-sys-get-config-function.md',
 							},
 							{
-								text: '26.4.5.20 A função version\_major()',
+								text: '26.4.5.20 A função version_major()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/20-the-version-major-function.md',
 							},
 							{
-								text: '26.4.5.21 A função version\_minor()',
+								text: '26.4.5.21 A função version_minor()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/21-the-version-minor-function.md',
 							},
 							{
-								text: '26.4.5.22 A função version\_patch()',
+								text: '26.4.5.22 A função version_patch()',
 								link: '/27-mysql-sys-schema/04-sys-schema-object-reference/05-sys-schema-stored-functions/22-the-version-patch-function.md',
 							},
 						],
@@ -8938,6 +8930,10 @@ export default [
 		],
 		link: '/29-mysql-enterprise-edition/index.md',
 	},
+  	{
+		text: 'Capítulo 29 MySQL Workbench',
+		link: '/30-mysql-workbench.md',
+	},
 	{
 		text: 'Apêndice A Perguntas Frequentes sobre o MySQL 5.7',
 		collapsed: true,
@@ -8967,7 +8963,7 @@ export default [
 				link: '/31-mysql-57-frequently-asked-questions/06-my-s-q-l-5-7-f-a-q-views.md',
 			},
 			{
-				text: 'A.7 Perguntas frequentes sobre o MySQL 5.7: INFORMATION\_SCHEMA',
+				text: 'A.7 Perguntas frequentes sobre o MySQL 5.7: INFORMATION_SCHEMA',
 				link: '/31-mysql-57-frequently-asked-questions/07-my-s-q-l-5-7-f-a-q-i-n-f-o-r-m-a-t-i-o-n-schema.md',
 			},
 			{
@@ -9054,7 +9050,7 @@ export default [
 								link: '/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/01-access-denied.md',
 							},
 							{
-								text: 'B.3.2.2 Não consigo me conectar ao servidor MySQL \[local]',
+								text: 'B.3.2.2 Não consigo me conectar ao servidor MySQL [local]',
 								link: '/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/02-can-t-connect-to-local-my-s-q-l-server.md',
 							},
 							{
@@ -9102,7 +9098,7 @@ export default [
 								link: '/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/13-ignoring-user.md',
 							},
 							{
-								text: 'B.3.2.14 A tabela \'tbl\_name\' não existe',
+								text: 'B.3.2.14 A tabela \'tbl_name\' não existe',
 								link: '/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/14-table-tbl-name-doesn-t-exist.md',
 							},
 							{
@@ -9236,7 +9232,7 @@ export default [
 				link: '/33-indexes/04-function-index.md',
 			},
 			{
-				text: 'SCHEMA\_INFORMATION Índice',
+				text: 'SCHEMA_INFORMATION Índice',
 				link: '/33-indexes/05-i-n-f-o-r-m-a-t-i-o-n-s-c-h-e-m-a-index.md',
 			},
 			{
@@ -9277,5 +9273,9 @@ export default [
 			},
 		],
 		link: '/33-indexes/index.md',
+	},
+  	{
+		text: 'Glossário do MySQL',
+		link: '/34-mysql-glossary.md',
 	},
 ]

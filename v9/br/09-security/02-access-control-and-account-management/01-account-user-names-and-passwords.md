@@ -51,6 +51,6 @@ $> mysql -u finley -ppassword db_name
 
 Se você usar a opção `-p`, não deve haver *espaço* entre `-p` e o valor da senha a seguir.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Consulte a Seção 8.1.2.1, “Diretrizes do Usuário Final para Segurança de Senhas”. Para evitar fornecer a senha na linha de comando, use um arquivo de opções ou um arquivo de caminho de login. Consulte a Seção 6.2.2.2, “Usando Arquivos de Opções”, e a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+Especificar uma senha na linha de comando deve ser considerado inseguro. Consulte a Seção 8.1.2.1, “Diretrizes do Usuário Final para Segurança de Senhas”. Para evitar fornecer a senha na linha de comando, use um arquivo de opções ou um arquivo de caminho de login. Consulte a Seção 6.2.2.2, “Usando Arquivos de Opções”, e a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para obter informações adicionais sobre a especificação de nomes de usuário, senhas e outros parâmetros de conexão, consulte a Seção 6.2.4, “Conectando ao Servidor MySQL Usando Opções de Comando”.

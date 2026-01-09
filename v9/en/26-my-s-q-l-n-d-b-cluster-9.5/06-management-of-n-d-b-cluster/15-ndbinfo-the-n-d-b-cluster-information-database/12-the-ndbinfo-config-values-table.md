@@ -1,4 +1,4 @@
-#### 25.6.15.12 The ndbinfo config\_values Table
+#### 25.6.15.12 The ndbinfo config_values Table
 
 The `config_values` table provides information about the current state of node configuration parameter values. Each row in the table corresponds to the current value of a parameter on a given node.
 
@@ -27,7 +27,7 @@ SELECT    v.node_id AS 'Node Id',
 FROM      config_values v
 JOIN      config_params p
 ON        v.config_param=p.param_number
-WHERE     p.param_name NOT LIKE '\_\_%'
+WHERE     p.param_name NOT LIKE '__%'
 ORDER BY  v.node_id, p.param_name;
 ```
 

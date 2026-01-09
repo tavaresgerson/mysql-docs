@@ -1,10 +1,10 @@
-#### 25.12.4.3 A tabela events\_waits\_history\_long
+#### 25.12.4.3 A tabela events_waits_history_long
 
 A tabela `events_waits_history_long` contém *`N`* eventos de espera mais recentes que terminaram globalmente, em todas as threads. Os eventos de espera não são adicionados à tabela até que terminem. Quando a tabela fica cheia, a linha mais antiga é descartada quando uma nova linha é adicionada, independentemente de qual thread tenha gerado aquela linha.
 
 O Schema de Desempenho autodimensiona o valor de *`N`* durante o início do servidor. Para definir o tamanho da tabela explicitamente, defina a variável de sistema `performance_schema_events_waits_history_long_size` no início do servidor.
 
-A tabela `events_waits_history_long` tem as mesmas colunas que a tabela `events_waits_current`. Veja Seção 25.12.4.1, “A tabela events\_waits\_current”.
+A tabela `events_waits_history_long` tem as mesmas colunas que a tabela `events_waits_current`. Veja Seção 25.12.4.1, “A tabela events_waits_current”.
 
 A operação `TRUNCATE TABLE` é permitida para a tabela `events_waits_history_long`. Ela remove as linhas.
 

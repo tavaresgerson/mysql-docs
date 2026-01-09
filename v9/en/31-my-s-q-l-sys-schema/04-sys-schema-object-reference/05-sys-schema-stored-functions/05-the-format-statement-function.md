@@ -1,4 +1,4 @@
-#### 30.4.5.5 The format\_statement() Function
+#### 30.4.5.5 The format_statement() Function
 
 Given a string (normally representing an SQL statement), reduces it to the length given by the `statement_truncate_len` configuration option, and returns the result. No truncation occurs if the string is shorter than `statement_truncate_len`. Otherwise, the middle part of the string is replaced by an ellipsis (`...`).
 
@@ -10,7 +10,7 @@ This function is useful for formatting possibly lengthy statements retrieved fro
 
 ##### Configuration Options
 
-`format_statement()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys\_config Table”):
+`format_statement()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys_config Table”):
 
 * `statement_truncate_len`, `@sys.statement_truncate_len`
 

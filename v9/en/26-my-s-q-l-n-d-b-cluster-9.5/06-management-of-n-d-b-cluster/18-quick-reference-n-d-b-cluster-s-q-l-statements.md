@@ -33,7 +33,7 @@ This section discusses several SQL statements that can prove useful in managing 
   +------------+---------+
   ```
 
-  If `NDB` support is not enabled, the preceding query returns an empty set. See Section 28.3.13, “The INFORMATION\_SCHEMA ENGINES Table”, for more information.
+  If `NDB` support is not enabled, the preceding query returns an empty set. See Section 28.3.13, “The INFORMATION_SCHEMA ENGINES Table”, for more information.
 
 * `SHOW VARIABLES LIKE 'NDB%'`
 

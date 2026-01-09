@@ -1,4 +1,4 @@
-### 24.3.24 The INFORMATION\_SCHEMA STATISTICS Table
+### 24.3.24 The INFORMATION_SCHEMA STATISTICS Table
 
 The [`STATISTICS`](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table") table provides information about table indexes.
 

@@ -32,7 +32,7 @@ Esta seção discute várias instruções SQL que podem ser úteis para gerencia
   +---------+
   ```
 
-  Para mais informações, consulte Seção 24.3.7, “A Tabela INFORMATION\_SCHEMA ENGINES”.
+  Para mais informações, consulte Seção 24.3.7, “A Tabela INFORMATION_SCHEMA ENGINES”.
 
 - `MOSTRE VARIÁVEIS COM O CAMPO 'NDB%'`
 
@@ -218,7 +218,7 @@ Esta seção discute várias instruções SQL que podem ser úteis para gerencia
   +----------------+
   ```
 
-  Consulte Seção 24.3.11, “Tabelas INFORMATION\_SCHEMA GLOBAL\_VARIABLES e SESSION\_VARIABLES” e Seção 5.1.7, “Variáveis do Sistema do Servidor” para obter mais informações. Veja também Seção 25.20, “Migração para as Tabelas de Variáveis do Sistema e Status do Schema de Desempenho”.
+  Consulte Seção 24.3.11, “Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES” e Seção 5.1.7, “Variáveis do Sistema do Servidor” para obter mais informações. Veja também Seção 25.20, “Migração para as Tabelas de Variáveis do Sistema e Status do Schema de Desempenho”.
 
 - `SELECT * FROM performance_schema.global_variables WHERE VARIABLE_NAME LIKE 'NDB%'`
 
@@ -465,7 +465,7 @@ Esta seção discute várias instruções SQL que podem ser úteis para gerencia
 
   Essa declaração, embora desaconselhada nas versões NDB 7.5 e NDB 7.6, pode ser usada se `show_compatibility_56` estiver habilitado para obter uma saída semelhante à da declaração `SHOW STATUS` discutida no item anterior; o método preferido é consultar a tabela `performance_schema.global_status` (veja o próximo item). Ao contrário do caso da declaração `SHOW STATUS`, é possível usar a instrução `SELECT` para extrair valores em SQL para uso em scripts de monitoramento e automação.
 
-  Consulte Seção 24.3.10, “Tabelas INFORMATION\_SCHEMA GLOBAL\_STATUS e SESSION\_STATUS”, bem como Seção 25.20, “Migração para as tabelas do sistema Performance Schema e variáveis de status” para obter mais informações.
+  Consulte Seção 24.3.10, “Tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS”, bem como Seção 25.20, “Migração para as tabelas do sistema Performance Schema e variáveis de status” para obter mais informações.
 
 - `SELECT * FROM performance_schema.global_status WHERE VARIABLE_NAME LIKE 'NDB%'`
 

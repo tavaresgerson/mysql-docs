@@ -1,4 +1,4 @@
-#### 26.4.5.15 The ps\_thread\_id() Function
+#### 26.4.5.15 The ps_thread_id() Function
 
 Returns the Performance Schema thread ID assigned to a given connection ID, or the thread ID for the current connection if the connection ID is `NULL`.
 

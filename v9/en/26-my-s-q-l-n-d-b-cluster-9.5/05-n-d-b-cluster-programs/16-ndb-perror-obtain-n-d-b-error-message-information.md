@@ -1,6 +1,6 @@
-### 25.5.16 ndb\_perror — Obtain NDB Error Message Information
+### 25.5.16 ndb_perror — Obtain NDB Error Message Information
 
-**ndb\_perror** shows information about an NDB error, given its error code. This includes the error message, the type of error, and whether the error is permanent or temporary. This is intended as a drop-in replacement for **perror** `--ndb`, which is no longer supported.
+**ndb_perror** shows information about an NDB error, given its error code. This includes the error message, the type of error, and whether the error is permanent or temporary. This is intended as a drop-in replacement for **perror** `--ndb`, which is no longer supported.
 
 #### Usage
 
@@ -8,21 +8,21 @@
 ndb_perror [options] error_code
 ```
 
-**ndb\_perror** does not need to access a running NDB Cluster, or any nodes (including SQL nodes). To view information about a given NDB error, invoke the program, using the error code as an argument, like this:
+**ndb_perror** does not need to access a running NDB Cluster, or any nodes (including SQL nodes). To view information about a given NDB error, invoke the program, using the error code as an argument, like this:
 
 ```
 $> ndb_perror 323
 NDB error code 323: Invalid nodegroup id, nodegroup already existing: Permanent error: Application error
 ```
 
-To display only the error message, invoke **ndb\_perror** with the `--silent` option (short form `-s`), as shown here:
+To display only the error message, invoke **ndb_perror** with the `--silent` option (short form `-s`), as shown here:
 
 ```
 $> ndb_perror -s 323
 Invalid nodegroup id, nodegroup already existing: Permanent error: Application error
 ```
 
-Like **perror**, **ndb\_perror** accepts multiple error codes:
+Like **perror**, **ndb_perror** accepts multiple error codes:
 
 ```
 $> ndb_perror 321 1001
@@ -30,11 +30,11 @@ NDB error code 321: Invalid nodegroup id: Permanent error: Application error
 NDB error code 1001: Illegal connect string
 ```
 
-Additional program options for **ndb\_perror** are described later in this section.
+Additional program options for **ndb_perror** are described later in this section.
 
-**ndb\_perror** replaces **perror** `--ndb`, which is no longer supported by NDB Cluster. To make substitution easier in scripts and other applications that might depend on **perror** for obtaining NDB error information, **ndb\_perror** supports its own “dummy” `--ndb` option, which does nothing.
+**ndb_perror** replaces **perror** `--ndb`, which is no longer supported by NDB Cluster. To make substitution easier in scripts and other applications that might depend on **perror** for obtaining NDB error information, **ndb_perror** supports its own “dummy” `--ndb` option, which does nothing.
 
-The following table includes all options that are specific to the NDB Cluster program **ndb\_perror**. Additional descriptions follow the table.
+The following table includes all options that are specific to the NDB Cluster program **ndb_perror**. Additional descriptions follow the table.
 
 #### Additional Options
 
@@ -78,7 +78,7 @@ The following table includes all options that are specific to the NDB Cluster pr
 
   <table frame="box" rules="all" summary="Properties for ndb"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb</code></td> </tr></tbody></table>
 
-  For compatibility with applications depending on old versions of **perror** that use that program's `--ndb` option. The option when used with **ndb\_perror** does nothing, and is ignored by it.
+  For compatibility with applications depending on old versions of **perror** that use that program's `--ndb` option. The option when used with **ndb_perror** does nothing, and is ignored by it.
 
 * `--no-defaults`
 

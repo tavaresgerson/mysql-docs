@@ -14,7 +14,7 @@ As seções a seguir contêm informações sobre as opções e variáveis do **m
 
 Uma variável de sistema particularmente importante é a `server_id`.
 
-<table frame="box" rules="all" summary="Propriedades para server_id"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--server-id=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="replication-options.html#sysvar_server_id">server_id</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para server_id"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--server-id=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>server_id</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
 Esta variável especifica o ID do servidor. `server_id` é definido como 1 por padrão. O servidor pode ser iniciado com este ID padrão, mas quando o registro binário é habilitado, uma mensagem informativa é emitida se você não definir explicitamente `server_id` para especificar um ID de servidor.
 
@@ -35,7 +35,7 @@ A presença da variável de sistema `server_uuid` não altera a exigência de de
 <table frame="box" rules="all" summary="Propriedades para server_uuid">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="replication-options.html#sysvar_server_uuid">server_uuid</a></code></td>
+    <td><code>server_uuid</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -46,7 +46,7 @@ A presença da variável de sistema `server_uuid` não altera a exigência de de
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>

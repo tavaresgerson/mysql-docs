@@ -365,7 +365,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
 
   Um número inteiro não assinado que representa o status do comando: 0 para sucesso, 1 se ocorrer um erro.
 
-  O valor `STATUS_CODE` difere do valor `STATUS`: `STATUS_CODE` é 0 para sucesso e 1 para erro, o que é compatível com o consumidor EZ\_collector para o Audit Vault. `STATUS` é o valor da função C API `mysql_errno()`. Este valor é 0 para sucesso e não nulo para erro, e, portanto, não é necessariamente 1 para erro.
+  O valor `STATUS_CODE` difere do valor `STATUS`: `STATUS_CODE` é 0 para sucesso e 1 para erro, o que é compatível com o consumidor EZ_collector para o Audit Vault. `STATUS` é o valor da função C API `mysql_errno()`. Este valor é 0 para sucesso e não nulo para erro, e, portanto, não é necessariamente 1 para erro.
 
   Exemplo:
 
@@ -649,7 +649,7 @@ Os seguintes atributos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
 
   Um número inteiro não assinado que representa o status do comando: 0 para sucesso, 1 se ocorrer um erro.
 
-  O valor `STATUS_CODE` difere do valor `STATUS`: `STATUS_CODE` é 0 para sucesso e 1 para erro, o que é compatível com o consumidor EZ\_collector para o Audit Vault. `STATUS` é o valor da função C API `mysql_errno()`. Este valor é 0 para sucesso e não nulo para erro, e, portanto, não é necessariamente 1 para erro.
+  O valor `STATUS_CODE` difere do valor `STATUS`: `STATUS_CODE` é 0 para sucesso e 1 para erro, o que é compatível com o consumidor EZ_collector para o Audit Vault. `STATUS` é o valor da função C API `mysql_errno()`. Este valor é 0 para sucesso e não nulo para erro, e, portanto, não é necessariamente 1 para erro.
 
   Exemplo: `STATUS_CODE="0"`
 

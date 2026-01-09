@@ -1,4 +1,4 @@
-#### 25.12.11.7 The replication\_group\_member\_stats Table
+#### 25.12.11.7 The replication_group_member_stats Table
 
 This table shows statistical information for MySQL Group Replication members. It is populated only when Group Replication is running.
 

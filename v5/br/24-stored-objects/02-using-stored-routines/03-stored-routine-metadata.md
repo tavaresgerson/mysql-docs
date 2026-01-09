@@ -2,7 +2,7 @@
 
 Para obter metadados sobre rotinas armazenadas:
 
-- Consulte a tabela `ROUTINES` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.21, “A tabela INFORMATION\_SCHEMA ROUTINES”.
+- Consulte a tabela `ROUTINES` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.21, “A tabela INFORMATION_SCHEMA ROUTINES”.
 
 - Use as instruções `SHOW CREATE PROCEDURE` e `SHOW CREATE FUNCTION` para ver as definições das rotinas. Veja a Seção 13.7.5.9, “Instrução SHOW CREATE PROCEDURE”.
 

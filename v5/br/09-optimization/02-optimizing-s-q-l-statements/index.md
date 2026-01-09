@@ -4,7 +4,7 @@
 
 8.2.2 Otimização de subconsultas, tabelas derivadas e referências de visualizações
 
-8.2.3 Otimizando consultas do INFORMATION\_SCHEMA
+8.2.3 Otimizando consultas do INFORMATION_SCHEMA
 
 8.2.4 Otimização das declarações de alteração de dados
 

@@ -32,13 +32,13 @@ Apenas as funções MySQL mostradas na lista a seguir são permitidas em express
 
 - `MÊS()`
 
-- `QUARTER()\_`
+- `QUARTER()_`
 
 - `SECOND()`
 
 - `TIME_TO_SEC()`
 
-- `TO_DAYS()\_`
+- `TO_DAYS()_`
 
 - `TO_SECONDS()`
 
@@ -62,6 +62,6 @@ mysql> CREATE TABLE t (c FLOAT) PARTITION BY LIST( FLOOR(c) )(
 ERROR 1490 (HY000): The PARTITION function returns the wrong type
 ```
 
-**Função `EXTRACT()` com o especificador `WEEK`.** O valor retornado pela função `EXTRACT()` (date-and-time-functions.html#function\_extract), quando usada como `EXTRACT(WEEK FROM col)` (date-and-time-functions.html#function\_extract), depende do valor da variável de sistema `default_week_format` (server-system-variables.html#sysvar\_default\_week\_format). Por essa razão, `EXTRACT()` (date-and-time-functions.html#function\_extract) não é permitido como função de partição quando especifica a unidade como `WEEK`. (Bug #54483)
+**Função `EXTRACT()` com o especificador `WEEK`.** O valor retornado pela função `EXTRACT()` (date-and-time-functions.html#function_extract), quando usada como `EXTRACT(WEEK FROM col)` (date-and-time-functions.html#function_extract), depende do valor da variável de sistema `default_week_format` (server-system-variables.html#sysvar_default_week_format). Por essa razão, `EXTRACT()` (date-and-time-functions.html#function_extract) não é permitido como função de partição quando especifica a unidade como `WEEK`. (Bug #54483)
 
 Consulte a Seção 12.6.2, “Funções Matemáticas” para obter mais informações sobre os tipos de retorno dessas funções, bem como a Seção 11.1, “Tipos de Dados Numéricos”.

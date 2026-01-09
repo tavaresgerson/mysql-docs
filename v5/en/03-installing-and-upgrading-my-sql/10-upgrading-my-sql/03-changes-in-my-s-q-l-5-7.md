@@ -18,7 +18,7 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
 
   `InnoDB` tablespace encryption requires that the keyring plugin to be used be loaded prior to `InnoDB` initialization, so this change of default `--early-plugin-load` value introduces an incompatibility for upgrades from 5.7.11 to 5.7.12 or higher. Administrators who have encrypted `InnoDB` tablespaces must take explicit action to ensure continued loading of the keyring plugin: Start the server with an `--early-plugin-load` option that names the plugin library file. For additional information, see Section 6.4.4.1, “Keyring Plugin Installation”.
 
-* **Incompatible change**: The `INFORMATION_SCHEMA` has tables that contain system and status variable information (see Section 24.3.11, “The INFORMATION\_SCHEMA GLOBAL\_VARIABLES and SESSION\_VARIABLES Tables”, and Section 24.3.10, “The INFORMATION\_SCHEMA GLOBAL\_STATUS and SESSION\_STATUS Tables”). As of MySQL 5.7.6, the Performance Schema also contains system and status variable tables (see Section 25.12.13, “Performance Schema System Variable Tables”, and Section 25.12.14, “Performance Schema Status Variable Tables”). The Performance Schema tables are intended to replace the `INFORMATION_SCHEMA` tables, which are deprecated as of MySQL 5.7.6 and are removed in MySQL 8.0.
+* **Incompatible change**: The `INFORMATION_SCHEMA` has tables that contain system and status variable information (see Section 24.3.11, “The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables”, and Section 24.3.10, “The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables”). As of MySQL 5.7.6, the Performance Schema also contains system and status variable tables (see Section 25.12.13, “Performance Schema System Variable Tables”, and Section 25.12.14, “Performance Schema Status Variable Tables”). The Performance Schema tables are intended to replace the `INFORMATION_SCHEMA` tables, which are deprecated as of MySQL 5.7.6 and are removed in MySQL 8.0.
 
   For advice on migrating away from the `INFORMATION_SCHEMA` tables to the Performance Schema tables, see Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”. To assist in the migration, you can use the `show_compatibility_56` system variable, which affects how system and status variable information is provided by the `INFORMATION_SCHEMA` and Performance Schema tables, and also by the `SHOW VARIABLES` and `SHOW STATUS` statements. `show_compatibility_56` is enabled by default in 5.7.6 and 5.7.7, and disabled by default in MySQL 5.7.8.
 
@@ -34,11 +34,11 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   CREATE USER 'root'@'::1' IDENTIFIED BY 'root-password';
   ```
 
-* **Incompatible change**: As of MySQL 5.7.6, for some Linux platforms, when MySQL is installed using RPM and Debian packages, server startup and shutdown now is managed using systemd rather than **mysqld\_safe**, and **mysqld\_safe** is not installed. This may require some adjustment to the manner in which you specify server options. For details, see Section 2.5.10, “Managing MySQL Server with systemd”.
+* **Incompatible change**: As of MySQL 5.7.6, for some Linux platforms, when MySQL is installed using RPM and Debian packages, server startup and shutdown now is managed using systemd rather than **mysqld_safe**, and **mysqld_safe** is not installed. This may require some adjustment to the manner in which you specify server options. For details, see Section 2.5.10, “Managing MySQL Server with systemd”.
 
-* **Incompatible change**: In MySQL 5.7.5, the executable binary version of **mysql\_install\_db** is located in the `bin` installation directory, whereas the Perl version was located in the `scripts` installation directory. For upgrades from an older version of MySQL, you may find a version in both directories. To avoid confusion, remove the version in the `scripts` directory. For fresh installations of MySQL 5.7.5 or later, **mysql\_install\_db** is only found in the `bin` directory, and the `scripts` directory is no longer present. Applications that expect to find **mysql\_install\_db** in the `scripts` directory should be updated to look in the `bin` directory instead.
+* **Incompatible change**: In MySQL 5.7.5, the executable binary version of **mysql_install_db** is located in the `bin` installation directory, whereas the Perl version was located in the `scripts` installation directory. For upgrades from an older version of MySQL, you may find a version in both directories. To avoid confusion, remove the version in the `scripts` directory. For fresh installations of MySQL 5.7.5 or later, **mysql_install_db** is only found in the `bin` directory, and the `scripts` directory is no longer present. Applications that expect to find **mysql_install_db** in the `scripts` directory should be updated to look in the `bin` directory instead.
 
-  The location of **mysql\_install\_db** becomes less material as of MySQL 5.7.6 because as of that version it is deprecated in favor of **mysqld --initialize** (or **mysqld --initialize-insecure**). See Section 2.9.1, “Initializing the Data Directory”
+  The location of **mysql_install_db** becomes less material as of MySQL 5.7.6 because as of that version it is deprecated in favor of **mysqld --initialize** (or **mysqld --initialize-insecure**). See Section 2.9.1, “Initializing the Data Directory”
 
 * **Incompatible change**: In MySQL 5.7.5, these SQL mode changes were made:
 
@@ -60,7 +60,7 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
 
 #### System Table Changes
 
-* **Incompatible change**: The `Password` column of the `mysql.user` system table was removed in MySQL 5.7.6. All credentials are stored in the `authentication_string` column, including those formerly stored in the `Password` column. If performing an in-place upgrade to MySQL 5.7.6 or later, run **mysql\_upgrade** as directed by the in-place upgrade procedure to migrate the `Password` column contents to the `authentication_string` column.
+* **Incompatible change**: The `Password` column of the `mysql.user` system table was removed in MySQL 5.7.6. All credentials are stored in the `authentication_string` column, including those formerly stored in the `Password` column. If performing an in-place upgrade to MySQL 5.7.6 or later, run **mysql_upgrade** as directed by the in-place upgrade procedure to migrate the `Password` column contents to the `authentication_string` column.
 
   If performing a logical upgrade using a **mysqldump** dump file from a pre-5.7.6 MySQL installation, you must observe these conditions for the **mysqldump** command used to generate the dump file:
 
@@ -68,13 +68,13 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
 
   + You must not include the `--flush-privileges` option
 
-  As outlined in the logical upgrade procedure, load the pre-5.7.6 dump file into the 5.7.6 (or later) server before running **mysql\_upgrade**.
+  As outlined in the logical upgrade procedure, load the pre-5.7.6 dump file into the 5.7.6 (or later) server before running **mysql_upgrade**.
 
 #### Server Changes
 
 * **Incompatible change**: As of MySQL 5.7.5, support for passwords that use the older pre-4.1 password hashing format is removed, which involves the following changes. Applications that use any feature no longer supported must be modified.
 
-  + The `mysql_old_password` authentication plugin that used pre-4.1 password hash values is removed. Accounts that use this plugin are disabled at startup and the server writes an “unknown plugin” message to the error log. For instructions on upgrading accounts that use this plugin, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql\_old\_password Plugin”.
+  + The `mysql_old_password` authentication plugin that used pre-4.1 password hash values is removed. Accounts that use this plugin are disabled at startup and the server writes an “unknown plugin” message to the error log. For instructions on upgrading accounts that use this plugin, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
 
   + For the `old_passwords` system variable, a value of 1 (produce pre-4.1 hash values) is no longer permitted.
 
@@ -86,15 +86,15 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
 
   + The `OLD_PASSWORD()` function is removed.
 
-* **Incompatible change**: In MySQL 5.6.6, the 2-digit `YEAR(2)` data type was deprecated. In MySQL 5.7.5, support for `YEAR(2)` is removed. Once you upgrade to MySQL 5.7.5 or higher, any remaining 2-digit `YEAR(2)` columns must be converted to 4-digit `YEAR` columns to become usable again. For conversion strategies, see Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR” Limitations and Migrating to 4-Digit YEAR"). Running **mysql\_upgrade** after upgrading is one of the possible conversion strategies.
+* **Incompatible change**: In MySQL 5.6.6, the 2-digit `YEAR(2)` data type was deprecated. In MySQL 5.7.5, support for `YEAR(2)` is removed. Once you upgrade to MySQL 5.7.5 or higher, any remaining 2-digit `YEAR(2)` columns must be converted to 4-digit `YEAR` columns to become usable again. For conversion strategies, see Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR” Limitations and Migrating to 4-Digit YEAR"). Running **mysql_upgrade** after upgrading is one of the possible conversion strategies.
 
-* As of MySQL 5.7.7, `CHECK TABLE ... FOR UPGRADE` reports a table as needing a rebuild if it contains old temporal columns in pre-5.6.4 format (`TIME`, `DATETIME`, and `TIMESTAMP` columns without support for fractional seconds precision) and the `avoid_temporal_upgrade` system variable is disabled. This helps **mysql\_upgrade** to detect and upgrade tables containing old temporal columns. If `avoid_temporal_upgrade` is enabled, `FOR UPGRADE` ignores the old temporal columns present in the table; consequently, **mysql\_upgrade** does not upgrade them.
+* As of MySQL 5.7.7, `CHECK TABLE ... FOR UPGRADE` reports a table as needing a rebuild if it contains old temporal columns in pre-5.6.4 format (`TIME`, `DATETIME`, and `TIMESTAMP` columns without support for fractional seconds precision) and the `avoid_temporal_upgrade` system variable is disabled. This helps **mysql_upgrade** to detect and upgrade tables containing old temporal columns. If `avoid_temporal_upgrade` is enabled, `FOR UPGRADE` ignores the old temporal columns present in the table; consequently, **mysql_upgrade** does not upgrade them.
 
   As of MySQL 5.7.7, `REPAIR TABLE` upgrades a table if it contains old temporal columns in pre-5.6.4 format and the `avoid_temporal_upgrade` system variable is disabled. If `avoid_temporal_upgrade` is enabled, `REPAIR TABLE` ignores the old temporal columns present in the table and does not upgrade them.
 
   To check for tables that contain such temporal columns and need a rebuild, disable `avoid_temporal_upgrade` before executing `CHECK TABLE ... FOR UPGRADE`.
 
-  To upgrade tables that contain such temporal columns, disable `avoid_temporal_upgrade` before executing `REPAIR TABLE` or **mysql\_upgrade**.
+  To upgrade tables that contain such temporal columns, disable `avoid_temporal_upgrade` before executing `REPAIR TABLE` or **mysql_upgrade**.
 
 * **Incompatible change**: As of MySQL 5.7.2, the server requires account rows in the `mysql.user` system table to have a nonempty `plugin` column value and disables accounts with an empty value. This requires that you upgrade your `mysql.user` table to fill in all `plugin` values. As of MySQL 5.7.6, use this procedure:
 
@@ -104,7 +104,7 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   2. Upgrade the MySQL binaries in place by replacing the old binaries with the new ones
 
   3. Start the MySQL 5.7 server normally (no special options)
-  4. Run **mysql\_upgrade** to upgrade the system tables
+  4. Run **mysql_upgrade** to upgrade the system tables
 
   5. Restart the MySQL 5.7 server
 
@@ -118,7 +118,7 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   4. Start the MySQL 5.7 server normally (no special options)
   5. Reload the dump file (**mysql < *`dump_file`***)
 
-  6. Run **mysql\_upgrade** to upgrade the system tables
+  6. Run **mysql_upgrade** to upgrade the system tables
 
   7. Restart the MySQL 5.7 server
 
@@ -131,7 +131,7 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
 
   3. Restart the server with the `--skip-grant-tables` option to disable privilege checking
 
-  4. Run **mysql\_upgrade** to upgrade the system tables
+  4. Run **mysql_upgrade** to upgrade the system tables
 
   5. Restart the server normally (without `--skip-grant-tables`)
 
@@ -146,11 +146,11 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
 
   5. Reload the dump file (**mysql < *`dump_file`***)
 
-  6. Run **mysql\_upgrade** to upgrade the system tables
+  6. Run **mysql_upgrade** to upgrade the system tables
 
   7. Restart the server normally (without `--skip-grant-tables`)
 
-  **mysql\_upgrade** runs by default as the MySQL `root` user. For the preceding procedures, if the `root` password is expired when you run **mysql\_upgrade**, it displays a message informing you that your password is expired and that **mysql\_upgrade** failed as a result. To correct this, reset the `root` password and run **mysql\_upgrade** again:
+  **mysql_upgrade** runs by default as the MySQL `root` user. For the preceding procedures, if the `root` password is expired when you run **mysql_upgrade**, it displays a message informing you that your password is expired and that **mysql_upgrade** failed as a result. To correct this, reset the `root` password and run **mysql_upgrade** again:
 
   ```sql
   $> mysql -u root -p
@@ -163,11 +163,11 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
   Enter password: ****  <- enter root password here
   ```
 
-  The password-resetting statement normally does not work if the server is started with `--skip-grant-tables`, but the first invocation of **mysql\_upgrade** flushes the privileges, so when you run **mysql**, the statement is accepted.
+  The password-resetting statement normally does not work if the server is started with `--skip-grant-tables`, but the first invocation of **mysql_upgrade** flushes the privileges, so when you run **mysql**, the statement is accepted.
 
-  If **mysql\_upgrade** itself expires the `root` password, you must reset the password again in the same manner.
+  If **mysql_upgrade** itself expires the `root` password, you must reset the password again in the same manner.
 
-  After following the preceding instructions, DBAs are advised also to convert accounts that use the `mysql_old_password` authentication plugin to use `mysql_native_password` instead, because support for `mysql_old_password` has been removed. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql\_old\_password Plugin”.
+  After following the preceding instructions, DBAs are advised also to convert accounts that use the `mysql_old_password` authentication plugin to use `mysql_native_password` instead, because support for `mysql_old_password` has been removed. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
 
 * **Incompatible change**: It is possible for a column `DEFAULT` value to be valid for the `sql_mode` value at table-creation time but invalid for the `sql_mode` value when rows are inserted or updated. Example:
 
@@ -260,7 +260,7 @@ For dump and reload instructions, see Section 2.10.12, “Rebuilding or Repairi
 
   + To upgrade an individual table from the generic partitioning handler to *`InnoDB`* native partitioning, execute the statement `ALTER TABLE table_name UPGRADE PARTITIONING`.
 
-  + To upgrade all `InnoDB` tables that use the generic partitioning handler to use the native partitioning handler instead, run **mysql\_upgrade**.
+  + To upgrade all `InnoDB` tables that use the generic partitioning handler to use the native partitioning handler instead, run **mysql_upgrade**.
 
 #### SQL Changes
 

@@ -15,5 +15,5 @@ Para mais informações, consulte o seguinte:
 * Parâmetros do sistema de arquivos de arquivos de dados de disco.
 * Parâmetros de latência de dados de disco
 * Seção 25.6.15.32, “A Tabela ndbinfo diskstat”
-* Seção 25.6.15.33, “A Tabela ndbinfo diskstats\_1sec”
-* Seção 25.6.15.50, “A Tabela ndbinfo pgman\_time\_track\_stats”
+* Seção 25.6.15.33, “A Tabela ndbinfo diskstats_1sec”
+* Seção 25.6.15.50, “A Tabela ndbinfo pgman_time_track_stats”

@@ -1,4 +1,4 @@
-### 28.3.17 The INFORMATION\_SCHEMA KEYWORDS Table
+### 28.3.17 The INFORMATION_SCHEMA KEYWORDS Table
 
 The `KEYWORDS` table lists the words considered keywords by MySQL and, for each one, indicates whether it is reserved. Reserved keywords may require special treatment in some contexts, such as special quoting when used as identifiers (see Section 11.3, “Keywords and Reserved Words”). This table provides applications a runtime source of MySQL keyword information.
 

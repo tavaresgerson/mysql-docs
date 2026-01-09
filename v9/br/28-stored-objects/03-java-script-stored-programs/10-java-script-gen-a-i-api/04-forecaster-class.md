@@ -102,7 +102,7 @@ Previsão de rótulos, salvando-os na tabela de saída especificada pelo usuári
 * *`options`*
   (`Object`)
   (*opcional*): Conjunto de opções no formato JSON. Para mais informações, consulte
-  ML\_PREDICT\_TABLE.
+  ML_PREDICT_TABLE.
 
 **Tipo de retorno**
 
@@ -111,7 +111,7 @@ Previsão de rótulos, salvando-os na tabela de saída especificada pelo usuári
 ###### Versão 2
 
 Previsão de um rótulo para uma única amostra de dados e retorna-o.
-Consulte ML\_PREDICT\_ROW, para mais informações sobre o tipo e o formato do valor retornado.
+Consulte ML_PREDICT_ROW, para mais informações sobre o tipo e o formato do valor retornado.
 
 **Assinatura**
 
@@ -156,7 +156,7 @@ Retorna a pontuação para os dados de teste na tabela e coluna indicadas, usand
   MySQL HeatWave AutoML.
 * `options`
   (`Objeto`)
-  (*opcional*): Um conjunto de opções no formato chave-valor JSON. Para mais informações, consulte ML\_SCORE.
+  (*opcional*): Um conjunto de opções no formato chave-valor JSON. Para mais informações, consulte ML_SCORE.
 
 **Tipo de retorno**
 

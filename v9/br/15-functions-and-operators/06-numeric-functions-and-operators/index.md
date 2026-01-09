@@ -12,85 +12,85 @@
     <th>Descrição</th>
   </tr>
   <tr>
-    <td><a class="link" href="funções_aritméticas.html#operador_mod">%</a>, <code>MOD</code></td>
+    <td>%, <code>MOD</code></td>
     <td> Operador de módulo </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_aritméticas.html#operador_times">*</a></td>
+    <td>*</td>
     <td> Operador de multiplicação </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_aritméticas.html#operador_plus">+</a></td>
+    <td>+</td>
     <td> Operador de adição </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_aritméticas.html#operador_minus">-</a></td>
+    <td>-</td>
     <td> Operador de subtração </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_aritméticas.html#operador_unário-menos">-</a></td>
+    <td>-</td>
     <td> Altera o sinal do argumento </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_aritméticas.html#operador_divide">/</a></td>
+    <td>/</td>
     <td> Operador de divisão </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_abs">ABS()</a></td>
+    <td>ABS()</td>
     <td> Retorna o valor absoluto </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_acos">ACOS()</a></td>
+    <td>ACOS()</td>
     <td> Retorna o cosseno </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_asin">ASIN()</a></td>
+    <td>ASIN()</td>
     <td> Retorna o seno </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_atan">ATAN()</a></td>
+    <td>ATAN()</td>
     <td> Retorna o tangente </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_atan2">ATAN2(), <code>ATAN()</code></a></td>
+    <td>ATAN2(), <code>ATAN()</code></td>
     <td> Retorna o tangente dos dois argumentos </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_ceil">CEIL()</a></td>
+    <td>CEIL()</td>
     <td> Retorna o menor inteiro não menor que o argumento </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_ceiling">CEILING()</a></td>
+    <td>CEILING()</td>
     <td> Retorna o menor inteiro não menor que o argumento </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_conv">CONV()</a></td>
+    <td>CONV()</td>
     <td> Converte números entre diferentes bases numéricas </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_cos">COS()</a></td>
+    <td>COS()</td>
     <td> Retorna o cosseno </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_cot">COT()</a></td>
+    <td>COT()</td>
     <td> Retorna a cotangente </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_crc32">CRC32()</a></td>
+    <td>CRC32()</td>
     <td> Calcula um valor de verificação de redundância cíclica </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_degrees">DEGREES()</a></td>
+    <td>DEGREES()</td>
     <td> Converte radianos para graus </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_div">DIV</a></td>
+    <td>DIV</td>
     <td> Divisão inteira </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_exp">EXP()</a></td>
+    <td>EXP()</td>
     <td> Eleva ao poder </td>
   </tr>
   <tr>
-    <td><a class="link" href="funções_matemáticas.html#função_floor">FLOOR()</a></td>
+    <td>FLOOR()</td>
     <td> Retorna o

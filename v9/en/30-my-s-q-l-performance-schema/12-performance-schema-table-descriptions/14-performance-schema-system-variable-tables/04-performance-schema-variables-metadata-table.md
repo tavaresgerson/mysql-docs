@@ -1,4 +1,4 @@
-#### 29.12.14.4 Performance Schema variables\_metadata Table
+#### 29.12.14.4 Performance Schema variables_metadata Table
 
 The `variables_metadata` table shows, for each server system variable, its name, scope, type, range of values (where applicable), and description.
 
@@ -20,7 +20,7 @@ The `variables_metadata` table contains these columns:
 
     The variable can have global or session scope.
 
-  + SESSION\_ONLY
+  + SESSION_ONLY
 
     The variable is session-only.
 

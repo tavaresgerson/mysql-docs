@@ -6,23 +6,23 @@ Esta seção descreve as funções que podem ser usadas para manipular valores t
 
 <table frame="box" rules="all" summary="Uma referência que lista funções de data e hora.">
 <tr><th>Nome</th> <th>Descrição</th> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_adddate"><code>ADDDATE()</code></a></td> <td> Adicione valores de tempo (intervalos) a um valor de data </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_addtime"><code>ADDTIME()</code></a></td> <td> Adicione tempo </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_convert-tz"><code>CONVERT_TZ()</code></a></td> <td> Converta de um fuso horário para outro </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_curdate"><code>CURDATE()</code></a></td> <td> Retorne a data atual </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_current-date"><code>CURRENT_DATE()</code>, <code>CURRENT_DATE</code></a></td> <td> Sinônimos para CURDATE() </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_current-time"><code>CURRENT_TIME()</code>, <code>CURRENT_TIME</code></a></td> <td> Sinônimos para CURDATE() </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_current-timestamp"><code>CURRENT_TIMESTAMP()</code>, <code>CURRENT_TIMESTAMP</code></a></td> <td> Sinônimos para NOW() </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_curtime"><code>CURTIME()</code></a></td> <td> Retorne a hora atual </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_date"><code>DATE()</code></a></td> <td> Extraia a parte de data de uma expressão de data ou datetime </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_date-add"><code>DATE_ADD()</code></a></td> <td> Adicione valores de tempo (intervalos) a um valor de data </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_date-format"><code>DATE_FORMAT()</code></a></td> <td> Formatar a data como especificado </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_date-sub"><code>DATE_SUB()</code></a></td> <td> Subtraia um valor de tempo (intervalo) de um valor de data </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_datediff"><code>DATEDIFF()</code></a></td> <td> Subtraia duas datas </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_day"><code>DAY()</code></a></td> <td> Símbolo para DAYOFMONTH() </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_dayname"><code>DAYNAME()</code></a></td> <td> Retorne o nome do dia da semana </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_dayofmonth"><code>DAYOFMONTH()</code></a></td> <td> Retorne o dia do mês (0-31) </td> </tr>
-<tr><td><a class="link" href="date-and-time-functions.html#function_dayofweek"><code>DAYOFWEEK()</code></a></td> <td> Retorne o índice do dia da semana do argumento </td> </tr>
+<tr><td><code>ADDDATE()</code></td> <td> Adicione valores de tempo (intervalos) a um valor de data </td> </tr>
+<tr><td><code>ADDTIME()</code></td> <td> Adicione tempo </td> </tr>
+<tr><td><code>CONVERT_TZ()</code></td> <td> Converta de um fuso horário para outro </td> </tr>
+<tr><td><code>CURDATE()</code></td> <td> Retorne a data atual </td> </tr>
+<tr><td><code>CURRENT_DATE()</code>, <code>CURRENT_DATE</code></td> <td> Sinônimos para CURDATE() </td> </tr>
+<tr><td><code>CURRENT_TIME()</code>, <code>CURRENT_TIME</code></td> <td> Sinônimos para CURDATE() </td> </tr>
+<tr><td><code>CURRENT_TIMESTAMP()</code>, <code>CURRENT_TIMESTAMP</code></td> <td> Sinônimos para NOW() </td> </tr>
+<tr><td><code>CURTIME()</code></td> <td> Retorne a hora atual </td> </tr>
+<tr><td><code>DATE()</code></td> <td> Extraia a parte de data de uma expressão de data ou datetime </td> </tr>
+<tr><td><code>DATE_ADD()</code></td> <td> Adicione valores de tempo (intervalos) a um valor de data </td> </tr>
+<tr><td><code>DATE_FORMAT()</code></td> <td> Formatar a data como especificado </td> </tr>
+<tr><td><code>DATE_SUB()</code></td> <td> Subtraia um valor de tempo (intervalo) de um valor de data </td> </tr>
+<tr><td><code>DATEDIFF()</code></td> <td> Subtraia duas datas </td> </tr>
+<tr><td><code>DAY()</code></td> <td> Símbolo para DAYOFMONTH() </td> </tr>
+<tr><td><code>DAYNAME()</code></td> <td> Retorne o nome do dia da semana </td> </tr>
+<tr><td><code>DAYOFMONTH()</code></td> <td> Retorne o dia do mês (0-31) </td> </tr>
+<tr><td><code>DAYOFWEEK()</code></td> <td> Retorne o índice do dia da semana do argumento </td> </tr>
 <tr><td><a class="link" href="date-and-time-functions.html#function_dayofyear"><
 
 Aqui está um exemplo que usa funções de data. A consulta a seguir seleciona todas as linhas com um valor de `date_col` dentro dos últimos 30 dias:
@@ -393,7 +393,7 @@ Se *`format`* for `NULL`, esta função retorna `NULL`.
 
 Os valores possíveis para os primeiros e segundos argumentos resultam em várias strings de formato possíveis (para os especificadores usados, consulte a tabela na descrição da função `DATE_FORMAT()`. O formato ISO refere-se à ISO 9715, não à ISO 8601.
 
-<table summary="Chamadas de função para a função GET_FORMAT, juntamente com os resultados para cada chamada de função."><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Chamada de Função</th> <th>Resultado</th> </tr></thead><tbody><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATE,'USA')</code></a></td> <td><code>'%m.%d.%Y'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATE,'JIS')</code></a></td> <td><code>'%Y-%m-%d'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATE,'ISO')</code></a></td> <td><code>'%Y-%m-%d'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATE,'EUR')</code></a></td> <td><code>'%d.%m.%Y'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATE,'INTERNAL')</code></a></td> <td><code>'%Y%m%d'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATETIME,'USA')</code></a></td> <td><code>'%Y-%m-%d %H.%i.%s'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATETIME,'JIS')</code></a></td> <td><code>'%Y-%m-%d %H:%i:%s'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATETIME,'ISO')</code></a></td> <td><code>'%Y-%m-%d %H:%i:%s'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATETIME,'EUR')</code></a></td> <td><code>'%Y-%m-%d %H.%i.%s'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(DATETIME,'INTERNAL')</code></a></td> <td><code>'%Y%m%d%H%i%s'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(TIME,'USA')</code></a></td> <td><code>'%h:%i:%s %p'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(TIME,'JIS')</code></a></td> <td><code>'%H:%i:%s'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(TIME,'ISO')</code></a></td> <td><code>'%H:%i:%s'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code>GET_FORMAT(TIME,'EUR')</code></a></td> <td><code>'%H.%i.%s'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code class="literal
+<table summary="Chamadas de função para a função GET_FORMAT, juntamente com os resultados para cada chamada de função."><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Chamada de Função</th> <th>Resultado</th> </tr></thead><tbody><tr> <td><code>GET_FORMAT(DATE,'USA')</code></td> <td><code>'%m.%d.%Y'</code></td> </tr><tr> <td><code>GET_FORMAT(DATE,'JIS')</code></td> <td><code>'%Y-%m-%d'</code></td> </tr><tr> <td><code>GET_FORMAT(DATE,'ISO')</code></td> <td><code>'%Y-%m-%d'</code></td> </tr><tr> <td><code>GET_FORMAT(DATE,'EUR')</code></td> <td><code>'%d.%m.%Y'</code></td> </tr><tr> <td><code>GET_FORMAT(DATE,'INTERNAL')</code></td> <td><code>'%Y%m%d'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'USA')</code></td> <td><code>'%Y-%m-%d %H.%i.%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'JIS')</code></td> <td><code>'%Y-%m-%d %H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'ISO')</code></td> <td><code>'%Y-%m-%d %H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'EUR')</code></td> <td><code>'%Y-%m-%d %H.%i.%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'INTERNAL')</code></td> <td><code>'%Y%m%d%H%i%s'</code></td> </tr><tr> <td><code>GET_FORMAT(TIME,'USA')</code></td> <td><code>'%h:%i:%s %p'</code></td> </tr><tr> <td><code>GET_FORMAT(TIME,'JIS')</code></td> <td><code>'%H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(TIME,'ISO')</code></td> <td><code>'%H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(TIME,'EUR')</code></td> <td><code>'%H.%i.%s'</code></td> </tr><tr> <td><a class="link" href="date-and-time-functions.html#function_get-format"><code class="literal
 
 `TIMESTAMP` também pode ser usado como o primeiro argumento de `GET_FORMAT()`, nesse caso, a função retorna os mesmos valores que para `DATETIME`.
 

@@ -38,9 +38,9 @@ Para atualizar uma topologia de replicação, siga as instruções na Seção 2.
 
    - Reinicie o servidor MySQL.
 
-   - Se você atualizou para uma versão anterior ao MySQL 8.0.16, invocar **mysql\_upgrade** manualmente para atualizar as tabelas e esquemas do sistema. Quando o servidor estiver em execução com identificadores de transação global (GTIDs) habilitados (`gtid_mode=ON`), não habilite o registro binário por **mysql\_upgrade** (portanto, não use a opção `--write-binlog`). Em seguida, desligue e reinicie o servidor.
+   - Se você atualizou para uma versão anterior ao MySQL 8.0.16, invocar **mysql_upgrade** manualmente para atualizar as tabelas e esquemas do sistema. Quando o servidor estiver em execução com identificadores de transação global (GTIDs) habilitados (`gtid_mode=ON`), não habilite o registro binário por **mysql_upgrade** (portanto, não use a opção `--write-binlog`). Em seguida, desligue e reinicie o servidor.
 
-   - Se você atualizou para o MySQL 8.0.16 ou uma versão posterior, não invocar **mysql\_upgrade**. A partir dessa versão, o MySQL Server executa todo o procedimento de atualização do MySQL, desabilitando o registro binário durante a atualização.
+   - Se você atualizou para o MySQL 8.0.16 ou uma versão posterior, não invocar **mysql_upgrade**. A partir dessa versão, o MySQL Server executa todo o procedimento de atualização do MySQL, desabilitando o registro binário durante a atualização.
 
    - Reinicie a replicação usando uma declaração `START REPLICA` ou `START SLAVE`.
 

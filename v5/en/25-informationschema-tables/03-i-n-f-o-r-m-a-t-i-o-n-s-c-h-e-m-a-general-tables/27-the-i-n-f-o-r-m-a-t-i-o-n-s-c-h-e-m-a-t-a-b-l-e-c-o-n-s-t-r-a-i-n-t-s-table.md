@@ -1,4 +1,4 @@
-### 24.3.27 The INFORMATION\_SCHEMA TABLE\_CONSTRAINTS Table
+### 24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table
 
 The [`TABLE_CONSTRAINTS`](information-schema-table-constraints-table.html "24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table") table describes which tables have constraints.
 

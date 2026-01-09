@@ -11,7 +11,7 @@
 - Restrições do Agendamento de Eventos
 - Programas Armazenados no NDB Cluster
 
-Essas restrições se aplicam às funcionalidades descritas no \[Capítulo 23, *Objetos Armazenados*] (stored-objects.html).
+Essas restrições se aplicam às funcionalidades descritas no [Capítulo 23, *Objetos Armazenados*] (stored-objects.html).
 
 Algumas das restrições mencionadas aqui se aplicam a todas as rotinas armazenadas; ou seja, tanto aos procedimentos armazenados quanto às funções armazenadas. Existem também algumas restrições específicas para funções armazenadas (stored-program-restrictions.html#stored-routines-function-restrictions), mas não para procedimentos armazenados.
 

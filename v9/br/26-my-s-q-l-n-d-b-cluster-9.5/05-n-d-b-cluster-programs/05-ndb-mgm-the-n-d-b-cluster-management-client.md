@@ -1,6 +1,6 @@
-### 25.5.5 ndb\_mgm — O cliente de gerenciamento do NDB Cluster
+### 25.5.5 ndb_mgm — O cliente de gerenciamento do NDB Cluster
 
-O processo do cliente de gerenciamento **ndb\_mgm** não é realmente necessário para executar o cluster. Seu valor reside em fornecer um conjunto de comandos para verificar o status do cluster, iniciar backups e realizar outras funções administrativas. O cliente de gerenciamento acessa o servidor de gerenciamento usando uma API C. Usuários avançados também podem usar essa API para programar processos de gerenciamento dedicados para realizar tarefas semelhantes às executadas pelo **ndb\_mgm**.
+O processo do cliente de gerenciamento **ndb_mgm** não é realmente necessário para executar o cluster. Seu valor reside em fornecer um conjunto de comandos para verificar o status do cluster, iniciar backups e realizar outras funções administrativas. O cliente de gerenciamento acessa o servidor de gerenciamento usando uma API C. Usuários avançados também podem usar essa API para programar processos de gerenciamento dedicados para realizar tarefas semelhantes às executadas pelo **ndb_mgm**.
 
 Para iniciar o cliente de gerenciamento, é necessário fornecer o nome do host e o número de porta do servidor de gerenciamento:
 
@@ -16,7 +16,7 @@ $> ndb_mgm ndb_mgmd.mysql.com 1186
 
 O nome do host e o número de porta padrão são `localhost` e 1186, respectivamente.
 
-Todas as opções que podem ser usadas com **ndb\_mgm** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+Todas as opções que podem ser usadas com **ndb_mgm** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 * `--backup-password-from-stdin[=TRUE|FALSE]`
 
@@ -185,7 +185,7 @@ Se o comando do cliente de gerenciamento a ser passado usando essa opção conti
 
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
-  Definir a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Sobrescreve entradas em `NDB_CONNECTSTRING` e `my.cnf`.
+  Definir a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Sobrescreve entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-nodeid`
 
@@ -319,4 +319,4 @@ Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de 
 
 Exibir informações da versão e sair.
 
-Informações adicionais sobre o uso do **ndb\_mgm** podem ser encontradas na Seção 25.6.1, “Comandos no Cliente de Gerenciamento do NDB Cluster”.
+Informações adicionais sobre o uso do **ndb_mgm** podem ser encontradas na Seção 25.6.1, “Comandos no Cliente de Gerenciamento do NDB Cluster”.

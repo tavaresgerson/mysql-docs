@@ -1,6 +1,6 @@
-### 25.5.11 ndb\_drop\_table — Drop an NDB Table
+### 25.5.11 ndb_drop_table — Drop an NDB Table
 
-**ndb\_drop\_table** drops the specified `NDB` table. (If you try to use this on a table created with a storage engine other than `NDB`, the attempt fails with the error 723: No such table exists.) This operation is extremely fast; in some cases, it can be an order of magnitude faster than using a MySQL `DROP TABLE` statement on an `NDB` table.
+**ndb_drop_table** drops the specified `NDB` table. (If you try to use this on a table created with a storage engine other than `NDB`, the attempt fails with the error 723: No such table exists.) This operation is extremely fast; in some cases, it can be an order of magnitude faster than using a MySQL `DROP TABLE` statement on an `NDB` table.
 
 #### Usage
 
@@ -8,7 +8,7 @@
 ndb_drop_table -c connection_string tbl_name -d db_name
 ```
 
-Options that can be used with **ndb\_drop\_table** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_drop_table** are shown in the following table. Additional descriptions follow the table.
 
 * `--character-sets-dir`
 
@@ -86,7 +86,7 @@ Options that can be used with **ndb\_drop\_table** are shown in the following ta
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 

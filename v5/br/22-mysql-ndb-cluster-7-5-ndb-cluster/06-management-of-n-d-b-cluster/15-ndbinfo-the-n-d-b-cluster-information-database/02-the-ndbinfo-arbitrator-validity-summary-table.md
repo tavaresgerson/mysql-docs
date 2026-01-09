@@ -1,4 +1,4 @@
-#### 21.6.15.2 A tabela ndbinfo arbitrator\_validity\_summary
+#### 21.6.15.2 A tabela ndbinfo arbitrator_validity_summary
 
 A tabela `arbitrator_validity_summary` fornece uma visão composta do árbitro em relação aos nós de dados do clúster.
 

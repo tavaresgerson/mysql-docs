@@ -32,7 +32,7 @@ Essas variáveis de sistema no lado do servidor especificam os arquivos de certi
 
 Por exemplo, para habilitar o servidor para conexões criptografadas, inicie-o com essas linhas no arquivo `my.cnf`, alterando os nomes dos arquivos conforme necessário:
 
-```sql
+```
 [mysqld]
 ssl_ca=ca.pem
 ssl_cert=server-cert.pem
@@ -41,7 +41,7 @@ ssl_key=server-key.pem
 
 Para especificar, além disso, que os clientes devem usar conexões criptografadas, habilite a variável de sistema `require_secure_transport`:
 
-```sql
+```
 [mysqld]
 ssl_ca=ca.pem
 ssl_cert=server-cert.pem
@@ -57,7 +57,7 @@ O servidor realiza a autodescoberta de arquivos de certificado e chave. Se não 
 
 - Se o servidor não encontrar arquivos de certificado e chave válidos no diretório de dados, ele continuará executando, mas sem suporte para conexões criptografadas.
 
-Se o servidor habilitar automaticamente o suporte à conexão criptografada, ele escreve uma nota no log de erro. Se o servidor descobrir que o certificado CA é autoassinado, ele escreve uma mensagem de alerta no log de erro. (O certificado é autoassinado se for criado automaticamente pelo servidor ou manualmente usando **mysql\_ssl\_rsa\_setup**.)
+Se o servidor habilitar automaticamente o suporte à conexão criptografada, ele escreve uma nota no log de erro. Se o servidor descobrir que o certificado CA é autoassinado, ele escreve uma mensagem de alerta no log de erro. (O certificado é autoassinado se for criado automaticamente pelo servidor ou manualmente usando **mysql_ssl_rsa_setup**.)
 
 O MySQL também fornece essas variáveis de sistema para o controle de conexão criptografada no lado do servidor:
 
@@ -81,9 +81,9 @@ Por padrão, os programas clientes do MySQL tentam estabelecer uma conexão crip
 
 - Com `--ssl-mode=VERIFY_CA` ou `--ssl-mode=VERIFY_IDENTITY`, os clientes exigem uma conexão criptografada e também realizam a verificação contra o certificado da CA do servidor e (com `VERIFY_IDENTITY`) contra o nome do host do servidor em seu certificado.
 
-Importante
-
+::: warning Importante
 A configuração padrão, `--ssl-mode=PREFERRED`, produz uma conexão criptografada se as outras configurações padrão não forem alteradas. No entanto, para ajudar a prevenir ataques sofisticados de intermediário, é importante que o cliente verifique a identidade do servidor. As configurações `--ssl-mode=VERIFY_CA` e `--ssl-mode=VERIFY_IDENTITY` são uma escolha melhor do que a configuração padrão para ajudar a prevenir esse tipo de ataque. `VERIFY_CA` faz com que o cliente verifique se o certificado do servidor é válido. `VERIFY_IDENTITY` faz com que o cliente verifique se o certificado do servidor é válido e também faz com que o cliente verifique se o nome do host que está sendo usado pelo cliente corresponde à identidade no certificado do servidor. Para implementar uma dessas configurações, você deve primeiro garantir que o certificado CA do servidor esteja disponível de forma confiável para todos os clientes que o utilizam no seu ambiente, caso contrário, problemas de disponibilidade ocorrerão. Por essa razão, elas não são a configuração padrão.
+:::
 
 As tentativas de estabelecer uma conexão não criptografada falham se a variável de sistema `require_secure_transport` estiver habilitada no lado do servidor para exigir conexões criptografadas. Veja Configurando Conexões Criptografadas como Obrigatórias.
 
@@ -101,9 +101,9 @@ Para uma segurança adicional em relação à criptografia padrão, os clientes 
 
 - Para habilitar a verificação de identidade do nome do host também, use `--ssl-mode=VERIFY_IDENTITY` em vez de `--ssl-mode=VERIFY_CA`.
 
-Nota
-
-A verificação de identidade do nome do host com `VERIFY_IDENTITY` não funciona com certificados autoassinados que são criados automaticamente pelo servidor ou manualmente usando **mysql\_ssl\_rsa\_setup** (consulte Seção 6.3.3.1, “Criando Certificados SSL e RSA e Chaves usando MySQL”). Esses certificados autoassinados não contêm o nome do servidor como o valor do Nome Comum.
+::: info Nota
+A verificação de identidade do nome do host com `VERIFY_IDENTITY` não funciona com certificados autoassinados que são criados automaticamente pelo servidor ou manualmente usando **mysql_ssl_rsa_setup** (consulte Seção 6.3.3.1, “Criando Certificados SSL e RSA e Chaves usando MySQL”). Esses certificados autoassinados não contêm o nome do servidor como o valor do Nome Comum.
+:::
 
 Antes do MySQL 5.7.23, a verificação de identidade do nome do host também não funciona com certificados que especificam o Nome Comum usando asteriscos, porque esse nome é comparado literalmente ao nome do servidor.
 
@@ -119,19 +119,19 @@ Dependendo dos requisitos de criptografia da conta MySQL usada por um cliente, o
 
 Suponha que você queira se conectar usando uma conta que não tenha requisitos de criptografia especiais ou que tenha sido criada usando uma declaração `CREATE USER` que incluísse a cláusula `REQUIRE SSL`. Supondo que o servidor suporte conexões criptografadas, um cliente pode se conectar usando criptografia sem a opção `--ssl-mode` ou com a opção explícita `--ssl-mode=PREFERRED`:
 
-```sql
+```sh
 mysql
 ```
 
 Ou:
 
-```sql
+```sh
 mysql --ssl-mode=PREFERRED
 ```
 
 Para uma conta criada com uma cláusula `REQUER SSL`, a tentativa de conexão falha se uma conexão criptografada não puder ser estabelecida. Para uma conta sem requisitos especiais de criptografia, a tentativa retorna a uma conexão não criptografada se uma conexão criptografada não puder ser estabelecida. Para evitar a falha e a interrupção se uma conexão criptografada não puder ser obtida, conecte-se da seguinte maneira:
 
-```sql
+```sh
 mysql --ssl-mode=REQUIRED
 ```
 
@@ -139,7 +139,7 @@ Se a conta tiver requisitos de segurança mais rigorosos, outras opções devem 
 
 - Para contas criadas com uma cláusula `REQUIRE X509`, os clientes devem especificar pelo menos `--ssl-cert` e `--ssl-key`. Além disso, `--ssl-ca` (ou `--ssl-capath`) é recomendado para que o certificado público fornecido pelo servidor possa ser verificado. Por exemplo (insira o comando em uma única linha):
 
-  ```sql
+  ```sh
   mysql --ssl-ca=ca.pem
         --ssl-cert=client-cert.pem
         --ssl-key=client-key.pem
@@ -157,7 +157,7 @@ Se um cliente que se conecta a uma instância do servidor MySQL usar um certific
 
 Para impedir o uso de criptografia e ignorar outras opções `--ssl-xxx`, inicie o programa cliente com `--ssl-mode=DESABILITADO`:
 
-```sql
+```sh
 mysql --ssl-mode=DISABLED
 ```
 
@@ -174,7 +174,7 @@ mysql> SHOW SESSION STATUS LIKE 'Ssl_cipher';
 
 Para o cliente **mysql**, uma alternativa é usar o comando `STATUS` ou `\s` e verificar a linha `SSL`:
 
-```sql
+```sh
 mysql> \s
 ...
 SSL: Not in use
@@ -183,7 +183,7 @@ SSL: Not in use
 
 Ou:
 
-```sql
+```sh
 mysql> \s
 ...
 SSL: Cipher in use is DHE-RSA-AES128-GCM-SHA256
@@ -202,7 +202,7 @@ Para algumas implantações do MySQL, pode ser não apenas desejável, mas tamb�
 
 Para exigir que os clientes se conectem usando conexões criptografadas, habilite a variável de sistema `require_secure_transport`. Por exemplo, coloque essas linhas no arquivo `my.cnf` do servidor:
 
-```sql
+```
 [mysqld]
 require_secure_transport=ON
 ```
@@ -211,7 +211,7 @@ Com `require_secure_transport` habilitado, as conexões do cliente ao servidor e
 
 Para invocar um programa cliente de modo que ele exija uma conexão criptografada, independentemente de o servidor exigir criptografia ou não, use um valor da opção `--ssl-mode` de `REQUIRED`, `VERIFY_CA` ou `VERIFY_IDENTITY`. Por exemplo:
 
-```sql
+```sh
 mysql --ssl-mode=REQUIRED
 mysqldump --ssl-mode=VERIFY_CA
 mysqladmin --ssl-mode=VERIFY_IDENTITY

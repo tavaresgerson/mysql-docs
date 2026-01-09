@@ -11,7 +11,7 @@ Full-text search is performed using `MATCH() ... AGAINST` syntax. For usage info
 * InnoDB Full-Text Index Design
 * InnoDB Full-Text Index Tables
 * InnoDB Full-Text Index Cache
-* InnoDB Full-Text Index DOC\_ID and FTS\_DOC\_ID Column
+* InnoDB Full-Text Index DOC_ID and FTS_DOC_ID Column
 * InnoDB Full-Text Index Deletion Handling
 * InnoDB Full-Text Index Transaction Handling
 * Monitoring InnoDB Full-Text Indexes
@@ -79,11 +79,11 @@ Common index tables are retained even if full-text indexes are dropped. When a f
 
 * `FTS_*_DELETED` and `FTS_*_DELETED_CACHE`
 
-  Contain the document IDs (DOC\_ID) for documents that are deleted but whose data is not yet removed from the full-text index. The `FTS_*_DELETED_CACHE` is the in-memory version of the `FTS_*_DELETED` table.
+  Contain the document IDs (DOC_ID) for documents that are deleted but whose data is not yet removed from the full-text index. The `FTS_*_DELETED_CACHE` is the in-memory version of the `FTS_*_DELETED` table.
 
 * `FTS_*_BEING_DELETED` and `FTS_*_BEING_DELETED_CACHE`
 
-  Contain the document IDs (DOC\_ID) for documents that are deleted and whose data is currently in the process of being removed from the full-text index. The `FTS_*_BEING_DELETED_CACHE` table is the in-memory version of the `FTS_*_BEING_DELETED` table.
+  Contain the document IDs (DOC_ID) for documents that are deleted and whose data is currently in the process of being removed from the full-text index. The `FTS_*_BEING_DELETED_CACHE` table is the in-memory version of the `FTS_*_BEING_DELETED` table.
 
 * `FTS_*_CONFIG`
 
@@ -99,7 +99,7 @@ The `innodb_ft_cache_size` variable is used to configure the full-text index cac
 
 The full-text index cache stores the same information as auxiliary index tables. However, the full-text index cache only caches tokenized data for recently inserted rows. The data that is already flushed to disk (to the auxiliary index tables) is not brought back into the full-text index cache when queried. The data in auxiliary index tables is queried directly, and results from the auxiliary index tables are merged with results from the full-text index cache before being returned.
 
-##### InnoDB Full-Text Index DOC\_ID and FTS\_DOC\_ID Column
+##### InnoDB Full-Text Index DOC_ID and FTS_DOC_ID Column
 
 `InnoDB` uses a unique document identifier referred to as the `DOC_ID` to map words in the full-text index to document records where the word appears. The mapping requires an `FTS_DOC_ID` column on the indexed table. If an `FTS_DOC_ID` column is not defined, `InnoDB` automatically adds a hidden `FTS_DOC_ID` column when the full-text index is created. The following example demonstrates this behavior.
 
@@ -219,4 +219,4 @@ You can monitor and examine the special text-processing aspects of `InnoDB` full
 
 You can also view basic information for full-text indexes and tables by querying `INNODB_SYS_INDEXES` and `INNODB_SYS_TABLES`.
 
-For more information, see Section 14.16.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For more information, see Section 14.16.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.

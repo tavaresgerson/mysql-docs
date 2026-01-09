@@ -1,4 +1,4 @@
-#### 25.12.3.1 A tabela cond\_instances
+#### 25.12.3.1 A tabela cond_instances
 
 A tabela `cond_instances` lista todas as condições observadas pelo Schema de Desempenho enquanto o servidor está em execução. Uma condição é um mecanismo de sincronização usado no código para sinalizar que um evento específico ocorreu, para que um thread que está esperando por essa condição possa retomar o trabalho.
 

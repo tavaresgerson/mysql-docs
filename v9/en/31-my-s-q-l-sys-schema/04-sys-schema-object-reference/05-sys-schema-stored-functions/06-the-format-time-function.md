@@ -1,4 +1,4 @@
-#### 30.4.5.6 The format\_time() Function
+#### 30.4.5.6 The format_time() Function
 
 Note
 

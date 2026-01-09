@@ -30,7 +30,7 @@ Cada evento que deve ser relatado pode ser distinguido de acordo com três crit�
 
 - *Nível de gravidade*: Pode ser qualquer um dos seguintes valores: `ALERT`, `CRITICAL`, `ERROR`, `WARNING`, `INFO` ou `DEBUG`.
 
-O log do cluster pode ser filtrado nessas propriedades usando o comando do cliente de gerenciamento do NDB `CLUSTERLOG`. Esse comando afeta apenas o log do cluster e não tem efeito nos logs dos nós; o registro de depuração em um ou mais logs de nós pode ser ativado ou desativado usando o comando **ndb\_mgm** `NODELOG DEBUG`.
+O log do cluster pode ser filtrado nessas propriedades usando o comando do cliente de gerenciamento do NDB `CLUSTERLOG`. Esse comando afeta apenas o log do cluster e não tem efeito nos logs dos nós; o registro de depuração em um ou mais logs de nós pode ser ativado ou desativado usando o comando **ndb_mgm** `NODELOG DEBUG`.
 
 O formato usado no log do cluster é o seguinte:
 

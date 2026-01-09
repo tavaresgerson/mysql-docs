@@ -4,7 +4,7 @@ Se um código de erro for retornado ao solicitar um backup, a causa mais prováv
 
 Importante
 
-Se você definiu `BackupDataBufferSize` e \[`BackupLogBufferSize`]\(mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backuplogbuffersize] e a soma deles for maior que 4 MB, então você também deve definir `BackupMemory`.
+Se você definiu `BackupDataBufferSize` e [`BackupLogBufferSize`]\(mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backuplogbuffersize] e a soma deles for maior que 4 MB, então você também deve definir `BackupMemory`.
 
 Você também deve garantir que haja espaço suficiente na partição do disco rígido do destino do backup.
 

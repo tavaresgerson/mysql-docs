@@ -131,7 +131,7 @@ Para garantir que o grupo forneça o mesmo nível de consistência, independente
 
 Isso garante que os membros se comportem da mesma maneira e que a configuração seja persistida após o reinício do membro.
 
-Uma transação não pode ficar em espera para sempre, e se o tempo de espera exceder `wait_timeout`, ela retorna um erro ER\_GR\_HOLD\_WAIT\_TIMEOUT.
+Uma transação não pode ficar em espera para sempre, e se o tempo de espera exceder `wait_timeout`, ela retorna um erro ER_GR_HOLD_WAIT_TIMEOUT.
 
 ##### Consultas Permitidas Sob Regras de Consistência
 

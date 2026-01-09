@@ -1,108 +1,108 @@
 ### 26.4.3 Visões do esquema sys
 
-26.4.3.1 As visualizações host\_summary e x$host\_summary
+26.4.3.1 As visualizações host_summary e x$host_summary
 
-26.4.3.2 As visualizações host\_summary\_by\_file\_io e x$host\_summary\_by\_file\_io
+26.4.3.2 As visualizações host_summary_by_file_io e x$host_summary_by_file_io
 
-26.4.3.3 As visualizações host\_summary\_by\_file\_io\_type e x$host\_summary\_by\_file\_io\_type
+26.4.3.3 As visualizações host_summary_by_file_io_type e x$host_summary_by_file_io_type
 
-26.4.3.4 As visualizações host\_summary\_by\_stages e x$host\_summary\_by\_stages
+26.4.3.4 As visualizações host_summary_by_stages e x$host_summary_by_stages
 
-26.4.3.5 As visualizações host\_summary\_by\_statement\_latency e x$host\_summary\_by\_statement\_latency
+26.4.3.5 As visualizações host_summary_by_statement_latency e x$host_summary_by_statement_latency
 
-26.4.3.6 As visualizações host\_summary\_by\_statement\_type e x$host\_summary\_by\_statement\_type
+26.4.3.6 As visualizações host_summary_by_statement_type e x$host_summary_by_statement_type
 
-26.4.3.7 As visualizações innodb\_buffer\_stats\_by\_schema e x$innodb\_buffer\_stats\_by\_schema
+26.4.3.7 As visualizações innodb_buffer_stats_by_schema e x$innodb_buffer_stats_by_schema
 
-26.4.3.8 As visualizações innodb\_buffer\_stats\_by\_table e x$innodb\_buffer\_stats\_by\_table
+26.4.3.8 As visualizações innodb_buffer_stats_by_table e x$innodb_buffer_stats_by_table
 
-26.4.3.9 As visualizações innodb\_lock\_waits e x$innodb\_lock\_waits
+26.4.3.9 As visualizações innodb_lock_waits e x$innodb_lock_waits
 
-26.4.3.10 As visualizações io\_by\_thread\_by\_latency e x$io\_by\_thread\_by\_latency
+26.4.3.10 As visualizações io_by_thread_by_latency e x$io_by_thread_by_latency
 
-26.4.3.11 As visualizações io\_global\_by\_file\_by\_bytes e x$io\_global\_by\_file\_by\_bytes
+26.4.3.11 As visualizações io_global_by_file_by_bytes e x$io_global_by_file_by_bytes
 
-26.4.3.12 As visualizações io\_global\_by\_file\_by\_latency e x$io\_global\_by\_file\_by\_latency
+26.4.3.12 As visualizações io_global_by_file_by_latency e x$io_global_by_file_by_latency
 
-26.4.3.13 As visualizações io\_global\_by\_wait\_by\_bytes e x$io\_global\_by\_wait\_by\_bytes
+26.4.3.13 As visualizações io_global_by_wait_by_bytes e x$io_global_by_wait_by_bytes
 
-26.4.3.14 As visualizações io\_global\_by\_wait\_by\_latency e x$io\_global\_by\_wait\_by\_latency
+26.4.3.14 As visualizações io_global_by_wait_by_latency e x$io_global_by_wait_by_latency
 
-26.4.3.15 As vistas latest\_file\_io e x$latest\_file\_io
+26.4.3.15 As vistas latest_file_io e x$latest_file_io
 
-26.4.3.16 As visualizações memory\_by\_host\_by\_current\_bytes e x$memory\_by\_host\_by\_current\_bytes
+26.4.3.16 As visualizações memory_by_host_by_current_bytes e x$memory_by_host_by_current_bytes
 
-26.4.3.17 As visualizações memory\_by\_thread\_by\_current\_bytes e x$memory\_by\_thread\_by\_current\_bytes
+26.4.3.17 As visualizações memory_by_thread_by_current_bytes e x$memory_by_thread_by_current_bytes
 
-26.4.3.18 As visualizações memory\_by\_user\_by\_current\_bytes e x$memory\_by\_user\_by\_current\_bytes
+26.4.3.18 As visualizações memory_by_user_by_current_bytes e x$memory_by_user_by_current_bytes
 
-26.4.3.19 As visualizações memory\_global\_by\_current\_bytes e x$memory\_global\_by\_current\_bytes
+26.4.3.19 As visualizações memory_global_by_current_bytes e x$memory_global_by_current_bytes
 
-26.4.3.20 Memória\_global\_total e visualizações x$Memória\_global\_total
+26.4.3.20 Memória_global_total e visualizações x$Memória_global_total
 
 26.4.3.21 A métrica Visualizar
 
 26.4.3.22 O processolist e as visualizações x$processlist
 
-26.4.3.23 A visualização ps\_check\_lost\_instrumentation
+26.4.3.23 A visualização ps_check_lost_instrumentation
 
-26.4.3.24 A visão schema\_auto\_increment\_columns
+26.4.3.24 A visão schema_auto_increment_columns
 
-26.4.3.25 As visualizações schema\_index\_statistics e x$schema\_index\_statistics
+26.4.3.25 As visualizações schema_index_statistics e x$schema_index_statistics
 
-26.4.3.26 A visualização schema\_object\_overview
+26.4.3.26 A visualização schema_object_overview
 
-26.4.3.27 As visualizações schema\_redundant\_indexes e x$schema\_flattened\_keys
+26.4.3.27 As visualizações schema_redundant_indexes e x$schema_flattened_keys
 
-26.4.3.28 As vistas schema\_table\_lock\_waits e x$schema\_table\_lock\_waits
+26.4.3.28 As vistas schema_table_lock_waits e x$schema_table_lock_waits
 
-26.4.3.29 As visualizações schema\_table\_statistics e x$schema\_table\_statistics
+26.4.3.29 As visualizações schema_table_statistics e x$schema_table_statistics
 
-26.4.3.30 As vistas schema\_table\_statistics\_with\_buffer e x$schema\_table\_statistics\_with\_buffer
+26.4.3.30 As vistas schema_table_statistics_with_buffer e x$schema_table_statistics_with_buffer
 
-26.4.3.31 Os esquemas\_tabuas\_com\_análises\_de\_tabela\_inteira e as visualizações x$esquemas\_tabuas\_com\_análises\_de\_tabela\_inteira
+26.4.3.31 Os esquemas_tabuas_com_análises_de_tabela_inteira e as visualizações x$esquemas_tabuas_com_análises_de_tabela_inteira
 
-26.4.3.32 A visão schema\_unused\_indexes
+26.4.3.32 A visão schema_unused_indexes
 
 26.4.3.33 A sessão e as visualizações da sessão x$
 
-26.4.3.34 A visualização session\_ssl\_status
+26.4.3.34 A visualização session_ssl_status
 
-26.4.3.35 A análise de statement\_analysis e as visualizações x$statement\_analysis
+26.4.3.35 A análise de statement_analysis e as visualizações x$statement_analysis
 
 26.4.3.36 As declarações com erros ou avisos e as visualizações x$declarações com erros ou avisos
 
-26.4.3.37 As declarações com varreduras completas da tabela e as vistas x$declarativas\_com\_varreduras\_completos\_da\_tabela
+26.4.3.37 As declarações com varreduras completas da tabela e as vistas x$declarativas_com_varreduras_completos_da_tabela
 
 26.4.3.38 As declarações com tempos de execução no 95º percentil e as visualizações x$ declarações com tempos de execução no 95º percentil
 
-26.4.3.39 As declarações\_com\_classificação e as visualizações x$declarativas\_com\_classificação
+26.4.3.39 As declarações_com_classificação e as visualizações x$declarativas_com_classificação
 
-26.4.3.40 As declarações\_com\_tabelas\_temporárias e as visualizações x$declarações\_com\_tabelas\_temporárias
+26.4.3.40 As declarações_com_tabelas_temporárias e as visualizações x$declarações_com_tabelas_temporárias
 
-26.4.3.41 O resumo do usuário e as visualizações do x$user\_summary
+26.4.3.41 O resumo do usuário e as visualizações do x$user_summary
 
-26.4.3.42 As visualizações user\_summary\_by\_file\_io e x$user\_summary\_by\_file\_io
+26.4.3.42 As visualizações user_summary_by_file_io e x$user_summary_by_file_io
 
-26.4.3.43 Os usuários\_resumo\_por\_tipo\_de\_IO\_arquivo e x$usuários\_resumo\_por\_tipo\_de\_IO\_arquivo Visualizações
+26.4.3.43 Os usuários_resumo_por_tipo_de_IO_arquivo e x$usuários_resumo_por_tipo_de_IO_arquivo Visualizações
 
-26.4.3.44 As visualizações user\_summary\_by\_stages e x$user\_summary\_by\_stages
+26.4.3.44 As visualizações user_summary_by_stages e x$user_summary_by_stages
 
-26.4.3.45 As visualizações user\_summary\_by\_statement\_latency e x$user\_summary\_by\_statement\_latency
+26.4.3.45 As visualizações user_summary_by_statement_latency e x$user_summary_by_statement_latency
 
-26.4.3.46 As visualizações user\_summary\_by\_statement\_type e x$user\_summary\_by\_statement\_type
+26.4.3.46 As visualizações user_summary_by_statement_type e x$user_summary_by_statement_type
 
 26.4.3.47 A versão Visualizar
 
-26.4.3.48 As visualizações wait\_classes\_global\_by\_avg\_latency e x$wait\_classes\_global\_by\_avg\_latency
+26.4.3.48 As visualizações wait_classes_global_by_avg_latency e x$wait_classes_global_by_avg_latency
 
-26.4.3.49 As visualizações wait\_classes\_global\_by\_latency e x$wait\_classes\_global\_by\_latency
+26.4.3.49 As visualizações wait_classes_global_by_latency e x$wait_classes_global_by_latency
 
-26.4.3.50 As visualizações waits\_by\_host\_by\_latency e x$waits\_by\_host\_by\_latency
+26.4.3.50 As visualizações waits_by_host_by_latency e x$waits_by_host_by_latency
 
-26.4.3.51 As visualizações waits\_by\_user\_by\_latency e x$waits\_by\_user\_by\_latency
+26.4.3.51 As visualizações waits_by_user_by_latency e x$waits_by_user_by_latency
 
-26.4.3.52 As vistas waits\_global\_by\_latency e x$waits\_global\_by\_latency
+26.4.3.52 As vistas waits_global_by_latency e x$waits_global_by_latency
 
 As seções a seguir descrevem as visualizações do esquema `sys`.
 

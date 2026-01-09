@@ -1,4 +1,4 @@
-### 24.3.22 A tabela INFORMATION\_SCHEMA SCHEMATA
+### 24.3.22 A tabela INFORMATION_SCHEMA SCHEMATA
 
 Um esquema é um banco de dados, então a tabela `SCHEMATA` fornece informações sobre os bancos de dados.
 

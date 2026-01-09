@@ -20,24 +20,24 @@ O **mysql_migrate_keyring** suporta as seguintes opções, que podem ser especif
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysql_migrate_keyring">
 <tr><th>Nome da Opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_component-dir">--component-dir</a></td> <td>Diretório para componentes do keyring</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_defaults-extra-file">--defaults-extra-file</a></td> <td>Ler arquivo de opção nomeado além dos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_defaults-file">--defaults-file</a></td> <td>Ler apenas arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_destination-keyring">--destination-keyring</a></td> <td>Nome do componente do keyring de destino</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_destination-keyring-configuration-dir">--destination-keyring-configuration-dir</a></td> <td>Diretório de configuração do componente do keyring de destino</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_get-server-public-key">--get-server-public-key</a></td> <td>Solicitar chave pública RSA do servidor</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_help">--help</a></td> <td>Exibir mensagem de ajuda e sair</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_host">--host</a></td> <td>Host em que o servidor MySQL está localizado</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_login-path">--login-path</a></td> <td>Ler caminhos de login a partir de .mylogin.cnf</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_no-defaults">--no-defaults</a></td> <td>Ler nenhum arquivo de opção</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_no-login-paths">--no-login-paths</a></td> <td>Não ler caminhos de login a partir do arquivo de caminhos de login</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_online-migration">--online-migration</a></td> <td>A migração é uma fonte ativa do servidor</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_password">--password</a></td> <td>Senha para se conectar ao servidor</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_port">--port</a></td> <td>Número de porta TCP/IP para a conexão</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_print-defaults">--print-defaults</a></td> <td>Imprimir opções padrão</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_server-public-key-path">--server-public-key-path</a></td> <td>Nome do caminho do arquivo que contém a chave pública RSA do servidor</td></tr>
-<tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_socket">--socket</a></td> <td>Ficheiro Unix socket ou canal de nomeado Windows para usar
+<tr><td>--component-dir</td> <td>Diretório para componentes do keyring</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Ler arquivo de opção nomeado além dos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Ler apenas arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--destination-keyring</td> <td>Nome do componente do keyring de destino</td></tr>
+<tr><td>--destination-keyring-configuration-dir</td> <td>Diretório de configuração do componente do keyring de destino</td></tr>
+<tr><td>--get-server-public-key</td> <td>Solicitar chave pública RSA do servidor</td></tr>
+<tr><td>--help</td> <td>Exibir mensagem de ajuda e sair</td></tr>
+<tr><td>--host</td> <td>Host em que o servidor MySQL está localizado</td></tr>
+<tr><td>--login-path</td> <td>Ler caminhos de login a partir de .mylogin.cnf</td></tr>
+<tr><td>--no-defaults</td> <td>Ler nenhum arquivo de opção</td></tr>
+<tr><td>--no-login-paths</td> <td>Não ler caminhos de login a partir do arquivo de caminhos de login</td></tr>
+<tr><td>--online-migration</td> <td>A migração é uma fonte ativa do servidor</td></tr>
+<tr><td>--password</td> <td>Senha para se conectar ao servidor</td></tr>
+<tr><td>--port</td> <td>Número de porta TCP/IP para a conexão</td></tr>
+<tr><td>--print-defaults</td> <td>Imprimir opções padrão</td></tr>
+<tr><td>--server-public-key-path</td> <td>Nome do caminho do arquivo que contém a chave pública RSA do servidor</td></tr>
+<tr><td>--socket</td> <td>Ficheiro Unix socket ou canal de nomeado Windows para usar
 
 * `--help`, `-h`
 
@@ -53,7 +53,7 @@ O **mysql_migrate_keyring** suporta as seguintes opções, que podem ser especif
 
   Nota
 
-  `--component-dir`, `--source-keyring` e `--destination-keyring` são obrigatórios para todas as operações de migração do keyring realizadas pelo **mysql\_migrate\_keyring**. Além disso, os componentes de origem e destino devem ser diferentes e ambos devem estar corretamente configurados para que o **mysql\_migrate\_keyring** possa carregá-los e usá-los.
+  `--component-dir`, `--source-keyring` e `--destination-keyring` são obrigatórios para todas as operações de migração do keyring realizadas pelo **mysql_migrate_keyring**. Além disso, os componentes de origem e destino devem ser diferentes e ambos devem estar corretamente configurados para que o **mysql_migrate_keyring** possa carregá-los e usá-los.
 
 * `--defaults-extra-file=file_name`
 
@@ -83,7 +83,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
     <tr><th>Tipo</th> <td>String</td> </tr>
   </table>
 
-  Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysql\_migrate\_keyring** normalmente lê o grupo `[mysql_migrate_keyring]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysql\_migrate\_keyring** também lê o grupo `[mysql_migrate_keyring_other]`.
+  Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysql_migrate_keyring** normalmente lê o grupo `[mysql_migrate_keyring]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysql_migrate_keyring** também lê o grupo `[mysql_migrate_keyring_other]`.
 
   Para obter informações adicionais sobre esta e outras opções de arquivo de configuração, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o gerenciamento de arquivos de configuração”.
 
@@ -95,7 +95,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
   Nota
 
-  `--component-dir`, `--source-keyring` e `--destination-keyring` são obrigatórios para todas as operações de migração de chaves realizadas pelo **mysql\_migrate\_keyring**. Além disso, os componentes de origem e destino devem diferir e ambos devem ser configurados corretamente para que o **mysql\_migrate\_keyring** possa carregá-los e usá-los.
+  `--component-dir`, `--source-keyring` e `--destination-keyring` são obrigatórios para todas as operações de migração de chaves realizadas pelo **mysql_migrate_keyring**. Além disso, os componentes de origem e destino devem diferir e ambos devem ser configurados corretamente para que o **mysql_migrate_keyring** possa carregá-los e usá-los.
 
 * `--destination-keyring-configuration-dir=dir_name`
 
@@ -185,7 +185,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivos de 
 
 Não ler nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para obter informações adicionais sobre essa e outras opções de arquivo, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opção”.
 
@@ -193,11 +193,11 @@ Para obter informações adicionais sobre essa e outras opções de arquivo, con
 
   <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Esta opção é obrigatória quando um servidor em execução está usando o chaveiro. Ela indica ao **mysql\_migrate\_keyring** que realize uma migração de chave online. A opção tem esses efeitos:
+  Esta opção é obrigatória quando um servidor em execução está usando o chaveiro. Ela indica ao **mysql_migrate_keyring** que realize uma migração de chave online. A opção tem esses efeitos:
 
-  + **mysql\_migrate\_keyring** se conecta ao servidor usando quaisquer opções de conexão especificadas; essas opções são ignoradas caso contrário.
+  + **mysql_migrate_keyring** se conecta ao servidor usando quaisquer opções de conexão especificadas; essas opções são ignoradas caso contrário.
 
-  + Após **mysql\_migrate\_keyring** se conectar ao servidor, ele indica ao servidor que pause as operações do chaveiro. Quando a cópia de chaves estiver completa, **mysql\_migrate\_keyring** indica ao servidor que pode retomar as operações do chaveiro antes de se desconectar.
+  + Após **mysql_migrate_keyring** se conectar ao servidor, ele indica ao servidor que pause as operações do chaveiro. Quando a cópia de chaves estiver completa, **mysql_migrate_keyring** indica ao servidor que pode retomar as operações do chaveiro antes de se desconectar.
 
 * `--password[=password]`, `-p[password]`
 
@@ -261,7 +261,7 @@ Em Windows, essa opção só se aplica se o servidor foi iniciado com a variáve
 
   Nota
 
-  `--component-dir`, `--source-keyring` e `--destination-keyring` são obrigatórios para todas as operações de migração de chaves realizadas pelo **mysql\_migrate\_keyring**. Além disso, os componentes de origem e destino devem diferir e ambos os componentes devem ser configurados corretamente para que o **mysql\_migrate\_keyring** possa carregá-los e usá-los.
+  `--component-dir`, `--source-keyring` e `--destination-keyring` são obrigatórios para todas as operações de migração de chaves realizadas pelo **mysql_migrate_keyring**. Além disso, os componentes de origem e destino devem diferir e ambos os componentes devem ser configurados corretamente para que o **mysql_migrate_keyring** possa carregá-los e usá-los.
 
 * `--source-keyring-configuration-dir=dir_name`
 

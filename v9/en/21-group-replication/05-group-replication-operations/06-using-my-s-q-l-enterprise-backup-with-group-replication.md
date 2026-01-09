@@ -102,7 +102,7 @@ Assume one of the members (`s3` in the following example) is irreconcilably corr
    mysql> START GROUP_REPLICATION;
    ```
 
-   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's distributed recovery mechanism, and the process starts after the START GROUP\_REPLICATION statement has been issued. To check the member status of the restored instance, issue:
+   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's distributed recovery mechanism, and the process starts after the START GROUP_REPLICATION statement has been issued. To check the member status of the restored instance, issue:
 
    ```
    mysql> SELECT member_host, member_port, member_state FROM performance_schema.replication_group_members;
@@ -223,7 +223,7 @@ Sometimes, the steps outlined above in Restoring a Failed Member cannot be carri
    mysql> START GROUP_REPLICATION;
    ```
 
-   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's distributed recovery mechanism, and the process starts after the START GROUP\_REPLICATION statement has been issued. To check the member status of the restored instance, issue:
+   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's distributed recovery mechanism, and the process starts after the START GROUP_REPLICATION statement has been issued. To check the member status of the restored instance, issue:
 
    ```
    mysql> SELECT member_host, member_port, member_state FROM performance_schema.replication_group_members;

@@ -1,12 +1,12 @@
-### 25.5.7 ndb\_config — Extrair Informações de Configuração do NDB Cluster
+### 25.5.7 ndb_config — Extrair Informações de Configuração do NDB Cluster
 
-Essa ferramenta extrai informações atuais de configuração para nós de dados, nós SQL e nós API de uma das várias fontes: um nó de gerenciamento do NDB Cluster ou seu arquivo `config.ini` ou `my.cnf`. Por padrão, o nó de gerenciamento é a fonte dos dados de configuração; para sobrescrever o padrão, execute ndb\_config com a opção `--config-file` ou `--mycnf`. Também é possível usar um nó de dados como fonte, especificando seu ID de nó com `--config_from_node=node_id`.
+Essa ferramenta extrai informações atuais de configuração para nós de dados, nós SQL e nós API de uma das várias fontes: um nó de gerenciamento do NDB Cluster ou seu arquivo `config.ini` ou `my.cnf`. Por padrão, o nó de gerenciamento é a fonte dos dados de configuração; para sobrescrever o padrão, execute ndb_config com a opção `--config-file` ou `--mycnf`. Também é possível usar um nó de dados como fonte, especificando seu ID de nó com `--config_from_node=node_id`.
 
-**ndb\_config** também pode fornecer um dump offline de todos os parâmetros de configuração que podem ser usados, juntamente com seus valores padrão, máximos e mínimos e outras informações. O dump pode ser produzido no formato de texto ou XML; para mais informações, consulte a discussão das opções `--configinfo` e `--xml` mais adiante nesta seção).
+**ndb_config** também pode fornecer um dump offline de todos os parâmetros de configuração que podem ser usados, juntamente com seus valores padrão, máximos e mínimos e outras informações. O dump pode ser produzido no formato de texto ou XML; para mais informações, consulte a discussão das opções `--configinfo` e `--xml` mais adiante nesta seção).
 
 Você pode filtrar os resultados por seção (`DB`, `SYSTEM` ou `CONNECTIONS`) usando uma das opções `--nodes`, `--system` ou `--connections`.
 
-Todas as opções que podem ser usadas com **ndb\_config** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+Todas as opções que podem ser usadas com **ndb_config** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 * `--character-sets-dir`
 
@@ -99,9 +99,9 @@ Todas as opções que podem ser usadas com **ndb\_config** são mostradas na tab
   </tbody>
   </table>
 
-Fornece o caminho para o arquivo de configuração binário cache do servidor de gerenciamento (`ndb_nodeID_config.bin.seqno`). Este pode ser um caminho relativo ou absoluto. Se o servidor de gerenciamento e o binário **ndb\_config** usados estiverem em hosts diferentes, você deve usar um caminho absoluto.
+Fornece o caminho para o arquivo de configuração binário cache do servidor de gerenciamento (`ndb_nodeID_config.bin.seqno`). Este pode ser um caminho relativo ou absoluto. Se o servidor de gerenciamento e o binário **ndb_config** usados estiverem em hosts diferentes, você deve usar um caminho absoluto.
 
-Este exemplo demonstra a combinação de `--config-binary-file` com outras opções de **ndb\_config** para obter uma saída útil:
+Este exemplo demonstra a combinação de `--config-binary-file` com outras opções de **ndb_config** para obter uma saída útil:
 
 ```
   $> ndb_config --config-binary-file=../mysql-cluster/ndb_50_config.bin.1 --diff-default --type=ndbd
@@ -163,7 +163,7 @@ Ao comparar a saída com o arquivo de configuração, você pode ver que todas a
 
 <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
-Fornece o caminho para o arquivo de configuração do clúster (`config.ini`). Este pode ser um caminho relativo ou absoluto. Se o servidor de gerenciamento e o binário **ndb\_config** usados estiverem em hosts diferentes, você deve usar um caminho absoluto.
+Fornece o caminho para o arquivo de configuração do clúster (`config.ini`). Este pode ser um caminho relativo ou absoluto. Se o servidor de gerenciamento e o binário **ndb_config** usados estiverem em hosts diferentes, você deve usar um caminho absoluto.
 
 * `--config_from_node=#`
 
@@ -419,7 +419,7 @@ Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de 
 
   <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
 
-Diz ao **ndb\_config** para imprimir apenas as informações do `SISTEMA`. Isso consiste em variáveis do sistema que não podem ser alteradas no tempo de execução; portanto, não há uma seção correspondente do arquivo de configuração do cluster para elas. Elas podem ser vistas (prefixadas com `****** SISTEMA ******`) na saída do **ndb\_config** `--configinfo`.
+Diz ao **ndb_config** para imprimir apenas as informações do `SISTEMA`. Isso consiste em variáveis do sistema que não podem ser alteradas no tempo de execução; portanto, não há uma seção correspondente do arquivo de configuração do cluster para elas. Elas podem ser vistas (prefixadas com `****** SISTEMA ******`) na saída do **ndb_config** `--configinfo`.
 
 Esta opção é mutuamente exclusiva com `--nodes` e `--connections`; apenas uma dessas 3 opções pode ser usada.
 
@@ -433,19 +433,19 @@ Esta opção é mutuamente exclusiva com `--nodes` e `--connections`; apenas uma
 
   <table frame="box" rules="all" summary="Propriedades para o arquivo de configuração"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code></code></td> </tr></tbody></table>
 
-  Faz com que o **ndb\_config** imprima uma lista de opções disponíveis e, em seguida, saia.
+  Faz com que o **ndb_config** imprima uma lista de opções disponíveis e, em seguida, saia.
 
 * `--version`, `-V`
 
 <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
 
-  Faz com que **ndb\_config** imprima uma string de informações de versão e, em seguida, saia.
+  Faz com que **ndb_config** imprima uma string de informações de versão e, em seguida, saia.
 
 * `--configinfo` `--xml`
 
   <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
 
-  Faz com que **ndb\_config** `--configinfo` forneça a saída como XML adicionando esta opção. Uma parte dessa saída é mostrada neste exemplo:
+  Faz com que **ndb_config** `--configinfo` forneça a saída como XML adicionando esta opção. Uma parte dessa saída é mostrada neste exemplo:
 
   ```
   $> ndb_config --configinfo --xml
@@ -484,7 +484,7 @@ Esta opção é mutuamente exclusiva com `--nodes` e `--connections`; apenas uma
 
   Nota
 
-  Normalmente, a saída XML produzida por **ndb\_config** `--configinfo` `--xml` é formatada usando uma linha por elemento; adicionamos espaços extras no exemplo anterior, bem como no seguinte, por razões de legibilidade. Isso não deve fazer diferença para as aplicações que usam essa saída, uma vez que a maioria dos processadores de XML ignora o espaço em branco não essencial como uma questão de cortesia, ou pode ser instruído a fazer isso.
+  Normalmente, a saída XML produzida por **ndb_config** `--configinfo` `--xml` é formatada usando uma linha por elemento; adicionamos espaços extras no exemplo anterior, bem como no seguinte, por razões de legibilidade. Isso não deve fazer diferença para as aplicações que usam essa saída, uma vez que a maioria dos processadores de XML ignora o espaço em branco não essencial como uma questão de cortesia, ou pode ser instruído a fazer isso.
 
 A saída XML também indica quando a alteração de um parâmetro específico requer que os nós de dados sejam reiniciados usando a opção `--initial`. Isso é mostrado pela presença de um atributo `initial="true"` no elemento `<param>` correspondente. Além disso, o tipo de reinício (`system` ou `node`) também é mostrado; se um parâmetro específico requer um reinício do sistema, isso é indicado pela presença de um atributo `restart="system"` no elemento `<param>` correspondente. Por exemplo, alterar o valor definido para o parâmetro `Diskless` requer um reinício inicial do sistema, como mostrado aqui (com os atributos `restart` e `initial` destacados para visibilidade):
 
@@ -518,9 +518,9 @@ Importante
 
 A opção `--xml` só pode ser usada com a opção `--configinfo`. Usar `--xml` sem `--configinfo` falha com um erro.
 
-Ao contrário das opções usadas com este programa para obter dados de configuração atuais, `--configinfo` e `--xml` usam informações obtidas das fontes do NDB Cluster quando o **ndb\_config** foi compilado. Por essa razão, não é necessária uma conexão com um NDB Cluster em execução ou acesso a um arquivo `config.ini` ou `my.cnf` para essas duas opções.
+Ao contrário das opções usadas com este programa para obter dados de configuração atuais, `--configinfo` e `--xml` usam informações obtidas das fontes do NDB Cluster quando o **ndb_config** foi compilado. Por essa razão, não é necessária uma conexão com um NDB Cluster em execução ou acesso a um arquivo `config.ini` ou `my.cnf` para essas duas opções.
 
-Combinar outras opções de **ndb\_config** (como `--query` ou `--type`) com `--configinfo` (com ou sem a opção `--xml` não é suportada. Atualmente, se você tentar fazer isso, o resultado usual é que todas as outras opções além de `--configinfo` ou `--xml` são simplesmente ignoradas. *No entanto, esse comportamento não é garantido e está sujeito a mudanças a qualquer momento*. Além disso, como o **ndb\_config**, quando usado com a opção `--configinfo`, não acessa o NDB Cluster ou não lê nenhum arquivo, tentar especificar opções adicionais como `--ndb-connectstring` ou `--config-file` com `--configinfo` não serve para nada.
+Combinar outras opções de **ndb_config** (como `--query` ou `--type`) com `--configinfo` (com ou sem a opção `--xml` não é suportada. Atualmente, se você tentar fazer isso, o resultado usual é que todas as outras opções além de `--configinfo` ou `--xml` são simplesmente ignoradas. *No entanto, esse comportamento não é garantido e está sujeito a mudanças a qualquer momento*. Além disso, como o **ndb_config**, quando usado com a opção `--configinfo`, não acessa o NDB Cluster ou não lê nenhum arquivo, tentar especificar opções adicionais como `--ndb-connectstring` ou `--config-file` com `--configinfo` não serve para nada.
 
 #### Exemplos
 
@@ -549,7 +549,7 @@ Combinar outras opções de **ndb\_config** (como `--query` ou `--type`) com `--
    198.51.100.179:1186
    ```
 
-3. Esta invocação de **ndb\_config** verifica apenas os nós de dados (usando a opção `--type`), e mostra os valores para o ID e o nome do host de cada nó, bem como os valores definidos para os parâmetros `DataMemory` e `DataDir` dele:
+3. Esta invocação de **ndb_config** verifica apenas os nós de dados (usando a opção `--type`), e mostra os valores para o ID e o nome do host de cada nó, bem como os valores definidos para os parâmetros `DataMemory` e `DataDir` dele:
 
    ```
    $> ./ndb_config --type=ndbd --query=nodeid,host,datamemory,datadir -f ' : ' -r '\n'

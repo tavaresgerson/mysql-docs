@@ -70,7 +70,7 @@ Follow the steps outlined here:
 
         Important
 
-        The `mysql.session` user must exist before you can load X Plugin. `mysql.session` was added in MySQL version 5.7.19. If your data dictionary was initialized using an earlier version you must run the **mysql\_upgrade** procedure. If the upgrade is not run, X Plugin fails to start with the error message There was an error when trying to access the server with user: mysql.session@localhost. Make sure the user is present in the server and that mysql\_upgrade was ran after a server update..
+        The `mysql.session` user must exist before you can load X Plugin. `mysql.session` was added in MySQL version 5.7.19. If your data dictionary was initialized using an earlier version you must run the **mysql_upgrade** procedure. If the upgrade is not run, X Plugin fails to start with the error message There was an error when trying to access the server with user: mysql.session@localhost. Make sure the user is present in the server and that mysql_upgrade was ran after a server update..
 
      4. Install MySQL Shell.
 

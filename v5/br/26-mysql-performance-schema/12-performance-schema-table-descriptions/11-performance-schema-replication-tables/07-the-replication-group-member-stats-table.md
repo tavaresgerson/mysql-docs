@@ -1,4 +1,4 @@
-#### 25.12.11.7 Tabela replication\_group\_member\_stats
+#### 25.12.11.7 Tabela replication_group_member_stats
 
 Esta tabela mostra informações estatísticas para os membros da replicação em grupo do MySQL. Ela é preenchida apenas quando a replicação em grupo está em execução.
 

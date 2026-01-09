@@ -27,7 +27,7 @@ Neste caso, diferentes nós SQL em cada cluster são usados como fontes e répli
 
 **Usando backup e restauração nativas do NDB para inicializar um cluster de réplica.**
 
-Ao configurar a replicação circular, é possível inicializar o cluster de réplica usando o comando do cliente de gerenciamento `START BACKUP` em um NDB Cluster para criar um backup e, em seguida, aplicar este backup em outro NDB Cluster usando **ndb\_restore**. Isso não cria automaticamente logs binários no nó SQL do segundo NDB Cluster que atua como a réplica; para fazer com que os logs binários sejam criados, você deve emitir uma declaração `SHOW TABLES` nesse nó SQL; isso deve ser feito antes de executar `START REPLICA`. Este é um problema conhecido.
+Ao configurar a replicação circular, é possível inicializar o cluster de réplica usando o comando do cliente de gerenciamento `START BACKUP` em um NDB Cluster para criar um backup e, em seguida, aplicar este backup em outro NDB Cluster usando **ndb_restore**. Isso não cria automaticamente logs binários no nó SQL do segundo NDB Cluster que atua como a réplica; para fazer com que os logs binários sejam criados, você deve emitir uma declaração `SHOW TABLES` nesse nó SQL; isso deve ser feito antes de executar `START REPLICA`. Este é um problema conhecido.
 
 **Exemplo de falha de múltiplas fontes.** Nesta seção, discutimos a falha de múltiplas fontes em uma configuração de replicação de NDB Cluster com três NDB Clusters com IDs de servidor 1, 2 e 3. Neste cenário, o Cluster 1 replica para os Clusters 2 e 3; o Cluster 2 também replica para o Cluster 3. Esta relação é mostrada aqui:
 

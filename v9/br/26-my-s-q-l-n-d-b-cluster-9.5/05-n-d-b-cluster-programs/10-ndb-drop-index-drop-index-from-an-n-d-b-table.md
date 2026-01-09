@@ -100,7 +100,7 @@ Leia a rota fornecida a partir do arquivo de login.
 
   <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></tbody></table>
 
-Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrime entradas no `NDB_CONNECTSTRING` e `my.cnf`.
+Defina a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrime entradas no `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -276,4 +276,4 @@ mysql> SELECT * FROM dogs;
 ERROR 1296 (HY000): Got error 4243 'Index not found' from NDBCLUSTER
 ```
 
-Nesse caso, sua *única* opção para tornar a tabela disponível para o MySQL novamente é excluir a tabela e recriá-la. Você pode usar a instrução SQL `DROP TABLE` ou o utilitário **ndb\_drop\_table** (consulte a Seção 25.5.11, “ndb\_drop\_table — Excluir uma Tabela NDB”) para excluir a tabela.
+Nesse caso, sua *única* opção para tornar a tabela disponível para o MySQL novamente é excluir a tabela e recriá-la. Você pode usar a instrução SQL `DROP TABLE` ou o utilitário **ndb_drop_table** (consulte a Seção 25.5.11, “ndb_drop_table — Excluir uma Tabela NDB”) para excluir a tabela.

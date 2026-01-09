@@ -50,23 +50,23 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlslap">
 <tr><th>Nome da opção</th> <th>Descrição</th> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql">--auto-generate-sql</a></td> <td>Gerar declarações SQL automaticamente quando não são fornecidas em arquivos ou usando opções de comando</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-add-autoincrement">--auto-generate-sql-add-autoincrement</a></td> <td>Adicionar uma chave primária com base em AUTO_INCREMENT para tabelas geradas automaticamente</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-execute-number">--auto-generate-sql-execute-number</a></td> <td>Especificar quantas consultas devem ser geradas automaticamente</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-guid-primary">--auto-generate-sql-guid-primary</a></td> <td>Adicionar uma chave GUID-based primária para tabelas geradas automaticamente</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-load-type">--auto-generate-sql-load-type</a></td> <td>Especificar o tipo de carga para testes</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_auto-generate-sql-secondary-indexes">--auto-generate-sql-secondary-indexes</a></td> <td>Especificar quantas índices secundários devem ser adicionados às tabelas geradas automaticamente</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_unique-query-number">--unique-query-number</a></td> <td>Número de consultas diferentes para testes automáticos</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_unique-write-number">--unique-write-number</a></td> <td>Número de consultas diferentes para --auto-generate-sql-write-number</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_write-number">--write-number</a></td> <td>Número de inserções de linhas em cada thread</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_commit">--commit</a></td> <td>Número de declarações a executar antes do commit</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_compress">--compress</a></td> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_concurrency">--concurrency</a></td> <td>Número de clientes para simular ao emitir a declaração SELECT</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_create">--create</a></td> <td>Arquivo ou cadeia de caracteres contendo a declaração a usar para criar a tabela</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_create-schema">--create-schema</a></td> <td>Schema em que os testes serão executados</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_csv">--csv</a></td> <td>Gerar saída em formato de vírgula separada</td> </tr>
-<tr><td><a class="link" href="mysqlslap.html#option_mysqlslap_debug">--debug</a></td> <td>Escrever log de depuração</td> </tr>
+<tr><td>--auto-generate-sql</td> <td>Gerar declarações SQL automaticamente quando não são fornecidas em arquivos ou usando opções de comando</td> </tr>
+<tr><td>--auto-generate-sql-add-autoincrement</td> <td>Adicionar uma chave primária com base em AUTO_INCREMENT para tabelas geradas automaticamente</td> </tr>
+<tr><td>--auto-generate-sql-execute-number</td> <td>Especificar quantas consultas devem ser geradas automaticamente</td> </tr>
+<tr><td>--auto-generate-sql-guid-primary</td> <td>Adicionar uma chave GUID-based primária para tabelas geradas automaticamente</td> </tr>
+<tr><td>--auto-generate-sql-load-type</td> <td>Especificar o tipo de carga para testes</td> </tr>
+<tr><td>--auto-generate-sql-secondary-indexes</td> <td>Especificar quantas índices secundários devem ser adicionados às tabelas geradas automaticamente</td> </tr>
+<tr><td>--unique-query-number</td> <td>Número de consultas diferentes para testes automáticos</td> </tr>
+<tr><td>--unique-write-number</td> <td>Número de consultas diferentes para --auto-generate-sql-write-number</td> </tr>
+<tr><td>--write-number</td> <td>Número de inserções de linhas em cada thread</td> </tr>
+<tr><td>--commit</td> <td>Número de declarações a executar antes do commit</td> </tr>
+<tr><td>--compress</td> <td>Compressar todas as informações enviadas entre o cliente e o servidor</td> </tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td> </tr>
+<tr><td>--concurrency</td> <td>Número de clientes para simular ao emitir a declaração SELECT</td> </tr>
+<tr><td>--create</td> <td>Arquivo ou cadeia de caracteres contendo a declaração a usar para criar a tabela</td> </tr>
+<tr><td>--create-schema</td> <td>Schema em que os testes serão executados</td> </tr>
+<tr><td>--csv</td> <td>Gerar saída em formato de vírgula separada</td> </tr>
+<tr><td>--debug</td> <td>Escrever log de depuração</td> </tr>
 <tr><td><a class="link" href="mysqlslap.html#option
 
 * `--help`, `-?`
@@ -109,7 +109,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
     <tr><th>Formato de Linha de Comando</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr>
     <tr><th>Tipo</th> <td>Enumeração</td> </tr>
     <tr><th>Valor Padrão</th> <td><code>mixed</code></td> </tr>
-    <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr>
+    <tr><th>Valores Válidos</th> <td><p><code>read</code></p><p><code>write</code></p><p><code>key</code></p><p><code>update</code></p><p><code>mixed</code></p></td> </tr>
   </table>
 
   Especifique o tipo de carga de teste. Os valores permitidos são `read` (escanear tabelas), `write` (inserir em tabelas), `key` (ler chaves primárias), `update` (atualizar chaves primárias) ou `mixed` (metade de inserções, metade de seleções de varredura). O valor padrão é `mixed`.
@@ -309,7 +309,7 @@ Para informações sobre o plugin `caching_sha2_password`, consulte a Seção 8.
 
   <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td><code>--auto-generate-sql-add-autoincrement</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
-  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
   Para informações adicionais sobre isso e outras opções de arquivos de opções, veja a Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opções”.
 
@@ -335,7 +335,7 @@ Para informações sobre o plugin `caching_sha2_password`, consulte a Seção 8.
 
   Não leia nenhum arquivo de opção. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opção, o `--no-defaults` pode ser usado para evitar que sejam lidas.
 
-  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de configuração do MySQL”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de configuração do MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivos de opção, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivos de opção”.
 
@@ -577,7 +577,7 @@ Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista
   <tr><th>Formato de linha de comando</th> <td><code>--auto-generate-sql-load-type=tipo</code></td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
   <tr><th>Valor padrão</th> <td><code>mixed</code></td> </tr>
-  <tr><th>Valores válidos</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr>
+  <tr><th>Valores válidos</th> <td><p><code>read</code></p><p><code>write</code></p><p><code>key</code></p><p><code>update</code></p><p><code>mixed</code></p></td> </tr>
 </table>
 
 0
@@ -586,13 +586,13 @@ O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.
 
 * `--verbose`, `-v`
 
-<table frame="box" rules="all" summary="Propriedades para auto-gerar-tipo-de-carga-sql"><tbody><tr><th>Formato de linha de comando</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>mixed</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para auto-gerar-tipo-de-carga-sql"><tbody><tr><th>Formato de linha de comando</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>mixed</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>read</code></p><p><code>write</code></p><p><code>key</code></p><p><code>update</code></p><p><code>mixed</code></p></td> </tr></tbody></table>
 
   Modo detalhado. Imprima mais informações sobre o que o programa faz. Esta opção pode ser usada várias vezes para aumentar a quantidade de informações.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-tipo-de-carga-sql"><tbody><tr><th>Formato de linha de comando</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>mixed</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-tipo-de-carga-sql"><tbody><tr><th>Formato de linha de comando</th> <td><code>--auto-generate-sql-load-type=type</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>mixed</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>read</code></p><p><code>write</code></p><p><code>key</code></p><p><code>update</code></p><p><code>mixed</code></p></td> </tr></tbody></table>
 
   Exibir informações da versão e sair.
 
@@ -613,7 +613,7 @@ O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.
   </tr>
   <tr>
     <th>Valores válidos</th>
-    <td><p class="valid-value"><code>read</code></p><p class="valid-value"><code>write</code></p><p class="valid-value"><code>key</code></p><p class="valid-value"><code>update</code></p><p class="valid-value"><code>mixed</code></p></td>
+    <td><p><code>read</code></p><p><code>write</code></p><p><code>key</code></p><p><code>update</code></p><p><code>mixed</code></p></td>
   </tr>
 </table>
 

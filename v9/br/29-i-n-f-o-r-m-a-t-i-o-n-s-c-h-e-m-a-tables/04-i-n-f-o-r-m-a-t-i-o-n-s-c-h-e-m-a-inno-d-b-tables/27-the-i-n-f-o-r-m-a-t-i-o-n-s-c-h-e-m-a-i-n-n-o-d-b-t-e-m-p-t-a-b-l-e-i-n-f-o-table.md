@@ -1,8 +1,8 @@
-### 28.4.27 A Tabela `INFORMATION\_SCHEMA\_INNODB\_TEMP\_TABLE\_INFO`
+### 28.4.27 A Tabela `INFORMATION_SCHEMA_INNODB_TEMP_TABLE_INFO`
 
 A tabela `INNODB_TEMP_TABLE_INFO` fornece informações sobre as tabelas temporárias `InnoDB` criadas por usuários que estão ativas em uma instância `InnoDB`. Ela não fornece informações sobre as tabelas temporárias `InnoDB` internas usadas pelo otimizador. A tabela `INNODB_TEMP_TABLE_INFO` é criada quando a consulta é realizada pela primeira vez, existe apenas na memória e não é persistida no disco.
 
-Para informações de uso e exemplos, consulte a Seção 17.15.7, “Tabela de Informações de Tabela Temporária `INFORMATION\_SCHEMA` InnoDB”.
+Para informações de uso e exemplos, consulte a Seção 17.15.7, “Tabela de Informações de Tabela Temporária `INFORMATION_SCHEMA` InnoDB”.
 
 A tabela `INNODB_TEMP_TABLE_INFO` tem as seguintes colunas:
 

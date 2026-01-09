@@ -1,6 +1,6 @@
 #### 25.6.15.46 The ndbinfo memoryusage Table
 
-Querying this table provides information similar to that provided by the `ALL REPORT MemoryUsage` command in the **ndb\_mgm** client, or logged by `ALL DUMP 1000`.
+Querying this table provides information similar to that provided by the `ALL REPORT MemoryUsage` command in the **ndb_mgm** client, or logged by `ALL DUMP 1000`.
 
 The `memoryusage` table contains the following columns:
 

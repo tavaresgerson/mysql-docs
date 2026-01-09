@@ -1,4 +1,4 @@
-#### 26.4.5.7 A função list\_add()
+#### 26.4.5.7 A função list_add()
 
 Adiciona um valor a uma lista de valores separados por vírgula e retorna o resultado.
 

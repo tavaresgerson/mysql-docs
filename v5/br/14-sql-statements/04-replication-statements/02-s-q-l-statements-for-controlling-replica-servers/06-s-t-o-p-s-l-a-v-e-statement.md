@@ -12,7 +12,7 @@ channel_option:
     FOR CHANNEL channel
 ```
 
-Para interromper os threads de replicação, o comando `[STOP SLAVE]` (stop-slave.html) requer o privilégio `[SUPER]` (privilegios-fornecidos.html#priv\_super). A melhor prática recomendada é executar `STOP SLAVE` na replica antes de interromper o servidor da replica (consulte Seção 5.1.16, "O processo de desligamento do servidor" para obter mais informações).
+Para interromper os threads de replicação, o comando `[STOP SLAVE]` (stop-slave.html) requer o privilégio `[SUPER]` (privilegios-fornecidos.html#priv_super). A melhor prática recomendada é executar `STOP SLAVE` na replica antes de interromper o servidor da replica (consulte Seção 5.1.16, "O processo de desligamento do servidor" para obter mais informações).
 
 *Ao usar o formato de registro baseado em linhas*: Você deve executar `STOP SLAVE` ou `STOP SLAVE SQL_THREAD` na replica antes de desligar o servidor da replica, se você estiver replicando tabelas que utilizam um motor de armazenamento não transacional (consulte a *Nota* mais adiante nesta seção).
 

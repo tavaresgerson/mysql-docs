@@ -1,4 +1,4 @@
-#### 30.4.4.12 O procedimento ps\_setup\_reload\_saved()
+#### 30.4.4.12 O procedimento ps_setup_reload_saved()
 
 Recarrega a configuração do Schema de Desempenho salva anteriormente na mesma sessão usando o procedimento `ps_setup_save()"`). Para mais informações, consulte a descrição do procedimento `ps_setup_save()"`).
 

@@ -1,4 +1,4 @@
-#### 26.4.3.13 The io\_global\_by\_wait\_by\_bytes and x$io\_global\_by\_wait\_by\_bytes Views
+#### 26.4.3.13 The io_global_by_wait_by_bytes and x$io_global_by_wait_by_bytes Views
 
 These views summarize global I/O consumers to display amount of I/O and time waiting for I/O, grouped by event. By default, rows are sorted by descending total I/O (bytes read and written).
 

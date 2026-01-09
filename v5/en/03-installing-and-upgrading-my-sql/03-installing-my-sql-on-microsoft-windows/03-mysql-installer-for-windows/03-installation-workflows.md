@@ -109,7 +109,7 @@ The sections that follow describe the server configuration options that apply to
 
 The Authentication Method step is visible only during the installation or upgrade of MySQL 8.0.4 or higher. It introduces a choice between two server-side authentication options. The MySQL user accounts that you create in the next step will use the authentication method that you select in this step.
 
-MySQL 8.0 connectors and community drivers that use `libmysqlclient` 8.0 now support the `caching_sha2_password` default authentication plugin. However, if you are unable to update your clients and applications to support this new authentication method, you can configure the MySQL server to use `mysql_native_password` for legacy authentication. For more information about the implications of this change, see caching\_sha2\_password as the Preferred Authentication Plugin.
+MySQL 8.0 connectors and community drivers that use `libmysqlclient` 8.0 now support the `caching_sha2_password` default authentication plugin. However, if you are unable to update your clients and applications to support this new authentication method, you can configure the MySQL server to use `mysql_native_password` for legacy authentication. For more information about the implications of this change, see caching_sha2_password as the Preferred Authentication Plugin.
 
 If you are installing or upgrading to MySQL 8.0.4 or higher, select one of the following authentication methods:
 

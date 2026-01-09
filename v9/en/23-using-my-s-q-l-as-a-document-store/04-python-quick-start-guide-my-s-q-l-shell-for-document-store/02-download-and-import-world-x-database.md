@@ -1,8 +1,8 @@
-### 22.4.2 Download and Import world\_x Database
+### 22.4.2 Download and Import world_x Database
 
 As part of this quick-start guide, an example schema is provided which is referred to as the `world_x` schema. Many of the examples demonstrate Document Store functionality using this schema. Start your MySQL server so that you can load the `world_x` schema, then follow these steps:
 
-1. Download world\_x-db.zip.
+1. Download world_x-db.zip.
 
 2. Extract the installation archive to a temporary location such as `/tmp/`. Unpacking the archive results in a single file named `world_x.sql`.
 
@@ -25,7 +25,7 @@ As part of this quick-start guide, an example schema is provided which is referr
 
    Replace `/tmp/` with the path to the `world_x.sql` file on your system. Enter your password if prompted. A non-root account can be used as long as the account has privileges to create new schemas.
 
-#### The world\_x Schema
+#### The world_x Schema
 
 The `world_x` example schema contains the following JSON collection and relational tables:
 

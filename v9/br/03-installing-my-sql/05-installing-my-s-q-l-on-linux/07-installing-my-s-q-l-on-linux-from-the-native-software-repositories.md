@@ -87,7 +87,7 @@ As instruções específicas da distribuição são mostradas abaixo:
   $> systemctl start mysqld
   ```
 
-As tabelas do banco de dados são criadas automaticamente para você, se ainda não existirem. No entanto, você deve executar **mysql\_secure\_installation** para definir as senhas do root no seu servidor.
+As tabelas do banco de dados são criadas automaticamente para você, se ainda não existirem. No entanto, você deve executar **mysql_secure_installation** para definir as senhas do root no seu servidor.
 
 * **Debian, Ubuntu, Kubuntu**
 

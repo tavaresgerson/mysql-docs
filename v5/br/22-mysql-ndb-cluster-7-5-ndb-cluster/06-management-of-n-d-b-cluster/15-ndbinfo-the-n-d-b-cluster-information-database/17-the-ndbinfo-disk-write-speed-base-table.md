@@ -1,4 +1,4 @@
-#### 21.6.15.17 Tabela ndbinfo disk\_write\_speed\_base
+#### 21.6.15.17 Tabela ndbinfo disk_write_speed_base
 
 A tabela `disk_write_speed_base` fornece informações básicas sobre a velocidade de escrita em disco durante operações de LCP, backup e restauração.
 

@@ -308,13 +308,13 @@ There is a hard limit of 4096 columns per table, but the effective maximum may b
 
   An integer column can have the additional attribute `AUTO_INCREMENT`. When you insert a value of `NULL` (recommended) or `0` into an indexed `AUTO_INCREMENT` column, the column is set to the next sequence value. Typically this is `value+1`, where *`value`* is the largest value for the column currently in the table. `AUTO_INCREMENT` sequences begin with `1`.
 
-  To retrieve an `AUTO_INCREMENT` value after inserting a row, use the `LAST_INSERT_ID()` SQL function or the `mysql_insert_id()` C API function. See Section 14.15, “Information Functions”, and mysql\_insert\_id().
+  To retrieve an `AUTO_INCREMENT` value after inserting a row, use the `LAST_INSERT_ID()` SQL function or the `mysql_insert_id()` C API function. See Section 14.15, “Information Functions”, and mysql_insert_id().
 
   If the `NO_AUTO_VALUE_ON_ZERO` SQL mode is enabled, you can store `0` in `AUTO_INCREMENT` columns as `0` without generating a new sequence value. See Section 7.1.11, “Server SQL Modes”.
 
   There can be only one `AUTO_INCREMENT` column per table, it must be indexed, and it cannot have a `DEFAULT` value. An `AUTO_INCREMENT` column works properly only if it contains only positive values. Inserting a negative number is regarded as inserting a very large positive number. This is done to avoid precision problems when numbers “wrap” over from positive to negative and also to ensure that you do not accidentally get an `AUTO_INCREMENT` column that contains `0`.
 
-  For `MyISAM` tables, you can specify an `AUTO_INCREMENT` secondary column in a multiple-column key. See Section 5.6.9, “Using AUTO\_INCREMENT”.
+  For `MyISAM` tables, you can specify an `AUTO_INCREMENT` secondary column in a multiple-column key. See Section 5.6.9, “Using AUTO_INCREMENT”.
 
   To make MySQL compatible with some ODBC applications, you can find the `AUTO_INCREMENT` value for the last inserted row with the following query:
 
@@ -324,7 +324,7 @@ There is a hard limit of 4096 columns per table, but the effective maximum may b
 
   This method requires that `sql_auto_is_null` variable is not set to 0. See Section 7.1.8, “Server System Variables”.
 
-  For information about `InnoDB` and `AUTO_INCREMENT`, see Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”. For information about `AUTO_INCREMENT` and MySQL Replication, see Section 19.5.1.1, “Replication and AUTO\_INCREMENT”.
+  For information about `InnoDB` and `AUTO_INCREMENT`, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”. For information about `AUTO_INCREMENT` and MySQL Replication, see Section 19.5.1.1, “Replication and AUTO_INCREMENT”.
 
 * `COMMENT`
 
@@ -520,13 +520,13 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   Specifies the storage engine for the table, using one of the names shown in the following table. The engine name can be unquoted or quoted. The quoted name `'DEFAULT'` is recognized but ignored.
 
-  <table summary="Storage engine names permitted for the ENGINE table option and a description of each engine."><col style="width: 25%"/><col style="width: 70%"/><thead><tr> <th>Storage Engine</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">InnoDB</code></td> <td>Transaction-safe tables with row locking and foreign keys. The default storage engine for new tables. See <a class="xref" href="innodb-storage-engine.html" title="Chapter 17 The InnoDB Storage Engine">Chapter 17, <i>The InnoDB Storage Engine</i></a>, and in particular <a class="xref" href="innodb-introduction.html" title="17.1 Introduction to InnoDB">Section 17.1, “Introduction to InnoDB”</a> if you have MySQL experience but are new to <code class="literal">InnoDB</code>.</td> </tr><tr> <td><code class="literal">MyISAM</code></td> <td>The binary portable storage engine that is primarily used for read-only or read-mostly workloads. See <a class="xref" href="myisam-storage-engine.html" title="18.2 The MyISAM Storage Engine">Section 18.2, “The MyISAM Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">MEMORY</code></td> <td>The data for this storage engine is stored only in memory. See <a class="xref" href="memory-storage-engine.html" title="18.3 The MEMORY Storage Engine">Section 18.3, “The MEMORY Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">CSV</code></td> <td>Tables that store rows in comma-separated values format. See <a class="xref" href="csv-storage-engine.html" title="18.4 The CSV Storage Engine">Section 18.4, “The CSV Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">ARCHIVE</code></td> <td>The archiving storage engine. See <a class="xref" href="archive-storage-engine.html" title="18.5 The ARCHIVE Storage Engine">Section 18.5, “The ARCHIVE Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">EXAMPLE</code></td> <td>An example engine. See <a class="xref" href="example-storage-engine.html" title="18.9 The EXAMPLE Storage Engine">Section 18.9, “The EXAMPLE Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">FEDERATED</code></td> <td>Storage engine that accesses remote tables. See <a class="xref" href="federated-storage-engine.html" title="18.8 The FEDERATED Storage Engine">Section 18.8, “The FEDERATED Storage Engine”</a>.</td> </tr><tr> <td><code class="literal">HEAP</code></td> <td>This is a synonym for <code class="literal">MEMORY</code>.</td> </tr><tr> <td><code class="literal">MERGE</code></td> <td>A collection of <code class="literal">MyISAM</code> tables used as one table. Also known as <code class="literal">MRG_MyISAM</code>. See <a class="xref" href="merge-storage-engine.html" title="18.7 The MERGE Storage Engine">Section 18.7, “The MERGE Storage Engine”</a>.</td> </tr><tr> <td><a class="link" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code class="literal">NDB</code></a></td> <td>Clustered, fault-tolerant, memory-based tables, supporting transactions and foreign keys. Also known as <a class="link" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code class="literal">NDBCLUSTER</code></a>. See <a class="xref" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5">Chapter 25, <i>MySQL NDB Cluster 9.5</i></a>.</td> </tr></tbody></table>
+  <table summary="Storage engine names permitted for the ENGINE table option and a description of each engine."><col style="width: 25%"/><col style="width: 70%"/><thead><tr> <th>Storage Engine</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">InnoDB</code></td> <td>Transaction-safe tables with row locking and foreign keys. The default storage engine for new tables. See Chapter 17, <i>The InnoDB Storage Engine</i>, and in particular Section 17.1, “Introduction to InnoDB” if you have MySQL experience but are new to <code class="literal">InnoDB</code>.</td> </tr><tr> <td><code class="literal">MyISAM</code></td> <td>The binary portable storage engine that is primarily used for read-only or read-mostly workloads. See Section 18.2, “The MyISAM Storage Engine”.</td> </tr><tr> <td><code class="literal">MEMORY</code></td> <td>The data for this storage engine is stored only in memory. See Section 18.3, “The MEMORY Storage Engine”.</td> </tr><tr> <td><code class="literal">CSV</code></td> <td>Tables that store rows in comma-separated values format. See Section 18.4, “The CSV Storage Engine”.</td> </tr><tr> <td><code class="literal">ARCHIVE</code></td> <td>The archiving storage engine. See Section 18.5, “The ARCHIVE Storage Engine”.</td> </tr><tr> <td><code class="literal">EXAMPLE</code></td> <td>An example engine. See Section 18.9, “The EXAMPLE Storage Engine”.</td> </tr><tr> <td><code class="literal">FEDERATED</code></td> <td>Storage engine that accesses remote tables. See Section 18.8, “The FEDERATED Storage Engine”.</td> </tr><tr> <td><code class="literal">HEAP</code></td> <td>This is a synonym for <code class="literal">MEMORY</code>.</td> </tr><tr> <td><code class="literal">MERGE</code></td> <td>A collection of <code class="literal">MyISAM</code> tables used as one table. Also known as <code class="literal">MRG_MyISAM</code>. See Section 18.7, “The MERGE Storage Engine”.</td> </tr><tr> <td><code class="literal">NDB</code></td> <td>Clustered, fault-tolerant, memory-based tables, supporting transactions and foreign keys. Also known as <code class="literal">NDBCLUSTER</code>. See Chapter 25, <i>MySQL NDB Cluster 9.5</i>.</td> </tr></tbody></table>
 
   By default, if a storage engine is specified that is not available, the statement fails with an error. You can override this behavior by removing `NO_ENGINE_SUBSTITUTION` from the server SQL mode (see Section 7.1.11, “Server SQL Modes”) so that MySQL allows substitution of the specified engine with the default storage engine instead. Normally in such cases, this is `InnoDB`, which is the default value for the `default_storage_engine` system variable. When `NO_ENGINE_SUBSTITUTION` is disabled, a warning occurs if the storage engine specification is not honored.
 
 * `AUTOEXTEND_SIZE`
 
-  Defines the amount by which `InnoDB` extends the size of the tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND\_SIZE Configuration”.
+  Defines the amount by which `InnoDB` extends the size of the tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND_SIZE Configuration”.
 
 * `AUTO_INCREMENT`
 
@@ -558,7 +558,7 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   You can set the `InnoDB` `MERGE_THRESHOLD` value for a table using the `table_option` `COMMENT` clause. See Section 17.8.11, “Configuring the Merge Threshold for Index Pages”.
 
-  **Setting NDB\_TABLE options.**
+  **Setting NDB_TABLE options.**
 
   The table comment in a `CREATE TABLE` that creates an `NDB` table or an `ALTER TABLE` statement which alters one can also be used to specify one to four of the `NDB_TABLE` options `NOLOGGING`, `READ_BACKUP`, `PARTITION_BALANCE`, or `FULLY_REPLICATED` as a set of name-value pairs, separated by commas if need be, immediately following the string `NDB_TABLE=` that begins the quoted comment text. An example statement using this syntax is shown here (emphasized text):
 
@@ -573,7 +573,7 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   Spaces are not permitted within the quoted string. The string is case-insensitive.
 
-  The comment is displayed as part of the output of `SHOW CREATE TABLE`. The text of the comment is also available as the TABLE\_COMMENT column of the MySQL Information Schema `TABLES` table.
+  The comment is displayed as part of the output of `SHOW CREATE TABLE`. The text of the comment is also available as the TABLE_COMMENT column of the MySQL Information Schema `TABLES` table.
 
   This comment syntax is also supported with `ALTER TABLE` statements for `NDB` tables. Keep in mind that a table comment used with `ALTER TABLE` replaces any existing comment which the table might have had previously.
 
@@ -670,7 +670,7 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   Important
 
-  The use of `MAX_ROWS` with `NDB` tables to control the number of table partitions is deprecated. It remains supported in later versions for backward compatibility, but is subject to removal in a future release. Use PARTITION\_BALANCE instead; see Setting NDB\_TABLE options.
+  The use of `MAX_ROWS` with `NDB` tables to control the number of table partitions is deprecated. It remains supported in later versions for backward compatibility, but is subject to removal in a future release. Use PARTITION_BALANCE instead; see Setting NDB_TABLE options.
 
   The `NDB` storage engine treats this value as a maximum. If you plan to create very large NDB Cluster tables (containing millions of rows), you should use this option to insure that `NDB` allocates sufficient number of index slots in the hash table used for storing hashes of the table's primary keys by setting `MAX_ROWS = 2 * rows`, where *`rows`* is the number of rows that you expect to insert into the table.
 
@@ -754,7 +754,7 @@ Table options are used to optimize the behavior of the table. In most cases, you
 
   The general tablespace that you specify must exist prior to using the `TABLESPACE` clause. For information about general tablespaces, see Section 17.6.3.3, “General Tablespaces”.
 
-  The `tablespace_name` is a case-sensitive identifier. It may be quoted or unquoted. The forward slash character (“/”) is not permitted. Names beginning with “innodb\_” are reserved for special use.
+  The `tablespace_name` is a case-sensitive identifier. It may be quoted or unquoted. The forward slash character (“/”) is not permitted. Names beginning with “innodb_” are reserved for special use.
 
   To create a table in the system tablespace, specify `innodb_system` as the tablespace name.
 

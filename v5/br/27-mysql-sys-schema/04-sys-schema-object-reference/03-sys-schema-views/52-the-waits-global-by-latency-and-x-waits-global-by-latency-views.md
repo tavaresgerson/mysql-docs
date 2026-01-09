@@ -1,4 +1,4 @@
-#### 26.4.3.52 As visualizações waits\_global\_by\_latency e x$waits\_global\_by\_latency
+#### 26.4.3.52 As visualizações waits_global_by_latency e x$waits_global_by_latency
 
 Esses pontos de vista resumem os eventos de espera, agrupados por evento. Por padrão, as linhas são ordenadas por latência total decrescente. Os eventos em espera são ignorados.
 

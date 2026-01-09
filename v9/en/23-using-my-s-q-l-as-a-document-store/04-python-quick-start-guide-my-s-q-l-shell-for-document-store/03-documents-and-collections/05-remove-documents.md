@@ -40,4 +40,4 @@ Alternatively, use the `db.drop_collection('countryinfo')` operation to delete t
 
 * See CollectionRemoveFunction for the full syntax definition.
 
-* See Section 22.4.2, “Download and Import world\_x Database” for instructions to recreate the `world_x` schema.
+* See Section 22.4.2, “Download and Import world_x Database” for instructions to recreate the `world_x` schema.

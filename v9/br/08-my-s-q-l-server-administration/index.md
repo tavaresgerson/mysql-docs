@@ -80,7 +80,7 @@
 
     7.6.4 O Plugin de Reescrita de Consultas Rewriter
 
-    7.6.5 O Plugin ddl\_rewriter
+    7.6.5 O Plugin ddl_rewriter
 
     7.6.6 O Plugin Clone
 
@@ -104,7 +104,7 @@
 
     7.9.2 Depuração de um Cliente MySQL
 
-    7.9.3 Ferramenta LOCK\_ORDER
+    7.9.3 Ferramenta LOCK_ORDER
 
     7.9.4 O Pacote DBUG
 

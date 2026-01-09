@@ -72,7 +72,7 @@ interval:
     (n >= 1)
 ```
 
-##### Tabela mysql.gtid\_executed
+##### Tabela mysql.gtid_executed
 
 Os GTIDs são armazenados em uma tabela chamada `gtid_executed`, no banco de dados `mysql`. Uma linha nesta tabela contém, para cada GTID ou conjunto de GTIDs que ele representa, o UUID do servidor de origem e os IDs de transação de início e fim do conjunto; para uma linha que referencia apenas um único GTID, esses dois últimos valores são os mesmos.
 
@@ -95,7 +95,7 @@ A tabela `mysql.gtid_executed` é fornecida para uso interno pelo servidor MySQL
 
 Os GTIDs são armazenados na tabela `mysql.gtid_executed` apenas quando o `gtid_mode` (opções de replicação de GTIDs) está configurado como `ON` ou `ON_PERMISSIVE`. O ponto em que os GTIDs são armazenados depende se o registro binário está habilitado ou desabilitado:
 
-- Se o registro binário estiver desativado (`log_bin` estiver em `OFF`), ou se o `log_slave_updates` estiver desativado, o servidor armazena o GTID pertencente a cada transação junto com a transação no buffer quando a transação é confirmada, e o thread de segundo plano adiciona periodicamente o conteúdo do buffer como uma ou mais entradas à tabela `mysql.gtid_executed`. Além disso, a tabela é comprimida periodicamente a uma taxa configurável pelo usuário; consulte mysql.gtid\_executed Table Compression para obter mais informações. Esta situação só pode ocorrer em uma replica onde o registro binário ou o registro de atualização da replica estão desativados. Não se aplica a um servidor de origem de replicação, porque na origem, o registro binário deve estar habilitado para que a replicação ocorra.
+- Se o registro binário estiver desativado (`log_bin` estiver em `OFF`), ou se o `log_slave_updates` estiver desativado, o servidor armazena o GTID pertencente a cada transação junto com a transação no buffer quando a transação é confirmada, e o thread de segundo plano adiciona periodicamente o conteúdo do buffer como uma ou mais entradas à tabela `mysql.gtid_executed`. Além disso, a tabela é comprimida periodicamente a uma taxa configurável pelo usuário; consulte mysql.gtid_executed Table Compression para obter mais informações. Esta situação só pode ocorrer em uma replica onde o registro binário ou o registro de atualização da replica estão desativados. Não se aplica a um servidor de origem de replicação, porque na origem, o registro binário deve estar habilitado para que a replicação ocorra.
 
 - Se o registro binário estiver habilitado (`log_bin` estiver definido como `ON`), sempre que o log binário for rotado ou o servidor for desligado, o servidor escreve GTIDs para todas as transações que foram escritas no log binário anterior na tabela `mysql.gtid_executed`. Esta situação se aplica a um servidor de origem de replicação ou a uma réplica onde o registro binário está habilitado.
 
@@ -103,7 +103,7 @@ Os GTIDs são armazenados na tabela `mysql.gtid_executed` apenas quando o `gtid_
 
   Quando o registro binário está habilitado, a tabela `mysql.gtid_executed` não contém um registro completo dos GTIDs para todas as transações executadas. Essas informações são fornecidas pelo valor global da variável de sistema `gtid_executed`. Sempre use `@@GLOBAL.gtid_executed`, que é atualizado após cada commit, para representar o estado do GTID para o servidor MySQL, e não consulte a tabela `mysql.gtid_executed`.
 
-##### Compressão da tabela mysql.gtid\_executed
+##### Compressão da tabela mysql.gtid_executed
 
 Com o passar do tempo, a tabela `mysql.gtid_executed` pode ficar cheia de muitas linhas que se referem a GTIDs individuais que são gerados no mesmo servidor e cujos IDs de transação formam uma faixa, semelhante ao que é mostrado aqui:
 

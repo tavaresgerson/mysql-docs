@@ -6,7 +6,7 @@ Os seguintes itens se aplicam aos requisitos de armazenamento de dados do disco:
 
   Para obter informações gerais sobre o cálculo desses valores, consulte Seção 11.7, “Requisitos de Armazenamento de Tipo de Dados”.
 
-  Você pode obter uma estimativa do espaço disponível em arquivos de dados e arquivos de registro de desfazer consultando a tabela do esquema de informações `FILES`. Para mais informações e exemplos, consulte Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”.
+  Você pode obter uma estimativa do espaço disponível em arquivos de dados e arquivos de registro de desfazer consultando a tabela do esquema de informações `FILES`. Para mais informações e exemplos, consulte Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.
 
   Nota
 

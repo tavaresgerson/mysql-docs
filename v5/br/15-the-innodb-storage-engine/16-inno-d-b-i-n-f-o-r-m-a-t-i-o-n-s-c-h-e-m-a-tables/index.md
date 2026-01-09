@@ -14,7 +14,7 @@
 
 14.16.7 Tabela de informações da InnoDB do esquema de informações Tabela de informações temporárias
 
-14.16.8 Recuperação dos metadados do espaço de tabela InnoDB a partir do INFORMATION\_SCHEMA.FILES
+14.16.8 Recuperação dos metadados do espaço de tabela InnoDB a partir do INFORMATION_SCHEMA.FILES
 
 Esta seção fornece informações e exemplos de uso para as tabelas do `INFORMATION_SCHEMA` do `InnoDB`.
 

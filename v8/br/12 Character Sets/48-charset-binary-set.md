@@ -1,6 +1,6 @@
 ### 12.10.8 O Conjunto de Caracteres Binário
 
-O conjunto de caracteres `binary` é o conjunto de caracteres para strings binárias, que são sequências de bytes. O conjunto de caracteres `binary` tem uma ordenação, também chamada `binary`. A comparação e ordenação são baseadas em valores numéricos de bytes, em vez de em valores de código de caracteres numéricos (que, para caracteres multibytes, diferem dos valores de byte numéricos). Para informações sobre as diferenças entre a ordenação `binary` do conjunto de caracteres `binary` e as ordenações `_bin` dos conjuntos de caracteres não binários, consulte  Seção 12.8.5, “A ordenação binária comparada às ordenações \_bin”.
+O conjunto de caracteres `binary` é o conjunto de caracteres para strings binárias, que são sequências de bytes. O conjunto de caracteres `binary` tem uma ordenação, também chamada `binary`. A comparação e ordenação são baseadas em valores numéricos de bytes, em vez de em valores de código de caracteres numéricos (que, para caracteres multibytes, diferem dos valores de byte numéricos). Para informações sobre as diferenças entre a ordenação `binary` do conjunto de caracteres `binary` e as ordenações `_bin` dos conjuntos de caracteres não binários, consulte  Seção 12.8.5, “A ordenação binária comparada às ordenações _bin”.
 
 Para o conjunto de caracteres `binary`, os conceitos de maiúscula e equivalência de acentos não se aplicam:
 

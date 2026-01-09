@@ -22,7 +22,7 @@ MySQL supports the following keyring-related command-line options:
 
   Indicates that a key migration is from a keyring component to a keyring plugin. This option makes it possible to migrate keys from a keyring component to a keyring plugin.
 
-  For migration from a keyring plugin to a keyring component, use the `--keyring-migration-to-component` option. For key migration from one keyring component to another, use the **mysql\_migrate\_keyring** utility. See Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”.
+  For migration from a keyring plugin to a keyring component, use the `--keyring-migration-to-component` option. For key migration from one keyring component to another, use the **mysql_migrate_keyring** utility. See Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”.
 
 * `--keyring-migration-host=host_name`
 
@@ -70,7 +70,7 @@ MySQL supports the following keyring-related command-line options:
 
   Indicates that a key migration is from a keyring plugin to a keyring component. This option makes it possible to migrate keys from a keyring plugin to a keyring component.
 
-  For migration from a keyring component to a keyring plugin, use the `--keyring-migration-from-component` option. For key migration from one keyring component to another, use the **mysql\_migrate\_keyring** utility. See Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”.
+  For migration from a keyring component to a keyring plugin, use the `--keyring-migration-from-component` option. For key migration from one keyring component to another, use the **mysql_migrate_keyring** utility. See Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”.
 
 * `--keyring-migration-user=user_name`
 

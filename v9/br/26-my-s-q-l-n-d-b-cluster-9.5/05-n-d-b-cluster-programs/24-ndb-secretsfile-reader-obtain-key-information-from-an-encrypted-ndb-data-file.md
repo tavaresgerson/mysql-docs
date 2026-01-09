@@ -1,6 +1,6 @@
-### 25.5.24 ndb\_secretsfile\_reader — Obter informações-chave de um arquivo de segredos de criptografia NDB
+### 25.5.24 ndb_secretsfile_reader — Obter informações-chave de um arquivo de segredos de criptografia NDB
 
-O **ndb\_secretsfile\_reader** obtém a chave de criptografia de um arquivo de segredos de criptografia NDB, dado a senha.
+O **ndb_secretsfile_reader** obtém a chave de criptografia de um arquivo de segredos de criptografia NDB, dado a senha.
 
 #### Uso
 
@@ -16,7 +16,7 @@ ndb_secretsfile_reader: [Warning] Using a password on the command line interface
 cac256e18b2ddf6b5ef82d99a72f18e864b78453cc7fa40bfaf0c40b91122d18
 ```
 
-Essas e outras opções que podem ser usadas com **ndb\_secretsfile\_reader** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+Essas e outras opções que podem ser usadas com **ndb_secretsfile_reader** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 * `--defaults-extra-file`
 
@@ -59,7 +59,7 @@ Essas e outras opções que podem ser usadas com **ndb\_secretsfile\_reader** es
     </tr>
   </tbody></table>
 
-  Transmita a senha de criptografia e descriptografia do sistema de arquivos para **ndb\_secretsfile\_reader** usando `stdin`, `tty` ou o arquivo `my.cnf`.
+  Transmita a senha de criptografia e descriptografia do sistema de arquivos para **ndb_secretsfile_reader** usando `stdin`, `tty` ou o arquivo `my.cnf`.
 
 * `--filesystem-password-from-stdin`
 
@@ -71,7 +71,7 @@ Essas e outras opções que podem ser usadas com **ndb\_secretsfile\_reader** es
     </tr>
   </tbody></table>
 
-  Transmita a senha de criptografia e descriptografia do sistema de arquivos para **ndb\_secretsfile\_reader** a partir de `stdin` (apenas).
+  Transmita a senha de criptografia e descriptografia do sistema de arquivos para **ndb_secretsfile_reader** a partir de `stdin` (apenas).
 
 * `--help`
 

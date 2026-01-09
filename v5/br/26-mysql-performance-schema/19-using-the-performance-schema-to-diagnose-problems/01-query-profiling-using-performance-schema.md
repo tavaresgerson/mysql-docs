@@ -41,7 +41,7 @@ O Schema de desempenho exibe as informações do temporizador de eventos em pico
    +-----------+-----------+------+---------+---------+
    ```
 
-2. Certifique-se de que a declaração e a instrumentação de estágio estão habilitadas atualizando a tabela \`setup\_instruments. Alguns instrumentos podem estar já habilitados por padrão.
+2. Certifique-se de que a declaração e a instrumentação de estágio estão habilitadas atualizando a tabela \`setup_instruments. Alguns instrumentos podem estar já habilitados por padrão.
 
    ```sql
    mysql> UPDATE performance_schema.setup_instruments

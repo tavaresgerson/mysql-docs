@@ -18,7 +18,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 15.7.7.23, “SHOW GRANTS Statement”
 
-### ALLOW\_NONEXISTENT\_DEFINER
+### ALLOW_NONEXISTENT_DEFINER
 
 Section 15.1.13, “ALTER VIEW Statement”
 
@@ -76,9 +76,9 @@ Section 27.9, “Stored Program Binary Logging”
 
 Section 27.2.2, “Stored Routines and MySQL Privileges”
 
-Section 28.3.36, “The INFORMATION\_SCHEMA ROUTINES Table”
+Section 28.3.36, “The INFORMATION_SCHEMA ROUTINES Table”
 
-### APPLICATION\_PASSWORD\_ADMIN
+### APPLICATION_PASSWORD_ADMIN
 
 Section 15.7.1.1, “ALTER USER Statement”
 
@@ -90,7 +90,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 15.7.1.10, “SET PASSWORD Statement”
 
-### AUDIT\_ABORT\_EXEMPT
+### AUDIT_ABORT_EXEMPT
 
 Section 8.2.11, “Account Categories”
 
@@ -104,7 +104,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 8.4.6.8, “Writing Audit Log Filter Definitions”
 
-### AUDIT\_ADMIN
+### AUDIT_ADMIN
 
 Section 8.4.6.7, “Audit Log Filtering”
 
@@ -120,7 +120,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### AUTHENTICATION\_POLICY\_ADMIN
+### AUTHENTICATION_POLICY_ADMIN
 
 Section 15.7.1.1, “ALTER USER Statement”
 
@@ -138,7 +138,7 @@ Section 7.1.8, “Server System Variables”
 
 [index top]
 
-### BACKUP\_ADMIN
+### BACKUP_ADMIN
 
 Section 7.6.6.2, “Cloning Data Locally”
 
@@ -158,7 +158,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 20.2.1.3, “User Credentials For Distributed Recovery”
 
-### BINLOG\_ADMIN
+### BINLOG_ADMIN
 
 Section 15.7.8.1, “BINLOG Statement”
 
@@ -172,7 +172,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 15.4.1.1, “PURGE BINARY LOGS Statement”
 
-### BINLOG\_ENCRYPTION\_ADMIN
+### BINLOG_ENCRYPTION_ADMIN
 
 Section 15.1.5, “ALTER INSTANCE Statement”
 
@@ -188,7 +188,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 [index top]
 
-### CLONE\_ADMIN
+### CLONE_ADMIN
 
 Section 7.6.6.13, “Clone System Variables”
 
@@ -200,7 +200,7 @@ Section 20.5.4.2.1, “Prerequisites for Cloning”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### CONNECTION\_ADMIN
+### CONNECTION_ADMIN
 
 Section 8.2.11, “Account Categories”
 
@@ -292,7 +292,7 @@ Section 15.7.1.2, “CREATE ROLE Statement”
 
 Section 15.7.1.6, “GRANT Statement”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -322,7 +322,7 @@ Section 27.9, “Stored Program Binary Logging”
 
 Section 27.2.2, “Stored Routines and MySQL Privileges”
 
-Section 28.3.36, “The INFORMATION\_SCHEMA ROUTINES Table”
+Section 28.3.36, “The INFORMATION_SCHEMA ROUTINES Table”
 
 ### CREATE TABLESPACE
 
@@ -366,7 +366,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 8.2.15, “Password Management”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -378,7 +378,7 @@ Section 15.7.1.9, “SET DEFAULT ROLE Statement”
 
 Section 15.7.1.10, “SET PASSWORD Statement”
 
-Section 28.3.51, “The INFORMATION\_SCHEMA USER\_ATTRIBUTES Table”
+Section 28.3.51, “The INFORMATION_SCHEMA USER_ATTRIBUTES Table”
 
 Section 8.2.10, “Using Roles”
 
@@ -396,7 +396,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 27.11, “Restrictions on Views”
 
-### CREATE\_SPATIAL\_REFERENCE\_SYSTEM
+### CREATE_SPATIAL_REFERENCE_SYSTEM
 
 Section 15.1.23, “CREATE SPATIAL REFERENCE SYSTEM Statement”
 
@@ -434,7 +434,7 @@ Section 25.6.19.2, “NDB Cluster and MySQL Privileges”
 
 Section 8.2.12, “Privilege Restriction Using Partial Revokes”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -442,7 +442,7 @@ Section 15.2.12, “REPLACE Statement”
 
 Section 18.7, “The MERGE Storage Engine”
 
-Section 29.12.2.4, “The setup\_objects Table”
+Section 29.12.2.4, “The setup_objects Table”
 
 Section 15.7.4.5, “UNINSTALL COMPONENT Statement”
 
@@ -482,7 +482,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 15.1.41, “RENAME TABLE Statement”
 
-Section 29.12.22.4, “The host\_cache Table”
+Section 29.12.22.4, “The host_cache Table”
 
 Section 15.1.42, “TRUNCATE TABLE Statement”
 
@@ -492,7 +492,7 @@ Section 15.7.1.4, “DROP ROLE Statement”
 
 Section 15.7.1.6, “GRANT Statement”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -502,7 +502,7 @@ Section 8.2.10, “Using Roles”
 
 [index top]
 
-### ENCRYPTION\_KEY\_ADMIN
+### ENCRYPTION_KEY_ADMIN
 
 Section 15.1.5, “ALTER INSTANCE Statement”
 
@@ -570,13 +570,13 @@ Section 27.8, “Stored Object Access Control”
 
 Section 27.2.2, “Stored Routines and MySQL Privileges”
 
-Section 28.3.36, “The INFORMATION\_SCHEMA ROUTINES Table”
+Section 28.3.36, “The INFORMATION_SCHEMA ROUTINES Table”
 
 Section 8.4.8.2.3, “Using the MySQL Enterprise Firewall Component”
 
 Section 8.4.8.1.3, “Using the MySQL Enterprise Firewall Plugin”
 
-### EXPORT\_QUERY\_RESULTS
+### EXPORT_QUERY_RESULTS
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -608,7 +608,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 8.2.12, “Privilege Restriction Using Partial Revokes”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -626,7 +626,7 @@ Section 8.2.22, “Troubleshooting Problems Connecting to MySQL”
 
 Section 27.3.9, “Using WebAssembly Libraries”
 
-### FIREWALL\_ADMIN
+### FIREWALL_ADMIN
 
 Section 8.4.8.2.1, “Elements of MySQL Enterprise Firewall (Component)”")
 
@@ -644,7 +644,7 @@ Section 8.4.8.2.3, “Using the MySQL Enterprise Firewall Component”
 
 Section 8.4.8.1.3, “Using the MySQL Enterprise Firewall Plugin”
 
-### FIREWALL\_EXEMPT
+### FIREWALL_EXEMPT
 
 Section 8.4.8.2.1, “Elements of MySQL Enterprise Firewall (Component)”")
 
@@ -658,7 +658,7 @@ Section 8.4.8.2.3, “Using the MySQL Enterprise Firewall Component”
 
 Section 8.4.8.1.3, “Using the MySQL Enterprise Firewall Plugin”
 
-### FIREWALL\_USER
+### FIREWALL_USER
 
 Section 8.4.8.2.1, “Elements of MySQL Enterprise Firewall (Component)”")
 
@@ -670,7 +670,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 8.4.8.1.3, “Using the MySQL Enterprise Firewall Plugin”
 
-### FLUSH\_OPTIMIZER\_COSTS
+### FLUSH_OPTIMIZER_COSTS
 
 Section 15.7.8.3, “FLUSH Statement”
 
@@ -678,7 +678,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### FLUSH\_PRIVILEGES
+### FLUSH_PRIVILEGES
 
 Section 15.7.8.3, “FLUSH Statement”
 
@@ -686,7 +686,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### FLUSH\_STATUS
+### FLUSH_STATUS
 
 Section 15.7.8.3, “FLUSH Statement”
 
@@ -694,7 +694,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### FLUSH\_TABLES
+### FLUSH_TABLES
 
 Section 15.7.8.3, “FLUSH Statement”
 
@@ -704,7 +704,7 @@ Section 6.5.4, “mysqldump — A Database Backup Program”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### FLUSH\_USER\_RESOURCES
+### FLUSH_USER_RESOURCES
 
 Section 15.7.8.3, “FLUSH Statement”
 
@@ -720,7 +720,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 15.7.1.6, “GRANT Statement”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -728,15 +728,15 @@ Section 15.7.1.8, “REVOKE Statement”
 
 Section 15.7.7.23, “SHOW GRANTS Statement”
 
-Section 28.3.10, “The INFORMATION\_SCHEMA COLUMN\_PRIVILEGES Table”
+Section 28.3.10, “The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table”
 
-Section 28.3.39, “The INFORMATION\_SCHEMA SCHEMA\_PRIVILEGES Table”
+Section 28.3.39, “The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table”
 
-Section 28.3.49, “The INFORMATION\_SCHEMA TABLE\_PRIVILEGES Table”
+Section 28.3.49, “The INFORMATION_SCHEMA TABLE_PRIVILEGES Table”
 
-Section 28.3.52, “The INFORMATION\_SCHEMA USER\_PRIVILEGES Table”
+Section 28.3.52, “The INFORMATION_SCHEMA USER_PRIVILEGES Table”
 
-### GROUP\_REPLICATION\_ADMIN
+### GROUP_REPLICATION_ADMIN
 
 Section 20.5.1.5, “Configuring Member Actions”
 
@@ -754,13 +754,13 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 20.5.1.4, “Setting a Group's Communication Protocol Version”
 
-Section 15.4.3.1, “START GROUP\_REPLICATION Statement”
+Section 15.4.3.1, “START GROUP_REPLICATION Statement”
 
-Section 15.4.3.2, “STOP GROUP\_REPLICATION Statement”
+Section 15.4.3.2, “STOP GROUP_REPLICATION Statement”
 
 Section 20.5.1.3, “Using Group Replication Group Write Consensus”
 
-### GROUP\_REPLICATION\_STREAM
+### GROUP_REPLICATION_STREAM
 
 Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”
 
@@ -784,7 +784,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### INNODB\_REDO\_LOG\_ARCHIVE
+### INNODB_REDO_LOG_ARCHIVE
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -792,7 +792,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 17.6.5, “Redo Log”
 
-### INNODB\_REDO\_LOG\_ENABLE
+### INNODB_REDO_LOG_ENABLE
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -840,7 +840,7 @@ Section 30.1, “Prerequisites for Using the sys Schema”
 
 Section 8.2.12, “Privilege Restriction Using Partial Revokes”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -858,7 +858,7 @@ Section 27.8, “Stored Object Access Control”
 
 Section 27.5.6, “The Event Scheduler and MySQL Privileges”
 
-Section 29.12.2.4, “The setup\_objects Table”
+Section 29.12.2.4, “The setup_objects Table”
 
 Section 8.2.10, “Using Roles”
 
@@ -884,7 +884,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 [index top]
 
-### MASKING\_DICTIONARIES\_ADMIN
+### MASKING_DICTIONARIES_ADMIN
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -898,7 +898,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 [index top]
 
-### NDB\_STORED\_USER
+### NDB_STORED_USER
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -906,7 +906,7 @@ Section A.10, “MySQL 9.5 FAQ: NDB Cluster”
 
 Section 25.6.19.2, “NDB Cluster and MySQL Privileges”
 
-Section 25.6.13, “Privilege Synchronization and NDB\_STORED\_USER”
+Section 25.6.13, “Privilege Synchronization and NDB_STORED_USER”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -914,7 +914,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 [index top]
 
-### OPTIMIZE\_LOCAL\_TABLE
+### OPTIMIZE_LOCAL_TABLE
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -922,7 +922,7 @@ Section 15.7.3.4, “OPTIMIZE TABLE Statement”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### OPTION\_TRACKER\_OBSERVER
+### OPTION_TRACKER_OBSERVER
 
 Section 7.5.8.5, “Option Tracker Functions”
 
@@ -930,7 +930,7 @@ Section 7.5.8.1, “Option Tracker Tables”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### OPTION\_TRACKER\_UPDATER
+### OPTION_TRACKER_UPDATER
 
 Section 7.5.8.5, “Option Tracker Functions”
 
@@ -942,7 +942,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 [index top]
 
-### PASSWORDLESS\_USER\_ADMIN
+### PASSWORDLESS_USER_ADMIN
 
 Section 15.7.1.1, “ALTER USER Statement”
 
@@ -956,7 +956,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 8.4.1.11, “WebAuthn Pluggable Authentication”
 
-### PERSIST\_RO\_VARIABLES\_ADMIN
+### PERSIST_RO_VARIABLES_ADMIN
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -1000,65 +1000,65 @@ Section 15.7.7.17, “SHOW ENGINE Statement”
 
 Section 15.7.7.32, “SHOW PROCESSLIST Statement”
 
-Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”
+Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”
 
-Section 28.4.2, “The INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE Table”
+Section 28.4.2, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table”
 
-Section 28.4.3, “The INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU Table”
+Section 28.4.3, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table”
 
-Section 28.4.4, “The INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS Table”
+Section 28.4.4, “The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table”
 
-Section 28.4.5, “The INFORMATION\_SCHEMA INNODB\_CACHED\_INDEXES Table”
+Section 28.4.5, “The INFORMATION_SCHEMA INNODB_CACHED_INDEXES Table”
 
-Section 28.4.6, “The INFORMATION\_SCHEMA INNODB\_CMP and INNODB\_CMP\_RESET Tables”
+Section 28.4.6, “The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables”
 
-Section 28.4.8, “The INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX and INNODB\_CMP\_PER\_INDEX\_RESET Tables”
+Section 28.4.8, “The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables”
 
-Section 28.4.7, “The INFORMATION\_SCHEMA INNODB\_CMPMEM and INNODB\_CMPMEM\_RESET Tables”
+Section 28.4.7, “The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables”
 
-Section 28.4.9, “The INFORMATION\_SCHEMA INNODB\_COLUMNS Table”
+Section 28.4.9, “The INFORMATION_SCHEMA INNODB_COLUMNS Table”
 
-Section 28.4.10, “The INFORMATION\_SCHEMA INNODB\_DATAFILES Table”
+Section 28.4.10, “The INFORMATION_SCHEMA INNODB_DATAFILES Table”
 
-Section 28.4.11, “The INFORMATION\_SCHEMA INNODB\_FIELDS Table”
+Section 28.4.11, “The INFORMATION_SCHEMA INNODB_FIELDS Table”
 
-Section 28.4.12, “The INFORMATION\_SCHEMA INNODB\_FOREIGN Table”
+Section 28.4.12, “The INFORMATION_SCHEMA INNODB_FOREIGN Table”
 
-Section 28.4.13, “The INFORMATION\_SCHEMA INNODB\_FOREIGN\_COLS Table”
+Section 28.4.13, “The INFORMATION_SCHEMA INNODB_FOREIGN_COLS Table”
 
-Section 28.4.14, “The INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED Table”
+Section 28.4.14, “The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table”
 
-Section 28.4.15, “The INFORMATION\_SCHEMA INNODB\_FT\_CONFIG Table”
+Section 28.4.15, “The INFORMATION_SCHEMA INNODB_FT_CONFIG Table”
 
-Section 28.4.16, “The INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD Table”
+Section 28.4.16, “The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table”
 
-Section 28.4.17, “The INFORMATION\_SCHEMA INNODB\_FT\_DELETED Table”
+Section 28.4.17, “The INFORMATION_SCHEMA INNODB_FT_DELETED Table”
 
-Section 28.4.18, “The INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE Table”
+Section 28.4.18, “The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table”
 
-Section 28.4.19, “The INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE Table”
+Section 28.4.19, “The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table”
 
-Section 28.4.20, “The INFORMATION\_SCHEMA INNODB\_INDEXES Table”
+Section 28.4.20, “The INFORMATION_SCHEMA INNODB_INDEXES Table”
 
-Section 28.4.21, “The INFORMATION\_SCHEMA INNODB\_METRICS Table”
+Section 28.4.21, “The INFORMATION_SCHEMA INNODB_METRICS Table”
 
-Section 28.4.22, “The INFORMATION\_SCHEMA INNODB\_SESSION\_TEMP\_TABLESPACES Table”
+Section 28.4.22, “The INFORMATION_SCHEMA INNODB_SESSION_TEMP_TABLESPACES Table”
 
-Section 28.4.23, “The INFORMATION\_SCHEMA INNODB\_TABLES Table”
+Section 28.4.23, “The INFORMATION_SCHEMA INNODB_TABLES Table”
 
-Section 28.4.24, “The INFORMATION\_SCHEMA INNODB\_TABLESPACES Table”
+Section 28.4.24, “The INFORMATION_SCHEMA INNODB_TABLESPACES Table”
 
-Section 28.4.25, “The INFORMATION\_SCHEMA INNODB\_TABLESPACES\_BRIEF Table”
+Section 28.4.25, “The INFORMATION_SCHEMA INNODB_TABLESPACES_BRIEF Table”
 
-Section 28.4.26, “The INFORMATION\_SCHEMA INNODB\_TABLESTATS View”
+Section 28.4.26, “The INFORMATION_SCHEMA INNODB_TABLESTATS View”
 
-Section 28.4.27, “The INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO Table”
+Section 28.4.27, “The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table”
 
-Section 28.4.28, “The INFORMATION\_SCHEMA INNODB\_TRX Table”
+Section 28.4.28, “The INFORMATION_SCHEMA INNODB_TRX Table”
 
-Section 28.4.29, “The INFORMATION\_SCHEMA INNODB\_VIRTUAL Table”
+Section 28.4.29, “The INFORMATION_SCHEMA INNODB_VIRTUAL Table”
 
-Section 28.3.28, “The INFORMATION\_SCHEMA PROCESSLIST Table”
+Section 28.3.28, “The INFORMATION_SCHEMA PROCESSLIST Table”
 
 Section 29.12.22.9, “The processlist Table”
 
@@ -1080,7 +1080,7 @@ Section 8.2.19, “Proxy Users”
 
 Section 2.9.4, “Securing the Initial MySQL Account”
 
-Section 29.12.22.4, “The host\_cache Table”
+Section 29.12.22.4, “The host_cache Table”
 
 Section 8.4.1.5, “Windows Pluggable Authentication”
 
@@ -1164,7 +1164,7 @@ Section 15.7.7.37, “SHOW REPLICAS Statement”
 
 Section 20.2.1.3, “User Credentials For Distributed Recovery”
 
-### REPLICATION\_APPLIER
+### REPLICATION_APPLIER
 
 Section 19.1.6.4, “Binary Logging Options and Variables”
 
@@ -1178,7 +1178,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 6.6.9, “mysqlbinlog — Utility for Processing Binary Log Files”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -1188,7 +1188,7 @@ Section 19.1.6.2, “Replication Source Options and Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### REPLICATION\_SLAVE\_ADMIN
+### REPLICATION_SLAVE_ADMIN
 
 Section 15.4.2.1, “CHANGE REPLICATION FILTER Statement”
 
@@ -1204,7 +1204,7 @@ Section 15.4.2.4, “START REPLICA Statement”
 
 Section 15.4.2.5, “STOP REPLICA Statement”
 
-### RESOURCE\_GROUP\_ADMIN
+### RESOURCE_GROUP_ADMIN
 
 Section 15.7.2.1, “ALTER RESOURCE GROUP Statement”
 
@@ -1222,7 +1222,7 @@ Section 7.1.16, “Resource Groups”
 
 Section 15.7.2.4, “SET RESOURCE GROUP Statement”
 
-### RESOURCE\_GROUP\_USER
+### RESOURCE_GROUP_USER
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -1234,7 +1234,7 @@ Section 7.1.16, “Resource Groups”
 
 Section 15.7.2.4, “SET RESOURCE GROUP Statement”
 
-### ROLE\_ADMIN
+### ROLE_ADMIN
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -1330,15 +1330,15 @@ Section 27.8, “Stored Object Access Control”
 
 Section 27.2.2, “Stored Routines and MySQL Privileges”
 
-Section 29.12.22.3, “The error\_log Table”
+Section 29.12.22.3, “The error_log Table”
 
 Section 27.5.6, “The Event Scheduler and MySQL Privileges”
 
-Section 28.3.18, “The INFORMATION SCHEMA JSON\_DUALITY\_VIEWS Table”
+Section 28.3.18, “The INFORMATION SCHEMA JSON_DUALITY_VIEWS Table”
 
-Section 28.3.36, “The INFORMATION\_SCHEMA ROUTINES Table”
+Section 28.3.36, “The INFORMATION_SCHEMA ROUTINES Table”
 
-Section 28.3.51, “The INFORMATION\_SCHEMA USER\_ATTRIBUTES Table”
+Section 28.3.51, “The INFORMATION_SCHEMA USER_ATTRIBUTES Table”
 
 Section 18.7, “The MERGE Storage Engine”
 
@@ -1348,9 +1348,9 @@ Section 27.4.1, “Trigger Syntax and Examples”
 
 Section 15.2.17, “UPDATE Statement”
 
-### SENSITIVE\_VARIABLES\_OBSERVER
+### SENSITIVE_VARIABLES_OBSERVER
 
-Section 29.12.14.2, “Performance Schema persisted\_variables Table”
+Section 29.12.14.2, “Performance Schema persisted_variables Table”
 
 Section 29.12.14, “Performance Schema System Variable Tables”
 
@@ -1360,7 +1360,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 7.1.18, “Server Tracking of Client Session State”
 
-### SERVICE\_CONNECTION\_ADMIN
+### SERVICE_CONNECTION_ADMIN
 
 Section 7.1.12.2, “Administrative Connection Management”
 
@@ -1368,7 +1368,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 20.5.4.1.1, “Selecting addresses for distributed recovery endpoints”
 
-### SESSION\_VARIABLES\_ADMIN
+### SESSION_VARIABLES_ADMIN
 
 Section 19.1.6.5, “Global Transaction ID System Variables”
 
@@ -1376,7 +1376,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 10.4.4, “Internal Temporary Table Use in MySQL”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -1384,7 +1384,7 @@ Section 7.1.8, “Server System Variables”
 
 Section 7.1.9.1, “System Variable Privileges”
 
-### SET\_ANY\_DEFINER
+### SET_ANY_DEFINER
 
 Section 15.1.13, “ALTER VIEW Statement”
 
@@ -1424,11 +1424,11 @@ Section 27.11, “Restrictions on Views”
 
 Section 15.7.7.15, “SHOW CREATE VIEW Statement”
 
-Section 28.3.18, “The INFORMATION SCHEMA JSON\_DUALITY\_VIEWS Table”
+Section 28.3.18, “The INFORMATION SCHEMA JSON_DUALITY_VIEWS Table”
 
-Section 28.3.53, “The INFORMATION\_SCHEMA VIEWS Table”
+Section 28.3.53, “The INFORMATION_SCHEMA VIEWS Table”
 
-### SHOW\_ROUTINE
+### SHOW_ROUTINE
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -1444,7 +1444,7 @@ Section 15.7.7.31, “SHOW PROCEDURE STATUS Statement”
 
 Section 27.2.2, “Stored Routines and MySQL Privileges”
 
-Section 28.3.36, “The INFORMATION\_SCHEMA ROUTINES Table”
+Section 28.3.36, “The INFORMATION_SCHEMA ROUTINES Table”
 
 ### SHUTDOWN
 
@@ -1456,7 +1456,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 8.2.3, “Grant Tables”
 
-Section 6.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”
+Section 6.3.4, “mysqld_multi — Manage Multiple MySQL Servers”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -1470,7 +1470,7 @@ Section 7.1.19, “The Server Shutdown Process”
 
 Section 6.10, “Unix Signal Handling in MySQL”
 
-### SKIP\_QUERY\_REWRITE
+### SKIP_QUERY_REWRITE
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -1622,13 +1622,13 @@ Section 15.7.7.36, “SHOW REPLICA STATUS Statement”
 
 Section 13.4.5, “Spatial Reference System Support”
 
-Section 15.4.3.1, “START GROUP\_REPLICATION Statement”
+Section 15.4.3.1, “START GROUP_REPLICATION Statement”
 
 Section 15.4.2.4, “START REPLICA Statement”
 
 Section 15.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”
 
-Section 15.4.3.2, “STOP GROUP\_REPLICATION Statement”
+Section 15.4.3.2, “STOP GROUP_REPLICATION Statement”
 
 Section 15.4.2.5, “STOP REPLICA Statement”
 
@@ -1646,7 +1646,7 @@ Section 8.4.8.2.3, “Using the MySQL Enterprise Firewall Component”
 
 Section 8.4.8.1.3, “Using the MySQL Enterprise Firewall Plugin”
 
-### SYSTEM\_USER
+### SYSTEM_USER
 
 Section 8.2.11, “Account Categories”
 
@@ -1670,9 +1670,9 @@ Section 15.7.7.32, “SHOW PROCESSLIST Statement”
 
 Section 27.8, “Stored Object Access Control”
 
-Section 28.3.28, “The INFORMATION\_SCHEMA PROCESSLIST Table”
+Section 28.3.28, “The INFORMATION_SCHEMA PROCESSLIST Table”
 
-Section 28.3.51, “The INFORMATION\_SCHEMA USER\_ATTRIBUTES Table”
+Section 28.3.51, “The INFORMATION_SCHEMA USER_ATTRIBUTES Table”
 
 Section 29.12.22.9, “The processlist Table”
 
@@ -1680,7 +1680,7 @@ Section 8.2.10, “Using Roles”
 
 Section 8.4.6.8, “Writing Audit Log Filter Definitions”
 
-### SYSTEM\_VARIABLES\_ADMIN
+### SYSTEM_VARIABLES_ADMIN
 
 Section 8.4.6.11, “Audit Log Reference”
 
@@ -1726,7 +1726,7 @@ Section 8.2.10, “Using Roles”
 
 [index top]
 
-### TABLE\_ENCRYPTION\_ADMIN
+### TABLE_ENCRYPTION_ADMIN
 
 Section 15.1.2, “ALTER DATABASE Statement”
 
@@ -1744,7 +1744,7 @@ Section 15.7.1.6, “GRANT Statement”
 
 Section 17.13, “InnoDB Data-at-Rest Encryption”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -1752,23 +1752,23 @@ Section 15.1.41, “RENAME TABLE Statement”
 
 Section 7.1.8, “Server System Variables”
 
-### TELEMETRY\_LOG\_ADMIN
+### TELEMETRY_LOG_ADMIN
 
 Section 15.7.1.6, “GRANT Statement”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### TP\_CONNECTION\_ADMIN
+### TP_CONNECTION_ADMIN
 
 Section 15.7.1.6, “GRANT Statement”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-Section 29.12.16.1, “The tp\_connections Table”
+Section 29.12.16.1, “The tp_connections Table”
 
 Section 7.6.3.3, “Thread Pool Operation”
 
-### TRANSACTION\_GTID\_TAG
+### TRANSACTION_GTID_TAG
 
 Section 19.1.6.5, “Global Transaction ID System Variables”
 
@@ -1790,7 +1790,7 @@ Section 15.7.7.13, “SHOW CREATE TRIGGER Statement”
 
 Section 15.7.7.41, “SHOW TRIGGERS Statement”
 
-Section 28.3.50, “The INFORMATION\_SCHEMA TRIGGERS Table”
+Section 28.3.50, “The INFORMATION_SCHEMA TRIGGERS Table”
 
 ### U
 
@@ -1828,7 +1828,7 @@ Section 30.1, “Prerequisites for Using the sys Schema”
 
 Section 8.2.12, “Privilege Restriction Using Partial Revokes”
 
-Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account”
+Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
@@ -1844,11 +1844,11 @@ Section 15.7.1.10, “SET PASSWORD Statement”
 
 Section 27.8, “Stored Object Access Control”
 
-Section 28.3.51, “The INFORMATION\_SCHEMA USER\_ATTRIBUTES Table”
+Section 28.3.51, “The INFORMATION_SCHEMA USER_ATTRIBUTES Table”
 
 Section 18.7, “The MERGE Storage Engine”
 
-Section 29.12.2.4, “The setup\_objects Table”
+Section 29.12.2.4, “The setup_objects Table”
 
 Section 27.4.1, “Trigger Syntax and Examples”
 
@@ -1866,7 +1866,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 [index top]
 
-### VERSION\_TOKEN\_ADMIN
+### VERSION_TOKEN_ADMIN
 
 Section 15.7.1.6, “GRANT Statement”
 
@@ -1876,7 +1876,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 [index top]
 
-### XA\_RECOVER\_ADMIN
+### XA_RECOVER_ADMIN
 
 Section 15.7.1.6, “GRANT Statement”
 

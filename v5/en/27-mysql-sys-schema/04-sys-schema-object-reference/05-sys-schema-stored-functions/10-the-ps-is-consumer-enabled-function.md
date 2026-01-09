@@ -1,4 +1,4 @@
-#### 26.4.5.10 The ps\_is\_consumer\_enabled() Function
+#### 26.4.5.10 The ps_is_consumer_enabled() Function
 
 Returns `YES` or `NO` to indicate whether a given Performance Schema consumer is enabled, or `NULL` if the argument is `NULL`. If the argument is not a valid consumer name, an error occurs. (Prior to MySQL 5.7.28, the function returns `NULL` if the argument is not a valid consumer name.)
 

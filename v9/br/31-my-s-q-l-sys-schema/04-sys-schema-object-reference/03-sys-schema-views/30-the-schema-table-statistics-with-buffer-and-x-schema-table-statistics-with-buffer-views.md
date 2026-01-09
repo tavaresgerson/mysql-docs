@@ -1,10 +1,10 @@
-#### 30.4.3.30 As vistas `schema\_table\_statistics\_with\_buffer` e `x$schema\_table\_statistics\_with\_buffer`
+#### 30.4.3.30 As vistas `schema_table_statistics_with_buffer` e `x$schema_table_statistics_with_buffer`
 
 Essas vistas resumem as estatísticas da tabela, incluindo as estatísticas do pool de buffer do `InnoDB`. Por padrão, as linhas são ordenadas em ordem decrescente de tempo de espera total (as tabelas com mais concorrência primeiro).
 
 Essas vistas utilizam uma vista auxiliar, `x$ps_schema_table_statistics_io`.
 
-As vistas `schema\_table\_statistics\_with\_buffer` e `x$schema\_table\_statistics\_with\_buffer` têm as seguintes colunas:
+As vistas `schema_table_statistics_with_buffer` e `x$schema_table_statistics_with_buffer` têm as seguintes colunas:
 
 * `table_schema`
 

@@ -1,8 +1,8 @@
-### 24.4.27 The INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO Table
+### 24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table
 
 The [`INNODB_TEMP_TABLE_INFO`](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table") table provides information about user-created `InnoDB` temporary tables that are active in an `InnoDB` instance. It does not provide information about internal `InnoDB` temporary tables used by the optimizer. The [`INNODB_TEMP_TABLE_INFO`](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table") table is created when first queried, exists only in memory, and is not persisted to disk.
 
-For usage information and examples, see [Section 14.16.7, “InnoDB INFORMATION\_SCHEMA Temporary Table Info Table”](innodb-information-schema-temp-table-info.html "14.16.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table").
+For usage information and examples, see [Section 14.16.7, “InnoDB INFORMATION_SCHEMA Temporary Table Info Table”](innodb-information-schema-temp-table-info.html "14.16.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table").
 
 The [`INNODB_TEMP_TABLE_INFO`](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table") table has these columns:
 

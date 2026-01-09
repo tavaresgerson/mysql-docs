@@ -53,7 +53,7 @@ As seguintes variáveis de sistema são usadas para ou por servidores de fonte d
     </tr>
     <tr>
       <th>Variável de Sistema</th>
-      <td><a class="link" href="replication-options-source.html#sysvar_auto_increment_increment">auto_increment_increment</a></td>
+      <td>auto_increment_increment</td>
     </tr>
     <tr>
       <th>Alcance</th>
@@ -64,7 +64,7 @@ As seguintes variáveis de sistema são usadas para ou por servidores de fonte d
       <td>Sim</td>
     </tr>
     <tr>
-      <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th>
+      <code>SET_VAR</code> Hint Aplica-se</th>
       <td>Sim</td>
     </tr>
     <tr>
@@ -234,7 +234,7 @@ O valor padrão de `auto_increment_increment` é
 
 * `auto_increment_offset`
 
-<table frame="box" rules="all" summary="Propriedades para auto_increment_offset"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-increment-offset=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-source.html#sysvar_auto_increment_offset">auto_increment_offset</a></code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variáveis"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para auto_increment_offset"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--auto-increment-offset=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>auto_increment_offset</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Esta variável tem um valor padrão de 1. Se for deixada com seu valor padrão e a Replicação em Grupo for iniciada no servidor no modo multi-primário, ela é alterada para o ID do servidor. Para mais informações, consulte a descrição para `auto_increment_increment`.
 
@@ -244,7 +244,7 @@ Nota
 
 * `immediate_server_version`
 
-  <table frame="box" rules="all" summary="Propriedades para immediate_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-source.html#sysvar_immediate_server_version">immediate_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>999999</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para immediate_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code>immediate_server_version</code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>999999</code></td> </tr></tbody></table>
 
   Para uso interno pela replicação. Esta variável do sistema de sessão contém o número de versão do MySQL Server do servidor que é a fonte imediata em uma topologia de replicação (por exemplo, `90500` para uma instância de servidor MySQL 9.5.0). Se este servidor imediato estiver em uma versão que não suporte a variável do sistema de sessão, o valor da variável é definido como 0 (`UNKNOWN_SERVER_VERSION`).
 
@@ -254,7 +254,7 @@ Definir o valor da sessão desta variável do sistema é uma operação restrita
 
 * `original_server_version`
 
-<table frame="box" rules="all" summary="Propriedades para original_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-source.html#sysvar_original_server_version">original_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variável"><code>SET_VAR</a></code> Dicas Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>999999</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para original_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code>original_server_version</code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>999999</code></td> </tr></tbody></table>
 
   Para uso interno pela replicação. Esta variável de sistema de sessão contém o número de versão do servidor MySQL do servidor onde uma transação foi originalmente comprometida (por exemplo, `90500` para uma instância de servidor MySQL 9.5.0). Se este servidor original estiver em uma versão que não suporte a variável de sistema de sessão, o valor da variável é definido como 0 (`UNKNOWN_SERVER_VERSION`). Note que, quando um número de versão é definido pelo servidor original, o valor da variável é redefinido para 0 se o servidor imediato ou qualquer outro servidor intermediário na topologia de replicação não suportar a variável de sistema de sessão, e, portanto, não replica seu valor.
 
@@ -277,7 +277,7 @@ Definir o valor da sessão desta variável de sistema é uma operação restrita
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_enabled">rpl_semi_sync_master_enabled</a></code></td>
+    <td><code>rpl_semi_sync_master_enabled</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -288,7 +288,7 @@ Definir o valor da sessão desta variável de sistema é uma operação restrita
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -306,10 +306,10 @@ Sinônimo desatualizado de `rpl_semi_sync_source_enabled`.
 <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_timeout">
   <tr><th>Formato de Linha de Comando</th> <td><code>--rpl-semi-sync-master-timeout=#</code></td> </tr>
   <tr><th>Desatualizado</th> <td>Sim (removido na versão 9.5.0)</td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_timeout">rpl_semi_sync_master_timeout</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>rpl_semi_sync_master_timeout</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10000</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -330,7 +330,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_timeout`.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_trace_level">rpl_semi_sync_master_trace_level</a></code></td>
+    <td><code>rpl_semi_sync_master_trace_level</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -341,7 +341,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_timeout`.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -375,7 +375,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_trace_level`.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_wait-for-slave-count">rpl_semi_sync_master_wait-for-slave-count</a></code></td>
+    <td><code>rpl_semi_sync_master_wait-for-slave-count</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -386,7 +386,7 @@ Sinônimo desatualizado de `rpl_semi_sync_source_trace_level`.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>

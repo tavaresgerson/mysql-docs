@@ -35,7 +35,7 @@ A recuperação de quebra do `InnoDB` consiste em várias etapas:
 
   + O valor atual do contador de incremento automático é escrito no log de redo cada vez que o valor muda, o que o torna seguro em caso de falha. Durante a recuperação, o `InnoDB` examina o log de redo para coletar as mudanças no valor do contador e aplica as mudanças ao objeto de tabela em memória.
 
-Para obter mais informações sobre como o `InnoDB` lida com os valores de autoincremento, consulte a Seção 17.6.1.6, “Manipulação de AUTO\_INCREMENT no InnoDB” e Inicialização do Contador de AUTO\_INCREMENT do InnoDB.
+Para obter mais informações sobre como o `InnoDB` lida com os valores de autoincremento, consulte a Seção 17.6.1.6, “Manipulação de AUTO_INCREMENT no InnoDB” e Inicialização do Contador de AUTO_INCREMENT do InnoDB.
 
   + Ao encontrar corrupção na árvore de índices, o `InnoDB` escreve um sinalizador de corrupção no log de refazer, o que torna o sinalizador de corrupção resistente a falhas. O `InnoDB` também escreve dados do sinalizador de corrupção na memória em uma tabela do sistema privada do motor em cada ponto de verificação. Durante a recuperação, o `InnoDB` lê os sinais de corrupção de ambos os locais e mescla os resultados antes de marcar os objetos de tabela e índice na memória como corruptos.
 

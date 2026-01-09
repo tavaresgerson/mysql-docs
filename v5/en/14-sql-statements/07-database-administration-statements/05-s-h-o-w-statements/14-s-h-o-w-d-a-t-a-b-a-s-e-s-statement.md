@@ -13,7 +13,7 @@ If the server was started with the [`--skip-show-database`](server-options.html#
 
 MySQL implements databases as directories in the data directory, so this statement simply lists directories in that location. However, the output may include names of directories that do not correspond to actual databases.
 
-Database information is also available from the `INFORMATION_SCHEMA` [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table. See [Section 24.3.22, “The INFORMATION\_SCHEMA SCHEMATA Table”](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table").
+Database information is also available from the `INFORMATION_SCHEMA` [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table. See [Section 24.3.22, “The INFORMATION_SCHEMA SCHEMATA Table”](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table").
 
 Caution
 

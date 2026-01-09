@@ -1,10 +1,10 @@
-#### 25.12.6.3 A tabela events\_statements\_history\_long
+#### 25.12.6.3 A tabela events_statements_history_long
 
 A tabela `events_statements_history_long` contém os *`N`* eventos de declaração mais recentes que terminaram globalmente, em todas as threads. Os eventos de declaração não são adicionados à tabela até que tenham terminado. Quando a tabela fica cheia, a linha mais antiga é descartada quando uma nova linha é adicionada, independentemente de qual thread tenha gerado aquela linha.
 
 O valor de *`N`* é dimensionado automaticamente ao iniciar o servidor. Para definir explicitamente o tamanho da tabela, defina a variável de sistema `performance_schema_events_statements_history_long_size` ao iniciar o servidor.
 
-A tabela `events_statements_history_long` tem as mesmas colunas que a tabela `events_statements_current`. Veja Seção 25.12.6.1, “A tabela events\_statements\_current”.
+A tabela `events_statements_history_long` tem as mesmas colunas que a tabela `events_statements_current`. Veja Seção 25.12.6.1, “A tabela events_statements_current”.
 
 A operação `TRUNCATE TABLE` é permitida para a tabela `events_statements_history_long`. Ela remove as linhas.
 

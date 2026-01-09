@@ -1,4 +1,4 @@
-#### 26.4.4.21 The ps\_statement\_avg\_latency\_histogram() Procedure
+#### 26.4.4.21 The ps_statement_avg_latency_histogram() Procedure
 
 Displays a textual histogram graph of the average latency values across all normalized statements tracked within the Performance Schema `events_statements_summary_by_digest` table.
 

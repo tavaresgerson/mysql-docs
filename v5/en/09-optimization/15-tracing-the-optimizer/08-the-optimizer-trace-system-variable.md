@@ -1,6 +1,6 @@
-### 8.15.8 The optimizer\_trace System Variable
+### 8.15.8 The optimizer_trace System Variable
 
-The optimizer\_trace system variable has these on/off switches:
+The optimizer_trace system variable has these on/off switches:
 
 * `enabled`: Enables (`ON`) or disables (`OFF`) tracing
 

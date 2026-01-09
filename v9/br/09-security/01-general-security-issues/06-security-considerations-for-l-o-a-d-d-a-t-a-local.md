@@ -34,7 +34,7 @@ Administradores e aplicativos podem configurar se permitir a carga de dados loca
 
   + Por padrão, a biblioteca de clientes nas distribuições binárias do MySQL é compilada com `ENABLED_LOCAL_INFILE` desativada. Se você compilar o MySQL a partir da fonte, configure-o com `ENABLED_LOCAL_INFILE` desativada ou ativada com base se os clientes que não fazem arranjos explícitos devem ter a capacidade `LOCAL` desativada ou ativada.
 
-  + Para programas de clientes que usam a API C, a capacidade de carregamento de dados local é determinada pelo padrão compilado na biblioteca de clientes MySQL. Para ativá-la ou desativá-la explicitamente, invocando a função C `mysql_options()` para desativar ou ativar a opção `MYSQL_OPT_LOCAL_INFILE`. Veja mysql\_options().
+  + Para programas de clientes que usam a API C, a capacidade de carregamento de dados local é determinada pelo padrão compilado na biblioteca de clientes MySQL. Para ativá-la ou desativá-la explicitamente, invocando a função C `mysql_options()` para desativar ou ativar a opção `MYSQL_OPT_LOCAL_INFILE`. Veja mysql_options().
 
   + Para o cliente **mysql**, a capacidade de carregamento de dados local é determinada pelo padrão compilado na biblioteca de clientes MySQL. Para desativá-la ou ativá-la explicitamente, use a opção `--local-infile=0` ou `--local-infile[=1]`.
 
@@ -67,7 +67,7 @@ enabled on both the client and server side
 
 A biblioteca de clientes MySQL permite que os aplicativos de cliente restrinjam as operações de carregamento de dados locais a arquivos localizados em um diretório designado. Certos programas de clientes MySQL aproveitam essa capacidade.
 
-Os programas de clientes que usam a API C podem controlar quais arquivos permitir para o carregamento de dados usando as opções `MYSQL_OPT_LOCAL_INFILE` e `MYSQL_OPT_LOAD_DATA_LOCAL_DIR` da função `mysql_options()` da API C (veja mysql\_options()).
+Os programas de clientes que usam a API C podem controlar quais arquivos permitir para o carregamento de dados usando as opções `MYSQL_OPT_LOCAL_INFILE` e `MYSQL_OPT_LOAD_DATA_LOCAL_DIR` da função `mysql_options()` da API C (veja mysql_options()).
 
 O efeito de `MYSQL_OPT_LOAD_DATA_LOCAL_DIR` depende se o carregamento de dados `LOCAL` está habilitado ou desativado:
 

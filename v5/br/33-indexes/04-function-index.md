@@ -4,7 +4,7 @@
 
 ### Símbolos
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### %
 
@@ -12,7 +12,7 @@
 
 ### A
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### ABS()
 
@@ -38,7 +38,7 @@
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### AES\_DECRYPT()
+### AES_DECRYPT()
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
@@ -52,7 +52,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### AES\_ENCRYPT()
+### AES_ENCRYPT()
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
@@ -66,7 +66,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### ANY\_VALUE()
+### ANY_VALUE()
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -108,23 +108,23 @@
 
 [Seção 12.16.6, “Funções de conversão de formato de geometria”](gis-format-conversion-functions.html)
 
-### asymmetric\_decrypt()
+### asymmetric_decrypt()
 
 [Seção 6.6.4, “Descrição das Funções de Criptografia do MySQL Enterprise”](enterprise-encryption-functions.html)
 
-### asymmetric\_derive()
+### asymmetric_derive()
 
 [Seção 6.6.4, “Descrição das Funções de Criptografia do MySQL Enterprise”](enterprise-encryption-functions.html)
 
-### asymmetric\_encrypt()
+### asymmetric_encrypt()
 
 [Seção 6.6.4, “Descrição das Funções de Criptografia do MySQL Enterprise”](enterprise-encryption-functions.html)
 
-### asymmetric\_sign()
+### asymmetric_sign()
 
 [Seção 6.6.4, “Descrição das Funções de Criptografia do MySQL Enterprise”](enterprise-encryption-functions.html)
 
-### asymmetric\_verify()
+### asymmetric_verify()
 
 [Seção 6.6.4, “Descrição das Funções de Criptografia do MySQL Enterprise”](enterprise-encryption-functions.html)
 
@@ -136,55 +136,55 @@
 
 [Seção 12.6.2, “Funções Matemáticas”](mathematical-functions.html)
 
-### audit\_log\_encryption\_password\_get()
+### audit_log_encryption_password_get()
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
 
-### audit\_log\_encryption\_password\_set()
+### audit_log_encryption_password_set()
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
 
-### audit\_log\_filter\_flush()
+### audit_log_filter_flush()
 
 [Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
-### audit\_log\_filter\_remove\_filter()
+### audit_log_filter_remove_filter()
 
 [Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
-### audit\_log\_filter\_remove\_user()
+### audit_log_filter_remove_user()
 
 [Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
-### audit\_log\_filter\_set\_filter()
+### audit_log_filter_set_filter()
 
 [Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
-### audit\_log\_filter\_set\_user()
+### audit_log_filter_set_user()
 
 [Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
-### audit\_log\_read()
+### audit_log_read()
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.6, “Leitura de arquivos de registro de auditoria”](audit-log-file-reading.html)
 
-### audit\_log\_read\_bookmark()
+### audit_log_read_bookmark()
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
@@ -206,7 +206,7 @@
 
 ### B
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### BENCHMARK()
 
@@ -224,7 +224,7 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### BIT\_AND()
+### BIT_AND()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
@@ -232,17 +232,17 @@
 
 [Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
 
-### BIT\_COUNT()
+### BIT_COUNT()
 
 [Seção 12.12, "Funções e Operadores de Bits"](bit-functions.html)
 
 [Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
 
-### BIT\_LENGTH()
+### BIT_LENGTH()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### BIT\_OU()
+### BIT_OU()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
@@ -250,7 +250,7 @@
 
 [Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
 
-### BIT\_XOR()
+### BIT_XOR()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
@@ -264,7 +264,7 @@
 
 ### C
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### CAST()
 
@@ -326,13 +326,13 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### CHAR\_LENGTH()
+### CHAR_LENGTH()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
 [Seção 10.10.1, "Conjunto de Caracteres Unicode"](charset-unicode-sets.html)
 
-### CHARACTER\_LENGTH()
+### CHARACTER_LENGTH()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
@@ -394,19 +394,19 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 [Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”](type-conversion.html)
 
 [Seção 12.11, “Funções XML”](xml-functions.html)
 
-### CONCAT\_WS()
+### CONCAT_WS()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### CONNECTION\_ID()
+### CONNECTION_ID()
 
 [Seção 6.4.5.4, "Formatos de arquivo de registro de auditoria"](audit-log-file-formats.html)
 
@@ -426,7 +426,7 @@
 
 [Seção 13.7.5.29, "Declaração SHOW PROCESSLIST"](show-processlist.html)
 
-[Seção 24.3.18, “A tabela INFORMATION\_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
+[Seção 24.3.18, “A tabela INFORMATION_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
 
 [Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
 
@@ -460,7 +460,7 @@
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### CONVERT\_TZ()
+### CONVERT_TZ()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -526,7 +526,7 @@
 
 [Seção 12.6.2, “Funções Matemáticas”](mathematical-functions.html)
 
-### criar\_chave\_privada\_asimétrica()
+### criar_chave_privada_asimétrica()
 
 [Seção 4.9, “Variáveis de Ambiente”](environment-variables.html)
 
@@ -534,11 +534,11 @@
 
 [Seção 6.6.2, “Uso e exemplos de criptografia empresarial do MySQL”](enterprise-encryption-usage.html)
 
-### criar\_chave\_pub\_assimétrica()
+### criar_chave_pub_assimétrica()
 
 [Seção 6.6.4, “Descrição das Funções de Criptografia do MySQL Enterprise”](enterprise-encryption-functions.html)
 
-### criar\_dh\_parâmetros()
+### criar_dh_parâmetros()
 
 [Seção 4.9, “Variáveis de Ambiente”](environment-variables.html)
 
@@ -546,7 +546,7 @@
 
 [Seção 6.6.2, “Uso e exemplos de criptografia empresarial do MySQL”](enterprise-encryption-usage.html)
 
-### criar\_digest()
+### criar_digest()
 
 [Seção 6.6.4, “Descrição das Funções de Criptografia do MySQL Enterprise”](enterprise-encryption-functions.html)
 
@@ -570,13 +570,13 @@
 
 [Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
 
-### DATA\_ATUAL
+### DATA_ATUAL
 
 [Seção 11.6, “Valores padrão de tipo de dados”](data-type-defaults.html)
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### DATA\_ATUAL()
+### DATA_ATUAL()
 
 [Seção 11.2.9, “Conversão entre tipos de data e hora”](date-and-time-type-conversion.html)
 
@@ -586,11 +586,11 @@
 
 [Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
 
-### HORÁRIO\_ATUAL
+### HORÁRIO_ATUAL
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### CURRENT\_TIME()
+### CURRENT_TIME()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -598,7 +598,7 @@
 
 [Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
 
-### CURRENT\_TIMESTAMP
+### CURRENT_TIMESTAMP
 
 [Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
 
@@ -612,7 +612,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### CURRENT\_TIMESTAMP()
+### CURRENT_TIMESTAMP()
 
 [Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”](timestamp-initialization.html)
 
@@ -622,7 +622,7 @@
 
 [Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
 
-### USUARIO\_APRESENTE
+### USUARIO_APRESENTE
 
 [Seção 13.7.1.1, "Instrução ALTER USER"](alter-user.html)
 
@@ -642,7 +642,7 @@
 
 [Seção 16.4.1.15, “Replicação e Funções do Sistema”](replication-features-functions.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 13.7.5.12, "Instrução SHOW CREATE USER"](show-create-user.html)
 
@@ -650,7 +650,7 @@
 
 [Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
 
-### CURRENT\_USER()
+### CURRENT_USER()
 
 [Seção 6.2.5, “Controle de Acesso, Etapa 1: Verificação de Conexão”](connection-access.html)
 
@@ -684,7 +684,7 @@
 
 [Seção 16.4.1.15, “Replicação e Funções do Sistema”](replication-features-functions.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 13.7.1.7, "Declaração de Definir Senha"](set-password.html)
 
@@ -714,7 +714,7 @@
 
 ### D
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### DATABASE()
 
@@ -738,7 +738,7 @@
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### DATE\_ADD()
+### DATE_ADD()
 
 [Seção 12.6.1, "Operadores Aritméticos"](arithmetic-functions.html)
 
@@ -750,7 +750,7 @@
 
 [Seção 9.5, “Expressões”](expressions.html)
 
-### DATE\_FORMAT()
+### DATE_FORMAT()
 
 [Seção 12.10, "Funções e Operadores de Castagem"](cast-functions.html)
 
@@ -760,7 +760,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### DATE\_SUB()
+### DATE_SUB()
 
 [Seção 11.2, "Tipos de dados de data e hora"](date-and-time-types.html)
 
@@ -834,7 +834,7 @@
 
 [Seção 12.6.2, “Funções Matemáticas”](mathematical-functions.html)
 
-### DES\_DECRYPT()
+### DES_DECRYPT()
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
@@ -844,7 +844,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### DES\_ENCRYPT()
+### DES_ENCRYPT()
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
@@ -870,7 +870,7 @@
 
 ### E
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### ELT()
 
@@ -922,7 +922,7 @@
 
 [Seção 12.6.2, “Funções Matemáticas”](mathematical-functions.html)
 
-### EXPORTAR\_SET()
+### EXPORTAR_SET()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
@@ -946,13 +946,13 @@
 
 ### F
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### FIELD()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### FIND\_IN\_SET()
+### FIND_IN_SET()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
@@ -968,7 +968,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### flush\_rewrite\_rules()
+### flush_rewrite_rules()
 
 [Seção 5.5.4.3.2, “Procedimentos e funções do plugin de reescrita de consultas do reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-routines)
 
@@ -986,7 +986,7 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### FOUND\_ROWS()
+### FOUND_ROWS()
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
@@ -1000,17 +1000,17 @@
 
 [Seção 16.4.1.15, “Replicação e Funções do Sistema”](replication-features-functions.html)
 
-### FROM\_BASE64()
+### FROM_BASE64()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### DE\_DADOS()
+### DE_DADOS()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
 [Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
 
-### FROM\_UNIXTIME()
+### FROM_UNIXTIME()
 
 [Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
 
@@ -1022,55 +1022,55 @@
 
 ### G
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
-### gen\_blacklist()
-
-[Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
-
-[Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
-
-### gen\_dictionary()
+### gen_blacklist()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### gen\_dictionary\_drop()
-
-[Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
-
-### gen\_dictionary\_load()
+### gen_dictionary()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### gen\_range()
+### gen_dictionary_drop()
+
+[Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
+
+### gen_dictionary_load()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### gen\_rnd\_email()
+### gen_range()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### gen\_rnd\_pan()
+### gen_rnd_email()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### gen\_rnd\_ssn()
+### gen_rnd_pan()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### gen\_rnd\_us\_phone()
+### gen_rnd_ssn()
+
+[Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
+
+[Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
+
+### gen_rnd_us_phone()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
@@ -1120,13 +1120,13 @@
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### GET\_FORMAT()
+### GET_FORMAT()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
 [Seção 10.16, “Suporte ao idioma do servidor MySQL”](locale-support.html)
 
-### GET\_LOCK()
+### GET_LOCK()
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
@@ -1162,9 +1162,9 @@
 
 [Seção 5.5.6.1.2, “Interface da Função de Serviço de Fechamento”](locking-service.html#locking-service-interface)
 
-[Seção 25.12.12.1, “A tabela metadata\_locks”](performance-schema-metadata-locks-table.html)
+[Seção 25.12.12.1, “A tabela metadata_locks”](performance-schema-metadata-locks-table.html)
 
-[Seção 26.4.4.14, “O procedimento ps\_setup\_save()”](sys-ps-setup-save.html)
+[Seção 26.4.4.14, “O procedimento ps_setup_save()”](sys-ps-setup-save.html)
 
 ### getrusage()
 
@@ -1186,7 +1186,7 @@
 
 [Seção 11.5, “O tipo de dados JSON”](json.html)
 
-### GROUP\_CONCAT()
+### GROUP_CONCAT()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
@@ -1206,7 +1206,7 @@
 
 [Seção 12.19.2, “Modificadores GROUP BY”](group-by-modifiers.html)
 
-### GTID\_SUBSET()
+### GTID_SUBSET()
 
 [Seção 12.18, “Funções usadas com identificadores de transação global (GTIDs)](gtid-functions.html)
 
@@ -1214,7 +1214,7 @@
 
 [Seção 16.1.3.7, “Exemplos de Funções Armazenadas para Manipular GTIDs”](replication-gtids-functions.html)
 
-### GTID\_SUBTRACT()
+### GTID_SUBTRACT()
 
 [Seção 12.18, “Funções usadas com identificadores de transação global (GTIDs)](gtid-functions.html)
 
@@ -1226,7 +1226,7 @@
 
 ### H
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### HEX()
 
@@ -1256,7 +1256,7 @@
 
 ### Eu
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### SE()
 
@@ -1266,7 +1266,7 @@
 
 [Seção 13.6.5.2, "Instrução `if`"](if.html)
 
-[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”](innodb-information-schema-system-tables.html)
+[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”](innodb-information-schema-system-tables.html)
 
 [Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
 
@@ -1278,25 +1278,25 @@
 
 [Seção B.3.4.3, “Problemas com valores NULL”](problemas-com-null.html)
 
-### INET6\_ATON()
+### INET6_ATON()
 
 [Seção 5.1.12, “Suporte ao IPv6”](ipv6-support.html)
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
-### INET6\_NTOA()
+### INET6_NTOA()
 
 [Seção 5.1.12, “Suporte ao IPv6”](ipv6-support.html)
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
-### INET\_ATON()
+### INET_ATON()
 
 [Seção 5.1.12, “Suporte ao IPv6”](ipv6-support.html)
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
-### INET\_NTOA()
+### INET_NTOA()
 
 [Seção 5.1.12, “Suporte ao IPv6”](ipv6-support.html)
 
@@ -1324,7 +1324,7 @@
 
 [Seção 12.4.2, "Funções e Operadores de Comparação"](comparison-operators.html)
 
-### IS\_FREE\_LOCK()
+### IS_FREE_LOCK()
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
@@ -1336,23 +1336,23 @@
 
 [Seção 16.4.1.15, “Replicação e Funções do Sistema”](replication-features-functions.html)
 
-### IS\_IPV4()
+### IS_IPV4()
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
-### IS\_IPV4\_COMPAT()
+### IS_IPV4_COMPAT()
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
-### IS\_IPV4\_MAPPED()
+### IS_IPV4_MAPPED()
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
-### IS\_IPV6()
+### IS_IPV6()
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
-### IS\_USED\_LOCK()
+### IS_USED_LOCK()
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
@@ -1382,15 +1382,15 @@
 
 ### J
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
-### JSON\_APPEND()
+### JSON_APPEND()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_ARRAY()
+### JSON_ARRAY()
 
 [Seção 12.17.2, “Funções que criam valores JSON”](json-creation-functions.html)
 
@@ -1398,19 +1398,19 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_ARRAY\_APPEND()
+### JSON_ARRAY_APPEND()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_ARRAY\_INSERT()
+### JSON_ARRAY_INSERT()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_ARRAYAGG()
+### JSON_ARRAYAGG()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
@@ -1420,13 +1420,13 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_CONTAINS()
+### JSON_CONTAINS()
 
 [Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_CONTAINS\_PATH()
+### JSON_CONTAINS_PATH()
 
 [Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
 
@@ -1434,13 +1434,13 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_DEPTH()
+### JSON_DEPTH()
 
 [Seção 12.17.5, “Funções que retornam atributos de valor JSON”](json-attribute-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_EXTRACT()
+### JSON_EXTRACT()
 
 [Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
 
@@ -1450,7 +1450,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_INSERT()
+### JSON_INSERT()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
@@ -1458,19 +1458,19 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_KEYS()
+### JSON_KEYS()
 
 [Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_LENGTH()
+### JSON_LENGTH()
 
 [Seção 12.17.5, “Funções que retornam atributos de valor JSON”](json-attribute-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_MERGE()
+### JSON_MERGE()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
@@ -1478,19 +1478,19 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_MERGE\_PATCH()
+### JSON_MERGE_PATCH()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_MERGE\_PRESERVE()
+### JSON_MERGE_PRESERVE()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_OBJECT()
+### JSON_OBJECT()
 
 [Seção 12.17.2, “Funções que criam valores JSON”](json-creation-functions.html)
 
@@ -1498,7 +1498,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_OBJECTAGG()
+### JSON_OBJECTAGG()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
@@ -1508,7 +1508,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_PRETTY()
+### JSON_PRETTY()
 
 [Seção 12.17.1, “Referência de Funções JSON”](json-function-reference.html)
 
@@ -1516,7 +1516,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_QUOTE()
+### JSON_QUOTE()
 
 [Seção 12.17.2, “Funções que criam valores JSON”](json-creation-functions.html)
 
@@ -1524,13 +1524,13 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_REMOVE()
+### JSON_REMOVE()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_REPLACE()
+### JSON_REPLACE()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
@@ -1538,7 +1538,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_SEARCH()
+### JSON_SEARCH()
 
 [Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
 
@@ -1546,7 +1546,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_SET()
+### JSON_SET()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
@@ -1554,7 +1554,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_STORAGE\_SIZE()
+### JSON_STORAGE_SIZE()
 
 [Seção 12.17.1, “Referência de Funções JSON”](json-function-reference.html)
 
@@ -1562,7 +1562,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_TYPE()
+### JSON_TYPE()
 
 [Seção 12.17.5, “Funções que retornam atributos de valor JSON”](json-attribute-functions.html)
 
@@ -1572,11 +1572,11 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_UNQUOTE(
+### JSON_UNQUOTE(
 
 [Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
 
-### JSON\_UNQUOTE()
+### JSON_UNQUOTE()
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
@@ -1588,7 +1588,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### JSON\_VALID()
+### JSON_VALID()
 
 [Seção 12.17.5, “Funções que retornam atributos de valor JSON”](json-attribute-functions.html)
 
@@ -1596,53 +1596,53 @@
 
 ### K
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
-### chave\_aws\_rotate\_cmk()
-
-[Seção 6.4.4.9, “Funções de Gerenciamento de Chaves do Carteiro de Plugins”](keyring-functions-plugin-specific.html)
-
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”](keyring-aws-plugin.html)
-
-### chaveiro\_aws\_rotate\_keys()
+### chave_aws_rotate_cmk()
 
 [Seção 6.4.4.9, “Funções de Gerenciamento de Chaves do Carteiro de Plugins”](keyring-functions-plugin-specific.html)
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”](keyring-aws-plugin.html)
+[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
 
-### chave\_chaveiro\_pegar()
+### chaveiro_aws_rotate_keys()
 
-[Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
+[Seção 6.4.4.9, “Funções de Gerenciamento de Chaves do Carteiro de Plugins”](keyring-functions-plugin-specific.html)
 
-### chave\_chaveiro\_gerar()
+[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
 
-[Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
-
-### chave\_de\_chaveiro\_pegar\_tamanho()
+### chave_chaveiro_pegar()
 
 [Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
 
-### chave\_de\_chaveiro\_remover()
+### chave_chaveiro_gerar()
 
 [Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
 
-### chave\_de\_chaveiro\_key\_store()
+### chave_de_chaveiro_pegar_tamanho()
 
 [Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
 
-### chave\_chaveiro\_tipo\_buscar()
+### chave_de_chaveiro_remover()
+
+[Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
+
+### chave_de_chaveiro_key_store()
+
+[Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
+
+### chave_chaveiro_tipo_buscar()
 
 [Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
 
 ### L
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
-### Último\_dia()
+### Último_dia()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### LAST\_INSERT\_ID()
+### LAST_INSERT_ID()
 
 [Seção 12.4.2, "Funções e Operadores de Comparação"](comparison-operators.html)
 
@@ -1662,21 +1662,21 @@
 
 [Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
-[Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”](replication-features-auto-increment.html)
+[Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html)
 
 [Seção 16.4.1.15, “Replicação e Funções do Sistema”](replication-features-functions.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 23.2.4, “Procedimentos Armazenados, Funções, Triggers e LAST\_INSERT\_ID()”](stored-routines-last-insert-id.html)
+[Seção 23.2.4, “Procedimentos Armazenados, Funções, Triggers e LAST_INSERT_ID()”](stored-routines-last-insert-id.html)
 
 [Seção 16.4.4, “Solução de problemas de replicação”](replication-problems.html)
 
 [Seção 23.5.3, “Visões Atualizáveis e Inseríveis”](view-updatability.html)
 
-[Seção 3.6.9, “Usando AUTO\_INCREMENT”](example-auto-increment.html)
+[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
 
 ### LCASE()
 
@@ -1734,7 +1734,7 @@
 
 [Seção 12.6.2, “Funções Matemáticas”](mathematical-functions.html)
 
-### LOAD\_FILE()
+### LOAD_FILE()
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
@@ -1756,7 +1756,7 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### load\_rewrite\_rules()
+### load_rewrite_rules()
 
 [Seção 5.5.4.3.2, “Procedimentos e funções do plugin de reescrita de consultas do reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-routines)
 
@@ -1818,7 +1818,7 @@
 
 [Seção 10.10.1, "Conjunto de Caracteres Unicode"](charset-unicode-sets.html)
 
-[Seção 10.8.7, “Usando a Colagem em Pesquisas do INFORMATION\_SCHEMA”](charset-collation-information-schema.html)
+[Seção 10.8.7, “Usando a Colagem em Pesquisas do INFORMATION_SCHEMA”](charset-collation-information-schema.html)
 
 ### LPAD()
 
@@ -1832,9 +1832,9 @@
 
 ### M
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
-### MAKE\_SET()
+### MAKE_SET()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
@@ -1846,37 +1846,37 @@
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### mask\_inner()
+### mask_inner()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### mask\_outer()
+### mask_outer()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### mask\_pan()
+### mask_pan()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### mask\_pan\_relaxed()
+### mask_pan_relaxed()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### mask\_ssn()
+### mask_ssn()
 
 [Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### MASTER\_POS\_WAIT()
+### MASTER_POS_WAIT()
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
@@ -1928,7 +1928,7 @@
 
 [Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
 [Seção 11.1.1, "Sintaxe do Tipo de Dados Numérico"](numeric-type-syntax.html)
 
@@ -1938,7 +1938,7 @@
 
 [Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
 
-[Seção 24.5.2, “A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE”](information-schema-tp-thread-group-state-table.html)
+[Seção 24.5.2, “A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATE”](information-schema-tp-thread-group-state-table.html)
 
 [Seção 11.5, “O tipo de dados JSON”](json.html)
 
@@ -1948,7 +1948,7 @@
 
 [Seção 8.3.9, “Uso de Extensões de Índice”](index-extensions.html)
 
-[Seção 3.6.9, “Usando AUTO\_INCREMENT”](example-auto-increment.html)
+[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
 
 ### MBRContains()
 
@@ -2032,7 +2032,7 @@
 
 [Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
 [Seção 11.1.1, "Sintaxe do Tipo de Dados Numérico"](numeric-type-syntax.html)
 
@@ -2150,25 +2150,25 @@
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### my\_open()
+### my_open()
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-### mysql\_firewall\_flush\_status()
+### mysql_firewall_flush_status()
 
 [Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
 
 ### N
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
-### NOME\_CONSTANTE()
+### NOME_CONSTANTE()
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
 [Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
 
-### normalizar\_declaração()
+### normalizar_declaração()
 
 [Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
 
@@ -2206,7 +2206,7 @@
 
 [Seção 26.4.3.21, "A visualização de métricas"](sys-metrics.html)
 
-[Seção 26.4.4.25, “O procedimento statement\_performance\_analyzer()”](sys-statement-performance-analyzer.html)
+[Seção 26.4.4.25, “O procedimento statement_performance_analyzer()”](sys-statement-performance-analyzer.html)
 
 [Seção 11.2.4, “O tipo YEAR”](year.html)
 
@@ -2228,13 +2228,13 @@
 
 ### O
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### OCT()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### OCTET\_LENGTH()
+### OCTET_LENGTH()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
@@ -2248,7 +2248,7 @@
 
 ### P
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### PASSWORD()
 
@@ -2278,13 +2278,13 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### PERIOD\_ADD()
+### PERIOD_ADD()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
 [Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
 
-### PERIOD\_DIFF()
+### PERIOD_DIFF()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -2354,7 +2354,7 @@
 
 ### Q
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### QUARTO()
 
@@ -2370,7 +2370,7 @@
 
 ### R
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### RADIANOS()
 
@@ -2394,21 +2394,21 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### RANDOM\_BYTES()
+### RANDOM_BYTES()
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
 [Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
 
-### ler\_usuarios\_firewall()
+### ler_usuarios_firewall()
 
 [Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
 
-### read\_firewall\_whitelist()
+### read_firewall_whitelist()
 
 [Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
 
-### RELEASE\_ALL\_LOCKS()
+### RELEASE_ALL_LOCKS()
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -2416,7 +2416,7 @@
 
 [Seção 12.14, “Funções de bloqueio”](locking-functions.html)
 
-### RELEASE\_LOCK()
+### RELEASE_LOCK()
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
@@ -2460,7 +2460,7 @@
 
 ### ROUND()
 
-[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”](innodb-information-schema-system-tables.html)
+[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”](innodb-information-schema-system-tables.html)
 
 [Seção 12.6.2, “Funções Matemáticas”](mathematical-functions.html)
 
@@ -2470,7 +2470,7 @@
 
 [Seção 12.21.4, “Comportamento de arredondamento”](precision-math-rounding.html)
 
-### ROW\_COUNT()
+### ROW_COUNT()
 
 [Seção 13.2.1, “Instrução CALL”](call.html)
 
@@ -2504,13 +2504,13 @@
 
 ### S
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### SCHEMA()
 
 [Seção 12.15, “Funções de Informação”](information-functions.html)
 
-### SEC\_TO\_TIME()
+### SEC_TO_TIME()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -2520,19 +2520,19 @@
 
 [Seção 22.6.3, “Limitações de Partição Relacionadas a Funções”](partitioning-limitations-functions.html)
 
-### service\_get\_read\_locks()
+### service_get_read_locks()
 
 [Seção 5.5.6.1.2, “Interface da Função de Serviço de Fechamento”](locking-service.html#locking-service-interface)
 
-### service\_get\_write\_locks()
+### service_get_write_locks()
 
 [Seção 5.5.6.1.2, “Interface da Função de Serviço de Fechamento”](locking-service.html#locking-service-interface)
 
-### service\_release\_locks()
+### service_release_locks()
 
 [Seção 5.5.6.1.2, “Interface da Função de Serviço de Fechamento”](locking-service.html#locking-service-interface)
 
-### SESSION\_USER()
+### SESSION_USER()
 
 [Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”](replication-rbr-safe-unsafe.html)
 
@@ -2540,7 +2540,7 @@
 
 [Seção 10.2.2, “UTF-8 para Metadados”](charset-metadata.html)
 
-### set\_firewall\_mode()
+### set_firewall_mode()
 
 [Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
 
@@ -2586,7 +2586,7 @@
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
-[Seção 24.5.3, “A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS”](information-schema-tp-thread-group-stats-table.html)
+[Seção 24.5.3, “A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATS”](information-schema-tp-thread-group-stats-table.html)
 
 ### SOUNDEX()
 
@@ -2594,7 +2594,7 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### SOURCE\_POS\_WAIT()
+### SOURCE_POS_WAIT()
 
 [Seção A.14, “Perguntas frequentes sobre o MySQL 5.7: Replicação”](faqs-replication.html)
 
@@ -2612,155 +2612,155 @@
 
 [Seção 12.16.7.1, “Funções de Propriedade de Geometria Geral”](gis-general-property-functions.html)
 
-### ST\_Área()
+### ST_Área()
 
 [Seção 12.16.7, “Funções de Propriedade de Geometria”](gis-property-functions.html)
 
 [Seção 12.16.7.4, “Funções de Propriedade de Poligono e MultiPoligono”](gis-polygon-property-functions.html)
 
-### ST\_AsBinary()
+### ST_AsBinary()
 
 [Seção 11.4.7, “Obter Dados Espaciais”](fetching-spatial-data.html)
 
 [Seção 12.16.6, “Funções de conversão de formato de geometria”](gis-format-conversion-functions.html)
 
-### ST\_AsGeoJSON()
+### ST_AsGeoJSON()
 
 [Seção 12.16.11, “Funções GeoJSON Espacial”](spatial-geojson-functions.html)
 
 [Seção 11.5, “O tipo de dados JSON”](json.html)
 
-### ST\_AsText()
+### ST_AsText()
 
 [Seção 11.4.7, “Obter Dados Espaciais”](fetching-spatial-data.html)
 
 [Seção 12.16.6, “Funções de conversão de formato de geometria”](gis-format-conversion-functions.html)
 
-### ST\_AsWKB()
+### ST_AsWKB()
 
 [Seção 12.16.6, “Funções de conversão de formato de geometria”](gis-format-conversion-functions.html)
 
-### ST\_AsWKT()
+### ST_AsWKT()
 
 [Seção 12.16.6, “Funções de conversão de formato de geometria”](gis-format-conversion-functions.html)
 
-### ST\_Buffer()
+### ST_Buffer()
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Buffer\_Strategy()
+### ST_Buffer_Strategy()
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Centroid()
+### ST_Centroid()
 
 [Seção 12.16.7.4, “Funções de Propriedade de Poligono e MultiPoligono”](gis-polygon-property-functions.html)
 
-### ST\_Contains()
+### ST_Contains()
 
 [Seção 12.16.9.1, “Funções de Relação Espacial que Utilizam Formas de Objetos”](spatial-relation-functions-object-shapes.html)
 
-### ST\_ConvexHull()
+### ST_ConvexHull()
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Crosses()
+### ST_Crosses()
 
 [Seção 12.16.9.1, “Funções de Relação Espacial que Utilizam Formas de Objetos”](spatial-relation-functions-object-shapes.html)
 
-### ST\_Diferença()
+### ST_Diferença()
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Dimension()
+### ST_Dimension()
 
 [Seção 12.16.7.1, “Funções de Propriedade de Geometria Geral”](gis-general-property-functions.html)
 
-### ST\_Disjoint()
+### ST_Disjoint()
 
 [Seção 12.16.9.1, “Funções de Relação Espacial que Utilizam Formas de Objetos”](spatial-relation-functions-object-shapes.html)
 
-### ST\_Distância()
+### ST_Distância()
 
 [Seção 12.16.9.1, “Funções de Relação Espacial que Utilizam Formas de Objetos”](spatial-relation-functions-object-shapes.html)
 
-### ST\_Distance\_Sphere()
+### ST_Distance_Sphere()
 
 [Seção 12.16.12, “Funções de Conveniência Espacial”](spatial-convenience-functions.html)
 
-### ST\_EndPoint()
+### ST_EndPoint()
 
 [Seção 12.16.7.3, “Funções de Propriedade de LineString e MultiLineString”](gis-linestring-property-functions.html)
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Envelope()
+### ST_Envelope()
 
 [Seção 12.16.7.1, “Funções de Propriedade de Geometria Geral”](gis-general-property-functions.html)
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Equals()
+### ST_Equals()
 
 [Seção 12.16.9.1, “Funções de Relação Espacial que Utilizam Formas de Objetos”](spatial-relation-functions-object-shapes.html)
 
-### ST\_ExteriorRing()
+### ST_ExteriorRing()
 
 [Seção 12.16.7.4, “Funções de Propriedade de Poligono e MultiPoligono”](gis-polygon-property-functions.html)
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_GeoHash()
+### ST_GeoHash()
 
 [Seção 12.16.10, “Funções Geohash Espaciais”](spatial-geohash-functions.html)
 
-### ST\_GeomCollFromText()
+### ST_GeomCollFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_GeomCollFromTxt()
+### ST_GeomCollFromTxt()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_GeomCollFromWKB()
+### ST_GeomCollFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_GeometryCollectionFromText()
+### ST_GeometryCollectionFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_GeometryCollectionFromWKB()
+### ST_GeometryCollectionFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_GeometryFromText()
+### ST_GeometryFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_GeometryFromWKB()
+### ST_GeometryFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_GeometryN()
+### ST_GeometryN()
 
 [Seção 12.16.7.5, “Funções de Propriedade de GeometryCollection”](gis-geometrycollection-property-functions.html)
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_GeometryType()
+### ST_GeometryType()
 
 [Seção 12.16.7.1, “Funções de Propriedade de Geometria Geral”](gis-general-property-functions.html)
 
-### ST\_GeomFromGeoJSON()
+### ST_GeomFromGeoJSON()
 
 [Seção 12.16.11, “Funções GeoJSON Espacial”](spatial-geojson-functions.html)
 
 [Seção 11.5, “O tipo de dados JSON”](json.html)
 
-### ST\_GeomFromText()
+### ST_GeomFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
@@ -2768,47 +2768,47 @@
 
 [Seção 11.4.3, “Formatos de Dados Espaciais Compatíveis”](gis-data-formats.html)
 
-### ST\_GeomFromWKB()
+### ST_GeomFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_InteriorRingN()
+### ST_InteriorRingN()
 
 [Seção 12.16.7.4, “Funções de Propriedade de Poligono e MultiPoligono”](gis-polygon-property-functions.html)
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Interseção()
+### ST_Interseção()
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Intersects()
+### ST_Intersects()
 
 [Seção 12.16.9.1, “Funções de Relação Espacial que Utilizam Formas de Objetos”](spatial-relation-functions-object-shapes.html)
 
-### ST\_IsClosed()
+### ST_IsClosed()
 
 [Seção 12.16.7.3, “Funções de Propriedade de LineString e MultiLineString”](gis-linestring-property-functions.html)
 
-### ST\_IsEmpty()
+### ST_IsEmpty()
 
 [Seção 12.16.7.1, “Funções de Propriedade de Geometria Geral”](gis-general-property-functions.html)
 
-### ST\_IsSimple()
+### ST_IsSimple()
 
 [Seção 12.16.7.1, “Funções de Propriedade de Geometria Geral”](gis-general-property-functions.html)
 
-### ST\_IsValid()
+### ST_IsValid()
 
 [Seção 11.4.4, “Formação Geométrica e Validade”](geometry-well-formedness-validity.html)
 
 [Seção 12.16.12, “Funções de Conveniência Espacial”](spatial-convenience-functions.html)
 
-### ST\_LatFromGeoHash()
+### ST_LatFromGeoHash()
 
 [Seção 12.16.10, “Funções Geohash Espaciais”](spatial-geohash-functions.html)
 
-### ST\_Length()
+### ST_Length()
 
 [Seção 12.16.7.3, “Funções de Propriedade de LineString e MultiLineString”](gis-linestring-property-functions.html)
 
@@ -2816,175 +2816,175 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### ST\_LineFromText()
+### ST_LineFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_LineFromWKB()
+### ST_LineFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_LineStringFromText()
+### ST_LineStringFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_LineStringFromWKB()
+### ST_LineStringFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_LongFromGeoHash()
+### ST_LongFromGeoHash()
 
 [Seção 12.16.10, “Funções Geohash Espaciais”](spatial-geohash-functions.html)
 
-### ST\_MakeEnvelope()
+### ST_MakeEnvelope()
 
 [Seção 12.16.12, “Funções de Conveniência Espacial”](spatial-convenience-functions.html)
 
-### ST\_MLineFromText()
+### ST_MLineFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_MLineFromWKB()
+### ST_MLineFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_MPointFromText()
+### ST_MPointFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
 [Seção 11.4.3, “Formatos de Dados Espaciais Compatíveis”](gis-data-formats.html)
 
-### ST\_MPointFromWKB()
+### ST_MPointFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_MPolyFromText()
+### ST_MPolyFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_MPolyFromWKB()
+### ST_MPolyFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_MultiLineStringFromText()
+### ST_MultiLineStringFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_MultiLineStringFromWKB()
+### ST_MultiLineStringFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_MultiPointFromText()
+### ST_MultiPointFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_MultiPointFromWKB()
+### ST_MultiPointFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_MultiPolygonFromText()
+### ST_MultiPolygonFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_MultiPolygonFromWKB()
+### ST_MultiPolygonFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_NumGeometries()
+### ST_NumGeometries()
 
 [Seção 12.16.7.5, “Funções de Propriedade de GeometryCollection”](gis-geometrycollection-property-functions.html)
 
-### ST\_NumInteriorRing()
+### ST_NumInteriorRing()
 
 [Seção 12.16.7.4, “Funções de Propriedade de Poligono e MultiPoligono”](gis-polygon-property-functions.html)
 
-### ST\_NumInteriorRings()
+### ST_NumInteriorRings()
 
 [Seção 12.16.7.4, “Funções de Propriedade de Poligono e MultiPoligono”](gis-polygon-property-functions.html)
 
-### ST\_NumPoints()
+### ST_NumPoints()
 
 [Seção 12.16.7.3, “Funções de Propriedade de LineString e MultiLineString”](gis-linestring-property-functions.html)
 
-### ST\_Overlaps()
+### ST_Overlaps()
 
 [Seção 12.16.9.1, “Funções de Relação Espacial que Utilizam Formas de Objetos”](spatial-relation-functions-object-shapes.html)
 
-### ST\_PointFromGeoHash()
+### ST_PointFromGeoHash()
 
 [Seção 12.16.10, “Funções Geohash Espaciais”](spatial-geohash-functions.html)
 
-### ST\_PointFromText()
+### ST_PointFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_PointFromWKB()
+### ST_PointFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_PointN()
+### ST_PointN()
 
 [Seção 12.16.7.3, “Funções de Propriedade de LineString e MultiLineString”](gis-linestring-property-functions.html)
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_PolyFromText()
+### ST_PolyFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_PolyFromWKB()
+### ST_PolyFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_PolygonFromText()
+### ST_PolygonFromText()
 
 [Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”](gis-wkt-functions.html)
 
-### ST\_PolygonFromWKB()
+### ST_PolygonFromWKB()
 
 [Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”](gis-wkb-functions.html)
 
-### ST\_Simplificar()
+### ST_Simplificar()
 
 [Seção 12.16.12, “Funções de Conveniência Espacial”](spatial-convenience-functions.html)
 
-### ST\_SRID()
+### ST_SRID()
 
 [Seção 12.16.7.1, “Funções de Propriedade de Geometria Geral”](gis-general-property-functions.html)
 
-### ST\_StartPoint()
+### ST_StartPoint()
 
 [Seção 12.16.7.3, “Funções de Propriedade de LineString e MultiLineString”](gis-linestring-property-functions.html)
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_SymDifference()
+### ST_SymDifference()
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Touches()
+### ST_Touches()
 
 [Seção 12.16.9.1, “Funções de Relação Espacial que Utilizam Formas de Objetos”](spatial-relation-functions-object-shapes.html)
 
-### ST\_Union()
+### ST_Union()
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### ST\_Validate()
+### ST_Validate()
 
 [Seção 12.16.12, “Funções de Conveniência Espacial”](spatial-convenience-functions.html)
 
-### ST\_Dentro()
+### ST_Dentro()
 
 [Seção 12.16.9.1, “Funções de Relação Espacial que Utilizam Formas de Objetos”](spatial-relation-functions-object-shapes.html)
 
-### ST\_X()
+### ST_X()
 
 [Seção 12.16.7.2, “Funções de Propriedade de Pontos”](gis-point-property-functions.html)
 
 [Seção 11.4.3, “Formatos de Dados Espaciais Compatíveis”](gis-data-formats.html)
 
-### ST\_Y()
+### ST_Y()
 
 [Seção 12.16.7.2, “Funções de Propriedade de Pontos”](gis-point-property-functions.html)
 
@@ -3004,15 +3004,15 @@
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
-### STDDEV\_POP()
+### STDDEV_POP()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
-### STDDEV\_SAMP()
+### STDDEV_SAMP()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
-### STR\_TO\_DATE()
+### STR_TO_DATE()
 
 [Seção 11.2, "Tipos de dados de data e hora"](date-and-time-types.html)
 
@@ -3040,7 +3040,7 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### SUBSTRING\_INDEX()
+### SUBSTRING_INDEX()
 
 [Seção 6.2.18, “Auditoria de Atividade de Conta Baseada em SQL”](account-activity-auditing.html)
 
@@ -3092,7 +3092,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### SYSTEM\_USER()
+### SYSTEM_USER()
 
 [Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”](replication-rbr-safe-unsafe.html)
 
@@ -3102,7 +3102,7 @@
 
 ### T
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### TAN()
 
@@ -3112,13 +3112,13 @@
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### TIME\_FORMAT()
+### TIME_FORMAT()
 
 [Seção 12.10, "Funções e Operadores de Castagem"](cast-functions.html)
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### TIME\_TO\_SEC()
+### TIME_TO_SEC()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -3142,11 +3142,11 @@
 
 [Seção 3.3.4.5, “Cálculos de Data”](date-calculations.html)
 
-### TO\_BASE64()
+### TO_BASE64()
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### TO\_DAYS()
+### TO_DAYS()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -3160,7 +3160,7 @@
 
 [Seção 22.2, “Tipos de Partição”](partitioning-types.html)
 
-### TO\_SECONDS()
+### TO_SECONDS()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -3190,7 +3190,7 @@
 
 ### U
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### UCASE()
 
@@ -3206,7 +3206,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### UNCOMPRESSED\_LENGTH()
+### UNCOMPRESSED_LENGTH()
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
@@ -3218,7 +3218,7 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### UNIX\_TIMESTAMP()
+### UNIX_TIMESTAMP()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -3254,7 +3254,7 @@
 
 [Seção 10.10.1, "Conjunto de Caracteres Unicode"](charset-unicode-sets.html)
 
-[Seção 10.8.7, “Usando a Colagem em Pesquisas do INFORMATION\_SCHEMA”](charset-collation-information-schema.html)
+[Seção 10.8.7, “Usando a Colagem em Pesquisas do INFORMATION_SCHEMA”](charset-collation-information-schema.html)
 
 ### USER()
 
@@ -3282,31 +3282,31 @@
 
 [Seção 10.2.2, “UTF-8 para Metadados”](charset-metadata.html)
 
-### UTC\_DATA
+### UTC_DATA
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### UTC\_DATE()
-
-[Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
-
-[Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”](replication-rbr-safe-unsafe.html)
-
-### UTC\_TIME
-
-[Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
-
-### UTC\_TIME()
+### UTC_DATE()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
 [Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”](replication-rbr-safe-unsafe.html)
 
-### UTC\_TIMESTAMP
+### UTC_TIME
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### UTC\_TIMESTAMP()
+### UTC_TIME()
+
+[Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
+
+[Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”](replication-rbr-safe-unsafe.html)
+
+### UTC_TIMESTAMP
+
+[Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
+
+### UTC_TIMESTAMP()
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -3338,7 +3338,7 @@
 
 [Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
 
-### UUID\_SHORT()
+### UUID_SHORT()
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
@@ -3350,9 +3350,9 @@
 
 ### V
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
-### VALIDAR\_FORÇA\_SENHA()
+### VALIDAR_FORÇA_SENHA()
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
@@ -3366,11 +3366,11 @@
 
 [Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
 
-### VAR\_POP()
+### VAR_POP()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
-### VAR\_SAMP()
+### VAR_SAMP()
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
@@ -3398,43 +3398,43 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### version\_tokens\_delete()
+### version_tokens_delete()
 
 [Seção 5.5.5.3, “Uso de Tokens de Versão”](version-tokens-usage.html)
 
 [Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
 
-### version\_tokens\_edit()
+### version_tokens_edit()
 
 [Seção 5.5.5.3, “Uso de Tokens de Versão”](version-tokens-usage.html)
 
 [Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
 
-### version\_tokens\_lock\_exclusive()
+### version_tokens_lock_exclusive()
 
 [Seção 5.5.5.3, “Uso de Tokens de Versão”](version-tokens-usage.html)
 
 [Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
 
-### version\_tokens\_lock\_shared()
+### version_tokens_lock_shared()
 
 [Seção 5.5.5.3, “Uso de Tokens de Versão”](version-tokens-usage.html)
 
 [Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
 
-### version\_tokens\_set()
+### version_tokens_set()
 
 [Seção 5.5.5.3, “Uso de Tokens de Versão”](version-tokens-usage.html)
 
 [Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
 
-### version\_tokens\_show()
+### version_tokens_show()
 
 [Seção 5.5.5.3, “Uso de Tokens de Versão”](version-tokens-usage.html)
 
 [Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
 
-### version\_tokens\_unlock()
+### version_tokens_unlock()
 
 [Seção 5.5.5.3, “Uso de Tokens de Versão”](version-tokens-usage.html)
 
@@ -3442,15 +3442,15 @@
 
 ### W
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
-### WAIT\_FOR\_EXECUTED\_GTID\_SET()
+### WAIT_FOR_EXECUTED_GTID_SET()
 
 [Seção 12.18, “Funções usadas com identificadores de transação global (GTIDs)](gtid-functions.html)
 
 [Seção 16.1.4.1, “Conceitos do Modo de Replicação”](replication-mode-change-online-concepts.html)
 
-### AGUARDAR\_ATÉ\_SQL\_THREAD\_AFTER\_GTIDS()
+### AGUARDAR_ATÉ_SQL_THREAD_AFTER_GTIDS()
 
 [Seção 16.2.2.1, “Comandos para operações em um único canal”](channels-commands-single-channel.html)
 
@@ -3480,7 +3480,7 @@
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
-### WEIGHT\_STRING()
+### WEIGHT_STRING()
 
 [Seção 10.14, “Adicionando uma Colagem a um Conjunto de Caracteres”](adding-collation.html)
 
@@ -3496,7 +3496,7 @@
 
 ### X
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### X()
 
@@ -3504,7 +3504,7 @@
 
 ### Y
 
-\[[index superior](dynindex-function.html#func-index-superior)]
+[[index superior](dynindex-function.html#func-index-superior)]
 
 ### Y()
 

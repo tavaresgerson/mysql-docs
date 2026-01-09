@@ -1,4 +1,4 @@
-#### 26.4.4.14 O procedimento ps\_setup\_save()
+#### 26.4.4.14 O procedimento ps_setup_save()
 
 Salva a configuração atual do Schema de Desempenho. Isso permite que você altere a configuração temporariamente para depuração ou outros fins, e depois a restaure ao estado anterior, invocando o procedimento `ps_setup_reload_saved()`.
 

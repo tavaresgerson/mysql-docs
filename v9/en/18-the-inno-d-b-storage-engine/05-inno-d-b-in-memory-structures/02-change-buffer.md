@@ -75,7 +75,7 @@ The following options are available for change buffer monitoring:
   mysql> SELECT NAME, COMMENT FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME LIKE '%ibuf%'\G
   ```
 
-  See Section 17.15.6, “InnoDB INFORMATION\_SCHEMA Metrics Table”.
+  See Section 17.15.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
 
 * The Information Schema `INNODB_BUFFER_PAGE` table provides metadata about each page in the buffer pool, including change buffer index and change buffer bitmap pages. Change buffer pages are identified by `PAGE_TYPE`. `IBUF_INDEX` is the page type for change buffer index pages, and `IBUF_BITMAP` is the page type for change buffer bitmap pages.
 
@@ -98,7 +98,7 @@ The following options are available for change buffer monitoring:
   +---------------------+-------------+-------------------------------+
   ```
 
-  For information about other data provided by the `INNODB_BUFFER_PAGE` table, see Section 28.4.2, “The INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE Table”. For related usage information, see Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”.
+  For information about other data provided by the `INNODB_BUFFER_PAGE` table, see Section 28.4.2, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table”. For related usage information, see Section 17.15.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
 * Performance Schema provides change buffer mutex wait instrumentation for advanced performance monitoring. To view change buffer instrumentation, issue the following query:
 

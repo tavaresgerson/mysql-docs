@@ -1,4 +1,4 @@
-#### 26.4.5.9 A função ps\_is\_account\_enabled()
+#### 26.4.5.9 A função ps_is_account_enabled()
 
 Retorna `YES` ou `NO` para indicar se a instrumentação do Schema de Desempenho para uma conta específica está habilitada.
 

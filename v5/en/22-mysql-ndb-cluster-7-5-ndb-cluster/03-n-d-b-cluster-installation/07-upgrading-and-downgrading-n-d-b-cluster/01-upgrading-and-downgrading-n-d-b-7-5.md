@@ -22,7 +22,7 @@ The table shown here provides information on NDB Cluster upgrade and downgrade c
   1. Perform a rolling restart of the entire cluster
   2. Delete all `.frm` files in the `data/ndbinfo` directory
 
-  3. Run [**mysql\_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables").
+  3. Run [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables").
 
   (Bug #81689, Bug #82724, Bug #24521927, Bug #23518923)
 
@@ -31,6 +31,6 @@ The table shown here provides information on NDB Cluster upgrade and downgrade c
 
 * In NDB 7.5 (and later), the `ndb_binlog_index` table uses the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine. Use of the [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") storage engine for this table continues to be supported for backward compatibility.
 
-  When upgrading a previous release to NDB 7.5 (or later), you can use the [`--force`](mysql-upgrade.html#option_mysql_upgrade_force) [`--upgrade-system-tables`](mysql-upgrade.html#option_mysql_upgrade_upgrade-system-tables) options with [**mysql\_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") so that it performs [`ALTER TABLE ... ENGINE=INNODB`](alter-table.html "13.1.8 ALTER TABLE Statement") on the `ndb_binlog_index` table.
+  When upgrading a previous release to NDB 7.5 (or later), you can use the [`--force`](mysql-upgrade.html#option_mysql_upgrade_force) [`--upgrade-system-tables`](mysql-upgrade.html#option_mysql_upgrade_upgrade-system-tables) options with [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") so that it performs [`ALTER TABLE ... ENGINE=INNODB`](alter-table.html "13.1.8 ALTER TABLE Statement") on the `ndb_binlog_index` table.
 
   For more information, see [Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables").

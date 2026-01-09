@@ -8,10 +8,10 @@
 
 10.8.4 Coerção na Colaboração em Expressões
 
-10.8.5 Codificação binária em comparação com as codificações \_bin
+10.8.5 Codificação binária em comparação com as codificações _bin
 
 10.8.6 Exemplos do efeito da cotação
 
-10.8.7 Uso da Colagem em Pesquisas no INFORMATION\_SCHEMA
+10.8.7 Uso da Colagem em Pesquisas no INFORMATION_SCHEMA
 
 As seções a seguir discutem vários aspectos das collation de conjuntos de caracteres.

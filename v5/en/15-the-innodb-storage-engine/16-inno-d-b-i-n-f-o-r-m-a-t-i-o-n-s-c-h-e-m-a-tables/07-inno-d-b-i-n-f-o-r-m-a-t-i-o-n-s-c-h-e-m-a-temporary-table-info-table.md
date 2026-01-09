@@ -1,4 +1,4 @@
-### 14.16.7 InnoDB INFORMATION\_SCHEMA Temporary Table Info Table
+### 14.16.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table
 
 `INNODB_TEMP_TABLE_INFO` provides information about user-created `InnoDB` temporary tables that are active in the `InnoDB` instance. It does not provide information about internal `InnoDB` temporary tables used by the optimizer.
 
@@ -11,9 +11,9 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_TEMP%';
 +---------------------------------------------+
 ```
 
-For the table definition, see Section 24.4.27, “The INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO Table”.
+For the table definition, see Section 24.4.27, “The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table”.
 
-**Example 14.12 INNODB\_TEMP\_TABLE\_INFO**
+**Example 14.12 INNODB_TEMP_TABLE_INFO**
 
 This example demonstrates characteristics of the `INNODB_TEMP_TABLE_INFO` table.
 

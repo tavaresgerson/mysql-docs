@@ -1,34 +1,34 @@
-### 28.4.26 A visão `INFORMATION\_SCHEMA\_INNODB\_TABLESTATS`
+### 28.4.26 A visão `INFORMATION_SCHEMA_INNODB_TABLESTATS`
 
-A tabela `INNODB\_TABLESTATS` fornece uma visão de informações de status de nível baixo sobre as tabelas `InnoDB`. Esses dados são usados pelo otimizador do MySQL para calcular qual índice usar ao consultar uma tabela `InnoDB`. Essas informações são derivadas de estruturas de dados em memória, e não de dados armazenados em disco. Não existe uma tabela interna correspondente do sistema `InnoDB`.
+A tabela `INNODB_TABLESTATS` fornece uma visão de informações de status de nível baixo sobre as tabelas `InnoDB`. Esses dados são usados pelo otimizador do MySQL para calcular qual índice usar ao consultar uma tabela `InnoDB`. Essas informações são derivadas de estruturas de dados em memória, e não de dados armazenados em disco. Não existe uma tabela interna correspondente do sistema `InnoDB`.
 
 As tabelas `InnoDB` são representadas nesta visão se tiverem sido abertas desde a última reinicialização do servidor e não tiverem sido excluídas do cache de tabelas. As tabelas para as quais estatísticas persistentes estão disponíveis são sempre representadas nesta visão.
 
 As estatísticas da tabela são atualizadas apenas para operações `DELETE` ou `UPDATE` que modificam colunas indexadas. As estatísticas não são atualizadas por operações que modificam apenas colunas não indexadas.
 
-`ANALYZE TABLE` limpa as estatísticas da tabela e define a coluna `STATS\_INITIALIZED` como `Uninitialized`. As estatísticas são coletadas novamente na próxima vez que a tabela for acessada.
+`ANALYZE TABLE` limpa as estatísticas da tabela e define a coluna `STATS_INITIALIZED` como `Uninitialized`. As estatísticas são coletadas novamente na próxima vez que a tabela for acessada.
 
-Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.3, “Objetos de esquema do `INFORMATION\_SCHEMA` da tabela”.
+Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.3, “Objetos de esquema do `INFORMATION_SCHEMA` da tabela”.
 
-A tabela `INNODB\_TABLESTATS` tem as seguintes colunas:
+A tabela `INNODB_TABLESTATS` tem as seguintes colunas:
 
-* `TABLE\_ID`
+* `TABLE_ID`
 
-  Um identificador que representa a tabela para a qual as estatísticas estão disponíveis; o mesmo valor que `INNODB\_TABLES.TABLE\_ID`.
+  Um identificador que representa a tabela para a qual as estatísticas estão disponíveis; o mesmo valor que `INNODB_TABLES.TABLE_ID`.
 
 * `NAME`
 
-  O nome da tabela; o mesmo valor que `INNODB\_TABLES.NAME`.
+  O nome da tabela; o mesmo valor que `INNODB_TABLES.NAME`.
 
-* `STATS\_INITIALIZED`
+* `STATS_INITIALIZED`
 
   O valor é `Initialized` se as estatísticas já estiverem coletadas, `Uninitialized` se não estiverem.
 
-* `NUM\_ROWS`
+* `NUM_ROWS`
 
   O número estimado atual de linhas na tabela. Atualizado após cada operação DML. O valor pode ser impreciso se transações não confirmadas estão inserindo ou excluindo da tabela.
 
-* `CLUST\_INDEX\_SIZE`
+* `CLUST_INDEX_SIZE`
 
 O número de páginas no disco que armazenam o índice agrupado, que contém os dados da tabela `InnoDB` na ordem da chave primária. Esse valor pode ser nulo se ainda não tiverem sido coletadas estatísticas para a tabela.
 

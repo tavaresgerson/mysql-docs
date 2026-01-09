@@ -1,4 +1,4 @@
-#### 25.6.15.56 Tabela ndbinfo\_server\_transactions
+#### 25.6.15.56 Tabela ndbinfo_server_transactions
 
 A tabela `server_transactions` é um subconjunto da tabela `cluster_transactions`, mas inclui apenas as transações nas quais o nó SQL atual (MySQL Server) é participante, incluindo os IDs de conexão relevantes.
 

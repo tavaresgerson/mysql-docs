@@ -20,7 +20,7 @@ A tabela `variables_metadata` contém as seguintes colunas:
 
     A variável pode ter escopo global ou de sessão.
 
-  + SESSION\_ONLY
+  + SESSION_ONLY
 
     A variável é apenas de sessão.
 

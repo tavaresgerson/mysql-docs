@@ -14,9 +14,9 @@ Atualização ou downgrade do software do NDB Cluster. Para atualizar o cluster 
 
 - Comece cada processo do nó de dados (**ndbd** ou possivelmente **ndbmtd**) com a opção `--initial` (**ndbd**), que obriga o nó de dados a limpar seu sistema de arquivos e a recarregar todos os dados e metadados do NDB Cluster dos outros nós de dados.
 
-- Crie um backup usando o cliente **ndb\_mgm** com o comando `START BACKUP` (mysql-cluster-backup-using-management-client.html) antes de realizar o reinício. Após a atualização, restaure o nó ou os nós usando **ndb\_restore**.
+- Crie um backup usando o cliente **ndb_mgm** com o comando `START BACKUP` (mysql-cluster-backup-using-management-client.html) antes de realizar o reinício. Após a atualização, restaure o nó ou os nós usando **ndb_restore**.
 
-  Para obter mais informações, consulte Seção 21.6.8, “Backup Online de NDB Cluster” e Seção 21.5.24, “ndb\_restore — Restaurar um backup de NDB Cluster”.
+  Para obter mais informações, consulte Seção 21.6.8, “Backup Online de NDB Cluster” e Seção 21.5.24, “ndb_restore — Restaurar um backup de NDB Cluster”.
 
 - Use **mysqldump** para criar um backup antes da atualização; depois, restaure o dump usando `LOAD DATA`.
 
@@ -24,11 +24,11 @@ Atualização ou downgrade do software do NDB Cluster. Para atualizar o cluster 
 
 O processo para realizar um reinício contínuo pode ser generalizado da seguinte forma:
 
-1. Pare todos os nós de gerenciamento de clúster (**ndb\_mgmd** processos), reconecte-os e, em seguida, reinicie-os. (Veja Reinicializações em rolagem com múltiplos servidores de gerenciamento.)
+1. Pare todos os nós de gerenciamento de clúster (**ndb_mgmd** processos), reconecte-os e, em seguida, reinicie-os. (Veja Reinicializações em rolagem com múltiplos servidores de gerenciamento.)
 
 2. Pare, reconfigure e, em seguida, reinicie cada nó de dados do cluster (processo **ndbd**) uma a uma.
 
-   Alguns parâmetros de configuração de nós podem ser atualizados emitindo `RESTART` para cada um dos nós de dados no cliente **ndb\_mgm** após o passo anterior. Outros parâmetros exigem que o nó de dados seja parado completamente usando o comando de gerenciamento `STOP`, e depois reiniciado novamente a partir de uma janela de sistema invocando o executável **ndbd** ou **ndbmtd** conforme apropriado. (Um comando de shell como **kill** também pode ser usado na maioria dos sistemas Unix para parar um processo de nó de dados, mas o comando `STOP` é preferido e geralmente mais simples.)
+   Alguns parâmetros de configuração de nós podem ser atualizados emitindo `RESTART` para cada um dos nós de dados no cliente **ndb_mgm** após o passo anterior. Outros parâmetros exigem que o nó de dados seja parado completamente usando o comando de gerenciamento `STOP`, e depois reiniciado novamente a partir de uma janela de sistema invocando o executável **ndbd** ou **ndbmtd** conforme apropriado. (Um comando de shell como **kill** também pode ser usado na maioria dos sistemas Unix para parar um processo de nó de dados, mas o comando `STOP` é preferido e geralmente mais simples.)
 
    Nota
 
@@ -54,17 +54,17 @@ Não é possível que qualquer nó da API realize operações de esquema (como d
 
 **Reinício em rolagem com múltiplos servidores de gerenciamento.**
 
-Ao realizar um reinício contínuo de um NDB Cluster com vários nós de gerenciamento, você deve ter em mente que o **ndb\_mgmd** verifica se algum outro nó de gerenciamento está em execução e, se estiver, tenta usar os dados de configuração desse nó. Para evitar que isso ocorra e forçar o **ndb\_mgmd** a reler seu arquivo de configuração, siga os passos abaixo:
+Ao realizar um reinício contínuo de um NDB Cluster com vários nós de gerenciamento, você deve ter em mente que o **ndb_mgmd** verifica se algum outro nó de gerenciamento está em execução e, se estiver, tenta usar os dados de configuração desse nó. Para evitar que isso ocorra e forçar o **ndb_mgmd** a reler seu arquivo de configuração, siga os passos abaixo:
 
-1. Pare todos os processos do NDB Cluster **ndb\_mgmd**.
+1. Pare todos os processos do NDB Cluster **ndb_mgmd**.
 
 2. Atualize todos os arquivos `config.ini`.
 
-3. Inicie um único **ndb\_mgmd** com `--reload`, `--initial` ou ambas as opções conforme desejar.
+3. Inicie um único **ndb_mgmd** com `--reload`, `--initial` ou ambas as opções conforme desejar.
 
-4. Se você iniciou o primeiro **ndb\_mgmd** com a opção `--initial`, você também deve iniciar quaisquer processos restantes de **ndb\_mgmd** usando `--initial`.
+4. Se você iniciou o primeiro **ndb_mgmd** com a opção `--initial`, você também deve iniciar quaisquer processos restantes de **ndb_mgmd** usando `--initial`.
 
-   Independentemente das outras opções usadas ao iniciar o primeiro **ndb\_mgmd**, você não deve iniciar quaisquer processos restantes do **ndb\_mgmd** após o primeiro usando `--reload`.
+   Independentemente das outras opções usadas ao iniciar o primeiro **ndb_mgmd**, você não deve iniciar quaisquer processos restantes do **ndb_mgmd** após o primeiro usando `--reload`.
 
 5. Complete os reinícios contínuos dos nós de dados e dos nós de API como de costume.
 

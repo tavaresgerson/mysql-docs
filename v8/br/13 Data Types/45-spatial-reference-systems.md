@@ -10,7 +10,7 @@ Os globos, neste caso, são elipsoides; ou seja, esferas achatadas. A Terra é u
 * Um SRS geográfico é um SRS não projetado que representa coordenadas de longitude-latitude (ou latitude-longitude) em um elipsoide, em qualquer unidade angular.
 * O SRS indicado no MySQL por SRID 0 representa um plano cartesiano infinito e plano sem unidades atribuídas aos seus eixos. Ao contrário dos SRS projetados, ele não é georreferenciado e não representa necessariamente a Terra. É um plano abstrato que pode ser usado para qualquer coisa. SRID 0 é o SRID padrão para dados espaciais no MySQL.
 
-O MySQL mantém informações sobre os sistemas de referência espacial disponíveis para dados espaciais na tabela do dicionário de dados `mysql.st_spatial_reference_systems`, que pode armazenar entradas para SRSs projetados e geográficos. Esta tabela do dicionário de dados é invisível, mas o conteúdo da entrada do SRS está disponível através da tabela `INFORMATION_SCHEMA` `ST_SPATIAL_REFERENCE_SYSTEMS`, implementada como uma visão em `mysql.st_spatial_reference_systems` (veja a Seção 28.3.36, “A Tabela `INFORMATION_SCHEMA` ST\_SPATIAL\_REFERENCE\_SYSTEMS”).
+O MySQL mantém informações sobre os sistemas de referência espacial disponíveis para dados espaciais na tabela do dicionário de dados `mysql.st_spatial_reference_systems`, que pode armazenar entradas para SRSs projetados e geográficos. Esta tabela do dicionário de dados é invisível, mas o conteúdo da entrada do SRS está disponível através da tabela `INFORMATION_SCHEMA` `ST_SPATIAL_REFERENCE_SYSTEMS`, implementada como uma visão em `mysql.st_spatial_reference_systems` (veja a Seção 28.3.36, “A Tabela `INFORMATION_SCHEMA` ST_SPATIAL_REFERENCE_SYSTEMS”).
 
 O exemplo seguinte mostra como uma entrada de SRS parece:
 

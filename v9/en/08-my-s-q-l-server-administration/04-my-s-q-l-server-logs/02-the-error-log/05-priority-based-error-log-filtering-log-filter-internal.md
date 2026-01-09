@@ -1,4 +1,4 @@
-#### 7.4.2.5 Priority-Based Error Log Filtering (log\_filter\_internal)
+#### 7.4.2.5 Priority-Based Error Log Filtering (log_filter_internal)
 
 The `log_filter_internal` log filter component implements a simple form of log filtering based on error event priority and error code. To affect how `log_filter_internal` permits or suppresses error, warning, and information events intended for the error log, set the `log_error_verbosity` and `log_error_suppression_list` system variables.
 

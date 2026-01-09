@@ -1,4 +1,4 @@
-#### 26.4.4.8 O procedimento ps\_setup\_enable\_background\_threads()
+#### 26.4.4.8 O procedimento ps_setup_enable_background_threads()
 
 Habilita a instrumentação do Schema de Desempenho para todos os threads de segundo plano. Produz um conjunto de resultados que indica quantos threads de segundo plano foram habilitados. Os threads já habilitados não são contados.
 

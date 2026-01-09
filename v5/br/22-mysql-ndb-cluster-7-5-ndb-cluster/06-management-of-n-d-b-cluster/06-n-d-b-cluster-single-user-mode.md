@@ -1,10 +1,10 @@
 ### 21.6.6 Modo de usuário único do cluster NDB
 
-O modo de usuário único permite que o administrador do banco de dados restrinja o acesso ao sistema do banco de dados a um único nó da API, como um servidor MySQL (nó SQL) ou uma instância de **ndb\_restore**. Ao entrar no modo de usuário único, as conexões a todos os outros nós da API são fechadas de forma suave e todas as transações em execução são abortadas. Nenhuma nova transação é permitida para começar.
+O modo de usuário único permite que o administrador do banco de dados restrinja o acesso ao sistema do banco de dados a um único nó da API, como um servidor MySQL (nó SQL) ou uma instância de **ndb_restore**. Ao entrar no modo de usuário único, as conexões a todos os outros nós da API são fechadas de forma suave e todas as transações em execução são abortadas. Nenhuma nova transação é permitida para começar.
 
 Depois que o cluster entrar no modo de usuário único, apenas o nó da API designado terá acesso ao banco de dados.
 
-Você pode usar o comando `ALL STATUS` no cliente **ndb\_mgm** para ver quando o clúster entrou no modo de usuário único. Você também pode verificar a coluna `status` da tabela `ndbinfo.nodes` (consulte Seção 21.6.15.28, “A tabela ndbinfo nodes”, para mais informações).
+Você pode usar o comando `ALL STATUS` no cliente **ndb_mgm** para ver quando o clúster entrou no modo de usuário único. Você também pode verificar a coluna `status` da tabela `ndbinfo.nodes` (consulte Seção 21.6.15.28, “A tabela ndbinfo nodes”, para mais informações).
 
 Exemplo:
 

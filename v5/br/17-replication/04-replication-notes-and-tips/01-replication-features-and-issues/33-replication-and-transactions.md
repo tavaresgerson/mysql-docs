@@ -13,12 +13,12 @@ O servidor utiliza essas regras para o registro binário:
 Uma declaração mista que atualiza uma tabela transacional é considerada insegura se a declaração também realizar uma das seguintes ações:
 
 - Atualiza ou lê uma tabela temporária
-- Leitura de uma tabela não transacional e o nível de isolamento de transação é menor que REPEATABLE\_READ
+- Leitura de uma tabela não transacional e o nível de isolamento de transação é menor que REPEATABLE_READ
 
 Uma declaração mista após a atualização de uma tabela transacional dentro de uma transação é considerada insegura se ela realizar qualquer uma das seguintes ações:
 
 - Atualiza qualquer tabela e lê de qualquer tabela temporária
-- Atualiza uma tabela não transacional e `binlog_direct_non_transactional_updates` está desativado (replicação-opções-binary-log.html#sysvar\_binlog\_direct\_non\_transactional\_updates)
+- Atualiza uma tabela não transacional e `binlog_direct_non_transactional_updates` está desativado (replicação-opções-binary-log.html#sysvar_binlog_direct_non_transactional_updates)
 
 Para mais informações, consulte Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”.
 

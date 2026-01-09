@@ -50,6 +50,6 @@ Se você ativar o modo SQL [`ALLOW_INVALID_DATES`](sql-mode.html#sqlmode_allow_i
 
 O MySQL permite que você armazene datas onde o dia ou o mês e o dia são zero. Isso é conveniente se você quiser armazenar uma data de nascimento em uma coluna [`DATE`](datetime.html) e você souber apenas parte da data. Para impedir que os meses ou os dias sejam zero em datas, habilite o modo [`NO_ZERO_IN_DATE`](sql-mode.html#sqlmode_no_zero_in_date).
 
-O MySQL permite que você armazene um valor "zero" de `'0000-00-00'` como uma "data fictícia". Isso é, em alguns casos, mais conveniente do que usar valores `NULL`. Se uma data que deve ser armazenada em uma coluna `[DATE]` (datetime.html) não puder ser convertida em qualquer valor razoável, o MySQL armazena `'0000-00-00'`. Para desabilitar `'0000-00-00'`, habilite o modo `[NO_ZERO_DATE]` (sql-mode.html#sqlmode\_no\_zero\_date).
+O MySQL permite que você armazene um valor "zero" de `'0000-00-00'` como uma "data fictícia". Isso é, em alguns casos, mais conveniente do que usar valores `NULL`. Se uma data que deve ser armazenada em uma coluna `[DATE]` (datetime.html) não puder ser convertida em qualquer valor razoável, o MySQL armazena `'0000-00-00'`. Para desabilitar `'0000-00-00'`, habilite o modo `[NO_ZERO_DATE]` (sql-mode.html#sqlmode_no_zero_date).
 
 Para que o MySQL verifique todas as datas e aceite apenas datas válidas (a menos que seja ignorado pela opção `IGNORE`), defina a variável de sistema [`sql_mode`](server-system-variables.html#sysvar_sql_mode) para `"NO_ZERO_IN_DATE,NO_ZERO_DATE"`.

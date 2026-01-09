@@ -40,7 +40,7 @@ A variável de sistema `innodb_stats_method` tem um valor global; a variável de
 
 Para regenerar as estatísticas da tabela `MyISAM`, você pode usar qualquer um dos seguintes métodos:
 
-- Execute **myisamchk --stats\_method=*`método_nome`* --analyze**
+- Execute **myisamchk --stats_method=*`método_nome`* --analyze**
 
 - Altere a tabela para que suas estatísticas fiquem desatualizadas (por exemplo, insira uma linha e depois exclua-a), e, em seguida, defina `myisam_stats_method` e execute uma instrução `ANALYZE TABLE`
 

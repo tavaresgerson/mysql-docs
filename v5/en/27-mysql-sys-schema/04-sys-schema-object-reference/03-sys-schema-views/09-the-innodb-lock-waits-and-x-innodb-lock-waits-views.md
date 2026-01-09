@@ -1,4 +1,4 @@
-#### 26.4.3.9 The innodb\_lock\_waits and x$innodb\_lock\_waits Views
+#### 26.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views
 
 These views summarize the `InnoDB` locks that transactions are waiting for. By default, rows are sorted by descending lock age.
 

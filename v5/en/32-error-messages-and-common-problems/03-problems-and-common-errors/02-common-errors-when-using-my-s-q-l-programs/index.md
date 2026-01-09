@@ -26,7 +26,7 @@
 
 [B.3.2.13 Ignoring user](ignoring-user.html)
 
-[B.3.2.14 Table 'tbl\_name' doesn't exist](cannot-find-table.html)
+[B.3.2.14 Table 'tbl_name' doesn't exist](cannot-find-table.html)
 
 [B.3.2.15 Can't initialize character set](cannot-initialize-character-set.html)
 

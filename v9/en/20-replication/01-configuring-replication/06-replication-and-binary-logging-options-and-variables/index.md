@@ -14,7 +14,7 @@ The following sections contain information about **mysqld** options and server v
 
 Of particular importance is the `server_id` system variable.
 
-<table frame="box" rules="all" summary="Properties for server_id"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--server-id=#</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options.html#sysvar_server_id">server_id</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">1</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Properties for server_id"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--server-id=#</code></td> </tr><tr><th>System Variable</th> <td><code class="literal">server_id</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">1</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
 
 This variable specifies the server ID. `server_id` is set to 1 by default. The server can be started with this default ID, but when binary logging is enabled, an informational message is issued if you did not set `server_id` explicitly to specify a server ID.
 
@@ -32,7 +32,7 @@ Note
 
 The presence of the `server_uuid` system variable does not change the requirement for setting a unique `server_id` value for each MySQL server as part of preparing and running MySQL replication, as described earlier in this section.
 
-<table frame="box" rules="all" summary="Properties for server_uuid"><tbody><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options.html#sysvar_server_uuid">server_uuid</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Properties for server_uuid"><tbody><tr><th>System Variable</th> <td><code class="literal">server_uuid</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
 When starting, the MySQL server automatically obtains a UUID as follows:
 

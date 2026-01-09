@@ -33,7 +33,7 @@ Create Table: CREATE TABLE `trb3` (
 
 The output from `SHOW TABLE STATUS` for partitioned tables is the same as that for nonpartitioned tables, except that the `Create_options` column contains the string `partitioned`. The `Engine` column contains the name of the storage engine used by all partitions of the table. (See Section 15.7.7.39, “SHOW TABLE STATUS Statement”, for more information about this statement.)
 
-You can also obtain information about partitions from `INFORMATION_SCHEMA`, which contains a `PARTITIONS` table. See Section 28.3.26, “The INFORMATION\_SCHEMA PARTITIONS Table”.
+You can also obtain information about partitions from `INFORMATION_SCHEMA`, which contains a `PARTITIONS` table. See Section 28.3.26, “The INFORMATION_SCHEMA PARTITIONS Table”.
 
 It is possible to determine which partitions of a partitioned table are involved in a given `SELECT` query using `EXPLAIN`. The `partitions` column in the `EXPLAIN` output lists the partitions from which records would be matched by the query.
 

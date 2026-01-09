@@ -1,4 +1,4 @@
-#### 26.4.3.7 The innodb\_buffer\_stats\_by\_schema and x$innodb\_buffer\_stats\_by\_schema Views
+#### 26.4.3.7 The innodb_buffer_stats_by_schema and x$innodb_buffer_stats_by_schema Views
 
 These views summarize the information in the `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE` table, grouped by schema. By default, rows are sorted by descending buffer size.
 

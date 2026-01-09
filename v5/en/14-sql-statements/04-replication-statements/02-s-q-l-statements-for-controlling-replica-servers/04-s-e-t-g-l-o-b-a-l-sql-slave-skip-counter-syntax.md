@@ -1,4 +1,4 @@
-#### 13.4.2.4 SET GLOBAL sql\_slave\_skip\_counter Syntax
+#### 13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax
 
 ```sql
 SET GLOBAL sql_slave_skip_counter = N

@@ -1,4 +1,4 @@
-#### 17.15.1.2 INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET
+#### 17.15.1.2 INNODB_CMPMEM e INNODB_CMPMEM_RESET
 
 As tabelas `INNODB_CMPMEM` e `INNODB_CMPMEM_RESET` fornecem informações de status sobre as páginas compactadas que residem no pool de buffer. Consulte a Seção 17.9, “Compressão de Tabelas e Páginas do InnoDB” para obter mais informações sobre tabelas compactadas e o uso do pool de buffer. As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` devem fornecer estatísticas mais úteis sobre a compressão.
 

@@ -1,4 +1,4 @@
-### 6.4.2 mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL
+### 6.4.2 mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL
 
 Este programa permite que você melhore a segurança da sua instalação do MySQL das seguintes maneiras:
 
@@ -8,17 +8,17 @@ Este programa permite que você melhore a segurança da sua instalação do MySQ
 * Você pode remover contas de usuário anônimo.
 * Você pode remover o banco de dados `test` (que, por padrão, pode ser acessado por todos os usuários, mesmo usuários anônimos), e privilégios que permitam que qualquer pessoa acesse bancos de dados com nomes que comecem com `test_`.
 
-O **mysql\_secure\_installation** ajuda você a implementar recomendações de segurança semelhantes às descritas na Seção 2.9.4, “Segurança da Conta Inicial do MySQL”.
+O **mysql_secure_installation** ajuda você a implementar recomendações de segurança semelhantes às descritas na Seção 2.9.4, “Segurança da Conta Inicial do MySQL”.
 
-O uso normal é conectar-se ao servidor MySQL local; invocar **mysql\_secure\_installation** sem argumentos:
+O uso normal é conectar-se ao servidor MySQL local; invocar **mysql_secure_installation** sem argumentos:
 
 ```
 mysql_secure_installation
 ```
 
-Quando executado, o **mysql\_secure\_installation** solicita que você determine quais ações realizar.
+Quando executado, o **mysql_secure_installation** solicita que você determine quais ações realizar.
 
-O componente `validate_password` pode ser usado para verificar a força da senha. Se o plugin não estiver instalado, o **mysql\_secure\_installation** solicita ao usuário se deseja instalá-lo. Quaisquer senhas inseridas posteriormente são verificadas usando o plugin se ele estiver habilitado.
+O componente `validate_password` pode ser usado para verificar a força da senha. Se o plugin não estiver instalado, o **mysql_secure_installation** solicita ao usuário se deseja instalá-lo. Quaisquer senhas inseridas posteriormente são verificadas usando o plugin se ele estiver habilitado.
 
 A maioria das opções usuais do cliente MySQL, como `--host` e `--port`, podem ser usadas na linha de comando e em arquivos de opção. Por exemplo, para se conectar ao servidor local via IPv6 usando a porta 3307, use este comando:
 
@@ -26,31 +26,31 @@ A maioria das opções usuais do cliente MySQL, como `--host` e `--port`, podem 
 mysql_secure_installation --host=::1 --port=3307
 ```
 
-O **mysql\_secure\_installation** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysql_secure_installation]` e `[client]` de um arquivo de opção. Para informações sobre arquivos de opção usados por programas MySQL, consulte a Seção 6.2.2.2, “Usando Arquivos de Opção”.
+O **mysql_secure_installation** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysql_secure_installation]` e `[client]` de um arquivo de opção. Para informações sobre arquivos de opção usados por programas MySQL, consulte a Seção 6.2.2.2, “Usando Arquivos de Opção”.
 
-**Tabela 6.9 Opções do mysql\_secure\_installation**
+**Tabela 6.9 Opções do mysql_secure_installation**
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysql_secure_installation">
 <tr><th>Nome da Opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="option-file-options.html#option_general_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opções nomeadas além dos arquivos de opções usuais</td></tr>
-<tr><td><a class="link" href="option-file-options.html#option_general_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opções nomeadas</td></tr>
-<tr><td><a class="link" href="option-file-options.html#option_general_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_help">--help</a></td> <td>Exibir a mensagem de ajuda e sair</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_host">--host</a></td> <td>Host em que o servidor MySQL está localizado</td></tr>
-<tr><td><a class="link" href="option-file-options.html#option_general_no-defaults">--no-defaults</a></td> <td>Leia nenhum arquivo de opções</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_password">--password</a></td> <td>Aceito, mas sempre ignorado. Sempre que o mysql_secure_installation for invocado, o usuário é solicitado a fornecer uma senha, independentemente</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_port">--port</a></td> <td>Número de porta TCP/IP para a conexão</td></tr>
-<tr><td><a class="link" href="option-file-options.html#option_general_print-defaults">--print-defaults</a></td> <td>Imprimir as opções padrão</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_protocol">--protocol</a></td> <td>Protocolo de transporte a ser usado</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_socket">--socket</a></td> <td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_ssl">--ssl-ca</a></td> <td>Arquivo que contém a lista de Autoridades de Certificados SSL confiáveis</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_ssl">--ssl-capath</a></td> <td>Diretório que contém os arquivos de certificado de Autoridade de Certificados SSL confiáveis</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_ssl">--ssl-cert</a></td> <td>Arquivo que contém o certificado X.509</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_ssl">--ssl-cipher</a></td> <td>Cifras permitidas para criptografia da conexão</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_ssl">--ssl-crl</a></td> <td>Arquivo que contém listas de revogação de certificados</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_ssl">--ssl-crlpath</a></td> <td>Diretório que contém os arquivos de lista de revogação de certificados</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Se o modo FIPS deve ser habilitado no lado do cliente</td></tr>
-<tr><td><a class="link" href="mysql-secure-installation.html#option_mysql_secure_installation_ssl">--ssl-key</a></td> <td>Arquivo que contém a chave X.50
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opções nomeadas além dos arquivos de opções usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opções nomeadas</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--help</td> <td>Exibir a mensagem de ajuda e sair</td></tr>
+<tr><td>--host</td> <td>Host em que o servidor MySQL está localizado</td></tr>
+<tr><td>--no-defaults</td> <td>Leia nenhum arquivo de opções</td></tr>
+<tr><td>--password</td> <td>Aceito, mas sempre ignorado. Sempre que o mysql_secure_installation for invocado, o usuário é solicitado a fornecer uma senha, independentemente</td></tr>
+<tr><td>--port</td> <td>Número de porta TCP/IP para a conexão</td></tr>
+<tr><td>--print-defaults</td> <td>Imprimir as opções padrão</td></tr>
+<tr><td>--protocol</td> <td>Protocolo de transporte a ser usado</td></tr>
+<tr><td>--socket</td> <td>Arquivo de socket Unix ou pipe nomeado do Windows a ser usado</td></tr>
+<tr><td>--ssl-ca</td> <td>Arquivo que contém a lista de Autoridades de Certificados SSL confiáveis</td></tr>
+<tr><td>--ssl-capath</td> <td>Diretório que contém os arquivos de certificado de Autoridade de Certificados SSL confiáveis</td></tr>
+<tr><td>--ssl-cert</td> <td>Arquivo que contém o certificado X.509</td></tr>
+<tr><td>--ssl-cipher</td> <td>Cifras permitidas para criptografia da conexão</td></tr>
+<tr><td>--ssl-crl</td> <td>Arquivo que contém listas de revogação de certificados</td></tr>
+<tr><td>--ssl-crlpath</td> <td>Diretório que contém os arquivos de lista de revogação de certificados</td></tr>
+<tr><td>--ssl-fips-mode</td> <td>Se o modo FIPS deve ser habilitado no lado do cliente</td></tr>
+<tr><td>--ssl-key</td> <td>Arquivo que contém a chave X.50
 
 * `--help`, `-?`
 
@@ -78,7 +78,7 @@ O **mysql\_secure\_installation** suporta as seguintes opções, que podem ser e
 
 <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-group-suffix=str</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  Leia não apenas os grupos de opções habituais, mas também grupos com os nomes habituais e um sufixo de *`str`*. Por exemplo, **mysql\_secure\_installation** normalmente lê os grupos `[client]` e `[mysql_secure_installation]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysql\_secure\_installation** também lê os grupos `[client_other]` e `[mysql_secure_installation_other]`.
+  Leia não apenas os grupos de opções habituais, mas também grupos com os nomes habituais e um sufixo de *`str`*. Por exemplo, **mysql_secure_installation** normalmente lê os grupos `[client]` e `[mysql_secure_installation]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysql_secure_installation** também lê os grupos `[client_other]` e `[mysql_secure_installation_other]`.
 
   Para informações adicionais sobre esta e outras opções de ficheiro de opções, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o tratamento de ficheiros de opções”.
 
@@ -94,7 +94,7 @@ O **mysql\_secure\_installation** suporta as seguintes opções, que podem ser e
 
   Não leia nenhum ficheiro de opções. Se o arranque do programa falhar devido à leitura de opções desconhecidas de um ficheiro de opções, `--no-defaults` pode ser usado para evitar que sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para obter informações adicionais sobre essa e outras opções de arquivo, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opção”.
 
@@ -102,7 +102,7 @@ Para obter informações adicionais sobre essa e outras opções de arquivo, con
 
   <table frame="box" rules="all" summary="Propriedades para senha"><tr><th>Formato de Linha de Comando</th> <td><code>--password=password</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></table>
 
-  Esta opção é aceita, mas ignorada. Se esta opção for usada ou não, o **mysql\_secure\_installation** sempre solicita ao usuário uma senha.
+  Esta opção é aceita, mas ignorada. Se esta opção for usada ou não, o **mysql_secure_installation** sempre solicita ao usuário uma senha.
 
 * `--port=port_num`, `-P port_num`
 

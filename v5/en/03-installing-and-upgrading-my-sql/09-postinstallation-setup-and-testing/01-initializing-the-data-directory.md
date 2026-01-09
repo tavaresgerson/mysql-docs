@@ -60,13 +60,13 @@ In the examples shown here, the server is intended to run under the user ID of t
 
    If this happens, you must install the missing libraries manually or with your system's package manager. Then retry the data directory initialization command.
 
-4. If you want to deploy the server with automatic support for secure connections, use the **mysql\_ssl\_rsa\_setup** utility to create default SSL and RSA files:
+4. If you want to deploy the server with automatic support for secure connections, use the **mysql_ssl_rsa_setup** utility to create default SSL and RSA files:
 
    ```sql
    bin/mysql_ssl_rsa_setup
    ```
 
-   For more information, see Section 4.4.5, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”.
+   For more information, see Section 4.4.5, “mysql_ssl_rsa_setup — Create SSL/RSA Files”.
 
 5. In the absence of any option files, the server starts with its default settings. (See Section 5.1.2, “Server Configuration Defaults”.) To explicitly specify options that the MySQL server should use at startup, put them in an option file such as `/etc/my.cnf` or `/etc/mysql/my.cnf`. (See Section 4.2.2.2, “Using Option Files”.) For example, you can use an option file to set the `secure_file_priv` system variable.
 
@@ -170,7 +170,7 @@ When initializing the data directory, you should not specify any options other t
 
 Note
 
-The data directory initialization sequence performed by the server does not substitute for the actions performed by **mysql\_secure\_installation** and **mysql\_ssl\_rsa\_setup**. See Section 4.4.4, “mysql\_secure\_installation — Improve MySQL Installation Security”, and Section 4.4.5, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”.
+The data directory initialization sequence performed by the server does not substitute for the actions performed by **mysql_secure_installation** and **mysql_ssl_rsa_setup**. See Section 4.4.4, “mysql_secure_installation — Improve MySQL Installation Security”, and Section 4.4.5, “mysql_ssl_rsa_setup — Create SSL/RSA Files”.
 
 When invoked with the `--initialize` or `--initialize-insecure` option, **mysqld** performs the following actions during the data directory initialization sequence:
 

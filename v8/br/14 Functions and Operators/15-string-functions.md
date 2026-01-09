@@ -410,7 +410,7 @@ Retorna a string *`str`* com todos os caracteres alterados para minúsculas de a
           -> '14'
   ```
 
-  Para comparação, veja as regras de citação para strings literais e dentro da API C em  Seção 11.1.1, “Strings Literais”, e mysql\_real\_escape\_string\_quote().
+  Para comparação, veja as regras de citação para strings literais e dentro da API C em  Seção 11.1.1, “Strings Literais”, e mysql_real_escape_string_quote().
 *  `REPEAT(str,count)`
 
   Retorna uma string composta pela string *`str`* repetida *`count`* vezes. Se *`count`* for menor que 1, retorna uma string vazia. Retorna `NULL` se *`str`* ou *`count`* for `NULL`.

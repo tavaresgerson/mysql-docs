@@ -10,7 +10,7 @@ The following features have been added to MySQL 5.7:
 
   + In MySQL 8.0, `caching_sha2_password` is the default authentication plugin. To enable MySQL 5.7 clients to connect to 8.0 servers using accounts that authenticate using `caching_sha2_password`, the MySQL 5.7 client library and client programs support the `caching_sha2_password` client-side authentication plugin as of MySQL 5.7.23. This improves compatibility of MySQL 5.7 with MySQL 8.0 and higher servers. See Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”.
 
-  + The server now requires account rows in the `mysql.user` system table to have a nonempty `plugin` column value and disables accounts with an empty value. For server upgrade instructions, see Section 2.10.3, “Changes in MySQL 5.7”. DBAs are advised to also convert accounts that use the `mysql_old_password` authentication plugin to use `mysql_native_password` instead, because support for `mysql_old_password` has been removed. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql\_old\_password Plugin”.
+  + The server now requires account rows in the `mysql.user` system table to have a nonempty `plugin` column value and disables accounts with an empty value. For server upgrade instructions, see Section 2.10.3, “Changes in MySQL 5.7”. DBAs are advised to also convert accounts that use the `mysql_old_password` authentication plugin to use `mysql_native_password` instead, because support for `mysql_old_password` has been removed. For account upgrade instructions, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
 
   + MySQL now enables database administrators to establish a policy for automatic password expiration: Any user who connects to the server using an account for which the password is past its permitted lifetime must change the password. For more information, see Section 6.2.11, “Password Management”.
 
@@ -20,7 +20,7 @@ The following features have been added to MySQL 5.7:
 
     All servers, if not configured for SSL explicitly, attempt to enable SSL automatically at startup if they find the requisite SSL files in the data directory. See Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”.
 
-    In addition, MySQL distributions include a **mysql\_ssl\_rsa\_setup** utility that can be invoked manually to create SSL and RSA key and certificate files. For more information, see Section 4.4.5, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”.
+    In addition, MySQL distributions include a **mysql_ssl_rsa_setup** utility that can be invoked manually to create SSL and RSA key and certificate files. For more information, see Section 4.4.5, “mysql_ssl_rsa_setup — Create SSL/RSA Files”.
 
   + MySQL deployments installed using **mysqld --initialize** are secure by default. The following changes have been implemented as the default deployment characteristics:
 
@@ -110,7 +110,7 @@ The following features have been added to MySQL 5.7:
 
   + `InnoDB` supports native partitioning. Previously, `InnoDB` relied on the `ha_partition` handler, which creates a handler object for each partition. With native partitioning, a partitioned `InnoDB` table uses a single partition-aware handler object. This enhancement reduces the amount of memory required for partitioned `InnoDB` tables.
 
-    As of MySQL 5.7.9, **mysql\_upgrade** looks for and attempts to upgrade partitioned `InnoDB` tables that were created using the `ha_partition` handler. Also in MySQL 5.7.9 and later, you can upgrade such tables by name in the **mysql** client using `ALTER TABLE ... UPGRADE PARTITIONING`.
+    As of MySQL 5.7.9, **mysql_upgrade** looks for and attempts to upgrade partitioned `InnoDB` tables that were created using the `ha_partition` handler. Also in MySQL 5.7.9 and later, you can upgrade such tables by name in the **mysql** client using `ALTER TABLE ... UPGRADE PARTITIONING`.
 
   + `InnoDB` supports the creation of general tablespaces using `CREATE TABLESPACE` syntax.
 
@@ -200,7 +200,7 @@ The following features have been added to MySQL 5.7:
 
   + It is possible to provide hints to the optimizer within individual SQL statements, which enables finer control over statement execution plans than can be achieved using the `optimizer_switch` system variable. Hints are also permitted in statements used with `EXPLAIN`, enabling you to see how hints affect execution plans. For more information, see Section 8.9.3, “Optimizer Hints”.
 
-  + **prefer\_ordering\_index flag.** By default, MySQL attempts to use an ordered index for any `ORDER BY` or `GROUP BY` query that has a `LIMIT` clause, whenever the optimizer determines that this would result in faster execution. Because it is possible in some cases that choosing a different optimization for such queries actually performs better, it is possible as of MySQL 5.7.33 to disable this optimization by setting the `prefer_ordering_index` flag to `off`.
+  + **prefer_ordering_index flag.** By default, MySQL attempts to use an ordered index for any `ORDER BY` or `GROUP BY` query that has a `LIMIT` clause, whenever the optimizer determines that this would result in faster execution. Because it is possible in some cases that choosing a different optimization for such queries actually performs better, it is possible as of MySQL 5.7.33 to disable this optimization by setting the `prefer_ordering_index` flag to `off`.
 
     The default value for this flag is `on`.
 
@@ -210,7 +210,7 @@ The following features have been added to MySQL 5.7:
 
 * **Logging.** These logging enhancements were added:
 
-  + Previously, on Unix and Unix-like systems, MySQL support for sending the server error log to `syslog` was implemented by having **mysqld\_safe** capture server error output and pass it to `syslog`. The server now includes native `syslog` support, which has been extended to include Windows. For more information about sending server error output to `syslog`, see Section 5.4.2, “The Error Log”.
+  + Previously, on Unix and Unix-like systems, MySQL support for sending the server error log to `syslog` was implemented by having **mysqld_safe** capture server error output and pass it to `syslog`. The server now includes native `syslog` support, which has been extended to include Windows. For more information about sending server error output to `syslog`, see Section 5.4.2, “The Error Log”.
 
   + The **mysql** client now has a `--syslog` option that causes interactive statements to be sent to the system `syslog` facility. Logging is suppressed for statements that match the default “ignore” pattern list (`"*IDENTIFIED*:*PASSWORD*"`), as well as statements that match any patterns specified using the `--histignore` option. See Section 4.5.1.3, “mysql Client Logging”.
 
@@ -363,21 +363,21 @@ For applications that use features deprecated in MySQL 5.7 that have been remove
 * `PROCEDURE ANALYSE()` syntax is deprecated.
 * Comment stripping by the **mysql** client and the options to control it (`--skip-comments`, `--comments`) are deprecated.
 
-* **mysqld\_safe** support for `syslog` output is deprecated. Use the native server `syslog` support used instead. See Section 5.4.2, “The Error Log”.
+* **mysqld_safe** support for `syslog` output is deprecated. Use the native server `syslog` support used instead. See Section 5.4.2, “The Error Log”.
 
 * Conversion of pre-MySQL 5.1 database names containing special characters to 5.1 format with the addition of a `#mysql50#` prefix is deprecated. Because of this, the `--fix-db-names` and `--fix-table-names` options for **mysqlcheck** and the `UPGRADE DATA DIRECTORY NAME` clause for the `ALTER DATABASE` statement are also deprecated.
 
   Upgrades are supported only from one release series to another (for example, 5.0 to 5.1, or 5.1 to 5.5), so there should be little remaining need for conversion of older 5.0 database names to current versions of MySQL. As a workaround, upgrade a MySQL 5.0 installation to MySQL 5.1 before upgrading to a more recent release.
 
-* **mysql\_install\_db** functionality has been integrated into the MySQL server, **mysqld**. To use this capability to initialize a MySQL installation, if you previously invoked **mysql\_install\_db** manually, invoke **mysqld** with the `--initialize` or `--initialize-insecure` option, depending on whether you want the server to generate a random password for the initial `'root'@'localhost'` account.
+* **mysql_install_db** functionality has been integrated into the MySQL server, **mysqld**. To use this capability to initialize a MySQL installation, if you previously invoked **mysql_install_db** manually, invoke **mysqld** with the `--initialize` or `--initialize-insecure` option, depending on whether you want the server to generate a random password for the initial `'root'@'localhost'` account.
 
-  **mysql\_install\_db** is now deprecated, as is the special `--bootstrap` option that **mysql\_install\_db** passes to **mysqld**.
+  **mysql_install_db** is now deprecated, as is the special `--bootstrap` option that **mysql_install_db** passes to **mysqld**.
 
-* The **mysql\_plugin** utility is deprecated. Alternatives include loading plugins at server startup using the `--plugin-load` or `--plugin-load-add` option, or at runtime using the `INSTALL PLUGIN` statement.
+* The **mysql_plugin** utility is deprecated. Alternatives include loading plugins at server startup using the `--plugin-load` or `--plugin-load-add` option, or at runtime using the `INSTALL PLUGIN` statement.
 
 * The **resolveip** utility is deprecated. **nslookup**, **host**, or **dig** can be used instead.
 
-* The **resolve\_stack\_dump** utility is deprecated. Stack traces from official MySQL builds are always symbolized, so there is no need to use **resolve\_stack\_dump**.
+* The **resolve_stack_dump** utility is deprecated. Stack traces from official MySQL builds are always symbolized, so there is no need to use **resolve_stack_dump**.
 
 * The `mysql_kill()`, `mysql_list_fields()`, `mysql_list_processes()`, and `mysql_refresh()` C API functions are deprecated. The same is true of the corresponding `COM_PROCESS_KILL`, `COM_FIELD_LIST`, `COM_PROCESS_INFO`, and `COM_REFRESH` client/server protocol commands. Instead, use `mysql_query()` to execute a `KILL`, `SHOW COLUMNS`, `SHOW PROCESSLIST`, or `FLUSH` statement, respectively.
 
@@ -385,7 +385,7 @@ For applications that use features deprecated in MySQL 5.7 that have been remove
 
 * The `libmysqld` embedded server library is deprecated as of MySQL 5.7.19. These are also deprecated:
 
-  + The **mysql\_config** `--libmysqld-libs`, `--embedded-libs`, and `--embedded` options
+  + The **mysql_config** `--libmysqld-libs`, `--embedded-libs`, and `--embedded` options
 
   + The **CMake** `WITH_EMBEDDED_SERVER`, `WITH_EMBEDDED_SHARED_LIBRARY`, and `INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR` options
 
@@ -393,7 +393,7 @@ For applications that use features deprecated in MySQL 5.7 that have been remove
 
   + The **mysqltest** `--embedded-server`, `--server-arg`, and `--server-file` options
 
-  + The **mysqltest\_embedded** and **mysql\_client\_test\_embedded** test programs
+  + The **mysqltest_embedded** and **mysql_client_test_embedded** test programs
 
   Because `libmysqld` uses an API comparable to that of `libmysqlclient`, the migration path away from `libmysqld` is straightforward:
 
@@ -403,7 +403,7 @@ For applications that use features deprecated in MySQL 5.7 that have been remove
 
   3. Modify application code to connect to the standalone MySQL server.
 
-  4. Modify build scripts to use `libmysqlclient` rather than `libmysqld`. For example, if you use **mysql\_config**, invoke it with the `--libs` option rather than `--libmysqld-libs`.
+  4. Modify build scripts to use `libmysqlclient` rather than `libmysqld`. For example, if you use **mysql_config**, invoke it with the `--libs` option rather than `--libmysqld-libs`.
 
 * The **replace** utility is deprecated.
 * Support for DTrace is deprecated.
@@ -413,7 +413,7 @@ For applications that use features deprecated in MySQL 5.7 that have been remove
 
 * Support for `TABLESPACE = innodb_file_per_table` and `TABLESPACE = innodb_temporary` clauses with `CREATE TEMPORARY TABLE` is deprecated as of MySQL 5.7.24.
 
-* The `--ndb` **perror** option is deprecated. Use the **ndb\_perror** utility instead.
+* The `--ndb` **perror** option is deprecated. Use the **ndb_perror** utility instead.
 
 * The `myisam_repair_threads` system variable `myisam_repair_threads` are deprecated as of MySQL 5.7.38; expect support for both to be removed in a future release of MySQL.
 
@@ -427,7 +427,7 @@ For MySQL 5.6 applications that use features removed in MySQL 5.7, statements ma
 
 * Support for passwords that use the older pre-4.1 password hashing format is removed, which involves the following changes. Applications that use any feature no longer supported must be modified.
 
-  + The `mysql_old_password` authentication plugin is removed. Accounts that use this plugin are disabled at startup and the server writes an “unknown plugin” message to the error log. For instructions on upgrading accounts that use this plugin, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql\_old\_password Plugin”.
+  + The `mysql_old_password` authentication plugin is removed. Accounts that use this plugin are disabled at startup and the server writes an “unknown plugin” message to the error log. For instructions on upgrading accounts that use this plugin, see Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”.
 
   + The `--secure-auth` option to the server and client programs is the default, but is now a no-op. It is deprecated; expect it to be removed in a future MySQL release.
 
@@ -439,7 +439,7 @@ For MySQL 5.6 applications that use features removed in MySQL 5.7, statements ma
 
   + The `OLD_PASSWORD()` function is removed.
 
-* In MySQL 5.6.6, the 2-digit `YEAR(2)` data type was deprecated. Support for `YEAR(2)` is now removed. Once you upgrade to MySQL 5.7.5 or higher, any remaining 2-digit `YEAR(2)` columns must be converted to 4-digit `YEAR` columns to become usable again. For conversion strategies, see Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR” Limitations and Migrating to 4-Digit YEAR"). For example, run **mysql\_upgrade** after upgrading.
+* In MySQL 5.6.6, the 2-digit `YEAR(2)` data type was deprecated. Support for `YEAR(2)` is now removed. Once you upgrade to MySQL 5.7.5 or higher, any remaining 2-digit `YEAR(2)` columns must be converted to 4-digit `YEAR` columns to become usable again. For conversion strategies, see Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR” Limitations and Migrating to 4-Digit YEAR"). For example, run **mysql_upgrade** after upgrading.
 
 * The `innodb_mirrored_log_groups` system variable. The only supported value was 1, so it had no purpose.
 
@@ -462,7 +462,7 @@ For MySQL 5.6 applications that use features removed in MySQL 5.7, statements ma
 
 * Database symlinking on Windows using `.sym` files has been removed because it is redundant with native symlink support available using **mklink**. Any `.sym` file symbolic links are now ignored and should be replaced with symlinks created using **mklink**. See Section 8.12.3.3, “Using Symbolic Links for Databases on Windows”.
 
-* The unused `--basedir`, `--datadir`, and `--tmpdir` options for **mysql\_upgrade** were removed.
+* The unused `--basedir`, `--datadir`, and `--tmpdir` options for **mysql_upgrade** were removed.
 
 * Previously, program options could be specified in full or as any unambiguous prefix. For example, the `--compress` option could be given to **mysqldump** as `--compr`, but not as `--comp` because the latter is ambiguous. Option prefixes are no longer supported; only full options are accepted. This is because prefixes can cause problems when new options are implemented for programs and a prefix that is currently unambiguous might become ambiguous in the future. Some implications of this change:
 
@@ -478,7 +478,7 @@ For MySQL 5.6 applications that use features removed in MySQL 5.7, statements ma
 
 * The `innodb_use_sys_malloc` and `innodb_additional_mem_pool_size` system variables, deprecated in MySQL 5.6.3, were removed.
 
-* The **msql2mysql**, **mysql\_convert\_table\_format**, **mysql\_find\_rows**, **mysql\_fix\_extensions**, **mysql\_setpermission**, **mysql\_waitpid**, **mysql\_zap**, **mysqlaccess**, and **mysqlbug** utilities.
+* The **msql2mysql**, **mysql_convert_table_format**, **mysql_find_rows**, **mysql_fix_extensions**, **mysql_setpermission**, **mysql_waitpid**, **mysql_zap**, **mysqlaccess**, and **mysqlbug** utilities.
 
 * The **mysqlhotcopy** utility. Alternatives include **mysqldump** and MySQL Enterprise Backup.
 

@@ -1,4 +1,4 @@
-### 28.3.11 A Tabela `INFORMATION\_SCHEMA\_COLUMN\_STATISTICS`
+### 28.3.11 A Tabela `INFORMATION_SCHEMA_COLUMN_STATISTICS`
 
 A tabela `COLUMN_STATISTICS` fornece acesso às estatísticas de histograma para os valores das colunas.
 

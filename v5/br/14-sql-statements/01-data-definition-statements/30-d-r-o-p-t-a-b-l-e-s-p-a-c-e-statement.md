@@ -11,7 +11,7 @@ Essa declaração exclui um espaço de tabelas que foi criado anteriormente usan
 
 Para um espaço de tabelas `InnoDB`, todas as tabelas devem ser excluídas do espaço de tabelas antes de uma operação `DROP TABLESPACE`. Se o espaço de tabelas não estiver vazio, o `DROP TABLESPACE` retornará um erro.
 
-Assim como acontece com o espaço de tabela do sistema `InnoDB`, o truncamento ou a remoção de tabelas `InnoDB` armazenadas em um espaço de tabela geral cria espaço livre no arquivo de dados do `.ibd` (glossary.html#glos\_ibd\_file), que só pode ser usado para novos dados `InnoDB`. Espaço não é liberado de volta ao sistema operacional por operações como as que são feitas em espaços de tabela por arquivo.
+Assim como acontece com o espaço de tabela do sistema `InnoDB`, o truncamento ou a remoção de tabelas `InnoDB` armazenadas em um espaço de tabela geral cria espaço livre no arquivo de dados do `.ibd` (glossary.html#glos_ibd_file), que só pode ser usado para novos dados `InnoDB`. Espaço não é liberado de volta ao sistema operacional por operações como as que são feitas em espaços de tabela por arquivo.
 
 Um espaço de tabela `NDB` que será excluído não deve conter nenhum arquivo de dados; em outras palavras, antes de poder excluir um espaço de tabela `NDB`, você deve primeiro excluir cada um de seus arquivos de dados usando `ALTER TABLESPACE ... DROP DATAFILE`.
 

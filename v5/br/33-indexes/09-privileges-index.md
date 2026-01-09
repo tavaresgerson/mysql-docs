@@ -4,7 +4,7 @@
 
 ### A
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### TODOS
 
@@ -54,15 +54,15 @@
 
 ### B
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
-### BINLOG\_ADMIN
+### BINLOG_ADMIN
 
 [Seção 13.4.1.1, "Declaração de PURGE BINARY LOGS"](purge-binary-logs.html)
 
 ### C
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### Crie
 
@@ -144,7 +144,7 @@
 
 ### D
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### DELETA
 
@@ -174,7 +174,7 @@
 
 [Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
 
-[Seção 25.12.2.4, “Tabela setup\_objects”](performance-schema-setup-objects-table.html)
+[Seção 25.12.2.4, “Tabela setup_objects”](performance-schema-setup-objects-table.html)
 
 [Seção 13.7.3.4, "Declaração de DESINSTALAR PLUGIN"](uninstall-plugin.html)
 
@@ -210,13 +210,13 @@
 
 [Seção 13.1.33, "Instrução RENAME TABLE"](rename-table.html)
 
-[Seção 25.12.16.1, “A tabela host\_cache”](performance-schema-host-cache-table.html)
+[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
 
 [Seção 13.1.34, "Instrução TRUNCATE TABLE"](truncate-table.html)
 
 ### E
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### Evento
 
@@ -268,7 +268,7 @@
 
 ### F
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### ARQUIVO
 
@@ -304,7 +304,7 @@
 
 ### G
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### CONCEDA A OPÇÃO
 
@@ -314,21 +314,21 @@
 
 [Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
 
-[Seção 24.3.6, “A tabela INFORMATION\_SCHEMA COLUMN\_PRIVILEGES”](information-schema-column-privileges-table.html)
+[Seção 24.3.6, “A tabela INFORMATION_SCHEMA COLUMN_PRIVILEGES”](information-schema-column-privileges-table.html)
 
-[Seção 24.3.23, “A tabela INFORMATION\_SCHEMA SCHEMA\_PRIVILEGES”](information-schema-schema-privileges-table.html)
+[Seção 24.3.23, “A tabela INFORMATION_SCHEMA SCHEMA_PRIVILEGES”](information-schema-schema-privileges-table.html)
 
-[Seção 24.3.28, “Tabela de PRIVILEGIOS da Tabela INFORMATION\_SCHEMA”](information-schema-table-privileges-table.html)
+[Seção 24.3.28, “Tabela de PRIVILEGIOS da Tabela INFORMATION_SCHEMA”](information-schema-table-privileges-table.html)
 
-[Seção 24.3.30, “A Tabela INFORMATION\_SCHEMA USER\_PRIVILEGES”](information-schema-user-privileges-table.html)
+[Seção 24.3.30, “A Tabela INFORMATION_SCHEMA USER_PRIVILEGES”](information-schema-user-privileges-table.html)
 
-### GRUPO\_REPLICAÇÃO\_ADMIN
+### GRUPO_REPLICAÇÃO_ADMIN
 
-[Seção 13.4.3.2, "Instrução STOP GROUP\_REPLICATION"](stop-group-replication.html)
+[Seção 13.4.3.2, "Instrução STOP GROUP_REPLICATION"](stop-group-replication.html)
 
 ### Eu
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### ÍNDICE
 
@@ -392,11 +392,11 @@
 
 [Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
 
-[Seção 25.12.2.4, “Tabela setup\_objects”](performance-schema-setup-objects-table.html)
+[Seção 25.12.2.4, “Tabela setup_objects”](performance-schema-setup-objects-table.html)
 
 ### L
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### LÂMINAR TÁBUAS
 
@@ -414,15 +414,15 @@
 
 ### N
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
-### NDB\_STORED\_USER
+### NDB_STORED_USER
 
 [Seção 21.5.24.1.1, “Restauração de um backup do NDB para uma versão anterior do NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-previous-version)
 
 ### P
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### PROCESSO
 
@@ -458,63 +458,63 @@
 
 [Seção 13.7.5.29, "Declaração SHOW PROCESSLIST"](show-processlist.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
-[Seção 24.4.2, “A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE”](information-schema-innodb-buffer-page-table.html)
+[Seção 24.4.2, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE”](information-schema-innodb-buffer-page-table.html)
 
-[Seção 24.4.3, “A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU”](information-schema-innodb-buffer-page-lru-table.html)
+[Seção 24.4.3, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU”](information-schema-innodb-buffer-page-lru-table.html)
 
-[Seção 24.4.4, “A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS”](information-schema-innodb-buffer-pool-stats-table.html)
+[Seção 24.4.4, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS”](information-schema-innodb-buffer-pool-stats-table.html)
 
-[Seção 24.4.5, “As tabelas INFORMATION\_SCHEMA INNODB\_CMP e INNODB\_CMP\_RESET”](information-schema-innodb-cmp-table.html)
+[Seção 24.4.5, “As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET”](information-schema-innodb-cmp-table.html)
 
-[Seção 24.4.7, “As tabelas INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET”](information-schema-innodb-cmp-per-index-table.html)
+[Seção 24.4.7, “As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET”](information-schema-innodb-cmp-per-index-table.html)
 
-[Seção 24.4.6, “Tabelas INFORMATION\_SCHEMA INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET”](information-schema-innodb-cmpmem-table.html)
+[Seção 24.4.6, “Tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET”](information-schema-innodb-cmpmem-table.html)
 
-[Seção 24.4.8, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
+[Seção 24.4.8, “A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
 
-[Seção 24.4.9, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG”](information-schema-innodb-ft-config-table.html)
+[Seção 24.4.9, “A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG”](information-schema-innodb-ft-config-table.html)
 
-[Seção 24.4.10, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
+[Seção 24.4.10, “A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
 
-[Seção 24.4.11, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED”](information-schema-innodb-ft-deleted-table.html)
+[Seção 24.4.11, “A tabela INFORMATION_SCHEMA INNODB_FT_DELETED”](information-schema-innodb-ft-deleted-table.html)
 
-[Seção 24.4.12, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE”](information-schema-innodb-ft-index-cache-table.html)
+[Seção 24.4.12, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”](information-schema-innodb-ft-index-cache-table.html)
 
-[Seção 24.4.13, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE”](information-schema-innodb-ft-index-table-table.html)
+[Seção 24.4.13, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”](information-schema-innodb-ft-index-table-table.html)
 
-[Seção 24.4.15, “A tabela INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS”](information-schema-innodb-lock-waits-table.html)
+[Seção 24.4.15, “A tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS”](information-schema-innodb-lock-waits-table.html)
 
-[Seção 24.4.14, “A tabela INFORMATION\_SCHEMA INNODB\_LOCKS”](information-schema-innodb-locks-table.html)
+[Seção 24.4.14, “A tabela INFORMATION_SCHEMA INNODB_LOCKS”](information-schema-innodb-locks-table.html)
 
-[Seção 24.4.16, “A tabela INFORMATION\_SCHEMA INNODB\_METRICS”](information-schema-innodb-metrics-table.html)
+[Seção 24.4.16, “A tabela INFORMATION_SCHEMA INNODB_METRICS”](information-schema-innodb-metrics-table.html)
 
-[Seção 24.4.17, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_COLUMNS”](information-schema-innodb-sys-columns-table.html)
+[Seção 24.4.17, “A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS”](information-schema-innodb-sys-columns-table.html)
 
-[Seção 24.4.18, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_DATAFILES”](information-schema-innodb-sys-datafiles-table.html)
+[Seção 24.4.18, “A tabela INFORMATION_SCHEMA INNODB_SYS_DATAFILES”](information-schema-innodb-sys-datafiles-table.html)
 
-[Seção 24.4.19, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FIELDS”](information-schema-innodb-sys-fields-table.html)
+[Seção 24.4.19, “A tabela INFORMATION_SCHEMA INNODB_SYS_FIELDS”](information-schema-innodb-sys-fields-table.html)
 
-[Seção 24.4.20, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN”](information-schema-innodb-sys-foreign-table.html)
+[Seção 24.4.20, “A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN”](information-schema-innodb-sys-foreign-table.html)
 
-[Seção 24.4.21, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN\_COLS”](information-schema-innodb-sys-foreign-cols-table.html)
+[Seção 24.4.21, “A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS”](information-schema-innodb-sys-foreign-cols-table.html)
 
-[Seção 24.4.22, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_INDEXES”](information-schema-innodb-sys-indexes-table.html)
+[Seção 24.4.22, “A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES”](information-schema-innodb-sys-indexes-table.html)
 
-[Seção 24.4.23, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
 
-[Seção 24.4.24, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLESPACES”](information-schema-innodb-sys-tablespaces-table.html)
+[Seção 24.4.24, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLESPACES”](information-schema-innodb-sys-tablespaces-table.html)
 
-[Seção 24.4.25, “A visão INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
 
-[Seção 24.4.26, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL”](information-schema-innodb-sys-virtual-table.html)
+[Seção 24.4.26, “A tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL”](information-schema-innodb-sys-virtual-table.html)
 
-[Seção 24.4.27, “A tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO”](information-schema-innodb-temp-table-info-table.html)
+[Seção 24.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”](information-schema-innodb-temp-table-info-table.html)
 
-[Seção 24.4.28, “A tabela INFORMATION\_SCHEMA INNODB\_TRX”](information-schema-innodb-trx-table.html)
+[Seção 24.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”](information-schema-innodb-trx-table.html)
 
-[Seção 24.3.18, “A tabela INFORMATION\_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
+[Seção 24.3.18, “A tabela INFORMATION_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
 
 [Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
 
@@ -538,7 +538,7 @@
 
 [Seção 2.9.4, “Segurança da Conta Inicial do MySQL”](default-privileges.html)
 
-[Seção 25.12.16.1, “A tabela host\_cache”](performance-schema-host-cache-table.html)
+[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
 
 [Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
 
@@ -548,7 +548,7 @@
 
 ### R
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### REFERÊNCIAS
 
@@ -624,7 +624,7 @@
 
 ### S
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### SELECIONE
 
@@ -728,7 +728,7 @@
 
 [Seção 13.7.5.13, "Mostrar declaração CREATE VIEW"](show-create-view.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 ### FECHAR
 
@@ -738,7 +738,7 @@
 
 [Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
 
-[Seção 4.3.4, “mysqld\_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
+[Seção 4.3.4, “mysqld_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
 
 [Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
 
@@ -852,13 +852,13 @@
 
 [Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
 
-[Seção 13.4.3.1, "Instrução START GROUP\_REPLICATION"](start-group-replication.html)
+[Seção 13.4.3.1, "Instrução START GROUP_REPLICATION"](start-group-replication.html)
 
 [Seção 13.4.2.5, "Declaração START SLAVE"](start-slave.html)
 
 [Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
 
-[Seção 13.4.3.2, "Instrução STOP GROUP\_REPLICATION"](stop-group-replication.html)
+[Seção 13.4.3.2, "Instrução STOP GROUP_REPLICATION"](stop-group-replication.html)
 
 [Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
 
@@ -880,13 +880,13 @@
 
 [Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
 
-### SISTEMA\_USER
+### SISTEMA_USER
 
 [Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
 
 ### T
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### TRIGGER
 
@@ -906,11 +906,11 @@
 
 [Seção 13.7.5.38, "Declaração de TRIGGERS SHOW"](show-triggers.html)
 
-[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION\_SCHEMA”](information-schema-triggers-table.html)
+[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION_SCHEMA”](information-schema-triggers-table.html)
 
 ### U
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
 ### ATUALIZAÇÃO
 
@@ -950,7 +950,7 @@
 
 [Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
 
-[Seção 25.12.2.4, “Tabela setup\_objects”](performance-schema-setup-objects-table.html)
+[Seção 25.12.2.4, “Tabela setup_objects”](performance-schema-setup-objects-table.html)
 
 [Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
 
@@ -964,8 +964,8 @@
 
 ### X
 
-\[[index superior](dynindex-priv.html#priv-index-superior)]
+[[index superior](dynindex-priv.html#priv-index-superior)]
 
-### XA\_RECOVER\_ADMIN
+### XA_RECOVER_ADMIN
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)

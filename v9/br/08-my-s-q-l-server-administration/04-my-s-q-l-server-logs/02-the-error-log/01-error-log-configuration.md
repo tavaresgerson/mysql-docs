@@ -48,7 +48,7 @@ A combinação de `log_filter_internal` e `log_sink_internal` implementa o compo
 
 * O destino da saída é determinado pela opção `--log-error` (e, no Windows, `--pid-file` e `--console`). Essas opções determinam se os mensagens de erro devem ser escritas na console ou em um arquivo e, se em um arquivo, o nome do arquivo de log de erros. Veja a Seção 7.4.2.2, “Configuração de Destino do Log de Erros Padrão”.
 
-* As variáveis de sistema `log_error_verbosity` e `log_error_suppression_list` afetam quais tipos de eventos de log o `log_filter_internal` permite ou suprime. Veja a Seção 7.4.2.5, “Filtragem Prioritária do Log de Erros (log\_filter\_internal)”).
+* As variáveis de sistema `log_error_verbosity` e `log_error_suppression_list` afetam quais tipos de eventos de log o `log_filter_internal` permite ou suprime. Veja a Seção 7.4.2.5, “Filtragem Prioritária do Log de Erros (log_filter_internal)”).
 
 Ao configurar `log_error_services`, esteja ciente das seguintes características:
 
@@ -225,7 +225,7 @@ Se você precisar reverter de uma configuração implícita para uma explícita,
 
 ##### Solução de Problemas de Configuração
 
-Os componentes de log listados no valor `log_error_services` ao iniciar são carregados implicitamente no início da sequência de inicialização do MySQL Server. Se o componente de log foi carregado anteriormente usando `INSTALL COMPONENT`, o servidor tenta carregar o componente novamente mais tarde na sequência de inicialização, o que produz o aviso Não é possível carregar o componente a partir de URN especificado: 'file://component\_*component_name*'
+Os componentes de log listados no valor `log_error_services` ao iniciar são carregados implicitamente no início da sequência de inicialização do MySQL Server. Se o componente de log foi carregado anteriormente usando `INSTALL COMPONENT`, o servidor tenta carregar o componente novamente mais tarde na sequência de inicialização, o que produz o aviso Não é possível carregar o componente a partir de URN especificado: 'file://component_*component_name*'
 
 Você pode verificar esse aviso no log de erro ou consultando a tabela `error_log` do Schema de Desempenho usando a seguinte consulta:
 
@@ -262,4 +262,4 @@ UNINSTALL COMPONENT 'file://component_log_sink_json';
 
 ##### Suporte ao Esquema de Desempenho do Canal de Registro
 
-Se os componentes habilitados incluem um canal que fornece suporte ao Schema de Desempenho, os eventos escritos no log de erros também são escritos na tabela `error\_log` do Schema de Desempenho. Isso permite examinar o conteúdo do log de erros usando consultas SQL. Atualmente, os canais de registro `log_sink_internal` no formato tradicional e `log_sink_json` no formato JSON suportam essa capacidade. Veja a Seção 29.12.22.3, “A tabela error\_log”.
+Se os componentes habilitados incluem um canal que fornece suporte ao Schema de Desempenho, os eventos escritos no log de erros também são escritos na tabela `error_log` do Schema de Desempenho. Isso permite examinar o conteúdo do log de erros usando consultas SQL. Atualmente, os canais de registro `log_sink_internal` no formato tradicional e `log_sink_json` no formato JSON suportam essa capacidade. Veja a Seção 29.12.22.3, “A tabela error_log”.

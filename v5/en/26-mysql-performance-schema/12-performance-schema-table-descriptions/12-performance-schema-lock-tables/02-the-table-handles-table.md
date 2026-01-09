@@ -1,4 +1,4 @@
-#### 25.12.12.2 The table\_handles Table
+#### 25.12.12.2 The table_handles Table
 
 The Performance Schema exposes table lock information through the [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") table to show the table locks currently in effect for each opened table handle. [`table_handles`](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table") reports what is recorded by the table lock instrumentation. This information shows which table handles the server has open, how they are locked, and by which sessions.
 

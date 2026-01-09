@@ -1,4 +1,4 @@
-#### 25.12.2.1 A tabela setup\_actors
+#### 25.12.2.1 A tabela setup_actors
 
 A tabela `setup_actors` contém informações que determinam se o monitoramento e o registro de eventos históricos para novos threads do servidor em primeiro plano (threads associados a conexões de cliente) devem ser habilitados. Essa tabela tem um tamanho máximo de 100 linhas por padrão. Para alterar o tamanho da tabela, modifique a variável de sistema `performance_schema_setup_actors_size` no momento da inicialização do servidor.
 

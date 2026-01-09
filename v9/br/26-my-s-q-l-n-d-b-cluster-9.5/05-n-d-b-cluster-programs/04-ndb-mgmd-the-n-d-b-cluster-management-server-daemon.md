@@ -1,8 +1,8 @@
-### 25.5.4 ndb\_mgmd — O Daemon do Servidor de Gerenciamento de Clúster NDB
+### 25.5.4 ndb_mgmd — O Daemon do Servidor de Gerenciamento de Clúster NDB
 
 O servidor de gerenciamento é o processo que lê o arquivo de configuração do clúster e distribui essas informações para todos os nós do clúster que solicitarem. Ele também mantém um registro das atividades do clúster. Os clientes de gerenciamento podem se conectar ao servidor de gerenciamento e verificar o status do clúster.
 
-Todas as opções que podem ser usadas com **ndb\_mgmd** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+Todas as opções que podem ser usadas com **ndb_mgmd** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 * `--bind-address=host`
 
@@ -26,7 +26,7 @@ Suprar o sufixo padrão do grupo de grupos de configuração quando ler seções
 
   <table frame="box" rules="all" summary="Propriedades para config-cache"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-  Esta opção, cujo valor padrão é `1` (ou `TRUE`, ou `ON`), pode ser usada para desativar o cache de configuração do servidor de gerenciamento, para que ele leia sua configuração do `config.ini` toda vez que for iniciado (veja a Seção 25.4.3, “Arquivos de configuração de clusters NDB”). Você pode fazer isso iniciando o processo **ndb\_mgmd** com qualquer uma das seguintes opções:
+  Esta opção, cujo valor padrão é `1` (ou `TRUE`, ou `ON`), pode ser usada para desativar o cache de configuração do servidor de gerenciamento, para que ele leia sua configuração do `config.ini` toda vez que for iniciado (veja a Seção 25.4.3, “Arquivos de configuração de clusters NDB”). Você pode fazer isso iniciando o processo **ndb_mgmd** com qualquer uma das seguintes opções:
 
   + `--config-cache=0`
   + `--config-cache=FALSE`
@@ -77,7 +77,7 @@ Os arquivos de cache de configuração são normalmente criados em um diretório
 
   O mesmo vale para a string de conexão usada com quaisquer processos **mysqld** que você deseje iniciar como nós SQL do NDB Cluster conectados a este clúster. Consulte a Seção 25.4.3.3, “Strings de conexão do NDB Cluster”, para obter mais informações.
 
-  Quando usado com **ndb\_mgmd**, esta opção afeta o comportamento do nó de gerenciamento em relação a outros nós de gerenciamento. Não confunda com a opção `--nowait-nodes` usada com **ndbd** ou **ndbmtd**") para permitir que um clúster seja iniciado com menos do que seu complemento completo de nós de dados; quando usado com nós de dados, esta opção afeta seu comportamento apenas em relação a outros nós de dados.
+  Quando usado com **ndb_mgmd**, esta opção afeta o comportamento do nó de gerenciamento em relação a outros nós de gerenciamento. Não confunda com a opção `--nowait-nodes` usada com **ndbd** ou **ndbmtd**") para permitir que um clúster seja iniciado com menos do que seu complemento completo de nós de dados; quando usado com nós de dados, esta opção afeta seu comportamento apenas em relação a outros nós de dados.
 
   Vários IDs de nó de gerenciamento podem ser passados a esta opção como uma lista separada por vírgula. Cada ID de nó deve ser no mínimo 1 e no máximo 255. Na prática, é bastante raro usar mais de dois servidores de gerenciamento para o mesmo NDB Cluster (ou ter qualquer necessidade de fazê-lo); na maioria dos casos, você precisa passar a esta opção apenas o ID de nó único para o servidor de gerenciamento que você não deseja usar ao iniciar o clúster.
 
@@ -103,7 +103,7 @@ Os arquivos de cache de configuração são normalmente criados em um diretório
     <tr><th>Valor Padrão</th> <td><code>TRUE</code></td> </tr>
   </table>
 
-  Mostra informações extensas sobre a configuração do cluster. Com esta opção na linha de comando, o processo **ndb\_mgmd** imprime informações sobre a configuração do cluster, incluindo uma extensa lista das seções de configuração do cluster, bem como os parâmetros e seus valores. Normalmente usado junto com a opção `--config-file` (`-f`).
+  Mostra informações extensas sobre a configuração do cluster. Com esta opção na linha de comando, o processo **ndb_mgmd** imprime informações sobre a configuração do cluster, incluindo uma extensa lista das seções de configuração do cluster, bem como os parâmetros e seus valores. Normalmente usado junto com a opção `--config-file` (`-f`).
 
 * `--reload`
 
@@ -147,9 +147,9 @@ Quando `--reload` é usado, o servidor de gerenciamento deve ser capaz de se com
 
 Não é estritamente necessário especificar uma string de conexão ao iniciar o servidor de gerenciamento. No entanto, se você estiver usando mais de um servidor de gerenciamento, uma string de conexão deve ser fornecida e cada nó no clúster deve especificar seu ID de nó explicitamente.
 
-Consulte a Seção 25.4.3.3, “Strings de conexão do clúster NDB”, para obter informações sobre o uso de strings de conexão. A Seção 25.5.4, “ndb\_mgmd — O daemon do servidor de gerenciamento do clúster NDB”, descreve outras opções para **ndb\_mgmd**.
+Consulte a Seção 25.4.3.3, “Strings de conexão do clúster NDB”, para obter informações sobre o uso de strings de conexão. A Seção 25.5.4, “ndb_mgmd — O daemon do servidor de gerenciamento do clúster NDB”, descreve outras opções para **ndb_mgmd**.
 
-Os seguintes arquivos são criados ou usados por **ndb\_mgmd** em seu diretório de início e são colocados no `DataDir` conforme especificado no arquivo de configuração `config.ini`. Na lista que segue, *`node_id`* é o identificador de nó único.
+Os seguintes arquivos são criados ou usados por **ndb_mgmd** em seu diretório de início e são colocados no `DataDir` conforme especificado no arquivo de configuração `config.ini`. Na lista que segue, *`node_id`* é o identificador de nó único.
 
 * `config.ini` é o arquivo de configuração para o clúster como um todo. Esse arquivo é criado pelo usuário e lido pelo servidor de gerenciamento. A seção 25.4, “Configuração do NDB Cluster”, discute como configurar esse arquivo.
 

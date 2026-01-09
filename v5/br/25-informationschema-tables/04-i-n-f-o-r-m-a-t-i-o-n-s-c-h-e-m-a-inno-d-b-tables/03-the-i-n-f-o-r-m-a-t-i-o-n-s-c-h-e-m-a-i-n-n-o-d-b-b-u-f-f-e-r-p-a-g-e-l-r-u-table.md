@@ -1,10 +1,10 @@
-### 24.4.3 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU
+### 24.4.3 A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU
 
 A tabela [`INNODB_BUFFER_PAGE_LRU`](https://pt.wikipedia.org/wiki/Tabela_INNODB_Buffer_Page_LRU) fornece informações sobre as páginas no `pool de buffer` do [InnoDB](https://pt.wikipedia.org/wiki/Glossary:glossary_buffer_pool); em particular, como elas são ordenadas na lista LRU que determina quais páginas devem ser [expulsadas](https://pt.wikipedia.org/wiki/Glossary:glos_eviction) do pool de buffer quando ele fica cheio.
 
 A tabela [`INNODB_BUFFER_PAGE_LRU`](https://pt.wikipedia.org/wiki/Tabela_INNODB_BUFFER_PAGE_LRU) tem as mesmas colunas que a tabela [`INNODB_BUFFER_PAGE`](https://pt.wikipedia.org/wiki/Tabela_INNODB_BUFFER_PAGE), exceto que a tabela [`INNODB_BUFFER_PAGE_LRU`](https://pt.wikipedia.org/wiki/Tabela_INNODB_BUFFER_PAGE_LRU) tem as colunas `LRU_POSITION` e `COMPRESSED` em vez das colunas `BLOCK_ID` e `PAGE_STATE`.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.5, “Tabelas do Banco de Armazenamento do InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.5, “Tabelas do Banco de Armazenamento do InnoDB INFORMATION_SCHEMA”.
 
 Aviso
 
@@ -32,7 +32,7 @@ A tabela [`INNODB_BUFFER_PAGE_LRU`](https://pt.wikipedia.org/wiki/Tabela_INNODB_
 
   O tipo de página. A tabela a seguir mostra os valores permitidos.
 
-  **Tabela 24.6. Valores de INNODB\_BUFFER\_PAGE\_LRU.PAGE\_TYPE**
+  **Tabela 24.6. Valores de INNODB_BUFFER_PAGE_LRU.PAGE_TYPE**
 
   <table summary="Mapeamento para a interpretação dos valores de INNODB_BUFFER_PAGE_LRU.PAGE_TYPE."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Tipo de página</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>INODE</code>]</td> <td>Página recém-atribuída</td> </tr><tr> <td>[[PH_HTML_CODE_<code>INODE</code>]</td> <td>Página BLOB não compactada</td> </tr><tr> <td>[[PH_HTML_CODE_<code>SYSTEM</code>]</td> <td>Página de comp BLOB subsequente</td> </tr><tr> <td>[[PH_HTML_CODE_<code>TRX_SYSTEM</code>]</td> <td>Primeira página compactada BLOB</td> </tr><tr> <td>[[PH_HTML_CODE_<code>UNDO_LOG</code>]</td> <td>Página de descrição do alcance</td> </tr><tr> <td>[[PH_HTML_CODE_<code>UNKNOWN</code>]</td> <td>Cabeçalho de espaço de arquivo</td> </tr><tr> <td>[[<code>IBUF_BITMAP</code>]]</td> <td>Insira a bitmap de buffer</td> </tr><tr> <td>[[<code>IBUF_FREE_LIST</code>]]</td> <td>Insira a lista de buffers livres</td> </tr><tr> <td>[[<code>IBUF_INDEX</code>]]</td> <td>Insira o índice do buffer</td> </tr><tr> <td>[[<code>INDEX</code>]]</td> <td>nó de árvore B</td> </tr><tr> <td>[[<code>INODE</code>]]</td> <td>Nó do índice</td> </tr><tr> <td>[[<code>BLOB</code><code>INODE</code>]</td> <td>Índice R-tree</td> </tr><tr> <td>[[<code>SYSTEM</code>]]</td> <td>Página do sistema</td> </tr><tr> <td>[[<code>TRX_SYSTEM</code>]]</td> <td>Dados do sistema de transações</td> </tr><tr> <td>[[<code>UNDO_LOG</code>]]</td> <td>Desfazer página de log</td> </tr><tr> <td>[[<code>UNKNOWN</code>]]</td> <td>Desconhecido</td> </tr></tbody></table>
 

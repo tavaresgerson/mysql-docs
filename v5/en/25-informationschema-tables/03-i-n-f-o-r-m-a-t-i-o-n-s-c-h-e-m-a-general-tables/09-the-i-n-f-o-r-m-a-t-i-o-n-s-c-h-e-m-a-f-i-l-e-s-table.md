@@ -1,4 +1,4 @@
-### 24.3.9 The INFORMATION\_SCHEMA FILES Table
+### 24.3.9 The INFORMATION_SCHEMA FILES Table
 
 The [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table provides information about the files in which MySQL tablespace data is stored.
 
@@ -240,7 +240,7 @@ The following notes apply to `InnoDB` data files.
 
 #### NDB Notes
 
-* The `FILES` table provides information about Disk Data *files* only; you cannot use it for determining disk space allocation or availability for individual `NDB` tables. However, it is possible to see how much space is allocated for each [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table having data stored on disk—as well as how much remains available for storage of data on disk for that table—using [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables").
+* The `FILES` table provides information about Disk Data *files* only; you cannot use it for determining disk space allocation or availability for individual `NDB` tables. However, it is possible to see how much space is allocated for each [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table having data stored on disk—as well as how much remains available for storage of data on disk for that table—using [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables").
 
 * The `CREATION_TIME`, `LAST_UPDATE_TIME`, and `LAST_ACCESSED` values are as reported by the operating system, and are not supplied by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. Where no value is provided by the operating system, these columns display `NULL`.
 

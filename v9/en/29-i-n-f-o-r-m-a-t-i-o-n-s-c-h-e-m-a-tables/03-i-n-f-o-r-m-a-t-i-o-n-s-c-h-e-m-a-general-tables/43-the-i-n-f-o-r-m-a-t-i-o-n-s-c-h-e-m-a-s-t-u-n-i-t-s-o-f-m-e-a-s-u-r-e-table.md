@@ -1,4 +1,4 @@
-### 28.3.43 The INFORMATION\_SCHEMA ST\_UNITS\_OF\_MEASURE Table
+### 28.3.43 The INFORMATION_SCHEMA ST_UNITS_OF_MEASURE Table
 
 The `ST_UNITS_OF_MEASURE` table provides information about acceptable units for the `ST_Distance()` function.
 

@@ -1,16 +1,16 @@
 ### 29.12.12 Performance Schema NDB Cluster Tables
 
-29.12.12.1 The ndb\_sync\_pending\_objects Table
+29.12.12.1 The ndb_sync_pending_objects Table
 
-29.12.12.2 The ndb\_sync\_excluded\_objects Table
+29.12.12.2 The ndb_sync_excluded_objects Table
 
-29.12.12.3 The ndb\_replication\_applier\_status Table
+29.12.12.3 The ndb_replication_applier_status Table
 
 The following table shows all Performance Schema tables relating to the `NDBCLUSTER` storage engine.
 
 **Table 29.3 Performance Schema NDB Tables**
 
-<table frame="box" rules="all" summary="A reference that lists all Performance Schema tables relating to NDB Cluster."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="performance-schema-ndb-replication-applier-status-table.html" title="29.12.12.3 The ndb_replication_applier_status Table"><code class="literal">ndb_replication_applier_status</code></a></td> <td>NDB replication applier status information for each replication channel</td> </tr><tr><td><a class="link" href="performance-schema-ndb-sync-excluded-objects-table.html" title="29.12.12.2 The ndb_sync_excluded_objects Table"><code class="literal">ndb_sync_excluded_objects</code></a></td> <td>NDB objects which cannot be synchronized</td> </tr><tr><td><a class="link" href="performance-schema-ndb-sync-pending-objects-table.html" title="29.12.12.1 The ndb_sync_pending_objects Table"><code class="literal">ndb_sync_pending_objects</code></a></td> <td>NDB objects waiting for synchronization</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists all Performance Schema tables relating to NDB Cluster."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code class="literal">ndb_replication_applier_status</code></td> <td>NDB replication applier status information for each replication channel</td> </tr><tr><td><code class="literal">ndb_sync_excluded_objects</code></td> <td>NDB objects which cannot be synchronized</td> </tr><tr><td><code class="literal">ndb_sync_pending_objects</code></td> <td>NDB objects waiting for synchronization</td> </tr></tbody></table>
 
 Note
 
@@ -26,4 +26,4 @@ Information about the current state of automatic synchronization is exposed by a
 
 These tables are described in more detail in the next two sections.
 
-Historically, information about the state of the `NDB` replication applier was available only as a set of server status variables, which reflected the state of the default replication channel only. The `ndb_replication_applier_status` table provides this information for each active replication channel. See Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”, for a detailed description of this table and its columns.
+Historically, information about the state of the `NDB` replication applier was available only as a set of server status variables, which reflected the state of the default replication channel only. The `ndb_replication_applier_status` table provides this information for each active replication channel. See Section 29.12.12.3, “The ndb_replication_applier_status Table”, for a detailed description of this table and its columns.

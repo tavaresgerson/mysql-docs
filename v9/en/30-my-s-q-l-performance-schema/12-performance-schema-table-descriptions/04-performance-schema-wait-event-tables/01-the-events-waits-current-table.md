@@ -1,4 +1,4 @@
-#### 29.12.4.1 The events\_waits\_current Table
+#### 29.12.4.1 The events_waits_current Table
 
 The `events_waits_current` table contains current wait events. The table stores one row per thread showing the current status of the thread's most recent monitored wait event, so there is no system variable for configuring the table size.
 

@@ -9,7 +9,7 @@
   Controla se as métricas de telemetria são coletadas ou não.
 * `telemetry.otel_exporter_otlp_metrics_protocol`
 
-  <table><tbody><tr><th>Variável do sistema</th> <td><code>telemetry.otel_exporter_otlp_metrics_protocol</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>http/protobuf</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Variável do sistema</th> <td><code>telemetry.otel_exporter_otlp_metrics_protocol</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>http/protobuf</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>http/protobuf</code></p><p><code>http/json</code></p></td> </tr></tbody></table>
 
   O protocolo de transporte OLTP.
 
@@ -35,7 +35,7 @@
   Confiança do certificado/cadeia de certificados do cliente para a chave privada do cliente no formato PEM.
 *  `telemetry.otel_exporter_otlp_metrics_min_tls`
 
-<table><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_exporter_otlp_metrics_min_tls</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>[none]</code></p><p class="valid-value"><code>1.2</code></p><p class="valid-value"><code>1.3</code></p></td> </tr></tbody></table>
+<table><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_exporter_otlp_metrics_min_tls</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>[none]</code></p><p><code>1.2</code></p><p><code>1.3</code></p></td> </tr></tbody></table>
 
   Versão mínima de TLS a ser usada para métricas.
 *  `telemetry.otel_exporter_otlp_metrics_max_tls`
@@ -60,7 +60,7 @@
   Pares chave-valor a serem usados como cabeçalhos associados a solicitações HTTP.
 *  `telemetry.otel_exporter_otlp_metrics_compression`
 
-  <table><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_exporter_otlp_metrics_compression</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>none (sem compressão)</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>none (sem compressão)</code></p><p class="valid-value"><code>gzip</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Variável do Sistema</th> <td><code>telemetry.otel_exporter_otlp_metrics_compression</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>none (sem compressão)</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>none (sem compressão)</code></p><p><code>gzip</code></p></td> </tr></tbody></table>
 
   Compressão usada pelo exportador
 *  `telemetry.otel_exporter_otlp_metrics_timeout`

@@ -8,7 +8,7 @@ O kernel `NDB` utiliza um buffer de envio unificado cuja memória é alocada din
 
   **Tabela 21.21 Tipos de transportadores com tamanhos máximos de buffer de envio**
 
-  <table><thead><tr> <th>Transportador</th> <th>Tamanho máximo do buffer de envio (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td><a class="link" href="mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory">[[<code>SendBufferMemory</code>]]</a>(padrão = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
+  <table><thead><tr> <th>Transportador</th> <th>Tamanho máximo do buffer de envio (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td>[[<code>SendBufferMemory</code>]](padrão = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
 
   Isso permite que as configurações existentes funcionem de maneira muito semelhante àquelas do NDB Cluster 6.3 e versões anteriores, com a mesma quantidade de memória e espaço de buffer de envio disponíveis para cada transportador. No entanto, a memória que não é usada por um transportador não está disponível para outros transportadores.
 
@@ -18,7 +18,7 @@ O kernel `NDB` utiliza um buffer de envio unificado cuja memória é alocada din
 
 - **ReservedSendBufferMemory.** Removido antes da versão GA do NDB 7.5.
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ReservedSendBufferMemory" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>bytes</td> </tr><tr> <th>Padrão</th> <td>256K</td> </tr><tr> <th>Gama</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Removido</th> <td>NDB 7.5.2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span class="bold"><strong>Reiniciar o nó:</strong></span>Requer um<a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Realizar um Reinício Rotativo de um Clúster NDB">reinício em rotação</a>do aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ReservedSendBufferMemory" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>bytes</td> </tr><tr> <th>Padrão</th> <td>256K</td> </tr><tr> <th>Gama</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Removido</th> <td>NDB 7.5.2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Anteriormente, esse parâmetro do nó de dados estava presente, mas não era realmente usado (Bug #77404, Bug #21280428).
 

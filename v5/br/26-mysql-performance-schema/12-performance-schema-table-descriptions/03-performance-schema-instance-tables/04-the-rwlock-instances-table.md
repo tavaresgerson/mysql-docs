@@ -1,4 +1,4 @@
-#### 25.12.3.4 A tabela rwlock\_instances
+#### 25.12.3.4 A tabela rwlock_instances
 
 A tabela `rwlock_instances` lista todas as instâncias de rwlock (bloqueio de leitura/escrita) vistas pelo Schema de Desempenho enquanto o servidor está em execução. Um `rwlock` é um mecanismo de sincronização usado no código para garantir que os threads em um determinado momento possam ter acesso a algum recurso comum seguindo certas regras. O recurso é dito estar "protegido" pelo `rwlock`. O acesso é compartilhado (muitos threads podem ter um bloqueio de leitura ao mesmo tempo), exclusivo (apenas um thread pode ter um bloqueio de escrita em um determinado momento) ou compartilhado-exclusivo (um thread pode ter um bloqueio de escrita enquanto permite leituras inconsistentes por outros threads). O acesso compartilhado-exclusivo é conhecido como `sxlock` e otimiza a concorrência e melhora a escalabilidade para cargas de trabalho de leitura/escrita.
 

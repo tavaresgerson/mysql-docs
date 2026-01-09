@@ -39,7 +39,7 @@ Para alterar a forma como as senhas são verificadas, você pode definir essas v
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.changed_characters_percentage">validate_password.changed_characters_percentage</a></code></td>
+    <td><code>validate_password.changed_characters_percentage</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -50,7 +50,7 @@ Para alterar a forma como as senhas são verificadas, você pode definir essas v
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -81,7 +81,7 @@ Se a instrução `ALTER USER` não fornecer a senha existente em uma cláusula `
 
 * `validate_password.check_user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password.check_user_name"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.check-user-name[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.check_user_name">validate_password.check_user_name</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variável"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password.check_user_name"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.check-user-name[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>validate_password.check_user_name</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
 Se `validate_password` compara senhas com a parte do nome de usuário da conta de usuário efetiva para a sessão atual e as rejeita se elas corresponderem. Essa variável não está disponível, a menos que `validate_password` esteja instalado.
 
@@ -103,7 +103,7 @@ Quando `validate_password.check_user_name` está habilitado, ele tem esses efeit
 
 * `validate_password.dictionary_file`
 
-  <table frame="box" rules="all" summary="Propriedades para `validate_password.dictionary_file`"><tr><th>Formato de linha de comando</th> <td><code>--validate-password.dictionary-file=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.dictionary_file">validate_password.dictionary_file</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para `validate_password.dictionary_file`"><tr><th>Formato de linha de comando</th> <td><code>--validate-password.dictionary-file=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>validate_password.dictionary_file</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></table>
 
   O nome do caminho do arquivo de dicionário que o `validate_password` usa para verificar senhas. Esta variável não está disponível a menos que o `validate_password` esteja instalado.
 
@@ -117,7 +117,7 @@ Para `VALIDATE_PASSWORD_STRENGTH()`, a senha é verificada contra todas as polí
 
 * `validate_password.length`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password.length"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.length=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.length">validate_password.length</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>8</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password.length"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.length=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>validate_password.length</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>8</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr></tbody></table>
 
 O número mínimo de caracteres que `validate_password` exige que as senhas tenham. Essa variável não está disponível, a menos que `validate_password` esteja instalado.
 
@@ -137,10 +137,10 @@ Se `validate_password` ajustar o valor de `validate_password.length` devido à r
     
     <tbody>
       <tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.mixed-case-count=#</code></td> </tr>
-      <tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.mixed_case_count">validate_password.mixed_case_count</a></code></td> </tr>
+      <tr><th>Variável do Sistema</th> <td><code>validate_password.mixed_case_count</code></td> </tr>
       <tr><th>Alcance</th> <td>Global</td> </tr>
       <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-      <tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr>
+      <tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr>
       <tr><th>Tipo</th> <td>Inteiro</td> </tr>
       <tr><th>Valor Padrão</th> <td><code>1</code></td> </tr>
       <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -153,13 +153,13 @@ Para um valor dado de `validate_password.mixed_case_count`, a senha deve ter ess
 
 * `validate_password.number_count`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password.number_count"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.number-count=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.number_count">validate_password.number_count</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password.number_count"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.number-count=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>validate_password.number_count</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr></tbody></table>
 
   O número mínimo de caracteres numéricos (dígitos) que o `validate_password` exige que as senhas tenham se a política de senha for `MÉDIO` ou mais forte. Esta variável não está disponível a menos que o `validate_password` esteja instalado.
 
 * `validate_password.policy`
 
-<table frame="box" rules="all" summary="Propriedades para validate_password.policy"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.policy=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.policy">validate_password.policy</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para validate_password.policy"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.policy=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>validate_password.policy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   A política de senha aplicada por `validate_password`. Esta variável não está disponível a menos que `validate_password` esteja instalado.
 
@@ -178,7 +178,7 @@ O valor `validate_password.policy` pode ser especificado usando valores numéric
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.special_char_count">validate_password.special_char_count</a></code></td>
+    <td><code>validate_password.special_char_count</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -189,7 +189,7 @@ O valor `validate_password.policy` pode ser especificado usando valores numéric
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -241,7 +241,7 @@ Para controlar a ativação do plugin `validate_password`, use esta opção:
 
 * `--validate-password[=value]`
 
-  <table frame="box" rules="all" summary="Propriedades para validate-password"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate-password"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Esta opção controla como o servidor carrega o plugin `validate_password` desatualizado no início. O valor deve ser um desses disponíveis para opções de carregamento de plugins, conforme descrito na Seção 7.6.1, “Instalando e Desinstalando Plugins”. Por exemplo, `--validate-password=FORCE_PLUS_PERMANENT` indica ao servidor que carregue o plugin no início e impeça sua remoção enquanto o servidor estiver em execução.
 
@@ -257,10 +257,10 @@ No MySQL 9.5, o plugin `validate_password` foi reimplementado como o componente 
 
 <table frame="box" rules="all" summary="Propriedades para validate_password.check_user_name">
   <tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.check-user-name[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.check_user_name">validate_password.check_user_name</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>validate_password.check_user_name</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de SET_VAR Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -276,7 +276,7 @@ Este sistema de variável plugin `validate_password` está desatualizado; espere
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.check_user_name">validate_password.check_user_name</a></code></td>
+    <td><code>validate_password.check_user_name</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -287,7 +287,7 @@ Este sistema de variável plugin `validate_password` está desatualizado; espere
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -306,10 +306,10 @@ Este sistema de variável do plugin `validate_password` está desatualizado; esp
 
 <table frame="box" rules="all" summary="Propriedades para validate_password.check_user_name">
   <tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.check-user-name[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.check_user_name">validate_password.check_user_name</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>validate_password.check_user_name</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -320,10 +320,10 @@ Este sistema de variável plugin `validate_password` está desatualizado; espere
 
 <table frame="box" rules="all" summary="Propriedades para validate_password.check_user_name">
   <tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.check-user-name[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.check_user_name">validate_password.check_user_name</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>validate_password.check_user_name</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de SET_VAR Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -334,10 +334,10 @@ Este sistema de variável de plugin `validate_password` está desatualizado; esp
 
 <table frame="box" rules="all" summary="Propriedades para validate_password.check_user_name">
   <tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.check-user-name[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.check_user_name">validate_password.check_user_name</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>validate_password.check_user_name</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de SET_VAR Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -348,10 +348,10 @@ Este sistema de variável de plugin `validate_password` está desatualizado; esp
 
 <table frame="box" rules="all" summary="Propriedades para validate_password.check_user_name">
   <tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.check-user-name[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.check_user_name">validate_password.check_user_name</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>validate_password.check_user_name</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de SET_VAR Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -360,7 +360,7 @@ Este sistema de variável de plugin `validate_password` está desatualizado; esp
 
 * `validate_password_special_char_count`
 
-<table frame="box" rules="all" summary="Propriedades para validate_password.check_user_name"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.check-user-name[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="validate-password-options-variables.html#sysvar_validate_password.check_user_name">validate_password.check_user_name</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para validate_password.check_user_name"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.check-user-name[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>validate_password.check_user_name</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
 Este sistema de variável do plugin `validate_password` está desatualizado; espere-se que seja removido em uma versão futura do MySQL. Use a variável de sistema correspondente `validate_password.special_char_count` do componente `validate_password` em vez disso.
 

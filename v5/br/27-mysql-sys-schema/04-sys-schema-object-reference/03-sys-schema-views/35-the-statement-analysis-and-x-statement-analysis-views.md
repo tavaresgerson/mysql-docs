@@ -1,4 +1,4 @@
-#### 26.4.3.35 A análise da declaração e as visualizações x$statement\_analysis
+#### 26.4.3.35 A análise da declaração e as visualizações x$statement_analysis
 
 Essas visualizações listam declarações normalizadas com estatísticas agregadas. O conteúdo imita a visualização de Análise de Consulta do MySQL Enterprise Monitor. Por padrão, as linhas são ordenadas por latência total decrescente.
 

@@ -22,7 +22,7 @@ Ao implementar essa funcionalidade, o MySQL utiliza o que é às vezes chamado d
 
 - `+` representa `E`
 - `-` representa `NOT`
-- \[*sem operador*] implica em `OU`
+- [*sem operador*] implica em `OU`
 
 As pesquisas de texto completo booleanas têm essas características:
 

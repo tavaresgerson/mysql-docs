@@ -51,7 +51,7 @@ mysql> SELECT TABLE_NAME, PARTITION_NAME, TABLE_ROWS, AVG_ROW_LENGTH, DATA_LENGT
 7 rows in set (0.00 sec)
 ```
 
-(Para mais informações sobre esta tabela, consulte a Seção 28.3.26, “A Tabela de PARTITIONS do INFORMATION\_SCHEMA”.) Agora, vamos preencher cada uma dessas tabelas com uma única linha contendo um `NULL` na coluna usada como chave de partição, e verificar que as linhas foram inseridas usando um par de instruções `SELECT`:
+(Para mais informações sobre esta tabela, consulte a Seção 28.3.26, “A Tabela de PARTITIONS do INFORMATION_SCHEMA”.) Agora, vamos preencher cada uma dessas tabelas com uma única linha contendo um `NULL` na coluna usada como chave de partição, e verificar que as linhas foram inseridas usando um par de instruções `SELECT`:
 
 ```
 mysql> INSERT INTO t1 VALUES (NULL, 'mothra');

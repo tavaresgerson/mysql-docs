@@ -91,4 +91,4 @@ Note
 
 Constraint expression evaluation uses the SQL mode in effect at evaluation time. If any component of the expression depends on the SQL mode, different results may occur for different uses of the table unless the SQL mode is the same during all uses.
 
-The Information Schema `CHECK_CONSTRAINTS` table provides information about `CHECK` constraints defined on tables. See Section 28.3.5, “The INFORMATION\_SCHEMA CHECK\_CONSTRAINTS Table”.
+The Information Schema `CHECK_CONSTRAINTS` table provides information about `CHECK` constraints defined on tables. See Section 28.3.5, “The INFORMATION_SCHEMA CHECK_CONSTRAINTS Table”.

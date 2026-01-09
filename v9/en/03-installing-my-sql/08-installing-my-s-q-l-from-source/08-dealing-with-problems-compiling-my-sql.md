@@ -38,7 +38,7 @@ On some systems, warnings may occur due to differences in system include files. 
 
   To specify your own C and C++ compiler flags, use the `CMAKE_C_FLAGS` and `CMAKE_CXX_FLAGS` CMake options. See Compiler Flags.
 
-  To see what flags you might need to specify, invoke **mysql\_config** with the `--cflags` and `--cxxflags` options.
+  To see what flags you might need to specify, invoke **mysql_config** with the `--cflags` and `--cxxflags` options.
 
 * To see what commands are executed during the compile stage, after using **CMake** to configure MySQL, run **make VERBOSE=1** rather than just **make**.
 

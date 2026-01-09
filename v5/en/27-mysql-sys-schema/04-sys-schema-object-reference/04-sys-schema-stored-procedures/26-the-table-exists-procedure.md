@@ -1,4 +1,4 @@
-#### 26.4.4.26 The table\_exists() Procedure
+#### 26.4.4.26 The table_exists() Procedure
 
 Tests whether a given table exists as a regular table, a `TEMPORARY` table, or a view. The procedure returns the table type in an `OUT` parameter. If both a temporary and a permanent table exist with the given name, `TEMPORARY` is returned.
 

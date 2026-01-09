@@ -1,4 +1,4 @@
-#### 25.12.12.2 A tabela\_handles
+#### 25.12.12.2 A tabela_handles
 
 O Schema de Desempenho expõe informações sobre bloqueios de tabela através da tabela `table_handles` para mostrar os bloqueios de tabela atualmente em vigor para cada handle de tabela aberto. O `table_handles` relata o que é registrado pela instrumentação de bloqueio de tabela. Essas informações mostram quais handles de tabela o servidor tem abertos, como eles estão bloqueados e por quais sessões.
 

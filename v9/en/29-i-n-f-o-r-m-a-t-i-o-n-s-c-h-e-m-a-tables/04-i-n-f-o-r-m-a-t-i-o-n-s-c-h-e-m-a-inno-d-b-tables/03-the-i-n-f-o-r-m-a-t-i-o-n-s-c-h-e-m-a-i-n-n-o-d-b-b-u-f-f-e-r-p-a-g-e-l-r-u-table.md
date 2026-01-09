@@ -1,10 +1,10 @@
-### 28.4.3 The INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU Table
+### 28.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table
 
 The `INNODB_BUFFER_PAGE_LRU` table provides information about the pages in the `InnoDB` buffer pool; in particular, how they are ordered in the LRU list that determines which pages to evict from the buffer pool when it becomes full.
 
 The `INNODB_BUFFER_PAGE_LRU` table has the same columns as the `INNODB_BUFFER_PAGE` table with a few exceptions. It has `LRU_POSITION` and `COMPRESSED` columns instead of `BLOCK_ID` and `PAGE_STATE` columns, and it does not include and `IS_STALE` column.
 
-For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”.
+For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
 Warning
 
@@ -32,7 +32,7 @@ The `INNODB_BUFFER_PAGE_LRU` table has these columns:
 
   The page type. The following table shows the permitted values.
 
-  **Table 28.6 INNODB\_BUFFER\_PAGE\_LRU.PAGE\_TYPE Values**
+  **Table 28.6 INNODB_BUFFER_PAGE_LRU.PAGE_TYPE Values**
 
   <table summary="Mapping for interpreting INNODB_BUFFER_PAGE_LRU.PAGE_TYPE values."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Type</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">ALLOCATED</code></td> <td>Freshly allocated page</td> </tr><tr> <td><code class="literal">BLOB</code></td> <td>Uncompressed BLOB page</td> </tr><tr> <td><code class="literal">COMPRESSED_BLOB2</code></td> <td>Subsequent comp BLOB page</td> </tr><tr> <td><code class="literal">COMPRESSED_BLOB</code></td> <td>First compressed BLOB page</td> </tr><tr> <td><code class="literal">ENCRYPTED_RTREE</code></td> <td>Encrypted R-tree</td> </tr><tr> <td><code class="literal">EXTENT_DESCRIPTOR</code></td> <td>Extent descriptor page</td> </tr><tr> <td><code class="literal">FILE_SPACE_HEADER</code></td> <td>File space header</td> </tr><tr> <td><code class="literal">FIL_PAGE_TYPE_UNUSED</code></td> <td>Unused</td> </tr><tr> <td><code class="literal">IBUF_BITMAP</code></td> <td>Insert buffer bitmap</td> </tr><tr> <td><code class="literal">IBUF_FREE_LIST</code></td> <td>Insert buffer free list</td> </tr><tr> <td><code class="literal">IBUF_INDEX</code></td> <td>Insert buffer index</td> </tr><tr> <td><code class="literal">INDEX</code></td> <td>B-tree node</td> </tr><tr> <td><code class="literal">INODE</code></td> <td>Index node</td> </tr><tr> <td><code class="literal">LOB_DATA</code></td> <td>Uncompressed LOB data</td> </tr><tr> <td><code class="literal">LOB_FIRST</code></td> <td>First page of uncompressed LOB</td> </tr><tr> <td><code class="literal">LOB_INDEX</code></td> <td>Uncompressed LOB index</td> </tr><tr> <td><code class="literal">PAGE_IO_COMPRESSED</code></td> <td>Compressed page</td> </tr><tr> <td><code class="literal">PAGE_IO_COMPRESSED_ENCRYPTED</code></td> <td>Compressed and encrypted page</td> </tr><tr> <td><code class="literal">PAGE_IO_ENCRYPTED</code></td> <td>Encrypted page</td> </tr><tr> <td><code class="literal">RSEG_ARRAY</code></td> <td>Rollback segment array</td> </tr><tr> <td><code class="literal">RTREE_INDEX</code></td> <td>R-tree index</td> </tr><tr> <td><code class="literal">SDI_BLOB</code></td> <td>Uncompressed SDI BLOB</td> </tr><tr> <td><code class="literal">SDI_COMPRESSED_BLOB</code></td> <td>Compressed SDI BLOB</td> </tr><tr> <td><code class="literal">SDI_INDEX</code></td> <td>SDI index</td> </tr><tr> <td><code class="literal">SYSTEM</code></td> <td>System page</td> </tr><tr> <td><code class="literal">TRX_SYSTEM</code></td> <td>Transaction system data</td> </tr><tr> <td><code class="literal">UNDO_LOG</code></td> <td>Undo log page</td> </tr><tr> <td><code class="literal">UNKNOWN</code></td> <td>Unknown</td> </tr><tr> <td><code class="literal">ZLOB_DATA</code></td> <td>Compressed LOB data</td> </tr><tr> <td><code class="literal">ZLOB_FIRST</code></td> <td>First page of compressed LOB</td> </tr><tr> <td><code class="literal">ZLOB_FRAG</code></td> <td>Compressed LOB fragment</td> </tr><tr> <td><code class="literal">ZLOB_FRAG_ENTRY</code></td> <td>Compressed LOB fragment index</td> </tr><tr> <td><code class="literal">ZLOB_INDEX</code></td> <td>Compressed LOB index</td> </tr></tbody></table>
 

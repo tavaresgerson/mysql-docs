@@ -1,92 +1,92 @@
 ### 30.4.3 Visões do esquema sys
 
-30.4.3.1 Visões host\_summary e x$host\_summary
+30.4.3.1 Visões host_summary e x$host_summary
 
-30.4.3.2 Visões host\_summary\_by\_file\_io e x$host\_summary\_by\_file\_io
+30.4.3.2 Visões host_summary_by_file_io e x$host_summary_by_file_io
 
-30.4.3.3 Visões host\_summary\_by\_file\_io\_type e x$host\_summary\_by\_file\_io\_type
+30.4.3.3 Visões host_summary_by_file_io_type e x$host_summary_by_file_io_type
 
-30.4.3.4 Visões host\_summary\_by\_stages e x$host\_summary\_by\_stages
+30.4.3.4 Visões host_summary_by_stages e x$host_summary_by_stages
 
-30.4.3.5 Visões host\_summary\_by\_statement\_latency e x$host\_summary\_by\_statement\_latency
+30.4.3.5 Visões host_summary_by_statement_latency e x$host_summary_by_statement_latency
 
-30.4.3.6 Visões host\_summary\_by\_statement\_type e x$host\_summary\_by\_statement\_type
+30.4.3.6 Visões host_summary_by_statement_type e x$host_summary_by_statement_type
 
-30.4.3.7 Visões innodb\_buffer\_stats\_by\_schema e x$innodb\_buffer\_stats\_by\_schema
+30.4.3.7 Visões innodb_buffer_stats_by_schema e x$innodb_buffer_stats_by_schema
 
-30.4.3.8 Visões innodb\_buffer\_stats\_by\_table e x$innodb\_buffer\_stats\_by\_table
+30.4.3.8 Visões innodb_buffer_stats_by_table e x$innodb_buffer_stats_by_table
 
-30.4.3.9 Visões innodb\_lock\_waits e x$innodb\_lock\_waits
+30.4.3.9 Visões innodb_lock_waits e x$innodb_lock_waits
 
-30.4.3.10 Visões io\_by\_thread\_by\_latency e x$io\_by\_thread\_by\_latency
+30.4.3.10 Visões io_by_thread_by_latency e x$io_by_thread_by_latency
 
-30.4.3.11 Visões io\_global\_by\_file\_by\_bytes e x$io\_global\_by\_file\_by\_bytes
+30.4.3.11 Visões io_global_by_file_by_bytes e x$io_global_by_file_by_bytes
 
-30.4.3.12 Visões io\_global\_by\_file\_by\_latency e x$io\_global\_by\_file\_by\_latency
+30.4.3.12 Visões io_global_by_file_by_latency e x$io_global_by_file_by_latency
 
-30.4.3.13 Visões io\_global\_by\_wait\_by\_bytes e x$io\_global\_by\_wait\_by\_bytes
+30.4.3.13 Visões io_global_by_wait_by_bytes e x$io_global_by_wait_by_bytes
 
-30.4.3.14 Visões io\_global\_by\_wait\_by\_latency e x$io\_global\_by\_wait\_by\_latency
+30.4.3.14 Visões io_global_by_wait_by_latency e x$io_global_by_wait_by_latency
 
-30.4.3.15 Visões latest\_file\_io e x$latest\_file\_io
+30.4.3.15 Visões latest_file_io e x$latest_file_io
 
-30.4.3.16 Visões memory\_by\_host\_by\_current\_bytes e x$memory\_by\_host\_by\_current\_bytes
+30.4.3.16 Visões memory_by_host_by_current_bytes e x$memory_by_host_by_current_bytes
 
-30.4.3.17 Visões memory\_by\_thread\_by\_current\_bytes e x$memory\_by\_thread\_by\_current\_bytes
+30.4.3.17 Visões memory_by_thread_by_current_bytes e x$memory_by_thread_by_current_bytes
 
-30.4.3.18 Visões memory\_by\_user\_by\_current\_bytes e x$memory\_by\_user\_by\_current\_bytes
+30.4.3.18 Visões memory_by_user_by_current_bytes e x$memory_by_user_by_current_bytes
 
-30.4.3.19 Visões memory\_global\_by\_current\_bytes e x$memory\_global\_by\_current\_bytes
+30.4.3.19 Visões memory_global_by_current_bytes e x$memory_global_by_current_bytes
 
-30.4.3.20 Visões memory\_global\_total e x$memory\_global\_total
+30.4.3.20 Visões memory_global_total e x$memory_global_total
 
 30.4.3.21 A métrica Visualizar
 
 30.4.3.22 As visualizações processlist e x$processlist
 
-30.4.3.23 A visualização ps\_check\_lost\_instrumentation
+30.4.3.23 A visualização ps_check_lost_instrumentation
 
-30.4.3.24 A visualização schema\_auto\_increment\_columns
+30.4.3.24 A visualização schema_auto_increment_columns
 
-30.4.3.25 As visualizações schema\_index\_statistics e x$schema\_index\_statistics
+30.4.3.25 As visualizações schema_index_statistics e x$schema_index_statistics
 
-30.4.3.26 A visualização schema\_object\_overview
+30.4.3.26 A visualização schema_object_overview
 
-30.4.3.27 As visualizações schema\_redundant\_indexes e x$schema\_flattened\_keys
+30.4.3.27 As visualizações schema_redundant_indexes e x$schema_flattened_keys
 
-30.4.3.28 As visualizações schema\_table\_lock\_waits e x$schema\_table\_lock\_waits
+30.4.3.28 As visualizações schema_table_lock_waits e x$schema_table_lock_waits
 
-30.4.3.29 As visualizações schema\_table\_statistics e x$schema\_table\_statistics
+30.4.3.29 As visualizações schema_table_statistics e x$schema_table_statistics
 
-30.4.3.30 As visualizações schema\_table\_statistics\_with\_buffer e x$schema\_table\_statistics\_with\_buffer
+30.4.3.30 As visualizações schema_table_statistics_with_buffer e x$schema_table_statistics_with_buffer
 
-30.4.3.31 As visualizações schema\_tables\_with\_full\_table\_scans e x$schema\_tables\_with\_full\_table\_scans
+30.4.3.31 As visualizações schema_tables_with_full_table_scans e x$schema_tables_with_full_table_scans
 
-30.4.3.32 A visualização schema\_unused\_indexes
+30.4.3.32 A visualização schema_unused_indexes
 
 30.4.3.33 As visualizações session e x$session
 
-30.4.3.34 A visualização session\_ssl\_status
+30.4.3.34 A visualização session_ssl_status
 
-30.4.3.35 As visualizações statement\_analysis e x$statement\_analysis
+30.4.3.35 As visualizações statement_analysis e x$statement_analysis
 
-30.4.3.36 As visualizações statements\_with\_errors\_or\_warnings e x$statements\_with\_errors\_or\_warnings
+30.4.3.36 As visualizações statements_with_errors_or_warnings e x$statements_with_errors_or_warnings
 
-30.4.3.37 As visualizações statements\_with\_full\_table\_scans e x$statements\_with\_full\_table\_scans
+30.4.3.37 As visualizações statements_with_full_table_scans e x$statements_with_full_table_scans
 
-30.4.3.38 As visualizações statements\_with\_runtimes\_in\_95th\_percentile e x$statements\_with\_runtimes\_in\_95th\_percentile
+30.4.3.38 As visualizações statements_with_runtimes_in_95th_percentile e x$statements_with_runtimes_in_95th_percentile
 
-30.4.3.39 As visualizações statements\_with\_sorting e x$statements\_with\_sorting
+30.4.3.39 As visualizações statements_with_sorting e x$statements_with_sorting
 
-30.4.3.40 As visualizações statements\_with\_temp\_tables e x$statements\_with\_temp\_tables
+30.4.3.40 As visualizações statements_with_temp_tables e x$statements_with_temp_tables
 
-30.4.3.41 As visualizações user\_summary e x$user\_summary
+30.4.3.41 As visualizações user_summary e x$user_summary
 
-30.4.3.42 As visualizações user\_summary\_by\_file\_io e x$user\_summary\_by\_file\_io
+30.4.3.42 As visualizações user_summary_by_file_io e x$user_summary_by_file_io
 
-30.4.3.43 As visualizações user\_summary\_by\_file\_io\_type e x$user\_summary\_by\_file\_io\_type
+30.4.3.43 As visualizações user_summary_by_file_io_type e x$user_summary_by_file_io_type
 
-30.4.3.44 As visualizações user\_summary\_by\_stages e x$user\_summary\_by\_stages
+30.4.3.44 As visualizações user_summary_by_stages e x$user_summary_by_stages
 
 30.4.3.45 A visualização `user_summary_by_statement_latency` e `x$user_summary_by_statement_latency`
 

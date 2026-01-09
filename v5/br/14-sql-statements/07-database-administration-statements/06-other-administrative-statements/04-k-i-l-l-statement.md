@@ -6,7 +6,7 @@ KILL [CONNECTION | QUERY] processlist_id
 
 Cada conexão com **mysqld** é executada em um fio separado. Você pode matar um fio com a instrução `KILL processlist_id`.
 
-Os identificadores do processo do `PROCESSLIST` podem ser determinados a partir da coluna `ID` da tabela `INFORMATION_SCHEMA `PROCESSLIST``, da coluna `Id` da saída do comando `SHOW PROCESSLIST` e da coluna `PROCESSLIST_ID` da tabela `threads` do Schema de Desempenho. O valor do processo atual é retornado pela função `CONNECTION_ID()` (funções de informações.html#function\_connection-id).
+Os identificadores do processo do `PROCESSLIST` podem ser determinados a partir da coluna `ID` da tabela `INFORMATION_SCHEMA `PROCESSLIST``, da coluna `Id` da saída do comando `SHOW PROCESSLIST` e da coluna `PROCESSLIST_ID` da tabela `threads` do Schema de Desempenho. O valor do processo atual é retornado pela função `CONNECTION_ID()` (funções de informações.html#function_connection-id).
 
 `KILL` permite um modificador opcional `CONNECTION` ou `QUERY`:
 

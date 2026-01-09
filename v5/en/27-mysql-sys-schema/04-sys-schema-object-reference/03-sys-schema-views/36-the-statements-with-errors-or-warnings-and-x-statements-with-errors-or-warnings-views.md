@@ -1,4 +1,4 @@
-#### 26.4.3.36 The statements\_with\_errors\_or\_warnings and x$statements\_with\_errors\_or\_warnings Views
+#### 26.4.3.36 The statements_with_errors_or_warnings and x$statements_with_errors_or_warnings Views
 
 These views display normalized statements that have produced errors or warnings. By default, rows are sorted by descending error and warning counts.
 

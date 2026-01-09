@@ -2,7 +2,7 @@
 
 22.4.1 MySQL Shell
 
-22.4.2 Download and Import world\_x Database
+22.4.2 Download and Import world_x Database
 
 22.4.3 Documents and Collections
 

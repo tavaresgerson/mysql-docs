@@ -1,4 +1,4 @@
-#### 25.6.15.61 The ndbinfo tc\_time\_track\_stats Table
+#### 25.6.15.61 The ndbinfo tc_time_track_stats Table
 
 The `tc_time_track_stats` table provides time-tracking information obtained from the `DBTC` block (TC) instances in the data nodes, through API nodes access `NDB`. Each TC instance tracks latencies for a set of activities it undertakes on behalf of API nodes or other data nodes; these activities include transactions, transaction errors, key reads, key writes, unique index operations, failed key operations of any type, scans, failed scans, fragment scans, and failed fragment scans.
 

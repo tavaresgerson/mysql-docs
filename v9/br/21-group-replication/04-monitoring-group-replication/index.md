@@ -4,17 +4,17 @@
 
 20.4.2 Estados do Servidor de Replicação do Grupo
 
-20.4.3 A Tabela replication\_group\_members
+20.4.3 A Tabela replication_group_members
 
-20.4.4 A Tabela replication\_group\_member\_stats
+20.4.4 A Tabela replication_group_member_stats
 
 Você pode usar o Schema de Desempenho do MySQL para monitorar a Replicação do Grupo. Essas tabelas do Schema de Desempenho exibem informações específicas para a Replicação do Grupo:
 
-* `replication_group_member_stats`: Veja a Seção 20.4.4, “A Tabela replication\_group\_member\_stats”.
+* `replication_group_member_stats`: Veja a Seção 20.4.4, “A Tabela replication_group_member_stats”.
 
-* `replication_group_members`: Veja a Seção 20.4.3, “A Tabela replication\_group\_members”.
+* `replication_group_members`: Veja a Seção 20.4.3, “A Tabela replication_group_members”.
 
-* `replication_group_communication_information`: Veja a Seção 29.12.11.14, “A Tabela replication\_group\_communication\_information”.
+* `replication_group_communication_information`: Veja a Seção 29.12.11.14, “A Tabela replication_group_communication_information”.
 
 Essas tabelas de replicação do Schema de Desempenho também mostram informações relacionadas à Replicação do Grupo:
 

@@ -12,7 +12,7 @@ Em geral, uma declaração é segura se for determinística e insegura se não f
 
 - Ao usar o registro baseado em declarações, as declarações marcadas como inseguras geram um aviso nesse sentido. As declarações seguras são registradas normalmente.
 
-Cada declaração marcada como insegura gera um aviso. Anteriormente, se um grande número dessas declarações fosse executado na fonte, isso poderia levar a arquivos de log de erro excessivamente grandes. Para evitar isso, o MySQL 5.7 fornece um mecanismo de supressão de avisos, que funciona da seguinte maneira: Sempre que os 50 avisos mais recentes de \[`ER_BINLOG_UNSAFE_STATEMENT`]\(/doc/mysql-errors/5.7/en/server-error-reference.html#error\_er\_binlog\_unsafe\_statement] forem gerados mais de 50 vezes em qualquer período de 50 segundos, a supressão de avisos é habilitada. Quando ativado, isso faz com que esses avisos não sejam escritos no log de erro; em vez disso, para cada 50 avisos desse tipo, uma nota `O último aviso foi repetido N vezes nos últimos S segundos` é escrita no log de erro. Isso continua enquanto os 50 avisos mais recentes forem emitidos em 50 segundos ou menos; uma vez que a taxa diminui abaixo desse limite, os avisos são novamente registrados normalmente. A supressão de avisos não afeta a determinação da segurança das declarações para o registro baseado em declarações, nem a forma como os avisos são enviados ao cliente. Os clientes do MySQL ainda recebem um aviso para cada declaração desse tipo.
+Cada declaração marcada como insegura gera um aviso. Anteriormente, se um grande número dessas declarações fosse executado na fonte, isso poderia levar a arquivos de log de erro excessivamente grandes. Para evitar isso, o MySQL 5.7 fornece um mecanismo de supressão de avisos, que funciona da seguinte maneira: Sempre que os 50 avisos mais recentes de [`ER_BINLOG_UNSAFE_STATEMENT`]\(/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_binlog_unsafe_statement] forem gerados mais de 50 vezes em qualquer período de 50 segundos, a supressão de avisos é habilitada. Quando ativado, isso faz com que esses avisos não sejam escritos no log de erro; em vez disso, para cada 50 avisos desse tipo, uma nota `O último aviso foi repetido N vezes nos últimos S segundos` é escrita no log de erro. Isso continua enquanto os 50 avisos mais recentes forem emitidos em 50 segundos ou menos; uma vez que a taxa diminui abaixo desse limite, os avisos são novamente registrados normalmente. A supressão de avisos não afeta a determinação da segurança das declarações para o registro baseado em declarações, nem a forma como os avisos são enviados ao cliente. Os clientes do MySQL ainda recebem um aviso para cada declaração desse tipo.
 
 Para mais informações, consulte [Seção 16.2.1, "Formatos de Replicação"](replication-formats.html).
 
@@ -30,11 +30,11 @@ Para mais informações, consulte [Seção 16.2.1, "Formatos de Replicação"](r
 
 - **Plugin de texto completo.** Este plugin pode se comportar de maneira diferente em diferentes servidores MySQL; portanto, as declarações que dependem dele podem ter resultados diferentes. Por essa razão, todas as declarações que dependem do plugin de texto completo são tratadas como inseguras (Bug #11756280, Bug #48183).
 
-- **O trigger ou a atualização de programas armazenados atualizam uma tabela que possui uma coluna AUTO\_INCREMENT.** Isso é inseguro porque a ordem em que as linhas são atualizadas pode diferir entre a fonte e a réplica.
+- **O trigger ou a atualização de programas armazenados atualizam uma tabela que possui uma coluna AUTO_INCREMENT.** Isso é inseguro porque a ordem em que as linhas são atualizadas pode diferir entre a fonte e a réplica.
 
   Além disso, uma inserção em uma tabela que possui uma chave primária composta contendo uma coluna `AUTO_INCREMENT` que não é a primeira coluna dessa chave composta é insegura.
 
-  Para mais informações, consulte [Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”](replication-features-auto-increment.html).
+  Para mais informações, consulte [Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html).
 
 - **INSERIR ... na cláusula UPDATE para tabelas com múltiplas chaves primárias ou únicas.** Quando executada em uma tabela que contém mais de uma chave primária ou única, essa cláusula é considerada insegura, pois é sensível à ordem em que o mecanismo de armazenamento verifica as chaves, que não é determinística, e da qual depende a escolha das linhas atualizadas pelo MySQL Server.
 

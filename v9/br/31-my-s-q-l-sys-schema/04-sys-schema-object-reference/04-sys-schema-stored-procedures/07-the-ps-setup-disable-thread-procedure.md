@@ -1,4 +1,4 @@
-#### 30.4.4.7 O procedimento ps\_setup\_disable\_thread()
+#### 30.4.4.7 O procedimento ps_setup_disable_thread()
 
 Dada uma ID de conexão, desativa a instrumentação do Gerenciador de Desempenho para o thread. Gera um conjunto de resultados indicando quantos threads foram desativados. Threads já desativados não são contados.
 

@@ -1,4 +1,4 @@
-### 28.3.35 A Tabela ROUTINE\_LIBRARIES da SÍNTESE DE INFORMAÇÃO
+### 28.3.35 A Tabela ROUTINE_LIBRARIES da SÍNTESE DE INFORMAÇÃO
 
 A tabela `ROUTINE_LIBRARIES` lista diferentes rotinas JavaScript e as bibliotecas suportadas pelo Componente do Motor Multilíngue (MLE) (ver Seção 7.5.7, “Componente do Motor Multilíngue (MLE”)”) que são importadas por essas rotinas JavaScript.
 

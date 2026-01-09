@@ -1,4 +1,4 @@
-#### 29.12.11.17 The replication\_group\_member\_stats Table
+#### 29.12.11.17 The replication_group_member_stats Table
 
 This table shows statistical information for replication group members. It is populated only when Group Replication is running.
 

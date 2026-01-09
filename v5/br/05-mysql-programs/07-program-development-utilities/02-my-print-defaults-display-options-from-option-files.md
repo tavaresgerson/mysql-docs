@@ -1,6 +1,6 @@
-### 4.7.2 my\_print\_defaults — Opções de exibição a partir de arquivos de opção
+### 4.7.2 my_print_defaults — Opções de exibição a partir de arquivos de opção
 
-**my\_print\_defaults** exibe as opções presentes nos grupos de opções dos arquivos de opções. A saída indica quais opções são usadas pelos programas que leem os grupos de opções especificados. Por exemplo, o programa **mysqlcheck** lê os grupos de opções `[mysqlcheck]` e `[client]`. Para ver quais opções estão presentes nesses grupos nos arquivos de opções padrão, inicie **my\_print\_defaults** da seguinte maneira:
+**my_print_defaults** exibe as opções presentes nos grupos de opções dos arquivos de opções. A saída indica quais opções são usadas pelos programas que leem os grupos de opções especificados. Por exemplo, o programa **mysqlcheck** lê os grupos de opções `[mysqlcheck]` e `[client]`. Para ver quais opções estão presentes nesses grupos nos arquivos de opções padrão, inicie **my_print_defaults** da seguinte maneira:
 
 ```sql
 $> my_print_defaults mysqlcheck client
@@ -11,7 +11,7 @@ $> my_print_defaults mysqlcheck client
 
 A saída consiste em opções, uma por linha, na forma como seriam especificadas na linha de comando.
 
-**my\_print\_defaults** suporta as seguintes opções.
+**my_print_defaults** suporta as seguintes opções.
 
 - `--help`, `-?`
 
@@ -39,7 +39,7 @@ A saída consiste em opções, uma por linha, na forma como seriam especificadas
 
 - `--login-path=nome`, `-l nome`
 
-  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
 
@@ -51,7 +51,7 @@ A saída consiste em opções, uma por linha, na forma como seriam especificadas
 
 - `--show`, `-s`
 
-  A partir do MySQL 5.7.8, **my\_print\_defaults** mascara as senhas por padrão. Use esta opção para exibir as senhas em texto claro.
+  A partir do MySQL 5.7.8, **my_print_defaults** mascara as senhas por padrão. Use esta opção para exibir as senhas em texto claro.
 
 - `--verbose`, `-v`
 

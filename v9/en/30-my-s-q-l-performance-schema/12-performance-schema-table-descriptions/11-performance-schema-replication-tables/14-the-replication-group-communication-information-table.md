@@ -1,4 +1,4 @@
-#### 29.12.11.14 The replication\_group\_communication\_information Table
+#### 29.12.11.14 The replication_group_communication_information Table
 
 This table shows group configuration options for the whole replication group. The table is available only when Group Replication is installed.
 

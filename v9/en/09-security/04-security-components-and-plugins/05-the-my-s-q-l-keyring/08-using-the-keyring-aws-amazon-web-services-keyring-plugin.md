@@ -1,4 +1,4 @@
-#### 8.4.5.8 Using the keyring\_aws Amazon Web Services Keyring Plugin
+#### 8.4.5.8 Using the keyring_aws Amazon Web Services Keyring Plugin
 
 Note
 
@@ -6,7 +6,7 @@ The `keyring_aws` plugin is an extension included in MySQL Enterprise Edition, a
 
 Important
 
-The `keyring_aws` keyring plugin is deprecated, and is being replaced by the AWS Keyring component (`component_aws_keyring`). Deprecation of the plugin means that you should expect the plugin to be removed in a future version of MySQL. For more information, including information about migrating from the `keyring_aws` plugin to `component_aws_keyring`, see Section 8.4.5.9, “Using the component\_keyring\_aws AWS Keyring Component”.
+The `keyring_aws` keyring plugin is deprecated, and is being replaced by the AWS Keyring component (`component_aws_keyring`). Deprecation of the plugin means that you should expect the plugin to be removed in a future version of MySQL. For more information, including information about migrating from the `keyring_aws` plugin to `component_aws_keyring`, see Section 8.4.5.9, “Using the component_keyring_aws AWS Keyring Component”.
 
 The `keyring_aws` keyring plugin communicates with the Amazon Web Services Key Management Service (AWS KMS) as a back end for key generation and uses a local file for key storage. All keyring material is generated exclusively by the AWS server, not by `keyring_aws`.
 
@@ -24,11 +24,11 @@ The discussion here assumes that you are familiar with AWS in general and KMS in
 
 The following sections provide configuration and usage information for the `keyring_aws` keyring plugin:
 
-* keyring\_aws Configuration
-* keyring\_aws Operation
-* keyring\_aws Credential Changes
+* keyring_aws Configuration
+* keyring_aws Operation
+* keyring_aws Credential Changes
 
-##### keyring\_aws Configuration
+##### keyring_aws Configuration
 
 To install `keyring_aws`, use the general instructions found in Section 8.4.5.3, “Keyring Plugin Installation”, together with the plugin-specific configuration information found here.
 
@@ -100,7 +100,7 @@ CREATE FUNCTION keyring_aws_rotate_keys RETURNS INTEGER
 
 For additional information about the `keyring_aws` functions, see Section 8.4.5.16, “Plugin-Specific Keyring Key-Management Functions”.
 
-##### keyring\_aws Operation
+##### keyring_aws Operation
 
 At plugin startup, the `keyring_aws` plugin reads the AWS secret access key ID and key from its configuration file. It also reads any encrypted keys contained in its storage file into its in-memory cache.
 
@@ -125,7 +125,7 @@ In addition, the `keyring_aws_rotate_cmk()` and `keyring_aws_rotate_keys()` func
 
 For information about the characteristics of key values permitted by `keyring_aws`, see Section 8.4.5.13, “Supported Keyring Key Types and Lengths”.
 
-##### keyring\_aws Credential Changes
+##### keyring_aws Credential Changes
 
 Assuming that the `keyring_aws` plugin has initialized properly at server startup, it is possible to change the credentials used for communicating with AWS KMS:
 

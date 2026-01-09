@@ -1,12 +1,12 @@
 ### 21.6.1 Comandos no Cliente de Gerenciamento do NDB Cluster
 
-Além do arquivo de configuração central, um clúster também pode ser controlado por meio de uma interface de linha de comando disponível através do cliente de gerenciamento **ndb\_mgm**. Esta é a principal interface administrativa de um clúster em execução.
+Além do arquivo de configuração central, um clúster também pode ser controlado por meio de uma interface de linha de comando disponível através do cliente de gerenciamento **ndb_mgm**. Esta é a principal interface administrativa de um clúster em execução.
 
 Os comandos para os registros de eventos estão descritos na Seção 21.6.3, “Relatórios de Eventos Gerados no NDB Cluster”; os comandos para criar backups e restaurá-los estão descritos na Seção 21.6.8, “Backup Online do NDB Cluster”.
 
-**Usando ndb\_mgm com o MySQL Cluster Manager.**
+**Usando ndb_mgm com o MySQL Cluster Manager.**
 
-O MySQL Cluster Manager controla o início e o término dos processos e acompanha seus estados internamente, portanto, não é necessário usar o cliente de linha de comando **ndb\_mgm** para essas tarefas em um NDB Cluster sob controle do MySQL Cluster Manager. Recomenda-se *não* usar o cliente de linha de comando **ndb\_mgm** que vem com a distribuição do NDB Cluster para realizar operações que envolvam o início ou o término de nós. Isso inclui, mas não se limita aos comandos `START`, `STOP`, `RESTART` e `SHUTDOWN`. Para mais informações, consulte Comandos de Processo do MySQL Cluster Manager.
+O MySQL Cluster Manager controla o início e o término dos processos e acompanha seus estados internamente, portanto, não é necessário usar o cliente de linha de comando **ndb_mgm** para essas tarefas em um NDB Cluster sob controle do MySQL Cluster Manager. Recomenda-se *não* usar o cliente de linha de comando **ndb_mgm** que vem com a distribuição do NDB Cluster para realizar operações que envolvam o início ou o término de nós. Isso inclui, mas não se limita aos comandos `START`, `STOP`, `RESTART` e `SHUTDOWN`. Para mais informações, consulte Comandos de Processo do MySQL Cluster Manager.
 
 O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir, *`node_id`* denota um ID de nó de dados ou a palavra-chave `ALL`, que indica que o comando deve ser aplicado a todos os nós de dados do clúster.
 
@@ -26,7 +26,7 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
 
 - `DROP NODEGROUP nodegroup_id`
 
-  Descarte o grupo de nós do NDB Cluster com o ID de \*\`nodegroup\_id\`\` fornecido.
+  Descarte o grupo de nós do NDB Cluster com o ID de \*\`nodegroup_id\`\` fornecido.
 
   Esse comando pode ser usado para descartar um grupo de nós de um NDB Cluster. `DROP NODEGROUP` aceita como único argumento o ID do grupo de nós a ser descartado.
 
@@ -36,9 +36,9 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
   id=3    @10.100.2.67  (5.7.44-ndb-7.5.36, no nodegroup)
   ```
 
-  `DROP NODEGROUP` só funciona quando todos os nós de dados do grupo de nós a serem removidos estão completamente vazios de qualquer dado de tabela e definições de tabela. Como atualmente não há nenhuma maneira de usar o **ndb\_mgm** ou o cliente **mysql** para remover todos os dados de um nó de dados específico ou grupo de nós, isso significa que o comando só terá sucesso nos dois casos seguintes:
+  `DROP NODEGROUP` só funciona quando todos os nós de dados do grupo de nós a serem removidos estão completamente vazios de qualquer dado de tabela e definições de tabela. Como atualmente não há nenhuma maneira de usar o **ndb_mgm** ou o cliente **mysql** para remover todos os dados de um nó de dados específico ou grupo de nós, isso significa que o comando só terá sucesso nos dois casos seguintes:
 
-  1. Após emitir `CREATE NODEGROUP` no cliente **ndb\_mgm**, mas antes de emitir quaisquer instruções `ALTER TABLE ... REORGANIZE PARTITION` no cliente **mysql**.
+  1. Após emitir `CREATE NODEGROUP` no cliente **ndb_mgm**, mas antes de emitir quaisquer instruções `ALTER TABLE ... REORGANIZE PARTITION` no cliente **mysql**.
 
   2. Após descartar todas as tabelas de `NDBCLUSTER` usando `DROP TABLE`.
 
@@ -46,7 +46,7 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
 
   Para obter mais informações sobre `DROP NODEGROUP`, consulte Seção 21.6.7, “Adicionar nós de dados do NDB Cluster Online”.
 
-- Entrar no modo de usuário único node\_id
+- Entrar no modo de usuário único node_id
 
   Entra no modo de usuário único, onde apenas o servidor MySQL identificado pelo ID do nó *`node_id`* é autorizado a acessar o banco de dados.
 
@@ -64,13 +64,13 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
 
 - `node_id NODELOG DEBUG {ON|OFF}`
 
-  Habilita o registro de depuração no log do nó, como se o(s) nó(s) de dados afetado(s) tivesse(m) sido iniciado(s) com a opção `--verbose` (mysql-cluster-programs-ndbd.html#option\_ndbd\_verbose). `NODELOG DEBUG ON` inicia o registro de depuração; `NODELOG DEBUG OFF` desativa o registro de depuração.
+  Habilita o registro de depuração no log do nó, como se o(s) nó(s) de dados afetado(s) tivesse(m) sido iniciado(s) com a opção `--verbose` (mysql-cluster-programs-ndbd.html#option_ndbd_verbose). `NODELOG DEBUG ON` inicia o registro de depuração; `NODELOG DEBUG OFF` desativa o registro de depuração.
 
   Esse comando foi adicionado no NDB 7.6.
 
 - `PROMPT [prompt]`
 
-  Altera o prompt exibido por **ndb\_mgm** para a literal de string *`prompt`*.
+  Altera o prompt exibido por **ndb_mgm** para a literal de string *`prompt`*.
 
   *`prompt`* não deve ser citado (a menos que você queira que o prompt inclua as aspas). Ao contrário do caso do cliente **mysql**, sequências de caracteres especiais e escapamentos não são reconhecidos. Se chamado sem argumento, o comando redefini o prompt para o valor padrão (`ndb_mgm>`).
 
@@ -240,7 +240,7 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
 
   O comando `ALL STOP` funciona para parar apenas os nós de dados e não afeta os nós de gerenciamento.
 
-  Um nó afetado por este comando se desconecta do clúster e seu processo associado **ndbd** ou **ndb\_mgmd** é encerrado.
+  Um nó afetado por este comando se desconecta do clúster e seu processo associado **ndbd** ou **ndb_mgmd** é encerrado.
 
   A opção `-a` faz com que o nó seja parado imediatamente, sem esperar a conclusão de quaisquer transações pendentes.
 
@@ -250,9 +250,9 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
 
   O uso da opção `-a` também desabilita a verificação de segurança que, de outra forma, seria realizada quando o comando `STOP` é invocado, para garantir que a parada do nó não cause um clúster incompleto. Em outras palavras, você deve ter extremo cuidado ao usar a opção `-a` com o comando `STOP`, devido ao fato de que essa opção permite que o clúster seja desligado forçadamente, pois ele não tem mais uma cópia completa de todos os dados armazenados em `NDB`.
 
-**Comandos adicionais.** Vários outros comandos disponíveis no cliente **ndb\_mgm** são descritos em outros lugares, conforme mostrado na lista a seguir:
+**Comandos adicionais.** Vários outros comandos disponíveis no cliente **ndb_mgm** são descritos em outros lugares, conforme mostrado na lista a seguir:
 
-- `START BACKUP` é usado para realizar um backup online no cliente **ndb\_mgm**; o comando `ABORT BACKUP` é usado para cancelar um backup já em andamento. Para mais informações, consulte Seção 21.6.8, “Backup Online do NDB Cluster”.
+- `START BACKUP` é usado para realizar um backup online no cliente **ndb_mgm**; o comando `ABORT BACKUP` é usado para cancelar um backup já em andamento. Para mais informações, consulte Seção 21.6.8, “Backup Online do NDB Cluster”.
 
 - O comando `CLUSTERLOG` é usado para realizar várias funções de registro. Consulte Seção 21.6.3, “Relatórios de Eventos Gerados no NDB Cluster” para obter mais informações e exemplos. O NDB 7.6 adiciona `NODELOG DEBUG` para ativar ou desativar impressões de depuração nos logs dos nós, conforme descrito anteriormente nesta seção.
 

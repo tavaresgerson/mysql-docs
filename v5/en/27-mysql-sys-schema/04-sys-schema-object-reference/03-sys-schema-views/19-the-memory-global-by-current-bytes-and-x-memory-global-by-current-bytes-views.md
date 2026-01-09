@@ -1,4 +1,4 @@
-#### 26.4.3.19 The memory\_global\_by\_current\_bytes and x$memory\_global\_by\_current\_bytes Views
+#### 26.4.3.19 The memory_global_by_current_bytes and x$memory_global_by_current_bytes Views
 
 These views summarize memory use, grouped by allocation type (that is, by event). By default, rows are sorted by descending amount of memory used.
 

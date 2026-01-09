@@ -40,7 +40,7 @@ Section 8.1.7, “Client Programming Security Guidelines”
 
 Section 14.7, “Date and Time Functions”
 
-### AES\_DECRYPT()
+### AES_DECRYPT()
 
 Section 14.13, “Encryption and Compression Functions”
 
@@ -48,7 +48,7 @@ Section 8.6.3, “MySQL Enterprise Encryption Usage and Examples”
 
 Section 7.1.8, “Server System Variables”
 
-### AES\_ENCRYPT()
+### AES_ENCRYPT()
 
 Section 14.13, “Encryption and Compression Functions”
 
@@ -58,7 +58,7 @@ Section 7.1.8, “Server System Variables”
 
 Section 13.3.5, “The VECTOR Type”
 
-### ANY\_VALUE()
+### ANY_VALUE()
 
 Section 14.19.2, “GROUP BY Modifiers”
 
@@ -76,29 +76,29 @@ Section 14.8, “String Functions and Operators”
 
 Section 14.6.2, “Mathematical Functions”
 
-### asymmetric\_decrypt()
+### asymmetric_decrypt()
 
 Section 8.6.5, “MySQL Enterprise Encryption Component Function Descriptions”
 
-### asymmetric\_encrypt()
+### asymmetric_encrypt()
 
 Section 8.6.5, “MySQL Enterprise Encryption Component Function Descriptions”
 
-### asymmetric\_sign()
+### asymmetric_sign()
 
 Section 8.6.5, “MySQL Enterprise Encryption Component Function Descriptions”
 
-### asymmetric\_verify()
+### asymmetric_verify()
 
 Section 8.6.5, “MySQL Enterprise Encryption Component Function Descriptions”
 
-### asynchronous\_connection\_failover\_add\_managed
+### asynchronous_connection_failover_add_managed
 
 Section 19.4.9.1, “Asynchronous Connection Failover for Sources”
 
-Section 29.12.11.10, “The replication\_asynchronous\_connection\_failover Table”
+Section 29.12.11.10, “The replication_asynchronous_connection_failover Table”
 
-### asynchronous\_connection\_failover\_add\_managed()
+### asynchronous_connection_failover_add_managed()
 
 Section 19.4.9.2, “Asynchronous Connection Failover for Replicas”
 
@@ -106,13 +106,13 @@ Section 14.18.3, “Asynchronous Replication Channel Failover Functions”
 
 Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”
 
-### asynchronous\_connection\_failover\_add\_source
+### asynchronous_connection_failover_add_source
 
 Section 19.4.9.1, “Asynchronous Connection Failover for Sources”
 
-Section 29.12.11.10, “The replication\_asynchronous\_connection\_failover Table”
+Section 29.12.11.10, “The replication_asynchronous_connection_failover Table”
 
-### asynchronous\_connection\_failover\_add\_source()
+### asynchronous_connection_failover_add_source()
 
 Section 19.4.9.2, “Asynchronous Connection Failover for Replicas”
 
@@ -120,13 +120,13 @@ Section 14.18.3, “Asynchronous Replication Channel Failover Functions”
 
 Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”
 
-### asynchronous\_connection\_failover\_delete\_managed
+### asynchronous_connection_failover_delete_managed
 
 Section 19.4.9.1, “Asynchronous Connection Failover for Sources”
 
-Section 29.12.11.10, “The replication\_asynchronous\_connection\_failover Table”
+Section 29.12.11.10, “The replication_asynchronous_connection_failover Table”
 
-### asynchronous\_connection\_failover\_delete\_managed()
+### asynchronous_connection_failover_delete_managed()
 
 Section 19.4.9.2, “Asynchronous Connection Failover for Replicas”
 
@@ -134,13 +134,13 @@ Section 14.18.3, “Asynchronous Replication Channel Failover Functions”
 
 Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”
 
-### asynchronous\_connection\_failover\_delete\_source
+### asynchronous_connection_failover_delete_source
 
 Section 19.4.9.1, “Asynchronous Connection Failover for Sources”
 
-Section 29.12.11.10, “The replication\_asynchronous\_connection\_failover Table”
+Section 29.12.11.10, “The replication_asynchronous_connection_failover Table”
 
-### asynchronous\_connection\_failover\_delete\_source()
+### asynchronous_connection_failover_delete_source()
 
 Section 19.4.9.2, “Asynchronous Connection Failover for Replicas”
 
@@ -148,7 +148,7 @@ Section 14.18.3, “Asynchronous Replication Channel Failover Functions”
 
 Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”
 
-### asynchronous\_connection\_failover\_reset()
+### asynchronous_connection_failover_reset()
 
 Section 14.18.3, “Asynchronous Replication Channel Failover Functions”
 
@@ -160,43 +160,43 @@ Section 14.6.2, “Mathematical Functions”
 
 Section 14.6.2, “Mathematical Functions”
 
-### audit\_api\_message\_emit\_udf()
+### audit_api_message_emit_udf()
 
 Section 8.4.7, “The Audit Message Component”
 
 Section 8.4.6.8, “Writing Audit Log Filter Definitions”
 
-### audit\_log\_encryption\_password\_get()
+### audit_log_encryption_password_get()
 
 Section 8.4.6.11, “Audit Log Reference”
 
 Section 8.4.6.5, “Configuring Audit Logging Characteristics”
 
-### audit\_log\_encryption\_password\_set()
+### audit_log_encryption_password_set()
 
 Section 8.4.6.11, “Audit Log Reference”
 
 Section 8.4.6.5, “Configuring Audit Logging Characteristics”
 
-### audit\_log\_filter\_flush()
+### audit_log_filter_flush()
 
 Section 8.4.6.7, “Audit Log Filtering”
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### audit\_log\_filter\_remove\_filter()
+### audit_log_filter_remove_filter()
 
 Section 8.4.6.7, “Audit Log Filtering”
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### audit\_log\_filter\_remove\_user()
+### audit_log_filter_remove_user()
 
 Section 8.4.6.7, “Audit Log Filtering”
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### audit\_log\_filter\_set\_filter()
+### audit_log_filter_set_filter()
 
 Section 8.4.6.4, “Audit Log File Formats”
 
@@ -206,13 +206,13 @@ Section 8.4.6.11, “Audit Log Reference”
 
 Section 8.4.6.5, “Configuring Audit Logging Characteristics”
 
-### audit\_log\_filter\_set\_user()
+### audit_log_filter_set_user()
 
 Section 8.4.6.7, “Audit Log Filtering”
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### audit\_log\_read()
+### audit_log_read()
 
 Section 8.4.6.11, “Audit Log Reference”
 
@@ -220,13 +220,13 @@ Section 8.4.6.5, “Configuring Audit Logging Characteristics”
 
 Section 8.4.6.6, “Reading Audit Log Files”
 
-### audit\_log\_read\_bookmark()
+### audit_log_read_bookmark()
 
 Section 8.4.6.11, “Audit Log Reference”
 
 Section 8.4.6.6, “Reading Audit Log Files”
 
-### audit\_log\_rotate()
+### audit_log_rotate()
 
 Section 8.4.6.11, “Audit Log Reference”
 
@@ -268,13 +268,13 @@ Section 11.1.5, “Bit-Value Literals”
 
 Section 14.8, “String Functions and Operators”
 
-### BIN\_TO\_UUID()
+### BIN_TO_UUID()
 
 Section 14.8.3, “Character Set and Collation of Function Results”
 
 Section 14.24, “Miscellaneous Functions”
 
-### BIT\_AND()
+### BIT_AND()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
@@ -282,19 +282,19 @@ Section 14.12, “Bit Functions and Operators”
 
 Section 1.7.1, “MySQL Extensions to Standard SQL”
 
-### BIT\_COUNT()
+### BIT_COUNT()
 
 Section 14.12, “Bit Functions and Operators”
 
 Section 1.7.1, “MySQL Extensions to Standard SQL”
 
-### BIT\_LENGTH()
+### BIT_LENGTH()
 
 Section 14.8, “String Functions and Operators”
 
 Section 13.3.5, “The VECTOR Type”
 
-### BIT\_OR()
+### BIT_OR()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
@@ -302,7 +302,7 @@ Section 14.12, “Bit Functions and Operators”
 
 Section 1.7.1, “MySQL Extensions to Standard SQL”
 
-### BIT\_XOR()
+### BIT_XOR()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
@@ -314,23 +314,23 @@ Section 1.7.1, “MySQL Extensions to Standard SQL”
 
 [index top]
 
-### CAN\_ACCESS\_COLUMN()
+### CAN_ACCESS_COLUMN()
 
 Section 14.23, “Internal Functions”
 
-### CAN\_ACCESS\_DATABASE()
+### CAN_ACCESS_DATABASE()
 
 Section 14.23, “Internal Functions”
 
-### CAN\_ACCESS\_TABLE()
+### CAN_ACCESS_TABLE()
 
 Section 14.23, “Internal Functions”
 
-### CAN\_ACCESS\_USER()
+### CAN_ACCESS_USER()
 
 Section 14.23, “Internal Functions”
 
-### CAN\_ACCESS\_VIEW()
+### CAN_ACCESS_VIEW()
 
 Section 14.23, “Internal Functions”
 
@@ -402,7 +402,7 @@ Section 1.7.1, “MySQL Extensions to Standard SQL”
 
 Section 14.8, “String Functions and Operators”
 
-### CHAR\_LENGTH()
+### CHAR_LENGTH()
 
 Section 14.8, “String Functions and Operators”
 
@@ -410,7 +410,7 @@ Section 13.3.5, “The VECTOR Type”
 
 Section 12.10.1, “Unicode Character Sets”
 
-### CHARACTER\_LENGTH()
+### CHARACTER_LENGTH()
 
 Section 14.8, “String Functions and Operators”
 
@@ -484,19 +484,19 @@ Section 15.7.7.15, “SHOW CREATE VIEW Statement”
 
 Section 14.8, “String Functions and Operators”
 
-Section 28.3.53, “The INFORMATION\_SCHEMA VIEWS Table”
+Section 28.3.53, “The INFORMATION_SCHEMA VIEWS Table”
 
 Section 14.3, “Type Conversion in Expression Evaluation”
 
 Section 14.11, “XML Functions”
 
-### CONCAT\_WS()
+### CONCAT_WS()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
 Section 14.8, “String Functions and Operators”
 
-### CONNECTION\_ID()
+### CONNECTION_ID()
 
 Section 8.4.6.4, “Audit Log File Formats”
 
@@ -518,15 +518,15 @@ Section 7.1.8, “Server System Variables”
 
 Section 15.7.7.32, “SHOW PROCESSLIST Statement”
 
-Section 29.12.22.3, “The error\_log Table”
+Section 29.12.22.3, “The error_log Table”
 
-Section 28.3.28, “The INFORMATION\_SCHEMA PROCESSLIST Table”
+Section 28.3.28, “The INFORMATION_SCHEMA PROCESSLIST Table”
 
 Section 29.12.22.9, “The processlist Table”
 
 Section 29.12.22.10, “The threads Table”
 
-Section 29.12.16.1, “The tp\_connections Table”
+Section 29.12.16.1, “The tp_connections Table”
 
 ### CONV()
 
@@ -554,7 +554,7 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### CONVERT\_TZ()
+### CONVERT_TZ()
 
 Section 14.7, “Date and Time Functions”
 
@@ -624,19 +624,19 @@ Section 10.2.1.1, “WHERE Clause Optimization”
 
 Section 14.6.2, “Mathematical Functions”
 
-### create\_asymmetric\_priv\_key()
+### create_asymmetric_priv_key()
 
 Section 8.6.5, “MySQL Enterprise Encryption Component Function Descriptions”
 
-### create\_asymmetric\_pub\_key()
+### create_asymmetric_pub_key()
 
 Section 8.6.5, “MySQL Enterprise Encryption Component Function Descriptions”
 
-### create\_digest()
+### create_digest()
 
 Section 8.6.5, “MySQL Enterprise Encryption Component Function Descriptions”
 
-### CUME\_DIST()
+### CUME_DIST()
 
 Section 14.20.1, “Window Function Descriptions”
 
@@ -648,11 +648,11 @@ Section 5.3.4.5, “Date Calculations”
 
 Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”
 
-### CURRENT\_DATE
+### CURRENT_DATE
 
 Section 14.7, “Date and Time Functions”
 
-### CURRENT\_DATE()
+### CURRENT_DATE()
 
 Section 13.2.8, “Conversion Between Date and Time Types”
 
@@ -660,23 +660,23 @@ Section 14.7, “Date and Time Functions”
 
 Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”
 
-### CURRENT\_ROLE()
+### CURRENT_ROLE()
 
 Section 14.15, “Information Functions”
 
 Section 8.2.10, “Using Roles”
 
-### CURRENT\_TIME
+### CURRENT_TIME
 
 Section 14.7, “Date and Time Functions”
 
-### CURRENT\_TIME()
+### CURRENT_TIME()
 
 Section 14.7, “Date and Time Functions”
 
 Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”
 
-### CURRENT\_TIMESTAMP
+### CURRENT_TIMESTAMP
 
 Section 13.2.5, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”
 
@@ -690,7 +690,7 @@ Section 14.7, “Date and Time Functions”
 
 Section 7.1.8, “Server System Variables”
 
-### CURRENT\_TIMESTAMP()
+### CURRENT_TIMESTAMP()
 
 Section 13.2.5, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”
 
@@ -698,7 +698,7 @@ Section 14.7, “Date and Time Functions”
 
 Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”
 
-### CURRENT\_USER
+### CURRENT_USER
 
 Section 15.7.1.1, “ALTER USER Statement”
 
@@ -720,7 +720,7 @@ Section 7.4.4.3, “Mixed Binary Logging Format”
 
 Section 19.5.1.14, “Replication and System Functions”
 
-Section 19.5.1.8, “Replication of CURRENT\_USER()”")
+Section 19.5.1.8, “Replication of CURRENT_USER()”")
 
 Section 15.7.7.14, “SHOW CREATE USER Statement”
 
@@ -728,7 +728,7 @@ Section 8.2.4, “Specifying Account Names”
 
 Section 27.8, “Stored Object Access Control”
 
-### CURRENT\_USER()
+### CURRENT_USER()
 
 Section 8.2.6, “Access Control, Stage 1: Connection Verification”
 
@@ -770,7 +770,7 @@ Section 8.2.19, “Proxy Users”
 
 Section 19.5.1.14, “Replication and System Functions”
 
-Section 19.5.1.8, “Replication of CURRENT\_USER()”")
+Section 19.5.1.8, “Replication of CURRENT_USER()”")
 
 Section 15.7.1.10, “SET PASSWORD Statement”
 
@@ -818,7 +818,7 @@ Section 12.2.2, “UTF-8 for Metadata”
 
 Section 14.7, “Date and Time Functions”
 
-### DATE\_ADD()
+### DATE_ADD()
 
 Section 14.6.1, “Arithmetic Operators”
 
@@ -832,7 +832,7 @@ Section 11.5, “Expressions”
 
 Section 14.20.3, “Window Function Frame Specification”
 
-### DATE\_FORMAT()
+### DATE_FORMAT()
 
 Section 14.10, “Cast Functions and Operators”
 
@@ -842,7 +842,7 @@ Section 12.16, “MySQL Server Locale Support”
 
 Section 7.1.8, “Server System Variables”
 
-### DATE\_SUB()
+### DATE_SUB()
 
 Section 13.2, “Date and Time Data Types”
 
@@ -908,7 +908,7 @@ Section 15.2.12, “REPLACE Statement”
 
 Section 14.6.2, “Mathematical Functions”
 
-### DENSE\_RANK()
+### DENSE_RANK()
 
 Section 14.20.1, “Window Function Descriptions”
 
@@ -948,7 +948,7 @@ Section 15.1.24, “CREATE TABLE Statement”
 
 Section 14.6.2, “Mathematical Functions”
 
-### EXPORT\_SET()
+### EXPORT_SET()
 
 Section 14.8, “String Functions and Operators”
 
@@ -974,21 +974,21 @@ Section 14.11, “XML Functions”
 
 Section 14.8, “String Functions and Operators”
 
-### FIND\_IN\_SET()
+### FIND_IN_SET()
 
 Section 14.8, “String Functions and Operators”
 
 Section 13.3.7, “The SET Type”
 
-### firewall\_group\_delist()
+### firewall_group_delist()
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
-### firewall\_group\_enlist()
+### firewall_group_enlist()
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
-### FIRST\_VALUE()
+### FIRST_VALUE()
 
 Section 14.20.1, “Window Function Descriptions”
 
@@ -1006,7 +1006,7 @@ Section 26.6.3, “Partitioning Limitations Relating to Functions”
 
 Section 7.1.8, “Server System Variables”
 
-### flush\_rewrite\_rules()
+### flush_rewrite_rules()
 
 Section 7.6.4.3.2, “Rewriter Query Rewrite Plugin Procedures and Functions”
 
@@ -1024,19 +1024,19 @@ Section 12.16, “MySQL Server Locale Support”
 
 Section 14.8, “String Functions and Operators”
 
-### FORMAT\_BYTES()
+### FORMAT_BYTES()
 
 Section 14.22, “Performance Schema Functions”
 
-Section 30.4.5.3, “The format\_bytes() Function” Function")
+Section 30.4.5.3, “The format_bytes() Function” Function")
 
-### FORMAT\_PICO\_TIME()
+### FORMAT_PICO_TIME()
 
 Section 14.22, “Performance Schema Functions”
 
-Section 30.4.5.6, “The format\_time() Function” Function")
+Section 30.4.5.6, “The format_time() Function” Function")
 
-### FOUND\_ROWS()
+### FOUND_ROWS()
 
 Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”
 
@@ -1050,17 +1050,17 @@ Section 19.5.1.14, “Replication and System Functions”
 
 Section 15.2.13, “SELECT Statement”
 
-### FROM\_BASE64()
+### FROM_BASE64()
 
 Section 14.8, “String Functions and Operators”
 
-### FROM\_DAYS()
+### FROM_DAYS()
 
 Section 14.7, “Date and Time Functions”
 
 Section 1.7.1, “MySQL Extensions to Standard SQL”
 
-### FROM\_UNIXTIME()
+### FROM_UNIXTIME()
 
 Section 14.7, “Date and Time Functions”
 
@@ -1072,11 +1072,11 @@ Section 19.5.1.34, “Replication and Time Zones”
 
 [index top]
 
-### gen\_blacklist()
+### gen_blacklist()
 
 Section 8.5.3.4, “MySQL Enterprise Data Masking Plugin Function Descriptions”
 
-### gen\_blocklist()
+### gen_blocklist()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -1086,7 +1086,7 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### gen\_dictionary()
+### gen_dictionary()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -1096,17 +1096,17 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### gen\_dictionary\_drop()
+### gen_dictionary_drop()
 
 Section 8.5.3.4, “MySQL Enterprise Data Masking Plugin Function Descriptions”
 
-### gen\_dictionary\_load()
+### gen_dictionary_load()
 
 Section 8.5.3.4, “MySQL Enterprise Data Masking Plugin Function Descriptions”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### gen\_range()
+### gen_range()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -1116,13 +1116,13 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### gen\_rnd\_canada\_sin()
+### gen_rnd_canada_sin()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
 Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
-### gen\_rnd\_email()
+### gen_rnd_email()
 
 Section 8.5.1, “Data-Masking Components Versus the Data-Masking Plugin”
 
@@ -1134,23 +1134,13 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### gen\_rnd\_iban()
+### gen_rnd_iban()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
 Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
-### gen\_rnd\_pan()
-
-Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
-
-Section 8.5.3.4, “MySQL Enterprise Data Masking Plugin Function Descriptions”
-
-Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
-
-Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
-
-### gen\_rnd\_ssn()
+### gen_rnd_pan()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -1160,13 +1150,7 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### gen\_rnd\_uk\_nin()
-
-Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
-
-Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
-
-### gen\_rnd\_us\_phone()
+### gen_rnd_ssn()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -1176,7 +1160,23 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### gen\_rnd\_uuid()
+### gen_rnd_uk_nin()
+
+Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
+
+Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
+
+### gen_rnd_us_phone()
+
+Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
+
+Section 8.5.3.4, “MySQL Enterprise Data Masking Plugin Function Descriptions”
+
+Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
+
+Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
+
+### gen_rnd_uuid()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -1192,25 +1192,25 @@ Section 14.16.6, “Geometry Format Conversion Functions”
 
 Section 14.16.5, “MySQL-Specific Functions That Create Geometry Values”
 
-### GET\_DD\_COLUMN\_PRIVILEGES()
+### GET_DD_COLUMN_PRIVILEGES()
 
 Section 14.23, “Internal Functions”
 
-### GET\_DD\_CREATE\_OPTIONS()
+### GET_DD_CREATE_OPTIONS()
 
 Section 14.23, “Internal Functions”
 
-### GET\_DD\_INDEX\_SUB\_PART\_LENGTH()
+### GET_DD_INDEX_SUB_PART_LENGTH()
 
 Section 14.23, “Internal Functions”
 
-### GET\_FORMAT()
+### GET_FORMAT()
 
 Section 14.7, “Date and Time Functions”
 
 Section 12.16, “MySQL Server Locale Support”
 
-### GET\_LOCK()
+### GET_LOCK()
 
 Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”
 
@@ -1242,9 +1242,9 @@ Section 7.6.8.1, “The Locking Service”
 
 Section 7.6.8.1.2, “The Locking Service Function Interface”
 
-Section 29.12.13.3, “The metadata\_locks Table”
+Section 29.12.13.3, “The metadata_locks Table”
 
-Section 30.4.4.14, “The ps\_setup\_save() Procedure” Procedure")
+Section 30.4.4.14, “The ps_setup_save() Procedure” Procedure")
 
 ### getrusage()
 
@@ -1262,7 +1262,7 @@ Section 14.4.2, “Comparison Functions and Operators”
 
 Section 13.5, “The JSON Data Type”
 
-### GROUP\_CONCAT()
+### GROUP_CONCAT()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
@@ -1278,7 +1278,7 @@ Section 13.5, “The JSON Data Type”
 
 Section 1.2.2, “The Main Features of MySQL”
 
-### group\_replication\_disable\_member\_action
+### group_replication_disable_member_action
 
 Section 19.4.9.2, “Asynchronous Connection Failover for Replicas”
 
@@ -1290,7 +1290,7 @@ Section 14.18.1.5, “Functions to Set and Reset Group Replication Member Actio
 
 Section 19.4.9, “Switching Sources and Replicas with Asynchronous Connection Failover”
 
-### group\_replication\_disable\_member\_action()
+### group_replication_disable_member_action()
 
 Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”
 
@@ -1298,25 +1298,25 @@ Section 20.5.1.5, “Configuring Member Actions”
 
 Section 14.18.1.5, “Functions to Set and Reset Group Replication Member Actions”
 
-Section 29.12.11.15, “The replication\_group\_configuration\_version Table”
+Section 29.12.11.15, “The replication_group_configuration_version Table”
 
-Section 29.12.11.16, “The replication\_group\_member\_actions Table”
+Section 29.12.11.16, “The replication_group_member_actions Table”
 
-### group\_replication\_enable\_member\_action
+### group_replication_enable_member_action
 
 Section 20.5.1.5, “Configuring Member Actions”
 
 Section 14.18.1.5, “Functions to Set and Reset Group Replication Member Actions”
 
-### group\_replication\_enable\_member\_action()
+### group_replication_enable_member_action()
 
 Section 14.18.1.5, “Functions to Set and Reset Group Replication Member Actions”
 
-Section 29.12.11.15, “The replication\_group\_configuration\_version Table”
+Section 29.12.11.15, “The replication_group_configuration_version Table”
 
-Section 29.12.11.16, “The replication\_group\_member\_actions Table”
+Section 29.12.11.16, “The replication_group_member_actions Table”
 
-### group\_replication\_get\_communication\_protocol()
+### group_replication_get_communication_protocol()
 
 Section 14.18.1.4, “Functions to Inspect and Set the Group Replication Communication Protocol Version”
 
@@ -1328,27 +1328,27 @@ Section 20.5.1.4, “Setting a Group's Communication Protocol Version”
 
 Section 20.7.3, “Single Consensus Leader”
 
-### group\_replication\_get\_write\_concurrency()
+### group_replication_get_write_concurrency()
 
 Section 14.18.1.3, “Functions to Inspect and Configure the Maximum Consensus Instances of a Group”
 
 Section 20.5.1.3, “Using Group Replication Group Write Consensus”
 
-### group\_replication\_reset\_member\_actions
+### group_replication_reset_member_actions
 
 Section 20.5.1.5, “Configuring Member Actions”
 
 Section 14.18.1.5, “Functions to Set and Reset Group Replication Member Actions”
 
-### group\_replication\_reset\_member\_actions()
+### group_replication_reset_member_actions()
 
 Section 14.18.1.5, “Functions to Set and Reset Group Replication Member Actions”
 
-Section 29.12.11.15, “The replication\_group\_configuration\_version Table”
+Section 29.12.11.15, “The replication_group_configuration_version Table”
 
-Section 29.12.11.16, “The replication\_group\_member\_actions Table”
+Section 29.12.11.16, “The replication_group_member_actions Table”
 
-### group\_replication\_set\_as\_primary()
+### group_replication_set_as_primary()
 
 Section 20.5.1.1, “Changing the Primary”
 
@@ -1362,7 +1362,7 @@ Section 20.1.3.1, “Single-Primary Mode”
 
 Section 20.5.3.1, “Understanding Transaction Consistency Guarantees”
 
-### group\_replication\_set\_communication\_protocol()
+### group_replication_set_communication_protocol()
 
 Section 14.18.1.4, “Functions to Inspect and Set the Group Replication Communication Protocol Version”
 
@@ -1378,7 +1378,7 @@ Section 20.5.1.4, “Setting a Group's Communication Protocol Version”
 
 Section 20.7.3, “Single Consensus Leader”
 
-### group\_replication\_set\_write\_concurrency()
+### group_replication_set_write_concurrency()
 
 Section 14.18.1.3, “Functions to Inspect and Configure the Maximum Consensus Instances of a Group”
 
@@ -1386,7 +1386,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 Section 20.5.1.3, “Using Group Replication Group Write Consensus”
 
-### group\_replication\_switch\_to\_multi\_primary\_mode()
+### group_replication_switch_to_multi_primary_mode()
 
 Section 20.5.1.2, “Changing the Group Mode”
 
@@ -1400,7 +1400,7 @@ Section 20.1.3, “Multi-Primary and Single-Primary Modes”
 
 Section 20.1.3.2.3, “Version Compatibility”
 
-### group\_replication\_switch\_to\_single\_primary\_mode()
+### group_replication_switch_to_single_primary_mode()
 
 Section 20.5.1.2, “Changing the Group Mode”
 
@@ -1420,7 +1420,7 @@ Section 14.24, “Miscellaneous Functions”
 
 Section 14.20.2, “Window Function Concepts and Syntax”
 
-### GTID\_SUBSET()
+### GTID_SUBSET()
 
 Section 14.18.2, “Functions Used with Global Transaction Identifiers (GTIDs)”")
 
@@ -1428,7 +1428,7 @@ Section 19.1.3.1, “GTID Format and Storage”
 
 Section 19.1.3.8, “Stored Function Examples to Manipulate GTIDs”
 
-### GTID\_SUBTRACT()
+### GTID_SUBTRACT()
 
 Section 14.18.2, “Functions Used with Global Transaction Identifiers (GTIDs)”")
 
@@ -1480,7 +1480,7 @@ Section 26.6.3, “Partitioning Limitations Relating to Functions”
 
 [index top]
 
-### ICU\_VERSION()
+### ICU_VERSION()
 
 Section 14.15, “Information Functions”
 
@@ -1496,7 +1496,7 @@ Section 14.5, “Flow Control Functions”
 
 Section 15.6.5.2, “IF Statement”
 
-Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”
+Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”
 
 Section B.3.7, “Known Issues in MySQL”
 
@@ -1516,25 +1516,25 @@ Section B.3.4.3, “Problems with NULL Values”
 
 Section 13.3.5, “The VECTOR Type”
 
-### INET6\_ATON()
+### INET6_ATON()
 
 Section 7.1.13, “IPv6 Support”
 
 Section 14.24, “Miscellaneous Functions”
 
-### INET6\_NTOA()
+### INET6_NTOA()
 
 Section 7.1.13, “IPv6 Support”
 
 Section 14.24, “Miscellaneous Functions”
 
-### INET\_ATON()
+### INET_ATON()
 
 Section 7.1.13, “IPv6 Support”
 
 Section 14.24, “Miscellaneous Functions”
 
-### INET\_NTOA()
+### INET_NTOA()
 
 Section 7.1.13, “IPv6 Support”
 
@@ -1550,83 +1550,83 @@ Section 14.8.3, “Character Set and Collation of Function Results”
 
 Section 14.8, “String Functions and Operators”
 
-### INTERNAL\_AUTO\_INCREMENT()
+### INTERNAL_AUTO_INCREMENT()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_AVG\_ROW\_LENGTH()
+### INTERNAL_AVG_ROW_LENGTH()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_CHECK\_TIME()
+### INTERNAL_CHECK_TIME()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_CHECKSUM()
+### INTERNAL_CHECKSUM()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_DATA\_FREE()
+### INTERNAL_DATA_FREE()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_DATA\_LENGTH()
+### INTERNAL_DATA_LENGTH()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_DD\_CHAR\_LENGTH()
+### INTERNAL_DD_CHAR_LENGTH()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_GET\_COMMENT\_OR\_ERROR()
+### INTERNAL_GET_COMMENT_OR_ERROR()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_GET\_ENABLED\_ROLE\_JSON()
+### INTERNAL_GET_ENABLED_ROLE_JSON()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_GET\_HOSTNAME()
+### INTERNAL_GET_HOSTNAME()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_GET\_USERNAME()
+### INTERNAL_GET_USERNAME()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_GET\_VIEW\_WARNING\_OR\_ERROR()
+### INTERNAL_GET_VIEW_WARNING_OR_ERROR()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_INDEX\_COLUMN\_CARDINALITY()
+### INTERNAL_INDEX_COLUMN_CARDINALITY()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_INDEX\_LENGTH()
+### INTERNAL_INDEX_LENGTH()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_IS\_ENABLED\_ROLE()
+### INTERNAL_IS_ENABLED_ROLE()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_IS\_MANDATORY\_ROLE()
+### INTERNAL_IS_MANDATORY_ROLE()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_KEYS\_DISABLED()
+### INTERNAL_KEYS_DISABLED()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_MAX\_DATA\_LENGTH()
+### INTERNAL_MAX_DATA_LENGTH()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_TABLE\_ROWS()
+### INTERNAL_TABLE_ROWS()
 
 Section 14.23, “Internal Functions”
 
-### INTERNAL\_UPDATE\_TIME()
+### INTERNAL_UPDATE_TIME()
 
 Section 14.23, “Internal Functions”
 
@@ -1634,7 +1634,7 @@ Section 14.23, “Internal Functions”
 
 Section 14.4.2, “Comparison Functions and Operators”
 
-### IS\_FREE\_LOCK()
+### IS_FREE_LOCK()
 
 Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”
 
@@ -1644,23 +1644,23 @@ Section 14.14, “Locking Functions”
 
 Section 19.5.1.14, “Replication and System Functions”
 
-### IS\_IPV4()
+### IS_IPV4()
 
 Section 14.24, “Miscellaneous Functions”
 
-### IS\_IPV4\_COMPAT()
+### IS_IPV4_COMPAT()
 
 Section 14.24, “Miscellaneous Functions”
 
-### IS\_IPV4\_MAPPED()
+### IS_IPV4_MAPPED()
 
 Section 14.24, “Miscellaneous Functions”
 
-### IS\_IPV6()
+### IS_IPV6()
 
 Section 14.24, “Miscellaneous Functions”
 
-### IS\_USED\_LOCK()
+### IS_USED_LOCK()
 
 Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”
 
@@ -1670,13 +1670,13 @@ Section 14.14, “Locking Functions”
 
 Section 19.5.1.14, “Replication and System Functions”
 
-### IS\_UUID()
+### IS_UUID()
 
 Section 14.24, “Miscellaneous Functions”
 
 Section 27.3.6.12, “MySQL Functions”
 
-### IS\_VISIBLE\_DD\_OBJECT()
+### IS_VISIBLE_DD_OBJECT()
 
 Section 14.23, “Internal Functions”
 
@@ -1688,7 +1688,7 @@ Section 14.4.2, “Comparison Functions and Operators”
 
 [index top]
 
-### JSON\_ARRAY()
+### JSON_ARRAY()
 
 Section 14.17.2, “Functions That Create JSON Values”
 
@@ -1696,15 +1696,15 @@ Section 14.17.3, “Functions That Search JSON Values”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_ARRAY\_APPEND()
+### JSON_ARRAY_APPEND()
 
 Section 14.17.4, “Functions That Modify JSON Values”
 
-### JSON\_ARRAY\_INSERT()
+### JSON_ARRAY_INSERT()
 
 Section 14.17.4, “Functions That Modify JSON Values”
 
-### JSON\_ARRAYAGG()
+### JSON_ARRAYAGG()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
@@ -1714,23 +1714,23 @@ Section 14.17.2, “Functions That Create JSON Values”
 
 Section 14.17.1, “JSON Function Reference”
 
-### JSON\_CONTAINS()
+### JSON_CONTAINS()
 
 Section 15.1.18, “CREATE INDEX Statement”
 
 Section 14.17.3, “Functions That Search JSON Values”
 
-### JSON\_CONTAINS\_PATH()
+### JSON_CONTAINS_PATH()
 
 Section 14.17.3, “Functions That Search JSON Values”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_DEPTH()
+### JSON_DEPTH()
 
 Section 14.17.5, “Functions That Return JSON Value Attributes”
 
-### JSON\_DUALITY\_OBJECT()
+### JSON_DUALITY_OBJECT()
 
 Section 15.1.6, “ALTER JSON DUALITY VIEW Statement”
 
@@ -1738,7 +1738,7 @@ Section 15.1.17, “CREATE JSON DUALITY VIEW Statement”
 
 Section 14.17.2, “Functions That Create JSON Values”
 
-### JSON\_EXTRACT()
+### JSON_EXTRACT()
 
 Section 15.8.2, “EXPLAIN Statement”
 
@@ -1750,27 +1750,27 @@ Section 15.1.24.9, “Secondary Indexes and Generated Columns”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_INSERT()
+### JSON_INSERT()
 
 Section 14.17.4, “Functions That Modify JSON Values”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_KEYS()
+### JSON_KEYS()
 
 Section 14.17.3, “Functions That Search JSON Values”
 
 Section 8.2.3, “Grant Tables”
 
-### JSON\_LENGTH()
+### JSON_LENGTH()
 
 Section 14.17.5, “Functions That Return JSON Value Attributes”
 
-### JSON\_MERGE()
+### JSON_MERGE()
 
 Section 14.17.4, “Functions That Modify JSON Values”
 
-### JSON\_MERGE\_PATCH()
+### JSON_MERGE_PATCH()
 
 Section 15.7.1.1, “ALTER USER Statement”
 
@@ -1778,13 +1778,13 @@ Section 14.17.4, “Functions That Modify JSON Values”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_MERGE\_PRESERVE()
+### JSON_MERGE_PRESERVE()
 
 Section 14.17.4, “Functions That Modify JSON Values”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_OBJECT()
+### JSON_OBJECT()
 
 Section 14.17.2, “Functions That Create JSON Values”
 
@@ -1792,7 +1792,7 @@ Section 14.17.3, “Functions That Search JSON Values”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_OBJECTAGG()
+### JSON_OBJECTAGG()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
@@ -1800,13 +1800,13 @@ Section 14.17.2, “Functions That Create JSON Values”
 
 Section 14.17.1, “JSON Function Reference”
 
-### JSON\_OVERLAPS()
+### JSON_OVERLAPS()
 
 Section 15.1.18, “CREATE INDEX Statement”
 
 Section 14.17.3, “Functions That Search JSON Values”
 
-### JSON\_PRETTY()
+### JSON_PRETTY()
 
 Section 14.17.1, “JSON Function Reference”
 
@@ -1814,13 +1814,13 @@ Section 14.17.7, “JSON Schema Validation Functions”
 
 Section 14.17.8, “JSON Utility Functions”
 
-### JSON\_QUOTE()
+### JSON_QUOTE()
 
 Section 14.17.2, “Functions That Create JSON Values”
 
 Section 14.17.8, “JSON Utility Functions”
 
-### JSON\_REMOVE()
+### JSON_REMOVE()
 
 Section 19.1.6.4, “Binary Logging Options and Variables”
 
@@ -1830,7 +1830,7 @@ Section 14.17.8, “JSON Utility Functions”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_REPLACE()
+### JSON_REPLACE()
 
 Section 19.1.6.4, “Binary Logging Options and Variables”
 
@@ -1840,21 +1840,21 @@ Section 14.17.8, “JSON Utility Functions”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_SCHEMA\_VALID()
+### JSON_SCHEMA_VALID()
 
 Section 14.17.7, “JSON Schema Validation Functions”
 
-### JSON\_SCHEMA\_VALIDATION\_REPORT()
+### JSON_SCHEMA_VALIDATION_REPORT()
 
 Section 14.17.7, “JSON Schema Validation Functions”
 
-### JSON\_SEARCH()
+### JSON_SEARCH()
 
 Section 14.17.3, “Functions That Search JSON Values”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_SET()
+### JSON_SET()
 
 Section 19.1.6.4, “Binary Logging Options and Variables”
 
@@ -1864,7 +1864,7 @@ Section 14.17.8, “JSON Utility Functions”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_STORAGE\_FREE()
+### JSON_STORAGE_FREE()
 
 Section 14.17.1, “JSON Function Reference”
 
@@ -1872,7 +1872,7 @@ Section 14.17.8, “JSON Utility Functions”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_STORAGE\_SIZE()
+### JSON_STORAGE_SIZE()
 
 Section 14.17.1, “JSON Function Reference”
 
@@ -1880,7 +1880,7 @@ Section 14.17.8, “JSON Utility Functions”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_TABLE()
+### JSON_TABLE()
 
 Section 15.2.15.8, “Derived Tables”
 
@@ -1888,7 +1888,7 @@ Section 14.17.6, “JSON Table Functions”
 
 Section 15.2.15.9, “Lateral Derived Tables”
 
-### JSON\_TYPE()
+### JSON_TYPE()
 
 Section 14.17.5, “Functions That Return JSON Value Attributes”
 
@@ -1896,11 +1896,11 @@ Section 14.17.3, “Functions That Search JSON Values”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_UNQUOTE(
+### JSON_UNQUOTE(
 
 Section 14.17.3, “Functions That Search JSON Values”
 
-### JSON\_UNQUOTE()
+### JSON_UNQUOTE()
 
 Section 15.1.18, “CREATE INDEX Statement”
 
@@ -1912,11 +1912,11 @@ Section 15.1.24.9, “Secondary Indexes and Generated Columns”
 
 Section 13.5, “The JSON Data Type”
 
-### JSON\_VALID()
+### JSON_VALID()
 
 Section 14.17.5, “Functions That Return JSON Value Attributes”
 
-### JSON\_VALUE()
+### JSON_VALUE()
 
 Section 14.10, “Cast Functions and Operators”
 
@@ -1928,45 +1928,45 @@ Section 15.1.24.9, “Secondary Indexes and Generated Columns”
 
 [index top]
 
-### keyring\_aws\_rotate\_cmk()
+### keyring_aws_rotate_cmk()
 
 Section 8.4.5.16, “Plugin-Specific Keyring Key-Management Functions”
 
-Section 8.4.5.8, “Using the keyring\_aws Amazon Web Services Keyring Plugin”
+Section 8.4.5.8, “Using the keyring_aws Amazon Web Services Keyring Plugin”
 
-### keyring\_aws\_rotate\_keys()
+### keyring_aws_rotate_keys()
 
 Section 8.4.5.16, “Plugin-Specific Keyring Key-Management Functions”
 
-Section 8.4.5.8, “Using the keyring\_aws Amazon Web Services Keyring Plugin”
+Section 8.4.5.8, “Using the keyring_aws Amazon Web Services Keyring Plugin”
 
-### keyring\_hashicorp\_update\_config()
+### keyring_hashicorp_update_config()
 
 Section 8.4.5.16, “Plugin-Specific Keyring Key-Management Functions”
 
 Section 8.4.5.10, “Using the HashiCorp Vault Keyring Plugin”
 
-### keyring\_key\_fetch()
+### keyring_key_fetch()
 
 Section 8.4.5.15, “General-Purpose Keyring Key-Management Functions”
 
-### keyring\_key\_generate()
+### keyring_key_generate()
 
 Section 8.4.5.15, “General-Purpose Keyring Key-Management Functions”
 
-### keyring\_key\_length\_fetch()
+### keyring_key_length_fetch()
 
 Section 8.4.5.15, “General-Purpose Keyring Key-Management Functions”
 
-### keyring\_key\_remove()
+### keyring_key_remove()
 
 Section 8.4.5.15, “General-Purpose Keyring Key-Management Functions”
 
-### keyring\_key\_store()
+### keyring_key_store()
 
 Section 8.4.5.15, “General-Purpose Keyring Key-Management Functions”
 
-### keyring\_key\_type\_fetch()
+### keyring_key_type_fetch()
 
 Section 8.4.5.15, “General-Purpose Keyring Key-Management Functions”
 
@@ -1978,11 +1978,11 @@ Section 8.4.5.15, “General-Purpose Keyring Key-Management Functions”
 
 Section 14.20.1, “Window Function Descriptions”
 
-### LAST\_DAY()
+### LAST_DAY()
 
 Section 14.7, “Date and Time Functions”
 
-### LAST\_INSERT\_ID()
+### LAST_INSERT_ID()
 
 Section 14.4.2, “Comparison Functions and Operators”
 
@@ -2000,9 +2000,9 @@ Section 15.3.6, “LOCK TABLES and UNLOCK TABLES Statements”
 
 Section 1.7.1, “MySQL Extensions to Standard SQL”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
-Section 19.5.1.1, “Replication and AUTO\_INCREMENT”
+Section 19.5.1.1, “Replication and AUTO_INCREMENT”
 
 Section 7.1.8, “Server System Variables”
 
@@ -2010,15 +2010,15 @@ Section 19.1.7.3.2.1, “Skipping Transactions With `SET GLOBAL sql_replica_ski
 
 Section 27.3.6.3, “SqlResult Object”
 
-Section 27.2.4, “Stored Procedures, Functions, Triggers, and LAST\_INSERT\_ID()”")
+Section 27.2.4, “Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()”")
 
 Section 19.5.4, “Troubleshooting Replication”
 
 Section 27.6.3, “Updatable and Insertable Views”
 
-Section 5.6.9, “Using AUTO\_INCREMENT”
+Section 5.6.9, “Using AUTO_INCREMENT”
 
-### LAST\_VALUE()
+### LAST_VALUE()
 
 Section 14.20.1, “Window Function Descriptions”
 
@@ -2068,7 +2068,7 @@ Section 14.16.5, “MySQL-Specific Functions That Create Geometry Values”
 
 Section 14.6.2, “Mathematical Functions”
 
-### LOAD\_FILE()
+### LOAD_FILE()
 
 Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”
 
@@ -2090,7 +2090,7 @@ Section 14.8, “String Functions and Operators”
 
 Section 27.3.9, “Using WebAssembly Libraries”
 
-### load\_rewrite\_rules()
+### load_rewrite_rules()
 
 Section 7.6.4.3.2, “Rewriter Query Rewrite Plugin Procedures and Functions”
 
@@ -2152,7 +2152,7 @@ Section 14.8, “String Functions and Operators”
 
 Section 12.10.1, “Unicode Character Sets”
 
-Section 12.8.7, “Using Collation in INFORMATION\_SCHEMA Searches”
+Section 12.8.7, “Using Collation in INFORMATION_SCHEMA Searches”
 
 ### LPAD()
 
@@ -2174,7 +2174,7 @@ Section 14.8, “String Functions and Operators”
 
 [index top]
 
-### MAKE\_SET()
+### MAKE_SET()
 
 Section 14.8, “String Functions and Operators”
 
@@ -2186,23 +2186,23 @@ Section 14.7, “Date and Time Functions”
 
 Section 14.7, “Date and Time Functions”
 
-### mask\_canada\_sin()
+### mask_canada_sin()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
 Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
-### mask\_iban()
+### mask_iban()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
 Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
-### mask\_inner
+### mask_inner
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
-### mask\_inner()
+### mask_inner()
 
 Section 8.5.1, “Data-Masking Components Versus the Data-Masking Plugin”
 
@@ -2214,11 +2214,11 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### mask\_outer
+### mask_outer
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
-### mask\_outer()
+### mask_outer()
 
 Section 8.5.1, “Data-Masking Components Versus the Data-Masking Plugin”
 
@@ -2230,7 +2230,7 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### mask\_pan()
+### mask_pan()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -2240,7 +2240,7 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### mask\_pan\_relaxed()
+### mask_pan_relaxed()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -2250,7 +2250,7 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### mask\_ssn()
+### mask_ssn()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
@@ -2260,41 +2260,41 @@ Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
 Section 8.5.3.2, “Using the MySQL Enterprise Data Masking Plugin”
 
-### mask\_uk\_nin()
+### mask_uk_nin()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
 Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
-### mask\_uuid()
+### mask_uuid()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
 Section 8.5.2.2, “Using MySQL Enterprise Data Masking Components”
 
-### masking\_dictionaries\_flush()
+### masking_dictionaries_flush()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
-### masking\_dictionary\_remove()
-
-Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
-
-Section 8.2.2, “Privileges Provided by MySQL”
-
-### masking\_dictionary\_term\_add()
+### masking_dictionary_remove()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### masking\_dictionary\_term\_remove()
+### masking_dictionary_term_add()
 
 Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### MASTER\_POS\_WAIT()
+### masking_dictionary_term_remove()
+
+Section 8.5.2.4, “MySQL Enterprise Data Masking Component Function Descriptions”
+
+Section 8.2.2, “Privileges Provided by MySQL”
+
+### MASTER_POS_WAIT()
 
 Section A.14, “MySQL 9.5 FAQ: Replication”
 
@@ -2344,7 +2344,7 @@ Section 10.3.1, “How MySQL Uses Indexes”
 
 Section B.3.7, “Known Issues in MySQL”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 13.1.1, “Numeric Data Type Syntax”
 
@@ -2358,13 +2358,13 @@ Section 13.5, “The JSON Data Type”
 
 Section 1.2.2, “The Main Features of MySQL”
 
-Section 29.12.16.2, “The tp\_thread\_group\_state Table”
+Section 29.12.16.2, “The tp_thread_group_state Table”
 
 Section 27.6.3, “Updatable and Insertable Views”
 
 Section 10.3.10, “Use of Index Extensions”
 
-Section 5.6.9, “Using AUTO\_INCREMENT”
+Section 5.6.9, “Using AUTO_INCREMENT”
 
 Section 10.2.1.21, “Window Function Optimization”
 
@@ -2452,7 +2452,7 @@ Section 10.3.1, “How MySQL Uses Indexes”
 
 Section B.3.7, “Known Issues in MySQL”
 
-Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”
+Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”
 
 Section 13.1.1, “Numeric Data Type Syntax”
 
@@ -2480,7 +2480,7 @@ Section 14.7, “Date and Time Functions”
 
 Section 26.6.3, “Partitioning Limitations Relating to Functions”
 
-### mle\_session\_reset()
+### mle_session_reset()
 
 Section 27.3.4, “JavaScript Stored Program Data Types and Argument Handling”
 
@@ -2496,7 +2496,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 27.3.6.1, “Session Object”
 
-### mle\_session\_state()
+### mle_session_state()
 
 Section 27.3.5, “JavaScript Stored Programs—Session Information and Options”
 
@@ -2504,7 +2504,7 @@ Section 7.5.7.2, “MLE Component Status and Session Information”
 
 Section 27.3.2, “Obtaining Information About JavaScript Stored Programs”
 
-### mle\_set\_session\_state()
+### mle_set_session_state()
 
 Section 27.3.4, “JavaScript Stored Program Data Types and Argument Handling”
 
@@ -2556,15 +2556,15 @@ Section 14.16.5, “MySQL-Specific Functions That Create Geometry Values”
 
 Section 14.16.5, “MySQL-Specific Functions That Create Geometry Values”
 
-### my\_open()
+### my_open()
 
 Section 7.1.10, “Server Status Variables”
 
-### mysql\_firewall\_flush\_status()
+### mysql_firewall_flush_status()
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
-### mysql\_query\_attribute\_string()
+### mysql_query_attribute_string()
 
 Section 7.5.4, “Query Attribute Components”
 
@@ -2574,7 +2574,7 @@ Section 11.6, “Query Attributes”
 
 [index top]
 
-### NAME\_CONST()
+### NAME_CONST()
 
 Section 14.24, “Miscellaneous Functions”
 
@@ -2612,11 +2612,11 @@ Section 7.1.8, “Server System Variables”
 
 Section 30.4.3.21, “The metrics View”
 
-Section 30.4.4.26, “The statement\_performance\_analyzer() Procedure” Procedure")
+Section 30.4.4.26, “The statement_performance_analyzer() Procedure” Procedure")
 
 Section 13.2.4, “The YEAR Type”
 
-### NTH\_VALUE()
+### NTH_VALUE()
 
 Section 14.20.1, “Window Function Descriptions”
 
@@ -2644,23 +2644,23 @@ Section 13.3.5, “The VECTOR Type”
 
 Section 14.8, “String Functions and Operators”
 
-### OCTET\_LENGTH()
+### OCTET_LENGTH()
 
 Section 14.8, “String Functions and Operators”
 
-### option\_tracker\_option\_register()
+### option_tracker_option_register()
 
 Section 7.5.8.5, “Option Tracker Functions”
 
-### option\_tracker\_option\_unregister()
+### option_tracker_option_unregister()
 
 Section 7.5.8.5, “Option Tracker Functions”
 
-### option\_tracker\_usage\_get()
+### option_tracker_usage_get()
 
 Section 7.5.8.5, “Option Tracker Functions”
 
-### option\_tracker\_usage\_set()
+### option_tracker_usage_set()
 
 Section 7.5.8.5, “Option Tracker Functions”
 
@@ -2672,17 +2672,17 @@ Section 14.8, “String Functions and Operators”
 
 [index top]
 
-### PERCENT\_RANK()
+### PERCENT_RANK()
 
 Section 14.20.1, “Window Function Descriptions”
 
-### PERIOD\_ADD()
+### PERIOD_ADD()
 
 Section 14.7, “Date and Time Functions”
 
 Section 1.7.1, “MySQL Extensions to Standard SQL”
 
-### PERIOD\_DIFF()
+### PERIOD_DIFF()
 
 Section 14.7, “Date and Time Functions”
 
@@ -2722,17 +2722,17 @@ Section 26.2.4.1, “LINEAR HASH Partitioning”
 
 Section 14.6.2, “Mathematical Functions”
 
-### PS\_CURRENT\_THREAD\_ID()
+### PS_CURRENT_THREAD_ID()
 
 Section 14.22, “Performance Schema Functions”
 
-Section 30.4.5.15, “The ps\_thread\_id() Function” Function")
+Section 30.4.5.15, “The ps_thread_id() Function” Function")
 
-### PS\_THREAD\_ID()
+### PS_THREAD_ID()
 
 Section 14.22, “Performance Schema Functions”
 
-Section 30.4.5.15, “The ps\_thread\_id() Function” Function")
+Section 30.4.5.15, “The ps_thread_id() Function” Function")
 
 ### Q
 
@@ -2780,7 +2780,7 @@ Section 7.1.8, “Server System Variables”
 
 Section 10.9.2, “Switchable Optimizations”
 
-### RANDOM\_BYTES()
+### RANDOM_BYTES()
 
 Section 14.13, “Encryption and Compression Functions”
 
@@ -2788,19 +2788,19 @@ Section 14.13, “Encryption and Compression Functions”
 
 Section 14.20.1, “Window Function Descriptions”
 
-### read\_firewall\_group\_allowlist()
+### read_firewall_group_allowlist()
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
-### read\_firewall\_groups()
+### read_firewall_groups()
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
-### REGEXP\_INSTR()
+### REGEXP_INSTR()
 
 Section 14.8.2, “Regular Expressions”
 
-### REGEXP\_LIKE()
+### REGEXP_LIKE()
 
 Section 5.3.4.7, “Pattern Matching”
 
@@ -2808,19 +2808,19 @@ Section 14.8.2, “Regular Expressions”
 
 Section 7.1.8, “Server System Variables”
 
-### REGEXP\_REPLACE()
+### REGEXP_REPLACE()
 
 Section 14.8.2, “Regular Expressions”
 
-### REGEXP\_SUBSTR()
+### REGEXP_SUBSTR()
 
 Section 14.8.2, “Regular Expressions”
 
-### RELEASE\_ALL\_LOCKS()
+### RELEASE_ALL_LOCKS()
 
 Section 14.14, “Locking Functions”
 
-### RELEASE\_LOCK()
+### RELEASE_LOCK()
 
 Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”
 
@@ -2860,7 +2860,7 @@ Section 14.8.3, “Character Set and Collation of Function Results”
 
 Section 14.8, “String Functions and Operators”
 
-### ROLES\_GRAPHML()
+### ROLES_GRAPHML()
 
 Section 14.15, “Information Functions”
 
@@ -2868,7 +2868,7 @@ Section 8.2.2, “Privileges Provided by MySQL”
 
 ### ROUND()
 
-Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”
+Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”
 
 Section 14.6.2, “Mathematical Functions”
 
@@ -2878,7 +2878,7 @@ Section 14.25.5, “Precision Math Examples”
 
 Section 14.25.4, “Rounding Behavior”
 
-### ROW\_COUNT()
+### ROW_COUNT()
 
 Section 15.2.1, “CALL Statement”
 
@@ -2898,7 +2898,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 15.6.7.7, “The MySQL Diagnostics Area”
 
-### ROW\_NUMBER()
+### ROW_NUMBER()
 
 Section 14.20.2, “Window Function Concepts and Syntax”
 
@@ -2926,7 +2926,7 @@ Section 14.8, “String Functions and Operators”
 
 Section 14.15, “Information Functions”
 
-### SEC\_TO\_TIME()
+### SEC_TO_TIME()
 
 Section 14.7, “Date and Time Functions”
 
@@ -2936,19 +2936,19 @@ Section 14.7, “Date and Time Functions”
 
 Section 26.6.3, “Partitioning Limitations Relating to Functions”
 
-### service\_get\_read\_locks()
+### service_get_read_locks()
 
 Section 7.6.8.1.2, “The Locking Service Function Interface”
 
-### service\_get\_write\_locks()
+### service_get_write_locks()
 
 Section 7.6.8.1.2, “The Locking Service Function Interface”
 
-### service\_release\_locks()
+### service_release_locks()
 
 Section 7.6.8.1.2, “The Locking Service Function Interface”
 
-### SESSION\_USER()
+### SESSION_USER()
 
 Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”
 
@@ -2956,7 +2956,7 @@ Section 14.15, “Information Functions”
 
 Section 12.2.2, “UTF-8 for Metadata”
 
-### set\_firewall\_group\_mode()
+### set_firewall_group_mode()
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
@@ -3002,7 +3002,7 @@ Section 14.24, “Miscellaneous Functions”
 
 Section 27.3.6.12, “MySQL Functions”
 
-Section 29.12.16.3, “The tp\_thread\_group\_stats Table”
+Section 29.12.16.3, “The tp_thread_group_stats Table”
 
 ### SOUNDEX()
 
@@ -3010,7 +3010,7 @@ Section 14.8.3, “Character Set and Collation of Function Results”
 
 Section 14.8, “String Functions and Operators”
 
-### SOURCE\_POS\_WAIT()
+### SOURCE_POS_WAIT()
 
 Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”
 
@@ -3038,179 +3038,179 @@ Section 14.8, “String Functions and Operators”
 
 Section 14.6.2, “Mathematical Functions”
 
-### ST\_Area()
+### ST_Area()
 
 Section 14.16.7, “Geometry Property Functions”
 
 Section 14.16.7.4, “Polygon and MultiPolygon Property Functions”
 
-### ST\_AsBinary()
+### ST_AsBinary()
 
 Section 13.4.8, “Fetching Spatial Data”
 
 Section 14.16.6, “Geometry Format Conversion Functions”
 
-### ST\_AsGeoJSON()
+### ST_AsGeoJSON()
 
 Section 14.16.11, “Spatial GeoJSON Functions”
 
 Section 13.5, “The JSON Data Type”
 
-### ST\_AsText()
+### ST_AsText()
 
 Section 13.4.8, “Fetching Spatial Data”
 
 Section 14.16.6, “Geometry Format Conversion Functions”
 
-### ST\_AsWKB()
+### ST_AsWKB()
 
 Section 14.16.6, “Geometry Format Conversion Functions”
 
-### ST\_AsWKT()
+### ST_AsWKT()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
 Section 14.16.6, “Geometry Format Conversion Functions”
 
-### ST\_Buffer()
+### ST_Buffer()
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Buffer\_Strategy()
+### ST_Buffer_Strategy()
 
 Section 7.1.8, “Server System Variables”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Centroid()
+### ST_Centroid()
 
 Section 14.16.7.4, “Polygon and MultiPolygon Property Functions”
 
-### ST\_Collect(
+### ST_Collect(
 
 Section 14.16.12, “Spatial Aggregate Functions”
 
-### ST\_Collect()
+### ST_Collect()
 
 Section 14.16.12, “Spatial Aggregate Functions”
 
-### ST\_Contains()
+### ST_Contains()
 
 Section 14.16.9.2, “Spatial Relation Functions That Use Minimum Bounding Rectangles”
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_ConvexHull()
+### ST_ConvexHull()
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Crosses()
+### ST_Crosses()
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_Difference()
+### ST_Difference()
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Dimension()
+### ST_Dimension()
 
 Section 14.16.7.1, “General Geometry Property Functions”
 
-### ST\_Disjoint()
+### ST_Disjoint()
 
 Section 14.16.9.2, “Spatial Relation Functions That Use Minimum Bounding Rectangles”
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_Distance()
+### ST_Distance()
 
 Section 14.16.13, “Spatial Convenience Functions”
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-Section 28.3.43, “The INFORMATION\_SCHEMA ST\_UNITS\_OF\_MEASURE Table”
+Section 28.3.43, “The INFORMATION_SCHEMA ST_UNITS_OF_MEASURE Table”
 
-### ST\_Distance\_Sphere()
+### ST_Distance_Sphere()
 
 Section 14.16.13, “Spatial Convenience Functions”
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_EndPoint()
+### ST_EndPoint()
 
 Section 14.16.7.3, “LineString and MultiLineString Property Functions”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Envelope()
+### ST_Envelope()
 
 Section 14.16.7.1, “General Geometry Property Functions”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Equals()
+### ST_Equals()
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_ExteriorRing()
+### ST_ExteriorRing()
 
 Section 14.16.7.4, “Polygon and MultiPolygon Property Functions”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_FrechetDistance()
+### ST_FrechetDistance()
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_GeoHash()
+### ST_GeoHash()
 
 Section 14.16.10, “Spatial Geohash Functions”
 
-### ST\_GeomCollFromText()
+### ST_GeomCollFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_GeomCollFromTxt()
+### ST_GeomCollFromTxt()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_GeomCollFromWKB()
+### ST_GeomCollFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_GeometryCollectionFromText()
+### ST_GeometryCollectionFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_GeometryCollectionFromWKB()
+### ST_GeometryCollectionFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_GeometryFromText()
+### ST_GeometryFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_GeometryFromWKB()
+### ST_GeometryFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_GeometryN()
+### ST_GeometryN()
 
 Section 14.16.7.5, “GeometryCollection Property Functions”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_GeometryType()
+### ST_GeometryType()
 
 Section 14.16.7.1, “General Geometry Property Functions”
 
-### ST\_GeomFromGeoJSON()
+### ST_GeomFromGeoJSON()
 
 Section 14.16.11, “Spatial GeoJSON Functions”
 
 Section 13.5, “The JSON Data Type”
 
-### ST\_GeomFromText()
+### ST_GeomFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
@@ -3222,57 +3222,57 @@ Section 13.4.7, “Populating Spatial Columns”
 
 Section 13.4.3, “Supported Spatial Data Formats”
 
-### ST\_GeomFromWKB()
+### ST_GeomFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_HausdorffDistance()
+### ST_HausdorffDistance()
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_InteriorRingN()
+### ST_InteriorRingN()
 
 Section 14.16.7.4, “Polygon and MultiPolygon Property Functions”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Intersection()
+### ST_Intersection()
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Intersects()
+### ST_Intersects()
 
 Section 14.16.9.2, “Spatial Relation Functions That Use Minimum Bounding Rectangles”
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_IsClosed()
+### ST_IsClosed()
 
 Section 14.16.7.3, “LineString and MultiLineString Property Functions”
 
-### ST\_IsEmpty()
+### ST_IsEmpty()
 
 Section 14.16.7.1, “General Geometry Property Functions”
 
-### ST\_IsSimple()
+### ST_IsSimple()
 
 Section 14.16.7.1, “General Geometry Property Functions”
 
-### ST\_IsValid()
+### ST_IsValid()
 
 Section 13.4.4, “Geometry Well-Formedness and Validity”
 
 Section 14.16.13, “Spatial Convenience Functions”
 
-### ST\_LatFromGeoHash()
+### ST_LatFromGeoHash()
 
 Section 14.16.10, “Spatial Geohash Functions”
 
-### ST\_Latitude()
+### ST_Latitude()
 
 Section 14.16.7.2, “Point Property Functions”
 
-### ST\_Length()
+### ST_Length()
 
 Section 14.16.7.3, “LineString and MultiLineString Property Functions”
 
@@ -3280,219 +3280,219 @@ Section 14.16.8, “Spatial Operator Functions”
 
 Section 14.8, “String Functions and Operators”
 
-### ST\_LineFromText()
+### ST_LineFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_LineFromWKB()
+### ST_LineFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_LineInterpolatePoint()
+### ST_LineInterpolatePoint()
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_LineInterpolatePoints()
+### ST_LineInterpolatePoints()
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_LineStringFromText()
+### ST_LineStringFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_LineStringFromWKB()
+### ST_LineStringFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_LongFromGeoHash()
+### ST_LongFromGeoHash()
 
 Section 14.16.10, “Spatial Geohash Functions”
 
-### ST\_Longitude()
+### ST_Longitude()
 
 Section 14.16.7.2, “Point Property Functions”
 
-### ST\_MakeEnvelope()
+### ST_MakeEnvelope()
 
 Section 14.16.13, “Spatial Convenience Functions”
 
-### ST\_MLineFromText()
+### ST_MLineFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_MLineFromWKB()
+### ST_MLineFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_MPointFromText()
+### ST_MPointFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
 Section 13.4.3, “Supported Spatial Data Formats”
 
-### ST\_MPointFromWKB()
+### ST_MPointFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_MPolyFromText()
+### ST_MPolyFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_MPolyFromWKB()
+### ST_MPolyFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_MultiLineStringFromText()
+### ST_MultiLineStringFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_MultiLineStringFromWKB()
+### ST_MultiLineStringFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_MultiPointFromText()
+### ST_MultiPointFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_MultiPointFromWKB()
+### ST_MultiPointFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_MultiPolygonFromText()
+### ST_MultiPolygonFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_MultiPolygonFromWKB()
+### ST_MultiPolygonFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_NumGeometries()
+### ST_NumGeometries()
 
 Section 14.16.7.5, “GeometryCollection Property Functions”
 
-### ST\_NumInteriorRing()
+### ST_NumInteriorRing()
 
 Section 14.16.7.4, “Polygon and MultiPolygon Property Functions”
 
-### ST\_NumInteriorRings()
+### ST_NumInteriorRings()
 
 Section 14.16.7.4, “Polygon and MultiPolygon Property Functions”
 
-### ST\_NuminteriorRings()
+### ST_NuminteriorRings()
 
 Section 14.16.7.4, “Polygon and MultiPolygon Property Functions”
 
-### ST\_NumPoints()
+### ST_NumPoints()
 
 Section 14.16.7.3, “LineString and MultiLineString Property Functions”
 
-### ST\_Overlaps()
+### ST_Overlaps()
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_PointAtDistance()
+### ST_PointAtDistance()
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_PointFromGeoHash()
+### ST_PointFromGeoHash()
 
 Section 14.16.10, “Spatial Geohash Functions”
 
-### ST\_PointFromText()
+### ST_PointFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_PointFromWKB()
+### ST_PointFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_PointN()
+### ST_PointN()
 
 Section 14.16.7.3, “LineString and MultiLineString Property Functions”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_PolyFromText()
+### ST_PolyFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_PolyFromWKB()
+### ST_PolyFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_PolygonFromText()
+### ST_PolygonFromText()
 
 Section 14.16.3, “Functions That Create Geometry Values from WKT Values”
 
-### ST\_PolygonFromWKB()
+### ST_PolygonFromWKB()
 
 Section 14.16.4, “Functions That Create Geometry Values from WKB Values”
 
-### ST\_Simplify()
+### ST_Simplify()
 
 Section 14.16.13, “Spatial Convenience Functions”
 
-### ST\_SRID()
+### ST_SRID()
 
 Section 14.16.7.1, “General Geometry Property Functions”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_StartPoint()
+### ST_StartPoint()
 
 Section 14.16.7.3, “LineString and MultiLineString Property Functions”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_SwapXY()
+### ST_SwapXY()
 
 Section 14.16.6, “Geometry Format Conversion Functions”
 
-### ST\_SymDifference()
+### ST_SymDifference()
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Touches()
+### ST_Touches()
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_Transform()
+### ST_Transform()
 
 Section 14.16.7.1, “General Geometry Property Functions”
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Union()
+### ST_Union()
 
 Section 14.16.8, “Spatial Operator Functions”
 
-### ST\_Validate()
+### ST_Validate()
 
 Section 14.16.13, “Spatial Convenience Functions”
 
-### ST\_Within()
+### ST_Within()
 
 Section 14.16.9.2, “Spatial Relation Functions That Use Minimum Bounding Rectangles”
 
 Section 14.16.9.1, “Spatial Relation Functions That Use Object Shapes”
 
-### ST\_X()
+### ST_X()
 
 Section 14.16.7.2, “Point Property Functions”
 
 Section 13.4.3, “Supported Spatial Data Formats”
 
-### ST\_Y()
+### ST_Y()
 
 Section 14.16.7.2, “Point Property Functions”
 
-### STATEMENT\_DIGEST()
+### STATEMENT_DIGEST()
 
 Section 14.13, “Encryption and Compression Functions”
 
 Section 29.10, “Performance Schema Statement Digests and Sampling”
 
-### STATEMENT\_DIGEST\_TEXT()
+### STATEMENT_DIGEST_TEXT()
 
 Section 14.13, “Encryption and Compression Functions”
 
@@ -3514,19 +3514,19 @@ Section 1.2.2, “The Main Features of MySQL”
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
-### STDDEV\_POP()
+### STDDEV_POP()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
 Section 10.2.1.21, “Window Function Optimization”
 
-### STDDEV\_SAMP()
+### STDDEV_SAMP()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
 Section 10.2.1.21, “Window Function Optimization”
 
-### STR\_TO\_DATE()
+### STR_TO_DATE()
 
 Section 13.2, “Date and Time Data Types”
 
@@ -3540,7 +3540,7 @@ Section B.3.4.2, “Problems Using DATE Columns”
 
 Section 14.8.1, “String Comparison Functions and Operators”
 
-### STRING\_TO\_VECTOR()
+### STRING_TO_VECTOR()
 
 Section 13.3.5, “The VECTOR Type”
 
@@ -3564,7 +3564,7 @@ Section 15.1.18, “CREATE INDEX Statement”
 
 Section 14.8, “String Functions and Operators”
 
-### SUBSTRING\_INDEX()
+### SUBSTRING_INDEX()
 
 Section 8.2.23, “SQL-Based Account Activity Auditing”
 
@@ -3620,7 +3620,7 @@ Section 7.1.7, “Server Command Options”
 
 Section 7.1.8, “Server System Variables”
 
-### SYSTEM\_USER()
+### SYSTEM_USER()
 
 Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”
 
@@ -3640,13 +3640,13 @@ Section 14.6.2, “Mathematical Functions”
 
 Section 14.7, “Date and Time Functions”
 
-### TIME\_FORMAT()
+### TIME_FORMAT()
 
 Section 14.10, “Cast Functions and Operators”
 
 Section 14.7, “Date and Time Functions”
 
-### TIME\_TO\_SEC()
+### TIME_TO_SEC()
 
 Section 14.7, “Date and Time Functions”
 
@@ -3670,13 +3670,13 @@ Section 14.7, “Date and Time Functions”
 
 Section 5.3.4.5, “Date Calculations”
 
-### TO\_BASE64()
+### TO_BASE64()
 
 Section 14.8, “String Functions and Operators”
 
 Section 13.3.5, “The VECTOR Type”
 
-### TO\_DAYS()
+### TO_DAYS()
 
 Section 14.7, “Date and Time Functions”
 
@@ -3690,7 +3690,7 @@ Section 26.6.3, “Partitioning Limitations Relating to Functions”
 
 Section 26.2, “Partitioning Types”
 
-### TO\_SECONDS()
+### TO_SECONDS()
 
 Section 14.7, “Date and Time Functions”
 
@@ -3732,7 +3732,7 @@ Section 2.8.7, “MySQL Source-Configuration Options”
 
 Section 7.1.8, “Server System Variables”
 
-### UNCOMPRESSED\_LENGTH()
+### UNCOMPRESSED_LENGTH()
 
 Section 14.13, “Encryption and Compression Functions”
 
@@ -3744,7 +3744,7 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section 14.8, “String Functions and Operators”
 
-### UNIX\_TIMESTAMP()
+### UNIX_TIMESTAMP()
 
 Section 14.7, “Date and Time Functions”
 
@@ -3778,7 +3778,7 @@ Section 14.8, “String Functions and Operators”
 
 Section 12.10.1, “Unicode Character Sets”
 
-Section 12.8.7, “Using Collation in INFORMATION\_SCHEMA Searches”
+Section 12.8.7, “Using Collation in INFORMATION_SCHEMA Searches”
 
 ### USER()
 
@@ -3810,23 +3810,11 @@ Section 8.2.23, “SQL-Based Account Activity Auditing”
 
 Section 12.2.2, “UTF-8 for Metadata”
 
-### UTC\_DATE
+### UTC_DATE
 
 Section 14.7, “Date and Time Functions”
 
-### UTC\_DATE()
-
-Section 14.7, “Date and Time Functions”
-
-Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”
-
-Section 7.5.8.5, “Option Tracker Functions”
-
-### UTC\_TIME
-
-Section 14.7, “Date and Time Functions”
-
-### UTC\_TIME()
+### UTC_DATE()
 
 Section 14.7, “Date and Time Functions”
 
@@ -3834,11 +3822,23 @@ Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logg
 
 Section 7.5.8.5, “Option Tracker Functions”
 
-### UTC\_TIMESTAMP
+### UTC_TIME
 
 Section 14.7, “Date and Time Functions”
 
-### UTC\_TIMESTAMP()
+### UTC_TIME()
+
+Section 14.7, “Date and Time Functions”
+
+Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”
+
+Section 7.5.8.5, “Option Tracker Functions”
+
+### UTC_TIMESTAMP
+
+Section 14.7, “Date and Time Functions”
+
+### UTC_TIMESTAMP()
 
 Section 14.7, “Date and Time Functions”
 
@@ -3866,7 +3866,7 @@ Section 19.5.1.14, “Replication and System Functions”
 
 Section 27.9, “Stored Program Binary Logging”
 
-### UUID\_SHORT()
+### UUID_SHORT()
 
 Section 19.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”
 
@@ -3874,7 +3874,7 @@ Section 19.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logg
 
 Section 14.24, “Miscellaneous Functions”
 
-### UUID\_TO\_BIN()
+### UUID_TO_BIN()
 
 Section 14.12, “Bit Functions and Operators”
 
@@ -3884,7 +3884,7 @@ Section 14.24, “Miscellaneous Functions”
 
 [index top]
 
-### VALIDATE\_PASSWORD\_STRENGTH()
+### VALIDATE_PASSWORD_STRENGTH()
 
 Section 14.13, “Encryption and Compression Functions”
 
@@ -3900,13 +3900,13 @@ Section 14.24, “Miscellaneous Functions”
 
 Section 15.2.19, “VALUES Statement”
 
-### VAR\_POP()
+### VAR_POP()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
 Section 10.2.1.21, “Window Function Optimization”
 
-### VAR\_SAMP()
+### VAR_SAMP()
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
@@ -3916,17 +3916,17 @@ Section 10.2.1.21, “Window Function Optimization”
 
 Section 14.19.1, “Aggregate Function Descriptions”
 
-### VECTOR\_DIM()
+### VECTOR_DIM()
 
 Section 14.21, “Vector Functions”
 
-### VECTOR\_DISTANCE()
+### VECTOR_DISTANCE()
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
 Section 7.5.8.2, “Option Tracker Supported Components”
 
-### VECTOR\_TO\_STRING()
+### VECTOR_TO_STRING()
 
 Section 14.21, “Vector Functions”
 
@@ -3952,7 +3952,7 @@ Section 12.2.2, “UTF-8 for Metadata”
 
 [index top]
 
-### WAIT\_FOR\_EXECUTED\_GTID\_SET()
+### WAIT_FOR_EXECUTED_GTID_SET()
 
 Section 14.18.2, “Functions Used with Global Transaction Identifiers (GTIDs)”")
 
@@ -3980,7 +3980,7 @@ Section 26.2, “Partitioning Types”
 
 Section 14.7, “Date and Time Functions”
 
-### WEIGHT\_STRING()
+### WEIGHT_STRING()
 
 Section 12.14, “Adding a Collation to a Character Set”
 

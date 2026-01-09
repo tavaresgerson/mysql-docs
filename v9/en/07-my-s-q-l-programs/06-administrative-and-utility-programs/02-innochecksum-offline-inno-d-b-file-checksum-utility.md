@@ -145,7 +145,7 @@ innochecksum [options] file_name
 
 * `--strict-check`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for strict-check"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">crc32</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">innodb</code></p><p class="valid-value"><code class="literal">crc32</code></p><p class="valid-value"><code class="literal">none</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for strict-check"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--strict-check=algorithm</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">crc32</code></td> </tr><tr><th>Valid Values</th> <td><p><code class="literal">innodb</code></p><p><code class="literal">crc32</code></p><p><code class="literal">none</code></p></td> </tr></tbody></table>
 
   Specify a strict checksum algorithm. Options include `innodb`, `crc32`, and `none`.
 

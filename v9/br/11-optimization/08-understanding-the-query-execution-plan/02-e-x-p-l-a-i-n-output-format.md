@@ -29,62 +29,62 @@ Cada linha de saída do `EXPLAIN` fornece informações sobre uma tabela. Cada l
 <th>Significado</th>
 </tr></thead><tbody>
 <tr>
-<th><a class="link" href="explain-output.html#explain_id"><code>id</code></a></th>
+<th><code>id</code></th>
 <td><code>select_id</code></td>
 <td>O identificador <code>SELECT</code></td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_select_type"><code>select_type</code></a></th>
+<th><code>select_type</code></th>
 <td>Nenhum</td>
 <td>O tipo de <code>SELECT</code></td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_table"><code>table</code></a></th>
+<th><code>table</code></th>
 <td><code>table_name</code></td>
 <td>A tabela para a linha de saída</td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_partitions"><code>partitions</code></a></th>
+<th><code>partitions</code></th>
 <td><code>partitions</code></td>
 <td>As partições correspondentes</td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_type"><code>type</code></a></th>
+<th><code>type</code></th>
 <td><code>access_type</code></td>
 <td>O tipo de junção</td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_possible_keys"><code>possible_keys</code></a></th>
+<th><code>possible_keys</code></th>
 <td><code>possible_keys</code></td>
 <td>Os índices possíveis para escolha</td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_key"><code>key</code></a></th>
+<th><code>key</code></th>
 <td><code>key</code></td>
 <td>O índice realmente escolhido</td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_key_len"><code>key_len</code></a></th>
+<th><code>key_len</code></th>
 <td><code>key_length</code></td>
 <td>O comprimento do índice escolhido</td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_ref"><code>ref</code></a></th>
+<th><code>ref</code></th>
 <td><code>ref</code></td>
 <td>As colunas comparadas ao índice</td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_rows"><code>rows</code></a></th>
+<th><code>rows</code></th>
 <td><code>rows</code></td>
 <td>Estimativa de linhas a serem examinadas</td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_filtered"><code>filtered</code></a></th>
+<th><code>filtered</code></th>
 <td><code>filtered</code></td>
 <td>Porcentagem de linhas filtradas pela condição da tabela</td>
 </tr>
 <tr>
-<th><a class="link" href="explain-output.html#explain_extra"><code>Extra</code></a></th>
+<th><code>Extra</code></th>
 <td>Nenhum</td>
 <td>Informações adicionais</td>
 </tr>
@@ -102,7 +102,7 @@ Propriedades JSON que são `NULL` não são exibidas na saída `EXPLAIN` formata
 
   O tipo de `SELECT`, que pode ser qualquer um dos mostrados na tabela a seguir. Uma saída `EXPLAIN` formatada em JSON expõe o tipo de `SELECT` como uma propriedade de um `query_block`, a menos que seja `SIMPLE` ou `PRIMARY`. Os nomes JSON (quando aplicável) também são mostrados na tabela.
 
-<table summary="valores de `select_type` e o significado de cada valor."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th><code>select_type</code> Valor</th> <th>Nome JSON</th> <th>Significado</th> </tr></thead><tbody><tr> <th><code>SIMPLE</code></th> <td>Nenhum</td> <td>Simples <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> (sem usar <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a> ou subconsultas)</td> </tr><tr> <th><code>PRIMARY</code></th> <td>Nenhum</td> <td>Consulta externa <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a></td> </tr><tr> <th><a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a></th> <td>Nenhum</td> <td>Segunda ou subsequente <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> em uma <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a></td> </tr><tr> <th><code>DEPENDENT UNION</code></th> <td><code>dependente</code> (<code>true</code>)</td> <td>Segunda ou subsequente <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> em uma <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a>, dependente da consulta externa</td> </tr><tr> <th><code>UNION RESULT</code></th> <td><code>union_result</code></td> <td>Resultado de uma <a class="link" href="union.html" title="15.2.18 Cláusula UNION"><code>UNION</code></a>.</td> </tr><tr> <th><a class="link" href="optimizer-hints.html#optimizer-hints-subquery" title="Dicas de otimização de subconsultas"><code>SUBQUERY</code></a></th> <td>Nenhum</td> <td>Primeira <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> em subconsulta</td> </tr><tr> <th><code>DEPENDENT SUBQUERY</code></th> <td><code>dependente</code> (<code>true</code>)</td> <td>Primeira <a class="link" href="select.html" title="15.2.13 Instrução SELECT"><code>SELECT</code></a> em subconsulta, dependente da consulta externa</td> </tr><tr> <th><code>DERIVED</code></th> <td>Nenhum</td> <td>Tabela derivada</td> </tr><tr> <th><code>DEPENDENT DERIVED</code></th> <td><code>dependente</code> (<code>true</code>)</td> <td>Tabela derivada dependente de outra tabela</td> </tr><tr> <th><code>MATERIALIZED</code></th> <td><code>materialized_from_subquery</code></td> <td>Tabela materializada a partir de subconsulta</td> </tr><tr> <th><code>UNCACHEABLE SUBQUERY</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>Subconsulta que não pode ser cacheada e deve ser reavaliada para cada linha da consulta externa</td> </tr><tr> <th><code>UNCACHEABLE UNION</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>A segunda
+<table summary="valores de `select_type` e o significado de cada valor."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th><code>select_type</code> Valor</th> <th>Nome JSON</th> <th>Significado</th> </tr></thead><tbody><tr> <th><code>SIMPLE</code></th> <td>Nenhum</td> <td>Simples <code>SELECT</code> (sem usar <code>UNION</code> ou subconsultas)</td> </tr><tr> <th><code>PRIMARY</code></th> <td>Nenhum</td> <td>Consulta externa <code>SELECT</code></td> </tr><tr> <th><code>UNION</code></th> <td>Nenhum</td> <td>Segunda ou subsequente <code>SELECT</code> em uma <code>UNION</code></td> </tr><tr> <th><code>DEPENDENT UNION</code></th> <td><code>dependente</code> (<code>true</code>)</td> <td>Segunda ou subsequente <code>SELECT</code> em uma <code>UNION</code>, dependente da consulta externa</td> </tr><tr> <th><code>UNION RESULT</code></th> <td><code>union_result</code></td> <td>Resultado de uma <code>UNION</code>.</td> </tr><tr> <th><code>SUBQUERY</code></th> <td>Nenhum</td> <td>Primeira <code>SELECT</code> em subconsulta</td> </tr><tr> <th><code>DEPENDENT SUBQUERY</code></th> <td><code>dependente</code> (<code>true</code>)</td> <td>Primeira <code>SELECT</code> em subconsulta, dependente da consulta externa</td> </tr><tr> <th><code>DERIVED</code></th> <td>Nenhum</td> <td>Tabela derivada</td> </tr><tr> <th><code>DEPENDENT DERIVED</code></th> <td><code>dependente</code> (<code>true</code>)</td> <td>Tabela derivada dependente de outra tabela</td> </tr><tr> <th><code>MATERIALIZED</code></th> <td><code>materialized_from_subquery</code></td> <td>Tabela materializada a partir de subconsulta</td> </tr><tr> <th><code>UNCACHEABLE SUBQUERY</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>Subconsulta que não pode ser cacheada e deve ser reavaliada para cada linha da consulta externa</td> </tr><tr> <th><code>UNCACHEABLE UNION</code></th> <td><code>cacheable</code> (<code>false</code>)</td> <td>A segunda
 
 `DEPENDENT` geralmente indica o uso de uma subconsulta correlacionada. Veja a Seção 15.2.15.7, “Subconsultas Correlacionadas”.
 
@@ -412,7 +412,7 @@ Os índices são numerados a partir de 1, na mesma ordem que é exibida pelo `SH
 
 * `Scanned N databases` (propriedade JSON: `message`)
 
-  Isso indica quantos escaneamentos de diretório o servidor realiza ao processar uma consulta para tabelas do `INFORMATION_SCHEMA`, conforme descrito na Seção 10.2.3, “Otimizando Consultas do INFORMATION\_SCHEMA”. O valor de *`N`* pode ser 0, 1 ou `all`.
+  Isso indica quantos escaneamentos de diretório o servidor realiza ao processar uma consulta para tabelas do `INFORMATION_SCHEMA`, conforme descrito na Seção 10.2.3, “Otimizando Consultas do INFORMATION_SCHEMA”. O valor de *`N`* pode ser 0, 1 ou `all`.
 
 * "Selecionar tabelas otimizadas" (propriedade JSON: `mensagem`)
 

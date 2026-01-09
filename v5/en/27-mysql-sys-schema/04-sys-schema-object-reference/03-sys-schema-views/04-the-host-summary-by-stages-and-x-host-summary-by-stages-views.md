@@ -1,4 +1,4 @@
-#### 26.4.3.4 The host\_summary\_by\_stages and x$host\_summary\_by\_stages Views
+#### 26.4.3.4 The host_summary_by_stages and x$host_summary_by_stages Views
 
 These views summarize statement stages, grouped by host. By default, rows are sorted by host and descending total latency.
 

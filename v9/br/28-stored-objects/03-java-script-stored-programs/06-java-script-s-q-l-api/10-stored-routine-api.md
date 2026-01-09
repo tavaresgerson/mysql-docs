@@ -122,13 +122,13 @@ Os equivalentes entre os tipos de parâmetros `OUT` ou `INOUT` do MySQL e os tip
 <colgroup><col/><col/><col/></colgroup>
 <thead><tr><th>Tipo de MySQL</th><th>Tipo de JavaScript</th><th>Notas</th></tr></thead>
 <tbody><tr><td><code>NULL</code></td><td><code>null</code></td><td>-</td></tr>
-<tr><td><a class="link" href="integer-types.html" title="13.1.2 Tipos de Inteiros (Valor Exato) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"><code>BIGINT</code></a></td><td><code>Número</code>, <code>String</code>, <code>BigInt</code></td><td>Depende da opção <code>integerType</code> do método <a class="link" href="srjsapi-session.html#srjsapi-session-sql"><code>session.sql()</code></a></td></tr>
-<tr><td><a class="link" href="fixed-point-types.html" title="13.1.3 Tipos de Ponto Fixo (Valor Exato) - DECIMAL, NUMERIC"><code>DECIMAL</code></a></td><td>-</td><td>Erro: Tipo não suportado</td></tr>
-<tr><td><a class="link" href="floating-point-types.html" title="13.1.4 Tipos de Ponto Flutuante (Valor Aproximado) - FLOAT, DOUBLE"><code>DOUBLE</code></a></td><td><code>Número</code></td><td>-</td></tr>
-<tr><td>String binária (<a class="link" href="binary-varbinary.html" title="13.3.3 Os Tipos BINARY e VARBINARY"><code>BINARY</code></a>, <a class="link" href="blob.html" title="13.3.4 Os Tipos BLOB e TEXT"><code>BLOB</code></a>)</td><td><code>Uint8Array</code></td><td>-</td></tr>
-<tr><td>String não binária (<a class="link" href="blob.html" title="13.3.4 Os Tipos BLOB e TEXT"><code>TEXT</code></a>)</td><td><code>String</code></td><td>-</td></tr>
-<tr><td><a class="link" href="vector.html" title="13.3.5 O Tipo VECTOR"><code>VECTOR</code></a></td><td><code>Float32Array</code></td><td>-</td></tr>
-<tr><td><a class="link" href="json.html" title="13.5 O Tipo de Dados JSON"><code>JSON</code></a></td><td><code>Object</code></td><td>-</td></tr>
-<tr><td><a class="link" href="datetime.html" title="13.2.2 Os Tipos DATE, DATETIME e TIMESTAMP"><code>DATE</code></a>, <a class="link" href="datetime.html" title="13.2.2 Os Tipos DATE, DATETIME e TIMESTAMP"><code>DATETIME</code></a>, <a class="link" href="datetime.html" title="13.2.2 Os Tipos DATE, DATETIME e TIMESTAMP"><code>TIMESTAMP</code></a></td><td><code>Date</code></td><td>-</td></tr>
-<tr><td><a class="link" href="enum.html" title="13.3.6 O Tipo ENUM"><code>ENUM</code></a></td><td><code>String</code></td><td>-</td></tr>
-<tr><td><a class="link" href="set.html" title="13.3.7 O Tipo SET"><code>SET</code></a></td><td><code>Set</code> (<code>String</code>)</td><td>O <code>Set</code> JavaScript pode ser convertido em uma string separada por vírgula</td></tr></tbody></table>
+<tr><td><code>BIGINT</code></td><td><code>Número</code>, <code>String</code>, <code>BigInt</code></td><td>Depende da opção <code>integerType</code> do método <code>session.sql()</code></td></tr>
+<tr><td><code>DECIMAL</code></td><td>-</td><td>Erro: Tipo não suportado</td></tr>
+<tr><td><code>DOUBLE</code></td><td><code>Número</code></td><td>-</td></tr>
+<tr><td>String binária (<code>BINARY</code>, <code>BLOB</code>)</td><td><code>Uint8Array</code></td><td>-</td></tr>
+<tr><td>String não binária (<code>TEXT</code>)</td><td><code>String</code></td><td>-</td></tr>
+<tr><td><code>VECTOR</code></td><td><code>Float32Array</code></td><td>-</td></tr>
+<tr><td><code>JSON</code></td><td><code>Object</code></td><td>-</td></tr>
+<tr><td><code>DATE</code>, <code>DATETIME</code>, <code>TIMESTAMP</code></td><td><code>Date</code></td><td>-</td></tr>
+<tr><td><code>ENUM</code></td><td><code>String</code></td><td>-</td></tr>
+<tr><td><code>SET</code></td><td><code>Set</code> (<code>String</code>)</td><td>O <code>Set</code> JavaScript pode ser convertido em uma string separada por vírgula</td></tr></tbody></table>

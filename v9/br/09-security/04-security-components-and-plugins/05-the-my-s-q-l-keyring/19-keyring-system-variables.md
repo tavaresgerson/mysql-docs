@@ -4,7 +4,7 @@ Os plugins de carteira de chave do MySQL suportam as seguintes variáveis de sis
 
 * `keyring_aws_cmk_id`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_aws_cmk_id"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--keyring-aws-cmk-id=valor</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_cmk_id">keyring_aws_cmk_id</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de Sintaxe de Definição de Hinta</th> <td><code>SET_VAR</code></a> Aplica-se</td> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_aws_cmk_id"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--keyring-aws-cmk-id=valor</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>keyring_aws_cmk_id</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de Sintaxe de Definição de Hinta</th> <td><code>SET_VAR</code></a> Aplica-se</td> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O ID da chave do KMS obtido do servidor do KMS da AWS e usado pelo plugin `keyring_aws`. Esta variável não está disponível a menos que o plugin esteja instalado.
 
@@ -14,17 +14,17 @@ Os plugins de carteira de chave do MySQL suportam as seguintes variáveis de sis
 
 <table frame="box" rules="all" summary="Propriedades para keyring_aws_conf_file">
   <tr><th>Formato de Linha de Comando</th> <td><code>--keyring-aws-conf-file=nome_do_arquivo</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>keyring_aws_conf_file</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de SET_VAR Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>específico da plataforma</code></td> </tr>
 </table>
 
   Localização do arquivo de configuração do plugin `keyring_aws`. Essa variável não está disponível a menos que o plugin esteja instalado.
 
-  Ao iniciar o plugin, o `keyring_aws` lê o ID da chave de acesso secreta AWS e a chave do arquivo de configuração. Para que o plugin `keyring_aws` comece com sucesso, o arquivo de configuração deve existir e conter informações válidas da chave de acesso secreta, conforme descrito na Seção 8.4.5.8, “Usando o plugin keyring\_aws Amazon Web Services Keyring”.
+  Ao iniciar o plugin, o `keyring_aws` lê o ID da chave de acesso secreta AWS e a chave do arquivo de configuração. Para que o plugin `keyring_aws` comece com sucesso, o arquivo de configuração deve existir e conter informações válidas da chave de acesso secreta, conforme descrito na Seção 8.4.5.8, “Usando o plugin keyring_aws Amazon Web Services Keyring”.
 
   O nome padrão do arquivo é `keyring_aws_conf`, localizado no diretório padrão do arquivo de chaveira.
 
@@ -37,7 +37,7 @@ Os plugins de carteira de chave do MySQL suportam as seguintes variáveis de sis
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_data_file">keyring_aws_data_file</a></code></td>
+    <td><code>keyring_aws_data_file</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -48,7 +48,7 @@ Os plugins de carteira de chave do MySQL suportam as seguintes variáveis de sis
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -71,13 +71,13 @@ Os plugins de carteira de chave do MySQL suportam as seguintes variáveis de sis
 
 <table frame="box" rules="all" summary="Propriedades para keyring_aws_region">
 <tr><th>Formato de Linha de Comando</th> <td><code>--keyring-aws-region=valor</code></td> </tr>
-<tr><th>Variável do Sistema</th> <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_region">keyring_aws_region</a></code></td> </tr>
+<tr><th>Variável do Sistema</th> <td><code>keyring_aws_region</code></td> </tr>
 <tr><th>Alcance</th> <td>Global</td> </tr>
 <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-<tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+<tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
 <tr><th>Tipo</th> <td>Enumeração</td> </tr>
 <tr><th>Valor Padrão</th> <td><code>us-east-1</code></td> </tr>
-<tr><th>Valores Válidos</th> <td><p class="valid-value"><code>af-south-1</code></p><p class="valid-value"><code>ap-east-1</code></p><p class="valid-value"><code>ap-northeast-1</code></p><p class="valid-value"><code>ap-northeast-2</code></p><p class="valid-value"><code>ap-northeast-3</code></p><p class="valid-value"><code>ap-south-1</code></p><p class="valid-value"><code>ap-southeast-1</code></p><p class="valid-value"><code>ap-southeast-2</code></p><p class="valid-value"><code>ca-central-1</code></p><p class="valid-value"><code>cn-north-1</code></p><p class="valid-value"><code>cn-northwest-1</code></p><p class="valid-value"><code>eu-central-1</code></p><p class="valid-value"><code>eu-north-1</code></p><p class="valid-value"><code>eu-south-1</code></p><p class="valid-value"><code>eu-west-1</code></p><p class="valid-value"><code>eu-west-2</code></p><p class="valid-value"><code>eu-west-3</code></p><p class="valid-value"><code>me-south-1</code></p><p class="valid-value"><code>sa-east-1</code></p><p class="valid-value"><code>us-east-1</code></p><p class="valid-value"><code>us-east-2</code></p><p class="valid-value"><code>us-gov-east-1</code></p><p class="valid-value"><code>us-iso-east-1</code></p><p class="valid-value"><code>us-iso-west-1</code></p><p class="valid-value"><code>us-west-1</code></p><p class="valid-value"><code>us-west-2</code></p></td> </tr>
+<tr><th>Valores Válidos</th> <td><p><code>af-south-1</code></p><p><code>ap-east-1</code></p><p><code>ap-northeast-1</code></p><p><code>ap-northeast-2</code></p><p><code>ap-northeast-3</code></p><p><code>ap-south-1</code></p><p><code>ap-southeast-1</code></p><p><code>ap-southeast-2</code></p><p><code>ca-central-1</code></p><p><code>cn-north-1</code></p><p><code>cn-northwest-1</code></p><p><code>eu-central-1</code></p><p><code>eu-north-1</code></p><p><code>eu-south-1</code></p><p><code>eu-west-1</code></p><p><code>eu-west-2</code></p><p><code>eu-west-3</code></p><p><code>me-south-1</code></p><p><code>sa-east-1</code></p><p><code>us-east-1</code></p><p><code>us-east-2</code></p><p><code>us-gov-east-1</code></p><p><code>us-iso-east-1</code></p><p><code>us-iso-west-1</code></p><p><code>us-west-1</code></p><p><code>us-west-2</code></p></td> </tr>
 </tbody></table>
 
 A região AWS para o plugin `keyring_aws`. Essa variável não está disponível, a menos que o plugin esteja instalado.
@@ -86,7 +86,7 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
 
 * `keyring_hashicorp_auth_path`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_hashicorp_auth_path"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-hashicorp-auth-path=valor</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_auth_path">keyring_hashicorp_auth_path</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>/v1/auth/approle/login</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_hashicorp_auth_path"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-hashicorp-auth-path=valor</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do sistema</th> <td><code>keyring_hashicorp_auth_path</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>/v1/auth/approle/login</code></td> </tr></tbody></table>
 
   O caminho de autenticação onde a autenticação AppRole é habilitada no servidor HashiCorp Vault, para uso pelo plugin `keyring_hashicorp`. Essa variável não está disponível, a menos que o plugin esteja instalado.
 
@@ -103,7 +103,7 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_ca_path">keyring_hashicorp_ca_path</a></code></td>
+    <td><code>keyring_hashicorp_ca_path</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -114,7 +114,7 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -144,7 +144,7 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_caching">keyring_hashicorp_caching</a></code></td>
+    <td><code>keyring_hashicorp_caching</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -155,7 +155,7 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -179,7 +179,7 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
     <th>Desatualizado</th> <td>Sim</td>
   </tr>
   <tr>
-    <th>Variável de sistema</th> <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_commit_auth_path">keyring_hashicorp_commit_auth_path</a></code></td>
+    <th>Variável de sistema</th> <td><code>keyring_hashicorp_commit_auth_path</code></td>
   </tr>
   <tr>
     <th>Alcance</th> <td>Global</td>
@@ -188,14 +188,14 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
     <th>Dinâmico</th> <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td>
   </tr>
   <tr>
     <th>Tipo</th> <td>String</td>
   </tr>
 </table>
 
-  Esta variável está associada a `keyring_hashicorp_auth_path`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para obter informações adicionais, consulte a configuração keyring\_hashicorp.
+  Esta variável está associada a `keyring_hashicorp_auth_path`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para obter informações adicionais, consulte a configuração keyring_hashicorp.
 
 * `keyring_hashicorp_commit_ca_path`
 
@@ -204,7 +204,7 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
     <th>Desatualizado</th> <td>Sim</td>
   </tr>
   <tr>
-    <th>Variável do Sistema</th> <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_commit_ca_path">keyring_hashicorp_commit_ca_path</a></code></td>
+    <th>Variável do Sistema</th> <td><code>keyring_hashicorp_commit_ca_path</code></td>
   </tr>
   <tr>
     <th>Alcance</th> <td>Global</td>
@@ -213,14 +213,14 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
     <th>Dinâmico</th> <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td>
   </tr>
   <tr>
     <th>Tipo</th> <td>String</td>
   </tr>
 </table>
 
-  Esta variável está associada a `keyring_hashicorp_ca_path`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para obter informações adicionais, consulte Configuração keyring\_hashicorp.
+  Esta variável está associada a `keyring_hashicorp_ca_path`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para obter informações adicionais, consulte Configuração keyring_hashicorp.
 
 * `keyring_hashicorp_commit_caching`
 
@@ -229,7 +229,7 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
     <th>Desatualizado</th> <td>Sim</td>
   </tr>
   <tr>
-    <th>Variável de sistema</th> <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_hashicorp_commit_caching">keyring_hashicorp_commit_caching</a></code></td>
+    <th>Variável de sistema</th> <td><code>keyring_hashicorp_commit_caching</code></td>
   </tr>
   <tr>
     <th>Alcance</th> <td>Global</td>
@@ -238,14 +238,14 @@ Se não estiver definida, a região AWS padrão é `us-east-1`. Portanto, para q
     <th>Dinâmico</th> <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td>
   </tr>
   <tr>
     <th>Tipo</th> <td>String</td>
   </tr>
 </table>
 
-Esta variável está associada a `keyring_hashicorp_caching`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para obter informações adicionais, consulte a configuração keyring\_hashicorp.
+Esta variável está associada a `keyring_hashicorp_caching`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para obter informações adicionais, consulte a configuração keyring_hashicorp.
 
 * `keyring_hashicorp_commit_role_id`
 
@@ -256,7 +256,7 @@ Esta variável está associada a `keyring_hashicorp_caching`, da qual ela obtém
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td>
+    <td><code>keyring_aws_conf_file</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -267,7 +267,7 @@ Esta variável está associada a `keyring_hashicorp_caching`, da qual ela obtém
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -280,7 +280,7 @@ Esta variável está associada a `keyring_hashicorp_caching`, da qual ela obtém
   </tr>
 </tbody></table>
 
-Esta variável está associada a `keyring_hashicorp_role_id`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para informações adicionais, consulte Configuração keyring\_hashicorp.
+Esta variável está associada a `keyring_hashicorp_role_id`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para informações adicionais, consulte Configuração keyring_hashicorp.
 
 * `keyring_hashicorp_commit_server_url`
 
@@ -291,7 +291,7 @@ Esta variável está associada a `keyring_hashicorp_role_id`, da qual ela obtém
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td>
+    <td><code>keyring_aws_conf_file</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -302,7 +302,7 @@ Esta variável está associada a `keyring_hashicorp_role_id`, da qual ela obtém
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -315,7 +315,7 @@ Esta variável está associada a `keyring_hashicorp_role_id`, da qual ela obtém
   </tr>
 </tbody></table>
 
-Esta variável está associada a `keyring_hashicorp_server_url`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para informações adicionais, consulte Configuração keyring\_hashicorp.
+Esta variável está associada a `keyring_hashicorp_server_url`, da qual ela obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin se a inicialização for bem-sucedida. Para informações adicionais, consulte Configuração keyring_hashicorp.
 
 * `keyring_hashicorp_commit_store_path`
 
@@ -326,7 +326,7 @@ Esta variável está associada a `keyring_hashicorp_server_url`, da qual ela obt
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td>
+    <td><code>keyring_aws_conf_file</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -337,7 +337,7 @@ Esta variável está associada a `keyring_hashicorp_server_url`, da qual ela obt
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></a> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</th></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -350,7 +350,7 @@ Esta variável está associada a `keyring_hashicorp_server_url`, da qual ela obt
   </tr>
 </tbody></table>
 
-Esta variável está associada a `keyring_hashicorp_store_path`, a partir da qual obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin, se a inicialização for bem-sucedida. Para obter informações adicionais, consulte Configuração keyring\_hashicorp.
+Esta variável está associada a `keyring_hashicorp_store_path`, a partir da qual obtém seu valor durante a inicialização do plugin `keyring_hashicorp`. Esta variável não está disponível a menos que o plugin seja instalado. Ela reflete o valor "comitado" realmente usado para a operação do plugin, se a inicialização for bem-sucedida. Para obter informações adicionais, consulte Configuração keyring_hashicorp.
 
 * `keyring_hashicorp_role_id`
 
@@ -361,7 +361,7 @@ Esta variável está associada a `keyring_hashicorp_store_path`, a partir da qua
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td>
+    <td><code>keyring_aws_conf_file</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -372,7 +372,7 @@ Esta variável está associada a `keyring_hashicorp_store_path`, a partir da qua
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -399,7 +399,7 @@ Esta variável é obrigatória. Se não for especificada, a inicialização do `
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td>
+    <td><code>keyring_aws_conf_file</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -410,7 +410,7 @@ Esta variável é obrigatória. Se não for especificada, a inicialização do `
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -439,7 +439,7 @@ O valor dessa variável é sensível, portanto, seu valor é mascarado por carac
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td>
+    <td><code>keyring_aws_conf_file</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -450,7 +450,7 @@ O valor dessa variável é sensível, portanto, seu valor é mascarado por carac
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -473,7 +473,7 @@ O valor dessa variável é sensível, portanto, seu valor é mascarado por carac
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td>
+    <td><code>keyring_aws_conf_file</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -484,7 +484,7 @@ O valor dessa variável é sensível, portanto, seu valor é mascarado por carac
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></a> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</th></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -497,7 +497,7 @@ O valor dessa variável é sensível, portanto, seu valor é mascarado por carac
   </tr>
 </tbody></table>
 
-  Um caminho de armazenamento dentro do servidor HashiCorp Vault que é gravável quando as credenciais do AppRole apropriadas são fornecidas pelo plugin `keyring_hashicorp`. Esta variável não está disponível a menos que esse plugin esteja instalado. Para especificar as credenciais, defina as variáveis de sistema `keyring_hashicorp_role_id` e `keyring_hashicorp_secret_id` (por exemplo, conforme mostrado na Configuração do keyring\_hashicorp).
+  Um caminho de armazenamento dentro do servidor HashiCorp Vault que é gravável quando as credenciais do AppRole apropriadas são fornecidas pelo plugin `keyring_hashicorp`. Esta variável não está disponível a menos que esse plugin esteja instalado. Para especificar as credenciais, defina as variáveis de sistema `keyring_hashicorp_role_id` e `keyring_hashicorp_secret_id` (por exemplo, conforme mostrado na Configuração do keyring_hashicorp).
 
   Esta variável é obrigatória. Se não for especificada, a inicialização do `keyring_hashicorp` falha.
 
@@ -505,17 +505,17 @@ O valor dessa variável é sensível, portanto, seu valor é mascarado por carac
 
 <table frame="box" rules="all" summary="Propriedades para keyring_aws_conf_file">
   <tr><th>Formato de Linha de Comando</th> <td><code>--keyring-aws-conf-file=nome_arquivo</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>keyring_aws_conf_file</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>específico da plataforma</code></td> </tr>
 </table>
 
   O nome do caminho do diretório que armazena as informações de configuração usadas pelo plugin `keyring_okv`. Essa variável não está disponível a menos que o plugin esteja instalado. A localização deve ser um diretório considerado para uso exclusivo pelo plugin `keyring_okv`. Por exemplo, não localize o diretório sob o diretório de dados.
 
-  O valor padrão `keyring_okv_conf_dir` está vazio. Para que o plugin `keyring_okv` possa acessar o Oracle Key Vault, o valor deve ser definido para um diretório que contenha a configuração do Oracle Key Vault e materiais SSL. Para obter instruções sobre como configurar esse diretório, consulte a Seção 8.4.5.6, “Usando o plugin KMIP keyring\_okv”.
+  O valor padrão `keyring_okv_conf_dir` está vazio. Para que o plugin `keyring_okv` possa acessar o Oracle Key Vault, o valor deve ser definido para um diretório que contenha a configuração do Oracle Key Vault e materiais SSL. Para obter instruções sobre como configurar esse diretório, consulte a Seção 8.4.5.6, “Usando o plugin KMIP keyring_okv”.
 
 O diretório deve ter um modo restrito e ser acessível apenas à conta usada para executar o servidor MySQL. Por exemplo, em sistemas Unix e Unix-like, para usar o diretório `/usr/local/mysql/mysql-keyring-okv`, os seguintes comandos (executados como `root`) criam o diretório e definem seu modo e propriedade:
 
@@ -538,7 +538,7 @@ Se o valor atribuído a `keyring_okv_conf_dir` especificar um diretório que nã
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="keyring-system-variables.html#sysvar_keyring_aws_conf_file">keyring_aws_conf_file</a></code></td>
+    <td><code>keyring_aws_conf_file</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -550,7 +550,7 @@ Se o valor atribuído a `keyring_okv_conf_dir` especificar um diretório que nã
   </tr>
   <tr>
     <th>Hinta de Configuração</th>
-    <td><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração do SET_VAR">Hinta de SET_VAR</a> Aplica-se</th>
+    <td>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>

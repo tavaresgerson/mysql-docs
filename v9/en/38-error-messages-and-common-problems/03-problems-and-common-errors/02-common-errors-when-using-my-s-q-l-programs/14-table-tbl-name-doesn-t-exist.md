@@ -1,4 +1,4 @@
-#### B.3.2.14 Table 'tbl\_name' doesn't exist
+#### B.3.2.14 Table 'tbl_name' doesn't exist
 
 If you get either of the following errors, it usually means that no table exists in the default database with the given name:
 

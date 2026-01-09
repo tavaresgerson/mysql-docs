@@ -1,4 +1,4 @@
-#### 25.12.2.4 The setup\_objects Table
+#### 25.12.2.4 The setup_objects Table
 
 The [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") table controls whether the Performance Schema monitors particular objects. This table has a maximum size of 100 rows by default. To change the table size, modify the [`performance_schema_setup_objects_size`](performance-schema-system-variables.html#sysvar_performance_schema_setup_objects_size) system variable at server startup.
 

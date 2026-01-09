@@ -1,20 +1,20 @@
-### 25.5.6 ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables
+### 25.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables
 
 This tool can be used to check for and remove orphaned BLOB column parts from `NDB` tables, as well as to generate a file listing any orphaned parts. It is sometimes useful in diagnosing and repairing corrupted or damaged `NDB` tables containing `BLOB` or `TEXT` columns.
 
-The basic syntax for **ndb\_blob\_tool** is shown here:
+The basic syntax for **ndb_blob_tool** is shown here:
 
 ```
 ndb_blob_tool [options] table [column, ...]
 ```
 
-Unless you use the `--help` option, you must specify an action to be performed by including one or more of the options `--check-orphans`, `--delete-orphans`, or `--dump-file`. These options cause **ndb\_blob\_tool** to check for orphaned BLOB parts, remove any orphaned BLOB parts, and generate a dump file listing orphaned BLOB parts, respectively, and are described in more detail later in this section.
+Unless you use the `--help` option, you must specify an action to be performed by including one or more of the options `--check-orphans`, `--delete-orphans`, or `--dump-file`. These options cause **ndb_blob_tool** to check for orphaned BLOB parts, remove any orphaned BLOB parts, and generate a dump file listing orphaned BLOB parts, respectively, and are described in more detail later in this section.
 
-You must also specify the name of a table when invoking **ndb\_blob\_tool**. In addition, you can optionally follow the table name with the (comma-separated) names of one or more `BLOB` or `TEXT` columns from that table. If no columns are listed, the tool works on all of the table's `BLOB` and `TEXT` columns. If you need to specify a database, use the `--database` (`-d`) option.
+You must also specify the name of a table when invoking **ndb_blob_tool**. In addition, you can optionally follow the table name with the (comma-separated) names of one or more `BLOB` or `TEXT` columns from that table. If no columns are listed, the tool works on all of the table's `BLOB` and `TEXT` columns. If you need to specify a database, use the `--database` (`-d`) option.
 
 The `--verbose` option provides additional information in the output about the tool's progress.
 
-All options that can be used with **ndb\_mgmd** are shown in the following table. Additional descriptions follow the table.
+All options that can be used with **ndb_mgmd** are shown in the following table. Additional descriptions follow the table.
 
 * `--add-missing`
 
@@ -122,7 +122,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -208,7 +208,7 @@ Then we insert a few rows into this table, using a series of statements similar 
 INSERT INTO btest VALUES (NULL, 'x', REPEAT('x', 1000));
 ```
 
-When run with `--check-orphans` against this table, **ndb\_blob\_tool** generates the following output:
+When run with `--check-orphans` against this table, **ndb_blob_tool** generates the following output:
 
 ```
 $> ndb_blob_tool --check-orphans --verbose -d test btest

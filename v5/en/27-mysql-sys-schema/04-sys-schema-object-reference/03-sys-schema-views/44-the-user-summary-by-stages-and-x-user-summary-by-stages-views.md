@@ -1,4 +1,4 @@
-#### 26.4.3.44 The user\_summary\_by\_stages and x$user\_summary\_by\_stages Views
+#### 26.4.3.44 The user_summary_by_stages and x$user_summary_by_stages Views
 
 These views summarize stages, grouped by user. By default, rows are sorted by user and descending total stage latency.
 

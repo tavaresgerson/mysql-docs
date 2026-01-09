@@ -30,8 +30,8 @@ O MySQL 5.7 inclui o esquema `sys`, um conjunto de objetos que ajuda os administ
 
 Para novas instalações, o esquema `sys` é instalado por padrão durante a inicialização do diretório de dados se você usar o **mysqld** com a opção `--initialize` ou `--initialize-insecure`. Você pode excluir o esquema \`sys manualmente após a inicialização, se ele não for necessário.
 
-Para atualizações, o **mysql\_upgrade** instala o esquema `sys` se ele não estiver instalado e, caso contrário, o atualiza para a versão atual. Para permitir que esse comportamento seja suprimido, o **mysql\_upgrade** tem a opção `--skip-sys-schema`.
+Para atualizações, o **mysql_upgrade** instala o esquema `sys` se ele não estiver instalado e, caso contrário, o atualiza para a versão atual. Para permitir que esse comportamento seja suprimido, o **mysql_upgrade** tem a opção `--skip-sys-schema`.
 
-O **mysql\_upgrade** retorna um erro se um esquema `sys` existir, mas não tiver a visão `version`, assumindo que a ausência dessa visão indica um esquema `sys` criado pelo usuário. Para fazer a atualização nesse caso, remova ou renomeie primeiro o esquema `sys` existente.
+O **mysql_upgrade** retorna um erro se um esquema `sys` existir, mas não tiver a visão `version`, assumindo que a ausência dessa visão indica um esquema `sys` criado pelo usuário. Para fazer a atualização nesse caso, remova ou renomeie primeiro o esquema `sys` existente.
 
 Os objetos do esquema `sys` têm um `DEFINER` de `'mysql.sys'@'localhost'`. O uso da conta dedicada `mysql.sys` evita problemas que ocorrem se um DBA renomear ou remover a conta `root`.

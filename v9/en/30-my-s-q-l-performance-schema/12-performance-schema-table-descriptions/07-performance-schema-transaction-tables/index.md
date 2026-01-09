@@ -1,10 +1,10 @@
 ### 29.12.7 Performance Schema Transaction Tables
 
-29.12.7.1 The events\_transactions\_current Table
+29.12.7.1 The events_transactions_current Table
 
-29.12.7.2 The events\_transactions\_history Table
+29.12.7.2 The events_transactions_history Table
 
-29.12.7.3 The events\_transactions\_history\_long Table
+29.12.7.3 The events_transactions_history_long Table
 
 The Performance Schema instruments transactions. Within the event hierarchy, wait events nest within stage events, which nest within statement events, which nest within transaction events.
 

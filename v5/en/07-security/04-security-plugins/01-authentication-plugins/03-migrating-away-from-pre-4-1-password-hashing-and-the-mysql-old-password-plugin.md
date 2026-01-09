@@ -1,4 +1,4 @@
-#### 6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql\_old\_password Plugin
+#### 6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin
 
 The MySQL server authenticates connection attempts for each account listed in the `mysql.user` system table using the authentication plugin named in the `plugin` column. If the `plugin` column is empty, the server authenticates the account as follows:
 
@@ -24,7 +24,7 @@ The following table lists the types of `mysql.user` accounts considered in this 
 
 Accounts corresponding to lines for the `mysql_native_password` plugin require no upgrade action (because no change of plugin or hash format is required). For accounts corresponding to lines for which the password is empty, consider asking the account owners to choose a password (or require it by using [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") to expire empty account passwords).
 
-##### Upgrading Accounts from Implicit to Explicit mysql\_native\_password Use
+##### Upgrading Accounts from Implicit to Explicit mysql_native_password Use
 
 Accounts that have an empty plugin and a 4.1 password hash use `mysql_native_password` implicitly. To upgrade these accounts to use `mysql_native_password` explicitly, execute these statements:
 
@@ -34,7 +34,7 @@ WHERE plugin = '' AND (Password = '' OR LENGTH(Password) = 41);
 FLUSH PRIVILEGES;
 ```
 
-Before MySQL 5.7, you can execute those statements to uprade accounts proactively. As of MySQL 5.7, you can run [**mysql\_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables"), which performs the same operation among its upgrade actions.
+Before MySQL 5.7, you can execute those statements to uprade accounts proactively. As of MySQL 5.7, you can run [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables"), which performs the same operation among its upgrade actions.
 
 Notes:
 
@@ -42,7 +42,7 @@ Notes:
 
 * This operation requires no password changes, so it can be performed without affecting users or requiring their involvement in the upgrade process.
 
-##### Upgrading Accounts from mysql\_old\_password to mysql\_native\_password
+##### Upgrading Accounts from mysql_old_password to mysql_native_password
 
 Accounts that use `mysql_old_password` (either implicitly or explicitly) should be upgraded to use `mysql_native_password` explicitly. This requires changing the plugin *and* changing the password from pre-4.1 to 4.1 hash format.
 

@@ -1,41 +1,5 @@
 ## 6.2 Controle de Acesso e Gerenciamento de Conta
 
-6.2.1 Nomes de Usuários e Senhas de Conta
-
-6.2.2 Prêmios fornecidos pelo MySQL
-
-6.2.3 Tabelas de subsídios
-
-6.2.4 Especificando Nomes de Conta
-
-6.2.5 Controle de Acesso, Etapa 1: Verificação de Conexão
-
-6.2.6 Controle de Acesso, Etapa 2: Solicitação de Verificação
-
-6.2.7 Adicionando contas, atribuindo privilégios e excluindo contas
-
-6.2.8 Contas Reservadas
-
-6.2.9 Quando as Alterações de Privilegios Se Tornam Efetivas
-
-6.2.10 Atribuição de senhas de conta
-
-6.2.11 Gerenciamento de Senhas
-
-6.2.12 Gerenciamento de Senhas Expirantes pelo Servidor
-
-6.2.13 Autenticação Conectada
-
-6.2.14 Usuários de Proxy
-
-6.2.15 Bloqueio de Conta
-
-6.2.16 Definir limites de recursos da conta
-
-6.2.17 Solução de problemas para problemas de conexão com o MySQL
-
-6.2.18 Auditoria de Atividade de Conta Baseada em SQL
-
 O MySQL permite a criação de contas que permitem que os usuários clientes se conectem ao servidor e acessem os dados gerenciados pelo servidor. A função principal do sistema de privilégios do MySQL é autenticar um usuário que se conecta de um determinado host e associar esse usuário a privilégios em um banco de dados, como `SELECT`, `INSERT`, `UPDATE` e `DELETE`. A funcionalidade adicional inclui a capacidade de conceder privilégios para operações administrativas.
 
 Para controlar quais usuários podem se conectar, cada conta pode ser atribuída credenciais de autenticação, como uma senha. A interface de usuário para contas MySQL consiste em instruções SQL, como `CREATE USER`, `GRANT` e `REVOKE`. Veja Seção 13.7.1, “Instruções de Gerenciamento de Contas”.
@@ -64,7 +28,5 @@ Se seus privilégios forem alterados (por você ou por outra pessoa) enquanto es
 Há algumas coisas que você não pode fazer com o sistema de privilégios do MySQL:
 
 - Você não pode especificar explicitamente que um usuário específico deve ser negado o acesso. Ou seja, você não pode combinar explicitamente um usuário e, em seguida, recusar a conexão.
-
 - Não é possível especificar que um usuário tenha privilégios para criar ou excluir tabelas em um banco de dados, mas não para criar ou excluir o próprio banco de dados.
-
 - Uma senha é aplicada globalmente a uma conta. Você não pode associar uma senha a um objeto específico, como um banco de dados, uma tabela ou uma rotina.

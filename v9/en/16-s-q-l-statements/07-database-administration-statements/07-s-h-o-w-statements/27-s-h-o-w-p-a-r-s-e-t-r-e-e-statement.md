@@ -1,4 +1,4 @@
-#### 15.7.7.27 SHOW PARSE\_TREE Statement
+#### 15.7.7.27 SHOW PARSE_TREE Statement
 
 ```
 SHOW PARSE_TREE select_statement

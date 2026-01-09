@@ -1,4 +1,4 @@
-#### 26.4.4.17 O procedimento ps\_setup\_show\_disabled\_instruments()
+#### 26.4.4.17 O procedimento ps_setup_show_disabled_instruments()
 
 Exibe todos os instrumentos do Schema de Desempenho atualmente desabilitados. Isso pode ser uma lista longa.
 

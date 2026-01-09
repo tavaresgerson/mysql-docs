@@ -1,8 +1,8 @@
-### 28.4.16 The INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD Table
+### 28.4.16 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table
 
 The `INNODB_FT_DEFAULT_STOPWORD` table holds a list of stopwords that are used by default when creating a `FULLTEXT` index on `InnoDB` tables. For information about the default `InnoDB` stopword list and how to define your own stopword lists, see Section 14.9.4, “Full-Text Stopwords”.
 
-For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”.
+For related usage information and examples, see Section 17.15.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.
 
 The `INNODB_FT_DEFAULT_STOPWORD` table has these columns:
 

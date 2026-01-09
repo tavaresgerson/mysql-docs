@@ -4,7 +4,7 @@
 
 [6.4.1.2 Old Native Pluggable Authentication](old-native-pluggable-authentication.html)
 
-[6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql\_old\_password Plugin](account-upgrades.html)
+[6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin](account-upgrades.html)
 
 [6.4.1.4 Caching SHA-2 Pluggable Authentication](caching-sha2-pluggable-authentication.html)
 

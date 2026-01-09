@@ -18,7 +18,7 @@ Na maioria dos casos, você pode considerar uma coluna `BLOB` como uma coluna `V
 
 - As colunas `BLOB` e `TEXT` não podem ter valores `DEFAULT`.
 
-Se você usar o atributo `BINARY` com um tipo de dado `TEXT`, a coluna receberá a collation binária (\_bin) do conjunto de caracteres da coluna.
+Se você usar o atributo `BINARY` com um tipo de dado `TEXT`, a coluna receberá a collation binária (_bin) do conjunto de caracteres da coluna.
 
 `LONG` e `LONG VARCHAR` correspondem ao tipo de dados `MEDIUMTEXT`. Esse é um recurso de compatibilidade.
 

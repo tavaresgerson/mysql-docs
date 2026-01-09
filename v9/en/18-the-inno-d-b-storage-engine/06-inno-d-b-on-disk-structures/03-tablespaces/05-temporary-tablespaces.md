@@ -70,7 +70,7 @@ TABLESPACE_NAME: innodb_temporary
    MAXIMUM_SIZE: NULL
 ```
 
-`TotalSizeBytes` shows the current size of the global temporary tablespace data file. For information about other field values, see Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.
+`TotalSizeBytes` shows the current size of the global temporary tablespace data file. For information about other field values, see Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.
 
 Alternatively, check the global temporary tablespace data file size on your operating system. The global temporary tablespace data file is located in the directory defined by the `innodb_temp_data_file_path` variable.
 

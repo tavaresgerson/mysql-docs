@@ -331,7 +331,7 @@ Quando um perfil recebe qualquer um dos valores de modo anteriores, o firewall a
 
 Observação
 
-Mensagens escritas no log de erro no modo `DETECTANDO` ou porque `mysql_firewall_trace` está habilitada são escritas como Notas, que são mensagens de informação. Para garantir que essas mensagens apareçam no log de erro e não sejam descartadas, certifique-se de que a granularidade do registro de erro é suficiente para incluir mensagens de informação. Por exemplo, se você estiver usando a filtragem de log com base na prioridade, conforme descrito na Seção 7.4.2.5, “Filtragem de Log de Erro com Base na Prioridade (log\_filter\_internal)”), defina a variável de sistema `log_error_verbosity` para `3`.
+Mensagens escritas no log de erro no modo `DETECTANDO` ou porque `mysql_firewall_trace` está habilitada são escritas como Notas, que são mensagens de informação. Para garantir que essas mensagens apareçam no log de erro e não sejam descartadas, certifique-se de que a granularidade do registro de erro é suficiente para incluir mensagens de informação. Por exemplo, se você estiver usando a filtragem de log com base na prioridade, conforme descrito na Seção 7.4.2.5, “Filtragem de Log de Erro com Base na Prioridade (log_filter_internal)”), defina a variável de sistema `log_error_verbosity` para `3`.
 
 ###### Gerenciamento de Declarações do Firewall Quando Múltiplos Perfis Se Aplicam
 
@@ -1337,13 +1337,13 @@ O plugin do firewall do MySQL Enterprise suporta as seguintes variáveis de sist
 
 * `mysql_firewall_database`
 
-  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_database"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysql-firewall-database[=value]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_database">mysql_firewall_database</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>mysql</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_database"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysql-firewall-database[=value]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável de Sistema</th> <td><code>mysql_firewall_database</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>mysql</code></td> </tr></tbody></table>
 
 Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do MySQL lê os dados. Tipicamente, o plugin do lado do servidor `MYSQL_FIREWALL` armazena seus dados internos (tabelas, procedimentos armazenados e funções) no banco de dados do sistema `mysql`, mas você pode criar e usar um esquema personalizado (veja Instalar o Plugin do Firewall Empresarial do MySQL). Esta variável permite especificar um nome de banco de dados alternativo no momento do início.
 
 * `mysql_firewall_mode`
 
-  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_mode"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_mode">mysql_firewall_mode</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysql_firewall_mode"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável do Sistema</th> <td><code>mysql_firewall_mode</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Se o plugin do Firewall Empresarial do MySQL está habilitado (o padrão) ou desabilitado.
 
@@ -1360,7 +1360,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_reload_interval_seconds">mysql_firewall_reload_interval_seconds</a></code></td>
+    <td><code>mysql_firewall_reload_interval_seconds</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1371,7 +1371,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1413,7 +1413,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="firewall-plugin.html#sysvar_mysql_firewall_trace">mysql_firewall_trace</a></code></td>
+    <td><code>mysql_firewall_trace</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1424,7 +1424,7 @@ Especifica o banco de dados a partir do qual o plugin do Firewall Empresarial do
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>

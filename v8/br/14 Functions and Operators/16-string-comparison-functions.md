@@ -50,12 +50,12 @@ Com `LIKE`, você pode usar os seguintes dois caracteres curinga no padrão:
 Para testar instâncias literais de um caractere curinga, anteceda-o com o caractere de escape. Se você não especificar o caractere `ESCAPE`, `\` é assumido, a menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado. Nesse caso, nenhum caractere de escape é usado.
 
 + `\%` corresponde a um `%` caractere.
-+ `\_` corresponde a um `_` caractere.
++ `_` corresponde a um `_` caractere.
 
 ```
-  mysql> SELECT 'David!' LIKE 'David\_';
+  mysql> SELECT 'David!' LIKE 'David_';
           -> 0
-  mysql> SELECT 'David_' LIKE 'David\_';
+  mysql> SELECT 'David_' LIKE 'David_';
           -> 1
   ```
 

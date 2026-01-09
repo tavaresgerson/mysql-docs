@@ -134,7 +134,7 @@ Some system variables exist in pairs, such as `lock_order_debug_loop` and `lock_
 
   <table><tbody><tr><th>Command-Line Format</th> <td><code>--lock-order-debug-missing-arc[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>lock_order_debug_missing_arc</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Whether the LOCK\_ORDER tool causes a debug assertion failure when it encounters a dependency that is not declared in the lock-order graph.
+  Whether the LOCK_ORDER tool causes a debug assertion failure when it encounters a dependency that is not declared in the lock-order graph.
 *  `lock_order_debug_missing_key`
 
   <table><tbody><tr><th>Command-Line Format</th> <td><code>--lock-order-debug-missing-key[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>lock_order_debug_missing_key</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>

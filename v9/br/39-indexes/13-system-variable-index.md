@@ -6,7 +6,7 @@ A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | 
 
 [índice superior]
 
-### ativar\_todos\_os\_rolos\_na\_login
+### ativar_todos_os_rolos_na_login
 
 Seção 15.1.21, “Instruções CREATE PROCEDURE e CREATE FUNCTION”
 
@@ -22,7 +22,7 @@ Seção 27.8, “Controle de Acesso a Objetos Armazenados”
 
 Seção 8.2.10, “Uso de Rotulos”
 
-### ativar\_rolos\_obrigatórios
+### ativar_rolos_obrigatórios
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -30,7 +30,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 8.3.2, “Protocolos e Cifras de Conexão TLS Encriptados”
 
-### admin\_endereço
+### admin_endereço
 
 Seção 7.1.12.2, “Gestão de Conexão Administrativa”
 
@@ -40,7 +40,7 @@ Seção 20.5.4.1.1, “Seleção de Endereços para Pontos Finais de Recuperaç
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_port
+### admin_port
 
 Seção 7.1.12.2, “Gestão de Conexão Administrativa”
 
@@ -50,39 +50,39 @@ Seção 20.5.4.1.1, “Seleção de Endereços para Pontos Finais de Recuperaç
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_ssl\_ca
+### admin_ssl_ca
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_ssl\_capath
+### admin_ssl_capath
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_ssl\_cert
+### admin_ssl_cert
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_ssl\_cipher
+### admin_ssl_cipher
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_ssl\_crl
+### admin_ssl_crl
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_ssl\_crlpath
+### admin_ssl_crlpath
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_ssl\_key
+### admin_ssl_key
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_tls\_ciphersuites
+### admin_tls_ciphersuites
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### admin\_tls\_version
+### admin_tls_version
 
 Seção 7.1.12.2, “Gestão de Conexão Administrativa”
 
@@ -90,19 +90,19 @@ Seção 8.3.2, “Protocolos e cifra de conexão encriptada TLS”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### audit\_log\_buffer\_size
+### audit_log_buffer_size
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
 Seção 8.4.6.5, “Configurando características de registro de auditoria”
 
-### audit\_log\_compression
+### audit_log_compression
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
 Seção 8.4.6.5, “Configurando características de registro de auditoria”
 
-### audit\_log\_connection\_policy
+### audit_log_connection_policy
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
@@ -110,11 +110,11 @@ Seção 8.4.6.10, “Filtragem do log de auditoria no modo legado”
 
 Seção 8.4.6.8, “Escrevendo definições de filtros de log de auditoria”
 
-### audit\_log\_current\_session
+### audit_log_current_session
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
-### audit\_log\_database
+### audit_log_database
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
@@ -122,7 +122,7 @@ Seção 8.4.6.1, “Elementos do monitoramento de auditoria do MySQL Enterprise
 
 Seção 8.4.6, “Monitoramento de auditoria do MySQL Enterprise”
 
-### audit\_log\_disable
+### audit_log_disable
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
@@ -130,13 +130,13 @@ Seção 8.4.6.9, “Desabilitando o registro de auditoria”
 
 Seção 7.5.8.2, “Componentes compatíveis com o Rastreador de Opções”
 
-### audit\_log\_encryption
+### audit_log_encryption
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
 Seção 8.4.6.5, “Configurando características de registro de auditoria”
 
-### audit\_log\_exclude\_accounts
+### audit_log_exclude_accounts
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
@@ -144,7 +144,7 @@ Seção 8.4.6.10, “Filtragem do log de auditoria no modo legado”
 
 Seção 8.4.6.8, “Escrevendo definições de filtros de log de auditoria”
 
-### audit\_log\_file
+### audit_log_file
 
 Seção 8.4.6.4, “Formatos de arquivo de log de auditoria”
 
@@ -160,7 +160,7 @@ Seção 8.4.6.3, “Considerações de segurança do monitoramento de auditoria
 
 Seção 8.4.6.6, “Leitura de arquivos de log de auditoria”
 
-### audit\_log\_filter\_id
+### audit_log_filter_id
 
 Seção 8.4.6.7, “Filtragem do log de auditoria”
 
@@ -168,21 +168,21 @@ Seção 8.4.6.11, “Referência do log de auditoria”
 
 Seção 8.4.6.8, “Definições de Filtro de Registro de Auditoria”
 
-### audit\_log\_flush
+### audit_log_flush
 
 Seção 8.4.6.11, “Referência do Registro de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-### audit\_log\_flush\_interval\_seconds
+### audit_log_flush_interval_seconds
 
 Seção 8.4.6.11, “Referência do Registro de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-Seção 29.12.22.1, “A tabela component\_scheduler\_tasks”
+Seção 29.12.22.1, “A tabela component_scheduler_tasks”
 
-### audit\_log\_format
+### audit_log_format
 
 Seção 8.4.6.4, “Formatos de Arquivo de Registro de Auditoria”
 
@@ -194,7 +194,7 @@ Seção 8.4.6, “MySQL Enterprise Audit”
 
 Seção 8.4.7, “O componente de Mensagem de Auditoria”
 
-### audit\_log\_format\_unix\_timestamp
+### audit_log_format_unix_timestamp
 
 Seção 8.4.6.4, “Formatos de Arquivo de Registro de Auditoria”
 
@@ -202,7 +202,7 @@ Seção 8.4.6.11, “Referência do Registro de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-### audit\_log\_include\_accounts
+### audit_log_include_accounts
 
 Seção 8.4.6.11, “Referência do Registro de Auditoria”
 
@@ -210,13 +210,13 @@ Seção 8.4.6.10, “Filtragem de Registro de Auditoria em Modo Legado”
 
 Seção 8.4.6.8, “Escrevendo Definições de Filtro de Registro de Auditoria”
 
-### audit\_log\_max\_size
+### audit_log_max_size
 
 Seção 8.4.6.11, “Referência do Registro de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-### audit\_log\_password\_history\_keep\_days
+### audit_log_password_history_keep_days
 
 Seção 8.4.6.11, “Referência do Registro de Auditoria”
 
@@ -226,25 +226,25 @@ Seção 7.1.9, “Usando Variáveis de Sistema”
 
 Seção 8.4.6.8, “Escrevendo Definições de Filtro de Registro de Auditoria”
 
-### audit\_log\_prune\_seconds
+### audit_log_prune_seconds
 
 Seção 8.4.6.11, “Referência do Registro de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-### audit\_log\_read\_buffer\_size
+### audit_log_read_buffer_size
 
 Seção 8.4.6.11, “Referência do Registro de Auditoria”
 
 Seção 8.4.6.6, “Leitura de Arquivos de Registro de Auditoria”
 
-### audit\_log\_rotate\_on\_size
+### audit_log_rotate_on_size
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-### audit\_log\_statement\_policy
+### audit_log_statement_policy
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
@@ -252,25 +252,25 @@ Seção 8.4.6.10, “Filtragem de Log de Auditoria no Modo Legado”
 
 Seção 8.4.6.8, “Escrevendo Definições de Filtro de Log de Auditoria”
 
-### audit\_log\_strategy
+### audit_log_strategy
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-### authentication\_kerberos\_service\_key\_tab
+### authentication_kerberos_service_key_tab
 
 Seção 8.4.1.7, “Autenticação Pluggable Kerberos”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### authentication\_kerberos\_service\_principal
+### authentication_kerberos_service_principal
 
 Seção 8.4.1.7, “Autenticação Pluggable Kerberos”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### authentication\_ldap\_sasl\_auth\_method\_name
+### authentication_ldap_sasl_auth_method_name
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
@@ -278,187 +278,187 @@ Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
 Seção 1.4, “O que há de Novo no MySQL 9.5”
 
-### authentication\_ldap\_sasl\_bind\_base\_dn
+### authentication_ldap_sasl_bind_base_dn
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### authentication\_ldap\_sasl\_bind\_root\_dn
+### authentication_ldap_sasl_bind_root_dn
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### authentication\_ldap\_sasl\_bind\_root\_pwd
+### authentication_ldap_sasl_bind_root_pwd
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### authentication\_ldap\_sasl\_ca\_path
+### authentication_ldap_sasl_ca_path
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### authentication\_ldap\_sasl\_connect\_timeout
+### authentication_ldap_sasl_connect_timeout
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_grupo\_pesquisa\_atributos
+### autenticação_ldap_sasl_grupo_pesquisa_atributos
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_pesquisa\_filtro
+### autenticação_ldap_sasl_pesquisa_filtro
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_tamanho\_pool
+### autenticação_ldap_sasl_tamanho_pool
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_status\_log
+### autenticação_ldap_sasl_status_log
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_tamanho\_max\_pool
+### autenticação_ldap_sasl_tamanho_max_pool
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_referência
+### autenticação_ldap_sasl_referência
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_timeout\_resposta
+### autenticação_ldap_sasl_timeout_resposta
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_host\_servidor
+### autenticação_ldap_sasl_host_servidor
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_porta\_servidor
+### autenticação_ldap_sasl_porta_servidor
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_tls
+### autenticação_ldap_sasl_tls
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### autenticação\_ldap\_sasl\_atributos\_pesquisa\_usuário
+### autenticação_ldap_sasl_atributos_pesquisa_usuário
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### método\_de\_autenticação\_simples\_nome
+### método_de_autenticação_simples_nome
 
 Seção 8.4.1.6, “Autenticação Pluggable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Pluggable”
 
-### authentication\_ldap\_simple\_bind\_base\_dn
+### authentication_ldap_simple_bind_base_dn
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_bind\_root\_dn
+### authentication_ldap_simple_bind_root_dn
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_bind\_root\_pwd
+### authentication_ldap_simple_bind_root_pwd
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_ca\_path
+### authentication_ldap_simple_ca_path
 
 Seção 8.4.1.6, “Autenticação Conectada LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_connect\_timeout
+### authentication_ldap_simple_connect_timeout
 
 Seção 8.4.1.6, “Autenticação Conectada LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_group\_search\_attr
+### authentication_ldap_simple_group_search_attr
 
 Seção 8.4.1.6, “Autenticação Conectada LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_group\_search\_filter
+### authentication_ldap_simple_group_search_filter
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_init\_pool\_size
+### authentication_ldap_simple_init_pool_size
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_log\_status
+### authentication_ldap_simple_log_status
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_max\_pool\_size
+### authentication_ldap_simple_max_pool_size
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_referral
+### authentication_ldap_simple_referral
 
 Seção 8.4.1.6, “Autenticação Conectada LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_response\_timeout
+### authentication_ldap_simple_response_timeout
 
 Seção 8.4.1.6, “Autenticação Conectada LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_server\_host
+### authentication_ldap_simple_server_host
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectada”
 
-### authentication\_ldap\_simple\_server\_port
+### authentication_ldap_simple_server_port
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectable”
 
-### authentication\_ldap\_simple\_tls
+### authentication_ldap_simple_tls
 
 Seção 8.4.1.6, “Autenticação Conectable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectable”
 
-### authentication\_ldap\_simple\_user\_search\_attr
+### authentication_ldap_simple_user_search_attr
 
 Seção 8.4.1.6, “Autenticação Conectable LDAP”
 
 Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectable”
 
-### authentication\_openid\_connect\_configuration
+### authentication_openid_connect_configuration
 
 Seção 8.4.1.9, “Autenticação Conectable OpenID Connect”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### authentication\_policy
+### authentication_policy
 
 Seção 15.7.1.1, “Instrução ALTER USER”
 
@@ -478,7 +478,7 @@ Seção 8.4.1.2, “Autenticação SHA-256 Conectable”
 
 Seção 8.4.1.11, “Autenticação Conectable WebAuthn”
 
-### authentication\_webauthn\_rp\_id
+### authentication_webauthn_rp_id
 
 Seção 6.5.1.1, “Opções do Cliente mysql”
 
@@ -486,47 +486,27 @@ Seção 8.4.1.13, “Variáveis do Sistema de Autenticação Conectable”
 
 Seção 8.4.1.11, “Autenticação Conectable WebAuthn”
 
-### authentication\_windows\_log\_level
+### authentication_windows_log_level
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 8.4.1.5, “Autenticação Conectable Windows”
 
-### authentication\_windows\_use\_principal\_name
+### authentication_windows_use_principal_name
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 8.4.1.5, “Autenticação Conectable Windows”
 
-### auto\_generate\_certs
+### auto_generate_certs
 
 Seção 8.3.3.1, “Criação de Certificados SSL e RSA e Chaves usando MySQL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### auto\_increment\_increment
+### auto_increment_increment
 
-Seção 17.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”
-
-Seção 20.10, “Perguntas Frequentes”
-
-Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
-
-Seção 7.4.4.3, “Formato de Registro Binário Misto”
-
-Seção A.1, “Perguntas Frequentes do MySQL 9.5: Geral”
-
-Seção 25.5.13, “ndb\_import — Importar Dados CSV no NDB”
-
-Seção 19.5.1.40, “Replicação e Variáveis”
-
-Seção 19.1.6.2, “Opções e Variáveis de Fonte de Replicação”
-
-Seção 5.6.9, “Usar AUTO\_INCREMENT”
-
-### auto\_increment\_offset
-
-Seção 17.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”
+Seção 17.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”
 
 Seção 20.10, “Perguntas Frequentes”
 
@@ -536,13 +516,33 @@ Seção 7.4.4.3, “Formato de Registro Binário Misto”
 
 Seção A.1, “Perguntas Frequentes do MySQL 9.5: Geral”
 
-Seção 25.5.13, “ndb\_import — Importar Dados CSV no NDB”
+Seção 25.5.13, “ndb_import — Importar Dados CSV no NDB”
 
 Seção 19.5.1.40, “Replicação e Variáveis”
 
 Seção 19.1.6.2, “Opções e Variáveis de Fonte de Replicação”
 
-Seção 5.6.9, “Usar AUTO\_INCREMENT”
+Seção 5.6.9, “Usar AUTO_INCREMENT”
+
+### auto_increment_offset
+
+Seção 17.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”
+
+Seção 20.10, “Perguntas Frequentes”
+
+Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
+
+Seção 7.4.4.3, “Formato de Registro Binário Misto”
+
+Seção A.1, “Perguntas Frequentes do MySQL 9.5: Geral”
+
+Seção 25.5.13, “ndb_import — Importar Dados CSV no NDB”
+
+Seção 19.5.1.40, “Replicação e Variáveis”
+
+Seção 19.1.6.2, “Opções e Variáveis de Fonte de Replicação”
+
+Seção 5.6.9, “Usar AUTO_INCREMENT”
 
 ### AUTOCOMMIT
 
@@ -596,13 +596,13 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 15.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”
 
-Seção 28.4.28, “A Tabela INFORMATION\_SCHEMA INNODB\_TRX”
+Seção 28.4.28, “A Tabela INFORMATION_SCHEMA INNODB_TRX”
 
 Seção 7.6.3.3, “Operação do Pool de Threads”
 
 Seção 17.7.2.1, “Níveis de Isolamento de Transações”
 
-### automatic\_sp\_privileges
+### automatic_sp_privileges
 
 Seção 15.1.9, “Instrução ALTER PROCEDURE”
 
@@ -620,7 +620,7 @@ Seção 27.2.2, “Rotinas Armazenadas e Permissões do MySQL”
 
 [índice superior]
 
-### back\_log
+### back_log
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -634,13 +634,13 @@ Seção 7.1.7, “Opções de Comando do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### big\_tables
+### big_tables
 
 Seção 10.4.4, “Uso de Tabelas Temporárias Internas no MySQL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### bind\_address
+### bind_address
 
 Seção B.3.2.2, “Não é possível se conectar ao servidor MySQL [local]”
 
@@ -658,7 +658,7 @@ Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
 Seção 7.1.13, “Suporte IPv6”
 
-Seção 6.3.4, “mysqld\_multi — Gerenciar Vários Servidores MySQL”
+Seção 6.3.4, “mysqld_multi — Gerenciar Vários Servidores MySQL”
 
 Seção 7.1.14, “Suporte a Namespace de Rede”
 
@@ -684,7 +684,7 @@ Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
 Seção 6.6.9, “mysqlbinlog — Ferramenta para Processar Arquivos de Log Binários”
 
-### binlog\_cache\_size
+### binlog_cache_size
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -692,7 +692,7 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.4.4, “O Registro Binário”
 
-### binlog\_checksum
+### binlog_checksum
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -704,13 +704,13 @@ Seção 19.5.1.36, “Replicação e Transações”
 
 Seção 7.4.4, “O Registro Binário”
 
-### binlog\_direct\_non\_transactional\_updates
+### binlog_direct_non_transactional_updates
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
 Seção 19.5.1.36, “Replicação e Transações”
 
-### binlog\_encryption
+### binlog_encryption
 
 Seção 15.1.5, “Instrução ALTER INSTANCE”
 
@@ -732,7 +732,7 @@ Seção 15.7.7.2, “Instrução SHOW BINARY LOGS”
 
 Seção 7.4.4, “O Registro Binário”
 
-### binlog\_error\_action
+### binlog_error_action
 
 Seção 19.1.6.4, “Opções e variáveis de registro binário”
 
@@ -742,11 +742,11 @@ Seção 19.1.3.1, “Formato e armazenamento do GTID”
 
 Seção 7.4.4, “O log binário”
 
-### binlog\_expire\_logs\_auto\_purge
+### binlog_expire_logs_auto_purge
 
 Seção 19.1.6.4, “Opções e variáveis de registro binário”
 
-### binlog\_expire\_logs\_seconds
+### binlog_expire_logs_seconds
 
 Seção 19.1.6.4, “Opções e variáveis de registro binário”
 
@@ -756,7 +756,7 @@ Seção 15.4.1.1, “Instrução PURGE BINARY LOGS”
 
 Seção 7.4.6, “Manutenção do log do servidor”
 
-### binlog\_format
+### binlog_format
 
 Seção 19.1.6.4, “Opções e variáveis de registro binário”
 
@@ -842,27 +842,27 @@ Seção 17.7.2.1, “Níveis de Isolamento de Transações”
 
 Seção 19.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”
 
-### binlog\_group\_commit\_sync\_delay
+### binlog_group_commit_sync_delay
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
-### binlog\_group\_commit\_sync\_no\_delay\_count
+### binlog_group_commit_sync_no_delay_count
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
-### binlog\_gtid\_simple\_recovery
+### binlog_gtid_simple_recovery
 
 Seção 19.1.6.5, “Variáveis do Sistema de ID Global de Transação”
 
-### binlog\_max\_flush\_queue\_time
+### binlog_max_flush_queue_time
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
-### binlog\_order\_commits
+### binlog_order_commits
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
-### binlog\_rotate\_encryption\_master\_key\_at\_startup
+### binlog_rotate_encryption_master_key_at_startup
 
 Seção 19.3.2.3, “Rotação da Chave Mestre de Criptografia do Log Binário”
 
@@ -870,13 +870,13 @@ Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
-### binlog\_row\_event\_max\_size
+### binlog_row_event_max_size
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
 Seção 7.4.4.2, “Definindo o Formato do Registro Binário”
 
-### binlog\_row\_image
+### binlog_row_image
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linhas”
 
@@ -886,13 +886,13 @@ Seção 15.1.24.10, “Colunas Invisíveis”
 
 Seção 10.5.8, “Otimização do I/O de Disco do InnoDB”
 
-Seção 29.12.14.4, “Tabela de variáveis\_metadata do Schema de Desempenho”
+Seção 29.12.14.4, “Tabela de variáveis_metadata do Schema de Desempenho”
 
-### binlog\_row\_metadata
+### binlog_row_metadata
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
-### binlog\_row\_value\_options
+### binlog_row_value_options
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -900,7 +900,7 @@ Seção 19.5.1.17, “Replicação de Documentos JSON”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### binlog\_rows\_query\_log\_events
+### binlog_rows_query_log_events
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linhas”
 
@@ -910,13 +910,13 @@ Seção 6.6.9.2, “Exibição de Eventos de Evento de Linha do mysqlbinlog”
 
 Seção 6.6.9, “mysqlbinlog — Ferramenta para Processamento de Arquivos de Registro Binário”
 
-### binlog\_stmt\_cache\_size
+### binlog_stmt_cache_size
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
-### binlog\_transaction\_compression
+### binlog_transaction_compression
 
 Seção 7.4.4.5, “Compressão de Transações do Registro Binário”
 
@@ -932,15 +932,15 @@ Seção 6.6.9, “mysqlbinlog — Ferramenta para Processamento de Arquivos de R
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-Seção 29.12.11.1, “A tabela binary\_log\_transaction\_compression\_stats”
+Seção 29.12.11.1, “A tabela binary_log_transaction_compression_stats”
 
-### binlog\_transaction\_compression\_level\_zstd
+### binlog_transaction_compression_level_zstd
 
 Seção 7.4.4.5, “Compressão de Transações do Registro Binário”
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
-### binlog\_transaction\_dependency\_history\_size
+### binlog_transaction_dependency_history_size
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -950,19 +950,19 @@ Seção 25.7.11, “Replicação do NDB Cluster Usando o Aplicável Multithread
 
 Seção 1.4, “O que há de Novo no MySQL 9.5”
 
-### block\_encryption\_mode
+### block_encryption_mode
 
 Seção 14.13, “Funções de Criptografia e Compressão”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### build\_id
+### build_id
 
 Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### bulk\_insert\_buffer\_size
+### bulk_insert_buffer_size
 
 Seção 18.2.1, “Opções de Inicialização do MyISAM”
 
@@ -974,7 +974,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 [index top]
 
-### caching\_sha
+### caching_sha
 
 Seção 8.4.1.1, “Cache de Autenticação SHA-2 Pluggable”
 
@@ -984,7 +984,7 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### character\_set\_client
+### character_set_client
 
 Seção 12.15, “Configuração do Conjunto de Caracteres”
 
@@ -1022,17 +1022,17 @@ Seção 15.7.7.41, “Instrução SHOW TRIGGERS”
 
 Seção 7.4.4, “O Log Binário”
 
-Seção 28.3.14, “A Tabela INFORMATION\_SCHEMA EVENTS”
+Seção 28.3.14, “A Tabela INFORMATION_SCHEMA EVENTS”
 
-Seção 28.3.36, “A Tabela INFORMATION\_SCHEMA ROUTINES”
+Seção 28.3.36, “A Tabela INFORMATION_SCHEMA ROUTINES”
 
-Seção 28.3.50, “A Tabela INFORMATION\_SCHEMA TRIGGERS”
+Seção 28.3.50, “A Tabela INFORMATION_SCHEMA TRIGGERS”
 
-Seção 28.3.53, “A Tabela INFORMATION\_SCHEMA VIEWS”
+Seção 28.3.53, “A Tabela INFORMATION_SCHEMA VIEWS”
 
 Seção 7.6.4.2, “Usando o Plugin de Reescrita de Consultas Rewriter Query”
 
-### character\_set\_connection
+### character_set_connection
 
 Seção 14.10, “Funções e Operadores de Cast”
 
@@ -1074,7 +1074,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 15.7.6.2, “Instrução SET CHARACTER SET”
 
-### character\_set\_filesystem
+### character_set_filesystem
 
 Seção 15.2.9, “Instrução LOAD DATA”
 
@@ -1084,7 +1084,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 14.8, “Funções e Operadores de Caracteres”
 
-### character\_set\_results
+### character_set_results
 
 Seção 12.4, “Conjunto de Caracteres de Conexão e Colagens”
 
@@ -1100,7 +1100,7 @@ Seção 15.7.6.3, “Instrução SET NAMES”
 
 Seção 12.2.2, “UTF-8 para Metadados”
 
-### character\_set\_server
+### character_set_server
 
 Seção 12.15, “Configuração do Conjunto de Caracteres”
 
@@ -1120,7 +1120,7 @@ Seção 12.3.2, “Conjunto de Caracteres e Colagem do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### character\_set\_system
+### character_set_system
 
 Seção 12.15, “Configuração do Conjunto de Caracteres”
 
@@ -1128,7 +1128,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 12.2.2, “UTF-8 para Metadados”
 
-### character\_sets\_dir
+### character_sets_dir
 
 Seção 12.14.3, “Adicionando uma Colagem Simples a um Conjunto de Caracteres de 8 Bits”
 
@@ -1136,19 +1136,19 @@ Seção 12.14.4.1, “Definindo uma Colagem UCA Usando Sintaxe LDML”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### check\_proxy\_users
+### check_proxy_users
 
 Seção 8.2.19, “Usuários do Proxy”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### clone\_autotune\_concurrency
+### clone_autotune_concurrency
 
 Seção 7.6.6.13, “Variáveis do Sistema de Clonagem”
 
 Seção 7.6.6.10, “Monitoramento de Operações de Clonagem”
 
-### clone\_block\_ddl
+### clone_block_ddl
 
 Seção 7.6.6.13, “Variáveis do Sistema de Clone”
 
@@ -1220,7 +1220,7 @@ Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para Recuperação Dis
 
 Seção 20.5.4.1.4, “SSL e Autenticação para Recuperação Distribuída”
 
-### clone\_ssl\_key
+### clone_ssl_key
 
 Seção 7.6.6.13, “Clonagem de Variáveis do Sistema”
 
@@ -1232,7 +1232,7 @@ Seção 20.5.4.2.1, “Pré-requisitos para Clonagem”
 
 Seção 20.5.4.1.4, “SSL e Autenticação para Recuperação Distribuída”
 
-### clone\_valid\_donor\_list
+### clone_valid_donor_list
 
 Seção 7.6.6.13, “Clonagem de Variáveis do Sistema”
 
@@ -1240,7 +1240,7 @@ Seção 7.6.6.3, “Clonagem de Dados Remotas”
 
 Seção 20.5.4.2.1, “Pré-requisitos para Clonagem”
 
-### collation\_connection
+### collation_connection
 
 Seção 14.10, “Funções e Operadores de Cast”
 
@@ -1284,17 +1284,17 @@ Seção 15.7.7.41, “Instrução SHOW TRIGGERS”
 
 Seção 7.4.4, “O Registro Binário”
 
-Seção 28.3.14, “A Tabela de EVENTOS do INFORMATION\_SCHEMA”
+Seção 28.3.14, “A Tabela de EVENTOS do INFORMATION_SCHEMA”
 
-Seção 28.3.36, “A tabela INFORMATION\_SCHEMA ROUTINES”
+Seção 28.3.36, “A tabela INFORMATION_SCHEMA ROUTINES”
 
-Seção 28.3.50, “A tabela INFORMATION\_SCHEMA TRIGGERS”
+Seção 28.3.50, “A tabela INFORMATION_SCHEMA TRIGGERS”
 
-Seção 28.3.53, “A tabela INFORMATION\_SCHEMA VIEWS”
+Seção 28.3.53, “A tabela INFORMATION_SCHEMA VIEWS”
 
 Seção 14.3, “Conversão de tipo na avaliação de expressões”
 
-### collation\_database
+### collation_database
 
 Seção 12.4, “Conjunto de caracteres de conexão e collation”
 
@@ -1308,7 +1308,7 @@ Seção 19.5.1.40, “Replicação e variáveis”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### collation\_server
+### collation_server
 
 Seção 12.4, “Conjunto de caracteres de conexão e collation”
 
@@ -1326,13 +1326,13 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 7.4.4, “O registro binário”
 
-### completion\_type
+### completion_type
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 15.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”
 
-### component\_connection\_control
+### component_connection_control
 
 Seção 8.4.2.2, “Configuração do componente de controle de conexão”
 
@@ -1344,7 +1344,7 @@ Seção 7.1.10, “Variáveis de status do servidor”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### component\_firewall
+### component_firewall
 
 Seção 8.4.8.2.2, “Instalação do componente de firewall empresarial MySQL”
 
@@ -1354,17 +1354,17 @@ Seção 7.5.8.2, “Componentes suportados pelo Option Tracker”
 
 Seção 8.4.8.2.3, “Uso do componente de firewall empresarial MySQL”
 
-### component\_masking
+### component_masking
 
 Seção 8.5.2.1, “Instalação do Componente de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.5.2.5, “Variáveis do Componente de Máscara de Dados do MySQL Enterprise”
 
-### component\_option\_tracker
+### component_option_tracker
 
 Seção 7.5.8.4, “Variáveis do Sistema Option Tracker”
 
-### component\_scheduler
+### component_scheduler
 
 Seção 8.4.6.5, “Configuração das Características do Registro de Auditoria”
 
@@ -1372,7 +1372,7 @@ Seção 7.5.5, “Componente Scheduler”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### concurrent\_insert
+### concurrent_insert
 
 Seção 10.11.3, “Inserções Concorrentes”
 
@@ -1384,7 +1384,7 @@ Seção 7.1.7, “Opções de Comando do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### connect\_timeout
+### connect_timeout
 
 Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”
 
@@ -1394,7 +1394,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### connection\_control\_failed\_connections\_threshold
+### connection_control_failed_connections_threshold
 
 Seção 8.4.3.1, “Instalação do Plugin de Controle de Conexão”
 
@@ -1406,7 +1406,7 @@ Seção 7.5.8.2, “Componentes Compatíveis com o Option Tracker”
 
 Seção 28.6.2, “A Tabela INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS”
 
-### connection\_control\_max\_connection\_delay
+### connection_control_max_connection_delay
 
 Seção 8.4.3.1, “Instalação do Plugin de Controle de Conexão”
 
@@ -1414,15 +1414,15 @@ Seção 8.4.3.2, “Variáveis do Sistema e Status do Plugin de Controle de Cone
 
 Seção 8.4.2.3, “Migração para o Componente de Controle de Conexão”
 
-### connection\_control\_min\_connection\_delay
+### connection_control_min_connection_delay
 
-### conexão\_memória\_tamanho\_de\_bloco
+### conexão_memória_tamanho_de_bloco
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### conexão\_memória\_limite
+### conexão_memória_limite
 
 Seção 27.3.5, “Programas Armazenados em JavaScript—Informações e Opções de Sessão”
 
@@ -1430,11 +1430,11 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### conexão\_memória\_status\_limite
+### conexão_memória_status_limite
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### core\_arquivo
+### core_arquivo
 
 Seção 17.8.3.7, “Excluindo ou Incluindo Páginas do Pool de Buffer nos Arquivos do Núcleo”
 
@@ -1442,13 +1442,13 @@ Seção 17.14, “Opções de Inicialização e Variáveis do Sistema do InnoDB
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### criar\_ouvinte\_de\_thread\_de\_administração
+### criar_ouvinte_de_thread_de_administração
 
 Seção 7.1.12.2, “Gestão de Conexão Administrativa”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### cte\_max\_profundidade\_de\_recursão
+### cte_max_profundidade_de_recursão
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -1500,7 +1500,7 @@ Seção 7.9.4, “O Pacote DBUG”
 
 ### debug_sync
 
-Seção 29.12.14.3, “Tabela info\_variáveis do Schema de Desempenho”
+Seção 29.12.14.3, “Tabela info_variáveis do Schema de Desempenho”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -1510,11 +1510,11 @@ Seção 18.1, “Configurando o Motor de Armazenamento”
 
 Seção 17.1.4, “Testando e Benchmarkando com o InnoDB”
 
-### padrão\_collation\_for\_utf
+### padrão_collation_for_utf
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### padrão\_password\_lifetime
+### padrão_password_lifetime
 
 Seção 15.7.1.1, “Instrução ALTER USER”
 
@@ -1526,7 +1526,7 @@ Seção 8.2.15, “Gestão de Senhas”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### padrão\_storage\_engine
+### padrão_storage_engine
 
 Seção 15.1.20, “Instrução CREATE LOGFILE GROUP”
 
@@ -1548,7 +1548,7 @@ Seção 18.1, “Configurando o Motor de Armazenamento”
 
 Seção 19.4.4, “Usando a Replicação com Diferentes Motores de Armazenamento de Fonte e Replicação”
 
-### padrão\_table\_encryption
+### padrão_table_encryption
 
 Seção 15.1.2, “Instrução ALTER DATABASE”
 
@@ -1564,7 +1564,7 @@ Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 17.13, “Criptografia de Dados em Replicação do InnoDB”
 
-Seção 19.3.3.1, “Privilégios para a Conta de Replicação PRIVILEGE\_CHECKS\_USER”
+Seção 19.3.3.1, “Privilégios para a Conta de Replicação PRIVILEGE_CHECKS_USER”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -1574,7 +1574,7 @@ Seção 26.6.3, “Limitações de Partição Relativas a Funções”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### delay\_key\_write
+### delay_key_write
 
 Seção 15.1.24, “Instrução CREATE TABLE”
 
@@ -1588,19 +1588,19 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção B.3.3.3, “O que Fazer se o MySQL Continuar a Quebrar”
 
-### delayed\_insert\_limit
+### delayed_insert_limit
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### delayed\_insert\_timeout
+### delayed_insert_timeout
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### delayed\_queue\_size
+### delayed_queue_size
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### disabled\_storage\_engines
+### disabled_storage_engines
 
 Seção 20.2.1.2, “Configurando uma Instância para Replicação por Grupo”
 
@@ -1612,13 +1612,13 @@ Seção 7.1.7, “Opções de Comando do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### disconnect\_on\_expired\_password
+### disconnect_on_expired_password
 
 Seção 8.2.16, “Tratamento do Servidor de Senhas Expirantes”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### div\_precision\_increment
+### div_precision_increment
 
 Seção 14.6.1, “Operadores Aritméticos”
 
@@ -1630,7 +1630,7 @@ Seção 7.5.3, “Componentes do Log de Erros”
 
 Seção 7.5, “Componentes do MySQL”
 
-Seção 7.4.2.6, “Filtragem do Log de Erros Baseada em Regras (log\_filter\_dragnet”)")
+Seção 7.4.2.6, “Filtragem do Log de Erros Baseada em Regras (log_filter_dragnet”)")
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
@@ -1644,9 +1644,9 @@ Seção 7.1.9, “Uso de Variáveis do Sistema”
 
 [índice superior]
 
-Seção 10.15.9, “Variável de Sistema marcadores\_de\_fim\_em\_json”
+Seção 10.15.9, “Variável de Sistema marcadores_de_fim_em_json”
 
-### enforce\_gtid\_consistency
+### enforce_gtid_consistency
 
 Seção 19.1.4.3, “Desativando Transações GTID Online”
 
@@ -1666,7 +1666,7 @@ Seção 19.1.3.4, “Configurando a Replicação Usando GTIDs”
 
 Seção 25.2.7.6, “Recursos Não Suportado ou Ausentes no NDB Cluster”
 
-### encryption\_enterprise
+### encryption_enterprise
 
 Seção 8.6.2, “Configurando a Criptografia da Empresa MySQL”
 
@@ -1676,13 +1676,13 @@ Seção 8.6.1, “Instalação e Atualização da Criptografia da Empresa MySQL�
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### eq\_range\_index\_dive\_limit
+### eq_range_index_dive_limit
 
 Seção 10.2.1.2, “Otimização de Faixa”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### error\_count
+### error_count
 
 Seção B.2, “Interfaces de Informações de Erro”
 
@@ -1698,7 +1698,7 @@ Seção 15.6.7.7, “A Área de Diagnóstico MySQL”
 
 Seção 17.8.2, “Configurando o InnoDB para Operação Apenas de Leitura”
 
-### event\_scheduler
+### event_scheduler
 
 Seção 19.1.2.8, “Adicionando Replicas a um Ambiente de Replicação”
 
@@ -1710,19 +1710,19 @@ Seção 19.1.2.6.2, “Configurando a Replicação com Dados Existentes”
 
 Seção 27.5.6, “O Agendamento de Eventos e Privilegios MySQL”
 
-### explain\_format
+### explain_format
 
 Seção 15.8.2, “Instrução EXPLAIN”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### explain\_json\_format\_version
+### explain_json_format_version
 
 Seção 15.8.2, “Instrução EXPLAIN”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### explicit\_defaults\_for\_timestamp
+### explicit_defaults_for_timestamp
 
 Seção 13.2.5, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”
 
@@ -1736,7 +1736,7 @@ Seção B.3.4.3, “Problemas com Valores NULL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### external\_user
+### external_user
 
 Seção 8.4.6.4, “Formatos de Arquivos de Registro de Auditoria”
 
@@ -1752,13 +1752,13 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### flush\_time
+### flush_time
 
 Seção 7.1.7, “Opções de Comando do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### foreign\_key\_checks
+### foreign_key_checks
 
 Seção 15.1.11, “Instrução ALTER TABLE”
 
@@ -1782,7 +1782,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.4.4, “O Registro Binário”
 
-### ft\_boolean\_syntax
+### ft_boolean_syntax
 
 Seção 14.9.2, “Pesquisas de Texto Completo Booleanas”
 
@@ -1790,7 +1790,7 @@ Seção 14.9.6, “Ajuste Fino da Pesquisa de Texto Completo MySQL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### ft\_max\_word\_len
+### ft_max_word_len
 
 Seção 14.9.2, “Pesquisas de Texto Completo Booleanas”
 
@@ -1802,7 +1802,7 @@ Seção 14.9.8, “Parser de Texto Completo ngram”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### ft\_min\_word\_len
+### ft_min_word_len
 
 Seção 19.1.2.5.2, “Criando um Instantâneo de Dados Usando Arquivos de Dados Brutos”
 
@@ -1816,11 +1816,11 @@ Seção 14.9.8, “Parser de Texto Completo ngram”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### ft\_query\_expansion\_limit
+### ft_query_expansion_limit
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### ft\_stopword\_file
+### ft_stopword_file
 
 Seção 14.9.2, “Pesquisas de Texto Completo Booleanas”
 
@@ -1838,7 +1838,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 [index top]
 
-### general\_log
+### general_log
 
 Glossário do MySQL
 
@@ -1848,7 +1848,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.4.3, “O Log de Consultas Gerais”
 
-### general\_log\_file
+### general_log_file
 
 Seção 7.4.1, “Selecionando Destinos de Saída do Log de Consultas Gerais e do Log de Consultas Lentas”
 
@@ -1856,35 +1856,35 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.4.3, “O Log de Consultas Gerais”
 
-### generated\_random\_password\_length
+### generated_random_password_length
 
 Seção 8.2.15, “Gestão de Senhas”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### global\_connection\_memory\_limit
+### global_connection_memory_limit
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### global\_connection\_memory\_status\_limit
+### global_connection_memory_status_limit
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### global\_connection\_memory\_tracking
+### global_connection_memory_tracking
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### group\_concat\_max\_len
+### group_concat_max_len
 
 Seção 14.19.1, “Descrição das Funções de Agregação”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### group\_replication\_advertise\_recovery\_endpoints
+### group_replication_advertise_recovery_endpoints
 
 Seção 20.5.4.1, “Conexões para Recuperação Distribuída”
 
@@ -1894,7 +1894,7 @@ Seção 20.5.4.1.1, “Selecionando endereços para pontos finais de recuperaç
 
 Seção 20.5.5, “Suporte para IPv6 e para Grupos Mistas IPv6 e IPv4”
 
-### group\_replication\_auto\_increment\_increment
+### group_replication_auto_increment_increment
 
 Seção 20.10, “Perguntas Frequentes”
 
@@ -1902,7 +1902,7 @@ Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 19.1.6.2, “Opções e Variáveis de Fonte de Replicação”
 
-### group\_replication\_autorejoin\_tries
+### group_replication_autorejoin_tries
 
 Seção 20.7.7.3, “Auto-Rejoin”
 
@@ -1918,7 +1918,7 @@ Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.7.7.2, “Timeout de Maioridade Inatingível”
 
-### group\_replication\_bootstrap\_group
+### group_replication_bootstrap_group
 
 Seção 20.2.1.6.1, “Adicionando uma Segunda Instância”
 
@@ -1934,7 +1934,7 @@ Seção 20.1.3, “Modos Multi-Primario e Único-Primario”
 
 Seção 20.5.2, “Reiniciando um Grupo”
 
-### group\_replication\_clone\_threshold
+### group_replication_clone_threshold
 
 Seção 20.5.4.2, “Clonar para Recuperação Distribuída”
 
@@ -1944,11 +1944,11 @@ Seção 20.5.4.5, “Como Funciona a Recuperação Distribuída”
 
 Seção 20.5.4.2.2, “Limiar para Clonar”
 
-### group\_replication\_communication\_debug\_options
+### group_replication_communication_debug_options
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-### group\_replication\_communication\_max\_message\_size
+### group_replication_communication_max_message_size
 
 Seção 20.3.2, “Limitações da Replicação em Grupo”
 
@@ -1956,7 +1956,7 @@ Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.7.5, “Fragmentação de Mensagens”
 
-### grupo\_replication\_stack\_de\_comunicação
+### grupo_replication_stack_de_comunicação
 
 Seção 20.6.1, “Pilha de Comunicação para Gerenciamento de Segurança de Conexão”
 
@@ -1976,13 +1976,13 @@ Seção 20.6.3, “Segurança das Conexões de Recuperação Distribuída”
 
 Seção 20.6.2, “Segurança das Conexões de Comunicação em Grupo com Secure Socket Layer (SSL”)")
 
-### grupo\_replication\_components\_stop\_timeout
+### grupo_replication_components_stop_timeout
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-Seção 15.4.3.2, “DICA GROUP\_REPLICATION”
+Seção 15.4.3.2, “DICA GROUP_REPLICATION”
 
-### grupo\_replication\_compression\_threshold
+### grupo_replication_compression_threshold
 
 Seção 20.3.2, “Limitações da Replicação em Grupo”
 
@@ -1992,7 +1992,7 @@ Seção 20.7.4, “Compressão de Mensagens”
 
 Seção 7.4.4.5.3, “Monitoramento da Compressão de Transações de Log Binário”
 
-### grupo\_replication\_consistency
+### grupo_replication_consistency
 
 Seção 20.5.3.2, “Configuração das Garantías de Consistência de Transações”
 
@@ -2008,13 +2008,13 @@ Seção 20.1.3.1, “Modo Single-Primario”
 
 Seção 20.5.3.1, “Entendendo as Garantías de Consistência de Transações”
 
-### grupo\_replication\_elect\_prefers\_most\_updated
+### grupo_replication_elect_prefers_most_updated
 
 Seção 7.5.6.4, “Componente de Eleição de Primordial da Replicação em Grupo”
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-### grupo\_replication\_enforce\_update\_everywhere\_checks
+### grupo_replication_enforce_update_everywhere_checks
 
 Seção 20.5.1.2, “Mudar o Modo de Grupo”
 
@@ -2028,7 +2028,7 @@ Seção 20.1.3.1, “Modo de Primari Primário”
 
 Seção 20.1.3.2.1, “Verificação de Transações”
 
-### group\_replication\_exit\_state\_action
+### group_replication_exit_state_action
 
 Seção 20.7.7.3, “Auto-Rejoin”
 
@@ -2046,59 +2046,59 @@ Seção 20.4.2, “Estados do Servidor de Replicação de Grupo”
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
-Seção 29.12.11.16, “A tabela group\_replication\_member\_actions”
+Seção 29.12.11.16, “A tabela group_replication_member_actions”
 
 Seção 20.7.7.2, “Timeout de Maioridade Inalcançável”
 
-### group\_replication\_flow\_control\_applier\_threshold
+### group_replication_flow_control_applier_threshold
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
-### group\_replication\_flow\_control\_certifier\_threshold
+### group_replication_flow_control_certifier_threshold
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
-### group\_replication\_flow\_control\_hold\_percent
+### group_replication_flow_control_hold_percent
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
-### group\_replication\_flow\_control\_max\_quota
+### group_replication_flow_control_max_quota
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
-### group\_replication\_flow\_control\_member\_quota\_percent
+### group_replication_flow_control_member_quota_percent
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
-### group\_replication\_flow\_control\_min\_quota
+### group_replication_flow_control_min_quota
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
-### group\_replication\_flow\_control\_min\_recovery\_quota
+### group_replication_flow_control_min_recovery_quota
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
-### group\_replication\_flow\_control\_mode
+### group_replication_flow_control_mode
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação de Grupo”
 
-### group\_replication\_flow\_control\_period
+### group_replication_flow_control_period
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-Seção 20.4.4, “A tabela replication\_group\_member\_stats”
+Seção 20.4.4, “A tabela replication_group_member_stats”
 
-### group\_replication\_flow\_control\_release\_percent
+### group_replication_flow_control_release_percent
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-### group\_replication\_force\_members
+### group_replication_force_members
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.7.8, “Tratamento de Partição de Rede e Perda de Quórum”
 
-### group\_replication\_group\_name
+### group_replication_group_name
 
 Seção 19.4.9.1, “Failover de Conexão Assíncrona para Fontes”
 
@@ -2110,11 +2110,11 @@ Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.4.1, “GTIDs e Replicação em Grupo”
 
-Seção 29.12.11.10, “A tabela replication\_asynchronous\_connection\_failover”
+Seção 29.12.11.10, “A tabela replication_asynchronous_connection_failover”
 
-Seção 29.12.11.11, “A tabela replication\_asynchronous\_connection\_failover\_managed”
+Seção 29.12.11.11, “A tabela replication_asynchronous_connection_failover_managed”
 
-### group\_replication\_group\_seeds
+### group_replication_group_seeds
 
 Seção 20.6.1, “Pilha de Comunicação para Gerenciamento de Segurança de Conexão”
 
@@ -2130,13 +2130,13 @@ Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.5.5, “Suporte para IPv6 e Grupos Mistas IPv6 e IPv4”
 
-### group\_replication\_gtid\_assignment\_block\_size
+### group_replication_gtid_assignment_block_size
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.4.1, “GTIDs e Replicação em Grupo”
 
-### group\_replication\_ip\_allowlist
+### group_replication_ip_allowlist
 
 Seção 20.6.1, “Pilha de Comunicação para Gerenciamento de Segurança de Conexão”
 
@@ -2148,7 +2148,7 @@ Seção 20.5.4.1.1, “Selecionando endereços para pontos finais de recuperaç
 
 Seção 20.5.5, “Suporte para IPv6 e para grupos mistos de IPv6 e IPv4”
 
-### group\_replication\_local\_address
+### group_replication_local_address
 
 Seção 20.6.1, “Pilha de comunicação para gerenciamento de segurança de conexão”
 
@@ -2170,9 +2170,9 @@ Seção 8.7.5.2, “Definindo o contexto de porta TCP para recursos do MySQL”
 
 Seção 20.5.5, “Suporte para IPv6 e para grupos mistos de IPv6 e IPv4”
 
-Seção 29.12.11.18, “A tabela group\_replication\_members”
+Seção 29.12.11.18, “A tabela group_replication_members”
 
-### group\_replication\_member\_expel\_timeout
+### group_replication_member_expel_timeout
 
 Seção 20.7.7.4, “Ação de saída”
 
@@ -2196,13 +2196,13 @@ Seção 20.7.7, “Respostas à detecção de falha e à partição de rede”
 
 Seção 20.7.6, “Gestão do cache XCom”
 
-### group\_replication\_member\_weight
+### group_replication_member_weight
 
 Seção 20.9.1, “Variáveis do sistema de replicação em grupo”
 
 Seção 20.1.3.1.1, “Algoritmo de eleição primária”
 
-### group\_replication\_message\_cache\_size
+### group_replication_message_cache_size
 
 Seção 20.7.7.1, “Timeout de expulsão”
 
@@ -2214,7 +2214,7 @@ Seção 20.7.6.2, “Reduzir o tamanho do cache”
 
 Seção 20.7.6, “Gestão de Cache XCom”
 
-### group\_replication\_paxos\_single\_leader
+### group_replication_paxos_single_leader
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
@@ -2224,21 +2224,21 @@ Seção 20.7.3, “Líder de Consenso Único”
 
 Seção 29.12.11.14, “A tabela de informações de comunicação do grupo de replicação”
 
-### group\_replication\_poll\_spin\_loops
+### group_replication_poll_spin_loops
 
 Seção 20.7.1, “Ajustando o Fundo do Fundo de Comunicação do Grupo”
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-### group\_replication\_preemptive\_garbage\_collection
+### group_replication_preemptive_garbage_collection
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-### group\_replication\_preemptive\_garbage\_collection\_rows\_threshold
+### group_replication_preemptive_garbage_collection_rows_threshold
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-### group\_replication\_recovery\_compression\_algorithms
+### group_replication_recovery_compression_algorithms
 
 Seção 20.5.4.1.2, “Compressão para Recuperação Distribuída”
 
@@ -2250,7 +2250,7 @@ Seção 20.7.4, “Compressão de Mensagens”
 
 Seção 7.4.4.5.3, “Monitoramento da Compressão de Transações de Registro Binário”
 
-### group\_replication\_recovery\_get\_public\_key
+### group_replication_recovery_get_public_key
 
 Seção 8.4.1.1, “Cache de Autenticação de Autenticação Conectable SHA-2”
 
@@ -2262,7 +2262,7 @@ Seção 8.4.1.2, “Autenticação SHA-256 Conectable”
 
 Seção 20.5.4.1.4, “SSL e Autenticação para Recuperação Distribuída”
 
-### group\_replication\_recovery\_public\_key\_path
+### group_replication_recovery_public_key_path
 
 Seção 8.4.1.1, “Cache de Autenticação de Autenticação Conectable SHA-2”
 
@@ -2272,13 +2272,13 @@ Seção 20.6.3.1.1, “Usuário de Replicação com o Plugin de Autenticação 
 
 Seção 20.5.4.1.4, “SSL e Autenticação para Recuperação Distribuída”
 
-### grupo\_replication\_recovery\_reconnect\_interval
+### grupo_replication_recovery_reconnect_interval
 
 Seção 20.5.4.3, “Configurando a Recuperação Distribuída”
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-### grupo\_replication\_recovery\_retry\_count
+### grupo_replication_recovery_retry_count
 
 Seção 20.5.4.3, “Configurando a Recuperação Distribuída”
 
@@ -2286,7 +2286,7 @@ Seção 20.5.4.4, “Tolerância a Falhas para a Recuperação Distribuída”
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-### grupo\_replication\_recovery\_ssl\_ca
+### grupo_replication_recovery_ssl_ca
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
@@ -2296,13 +2296,13 @@ Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para a Recuperação D
 
 Seção 20.5.4.1.4, “SSL e Autenticação para a Recuperação Distribuída”
 
-### grupo\_replication\_recovery\_ssl\_capath
+### grupo_replication_recovery_ssl_capath
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para a Recuperação Distribuída” Conexões para a Recuperação Distribuída")
 
-### grupo\_replication\_recovery\_ssl\_cert
+### grupo_replication_recovery_ssl_cert
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
@@ -2312,7 +2312,7 @@ Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para a Recuperação D
 
 Seção 20.5.4.1.4, “SSL e Autenticação para a Recuperação Distribuída”
 
-### grupo\_replication\_recovery\_ssl\_cipher
+### grupo_replication_recovery_ssl_cipher
 
 Seção 8.3.2, “Protocolos e Cifras TLS de Conexão Encriptada”
 
@@ -2320,19 +2320,19 @@ Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para a Recuperação Distribuída” Conexões para a Recuperação Distribuída")
 
-### grupo\_replication\_recovery\_ssl\_crl
+### grupo_replication_recovery_ssl_crl
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para a Recuperação Distribuída” Conexões para a Recuperação Distribuída")
 
-### grupo\_replication\_recovery\_ssl\_crlpath
+### grupo_replication_recovery_ssl_crlpath
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para Recuperação Distribuída” Conexões para Recuperação Distribuída")
 
-### grupo\_replication\_recovery\_ssl\_key
+### grupo_replication_recovery_ssl_key
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
@@ -2342,13 +2342,13 @@ Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para Recuperação Dis
 
 Seção 20.5.4.1.4, “SSL e Autenticação para Recuperação Distribuída”
 
-### grupo\_replication\_recovery\_ssl\_verify\_server\_cert
+### grupo_replication_recovery_ssl_verify_server_cert
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
 Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para Recuperação Distribuída” Conexões para Recuperação Distribuída")
 
-### grupo\_replication\_recovery\_tls\_ciphersuites
+### grupo_replication_recovery_tls_ciphersuites
 
 Seção 8.3.2, “Protocolos TLS de Conexão Encriptada e Cifras”
 
@@ -2360,7 +2360,7 @@ Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para Recuperação Dis
 
 Seção 20.6.2, “Segurança das Conexões de Comunicação do Grupo com Secure Socket Layer (SSL”)")
 
-### grupo\_replication\_recovery\_tls\_version
+### grupo_replication_recovery_tls_version
 
 Seção 8.3.2, “Protocolos TLS de Conexão Encriptada e Cifras”
 
@@ -2380,7 +2380,7 @@ Seção 20.6.3.2, “Conexões Secure Socket Layer (SSL) para Recuperação Dist
 
 Seção 20.5.4.1.4, “SSL e Autenticação para Recuperação Distribuída”
 
-### group\_replication\_recovery\_zstd\_compression\_level
+### group_replication_recovery_zstd_compression_level
 
 Seção 20.5.4.1.2, “Compressão para Recuperação Distribuída”
 
@@ -2392,7 +2392,7 @@ Seção 20.7.4, “Compressão de Mensagens”
 
 Seção 7.4.4.5.3, “Monitoramento da Compressão de Transações de Registro Binário”
 
-### group\_replication\_resource\_manager
+### group_replication_resource_manager
 
 Seção 7.5.6.3, “Componente do Gerenciador de Recursos da Replicação em Grupo”
 
@@ -2400,7 +2400,7 @@ Seção 20.9.2, “Variáveis de Status da Replicação em Grupo”
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação em Grupo”
 
-### group\_replication\_single\_primary\_mode
+### group_replication_single_primary_mode
 
 Seção 20.3.2, “Limitações da Replicação em Grupo”
 
@@ -2412,7 +2412,7 @@ Seção 20.1.3.2, “Modo Multi-Primario”
 
 Seção 20.1.3.1, “Modo Simples Primario”
 
-### group\_replication\_ssl\_mode
+### group_replication_ssl_mode
 
 Seção 20.6.1, “Pilha de Comunicação para Gerenciamento de Segurança de Conexão”
 
@@ -2528,7 +2528,7 @@ Seção 15.7.7.36, “Instrução SHOW REPLICA STATUS”
 
 Seção 19.1.3.8, “Exemplos de Funções Armazenadas para Manipular GTIDs”
 
-Seção 29.12.22.6, “A Tabela log\_status”
+Seção 29.12.22.6, “A Tabela log_status”
 
 Seção 20.5.4.2.2, “Limiar para Clonagem”
 
@@ -2536,13 +2536,13 @@ Seção 19.1.3.5, “Uso de GTIDs para Failover e Scaleout”
 
 Seção 20.5.6, “Uso do Backup Enterprise MySQL com Replicação de Grupo”
 
-### gtid\_executed\_compression\_period
+### gtid_executed_compression_period
 
 Seção 19.1.6.5, “Variáveis do Sistema de ID de Transação Global”
 
 Seção 19.1.3.1, “Formato e Armazenamento de GTIDs”
 
-### GTID\_MODE
+### GTID_MODE
 
 Seção 15.4.2.2, “Instrução CHANGE REPLICATION SOURCE TO”
 
@@ -2550,7 +2550,7 @@ Seção 19.1.3.3, “Posicionamento Automático de GTIDs”
 
 Seção 19.5.1.35, “Inconsistências de Replicação e Transações”
 
-### gtid\_mode
+### gtid_mode
 
 Seção 19.1.5.3, “Adicionar Fontes Baseadas em GTIDs a uma Replicação de Fonte Múltipla”
 
@@ -2606,7 +2606,7 @@ Seção 19.1.7.3.2, “Saltar Transações Sem GTIDs”
 
 Seção 19.4.9, “Mudando Fontes e Replicações com Failover de Conexão Assíncrona”
 
-Seção 29.12.7.1, “A tabela events\_transactions\_current”
+Seção 29.12.7.1, “A tabela events_transactions_current”
 
 Seção 25.2.7.6, “Recursos Não Suportado ou Ausentes no NDB Cluster”
 
@@ -2624,9 +2624,9 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 15.4.2.5, “Instrução STOP REPLICA”
 
-Seção 29.12.7.1, “Tabela events\_transactions\_current”
+Seção 29.12.7.1, “Tabela events_transactions_current”
 
-### gtid\_owned
+### gtid_owned
 
 Seção 19.1.4.3, “Desativando Transações GTID Online”
 
@@ -2634,7 +2634,7 @@ Seção 19.1.6.5, “Variáveis do Sistema de ID Global de Transação”
 
 Seção 19.1.3.2, “Ciclo de Vida do GTID”
 
-### gtid\_purged
+### gtid_purged
 
 Seção 15.4.2.2, “Instrução ALTERAR SOURCE DE REPLICA PARA”
 
@@ -2668,7 +2668,7 @@ Seção 19.1.3.5, “Usando GTIDs para Failover e Scaleout”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### have\_symlink
+### have_symlink
 
 Seção 7.1.7, “Opções de Comando do Servidor”
 
@@ -2678,19 +2678,19 @@ Seção 10.12.2.3, “Uso de Enlaces Simbólicos para Bancos de Dados no Window
 
 Seção 10.12.2.2, “Uso de Enlaces Simbólicos para Tabelas MyISAM no Unix”
 
-### histogram\_generation\_max\_mem\_size
+### histogram_generation_max_mem_size
 
 Seção 15.7.3.1, “Instrução ANALYZE TABLE”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### host\_cache\_size
+### host_cache_size
 
 Seção 7.1.12.3, “Consultas DNS e o Cache de Hosts”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 29.12.22.4, “A tabela host\_cache”
+Seção 29.12.22.4, “A tabela host_cache”
 
 ### hostname
 
@@ -2710,7 +2710,7 @@ Seção 20.6.3, “Segurança das Conexões de Recuperação Distribuída”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 29.12.11.18, “A tabela replication\_group\_members”
+Seção 29.12.11.18, “A tabela replication_group_members”
 
 ### I
 
@@ -2724,33 +2724,33 @@ Seção 19.5.1.40, “Replicação e Variáveis”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### immediate\_server\_version
+### immediate_server_version
 
-Seção 19.3.3.1, “Privilégios para a Conta de REVISÃO DE PRIVILEGIOS\_USER”
+Seção 19.3.3.1, “Privilégios para a Conta de REVISÃO DE PRIVILEGIOS_USER”
 
 Seção 19.5.2, “Compatibilidade de Replicação entre Versões do MySQL”
 
 Seção 19.1.6.2, “Opções e Variáveis de Fonte de Replicação”
 
-### information\_schema\_stats\_expiry
+### information_schema_stats_expiry
 
 Seção 15.7.3.1, “Instrução ANALYZE TABLE”
 
 Seção 16.7, “Diferenças de Uso do Dicionário de Dados”
 
-Seção 16.5, “Integração do INFORMATION\_SCHEMA e do Dicionário de Dados”
+Seção 16.5, “Integração do INFORMATION_SCHEMA e do Dicionário de Dados”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis do Sistema”
 
-Seção 10.2.3, “Otimização de Consultas do INFORMATION\_SCHEMA”
+Seção 10.2.3, “Otimização de Consultas do INFORMATION_SCHEMA”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 28.3.40, “A Tabela STATISTICS do INFORMATION\_SCHEMA”
+Seção 28.3.40, “A Tabela STATISTICS do INFORMATION_SCHEMA”
 
-Seção 28.3.44, “A Tabela TABLES do INFORMATION\_SCHEMA”
+Seção 28.3.44, “A Tabela TABLES do INFORMATION_SCHEMA”
 
-### init\_connect
+### init_connect
 
 Seção 12.5, “Configurando o Conjunto de Caracteres e a Codificação da Aplicação”
 
@@ -2760,9 +2760,9 @@ Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 29.12.22.4, “A Tabela host\_cache”
+Seção 29.12.22.4, “A Tabela host_cache”
 
-### init\_file
+### init_file
 
 Seção 15.1.2, “Instrução ALTER DATABASE”
 
@@ -2772,7 +2772,7 @@ Seção 10.10.2.2, “Caches de Chave Múltiplos”
 
 Seção 29.4, “Configuração de Tempo de Execução do Schema de Desempenho”
 
-Seção 29.12.14.3, “Tabela variables\_info do Schema de Desempenho”
+Seção 29.12.14.3, “Tabela variables_info do Schema de Desempenho”
 
 Seção 19.5.1.22, “Tabelas de Replicação e MEMORY”
 
@@ -2786,13 +2786,13 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 18.3, “O Motor de Armazenamento MEMORY”
 
-### init\_replica
+### init_replica
 
-Seção 19.3.3.1, “Privilegios para a Conta de VERIFICAÇÃO\_PRIVILEGIOS\_USER da Replicação”
+Seção 19.3.3.1, “Privilegios para a Conta de VERIFICAÇÃO_PRIVILEGIOS_USER da Replicação”
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-### init\_slave
+### init_slave
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
@@ -2804,19 +2804,19 @@ Seção 17.8.3.7, “Excluindo ou Incluindo Páginas do Pool de Buffer nos Arqu
 
 Seção A.16, “Perguntas Frequentes do MySQL 9.5: Alteração do Buffer do InnoDB”
 
-### innodb\_adaptive\_flushing
+### innodb_adaptive_flushing
 
 Seção 17.8.3.5, “Configurando o Limpeza do Pool de Buffer”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_adaptive\_flushing\_lwm
+### innodb_adaptive_flushing_lwm
 
 Seção 17.8.3.5, “Configurando a Limpeza do Pool de Buffer”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_adaptive\_hash\_index
+### innodb_adaptive_hash_index
 
 Seção 17.5.3, “Índice Hash Adaptável”
 
@@ -2828,13 +2828,13 @@ Glossário do MySQL
 
 Seção 10.5.9, “Otimizando Variáveis de Configuração do InnoDB”
 
-### innodb\_adaptive\_max\_sleep\_delay
+### innodb_adaptive_max_sleep_delay
 
 Seção 17.8.4, “Configurando Concorrência de Fios para InnoDB”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_autoextend\_increment
+### innodb_autoextend_increment
 
 Seção 17.6.3.2, “Espaços de Tabelas por Arquivo”
 
@@ -2846,9 +2846,9 @@ Glossário do MySQL
 
 Seção 17.6.3.1, “O Espaço de Tabela do Sistema”
 
-### innodb\_autoinc\_lock\_mode
+### innodb_autoinc_lock_mode
 
-Seção 17.6.1.6, “Tratamento do AUTO\_INCREMENT no InnoDB”
+Seção 17.6.1.6, “Tratamento do AUTO_INCREMENT no InnoDB”
 
 Seção 10.5.5, “Carregamento de Dados em Massa para Tabelas do InnoDB”
 
@@ -2862,11 +2862,11 @@ Seção 17.7.3, “Bloqueios Definidos por Diferentes Instruções SQL no InnoD
 
 Glossário do MySQL
 
-### innodb\_background\_drop\_list\_empty
+### innodb_background_drop_list_empty
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_buffer\_pool\_chunk\_size
+### innodb_buffer_pool_chunk_size
 
 Seção 17.8.3.1, “Configurando o Tamanho do Banco de Armazenamento do InnoDB”
 
@@ -2874,11 +2874,11 @@ Seção 10.12.3.3, “Habilitando Suporte a Páginas Grandes”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_buffer\_pool\_debug
+### innodb_buffer_pool_debug
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_buffer\_pool\_dump\_at\_shutdown
+### innodb_buffer_pool_dump_at_shutdown
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
@@ -2886,35 +2886,35 @@ Glossário do MySQL
 
 Seção 17.8.3.6, “Salvar e Restaurar o Estado do Pool de Armazenamento de Buffer”
 
-### innodb\_buffer\_pool\_dump\_now
+### innodb_buffer_pool_dump_now
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.8.3.6, “Salvar e Restaurar o Estado do Pool de Armazenamento de Buffer”
 
-### innodb\_buffer\_pool\_dump\_pct
+### innodb_buffer_pool_dump_pct
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.8.3.6, “Salvar e Restaurar o Estado do Pool de Armazenamento de Buffer”
 
-### innodb\_buffer\_pool\_filename
+### innodb_buffer_pool_filename
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.8.3.6, “Salvar e Restaurar o Estado do Pool de Armazenamento de Buffer”
 
-### innodb\_buffer\_pool\_in\_core\_file
+### innodb_buffer_pool_in_core_file
 
 Seção 17.8.3.7, “Excluir ou Incluir Páginas do Pool de Armazenamento de Buffer dos Arquivos de Núcleo”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-Seção 6.3.2, “mysqld\_safe — Script de Inicialização do Servidor MySQL”
+Seção 6.3.2, “mysqld_safe — Script de Inicialização do Servidor MySQL”
 
 Seção 7.1.7, “Opções de Comando do Servidor”
 
-### innodb\_buffer\_pool\_instances
+### innodb_buffer_pool_instances
 
 Seção 17.8.3.5, “Configurando o Limpeza do Pool de Armazenamento de Buffer”
 
@@ -2934,13 +2934,13 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Glossário do MySQL
 
-### innodb\_buffer\_pool\_load\_abort
+### innodb_buffer_pool_load_abort
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
-### innodb\_buffer\_pool\_load\_at\_startup
+### innodb_buffer_pool_load_at_startup
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
@@ -2950,7 +2950,7 @@ Seção 17.8.3.6, “Salvar e Restaurar o Estado do Pool de Armazenamento Buffer
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
-### innodb\_buffer\_pool\_size
+### innodb_buffer_pool_size
 
 Seção 17.9.1.6, “Compressão para Cargas de Trabalho OLTP”
 
@@ -2980,7 +2980,7 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis de Sistema do Servidor”
 
-### innodb\_change\_buffer\_max\_size
+### innodb_change_buffer_max_size
 
 Seção 17.5.2, “Mudar o Armazenamento Buffer”
 
@@ -2990,7 +2990,7 @@ Seção A.16, “Perguntas Frequentes do MySQL 9.5: Armazenamento Buffer do Inno
 
 Glossário do MySQL
 
-### innodb\_change\_buffering
+### innodb_change_buffering
 
 Seção 17.5.2, “Mudar o Armazenamento Buffer”
 
@@ -3002,15 +3002,15 @@ Glossário do MySQL
 
 Seção 10.5.2, “Otimizando o Gerenciamento de Transações do InnoDB”
 
-### innodb\_change\_buffering\_debug
+### innodb_change_buffering_debug
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_checkpoint\_disabled
+### innodb_checkpoint_disabled
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_checksum\_algorithm
+### innodb_checksum_algorithm
 
 Seção 17.1.1, “Benefícios de Usar Tabelas do InnoDB”
 
@@ -3020,25 +3020,25 @@ Glossário do MySQL
 
 Seção 10.5.8, “Otimizando o I/O de Disco do InnoDB”
 
-### innodb\_cmp\_per\_index\_enabled
+### innodb_cmp_per_index_enabled
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.9.1.4, “Monitoramento da Compressão de Tabelas InnoDB em Tempo Real”
 
-Seção 28.4.8, “As tabelas INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET do INFORMATION\_SCHEMA”
+Seção 28.4.8, “As tabelas INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET do INFORMATION_SCHEMA”
 
 Seção 17.9.1.3, “Ajuste da Compressão para Tabelas InnoDB”
 
-### innodb\_commit\_concurrency
+### innodb_commit_concurrency
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_compress\_debug
+### innodb_compress_debug
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_compression\_failure\_threshold\_pct
+### innodb_compression_failure_threshold_pct
 
 Seção 17.9.1.6, “Compressão para Cargas de Trabalho OLTP”
 
@@ -3050,7 +3050,7 @@ Glossário do MySQL
 
 Seção 17.9.1.3, “Ajuste da Compressão para Tabelas InnoDB”
 
-### innodb\_compression\_level
+### innodb_compression_level
 
 Seção 17.9.1.6, “Compressão para Cargas de Trabalho OLTP”
 
@@ -3062,7 +3062,7 @@ Glossário do MySQL
 
 Seção 17.9.1.3, “Ajuste da Compressão para Tabelas InnoDB”
 
-### innodb\_compression\_pad\_pct\_max
+### innodb_compression_pad_pct_max
 
 Seção 17.9.1.6, “Compressão para Cargas de Trabalho OLTP”
 
@@ -3074,7 +3074,7 @@ Glossário do MySQL
 
 Seção 17.9.1.3, “Ajuste da Compressão para Tabelas InnoDB”
 
-### innodb\_concurrency\_tickets
+### innodb_concurrency_tickets
 
 Seção 17.8.4, “Configurando Concorrência de Thread para InnoDB”
 
@@ -3082,9 +3082,9 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema
 
 Seção 10.5.9, “Otimizando Variáveis de Configuração do InnoDB”
 
-Seção 28.4.28, “A Tabela INNODB\_TRX do INFORMATION\_SCHEMA”
+Seção 28.4.28, “A Tabela INNODB_TRX do INFORMATION_SCHEMA”
 
-### innodb\_data\_file\_path
+### innodb_data_file_path
 
 Seção 7.6.6.3, “Clonagem de Dados Remotas”
 
@@ -3096,13 +3096,13 @@ Seção 17.8.1, “Configuração de inicialização do InnoDB”
 
 Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB”
 
-Seção 28.3.15, “A tabela INFORMATION_SCHEMA\_FILES”
+Seção 28.3.15, “A tabela INFORMATION_SCHEMA_FILES”
 
 Seção 17.6.3.1, “O espaço de tabelas do sistema”
 
 Seção 17.20.1, “Resolução de problemas de I/O do InnoDB”
 
-### innodb\_data\_home\_dir
+### innodb_data_home_dir
 
 Seção 7.6.6.3, “Clonagem de dados remotos”
 
@@ -3134,17 +3134,17 @@ Seção 17.6.3.4, “Espaços de desfazer tabelas”
 
 Seção 20.5.6, “Uso do backup do MySQL Enterprise com a replicação de grupo”
 
-### innodb\_ddl\_buffer\_size
+### innodb_ddl_buffer_size
 
 Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB”
 
 Seção 17.12.4, “Gestão de memória de DDL online”
 
-### innodb\_ddl\_log\_crash\_reset\_debug
+### innodb_ddl_log_crash_reset_debug
 
 Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB”
 
-### innodb\_ddl\_threads
+### innodb_ddl_threads
 
 Seção 17.12.5, “Configuração de threads paralelos para operações de DDL online”
 
@@ -3152,7 +3152,7 @@ Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB
 
 Seção 17.12.4, “Gestão de memória de DDL online”
 
-### innodb\_deadlock\_detect
+### innodb_deadlock_detect
 
 Seção 17.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”
 
@@ -3166,7 +3166,7 @@ Seção 10.11.1, “Métodos de Bloqueio Interno”
 
 Glossário do MySQL
 
-### innodb\_default\_row\_format
+### innodb_default_row_format
 
 Seção 15.1.24, “Instrução CREATE TABLE”
 
@@ -3182,7 +3182,7 @@ Glossário do MySQL
 
 Seção 10.4.1, “Otimizando o Tamanho dos Dados”
 
-### innodb\_directories
+### innodb_directories
 
 Seção 15.1.25, “Instrução CREATE TABLESPACE”
 
@@ -3204,11 +3204,11 @@ Seção 15.1.42, “Instrução TRUNCATE TABLE”
 
 Seção 17.6.3.4, “Espaços de Tabelas Desfazer”
 
-### innodb\_disable\_sort\_file\_cache
+### innodb_disable_sort_file_cache
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_doublewrite
+### innodb_doublewrite
 
 Seção 17.6.4, “Buffer de Dupla Escrita”
 
@@ -3218,13 +3218,13 @@ Seção 17.8.1, “Configuração de Inicialização do InnoDB”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_doublewrite\_batch\_size
+### innodb_doublewrite_batch_size
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-Seção 29.12.14.4, “Tabela de variáveis\_metadata do Schema de Desempenho”
+Seção 29.12.14.4, “Tabela de variáveis_metadata do Schema de Desempenho”
 
-### innodb\_doublewrite\_dir
+### innodb_doublewrite_dir
 
 Seção 17.6.4, “Buffer de Dupla Escrita”
 
@@ -3232,7 +3232,7 @@ Seção 17.8.1, “Configuração de Inicialização do InnoDB”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_doublewrite\_files
+### innodb_doublewrite_files
 
 Seção 17.6.4, “Buffer de Dupla Escrita”
 
@@ -3240,13 +3240,13 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_extend\_and\_initialize
+### innodb_extend_and_initialize
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.6.3.8, “Otimização da Alocação de Espaço do Tablespace no Linux”
 
-### innodb\_fast\_shutdown
+### innodb_fast_shutdown
 
 Seção 17.18.2, “Recuperação do InnoDB”
 
@@ -3262,17 +3262,17 @@ Seção 3.13, “Solução de Problemas de Atualização”
 
 Seção 3.7, “Atualização de Instalações Binárias ou Baseadas em Pacotes do MySQL no Unix/Linux”
 
-### innodb\_fil\_make\_page\_dirty\_debug
+### innodb_fil_make_page_dirty_debug
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_file\_per
+### innodb_file_per
 
 Seção 15.1.24.2, “Instrução CREATE TEMPORARY TABLE”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_file\_per\_table
+### innodb_file_per_table
 
 Seção 17.1.2, “Melhores Práticas para Tabelas InnoDB”
 
@@ -3316,7 +3316,7 @@ Seção 17.9.1.7, “Avisos e Erros de Sintaxe de Compressão SQL”
 
 Seção 17.20.4, “Soluções para Operações do Dicionário de Dados do InnoDB”
 
-### innodb\_fill\_factor
+### innodb_fill_factor
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
@@ -3324,13 +3324,13 @@ Seção 17.6.2.3, “Construção de Índices Ordenados”
 
 Seção 17.6.2.2, “A Estrutura Física de um Índex InnoDB”
 
-### innodb\_flush\_log\_at\_timeout
+### innodb_flush_log_at_timeout
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.5.4, “Buffer de Log”
 
-### innodb\_flush\_log\_at\_trx\_commit
+### innodb_flush_log_at_trx_commit
 
 Seção 15.1.1, “Suporte para Declaração de Definição de Dados Atômica”
 
@@ -3348,7 +3348,7 @@ Seção 10.5.2, “Otimização da Gestão de Transações do InnoDB”
 
 Seção 19.5.1.29, “Replicação e Parada de Fontes ou Replicas”
 
-### innodb\_flush\_method
+### innodb_flush_method
 
 Seção 17.6.4, “Buffer de Dois Escreve”
 
@@ -3360,7 +3360,7 @@ Seção 10.5.8, “Otimização do I/O de Disco do InnoDB”
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
-### innodb\_flush\_neighbors
+### innodb_flush_neighbors
 
 Seção 17.8.3.5, “Configuração do Buffer de Limpeza do Pool de Buffer”
 
@@ -3370,23 +3370,23 @@ Glossário do MySQL
 
 Seção 10.5.8, “Otimização do I/O de Disco do InnoDB”
 
-### innodb\_flush\_sync
+### innodb_flush_sync
 
 Seção 17.8.7, “Configuração da Capacidade de I/O do InnoDB”
 
 Seção 17.14, “Opções e Variáveis de Sistema de Inicialização do InnoDB”
 
-### innodb\_flushing\_avg\_loops
+### innodb_flushing_avg_loops
 
 Seção 17.8.3.5, “Configuração da Limpeza do Pool de Buffer”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_force\_load\_corrupted
+### innodb_force_load_corrupted
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_force\_recovery
+### innodb_force_recovery
 
 Seção 15.1.37, “Instrução DROP TABLE”
 
@@ -3404,13 +3404,13 @@ Seção 3.14, “Reestruturação ou Reparo de Tabelas ou Índices”
 
 Seção 17.20.2, “Depuração de Falhas de Recuperação”
 
-### innodb\_fsync\_threshold
+### innodb_fsync_threshold
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 10.5.8, “Otimização do I/O de Disco do InnoDB”
 
-### innodb\_ft\_aux\_table
+### innodb_ft_aux_table
 
 Seção 17.15.4, “Tabelas de Índices Full-Text do INFORMATION_SCHEMA do InnoDB”
 
@@ -3426,7 +3426,7 @@ Seção 28.4.18, “A Tabela INNODB_FT_INDEX_CACHE do INFORMATION_SCHEMA”
 
 Seção 28.4.19, “A Tabela INNODB_FT_INDEX_TABLE do INFORMATION_SCHEMA”
 
-### innodb\_ft\_cache\_size
+### innodb_ft_cache_size
 
 Seção 17.6.2.4, “Índices Full-Text do InnoDB”
 
@@ -3438,11 +3438,11 @@ Glossário do MySQL
 
 Seção 28.4.18, “A Tabela INNODB_FT_INDEX_CACHE do INFORMATION_SCHEMA”
 
-### innodb\_ft\_enable\_diag\_print
+### innodb_ft_enable_diag_print
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_ft\_enable\_stopword
+### innodb_ft_enable_stopword
 
 Seção 14.9.2, “Pesquisas Booleanas Full-Text”
 
@@ -3452,7 +3452,7 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Seção 14.9.1, “Pesquisas de Texto Completas em Linguagem Natural”
 
-### innodb\_ft\_max\_token\_size
+### innodb_ft_max_token_size
 
 Seção 14.9.2, “Pesquisas de Texto Completas Booleanas”
 
@@ -3464,7 +3464,7 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Seção 14.9.8, “Parser de Texto Completo ngram”
 
-### innodb\_ft\_min\_token\_size
+### innodb_ft_min_token_size
 
 Seção 14.9.2, “Pesquisas de Texto Completas Booleanas”
 
@@ -3480,7 +3480,7 @@ Seção 14.9.1, “Pesquisas de Texto Completas em Linguagem Natural”
 
 Seção 14.9.8, “Parser de Texto Completo ngram”
 
-### innodb\_ft\_num\_word\_optimize
+### innodb_ft_num_word_optimize
 
 Seção 14.9.6, “Ajuste Fíno da Pesquisa de Texto Completa do MySQL”
 
@@ -3488,11 +3488,11 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Seção 15.7.3.4, “Instrução OPTIMIZE TABLE”
 
-### innodb\_ft\_result\_cache\_limit
+### innodb_ft_result_cache_limit
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_ft\_server\_stopword\_table
+### innodb_ft_server_stopword_table
 
 Seção 14.9.2, “Pesquisas de Texto Completas Booleanas”
 
@@ -3504,7 +3504,7 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Seção 14.9.1, “Pesquisas de Texto Completas em Linguagem Natural”
 
-Seção 28.4.16, “A Tabela INNODB\_FT\_DEFAULT\_STOPWORD do INFORMATION\_SCHEMA”
+Seção 28.4.16, “A Tabela INNODB_FT_DEFAULT_STOPWORD do INFORMATION_SCHEMA”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
@@ -3588,19 +3588,19 @@ Glossário do MySQL
 
 Seção 10.5.4, “Otimização do Registro de Refazimento do InnoDB”
 
-### innodb\_log\_checkpoint\_fuzzy\_now
+### innodb_log_checkpoint_fuzzy_now
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
-### innodb\_log\_checkpoint\_now
+### innodb_log_checkpoint_now
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
-### innodb\_log\_checksums
+### innodb_log_checksums
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
-### innodb\_log\_compressed\_pages
+### innodb_log_compressed_pages
 
 Seção 17.9.1.6, “Compressão para Cargas de Trabalho OLTP”
 
@@ -3608,7 +3608,7 @@ Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB�
 
 Seção 10.5.8, “Otimização do I/O de Disco do InnoDB”
 
-### innodb\_log\_group\_home\_dir
+### innodb_log_group_home_dir
 
 Seção 7.6.6.3, “Clonagem de Dados Remotas”
 
@@ -3624,31 +3624,31 @@ Seção 17.6.3.4, “Espaços de Tabelas de Refazimento”
 
 Seção 20.5.6, “Uso do Backup do MySQL Enterprise com Replicação de Grupo”
 
-### innodb\_log\_spin\_cpu\_abs\_lwm
+### innodb_log_spin_cpu_abs_lwm
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
 Seção 10.5.4, “Otimização do Registro de Refazimento do InnoDB”
 
-### innodb\_log\_spin\_cpu\_pct\_hwm
+### innodb_log_spin_cpu_pct_hwm
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
 Seção 10.5.4, “Otimização do Registro de Refazimento do InnoDB”
 
-### innodb\_log\_wait\_for\_flush\_spin\_hwm
+### innodb_log_wait_for_flush_spin_hwm
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
 Seção 10.5.4, “Otimização do Registro de Refazimento do InnoDB”
 
-### innodb\_log\_write\_ahead\_size
+### innodb_log_write_ahead_size
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
 Seção 10.5.4, “Otimização do Registro de Refazimento do InnoDB”
 
-### innodb\_log\_writer\_threads
+### innodb_log_writer_threads
 
 Seção 17.8.12, “Detecção e Configuração de Contêineres”
 
@@ -3658,13 +3658,13 @@ Seção 10.5.4, “Otimização do Registro de Redo do InnoDB”
 
 Seção 1.4, “O que há de Novo no MySQL 9.5”
 
-### innodb\_lru\_scan\_depth
+### innodb_lru_scan_depth
 
 Seção 17.8.3.5, “Configuração do Limpeza do Pool de Armazenamento”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_max\_dirty\_pages\_pct
+### innodb_max_dirty_pages_pct
 
 Seção 17.8.3.5, “Configuração do Limpeza do Pool de Armazenamento”
 
@@ -3672,13 +3672,13 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Seção 10.5.8, “Otimização do I/O de Disco do InnoDB”
 
-### innodb\_max\_dirty\_pages\_pct\_lwm
+### innodb_max_dirty_pages_pct_lwm
 
 Seção 17.8.3.5, “Configuração do Limpeza do Pool de Armazenamento”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_max\_purge\_lag
+### innodb_max_purge_lag
 
 Seção 17.3, “Multiversão do InnoDB”
 
@@ -3688,23 +3688,23 @@ Glosário do MySQL
 
 Seção 17.8.9, “Configuração de Limpeza”
 
-### innodb\_max\_purge\_lag\_delay
+### innodb_max_purge_lag_delay
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.8.9, “Configuração de Limpeza”
 
-### innodb\_max\_undo\_log\_size
+### innodb_max_undo_log_size
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.6.3.4, “Espaços de Restauração de Tabelas”
 
-### innodb\_merge\_threshold\_set\_all\_debug
+### innodb_merge_threshold_set_all_debug
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_monitor\_disable
+### innodb_monitor_disable
 
 Seção 17.15.6, “Tabela de Métricas do Schema de Informações do InnoDB”
 
@@ -3714,7 +3714,7 @@ Seção 15.7.7.17, “Instrução SHOW ENGINE”
 
 Seção 28.4.21, “A Tabela INNODB_METRICS do Schema de Informações do MySQL”
 
-### innodb\_monitor\_enable
+### innodb_monitor_enable
 
 Seção 17.15.6, “Tabela de Métricas do Schema de Informações do InnoDB”
 
@@ -3724,27 +3724,27 @@ Seção 15.7.7.17, “Instrução SHOW ENGINE”
 
 Seção 28.4.21, “A Tabela INNODB_METRICS do Schema de Informações do MySQL”
 
-### innodb\_monitor\_reset
+### innodb_monitor_reset
 
 Seção 17.15.6, “Tabela de métricas do esquema de informações InnoDB”
 
 Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB”
 
-Seção 28.4.21, “A tabela do esquema de informações do InnoDB INNODB\_METRICS”
+Seção 28.4.21, “A tabela do esquema de informações do InnoDB INNODB_METRICS”
 
-### innodb\_monitor\_reset\_all
+### innodb_monitor_reset_all
 
 Seção 17.15.6, “Tabela de métricas do esquema de informações InnoDB”
 
 Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB”
 
-Seção 28.4.21, “A tabela do esquema de informações do InnoDB INNODB\_METRICS”
+Seção 28.4.21, “A tabela do esquema de informações do InnoDB INNODB_METRICS”
 
-### innodb\_numa\_interleave
+### innodb_numa_interleave
 
 Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB”
 
-### innodb\_old\_blocks\_pct
+### innodb_old_blocks_pct
 
 Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB”
 
@@ -3752,7 +3752,7 @@ Seção 17.8.3.3, “Tornando a varredura do pool de buffers resistente”
 
 Glossário do MySQL
 
-### innodb\_old\_blocks\_time
+### innodb_old_blocks_time
 
 Seção 17.5.1, “Pool de buffers”
 
@@ -3760,7 +3760,7 @@ Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB
 
 Seção 17.8.3.3, “Tornando a varredura do pool de buffers resistente”
 
-### innodb\_online\_alter\_log\_max\_size
+### innodb_online_alter_log_max_size
 
 Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB”
 
@@ -3770,13 +3770,13 @@ Seção 17.12.7, “Condições de falha do DDL online”
 
 Seção 17.12.3, “Requisitos de espaço do DDL online”
 
-### innodb\_open\_files
+### innodb_open_files
 
 Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB”
 
 Seção 7.1.8, “Variáveis de sistema do servidor”
 
-### innodb\_optimize\_fulltext\_only
+### innodb_optimize_fulltext_only
 
 Seção 14.9.6, “Ajuste fino da pesquisa de texto completo do MySQL”
 
@@ -3788,9 +3788,9 @@ Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB
 
 Seção 15.7.3.4, “Instrução OPTIMIZE TABLE”
 
-Seção 28.4.19, “A tabela do esquema de informações do InnoDB INNODB\_FT\_INDEX\_TABLE”
+Seção 28.4.19, “A tabela do esquema de informações do InnoDB INNODB_FT_INDEX_TABLE”
 
-### innodb\_page\_cleaners
+### innodb_page_cleaners
 
 Seção 17.8.3.5, “Configurando o esvaziamento do pool de buffers”
 
@@ -3800,7 +3800,7 @@ Seção 17.14, “Opções de inicialização e variáveis de sistema do InnoDB
 
 Glossário do MySQL
 
-### innodb\_page\_size
+### innodb_page_size
 
 Seção 7.6.6.3, “Clonagem de Dados Remotas”
 
@@ -3844,7 +3844,7 @@ Seção 10.5.4, “Otimização do Registro de Redo do InnoDB”
 
 Seção 17.9.1.1, “Visão Geral da Compressão de Tabelas”
 
-Seção 17.6.3.9, “Configuração do AUTOEXTEND\_SIZE do Espaço de Arquivo”
+Seção 17.6.3.9, “Configuração do AUTOEXTEND_SIZE do Espaço de Arquivo”
 
 Seção 28.3.15, “A Tabela FILES do INFORMATION_SCHEMA”
 
@@ -3854,19 +3854,19 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Seção 17.20, “Solução de Problemas do InnoDB”
 
-### innodb\_print\_ddl\_logs
+### innodb_print_ddl_logs
 
 Seção 15.1.1, “Suporte à Declaração de Definição de Dados Atômica”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_purge\_batch\_size
+### innodb_purge_batch_size
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.8.9, “Configuração de Purga”
 
-### innodb\_purge\_rseg\_truncate\_frequency
+### innodb_purge_rseg_truncate_frequency
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
@@ -3874,7 +3874,7 @@ Seção 17.8.9, “Configuração de Purga”
 
 Seção 17.6.3.4, “Tabelas de Anulação”
 
-### innodb\_purge\_threads
+### innodb_purge_threads
 
 Seção 17.8.12, “Detecção e Configuração de Contêineres”
 
@@ -3884,7 +3884,7 @@ Glossário do MySQL
 
 Seção 17.8.9, “Configuração de Purga”
 
-### innodb\_random\_read\_ahead
+### innodb_random_read_ahead
 
 Seção 17.8.3.4, “Configuração do Prefetchamento do Banco de Buffer do InnoDB (Leitura Antecipada”)")
 
@@ -3892,13 +3892,13 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Glossário do MySQL
 
-### innodb\_read\_ahead\_threshold
+### innodb_read_ahead_threshold
 
 Seção 17.8.3.4, “Configuração do Prefetchamento do Banco de Buffer do InnoDB (Leitura Antecipada”)")
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_read\_io\_threads
+### innodb_read_io_threads
 
 Seção 17.8.5, “Configuração do Número de Threads de E/S do InnoDB em Segundo Plano”
 
@@ -3910,7 +3910,7 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Seção 17.8.6, “Uso de E/S Assíncrona no Linux”
 
-### innodb\_read\_only
+### innodb_read_only
 
 Seção 15.7.3.1, “Declaração ANALYZE TABLE”
 
@@ -3920,21 +3920,21 @@ Seção 16.7, “Diferenças de Uso do Dicionário de Dados”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-Seção 10.2.3, “Otimização de Consultas do INFORMATION\_SCHEMA”
+Seção 10.2.3, “Otimização de Consultas do INFORMATION_SCHEMA”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 28.3.40, “A Tabela STATISTICS do INFORMATION\_SCHEMA”
+Seção 28.3.40, “A Tabela STATISTICS do INFORMATION_SCHEMA”
 
-Seção 28.3.44, “A Tabela TABLES do INFORMATION\_SCHEMA”
+Seção 28.3.44, “A Tabela TABLES do INFORMATION_SCHEMA”
 
-### innodb\_redo\_log\_archive\_dirs
+### innodb_redo_log_archive_dirs
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.6.5, “Registro de Revisão”
 
-### innodb\_redo\_log\_capacity
+### innodb_redo_log_capacity
 
 Seção 17.8.12, “Detecção e Configuração de Contêineres”
 
@@ -3952,7 +3952,7 @@ Seção 17.6.5, “Registro de Revisão”
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
-### innodb\_redo\_log\_encrypt
+### innodb_redo_log_encrypt
 
 Seção 7.6.6.5, “Clonar Dados Encriptados”
 
@@ -3960,15 +3960,15 @@ Seção 17.13, “Encriptação de Dados em Repouso do InnoDB”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_replication\_delay
+### innodb_replication_delay
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_rollback\_on\_timeout
+### innodb_rollback_on_timeout
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_rollback\_segments
+### innodb_rollback_segments
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
@@ -3976,29 +3976,29 @@ Seção 17.6.6, “Logs de Desfazer”
 
 Seção 17.6.3.4, “Espaços de Tabuleiros de Desfazer”
 
-### innodb\_saved\_page\_number\_debug
+### innodb_saved_page_number_debug
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_segment\_reserve\_factor
+### innodb_segment_reserve_factor
 
 Seção 17.11.2, “Gestão de Espaço de Arquivo”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_sort\_buffer\_size
+### innodb_sort_buffer_size
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_spin\_wait\_pause\_multiplier
+### innodb_spin_wait_pause_multiplier
 
 Seção 17.8.8, “Configurando a Pesquisa de Bloqueio Spin”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_stats\_auto\_recalc
+### innodb_stats_auto_recalc
 
 Seção 17.8.10.1.1, “Configurando o Cálculo Automático de Estatísticas para Estatísticas de Otimizador Persistente”
 
@@ -4012,13 +4012,13 @@ Seção 17.8.10.1.6, “Exemplo de Tabelas de Estatísticas Persistentes do Inno
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_stats\_include\_delete\_marked
+### innodb_stats_include_delete_marked
 
 Seção 17.8.10.1.4, “Includindo Registros Marcados para Exclusão em Cálculos de Estatísticas Persistentes”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_stats\_method
+### innodb_stats_method
 
 Seção 10.3.8, “Coleta de Estatísticas de Índices InnoDB e MyISAM”
 
@@ -4026,13 +4026,13 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Glossário do MySQL
 
-### innodb\_stats\_on\_metadata
+### innodb_stats_on_metadata
 
 Seção 17.8.10.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistentes”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_stats\_persistent
+### innodb_stats_persistent
 
 Seção 15.7.3.1, “Instrução ANALYZE TABLE”
 
@@ -4054,7 +4054,7 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Seção 10.5.10, “Otimizando o InnoDB para Sistemas com Muitas Tabelas”
 
-### innodb\_stats\_persistent\_sample\_pages
+### innodb_stats_persistent_sample_pages
 
 Seção 15.7.3.1, “Instrução ANALYZE TABLE”
 
@@ -4066,7 +4066,7 @@ Seção 17.8.10.3, “Estimativa da Complexidade da Instrução ANALYZE TABLE pa
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_stats\_transient\_sample\_pages
+### innodb_stats_transient_sample_pages
 
 Seção 15.7.3.1, “Instrução ANALYZE TABLE”
 
@@ -4076,19 +4076,19 @@ Seção 17.8.10.3, “Estimativa da Complexidade da Instrução ANALYZE TABLE pa
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_status\_output
+### innodb_status_output
 
 Seção 17.17.2, “Habilitando Monitores do InnoDB”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_status\_output\_locks
+### innodb_status_output_locks
 
 Seção 17.17.2, “Habilitando Monitores do InnoDB”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_strict\_mode
+### innodb_strict_mode
 
 Seção 15.1.24, “Instrução CREATE TABLE”
 
@@ -4108,27 +4108,27 @@ Seção 7.1.11, “Modos SQL do Servidor”
 
 Seção 17.9.1.7, “Avisos e Erros de Sintaxe de Compressão SQL”
 
-### innodb\_sync\_array\_size
+### innodb_sync_array_size
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_sync\_debug
+### innodb_sync_debug
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”
 
-### innodb\_sync\_spin\_loops
+### innodb_sync_spin_loops
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
-### innodb\_table\_locks
+### innodb_table_locks
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
 Seção 17.7.3, “Bloqueios Definidos por Diferentes Instruções SQL no InnoDB”
 
-### innodb\_temp\_data\_file\_path
+### innodb_temp_data_file_path
 
 Seção 17.8.2, “Configurando o InnoDB para Operação Apenas de Leitura”
 
@@ -4142,7 +4142,7 @@ Seção 17.6.3.5, “Espaços de Tabelas Temporárias”
 
 Seção 28.3.15, “A Tabela FILES do INFORMATION_SCHEMA”
 
-### innodb\_temp\_tablespaces\_dir
+### innodb_temp_tablespaces_dir
 
 Seção 17.8.1, “Configuração de Inicialização do InnoDB”
 
@@ -4152,7 +4152,7 @@ Seção 17.6.5, “Log de Revisão”
 
 Seção 17.6.3.5, “Espaços de Tabelas Temporárias”
 
-### innodb\_thread\_concurrency
+### innodb_thread_concurrency
 
 Seção 17.8.4, “Configurando a Concorrência de Threads para o InnoDB”
 
@@ -4164,13 +4164,13 @@ Seção A.15, “Perguntas Frequentes do MySQL 9.5: Piscinão de Fuso de Thread
 
 Seção 10.5.9, “Otimizando Variáveis de Configuração do InnoDB”
 
-### innodb\_thread\_sleep\_delay
+### innodb_thread_sleep_delay
 
 Seção 17.8.4, “Configurando a Concorrência de Threads para o InnoDB”
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
-### innodb\_tmpdir
+### innodb_tmpdir
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
@@ -4180,15 +4180,15 @@ Seção 17.12.3, “Requisitos de Espaço de DDL Online”
 
 Seção 17.6.5, “Log de Revisão”
 
-### innodb\_trx\_purge\_view\_update\_only\_debug
+### innodb_trx_purge_view_update_only_debug
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
-### innodb\_trx\_rseg\_n\_slots\_debug
+### innodb_trx_rseg_n_slots_debug
 
 Seção 17.14, “Opções de Inicialização e Variáveis de Sistema do InnoDB”
 
-### innodb\_undo\_directory
+### innodb_undo_directory
 
 Seção 7.6.6.3, “Clonagem de Dados Remotas”
 
@@ -4214,7 +4214,7 @@ Seção 17.6.3.4, “Tabelas de Desfazer”
 
 Seção 20.5.6, “Uso do Backup do MySQL Enterprise com Replicação de Grupo”
 
-### innodb\_undo\_log\_encrypt
+### innodb_undo_log_encrypt
 
 Seção 7.6.6.5, “Clonagem de Dados Encriptados”
 
@@ -4222,17 +4222,17 @@ Seção 17.13, “Encriptação de Dados do InnoDB em Repouso”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_undo\_log\_truncate
+### innodb_undo_log_truncate
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
 Seção 17.6.3.4, “Tabelas de Desfazer”
 
-### innodb\_undo\_tablespaces
+### innodb_undo_tablespaces
 
 Glossário do MySQL
 
-### innodb\_use\_fdatasync
+### innodb_use_fdatasync
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
@@ -4240,7 +4240,7 @@ Seção 10.5.8, “Otimização do I/O de Disco do InnoDB”
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
-### innodb\_use\_native\_aio
+### innodb_use_native_aio
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
@@ -4250,17 +4250,17 @@ Seção 10.5.8, “Otimização do I/O de Disco do InnoDB”
 
 Seção 17.8.6, “Uso de I/O Assíncrono no Linux”
 
-### innodb\_validate\_tablespace\_paths
+### innodb_validate_tablespace_paths
 
 Seção 17.6.3.7, “Desabilitação da Validação de Caminhos de Espaço de Tabelas”
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_version
+### innodb_version
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### innodb\_write\_io\_threads
+### innodb_write_io_threads
 
 Seção 17.8.5, “Configuração do Número de Threads de I/O Assíncronos do InnoDB”
 
@@ -4270,23 +4270,23 @@ Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema�
 
 Seção 17.8.6, “Uso de E/S Assíncrona no Linux”
 
-### insert\_id
+### insert_id
 
 Seção 18.8.3, “Notas e Dicas do Engenho de Armazenamento FEDERATED”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### interactive\_timeout
+### interactive_timeout
 
 Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### internal\_tmp\_disk\_storage\_engine
+### internal_tmp_disk_storage_engine
 
 Seção 17.14, “Opções de Inicialização do InnoDB e Variáveis de Sistema”
 
-### internal\_tmp\_mem\_storage\_engine
+### internal_tmp_mem_storage_engine
 
 Seção 10.4.4, “Armazenamento de Tabelas Temporárias Internas no MySQL”
 
@@ -4296,7 +4296,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 [index top]
 
-### join\_buffer\_size
+### join_buffer_size
 
 Seção 10.2.1.12, “Joins de Repetição de Blocos e Acesso a Chave em Massa”
 
@@ -4308,11 +4308,11 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 [index top]
 
-### keep\_files\_on\_create
+### keep_files_on_create
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### key\_buffer\_size
+### key_buffer_size
 
 Seção 10.6.2, “Carregamento de Dados em Massa para Tabelas MyISAM”
 
@@ -4344,7 +4344,7 @@ Seção 7.1.9.5, “Variáveis de Sistema Estruturadas”
 
 Seção 10.10.2, “A Cache de Chave MyISAM”
 
-### key\_cache\_age\_threshold
+### key_cache_age_threshold
 
 Seção 10.10.2.3, “Estratégia de Inserção de Ponto Médio”
 
@@ -4352,7 +4352,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.9.5, “Variáveis de Sistema Estruturadas
 
-### key\_cache\_block\_size
+### key_cache_block_size
 
 Seção 10.10.2.5, “Tamanho do Bloco de Cache de Chave”
 
@@ -4362,7 +4362,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.9.5, “Variáveis de Sistema Estruturadas”
 
-### key\_cache\_division\_limit
+### key_cache_division_limit
 
 Seção 10.10.2.3, “Estratégia de Inserção de Ponto Médio”
 
@@ -4370,115 +4370,91 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.9.5, “Variáveis de Sistema Estruturadas”
 
-### keyring\_aws\_cmk\_id
+### keyring_aws_cmk_id
 
 Seção 8.4.5.19, “Variáveis do Sistema de Chave”
 
 Seção 8.4.5.16, “Funções de Gerenciamento de Chave do Chave de Sistema Específicas de Plugin”
 
-Seção 8.4.5.9, “Usando o componente\_keyring\_aws AWS Keyring Component”
+Seção 8.4.5.9, “Usando o componente_keyring_aws AWS Keyring Component”
 
-Seção 8.4.5.8, “Usando o plugin\_keyring\_aws Amazon Web Services Keyring”
+Seção 8.4.5.8, “Usando o plugin_keyring_aws Amazon Web Services Keyring”
 
-### keyring\_aws\_conf\_file
+### keyring_aws_conf_file
 
 Seção 8.4.5.19, “Variáveis do Sistema de Chave”
 
-Seção 8.4.5.8, “Usando o plugin\_keyring\_aws Amazon Web Services Keyring”
+Seção 8.4.5.8, “Usando o plugin_keyring_aws Amazon Web Services Keyring”
 
-### keyring\_aws\_data\_file
+### keyring_aws_data_file
 
 Seção 8.4.5.19, “Variáveis do Sistema de Chave”
 
 Seção 8.4.5.16, “Funções de Gerenciamento de Chave do Chave de Sistema Específicas de Plugin”
 
-Seção 8.4.5.8, “Usando o plugin\_keyring\_aws Amazon Web Services Keyring”
+Seção 8.4.5.8, “Usando o plugin_keyring_aws Amazon Web Services Keyring”
 
-### keyring\_aws\_region
-
-Seção 8.4.5.19, “Variáveis do Sistema de Chave”
-
-Seção 8.4.5.9, “Usando o componente\_keyring\_aws AWS Keyring Component”
-
-Seção 8.4.5.8, “Usando o plugin\_keyring\_aws Amazon Web Services Keyring”
-
-### keyring\_hashicorp\_auth\_path
+### keyring_aws_region
 
 Seção 8.4.5.19, “Variáveis do Sistema de Chave”
 
-Seção 8.4.5.11, “Usando o componente\_keyring\_aws Vault do HashiCorp”
+Seção 8.4.5.9, “Usando o componente_keyring_aws AWS Keyring Component”
 
-Seção 8.4.5.10, “Usando o plugin\_keyring\_aws Vault do HashiCorp”
+Seção 8.4.5.8, “Usando o plugin_keyring_aws Amazon Web Services Keyring”
 
-### keyring\_hashicorp\_ca\_path
-
-Seção 8.4.5.19, “Variáveis do Sistema de Chave”
-
-Seção 8.4.5.11, “Usando o componente\_keyring\_aws Vault do HashiCorp”
-
-Seção 8.4.5.10, “Usando o plugin\_keyring\_aws Vault do HashiCorp”
-
-### keyring\_hashicorp\_caching
+### keyring_hashicorp_auth_path
 
 Seção 8.4.5.19, “Variáveis do Sistema de Chave”
 
-Seção 8.4.5.11, “Usando o componente de cartela de chaves HashiCorp Vault”
+Seção 8.4.5.11, “Usando o componente_keyring_aws Vault do HashiCorp”
 
-Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
+Seção 8.4.5.10, “Usando o plugin_keyring_aws Vault do HashiCorp”
 
-### keyring\_hashicorp\_commit\_auth\_path
+### keyring_hashicorp_ca_path
 
-Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
+Seção 8.4.5.19, “Variáveis do Sistema de Chave”
 
-### keyring\_hashicorp\_commit\_ca\_path
+Seção 8.4.5.11, “Usando o componente_keyring_aws Vault do HashiCorp”
 
-Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
+Seção 8.4.5.10, “Usando o plugin_keyring_aws Vault do HashiCorp”
 
-### keyring\_hashicorp\_commit\_caching
+### keyring_hashicorp_caching
 
-Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
-
-### keyring\_hashicorp\_commit\_role\_id
-
-Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
-
-Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
-
-### keyring\_hashicorp\_commit\_server\_url
-
-Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
-
-### keyring\_hashicorp\_commit\_store\_path
-
-Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
-
-Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
-
-### keyring\_hashicorp\_role\_id
-
-Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
+Seção 8.4.5.19, “Variáveis do Sistema de Chave”
 
 Seção 8.4.5.11, “Usando o componente de cartela de chaves HashiCorp Vault”
 
 Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
 
-### keyring\_hashicorp\_secret\_id
+### keyring_hashicorp_commit_auth_path
 
 Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
 
-Seção 8.4.5.11, “Usando o componente de cartela de chaves HashiCorp Vault”
-
-Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
-
-### keyring\_hashicorp\_server\_url
+### keyring_hashicorp_commit_ca_path
 
 Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
 
-Seção 8.4.5.11, “Usando o componente de cartela de chaves HashiCorp Vault”
+### keyring_hashicorp_commit_caching
+
+Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
+
+### keyring_hashicorp_commit_role_id
+
+Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
 
 Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
 
-### keyring\_hashicorp\_store\_path
+### keyring_hashicorp_commit_server_url
+
+Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
+
+### keyring_hashicorp_commit_store_path
+
+Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
+
+Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
+
+### keyring_hashicorp_role_id
 
 Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
 
@@ -4486,13 +4462,37 @@ Seção 8.4.5.11, “Usando o componente de cartela de chaves HashiCorp Vault�
 
 Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
 
-### keyring\_okv\_conf\_dir
+### keyring_hashicorp_secret_id
 
 Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
 
-Seção 8.4.5.6, “Usando o plugin keyring\_okv KMIP”
+Seção 8.4.5.11, “Usando o componente de cartela de chaves HashiCorp Vault”
 
-### keyring\_operations
+Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
+
+### keyring_hashicorp_server_url
+
+Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
+
+Seção 8.4.5.11, “Usando o componente de cartela de chaves HashiCorp Vault”
+
+Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
+
+### keyring_hashicorp_store_path
+
+Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
+
+Seção 8.4.5.11, “Usando o componente de cartela de chaves HashiCorp Vault”
+
+Seção 8.4.5.10, “Usando o plugin de cartela de chaves HashiCorp Vault”
+
+### keyring_okv_conf_dir
+
+Seção 8.4.5.19, “Variáveis do sistema de cartela de chaves”
+
+Seção 8.4.5.6, “Usando o plugin keyring_okv KMIP”
+
+### keyring_operations
 
 Seção 8.4.5.19, “Variáveis do Sistema de Pendrive”
 
@@ -4502,21 +4502,21 @@ Seção 8.4.5.14, “Migração de Chaves entre Bancos de Chaves do Pendrive”
 
 [index top]
 
-### suporte\_para\_arquivos\_grandes
+### suporte_para_arquivos_grandes
 
 Seção 26.6, “Restrições e Limitações de Partição”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### tamanho\_da\_página\_grande
+### tamanho_da_página_grande
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### páginas\_grandes
+### páginas_grandes
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### last\_insert\_id
+### last_insert_id
 
 Seção 7.4.4.3, “Formato de Registro Binário Misto”
 
@@ -4524,19 +4524,19 @@ Seção 19.5.1.40, “Replicação e Variáveis”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### lc\_messages
+### lc_messages
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 12.12, “Definindo a Linguagem da Mensagem de Erro”
 
-### lc\_messages\_dir
+### lc_messages_dir
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 12.12, “Definindo a Linguagem da Mensagem de Erro”
 
-### lc\_time\_names
+### lc_time_names
 
 Seção 14.7, “Funções de Data e Hora”
 
@@ -4558,7 +4558,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 15.2.10, “Instrução LOAD XML”
 
-### local\_infile
+### local_infile
 
 Seção 15.2.9, “Instrução LOAD DATA”
 
@@ -4568,65 +4568,65 @@ Seção 8.1.6, “Considerações de Segurança para LOAD DATA LOCAL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### lock\_order
+### lock_order
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_debug\_loop
+### lock_order_debug_loop
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_debug\_missing\_arc
+### lock_order_debug_missing_arc
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_debug\_missing\_key
+### lock_order_debug_missing_key
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_debug\_missing\_unlock
+### lock_order_debug_missing_unlock
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_dependencies
+### lock_order_dependencies
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_dependencies_extra
+### lock_order_dependencies_extra
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_output_directory
+### lock_order_output_directory
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_print\_txt
+### lock_order_print_txt
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_trace\_loop
+### lock_order_trace_loop
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_trace\_missing\_arc
+### lock_order_trace_missing_arc
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_trace\_missing\_key
+### lock_order_trace_missing_key
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_order\_trace\_missing\_unlock
+### lock_order_trace_missing_unlock
 
-Seção 7.9.3, “A Ferramenta LOCK\_ORDER”
+Seção 7.9.3, “A Ferramenta LOCK_ORDER”
 
-### lock\_wait\_timeout
+### lock_wait_timeout
 
 Seção 15.3.5, “LOCK INSTANCE FOR BACKUP e DESBLOQUEIE INSTÂNCIA Instruções”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### locked\_in\_memory
+### locked_in_memory
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -4638,7 +4638,7 @@ Seção 20.3.1, “Requisitos de Replicação de Grupo”
 
 Seção 19.2.2.3, “Opções de Inicialização e Canais de Replicação”
 
-### log\_bin
+### log_bin
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -4656,17 +4656,17 @@ Seção 7.4.4, “O Log Binário”
 
 Seção 1.4, “O que há de Novo no MySQL 9.5”
 
-### log\_bin\_basename
+### log_bin_basename
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
 Seção 7.4.4, “O Log Binário”
 
-### log\_bin\_index
+### log_bin_index
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
-### log\_bin\_trust\_function\_creators
+### log_bin_trust_function_creators
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -4674,7 +4674,7 @@ Seção A.4, “Perguntas Frequentes do MySQL 9.5: Procedimentos e Funções Ar
 
 Seção 27.9, “Registro Binário de Programas Armazenados”
 
-### log\_error
+### log_error
 
 Seção 7.4.2.2, “Configuração de Destino do Registro de Erros Padrão”
 
@@ -4688,7 +4688,7 @@ Seção 2.5.6.2, “Mais Tópicos sobre a Implantação do Servidor MySQL com D
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### log\_error\_services
+### log_error_services
 
 Seção 7.4.2.2, “Configuração de Destino do Registro de Erros Padrão”
 
@@ -4700,27 +4700,27 @@ Seção 7.4.2.7, “Registro de Erros no Formato JSON”
 
 Seção 7.4.2.8, “Registro de Erros no Log do Sistema”
 
-Seção 7.4.2.6, “Filtragem Baseada em Regras do Registro de Erros (log\_filter\_dragnet)”")
+Seção 7.4.2.6, “Filtragem Baseada em Regras do Registro de Erros (log_filter_dragnet)”")
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 29.12.22.3, “A Tabela error\_log”
+Seção 29.12.22.3, “A Tabela error_log”
 
-### log\_error\_suppression\_list
+### log_error_suppression_list
 
 Seção 7.5.3, “Componentes do Registro de Erros”
 
 Seção 7.4.2.1, “Configuração do Registro de Erros”
 
-Seção 7.4.2.5, “Filtragem do Registro de Erros Baseada em Prioridade (log\_filter\_internal)”")
+Seção 7.4.2.5, “Filtragem do Registro de Erros Baseada em Prioridade (log_filter_internal)”")
 
-Seção 7.4.2.6, “Filtragem do Registro de Erros Baseada em Regras (log\_filter\_dragnet)”")
+Seção 7.4.2.6, “Filtragem do Registro de Erros Baseada em Regras (log_filter_dragnet)”")
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.4.2.4, “Tipos de Filtragem do Registro de Erros”
 
-### log\_error\_verbosity
+### log_error_verbosity
 
 Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”
 
@@ -4746,9 +4746,9 @@ Seção 29.12.9, “Tabelas de Atributos de Conexão do Schema de Desempenho”
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-Seção 7.4.2.5, “Filtragem do Log de Erros com Base na Prioridade (log\_filter\_internal”")
+Seção 7.4.2.5, “Filtragem do Log de Erros com Base na Prioridade (log_filter_internal”")
 
-Seção 7.4.2.6, “Filtragem do Log de Erros com Base em Regras (log\_filter\_dragnet”")
+Seção 7.4.2.6, “Filtragem do Log de Erros com Base em Regras (log_filter_dragnet”")
 
 Seção 7.1.7, “Opções de Comando do Servidor”
 
@@ -4762,7 +4762,7 @@ Seção 8.4.8.2.3, “Uso do Componente do Firewall do MySQL Enterprise”
 
 Seção 8.4.8.1.3, “Uso do Plugin do Firewall do MySQL Enterprise”
 
-### log\_output
+### log_output
 
 Seção 7.4.1, “Selecionando Destinos de Saída do Log de Consultas Gerais e do Log de Consultas Lentas”
 
@@ -4772,17 +4772,17 @@ Seção 7.4.3, “O Log de Consultas Gerais”
 
 Seção 7.4.5, “O Log de Consultas Lentas”
 
-### log\_queries\_not\_using\_indexes
+### log_queries_not_using_indexes
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.4.5, “O Log de Consultas Lentas”
 
-### log\_raw
+### log_raw
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### log\_replica\_updates
+### log_replica_updates
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -4806,17 +4806,17 @@ Seção 19.1.3.8, “Exemplos de Funções Armazenadas para Manipular GTIDs”
 
 Seção 7.4.4, “O Log Binário”
 
-### log\_slave\_updates
+### log_slave_updates
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
-### log\_slow\_admin\_statements
+### log_slow_admin_statements
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.4.5, “O Log de Consultas Lentas”
 
-### log\_slow\_extra
+### log_slow_extra
 
 Seção 8.4.6.4, “Formatos de Arquivos de Registro de Auditoria”
 
@@ -4826,47 +4826,47 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.4.5, “O Log de Consultas Lentas”
 
-### log\_slow\_replica\_statements
+### log_slow_replica_statements
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
 Seção 7.4.5, “O Log de Consultas Lentas”
 
-### log\_slow\_slave\_statements
+### log_slow_slave_statements
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Escravo”
 
-### log\_statements\_unsafe\_for\_binlog
+### log_statements_unsafe_for_binlog
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
-### log\_syslog\_facility
+### log_syslog_facility
 
-Seção 6.3.2, “mysqld\_safe — Script de Inicialização do Servidor MySQL”
+Seção 6.3.2, “mysqld_safe — Script de Inicialização do Servidor MySQL”
 
-### log\_syslog\_tag
+### log_syslog_tag
 
-Seção 6.3.2, “mysqld\_safe — Script de Inicialização do Servidor MySQL”
+Seção 6.3.2, “mysqld_safe — Script de Inicialização do Servidor MySQL”
 
-### log\_throttle\_queries\_not\_using\_indexes
+### log_throttle_queries_not_using_indexes
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.4.5, “O Log de Consultas Lentas”
 
-### log\_timestamps
+### log_timestamps
 
 Seção 7.4.2.9, “Formato de Saída do Log de Erros”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 29.12.22.3, “A Tabela error\_log”
+Seção 29.12.22.3, “A Tabela error_log”
 
 Seção 7.4.3, “O Log Geral de Consultas”
 
 Seção 7.4.5, “O Log de Consultas Lentas”
 
-### long\_query\_time
+### long_query_time
 
 Seção 7.4, “Logs do Servidor MySQL”
 
@@ -4882,7 +4882,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.4.5, “O Log de Consultas Lentas”
 
-### low\_priority\_updates
+### low_priority_updates
 
 Seção A.14, “Perguntas Frequentes do MySQL 9.5: Replicação”
 
@@ -4890,11 +4890,11 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 10.11.2, “Problemas com o Bloqueio de Tabelas”
 
-### lower\_case\_file\_system
+### lower_case_file_system
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### lower\_case\_table\_names
+### lower_case_table_names
 
 Seção 2.3.2.1.8, “Opções Avançadas”
 
@@ -4938,7 +4938,7 @@ Seção 12.8.7, “Usando a Cotação em Pesquisas do INFORMATION_SCHEMA”
 
 [índice superior]
 
-### roles\_obrigatórios
+### roles_obrigatórios
 
 Seção 8.2.11, “Categorias de Conta”
 
@@ -4960,13 +4960,13 @@ Seção 7.1.9.1, “Privilégios de Variáveis do Sistema”
 
 Seção 8.2.10, “Usando Roles”
 
-### master\_verify\_checksum
+### master_verify_checksum
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
 Glossário do MySQL
 
-### max\_allowed\_packet
+### max_allowed_packet
 
 Seção 14.19.1, “Descrição de Funções Agregadas”
 
@@ -4996,7 +4996,7 @@ Seção B.3.2.8, “Pacote Muito Grande”
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
-Seção 19.5.1.21, “Replicação e max\_allowed\_packet”
+Seção 19.5.1.21, “Replicação e max_allowed_packet”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -5008,7 +5008,7 @@ Seção 13.5, “O Tipo de Dados JSON”
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### max\_binlog\_cache\_size
+### max_binlog_cache_size
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -5016,7 +5016,7 @@ Seção 10.12.3.1, “Como o MySQL Usa a Memória”
 
 Seção 7.4.4, “O Log Binário”
 
-### max\_binlog\_size
+### max_binlog_size
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -5032,21 +5032,21 @@ Seção 7.4.4, “O Log Binário”
 
 Seção 19.2.4.1, “O Log de Relevo”
 
-### max\_binlog\_stmt\_cache\_size
+### max_binlog_stmt_cache_size
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
 Seção 10.12.3.1, “Como o MySQL Usa a Memória”
 
-### max\_connect\_errors
+### max_connect_errors
 
 Seção 7.1.12.3, “Consultas DNS e o Cache de Anfitriões”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 29.12.22.4, “A Tabela host\_cache”
+Seção 29.12.22.4, “A Tabela host_cache”
 
-### max\_connections
+### max_connections
 
 Seção 7.1.12.2, “Gestão Administrativa de Conexões”
 
@@ -5078,11 +5078,11 @@ Seção B.3.2.5, “Muitas Conexões”
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### max\_delayed\_threads
+### max_delayed_threads
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### max\_digest\_length
+### max_digest_length
 
 Seção 14.13, “Funções de Criptografia e Compressão”
 
@@ -5098,7 +5098,7 @@ Seção 8.4.8.2.3, “Usando o Componente do Firewall Empresarial do MySQL”
 
 Seção 8.4.8.1.3, “Usando o Plugin do Firewall Empresarial do MySQL”
 
-### max\_error\_count
+### max_error_count
 
 Seção 15.2.9, “Declaração LOAD DATA”
 
@@ -5112,7 +5112,7 @@ Seção 15.7.7.43, “Declaração SHOW WARNINGS”
 
 Seção 15.6.7.7, “A Área de Diagnóstico do MySQL”
 
-### max\_execution\_time
+### max_execution_time
 
 Seção 10.9.3, “Dicas do Otimizador”
 
@@ -5122,7 +5122,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 15.2.20, “Com (Expressões de Tabelas Comuns)”")
 
-### max\_heap\_table\_size
+### max_heap_table_size
 
 Seção 10.12.3.1, “Como o MySQL Usa a Memória”
 
@@ -5140,11 +5140,11 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 18.3, “O Motor de Armazenamento MEMORY”
 
-### max\_insert\_delayed\_threads
+### max_insert_delayed_threads
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### max\_join\_size
+### max_join_size
 
 Seção 10.8.2, “Formato de Saída do EXPLAIN”
 
@@ -5154,17 +5154,17 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 15.7.6.1, “Sintaxe SET para Atribuição de Variáveis”
 
-### max\_length\_for\_sort\_data
+### max_length_for_sort_data
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### max\_points\_in\_geometry
+### max_points_in_geometry
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 14.16.8, “Funções de Operadores Espaciais”
 
-### max\_prepared\_stmt\_count
+### max_prepared_stmt_count
 
 Seção 10.10.3, “Armazenamento de Instruções Preparadas e Programas Armazenados”
 
@@ -5180,7 +5180,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 27.3.7, “Uso da API SQL JavaScript”
 
-### max\_relay\_log\_size
+### max_relay_log_size
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro de Binário”
 
@@ -5188,13 +5188,13 @@ Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
 Seção 19.2.4.1, “O Registro de Replicação”
 
-### max\_seeks\_for\_key
+### max_seeks_for_key
 
 Seção 15.7.3.1, “Instrução ANALYZE TABLE”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### max\_sort\_length
+### max_sort_length
 
 Seção B.3.7, “Problemas Conhecidos no MySQL”
 
@@ -5208,13 +5208,13 @@ Seção 13.3.4, “Os Tipos BLOB e TEXT”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### max\_sp\_recursion\_depth
+### max_sp_recursion_depth
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 27.2.1, “Sintaxe de Rotina Armazenada”
 
-### max\_user\_connections
+### max_user_connections
 
 Seção 15.7.1.1, “Instrução ALTER USER”
 
@@ -5228,7 +5228,7 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 8.2.21, “Definir limites de recursos da conta”
 
-### max\_write\_lock\_count
+### max_write_lock_count
 
 Seção 15.3.6, “Instruções LOCK TABLES e UNLOCK TABLES”
 
@@ -5238,13 +5238,13 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 10.11.2, “Problemas de bloqueio de tabelas”
 
-### mecab\_rc\_file
+### mecab_rc_file
 
 Seção 14.9.9, “Plugin do analisador de texto completo MeCab”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### min\_examined\_row\_limit
+### min_examined_row_limit
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
@@ -5256,7 +5256,7 @@ Seção 7.5.7.3, “Memória do componente MLE e uso de threads”
 
 Seção 7.5.7.1, “Referência de opção e variável do componente MLE”
 
-### myisam\_data\_pointer\_size
+### myisam_data_pointer_size
 
 Seção 15.1.24, “Instrução CREATE TABLE”
 
@@ -5264,7 +5264,7 @@ Seção 10.4.6, “Limites de tamanho da tabela”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### myisam\_max\_sort\_file\_size
+### myisam_max_sort_file_size
 
 Seção 18.2.1, “Opções de inicialização do MyISAM”
 
@@ -5272,11 +5272,11 @@ Seção 10.6.3, “Otimização das instruções REPAIR TABLE”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### myisam\_mmap\_size
+### myisam_mmap_size
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### myisam\_recover\_options
+### myisam_recover_options
 
 Seção 18.2.1, “Opções de inicialização do MyISAM”
 
@@ -5292,7 +5292,7 @@ Seção 18.2, “O mecanismo de armazenamento MyISAM”
 
 Seção 7.9.1.6, “Usando logs do servidor para encontrar as causas de erros no mysqld”
 
-### myisam\_sort\_buffer\_size
+### myisam_sort_buffer_size
 
 Seção 15.1.11, “Instrução ALTER TABLE”
 
@@ -5302,25 +5302,25 @@ Seção 10.6.3, “Otimização das instruções REPAIR TABLE”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### myisam\_stats\_method
+### myisam_stats_method
 
 Seção 10.3.8, “Coleta de estatísticas de índices InnoDB e MyISAM”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### myisam\_use\_mmap
+### myisam_use_mmap
 
 Seção 10.12.3.1, “Como o MySQL Usa Memória”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### mysql\_firewall\_database
+### mysql_firewall_database
 
 Seção 8.4.8.2.2, “Instalação do Componente do Firewall Empresarial do MySQL”
 
 Seção 8.4.8.1.4, “Referência do Plugin do Firewall Empresarial do MySQL”
 
-### mysql\_firewall\_mode
+### mysql_firewall_mode
 
 Seção 8.4.8.1.4, “Referência do Plugin do Firewall Empresarial do MySQL”
 
@@ -5328,13 +5328,13 @@ Seção 7.5.8.2, “Componentes Compatíveis com o Rastreador de Opções”
 
 Seção 8.4.8.1.3, “Uso do Plugin do Firewall Empresarial do MySQL”
 
-### mysql\_firewall\_reload\_interval\_seconds
+### mysql_firewall_reload_interval_seconds
 
 Seção 8.4.8.1.4, “Referência do Plugin do Firewall Empresarial do MySQL”
 
 Seção 8.4.8.1.3, “Uso do Plugin do Firewall Empresarial do MySQL”
 
-### mysql\_firewall\_trace
+### mysql_firewall_trace
 
 Seção 8.4.8.1.4, “Referência do Plugin do Firewall Empresarial do MySQL”
 
@@ -5342,7 +5342,7 @@ Seção 8.4.8.2.3, “Uso do Componente do Firewall Empresarial do MySQL”
 
 Seção 8.4.8.1.3, “Uso do Plugin do Firewall Empresarial do MySQL”
 
-### mysqlx\_bind\_address
+### mysqlx_bind_address
 
 Seção 7.1.14, “Suporte ao Namespace de Rede”
 
@@ -5350,7 +5350,7 @@ Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
 Seção 22.5.6.3, “Variáveis de Status do Plugin X”
 
-### mysqlx\_compression\_algorithms
+### mysqlx_compression_algorithms
 
 Seção 22.5.5, “Compressão de Conexão com o Plugin X”
 
@@ -5358,59 +5358,59 @@ Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
 Seção 22.5.6.3, “Variáveis de Status do Plugin X”
 
-### mysqlx\_connect\_timeout
+### mysqlx_connect_timeout
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### mysqlx\_deflate\_default\_compression\_level
+### mysqlx_deflate_default_compression_level
 
 Seção 22.5.5, “Compressão de Conexão com o Plugin X”
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### mysqlx\_deflate\_max\_client\_compression\_level
+### mysqlx_deflate_max_client_compression_level
 
 Seção 22.5.5, “Compressão de Conexão com o Plugin X”
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### mysqlx\_document\_id\_unique\_prefix
+### mysqlx_document_id_unique_prefix
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_enable\_hello\_notice
+### mysqlx_enable_hello_notice
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_idle\_worker\_thread\_timeout
+### mysqlx_idle_worker_thread_timeout
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_interactive\_timeout
+### mysqlx_interactive_timeout
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_lz
+### mysqlx_lz
 
 Seção 22.5.5, “Compressão de Conexão com Plugin X”
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_max\_allowed\_packet
+### mysqlx_max_allowed_packet
 
 Seção 22.5.5, “Compressão de Conexão com Plugin X”
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_max\_connections
+### mysqlx_max_connections
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_min\_worker\_threads
+### mysqlx_min_worker_threads
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_port
+### mysqlx_port
 
 Seção 7.6.6.14, “Limitações do Plugin Clone”
 
@@ -5428,55 +5428,55 @@ Seção 8.7.5.2, “Definindo o Contexto do Porto TCP para Recursos do MySQL”
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_port\_open\_timeout
+### mysqlx_port_open_timeout
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_read\_timeout
+### mysqlx_read_timeout
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_socket
+### mysqlx_socket
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_ssl\_ca
+### mysqlx_ssl_ca
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_ssl\_capath
+### mysqlx_ssl_capath
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_ssl\_cert
+### mysqlx_ssl_cert
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_ssl\_cipher
+### mysqlx_ssl_cipher
 
 Seção 22.5.6.2, “Opções de Plugin X e Variáveis de Sistema”
 
-### mysqlx\_ssl\_crl
+### mysqlx_ssl_crl
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### mysqlx\_ssl\_crlpath
+### mysqlx_ssl_crlpath
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### mysqlx\_ssl\_key
+### mysqlx_ssl_key
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### mysqlx\_wait\_timeout
+### mysqlx_wait_timeout
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### mysqlx\_write\_timeout
+### mysqlx_write_timeout
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### mysqlx\_zstd\_default\_compression\_level
+### mysqlx_zstd_default_compression_level
 
 Seção 22.5.5, “Compressão de Conexão com o Plugin X”
 
@@ -5490,7 +5490,7 @@ Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
 [índice superior]
 
-### named\_pipe
+### named_pipe
 
 Seção B.3.2.2, “Não é possível conectar ao servidor MySQL [local]”
 
@@ -5500,9 +5500,9 @@ Seção 6.2.4, “Conectar ao Servidor MySQL Usando Opções de Comando”
 
 Seção 6.5.1.1, “Opções do Cliente mysql”
 
-Seção 6.6.8, “mysql\_migrate\_keyring — Ferramenta de Migração de Chave do Keyring”
+Seção 6.6.8, “mysql_migrate_keyring — Ferramenta de Migração de Chave do Keyring”
 
-Seção 6.4.2, “mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL”
+Seção 6.4.2, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”
 
 Seção 6.5.2, “mysqladmin — Um Programa de Administração do Servidor MySQL”
 
@@ -5530,7 +5530,7 @@ Seção 1.2.2, “Principais Características do MySQL”
 
 Seção 2.3.2.1.2, “Tipo e Rede”
 
-### named\_pipe\_full\_access\_group
+### named_pipe_full_access_group
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -5540,9 +5540,9 @@ Seção 6.2.7, “Protocolos de Transporte de Conexão”
 
 Seção 6.5.1.1, “Opções do Cliente mysql”
 
-Seção 6.6.8, “mysql\_migrate\_keyring — Ferramenta de Migração de Chaves do Keyring”
+Seção 6.6.8, “mysql_migrate_keyring — Ferramenta de Migração de Chaves do Keyring”
 
-Seção 6.4.2, “mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL”
+Seção 6.4.2, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”
 
 Seção 6.5.2, “mysqladmin — Um Programa de Administração do Servidor MySQL”
 
@@ -5562,107 +5562,107 @@ Seção 6.5.8.1, “Opções”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### ndb\_autoincrement\_prefetch\_sz
+### ndb_autoincrement_prefetch_sz
 
 Seção 25.4.3.9.2, “Variáveis de Sistema do NDB Cluster”
 
-Seção 25.5.13, “ndb\_import — Importar Dados CSV no NDB”
+Seção 25.5.13, “ndb_import — Importar Dados CSV no NDB”
 
-### ndb\_clear\_apply\_status
+### ndb_clear_apply_status
 
 Seção 25.4.3.9.2, “Variáveis de Sistema do NDB Cluster”
 
 Seção 15.4.2.3, “Instrução RESET REPLICA”
 
-### ndb\_conflict\_role
+### ndb_conflict_role
 
 Seção 25.7.12, “Resolução de Conflitos de Replicação do NDB Cluster”
 
 Seção 25.4.3.9.2, “Variáveis de Sistema do NDB Cluster”
 
-### ndb\_data\_node\_neighbour
+### ndb_data_node_neighbour
 
 Seção 25.4.3.9.2, “Variáveis de Sistema do NDB Cluster”
 
 Seção 15.1.24.12, “Definir Opções de Comentário do NDB”
 
-### ndb\_dbg\_check\_shares
+### ndb_dbg_check_shares
 
 Seção 25.4.3.9.2, “Variáveis de Sistema do NDB Cluster”
 
-### ndb\_default\_column\_format
+### ndb_default_column_format
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_distribution
+### ndb_distribution
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_eventbuffer\_free\_percent
+### ndb_eventbuffer_free_percent
 
 Seção 25.6.2.3, “Relatório do Buffer de Eventos no Log do Clúster”
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_eventbuffer\_max\_alloc
+### ndb_eventbuffer_max_alloc
 
 Seção 25.6.2.3, “Relatório do Buffer de Eventos no Log do Clúster”
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_extra\_logging
+### ndb_extra_logging
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_force\_send
+### ndb_force_send
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_fully\_replicated
+### ndb_fully_replicated
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_index\_stat\_enable
+### ndb_index_stat_enable
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_index\_stat\_option
+### ndb_index_stat_option
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_join\_pushdown
+### ndb_join_pushdown
 
 Seção 10.8.2, “Formato do Saída do EXPLAIN”
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_log\_apply\_status
+### ndb_log_apply_status
 
 Seção 25.7.10, “Replicação do Clúster NDB: Replicação Bidirecional e Circular”
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_log\_bin
+### ndb_log_bin
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_log\_binlog\_index
+### ndb_log_binlog_index
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_log\_cache\_size
+### ndb_log_cache_size
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_log\_empty\_epochs
+### ndb_log_empty_epochs
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_log\_empty\_update
+### ndb_log_empty_update
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_log\_exclusive\_reads
+### ndb_log_exclusive_reads
 
 Seção 25.4.3.9.1, “Opções do Servidor MySQL para o Clúster NDB”
 
@@ -5670,11 +5670,11 @@ Seção 25.7.12, “Resolução de Conflitos na Replicação do Clúster NDB”
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_log\_orig
+### ndb_log_orig
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### ndb\_log\_transaction\_compression
+### ndb_log_transaction_compression
 
 Seção 7.4.4.5, “Compressão de Transações de Log Binário”
 
@@ -5682,7 +5682,7 @@ Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-### ndb\_log\_transaction\_compression\_level\_zstd
+### ndb_log_transaction_compression_level_zstd
 
 Seção 7.4.4.5, “Compressão de Transações de Log Binário”
 
@@ -5690,31 +5690,31 @@ Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-### ndb\_log\_transaction\_id
+### ndb_log_transaction_id
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-### ndb\_metadata\_check
+### ndb_metadata_check
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-Seção 25.5.23, “ndb\_restore — Restaurar um Backup de NDB Cluster”
+Seção 25.5.23, “ndb_restore — Restaurar um Backup de NDB Cluster”
 
 Seção 29.12.12, “Tabelas do NDB Cluster do Schema de Desempenho”
 
-### ndb\_metadata\_check\_interval
-
-Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
-
-Seção 29.12.12, “Tabelas do NDB Cluster do Schema de Desempenho”
-
-### ndb\_metadata\_sync
+### ndb_metadata_check_interval
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
 Seção 29.12.12, “Tabelas do NDB Cluster do Schema de Desempenho”
 
-### ndb\_optimized\_node\_selection
+### ndb_metadata_sync
+
+Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
+
+Seção 29.12.12, “Tabelas do NDB Cluster do Schema de Desempenho”
+
+### ndb_optimized_node_selection
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
@@ -5722,135 +5722,135 @@ Seção 25.4.3.10, “Conexões TCP/IP do NDB Cluster”
 
 Seção 25.6.3.3, “Usar estatísticas CLUSTERLOG no Cliente de Gerenciamento do NDB Cluster”
 
-### ndb\_read\_backup
+### ndb_read_backup
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
 Seção 15.1.24.12, “Definir Opções de Comentário NDB”
 
-### ndb\_recv\_thread\_activation\_threshold
+### ndb_recv_thread_activation_threshold
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-### ndb\_recv\_thread\_cpu\_mask
+### ndb_recv_thread_cpu_mask
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-### ndb\_replica\_batch\_size
+### ndb_replica_batch_size
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-### ndb\_replica\_blob\_write\_batch\_bytes
+### ndb_replica_blob_write_batch_bytes
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-### ndb\_report\_thresh\_binlog\_epoch\_slip
+### ndb_report_thresh_binlog_epoch_slip
 
 Seção 25.6.2.3, “Relatório de tampão de eventos no log do clúster”
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_report\_thresh\_binlog\_mem\_usage
+### ndb_report_thresh_binlog_mem_usage
 
 Seção 25.6.2.3, “Relatório de tampão de eventos no log do clúster”
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_row\_checksum
+### ndb_row_checksum
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_schema\_dist\_lock\_wait\_timeout
+### ndb_schema_dist_lock_wait_timeout
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_schema\_dist\_timeout
+### ndb_schema_dist_timeout
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_schema\_dist\_upgrade\_allowed
+### ndb_schema_dist_upgrade_allowed
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_show\_foreign\_key\_mock\_tables
+### ndb_show_foreign_key_mock_tables
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_slave\_conflict\_role
+### ndb_slave_conflict_role
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_table\_no\_logging
+### ndb_table_no_logging
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
 Seção 15.1.24.12, “Definindo opções de comentário do NDB”
 
-### ndb\_table\_temporary
+### ndb_table_temporary
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_use\_copying\_alter\_table
+### ndb_use_copying_alter_table
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_use\_exact\_count
+### ndb_use_exact_count
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_use\_transactions
+### ndb_use_transactions
 
 Seção 25.6.9, “Importando dados no MySQL Cluster”
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_version
+### ndb_version
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndb\_version\_string
+### ndb_version_string
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndbinfo\_database
+### ndbinfo_database
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndbinfo\_max\_bytes
+### ndbinfo_max_bytes
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndbinfo\_max\_rows
+### ndbinfo_max_rows
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndbinfo\_offline
+### ndbinfo_offline
 
 Seção 25.4.3.9.2, “Variáveis do sistema de clúster NDB”
 
-### ndbinfo\_show\_hidden
+### ndbinfo_show_hidden
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
 Seção 25.6.15, “ndbinfo: Banco de Dados de Informações do Clúster NDB”
 
-Seção 25.6.15.8, “Tabela ndbinfo cluster\_operations”
+Seção 25.6.15.8, “Tabela ndbinfo cluster_operations”
 
-Seção 25.6.15.9, “Tabela ndbinfo cluster\_transactions”
+Seção 25.6.15.9, “Tabela ndbinfo cluster_transactions”
 
-Seção 25.6.15.55, “Tabela ndbinfo server\_operations”
+Seção 25.6.15.55, “Tabela ndbinfo server_operations”
 
-Seção 25.6.15.56, “Tabela ndbinfo server\_transactions”
+Seção 25.6.15.56, “Tabela ndbinfo server_transactions”
 
-### ndbinfo\_table\_prefix
-
-Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
-
-### ndbinfo\_version
+### ndbinfo_table_prefix
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
-### net\_buffer\_length
+### ndbinfo_version
+
+Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
+
+### net_buffer_length
 
 Seção 10.12.3.1, “Como o MySQL Usa a Memória”
 
@@ -5858,21 +5858,21 @@ Seção 6.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### net\_read\_timeout
+### net_read_timeout
 
 Seção B.3.2.3, “Conexão Perdida com o Servidor MySQL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### net\_retry\_count
+### net_retry_count
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### net\_write\_timeout
+### net_write_timeout
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### ngram\_token\_size
+### ngram_token_size
 
 Seção 14.9.2, “Pesquisas de Texto Completas Booleanas”
 
@@ -5890,7 +5890,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 [index top]
 
-### modo\_offline
+### modo_offline
 
 Seção 20.7.7.4, “Ação de Saída”
 
@@ -5898,13 +5898,13 @@ Seção 20.4.2, “Estados do Servidor de Replicação por Grupo”
 
 Seção 20.9.1, “Variáveis do Sistema de Replicação por Grupo”
 
-Seção 29.12.14.1, “Tabela global\_variable\_attributes do Schema de Desempenho”
+Seção 29.12.14.1, “Tabela global_variable_attributes do Schema de Desempenho”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### old\_alter\_table
+### old_alter_table
 
 Seção 15.1.11, “Instrução ALTER TABLE”
 
@@ -5922,7 +5922,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 17.12.6, “Simplificando Instruções DDL com DDL Online”
 
-### open\_files\_limit
+### open_files_limit
 
 Seção 7.1.12.1, “Interfaces de Conexão”
 
@@ -5942,7 +5942,7 @@ Seção 7.4.1, “Selecionando Destinos de Saída do Log de Consultas Gerais e 
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### optimizer\_prune\_level
+### optimizer_prune_level
 
 Seção 10.9.1, “Controlar a Avaliação do Plano de Consulta”
 
@@ -5952,13 +5952,13 @@ Seção 10.2.2.1, “Otimização de Predicados de Subconsultas IN e EXISTS com
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### optimizer\_search\_depth
+### optimizer_search_depth
 
 Seção 10.9.1, “Controlar a Avaliação do Plano de Consulta”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### optimizer\_switch
+### optimizer_switch
 
 Seção 10.2.1.12, “Joins de Loop Aninhado e Acessos de Chave em Batel com Transformações de Nested-Loop e Batched Key Access”
 
@@ -5994,7 +5994,7 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 10.9.2, “Otimizações comutadas”
 
-Seção 30.4.5.7, “A função list\_add()”)
+Seção 30.4.5.7, “A função list_add()”)
 
 Seção 15.2.17, “Instrução UPDATE”
 
@@ -6002,7 +6002,7 @@ Seção 10.3.10, “Uso de extensões de índice”
 
 Seção 27.6.2, “Algoritmos de processamento de visualizações”
 
-### optimizer\_trace
+### optimizer_trace
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
@@ -6012,7 +6012,7 @@ Seção 28.3.24, “A tabela INFORMATION_SCHEMA OPTIMIZER_TRACE”
 
 Seção 10.15.1, “Uso típico”
 
-### optimizer\_trace\_features
+### optimizer_trace_features
 
 Seção 10.15.10, “Seleção de recursos do otimizador para rastreamento”
 
@@ -6020,7 +6020,7 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 10.15.2, “Variáveis do sistema que controlam o rastreamento”
 
-### optimizer\_trace\_limit
+### optimizer_trace_limit
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
@@ -6028,7 +6028,7 @@ Seção 10.15.2, “Variáveis do sistema que controlam o rastreamento”
 
 Seção 10.15.4, “Ajuste da purga de rastreamento”
 
-### optimizer\_trace\_max\_mem\_size
+### optimizer_trace_max_mem_size
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
@@ -6038,13 +6038,13 @@ Seção 28.3.24, “A tabela INFORMATION_SCHEMA OPTIMIZER_TRACE”
 
 Seção 10.15.5, “Rastreamento do uso de memória”
 
-Seção 19.3.3.1, “Privilegios para a Conta de Replicação PRIVILEGE\_CHECKS\_USER”
+Seção 19.3.3.1, “Privilegios para a Conta de Replicação PRIVILEGE_CHECKS_USER”
 
 ### original_server_version
 
 Seção 6.6.9, “mysqlbinlog — Ferramenta para Processamento de Arquivos de Log Binário”
 
-Seção 19.3.3.1, “Privilegios para a Conta de Replicação PRIVILEGE\_CHECKS\_USER”
+Seção 19.3.3.1, “Privilegios para a Conta de Replicação PRIVILEGE_CHECKS_USER”
 
 Seção 19.5.2, “Compatibilidade de Replicação entre Versões do MySQL”
 
@@ -6122,7 +6122,7 @@ Seção 29.12.20.12, “Tabelas de Resumo de Variáveis de Status”
 
 Seção 29.12.8.1, “A Tabela de Contas”
 
-### performance\_schema\_digests\_size
+### performance_schema_digests_size
 
 Seção 29.10, “Resumo de Digestos de Declarações do Schema de Desempenho”
 
@@ -6132,47 +6132,47 @@ Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
 Seção 29.12.20.3, “Tabelas de Resumo de Declarações”
 
-### performance\_schema\_error\_size
+### performance_schema_error_size
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-### performance\_schema\_events\_stages\_history\_long\_size
+### performance_schema_events_stages_history_long_size
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-Seção 29.12.5.3, “A Tabela events\_stages\_history\_long”
+Seção 29.12.5.3, “A Tabela events_stages_history_long”
 
-### performance\_schema\_events\_stages\_history\_size
-
-Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
-
-Seção 29.12.5.2, “A Tabela events\_stages\_history”
-
-### performance\_schema\_events\_statements\_history\_long\_size
+### performance_schema_events_stages_history_size
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-Seção 29.12.6.3, “A Tabela events\_statements\_history\_long”
+Seção 29.12.5.2, “A Tabela events_stages_history”
 
-### performance\_schema\_events\_statements\_history\_size
-
-Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
-
-Seção 29.12.6.2, “A Tabela events\_statements\_history”
-
-### performance\_schema\_events\_transactions\_history\_long\_size
+### performance_schema_events_statements_history_long_size
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-Seção 29.12.7.3, “A Tabela events\_transactions\_history\_long”
+Seção 29.12.6.3, “A Tabela events_statements_history_long”
 
-### performance\_schema\_events\_transactions\_history\_size
+### performance_schema_events_statements_history_size
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-Seção 29.12.7.2, “A Tabela events\_transactions\_history”
+Seção 29.12.6.2, “A Tabela events_statements_history”
 
-### performance\_schema\_events\_waits\_history\_long\_size
+### performance_schema_events_transactions_history_long_size
+
+Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
+
+Seção 29.12.7.3, “A Tabela events_transactions_history_long”
+
+### performance_schema_events_transactions_history_size
+
+Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
+
+Seção 29.12.7.2, “A Tabela events_transactions_history”
+
+### performance_schema_events_waits_history_long_size
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
@@ -6180,9 +6180,9 @@ Seção 29.12, “Descrição da Tabela do Schema de Desempenho”
 
 Seção 15.7.7.17, “Declaração SHOW”
 
-Seção 29.12.4.3, “A Tabela events\_waits\_history\_long”
+Seção 29.12.4.3, “A Tabela events_waits_history_long”
 
-### performance\_schema\_eventos\_esperas\_história\_tamanho
+### performance_schema_eventos_esperas_história_tamanho
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
@@ -6190,9 +6190,9 @@ Seção 29.12, “Descrição das Tabelas do Schema de Desempenho”
 
 Seção 15.7.7.17, “Instrução SHOW ENGINE”
 
-Seção 29.12.4.2, “A tabela eventos\_esperas\_história”
+Seção 29.12.4.2, “A tabela eventos_esperas_história”
 
-### performance\_schema\_hosts\_tamanho
+### performance_schema_hosts_tamanho
 
 Seção 29.12.15, “Tabelas de Variáveis de Status do Schema de Desempenho”
 
@@ -6202,15 +6202,15 @@ Seção 29.15.20.12, “Tabelas de Resumo de Variáveis de Status”
 
 Seção 29.12.8.2, “A tabela hosts”
 
-### performance\_schema\_max\_classes\_condições
+### performance_schema_max_classes_condições
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_instâncias\_condições
+### performance_schema_max_instâncias_condições
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_comprimento\_digest
+### performance_schema_max_comprimento_digest
 
 Seção 29.10, “Digestas e Amostragem de Instruções do Schema de Desempenho”
 
@@ -6218,101 +6218,101 @@ Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 29.12.6.1, “A tabela eventos\_instruções\_atual”
+Seção 29.12.6.1, “A tabela eventos_instruções_atual”
 
-### performance\_schema\_max\_idade\_sample\_digest
+### performance_schema_max_idade_sample_digest
 
 Seção 29.10, “Digestas e Amostragem de Instruções do Schema de Desempenho”
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_classes\_arquivos
+### performance_schema_max_classes_arquivos
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_handles\_arquivos
+### performance_schema_max_handles_arquivos
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_instâncias\_arquivos
+### performance_schema_max_instâncias_arquivos
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_estatísticas\_índice
+### performance_schema_max_estatísticas_índice
 
 Seção 29.16, “Variáveis de Status do Schema de Desempenho”
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_classes\_registradores
+### performance_schema_max_classes_registradores
 
 Seção 29.15, “Variáveis de Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_memória\_classes
+### performance_schema_max_memória_classes
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_metadata\_locks
+### performance_schema_max_metadata_locks
 
 Seção 29.16, “Variáveis de Status do Schema de Desempenho”
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-Seção 29.12.13.3, “A tabela metadata\_locks”
+Seção 29.12.13.3, “A tabela metadata_locks”
 
-### performance\_schema\_max\_meter\_classes
+### performance_schema_max_meter_classes
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
 Seção 35.4.2, “Medidores do servidor”
 
-### performance\_schema\_max\_metric\_classes
+### performance_schema_max_metric_classes
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
 Seção 35.4.3, “Metricas do servidor”
 
-### performance\_schema\_max\_mutex\_classes
+### performance_schema_max_mutex_classes
 
 Seção 29.7, “Monitoramento de Status do Schema de Desempenho”
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_mutex\_instances
+### performance_schema_max_mutex_instances
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_prepared\_statements\_instances
+### performance_schema_max_prepared_statements_instances
 
 Seção 29.16, “Variáveis de Status do Schema de Desempenho”
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-Seção 29.12.6.4, “A tabela prepared\_statements\_instances”
+Seção 29.12.6.4, “A tabela prepared_statements_instances”
 
-### performance\_schema\_max\_program\_instances
+### performance_schema_max_program_instances
 
 Seção 29.16, “Variáveis de Status do Schema de Desempenho”
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_rwlock\_classes
+### performance_schema_max_rwlock_classes
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_rwlock\_instances
+### performance_schema_max_rwlock_instances
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_socket\_classes
+### performance_schema_max_socket_classes
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_socket\_instances
+### performance_schema_max_socket_instances
 
 Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
-### performance\_schema\_max\_sql\_text\_length
+### performance_schema_max_sql_text_length
 
 Seção 29.10, “Resumo de declarações do Schema de Desempenho e Amostragem”
 
@@ -6320,49 +6320,49 @@ Seção 29.15, “Variáveis do Sistema do Schema de Desempenho”
 
 Seção 29.12.20.3, “Tabelas de resumo de declarações”
 
-Seção 29.12.6.1, “Tabela eventos\_declarações\_atuais”
+Seção 29.12.6.1, “Tabela eventos_declarações_atuais”
 
-### performance\_schema\_max\_classes
-
-Seção 29.15, “Variáveis do sistema do Performance Schema”
-
-Seção 29.12.22.9, “Tabela processlist”
-
-### performance\_schema\_max\_declarações
-
-Seção 29.15, “Variáveis do sistema do Performance Schema”
-
-### performance\_schema\_max\_declarações\_pilha
-
-Seção 29.16, “Variáveis de status do Performance Schema”
-
-Seção 29.15, “Variáveis do sistema do Performance Schema”
-
-### performance\_schema\_max\_manipuladores\_de\_tabela
-
-Seção 29.16, “Variáveis de status do Performance Schema”
-
-Seção 29.15, “Variáveis do sistema do Performance Schema”
-
-Seção 29.12.13.4, “Tabela table\_handles”
-
-### performance\_schema\_max\_instâncias\_de\_tabela
-
-Seção 29.15, “Variáveis do sistema do Performance Schema”
-
-### performance\_schema\_max\_estatísticas\_de\_bloqueio\_de\_tabela
-
-Seção 29.16, “Variáveis de status do Performance Schema”
-
-Seção 29.15, “Variáveis do sistema do Performance Schema”
-
-### performance\_schema\_max\_classes\_de\_thread
+### performance_schema_max_classes
 
 Seção 29.15, “Variáveis do sistema do Performance Schema”
 
 Seção 29.12.22.9, “Tabela processlist”
 
-### performance\_schema\_max\_instâncias\_de\_thread
+### performance_schema_max_declarações
+
+Seção 29.15, “Variáveis do sistema do Performance Schema”
+
+### performance_schema_max_declarações_pilha
+
+Seção 29.16, “Variáveis de status do Performance Schema”
+
+Seção 29.15, “Variáveis do sistema do Performance Schema”
+
+### performance_schema_max_manipuladores_de_tabela
+
+Seção 29.16, “Variáveis de status do Performance Schema”
+
+Seção 29.15, “Variáveis do sistema do Performance Schema”
+
+Seção 29.12.13.4, “Tabela table_handles”
+
+### performance_schema_max_instâncias_de_tabela
+
+Seção 29.15, “Variáveis do sistema do Performance Schema”
+
+### performance_schema_max_estatísticas_de_bloqueio_de_tabela
+
+Seção 29.16, “Variáveis de status do Performance Schema”
+
+Seção 29.15, “Variáveis do sistema do Performance Schema”
+
+### performance_schema_max_classes_de_thread
+
+Seção 29.15, “Variáveis do sistema do Performance Schema”
+
+Seção 29.12.22.9, “Tabela processlist”
+
+### performance_schema_max_instâncias_de_thread
 
 Seção 14.22, “Funções do Performance Schema”
 
@@ -6376,7 +6376,7 @@ Seção 15.7.7.17, “Declaração SHOW Engine”
 
 Seção 29.12.22.9, “Tabela processlist”
 
-### performance\_schema\_session\_connect\_attrs\_size
+### performance_schema_session_connect_attrs_size
 
 Seção 29.12.9, “Tabelas de atributos de conexão do Performance Schema”
 
@@ -6384,25 +6384,25 @@ Seção 29.16, “Variáveis de status do Performance Schema”
 
 Seção 29.15, “Variáveis do sistema do Performance Schema”
 
-### performance\_schema\_setup\_actors\_size
+### performance_schema_setup_actors_size
 
 Seção 29.15, “Variáveis do sistema do Performance Schema”
 
-Seção 29.12.2.1, “A tabela setup\_actors”
+Seção 29.12.2.1, “A tabela setup_actors”
 
-### performance\_schema\_setup\_objects\_size
+### performance_schema_setup_objects_size
 
 Seção 29.15, “Variáveis do sistema do Schema de Desempenho”
 
-Seção 29.12.2.4, “A tabela setup\_objects”
+Seção 29.12.2.4, “A tabela setup_objects”
 
-### performance\_schema\_show\_processlist
+### performance_schema_show_processlist
 
 Seção 29.15, “Variáveis do sistema do Schema de Desempenho”
 
 Seção 29.12.22.9, “A tabela processlist”
 
-### performance\_schema\_users\_size
+### performance_schema_users_size
 
 Seção 29.12.15, “Tabelas de variáveis de status do Schema de Desempenho”
 
@@ -6412,7 +6412,7 @@ Seção 29.12.20.12, “Tabelas de resumos de variáveis de status”
 
 Seção 29.12.8.3, “A tabela users”
 
-### persist\_only\_admin\_x
+### persist_only_admin_x
 
 Seção 7.1.9.4, “Variáveis do sistema não persistidas e restritas à persistência”
 
@@ -6420,17 +6420,17 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 7.1.9.1, “Privilégios das variáveis do sistema”
 
-### persist\_sensitive\_variables\_in\_plaintext
+### persist_sensitive_variables_in_plaintext
 
 Seção 7.1.9.3, “Variáveis do sistema persistidas”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### persisted\_globals\_load
+### persisted_globals_load
 
 Seção 7.1.9.4, “Variáveis do sistema não persistidas e restritas à persistência”
 
-Seção 29.12.14.3, “Tabela variáveis\_info do Schema de Desempenho”
+Seção 29.12.14.3, “Tabela variáveis_info do Schema de Desempenho”
 
 Seção 7.1.9.3, “Variáveis do sistema persistidas”
 
@@ -6444,25 +6444,25 @@ Seção 6.2.2.2, “Usando arquivos de opção”
 
 Seção 17.8.2, “Configurando o InnoDB para operação de leitura apenas”
 
-### pid\_file
+### pid_file
 
 Seção 2.4.3, “Instalando e usando o daemon de inicialização do MySQL”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### plugin\_dir
+### plugin_dir
 
 Seção 8.1.2.2, “Diretório de plugins”
 
-### plugin\_dir\_path
+### plugin_dir_path
 
 Seção 8.1.2.3, “Diretório de plugins”
 
-### plugin\_path
+### plugin_path
 
 Seção 8.1.2.4, “Caminho de plugins”
 
-### plugin\_path\_dir
+### plugin_path_dir
 
 Seção 8.1.2.5, “Caminho de diretório de plugins”
 
@@ -6474,7 +6474,7 @@ Seção 2.4.3, “Instalando e Usando o Daemon de Lançamento do MySQL”
 
 Seção 2.5.4, “Instalando o MySQL no Linux Usando Pacotes RPM da Oracle”
 
-Seção 7.6.5.1, “Instalando ou Desinstalando ddl\_rewriter”
+Seção 7.6.5.1, “Instalando ou Desinstalando ddl_rewriter”
 
 Seção 8.4.6.2, “Instalando ou Desinstalando o MySQL Enterprise Audit”
 
@@ -6498,7 +6498,7 @@ Seção 8.4.5.14, “Migrando Chaves Entre Keystores do Keychain”
 
 Seção 8.5.3.1, “Instalação do Plugin de Máscara de Dados do MySQL Enterprise”
 
-Seção 6.6.8, “mysql\_migrate\_keyring — Ferramenta de Migração de Chaves do Keychain”
+Seção 6.6.8, “mysql_migrate_keyring — Ferramenta de Migração de Chaves do Keychain”
 
 Seção 8.4.1.8, “Autenticação Plugabeis sem Login”
 
@@ -6566,11 +6566,11 @@ Seção 29.12.11.18, “A tabela de membros do grupo de replicação”
 
 Seção 22.5.6.2, “Opções do X Plugin e variáveis do sistema”
 
-### preload\_buffer\_size
+### preload_buffer_size
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### print\_identified\_with\_as\_hex
+### print_identified_with_as_hex
 
 Seção 8.2.8, “Adicionar contas, atribuir privilégios e excluir contas”
 
@@ -6590,11 +6590,11 @@ Seção 15.7.7.33, “Instrução SHOW PROFILE”
 
 Seção 28.3.29, “A tabela de perfilagem do INFORMATION_SCHEMA”
 
-### profiling\_history\_size
+### profiling_history_size
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### algoritmos\_de\_compressão\_de\_protocolo
+### algoritmos_de_compressão_de_protocolo
 
 Seção 15.4.2.2, “ALTERAR A FONTE DE REPLICAÇÃO PARA Statement”
 
@@ -6644,7 +6644,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 6.6.9, “mysqlbinlog — Ferramenta para Processar Arquivos de Log Binário”
 
-Seção 19.3.3.1, “Privilegios para a Conta de REVISÃO\_VERIFICACAO\_USER”
+Seção 19.3.3.1, “Privilegios para a Conta de REVISÃO_VERIFICACAO_USER”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -6666,11 +6666,11 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### rand\_seed
+### rand_seed
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### range\_alloc\_block\_size
+### range_alloc_block_size
 
 Seção 6.5.1.6, “Dicas do Cliente MySQL”
 
@@ -6678,11 +6678,11 @@ Seção 10.2.1.2, “Otimização de Faixa”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### rbr\_exec\_mode
+### rbr_exec_mode
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### read\_buffer\_size
+### read_buffer_size
 
 Seção 10.12.3.1, “Como o MySQL Usa a Memória”
 
@@ -6690,7 +6690,7 @@ Seção 10.6.3, “Otimizando Declarações REPAIR TABLE”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### read\_only
+### read_only
 
 Seção 15.7.1, “Declarações de Gerenciamento de Conta”
 
@@ -6722,7 +6722,7 @@ Seção 10.2.3, “Otimizando Consultas do Schema INFORMATION_SCHEMA”
 
 Seção 7.5.8.2, “Componentes Compatíveis com o Rastreador de Opções”
 
-Seção 29.12.14.1, “Tabela global\_variable\_attributes do Schema Performance Schema”
+Seção 29.12.14.1, “Tabela global_variable_attributes do Schema Performance Schema”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -6742,7 +6742,7 @@ Seção 19.1.3.4, “Configurando a replicação usando GTIDs”
 
 Seção 15.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”
 
-### read\_rnd\_buffer\_size
+### read_rnd_buffer_size
 
 Seção 10.12.3.1, “Como o MySQL usa memória”
 
@@ -6752,13 +6752,13 @@ Seção 10.2.1.16, “Otimização de ORDER BY”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### regexp\_stack\_limit
+### regexp_stack_limit
 
 Seção 14.8.2, “Expressões regulares”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### regexp\_time\_limit
+### regexp_time_limit
 
 Seção 14.8.2, “Expressões regulares”
 
@@ -6768,7 +6768,7 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 19.2.2.3, “Opções de inicialização e canais de replicação”
 
-### relay\_log
+### relay_log
 
 Seção 19.1.2.8, “Adicionando réplicas a um ambiente de replicação”
 
@@ -6782,11 +6782,11 @@ Seção 19.2.2.4, “Convenções de nomenclatura de canais de replicação”
 
 Seção 19.2.4.1, “O log do Relay”
 
-### relay\_log\_basename
+### relay_log_basename
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de réplica”
 
-### relay\_log\_index
+### relay_log_index
 
 Seção 19.1.2.8, “Adicionando réplicas a um ambiente de replicação”
 
@@ -6794,11 +6794,11 @@ Seção 19.1.6.3, “Opções e variáveis do servidor de réplica”
 
 Seção 19.2.4.1, “O log do Relay”
 
-### relay\_log\_info\_repository
+### relay_log_info_repository
 
 Seção 19.4.2, “Tratamento de um travamento inesperado de uma réplica”
 
-### relay\_log\_purge
+### relay_log_purge
 
 Seção 19.4.2, “Tratamento de um travamento inesperado de uma réplica”
 
@@ -6806,13 +6806,13 @@ Seção 19.1.6.3, “Opções e variáveis do servidor de réplica”
 
 Seção 15.7.7.36, “Instrução SHOW REPLICA STATUS”
 
-### relay\_log\_recovery
+### relay_log_recovery
 
 Seção 19.4.2, “Tratamento de um travamento inesperado de uma réplica”
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de réplica”
 
-### relay\_log\_space\_limit
+### relay_log_space_limit
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de réplica”
 
@@ -6824,7 +6824,7 @@ Seção 19.2.2.3, “Opções de Inicialização e Canais de Replicação”
 
 Seção 19.2.2.3, “Opções de Inicialização e Canais de Replicação”
 
-### replica\_allow\_batching
+### replica_allow_batching
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
@@ -6832,7 +6832,7 @@ Seção 25.7.5, “Preparando o Clúster NDB para Replicação”
 
 Seção 25.7.6, “Iniciando a Replicação do Clúster NDB (Canal de Replicação Único”)")
 
-### replica\_checkpoint\_group
+### replica_checkpoint_group
 
 Seção 14.18.4, “Funções de Sincronização Baseadas em Posição”
 
@@ -6840,13 +6840,13 @@ Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
 Seção 19.2.2.3, “Opções de Inicialização e Canais de Replicação”
 
-### replica\_checkpoint\_period
+### replica_checkpoint_period
 
 Seção 14.18.4, “Funções de Sincronização Baseadas em Posição”
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-### replica\_compressed\_protocol
+### replica_compressed_protocol
 
 Seção 15.4.2.2, “Instrução de MUDAR A FONTE DE REPLICAÇÃO”
 
@@ -6856,7 +6856,7 @@ Seção 7.4.4.5.3, “Monitoramento da Compressão de Transações do Log Biná
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-### replica\_exec\_mode
+### replica_exec_mode
 
 Seção 25.7.3, “Problemas Conhecidos na Replicação de Clúster NDB”
 
@@ -6866,7 +6866,7 @@ Seção 19.5.1.22, “Replicação e Tabelas de MEMÓRIA”
 
 Seção 19.2.1.2, “Uso de Registro Baseado em Linhas e Replicação”
 
-### replica\_load\_tmpdir
+### replica_load_tmpdir
 
 Seção 19.4.1.2, “Fazendo Backup de Dados Brutos de uma Replicação”
 
@@ -6880,7 +6880,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção B.3.3.5, “Onde o MySQL Armazena Arquivos Temporários”
 
-### replica\_max\_allowed\_packet
+### replica_max_allowed_packet
 
 Seção 7.4.4.5.1, “Comportamentos Quando a Compressão de Transações do Log Binário está Ativada”
 
@@ -6892,9 +6892,9 @@ Seção 20.7.5, “Fragmentação de Mensagens”
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-Seção 19.5.1.21, “Replicação e max\_allowed\_packet”
+Seção 19.5.1.21, “Replicação e max_allowed_packet”
 
-### replica\_net\_timeout
+### replica_net_timeout
 
 Seção 15.4.2.2, “Instrução CHANGE REPLICATION SOURCE TO”
 
@@ -6908,7 +6908,7 @@ Seção 10.14.5, “Estados de Filhos de E/S de Replicação (Receptor)”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### replica\_parallel\_workers
+### replica_parallel_workers
 
 Seção 15.4.2.2, “Instrução CHANGE REPLICATION SOURCE TO”
 
@@ -6920,9 +6920,9 @@ Seção 7.5.6.1, “Componente de Metas do Aplicável de Replicação”
 
 Seção 10.14.6, “Estados de Filhos de E/S de Replicação (SQL)”
 
-Seção 29.12.11.9, “A tabela replication\_applier\_status\_by\_worker”
+Seção 29.12.11.9, “A tabela replication_applier_status_by_worker”
 
-### replica\_pending\_jobs\_size\_max
+### replica_pending_jobs_size_max
 
 Seção 10.12.3.1, “Como o MySQL Usa a Memória”
 
@@ -6930,13 +6930,13 @@ Seção 19.2.3.2, “Monitoramento de Filhos de E/S do Aplicável de Replicaç�
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-Seção 19.5.1.21, “Replicação e max\_allowed\_packet”
+Seção 19.5.1.21, “Replicação e max_allowed_packet”
 
 Seção 10.14.6, “Estados de Filhos de E/S de Replicação (SQL)”
 
-Seção 29.12.11.5, “A tabela replication\_applier\_metrics”
+Seção 29.12.11.5, “A tabela replication_applier_metrics”
 
-### replica\_preserve\_commit\_order
+### replica_preserve_commit_order
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -7026,15 +7026,15 @@ Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
 Seção 20.5.4.1.1, “Selecionando endereços para pontos finais de recuperação distribuída”
 
-### report\_user
+### report_user
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-### require\_row\_format
+### require_row_format
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### require\_secure\_transport
+### require_secure_transport
 
 Seção 20.6.1, “Pilha de Comunicação para Gerenciamento de Segurança de Conexão”
 
@@ -7050,7 +7050,7 @@ Seção 8.3, “Usando Conexões Encriptadas”
 
 Seção 22.5.3, “Usando Conexões Encriptadas com o Plugin X”
 
-### restrict\_fk\_on\_non\_standard\_key
+### restrict_fk_on_non_standard_key
 
 Seção 1.7.2.3, “Diferenças na Restrição FOREIGN KEY”
 
@@ -7058,27 +7058,27 @@ Seção 15.1.24.5, “Restrições FOREIGN KEY”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### resultset\_metadata
+### resultset_metadata
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### rewriter\_enabled
+### rewriter_enabled
 
 Seção 7.6.4.3.3, “Variáveis do Sistema de Plugin de Reescrita de Consultas”
 
 Seção 7.6.4.2, “Usando o Plugin de Reescrita de Consultas”
 
-### rewriter\_enabled\_for\_threads\_without\_privilege\_checks
+### rewriter_enabled_for_threads_without_privilege_checks
 
 Seção 7.6.4.3.3, “Variáveis do Sistema de Plugin de Reescrita de Consultas”
 
 Seção 7.6.4.2, “Usando o Plugin de Reescrita de Consultas”
 
-### rewriter\_verbose
+### rewriter_verbose
 
 Seção 7.6.4.3.3, “Variáveis do Sistema de Plugin de Reescrita de Consultas”
 
-### rpl\_read\_size
+### rpl_read_size
 
 Seção 10.12.3.1, “Como o MySQL Usa Memória”
 
@@ -7086,51 +7086,51 @@ Seção 19.4.7, “Melhorando o Desempenho da Replicação”
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-### rpl\_semi\_sync\_master\_enabled
+### rpl_semi_sync_master_enabled
 
 Seção 19.1.6.2, “Opções e Variáveis da Fonte de Replicação”
 
-### rpl\_semi\_sync\_master\_timeout
+### rpl_semi_sync_master_timeout
 
 Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
-### rpl\_semi\_sync\_master\_trace\_level
+### rpl_semi_sync_master_trace_level
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
 Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
-### rpl\_semi\_sync\_master\_wait\_for\_slave\_count
+### rpl_semi_sync_master_wait_for_slave_count
 
 Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
-### rpl\_semi\_sync\_master\_wait\_no\_slave
+### rpl_semi_sync_master_wait_no_slave
 
 Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
-### rpl\_semi\_sync\_master\_wait\_point
+### rpl_semi_sync_master_wait_point
 
 Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
-### rpl\_semi\_sync\_replica\_enabled
+### rpl_semi_sync_replica_enabled
 
 Seção 19.4.10.2, “Configurando replicação semisocial”
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### rpl\_semi\_sync\_replica\_trace\_level
+### rpl_semi_sync_replica_trace_level
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### rpl\_semi\_sync\_slave\_enabled
+### rpl_semi_sync_slave_enabled
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### rpl\_semi\_sync\_slave\_trace\_level
+### rpl_semi_sync_slave_trace_level
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### rpl\_semi\_sync\_source\_enabled
+### rpl_semi_sync_source_enabled
 
 Seção 19.4.10.2, “Configurando replicação semisocial”
 
@@ -7138,27 +7138,27 @@ Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
 Seção 19.4.10.3, “Monitoramento da replicação semisocial”
 
-### rpl\_semi\_sync\_source\_timeout
+### rpl_semi_sync_source_timeout
 
 Seção 19.4.10.2, “Configurando replicação semisocial”
 
 Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
-### rpl\_semi\_sync\_source\_trace\_level
+### rpl_semi_sync_source_trace_level
 
 Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
-### rpl\_semi\_sync\_source\_wait\_for\_replica\_count
+### rpl_semi_sync_source_wait_for_replica_count
 
 Seção 19.4.10.2, “Configurando replicação semisocial”
 
 Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
-### rpl\_semi\_sync\_source\_wait\_no\_replica
+### rpl_semi_sync_source_wait_no_replica
 
 Seção 19.1.6.2, “Opções e variáveis de fonte de replicação”
 
-### rpl\_semi\_sync\_source\_wait\_point
+### rpl_semi_sync_source_wait_point
 
 Seção 19.4.10.2, “Configurando a Replicação Semisincronizada”
 
@@ -7166,7 +7166,7 @@ Seção 19.1.6.2, “Opções e Variáveis de Fonte de Replicação”
 
 Seção 19.4.10, “Replicação Semisincronizada”
 
-### rpl\_stop\_replica\_timeout
+### rpl_stop_replica_timeout
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
@@ -7174,7 +7174,7 @@ Seção 19.5.1.35, “Inconsistências de Replicação e Transações”
 
 Seção 15.4.2.5, “Instrução STOP REPLICA”
 
-### rpl\_stop\_slave\_timeout
+### rpl_stop_slave_timeout
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Escravo”
 
@@ -7182,17 +7182,17 @@ Seção 19.1.6.3, “Opções e Variáveis do Servidor de Escravo”
 
 [index top]
 
-### schema\_definition\_cache
+### schema_definition_cache
 
 Seção 16.4, “Cache de Objetos do Dicionário”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### secondary\_engine\_cost\_threshold
+### secondary_engine_cost_threshold
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### secure\_file\_priv
+### secure_file_priv
 
 Seção 15.2.6, “Instrução IMPORT TABLE”
 
@@ -7208,7 +7208,7 @@ Seção 8.5.3.4, “Funções de Descrição do Plugin de Máscara de Dados do 
 
 Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”
 
-Seção 29.12.14.4, “Tabela de Variáveis\_Metadados do Schema\_Definition”
+Seção 29.12.14.4, “Tabela de Variáveis_Metadados do Schema_Definition”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -7226,23 +7226,23 @@ Seção 8.5.3.2, “Usando o Plugin de Máscara de Dados do MySQL Enterprise”
 
 Seção 27.3.9, “Usando Bibliotecas WebAssembly”
 
-### select\_into\_buffer\_size
+### select_into_buffer_size
 
 Seção 15.2.13.1, “Instrução SELECT ... INTO”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### select\_into\_disk\_sync
+### select_into_disk_sync
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### select\_into\_disk\_sync\_delay
+### select_into_disk_sync_delay
 
 Seção 15.2.13.1, “Instrução SELECT ... INTO”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### server\_id
+### server_id
 
 Seção 20.2.1.6.1, “Adicionar uma Segunda Instância”
 
@@ -7286,15 +7286,15 @@ Seção 19.5.4, “Depuração da Replicação”
 
 Seção 19.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”
 
-### server\_id\_bits
+### server_id_bits
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-### server\_memory
+### server_memory
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### server\_uuid
+### server_uuid
 
 Seção 19.3.2.2, “Chaves de Criptografia de Log Binário”
 
@@ -7318,17 +7318,17 @@ Seção 15.7.7.36, “Declaração SHOW REPLICA STATUS”
 
 Seção 19.1.3.8, “Exemplos de Funções Armazenadas para Manipular GTIDs”
 
-Seção 29.12.22.6, “A tabela log\_status”
+Seção 29.12.22.6, “A tabela log_status”
 
-Seção 29.12.11.2, “A tabela replication\_applier\_configuration”
+Seção 29.12.11.2, “A tabela replication_applier_configuration”
 
-Seção 29.12.11.13, “A tabela replication\_connection\_status”
+Seção 29.12.11.13, “A tabela replication_connection_status”
 
-Seção 20.4.3, “A tabela replication\_group\_members”
+Seção 20.4.3, “A tabela replication_group_members”
 
 Seção 20.5.6, “Usando o MySQL Enterprise Backup com a Replicação de Grupo”
 
-### session\_track\_gtids
+### session_track_gtids
 
 Seção 19.1.6.5, “Variáveis do Sistema de ID de Transação Global”
 
@@ -7338,31 +7338,31 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.18, “Rastreamento do Estado da Sessão do Cliente pelo Servidor”
 
-### session\_track\_schema
+### session_track_schema
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.18, “Rastreamento do Estado da Sessão do Cliente pelo Servidor”
 
-### session\_track\_state\_change
+### session_track_state_change
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.18, “Rastreamento do Estado da Sessão do Cliente pelo Servidor”
 
-### session\_track\_system\_variables
+### session_track_system_variables
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.18, “Rastreamento do Estado da Sessão do Cliente pelo Servidor”
 
-### session\_track\_transaction\_info
+### session_track_transaction_info
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.18, “Rastreamento do Estado da Sessão do Cliente pelo Servidor”
 
-### set\_operations\_buffer\_size
+### set_operations_buffer_size
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -7380,7 +7380,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 8.4.1.2, “Autenticação Conectada SHA-256”
 
-### shared\_memory
+### shared_memory
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -7416,17 +7416,17 @@ Seção 1.2.2, “As Principais Características do MySQL”
 
 Seção 2.3.2.1.2, “Tipo e Rede”
 
-Seção 28.3.8, “A Tabela INFORMATION\_SCHEMA COLUMNS”
+Seção 28.3.8, “A Tabela INFORMATION_SCHEMA COLUMNS”
 
-Seção 28.3.40, “A Tabela INFORMATION\_SCHEMA STATISTICS”
+Seção 28.3.40, “A Tabela INFORMATION_SCHEMA STATISTICS”
 
-### skip\_external\_locking
+### skip_external_locking
 
 Seção 10.11.5, “Bloqueio Externo”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### skip\_name\_resolve
+### skip_name_resolve
 
 Seção 7.1.12.3, “Consultas de DNS e Cache de Anfitrião”
 
@@ -7442,7 +7442,7 @@ Seção 2.3.3.9, “Testando a Instalação do MySQL”
 
 Seção 8.2.22, “Resolvendo Problemas de Conexão ao MySQL”
 
-### skip\_networking
+### skip_networking
 
 Seção B.3.2.2, “Não consigo conectar ao servidor MySQL [local]”
 
@@ -7470,91 +7470,91 @@ Seção 19.5.4, “Resolvendo Problemas de Replicação”
 
 Seção 22.5.6.3, “Variáveis de Status do Plugin X”
 
-### skip\_replica\_start
+### skip_replica_start
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
-Seção 15.4.3.1, “Instrução START GROUP\_REPLICATION”
+Seção 15.4.3.1, “Instrução START GROUP_REPLICATION”
 
-### skip\_show\_database
+### skip_show_database
 
 Seção 7.1.7, “Opções de Comando do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### skip\_slave\_start
+### skip_slave_start
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
-### slave\_allow\_batching
+### slave_allow_batching
 
 Seção 25.4.3.9.2, “Variáveis do Sistema de NDB Cluster”
 
-### slave\_checkpoint\_group
+### slave_checkpoint_group
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
-### slave\_checkpoint\_period
+### slave_checkpoint_period
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_compressed\_protocol
+### slave_compressed_protocol
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_exec\_mode
+### slave_exec_mode
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_load\_tmpdir
+### slave_load_tmpdir
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_max\_allowed\_packet
+### slave_max_allowed_packet
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_net\_timeout
+### slave_net_timeout
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_parallel\_workers
+### slave_parallel_workers
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_pending\_jobs\_size\_max
+### slave_pending_jobs_size_max
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_preserve\_commit\_order
+### slave_preserve_commit_order
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_skip\_errors
+### slave_skip_errors
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_sql\_verify\_checksum
+### slave_sql_verify_checksum
 
 Glossário do MySQL
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_transaction\_retries
+### slave_transaction_retries
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slave\_type\_conversions
+### slave_type_conversions
 
 Seção 19.1.6.3, “Opções e variáveis do servidor de replicação”
 
-### slow\_launch\_time
+### slow_launch_time
 
 Seção 7.1.10, “Variáveis de status do servidor”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### slow\_query\_log
+### slow_query_log
 
 Seção 7.4.1, “Selecionando destinos de saída do log de consultas gerais e do log de consultas lentas”
 
@@ -7562,7 +7562,7 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 7.4.5, “O log de consultas lentas”
 
-### slow\_query\_log\_file
+### slow_query_log_file
 
 Seção 7.4.1, “Selecionando destinos de saída do log de consultas gerais e do log de consultas lentas”
 
@@ -7576,7 +7576,7 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 22.5.6.2, “Opções do plugin X e variáveis do sistema”
 
-### sort\_buffer\_size
+### sort_buffer_size
 
 Seção 9.6.3, “Como reparar tabelas MyISAM”
 
@@ -7654,11 +7654,11 @@ Seção 30.4.4.14, “O procedimento ps_setup_save()”
 
 Seção 30.4.4.22, “O procedimento ps_trace_statement_digest()”
 
-Seção 30.4.4.23, “O procedimento ps\_trace\_thread()” Procedimento")
+Seção 30.4.4.23, “O procedimento ps_trace_thread()” Procedimento")
 
-Seção 30.4.4.26, “O procedimento statement\_performance\_analyzer()” Procedimento")
+Seção 30.4.4.26, “O procedimento statement_performance_analyzer()” Procedimento")
 
-### sql\_log\_off
+### sql_log_off
 
 Glossário do MySQL
 
@@ -7670,11 +7670,11 @@ Seção 7.1.8, “Variáveis do sistema do servidor”
 
 Seção 7.4.3, “O log de consulta geral”
 
-### SQL\_MODE
+### SQL_MODE
 
 Seção 17.12.1, “Operações de DDL online”
 
-### sql\_mode
+### sql_mode
 
 Seção 17.1.2, “Melhores práticas para tabelas InnoDB”
 
@@ -7712,13 +7712,13 @@ Seção 7.4.4, “O log binário”
 
 Seção 28.3.53, “A tabela de visualizações do INFORMATION_SCHEMA”
 
-Seção 30.4.5.7, “A função list\_add()” Função")
+Seção 30.4.5.7, “A função list_add()” Função")
 
 Seção 6.2.2.2, “Usando arquivos de opção”
 
 Seção 7.1.9, “Usando variáveis do sistema”
 
-### sql\_notes
+### sql_notes
 
 Seção B.2, “Interfaces de informações de erro”
 
@@ -7752,7 +7752,7 @@ Seção 20.3.1, “Requisitos de Replicação em Grupo”
 
 Seção 19.3.3.2, “Verificação de Privilegios para Canais de Replicação em Grupo”
 
-Seção 19.3.3.1, “Privilegios para a Conta de VERIFICAÇÃO DE PRIVILEGIOS Replication PRIVILEGIOS\_CHECKS\_USER”
+Seção 19.3.3.1, “Privilegios para a Conta de VERIFICAÇÃO DE PRIVILEGIOS Replication PRIVILEGIOS_CHECKS_USER”
 
 Seção 19.3.3, “Verificação de Privilegios de Replicação”
 
@@ -7800,7 +7800,7 @@ Seção 19.3.1, “Configurando a Replicação para Usar Conexões Encriptadas�
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### ssl\_capath
+### ssl_capath
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -7816,7 +7816,7 @@ Seção 19.3.1, “Configurando a Replicação para Usar Conexões Encriptadas�
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### ssl\_cert
+### ssl_cert
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -7838,7 +7838,7 @@ Seção 19.3.1, “Configurando a Replicação para Usar Conexões Encriptadas�
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### ssl\_cipher
+### ssl_cipher
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -7864,7 +7864,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### ssl\_crlpath
+### ssl_crlpath
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -7878,7 +7878,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### ssl\_fips\_mode
+### ssl_fips_mode
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -7886,7 +7886,7 @@ Seção 8.8, “Suporte FIPS”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### ssl\_key
+### ssl_key
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -7906,7 +7906,7 @@ Seção 19.3.1, “Configurando a Replicação para Usar Conexões Encriptadas�
 
 Seção 22.5.6.2, “Opções do Plugin X e Variáveis do Sistema”
 
-### ssl\_session\_cache\_mode
+### ssl_session_cache_mode
 
 Seção 8.3.5, “Reutilizando Sessões SSL”
 
@@ -7914,17 +7914,17 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### ssl\_session\_cache\_timeout
+### ssl_session_cache_timeout
 
 Seção 8.3.5, “Reutilizando Sessões SSL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### statement\_id
+### statement_id
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### stored\_program\_cache
+### stored_program_cache
 
 Seção 10.10.3, “Cache de Declarações Preparadas e Programas Armazenados”
 
@@ -7932,13 +7932,13 @@ Seção 16.4, “Cache de Objetos de Dicionário”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### cache\_de\_definições\_de\_programas\_armazenados
+### cache_de_definições_de_programas_armazenados
 
 Seção 16.4, “Cache de Objetos de Dicionário”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### super\_leitura\_somente
+### super_leitura_somente
 
 Seção 20.2.1.6.1, “Adicionar uma Segunda Instância”
 
@@ -7956,19 +7956,19 @@ Seção 20.9.1, “Variáveis do Sistema do Grupo de Replicação”
 
 Seção 20.8.3.1, “Considerações de Atualização Online”
 
-Seção 10.2.3, “Otimização de Consultas do INFORMATION\_SCHEMA”
+Seção 10.2.3, “Otimização de Consultas do INFORMATION_SCHEMA”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 20.1.3.1, “Modo de Primárias Únicas”
 
-Seção 15.4.3.1, “Instrução START GROUP\_REPLICATION”
+Seção 15.4.3.1, “Instrução START GROUP_REPLICATION”
 
-Seção 15.4.3.2, “Instrução STOP GROUP\_REPLICATION”
+Seção 15.4.3.2, “Instrução STOP GROUP_REPLICATION”
 
 Seção 20.8.3.2, “Atualização de um Membro do Grupo de Replicação”
 
-### sync\_binlog
+### sync_binlog
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -7982,23 +7982,23 @@ Seção 19.5.1.29, “Replicação e Parada de Fontes ou Replicas”
 
 Seção 7.4.4, “O Registro Binário”
 
-### sync\_master\_info
+### sync_master_info
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-### sync\_relay\_log
+### sync_relay_log
 
 Seção 19.4.2, “Tratamento de uma Parada Inesperada de uma Replicação”
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
-### sync\_relay\_log\_info
+### sync_relay_log_info
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
 Seção 19.5.1.29, “Replicação e Parada de Fontes ou Replicas”
 
-### sync\_source\_info
+### sync_source_info
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
@@ -8008,7 +8008,7 @@ Seção 7.4.2.8, “Registro de Erros no Log do Sistema”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### system\_time\_zone
+### system_time_zone
 
 Seção 7.1.15, “Suporte ao Fuso Horário do Servidor MySQL”
 
@@ -8022,7 +8022,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 [index top]
 
-### table\_definition\_cache
+### table_definition_cache
 
 Seção 16.4, “Cache de Objetos do Dicionário”
 
@@ -8030,7 +8030,7 @@ Seção 10.12.3.1, “Como o MySQL Usa a Memória”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### table\_encryption\_privilege\_check
+### table_encryption_privilege_check
 
 Seção 15.1.2, “Instrução ALTER DATABASE”
 
@@ -8046,7 +8046,7 @@ Seção 15.1.25, “Instrução CREATE TABLESPACE”
 
 Seção 17.13, “Criptografia de Dados em Repouso no InnoDB”
 
-Seção 19.3.3.1, “Privilégios para a Conta PRIVILEGE\_CHECKS\_USER da Replicação”
+Seção 19.3.3.1, “Privilégios para a Conta PRIVILEGE_CHECKS_USER da Replicação”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
@@ -8054,7 +8054,7 @@ Seção 15.1.41, “Instrução RENAME TABLE”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### table\_open\_cache
+### table_open_cache
 
 Seção B.3.2.16, “Arquivo Não Encontrado e Erros Semelhantes”
 
@@ -8070,7 +8070,7 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### table\_open\_cache\_instances
+### table_open_cache_instances
 
 Seção 7.4.1, “Selecionando Destinatários de Saída do Log de Consultas Gerais e do Log de Consultas Lentas”
 
@@ -8078,13 +8078,13 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### table\_open\_cache\_triggers
+### table_open_cache_triggers
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### tablespace\_definition\_cache
+### tablespace_definition_cache
 
 Seção 16.4, “Cache de Objetos de Diálogo”
 
@@ -8102,7 +8102,7 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### temptable\_max\_mmap
+### temptable_max_mmap
 
 Seção 10.4.4, “Uso de Tabelas Temporárias Internas no MySQL”
 
@@ -8110,7 +8110,7 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### temptable\_max\_ram
+### temptable_max_ram
 
 Seção 17.8.12, “Detecção e Configuração de Contenedores”
 
@@ -8120,7 +8120,7 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### terminologia\_use\_previous
+### terminologia_use_previous
 
 Seção 19.1.6.3, “Opções e Variáveis do Servidor Replica”
 
@@ -8130,7 +8130,7 @@ Seção 10.14.4, “Estados de Threads de Fonte de Replicação”
 
 Seção 10.14.6, “Estados de Threads SQL de Replicação”
 
-### thread\_cache\_size
+### thread_cache_size
 
 Seção 7.1.12.1, “Interfaces de Conexão”
 
@@ -8140,35 +8140,35 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### thread\_handling
+### thread_handling
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.6.3.1, “Elementos do Pool de Threads”
 
-### thread\_pool\_algorithm
+### thread_pool_algorithm
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-Seção 29.12.16.2, “A Tabela tp\_thread\_group\_state”
+Seção 29.12.16.2, “A Tabela tp_thread_group_state”
 
 Seção 7.6.3.3, “Operação do Pool de Threads”
 
 Seção 7.6.3.4, “Ajuste do Pool de Threads”
 
-### thread\_pool\_dedicated\_listeners
+### thread_pool_dedicated_listeners
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.6.3.3, “Operação do Pool de Threads”
 
-### thread\_pool\_high\_priority\_connection
+### thread_pool_high_priority_connection
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.6.3.3, “Operação do Pool de Threads”
 
-### thread\_pool\_longrun\_trx\_limit
+### thread_pool_longrun_trx_limit
 
 Seção 8.2.2, “Privilegios fornecidos pelo MySQL”
 
@@ -8298,11 +8298,11 @@ Seção 8.3.2, “Protocolos e Cifras TLS de Conexão Encriptada”
 
 Seção A.9, “Perguntas Frequentes do MySQL 9.5: Segurança”
 
-### tls\_certificates\_enforced\_validation
+### tls_certificates_enforced_validation
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### tls\_ciphersuites
+### tls_ciphersuites
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -8316,7 +8316,7 @@ Seção 7.1.10, “Variáveis de Status do Servidor”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### tls\_version
+### tls_version
 
 Seção 6.2.3, “Opções de Comando para Conectar ao Servidor”
 
@@ -8336,7 +8336,7 @@ Seção 19.3.1, “Configurando a Replicação para Usar Conexões Encriptadas�
 
 Seção 22.5.3, “Usando Conexões Encriptadas com o Plugin X”
 
-### tmp\_table\_size
+### tmp_table_size
 
 Seção 10.12.3.1, “Como o MySQL Usa a Memória”
 
@@ -8374,15 +8374,15 @@ Seção 19.1.6.3, “Opções e Variáveis do Servidor de Replicação”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### transaction\_alloc\_block\_size
+### transaction_alloc_block_size
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### transaction\_allow\_batching
+### transaction_allow_batching
 
 Seção 25.4.3.9.2, “Variáveis do Sistema do NDB Cluster”
 
-### transaction\_isolation
+### transaction_isolation
 
 Seção 7.1.7, “Opções de Comando do Servidor”
 
@@ -8392,11 +8392,11 @@ Seção 7.1.18, “Rastreamento do Estado da Sessão do Cliente pelo Servidor�
 
 Seção 15.3.7, “Instrução SET TRANSACTION”
 
-### transaction\_prealloc\_size
+### transaction_prealloc_size
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### transaction\_read\_only
+### transaction_read_only
 
 Seção 10.2.3, “Otimização de Consultas do INFORMATION_SCHEMA”
 
@@ -8408,7 +8408,7 @@ Seção 7.1.18, “Rastreamento do Estado da Sessão do Cliente pelo Servidor�
 
 Seção 15.3.7, “Instrução SET TRANSACTION”
 
-### verificação\_de\_senha
+### verificação_de_senha
 
 Seção 14.13, “Funções de criptografia e compactação”
 
@@ -8416,27 +8416,27 @@ Seção 8.4.4.2, “Opções e variáveis de validação de senha”
 
 Seção 8.4.4, “O componente de validação de senha”
 
-### verificar\_nome\_do\_usuario
+### verificar_nome_do_usuario
 
 Seção 8.4.4.2, “Opções e variáveis de validação de senha”
 
-### arquivo\_de\_dicionário\_de\_senha
+### arquivo_de_dicionário_de_senha
 
 Seção 8.4.4.2, “Opções e variáveis de validação de senha”
 
-### comprimento\_da\_senha
+### comprimento_da_senha
 
 Seção 8.4.4.2, “Opções e variáveis de validação de senha”
 
-### contagem\_de\_caracteres\_especiais
+### contagem_de_caracteres_especiais
 
 Seção 8.4.4.2, “Opções e variáveis de validação de senha”
 
-### política\_de\_senha
+### política_de_senha
 
 Seção 8.4.4.2, “Opções e variáveis de validação de senha”
 
-### contagem\_de\_palavras
+### contagem_de_palavras
 
 Seção 8.4.4.2, “Opções e variáveis de validação de senha”
 
@@ -8450,7 +8450,7 @@ Seção 17.14, “Opções de inicialização do InnoDB e variáveis de sistema
 
 Seção 7.1.8, “Variáveis de sistema do servidor”
 
-### comentário\_sobre\_versão
+### comentário_sobre_versão
 
 Seção 2.8.7, “Opções de configuração de fonte MySQL”
 
@@ -8458,15 +8458,15 @@ Seção 7.1.8, “Variáveis de sistema do servidor”
 
 Seção 15.7.7.42, “Instrução SHOW VARIABLES”
 
-### versão\_compilada\_para\_máquina
+### versão_compilada_para_máquina
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### version\_compile\_os
+### version_compile_os
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### version\_compile\_zlib
+### version_compile_zlib
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -8474,7 +8474,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 [index top]
 
-### wait\_timeout
+### wait_timeout
 
 Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”
 
@@ -8486,7 +8486,7 @@ Seção 7.6.6.9, “Tratamento de Falha na Operação de Clonagem Remota”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### warning\_count
+### warning_count
 
 Seção B.2, “Interfaces de Informações de Erro”
 
@@ -8502,7 +8502,7 @@ Seção 15.6.7.5, “Instrução SIGNAL”
 
 Seção 15.6.7.7, “A Área de Diagnóstico do MySQL”
 
-### windowing\_use\_high\_precision
+### windowing_use_high_precision
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -8512,7 +8512,7 @@ Seção 10.2.1.21, “Otimização da Função Window”
 
 [index top]
 
-### xa\_detach\_on\_prepare
+### xa_detach_on_prepare
 
 Seção 20.3.1, “Requisitos de Replicação em Grupo”
 

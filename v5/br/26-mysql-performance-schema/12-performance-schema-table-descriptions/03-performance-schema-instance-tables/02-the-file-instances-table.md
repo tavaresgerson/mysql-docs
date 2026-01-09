@@ -1,4 +1,4 @@
-#### 25.12.3.2 A tabela file\_instances
+#### 25.12.3.2 A tabela file_instances
 
 A tabela `file_instances` lista todos os arquivos vistos pelo Schema de Desempenho ao executar a instrumentação de E/S de arquivos. Se um arquivo no disco nunca tiver sido aberto, ele não estará na tabela `file_instances`. Quando um arquivo é excluído do disco, ele também é removido da tabela `file_instances`.
 

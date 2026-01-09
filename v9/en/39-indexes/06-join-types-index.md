@@ -38,7 +38,7 @@ Section 15.2.13, “SELECT Statement”
 
 [index top]
 
-### eq\_ref
+### eq_ref
 
 Section 10.2.1.12, “Block Nested-Loop and Batched Key Access Joins”
 
@@ -52,7 +52,7 @@ Section 25.4.3.9.2, “NDB Cluster System Variables”
 
 Section 10.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”
 
-Section 29.12.4.1, “The events\_waits\_current Table”
+Section 29.12.4.1, “The events_waits_current Table”
 
 ### F
 
@@ -72,13 +72,13 @@ Section 10.2.1.12, “Block Nested-Loop and Batched Key Access Joins”
 
 Section 10.8.2, “EXPLAIN Output Format”
 
-### index\_merge
+### index_merge
 
 Section 10.8.2, “EXPLAIN Output Format”
 
 Section 10.2.1.3, “Index Merge Optimization”
 
-### index\_subquery
+### index_subquery
 
 Section 10.8.2, “EXPLAIN Output Format”
 
@@ -126,7 +126,7 @@ Section 10.2.2.4, “Optimizing Derived Tables, View References, and Common Tab
 
 Section 10.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”
 
-### ref\_or\_null
+### ref_or_null
 
 Section 10.8.2, “EXPLAIN Output Format”
 
@@ -154,7 +154,7 @@ Section 15.2.13, “SELECT Statement”
 
 [index top]
 
-### unique\_subquery
+### unique_subquery
 
 Section 10.8.2, “EXPLAIN Output Format”
 

@@ -110,7 +110,7 @@ Quando um `SELECT` é usado nas construções `REPLACE INTO t SELECT ... FROM s 
 
 * O `InnoDB` define um bloqueio exclusivo no final do índice associado à coluna `AUTO_INCREMENT` ao inicializar uma coluna `AUTO_INCREMENT` especificada anteriormente em uma tabela.
 
-  Com `innodb_autoinc_lock_mode=0`, o `InnoDB` usa um modo especial de bloqueio de tabela `AUTO-INC` onde o bloqueio é obtido e mantido até o final da declaração SQL atual (não até o final de toda a transação) enquanto acessa o contador de autoincremento. Outros clientes não podem inserir na tabela enquanto o bloqueio de tabela `AUTO-INC` estiver sendo mantido. O mesmo comportamento ocorre para "inserções em massa" com `innodb_autoinc_lock_mode=1`. Bloqueios de `AUTO-INC` em nível de tabela não são usados com `innodb_autoinc_lock_mode=2`. Para mais informações, consulte a Seção 17.6.1.6, “Tratamento de `AUTO\_INCREMENT` no `InnoDB’”.
+  Com `innodb_autoinc_lock_mode=0`, o `InnoDB` usa um modo especial de bloqueio de tabela `AUTO-INC` onde o bloqueio é obtido e mantido até o final da declaração SQL atual (não até o final de toda a transação) enquanto acessa o contador de autoincremento. Outros clientes não podem inserir na tabela enquanto o bloqueio de tabela `AUTO-INC` estiver sendo mantido. O mesmo comportamento ocorre para "inserções em massa" com `innodb_autoinc_lock_mode=1`. Bloqueios de `AUTO-INC` em nível de tabela não são usados com `innodb_autoinc_lock_mode=2`. Para mais informações, consulte a Seção 17.6.1.6, “Tratamento de `AUTO_INCREMENT` no `InnoDB’”.
 
 * O `InnoDB` obtém o valor de uma coluna `AUTO_INCREMENT` previamente inicializada sem definir nenhum bloqueio.
 

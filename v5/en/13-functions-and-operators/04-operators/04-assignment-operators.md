@@ -2,7 +2,7 @@
 
 **Table 12.6 Assignment Operators**
 
-<table frame="box" rules="all" summary="A reference that lists assignment operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="assignment-operators.html#operator_assign-value"><code>:=</code></a></td> <td> Assign a value </td> </tr><tr><td><a class="link" href="assignment-operators.html#operator_assign-equal"><code>=</code></a></td> <td> Assign a value (as part of a <a class="link" href="set-variable.html" title="13.7.4.1 SET Syntax for Variable Assignment"><code>SET</code></a> statement, or as part of the <code>SET</code> clause in an <a class="link" href="update.html" title="13.2.11 UPDATE Statement"><code>UPDATE</code></a> statement) </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists assignment operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>:=</code></td> <td> Assign a value </td> </tr><tr><td><code>=</code></td> <td> Assign a value (as part of a <code>SET</code> statement, or as part of the <code>SET</code> clause in an <code>UPDATE</code> statement) </td> </tr></tbody></table>
 
 * `:=`
 

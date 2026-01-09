@@ -1,4 +1,4 @@
-#### 26.4.3.42 As visualizações user\_summary\_by\_file\_io e x$user\_summary\_by\_file\_io
+#### 26.4.3.42 As visualizações user_summary_by_file_io e x$user_summary_by_file_io
 
 Esses pontos resumem o acesso e gravação de arquivos, agrupados por usuário. Por padrão, as linhas são ordenadas em ordem decrescente de latência total de acesso e gravação de arquivos.
 

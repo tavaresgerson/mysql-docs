@@ -1,4 +1,4 @@
-#### 30.4.3.51 As visualizações waits\_by\_user\_by\_latency e x$waits\_by\_user\_by\_latency
+#### 30.4.3.51 As visualizações waits_by_user_by_latency e x$waits_by_user_by_latency
 
 Essas visualizações resumem os eventos de espera, agrupados por usuário e evento. Por padrão, as linhas são ordenadas por usuário e por tempo total de espera em ordem decrescente. Os eventos em espera são ignorados.
 

@@ -36,7 +36,7 @@ Section 15.3.7, “SET TRANSACTION Statement”
 
 Section 7.4.4.2, “Setting The Binary Log Format”
 
-Section 29.12.7.1, “The events\_transactions\_current Table”
+Section 29.12.7.1, “The events_transactions_current Table”
 
 Section 17.7.2.1, “Transaction Isolation Levels”
 
@@ -54,7 +54,7 @@ Section 15.3.7, “SET TRANSACTION Statement”
 
 Section 7.4.4.2, “Setting The Binary Log Format”
 
-Section 29.12.7.1, “The events\_transactions\_current Table”
+Section 29.12.7.1, “The events_transactions_current Table”
 
 Section 17.7.2.1, “Transaction Isolation Levels”
 
@@ -94,7 +94,7 @@ Section 15.3.7, “SET TRANSACTION Statement”
 
 Section 15.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”
 
-Section 29.12.7.1, “The events\_transactions\_current Table”
+Section 29.12.7.1, “The events_transactions_current Table”
 
 Section 17.7.2.1, “Transaction Isolation Levels”
 
@@ -134,7 +134,7 @@ Section 15.3.7, “SET TRANSACTION Statement”
 
 Section 15.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”
 
-Section 29.12.7.1, “The events\_transactions\_current Table”
+Section 29.12.7.1, “The events_transactions_current Table”
 
 Section 17.7.2.1, “Transaction Isolation Levels”
 

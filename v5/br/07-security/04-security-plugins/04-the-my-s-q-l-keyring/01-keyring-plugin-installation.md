@@ -28,7 +28,7 @@ O nome base do arquivo da biblioteca do plugin `keyring_file` é `keyring_file`.
 
 Para carregar o plugin, use a opção `--early-plugin-load` para nomear o arquivo da biblioteca do plugin que o contém. Por exemplo, em plataformas onde o sufixo do arquivo da biblioteca do plugin é `.so`, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
-```sql
+```
 [mysqld]
 early-plugin-load=keyring_file.so
 ```
@@ -41,13 +41,13 @@ A criptografia do espaço de tabelas `InnoDB` exige que o plugin de chave seja c
 
 Antes de iniciar o servidor, verifique as notas do seu plugin de chave privada escolhido para obter instruções de configuração específicas para esse plugin:
 
-- `keyring_file`: Seção 6.4.4.2, “Usando o plugin de cartela de chaves baseado em arquivo keyring\_file”.
+- `keyring_file`: Seção 6.4.4.2, “Usando o plugin de cartela de chaves baseado em arquivo keyring_file”.
 
-- `keyring_encrypted_file`: Seção 6.4.4.3, “Usando o plugin de cartela de chaves com arquivo criptografado keyring\_encrypted\_file”.
+- `keyring_encrypted_file`: Seção 6.4.4.3, “Usando o plugin de cartela de chaves com arquivo criptografado keyring_encrypted_file”.
 
-- `keyring_okv`: Seção 6.4.4.4, “Usando o plugin KMIP keyring\_okv”.
+- `keyring_okv`: Seção 6.4.4.4, “Usando o plugin KMIP keyring_okv”.
 
-- `keyring_aws`: Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”
+- `keyring_aws`: Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”
 
 Após realizar qualquer configuração específica do plugin, inicie o servidor. Verifique a instalação do plugin examinando a tabela Schema de Informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte Seção 5.5.2, “Obtendo Informações do Plugin do Servidor”). Por exemplo:
 

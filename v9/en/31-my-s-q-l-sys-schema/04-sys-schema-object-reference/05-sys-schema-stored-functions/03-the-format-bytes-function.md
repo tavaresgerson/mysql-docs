@@ -1,4 +1,4 @@
-#### 30.4.5.3 The format\_bytes() Function
+#### 30.4.5.3 The format_bytes() Function
 
 Note
 

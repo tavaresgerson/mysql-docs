@@ -22,17 +22,17 @@
 
     6.2.9 Definindo Variáveis Ambientais
 
-6.3 Programas Relacionados à Instalação:   6.3.1 comp\_err — Arquivo de Mensagem de Erro do MySQL
+6.3 Programas Relacionados à Instalação:   6.3.1 comp_err — Arquivo de Mensagem de Erro do MySQL
 
-    6.3.2 mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL
+    6.3.2 mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL
 
-    6.3.3 mysql\_tzinfo\_to\_sql — Carregar as Tabelas de Fuso Horário
+    6.3.3 mysql_tzinfo_to_sql — Carregar as Tabelas de Fuso Horário
 
-6.4 Programas Relacionados à Instalação:   6.4.1 comp\_err — Arquivo de Mensagem de Erro do MySQL
+6.4 Programas Relacionados à Instalação:   6.4.1 comp_err — Arquivo de Mensagem de Erro do MySQL
 
-    6.4.2 mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL
+    6.4.2 mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL
 
-    6.4.3 mysql\_tzinfo\_to\_sql — Carregar as Tabelas de Fuso Horário
+    6.4.3 mysql_tzinfo_to_sql — Carregar as Tabelas de Fuso Horário
 
 6.5 Programas de Cliente:   6.5.1 mysql — O Cliente de Linha de Comando do MySQL
 
@@ -54,7 +54,7 @@
 
     6.6.2 innochecksum — Ferramenta de Verificação de Checksum de Arquivo InnoDB Offline
 
-    6.6.3 myisam\_ftdump — Exibir Informações de Índices de Texto Completo
+    6.6.3 myisam_ftdump — Exibir Informações de Índices de Texto Completo
 
     6.6.4 myisamchk — Ferramenta de Manutenção de Tabelas MyISAM
 

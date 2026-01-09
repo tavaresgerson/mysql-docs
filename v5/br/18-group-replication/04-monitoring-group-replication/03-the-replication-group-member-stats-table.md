@@ -1,4 +1,4 @@
-### 17.4.3 A tabela replication\_group\_member\_stats
+### 17.4.3 A tabela replication_group_member_stats
 
 Cada membro de um grupo de replicação certifica e aplica as transações recebidas pelo grupo. As estatísticas sobre os procedimentos de certificação e aplicação são úteis para entender como a fila de aplicação está crescendo, quantos conflitos foram encontrados, quantas transações foram verificadas, quais transações foram confirmadas em todos os lugares, e assim por diante.
 

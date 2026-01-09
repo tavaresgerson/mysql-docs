@@ -11,7 +11,7 @@
 
 23.2.3 Stored Routine Metadata
 
-23.2.4 Stored Procedures, Functions, Triggers, and LAST\_INSERT\_ID()
+23.2.4 Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()
 ```
 
 23.3 Uso de gatilhos:   23.3.1 Sintaxe e exemplos de gatilhos

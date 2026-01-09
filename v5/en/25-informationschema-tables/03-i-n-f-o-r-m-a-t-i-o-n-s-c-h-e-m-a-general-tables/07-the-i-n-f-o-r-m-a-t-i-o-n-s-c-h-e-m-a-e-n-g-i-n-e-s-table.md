@@ -1,4 +1,4 @@
-### 24.3.7 The INFORMATION\_SCHEMA ENGINES Table
+### 24.3.7 The INFORMATION_SCHEMA ENGINES Table
 
 The [`ENGINES`](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table") table provides information about storage engines. This is particularly useful for checking whether a storage engine is supported, or to see what the default engine is.
 

@@ -1,4 +1,4 @@
-#### 25.12.11.4 A tabela replication\_applier\_status
+#### 25.12.11.4 A tabela replication_applier_status
 
 Esta tabela mostra o status atual da execução da transação geral na replica. A tabela fornece informações sobre aspectos gerais do status do aplicador de transações que não são específicos de qualquer thread envolvida. Informações de status específicas para cada thread estão disponíveis na tabela `replication_applier_status_by_coordinator` (e na tabela `replication_applier_status_by_worker` se a replica for multithread).
 

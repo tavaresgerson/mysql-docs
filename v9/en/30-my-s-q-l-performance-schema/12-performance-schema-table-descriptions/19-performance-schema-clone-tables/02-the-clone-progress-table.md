@@ -1,4 +1,4 @@
-#### 29.12.19.2 The clone\_progress Table
+#### 29.12.19.2 The clone_progress Table
 
 The `clone_progress` table shows progress information for the current or last executed cloning operation only.
 

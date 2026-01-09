@@ -8,7 +8,7 @@ Iniciar o clúster não é muito difícil depois que ele é configurado. Cada pr
    $> ndb_mgmd --initial -f /var/lib/mysql-cluster/config.ini
    ```
 
-   Na primeira vez que ele for iniciado, **ndb\_mgmd** deve ser informado onde encontrar seu arquivo de configuração, usando a opção `-f` ou `--config-file`. Essa opção exige que `--initial` ou `--reload` também sejam especificados; veja Seção 21.5.4, “ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”, para detalhes.
+   Na primeira vez que ele for iniciado, **ndb_mgmd** deve ser informado onde encontrar seu arquivo de configuração, usando a opção `-f` ou `--config-file`. Essa opção exige que `--initial` ou `--reload` também sejam especificados; veja Seção 21.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”, para detalhes.
 
 2. Em cada um dos hosts dos nós de dados, execute este comando para iniciar o processo **ndbd**:
 
@@ -18,7 +18,7 @@ Iniciar o clúster não é muito difícil depois que ele é configurado. Cada pr
 
 3. Se você usou arquivos RPM para instalar o MySQL no host do clúster onde o nó SQL deve residir, você pode (e deve) usar o script de inicialização fornecido para iniciar o processo do servidor MySQL no nó SQL.
 
-Se tudo tiver corrido bem e o clúster tiver sido configurado corretamente, ele agora deve estar operacional. Você pode testar isso invocando o cliente do nó de gerenciamento **ndb\_mgm**. A saída deve parecer como a mostrada aqui, embora você possa ver algumas pequenas diferenças na saída, dependendo da versão exata do MySQL que você está usando:
+Se tudo tiver corrido bem e o clúster tiver sido configurado corretamente, ele agora deve estar operacional. Você pode testar isso invocando o cliente do nó de gerenciamento **ndb_mgm**. A saída deve parecer como a mostrada aqui, embora você possa ver algumas pequenas diferenças na saída, dependendo da versão exata do MySQL que você está usando:
 
 ```sql
 $> ndb_mgm

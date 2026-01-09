@@ -314,7 +314,7 @@ Para o conjunto de dados mostrado anteriormente, o algoritmo funciona da seguint
 
 Usar essa estratégia diminui o número de linhas acessadas porque o MySQL ignora as linhas que não se qualificam para cada intervalo construído. Esse método de acesso de varredura de salto é aplicável nas seguintes condições:
 
-* A tabela T tem pelo menos um índice composto com partes de chave da forma ([A\_1, ..., A\_*`k`*,] B\_1, ..., B\_*`m`*, C [, D\_1, ..., D\_*`n`*]). As partes A e D podem ser vazias, mas B e C devem ser não vazias.
+* A tabela T tem pelo menos um índice composto com partes de chave da forma ([A_1, ..., A_*`k`*,] B_1, ..., B_*`m`*, C [, D_1, ..., D_*`n`*]). As partes A e D podem ser vazias, mas B e C devem ser não vazias.
 
 * A consulta faz referência apenas a uma tabela.
 
@@ -322,7 +322,7 @@ Usar essa estratégia diminui o número de linhas acessadas porque o MySQL ignor
 
 * A consulta faz referência apenas às colunas do índice.
 
-* Os predicados em A\_1, ..., A\_*`k`* devem ser predicados de igualdade e devem ser constantes. Isso inclui o operador `IN()`.
+* Os predicados em A_1, ..., A_*`k`* devem ser predicados de igualdade e devem ser constantes. Isso inclui o operador `IN()`.
 
 * A consulta deve ser uma consulta conjuntiva; ou seja, uma `AND` de condições `OR`: `(cond1(chave_parte1) OR cond2(chave_parte1)) E (cond1(chave_parte2) OR ...) E ...`
 

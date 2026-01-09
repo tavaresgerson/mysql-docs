@@ -88,11 +88,11 @@ Before MySQL 5.7.5, support for `YEAR(2)` is diminished. As of MySQL 5.7.5, supp
 
   + `REPAIR TABLE` (which `CHECK TABLE` recommends you use, if it finds a table that contains `YEAR(2)` columns).
 
-  + **mysql\_upgrade** (which uses `REPAIR TABLE`).
+  + **mysql_upgrade** (which uses `REPAIR TABLE`).
 
   + Dumping with **mysqldump** and reloading the dump file. Unlike the conversions performed by the preceding three items, a dump and reload has the potential to change data values.
 
-  A MySQL upgrade usually involves at least one of the last two items. However, with respect to `YEAR(2)`, **mysql\_upgrade** is preferable to **mysqldump**, which, as noted, can change data values.
+  A MySQL upgrade usually involves at least one of the last two items. However, with respect to `YEAR(2)`, **mysql_upgrade** is preferable to **mysqldump**, which, as noted, can change data values.
 
 #### Migrating from YEAR(2) to 4-Digit YEAR
 
@@ -112,7 +112,7 @@ ALTER TABLE t1 FORCE;
 
 The `ALTER TABLE` statement converts the table without changing `YEAR(2)` values. If the server is a replication source, the `ALTER TABLE` statement replicates to replicas and makes the corresponding table change on each one.
 
-Another migration method is to perform a binary upgrade: Upgrade MySQL in place without dumping and reloading your data. Then run **mysql\_upgrade**, which uses `REPAIR TABLE` to convert 2-digit `YEAR(2)` columns to 4-digit `YEAR` columns without changing data values. If the server is a replication source, the `REPAIR TABLE` statements replicate to replicas and make the corresponding table changes on each one, unless you invoke **mysql\_upgrade** with the `--skip-write-binlog` option.
+Another migration method is to perform a binary upgrade: Upgrade MySQL in place without dumping and reloading your data. Then run **mysql_upgrade**, which uses `REPAIR TABLE` to convert 2-digit `YEAR(2)` columns to 4-digit `YEAR` columns without changing data values. If the server is a replication source, the `REPAIR TABLE` statements replicate to replicas and make the corresponding table changes on each one, unless you invoke **mysql_upgrade** with the `--skip-write-binlog` option.
 
 Upgrades to replication servers usually involve upgrading replicas to a newer version of MySQL, then upgrading the source. For example, if a source and replica both run MySQL 5.5, a typical upgrade sequence involves upgrading the replica to 5.6, then upgrading the source to 5.6. With regard to the different treatment of `YEAR(2)` as of MySQL 5.6.6, that upgrade sequence results in a problem: Suppose that the replica has been upgraded but not yet the source. Then creating a table containing a 2-digit `YEAR(2)` column on the source results in a table containing a 4-digit `YEAR` column on the replica. Consequently, the following operations have a different result on the source and replica, if you use statement-based replication:
 

@@ -186,7 +186,7 @@ O `mysqlshow` suporta as seguintes opções, que podem ser especificadas na linh
   Esta opção está desatualizada. Espera-se que seja removida em uma versão futura do MySQL. Consulte Configurando a Compressão de Conexão Legado.
 * `--compression-algorithms=value`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code>uncompressed</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>uncompressed</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=value</code></td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code>uncompressed</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>uncompressed</code></p></td> </tr></tbody></table>
 
   Os algoritmos de compressão permitidos para conexões com o servidor. Os algoritmos disponíveis são os mesmos que a variável de sistema `protocol_compression_algorithms`. O valor padrão é `uncompressed`.
 
@@ -347,7 +347,7 @@ Para especificar explicitamente que não há senha e que o `mysqlshow` não deve
   Para obter informações adicionais sobre esta e outras opções de arquivos de opção, consulte  Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opção”.
 *  `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--protocol=type</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[ver texto]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>TCP</code></p><p class="valid-value"><code>SOCKET</code></p><p class="valid-value"><code>PIPE</code></p><p class="valid-value"><code>MEMORY</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--protocol=type</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[ver texto]</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>TCP</code></p><p><code>SOCKET</code></p><p><code>PIPE</code></p><p><code>MEMORY</code></p></td> </tr></tbody></table>
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para detalhes sobre os valores permitidos, consulte Seção 6.2.7, “Protocolos de transporte de conexão”.
 *  `--server-public-key-path=file_name`
@@ -385,7 +385,7 @@ Para obter informações sobre os módulos `sha256_password` e `caching_sha2_pas
   Opções que começam com `--ssl` especificam se conectar ao servidor usando criptografia e indicam onde encontrar as chaves e certificados SSL. Consulte Opções de Comando para Conexões Criptografadas.
 *  `--ssl-fips-mode={OFF|ON|STRICT}`
 
-<table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ssl-fips-mode={OFF|ON|STRICT}</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>STRICT</code></p></td> </tr></tbody></table>
+<table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--ssl-fips-mode={OFF|ON|STRICT}</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>STRICT</code></p></td> </tr></tbody></table>
 
   Controla se o modo FIPS deve ser habilitado no lado do cliente. A opção `--ssl-fips-mode` difere de outras opções `--ssl-xxx` porque não é usada para estabelecer conexões criptografadas, mas sim para afetar quais operações criptográficas devem ser permitidas. Consulte  Seção 8.8, “Suporte FIPS”.
 

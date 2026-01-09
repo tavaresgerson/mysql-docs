@@ -1,4 +1,4 @@
-### 28.3.46 The INFORMATION\_SCHEMA TABLESPACES\_EXTENSIONS Table
+### 28.3.46 The INFORMATION_SCHEMA TABLESPACES_EXTENSIONS Table
 
 The `TABLESPACES_EXTENSIONS` table provides information about tablespace attributes defined for primary storage engines.
 

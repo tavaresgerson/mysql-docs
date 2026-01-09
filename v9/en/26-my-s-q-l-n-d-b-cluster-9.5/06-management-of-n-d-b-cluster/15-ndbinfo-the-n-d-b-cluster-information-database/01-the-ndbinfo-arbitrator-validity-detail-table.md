@@ -1,4 +1,4 @@
-#### 25.6.15.1 The ndbinfo arbitrator\_validity\_detail Table
+#### 25.6.15.1 The ndbinfo arbitrator_validity_detail Table
 
 The `arbitrator_validity_detail` table shows the view that each data node in the cluster has of the arbitrator. It is a subset of the `membership` table.
 
@@ -26,7 +26,7 @@ The `arbitrator_validity_detail` table contains the following columns:
 
 ##### Notes
 
-The node ID is the same as that reported by **ndb\_mgm -e "SHOW"**.
+The node ID is the same as that reported by **ndb_mgm -e "SHOW"**.
 
 All nodes should show the same `arbitrator` and `arb_ticket` values as well as the same `arb_state` value. Possible `arb_state` values are `ARBIT_NULL`, `ARBIT_INIT`, `ARBIT_FIND`, `ARBIT_PREP1`, `ARBIT_PREP2`, `ARBIT_START`, `ARBIT_RUN`, `ARBIT_CHOOSE`, `ARBIT_CRASH`, and `UNKNOWN`.
 

@@ -86,7 +86,7 @@ For backward compatibility, `mysqld_safe` also reads `[safe_mysqld]` sections, b
   Write the error log to the given file. See Section 7.4.2, “The Error Log”.
 *  `--mysqld-safe-log-timestamps`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysqld-safe-log-timestamps=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>utc</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>system</code></p><p class="valid-value"><code>hyphen</code></p><p class="valid-value"><code>legacy</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--mysqld-safe-log-timestamps=type</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>utc</code></td> </tr><tr><th>Valid Values</th> <td><p><code>system</code></p><p><code>hyphen</code></p><p><code>legacy</code></p></td> </tr></tbody></table>
 
   This option controls the format for timestamps in log output produced by  `mysqld_safe`. The following list describes the permitted values. For any other value, `mysqld_safe` logs a warning and uses `UTC` format.
 

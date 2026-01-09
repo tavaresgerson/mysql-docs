@@ -1,4 +1,4 @@
-#### 29.12.22.11 The tls\_channel\_status Table
+#### 29.12.22.11 The tls_channel_status Table
 
 Connection interface TLS properties are set at server startup, and can be updated at runtime using the `ALTER INSTANCE RELOAD TLS` statement. See Server-Side Runtime Configuration and Monitoring for Encrypted Connections.
 

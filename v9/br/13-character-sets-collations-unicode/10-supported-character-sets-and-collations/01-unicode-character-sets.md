@@ -39,7 +39,7 @@ O suporte à cotação para `utf16le` é limitado. As únicas cotações dispon�
 * Algoritmo de Cotação Unicode (UCA) Versões"
 * Atributos de Alinhamento de Caracteres
 * Cotações Específicas de Idioma
-* Cotações \_general\_ci Versus \_unicode\_ci
+* Cotações _general_ci Versus _unicode_ci
 * Pesos de Classificação de Caracteres
 * Informações Diversas
 
@@ -156,7 +156,7 @@ As collationes suecas incluem as regras suecas. Por exemplo, em sueco, a seguint
 Ü = Y < Ö
 ```
 
-#### \_general\_ci Versus \_unicode\_ci Collations
+#### _general_ci Versus _unicode_ci Collations
 
 Para qualquer conjunto de caracteres Unicode, as operações realizadas usando a collation `xxx_general_ci` são mais rápidas do que as para a collation `xxx_unicode_ci`. Por exemplo, as comparações para a collation `utf8mb4_general_ci` são mais rápidas, mas ligeiramente menos corretas, do que as comparações para `utf8mb4_unicode_ci`. A razão é que `utf8mb4_unicode_ci` suporta mapeamentos como expansões; ou seja, quando um caractere compara como igual a combinações de outros caracteres. Por exemplo, `ß` é igual a `ss` em alemão e em algumas outras línguas. `utf8mb4_unicode_ci` também suporta contrações e caracteres ignoráveis. `utf8mb4_general_ci` é uma collation de legado que não suporta expansões, contrações ou caracteres ignoráveis. Ela pode realizar apenas comparações um-para-um entre caracteres.
 
@@ -298,7 +298,7 @@ Code point  Character                    utf8mb4      utf16
 
 Os dois caracteres no gráfico estão em ordem por valor de ponto de código porque `0xff9d` < `0x10384`. E estão em ordem por valor de `utf8mb4` porque `0xef` < `0xf0`. Mas não estão em ordem por valor de `utf16`, se usarmos a comparação caracter a caractere, porque `0xff` > `0xd8`.
 
-Então, a ordenação `utf16_bin` do MySQL não é “caractere a caractere”. É “por ponto de código”. Quando o MySQL vê uma codificação de caracteres suplementares em `utf16`, ele converte para o valor do ponto de código do caractere e, em seguida, compara. Portanto, `utf8mb4_bin` e `utf16_bin` têm a mesma ordem. Isso é consistente com o requisito do padrão SQL:2008 para uma ordenação UCS\_BASIC: “UCS\_BASIC é uma ordenação na qual a ordem é determinada inteiramente pelos valores escalares Unicode dos caracteres nas strings que estão sendo ordenadas. É aplicável ao repertório de caracteres UCS. Como todo repertório de caracteres é um subconjunto do repertório UCS, a ordenação UCS\_BASIC é potencialmente aplicável a todos os conjuntos de caracteres. NOTA 11: O valor escalar Unicode de um caractere é seu ponto de código tratado como um inteiro não signatário.”
+Então, a ordenação `utf16_bin` do MySQL não é “caractere a caractere”. É “por ponto de código”. Quando o MySQL vê uma codificação de caracteres suplementares em `utf16`, ele converte para o valor do ponto de código do caractere e, em seguida, compara. Portanto, `utf8mb4_bin` e `utf16_bin` têm a mesma ordem. Isso é consistente com o requisito do padrão SQL:2008 para uma ordenação UCS_BASIC: “UCS_BASIC é uma ordenação na qual a ordem é determinada inteiramente pelos valores escalares Unicode dos caracteres nas strings que estão sendo ordenadas. É aplicável ao repertório de caracteres UCS. Como todo repertório de caracteres é um subconjunto do repertório UCS, a ordenação UCS_BASIC é potencialmente aplicável a todos os conjuntos de caracteres. NOTA 11: O valor escalar Unicode de um caractere é seu ponto de código tratado como um inteiro não signatário.”
 
 Se o conjunto de caracteres for `ucs2`, a comparação é caracter a caractere, mas as strings `ucs2` não devem conter surrogados, de qualquer forma.
 

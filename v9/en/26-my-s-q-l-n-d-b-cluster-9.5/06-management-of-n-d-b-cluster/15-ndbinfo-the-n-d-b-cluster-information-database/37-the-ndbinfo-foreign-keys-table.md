@@ -1,4 +1,4 @@
-#### 25.6.15.37 The ndbinfo foreign\_keys Table
+#### 25.6.15.37 The ndbinfo foreign_keys Table
 
 The `foreign_keys` table provides information about foreign keys on `NDB` tables. This table has the following columns:
 

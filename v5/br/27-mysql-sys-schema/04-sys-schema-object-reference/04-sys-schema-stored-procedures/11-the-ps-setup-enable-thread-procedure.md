@@ -1,4 +1,4 @@
-#### 26.4.4.11 O procedimento ps\_setup\_enable\_thread()
+#### 26.4.4.11 O procedimento ps_setup_enable_thread()
 
 Dada uma ID de conexão, habilita a instrumentação do Schema de Desempenho para o thread. Produz um conjunto de resultados indicando quantos threads foram habilitados. Os threads já habilitados não são contados.
 

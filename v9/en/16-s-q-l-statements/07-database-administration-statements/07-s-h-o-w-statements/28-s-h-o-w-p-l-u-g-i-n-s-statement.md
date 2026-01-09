@@ -63,4 +63,4 @@ For plugins installed with `INSTALL PLUGIN`, the `Name` and `Library` values are
 
 For information about plugin data structures that form the basis of the information displayed by `SHOW PLUGINS`, see The MySQL Plugin API.
 
-Plugin information is also available from the `INFORMATION_SCHEMA` `.PLUGINS` table. See Section 28.3.27, “The INFORMATION\_SCHEMA PLUGINS Table”.
+Plugin information is also available from the `INFORMATION_SCHEMA` `.PLUGINS` table. See Section 28.3.27, “The INFORMATION_SCHEMA PLUGINS Table”.

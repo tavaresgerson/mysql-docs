@@ -121,21 +121,21 @@ Whether you use statement-based or row-based replication, the replica's copy of 
 
 **Type conversion modes.** The global value of the system variable `replica_type_conversions` controls the type conversion mode used on the replica. This variable takes a set of values from the following list, which describes the effects of each mode on the replica's type-conversion behavior:
 
-ALL\_LOSSY :   In this mode, type conversions that would mean loss of information are permitted.
+ALL_LOSSY :   In this mode, type conversions that would mean loss of information are permitted.
 
     This does not imply that non-lossy conversions are permitted, merely that only cases requiring either lossy conversions or no conversion at all are permitted; for example, enabling *only* this mode permits an `INT` column to be converted to `TINYINT` (a lossy conversion), but not a `TINYINT` column to an `INT` column (non-lossy). Attempting the latter conversion in this case would cause replication to stop with an error on the replica.
 
-ALL\_NON\_LOSSY :   This mode permits conversions that do not require truncation or other special handling of the source value; that is, it permits conversions where the target type has a wider range than the source type.
+ALL_NON_LOSSY :   This mode permits conversions that do not require truncation or other special handling of the source value; that is, it permits conversions where the target type has a wider range than the source type.
 
     Setting this mode has no bearing on whether lossy conversions are permitted; this is controlled with the `ALL_LOSSY` mode. If only `ALL_NON_LOSSY` is set, but not `ALL_LOSSY`, then attempting a conversion that would result in the loss of data (such as `INT` to `TINYINT`, or `CHAR(25)` to `VARCHAR(20)`) causes the replica to stop with an error.
 
-ALL\_LOSSY,ALL\_NON\_LOSSY :   When this mode is set, all supported type conversions are permitted, whether or not they are lossy conversions.
+ALL_LOSSY,ALL_NON_LOSSY :   When this mode is set, all supported type conversions are permitted, whether or not they are lossy conversions.
 
-ALL\_SIGNED :   Treat promoted integer types as signed values (the default behavior).
+ALL_SIGNED :   Treat promoted integer types as signed values (the default behavior).
 
-ALL\_UNSIGNED :   Treat promoted integer types as unsigned values.
+ALL_UNSIGNED :   Treat promoted integer types as unsigned values.
 
-ALL\_SIGNED,ALL\_UNSIGNED :   Treat promoted integer types as signed if possible, otherwise as unsigned.
+ALL_SIGNED,ALL_UNSIGNED :   Treat promoted integer types as signed if possible, otherwise as unsigned.
 
 [*empty*] :   When `replica_type_conversions` is not set, no attribute promotion or demotion is permitted; this means that all columns in the source and target tables must be of the same types.
 

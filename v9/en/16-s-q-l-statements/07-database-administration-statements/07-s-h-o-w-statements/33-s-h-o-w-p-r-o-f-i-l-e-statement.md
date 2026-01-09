@@ -134,7 +134,7 @@ Note
 
 Profiling is only partially functional on some architectures. For values that depend on the `getrusage()` system call, `NULL` is returned on systems such as Windows that do not support the call. In addition, profiling is per process and not per thread. This means that activity on threads within the server other than your own may affect the timing information that you see.
 
-Profiling information is also available from the `INFORMATION_SCHEMA` `PROFILING` table. See Section 28.3.29, “The INFORMATION\_SCHEMA PROFILING Table”. For example, the following queries are equivalent:
+Profiling information is also available from the `INFORMATION_SCHEMA` `PROFILING` table. See Section 28.3.29, “The INFORMATION_SCHEMA PROFILING Table”. For example, the following queries are equivalent:
 
 ```
 SHOW PROFILE FOR QUERY 2;

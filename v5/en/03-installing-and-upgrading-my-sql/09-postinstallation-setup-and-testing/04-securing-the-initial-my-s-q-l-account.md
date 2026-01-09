@@ -10,7 +10,7 @@ Alternative means for performing the process described in this section:
 
 * On Windows, you can perform the process during installation with MySQL Installer (see Section 2.3.3, “MySQL Installer for Windows”).
 
-* On all platforms, the MySQL distribution includes **mysql\_secure\_installation**, a command-line utility that automates much of the process of securing a MySQL installation.
+* On all platforms, the MySQL distribution includes **mysql_secure_installation**, a command-line utility that automates much of the process of securing a MySQL installation.
 
 * On all platforms, MySQL Workbench is available and offers the ability to manage user accounts (see Chapter 29, *MySQL Workbench* ).
 

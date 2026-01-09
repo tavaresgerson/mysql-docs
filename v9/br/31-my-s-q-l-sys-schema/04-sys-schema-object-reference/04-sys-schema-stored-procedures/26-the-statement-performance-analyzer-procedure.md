@@ -44,7 +44,7 @@ O significado do valor `in_table` para cada valor `in_action` é detalhado nas d
 
 ##### Opções de Configuração
 
-A operação `statement_performance_analyzer()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 30.4.2.1, “A Tabela sys\_config”):
+A operação `statement_performance_analyzer()` pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 30.4.2.1, “A Tabela sys_config”):
 
 * `debug`, `@sys.debug`
 

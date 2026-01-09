@@ -1,8 +1,8 @@
-#### 25.6.15.3 The ndbinfo backup\_id Table
+#### 25.6.15.3 The ndbinfo backup_id Table
 
 This table provides a way to find the ID of the backup started most recently for this cluster.
 
-The `backup_id` table contains a single column `id`, which corresponds to a backup ID taken using the **ndb\_mgm** client `START BACKUP` command. This table contains a single row.
+The `backup_id` table contains a single column `id`, which corresponds to a backup ID taken using the **ndb_mgm** client `START BACKUP` command. This table contains a single row.
 
 *Example*: Assume the following sequence of `START BACKUP` commands issued in the NDB management client, with no other backups taken since the cluster was first started:
 

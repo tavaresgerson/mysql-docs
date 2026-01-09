@@ -40,7 +40,7 @@ After completing the installation, do not yet start any of the binaries. We show
    $> mysqld --initialize
    ```
 
-   This generates a random password for the MySQL `root` account. If you do *not* want the random password to be generated, you can substitute the [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure) option for `--initialize`. In either case, you should review [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory"), for additional information before performing this step. See also [Section 4.4.4, “mysql\_secure\_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "4.4.4 mysql_secure_installation — Improve MySQL Installation Security").
+   This generates a random password for the MySQL `root` account. If you do *not* want the random password to be generated, you can substitute the [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure) option for `--initialize`. In either case, you should review [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory"), for additional information before performing this step. See also [Section 4.4.4, “mysql_secure_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "4.4.4 mysql_secure_installation — Improve MySQL Installation Security").
 
 4. Set the necessary permissions for the MySQL server and data directories:
 
@@ -78,7 +78,7 @@ As system `root` (that is, after using **sudo**, **su root**, or your system's e
    $> cp bin/ndbmtd /usr/local/bin/ndbmtd
    ```
 
-   (You can safely delete the directory created by unpacking the downloaded archive, and the files it contains, from `/var/tmp` once [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") and [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") have been copied to the executables directory.)
+   (You can safely delete the directory created by unpacking the downloaded archive, and the files it contains, from `/var/tmp` once [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") and [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") have been copied to the executables directory.)
 
 2. Change location to the directory into which you copied the files, and then make both of them executable:
 
@@ -95,11 +95,11 @@ Note
 
 The data directory on each machine hosting a data node is `/usr/local/mysql/data`. This piece of information is essential when configuring the management node. (See [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster").)
 
-**Management nodes.** Installation of the management node does not require the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") binary. Only the NDB Cluster management server ([**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")) is required; you most likely want to install the management client ([**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")) as well. Both of these binaries also be found in the `.tar.gz` archive. Again, we assume that you have placed this archive in `/var/tmp`.
+**Management nodes.** Installation of the management node does not require the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") binary. Only the NDB Cluster management server ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")) is required; you most likely want to install the management client ([**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")) as well. Both of these binaries also be found in the `.tar.gz` archive. Again, we assume that you have placed this archive in `/var/tmp`.
 
-As system `root`, perform the following steps to install [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") and [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") on the management node host:
+As system `root`, perform the following steps to install [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") and [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") on the management node host:
 
-1. Change location to the `/var/tmp` directory, and extract the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") and [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") from the archive into a suitable directory such as `/usr/local/bin`:
+1. Change location to the `/var/tmp` directory, and extract the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") and [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") from the archive into a suitable directory such as `/usr/local/bin`:
 
    ```sql
    $> cd /var/tmp
@@ -108,7 +108,7 @@ As system `root`, perform the following steps to install [**ndb\_mgmd**](mysql-c
    $> cp bin/ndb_mgm* /usr/local/bin
    ```
 
-   (You can safely delete the directory created by unpacking the downloaded archive, and the files it contains, from `/var/tmp` once [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") and [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") have been copied to the executables directory.)
+   (You can safely delete the directory created by unpacking the downloaded archive, and the files it contains, from `/var/tmp` once [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") and [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") have been copied to the executables directory.)
 
 2. Change location to the directory into which you copied the files, and then make both of them executable:
 

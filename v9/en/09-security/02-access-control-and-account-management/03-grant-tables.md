@@ -12,13 +12,13 @@ For any operation that modifies a grant table, the server checks whether the tab
 
 * Grant Table Overview
 * The user and db Grant Tables
-* The tables\_priv and columns\_priv Grant Tables
-* The procs\_priv Grant Table
-* The proxies\_priv Grant Table
-* The global\_grants Grant Table
-* The default\_roles Grant Table
-* The role\_edges Grant Table
-* The password\_history Grant Table
+* The tables_priv and columns_priv Grant Tables
+* The procs_priv Grant Table
+* The proxies_priv Grant Table
+* The global_grants Grant Table
+* The default_roles Grant Table
+* The role_edges Grant Table
+* The password_history Grant Table
 * Grant Table Scope Column Properties
 * Grant Table Privilege Column Properties
 * Grant Table Concurrency
@@ -101,7 +101,7 @@ The server uses the `user` and `db` tables in the `mysql` database at both the f
 
 **Table 8.4 user and db Table Columns**
 
-<table><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Table Name</th> <th><code class="literal">user</code></th> <th><code class="literal">db</code></th> </tr></thead><tbody><tr> <th><span class="bold"><strong>Scope columns</strong></span></th> <td><code class="literal">Host</code></td> <td><code class="literal">Host</code></td> </tr><tr> <th></th> <td><code class="literal">User</code></td> <td><code class="literal">Db</code></td> </tr><tr> <th></th> <td></td> <td><code class="literal">User</code></td> </tr><tr> <th><span class="bold"><strong>Privilege columns</strong></span></th> <td><code class="literal">Select_priv</code></td> <td><code class="literal">Select_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Insert_priv</code></td> <td><code class="literal">Insert_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Update_priv</code></td> <td><code class="literal">Update_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Delete_priv</code></td> <td><code class="literal">Delete_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Index_priv</code></td> <td><code class="literal">Index_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Alter_priv</code></td> <td><code class="literal">Alter_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Create_priv</code></td> <td><code class="literal">Create_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Drop_priv</code></td> <td><code class="literal">Drop_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Grant_priv</code></td> <td><code class="literal">Grant_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Create_view_priv</code></td> <td><code class="literal">Create_view_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Show_view_priv</code></td> <td><code class="literal">Show_view_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Create_routine_priv</code></td> <td><code class="literal">Create_routine_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Alter_routine_priv</code></td> <td><code class="literal">Alter_routine_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Execute_priv</code></td> <td><code class="literal">Execute_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Trigger_priv</code></td> <td><code class="literal">Trigger_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Event_priv</code></td> <td><code class="literal">Event_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Create_tmp_table_priv</code></td> <td><code class="literal">Create_tmp_table_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Lock_tables_priv</code></td> <td><code class="literal">Lock_tables_priv</code></td> </tr><tr> <th></th> <td><code class="literal">References_priv</code></td> <td><code class="literal">References_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Reload_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Shutdown_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Process_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">File_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Show_db_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Super_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Repl_slave_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Repl_client_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Create_user_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Create_tablespace_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Create_role_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Drop_role_priv</code></td> <td></td> </tr><tr> <th><span class="bold"><strong>Security columns</strong></span></th> <td><code class="literal">ssl_type</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">ssl_cipher</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">x509_issuer</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">x509_subject</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">plugin</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">authentication_string</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">password_expired</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">password_last_changed</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">password_lifetime</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">account_locked</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Password_reuse_history</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Password_reuse_time</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Password_require_current</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">User_attributes</code></td> <td></td> </tr><tr> <th><span class="bold"><strong>Resource control columns</strong></span></th> <td><code class="literal">max_questions</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">max_updates</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">max_connections</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">max_user_connections</code></td> <td></td> </tr></tbody></table>
+<table><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Table Name</th> <th><code class="literal">user</code></th> <th><code class="literal">db</code></th> </tr></thead><tbody><tr> <th><span><strong>Scope columns</strong></span></th> <td><code class="literal">Host</code></td> <td><code class="literal">Host</code></td> </tr><tr> <th></th> <td><code class="literal">User</code></td> <td><code class="literal">Db</code></td> </tr><tr> <th></th> <td></td> <td><code class="literal">User</code></td> </tr><tr> <th><span><strong>Privilege columns</strong></span></th> <td><code class="literal">Select_priv</code></td> <td><code class="literal">Select_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Insert_priv</code></td> <td><code class="literal">Insert_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Update_priv</code></td> <td><code class="literal">Update_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Delete_priv</code></td> <td><code class="literal">Delete_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Index_priv</code></td> <td><code class="literal">Index_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Alter_priv</code></td> <td><code class="literal">Alter_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Create_priv</code></td> <td><code class="literal">Create_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Drop_priv</code></td> <td><code class="literal">Drop_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Grant_priv</code></td> <td><code class="literal">Grant_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Create_view_priv</code></td> <td><code class="literal">Create_view_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Show_view_priv</code></td> <td><code class="literal">Show_view_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Create_routine_priv</code></td> <td><code class="literal">Create_routine_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Alter_routine_priv</code></td> <td><code class="literal">Alter_routine_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Execute_priv</code></td> <td><code class="literal">Execute_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Trigger_priv</code></td> <td><code class="literal">Trigger_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Event_priv</code></td> <td><code class="literal">Event_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Create_tmp_table_priv</code></td> <td><code class="literal">Create_tmp_table_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Lock_tables_priv</code></td> <td><code class="literal">Lock_tables_priv</code></td> </tr><tr> <th></th> <td><code class="literal">References_priv</code></td> <td><code class="literal">References_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Reload_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Shutdown_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Process_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">File_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Show_db_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Super_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Repl_slave_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Repl_client_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Create_user_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Create_tablespace_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Create_role_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Drop_role_priv</code></td> <td></td> </tr><tr> <th><span><strong>Security columns</strong></span></th> <td><code class="literal">ssl_type</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">ssl_cipher</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">x509_issuer</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">x509_subject</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">plugin</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">authentication_string</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">password_expired</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">password_last_changed</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">password_lifetime</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">account_locked</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Password_reuse_history</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Password_reuse_time</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">Password_require_current</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">User_attributes</code></td> <td></td> </tr><tr> <th><span><strong>Resource control columns</strong></span></th> <td><code class="literal">max_questions</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">max_updates</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">max_connections</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal">max_user_connections</code></td> <td></td> </tr></tbody></table>
 
 The `user` table `plugin` and `authentication_string` columns store authentication plugin and credential information.
 
@@ -137,7 +137,7 @@ Although it is possible to “reset” an expired password by setting it to its 
 
 `Password_require_current` corresponds to the value of the `PASSWORD REQUIRE` option for the account, as shown by the following table.
 
-**Table 8.5 Permitted Password\_require\_current Values**
+**Table 8.5 Permitted Password_require_current Values**
 
 <table summary="Permitted values of the user.Password_require_current column and how they correspond to PASSWORD REQUIRE options."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Password_require_current Value</th> <th>Corresponding PASSWORD REQUIRE Option</th> </tr></thead><tbody><tr> <td><code class="literal">'Y'</code></td> <td><code class="literal">PASSWORD REQUIRE CURRENT</code></td> </tr><tr> <td><code class="literal">'N'</code></td> <td><code class="literal">PASSWORD REQUIRE CURRENT OPTIONAL</code></td> </tr><tr> <td><code class="literal">NULL</code></td> <td><code class="literal">PASSWORD REQUIRE CURRENT DEFAULT</code></td> </tr></tbody></table>
 
@@ -212,29 +212,29 @@ Here is an example of the kind of information stored for `multi_factor_authentic
 }
 ```
 
-#### The tables\_priv and columns\_priv Grant Tables
+#### The tables_priv and columns_priv Grant Tables
 
 During the second stage of access control, the server performs request verification to ensure that each client has sufficient privileges for each request that it issues. In addition to the `user` and `db` grant tables, the server may also consult the `tables_priv` and `columns_priv` tables for requests that involve tables. The latter tables provide finer privilege control at the table and column levels. They have the columns shown in the following table.
 
-**Table 8.6 tables\_priv and columns\_priv Table Columns**
+**Table 8.6 tables_priv and columns_priv Table Columns**
 
-<table><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Table Name</th> <th><code class="literal">tables_priv</code></th> <th><code class="literal">columns_priv</code></th> </tr></thead><tbody><tr> <th><span class="bold"><strong>Scope columns</strong></span></th> <td><code class="literal">Host</code></td> <td><code class="literal">Host</code></td> </tr><tr> <th></th> <td><code class="literal">Db</code></td> <td><code class="literal">Db</code></td> </tr><tr> <th></th> <td><code class="literal">User</code></td> <td><code class="literal">User</code></td> </tr><tr> <th></th> <td><code class="literal">Table_name</code></td> <td><code class="literal">Table_name</code></td> </tr><tr> <th></th> <td></td> <td><code class="literal">Column_name</code></td> </tr><tr> <th><span class="bold"><strong>Privilege columns</strong></span></th> <td><code class="literal">Table_priv</code></td> <td><code class="literal">Column_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Column_priv</code></td> <td></td> </tr><tr> <th><span class="bold"><strong>Other columns</strong></span></th> <td><code class="literal">Timestamp</code></td> <td><code class="literal">Timestamp</code></td> </tr><tr> <th></th> <td><code class="literal">Grantor</code></td> <td></td> </tr></tbody></table>
+<table><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Table Name</th> <th><code class="literal">tables_priv</code></th> <th><code class="literal">columns_priv</code></th> </tr></thead><tbody><tr> <th><span><strong>Scope columns</strong></span></th> <td><code class="literal">Host</code></td> <td><code class="literal">Host</code></td> </tr><tr> <th></th> <td><code class="literal">Db</code></td> <td><code class="literal">Db</code></td> </tr><tr> <th></th> <td><code class="literal">User</code></td> <td><code class="literal">User</code></td> </tr><tr> <th></th> <td><code class="literal">Table_name</code></td> <td><code class="literal">Table_name</code></td> </tr><tr> <th></th> <td></td> <td><code class="literal">Column_name</code></td> </tr><tr> <th><span><strong>Privilege columns</strong></span></th> <td><code class="literal">Table_priv</code></td> <td><code class="literal">Column_priv</code></td> </tr><tr> <th></th> <td><code class="literal">Column_priv</code></td> <td></td> </tr><tr> <th><span><strong>Other columns</strong></span></th> <td><code class="literal">Timestamp</code></td> <td><code class="literal">Timestamp</code></td> </tr><tr> <th></th> <td><code class="literal">Grantor</code></td> <td></td> </tr></tbody></table>
 
 The `Timestamp` and `Grantor` columns are set to the current timestamp and the `CURRENT_USER` value, respectively, but are otherwise unused.
 
-#### The procs\_priv Grant Table
+#### The procs_priv Grant Table
 
 For verification of requests that involve stored routines, the server may consult the `procs_priv` table, which has the columns shown in the following table.
 
-**Table 8.7 procs\_priv Table Columns**
+**Table 8.7 procs_priv Table Columns**
 
-<table><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Table Name</th> <th><code class="literal">procs_priv</code></th> </tr></thead><tbody><tr> <td><span class="bold"><strong>Scope columns</strong></span></td> <td><code class="literal">Host</code></td> </tr><tr> <td></td> <td><code class="literal">Db</code></td> </tr><tr> <td></td> <td><code class="literal">User</code></td> </tr><tr> <td></td> <td><code class="literal">Routine_name</code></td> </tr><tr> <td></td> <td><code class="literal">Routine_type</code></td> </tr><tr> <td><span class="bold"><strong>Privilege columns</strong></span></td> <td><code class="literal">Proc_priv</code></td> </tr><tr> <td><span class="bold"><strong>Other columns</strong></span></td> <td><code class="literal">Timestamp</code></td> </tr><tr> <td></td> <td><code class="literal">Grantor</code></td> </tr></tbody></table>
+<table><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Table Name</th> <th><code class="literal">procs_priv</code></th> </tr></thead><tbody><tr> <td><span><strong>Scope columns</strong></span></td> <td><code class="literal">Host</code></td> </tr><tr> <td></td> <td><code class="literal">Db</code></td> </tr><tr> <td></td> <td><code class="literal">User</code></td> </tr><tr> <td></td> <td><code class="literal">Routine_name</code></td> </tr><tr> <td></td> <td><code class="literal">Routine_type</code></td> </tr><tr> <td><span><strong>Privilege columns</strong></span></td> <td><code class="literal">Proc_priv</code></td> </tr><tr> <td><span><strong>Other columns</strong></span></td> <td><code class="literal">Timestamp</code></td> </tr><tr> <td></td> <td><code class="literal">Grantor</code></td> </tr></tbody></table>
 
 The `Routine_type` column is an `ENUM` column with values of `'FUNCTION'` or `'PROCEDURE'` to indicate the type of routine the row refers to. This column enables privileges to be granted separately for a function and a procedure with the same name.
 
 The `Timestamp` and `Grantor` columns are unused.
 
-#### The proxies\_priv Grant Table
+#### The proxies_priv Grant Table
 
 The `proxies_priv` table records information about proxy accounts. It has these columns:
 
@@ -248,7 +248,7 @@ The `proxies_priv` table records information about proxy accounts. It has these 
 
 For an account to be able to grant the `PROXY` privilege to other accounts, it must have a row in the `proxies_priv` table with `With_grant` set to 1 and `Proxied_host` and `Proxied_user` set to indicate the account or accounts for which the privilege can be granted. For example, the `'root'@'localhost'` account created during MySQL installation has a row in the `proxies_priv` table that enables granting the `PROXY` privilege for `''@''`, that is, for all users and all hosts. This enables `root` to set up proxy users, as well as to delegate to other accounts the authority to set up proxy users. See Section 8.2.19, “Proxy Users”.
 
-#### The global\_grants Grant Table
+#### The global_grants Grant Table
 
 The `global_grants` table lists current assignments of dynamic global privileges to user accounts. The table has these columns:
 
@@ -257,7 +257,7 @@ The `global_grants` table lists current assignments of dynamic global privileges
 * `PRIV`: The privilege name.
 * `WITH_GRANT_OPTION`: Whether the account can grant the privilege to other accounts.
 
-#### The default\_roles Grant Table
+#### The default_roles Grant Table
 
 The `default_roles` table lists default user roles. It has these columns:
 
@@ -265,7 +265,7 @@ The `default_roles` table lists default user roles. It has these columns:
 
 * `DEFAULT_ROLE_HOST`, `DEFAULT_ROLE_USER`: The default role.
 
-#### The role\_edges Grant Table
+#### The role_edges Grant Table
 
 The `role_edges` table lists edges for role subgraphs. It has these columns:
 
@@ -275,7 +275,7 @@ The `role_edges` table lists edges for role subgraphs. It has these columns:
 
 * `WITH_ADMIN_OPTION`: Whether the account can grant the role to and revoke it from other accounts by using `WITH ADMIN OPTION`.
 
-#### The password\_history Grant Table
+#### The password_history Grant Table
 
 The `password_history` table contains information about password changes. It has these columns:
 

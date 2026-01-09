@@ -1,4 +1,4 @@
-### 28.3.47 The INFORMATION\_SCHEMA TABLE\_CONSTRAINTS Table
+### 28.3.47 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table
 
 The `TABLE_CONSTRAINTS` table describes which tables have constraints.
 

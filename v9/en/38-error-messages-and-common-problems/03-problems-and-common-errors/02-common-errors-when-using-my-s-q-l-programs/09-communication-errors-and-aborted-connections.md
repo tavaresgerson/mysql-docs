@@ -6,7 +6,7 @@ If connection problems occur such as communication errors or aborted connections
 * The general query log. See Section 7.4.3, “The General Query Log”.
 * The `Aborted_xxx` and `Connection_errors_xxx` status variables. See Section 7.1.10, “Server Status Variables”.
 
-* The host cache, which is accessible using the Performance Schema `host_cache` table. See Section 7.1.12.3, “DNS Lookups and the Host Cache”, and Section 29.12.22.4, “The host\_cache Table”.
+* The host cache, which is accessible using the Performance Schema `host_cache` table. See Section 7.1.12.3, “DNS Lookups and the Host Cache”, and Section 29.12.22.4, “The host_cache Table”.
 
 If the `log_error_verbosity` system variable is set to 3, you might find messages like this in your error log:
 

@@ -7,14 +7,14 @@ O MySQL Server suporta um keyring que permite que componentes internos do servid
 
 Esses componentes do keyring estão disponíveis:
 
-+ `component_keyring_file`: Armazena os dados do keyring em um arquivo local ao host do servidor. Disponível nas distribuições da Edição Comunitária e da Edição Empresarial do MySQL. Veja a Seção 8.4.4.4, “Usando o componente\_keyring\_file Component Keyring com Arquivo de Suporte”.
-+ `component_keyring_encrypted_file`: Armazena os dados do keyring em um arquivo criptografado e protegido por senha local ao host do servidor. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.4.5, “Usando o componente\_keyring\_encrypted\_file Component Keyring com Arquivo Criptografado”.
++ `component_keyring_file`: Armazena os dados do keyring em um arquivo local ao host do servidor. Disponível nas distribuições da Edição Comunitária e da Edição Empresarial do MySQL. Veja a Seção 8.4.4.4, “Usando o componente_keyring_file Component Keyring com Arquivo de Suporte”.
++ `component_keyring_encrypted_file`: Armazena os dados do keyring em um arquivo criptografado e protegido por senha local ao host do servidor. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.4.5, “Usando o componente_keyring_encrypted_file Component Keyring com Arquivo Criptografado”.
 + `component_keyring_oci`: Armazena os dados do keyring no Vault da Oracle Cloud Infrastructure. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.4.9, “Usando o Component Keyring do Vault da Oracle Cloud Infrastructure”.
 
 Esses plugins do keyring estão disponíveis:
 
-+ `keyring_okv`: Um plugin KMIP 1.1 para uso com produtos de armazenamento de chave de porta-chave compatíveis com KMIP, como o Oracle Key Vault e o Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.4.6, “Usando o plugin keyring\_okv KMIP”.
-+ `keyring_aws`: Comunica-se com o Serviço de Gerenciamento de Chaves do Amazon Web Services para geração de chaves e usa um arquivo local para armazenamento de chaves. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.4.7, “Usando o plugin keyring\_aws Amazon Web Services Keyring”.
++ `keyring_okv`: Um plugin KMIP 1.1 para uso com produtos de armazenamento de chave de porta-chave compatíveis com KMIP, como o Oracle Key Vault e o Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.4.6, “Usando o plugin keyring_okv KMIP”.
++ `keyring_aws`: Comunica-se com o Serviço de Gerenciamento de Chaves do Amazon Web Services para geração de chaves e usa um arquivo local para armazenamento de chaves. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.4.7, “Usando o plugin keyring_aws Amazon Web Services Keyring”.
 + `keyring_hashicorp`: Comunica-se com o HashiCorp Vault para armazenamento de porta-chave de back end. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.4.8, “Usando o plugin keyring HashiCorp Vault”.
 * Uma interface de serviço de porta-chave para gerenciamento de chaves de porta-chave. Este serviço é acessível em dois níveis:
 

@@ -1,4 +1,4 @@
-### 14.16.4 InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables
+### 14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables
 
 The following tables provide metadata for `FULLTEXT` indexes:
 
@@ -36,7 +36,7 @@ Note
 
 With the exception of the `INNODB_FT_DEFAULT_STOPWORD` table, these tables are empty initially. Before querying any of them, set the value of the `innodb_ft_aux_table` system variable to the name (including the database name) of the table that contains the `FULLTEXT` index (for example, `test/articles`).
 
-**Example 14.5 InnoDB FULLTEXT Index INFORMATION\_SCHEMA Tables**
+**Example 14.5 InnoDB FULLTEXT Index INFORMATION_SCHEMA Tables**
 
 This example uses a table with a `FULLTEXT` index to demonstrate the data contained in the `FULLTEXT` index `INFORMATION_SCHEMA` tables.
 

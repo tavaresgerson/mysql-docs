@@ -1,4 +1,4 @@
-#### 29.12.11.16 The replication\_group\_member\_actions Table
+#### 29.12.11.16 The replication_group_member_actions Table
 
 This table lists the member actions that are included in the member actions configuration for replication group members. The table is available only when Group Replication is installed. You can reset the member actions configuration using the `group_replication_reset_member_actions()` function. For more information, see Section 20.5.1.5, “Configuring Member Actions”.
 

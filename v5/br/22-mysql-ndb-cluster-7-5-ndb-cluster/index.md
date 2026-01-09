@@ -53,63 +53,63 @@ Instalação do NDB Cluster:   21.3.1 Instalação do NDB Cluster no Linux
 Programas de clúster NDB 21.5:   21.5.1 ndbd — O daemon do nó de dados do clúster NDB
 
 ```
-21.5.2 ndbinfo\_select\_all — Select From ndbinfo Tables
+21.5.2 ndbinfo_select_all — Select From ndbinfo Tables
 
 21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)
 
-21.5.4 ndb\_mgmd — The NDB Cluster Management Server Daemon
+21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon
 
-21.5.5 ndb\_mgm — The NDB Cluster Management Client
+21.5.5 ndb_mgm — The NDB Cluster Management Client
 
-21.5.6 ndb\_blob\_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables
+21.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables
 
-21.5.7 ndb\_config — Extract NDB Cluster Configuration Information
+21.5.7 ndb_config — Extract NDB Cluster Configuration Information
 
-21.5.8 ndb\_cpcd — Automate Testing for NDB Development
+21.5.8 ndb_cpcd — Automate Testing for NDB Development
 
-21.5.9 ndb\_delete\_all — Delete All Rows from an NDB Table
+21.5.9 ndb_delete_all — Delete All Rows from an NDB Table
 
-21.5.10 ndb\_desc — Describe NDB Tables
+21.5.10 ndb_desc — Describe NDB Tables
 
-21.5.11 ndb\_drop\_index — Drop Index from an NDB Table
+21.5.11 ndb_drop_index — Drop Index from an NDB Table
 
-21.5.12 ndb\_drop\_table — Drop an NDB Table
+21.5.12 ndb_drop_table — Drop an NDB Table
 
-21.5.13 ndb\_error\_reporter — NDB Error-Reporting Utility
+21.5.13 ndb_error_reporter — NDB Error-Reporting Utility
 
-21.5.14 ndb\_import — Import CSV Data Into NDB
+21.5.14 ndb_import — Import CSV Data Into NDB
 
-21.5.15 ndb\_index\_stat — NDB Index Statistics Utility
+21.5.15 ndb_index_stat — NDB Index Statistics Utility
 
-21.5.16 ndb\_move\_data — NDB Data Copy Utility
+21.5.16 ndb_move_data — NDB Data Copy Utility
 
-21.5.17 ndb\_perror — Obtain NDB Error Message Information
+21.5.17 ndb_perror — Obtain NDB Error Message Information
 
-21.5.18 ndb\_print\_backup\_file — Print NDB Backup File Contents
+21.5.18 ndb_print_backup_file — Print NDB Backup File Contents
 
-21.5.19 ndb\_print\_file — Print NDB Disk Data File Contents
+21.5.19 ndb_print_file — Print NDB Disk Data File Contents
 
-21.5.20 ndb\_print\_frag\_file — Print NDB Fragment List File Contents
+21.5.20 ndb_print_frag_file — Print NDB Fragment List File Contents
 
-21.5.21 ndb\_print\_schema\_file — Print NDB Schema File Contents
+21.5.21 ndb_print_schema_file — Print NDB Schema File Contents
 
-21.5.22 ndb\_print\_sys\_file — Print NDB System File Contents
+21.5.22 ndb_print_sys_file — Print NDB System File Contents
 
-21.5.23 ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log
+21.5.23 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log
 
-21.5.24 ndb\_restore — Restore an NDB Cluster Backup
+21.5.24 ndb_restore — Restore an NDB Cluster Backup
 
-21.5.25 ndb\_select\_all — Print Rows from an NDB Table
+21.5.25 ndb_select_all — Print Rows from an NDB Table
 
-21.5.26 ndb\_select\_count — Print Row Counts for NDB Tables
+21.5.26 ndb_select_count — Print Row Counts for NDB Tables
 
-21.5.27 ndb\_show\_tables — Display List of NDB Tables
+21.5.27 ndb_show_tables — Display List of NDB Tables
 
-21.5.28 ndb\_size.pl — NDBCLUSTER Size Requirement Estimator
+21.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator
 
-21.5.29 ndb\_top — View CPU usage information for NDB threads
+21.5.29 ndb_top — View CPU usage information for NDB threads
 
-21.5.30 ndb\_waiter — Wait for NDB Cluster to Reach a Given Status
+21.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status
 ```
 
 21.6 Gerenciamento do NDB Cluster:   21.6.1 Comandos no Cliente de Gerenciamento do NDB Cluster
@@ -143,7 +143,7 @@ Programas de clúster NDB 21.5:   21.5.1 ndbd — O daemon do nó de dados do cl
 
 21.6.15 ndbinfo: The NDB Cluster Information Database
 
-21.6.16 INFORMATION\_SCHEMA Tables for NDB Cluster
+21.6.16 INFORMATION_SCHEMA Tables for NDB Cluster
 
 21.6.17 Quick Reference: NDB Cluster SQL Statements
 

@@ -1,10 +1,10 @@
 ### 25.12.4 Tabelas de Eventos de Aguarda do Schema de Desempenho
 
-25.12.4.1 Tabela events\_waits\_current
+25.12.4.1 Tabela events_waits_current
 
-25.12.4.2 Tabela de eventos\_waits\_history
+25.12.4.2 Tabela de eventos_waits_history
 
-25.12.4.3 A tabela events\_waits\_history\_long
+25.12.4.3 A tabela events_waits_history_long
 
 Os instrumentos do esquema de desempenho que aguardam, que são eventos que levam tempo. Dentro da hierarquia de eventos, os eventos de espera estão dentro dos eventos de estágio, que estão dentro dos eventos de declaração, que estão dentro dos eventos de transação.
 

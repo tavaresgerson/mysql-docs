@@ -1,4 +1,4 @@
-### 24.3.19 The INFORMATION\_SCHEMA PROFILING Table
+### 24.3.19 The INFORMATION_SCHEMA PROFILING Table
 
 The [`PROFILING`](information-schema-profiling-table.html "24.3.19 The INFORMATION_SCHEMA PROFILING Table") table provides statement profiling information. Its contents correspond to the information produced by the [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") and [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") statements (see [Section 13.7.5.30, “SHOW PROFILE Statement”](show-profile.html "13.7.5.30 SHOW PROFILE Statement")). The table is empty unless the [`profiling`](server-system-variables.html#sysvar_profiling) session variable is set to 1.
 

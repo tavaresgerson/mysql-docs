@@ -103,9 +103,9 @@ Given the preceding manifest file properties, to configure the server to load `c
 
 With the manifest in place, proceed to configuring the keyring component. To do this, check the notes for your chosen keyring component for configuration instructions specific to that component:
 
-* `component_keyring_file`: Section 8.4.5.4, “Using the component\_keyring\_file File-Based Keyring Component”.
+* `component_keyring_file`: Section 8.4.5.4, “Using the component_keyring_file File-Based Keyring Component”.
 
-* `component_keyring_encrypted_file`: Section 8.4.5.5, “Using the component\_keyring\_encrypted\_file Encrypted File-Based Keyring Component”.
+* `component_keyring_encrypted_file`: Section 8.4.5.5, “Using the component_keyring_encrypted_file Encrypted File-Based Keyring Component”.
 
 * `component_keyring_oci`: Section 8.4.5.12, “Using the Oracle Cloud Infrastructure Vault Keyring Component”.
 

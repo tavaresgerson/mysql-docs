@@ -1,4 +1,4 @@
-#### 30.4.5.4 The format\_path() Function
+#### 30.4.5.4 The format_path() Function
 
 Given a path name, returns the modified path name after replacing subpaths that match the values of the following system variables, in order:
 

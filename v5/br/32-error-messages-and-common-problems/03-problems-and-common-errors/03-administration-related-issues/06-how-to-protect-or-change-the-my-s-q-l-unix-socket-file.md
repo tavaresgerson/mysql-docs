@@ -26,7 +26,7 @@ Outra abordagem é alterar o local onde o servidor cria o arquivo de soquete Uni
 
   Veja [Seção 4.2.2.2, “Usando arquivos de opção”](option-files.html).
 
-- Especifique a opção [`--socket`](connection-options.html#option_general_socket) na linha de comando para [**mysqld\_safe**](mysqld-safe.html) e quando você executar programas cliente.
+- Especifique a opção [`--socket`](connection-options.html#option_general_socket) na linha de comando para [**mysqld_safe**](mysqld-safe.html) e quando você executar programas cliente.
 
 - Defina a variável de ambiente `MYSQL_UNIX_PORT` para o caminho do arquivo de soquete Unix.
 

@@ -1,8 +1,8 @@
-### 24.4.20 The INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN Table
+### 24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table
 
 The [`INNODB_SYS_FOREIGN`](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table") table provides metadata about `InnoDB` [foreign keys](glossary.html#glos_foreign_key "foreign key"), equivalent to the information from the `SYS_FOREIGN` table in the `InnoDB` data dictionary.
 
-For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION\_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
+For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
 The [`INNODB_SYS_FOREIGN`](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table") table has these columns:
 

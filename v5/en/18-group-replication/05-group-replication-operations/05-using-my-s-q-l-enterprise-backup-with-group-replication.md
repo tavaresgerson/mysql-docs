@@ -111,7 +111,7 @@ Assume one of the members (`s3` in the following example) is irreconcilably corr
    mysql> START GROUP_REPLICATION;
    ```
 
-   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's [distributed recovery](group-replication-distributed-recovery.html "17.9.5 Distributed Recovery") mechanism, and the process starts after the [START GROUP\_REPLICATION](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement has been issued. To check the member status of the restored instance, issue:
+   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's [distributed recovery](group-replication-distributed-recovery.html "17.9.5 Distributed Recovery") mechanism, and the process starts after the [START GROUP_REPLICATION](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement has been issued. To check the member status of the restored instance, issue:
 
    ```sql
    mysql> SELECT member_host, member_port, member_state FROM performance_schema.replication_group_members;
@@ -227,7 +227,7 @@ Sometimes, the steps outlined above in [Restoring a Failed Member](group-replica
    mysql> START GROUP_REPLICATION;
    ```
 
-   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's [distributed recovery](group-replication-distributed-recovery.html "17.9.5 Distributed Recovery") mechanism, and the process starts after the [START GROUP\_REPLICATION](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement has been issued. To check the member status of the restored instance, issue:
+   Before the restored instance can become an online member of the group, it needs to apply any transactions that have happened to the group after the backup was taken; this is achieved using Group Replication's [distributed recovery](group-replication-distributed-recovery.html "17.9.5 Distributed Recovery") mechanism, and the process starts after the [START GROUP_REPLICATION](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement has been issued. To check the member status of the restored instance, issue:
 
    ```sql
    mysql> SELECT member_host, member_port, member_state FROM performance_schema.replication_group_members;

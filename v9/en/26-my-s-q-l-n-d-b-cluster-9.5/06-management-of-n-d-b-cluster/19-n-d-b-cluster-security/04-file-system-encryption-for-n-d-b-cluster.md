@@ -110,7 +110,7 @@ File=ndb_5_fs/LCP/0/T2F0.Data, compression=no, encryption=yes
 File=ndb_6_fs/LCP/0/T2F0.Data, compression=no, encryption=no
 ```
 
-It is possible to obtain the key from the secrets file using the **ndb\_secretsfile\_reader** program, like this:
+It is possible to obtain the key from the secrets file using the **ndb_secretsfile_reader** program, like this:
 
 ```
 > ndb_secretsfile_reader --filesystem-password=54kl14 ndb_5_fs/D1/NDBCNTR/S0.sysfile

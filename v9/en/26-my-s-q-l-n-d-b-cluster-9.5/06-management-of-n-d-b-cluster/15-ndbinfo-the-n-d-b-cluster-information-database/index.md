@@ -1,10 +1,10 @@
 ### 25.6.15 ndbinfo: The NDB Cluster Information Database
 
-25.6.15.1 The ndbinfo arbitrator\_validity\_detail Table
+25.6.15.1 The ndbinfo arbitrator_validity_detail Table
 
-25.6.15.2 The ndbinfo arbitrator\_validity\_summary Table
+25.6.15.2 The ndbinfo arbitrator_validity_summary Table
 
-25.6.15.3 The ndbinfo backup\_id Table
+25.6.15.3 The ndbinfo backup_id Table
 
 25.6.15.4 The ndbinfo blobs Table
 
@@ -12,77 +12,77 @@
 
 25.6.15.6 The ndbinfo certificates Table
 
-25.6.15.7 The ndbinfo cluster\_locks Table
+25.6.15.7 The ndbinfo cluster_locks Table
 
-25.6.15.8 The ndbinfo cluster\_operations Table
+25.6.15.8 The ndbinfo cluster_operations Table
 
-25.6.15.9 The ndbinfo cluster\_transactions Table
+25.6.15.9 The ndbinfo cluster_transactions Table
 
-25.6.15.10 The ndbinfo config\_nodes Table
+25.6.15.10 The ndbinfo config_nodes Table
 
-25.6.15.11 The ndbinfo config\_params Table
+25.6.15.11 The ndbinfo config_params Table
 
-25.6.15.12 The ndbinfo config\_values Table
+25.6.15.12 The ndbinfo config_values Table
 
 25.6.15.13 The ndbinfo counters Table
 
 25.6.15.14 The ndbinfo cpudata Table
 
-25.6.15.15 The ndbinfo cpudata\_1sec Table
+25.6.15.15 The ndbinfo cpudata_1sec Table
 
-25.6.15.16 The ndbinfo cpudata\_20sec Table
+25.6.15.16 The ndbinfo cpudata_20sec Table
 
-25.6.15.17 The ndbinfo cpudata\_50ms Table
+25.6.15.17 The ndbinfo cpudata_50ms Table
 
 25.6.15.18 The ndbinfo cpuinfo Table
 
 25.6.15.19 The ndbinfo cpustat Table
 
-25.6.15.20 The ndbinfo cpustat\_50ms Table
+25.6.15.20 The ndbinfo cpustat_50ms Table
 
-25.6.15.21 The ndbinfo cpustat\_1sec Table
+25.6.15.21 The ndbinfo cpustat_1sec Table
 
-25.6.15.22 The ndbinfo cpustat\_20sec Table
+25.6.15.22 The ndbinfo cpustat_20sec Table
 
-25.6.15.23 The ndbinfo dictionary\_columns Table
+25.6.15.23 The ndbinfo dictionary_columns Table
 
-25.6.15.24 The ndbinfo dictionary\_tables Table
+25.6.15.24 The ndbinfo dictionary_tables Table
 
-25.6.15.25 The ndbinfo dict\_obj\_info Table
+25.6.15.25 The ndbinfo dict_obj_info Table
 
-25.6.15.26 The ndbinfo dict\_obj\_tree Table
+25.6.15.26 The ndbinfo dict_obj_tree Table
 
-25.6.15.27 The ndbinfo dict\_obj\_types Table
+25.6.15.27 The ndbinfo dict_obj_types Table
 
-25.6.15.28 The ndbinfo disk\_write\_speed\_base Table
+25.6.15.28 The ndbinfo disk_write_speed_base Table
 
-25.6.15.29 The ndbinfo disk\_write\_speed\_aggregate Table
+25.6.15.29 The ndbinfo disk_write_speed_aggregate Table
 
-25.6.15.30 The ndbinfo disk\_write\_speed\_aggregate\_node Table
+25.6.15.30 The ndbinfo disk_write_speed_aggregate_node Table
 
 25.6.15.31 The ndbinfo diskpagebuffer Table
 
 25.6.15.32 The ndbinfo diskstat Table
 
-25.6.15.33 The ndbinfo diskstats\_1sec Table
+25.6.15.33 The ndbinfo diskstats_1sec Table
 
-25.6.15.34 The ndbinfo error\_messages Table
+25.6.15.34 The ndbinfo error_messages Table
 
 25.6.15.35 The ndbinfo events Table
 
 25.6.15.36 The ndbinfo files Table
 
-25.6.15.37 The ndbinfo foreign\_keys Table
+25.6.15.37 The ndbinfo foreign_keys Table
 
-25.6.15.38 The ndbinfo hash\_maps Table
+25.6.15.38 The ndbinfo hash_maps Table
 
 25.6.15.39 The ndbinfo hwinfo Table
 
-25.6.15.40 The ndbinfo index\_columns Table
+25.6.15.40 The ndbinfo index_columns Table
 
-25.6.15.41 The ndbinfo index\_stats Table
+25.6.15.41 The ndbinfo index_stats Table
 
-25.6.15.42 The ndbinfo locks\_per\_fragment Table
+25.6.15.42 The ndbinfo locks_per_fragment Table
 
 25.6.15.43 The ndbinfo logbuffers Table
 
@@ -92,35 +92,35 @@
 
 25.6.15.46 The ndbinfo memoryusage Table
 
-25.6.15.47 The ndbinfo memory\_per\_fragment Table
+25.6.15.47 The ndbinfo memory_per_fragment Table
 
 25.6.15.48 The ndbinfo nodes Table
 
-25.6.15.49 The ndbinfo operations\_per\_fragment Table
+25.6.15.49 The ndbinfo operations_per_fragment Table
 
-25.6.15.50 The ndbinfo pgman\_time\_track\_stats Table
+25.6.15.50 The ndbinfo pgman_time_track_stats Table
 
 25.6.15.51 The ndbinfo processes Table
 
 25.6.15.52 The ndbinfo resources Table
 
-25.6.15.53 The ndbinfo restart\_info Table
+25.6.15.53 The ndbinfo restart_info Table
 
-25.6.15.54 The ndbinfo server\_locks Table
+25.6.15.54 The ndbinfo server_locks Table
 
-25.6.15.55 The ndbinfo server\_operations Table
+25.6.15.55 The ndbinfo server_operations Table
 
-25.6.15.56 The ndbinfo server\_transactions Table
+25.6.15.56 The ndbinfo server_transactions Table
 
-25.6.15.57 The ndbinfo table\_distribution\_status Table
+25.6.15.57 The ndbinfo table_distribution_status Table
 
-25.6.15.58 The ndbinfo table\_fragments Table
+25.6.15.58 The ndbinfo table_fragments Table
 
-25.6.15.59 The ndbinfo table\_info Table
+25.6.15.59 The ndbinfo table_info Table
 
-25.6.15.60 The ndbinfo table\_replicas Table
+25.6.15.60 The ndbinfo table_replicas Table
 
-25.6.15.61 The ndbinfo tc\_time\_track\_stats Table
+25.6.15.61 The ndbinfo tc_time_track_stats Table
 
 25.6.15.62 The ndbinfo threadblocks Table
 
@@ -128,7 +128,7 @@
 
 25.6.15.64 The ndbinfo threadstat Table
 
-25.6.15.65 The ndbinfo transporter\_details Table
+25.6.15.65 The ndbinfo transporter_details Table
 
 25.6.15.66 The ndbinfo transporters Table
 
@@ -440,4 +440,4 @@ ERROR 1146 (42S02): Table 'ndbinfo.Nodes' doesn't exist
 
 **mysqldump** ignores the `ndbinfo` database entirely, and excludes it from any output. This is true even when using the `--databases` or `--all-databases` option.
 
-NDB Cluster also maintains tables in the `INFORMATION_SCHEMA` information database, including the `FILES` table which contains information about files used for NDB Cluster Disk Data storage, and the `ndb_transid_mysql_connection_map` table, which shows the relationships between transactions, transaction coordinators, and NDB Cluster API nodes. For more information, see the descriptions of the tables or Section 25.6.16, “INFORMATION\_SCHEMA Tables for NDB Cluster”.
+NDB Cluster also maintains tables in the `INFORMATION_SCHEMA` information database, including the `FILES` table which contains information about files used for NDB Cluster Disk Data storage, and the `ndb_transid_mysql_connection_map` table, which shows the relationships between transactions, transaction coordinators, and NDB Cluster API nodes. For more information, see the descriptions of the tables or Section 25.6.16, “INFORMATION_SCHEMA Tables for NDB Cluster”.

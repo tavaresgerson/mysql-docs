@@ -58,7 +58,7 @@ If the table has not changed since the last key distribution analysis, the table
 
 MySQL uses the stored key distribution to decide the order in which tables should be joined for joins on something other than a constant. In addition, key distributions can be used when deciding which indexes to use for a specific table within a query.
 
-To check the stored key distribution cardinality, use the `SHOW INDEX` statement or the `INFORMATION_SCHEMA` `STATISTICS` table. See Section 15.7.7.24, “SHOW INDEX Statement”, and Section 28.3.40, “The INFORMATION\_SCHEMA STATISTICS Table”.
+To check the stored key distribution cardinality, use the `SHOW INDEX` statement or the `INFORMATION_SCHEMA` `STATISTICS` table. See Section 15.7.7.24, “SHOW INDEX Statement”, and Section 28.3.40, “The INFORMATION_SCHEMA STATISTICS Table”.
 
 For `InnoDB` tables, `ANALYZE TABLE` determines index cardinality by performing random dives on each of the index trees and updating index cardinality estimates accordingly. Because these are only estimates, repeated runs of `ANALYZE TABLE` could produce different numbers. This makes `ANALYZE TABLE` fast on `InnoDB` tables but not 100% accurate because it does not take all rows into account.
 
@@ -222,7 +222,7 @@ A `sampling-rate` value of 0.0491431208869665 means that approximately 4.9% of t
 
 The `InnoDB` storage engine provides its own sampling implementation for data stored in `InnoDB` tables. The default sampling implementation used by MySQL when storage engines do not provide their own requires a full table scan, which is costly for large tables. The `InnoDB` sampling implementation improves sampling performance by avoiding full table scans.
 
-The `sampled_pages_read` and `sampled_pages_skipped` `INNODB_METRICS` counters can be used to monitor sampling of `InnoDB` data pages. (For general `INNODB_METRICS` counter usage information, see Section 28.4.21, “The INFORMATION\_SCHEMA INNODB\_METRICS Table”.)
+The `sampled_pages_read` and `sampled_pages_skipped` `INNODB_METRICS` counters can be used to monitor sampling of `InnoDB` data pages. (For general `INNODB_METRICS` counter usage information, see Section 28.4.21, “The INFORMATION_SCHEMA INNODB_METRICS Table”.)
 
 The following example demonstrates sampling counter usage, which requires enabling the counters prior to generating histogram statistics.
 

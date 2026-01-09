@@ -300,7 +300,7 @@ Uma tabela `masking_dictionaries` válida tem essas características:
       INDEX dictionary_idx (Dictionary)
   ) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4;
   ```
-* O privilégio `MASKING\_DICTIONARY\_ADMIN` é necessário para adicionar e remover termos ou para remover um dicionário inteiro.
+* O privilégio `MASKING_DICTIONARY_ADMIN` é necessário para adicionar e remover termos ou para remover um dicionário inteiro.
 * A tabela pode conter vários dicionários e seus termos.
 * Qualquer conta de usuário pode visualizar os dicionários. Com muitas consultas, todos os termos dos dicionários podem ser recuperados. Evite adicionar dados sensíveis à tabela do dicionário.
 

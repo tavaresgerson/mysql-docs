@@ -2,7 +2,7 @@
 
 **Tabela 12.5 Operadores Lógicos**
 
-<table frame="box" rules="all" summary="Uma referência que lista operadores lógicos."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="logical-operators.html#operator_and">[[<code>AND</code>]], [[<code>&amp;&amp;</code>]]</a></td> <td>E lógico AND</td> </tr><tr><td><a class="link" href="logical-operators.html#operator_not">[[<code>NOT</code>]], [[<code>!</code>]]</a></td> <td>Nega o valor</td> </tr><tr><td><a class="link" href="logical-operators.html#operator_or">[[<code>OR</code>]], [[<code>||</code>]]</a></td> <td>OU lógico</td> </tr><tr><td><a class="link" href="logical-operators.html#operator_xor">[[<code>XOR</code>]]</a></td> <td>XOR lógico</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista operadores lógicos."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>AND</code>]], [[<code>&amp;&amp;</code>]]</td> <td>E lógico AND</td> </tr><tr><td>[[<code>NOT</code>]], [[<code>!</code>]]</td> <td>Nega o valor</td> </tr><tr><td>[[<code>OR</code>]], [[<code>||</code>]]</td> <td>OU lógico</td> </tr><tr><td>[[<code>XOR</code>]]</td> <td>XOR lógico</td> </tr></tbody></table>
 
 Em SQL, todos os operadores lógicos avaliam como `TRUE`, `FALSE` ou `NULL` (`DESCONHECIDO`). No MySQL, esses são implementados como 1 (`TRUE`), 0 (`FALSE`) e `NULL`. A maior parte disso é comum a diferentes servidores de banco de dados SQL, embora alguns servidores possam retornar qualquer valor não nulo para `TRUE`.
 

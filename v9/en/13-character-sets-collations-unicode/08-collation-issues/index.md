@@ -8,10 +8,10 @@
 
 12.8.4 Collation Coercibility in Expressions
 
-12.8.5 The binary Collation Compared to \_bin Collations
+12.8.5 The binary Collation Compared to _bin Collations
 
 12.8.6 Examples of the Effect of Collation
 
-12.8.7 Using Collation in INFORMATION\_SCHEMA Searches
+12.8.7 Using Collation in INFORMATION_SCHEMA Searches
 
 The following sections discuss various aspects of character set collations.

@@ -2,7 +2,7 @@
 
 To obtain metadata about stored routines:
 
-* Query the `ROUTINES` table of the `INFORMATION_SCHEMA` database. See Section 24.3.21, “The INFORMATION\_SCHEMA ROUTINES Table”.
+* Query the `ROUTINES` table of the `INFORMATION_SCHEMA` database. See Section 24.3.21, “The INFORMATION_SCHEMA ROUTINES Table”.
 
 * Use the `SHOW CREATE PROCEDURE` and `SHOW CREATE FUNCTION` statements to see routine definitions. See Section 13.7.5.9, “SHOW CREATE PROCEDURE Statement”.
 

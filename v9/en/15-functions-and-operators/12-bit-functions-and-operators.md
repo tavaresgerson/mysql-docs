@@ -2,7 +2,7 @@
 
 **Table 14.17 Bit Functions and Operators**
 
-<table frame="box" rules="all" summary="A reference that lists bit functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="bit-functions.html#operator_bitwise-and"><code class="literal">&amp;</code></a></td> <td> Bitwise AND </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_right-shift"><code class="literal">&gt;&gt;</code></a></td> <td> Right shift </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_left-shift"><code class="literal">&lt;&lt;</code></a></td> <td> Left shift </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_bitwise-xor"><code class="literal">^</code></a></td> <td> Bitwise XOR </td> </tr><tr><td><a class="link" href="bit-functions.html#function_bit-count"><code class="literal">BIT_COUNT()</code></a></td> <td> Return the number of bits that are set </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_bitwise-or"><code class="literal">|</code></a></td> <td> Bitwise OR </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_bitwise-invert"><code class="literal">~</code></a></td> <td> Bitwise inversion </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists bit functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code class="literal">&amp;</code></td> <td> Bitwise AND </td> </tr><tr><td><code class="literal">&gt;&gt;</code></td> <td> Right shift </td> </tr><tr><td><code class="literal">&lt;&lt;</code></td> <td> Left shift </td> </tr><tr><td><code class="literal">^</code></td> <td> Bitwise XOR </td> </tr><tr><td><code class="literal">BIT_COUNT()</code></td> <td> Return the number of bits that are set </td> </tr><tr><td><code class="literal">|</code></td> <td> Bitwise OR </td> </tr><tr><td><code class="literal">~</code></td> <td> Bitwise inversion </td> </tr></tbody></table>
 
 The following list describes available bit functions and operators:
 
@@ -161,8 +161,8 @@ Bit functions and operators permit binary string type arguments (`BINARY`, `VARB
 * Binary String Bit-Operation Examples
 * Bitwise AND, OR, and XOR Operations
 * Bitwise Complement and Shift Operations
-* BIT\_COUNT() Operations Operations")
-* BIT\_AND(), BIT\_OR(), and BIT\_XOR() Operations, BIT_OR(), and BIT_XOR() Operations")
+* BIT_COUNT() Operations Operations")
+* BIT_AND(), BIT_OR(), and BIT_XOR() Operations, BIT_OR(), and BIT_XOR() Operations")
 * Special Handling of Hexadecimal Literals, Bit Literals, and NULL Literals
 
 ### Bit Operations
@@ -502,7 +502,7 @@ mysql> SELECT HEX(~@var1);
 +-------------+
 ```
 
-### BIT\_COUNT() Operations
+### BIT_COUNT() Operations
 
 The `BIT_COUNT()` function always returns an unsigned 64-bit integer, or `NULL` if the argument is `NULL`.
 
@@ -521,7 +521,7 @@ mysql> SELECT BIT_COUNT(b'010101'), BIT_COUNT(_binary b'010101');
 +----------------------+------------------------------+
 ```
 
-### BIT\_AND(), BIT\_OR(), and BIT\_XOR() Operations
+### BIT_AND(), BIT_OR(), and BIT_XOR() Operations
 
 For the `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` bit functions, the result type depends on whether the function argument values are evaluated as binary strings or numbers:
 

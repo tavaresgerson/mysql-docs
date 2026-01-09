@@ -1,8 +1,8 @@
-### 25.5.30 ndb\_top — View CPU usage information for NDB threads
+### 25.5.30 ndb_top — View CPU usage information for NDB threads
 
-**ndb\_top** displays running information in the terminal about CPU usage by NDB threads on an NDB Cluster data node. Each thread is represented by two rows in the output, the first showing system statistics, the second showing the measured statistics for the thread.
+**ndb_top** displays running information in the terminal about CPU usage by NDB threads on an NDB Cluster data node. Each thread is represented by two rows in the output, the first showing system statistics, the second showing the measured statistics for the thread.
 
-**ndb\_top** is available beginning with MySQL NDB Cluster 7.6.3.
+**ndb_top** is available beginning with MySQL NDB Cluster 7.6.3.
 
 #### Usage
 
@@ -10,7 +10,7 @@
 ndb_top [-h hostname] [-t port] [-u user] [-p pass] [-n node_id]
 ```
 
-**ndb\_top** connects to a MySQL Server running as an SQL node of the cluster. By default, it attempts to connect to a **mysqld** running on `localhost` and port 3306, as the MySQL `root` user with no password specified. You can override the default host and port using, respectively, `--host` (`-h`) and `--port` (`-t`). To specify a MySQL user and password, use the `--user` (`-u`) and `--passwd` (`-p`) options. This user must be able to read tables in the `ndbinfo` database (**ndb\_top** uses information from `ndbinfo.cpustat` and related tables).
+**ndb_top** connects to a MySQL Server running as an SQL node of the cluster. By default, it attempts to connect to a **mysqld** running on `localhost` and port 3306, as the MySQL `root` user with no password specified. You can override the default host and port using, respectively, `--host` (`-h`) and `--port` (`-t`). To specify a MySQL user and password, use the `--user` (`-u`) and `--passwd` (`-p`) options. This user must be able to read tables in the `ndbinfo` database (**ndb_top** uses information from `ndbinfo.cpustat` and related tables).
 
 For more information about MySQL user accounts and passwords, see Section 8.2, “Access Control and Account Management”.
 
@@ -20,17 +20,17 @@ Color display of the graph is supported and enabled by default (`--color` or `-c
 
 The sorted view (`--sort`, `-r`) is based on the maximum of the measured load and the load reported by the OS. Display of these can be enabled and disabled using the `--measured-load` (`-m`) and `--os-load` (`-o`) options. Display of at least one of these loads must be enabled.
 
-The program tries to obtain statistics from a data node having the node ID given by the `--node-id` (`-n`) option; if unspecified, this is 1. **ndb\_top** cannot provide information about other types of nodes.
+The program tries to obtain statistics from a data node having the node ID given by the `--node-id` (`-n`) option; if unspecified, this is 1. **ndb_top** cannot provide information about other types of nodes.
 
 The view adjusts itself to the height and width of the terminal window; the minimum supported width is 76 characters.
 
-Once started, **ndb\_top** runs continuously until forced to exit; you can quit the program using `Ctrl-C`. The display updates once per second; to set a different delay interval, use `--sleep-time` (`-s`).
+Once started, **ndb_top** runs continuously until forced to exit; you can quit the program using `Ctrl-C`. The display updates once per second; to set a different delay interval, use `--sleep-time` (`-s`).
 
 Note
 
-**ndb\_top** is available on macOS, Linux, and Solaris. It is not currently supported on Windows platforms.
+**ndb_top** is available on macOS, Linux, and Solaris. It is not currently supported on Windows platforms.
 
-The following table includes all options that are specific to the NDB Cluster program **ndb\_top**. Additional descriptions follow the table.
+The following table includes all options that are specific to the NDB Cluster program **ndb_top**. Additional descriptions follow the table.
 
 #### Additional Options
 
@@ -172,10 +172,10 @@ The following table includes all options that are specific to the NDB Cluster pr
 
   Connect as this MySQL user. Normally requires a password supplied by the `--password` option.
 
-**Sample Output.** The next figure shows **ndb\_top** running in a terminal window on a Linux system with an **ndbmtd**") data node under a moderate load. Here, the program has been invoked using **ndb\_top** `-n8` `-x` to provide both text and graph output:
+**Sample Output.** The next figure shows **ndb_top** running in a terminal window on a Linux system with an **ndbmtd**") data node under a moderate load. Here, the program has been invoked using **ndb_top** `-n8` `-x` to provide both text and graph output:
 
-**Figure 25.5 ndb\_top Running in Terminal**
+**Figure 25.5 ndb_top Running in Terminal**
 
 ![Display from ndb_top, running in a terminal window. Shows information for each node, including the utilized resources.](images/ndb-top-1.png)
 
-**ndb\_top** also shows spin times for threads, displayed in green.
+**ndb_top** also shows spin times for threads, displayed in green.

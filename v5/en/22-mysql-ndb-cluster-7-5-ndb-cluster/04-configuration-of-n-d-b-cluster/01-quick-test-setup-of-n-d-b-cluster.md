@@ -41,7 +41,7 @@ DataDir= /var/lib/mysql-cluster
 [mysqld]
 ```
 
-You can now start the [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") management server. By default, it attempts to read the `config.ini` file in its current working directory, so change location into the directory where the file is located and then invoke [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"):
+You can now start the [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") management server. By default, it attempts to read the `config.ini` file in its current working directory, so change location into the directory where the file is located and then invoke [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"):
 
 ```sql
 $> cd /var/lib/mysql-cluster
@@ -58,7 +58,7 @@ By default, [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The ND
 
 Note
 
-If you have installed MySQL from a binary tarball, you must specify the path of the [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") and [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") servers explicitly. (Normally, these can be found in `/usr/local/mysql/bin`.)
+If you have installed MySQL from a binary tarball, you must specify the path of the [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") and [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") servers explicitly. (Normally, these can be found in `/usr/local/mysql/bin`.)
 
 Finally, change location to the MySQL data directory (usually `/var/lib/mysql` or `/usr/local/mysql/data`), and make sure that the `my.cnf` file contains the option necessary to enable the NDB storage engine:
 

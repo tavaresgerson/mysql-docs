@@ -1,4 +1,4 @@
-### 28.3.33 A Tabela ROLE\_ROUTINE\_GRANTS da INFORMATION\_SCHEMA
+### 28.3.33 A Tabela ROLE_ROUTINE_GRANTS da INFORMATION_SCHEMA
 
 A tabela `ROLE_ROUTINE_GRANTS` fornece informações sobre os privilégios de rotina para os papéis que estão disponíveis para ou concedidos pelos papéis atualmente habilitados.
 

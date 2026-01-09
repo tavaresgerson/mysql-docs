@@ -1,4 +1,4 @@
-#### 26.4.3.14 As visualizações io\_global\_by\_wait\_by\_latency e x$io\_global\_by\_wait\_by\_latency
+#### 26.4.3.14 As visualizações io_global_by_wait_by_latency e x$io_global_by_wait_by_latency
 
 Esses pontos de vista resumem os consumidores globais de E/S para exibir a quantidade de E/S e o tempo de espera para E/S, agrupados por evento. Por padrão, as linhas são ordenadas por latência total decrescente.
 

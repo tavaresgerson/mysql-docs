@@ -26,7 +26,7 @@ A tabela `arbitrator_validity_detail` contém as seguintes colunas:
 
 ##### Notas
 
-O ID do nó é o mesmo que o relatado por **ndb\_mgm -e "SHOW"**.
+O ID do nó é o mesmo que o relatado por **ndb_mgm -e "SHOW"**.
 
 Todos os nós devem exibir os mesmos valores de `arbitrator` e `arb_ticket`, bem como o mesmo valor de `arb_state`. Os valores possíveis de `arb_state` são `ARBIT_NULL`, `ARBIT_INIT`, `ARBIT_FIND`, `ARBIT_PREP1`, `ARBIT_PREP2`, `ARBIT_START`, `ARBIT_RUN`, `ARBIT_CHOOSE`, `ARBIT_CRASH` e `UNKNOWN`.
 

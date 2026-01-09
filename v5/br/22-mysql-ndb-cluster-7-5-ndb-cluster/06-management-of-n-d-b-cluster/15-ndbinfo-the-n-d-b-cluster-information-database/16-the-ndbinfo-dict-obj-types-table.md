@@ -1,4 +1,4 @@
-#### 21.6.15.16 Tabela ndbinfo dict\_obj\_types
+#### 21.6.15.16 Tabela ndbinfo dict_obj_types
 
 A tabela `dict_obj_types` é uma tabela estática que lista os possíveis tipos de objetos de dicionário usados no kernel NDB. Estes são os mesmos tipos definidos por `Object::Type` na API NDB.
 

@@ -44,7 +44,7 @@ A opção `READ ONLY` controla se é permitido modificar o banco de dados e os o
 
 Com o NDB Cluster, tornar um banco de dados apenas de leitura em um servidor **mysqld** é sincronizado com outros servidores **mysqld** no mesmo cluster, de modo que o banco de dados se torne apenas de leitura em todos os servidores **mysqld**.
 
-A opção `READ ONLY` (Apenas de Leitura), se habilitada, é exibida na tabela `INFORMATION_SCHEMA` `SCHEMATA_EXTENSIONS`. Veja a Seção 28.3.38, “A Tabela INFORMATION\_SCHEMA SCHEMATA\_EXTENSIONS”.
+A opção `READ ONLY` (Apenas de Leitura), se habilitada, é exibida na tabela `INFORMATION_SCHEMA` `SCHEMATA_EXTENSIONS`. Veja a Seção 28.3.38, “A Tabela INFORMATION_SCHEMA SCHEMATA_EXTENSIONS”.
 
 A opção `READ ONLY` (Apenas de Leitura) não pode ser habilitada para esses esquemas do sistema: `mysql`, `information_schema`, `performance_schema`.
 

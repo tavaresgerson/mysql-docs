@@ -8,7 +8,7 @@
 
 12.8.4 Coercibilidade da Colagem em Expressões
 
-12.8.5 A Colagem Binária Comparada às Colagens \_bin
+12.8.5 A Colagem Binária Comparada às Colagens _bin
 
 12.8.6 Exemplos do Efeito da Colagem
 

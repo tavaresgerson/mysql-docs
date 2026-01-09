@@ -3,18 +3,16 @@
 Para gerenciar contas do MySQL, use as instruções SQL destinadas a esse propósito:
 
 - `CREATE USER` e `DROP USER` criam e removem contas.
-
 - `GRANT` e `REVOKE` atribuem privilégios e revogam privilégios de contas.
-
 - `SHOW GRANTS` exibe as atribuições de privilégios da conta.
 
 As declarações de gerenciamento de contas fazem com que o servidor faça as modificações apropriadas nas tabelas de concessão subjacentes, que são discutidas em Seção 6.2.3, "Tabelas de Concessão".
 
-Nota
-
+::: info Nota
 A modificação direta das tabelas de concessão usando instruções como `INSERT`, `UPDATE` ou `DELETE` é desencorajada e feita por sua própria conta e risco. O servidor tem a liberdade de ignorar linhas que se tornam malformadas como resultado dessas modificações.
+:::
 
-A partir do MySQL 5.7.18, para qualquer operação que modifique uma tabela de concessão, o servidor verifica se a tabela tem a estrutura esperada e produz um erro se não for o caso. **mysql\_upgrade** deve ser executado para atualizar as tabelas para a estrutura esperada.
+A partir do MySQL 5.7.18, para qualquer operação que modifique uma tabela de concessão, o servidor verifica se a tabela tem a estrutura esperada e produz um erro se não for o caso. **mysql_upgrade** deve ser executado para atualizar as tabelas para a estrutura esperada.
 
 Outra opção para criar contas é usar a ferramenta de interface gráfica MySQL Workbench. Além disso, vários programas de terceiros oferecem funcionalidades para a administração de contas do MySQL. O `phpMyAdmin` é um desses programas.
 
@@ -33,7 +31,7 @@ Os exemplos a seguir mostram como usar o programa cliente **mysql** para configu
 
 Na linha de comando, conecte-se ao servidor como o usuário `root` do MySQL, fornecendo a senha apropriada no prompt de senha:
 
-```sql
+```sh
 $> mysql -u root -p
 Enter password: (enter root password here)
 ```
@@ -70,7 +68,7 @@ As contas criadas por essas declarações têm as seguintes propriedades:
 
   A conta `'finley'@'localhost'` é necessária se houver uma conta de usuário anônimo para `localhost`. Sem a conta `'finley'@'localhost'`, essa conta de usuário anônimo terá precedência quando o `finley` se conectar a partir do host local e o `finley` será tratado como um usuário anônimo. A razão para isso é que a conta de usuário anônimo tem um valor mais específico na coluna `Host` do que a conta `'finley'@'%'` e, portanto, vem antes na ordem de classificação da tabela `user`. (Para informações sobre a classificação da tabela `user`, consulte Seção 6.2.5, “Controle de Acesso, Etapa 1: Verificação de Conexão”.)
 
-- A conta `'admin'@'localhost'` só pode ser usada pelo `admin` para se conectar a partir do host local. Ela possui os privilégios administrativos globais `RELOAD` e `PROCESS` (privilegios-fornecidos.html#priv\_reload e privileges-fornecidos.html#priv\_process). Esses privilégios permitem que o usuário `admin` execute os comandos **mysqladmin reload**, **mysqladmin refresh** e **mysqladmin flush-*`xxx`***, além do **mysqladmin processlist**. Nenhum privilégio é concedido para acessar quaisquer bancos de dados. Você pode adicionar esses privilégios usando declarações `GRANT` (grant.html).
+- A conta `'admin'@'localhost'` só pode ser usada pelo `admin` para se conectar a partir do host local. Ela possui os privilégios administrativos globais `RELOAD` e `PROCESS` (privilegios-fornecidos.html#priv_reload e privileges-fornecidos.html#priv_process). Esses privilégios permitem que o usuário `admin` execute os comandos **mysqladmin reload**, **mysqladmin refresh** e **mysqladmin flush-*`xxx`***, além do **mysqladmin processlist**. Nenhum privilégio é concedido para acessar quaisquer bancos de dados. Você pode adicionar esses privilégios usando declarações `GRANT` (grant.html).
 
 - A conta `'dummy'@'localhost'` não tem senha (o que é inseguro e não é recomendado). Essa conta só pode ser usada para se conectar a partir do host local. Nenhum privilégio é concedido. Assume-se que você conceda privilégios específicos à conta usando as instruções `GRANT`.
 

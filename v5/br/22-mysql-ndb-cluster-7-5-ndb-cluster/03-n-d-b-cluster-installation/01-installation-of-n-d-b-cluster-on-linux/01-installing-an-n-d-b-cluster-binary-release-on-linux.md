@@ -40,7 +40,7 @@ Após concluir a instalação, ainda não inicie nenhum dos binários. Mostramos
    $> mysqld --initialize
    ```
 
-   Isso gera uma senha aleatória para a conta `root` do MySQL. Se você *não* quiser que a senha aleatória seja gerada, pode substituir a opção `--initialize-insecure` pelo `--initialize`. Em qualquer caso, você deve revisar Seção 2.9.1, “Inicializando o diretório de dados” para obter informações adicionais antes de realizar essa etapa. Veja também Seção 4.4.4, “mysql\_secure\_installation — Melhorar a segurança da instalação do MySQL”.
+   Isso gera uma senha aleatória para a conta `root` do MySQL. Se você *não* quiser que a senha aleatória seja gerada, pode substituir a opção `--initialize-insecure` pelo `--initialize`. Em qualquer caso, você deve revisar Seção 2.9.1, “Inicializando o diretório de dados” para obter informações adicionais antes de realizar essa etapa. Veja também Seção 4.4.4, “mysql_secure_installation — Melhorar a segurança da instalação do MySQL”.
 
 4. Defina as permissões necessárias para o servidor MySQL e os diretórios de dados:
 
@@ -78,7 +78,7 @@ Como administrador do sistema (ou seja, após usar **sudo**, **su root** ou o eq
    $> cp bin/ndbmtd /usr/local/bin/ndbmtd
    ```
 
-   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp`, assim que **ndb\_mgm** e **ndb\_mgmd** tiverem sido copiados para o diretório de executaveis.)
+   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp`, assim que **ndb_mgm** e **ndb_mgmd** tiverem sido copiados para o diretório de executaveis.)
 
 2. Altere a localização para o diretório no qual você copiou os arquivos e, em seguida, torne ambos executáveis:
 
@@ -95,11 +95,11 @@ Nota
 
 O diretório de dados em cada máquina que hospeda um nó de dados é `/usr/local/mysql/data`. Essa informação é essencial ao configurar o nó de gerenciamento. (Veja Seção 21.3.3, “Configuração Inicial do NDB Cluster”).
 
-**Nodos de gerenciamento.** A instalação do nó de gerenciamento não requer o binário **mysqld**. É necessário apenas o servidor de gerenciamento do NDB Cluster (**ndb\_mgmd**). Você provavelmente também deseja instalar o cliente de gerenciamento (**ndb\_mgm**). Ambos os binários também podem ser encontrados no arquivo `.tar.gz`. Novamente, assumimos que você colocou esse arquivo em `/var/tmp`.
+**Nodos de gerenciamento.** A instalação do nó de gerenciamento não requer o binário **mysqld**. É necessário apenas o servidor de gerenciamento do NDB Cluster (**ndb_mgmd**). Você provavelmente também deseja instalar o cliente de gerenciamento (**ndb_mgm**). Ambos os binários também podem ser encontrados no arquivo `.tar.gz`. Novamente, assumimos que você colocou esse arquivo em `/var/tmp`.
 
-Como sistema `root`, execute os seguintes passos para instalar **ndb\_mgmd** e **ndb\_mgm** no host do nó de gerenciamento:
+Como sistema `root`, execute os seguintes passos para instalar **ndb_mgmd** e **ndb_mgm** no host do nó de gerenciamento:
 
-1. Altere a localização para o diretório `/var/tmp` e extraia os arquivos **ndb\_mgm** e **ndb\_mgmd** do arquivo em um diretório adequado, como `/usr/local/bin`:
+1. Altere a localização para o diretório `/var/tmp` e extraia os arquivos **ndb_mgm** e **ndb_mgmd** do arquivo em um diretório adequado, como `/usr/local/bin`:
 
    ```sql
    $> cd /var/tmp
@@ -108,7 +108,7 @@ Como sistema `root`, execute os seguintes passos para instalar **ndb\_mgmd** e *
    $> cp bin/ndb_mgm* /usr/local/bin
    ```
 
-   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp`, assim que **ndb\_mgm** e **ndb\_mgmd** tiverem sido copiados para o diretório de executaveis.)
+   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp`, assim que **ndb_mgm** e **ndb_mgmd** tiverem sido copiados para o diretório de executaveis.)
 
 2. Altere a localização para o diretório no qual você copiou os arquivos e, em seguida, torne ambos executáveis:
 

@@ -1,4 +1,4 @@
-#### B.3.2.14 A tabela 'tbl\_name' não existe
+#### B.3.2.14 A tabela 'tbl_name' não existe
 
 Se você receber um dos seguintes erros, geralmente significa que não existe nenhuma tabela no banco de dados padrão com o nome fornecido:
 

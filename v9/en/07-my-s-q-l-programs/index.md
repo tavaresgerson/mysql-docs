@@ -24,17 +24,17 @@
 
 6.3 Server and Server-Startup Programs :   6.3.1 mysqld — The MySQL Server
 
-    6.3.2 mysqld\_safe — MySQL Server Startup Script
+    6.3.2 mysqld_safe — MySQL Server Startup Script
 
     6.3.3 mysql.server — MySQL Server Startup Script
 
-    6.3.4 mysqld\_multi — Manage Multiple MySQL Servers
+    6.3.4 mysqld_multi — Manage Multiple MySQL Servers
 
-6.4 Installation-Related Programs :   6.4.1 comp\_err — Compile MySQL Error Message File
+6.4 Installation-Related Programs :   6.4.1 comp_err — Compile MySQL Error Message File
 
-    6.4.2 mysql\_secure\_installation — Improve MySQL Installation Security
+    6.4.2 mysql_secure_installation — Improve MySQL Installation Security
 
-    6.4.3 mysql\_tzinfo\_to\_sql — Load the Time Zone Tables
+    6.4.3 mysql_tzinfo_to_sql — Load the Time Zone Tables
 
 6.5 Client Programs :   6.5.1 mysql — The MySQL Command-Line Client
 
@@ -56,7 +56,7 @@
 
     6.6.2 innochecksum — Offline InnoDB File Checksum Utility
 
-    6.6.3 myisam\_ftdump — Display Full-Text Index information
+    6.6.3 myisam_ftdump — Display Full-Text Index information
 
     6.6.4 myisamchk — MyISAM Table-Maintenance Utility
 
@@ -64,17 +64,17 @@
 
     6.6.6 myisampack — Generate Compressed, Read-Only MyISAM Tables
 
-    6.6.7 mysql\_config\_editor — MySQL Configuration Utility
+    6.6.7 mysql_config_editor — MySQL Configuration Utility
 
-    6.6.8 mysql\_migrate\_keyring — Keyring Key Migration Utility
+    6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility
 
     6.6.9 mysqlbinlog — Utility for Processing Binary Log Files
 
     6.6.10 mysqldumpslow — Summarize Slow Query Log Files
 
-6.7 Program Development Utilities :   6.7.1 mysql\_config — Display Options for Compiling Clients
+6.7 Program Development Utilities :   6.7.1 mysql_config — Display Options for Compiling Clients
 
-    6.7.2 my\_print\_defaults — Display Options from Option Files
+    6.7.2 my_print_defaults — Display Options from Option Files
 
 6.8 Miscellaneous Programs :   6.8.1 perror — Display MySQL Error Message Information
 

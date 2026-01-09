@@ -14,9 +14,9 @@ There are a number of reasons why a rolling restart might be desirable. These ar
 
 * Start each data node process (**ndbd** or possibly **ndbmtd**")) with the `--initial` option, which forces the data node to clear its file system and to reload all NDB Cluster data and metadata from the other data nodes. This also forces the removal of all Disk Data objects and files associated with those objects.
 
-* Create a backup using the **ndb\_mgm** client `START BACKUP` command prior to performing the restart. Following the upgrade, restore the node or nodes using **ndb\_restore**.
+* Create a backup using the **ndb_mgm** client `START BACKUP` command prior to performing the restart. Following the upgrade, restore the node or nodes using **ndb_restore**.
 
-  See Section 25.6.8, “Online Backup of NDB Cluster”, and Section 25.5.23, “ndb\_restore — Restore an NDB Cluster Backup”, for more information.
+  See Section 25.6.8, “Online Backup of NDB Cluster”, and Section 25.5.23, “ndb_restore — Restore an NDB Cluster Backup”, for more information.
 
 * Use **mysqldump** to create a backup prior to the upgrade; afterward, restore the dump using `LOAD DATA`.
 
@@ -24,11 +24,11 @@ There are a number of reasons why a rolling restart might be desirable. These ar
 
 The process for performing a rolling restart may be generalized as follows:
 
-1. Stop all cluster management nodes (**ndb\_mgmd** processes), reconfigure them, then restart them. (See Rolling restarts with multiple management servers.)
+1. Stop all cluster management nodes (**ndb_mgmd** processes), reconfigure them, then restart them. (See Rolling restarts with multiple management servers.)
 
 2. Stop, reconfigure, then restart each cluster data node (**ndbd** process) in turn.
 
-   Some node configuration parameters can be updated by issuing `RESTART` for each of the data nodes in the **ndb\_mgm** client following the previous step. Other parameters require that the data node be stopped completely using the management client `STOP` command, then started again from a system shell by invoking the **ndbd** or **ndbmtd**") executable as appropriate. (A shell command such as **kill** can also be used on most Unix systems to stop a data node process, but the `STOP` command is preferred and usually simpler.)
+   Some node configuration parameters can be updated by issuing `RESTART` for each of the data nodes in the **ndb_mgm** client following the previous step. Other parameters require that the data node be stopped completely using the management client `STOP` command, then started again from a system shell by invoking the **ndbd** or **ndbmtd**") executable as appropriate. (A shell command such as **kill** can also be used on most Unix systems to stop a data node process, but the `STOP` command is preferred and usually simpler.)
 
    Note
 
@@ -54,15 +54,15 @@ It is not possible for any API node to perform schema operations (such as data d
 
 **Rolling restarts with multiple management servers.**
 
-When performing a rolling restart of an NDB Cluster with multiple management nodes, you should keep in mind that **ndb\_mgmd** checks to see if any other management node is running, and, if so, tries to use that node's configuration data. To keep this from occurring, and to force **ndb\_mgmd** to re-read its configuration file, perform the following steps:
+When performing a rolling restart of an NDB Cluster with multiple management nodes, you should keep in mind that **ndb_mgmd** checks to see if any other management node is running, and, if so, tries to use that node's configuration data. To keep this from occurring, and to force **ndb_mgmd** to re-read its configuration file, perform the following steps:
 
-1. Stop all NDB Cluster **ndb\_mgmd** processes.
+1. Stop all NDB Cluster **ndb_mgmd** processes.
 2. Update all `config.ini` files.
-3. Start a single **ndb\_mgmd** with `--reload`, `--initial`, or both options as desired.
+3. Start a single **ndb_mgmd** with `--reload`, `--initial`, or both options as desired.
 
-4. If you started the first **ndb\_mgmd** with the `--initial` option, you must also start any remaining **ndb\_mgmd** processes using `--initial`.
+4. If you started the first **ndb_mgmd** with the `--initial` option, you must also start any remaining **ndb_mgmd** processes using `--initial`.
 
-   Regardless of any other options used when starting the first **ndb\_mgmd**, you should not start any remaining **ndb\_mgmd** processes after the first one using `--reload`.
+   Regardless of any other options used when starting the first **ndb_mgmd**, you should not start any remaining **ndb_mgmd** processes after the first one using `--reload`.
 
 5. Complete the rolling restarts of the data nodes and API nodes as normal.
 

@@ -58,7 +58,7 @@ Retorna 1 para sucesso, ou `NULL` e um erro para falha.
 
   `keyring_hashicorp_update_config()` não é fornecido pelo componente de chave de keyring HashiCorp. Por essa razão, a função deve ser considerada obsoleta e, portanto, sujeita à remoção em uma versão futura do MySQL.
 
-  Quando invocada, a função `keyring_hashicorp_update_config()` faz com que o `keyring_hashicorp` realize uma reconfiguração em tempo de execução, conforme descrito em keyring\_hashicorp Configuration.
+  Quando invocada, a função `keyring_hashicorp_update_config()` faz com que o `keyring_hashicorp` realize uma reconfiguração em tempo de execução, conforme descrito em keyring_hashicorp Configuration.
 
   Esta função requer o privilégio `SYSTEM_VARIABLES_ADMIN` porque modifica variáveis de sistema globais.
 

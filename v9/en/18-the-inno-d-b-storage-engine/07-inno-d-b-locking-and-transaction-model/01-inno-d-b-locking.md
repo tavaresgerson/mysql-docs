@@ -177,7 +177,7 @@ An `AUTO-INC` lock is a special table-level lock taken by transactions inserting
 
 The `innodb_autoinc_lock_mode` variable controls the algorithm used for auto-increment locking. It allows you to choose how to trade off between predictable sequences of auto-increment values and maximum concurrency for insert operations.
 
-For more information, see Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+For more information, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
 #### Predicate Locks for Spatial Indexes
 

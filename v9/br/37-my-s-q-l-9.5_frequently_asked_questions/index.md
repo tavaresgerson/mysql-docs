@@ -14,7 +14,7 @@ A.5 Perguntas Frequentes do MySQL 9.5: Triggers
 
 A.6 Perguntas Frequentes do MySQL 9.5: Visualizações
 
-A.7 Perguntas Frequentes do MySQL 9.5: INFORMATION\_SCHEMA
+A.7 Perguntas Frequentes do MySQL 9.5: INFORMATION_SCHEMA
 
 A.8 Perguntas Frequentes do MySQL 9.5: Migração
 

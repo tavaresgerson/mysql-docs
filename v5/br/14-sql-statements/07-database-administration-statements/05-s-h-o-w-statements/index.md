@@ -129,8 +129,8 @@ like_or_where: {
 }
 ```
 
-Se a sintaxe de uma instrução `SHOW` (show\.html) específica incluir uma parte `LIKE 'pattern'` (string-comparison-functions.html#operator\_like), `'pattern'` é uma string que pode conter os caracteres curinga `%` e `_` do SQL. O padrão é útil para restringir a saída da instrução a valores que correspondem.
+Se a sintaxe de uma instrução `SHOW` (show\.html) específica incluir uma parte `LIKE 'pattern'` (string-comparison-functions.html#operator_like), `'pattern'` é uma string que pode conter os caracteres curinga `%` e `_` do SQL. O padrão é útil para restringir a saída da instrução a valores que correspondem.
 
 Várias instruções `SHOW` também aceitam uma cláusula `WHERE` que oferece mais flexibilidade na especificação das linhas a serem exibidas. Veja Seção 24.8, “Extensões para Instruções SHOW”.
 
-Muitas APIs do MySQL (como a PHP) permitem que você trate o resultado retornado por uma instrução `SHOW` como se fosse um conjunto de resultados de uma instrução `SELECT`; veja \[Capítulo 27, *Conectores e APIs*] (connectors-apis.html), ou consulte a documentação da sua API para mais informações. Além disso, você pode trabalhar com SQL com resultados de consultas em tabelas no banco de dados `INFORMATION_SCHEMA`, o que não é fácil de fazer com resultados de instruções `SHOW`. Veja \[Capítulo 24, *Tabelas do INFORMATION\_SCHEMA*] (information-schema.html).
+Muitas APIs do MySQL (como a PHP) permitem que você trate o resultado retornado por uma instrução `SHOW` como se fosse um conjunto de resultados de uma instrução `SELECT`; veja [Capítulo 27, *Conectores e APIs*] (connectors-apis.html), ou consulte a documentação da sua API para mais informações. Além disso, você pode trabalhar com SQL com resultados de consultas em tabelas no banco de dados `INFORMATION_SCHEMA`, o que não é fácil de fazer com resultados de instruções `SHOW`. Veja [Capítulo 24, *Tabelas do INFORMATION_SCHEMA*] (information-schema.html).

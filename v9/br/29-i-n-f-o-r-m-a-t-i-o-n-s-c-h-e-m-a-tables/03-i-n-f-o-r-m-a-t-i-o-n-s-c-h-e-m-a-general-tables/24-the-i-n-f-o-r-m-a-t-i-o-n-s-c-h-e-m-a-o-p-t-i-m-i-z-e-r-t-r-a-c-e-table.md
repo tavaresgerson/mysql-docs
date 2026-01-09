@@ -1,4 +1,4 @@
-### 28.3.24 A Tabela `OPTIMIZER_TRACE` de INFORMAÇÃO\_SCHEMA
+### 28.3.24 A Tabela `OPTIMIZER_TRACE` de INFORMAÇÃO_SCHEMA
 
 A tabela `OPTIMIZER_TRACE` fornece informações produzidas pela capacidade de rastreamento do otimizador para instruções rastreadas. Para habilitar o rastreamento, use a variável de sistema `optimizer_trace`. Para obter detalhes, consulte a Seção 10.15, “Rastreamento do Otimizador”.
 

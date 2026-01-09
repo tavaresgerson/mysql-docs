@@ -2,11 +2,11 @@
 
 O programa de utilitário **replace** altera as strings no local em arquivos ou na entrada padrão.
 
-Nota
-
+::: info Nota
 O utilitário **replace** foi descontinuado a partir do MySQL 5.7.18 e foi removido no MySQL 8.0.
+:::
 
-Invoque **substituir** de uma das seguintes maneiras:
+Invoque **replace** de uma das seguintes maneiras:
 
 ```sql
 replace from to [from to] ... -- file_name [file_name] ...
@@ -21,7 +21,7 @@ Se a opção `--` não for fornecida, o comando **replace** lê a entrada padrã
 
 O **replace** usa uma máquina de estados finitos para combinar strings mais longas primeiro. Ele pode ser usado para trocar strings. Por exemplo, o seguinte comando troca `a` e `b` nos arquivos fornecidos, `file1` e `file2`:
 
-```sql
+```sh
 replace a b b a -- file1 file2 ...
 ```
 

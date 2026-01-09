@@ -55,7 +55,7 @@ The syntax rules for `CREATE TABLE ... PARTITION BY KEY` are similar to those fo
 
   If you define an explicit partitioning scheme for an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table, the table must have an explicit primary key, and any columns used in the partitioning expression must be part of this key. However, if the table uses an “empty” partitioning expression—that is, `PARTITION BY KEY()` with no column references—then no explicit primary key is required.
 
-  You can observe this partitioning using the [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility (with the `-p` option).
+  You can observe this partitioning using the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility (with the `-p` option).
 
   Important
 

@@ -166,7 +166,7 @@ mysql> SELECT JSON_MERGE_PRESERVE('["a", 1]', '{"key": "value"}');
 
 For information about the merging rules, see Normalization, Merging, and Autowrapping of JSON Values.
 
-(MySQL also supports `JSON_MERGE_PATCH()`, which has somewhat different behavior. See JSON\_MERGE\_PATCH() compared with JSON\_MERGE\_PRESERVE() compared with JSON_MERGE_PRESERVE()"), for information about the differences between these two functions.)
+(MySQL also supports `JSON_MERGE_PATCH()`, which has somewhat different behavior. See JSON_MERGE_PATCH() compared with JSON_MERGE_PRESERVE() compared with JSON_MERGE_PRESERVE()"), for information about the differences between these two functions.)
 
 JSON values can be assigned to user-defined variables:
 

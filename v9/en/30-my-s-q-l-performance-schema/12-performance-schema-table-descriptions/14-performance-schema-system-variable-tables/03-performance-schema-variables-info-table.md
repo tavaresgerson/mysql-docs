@@ -1,4 +1,4 @@
-#### 29.12.14.3 Performance Schema variables\_info Table
+#### 29.12.14.3 Performance Schema variables_info Table
 
 The `variables_info` table shows, for each system variable, the source from which it was most recently set, and its range of values.
 
@@ -84,7 +84,7 @@ If a variable with a `VARIABLE_SOURCE` value other than `DYNAMIC` is set at runt
 
 A system variable that has only a session value (such as `debug_sync`) cannot be set at startup or persisted. For session-only system variables, `VARIABLE_SOURCE` can be only `COMPILED` or `DYNAMIC`.
 
-If a system variable has an unexpected `VARIABLE_SOURCE` value, consider your server startup method. For example, **mysqld\_safe** reads option files and passes certain options it finds there as part of the command line that it uses to start **mysqld**. Consequently, some system variables that you set in option files might display in `variables_info` as `COMMAND_LINE`, rather than as `GLOBAL` or `SERVER` as you might otherwise expect.
+If a system variable has an unexpected `VARIABLE_SOURCE` value, consider your server startup method. For example, **mysqld_safe** reads option files and passes certain options it finds there as part of the command line that it uses to start **mysqld**. Consequently, some system variables that you set in option files might display in `variables_info` as `COMMAND_LINE`, rather than as `GLOBAL` or `SERVER` as you might otherwise expect.
 
 Some sample queries that use the `variables_info` table, with representative output:
 

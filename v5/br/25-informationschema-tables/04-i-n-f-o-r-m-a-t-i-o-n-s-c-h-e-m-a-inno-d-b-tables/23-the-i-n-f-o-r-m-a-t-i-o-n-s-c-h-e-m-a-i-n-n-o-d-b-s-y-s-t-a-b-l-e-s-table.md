@@ -1,8 +1,8 @@
-### 24.4.23 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES
+### 24.4.23 A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES
 
 A tabela [`INNODB_SYS_TABLES`](https://docs.oracle.com/en/database/sql/information-schema/sql/innodb_sys_tables.html) fornece metadados sobre as tabelas `InnoDB`, equivalentes às informações da tabela `SYS_TABLES` no dicionário de dados `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
 
 A tabela [`INNODB_SYS_TABLES`](https://docs.oracle.com/en/database/sql/information-schema/sql/innodb_sys_tables.html) possui as seguintes colunas:
 
@@ -20,7 +20,7 @@ A tabela [`INNODB_SYS_TABLES`](https://docs.oracle.com/en/database/sql/informati
 
 - `N_COLS`
 
-  O número de colunas na tabela. O número reportado inclui três colunas ocultas que são criadas pelo `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID` e `DB_ROLL_PTR`). O número reportado também inclui colunas geradas virtualmente (glossary.html#glos\_virtual\_generated\_column), se estiverem presentes.
+  O número de colunas na tabela. O número reportado inclui três colunas ocultas que são criadas pelo `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID` e `DB_ROLL_PTR`). O número reportado também inclui colunas geradas virtualmente (glossary.html#glos_virtual_generated_column), se estiverem presentes.
 
 - `ESPACO`
 

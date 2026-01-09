@@ -137,7 +137,7 @@ Uma vez que você tenha feito as alterações necessárias, salve o arquivo.
    2008-12-08 17:29:23 [MgmSrvr] INFO     -- Reading cluster configuration from 'config.ini'
    ```
 
-Se você verificar a saída do `SHOW` no cliente de gerenciamento após reiniciar o processo **ndb\_mgm**, você deve agora ver algo como isso:
+Se você verificar a saída do `SHOW` no cliente de gerenciamento após reiniciar o processo **ndb_mgm**, você deve agora ver algo como isso:
 
 ```
 -- NDB Cluster -- Management Client --
@@ -186,7 +186,7 @@ Após emitir cada comando `X RESTART`, aguarde até que o cliente de gerenciamen
 
 Você pode verificar se todos os nós de dados existentes foram reiniciados usando a tabela `ndbinfo.nodes` no cliente **mysql**.
 
-**Passo 4: Realize um reinício contínuo de todos os nós de API do clúster.** Desligue e reinicie cada servidor MySQL que atua como um nó SQL no clúster usando **mysqladmin shutdown** seguido por **mysqld\_safe** (ou outro script de inicialização). Isso deve ser semelhante ao que é mostrado aqui, onde *`password`* é a senha do `root` do MySQL para uma instância específica do servidor MySQL:
+**Passo 4: Realize um reinício contínuo de todos os nós de API do clúster.** Desligue e reinicie cada servidor MySQL que atua como um nó SQL no clúster usando **mysqladmin shutdown** seguido por **mysqld_safe** (ou outro script de inicialização). Isso deve ser semelhante ao que é mostrado aqui, onde *`password`* é a senha do `root` do MySQL para uma instância específica do servidor MySQL:
 
 ```
 $> mysqladmin -uroot -ppassword shutdown
@@ -274,7 +274,7 @@ Node 4: Data usage is 0%(0 32K pages of total 3200)
 Node 4: Index usage is 0%(0 8K pages of total 12832)
 ```
 
-Usando **ndb\_desc** com a opção `-p`, que faz com que a saída inclua informações de particionamento, você pode ver que a tabela ainda usa apenas 2 particionamentos (na seção `Per partition info` da saída, mostrada aqui em texto em negrito):
+Usando **ndb_desc** com a opção `-p`, que faz com que a saída inclua informações de particionamento, você pode ver que a tabela ainda usa apenas 2 particionamentos (na seção `Per partition info` da saída, mostrada aqui em texto em negrito):
 
 ```
 $> ndb_desc -c 198.51.100.10 -d n ips -p

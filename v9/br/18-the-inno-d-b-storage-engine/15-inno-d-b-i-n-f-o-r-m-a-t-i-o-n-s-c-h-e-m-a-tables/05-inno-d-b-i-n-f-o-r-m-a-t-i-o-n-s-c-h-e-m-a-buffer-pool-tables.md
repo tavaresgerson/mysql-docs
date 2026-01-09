@@ -27,7 +27,7 @@ Aviso
 
 Fazer consultas na tabela `INNODB_BUFFER_PAGE` ou `INNODB_BUFFER_PAGE_LRU` pode afetar o desempenho. Não faça consultas a essas tabelas em um sistema de produção, a menos que você esteja ciente do impacto no desempenho e tenha determinado que ele é aceitável. Para evitar afetar o desempenho em um sistema de produção, reproduza o problema que você deseja investigar e faça consultas às estatísticas do banco de buffer em uma instância de teste.
 
-**Exemplo 17.6 Consulta de Dados do Sistema na Tabela INNODB\_BUFFER\_PAGE**
+**Exemplo 17.6 Consulta de Dados do Sistema na Tabela INNODB_BUFFER_PAGE**
 
 Esta consulta fornece um contagem aproximada de páginas que contêm dados do sistema, excluindo páginas onde o valor `TABLE_NAME` é `NULL` ou inclui uma barra `/` ou ponto `.` no nome da tabela, o que indica uma tabela definida pelo usuário.
 
@@ -80,7 +80,7 @@ mysql> SELECT DISTINCT PAGE_TYPE FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +-------------------+
 ```
 
-**Exemplo 17.7 Consulta de Dados do Usuário na Tabela INNODB\_BUFFER\_PAGE**
+**Exemplo 17.7 Consulta de Dados do Usuário na Tabela INNODB_BUFFER_PAGE**
 
 Esta consulta fornece um contagem aproximada de páginas contendo dados do usuário, contando páginas onde o valor `TABLE_NAME` é `NOT NULL` e `NOT LIKE '%INNODB_TABLES%'`.
 
@@ -129,7 +129,7 @@ mysql> SELECT DISTINCT TABLE_NAME FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +-------------------------+
 ```
 
-**Exemplo 17.8 Consulta de Dados de Índices na Tabela INNODB\_BUFFER\_PAGE**
+**Exemplo 17.8 Consulta de Dados de Índices na Tabela INNODB_BUFFER_PAGE**
 
 Para obter informações sobre páginas de índice, consulte a coluna `INDEX_NAME` usando o nome do índice. Por exemplo, a seguinte consulta retorna o número de páginas e o tamanho total de dados das páginas para o índice `emp_no` que é definido na tabela `employees.salaries`:
 
@@ -163,7 +163,7 @@ mysql> SELECT INDEX_NAME, COUNT(*) AS Pages,
 +------------+-------+-----------------+
 ```
 
-**Exemplo 17.9 Consulta de Dados LRU\_POSITION na Tabela INNODB\_BUFFER\_PAGE\_LRU**
+**Exemplo 17.9 Consulta de Dados LRU_POSITION na Tabela INNODB_BUFFER_PAGE_LRU**
 
 A tabela `INNODB_BUFFER_PAGE_LRU` contém informações sobre as páginas no pool de buffer do `InnoDB`, especificamente como elas são ordenadas, o que determina quais páginas devem ser removidas do pool de buffer quando ele ficar cheio. A definição para essa página é a mesma da `INNODB_BUFFER_PAGE`, exceto que essa tabela tem uma coluna `LRU_POSITION` em vez de uma coluna `BLOCK_ID`.
 
@@ -179,7 +179,7 @@ mysql> SELECT COUNT(LRU_POSITION) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE_LRU
 +---------------------+
 ```
 
-**Exemplo 17.10 Consultando a Tabela INNODB\_BUFFER\_POOL\_STATS**
+**Exemplo 17.10 Consultando a Tabela INNODB_BUFFER_POOL_STATS**
 
 A tabela `INNODB_BUFFER_POOL_STATS` fornece informações semelhantes às variáveis `SHOW ENGINE INNODB STATUS` e `InnoDB` pool de buffer status.
 

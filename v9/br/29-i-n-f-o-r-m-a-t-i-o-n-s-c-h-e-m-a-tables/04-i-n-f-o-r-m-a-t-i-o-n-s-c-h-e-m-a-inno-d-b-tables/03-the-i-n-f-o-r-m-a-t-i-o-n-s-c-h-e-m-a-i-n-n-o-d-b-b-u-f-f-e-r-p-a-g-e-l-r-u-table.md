@@ -1,4 +1,4 @@
-### 28.4.3 A Tabela `INFORMATION\_SCHEMA\_INNODB\_BUFFER\_PAGE\_LRU`
+### 28.4.3 A Tabela `INFORMATION_SCHEMA_INNODB_BUFFER_PAGE_LRU`
 
 A tabela `INNODB_BUFFER_PAGE_LRU` fornece informações sobre as páginas no pool de buffer do `InnoDB`; em particular, como elas estão ordenadas na lista LRU que determina quais páginas devem ser removidas do pool de buffer quando ele ficar cheio.
 
@@ -28,11 +28,11 @@ A tabela `INNODB_BUFFER_PAGE_LRU` tem essas colunas:
 
   O número da página.
 
-* `PAGE\_TYPE`
+* `PAGE_TYPE`
 
   O tipo de página. A tabela a seguir mostra os valores permitidos.
 
-**Tabela 28.6 Valores de `INNODB\_BUFFER\_PAGE\_LRU.PAGE\_TYPE`**
+**Tabela 28.6 Valores de `INNODB_BUFFER_PAGE_LRU.PAGE_TYPE`**
 
 <table summary="Mapeamento para interpretar os valores de INNODB_BUFFER_PAGE_LRU.PAGE_TYPE.">
 <col style="width: 30%"/><col style="width: 30%"/>

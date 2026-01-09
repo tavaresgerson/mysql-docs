@@ -1,4 +1,4 @@
-### 28.3.42 The INFORMATION\_SCHEMA ST\_SPATIAL\_REFERENCE\_SYSTEMS Table
+### 28.3.42 The INFORMATION_SCHEMA ST_SPATIAL_REFERENCE_SYSTEMS Table
 
 The `ST_SPATIAL_REFERENCE_SYSTEMS` table provides information about available spatial reference systems (SRSs) for spatial data. This table is based on the SQL/MM (ISO/IEC 13249-3) standard.
 

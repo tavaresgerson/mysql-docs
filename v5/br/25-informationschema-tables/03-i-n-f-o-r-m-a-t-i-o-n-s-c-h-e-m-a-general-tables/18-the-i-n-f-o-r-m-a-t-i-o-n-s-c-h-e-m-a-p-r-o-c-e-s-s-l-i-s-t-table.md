@@ -1,4 +1,4 @@
-### 24.3.18 A tabela INFORMATION\_SCHEMA PROCESSLIST
+### 24.3.18 A tabela INFORMATION_SCHEMA PROCESSLIST
 
 A lista de processos do MySQL indica as operações atualmente realizadas pelo conjunto de threads que estão sendo executadas no servidor. A tabela `PROCESSLIST` é uma fonte de informações sobre os processos. Para uma comparação desta tabela com outras fontes, consulte Fontes de Informações sobre Processos.
 
@@ -6,7 +6,7 @@ A tabela `PROCESSLIST` tem as seguintes colunas:
 
 - `ID`
 
-  O identificador de conexão. Este é o mesmo valor exibido na coluna `Id` da declaração `SHOW PROCESSLIST` (show-processlist.html), exibida na coluna `PROCESSLIST_ID` da tabela do Schema de Desempenho `threads` (performance-schema-threads-table.html) e retornada pela função `CONNECTION_ID()` (information-functions.html#function\_connection-id) dentro do thread.
+  O identificador de conexão. Este é o mesmo valor exibido na coluna `Id` da declaração `SHOW PROCESSLIST` (show-processlist.html), exibida na coluna `PROCESSLIST_ID` da tabela do Schema de Desempenho `threads` (performance-schema-threads-table.html) e retornada pela função `CONNECTION_ID()` (information-functions.html#function_connection-id) dentro do thread.
 
 - `USUARIO`
 

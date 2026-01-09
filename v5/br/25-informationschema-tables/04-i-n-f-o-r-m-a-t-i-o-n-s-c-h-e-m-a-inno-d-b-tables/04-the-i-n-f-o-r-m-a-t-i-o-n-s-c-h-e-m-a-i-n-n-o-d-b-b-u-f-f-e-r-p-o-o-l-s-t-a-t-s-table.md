@@ -1,10 +1,10 @@
-### 24.4.4 A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS
+### 24.4.4 A tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS
 
 A tabela [`INNODB_BUFFER_POOL_STATS`](https://pt.wikipedia.org/wiki/Tabela_INNODB_BUFFER_POOL_STATS) fornece grande parte das mesmas informações do pool de buffers fornecidas na saída do comando [`SHOW ENGINE INNODB STATUS`](https://pt.wikipedia.org/wiki/Mostrar_estado_do_motor_INNODB). Grande parte das mesmas informações também pode ser obtida usando as variáveis de status do pool de buffers do `InnoDB` (<https://pt.wikipedia.org/wiki/Vari%C3%A1veis_de_status_do_servidor_InnoDB>).
 
-A ideia de tornar as páginas no pool de buffer "jovens" ou "não jovens" refere-se à transferência delas entre as \[sublistas]\(glossary.html#glos\_sublist] na cabeça e na cauda da estrutura de dados do pool de buffer. As páginas tornadas "jovens" demoram mais para serem eliminadas do pool de buffer, enquanto as páginas tornadas "não jovens" são movidas muito mais perto do ponto de expulsão.
+A ideia de tornar as páginas no pool de buffer "jovens" ou "não jovens" refere-se à transferência delas entre as [sublistas]\(glossary.html#glos_sublist] na cabeça e na cauda da estrutura de dados do pool de buffer. As páginas tornadas "jovens" demoram mais para serem eliminadas do pool de buffer, enquanto as páginas tornadas "não jovens" são movidas muito mais perto do ponto de expulsão.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.5, “Tabelas do Banco de Armazenamento do InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.5, “Tabelas do Banco de Armazenamento do InnoDB INFORMATION_SCHEMA”.
 
 A tabela [`INNODB_BUFFER_POOL_STATS`](https://pt.wikipedia.org/wiki/Tabela_`information-schema-innodb-buffer-pool-stats`) possui as seguintes colunas:
 

@@ -25,25 +25,25 @@ O **mysqlshow** suporta as seguintes opções, que podem ser especificadas na li
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlshow">
 <tr><th>Nome da Opção</th><th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_bind-address">--bind-address</a></td><td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_character-sets-dir">--character-sets-dir</a></td><td>Diretório onde os conjuntos de caracteres podem ser encontrados</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_compress">--compress</a></td><td>Compressar todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_compression-algorithms">--compression-algorithms</a></td><td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_count">--count</a></td><td>Mostrar o número de linhas por tabela</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_debug">--debug</a></td><td>Escrever log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_debug-check">--debug-check</a></td><td>Imprimir informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_debug-info">--debug-info</a></td><td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_default-character-set">--default-character-set</a></td><td>Especificar o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_defaults-extra-file">--defaults-extra-file</a></td><td>Ler o arquivo de opção nomeado em adição aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_defaults-file">--defaults-file</a></td><td>Ler apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_defaults-group-suffix">--defaults-group-suffix</a></td><td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_enable-cleartext-plugin">--enable-cleartext-plugin</a></td><td>Habilitar o plugin de autenticação clara</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_get-server-public-key">--get-server-public-key</a></td><td>Solicitar a chave pública RSA do servidor</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_help">--help</a></td><td>Exibir a mensagem de ajuda e sair</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_host">--host</a></td><td>Host em que o servidor MySQL está localizado</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_keys">--keys</a></td><td>Mostrar índices da tabela</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_login-path">--login-path</a></td><td>Ler as opções de caminho de login a partir de .mylogin.cnf</td></tr>
-<tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_no-defaults">--no-defaults</a></td><td>Ler sem arquivos de opção</td></tr>
+<tr><td>--bind-address</td><td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td><td>Diretório onde os conjuntos de caracteres podem ser encontrados</td></tr>
+<tr><td>--compress</td><td>Compressar todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td><td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--count</td><td>Mostrar o número de linhas por tabela</td></tr>
+<tr><td>--debug</td><td>Escrever log de depuração</td></tr>
+<tr><td>--debug-check</td><td>Imprimir informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td><td>Imprimir informações de depuração, memória e estatísticas da CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td><td>Especificar o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td><td>Ler o arquivo de opção nomeado em adição aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td><td>Ler apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td><td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td><td>Habilitar o plugin de autenticação clara</td></tr>
+<tr><td>--get-server-public-key</td><td>Solicitar a chave pública RSA do servidor</td></tr>
+<tr><td>--help</td><td>Exibir a mensagem de ajuda e sair</td></tr>
+<tr><td>--host</td><td>Host em que o servidor MySQL está localizado</td></tr>
+<tr><td>--keys</td><td>Mostrar índices da tabela</td></tr>
+<tr><td>--login-path</td><td>Ler as opções de caminho de login a partir de .mylogin.cnf</td></tr>
+<tr><td>--no-defaults</td><td>Ler sem arquivos de opção</td></tr>
 <tr><td><a class="link" href="mysqlshow.html#option_mysqlshow_no-login-paths">--no-login-paths
 
 * `--help`, `-?`
@@ -74,7 +74,7 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
 
 * `--compression-algorithms=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para compressão-algoritmos"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definível</td> </tr><tr><th>Valor Padrão</th> <td><code>não comprimido</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não comprimido</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para compressão-algoritmos"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definível</td> </tr><tr><th>Valor Padrão</th> <td><code>não comprimido</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não comprimido</code></p></td> </tr></tbody></table>
 
   Os algoritmos de compressão permitidos para conexões com o servidor. Os algoritmos disponíveis são os mesmos da variável de sistema `protocol_compression_algorithms`. O valor padrão é `não comprimido`.
 
@@ -180,7 +180,7 @@ Para informações sobre o plugin `caching_sha2_password`, consulte a Seção 8.
 
   <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um "caminho de login" é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um "caminho de login" é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para obter informações adicionais sobre isso e outras opções de arquivos de opções, veja a Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opções”.
 
@@ -200,7 +200,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 
   Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opção, `--no-defaults` pode ser usado para impedir que sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para obter informações adicionais sobre essa e outras opções de arquivo, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opção”.
 

@@ -4,7 +4,7 @@ Algumas funções não se replicam bem em determinadas condições:
 
 * As funções `USER()`, `CURRENT_USER()` (ou `CURRENT_USER`), `UUID()`, `VERSION()` e `LOAD_FILE()` são replicadas sem alterações e, portanto, não funcionam de forma confiável na replica, a menos que a replicação baseada em linhas seja habilitada. (Veja a Seção 19.2.1, “Formatos de Replicação”.)
 
-  `USER()` e `CURRENT_USER()` são replicados automaticamente usando a replicação baseada em linhas ao usar o modo `MIXED`, e geram um aviso no modo `STATEMENT`. (Veja também a Seção 19.5.1.8, “Replicação de CURRENT\_USER()”.) Isso também é válido para `VERSION()` e `RAND()`.
+  `USER()` e `CURRENT_USER()` são replicados automaticamente usando a replicação baseada em linhas ao usar o modo `MIXED`, e geram um aviso no modo `STATEMENT`. (Veja também a Seção 19.5.1.8, “Replicação de CURRENT_USER()”.) Isso também é válido para `VERSION()` e `RAND()`.
 
 * Para `NOW()`, o log binário inclui o timestamp. Isso significa que o valor *como retornado pela chamada a essa função na fonte* é replicado para a replica. Para evitar resultados inesperados ao replicar entre servidores MySQL em diferentes fusos horários, defina o fuso horário em ambos os servidores de origem e replica. Para mais informações, consulte a Seção 19.5.1.34, “Replicação e Fusos Horários”.
 

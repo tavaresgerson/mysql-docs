@@ -185,7 +185,7 @@ Esta opção define o número de vezes que o comando será executado. Use `--del
 
   <table frame="box" rules="all" summary="Propriedades para core-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
-  Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrime entradas no `NDB_CONNECTSTRING` e `my.cnf`.
+  Defina a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrime entradas no `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgmd-host`
 
@@ -229,7 +229,7 @@ Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de 
 
   Exiba as informações da versão e saia.
 
-**ndbinfo\_select\_all** não consegue ler as seguintes tabelas:
+**ndbinfo_select_all** não consegue ler as seguintes tabelas:
 
 * `arbitrator_validity_detail`
 * `arbitrator_validity_summary`

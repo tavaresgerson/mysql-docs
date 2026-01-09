@@ -34,7 +34,7 @@ VERSION(): 5.7.44-ndb-7.5.36
 1 row in set (0.00 sec)
 ```
 
-This version string is also displayed in the output of the `SHOW` command in the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client:
+This version string is also displayed in the output of the `SHOW` command in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client:
 
 ```sql
 ndb_mgm> SHOW

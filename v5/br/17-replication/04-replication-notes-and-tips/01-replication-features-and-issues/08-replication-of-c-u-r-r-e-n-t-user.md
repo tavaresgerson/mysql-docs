@@ -1,4 +1,4 @@
-#### 16.4.1.8 Replicação de CURRENT\_USER()
+#### 16.4.1.8 Replicação de CURRENT_USER()
 
 As seguintes declarações apoiam o uso da função `CURRENT_USER()` para substituir o nome e, possivelmente, o endereço do host de um usuário afetado ou de um definidor:
 

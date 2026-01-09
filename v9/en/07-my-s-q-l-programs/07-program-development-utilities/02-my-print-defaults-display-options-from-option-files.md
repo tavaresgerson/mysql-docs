@@ -1,6 +1,6 @@
-### 6.7.2 my\_print\_defaults — Display Options from Option Files
+### 6.7.2 my_print_defaults — Display Options from Option Files
 
-**my\_print\_defaults** displays the options that are present in option groups of option files. The output indicates what options are used by programs that read the specified option groups. For example, the **mysqlcheck** program reads the `[mysqlcheck]` and `[client]` option groups. To see what options are present in those groups in the standard option files, invoke **my\_print\_defaults** like this:
+**my_print_defaults** displays the options that are present in option groups of option files. The output indicates what options are used by programs that read the specified option groups. For example, the **mysqlcheck** program reads the `[mysqlcheck]` and `[client]` option groups. To see what options are present in those groups in the standard option files, invoke **my_print_defaults** like this:
 
 ```
 $> my_print_defaults mysqlcheck client
@@ -11,7 +11,7 @@ $> my_print_defaults mysqlcheck client
 
 The output consists of options, one per line, in the form that they would be specified on the command line.
 
-**my\_print\_defaults** supports the following options.
+**my_print_defaults** supports the following options.
 
 * `--help`, `-?`
 
@@ -39,7 +39,7 @@ The output consists of options, one per line, in the form that they would be spe
 
 * `--login-path=name`, `-l name`
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
@@ -59,7 +59,7 @@ The output consists of options, one per line, in the form that they would be spe
 
 * `--show`, `-s`
 
-  **my\_print\_defaults** masks passwords by default. Use this option to display passwords as cleartext.
+  **my_print_defaults** masks passwords by default. Use this option to display passwords as cleartext.
 
 * `--verbose`, `-v`
 

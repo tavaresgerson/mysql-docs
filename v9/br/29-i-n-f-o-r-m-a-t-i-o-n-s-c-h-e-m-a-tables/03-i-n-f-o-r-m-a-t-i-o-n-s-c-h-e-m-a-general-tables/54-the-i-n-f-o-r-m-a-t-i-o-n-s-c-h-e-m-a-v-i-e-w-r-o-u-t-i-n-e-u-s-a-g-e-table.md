@@ -1,4 +1,4 @@
-### 28.3.54 A tabela INFORMATION\_SCHEMA VIEW\_ROUTINE\_USAGE
+### 28.3.54 A tabela INFORMATION_SCHEMA VIEW_ROUTINE_USAGE
 
 A tabela `VIEW_ROUTINE_USAGE` fornece acesso a informações sobre funções armazenadas usadas em definições de visualizações. A tabela não lista informações sobre funções integradas (nativas) ou funções carregáveis usadas nas definições.
 

@@ -1,4 +1,4 @@
-#### 16.4.1.19 Replication and max\_allowed\_packet
+#### 16.4.1.19 Replication and max_allowed_packet
 
 [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) sets an upper limit on the size of any single message between the MySQL server and clients, including replicas. If you are replicating large column values (such as might be found in [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") or [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns) and [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) is too small on the source, the source fails with an error, and the replica shuts down the replication I/O thread. If [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) is too small on the replica, this also causes the replica to stop the replication I/O thread.
 

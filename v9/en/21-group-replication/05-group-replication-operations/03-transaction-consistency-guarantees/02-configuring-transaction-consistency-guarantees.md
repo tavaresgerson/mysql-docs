@@ -131,7 +131,7 @@ To guarantee that the group provides the same consistency level regardless of wh
 
 This ensures that the members all behave in the same way, and that the configuration is persisted after a restart of the member.
 
-A transaction cannot be on-hold forever, and if the time held exceeds `wait_timeout` it returns an ER\_GR\_HOLD\_WAIT\_TIMEOUT error.
+A transaction cannot be on-hold forever, and if the time held exceeds `wait_timeout` it returns an ER_GR_HOLD_WAIT_TIMEOUT error.
 
 ##### Permitted Queries Under Consistency Rules
 

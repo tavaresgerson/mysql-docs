@@ -1,4 +1,4 @@
-#### 29.12.22.4 The host\_cache Table
+#### 29.12.22.4 The host_cache Table
 
 The MySQL server maintains an in-memory host cache that contains client host name and IP address information and is used to avoid Domain Name System (DNS) lookups. The `host_cache` table exposes the contents of this cache. The `host_cache_size` system variable controls the size of the host cache, as well as the size of the `host_cache` table. For operational and configuration information about the host cache, see Section 7.1.12.3, “DNS Lookups and the Host Cache”.
 

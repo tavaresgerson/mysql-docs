@@ -12,7 +12,7 @@ Existem diferentes tipos de sistemas de referência espacial:
 
 * O SRS indicado no MySQL por SRID 0 representa um plano cartesiano plano infinito sem unidades atribuídas aos seus eixos. Ao contrário dos SRS projetados, ele não é georreferenciado e não representa necessariamente a Terra. É um plano abstrato que pode ser usado para qualquer coisa. SRID 0 é o SRID padrão para dados espaciais no MySQL.
 
-O MySQL mantém informações sobre os sistemas de referência espacial disponíveis para dados espaciais na tabela do dicionário de dados `mysql.st_spatial_reference_systems`, que pode armazenar entradas para SRSs projetadas e geográficas. Esta tabela do dicionário de dados é invisível, mas o conteúdo das entradas de SRS está disponível através da tabela `INFORMATION_SCHEMA` `ST_SPATIAL_REFERENCE_SYSTEMS`, implementada como uma visão na `mysql.st_spatial_reference_systems` (veja a Seção 28.3.42, “A Tabela INFORMATION\_SCHEMA ST\_SPATIAL\_REFERENCE\_SYSTEMS”).
+O MySQL mantém informações sobre os sistemas de referência espacial disponíveis para dados espaciais na tabela do dicionário de dados `mysql.st_spatial_reference_systems`, que pode armazenar entradas para SRSs projetadas e geográficas. Esta tabela do dicionário de dados é invisível, mas o conteúdo das entradas de SRS está disponível através da tabela `INFORMATION_SCHEMA` `ST_SPATIAL_REFERENCE_SYSTEMS`, implementada como uma visão na `mysql.st_spatial_reference_systems` (veja a Seção 28.3.42, “A Tabela INFORMATION_SCHEMA ST_SPATIAL_REFERENCE_SYSTEMS”).
 
 O seguinte exemplo mostra como uma entrada de SRS parece:
 

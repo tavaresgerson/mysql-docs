@@ -30,7 +30,7 @@
 
 [21.6.15 ndbinfo: The NDB Cluster Information Database](mysql-cluster-ndbinfo.html)
 
-[21.6.16 INFORMATION\_SCHEMA Tables for NDB Cluster](mysql-cluster-information-schema-tables.html)
+[21.6.16 INFORMATION_SCHEMA Tables for NDB Cluster](mysql-cluster-information-schema-tables.html)
 
 [21.6.17 Quick Reference: NDB Cluster SQL Statements](mysql-cluster-sql-statements.html)
 

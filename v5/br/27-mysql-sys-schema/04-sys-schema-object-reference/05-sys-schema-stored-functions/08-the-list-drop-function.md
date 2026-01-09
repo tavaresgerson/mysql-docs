@@ -1,4 +1,4 @@
-#### 26.4.5.8 A função list\_drop()
+#### 26.4.5.8 A função list_drop()
 
 Remove um valor de uma lista de valores separados por vírgula e retorna o resultado. Para mais informações, consulte a descrição da função `list_add()"`)
 

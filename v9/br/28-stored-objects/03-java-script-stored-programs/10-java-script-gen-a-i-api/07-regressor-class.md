@@ -193,7 +193,7 @@ novamente treinado; um wrapper para a rotina MySQL HeatWave
 
 **Retorno**
 
-* Adiciona um explaneiro de modelo ao catálogo de modelos; não retorna um valor. Veja ML\_EXPLAIN, para mais informações.
+* Adiciona um explaneiro de modelo ao catálogo de modelos; não retorna um valor. Veja ML_EXPLAIN, para mais informações.
 
 ##### Regressor.getExplainer()
 

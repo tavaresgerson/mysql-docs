@@ -18,15 +18,15 @@ You should also keep in mind that it is the application's responsibility to ensu
 
 Preparations for conflict resolution must be made on both the source and the replica. These tasks are described in the following list:
 
-* On the source writing the binary logs, you must determine which columns are sent (all columns or only those that have been updated). This is done for the MySQL Server as a whole by applying the **mysqld** startup option `--ndb-log-updated-only` (described later in this section), or on one or more specific tables by placing the proper entries in the `mysql.ndb_replication` table (see ndb\_replication Table).
+* On the source writing the binary logs, you must determine which columns are sent (all columns or only those that have been updated). This is done for the MySQL Server as a whole by applying the **mysqld** startup option `--ndb-log-updated-only` (described later in this section), or on one or more specific tables by placing the proper entries in the `mysql.ndb_replication` table (see ndb_replication Table).
 
   Note
 
   If you are replicating tables with very large columns (such as `TEXT` or `BLOB` columns), `--ndb-log-updated-only` can also be useful for reducing the size of the binary logs and avoiding possible replication failures due to exceeding `max_allowed_packet`.
 
-  See Section 19.5.1.21, “Replication and max\_allowed\_packet”, for more information about this issue.
+  See Section 19.5.1.21, “Replication and max_allowed_packet”, for more information about this issue.
 
-* On the replica, you must determine which type of conflict resolution to apply (“latest timestamp wins”, “same timestamp wins”, “primary wins”, “primary wins, complete transaction”, or none). This is done using the `mysql.ndb_replication` system table, and applies to one or more specific tables (see ndb\_replication Table).
+* On the replica, you must determine which type of conflict resolution to apply (“latest timestamp wins”, “same timestamp wins”, “primary wins”, “primary wins, complete transaction”, or none). This is done using the `mysql.ndb_replication` system table, and applies to one or more specific tables (see ndb_replication Table).
 
 * NDB Cluster also supports read conflict detection, that is, detecting conflicts between reads of a given row in one cluster and updates or deletes of the same row in another cluster. This requires exclusive read locks obtained by setting `ndb_log_exclusive_reads` equal to 1 on the replica. All rows read by a conflicting read are logged in the exceptions table. For more information, see Read conflict detection and resolution.
 
@@ -58,13 +58,13 @@ This section provides detailed information about the functions which can be used
 
 * NDB$OLD()")
 * NDB$MAX()")
-* NDB$MAX\_DELETE\_WIN()")
-* NDB$MAX\_INS()")
-* NDB$MAX\_DEL\_WIN\_INS()")
+* NDB$MAX_DELETE_WIN()")
+* NDB$MAX_INS()")
+* NDB$MAX_DEL_WIN_INS()")
 * NDB$EPOCH()")
-* NDB$EPOCH\_TRANS()")
+* NDB$EPOCH_TRANS()")
 * NDB$EPOCH2()")
-* NDB$EPOCH2\_TRANS()")
+* NDB$EPOCH2_TRANS()")
 
 ##### NDB$OLD()
 
@@ -100,7 +100,7 @@ Important
 
 The column value from the sources's “after” image is used by this function.
 
-##### NDB$MAX\_DELETE\_WIN()
+##### NDB$MAX_DELETE_WIN()
 
 This is a variation on `NDB$MAX()`. Due to the fact that no timestamp is available for a delete operation, a delete using `NDB$MAX()` is in fact processed as `NDB$OLD`, but for some use cases, this is not optimal. For `NDB$MAX_DELETE_WIN()`, if the “timestamp” column value for a given row adding or updating an existing row coming from the source is higher than that on the replica, it is applied. However, delete operations are treated as always having the higher value. This is illustrated by the following pseudocode:
 
@@ -117,9 +117,9 @@ Note
 
 As with `NDB$MAX()`, the column value from the source's “after” image is the value used by this function.
 
-##### NDB$MAX\_INS()
+##### NDB$MAX_INS()
 
-This function provides support for resolution of conflicting write operations. Such conflicts are handled by “NDB$MAX\_INS()” as follows:
+This function provides support for resolution of conflicting write operations. Such conflicts are handled by “NDB$MAX_INS()” as follows:
 
 1. If there is no conflicting write, apply this one (this is the same as `NDB$MAX()`).
 
@@ -158,7 +158,7 @@ else
   log_exception();
 ```
 
-##### NDB$MAX\_DEL\_WIN\_INS()
+##### NDB$MAX_DEL_WIN_INS()
 
 This function provides support for resolution of conflicting write operations, along with “delete wins” resolution like that of `NDB$MAX_DELETE_WIN()`. Write conflicts are handled by `NDB$MAX_DEL_WIN_INS()` as shown here:
 
@@ -231,7 +231,7 @@ For the default values of these configuration parameters (2000 and 100 milliseco
 
 Both `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` insert entries for conflicting rows into the relevant exceptions tables, provided that these tables have been defined according to the same exceptions table schema rules as described elsewhere in this section (see NDB$OLD()")). You must create any exceptions table before creating the data table with which it is to be used.
 
-As with the other conflict detection functions discussed in this section, `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` are activated by including relevant entries in the `mysql.ndb_replication` table (see ndb\_replication Table). The roles of the primary and secondary NDB Clusters in this scenario are fully determined by `mysql.ndb_replication` table entries.
+As with the other conflict detection functions discussed in this section, `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` are activated by including relevant entries in the `mysql.ndb_replication` table (see ndb_replication Table). The roles of the primary and secondary NDB Clusters in this scenario are fully determined by `mysql.ndb_replication` table entries.
 
 Because the conflict detection algorithms employed by `NDB$EPOCH()` and `NDB$EPOCH_TRANS()` are asymmetric, you must use different values for the `server_id` entries of the primary and secondary replicas.
 
@@ -253,7 +253,7 @@ The following limitations currently apply when using `NDB$EPOCH()` to perform co
 
 * Tables having `BLOB` or `TEXT` columns are not currently supported with `NDB$EPOCH()` or `NDB$EPOCH_TRANS()`.
 
-##### NDB$EPOCH\_TRANS()
+##### NDB$EPOCH_TRANS()
 
 `NDB$EPOCH_TRANS()` extends the `NDB$EPOCH()` function. Conflicts are detected and handled in the same way using the “primary wins all” rule (see NDB$EPOCH()")) but with the extra condition that any other rows updated in the same transaction in which the conflict occurred are also regarded as being in conflict. In other words, where `NDB$EPOCH()` realigns individual conflicting rows on the secondary, `NDB$EPOCH_TRANS()` realigns conflicting transactions.
 
@@ -267,7 +267,7 @@ See NDB$EPOCH()").
 
 The `NDB$EPOCH2()` function is similar to `NDB$EPOCH()`, except that `NDB$EPOCH2()` provides for delete-delete handling with a bidirectional replication topology. In this scenario, primary and secondary roles are assigned to the two sources by setting the `ndb_conflict_role` system variable to the appropriate value on each source (usually one each of `PRIMARY`, `SECONDARY`). When this is done, modifications made by the secondary are reflected by the primary back to the secondary which then conditionally applies them.
 
-##### NDB$EPOCH2\_TRANS()
+##### NDB$EPOCH2_TRANS()
 
 `NDB$EPOCH2_TRANS()` extends the `NDB$EPOCH2()` function. Conflicts are detected and handled in the same way, and assigning primary and secondary roles to the replicating clusters, but with the extra condition that any other rows updated in the same transaction in which the conflict occurred are also regarded as being in conflict. That is, `NDB$EPOCH2()` realigns individual conflicting rows on the secondary, while `NDB$EPOCH_TRANS()` realigns conflicting transactions.
 
@@ -389,7 +389,7 @@ The following examples assume that you have already a working NDB Cluster replic
 
    Note
 
-   If the `ndb_replication` table does not already exist, you must create it. See ndb\_replication Table.
+   If the `ndb_replication` table does not already exist, you must create it. See ndb_replication Table.
 
    Inserting a 0 into the `server_id` column indicates that all SQL nodes accessing this table should use conflict resolution. If you want to use conflict resolution on a specific **mysqld** only, use the actual server ID.
 
@@ -644,7 +644,7 @@ INSERT INTO mysql.ndb_replication VALUES ("test", "t1", 0, 7, "NDB$MAX_INS(X)");
 INSERT INTO mysql.ndb_replication VALUES ("test", "t2", 0, 7, "NDB$MAX_DEL_WIN_INS(X)");
 ```
 
-Here we have set the binlog\_type as `NBT_FULL_USE_UPDATE` (`7`) which means that full rows are always logged. See ndb\_replication Table, for other possible values.
+Here we have set the binlog_type as `NBT_FULL_USE_UPDATE` (`7`) which means that full rows are always logged. See ndb_replication Table, for other possible values.
 
 You can also create an exceptions table corresponding to each `NDB` table for which conflict resolution is to be employed. An exceptions table records all rows rejected by the conflict resolution function for a given table. Exceptions tables for replication conflict detection for tables `t1` and `t2` can be created using the following two SQL statements:
 

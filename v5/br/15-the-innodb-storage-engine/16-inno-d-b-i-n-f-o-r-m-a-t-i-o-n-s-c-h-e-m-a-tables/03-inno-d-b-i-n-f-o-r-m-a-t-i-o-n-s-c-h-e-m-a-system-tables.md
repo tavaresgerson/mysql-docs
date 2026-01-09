@@ -1,6 +1,6 @@
 ### 14.16.3 Tabelas do esquema de informações do InnoDB
 
-Você pode extrair metadados sobre objetos de esquema gerenciados pelo `InnoDB` usando as tabelas do sistema `INFORMATION_SCHEMA` do `InnoDB`. Essas informações vêm das tabelas internas do sistema do `InnoDB` (também conhecidas como o dicionário de dados do `InnoDB`), que não podem ser consultadas diretamente como tabelas regulares do `InnoDB`. Tradicionalmente, você obteria esse tipo de informação usando as técnicas da Seção 14.18, “Monitoramento do `InnoDB’”, configurando monitores do `InnoDB`e analisando a saída da instrução`SHOW ENGINE INNODB STATUS`. A interface da tabela `INFORMATION\_SCHEMA`do`InnoDB\` permite que você consulte esses dados usando SQL.
+Você pode extrair metadados sobre objetos de esquema gerenciados pelo `InnoDB` usando as tabelas do sistema `INFORMATION_SCHEMA` do `InnoDB`. Essas informações vêm das tabelas internas do sistema do `InnoDB` (também conhecidas como o dicionário de dados do `InnoDB`), que não podem ser consultadas diretamente como tabelas regulares do `InnoDB`. Tradicionalmente, você obteria esse tipo de informação usando as técnicas da Seção 14.18, “Monitoramento do `InnoDB’”, configurando monitores do `InnoDB`e analisando a saída da instrução`SHOW ENGINE INNODB STATUS`. A interface da tabela `INFORMATION_SCHEMA`do`InnoDB\` permite que você consulte esses dados usando SQL.
 
 Com exceção de `INNODB_SYS_TABLESTATS`, para a qual não existe uma tabela interna correspondente, as tabelas do sistema `INFORMATION_SCHEMA` do `InnoDB` são preenchidas com dados lidos diretamente de tabelas internas do sistema `InnoDB`, e não de metadados armazenados em cache na memória.
 
@@ -47,7 +47,7 @@ As tabelas do sistema `INFORMATION_SCHEMA` do `InnoDB` podem ser unidas por meio
 
 Consulte a documentação do `InnoDB` do esquema de informações para obter informações sobre as colunas de cada tabela.
 
-**Exemplo 14.2 Tabelas do Sistema InnoDB INFORMATION\_SCHEMA**
+**Exemplo 14.2 Tabelas do Sistema InnoDB INFORMATION_SCHEMA**
 
 Este exemplo usa uma tabela simples (`t1`) com um único índice (`i1`) para demonstrar o tipo de metadados encontrados nas tabelas do sistema `INFORMATION_SCHEMA` do `InnoDB`.
 
@@ -202,7 +202,7 @@ Este exemplo usa uma tabela simples (`t1`) com um único índice (`i1`) para dem
 
    O campo `STATS_INITIALIZED` indica se as estatísticas foram coletadas ou não para a tabela. `NUM_ROWS` é o número estimado atual de linhas na tabela. Os campos `CLUST_INDEX_SIZE` e `OTHER_INDEX_SIZE` relatam o número de páginas no disco que armazenam índices agrupados e secundários para a tabela, respectivamente. O valor `MODIFIED_COUNTER` mostra o número de linhas modificadas por operações DML e operações em cascata a partir de chaves estrangeiras. O valor `AUTOINC` é o próximo número a ser emitido para qualquer operação baseada em autoincremento. Não há colunas de autoincremento definidas na tabela `t1`, portanto, o valor é 0. O valor `REF_COUNT` é um contador. Quando o contador atingir 0, isso significa que os metadados da tabela podem ser expulsos do cache da tabela.
 
-**Exemplo 14.3 Tabelas do Sistema INFORMATION\_SCHEMA de Chave Estrangeira**
+**Exemplo 14.3 Tabelas do Sistema INFORMATION_SCHEMA de Chave Estrangeira**
 
 As tabelas `INNODB_SYS_FOREIGN` e `INNODB_SYS_FOREIGN_COLS` fornecem dados sobre as relações de chave estrangeira. Este exemplo usa uma tabela pai e uma tabela filho com uma relação de chave estrangeira para demonstrar os dados encontrados nas tabelas `INNODB_SYS_FOREIGN` e `INNODB_SYS_FOREIGN_COLS`.
 

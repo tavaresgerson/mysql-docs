@@ -157,7 +157,7 @@ group_replication_group_seeds= "s1:33061,s2:33061,s3:33061"
 group_replication_bootstrap_group= off
 ```
 
-*2. Inicie o servidor e conecte-se a ele. Configure as credenciais de recuperação para o canal group\_replication\_recovery.*
+*2. Inicie o servidor e conecte-se a ele. Configure as credenciais de recuperação para o canal group_replication_recovery.*
 
 ```sql
 SET SQL_LOG_BIN=0;

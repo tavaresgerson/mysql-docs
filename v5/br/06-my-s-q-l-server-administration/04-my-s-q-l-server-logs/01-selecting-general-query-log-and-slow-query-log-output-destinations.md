@@ -63,7 +63,7 @@ A implementação da tabela de registro tem as seguintes características:
 
   **Tabelas de log e erros de "Muitos arquivos abertos"**. Se você selecionar `TABLE` como destino de log e as tabelas de log utilizarem o mecanismo de armazenamento `CSV`, pode ocorrer que desabilitar e reativar repetidamente o log de consultas gerais ou o log de consultas lentas no tempo real resulte em vários descritores de arquivo abertos para o arquivo `.CSV`, possivelmente resultando em um erro de "Muitos arquivos abertos". Para contornar esse problema, execute `FLUSH TABLES` ou garanta que o valor de `open_files_limit` seja maior que o valor de `table_open_cache_instances`.
 
-- Para desativar o registro, de modo que você possa alterar (ou descartar) uma tabela de registro, você pode usar a seguinte estratégia. O exemplo usa o log de consulta geral; o procedimento para o log de consulta lenta é semelhante, mas usa a tabela `slow_log` e a variável de sistema `[slow_query_log]` (server-system-variables.html#sysvar\_slow\_query\_log).
+- Para desativar o registro, de modo que você possa alterar (ou descartar) uma tabela de registro, você pode usar a seguinte estratégia. O exemplo usa o log de consulta geral; o procedimento para o log de consulta lenta é semelhante, mas usa a tabela `slow_log` e a variável de sistema `[slow_query_log]` (server-system-variables.html#sysvar_slow_query_log).
 
   ```sql
   SET @old_log_state = @@GLOBAL.general_log;

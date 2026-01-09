@@ -1,4 +1,4 @@
-### 28.3.4 The INFORMATION\_SCHEMA CHARACTER\_SETS Table
+### 28.3.4 The INFORMATION_SCHEMA CHARACTER_SETS Table
 
 The `CHARACTER_SETS` table provides information about available character sets.
 

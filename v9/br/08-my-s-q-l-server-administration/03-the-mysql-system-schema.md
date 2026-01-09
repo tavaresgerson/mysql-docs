@@ -152,7 +152,7 @@ Esses sistemas de tabelas contêm informações sobre componentes, funções car
 
   Nota
 
-  Como a tabela de sistema `mysql.func`, a tabela do Schema de Desempenho `user_defined_functions` lista funções carregáveis instaladas usando `CREATE FUNCTION`. Ao contrário da tabela `mysql.func`, a tabela `user_defined_functions` também lista funções instaladas automaticamente por componentes ou plugins do servidor. Essa diferença torna `user_defined_functions` preferível a `mysql.func` para verificar quais funções estão instaladas. Veja a Seção 29.12.22.12, “A tabela user\_defined\_functions”.
+  Como a tabela de sistema `mysql.func`, a tabela do Schema de Desempenho `user_defined_functions` lista funções carregáveis instaladas usando `CREATE FUNCTION`. Ao contrário da tabela `mysql.func`, a tabela `user_defined_functions` também lista funções instaladas automaticamente por componentes ou plugins do servidor. Essa diferença torna `user_defined_functions` preferível a `mysql.func` para verificar quais funções estão instaladas. Veja a Seção 29.12.22.12, “A tabela user_defined_functions”.
 
 * `plugin`: O registro para plugins do lado do servidor instalados usando `INSTALL PLUGIN`. Durante a sequência normal de inicialização, o servidor carrega os plugins registrados nesta tabela. Se o servidor for iniciado com a opção `--skip-grant-tables`, os plugins registrados na tabela não são carregados e estão indisponíveis. Veja a Seção 7.6.1, “Instalando e Desinstalando Plugins”.
 

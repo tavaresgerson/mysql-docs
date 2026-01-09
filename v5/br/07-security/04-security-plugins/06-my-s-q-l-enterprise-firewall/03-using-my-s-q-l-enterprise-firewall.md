@@ -327,4 +327,4 @@ mysql> SHOW GLOBAL STATUS LIKE 'Firewall%';
 +----------------------------+-------+
 ```
 
-As variáveis indicam o número de declarações rejeitadas, aceitas, registradas como suspeitas e adicionadas ao cache, respectivamente. O número de `Firewall_access_granted` (firewall-reference.html#statvar\_Firewall\_access\_granted) é de 4 devido à declaração `@@version_comment` enviada pelo cliente **mysql** cada uma das três vezes que você se conectou usando a conta registrada, além da declaração `SHOW TABLES` (show-tables.html) que não foi bloqueada no modo `DETECTING`.
+As variáveis indicam o número de declarações rejeitadas, aceitas, registradas como suspeitas e adicionadas ao cache, respectivamente. O número de `Firewall_access_granted` (firewall-reference.html#statvar_Firewall_access_granted) é de 4 devido à declaração `@@version_comment` enviada pelo cliente **mysql** cada uma das três vezes que você se conectou usando a conta registrada, além da declaração `SHOW TABLES` (show-tables.html) que não foi bloqueada no modo `DETECTING`.

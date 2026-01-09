@@ -111,7 +111,7 @@ Command: Query
 4 rows in set (0.00 sec)
 ```
 
-Metadata lock information is also exposed through the Performance Schema `metadata_locks` table, which provides information about metadata lock dependencies between sessions, the metadata lock a session is waiting for, and the session that currently holds the metadata lock. For more information, see Section 29.12.13.3, “The metadata\_locks Table”.
+Metadata lock information is also exposed through the Performance Schema `metadata_locks` table, which provides information about metadata lock dependencies between sessions, the metadata lock a session is waiting for, and the session that currently holds the metadata lock. For more information, see Section 29.12.13.3, “The metadata_locks Table”.
 
 #### Online DDL Performance
 

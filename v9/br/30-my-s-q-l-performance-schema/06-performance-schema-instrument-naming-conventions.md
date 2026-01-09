@@ -62,7 +62,7 @@ A parte de sufixo dos nomes de instrumentos vem do código dos próprios instrum
 
 ### Elementos de Instrumento Inativos
 
-O instrumento `idle` é usado para eventos de inatividade, que o Schema de Desempenho gera conforme discutido na descrição da coluna `socket\_instances.STATE` na Seção 29.12.3.5, “A Tabela socket\_instances”.
+O instrumento `idle` é usado para eventos de inatividade, que o Schema de Desempenho gera conforme discutido na descrição da coluna `socket_instances.STATE` na Seção 29.12.3.5, “A Tabela socket_instances”.
 
 ### Elementos de Instrumento de Erro
 

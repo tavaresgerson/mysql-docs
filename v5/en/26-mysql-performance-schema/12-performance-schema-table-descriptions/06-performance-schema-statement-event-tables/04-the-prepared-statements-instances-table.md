@@ -1,14 +1,14 @@
-#### 25.12.6.4 The prepared\_statements\_instances Table
+#### 25.12.6.4 The prepared_statements_instances Table
 
 The Performance Schema provides instrumentation for prepared statements, for which there are two protocols:
 
 * The binary protocol. This is accessed through the MySQL C API and maps onto underlying server commands as shown in the following table.
 
-  <table summary="How the binary protocol accessed through the MySQL C API maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>C API Function</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><a class="ulink" href="/doc/c-api/5.7/en/mysql-stmt-prepare.html" target="_top"><code>mysql_stmt_prepare()</code></a></td> <td><code>COM_STMT_PREPARE</code></td> </tr><tr> <td><a class="ulink" href="/doc/c-api/5.7/en/mysql-stmt-execute.html" target="_top"><code>mysql_stmt_execute()</code></a></td> <td><code>COM_STMT_EXECUTE</code></td> </tr><tr> <td><a class="ulink" href="/doc/c-api/5.7/en/mysql-stmt-close.html" target="_top"><code>mysql_stmt_close()</code></a></td> <td><code>COM_STMT_CLOSE</code></td> </tr></tbody></table>
+  <table summary="How the binary protocol accessed through the MySQL C API maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>C API Function</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><code>mysql_stmt_prepare()</code></td> <td><code>COM_STMT_PREPARE</code></td> </tr><tr> <td><code>mysql_stmt_execute()</code></td> <td><code>COM_STMT_EXECUTE</code></td> </tr><tr> <td><code>mysql_stmt_close()</code></td> <td><code>COM_STMT_CLOSE</code></td> </tr></tbody></table>
 
 * The text protocol. This is accessed using SQL statements and maps onto underlying server commands as shown in the following table.
 
-  <table summary="How the text protocol accessed using SQL statements maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>SQL Statement</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><a class="link" href="prepare.html" title="13.5.1 PREPARE Statement"><code>PREPARE</code></a></td> <td><code>SQLCOM_PREPARE</code></td> </tr><tr> <td><a class="link" href="execute.html" title="13.5.2 EXECUTE Statement"><code>EXECUTE</code></a></td> <td><code>SQLCOM_EXECUTE</code></td> </tr><tr> <td><a class="link" href="deallocate-prepare.html" title="13.5.3 DEALLOCATE PREPARE Statement"><code>DEALLOCATE PREPARE</code></a>, <a class="link" href="deallocate-prepare.html" title="13.5.3 DEALLOCATE PREPARE Statement"><code>DROP PREPARE</code></a></td> <td><code>SQLCOM_DEALLOCATE PREPARE</code></td> </tr></tbody></table>
+  <table summary="How the text protocol accessed using SQL statements maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>SQL Statement</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><code>PREPARE</code></td> <td><code>SQLCOM_PREPARE</code></td> </tr><tr> <td><code>EXECUTE</code></td> <td><code>SQLCOM_EXECUTE</code></td> </tr><tr> <td><code>DEALLOCATE PREPARE</code>, <code>DROP PREPARE</code></td> <td><code>SQLCOM_DEALLOCATE PREPARE</code></td> </tr></tbody></table>
 
 Performance Schema prepared statement instrumentation covers both protocols. The following discussion refers to the server commands rather than the C API functions or SQL statements.
 

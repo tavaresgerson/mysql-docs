@@ -1,4 +1,4 @@
-#### 21.6.15.15 The ndbinfo dict\_obj\_info Table
+#### 21.6.15.15 The ndbinfo dict_obj_info Table
 
 The `dict_obj_info` table provides information about `NDB` data dictionary ([`DICT`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdict.html)) objects such as tables and indexes. (The [`dict_obj_types`](mysql-cluster-ndbinfo-dict-obj-types.html "21.6.15.16 The ndbinfo dict_obj_types Table") table can be queried for a list of all the types.) This information includes the object's type, state, parent object (if any), and fully qualified name.
 

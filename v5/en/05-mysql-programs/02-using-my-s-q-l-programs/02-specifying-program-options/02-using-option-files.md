@@ -8,9 +8,9 @@ Note
 
 A MySQL program started with the `--no-defaults` option reads no option files other than `.mylogin.cnf`.
 
-Many option files are plain text files, created using any text editor. The exception is the `.mylogin.cnf` file that contains login path options. This is an encrypted file created by the **mysql\_config\_editor** utility. See Section 4.6.6, “mysql\_config\_editor — MySQL Configuration Utility”. A “login path” is an option group that permits only certain options: `host`, `user`, `password`, `port` and `socket`. Client programs specify which login path to read from `.mylogin.cnf` using the `--login-path` option.
+Many option files are plain text files, created using any text editor. The exception is the `.mylogin.cnf` file that contains login path options. This is an encrypted file created by the **mysql_config_editor** utility. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”. A “login path” is an option group that permits only certain options: `host`, `user`, `password`, `port` and `socket`. Client programs specify which login path to read from `.mylogin.cnf` using the `--login-path` option.
 
-To specify an alternative login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is used by the **mysql-test-run.pl** testing utility, but also is recognized by **mysql\_config\_editor** and by MySQL clients such as **mysql**, **mysqladmin**, and so forth.
+To specify an alternative login path file name, set the `MYSQL_TEST_LOGIN_FILE` environment variable. This variable is used by the **mysql-test-run.pl** testing utility, but also is recognized by **mysql_config_editor** and by MySQL clients such as **mysql**, **mysqladmin**, and so forth.
 
 MySQL looks for option files in the order described in the following discussion and reads any that exist. If an option file you want to use does not exist, create it using the appropriate method, as just discussed.
 
@@ -28,7 +28,7 @@ On Windows, MySQL programs read startup options from the files shown in the foll
 
 **Table 4.1 Option Files Read on Windows Systems**
 
-<table summary="Option files read by MySQL programs on Windows systems."><thead><tr> <th>File Name</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code class="filename"><code>%WINDIR%</code>\my.ini</code>, <code class="filename"><code>%WINDIR%</code>\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename">C:\my.ini</code>, <code class="filename">C:\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename"><em class="replaceable"><code>BASEDIR</code></em>\my.ini</code>, <code class="filename"><em class="replaceable"><code>BASEDIR</code></em>\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code>defaults-extra-file</code></td> <td>The file specified with <a class="link" href="option-file-options.html#option_general_defaults-extra-file"><code>--defaults-extra-file</code></a>, if any</td> </tr><tr> <td><code class="filename"><code>%APPDATA%</code>\MySQL\.mylogin.cnf</code></td> <td>Login path options (clients only)</td> </tr></tbody></table>
+<table summary="Option files read by MySQL programs on Windows systems."><thead><tr> <th>File Name</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code><code>%WINDIR%</code>\my.ini</code>, <code><code>%WINDIR%</code>\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code>C:\my.ini</code>, <code>C:\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code><em class="replaceable"><code>BASEDIR</code></em>\my.ini</code>, <code><em class="replaceable"><code>BASEDIR</code></em>\my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code>defaults-extra-file</code></td> <td>The file specified with <code>--defaults-extra-file</code>, if any</td> </tr><tr> <td><code><code>%APPDATA%</code>\MySQL\.mylogin.cnf</code></td> <td>Login path options (clients only)</td> </tr></tbody></table>
 
 In the preceding table, `%WINDIR%` represents the location of your Windows directory. This is commonly `C:\WINDOWS`. Use the following command to determine its exact location from the value of the `WINDIR` environment variable:
 
@@ -56,13 +56,13 @@ On Unix platforms, MySQL ignores configuration files that are world-writable. Th
 
 **Table 4.2 Option Files Read on Unix and Unix-Like Systems**
 
-<table summary="Option files read by MySQL programs on Unix and Unix-like systems."><thead><tr> <th>File Name</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code class="filename">/etc/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename">/etc/mysql/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename"><em class="replaceable"><code>SYSCONFDIR</code></em>/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code class="filename">$MYSQL_HOME/my.cnf</code></td> <td>Server-specific options (server only)</td> </tr><tr> <td><code>defaults-extra-file</code></td> <td>The file specified with <a class="link" href="option-file-options.html#option_general_defaults-extra-file"><code>--defaults-extra-file</code></a>, if any</td> </tr><tr> <td><code class="filename">~/.my.cnf</code></td> <td>User-specific options</td> </tr><tr> <td><code class="filename">~/.mylogin.cnf</code></td> <td>User-specific login path options (clients only)</td> </tr></tbody></table>
+<table summary="Option files read by MySQL programs on Unix and Unix-like systems."><thead><tr> <th>File Name</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code>/etc/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code>/etc/mysql/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code><em class="replaceable"><code>SYSCONFDIR</code></em>/my.cnf</code></td> <td>Global options</td> </tr><tr> <td><code>$MYSQL_HOME/my.cnf</code></td> <td>Server-specific options (server only)</td> </tr><tr> <td><code>defaults-extra-file</code></td> <td>The file specified with <code>--defaults-extra-file</code>, if any</td> </tr><tr> <td><code>~/.my.cnf</code></td> <td>User-specific options</td> </tr><tr> <td><code>~/.mylogin.cnf</code></td> <td>User-specific login path options (clients only)</td> </tr></tbody></table>
 
 In the preceding table, `~` represents the current user's home directory (the value of `$HOME`).
 
 *`SYSCONFDIR`* represents the directory specified with the `SYSCONFDIR` option to **CMake** when MySQL was built. By default, this is the `etc` directory located under the compiled-in installation directory.
 
-`MYSQL_HOME` is an environment variable containing the path to the directory in which the server-specific `my.cnf` file resides. If `MYSQL_HOME` is not set and you start the server using the **mysqld\_safe** program, **mysqld\_safe** sets it to *`BASEDIR`*, the MySQL base installation directory.
+`MYSQL_HOME` is an environment variable containing the path to the directory in which the server-specific `my.cnf` file resides. If `MYSQL_HOME` is not set and you start the server using the **mysqld_safe** program, **mysqld_safe** sets it to *`BASEDIR`*, the MySQL base installation directory.
 
 *`DATADIR`* is commonly `/usr/local/mysql/data`, although this can vary per platform or installation method. The value is the data directory location built in when MySQL was compiled, not the location specified with the `--datadir` option when **mysqld** starts. Use of `--datadir` at runtime has no effect on where the server looks for option files that it reads before processing any options.
 
@@ -70,7 +70,7 @@ If multiple instances of a given option are found, the last instance takes prece
 
 ##### Option File Syntax
 
-The following description of option file syntax applies to files that you edit manually. This excludes `.mylogin.cnf`, which is created using **mysql\_config\_editor** and is encrypted.
+The following description of option file syntax applies to files that you edit manually. This excludes `.mylogin.cnf`, which is created using **mysql_config_editor** and is encrypted.
 
 Any long option that may be given on the command line when running a MySQL program can be given in an option file as well. To get the list of available options for a program, run it with the `--help` option. (For **mysqld**, use `--verbose` and `--help`.)
 
@@ -117,7 +117,7 @@ basedir=C:\\Program\sFiles\\MySQL\\MySQL\sServer\s5.7
 
 If an option group name is the same as a program name, options in the group apply specifically to that program. For example, the `[mysqld]` and `[mysql]` groups apply to the **mysqld** server and the **mysql** client program, respectively.
 
-The `[client]` option group is read by all client programs provided in MySQL distributions (but *not* by **mysqld**). To understand how third-party client programs that use the C API can use option files, see the C API documentation at mysql\_options().
+The `[client]` option group is read by all client programs provided in MySQL distributions (but *not* by **mysqld**). To understand how third-party client programs that use the C API can use option files, see the C API documentation at mysql_options().
 
 The `[client]` group enables you to specify options that apply to all clients. For example, `[client]` is the appropriate group to use to specify the password for connecting to the server. (But make sure that the option file is accessible only by yourself, so that other people cannot discover your password.) Be sure not to put an option in the `[client]` group unless it is recognized by *all* client programs that you use. Programs that do not understand the option quit after displaying an error message if you try to run them.
 

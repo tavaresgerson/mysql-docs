@@ -1,4 +1,4 @@
-### 24.4.5 As tabelas INFORMATION\_SCHEMA INNODB\_CMP e INNODB\_CMP\_RESET
+### 24.4.5 As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET
 
 As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` fornecem informações de status sobre operações relacionadas a tabelas `InnoDB` compactadas.
 

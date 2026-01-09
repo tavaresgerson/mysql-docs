@@ -1,4 +1,4 @@
-#### 29.12.11.6 The replication\_applier\_progress\_by\_worker Table
+#### 29.12.11.6 The replication_applier_progress_by_worker Table
 
 This table provides information about the transaction currently being applied by a given worker. If there is no such transaction, this table is empty.
 

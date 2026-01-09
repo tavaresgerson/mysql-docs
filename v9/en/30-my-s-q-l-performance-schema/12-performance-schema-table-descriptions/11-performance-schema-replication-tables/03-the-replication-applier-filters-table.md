@@ -1,4 +1,4 @@
-#### 29.12.11.3 The replication\_applier\_filters Table
+#### 29.12.11.3 The replication_applier_filters Table
 
 This table shows the replication channel specific filters configured on this replica. Each row provides information on a replication channel's configured type of filter. The `replication_applier_filters` table has these columns:
 

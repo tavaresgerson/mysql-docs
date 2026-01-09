@@ -22,7 +22,7 @@ A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O sufixo 
 
 **Tabela 8.26 Nomes de Plugin e Biblioteca para Autenticação WebAuthn**
 
-<table summary="Nomes para os plugins e o arquivo da biblioteca usados para a autenticação WebAuthn."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>authentication_webauthn</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code>authentication_webauthn_client</code></td> </tr><tr> <td>Arquivo da biblioteca</td> <td><code class="filename">authentication_webauthn.so</code>, <code class="filename">authentication_webauthn_client.so</code></td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo da biblioteca usados para a autenticação WebAuthn."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>authentication_webauthn</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code>authentication_webauthn_client</code></td> </tr><tr> <td>Arquivo da biblioteca</td> <td><code>authentication_webauthn.so</code>, <code>authentication_webauthn_client.so</code></td> </tr></tbody></table>
 
 Nota
 
@@ -83,7 +83,7 @@ INSTALL PLUGIN authentication_webauthn
   SONAME 'authentication_webauthn.so';
 ```
 
-`INSTALE O PLUGIN` carrega o plugin imediatamente e também o registra na tabela do esquema de informações `mysql.plugins` para fazer com que o servidor o carregue para cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
+`INSTALL PLUGIN` carrega o plugin imediatamente e também o registra na tabela do esquema de informações `mysql.plugins` para fazer com que o servidor o carregue para cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
 
 Para verificar a instalação do plugin, examine a tabela do esquema de informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte a Seção 7.6.2, “Obter Informações do Plugin do Servidor”). Por exemplo:
 
@@ -324,7 +324,7 @@ Uma conta que utiliza a autenticação WebAuthn deve realizar uma etapa de regis
 
 1. O servidor envia um desafio aleatório, ID do usuário e ID da parte de confiança (que identifica de forma única um servidor) ao cliente no formato JSON. O ID da parte de confiança é definido pela variável de sistema `authentication_webauthn_rp_id`. O valor padrão é `mysql.com`.
 
-2. O cliente recebe essas informações e as envia ao plugin de autenticação WebAuthn do lado do cliente, que, por sua vez, as fornece ao dispositivo FIDO/FIDO2. O cliente também envia uma capacidade de 1 byte, com o bit RESIDENT\_KEYS definido como `ON` (se for um dispositivo FIDO2) ou `OFF`.
+2. O cliente recebe essas informações e as envia ao plugin de autenticação WebAuthn do lado do cliente, que, por sua vez, as fornece ao dispositivo FIDO/FIDO2. O cliente também envia uma capacidade de 1 byte, com o bit RESIDENT_KEYS definido como `ON` (se for um dispositivo FIDO2) ou `OFF`.
 
 3. Após o usuário realizar a ação apropriada do dispositivo (por exemplo, tocar no dispositivo ou realizar uma varredura biométrica), o dispositivo FIDO/FIDO2 gera um par de chaves pública/privada, um handle de chave, um certificado X.509 e uma assinatura, que é devolvido ao servidor.
 

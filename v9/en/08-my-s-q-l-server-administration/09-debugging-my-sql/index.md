@@ -4,7 +4,7 @@
 
 7.9.2 Debugging a MySQL Client
 
-7.9.3 The LOCK\_ORDER Tool
+7.9.3 The LOCK_ORDER Tool
 
 7.9.4 The DBUG Package
 

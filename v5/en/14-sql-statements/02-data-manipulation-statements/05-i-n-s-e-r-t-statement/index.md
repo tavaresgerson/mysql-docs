@@ -108,7 +108,7 @@ INSERT INTO tbl_name (a,b,c) VALUES(1,2,3,4,5,6,7,8,9);
 
 `VALUE` is a synonym for `VALUES` in this context. Neither implies anything about the number of values lists, nor about the number of values per list. Either may be used whether there is a single values list or multiple lists, and regardless of the number of values per list.
 
-The affected-rows value for an [`INSERT`](insert.html "13.2.5 INSERT Statement") can be obtained using the [`ROW_COUNT()`](information-functions.html#function_row-count) SQL function or the [`mysql_affected_rows()`](/doc/c-api/5.7/en/mysql-affected-rows.html) C API function. See [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions"), and [mysql\_affected\_rows()](/doc/c-api/5.7/en/mysql-affected-rows.html).
+The affected-rows value for an [`INSERT`](insert.html "13.2.5 INSERT Statement") can be obtained using the [`ROW_COUNT()`](information-functions.html#function_row-count) SQL function or the [`mysql_affected_rows()`](/doc/c-api/5.7/en/mysql-affected-rows.html) C API function. See [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions"), and [mysql_affected_rows()](/doc/c-api/5.7/en/mysql-affected-rows.html).
 
 If you use an [`INSERT ... VALUES`](insert.html "13.2.5 INSERT Statement") statement with multiple value lists or [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement"), the statement returns an information string in this format:
 
@@ -116,7 +116,7 @@ If you use an [`INSERT ... VALUES`](insert.html "13.2.5 INSERT Statement") stat
 Records: N1 Duplicates: N2 Warnings: N3
 ```
 
-If you are using the C API, the information string can be obtained by invoking the [`mysql_info()`](/doc/c-api/5.7/en/mysql-info.html) function. See [mysql\_info()](/doc/c-api/5.7/en/mysql-info.html).
+If you are using the C API, the information string can be obtained by invoking the [`mysql_info()`](/doc/c-api/5.7/en/mysql-info.html) function. See [mysql_info()](/doc/c-api/5.7/en/mysql-info.html).
 
 `Records` indicates the number of rows processed by the statement. (This is not necessarily the number of rows actually inserted because `Duplicates` can be nonzero.) `Duplicates` indicates the number of rows that could not be inserted because they would duplicate some existing unique index value. `Warnings` indicates the number of attempts to insert column values that were problematic in some way. Warnings can occur under any of the following conditions:
 
@@ -130,13 +130,13 @@ If you are using the C API, the information string can be obtained by invoking t
 
 * Inserting a value into a date or time column that is illegal for the data type. The column is set to the appropriate zero value for the type.
 
-* For [`INSERT`](insert.html "13.2.5 INSERT Statement") examples involving `AUTO_INCREMENT` column values, see [Section 3.6.9, “Using AUTO\_INCREMENT”](example-auto-increment.html "3.6.9 Using AUTO_INCREMENT").
+* For [`INSERT`](insert.html "13.2.5 INSERT Statement") examples involving `AUTO_INCREMENT` column values, see [Section 3.6.9, “Using AUTO_INCREMENT”](example-auto-increment.html "3.6.9 Using AUTO_INCREMENT").
 
   If [`INSERT`](insert.html "13.2.5 INSERT Statement") inserts a row into a table that has an `AUTO_INCREMENT` column, you can find the value used for that column by using the [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) SQL function or the [`mysql_insert_id()`](/doc/c-api/5.7/en/mysql-insert-id.html) C API function.
 
   Note
 
-  These two functions do not always behave identically. The behavior of [`INSERT`](insert.html "13.2.5 INSERT Statement") statements with respect to `AUTO_INCREMENT` columns is discussed further in [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions"), and [mysql\_insert\_id()](/doc/c-api/5.7/en/mysql-insert-id.html).
+  These two functions do not always behave identically. The behavior of [`INSERT`](insert.html "13.2.5 INSERT Statement") statements with respect to `AUTO_INCREMENT` columns is discussed further in [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions"), and [mysql_insert_id()](/doc/c-api/5.7/en/mysql-insert-id.html).
 
 The [`INSERT`](insert.html "13.2.5 INSERT Statement") statement supports the following modifiers:
 

@@ -4,7 +4,7 @@ The MySQL Server system variables described in this section are used to monitor 
 
 * `binlog_gtid_simple_recovery`
 
-  <table frame="box" rules="all" summary="Properties for binlog_gtid_simple_recovery"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-gtid-simple-recovery[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_binlog_gtid_simple_recovery">binlog_gtid_simple_recovery</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for binlog_gtid_simple_recovery"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binlog-gtid-simple-recovery[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code class="literal">binlog_gtid_simple_recovery</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr></tbody></table>
 
   This variable controls how binary log files are iterated during the search for GTIDs when MySQL starts or restarts.
 
@@ -18,7 +18,7 @@ The MySQL Server system variables described in this section are used to monitor 
 
 * `enforce_gtid_consistency`
 
-  <table frame="box" rules="all" summary="Properties for enforce_gtid_consistency"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enforce-gtid-consistency[=value]</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_enforce_gtid_consistency">enforce_gtid_consistency</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">OFF</code></p><p class="valid-value"><code class="literal">ON</code></p><p class="valid-value"><code class="literal">WARN</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for enforce_gtid_consistency"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--enforce-gtid-consistency[=value]</code></td> </tr><tr><th>System Variable</th> <td><code class="literal">enforce_gtid_consistency</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code class="literal">OFF</code></p><p><code class="literal">ON</code></p><p><code class="literal">WARN</code></p></td> </tr></tbody></table>
 
   Depending on the value of this variable, the server enforces GTID consistency by allowing execution of only statements that can be safely logged using a GTID. You *must* set this variable to `ON` before enabling GTID based replication.
 
@@ -46,7 +46,7 @@ The MySQL Server system variables described in this section are used to monitor 
 
 * `gtid_executed`
 
-  <table frame="box" rules="all" summary="Properties for gtid_executed"><tbody><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_executed">gtid_executed</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Unit</th> <td>set of GTIDs</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for gtid_executed"><tbody><tr><th>System Variable</th> <td><code class="literal">gtid_executed</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Unit</th> <td>set of GTIDs</td> </tr></tbody></table>
 
   When used with global scope, this variable contains a representation of the set of all transactions executed on the server and GTIDs that have been set by a `SET` `gtid_purged` statement. This is the same as the value of the `Executed_Gtid_Set` column in the output of `SHOW BINARY LOG STATUS` and `SHOW REPLICA STATUS`. The value of this variable is a GTID set, see GTID Sets for more information.
 
@@ -58,7 +58,7 @@ The MySQL Server system variables described in this section are used to monitor 
 
 * `gtid_executed_compression_period`
 
-  <table frame="box" rules="all" summary="Properties for gtid_executed_compression_period"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--gtid-executed-compression-period=#</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_executed_compression_period">gtid_executed_compression_period</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for gtid_executed_compression_period"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--gtid-executed-compression-period=#</code></td> </tr><tr><th>System Variable</th> <td><code class="literal">gtid_executed_compression_period</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
 
   Compress the `mysql.gtid_executed` table each time this many transactions have been processed. When binary logging is enabled on the server, this compression method is not used, and instead the `mysql.gtid_executed` table is compressed on each binary log rotation. When binary logging is disabled on the server, the compression thread sleeps until the specified number of transactions have been executed, then wakes up to perform compression of the `mysql.gtid_executed` table. Setting the value of this system variable to 0 means that the thread never wakes up, so this explicit compression method is not used. Instead, compression occurs implicitly as required.
 
@@ -66,11 +66,11 @@ The MySQL Server system variables described in this section are used to monitor 
 
   All transactions (regardless of storage engine) are written to the `mysql.gtid_executed` table by the same process, and the `gtid_executed_compression_period` default value is 0.
 
-  See mysql.gtid\_executed Table Compression for more information.
+  See mysql.gtid_executed Table Compression for more information.
 
 * `gtid_mode`
 
-  <table frame="box" rules="all" summary="Properties for gtid_mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--gtid-mode=MODE</code></td> </tr><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_mode">gtid_mode</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">OFF</code></p><p class="valid-value"><code class="literal">OFF_PERMISSIVE</code></p><p class="valid-value"><code class="literal">ON_PERMISSIVE</code></p><p class="valid-value"><code class="literal">ON</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for gtid_mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--gtid-mode=MODE</code></td> </tr><tr><th>System Variable</th> <td><code class="literal">gtid_mode</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code class="literal">OFF</code></p><p><code class="literal">OFF_PERMISSIVE</code></p><p><code class="literal">ON_PERMISSIVE</code></p><p><code class="literal">ON</code></p></td> </tr></tbody></table>
 
   Controls whether GTID based logging is enabled and what type of transactions the logs can contain. You must have privileges sufficient to set global system variables. See Section 7.1.9.1, “System Variable Privileges”. `enforce_gtid_consistency` must be set to `ON` before you can set `gtid_mode=ON`. Before modifying this variable, see Section 19.1.4, “Changing GTID Mode on Online Servers”.
 
@@ -90,7 +90,7 @@ The MySQL Server system variables described in this section are used to monitor 
 
 * `gtid_next`
 
-  <table frame="box" rules="all" summary="Properties for gtid_next"><tbody><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_next">gtid_next</a></code></td> </tr><tr><th>Scope</th> <td>Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTOMATIC</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">AUTOMATIC</code></p><p class="valid-value"><code class="literal">AUTOMATIC:&lt;TAG&gt;</code></p><p class="valid-value"><code class="literal">ANONYMOUS</code></p><p class="valid-value"><code class="literal">&lt;UUID&gt;:&lt;NUMBER&gt;</code></p><p class="valid-value"><code class="literal">&lt;UUID&gt;:&lt;TAG&gt;:&lt;NUMBER&gt;</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for gtid_next"><tbody><tr><th>System Variable</th> <td><code class="literal">gtid_next</code></td> </tr><tr><th>Scope</th> <td>Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code class="literal">AUTOMATIC</code></td> </tr><tr><th>Valid Values</th> <td><p><code class="literal">AUTOMATIC</code></p><p><code class="literal">AUTOMATIC:&lt;TAG&gt;</code></p><p><code class="literal">ANONYMOUS</code></p><p><code class="literal">&lt;UUID&gt;:&lt;NUMBER&gt;</code></p><p><code class="literal">&lt;UUID&gt;:&lt;TAG&gt;:&lt;NUMBER&gt;</code></p></td> </tr></tbody></table>
 
   This variable is used to specify whether and how to otain the next GTID (see Section 19.1.3, “Replication with Global Transaction Identifiers”).
 
@@ -121,11 +121,11 @@ The MySQL Server system variables described in this section are used to monitor 
 
   `DROP TABLE` or `DROP TEMPORARY TABLE` fails with an explicit error when used on a combination of nontemporary tables with temporary tables, or of temporary tables using transactional storage engines with temporary tables using nontransactional storage engines.
 
-  For more information, see The gtid\_next System Variable, as well as Section 19.1.4, “Changing GTID Mode on Online Servers”.
+  For more information, see The gtid_next System Variable, as well as Section 19.1.4, “Changing GTID Mode on Online Servers”.
 
 * `gtid_owned`
 
-  <table frame="box" rules="all" summary="Properties for gtid_owned"><tbody><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_owned">gtid_owned</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Unit</th> <td>set of GTIDs</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for gtid_owned"><tbody><tr><th>System Variable</th> <td><code class="literal">gtid_owned</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Unit</th> <td>set of GTIDs</td> </tr></tbody></table>
 
   This read-only variable is primarily for internal use. Its contents depend on its scope.
 
@@ -135,7 +135,7 @@ The MySQL Server system variables described in this section are used to monitor 
 
 * `gtid_purged`
 
-  <table frame="box" rules="all" summary="Properties for gtid_purged"><tbody><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="replication-options-gtids.html#sysvar_gtid_purged">gtid_purged</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Unit</th> <td>set of GTIDs</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for gtid_purged"><tbody><tr><th>System Variable</th> <td><code class="literal">gtid_purged</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Unit</th> <td>set of GTIDs</td> </tr></tbody></table>
 
   The global value of the `gtid_purged` system variable (`@@GLOBAL.gtid_purged`) is a GTID set consisting of the GTIDs of all the transactions that have been committed on the server, but do not exist in any binary log file on the server. `gtid_purged` is a subset of `gtid_executed`. The following categories of GTIDs are in `gtid_purged`:
 

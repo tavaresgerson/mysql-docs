@@ -28,17 +28,17 @@ O daemon SQL (ou seja, o servidor MySQL). Para usar programas clientes, o **mysq
 
 Vários programas realizam operações de configuração durante a instalação ou atualização do MySQL:
 
-* **comp\_err**
+* **comp_err**
 
-  Este programa é usado durante o processo de compilação/instalação do MySQL. Ele compila arquivos de mensagens de erro a partir dos arquivos de origem de erro. Veja a Seção 6.4.1, “comp\_err — Compilar Arquivo de Mensagem de Erro MySQL”.
+  Este programa é usado durante o processo de compilação/instalação do MySQL. Ele compila arquivos de mensagens de erro a partir dos arquivos de origem de erro. Veja a Seção 6.4.1, “comp_err — Compilar Arquivo de Mensagem de Erro MySQL”.
 
-* **mysql\_secure\_installation**
+* **mysql_secure_installation**
 
-  Este programa permite que você melhore a segurança da sua instalação do MySQL. Veja a Seção 6.4.2, “mysql\_secure\_installation — Melhorar a Segurança da Instalação MySQL”.
+  Este programa permite que você melhore a segurança da sua instalação do MySQL. Veja a Seção 6.4.2, “mysql_secure_installation — Melhorar a Segurança da Instalação MySQL”.
 
-* **mysql\_tzinfo\_to\_sql**
+* **mysql_tzinfo_to_sql**
 
-  Este programa carrega as tabelas de fuso horário no banco de dados `mysql` usando o conteúdo do banco de dados de zoneinfo do sistema hospedeiro (o conjunto de arquivos que descrevem fusos horários). Veja a Seção 6.4.3, “mysql\_tzinfo\_to\_sql — Carregar as Tabelas de Fuso Horário”.
+  Este programa carrega as tabelas de fuso horário no banco de dados `mysql` usando o conteúdo do banco de dados de zoneinfo do sistema hospedeiro (o conjunto de arquivos que descrevem fusos horários). Veja a Seção 6.4.3, “mysql_tzinfo_to_sql — Carregar as Tabelas de Fuso Horário”.
 
 Programas clientes do MySQL que se conectam ao servidor MySQL:
 
@@ -80,9 +80,9 @@ Programas administrativos e utilitários do MySQL:
 
   Uma utilitário de verificação de checksum de arquivo offline do `InnoDB`. Veja a Seção 6.6.2, “innochecksum — Utilitário de Verificação de Checksum de Arquivo Offline do `InnoDB`”.
 
-* **myisam\_ftdump**
+* **myisam_ftdump**
 
-  Uma utilitário que exibe informações sobre índices de texto completo em tabelas `MyISAM`. Veja a Seção 6.6.3, “myisam\_ftdump — Exibir Informações de Índice de Texto Completo”.
+  Uma utilitário que exibe informações sobre índices de texto completo em tabelas `MyISAM`. Veja a Seção 6.6.3, “myisam_ftdump — Exibir Informações de Índice de Texto Completo”.
 
 * **myisamchk**
 
@@ -96,13 +96,13 @@ Programas administrativos e utilitários do MySQL:
 
   Uma utilitário que comprime tabelas `MyISAM` para produzir tabelas menores e apenas de leitura. Veja a Seção 6.6.6, “myisampack — Gerar Tabelas MyISAM Compridas e Apenas de Leitura”.
 
-* **mysql\_config\_editor**
+* **mysql_config_editor**
 
-  Uma utilitário que permite armazenar credenciais de autenticação em um arquivo de caminho de login seguro e criptografado chamado `.mylogin.cnf`. Veja a Seção 6.6.7, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+  Uma utilitário que permite armazenar credenciais de autenticação em um arquivo de caminho de login seguro e criptografado chamado `.mylogin.cnf`. Veja a Seção 6.6.7, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
-* **mysql\_migrate\_keyring**
+* **mysql_migrate_keyring**
 
-  Uma utilitário para migrar chaves entre um componente de chave e outro. Veja a Seção 6.6.8, “mysql\_migrate\_keyring — Utilitário de Migração de Chaves de Chave”.
+  Uma utilitário para migrar chaves entre um componente de chave e outro. Veja a Seção 6.6.8, “mysql_migrate_keyring — Utilitário de Migração de Chaves de Chave”.
 
 * **mysqlbinlog**
 
@@ -114,13 +114,13 @@ Uma ferramenta para ler e resumir o conteúdo de um log de consultas lentas. Vej
 
 Ferramentas de desenvolvimento de programas do MySQL:
 
-* **mysql\_config**
+* **mysql_config**
 
-  Um script de shell que gera os valores das opções necessários ao compilar programas do MySQL. Veja a Seção 6.7.1, “mysql\_config — Exibir opções para compilar clientes”.
+  Um script de shell que gera os valores das opções necessários ao compilar programas do MySQL. Veja a Seção 6.7.1, “mysql_config — Exibir opções para compilar clientes”.
 
-* **my\_print\_defaults**
+* **my_print_defaults**
 
-  Uma ferramenta que mostra quais opções estão presentes em grupos de opções de arquivos de opções. Veja a Seção 6.7.2, “my\_print\_defaults — Exibir opções de arquivos de opções”.
+  Uma ferramenta que mostra quais opções estão presentes em grupos de opções de arquivos de opções. Veja a Seção 6.7.2, “my_print_defaults — Exibir opções de arquivos de opções”.
 
 Ferramentas diversas:
 

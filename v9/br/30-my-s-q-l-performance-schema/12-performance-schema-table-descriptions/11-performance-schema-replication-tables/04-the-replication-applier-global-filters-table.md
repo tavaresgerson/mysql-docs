@@ -1,4 +1,4 @@
-#### 29.12.11.4 A tabela replication\_applier\_global\_filters
+#### 29.12.11.4 A tabela replication_applier_global_filters
 
 Esta tabela mostra os filtros de replicação global configurados nesta replica. A tabela `replication_applier_global_filters` tem as seguintes colunas:
 

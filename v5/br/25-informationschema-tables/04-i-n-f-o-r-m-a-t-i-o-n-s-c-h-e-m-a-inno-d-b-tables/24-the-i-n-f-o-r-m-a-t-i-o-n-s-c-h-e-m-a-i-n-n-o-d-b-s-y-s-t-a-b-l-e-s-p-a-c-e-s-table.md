@@ -1,8 +1,8 @@
-### 24.4.24 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLESPACES
+### 24.4.24 A tabela INFORMATION_SCHEMA INNODB_SYS_TABLESPACES
 
 A tabela [`INNODB_SYS_TABLESPACES`](https://docs.oracle.com/en/database/sql/information-schema/sql/innodb_sys_tablespaces.html) fornece metadados sobre os espaços de tabelas `InnoDB` por arquivo e espaços de tabelas gerais, equivalentes às informações na tabela `SYS_TABLESPACES` no dicionário de dados `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
 
 Nota
 

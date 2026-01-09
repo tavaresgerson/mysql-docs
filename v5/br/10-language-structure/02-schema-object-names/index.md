@@ -18,7 +18,7 @@ Internamente, os identificadores são convertidos e armazenados como Unicode (UT
 
 - Caracteres permitidos em identificadores não citados:
 
-  - ASCII: \[0-9, a-z, A-Z$\_] (letras latinas básicas, dígitos 0-9, dólar, sublinhado)
+  - ASCII: [0-9, a-z, A-Z$_] (letras latinas básicas, dígitos 0-9, dólar, sublinhado)
 
   - Extendido: U+0080 .. U+FFFF
 

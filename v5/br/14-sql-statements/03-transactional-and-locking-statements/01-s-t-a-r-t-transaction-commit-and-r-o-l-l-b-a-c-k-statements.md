@@ -41,7 +41,7 @@ Com `START TRANSACTION`, o autocommit permanece desativado até que você encerr
 
 `START TRANSACTION` permite vários modificadores que controlam as características da transação. Para especificar vários modificadores, separe-os por vírgulas.
 
-- O modificador `WITH CONSISTENT SNAPSHOT` inicia uma leitura consistente para os motores de armazenamento que são capazes disso. Isso se aplica apenas ao `InnoDB`. O efeito é o mesmo de emitir uma `START TRANSACTION` seguida de uma `SELECT` de qualquer tabela `InnoDB`. Veja Seção 14.7.2.3, “Leitura Não Bloqueada Consistente”. O modificador `WITH CONSISTENT SNAPSHOT` não altera o nível de isolamento da transação atual (glossary.html#glos\_isolation\_level), portanto, fornece uma instantânea consistente apenas se o nível de isolamento atual for um que permita uma leitura consistente. O único nível de isolamento que permite uma leitura consistente é `REPEATABLE READ`. Para todos os outros níveis de isolamento, a cláusula `WITH CONSISTENT SNAPSHOT` é ignorada. A partir do MySQL 5.7.2, uma mensagem de aviso é gerada quando a cláusula `WITH CONSISTENT SNAPSHOT` é ignorada.
+- O modificador `WITH CONSISTENT SNAPSHOT` inicia uma leitura consistente para os motores de armazenamento que são capazes disso. Isso se aplica apenas ao `InnoDB`. O efeito é o mesmo de emitir uma `START TRANSACTION` seguida de uma `SELECT` de qualquer tabela `InnoDB`. Veja Seção 14.7.2.3, “Leitura Não Bloqueada Consistente”. O modificador `WITH CONSISTENT SNAPSHOT` não altera o nível de isolamento da transação atual (glossary.html#glos_isolation_level), portanto, fornece uma instantânea consistente apenas se o nível de isolamento atual for um que permita uma leitura consistente. O único nível de isolamento que permite uma leitura consistente é `REPEATABLE READ`. Para todos os outros níveis de isolamento, a cláusula `WITH CONSISTENT SNAPSHOT` é ignorada. A partir do MySQL 5.7.2, uma mensagem de aviso é gerada quando a cláusula `WITH CONSISTENT SNAPSHOT` é ignorada.
 
 - Os modificadores `LEIA ESCRITA` e `LEIA SOMENTE` definem o modo de acesso à transação. Eles permitem ou proíbem alterações em tabelas usadas na transação. A restrição `LEIA SOMENTE` impede que a transação modifique ou bloqueie tabelas tanto transacionais quanto não transacionais que sejam visíveis para outras transações; a transação ainda pode modificar ou bloquear tabelas temporárias.
 
@@ -57,7 +57,7 @@ Com `START TRANSACTION`, o autocommit permanece desativado até que você encerr
 
 Importante
 
-Muitas APIs usadas para escrever aplicativos de cliente do MySQL (como o JDBC) fornecem seus próprios métodos para iniciar transações que podem (e às vezes devem) ser usados em vez de enviar uma declaração `START TRANSACTION` do cliente. Consulte \[Capítulo 27, *Conectivos e APIs*] (connectors-apis.html), ou a documentação da sua API, para obter mais informações.
+Muitas APIs usadas para escrever aplicativos de cliente do MySQL (como o JDBC) fornecem seus próprios métodos para iniciar transações que podem (e às vezes devem) ser usados em vez de enviar uma declaração `START TRANSACTION` do cliente. Consulte [Capítulo 27, *Conectivos e APIs*] (connectors-apis.html), ou a documentação da sua API, para obter mais informações.
 
 Para desabilitar o modo de autocommit explicitamente, use a seguinte declaração:
 
@@ -101,7 +101,7 @@ O recuo pode ser uma operação lenta que pode ocorrer implicitamente sem que o 
 
 Nota
 
-No MySQL 5.7, `BEGIN`, `COMMIT` e `ROLLBACK` não são afetados pelas regras de `--replicate-do-db` (replication-options-replica.html#option\_mysqld\_replicate-do-db) ou `--replicate-ignore-db` (replication-options-replica.html#option\_mysqld\_replicate-ignore-db).
+No MySQL 5.7, `BEGIN`, `COMMIT` e `ROLLBACK` não são afetados pelas regras de `--replicate-do-db` (replication-options-replica.html#option_mysqld_replicate-do-db) ou `--replicate-ignore-db` (replication-options-replica.html#option_mysqld_replicate-ignore-db).
 
 Quando o `InnoDB` realiza um rollback completo de uma transação, todos os bloqueios definidos pela transação são liberados. Se uma única instrução SQL dentro de uma transação for revertida como resultado de um erro, como um erro de chave duplicada, os bloqueios definidos pela instrução são preservados enquanto a transação permanece ativa. Isso acontece porque o `InnoDB` armazena os bloqueios de linha em um formato de tal forma que não pode saber depois qual bloqueio foi definido por qual instrução.
 

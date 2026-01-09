@@ -1,4 +1,4 @@
-#### 26.4.3.45 As visualizações user\_summary\_by\_statement\_latency e x$user\_summary\_by\_statement\_latency
+#### 26.4.3.45 As visualizações user_summary_by_statement_latency e x$user_summary_by_statement_latency
 
 Essas visualizações resumem as estatísticas gerais da declaração, agrupadas por usuário. Por padrão, as linhas são ordenadas por latência total decrescente.
 

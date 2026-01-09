@@ -14,7 +14,7 @@ Para mais informações sobre GTIDs e como essas funções GTID são usadas na p
 
 **Tabela 14.26 Funções GTID**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções usadas com identificadores globais de transação (GTIDs)."><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="gtid-functions.html#function_wait-for-executed-gtid-set"><code>WAIT_FOR_EXECUTED_GTID_SET()</code></a></td> <td> Aguarde até que os GTIDs fornecidos tenham sido executados na replica. </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista funções usadas com identificadores globais de transação (GTIDs)."><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>WAIT_FOR_EXECUTED_GTID_SET()</code></td> <td> Aguarde até que os GTIDs fornecidos tenham sido executados na replica. </td> </tr></tbody></table>
 
 * `GTID_SUBSET(set1,set2)`
 
@@ -87,7 +87,7 @@ Subtrair um conjunto de GTID de si mesmo produz um conjunto vazio, como mostrado
 
 * `WAIT_FOR_EXECUTED_GTID_SET(gtid_set[, timeout])`
 
-Aguarde até que o servidor tenha aplicado todas as transações cujos identificadores de transação global estão contidos em *`gtid_set`*; ou seja, até que a condição GTID\_SUBSET(*`gtid_subset`*, `@@GLOBAL.gtid_executed`) seja atendida. Consulte a Seção 19.1.3.1, “Formato e Armazenamento de GTID” para uma definição de conjuntos de GTID.
+Aguarde até que o servidor tenha aplicado todas as transações cujos identificadores de transação global estão contidos em *`gtid_set`*; ou seja, até que a condição GTID_SUBSET(*`gtid_subset`*, `@@GLOBAL.gtid_executed`) seja atendida. Consulte a Seção 19.1.3.1, “Formato e Armazenamento de GTID” para uma definição de conjuntos de GTID.
 
 Se um tempo de espera for especificado e *`timeout`* segundos se passarem antes que todas as transações no conjunto de GTID sejam aplicadas, a função para de esperar. *`timeout`* é opcional e o tempo de espera padrão é 0 segundos, caso em que a função sempre espera até que todas as transações no conjunto de GTID sejam aplicadas. *`timeout`* deve ser maior ou igual a 0; ao executar no modo SQL rigoroso, um valor de *`timeout`* negativo é rejeitado imediatamente com um erro (`ER_WRONG_ARGUMENTS`); caso contrário, a função retorna `NULL` e emite uma mensagem de aviso.
 

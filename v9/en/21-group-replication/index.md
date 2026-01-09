@@ -24,9 +24,9 @@
 
     20.4.2 Group Replication Server States
 
-    20.4.3 The replication\_group\_members Table
+    20.4.3 The replication_group_members Table
 
-    20.4.4 The replication\_group\_member\_stats Table
+    20.4.4 The replication_group_member_stats Table
 
 20.5 Group Replication Operations :   20.5.1 Configuring an Online Group
 

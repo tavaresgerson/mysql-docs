@@ -1,4 +1,4 @@
-#### 25.12.11.6 Tabela replication\_applier\_status\_by\_worker
+#### 25.12.11.6 Tabela replication_applier_status_by_worker
 
 Se a replica não for multithreading, esta tabela mostra o status da thread do aplicável. Caso contrário, a replica usa múltiplas threads de trabalho e uma thread de coordenador para gerenciá-las, e esta tabela mostra o status das threads de trabalho. Para uma replica multithreading, a tabela `replication_applier_status_by_coordinator` mostra o status da thread do coordenador.
 
@@ -30,7 +30,7 @@ A tabela `replication_applier_status_by_worker` tem as seguintes colunas:
 
   - Se nenhuma transação foi executada, a coluna está vazia.
 
-  - Quando uma transação é executada, a coluna é definida a partir de \[`gtid_next`]\(replication-options-gtids.html#sysvar\_gtid\_next] assim que `gtid_next` é definido. A partir deste momento, a coluna sempre exibe um GTID.
+  - Quando uma transação é executada, a coluna é definida a partir de [`gtid_next`]\(replication-options-gtids.html#sysvar_gtid_next] assim que `gtid_next` é definido. A partir deste momento, a coluna sempre exibe um GTID.
 
   - O GTID é preservado até que a próxima transação seja executada. Se ocorrer um erro, o valor da coluna é o GTID da transação que está sendo executada pelo trabalhador quando o erro ocorreu. A seguinte declaração mostra se essa transação foi ou não confirmada:
 

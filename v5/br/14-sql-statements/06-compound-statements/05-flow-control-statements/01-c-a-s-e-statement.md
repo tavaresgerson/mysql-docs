@@ -22,7 +22,7 @@ A instrução `CASE` para programas armazenados implementa uma construção cond
 
 Nota
 
-Existe também um operador *CASE* (funções de controle de fluxo.html#operador\_case\*), que difere da declaração *CASE* (case.html) descrita aqui. Veja Seção 12.5, “Funções de Controle de Fluxo”. A declaração *CASE* (case.html) não pode ter uma cláusula *ELSE NULL* e é encerrada com *END CASE* em vez de *END*.
+Existe também um operador *CASE* (funções de controle de fluxo.html#operador_case\*), que difere da declaração *CASE* (case.html) descrita aqui. Veja Seção 12.5, “Funções de Controle de Fluxo”. A declaração *CASE* (case.html) não pode ter uma cláusula *ELSE NULL* e é encerrada com *END CASE* em vez de *END*.
 
 Para a primeira sintaxe, *`case_value`* é uma expressão. Esse valor é comparado com a expressão *`when_value`* em cada cláusula `WHEN` até que uma delas seja igual. Quando uma *`when_value`* igual é encontrada, a cláusula `THEN` correspondente *`statement_list`* é executada. Se nenhuma *`when_value`* for igual, a cláusula `ELSE` *`statement_list`* é executada, se houver uma.
 

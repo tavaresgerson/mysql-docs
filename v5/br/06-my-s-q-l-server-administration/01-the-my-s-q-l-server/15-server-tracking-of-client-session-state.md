@@ -63,9 +63,9 @@ Para descrições das variáveis de sistema relacionadas ao rastreador, consulte
 
 Para permitir que os aplicativos do cliente extraiam informações sobre mudanças de estado dos pacotes OK retornados pelo servidor, a API C do MySQL fornece um par de funções:
 
-- `mysql_session_track_get_first()` recupera a primeira parte das informações de mudança de estado recebidas do servidor. Veja mysql\_session\_track\_get\_first().
+- `mysql_session_track_get_first()` recupera a primeira parte das informações de mudança de estado recebidas do servidor. Veja mysql_session_track_get_first().
 
-- `mysql_session_track_get_next()` recupera qualquer informação de mudança de estado restante recebida do servidor. Após uma chamada bem-sucedida a `mysql_session_track_get_first()`, chame essa função repetidamente enquanto ela retornar sucesso. Veja mysql\_session\_track\_get\_next().
+- `mysql_session_track_get_next()` recupera qualquer informação de mudança de estado restante recebida do servidor. Após uma chamada bem-sucedida a `mysql_session_track_get_first()`, chame essa função repetidamente enquanto ela retornar sucesso. Veja mysql_session_track_get_next().
 
 #### Suporte ao Rastreador de Estado de Sessão da Unidade de Testes
 
@@ -90,7 +90,7 @@ INSERT INTO test.t1 () VALUES(1, RAND());
 COMMIT;
 ```
 
-Execute o script da seguinte forma para ver as informações fornecidas pelos rastreadores habilitados. Para uma descrição das informações `Tracker:` exibidas pelo **mysqltest** para os vários rastreadores, consulte mysql\_session\_track\_get\_first().
+Execute o script da seguinte forma para ver as informações fornecidas pelos rastreadores habilitados. Para uma descrição das informações `Tracker:` exibidas pelo **mysqltest** para os vários rastreadores, consulte mysql_session_track_get_first().
 
 ```sql
 $> mysqltest < testscript
@@ -181,6 +181,6 @@ ok
 
 Antes da declaração `START TRANSACTION`, duas declarações `SET TRANSACTION` são executadas, definindo o nível de isolamento e as características do modo de acesso para a próxima transação. O valor `SESSION_TRACK_TRANSACTION_CHARACTERISTICS` indica esses valores para a próxima transação que foram definidos.
 
-Após a declaração `COMMIT` que encerra a transação, o valor `SESSION_TRACK_TRANSACTION_CHARACTERISTICS` é relatado como vazio. Isso indica que as características da próxima transação que foram definidas antes do início da transação foram redefinidas e que os padrões da sessão se aplicam. Para acompanhar as alterações nesses padrões da sessão, acompanhe os valores da sessão das variáveis de sistema `[transaction_isolation]` (server-system-variables.html#sysvar\_transaction\_isolation) e `transaction_read_only` (server-system-variables.html#sysvar\_transaction\_read\_only).
+Após a declaração `COMMIT` que encerra a transação, o valor `SESSION_TRACK_TRANSACTION_CHARACTERISTICS` é relatado como vazio. Isso indica que as características da próxima transação que foram definidas antes do início da transação foram redefinidas e que os padrões da sessão se aplicam. Para acompanhar as alterações nesses padrões da sessão, acompanhe os valores da sessão das variáveis de sistema `[transaction_isolation]` (server-system-variables.html#sysvar_transaction_isolation) e `transaction_read_only` (server-system-variables.html#sysvar_transaction_read_only).
 
-Para ver informações sobre GTIDs, habilite o rastreador `SESSION_TRACK_GTIDS` usando a variável de sistema `session_track_gtids` (server-system-variables.html#sysvar\_session\_track\_gtids).
+Para ver informações sobre GTIDs, habilite o rastreador `SESSION_TRACK_GTIDS` usando a variável de sistema `session_track_gtids` (server-system-variables.html#sysvar_session_track_gtids).

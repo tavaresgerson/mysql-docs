@@ -1,40 +1,40 @@
 ### 29.12.11 Performance Schema Replication Tables
 
-29.12.11.1 The binary\_log\_transaction\_compression\_stats Table
+29.12.11.1 The binary_log_transaction_compression_stats Table
 
-29.12.11.2 The replication\_applier\_configuration Table
+29.12.11.2 The replication_applier_configuration Table
 
-29.12.11.3 The replication\_applier\_filters Table
+29.12.11.3 The replication_applier_filters Table
 
-29.12.11.4 The replication\_applier\_global\_filters Table
+29.12.11.4 The replication_applier_global_filters Table
 
-29.12.11.5 The replication\_applier\_metrics Table
+29.12.11.5 The replication_applier_metrics Table
 
-29.12.11.6 The replication\_applier\_progress\_by\_worker Table
+29.12.11.6 The replication_applier_progress_by_worker Table
 
-29.12.11.7 The replication\_applier\_status Table
+29.12.11.7 The replication_applier_status Table
 
-29.12.11.8 The replication\_applier\_status\_by\_coordinator Table
+29.12.11.8 The replication_applier_status_by_coordinator Table
 
-29.12.11.9 The replication\_applier\_status\_by\_worker Table
+29.12.11.9 The replication_applier_status_by_worker Table
 
-29.12.11.10 The replication\_asynchronous\_connection\_failover Table
+29.12.11.10 The replication_asynchronous_connection_failover Table
 
-29.12.11.11 The replication\_asynchronous\_connection\_failover\_managed Table
+29.12.11.11 The replication_asynchronous_connection_failover_managed Table
 
-29.12.11.12 The replication\_connection\_configuration Table
+29.12.11.12 The replication_connection_configuration Table
 
-29.12.11.13 The replication\_connection\_status Table
+29.12.11.13 The replication_connection_status Table
 
-29.12.11.14 The replication\_group\_communication\_information Table
+29.12.11.14 The replication_group_communication_information Table
 
-29.12.11.15 The replication\_group\_configuration\_version Table
+29.12.11.15 The replication_group_configuration_version Table
 
-29.12.11.16 The replication\_group\_member\_actions Table
+29.12.11.16 The replication_group_member_actions Table
 
-29.12.11.17 The replication\_group\_member\_stats Table
+29.12.11.17 The replication_group_member_stats Table
 
-29.12.11.18 The replication\_group\_members Table
+29.12.11.18 The replication_group_members Table
 
 The Performance Schema provides tables that expose replication information. This is similar to the information available from the `SHOW REPLICA STATUS` statement, but representation in table form is more accessible and has usability benefits:
 

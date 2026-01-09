@@ -1,10 +1,10 @@
-#### 25.12.5.2 A tabela events\_stages\_history
+#### 25.12.5.2 A tabela events_stages_history
 
 A tabela `events_stages_history` contém os *`N`* eventos de estágio mais recentes que terminaram por fio. Os eventos de estágio não são adicionados à tabela até que tenham terminado. Quando a tabela contém o número máximo de linhas para um determinado fio, a linha mais antiga do fio é descartada quando uma nova linha para esse fio é adicionada. Quando um fio termina, todas as suas linhas são descartadas.
 
 O Schema de Desempenho autodimensiona o valor de *`N`* durante o início do servidor. Para definir explicitamente o número de linhas por fio, defina a variável de sistema `performance_schema_events_stages_history_size` durante o início do servidor.
 
-A tabela `events_stages_history` tem as mesmas colunas que a tabela `events_stages_current`. Veja Seção 25.12.5.1, “A tabela events\_stages\_current”.
+A tabela `events_stages_history` tem as mesmas colunas que a tabela `events_stages_current`. Veja Seção 25.12.5.1, “A tabela events_stages_current”.
 
 A operação `TRUNCATE TABLE` é permitida para a tabela `events_stages_history`. Ela remove as linhas.
 

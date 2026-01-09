@@ -2,7 +2,7 @@
 
 Esta tabela fornece uma maneira de encontrar o ID do backup iniciado mais recentemente para este clúster.
 
-A tabela `backup_id` contém uma única coluna `id`, que corresponde a um ID de backup obtido usando o comando **ndb\_mgm** `START BACKUP`. Esta tabela contém uma única linha.
+A tabela `backup_id` contém uma única coluna `id`, que corresponde a um ID de backup obtido usando o comando **ndb_mgm** `START BACKUP`. Esta tabela contém uma única linha.
 
 *Exemplo*: Suponha a seguinte sequência de comandos `START BACKUP` emitidos no cliente de gerenciamento NDB, sem que outros backups tenham sido feitos desde que o clúster foi iniciado pela primeira vez:
 

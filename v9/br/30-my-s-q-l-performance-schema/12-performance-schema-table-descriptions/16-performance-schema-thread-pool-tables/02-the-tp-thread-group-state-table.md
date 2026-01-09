@@ -1,4 +1,4 @@
-#### 29.12.16.2 A tabela `tp\_thread\_group\_state`
+#### 29.12.16.2 A tabela `tp_thread_group_state`
 
 A tabela `tp_thread_group_state` tem uma linha por grupo de threads no pool de threads. Cada linha fornece informações sobre o estado atual de um grupo.
 

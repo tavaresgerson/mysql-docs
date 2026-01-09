@@ -166,7 +166,7 @@ Create Table: CREATE TABLE `ti` (
 1 row in set (0.00 sec)
 ```
 
-You can see using [**ndb\_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") that the indexed columns (emphasized text) now use in-memory rather than on-disk storage:
+You can see using [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") that the indexed columns (emphasized text) now use in-memory rather than on-disk storage:
 
 ```sql
 $> ./ndb_desc -d test t1
@@ -243,4 +243,4 @@ mysql> DROP LOGFILE GROUP lg_1
 
 These statements must be performed in the order shown, except that the two `ALTER TABLESPACE ... DROP DATAFILE` statements may be executed in either order.
 
-You can obtain information about data files used by Disk Data tables by querying the [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table in the `INFORMATION_SCHEMA` database. An extra “`NULL` row” provides additional information about undo log files. For more information and examples, see [Section 24.3.9, “The INFORMATION\_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").
+You can obtain information about data files used by Disk Data tables by querying the [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table in the `INFORMATION_SCHEMA` database. An extra “`NULL` row” provides additional information about undo log files. For more information and examples, see [Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").

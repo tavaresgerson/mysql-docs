@@ -1,4 +1,4 @@
-### 28.3.21 The INFORMATION SCHEMA JSON\_DUALITY\_VIEW\_TABLES Table
+### 28.3.21 The INFORMATION SCHEMA JSON_DUALITY_VIEW_TABLES Table
 
 The `JSON_DUALITY_VIEW_TABLES` table shows information about all tables referenced by any JSON duality view which is accessible by the current user. This table contains one row per table reference.
 

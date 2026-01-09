@@ -263,7 +263,7 @@ For the data set shown earlier, the algorithm operates like this:
 
 Using this strategy decreases the number of accessed rows because MySQL skips the rows that do not qualify for each constructed range. This Skip Scan access method is applicable under the following conditions:
 
-* Table T has at least one compound index with key parts of the form (`[A_1, ..., A_k,] B\_1, ..., B_m, C [, D_1, ..., D_n]`). Key parts A and D may be empty, but B and C must be nonempty.
+* Table T has at least one compound index with key parts of the form (`[A_1, ..., A_k,] B_1, ..., B_m, C [, D_1, ..., D_n]`). Key parts A and D may be empty, but B and C must be nonempty.
 * The query references only one table.
 * The query does not use `GROUP BY` or `DISTINCT`.
 * The query references only columns in the index.

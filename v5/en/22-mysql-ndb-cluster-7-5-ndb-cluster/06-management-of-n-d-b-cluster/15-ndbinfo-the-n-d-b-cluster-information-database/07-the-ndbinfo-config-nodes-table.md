@@ -1,4 +1,4 @@
-#### 21.6.15.7 The ndbinfo config\_nodes Table
+#### 21.6.15.7 The ndbinfo config_nodes Table
 
 The `config_nodes` table shows nodes configured in an NDB Cluster `config.ini` file. For each node, the table displays a row containing the node ID, the type of node (management node, data node, or API node), and the name or IP address of the host on which the node is configured to run.
 

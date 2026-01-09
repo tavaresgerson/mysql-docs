@@ -39,6 +39,6 @@ If you cannot tell from the error log what the problem was, try the following te
 
      The value of *`N`* should be 1 if the next statement from the source does not use `AUTO_INCREMENT` or [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id). Otherwise, the value should be 2. The reason for using a value of 2 for statements that use `AUTO_INCREMENT` or [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) is that they take two events in the binary log of the source.
 
-     See also [Section 13.4.2.4, “SET GLOBAL sql\_slave\_skip\_counter Syntax”](set-global-sql-slave-skip-counter.html "13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax").
+     See also [Section 13.4.2.4, “SET GLOBAL sql_slave_skip_counter Syntax”](set-global-sql-slave-skip-counter.html "13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax").
 
   4. If you are sure that the replica started out perfectly synchronized with the source, and that no one has updated the tables involved outside of the replication threads, then presumably the discrepancy is the result of a bug. If you are running the most recent version of MySQL, please report the problem. If you are running an older version, try upgrading to the latest production release to determine whether the problem persists.

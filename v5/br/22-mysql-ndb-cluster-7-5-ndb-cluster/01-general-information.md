@@ -34,7 +34,7 @@ VERSION(): 5.7.44-ndb-7.5.36
 1 row in set (0.00 sec)
 ```
 
-Essa string de versão também é exibida na saída do comando `SHOW` no cliente **ndb\_mgm**:
+Essa string de versão também é exibida na saída do comando `SHOW` no cliente **ndb_mgm**:
 
 ```sql
 ndb_mgm> SHOW

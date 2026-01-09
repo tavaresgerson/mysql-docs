@@ -1,4 +1,4 @@
-### 24.3.25 A tabela INFORMATION\_SCHEMA TABLES
+### 24.3.25 A tabela INFORMATION_SCHEMA TABLES
 
 A tabela `TABLES` fornece informações sobre as tabelas nos bancos de dados.
 
@@ -91,7 +91,7 @@ A tabela `TABLES` tem essas colunas:
       AND   TABLE_NAME   = 'mytable';
   ```
 
-  Para mais informações, consulte Seção 24.3.16, “A Tabela INFORMATION\_SCHEMA PARTITIONS”.
+  Para mais informações, consulte Seção 24.3.16, “A Tabela INFORMATION_SCHEMA PARTITIONS”.
 
 - `AUTO_INCREMENT`
 
@@ -143,7 +143,7 @@ A tabela `TABLES` tem essas colunas:
 
 - Para as tabelas `NDB`, o resultado desta declaração mostra valores apropriados para as colunas `AVG_ROW_LENGTH` e `DATA_LENGTH`, com a exceção de que as colunas `BLOB` não são consideradas.
 
-- Para as tabelas ``NDB`, `DATA\_LENGTH`inclui dados armazenados apenas na memória principal; as colunas`MAX\_DATA\_LENGTH`e`DATA\_FREE\` se aplicam aos dados em disco.
+- Para as tabelas ``NDB`, `DATA_LENGTH`inclui dados armazenados apenas na memória principal; as colunas`MAX_DATA_LENGTH`e`DATA_FREE\` se aplicam aos dados em disco.
 
 - Para as tabelas de dados de disco do NDB Cluster, o `MAX_DATA_LENGTH` mostra o espaço alocado para a parte de disco de uma tabela ou fragmento de Dados de Disco. (O uso do recurso de dados em memória é relatado pela coluna `DATA_LENGTH`.)
 

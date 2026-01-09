@@ -1,4 +1,4 @@
-#### 26.4.5.10 A função ps\_is\_consumer\_enabled()
+#### 26.4.5.10 A função ps_is_consumer_enabled()
 
 Retorna `YES` ou `NO` para indicar se um consumidor do Schema de Desempenho está habilitado, ou `NULL` se o argumento for `NULL`. Se o argumento não for um nome de consumidor válido, ocorrerá um erro. (Antes do MySQL 5.7.28, a função retorna `NULL` se o argumento não for um nome de consumidor válido.)
 

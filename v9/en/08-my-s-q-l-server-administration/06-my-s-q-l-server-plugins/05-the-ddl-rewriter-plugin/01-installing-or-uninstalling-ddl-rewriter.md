@@ -1,4 +1,4 @@
-#### 7.6.5.1 Installing or Uninstalling ddl\_rewriter
+#### 7.6.5.1 Installing or Uninstalling ddl_rewriter
 
 This section describes how to install or uninstall the `ddl_rewriter` plugin. For general information about installing plugins, see Section 7.6.1, “Installing and Uninstalling Plugins”.
 

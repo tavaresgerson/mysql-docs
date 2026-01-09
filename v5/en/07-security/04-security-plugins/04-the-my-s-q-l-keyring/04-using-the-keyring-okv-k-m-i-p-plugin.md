@@ -1,4 +1,4 @@
-#### 6.4.4.4 Using the keyring\_okv KMIP Plugin
+#### 6.4.4.4 Using the keyring_okv KMIP Plugin
 
 Note
 
@@ -29,13 +29,13 @@ For information about the characteristics of key values permitted by `keyring_ok
 
 To install `keyring_okv`, use the general instructions found in [Section 6.4.4.1, “Keyring Plugin Installation”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation"), together with the configuration information specific to `keyring_okv` found here.
 
-* [General keyring\_okv Configuration](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")
-* [Configuring keyring\_okv for Oracle Key Vault](keyring-okv-plugin.html#keyring-okv-oracle-key-vault "Configuring keyring_okv for Oracle Key Vault")
-* [Configuring keyring\_okv for Gemalto SafeNet KeySecure Appliance](keyring-okv-plugin.html#keyring-okv-keysecure "Configuring keyring_okv for Gemalto SafeNet KeySecure Appliance")
-* [Configuring keyring\_okv for Townsend Alliance Key Manager](keyring-okv-plugin.html#keyring-okv-alliance "Configuring keyring_okv for Townsend Alliance Key Manager")
-* [Password-Protecting the keyring\_okv Key File](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File")
+* [General keyring_okv Configuration](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")
+* [Configuring keyring_okv for Oracle Key Vault](keyring-okv-plugin.html#keyring-okv-oracle-key-vault "Configuring keyring_okv for Oracle Key Vault")
+* [Configuring keyring_okv for Gemalto SafeNet KeySecure Appliance](keyring-okv-plugin.html#keyring-okv-keysecure "Configuring keyring_okv for Gemalto SafeNet KeySecure Appliance")
+* [Configuring keyring_okv for Townsend Alliance Key Manager](keyring-okv-plugin.html#keyring-okv-alliance "Configuring keyring_okv for Townsend Alliance Key Manager")
+* [Password-Protecting the keyring_okv Key File](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File")
 
-##### General keyring\_okv Configuration
+##### General keyring_okv Configuration
 
 Regardless of which KMIP back end the `keyring_okv` plugin uses for keyring storage, the [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) system variable configures the location of the directory used by `keyring_okv` for its support files. The default value is empty, so you must set the variable to name a properly configured directory before the plugin can communicate with the KMIP back end. Unless you do so, `keyring_okv` writes a message to the error log during server startup that it cannot communicate:
 
@@ -73,7 +73,7 @@ keyring_okv_conf_dir=/usr/local/mysql/mysql-keyring-okv
 
 For additional information about [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir), see [Section 6.4.4.12, “Keyring System Variables”](keyring-system-variables.html "6.4.4.12 Keyring System Variables").
 
-##### Configuring keyring\_okv for Oracle Key Vault
+##### Configuring keyring_okv for Oracle Key Vault
 
 The discussion here assumes that you are familiar with Oracle Key Vault. Some pertinent information sources:
 
@@ -95,7 +95,7 @@ The following procedure briefly summarizes the process of setting up `keyring_ok
 
 Use the following procedure to configure `keyring_okv` and Oracle Key Vault to work together. This description only summarizes how to interact with Oracle Key Vault. For details, visit the [Oracle Key Vault](http://www.oracle.com/technetwork/database/options/key-management/overview/index.html) site and consult the *Oracle Key Vault Administrator's Guide*.
 
-1. Create the configuration directory that contains the Oracle Key Vault support files, and make sure that the [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) system variable is set to name that directory (for details, see [General keyring\_okv Configuration](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")).
+1. Create the configuration directory that contains the Oracle Key Vault support files, and make sure that the [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) system variable is set to name that directory (for details, see [General keyring_okv Configuration](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")).
 
 2. Log in to the Oracle Key Vault management console as a user who has the System Administrator role.
 
@@ -171,17 +171,17 @@ Use the following procedure to configure `keyring_okv` and Oracle Key Vault to w
 
 10. Copy the Oracle Key Vault support files (the `okvclient.ora` file and the `ssl` directory) into the configuration directory.
 
-11. (Optional) If you wish to password-protect the key file, use the instructions in [Password-Protecting the keyring\_okv Key File](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File").
+11. (Optional) If you wish to password-protect the key file, use the instructions in [Password-Protecting the keyring_okv Key File](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File").
 
 After completing the preceding procedure, restart the MySQL server. It loads the `keyring_okv` plugin and `keyring_okv` uses the files in its configuration directory to communicate with Oracle Key Vault.
 
-##### Configuring keyring\_okv for Gemalto SafeNet KeySecure Appliance
+##### Configuring keyring_okv for Gemalto SafeNet KeySecure Appliance
 
 Gemalto SafeNet KeySecure Appliance uses the KMIP protocol (version 1.1 or 1.2). As of MySQL 5.7.18, the `keyring_okv` keyring plugin (which supports KMIP 1.1) can use KeySecure as its KMIP back end for keyring storage.
 
 Use the following procedure to configure `keyring_okv` and KeySecure to work together. The description only summarizes how to interact with KeySecure. For details, consult the section named Add a KMIP Server in the [KeySecure User Guide](https://www2.gemalto.com/aws-marketplace/usage/vks/uploadedFiles/Support_and_Downloads/AWS/007-012362-001-keysecure-appliance-user-guide-v7.1.0.pdf).
 
-1. Create the configuration directory that contains the KeySecure support files, and make sure that the [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) system variable is set to name that directory (for details, see [General keyring\_okv Configuration](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")).
+1. Create the configuration directory that contains the KeySecure support files, and make sure that the [`keyring_okv_conf_dir`](keyring-system-variables.html#sysvar_keyring_okv_conf_dir) system variable is set to name that directory (for details, see [General keyring_okv Configuration](keyring-okv-plugin.html#keyring-okv-configuration "General keyring_okv Configuration")).
 
 2. In the configuration directory, create a subdirectory named `ssl` to use for storing the required SSL certificate and key files.
 
@@ -231,15 +231,15 @@ Use the following procedure to configure `keyring_okv` and KeySecure to work tog
 
 14. Copy the signed certificate to the clipboard, then save the clipboard contents as a file named `cert.pem` in the `ssl` directory.
 
-15. (Optional) If you wish to password-protect the key file, use the instructions in [Password-Protecting the keyring\_okv Key File](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File").
+15. (Optional) If you wish to password-protect the key file, use the instructions in [Password-Protecting the keyring_okv Key File](keyring-okv-plugin.html#keyring-okv-encrypt-key-file "Password-Protecting the keyring_okv Key File").
 
 After completing the preceding procedure, restart the MySQL server. It loads the `keyring_okv` plugin and `keyring_okv` uses the files in its configuration directory to communicate with KeySecure.
 
-##### Configuring keyring\_okv for Townsend Alliance Key Manager
+##### Configuring keyring_okv for Townsend Alliance Key Manager
 
 Townsend Alliance Key Manager uses the KMIP protocol. The `keyring_okv` keyring plugin can use Alliance Key Manager as its KMIP back end for keyring storage. For additional information, see [Alliance Key Manager for MySQL](https://www.townsendsecurity.com/product/encryption-key-management-mysql).
 
-##### Password-Protecting the keyring\_okv Key File
+##### Password-Protecting the keyring_okv Key File
 
 As of MySQL 5.7.20, you can optionally protect the key file with a password and supply a file containing the password to enable the key file to be decrypted. To so do, change location to the `ssl` directory and perform these steps:
 

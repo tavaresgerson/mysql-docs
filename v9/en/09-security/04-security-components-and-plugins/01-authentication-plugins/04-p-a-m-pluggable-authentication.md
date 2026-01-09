@@ -18,7 +18,7 @@ The following table shows the plugin and library file names. The file name suffi
 
 **Table 8.17 Plugin and Library Names for PAM Authentication**
 
-<table summary="Names for the plugins and library file used for PAM password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_pam</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">mysql_clear_password</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">authentication_pam.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for PAM password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_pam</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">mysql_clear_password</code></td> </tr><tr> <td>Library file</td> <td><code>authentication_pam.so</code></td> </tr></tbody></table>
 
 The client-side `mysql_clear_password` cleartext plugin that communicates with the server-side PAM plugin is built into the `libmysqlclient` client library and is included in all distributions, including community distributions. Inclusion of the client-side cleartext plugin in all MySQL distributions enables clients from any distribution to connect to a server that has the server-side PAM plugin loaded.
 
@@ -447,14 +447,14 @@ On some systems, Unix authentication uses a password store such as `/etc/shadow`
      ```
 
   4. Restart the MySQL server.
-* If you are using the `pam_unix` module and the **unix\_chkpwd** utility, enable password store access as follows:
+* If you are using the `pam_unix` module and the **unix_chkpwd** utility, enable password store access as follows:
 
   ```
   chmod u-s /usr/sbin/unix_chkpwd
   setcap cap_dac_read_search+ep /usr/sbin/unix_chkpwd
   ```
 
-  Adjust the path to **unix\_chkpwd** as necessary for your platform.
+  Adjust the path to **unix_chkpwd** as necessary for your platform.
 
 ##### PAM Authentication Debugging
 

@@ -1,8 +1,8 @@
-### 28.4.12 The INFORMATION\_SCHEMA INNODB\_FOREIGN Table
+### 28.4.12 The INFORMATION_SCHEMA INNODB_FOREIGN Table
 
 The `INNODB_FOREIGN` table provides metadata about `InnoDB` foreign keys.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_FOREIGN` table has these columns:
 

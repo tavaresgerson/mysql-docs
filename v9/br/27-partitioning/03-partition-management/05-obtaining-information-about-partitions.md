@@ -33,7 +33,7 @@ Create Table: CREATE TABLE `trb3` (
 
 A saída do comando `SHOW TABLE STATUS` para tabelas particionadas é a mesma que para tabelas não particionadas, exceto que a coluna `Create_options` contém a string `partitioned`. A coluna `Engine` contém o nome do motor de armazenamento usado por todas as partições da tabela. (Veja a Seção 15.7.7.39, “Instrução SHOW TABLE STATUS”, para mais informações sobre essa instrução.)
 
-Você também pode obter informações sobre as partições do `INFORMATION_SCHEMA`, que contém uma tabela `PARTITIONS`. Veja a Seção 28.3.26, “A Tabela INFORMATION\_SCHEMA PARTITIONS”.
+Você também pode obter informações sobre as partições do `INFORMATION_SCHEMA`, que contém uma tabela `PARTITIONS`. Veja a Seção 28.3.26, “A Tabela INFORMATION_SCHEMA PARTITIONS”.
 
 É possível determinar quais partições de uma tabela particionada estão envolvidas em uma consulta `SELECT` específica usando `EXPLAIN`. A coluna `partitions` no resultado do `EXPLAIN` lista as partições das quais os registros seriam correspondidos pela consulta.
 

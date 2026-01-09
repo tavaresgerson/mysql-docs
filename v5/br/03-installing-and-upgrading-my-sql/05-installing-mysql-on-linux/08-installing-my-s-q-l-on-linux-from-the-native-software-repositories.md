@@ -95,7 +95,7 @@ As instruções específicas de distribuição estão mostradas abaixo:
 
   Isso permite que o servidor MySQL seja iniciado (e desligado) automaticamente nos níveis de execução especificados.
 
-  As tabelas do banco de dados são criadas automaticamente para você, se ainda não existirem. No entanto, você deve executar **mysql\_secure\_installation** para definir as senhas do root no seu servidor.
+  As tabelas do banco de dados são criadas automaticamente para você, se ainda não existirem. No entanto, você deve executar **mysql_secure_installation** para definir as senhas do root no seu servidor.
 
 - **Debian, Ubuntu, Kubuntu**
 

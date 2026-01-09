@@ -3,7 +3,7 @@
 MySQL incorporates the concept of user account categories, based on the  `SYSTEM_USER` privilege.
 
 *  System and Regular Accounts
-*  Operations Affected by the SYSTEM\_USER Privilege
+*  Operations Affected by the SYSTEM_USER Privilege
 *  System and Regular Sessions
 *  Protecting System Accounts Against Manipulation by Regular Accounts
 

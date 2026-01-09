@@ -4,7 +4,7 @@
 
 <table frame="box" rules="all" summary="Uma referência que lista funções e operadores de bits.">
 <col style="width: 28%"/><col style="width: 71%"/>
-<thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="bit-functions.html#operator_bitwise-and"><code>&amp;</code></a></td> <td> E bit a bit </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_right-shift"><code>&gt;&gt;</code></a></td> <td> Deslocamento à direita </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_left-shift"><code>&lt;&lt;</code></a></td> <td> Deslocamento à esquerda </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_bitwise-xor"><code>^</code></a></td> <td> XOR bit a bit </td> </tr><tr><td><a class="link" href="bit-functions.html#function_bit-count"><code>BIT_COUNT()</code></a></td> <td> Retorna o número de bits definidos </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_bitwise-or"><code>|</code></a></td> <td> OU bit a bit </td> </tr><tr><td><a class="link" href="bit-functions.html#operator_bitwise-invert"><code>~</code></a></td> <td> Inversão bit a bit </td> </tr></tbody></table>
+<thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>&amp;</code></td> <td> E bit a bit </td> </tr><tr><td><code>&gt;&gt;</code></td> <td> Deslocamento à direita </td> </tr><tr><td><code>&lt;&lt;</code></td> <td> Deslocamento à esquerda </td> </tr><tr><td><code>^</code></td> <td> XOR bit a bit </td> </tr><tr><td><code>BIT_COUNT()</code></td> <td> Retorna o número de bits definidos </td> </tr><tr><td><code>|</code></td> <td> OU bit a bit </td> </tr><tr><td><code>~</code></td> <td> Inversão bit a bit </td> </tr></tbody></table>
 
 A lista a seguir descreve as funções e operadores de bits disponíveis:
 
@@ -163,8 +163,8 @@ As funções e operadores de bit permitem argumentos de tipo string binária (`B
 * Exemplos de operações de bits em strings binárias
 * Operações de E, OU e XOR com bits
 * Operações de complemento e deslocamento com bits
-* Operações BIT\_COUNT()
-* Operações BIT\_AND(), BIT\_OR() e BIT\_XOR(), BIT_OR() e BIT_XOR()
+* Operações BIT_COUNT()
+* Operações BIT_AND(), BIT_OR() e BIT_XOR(), BIT_OR() e BIT_XOR()
 * Tratamento especial de literais hexadecimais, literais de bits e literais NULL
 
 ### Operações com bits

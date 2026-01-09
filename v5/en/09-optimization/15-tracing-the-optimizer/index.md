@@ -14,9 +14,9 @@
 
 8.15.7 Interaction with the --debug Option
 
-8.15.8 The optimizer\_trace System Variable
+8.15.8 The optimizer_trace System Variable
 
-8.15.9 The end\_markers\_in\_json System Variable
+8.15.9 The end_markers_in_json System Variable
 
 8.15.10 Selecting Optimizer Features to Trace
 

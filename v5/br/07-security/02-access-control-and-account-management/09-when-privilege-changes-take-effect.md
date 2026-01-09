@@ -14,9 +14,9 @@ A recarga de uma tabela de subsídios afeta os privilégios de cada sessão de c
 
 - As alterações dos privilégios do banco de dados entram em vigor na próxima vez que o cliente executar a instrução `USE db_name`.
 
-  Nota
-
+  ::: info Nota
   As aplicações do cliente podem armazenar o nome do banco de dados em cache; portanto, esse efeito pode não ser visível para eles sem realmente mudar para um banco de dados diferente.
+  :::
 
 - Os privilégios e senhas globais não são afetados por um cliente conectado. Essas alterações só entram em vigor em sessões para conexões subsequentes.
 

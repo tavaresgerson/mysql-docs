@@ -4,7 +4,7 @@ Depois de garantir que o NDB Cluster esteja funcionando conforme o esperado, voc
 
 Instalar programas como serviços do Windows geralmente deve ser feito usando uma conta que tenha direitos de administrador no sistema.
 
-Para instalar o nó de gerenciamento como um serviço no Windows, inicie o **ndb\_mgmd.exe** a partir da linha de comando na máquina que hospeda o nó de gerenciamento, usando a opção `--install`, conforme mostrado aqui:
+Para instalar o nó de gerenciamento como um serviço no Windows, inicie o **ndb_mgmd.exe** a partir da linha de comando na máquina que hospeda o nó de gerenciamento, usando a opção `--install`, conforme mostrado aqui:
 
 ```
 C:\> C:\mysql\bin\ndb_mgmd.exe --install
@@ -17,7 +17,7 @@ Importante
 
 Ao instalar um programa do NDB Cluster como um serviço do Windows, você deve sempre especificar o caminho completo; caso contrário, a instalação do serviço pode falhar com o erro O sistema não encontrou o arquivo especificado.
 
-A opção `--install` deve ser usada primeiro, antes de qualquer outra opção que possa ser especificada para o **ndb\_mgmd.exe**. No entanto, é preferível especificar essas opções em um arquivo de opções em vez disso. Se o seu arquivo de opções não estiver em um dos locais padrão conforme mostrado na saída do **ndb\_mgmd.exe** `--help`, você pode especificar o local usando a opção `--config-file`.
+A opção `--install` deve ser usada primeiro, antes de qualquer outra opção que possa ser especificada para o **ndb_mgmd.exe**. No entanto, é preferível especificar essas opções em um arquivo de opções em vez disso. Se o seu arquivo de opções não estiver em um dos locais padrão conforme mostrado na saída do **ndb_mgmd.exe** `--help`, você pode especificar o local usando a opção `--config-file`.
 
 Agora você deve ser capaz de iniciar e interromper o servidor de gerenciamento da seguinte maneira:
 
@@ -64,7 +64,7 @@ Para remover o serviço do nó de gerenciamento, use **SC DELETE *`service_name`
 C:\> SC DELETE mgmd1
 ```
 
-Alternativamente, invoque **ndb\_mgmd.exe** com a opção `--remove`, como mostrado aqui:
+Alternativamente, invoque **ndb_mgmd.exe** com a opção `--remove`, como mostrado aqui:
 
 ```
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove
@@ -72,7 +72,7 @@ Removing service 'NDB Cluster Management Server'
 Service successfully removed.
 ```
 
-Se você instalou o serviço usando um nome de serviço diferente do padrão, passe o nome do serviço como o valor da opção `--remove` do **ndb\_mgmd.exe**, como mostrado aqui:
+Se você instalou o serviço usando um nome de serviço diferente do padrão, passe o nome do serviço como o valor da opção `--remove` do **ndb_mgmd.exe**, como mostrado aqui:
 
 ```
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove=mgmd1
@@ -110,7 +110,7 @@ Removing service 'NDB Cluster Data Node Daemon'
 Service successfully removed.
 ```
 
-Assim como **ndb\_mgmd.exe** (e **mysqld.exe**), ao instalar **ndbd.exe** como um serviço do Windows, você também pode especificar um nome para o serviço como o valor de `--install`, e então usá-lo ao iniciar ou parar o serviço, como mostrado aqui:
+Assim como **ndb_mgmd.exe** (e **mysqld.exe**), ao instalar **ndbd.exe** como um serviço do Windows, você também pode especificar um nome para o serviço como o valor de `--install`, e então usá-lo ao iniciar ou parar o serviço, como mostrado aqui:
 
 ```
 C:\> C:\mysql\bin\ndbd.exe --install=dnode1

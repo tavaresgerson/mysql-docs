@@ -10,13 +10,13 @@ Cada componente de canal de saída (escritor) de log de erros tem um formato de 
 
 Para os nomes e descrições dos campos nos eventos de erro, consulte a Seção 7.4.2.3, “Campos de Eventos de Erro”. Para todos os canais de saída de log, o ID do thread incluído nas mensagens do log de erro é o do thread dentro do **mysqld** responsável por escrever a mensagem. Esse ID indica qual parte do servidor produziu a mensagem e é consistente com as mensagens gerais do log de consultas e do log de consultas lentas, que incluem o ID do thread da conexão.
 
-* Formato de Saída log\_sink\_internal
-* Formato de Saída log\_sink\_json
-* Formato de Saída log\_sink\_syseventlog
+* Formato de Saída log_sink_internal
+* Formato de Saída log_sink_json
+* Formato de Saída log_sink_syseventlog
 * Formato de Saída de Log de Inicialização Antecipada
 * Variáveis do Sistema que Afetam o Formato do Log de Erros
 
-##### Formato de Saída log\_sink\_internal
+##### Formato de Saída log_sink_internal
 
 O canal de saída de log interno produz a saída tradicional do log de erros. Por exemplo:
 
@@ -80,7 +80,7 @@ mysql> SELECT FROM_UNIXTIME(1596723903109022/1000000.0);
 +-------------------------------------------+
 ```
 
-##### Formato de Saída do log\_sink\_syseventlog
+##### Formato de Saída do log_sink_syseventlog
 
 O repositório de logs do sistema produz saída que se conforma ao formato de log do sistema usado na plataforma local.
 

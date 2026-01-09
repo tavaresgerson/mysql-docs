@@ -164,7 +164,7 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
       WHERE TABLE_NAME = 't1';
   ```
 
-  A opção `TRUNCATE PARTITION` só é suportada para tabelas particionadas que utilizam os motores de armazenamento `MyISAM`, `InnoDB` ou `MEMORY`. Ela também funciona em tabelas de armazenamento \[`BLACKHOLE`]\(blackhole-storage-engine.html] (mas não tem efeito). Não é suportada para tabelas de armazenamento `ARCHIVE`.
+  A opção `TRUNCATE PARTITION` só é suportada para tabelas particionadas que utilizam os motores de armazenamento `MyISAM`, `InnoDB` ou `MEMORY`. Ela também funciona em tabelas de armazenamento [`BLACKHOLE`]\(blackhole-storage-engine.html] (mas não tem efeito). Não é suportada para tabelas de armazenamento `ARCHIVE`.
 
   `COALESCE PARTITION` pode ser usado com uma tabela que está particionada por `HASH` ou `KEY` para reduzir o número de particionações em *`número`*. Suponha que você criou a tabela `t2` da seguinte forma:
 
@@ -205,7 +205,7 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
 
     `ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` não funciona com tabelas criadas usando a opção `MAX_ROWS`, porque ele usa o valor constante `MAX_ROWS` especificado na declaração original de `CREATE TABLE` para determinar o número de partições necessárias, então nenhuma nova partição é criada. Em vez disso, você pode usar `ALTER TABLE ... ALGORITHM=INPLACE, MAX_ROWS=rows` para aumentar o número máximo de linhas para essa tabela; nesse caso, `ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` não é necessário (e causa um erro se executado). O valor de *`rows`* deve ser maior que o valor especificado para `MAX_ROWS` na declaração original de `CREATE TABLE` para que isso funcione.
 
-    O uso de `MAX_ROWS` para forçar o número de partições da tabela é desaconselhável no NDB 7.5.4 e versões posteriores; use `PARTITION_BALANCE` (consulte Definindo opções do NDB\_TABLE).
+    O uso de `MAX_ROWS` para forçar o número de partições da tabela é desaconselhável no NDB 7.5.4 e versões posteriores; use `PARTITION_BALANCE` (consulte Definindo opções do NDB_TABLE).
 
     Tentar usar `REORGANIZE PARTITION` sem a opção `partition_names INTO (partition_definitions)` em tabelas explicitamente particionadas resulta no erro REORGANIZE PARTITION without parameters só pode ser usado em tabelas auto-particionadas usando particionamento HASH.
 
@@ -227,7 +227,7 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
 
   As opções `ANALYZE PARTITION`, `CHECK PARTITION`, `OPTIMIZE PARTITION` e `REPAIR PARTITION` não são permitidas para tabelas que não estão particionadas.
 
-- No MySQL 5.7.9 e versões posteriores, você pode usar `ALTER TABLE ... UPGRADE PARTITIONING` para atualizar uma tabela particionada `InnoDB` que foi criada com o antigo manipulador de particionamento genérico para a particionamento nativo do `InnoDB` empregado no MySQL 5.7.6 e versões posteriores. Além disso, a partir do MySQL 5.7.9, o utilitário **mysql\_upgrade** verifica essas tabelas `InnoDB` particionadas e tenta atualizá-las para o particionamento nativo como parte de suas operações normais.
+- No MySQL 5.7.9 e versões posteriores, você pode usar `ALTER TABLE ... UPGRADE PARTITIONING` para atualizar uma tabela particionada `InnoDB` que foi criada com o antigo manipulador de particionamento genérico para a particionamento nativo do `InnoDB` empregado no MySQL 5.7.6 e versões posteriores. Além disso, a partir do MySQL 5.7.9, o utilitário **mysql_upgrade** verifica essas tabelas `InnoDB` particionadas e tenta atualizá-las para o particionamento nativo como parte de suas operações normais.
 
   Importante
 

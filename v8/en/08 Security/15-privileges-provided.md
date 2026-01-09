@@ -745,7 +745,7 @@ Particular SQL statements might have more specific privilege requirements than i
 
   A user that has been granted the `NDB_STORED_USER` privilege is stored in `NDB` (and thus shared by all SQL nodes), as is a role with this privilege. A user that is merely granted a role that has `NDB_STORED_USER` is *not* stored in `NDB`; each `NDB` stored user must be granted the privilege explicitly.
 
-  For more detailed information about how this works in `NDB`, see Section 25.6.13, “Privilege Synchronization and NDB\_STORED\_USER”.
+  For more detailed information about how this works in `NDB`, see Section 25.6.13, “Privilege Synchronization and NDB_STORED_USER”.
 *  `OPTIMIZE_LOCAL_TABLE`
 
   Enables use of `OPTIMIZE LOCAL TABLE` and `OPTIMIZE NO_WRITE_TO_BINLOG TABLE` statements.

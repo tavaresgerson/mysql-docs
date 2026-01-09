@@ -1,16 +1,16 @@
-### 4.7.1 mysql\_config — Exibir opções para a compilação de clientes
+### 4.7.1 mysql_config — Exibir opções para a compilação de clientes
 
-**mysql\_config** fornece informações úteis para compilar seu cliente MySQL e conectá-lo ao MySQL. É um script de shell, portanto, está disponível apenas em sistemas Unix e similares.
+**mysql_config** fornece informações úteis para compilar seu cliente MySQL e conectá-lo ao MySQL. É um script de shell, portanto, está disponível apenas em sistemas Unix e similares.
 
-Nota
+::: info Nota
+A partir do MySQL 5.7.9, o **pkg-config** pode ser usado como alternativa ao **mysql_config** para obter informações, como flags do compilador ou bibliotecas de ligação necessárias para compilar aplicativos do MySQL. Para mais informações, consulte Construção de programas de clientes da API C usando pkg-config.
+:::
 
-A partir do MySQL 5.7.9, o **pkg-config** pode ser usado como alternativa ao **mysql\_config** para obter informações, como flags do compilador ou bibliotecas de ligação necessárias para compilar aplicativos do MySQL. Para mais informações, consulte Construção de programas de clientes da API C usando pkg-config.
+::: info Nota
+A partir do MySQL 5.7.4, para as distribuições binárias para Solaris, o **mysql_config** não fornece argumentos para a vinculação com a biblioteca embutida. Para obter argumentos de vinculação para a biblioteca embutida, use o script **mysql_server_config** em vez disso.
+:::
 
-Nota
-
-A partir do MySQL 5.7.4, para as distribuições binárias para Solaris, o **mysql\_config** não fornece argumentos para a vinculação com a biblioteca embutida. Para obter argumentos de vinculação para a biblioteca embutida, use o script **mysql\_server\_config** em vez disso.
-
-**mysql\_config** suporta as seguintes opções.
+**mysql_config** suporta as seguintes opções.
 
 - `--cflags`
 
@@ -60,9 +60,9 @@ A partir do MySQL 5.7.4, para as distribuições binárias para Solaris, o **mys
 
   Número da versão para a distribuição do MySQL.
 
-Se você invocar **mysql\_config** sem opções, ele exibirá uma lista de todas as opções que ele suporta e seus valores:
+Se você invocar **mysql_config** sem opções, ele exibirá uma lista de todas as opções que ele suporta e seus valores:
 
-```sql
+```sh
 $> mysql_config
 Usage: /usr/local/mysql/bin/mysql_config [options]
 Options:
@@ -85,9 +85,9 @@ Options:
           plugindir     [/usr/local/mysql/lib/plugin]
 ```
 
-Você pode usar **mysql\_config** em uma linha de comando usando aspas duplas para incluir a saída que ele produz para opções específicas. Por exemplo, para compilar e vincular um programa cliente MySQL, use **mysql\_config** da seguinte forma:
+Você pode usar **mysql_config** em uma linha de comando usando aspas duplas para incluir a saída que ele produz para opções específicas. Por exemplo, para compilar e vincular um programa cliente MySQL, use **mysql_config** da seguinte forma:
 
-```sql
+```sh
 gcc -c `mysql_config --cflags` progname.c
 gcc -o progname progname.o `mysql_config --libs`
 ```

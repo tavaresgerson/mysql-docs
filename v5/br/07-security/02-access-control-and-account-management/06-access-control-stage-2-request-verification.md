@@ -8,7 +8,7 @@ A tabela `db` concede privilégios específicos do banco de dados. Os valores na
 
 - Um valor `Usuário` em branco corresponde ao usuário anônimo. Um valor não em branco corresponde literalmente; não há caracteres especiais nos nomes de usuário.
 
-- Os caracteres curinga `%` e `_` podem ser usados nas colunas `Host` e `Db`. Esses têm o mesmo significado que as operações de correspondência de padrões realizadas com o operador `LIKE`. Se você quiser usar qualquer caractere literalmente ao conceder privilégios, você deve escapar com uma barra invertida. Por exemplo, para incluir o caractere sublinhado (`_`) como parte de um nome de banco de dados, especifique-o como `\_` na declaração `GRANT`.
+- Os caracteres curinga `%` e `_` podem ser usados nas colunas `Host` e `Db`. Esses têm o mesmo significado que as operações de correspondência de padrões realizadas com o operador `LIKE`. Se você quiser usar qualquer caractere literalmente ao conceder privilégios, você deve escapar com uma barra invertida. Por exemplo, para incluir o caractere sublinhado (`_`) como parte de um nome de banco de dados, especifique-o como `_` na declaração `GRANT`.
 
 - Um valor de `'%'` ou `'Host'` em branco significa “qualquer host”.
 

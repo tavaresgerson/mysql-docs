@@ -1,4 +1,4 @@
-#### 30.4.4.6 O procedimento ps\_setup\_disable\_instrument()
+#### 30.4.4.6 O procedimento ps_setup_disable_instrument()
 
 Desabilita instrumentos do Schema de Desempenho com nomes que contenham o argumento. Produz um conjunto de resultados indicando quantos instrumentos foram desabilitados. Os instrumentos já desabilitados não são contados.
 

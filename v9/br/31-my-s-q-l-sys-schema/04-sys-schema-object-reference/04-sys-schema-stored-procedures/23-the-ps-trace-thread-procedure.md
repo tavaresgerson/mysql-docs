@@ -1,4 +1,4 @@
-#### 30.4.4.23 O procedimento ps\_trace\_thread()
+#### 30.4.4.23 O procedimento ps_trace_thread()
 
 Arrejeta todos os dados do Schema de Desempenho para um fio instrumentado em um arquivo de gráfico formatado em `.dot` (para a linguagem de descrição de gráficos DOT). Cada conjunto de resultados retornado pelo procedimento deve ser usado para um gráfico completo.
 

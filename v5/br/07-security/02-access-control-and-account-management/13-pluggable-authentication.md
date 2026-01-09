@@ -14,9 +14,9 @@ A autenticação plugável permite essas capacidades importantes:
 
 - **Usuários proxy:** Se um usuário tiver permissão para se conectar, um plugin de autenticação pode retornar ao servidor um nome de usuário diferente do nome do usuário que está se conectando, para indicar que o usuário que está se conectando é um proxy para outro usuário (o usuário proxy). Enquanto a conexão durar, o usuário proxy será tratado, para fins de controle de acesso, como tendo os privilégios do usuário proxy. Na verdade, um usuário assume a identidade de outro. Para mais informações, consulte Seção 6.2.14, “Usuários proxy”.
 
-Nota
-
+::: info Nota
 Se você iniciar o servidor com a opção `--skip-grant-tables`, os plugins de autenticação não são usados, mesmo que sejam carregados, porque o servidor não realiza autenticação de clientes e permite que qualquer cliente se conecte. Como isso é inseguro, você pode querer usar `--skip-grant-tables` em conjunto com a habilitação da variável de sistema `skip_networking` para impedir que clientes remotos se conectem.
+:::
 
 - Plugins de autenticação disponíveis
 - Uso do Plugin de Autenticação
@@ -44,13 +44,13 @@ O MySQL 5.7 oferece esses plugins de autenticação:
 
 - Um plugin de teste que verifica as credenciais da conta e registra o sucesso ou o fracasso no log de erros do servidor. Este plugin é destinado a fins de teste e desenvolvimento, e como exemplo de como escrever um plugin de autenticação. Veja Seção 6.4.1.12, “Autenticação Pluggable de Teste”.
 
-Nota
-
+::: info Nota
 Para obter informações sobre as restrições atuais sobre o uso de autenticação plugável, incluindo quais conectores suportam quais plugins, consulte Restrições sobre Autenticação Plugável.
 
 Os desenvolvedores de conectores de terceiros devem ler essa seção para determinar em que medida um conector pode aproveitar as capacidades de autenticação plugáveis e quais são as etapas a serem seguidas para se tornar mais compatível.
 
 Se você estiver interessado em escrever seus próprios plugins de autenticação, consulte Escrevendo Plugins de Autenticação.
+:::
 
 #### Uso do Plugin de Autenticação
 
@@ -81,13 +81,13 @@ O termo “autenticação nativa” usado aqui se refere à autenticação contr
 
 ##### Restrições gerais de autenticação plugáveis
 
-- **Conectador/C++:** Os clientes que usam este conector podem se conectar ao servidor apenas por meio de contas que utilizam autenticação nativa.
+- **Connector/C++:** Os clientes que usam este conector podem se conectar ao servidor apenas por meio de contas que utilizam autenticação nativa.
 
   Exceção: um conector suporta autenticação plugável se foi construído para se conectar dinamicamente ao `libmysqlclient` (em vez de staticamente) e carrega a versão atual do `libmysqlclient` se essa versão estiver instalada, ou se o conector for recompilado a partir da fonte para se conectar ao `libmysqlclient` atual.
 
 - **Connector/NET:** Os clientes que utilizam o Connector/NET podem se conectar ao servidor por meio de contas que utilizam autenticação nativa ou autenticação nativa do Windows.
 
-- **Conectador/PHP:** Os clientes que usam este conector podem se conectar ao servidor apenas através de contas que utilizam autenticação nativa, quando compilados usando o driver nativo MySQL para PHP (`mysqlnd`).
+- **Connector/PHP:** Os clientes que usam este conector podem se conectar ao servidor apenas através de contas que utilizam autenticação nativa, quando compilados usando o driver nativo MySQL para PHP (`mysqlnd`).
 
 - **Autenticação nativa do Windows:** A conexão através de uma conta que utiliza o plugin do Windows requer a configuração do domínio do Windows. Sem isso, a autenticação NTLM é usada e, então, apenas conexões locais são possíveis; ou seja, o cliente e o servidor devem estar no mesmo computador.
 

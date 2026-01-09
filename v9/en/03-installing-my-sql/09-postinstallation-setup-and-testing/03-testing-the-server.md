@@ -44,13 +44,13 @@ Verify that you can shut down the server (include a `-p` option if the `root` ac
 $> bin/mysqladmin -u root shutdown
 ```
 
-Verify that you can start the server again. Do this by using **mysqld\_safe** or by invoking **mysqld** directly. For example:
+Verify that you can start the server again. Do this by using **mysqld_safe** or by invoking **mysqld** directly. For example:
 
 ```
 $> bin/mysqld_safe --user=mysql &
 ```
 
-If **mysqld\_safe** fails, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”.
+If **mysqld_safe** fails, see Section 2.9.2.1, “Troubleshooting Problems Starting the MySQL Server”.
 
 Run some simple tests to verify that you can retrieve information from the server. The output should be similar to that shown here.
 

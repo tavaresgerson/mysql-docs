@@ -56,7 +56,7 @@
 
 [[index top](dynindex-priv.html#priv-index-top)]
 
-### BINLOG\_ADMIN
+### BINLOG_ADMIN
 
 [Section 13.4.1.1, “PURGE BINARY LOGS Statement”](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement")
 
@@ -174,7 +174,7 @@
 
 [Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Section 25.12.2.4, “The setup\_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
+[Section 25.12.2.4, “The setup_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
 
 [Section 13.7.3.4, “UNINSTALL PLUGIN Statement”](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement")
 
@@ -210,7 +210,7 @@
 
 [Section 13.1.33, “RENAME TABLE Statement”](rename-table.html "13.1.33 RENAME TABLE Statement")
 
-[Section 25.12.16.1, “The host\_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table")
+[Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table")
 
 [Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement")
 
@@ -314,17 +314,17 @@
 
 [Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement")
 
-[Section 24.3.6, “The INFORMATION\_SCHEMA COLUMN\_PRIVILEGES Table”](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table")
+[Section 24.3.6, “The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table”](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table")
 
-[Section 24.3.23, “The INFORMATION\_SCHEMA SCHEMA\_PRIVILEGES Table”](information-schema-schema-privileges-table.html "24.3.23 The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table")
+[Section 24.3.23, “The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table”](information-schema-schema-privileges-table.html "24.3.23 The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table")
 
-[Section 24.3.28, “The INFORMATION\_SCHEMA TABLE\_PRIVILEGES Table”](information-schema-table-privileges-table.html "24.3.28 The INFORMATION_SCHEMA TABLE_PRIVILEGES Table")
+[Section 24.3.28, “The INFORMATION_SCHEMA TABLE_PRIVILEGES Table”](information-schema-table-privileges-table.html "24.3.28 The INFORMATION_SCHEMA TABLE_PRIVILEGES Table")
 
-[Section 24.3.30, “The INFORMATION\_SCHEMA USER\_PRIVILEGES Table”](information-schema-user-privileges-table.html "24.3.30 The INFORMATION_SCHEMA USER_PRIVILEGES Table")
+[Section 24.3.30, “The INFORMATION_SCHEMA USER_PRIVILEGES Table”](information-schema-user-privileges-table.html "24.3.30 The INFORMATION_SCHEMA USER_PRIVILEGES Table")
 
-### GROUP\_REPLICATION\_ADMIN
+### GROUP_REPLICATION_ADMIN
 
-[Section 13.4.3.2, “STOP GROUP\_REPLICATION Statement”](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement")
+[Section 13.4.3.2, “STOP GROUP_REPLICATION Statement”](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement")
 
 ### I
 
@@ -392,7 +392,7 @@
 
 [Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-[Section 25.12.2.4, “The setup\_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
+[Section 25.12.2.4, “The setup_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
 
 ### L
 
@@ -416,7 +416,7 @@
 
 [[index top](dynindex-priv.html#priv-index-top)]
 
-### NDB\_STORED\_USER
+### NDB_STORED_USER
 
 [Section 21.5.24.1.1, “Restoring an NDB backup to a previous version of NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-previous-version "21.5.24.1.1 Restoring an NDB backup to a previous version of NDB Cluster")
 
@@ -458,63 +458,63 @@
 
 [Section 13.7.5.29, “SHOW PROCESSLIST Statement”](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement")
 
-[Section 24.3.9, “The INFORMATION\_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table")
+[Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table")
 
-[Section 24.4.2, “The INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE Table”](information-schema-innodb-buffer-page-table.html "24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table")
+[Section 24.4.2, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table”](information-schema-innodb-buffer-page-table.html "24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table")
 
-[Section 24.4.3, “The INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU Table”](information-schema-innodb-buffer-page-lru-table.html "24.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table")
+[Section 24.4.3, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table”](information-schema-innodb-buffer-page-lru-table.html "24.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table")
 
-[Section 24.4.4, “The INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS Table”](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table")
+[Section 24.4.4, “The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table”](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table")
 
-[Section 24.4.5, “The INFORMATION\_SCHEMA INNODB\_CMP and INNODB\_CMP\_RESET Tables”](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables")
+[Section 24.4.5, “The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables”](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables")
 
-[Section 24.4.7, “The INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX and INNODB\_CMP\_PER\_INDEX\_RESET Tables”](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables")
+[Section 24.4.7, “The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables”](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables")
 
-[Section 24.4.6, “The INFORMATION\_SCHEMA INNODB\_CMPMEM and INNODB\_CMPMEM\_RESET Tables”](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables")
+[Section 24.4.6, “The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables”](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables")
 
-[Section 24.4.8, “The INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED Table”](information-schema-innodb-ft-being-deleted-table.html "24.4.8 The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table")
+[Section 24.4.8, “The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table”](information-schema-innodb-ft-being-deleted-table.html "24.4.8 The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table")
 
-[Section 24.4.9, “The INFORMATION\_SCHEMA INNODB\_FT\_CONFIG Table”](information-schema-innodb-ft-config-table.html "24.4.9 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table")
+[Section 24.4.9, “The INFORMATION_SCHEMA INNODB_FT_CONFIG Table”](information-schema-innodb-ft-config-table.html "24.4.9 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table")
 
-[Section 24.4.10, “The INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD Table”](information-schema-innodb-ft-default-stopword-table.html "24.4.10 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table")
+[Section 24.4.10, “The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table”](information-schema-innodb-ft-default-stopword-table.html "24.4.10 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table")
 
-[Section 24.4.11, “The INFORMATION\_SCHEMA INNODB\_FT\_DELETED Table”](information-schema-innodb-ft-deleted-table.html "24.4.11 The INFORMATION_SCHEMA INNODB_FT_DELETED Table")
+[Section 24.4.11, “The INFORMATION_SCHEMA INNODB_FT_DELETED Table”](information-schema-innodb-ft-deleted-table.html "24.4.11 The INFORMATION_SCHEMA INNODB_FT_DELETED Table")
 
-[Section 24.4.12, “The INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE Table”](information-schema-innodb-ft-index-cache-table.html "24.4.12 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table")
+[Section 24.4.12, “The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table”](information-schema-innodb-ft-index-cache-table.html "24.4.12 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table")
 
-[Section 24.4.13, “The INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE Table”](information-schema-innodb-ft-index-table-table.html "24.4.13 The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table")
+[Section 24.4.13, “The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table”](information-schema-innodb-ft-index-table-table.html "24.4.13 The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table")
 
-[Section 24.4.15, “The INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS Table”](information-schema-innodb-lock-waits-table.html "24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table")
+[Section 24.4.15, “The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table”](information-schema-innodb-lock-waits-table.html "24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table")
 
-[Section 24.4.14, “The INFORMATION\_SCHEMA INNODB\_LOCKS Table”](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table")
+[Section 24.4.14, “The INFORMATION_SCHEMA INNODB_LOCKS Table”](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table")
 
-[Section 24.4.16, “The INFORMATION\_SCHEMA INNODB\_METRICS Table”](information-schema-innodb-metrics-table.html "24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table")
+[Section 24.4.16, “The INFORMATION_SCHEMA INNODB_METRICS Table”](information-schema-innodb-metrics-table.html "24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table")
 
-[Section 24.4.17, “The INFORMATION\_SCHEMA INNODB\_SYS\_COLUMNS Table”](information-schema-innodb-sys-columns-table.html "24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table")
+[Section 24.4.17, “The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table”](information-schema-innodb-sys-columns-table.html "24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table")
 
-[Section 24.4.18, “The INFORMATION\_SCHEMA INNODB\_SYS\_DATAFILES Table”](information-schema-innodb-sys-datafiles-table.html "24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table")
+[Section 24.4.18, “The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table”](information-schema-innodb-sys-datafiles-table.html "24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table")
 
-[Section 24.4.19, “The INFORMATION\_SCHEMA INNODB\_SYS\_FIELDS Table”](information-schema-innodb-sys-fields-table.html "24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table")
+[Section 24.4.19, “The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table”](information-schema-innodb-sys-fields-table.html "24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table")
 
-[Section 24.4.20, “The INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN Table”](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table")
+[Section 24.4.20, “The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table”](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table")
 
-[Section 24.4.21, “The INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN\_COLS Table”](information-schema-innodb-sys-foreign-cols-table.html "24.4.21 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table")
+[Section 24.4.21, “The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table”](information-schema-innodb-sys-foreign-cols-table.html "24.4.21 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table")
 
-[Section 24.4.22, “The INFORMATION\_SCHEMA INNODB\_SYS\_INDEXES Table”](information-schema-innodb-sys-indexes-table.html "24.4.22 The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table")
+[Section 24.4.22, “The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table”](information-schema-innodb-sys-indexes-table.html "24.4.22 The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table")
 
-[Section 24.4.23, “The INFORMATION\_SCHEMA INNODB\_SYS\_TABLES Table”](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table")
+[Section 24.4.23, “The INFORMATION_SCHEMA INNODB_SYS_TABLES Table”](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table")
 
-[Section 24.4.24, “The INFORMATION\_SCHEMA INNODB\_SYS\_TABLESPACES Table”](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table")
+[Section 24.4.24, “The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table”](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table")
 
-[Section 24.4.25, “The INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS View”](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View")
+[Section 24.4.25, “The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View”](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View")
 
-[Section 24.4.26, “The INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL Table”](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table")
+[Section 24.4.26, “The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table”](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table")
 
-[Section 24.4.27, “The INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO Table”](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table")
+[Section 24.4.27, “The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table”](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table")
 
-[Section 24.4.28, “The INFORMATION\_SCHEMA INNODB\_TRX Table”](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table")
+[Section 24.4.28, “The INFORMATION_SCHEMA INNODB_TRX Table”](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table")
 
-[Section 24.3.18, “The INFORMATION\_SCHEMA PROCESSLIST Table”](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table")
+[Section 24.3.18, “The INFORMATION_SCHEMA PROCESSLIST Table”](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table")
 
 [Section 25.12.16.3, “The processlist Table”](performance-schema-processlist-table.html "25.12.16.3 The processlist Table")
 
@@ -538,7 +538,7 @@
 
 [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account")
 
-[Section 25.12.16.1, “The host\_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table")
+[Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table")
 
 [Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication")
 
@@ -728,7 +728,7 @@
 
 [Section 13.7.5.13, “SHOW CREATE VIEW Statement”](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement")
 
-[Section 24.3.31, “The INFORMATION\_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
+[Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
 
 ### SHUTDOWN
 
@@ -738,7 +738,7 @@
 
 [Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Section 4.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "4.3.4 mysqld_multi — Manage Multiple MySQL Servers")
+[Section 4.3.4, “mysqld_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "4.3.4 mysqld_multi — Manage Multiple MySQL Servers")
 
 [Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
@@ -852,13 +852,13 @@
 
 [Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-[Section 13.4.3.1, “START GROUP\_REPLICATION Statement”](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement")
+[Section 13.4.3.1, “START GROUP_REPLICATION Statement”](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement")
 
 [Section 13.4.2.5, “START SLAVE Statement”](start-slave.html "13.4.2.5 START SLAVE Statement")
 
 [Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Section 13.4.3.2, “STOP GROUP\_REPLICATION Statement”](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement")
+[Section 13.4.3.2, “STOP GROUP_REPLICATION Statement”](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement")
 
 [Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
 
@@ -880,7 +880,7 @@
 
 [Section 5.5.5.4, “Version Tokens Reference”](version-tokens-reference.html "5.5.5.4 Version Tokens Reference")
 
-### SYSTEM\_USER
+### SYSTEM_USER
 
 [Section 25.12.16.3, “The processlist Table”](performance-schema-processlist-table.html "25.12.16.3 The processlist Table")
 
@@ -906,7 +906,7 @@
 
 [Section 13.7.5.38, “SHOW TRIGGERS Statement”](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement")
 
-[Section 24.3.29, “The INFORMATION\_SCHEMA TRIGGERS Table”](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table")
+[Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table")
 
 ### U
 
@@ -950,7 +950,7 @@
 
 [Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Section 25.12.2.4, “The setup\_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
+[Section 25.12.2.4, “The setup_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
 
 [Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
@@ -966,6 +966,6 @@
 
 [[index top](dynindex-priv.html#priv-index-top)]
 
-### XA\_RECOVER\_ADMIN
+### XA_RECOVER_ADMIN
 
 [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")

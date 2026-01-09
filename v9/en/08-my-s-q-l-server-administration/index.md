@@ -80,7 +80,7 @@
 
     7.6.4 The Rewriter Query Rewrite Plugin
 
-    7.6.5 The ddl\_rewriter Plugin
+    7.6.5 The ddl_rewriter Plugin
 
     7.6.6 The Clone Plugin
 
@@ -104,7 +104,7 @@
 
     7.9.2 Debugging a MySQL Client
 
-    7.9.3 The LOCK\_ORDER Tool
+    7.9.3 The LOCK_ORDER Tool
 
     7.9.4 The DBUG Package
 

@@ -1,4 +1,4 @@
-#### 26.4.5.3 The format\_bytes() Function
+#### 26.4.5.3 The format_bytes() Function
 
 Given a byte count, converts it to human-readable format and returns a string consisting of a value and a units indicator. Depending on the size of the value, the units part is `bytes`, `KiB` (kibibytes), `MiB` (mebibytes), `GiB` (gibibytes), `TiB` (tebibytes), or `PiB` (pebibytes).
 

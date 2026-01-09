@@ -133,23 +133,23 @@ No entanto, a maneira mais fácil de evitar esse problema é usar `CHECK TABLE` 
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para myisamchk">
 <tr><th>Nome da Opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="myisamchk-other-options.html#option_myisamchk_analyze">--analyze</a></td> <td>Analise a distribuição dos valores-chave</td></tr>
-<tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_backup">--backup</a></td> <td>Faça um backup do arquivo .MYD como file_name-time.BAK</td></tr>
-<tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_block-search">--block-search</a></td> <td>Encontre o registro ao qual um bloco no offset dado pertence</td></tr>
-<tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres podem ser encontrados</td></tr>
-<tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_check">--check</a></td> <td>Verifique a tabela em busca de erros</td></tr>
-<tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_correct-checksum">--correct-checksum</a></td> <td>Corrija as informações de verificação da tabela</td></tr>
-<tr><td><a class="link" href="myisamchk-repair-options.html#option_myisamchk_data-file-length">--data-file-length</a></td> <td>Comprimento máximo do arquivo de dados (quando o arquivo de dados é criado novamente quando está cheio)</td></tr>
-<tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--analyze</td> <td>Analise a distribuição dos valores-chave</td></tr>
+<tr><td>--backup</td> <td>Faça um backup do arquivo .MYD como file_name-time.BAK</td></tr>
+<tr><td>--block-search</td> <td>Encontre o registro ao qual um bloco no offset dado pertence</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres podem ser encontrados</td></tr>
+<tr><td>--check</td> <td>Verifique a tabela em busca de erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--correct-checksum</td> <td>Corrija as informações de verificação da tabela</td></tr>
+<tr><td>--data-file-length</td> <td>Comprimento máximo do arquivo de dados (quando o arquivo de dados é criado novamente quando está cheio)</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
 <tr><td>--decode_bits</td> <td>Decodificar bits</td></tr>
-<tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado em adição aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="myisamchk-general-options.html#option_myisamchk_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="myisamchk-other-options.html#option_myisamchk_description">--description</a></td> <td>Imprima algumas informações descritivas sobre a tabela</td></tr>
-<tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_extend-check">--extend-check</a></td> <td>Realize uma verificação muito detalhada da tabela ou faça uma reparação que tente recuperar todas as linhas possíveis do arquivo de dados</td></tr>
-<tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_fast">--fast</a></td> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td></tr>
-<tr><td><a class="link" href="myisamchk-check-options.html#option_myisamchk_force">--force</a></td> <td>Realize uma operação de reparo automaticamente se myisamchk encontrar erros na tabela</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado em adição aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--description</td> <td>Imprima algumas informações descritivas sobre a tabela</td></tr>
+<tr><td>--extend-check</td> <td>Realize uma verificação muito detalhada da tabela ou faça uma reparação que tente recuperar todas as linhas possíveis do arquivo de dados</td></tr>
+<tr><td>--fast</td> <td>Verifique apenas as tabelas que não foram fechadas corretamente</td></tr>
+<tr><td>--force</td> <td>Realize uma operação de reparo automaticamente se myisamchk encontrar erros na tabela</td></tr>
 <tr><td>--force</td> <td>Escrever arquivos temporários antigos. Para uso com as opções -r ou -o</td></tr>
 <tr><td>--ft_max_word_len</td> <td>Tamanho máximo da palavra para índices FULLTEXT</td></tr>
 <tr><td>--ft

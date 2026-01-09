@@ -36,7 +36,7 @@ O **mysqlcheck** tem uma característica especial em comparação com outros pro
 
 Os nomes mostrados na tabela a seguir podem ser usados para alterar o comportamento padrão do **mysqlcheck**.
 
-<table summary="Nomes de comandos que podem ser usados para alterar o comportamento padrão do mysqlcheck."><thead><tr> <th>Comando</th> <th>Significado</th> </tr></thead><tbody><tr> <td><span><strong>mysqlrepair</strong></span></td> <td>A opção padrão é <a class="link" href="mysqlcheck.html#option_mysqlcheck_repair"><code>--repair</code></a></td> </tr><tr> <td><span><strong>mysqlanalyze</strong></span></td> <td>A opção padrão é <a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze"><code>--analyze</code></a></td> </tr><tr> <td><span><strong>mysqloptimize</strong></span></td> <td>A opção padrão é <a class="link" href="mysqlcheck.html#option_mysqlcheck_optimize"><code>--optimize</code></a></td> </tr></tbody></table>
+<table summary="Nomes de comandos que podem ser usados para alterar o comportamento padrão do mysqlcheck."><thead><tr> <th>Comando</th> <th>Significado</th> </tr></thead><tbody><tr> <td><span><strong>mysqlrepair</strong></span></td> <td>A opção padrão é <code>--repair</code></td> </tr><tr> <td><span><strong>mysqlanalyze</strong></span></td> <td>A opção padrão é <code>--analyze</code></td> </tr><tr> <td><span><strong>mysqloptimize</strong></span></td> <td>A opção padrão é <code>--optimize</code></td> </tr></tbody></table>
 
 O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na linha de comando ou nos grupos `[mysqlcheck]` e `[client]` de um arquivo de opções. Para obter informações sobre as opções de arquivos usadas por programas MySQL, consulte a Seção 6.2.2.2, “Usando Arquivos de Opções”.
 
@@ -44,26 +44,26 @@ O **mysqlcheck** suporta as seguintes opções, que podem ser especificadas na l
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analisar as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas quanto a erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especificar o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analisar as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas quanto a erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especificar o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck
 
 * `--help`, `-?`
@@ -118,26 +118,26 @@ Se uma tabela verificada estiver corrompida, corrija-a automaticamente. Quaisque
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analise as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada for corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres são instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas em busca de erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especifique o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analise as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada for corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres são instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas em busca de erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especifique o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck
 
 Verifique apenas as tabelas que foram alteradas desde a última verificação ou que não foram fechadas corretamente.
@@ -146,26 +146,26 @@ Verifique apenas as tabelas que foram alteradas desde a última verificação ou
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analise as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas quanto a erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especifique o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analise as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas quanto a erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especifique o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck.
 
 Invoque `CHECK TABLE` com a opção `FOR UPGRADE` para verificar as tabelas quanto à incompatibilidade com a versão atual do servidor.
@@ -174,26 +174,26 @@ Invoque `CHECK TABLE` com a opção `FOR UPGRADE` para verificar as tabelas quan
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analise as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas quanto a erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especifique o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analise as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas quanto a erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especifique o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck.
 
 Compressa todas as informações enviadas entre o cliente e o servidor, se possível. Consulte a Seção 6.2.8, “Controle de Compressão de Conexão”.
@@ -204,26 +204,26 @@ Esta opção está desatualizada. Espera-se que ela seja removida em uma versão
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analise as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas quanto a erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especifique o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analise as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas quanto a erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especifique o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck.
 
 Os algoritmos de compressão permitidos para conexões com o servidor. Os algoritmos disponíveis são os mesmos da variável de sistema `protocol_compression_algorithms`. O valor padrão é `uncompressed`.
@@ -234,26 +234,26 @@ Para mais informações, consulte a Seção 6.2.8, “Controle de compressão de
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analise as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas em busca de erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especifique o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analise as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas em busca de erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especifique o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck
 
 Processar todas as tabelas nos bancos de dados nomeados. Normalmente, o **mysqlcheck** trata o argumento de nome no comando da linha como um nome de banco de dados e quaisquer nomes seguintes como nomes de tabelas. Com esta opção, ele trata todos os argumentos de nome como nomes de banco de dados.
@@ -262,26 +262,26 @@ Processar todas as tabelas nos bancos de dados nomeados. Normalmente, o **mysqlc
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analise as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas quanto a erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especifique o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analise as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas quanto a erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especifique o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck.
 
 Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O padrão é `d:t:o`.
@@ -292,26 +292,26 @@ Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`.
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analise as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas quanto a erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especifique o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analise as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas quanto a erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especifique o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck.
 
 Imprima algumas informações de depuração quando o programa sair.
@@ -322,26 +322,26 @@ Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`.
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analisar as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas quanto a erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especificar o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analisar as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas quanto a erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especificar o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck
 
 Imprima informações de depuração e estatísticas de uso de memória e CPU quando o programa sair.
@@ -352,26 +352,26 @@ Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`.
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck.">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analise as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas quanto a erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especifique o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analise as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas quanto a erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especifique o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck
 
 Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 12.15, “Configuração de Conjunto de Caracteres”.
@@ -380,26 +380,26 @@ Use *`charset_name`* como o conjunto de caracteres padrão. Veja a Seção 12.15
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqlcheck">
 <tr><th>Nome da opção</th> <th>Descrição</th></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-databases">--all-databases</a></td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_all-in-1">--all-in-1</a></td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_analyze">--analyze</a></td> <td>Analise as tabelas</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_auto-repair">--auto-repair</a></td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_bind-address">--bind-address</a></td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_character-sets-dir">--character-sets-dir</a></td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check">--check</a></td> <td>Verifique as tabelas em busca de erros</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-only-changed">--check-only-changed</a></td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_check-upgrade">--check-upgrade</a></td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compress">--compress</a></td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_compression-algorithms">--compression-algorithms</a></td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_databases">--databases</a></td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug">--debug</a></td> <td>Escreva o log de depuração</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-check">--debug-check</a></td> <td>Imprima informações de depuração quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_debug-info">--debug-info</a></td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_default-character-set">--default-character-set</a></td> <td>Especifique o conjunto de caracteres padrão</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-extra-file">--defaults-extra-file</a></td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-file">--defaults-file</a></td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Valor do sufixo do grupo de opções</td></tr>
-<tr><td><a class="link" href="mysqlcheck.html#option_mysqlcheck_enable-cleartext-plugin">--enable-cleartext-plugin</a></td> <td>Habilitar o plugin de texto em branco</td></tr>
+<tr><td>--all-databases</td> <td>Verifique todas as tabelas em todos os bancos de dados</td></tr>
+<tr><td>--all-in-1</td> <td>Execute uma única instrução para cada banco de dados que nomeia todas as tabelas desse banco de dados</td></tr>
+<tr><td>--analyze</td> <td>Analise as tabelas</td></tr>
+<tr><td>--auto-repair</td> <td>Se uma tabela verificada estiver corrompida, corrija automaticamente</td></tr>
+<tr><td>--bind-address</td> <td>Use a interface de rede especificada para se conectar ao servidor MySQL</td></tr>
+<tr><td>--character-sets-dir</td> <td>Diretório onde os conjuntos de caracteres estão instalados</td></tr>
+<tr><td>--check</td> <td>Verifique as tabelas em busca de erros</td></tr>
+<tr><td>--check-only-changed</td> <td>Verifique apenas as tabelas que foram alteradas desde a última verificação</td></tr>
+<tr><td>--check-upgrade</td> <td>Invoque CHECK TABLE com a opção FOR UPGRADE</td></tr>
+<tr><td>--compress</td> <td>Compress todas as informações enviadas entre o cliente e o servidor</td></tr>
+<tr><td>--compression-algorithms</td> <td>Algoritmos de compressão permitidos para conexões com o servidor</td></tr>
+<tr><td>--databases</td> <td>Interprete todos os argumentos como nomes de banco de dados</td></tr>
+<tr><td>--debug</td> <td>Escreva o log de depuração</td></tr>
+<tr><td>--debug-check</td> <td>Imprima informações de depuração quando o programa sai</td></tr>
+<tr><td>--debug-info</td> <td>Imprima informações de depuração, estatísticas de memória e CPU quando o programa sai</td></tr>
+<tr><td>--default-character-set</td> <td>Especifique o conjunto de caracteres padrão</td></tr>
+<tr><td>--defaults-extra-file</td> <td>Leia o arquivo de opção nomeado adicionalmente aos arquivos de opção usuais</td></tr>
+<tr><td>--defaults-file</td> <td>Leia apenas o arquivo de opção nomeado</td></tr>
+<tr><td>--defaults-group-suffix</td> <td>Valor do sufixo do grupo de opções</td></tr>
+<tr><td>--enable-cleartext-plugin</td> <td>Habilitar o plugin de texto em branco</td></tr>
 <tr><td><a class="link" href="mysqlcheck
 
 Leia este arquivo de opções após o arquivo de opções globais, mas (no Unix) antes do arquivo de opções do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
@@ -500,7 +500,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 </table>
 9
 
-Leia opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+Leia opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
 Para obter informações adicionais sobre isso e outras opções de arquivos de opções, veja a Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opções”.
 
@@ -538,7 +538,7 @@ Realiza uma verificação mais rápida do que uma operação `--extended`. Isso 
 
   Não leia arquivos de opções. Se o início do programa falhar ao ler opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para evitar que sejam lidas.
 
-  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivos de opções, veja a Seção 6.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivos de opções”.
 

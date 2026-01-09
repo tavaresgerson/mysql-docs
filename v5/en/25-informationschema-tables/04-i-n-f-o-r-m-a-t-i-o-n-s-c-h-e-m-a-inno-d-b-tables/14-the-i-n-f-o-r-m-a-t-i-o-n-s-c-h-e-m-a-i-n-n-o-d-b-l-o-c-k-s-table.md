@@ -1,4 +1,4 @@
-### 24.4.14 The INFORMATION\_SCHEMA INNODB\_LOCKS Table
+### 24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table
 
 The [`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table") table provides information about each lock that an `InnoDB` transaction has requested but not yet acquired, and each lock that a transaction holds that is blocking another transaction.
 

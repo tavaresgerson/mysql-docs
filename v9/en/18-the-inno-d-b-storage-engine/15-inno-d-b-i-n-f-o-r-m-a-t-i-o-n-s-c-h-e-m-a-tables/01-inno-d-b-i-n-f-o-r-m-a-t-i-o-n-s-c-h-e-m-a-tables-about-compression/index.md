@@ -1,8 +1,8 @@
-### 17.15.1 InnoDB INFORMATION\_SCHEMA Tables about Compression
+### 17.15.1 InnoDB INFORMATION_SCHEMA Tables about Compression
 
-17.15.1.1 INNODB\_CMP and INNODB\_CMP\_RESET
+17.15.1.1 INNODB_CMP and INNODB_CMP_RESET
 
-17.15.1.2 INNODB\_CMPMEM and INNODB\_CMPMEM\_RESET
+17.15.1.2 INNODB_CMPMEM and INNODB_CMPMEM_RESET
 
 17.15.1.3 Using the Compression Information Schema Tables
 

@@ -20,4 +20,4 @@ A group member can be in the following states:
 
 `UNREACHABLE` :   The local failure detector suspects that the member cannot be contacted, because the group's messages are timing out. This can happen if a member is disconnected involuntarily, for example. If you see this status for other servers, it can also mean that the member where you query this table is part of a partition, where a subset of the group's servers can contact each other but cannot contact the other servers in the group. For more information, see Section 20.7.8, “Handling a Network Partition and Loss of Quorum”.
 
-See Section 20.4.3, “The replication\_group\_members Table” for an example of the Performance Schema table contents.
+See Section 20.4.3, “The replication_group_members Table” for an example of the Performance Schema table contents.

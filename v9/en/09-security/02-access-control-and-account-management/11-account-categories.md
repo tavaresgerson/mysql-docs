@@ -3,7 +3,7 @@
 MySQL incorporates the concept of user account categories, based on the `SYSTEM_USER` privilege.
 
 * System and Regular Accounts
-* Operations Affected by the SYSTEM\_USER Privilege
+* Operations Affected by the SYSTEM_USER Privilege
 * System and Regular Sessions
 * Protecting System Accounts Against Manipulation by Regular Accounts
 
@@ -25,7 +25,7 @@ If a user has the appropriate privileges to perform a given operation on regular
 
 The distinction between system and regular accounts enables better control over certain account administration issues by protecting accounts that have the `SYSTEM_USER` privilege from accounts that do not have the privilege. For example, the `CREATE USER` privilege enables not only creation of new accounts, but modification and removal of existing accounts. Without the system user concept, a user who has the `CREATE USER` privilege can modify or drop any existing account, including the `root` account. The concept of system user enables restricting modifications to the `root` account (itself a system account) so they can be made only by system users. Regular users with the `CREATE USER` privilege can still modify or drop existing accounts, but only regular accounts.
 
-#### Operations Affected by the SYSTEM\_USER Privilege
+#### Operations Affected by the SYSTEM_USER Privilege
 
 The `SYSTEM_USER` privilege affects these operations:
 

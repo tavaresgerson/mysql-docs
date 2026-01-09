@@ -96,7 +96,7 @@ O valor mínimo de `validate_password.length` é uma função de várias outras 
 O número mínimo de caracteres numéricos (dígitos) que `validate_password` exige que as senhas tenham se a política de senha for `MÉDIA` ou mais forte. Esta variável não está disponível a menos que `validate_password` esteja instalado.
 *  `validate_password.policy`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.policy=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td>`validate_password.policy`</td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de `SET_VAR` Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password.policy=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td>`validate_password.policy`</td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de `SET_VAR` Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   A política de senha aplicada pelo `validate_password`. Esta variável não está disponível a menos que `validate_password` esteja instalado.
 
@@ -145,7 +145,7 @@ Para controlar a ativação do plugin `validate_password`, use esta opção:
 
 *  `--validate-password[=value]`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Esta opção controla como o servidor carrega o plugin `validate_password` desatualizado no início. O valor deve ser um desses disponíveis para as opções de carregamento de plugins, conforme descrito na Seção 7.6.1, “Instalando e Desinstalando Plugins”. Por exemplo, `--validate-password=FORCE_PLUS_PERMANENT` indica ao servidor que carregue o plugin no início e impeça sua remoção enquanto o servidor estiver em execução.
 
@@ -187,7 +187,7 @@ Esta variável de sistema `validate_password` do plugin está desatualizada; esp
   Esta variável de sistema do plugin `validate_password` está desatualizada; espere-se que seja removida em uma versão futura do MySQL. Use a variável de sistema correspondente `validate_password.number_count` do componente `validate_password` em vez disso.
 *  `validate_password_policy`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password-policy=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>validate_password_policy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--validate-password-policy=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>validate_password_policy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>1</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   Esta variável de sistema do plugin `validate_password` está desatualizada; espere-se que seja removida em uma versão futura do MySQL. Use a variável de sistema correspondente `validate_password.policy` do componente `validate_password` em vez disso.
 *  `validate_password_special_char_count`

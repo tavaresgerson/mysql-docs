@@ -1,4 +1,4 @@
-#### 30.4.3.51 The waits\_by\_user\_by\_latency and x$waits\_by\_user\_by\_latency Views
+#### 30.4.3.51 The waits_by_user_by_latency and x$waits_by_user_by_latency Views
 
 These views summarize wait events, grouped by user and event. By default, rows are sorted by user and descending total latency. Idle events are ignored.
 

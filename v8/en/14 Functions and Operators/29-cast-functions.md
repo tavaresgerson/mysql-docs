@@ -16,7 +16,7 @@ Cast functions and operators enable conversion of values from one data type to a
 
 *  `BINARY` *`expr`*
 
-  The  `BINARY` operator converts the expression to a binary string (a string that has the `binary` character set and `binary` collation). A common use for `BINARY` is to force a character string comparison to be done byte by byte using numeric byte values rather than character by character. The `BINARY` operator also causes trailing spaces in comparisons to be significant. For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see  Section 12.8.5, “The binary Collation Compared to \_bin Collations”.
+  The  `BINARY` operator converts the expression to a binary string (a string that has the `binary` character set and `binary` collation). A common use for `BINARY` is to force a character string comparison to be done byte by byte using numeric byte values rather than character by character. The `BINARY` operator also causes trailing spaces in comparisons to be significant. For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see  Section 12.8.5, “The binary Collation Compared to _bin Collations”.
 
   The `BINARY` operator is deprecated; you should expect its removal in a future version of MySQL. Use `CAST(... AS BINARY)` instead.
 

@@ -1,4 +1,4 @@
-### 28.3.48 The INFORMATION\_SCHEMA TABLE\_CONSTRAINTS\_EXTENSIONS Table
+### 28.3.48 The INFORMATION_SCHEMA TABLE_CONSTRAINTS_EXTENSIONS Table
 
 The `TABLE_CONSTRAINTS_EXTENSIONS` table provides information about table constraint attributes defined for primary and secondary storage engines.
 

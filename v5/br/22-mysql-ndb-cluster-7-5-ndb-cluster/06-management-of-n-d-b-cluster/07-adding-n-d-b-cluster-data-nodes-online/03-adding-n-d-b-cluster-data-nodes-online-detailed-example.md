@@ -129,7 +129,7 @@ Depois de fazer as alterações necessárias, salve o arquivo.
    $>
    ```
 
-2. Como o encerramento do servidor de gerenciamento faz com que o cliente de gerenciamento seja encerrado, você deve iniciar o servidor de gerenciamento a partir da shell do sistema. Para simplificar, assumimos que o `config.ini` está no mesmo diretório que o binário do servidor de gerenciamento, mas, na prática, você deve fornecer o caminho correto para o arquivo de configuração. Você também deve fornecer a opção `--reload` (mysql-cluster-programs-ndb-mgmd.html#option\_ndb\_mgmd\_reload) ou `--initial` (mysql-cluster-programs-ndb-mgmd.html#option\_ndb\_mgmd\_initial) para que o servidor de gerenciamento leia a nova configuração do arquivo em vez de sua cache de configuração. Se o diretório atual da sua shell também for o mesmo do diretório onde o binário do servidor de gerenciamento está localizado, então você pode invocar o servidor de gerenciamento da seguinte forma:
+2. Como o encerramento do servidor de gerenciamento faz com que o cliente de gerenciamento seja encerrado, você deve iniciar o servidor de gerenciamento a partir da shell do sistema. Para simplificar, assumimos que o `config.ini` está no mesmo diretório que o binário do servidor de gerenciamento, mas, na prática, você deve fornecer o caminho correto para o arquivo de configuração. Você também deve fornecer a opção `--reload` (mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) ou `--initial` (mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) para que o servidor de gerenciamento leia a nova configuração do arquivo em vez de sua cache de configuração. Se o diretório atual da sua shell também for o mesmo do diretório onde o binário do servidor de gerenciamento está localizado, então você pode invocar o servidor de gerenciamento da seguinte forma:
 
    ```sql
    $> ndb_mgmd -f config.ini --reload
@@ -137,7 +137,7 @@ Depois de fazer as alterações necessárias, salve o arquivo.
    2008-12-08 17:29:23 [MgmSrvr] INFO     -- Reading cluster configuration from 'config.ini'
    ```
 
-Se você verificar a saída do comando `SHOW` no cliente de gerenciamento após reiniciar o processo **ndb\_mgm**, você deve ver algo como este:
+Se você verificar a saída do comando `SHOW` no cliente de gerenciamento após reiniciar o processo **ndb_mgm**, você deve ver algo como este:
 
 ```sql
 -- NDB Cluster -- Management Client --
@@ -186,7 +186,7 @@ Após emitir cada comando `X RESTART`, aguarde até que o cliente de gerenciamen
 
 Você pode verificar se todos os nós de dados existentes foram reiniciados usando a configuração atualizada verificando a tabela `ndbinfo.nodes` no cliente **mysql**.
 
-**Passo 4: Realize um reinício contínuo de todos os nós da API do cluster.** Desligue e reinicie cada servidor MySQL que atua como um nó SQL no cluster usando **mysqladmin shutdown** seguido de **mysqld\_safe** (ou outro script de inicialização). Isso deve ser semelhante ao que está mostrado aqui, onde *`password`* é a senha do `root` do MySQL para uma instância específica do servidor MySQL:
+**Passo 4: Realize um reinício contínuo de todos os nós da API do cluster.** Desligue e reinicie cada servidor MySQL que atua como um nó SQL no cluster usando **mysqladmin shutdown** seguido de **mysqld_safe** (ou outro script de inicialização). Isso deve ser semelhante ao que está mostrado aqui, onde *`password`* é a senha do `root` do MySQL para uma instância específica do servidor MySQL:
 
 ```sql
 $> mysqladmin -uroot -ppassword shutdown
@@ -274,7 +274,7 @@ Node 4: Data usage is 0%(0 32K pages of total 3200)
 Node 4: Index usage is 0%(0 8K pages of total 12832)
 ```
 
-Ao usar **ndb\_desc** com a opção `-p`, o que faz com que a saída inclua informações de particionamento, você pode ver que a tabela ainda usa apenas 2 particionamentos (na seção `Per partition info` da saída, mostrada aqui em texto em negrito):
+Ao usar **ndb_desc** com a opção `-p`, o que faz com que a saída inclua informações de particionamento, você pode ver que a tabela ainda usa apenas 2 particionamentos (na seção `Per partition info` da saída, mostrada aqui em texto em negrito):
 
 ```sql
 $> ndb_desc -c 198.51.100.10 -d n ips -p
@@ -322,7 +322,7 @@ Importante
 
 Tenha em mente que o uso de `MAX_ROWS` para definir o número de partições por tabela está desatualizado no NDB 7.5.4 e versões posteriores, onde você deve usar `PARTITION_BALANCE`; consulte Seção 13.1.18.9, “Definindo Opções de Comentário do NDB” para obter mais informações.
 
-Após emitir a declaração `ALTER TABLE ips ALGORITHM=INPLACE, REORGANIZE PARTITION`, você pode ver usando **ndb\_desc** que os dados desta tabela agora estão armazenados usando 4 partições, conforme mostrado aqui (com as partes relevantes do resultado em negrito):
+Após emitir a declaração `ALTER TABLE ips ALGORITHM=INPLACE, REORGANIZE PARTITION`, você pode ver usando **ndb_desc** que os dados desta tabela agora estão armazenados usando 4 partições, conforme mostrado aqui (com as partes relevantes do resultado em negrito):
 
 ```sql
 $> ndb_desc -c 198.51.100.10 -d n ips -p

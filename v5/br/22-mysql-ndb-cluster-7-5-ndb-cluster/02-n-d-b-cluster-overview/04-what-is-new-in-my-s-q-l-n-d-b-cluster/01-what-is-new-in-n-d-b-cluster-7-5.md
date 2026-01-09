@@ -25,7 +25,7 @@ As principais mudanças e novas funcionalidades do NDB Cluster 7.5 que provavelm
   WHERE   p. param_name IN ('NodeId', 'HostName','DataMemory', 'IndexMemory');
   ```
 
-  Para obter mais informações sobre essas alterações, consulte Seção 21.6.15.8, “A tabela ndbinfo config\_params”. Consulte Seção 21.6.15.9, “A tabela ndbinfo config\_values” para obter mais informações e exemplos.
+  Para obter mais informações sobre essas alterações, consulte Seção 21.6.15.8, “A tabela ndbinfo config_params”. Consulte Seção 21.6.15.9, “A tabela ndbinfo config_values” para obter mais informações e exemplos.
 
   Além disso, o banco de dados `ndbinfo` não depende mais do mecanismo de armazenamento `MyISAM`. Todas as tabelas e visualizações `ndbinfo` agora usam `NDB` (mostrado como `NDBINFO`).
 
@@ -49,9 +49,9 @@ As principais mudanças e novas funcionalidades do NDB Cluster 7.5 que provavelm
 
   Nota
 
-  Uma cópia de `ALTER TABLE` não pode ser feita implicitamente se o **mysqld** for executado com `--ndb-allow-copying-alter-table=FALSE` (mysql-cluster-options-variables.html#option\_mysqld\_ndb-allow-copying-alter-table).
+  Uma cópia de `ALTER TABLE` não pode ser feita implicitamente se o **mysqld** for executado com `--ndb-allow-copying-alter-table=FALSE` (mysql-cluster-options-variables.html#option_mysqld_ndb-allow-copying-alter-table).
 
-- **O `ndb_binlog_index` não depende mais do MyISAM.** A partir da versão NDB 7.5.2, a tabela `ndb_binlog_index` usada na Replicação em NDB Cluster agora utiliza o mecanismo de armazenamento `InnoDB` em vez do `MyISAM`. Ao fazer a atualização, você pode executar **mysql\_upgrade** com a opção `--force` (`--upgrade-system-tables` em inglês) para fazer com que ele execute a instrução `ALTER TABLE ... ENGINE=INNODB` (alter-table.html) nesta tabela. O uso do `MyISAM` para esta tabela continua sendo suportado para compatibilidade com versões anteriores.
+- **O `ndb_binlog_index` não depende mais do MyISAM.** A partir da versão NDB 7.5.2, a tabela `ndb_binlog_index` usada na Replicação em NDB Cluster agora utiliza o mecanismo de armazenamento `InnoDB` em vez do `MyISAM`. Ao fazer a atualização, você pode executar **mysql_upgrade** com a opção `--force` (`--upgrade-system-tables` em inglês) para fazer com que ele execute a instrução `ALTER TABLE ... ENGINE=INNODB` (alter-table.html) nesta tabela. O uso do `MyISAM` para esta tabela continua sendo suportado para compatibilidade com versões anteriores.
 
   Uma vantagem dessa mudança é que ela permite depender do comportamento transacional e de leituras sem bloqueio para essa tabela, o que pode ajudar a aliviar problemas de concorrência durante operações de purga e rotação de log, e melhorar a disponibilidade dessa tabela.
 
@@ -75,9 +75,9 @@ As principais mudanças e novas funcionalidades do NDB Cluster 7.5 que provavelm
 
   Você pode definir o tamanho do pool de conexões usando a opção `--ndb-cluster-connection-pool` para o **mysqld**.
 
-- **create\_old\_temporals removido.** A variável de sistema `create_old_temporals` foi descontinuada no NDB Cluster 7.4 e agora foi removida.
+- **create_old_temporals removido.** A variável de sistema `create_old_temporals` foi descontinuada no NDB Cluster 7.4 e agora foi removida.
 
-- **Prompt do comando CLIENT PROMPT do ndb\_mgm.** O NDB Cluster 7.5 adiciona um novo comando para definir o prompt de linha de comando do cliente. O exemplo a seguir ilustra o uso do comando `PROMPT`:
+- **Prompt do comando CLIENT PROMPT do ndb_mgm.** O NDB Cluster 7.5 adiciona um novo comando para definir o prompt de linha de comando do cliente. O exemplo a seguir ilustra o uso do comando `PROMPT`:
 
   ```sql
   ndb_mgm> PROMPT mgm#1:
@@ -140,7 +140,7 @@ As principais mudanças e novas funcionalidades do NDB Cluster 7.5 que provavelm
 
   Como parte desse trabalho, o NDB 7.5.2 também introduz a variável de sistema `ndb_data_node_neighbour`. Esta variável é destinada a ser usada, na indicação de transações, para fornecer um nó de dados "vizinho" a este nó SQL.
 
-  Além disso, ao restaurar esquemas de tabela, **ndb\_restore** `--restore-meta` agora usa a partição padrão do cluster de destino, em vez de usar o mesmo número de partições que o cluster original do qual o backup foi feito. Consulte Seção 21.5.24.2.2, “Restauração para Mais Nodos do que o Original” para obter mais informações e um exemplo.
+  Além disso, ao restaurar esquemas de tabela, **ndb_restore** `--restore-meta` agora usa a partição padrão do cluster de destino, em vez de usar o mesmo número de partições que o cluster original do qual o backup foi feito. Consulte Seção 21.5.24.2.2, “Restauração para Mais Nodos do que o Original” para obter mais informações e um exemplo.
 
   O NDB 7.5.3 adiciona uma melhoria adicional para `READ_BACKUP`: nesta e em versões posteriores, é possível definir `READ_BACKUP` para uma tabela específica online como parte de `ALTER TABLE ... ALGORITHM=INPLACE ...`.
 
@@ -154,15 +154,15 @@ As principais mudanças e novas funcionalidades do NDB Cluster 7.5 que provavelm
 
 - **Partições maiores que 16 GB.** Devido a uma melhoria na implementação do índice de hash usado pelos nós de dados do NDB Cluster, as partições das tabelas `NDB` podem agora conter mais de 16 GB de dados para colunas fixas, e o tamanho máximo da partição para colunas fixas foi aumentado para 128 TB. A limitação anterior era devida ao fato de que o bloco `DBACC` no kernel `NDB` usava apenas referências de 32 bits para a parte de tamanho fixo de uma linha no bloco `DBTUP`, embora referências de 45 bits para esses dados sejam usadas no próprio `DBTUP` e em outros lugares do kernel fora do `DBACC`; todas essas referências aos dados tratados no bloco `DBACC` agora usam 45 bits.
 
-- **Imprima instruções SQL do ndb\_restore.** O NDB 7.5.4 adiciona a opção `--print-sql-log` para o utilitário **ndb\_restore** fornecido com a distribuição do NDB Cluster. Esta opção habilita o registro de SQL no `stdout`. **Importante**: Toda tabela que será restaurada usando esta opção deve ter uma chave primária definida explicitamente.
+- **Imprima instruções SQL do ndb_restore.** O NDB 7.5.4 adiciona a opção `--print-sql-log` para o utilitário **ndb_restore** fornecido com a distribuição do NDB Cluster. Esta opção habilita o registro de SQL no `stdout`. **Importante**: Toda tabela que será restaurada usando esta opção deve ter uma chave primária definida explicitamente.
 
-  Para obter mais informações, consulte Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”.
+  Para obter mais informações, consulte Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”.
 
-- **Organização dos pacotes RPM.** A partir do NDB 7.5.4, a nomenclatura e a organização dos pacotes RPM fornecidos para o NDB Cluster estão mais alinhadas com as versões lançadas para o servidor MySQL. Os nomes de todos os pacotes RPM do NDB Cluster agora são prefixados com `mysql-cluster`. Os nós de dados são instalados agora usando o pacote `data-node`; os nós de gerenciamento são instalados agora a partir do pacote `management-server`; e os nós SQL requerem os pacotes `server` e `common`. Os programas cliente MySQL e `NDB`, incluindo o cliente **mysql** e o cliente de gerenciamento **ndb\_mgm**, agora estão incluídos no pacote RPM `client`.
+- **Organização dos pacotes RPM.** A partir do NDB 7.5.4, a nomenclatura e a organização dos pacotes RPM fornecidos para o NDB Cluster estão mais alinhadas com as versões lançadas para o servidor MySQL. Os nomes de todos os pacotes RPM do NDB Cluster agora são prefixados com `mysql-cluster`. Os nós de dados são instalados agora usando o pacote `data-node`; os nós de gerenciamento são instalados agora a partir do pacote `management-server`; e os nós SQL requerem os pacotes `server` e `common`. Os programas cliente MySQL e `NDB`, incluindo o cliente **mysql** e o cliente de gerenciamento **ndb_mgm**, agora estão incluídos no pacote RPM `client`.
 
   Para uma lista detalhada dos RPMs do NDB Cluster e outras informações, consulte Seção 21.3.1.2, “Instalando o NDB Cluster a partir do RPM”.
 
-- O **ndbinfo processa e configura as tabelas \_config\_nodes.** O NDB 7.5.7 adiciona duas tabelas ao banco de dados de informações `ndbinfo` (mysql-cluster-ndbinfo.html) para fornecer informações sobre os nós do cluster; essas tabelas estão listadas aqui:
+- O **ndbinfo processa e configura as tabelas _config_nodes.** O NDB 7.5.7 adiciona duas tabelas ao banco de dados de informações `ndbinfo` (mysql-cluster-ndbinfo.html) para fornecer informações sobre os nós do cluster; essas tabelas estão listadas aqui:
 
   - `config_nodes`: Esta tabela fornece o ID do nó, o tipo de processo e o nome do host para cada nó listado no arquivo de configuração de um cluster NDB.
 
@@ -172,25 +172,25 @@ As principais mudanças e novas funcionalidades do NDB Cluster 7.5 que provavelm
 
   Um nome do sistema baseado no horário em que o servidor de gerenciamento foi iniciado é gerado automaticamente; você pode substituir esse valor adicionando uma seção `[system]` ao arquivo de configuração do clúster e definindo o parâmetro `Name` para um valor de sua escolha nesta seção, antes de iniciar o servidor de gerenciamento.
 
-- **Opções de ndb\_restore.** A partir da versão NDB 7.5.13, as opções `--nodeid` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_nodeid) e `--backupid` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_backupid) são obrigatórias ao invocar o **ndb\_restore**.
+- **Opções de ndb_restore.** A partir da versão NDB 7.5.13, as opções `--nodeid` (mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid) e `--backupid` (mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid) são obrigatórias ao invocar o **ndb_restore**.
 
-- Melhorias no **ndb\_blob\_tool**. A partir do NDB 7.5.18, o utilitário **ndb\_blob\_tool** pode detectar partes de blob ausentes para as quais existem partes em linha e substituí-las por partes de blob de espaço (com caracteres de espaço) do comprimento correto. Para verificar se há partes de blob ausentes, use a opção `--check-missing` com este programa. Para substituir quaisquer partes de blob ausentes por marcadores, use a opção `--add-missing`.
+- Melhorias no **ndb_blob_tool**. A partir do NDB 7.5.18, o utilitário **ndb_blob_tool** pode detectar partes de blob ausentes para as quais existem partes em linha e substituí-las por partes de blob de espaço (com caracteres de espaço) do comprimento correto. Para verificar se há partes de blob ausentes, use a opção `--check-missing` com este programa. Para substituir quaisquer partes de blob ausentes por marcadores, use a opção `--add-missing`.
 
-  Para obter mais informações, consulte Seção 21.5.6, “ndb\_blob\_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”.
+  Para obter mais informações, consulte Seção 21.5.6, “ndb_blob_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”.
 
-- **Opção `--ndb-log-fail-terminate`.** A partir do NDB 7.5.18, você pode fazer com que o nó SQL termine sempre que não conseguir registrar todos os eventos de linha completamente. Isso pode ser feito iniciando o **mysqld** com a opção `--ndb-log-fail-terminate` (mysql-cluster-options-variables.html#option\_mysqld\_ndb-log-fail-terminate).
+- **Opção `--ndb-log-fail-terminate`.** A partir do NDB 7.5.18, você pode fazer com que o nó SQL termine sempre que não conseguir registrar todos os eventos de linha completamente. Isso pode ser feito iniciando o **mysqld** com a opção `--ndb-log-fail-terminate` (mysql-cluster-options-variables.html#option_mysqld_ndb-log-fail-terminate).
 
 - **Programas do NDB — Remoção da dependência do NDBT.** A dependência de vários programas de utilitários do NDB na biblioteca NDBT foi removida. Essa biblioteca é usada internamente para desenvolvimento e não é necessária para uso normal; sua inclusão nesses programas poderia causar problemas indesejados durante os testes.
 
   Os programas afetados estão listados aqui, juntamente com as versões do `NDB` nas quais a dependência foi removida:
 
-  - **ndb\_restore**, em NDB 7.5.15
-  - **ndb\_show\_tables**, em NDB 7.5.18
-  - **ndb\_waiter**, em NDB 7.5.18
+  - **ndb_restore**, em NDB 7.5.15
+  - **ndb_show_tables**, em NDB 7.5.18
+  - **ndb_waiter**, em NDB 7.5.18
 
   O principal efeito dessa mudança para os usuários é que esses programas não imprimem mais `NDBT_ProgramExit - status` após a conclusão de uma execução. As aplicações que dependem desse comportamento devem ser atualizadas para refletir a mudança ao serem atualizadas para as versões indicadas.
 
-- **Depreciação e remoção do Auto-Instalador.** A ferramenta de instalação baseada na web do Auto-Instalador do MySQL NDB Cluster (**ndb\_setup.py**) é descontinuada no NDB 7.5.20 e removida no NDB 7.5.21 e versões posteriores. Ela não é mais suportada.
+- **Depreciação e remoção do Auto-Instalador.** A ferramenta de instalação baseada na web do Auto-Instalador do MySQL NDB Cluster (**ndb_setup.py**) é descontinuada no NDB 7.5.20 e removida no NDB 7.5.21 e versões posteriores. Ela não é mais suportada.
 
 - **Descontinuidade e remoção do ndbmemcache.** O `ndbmemcache` não é mais suportado. O `ndbmemcache` foi descontinuado no NDB 7.5.20 e removido no NDB 7.5.21.
 
@@ -198,15 +198,15 @@ As principais mudanças e novas funcionalidades do NDB Cluster 7.5 que provavelm
 
   O suporte para Node.js pelo NDB Cluster é mantido apenas no NDB 8.0.
 
-- **Conversão entre NULL e NOT NULL durante operações de restauração.** A partir do NDB 7.5.23, o **ndb\_restore** pode suportar a restauração de colunas `NULL` como `NOT NULL` e vice-versa, usando as opções listadas aqui:
+- **Conversão entre NULL e NOT NULL durante operações de restauração.** A partir do NDB 7.5.23, o **ndb_restore** pode suportar a restauração de colunas `NULL` como `NOT NULL` e vice-versa, usando as opções listadas aqui:
 
   - Para restaurar uma coluna `NULL` como `NOT NULL`, use a opção `--lossy-conversions`.
 
-    A coluna originalmente declarada como `NULL` não deve conter nenhuma linha `NULL`; se contiver, o **ndb\_restore** sai com um erro.
+    A coluna originalmente declarada como `NULL` não deve conter nenhuma linha `NULL`; se contiver, o **ndb_restore** sai com um erro.
 
   - Para restaurar uma coluna `NOT NULL` como `NULL`, use a opção `--promote-attributes`.
 
-  Para obter mais informações, consulte as descrições das opções indicadas **ndb\_restore**.
+  Para obter mais informações, consulte as descrições das opções indicadas **ndb_restore**.
 
 - **Suporte ao OpenSSL 3.0.** A partir do NDB 7.5.31, todos os binários do servidor e do cliente MySQL incluídos na distribuição `NDB` são compilados com suporte ao OpenSSL 3.0
 

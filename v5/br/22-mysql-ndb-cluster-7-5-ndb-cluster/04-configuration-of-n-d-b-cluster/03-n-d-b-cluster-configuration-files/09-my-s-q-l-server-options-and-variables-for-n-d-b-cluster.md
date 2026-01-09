@@ -86,7 +86,7 @@ Para obter informações sobre as opções de linha de comando usadas com outros
 
 - `--ndb-default-column-format=[FIXO|DINÂMICO]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ndb-default-column-format={FIXED|DYNAMIC}</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.11-ndb-7.5.1</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão (≥ 5.7.16-ndb-7.5.4)</th> <td>[[<code>FIXED</code>]]</td> </tr><tr><th>Valor padrão (≥ 5.7.11-ndb-7.5.1, ≤ 5.7.13-ndb-7.5.3)</th> <td>[[<code>DYNAMIC</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>FIXED</code>]]</p><p class="valid-value">[[<code>DYNAMIC</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ndb-default-column-format={FIXED|DYNAMIC}</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.11-ndb-7.5.1</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>ndb_default_column_format</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão (≥ 5.7.16-ndb-7.5.4)</th> <td>[[<code>FIXED</code>]]</td> </tr><tr><th>Valor padrão (≥ 5.7.11-ndb-7.5.1, ≤ 5.7.13-ndb-7.5.3)</th> <td>[[<code>DYNAMIC</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p>[[<code>FIXED</code>]]</p><p>[[<code>DYNAMIC</code>]]</p></td> </tr></tbody></table>
 
   No NDB 7.5.1 e versões posteriores, define o `COLUMN_FORMAT` e `ROW_FORMAT` padrão para novas tabelas (consulte Seção 13.1.18, “Instrução CREATE TABLE”).
 
@@ -94,7 +94,7 @@ Para obter informações sobre as opções de linha de comando usadas com outros
 
 - `--ndb-deferred-constraints=[0|1]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-deferred-constraints"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ndb-deferred-constraints</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_deferred_constraints">ndb_deferred_constraints</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ndb-deferred-constraints"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ndb-deferred-constraints</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>ndb_deferred_constraints</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>1</code>]]</td> </tr></tbody></table>
 
   Controla se as verificações de restrição em índices únicos são adiadas até o momento do commit, onde essas verificações são suportadas. `0` é o padrão.
 
@@ -168,7 +168,7 @@ Para obter informações sobre as opções de linha de comando usadas com outros
 
   Faz com que a replica **mysqld** escreva o ID de transação NDB em cada linha do log binário. Esse registro requer o uso do formato de evento da versão 2 para o log binário; portanto, a variável de sistema `log_bin_use_v1_row_events` deve ser desativada para usar essa opção.
 
-  `--ndb-log-transaction-id` é necessário para habilitar a detecção e resolução de conflitos da replicação do NDB Cluster usando a função `NDB$EPOCH_TRANS()` (veja NDB$EPOCH\_TRANS()).
+  `--ndb-log-transaction-id` é necessário para habilitar a detecção e resolução de conflitos da replicação do NDB Cluster usando a função `NDB$EPOCH_TRANS()` (veja NDB$EPOCH_TRANS()).
 
   Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
@@ -184,7 +184,7 @@ Para obter informações sobre as opções de linha de comando usadas com outros
 
     `DELETE`: Registrado como um evento `DELETE_ROW` com todas as colunas registradas na imagem anterior; a imagem após não é registrada.
 
-  Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte tabela ndb\_replication para obter mais informações.
+  Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte tabela ndb_replication para obter mais informações.
 
 - `--ndb-log-updated-only`
 
@@ -198,7 +198,7 @@ Para obter informações sobre as opções de linha de comando usadas com outros
 
   - `DELETE`: Registrado como um evento `DELETE_ROW` com as colunas da chave primária incluídas na imagem anterior; a imagem após não é registrada.
 
-  Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte tabela ndb\_replication para obter mais informações sobre como essas opções interagem entre si.
+  Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte tabela ndb_replication para obter mais informações sobre como essas opções interagem entre si.
 
 - `--ndb-log-update-minimal`
 
@@ -212,7 +212,7 @@ Para obter informações sobre as opções de linha de comando usadas com outros
 
   - `DELETE`: Registrado como um evento `DELETE_ROW` com todas as colunas da imagem anterior; a imagem após não é registrada.
 
-  Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte tabela ndb\_replication para obter mais informações.
+  Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte tabela ndb_replication para obter mais informações.
 
 - `--ndb-mgmd-host=host[:port]`
 
@@ -226,7 +226,7 @@ Para obter informações sobre as opções de linha de comando usadas com outros
 
   Defina o ID de nó deste servidor MySQL em um NDB Cluster.
 
-  A opção `--ndb-nodeid` substitui qualquer ID de nó definida com `--ndb-connectstring` (mysql-cluster-options-variables.html#option\_mysqld\_ndb-connectstring), independentemente da ordem em que as duas opções são usadas.
+  A opção `--ndb-nodeid` substitui qualquer ID de nó definida com `--ndb-connectstring` (mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring), independentemente da ordem em que as duas opções são usadas.
 
   Além disso, se `--ndb-nodeid` for usado, então deve-se encontrar um ID de nó correspondente em uma seção `[mysqld]` ou `[api]` do `config.ini`, ou deve haver uma seção `[mysqld]` ou `[api]` “aberta” no arquivo (ou seja, uma seção sem um parâmetro `NodeId` ou `Id` especificado). Isso também é verdadeiro se o ID do nó for especificado como parte da string de conexão.
 
@@ -348,7 +348,7 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
 
   <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ndb-cluster-connection-pool</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>ndb_cluster_connection_pool</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>ndb_cluster_connection_pool</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>63</code>]]</td> </tr></tbody></table>
 
-  Define a porcentagem da memória máxima alocada para o buffer de eventos (ndb\_eventbuffer\_max\_alloc) que deve estar disponível no buffer de eventos após atingir o máximo, antes de começar a bufferizar novamente.
+  Define a porcentagem da memória máxima alocada para o buffer de eventos (ndb_eventbuffer_max_alloc) que deve estar disponível no buffer de eventos após atingir o máximo, antes de começar a bufferizar novamente.
 
 - `ndb_eventbuffer_max_alloc`
 
@@ -396,7 +396,7 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
 
   Os nomes das opções que podem ser definidos usando essa variável estão mostrados na tabela a seguir. A tabela também fornece descrições breves das opções, seus valores padrão e (quando aplicável) seus valores mínimo e máximo.
 
-  **Tabela 21.18 ndb\_index\_stat\_option opções e valores**
+  **Tabela 21.18 ndb_index_stat_option opções e valores**
 
   <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ndb-cluster-connection-pool-nodeids</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td>[[<code>ndb_cluster_connection_pool_nodeids</code>]]</td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td>[[<code></code>]]</td> </tr></tbody></table>
 
@@ -700,7 +700,7 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
 
   Ao extrair o ID do servidor efetivo de `server_id` para fins como a detecção de loops de replicação, o servidor ignora os bits restantes. A variável `server_id_bits` é usada para mascarar quaisquer bits irrelevantes de `server_id` nos threads de I/O e SQL ao decidir se um evento deve ser ignorado com base no ID do servidor.
 
-  Esses dados podem ser lidos do log binário pelo **mysqlbinlog**, desde que seja executado com sua própria variável \`**server\_id\_bits** definida como 32 (o padrão).
+  Esses dados podem ser lidos do log binário pelo **mysqlbinlog**, desde que seja executado com sua própria variável \`**server_id_bits** definida como 32 (o padrão).
 
   Se o valor de `server_id` for maior ou igual a 2 elevado a `server_id_bits`; caso contrário, o **mysqld** se recusa a iniciar.
 
@@ -714,7 +714,7 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
 
   Permitir atualizações em lote na replica melhora significativamente o desempenho, especialmente ao replicar as colunas `TEXT`, `BLOB` e `JSON`. Por essa razão, você deve sempre habilitar `slave_allow_batching` ao usar a replicação NDB. A partir do NDB 7.6.23, uma mensagem de aviso é emitida sempre que essa variável for definida como `OFF`.
 
-  Definir essa variável tem efeito apenas ao usar a replicação com o mecanismo de armazenamento `NDB`; no MySQL Server 5.7, ela está presente, mas não faz nada. Para mais informações, consulte \[Seção 21.7.6, “Iniciando a replicação do NDB Cluster (Canal de replicação único”]]\(mysql-cluster-replication-starting.html).
+  Definir essa variável tem efeito apenas ao usar a replicação com o mecanismo de armazenamento `NDB`; no MySQL Server 5.7, ela está presente, mas não faz nada. Para mais informações, consulte [Seção 21.7.6, “Iniciando a replicação do NDB Cluster (Canal de replicação único”]]\(mysql-cluster-replication-starting.html).
 
 - `transaction_allow_batching`
 
@@ -844,7 +844,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   Quantidade de dados (em bytes) enviados para os nós de dados nesta sessão do cliente.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -868,7 +868,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   Quantidade de dados (em bytes) recebidos dos nós de dados nesta sessão do cliente.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -940,7 +940,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de operações nesta sessão do cliente com base em ou usando chaves primárias. Isso inclui operações em tabelas de blob, operações de desbloqueio implícitas e operações de autoincremento, além das operações de chave primária visíveis pelo usuário.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -964,7 +964,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de varreduras nesta sessão do cliente que foram reduzidas a uma única partição.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -988,7 +988,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de varreduras de alcance iniciadas nesta sessão do cliente.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1012,7 +1012,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número total de linhas que foram lidas nesta sessão do cliente. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada nesta sessão do cliente.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1038,7 +1038,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de lotes de linhas recebidos nesta sessão do cliente. Um lote é definido como um conjunto de resultados de varredura de um único fragmento.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1062,7 +1062,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de varreduras de tabela iniciadas nesta sessão do cliente, incluindo varreduras de tabelas internas.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1086,7 +1086,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   Número de transações abortadas nesta sessão do cliente.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1110,7 +1110,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de transações concluídas nesta sessão do cliente. Esse valor pode ser maior que a soma de `Ndb_api_trans_commit_count_session` e `Ndb_api_trans_abort_count_session`, pois algumas transações podem ter sido revertidas.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1134,7 +1134,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de transações realizadas nesta sessão do cliente.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1158,7 +1158,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número total de linhas que foram lidas nesta sessão do cliente. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada nesta sessão do cliente.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1182,7 +1182,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de transações iniciadas nesta sessão do cliente.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1206,7 +1206,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de operações nesta sessão do cliente com base em ou usando chaves únicas.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1230,7 +1230,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de vezes que um fio foi bloqueado nesta sessão do cliente enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e autoincremento que não são visíveis para os clientes.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1254,7 +1254,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de vezes que um fio foi bloqueado nesta sessão do cliente enquanto aguardava por um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transações.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1278,7 +1278,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   Tempo total (em nanosegundos) gasto nesta sessão do cliente esperando por qualquer tipo de sinal dos nós de dados.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1302,7 +1302,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   O número de vezes que um fio foi bloqueado nesta sessão do cliente enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que a varredura seja concluída.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste \[**mysqld**].
+  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
   Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
 
@@ -1362,7 +1362,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   Utilizada na resolução de conflitos da replicação em clúster do NDB, essa variável mostra o número de linhas encontradas em conflito usando a resolução de conflitos `NDB$EPOCH_TRANS2()` em um determinado **mysqld** desde a última vez que ele foi reiniciado.
 
-  Para obter mais informações, consulte NDB$EPOCH2\_TRANS().
+  Para obter mais informações, consulte NDB$EPOCH2_TRANS().
 
 - `Ndb_conflict_fn_max`
 
@@ -1416,7 +1416,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
   Utilizado na resolução de conflitos da replicação em clúster do NDB, essa variável de status mostra o número de linhas encontradas como estando diretamente em conflito por uma função de conflito transacional em um determinado **mysqld** desde a última vez que ele foi reiniciado.
 
-  Atualmente, a única função de detecção de conflitos transacionais suportada pelo NDB Cluster é a NDB$EPOCH\_TRANS(), então essa variável de status é efetivamente a mesma que `Ndb_conflict_fn_epoch_trans`.
+  Atualmente, a única função de detecção de conflitos transacionais suportada pelo NDB Cluster é a NDB$EPOCH_TRANS(), então essa variável de status é efetivamente a mesma que `Ndb_conflict_fn_epoch_trans`.
 
   Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 

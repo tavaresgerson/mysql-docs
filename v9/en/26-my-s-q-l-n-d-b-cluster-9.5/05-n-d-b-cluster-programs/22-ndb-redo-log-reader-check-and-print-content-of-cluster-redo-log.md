@@ -1,12 +1,12 @@
-### 25.5.22 ndb\_redo\_log\_reader — Check and Print Content of Cluster Redo Log
+### 25.5.22 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log
 
-Reads a redo log file, checking it for errors, printing its contents in a human-readable format, or both. **ndb\_redo\_log\_reader** is intended for use primarily by NDB Cluster developers and Support personnel in debugging and diagnosing problems.
+Reads a redo log file, checking it for errors, printing its contents in a human-readable format, or both. **ndb_redo_log_reader** is intended for use primarily by NDB Cluster developers and Support personnel in debugging and diagnosing problems.
 
 This utility remains under development, and its syntax and behavior are subject to change in future NDB Cluster releases.
 
-The C++ source files for **ndb\_redo\_log\_reader** can be found in the directory `/storage/ndb/src/kernel/blocks/dblqh/redoLogReader`.
+The C++ source files for **ndb_redo_log_reader** can be found in the directory `/storage/ndb/src/kernel/blocks/dblqh/redoLogReader`.
 
-Options that can be used with **ndb\_redo\_log\_reader** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_redo_log_reader** are shown in the following table. Additional descriptions follow the table.
 
 #### Usage
 
@@ -93,4 +93,4 @@ The name of the file to be read may be followed by one or more of the options li
 
   Bit-shifted dump.
 
-Like **ndb\_print\_backup\_file** and **ndb\_print\_schema\_file** (and unlike most of the `NDB` utilities that are intended to be run on a management server host or to connect to a management server) **ndb\_redo\_log\_reader** must be run on a cluster data node, since it accesses the data node file system directly. Because it does not make use of the management server, this utility can be used when the management server is not running, and even when the cluster has been completely shut down.
+Like **ndb_print_backup_file** and **ndb_print_schema_file** (and unlike most of the `NDB` utilities that are intended to be run on a management server host or to connect to a management server) **ndb_redo_log_reader** must be run on a cluster data node, since it accesses the data node file system directly. Because it does not make use of the management server, this utility can be used when the management server is not running, and even when the cluster has been completely shut down.

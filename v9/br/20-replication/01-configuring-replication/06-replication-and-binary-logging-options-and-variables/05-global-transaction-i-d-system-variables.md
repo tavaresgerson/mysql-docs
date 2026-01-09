@@ -4,7 +4,7 @@ As variáveis de sistema do Servidor MySQL descritas nesta seção são usadas p
 
 * `binlog_gtid_simple_recovery`
 
-  <table frame="box" rules="all" summary="Propriedades para binlog_gtid_simple_recovery"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-gtid-simple-recovery[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="replication-options-gtids.html#sysvar_binlog_gtid_simple_recovery">binlog_gtid_simple_recovery</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Hinta de Definição de Variável</th> <td>Não Aplica</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binlog_gtid_simple_recovery"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--binlog-gtid-simple-recovery[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>binlog_gtid_simple_recovery</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th>Hinta de Definição de Variável</th> <td>Não Aplica</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Esta variável controla como os arquivos de log binário são iterados durante a busca por GTIDs quando o MySQL começa ou reinicia.
 
@@ -20,13 +20,13 @@ Quando `binlog_gtid_simple_recovery=FALSE` é definido, o método de cálculo de
 
   <table frame="box" rules="all" summary="Propriedades para enforce_gtid_consistency">
     <tr><th>Formato de Linha de Comando</th> <td><code>--enforce-gtid-consistency[=value]</code></td> </tr>
-    <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-gtids.html#sysvar_enforce_gtid_consistency">enforce_gtid_consistency</a></code></td> </tr>
+    <tr><th>Variável do Sistema</th> <td><code>enforce_gtid_consistency</code></td> </tr>
     <tr><th>Alcance</th> <td>Global</td> </tr>
     <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-    <tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr>
+    <tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr>
     <tr><th>Tipo</th> <td>Enumeração</td> </tr>
     <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
-    <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>WARN</code></p></td> </tr>
+    <tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>WARN</code></p></td> </tr>
   </table>
 
 Dependendo do valor dessa variável, o servidor garante a consistência do GTID permitindo a execução apenas de instruções que podem ser registradas com segurança usando um GTID. Você *deve* definir essa variável para `ON` antes de habilitar a replicação baseada em GTID.
@@ -55,7 +55,7 @@ Antes do MySQL 5.7 e em versões iniciais dessa série de lançamentos, o boolea
 
 * `gtid_executed`
 
-  <table frame="box" rules="all" summary="Propriedades para gtid_executed"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-gtids.html#sysvar_gtid_executed">gtid_executed</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sinal de Hint para Definição de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gtid_executed"><tbody><tr><th>Variável do Sistema</th> <td><code>gtid_executed</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
 
 Quando usado com escopo global, essa variável contém uma representação do conjunto de todas as transações executadas no servidor e GTIDs que foram definidos por uma declaração `SET` `gtid_purged`. Isso é o mesmo que o valor da coluna `Executed_Gtid_Set` na saída de `SHOW BINARY LOG STATUS` e `SHOW REPLICA STATUS`. O valor dessa variável é um conjunto de GTIDs, veja Conjuntos de GTIDs para mais informações.
 
@@ -69,10 +69,10 @@ Executar `RESET BINARY LOGS AND GTIDS` faz com que essa variável seja redefinid
 
 <table frame="box" rules="all" summary="Propriedades para gtid_executed_compression_period">
   <tr><th>Formato de Linha de Comando</th> <td><code>--gtid-executed-compression-period=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-gtids.html#sysvar_gtid_executed_compression_period">gtid_executed_compression_period</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>gtid_executed_compression_period</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>0</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -89,7 +89,7 @@ Consulte Compressão da Tabela `mysql.gtid_executed` para obter mais informaçõ
 
 * `gtid_mode`
 
-<table frame="box" rules="all" summary="Propriedades para gtid_mode"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--gtid-mode=MODE</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-gtids.html#sysvar_gtid_mode">gtid_mode</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável Hint"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>OFF_PERMISSIVE</code></p><p class="valid-value"><code>ON_PERMISSIVE</code></p><p class="valid-value"><code>ON</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para gtid_mode"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--gtid-mode=MODE</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>gtid_mode</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OFF</code></p><p><code>OFF_PERMISSIVE</code></p><p><code>ON_PERMISSIVE</code></p><p><code>ON</code></p></td> </tr></tbody></table>
 
 Controla se o registro baseado em GTID está habilitado e qual tipo de transação os logs podem conter. Você deve ter privilégios suficientes para definir variáveis de sistema globais. Veja a Seção 7.1.9.1, “Privilégios de Variáveis de Sistema”. `enforce_gtid_consistency` deve ser definido como `ON` antes que você possa definir `gtid_mode=ON`. Antes de modificar essa variável, veja a Seção 19.1.4, “Mudando o Modo GTID em Servidores Online”.
 
@@ -112,7 +112,7 @@ Os valores de `gtid_purged` e `gtid_executed` são persistentes, independentemen
 <table frame="box" rules="all" summary="Propriedades para gtid_next">
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="replication-options-gtids.html#sysvar_gtid_next">gtid_next</a></code></td>
+    <td><code>gtid_next</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -123,7 +123,7 @@ Os valores de `gtid_purged` e `gtid_executed` são persistentes, independentemen
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -136,7 +136,7 @@ Os valores de `gtid_purged` e `gtid_executed` são persistentes, independentemen
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>AUTOMATIC</code></p><p class="valid-value"><code>AUTOMATIC:&lt;TAG&gt;</code></p><p class="valid-value"><code>ANONYMOUS</code></p><p class="valid-value"><code>&lt;UUID&gt;:&lt;NUMBER&gt;</code></p><p class="valid-value"><code>&lt;UUID&gt;:&lt;TAG&gt;:&lt;NUMBER&gt;</code></p></td>
+    <td><p><code>AUTOMATIC</code></p><p><code>AUTOMATIC:&lt;TAG&gt;</code></p><p><code>ANONYMOUS</code></p><p><code>&lt;UUID&gt;:&lt;NUMBER&gt;</code></p><p><code>&lt;UUID&gt;:&lt;TAG&gt;:&lt;NUMBER&gt;</code></p></td>
   </tr>
 </table>
 
@@ -173,7 +173,7 @@ Para obter mais informações, consulte a variável de sistema gtid_next, bem co
 
 * `gtid_owned`
 
-  <table frame="box" rules="all" summary="Propriedades para gtid_owned"><tbody><tr><th>Variável de Sistema</th> <td><code><a class="link" href="replication-options-gtids.html#sysvar_gtid_owned">gtid_owned</a></code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variáveis"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gtid_owned"><tbody><tr><th>Variável de Sistema</th> <td><code>gtid_owned</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
 
   Esta variável somente de leitura é principalmente para uso interno. Seu conteúdo depende de seu alcance.
 
@@ -183,7 +183,7 @@ Para obter mais informações, consulte a variável de sistema gtid_next, bem co
 
 * `gtid_purged`
 
-  <table frame="box" rules="all" summary="Propriedades para gtid_purged"><tbody><tr><th>Variável de Sistema</th> <td><code><a class="link" href="replication-options-gtids.html#sysvar_gtid_purged">gtid_purged</a></code></td> </tr><tr><th> escopo</th> <td>Global</td> </tr><tr><th> Dinâmica</th> <td>Sim</td> </tr><tr><th> <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sinal de sintaxe de definição de variável"><code>SET_VAR</code></a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th> Tipo</th> <td>String</td> </tr><tr><th> Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gtid_purged"><tbody><tr><th>Variável de Sistema</th> <td><code>gtid_purged</code></td> </tr><tr><th> escopo</th> <td>Global</td> </tr><tr><th> Dinâmica</th> <td>Sim</td> </tr><tr><th> <code>SET_VAR</code></code> Hint Aplica</th> <td>Não</td> </tr><tr><th> Tipo</th> <td>String</td> </tr><tr><th> Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
 
 O valor global da variável de sistema `gtid_purged` (`@@GLOBAL.gtid_purged`) é um conjunto de GTIDs que inclui os GTIDs de todas as transações que foram confirmadas no servidor, mas que não existem em nenhum arquivo de log binário no servidor. `gtid_purged` é um subconjunto de `gtid_executed`. As seguintes categorias de GTIDs estão em `gtid_purged`:
 

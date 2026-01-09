@@ -136,7 +136,7 @@
 
     10.13.2 Usando Suas Próprias Benchmarking
 
-    10.13.3 Medindo o Desempenho com performance\_schema
+    10.13.3 Medindo o Desempenho com performance_schema
 
 10.14 Examinando Informações de Fundo de Processo (Processo):   10.14.1 Acessando a Lista de Processos
 
@@ -170,9 +170,9 @@
 
     10.15.7 Interação com a Opção --debug
 
-    10.15.8 A Variável de Sistema optimizer\_trace
+    10.15.8 A Variável de Sistema optimizer_trace
 
-    10.15.9 A Variável de Sistema end\_markers\_in\_json
+    10.15.9 A Variável de Sistema end_markers_in_json
 
     10.15.10 Seleção de Recursos do Otimizador para Rastreamento
 

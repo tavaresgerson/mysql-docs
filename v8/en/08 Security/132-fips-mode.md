@@ -20,7 +20,7 @@ For general information about FIPS and its implementation in OpenSSL, these refe
 
 * [National Institute of Standards and Technology FIPS PUB 140-2](https://doi.org/10.6028/NIST.FIPS.140-2)
 * [OpenSSL FIPS 140-2 Security Policy](https://csrc.nist.gov/csrc/media/projects/cryptographic-module-validation-program/documents/security-policies/140sp1747.pdf)
-* [fips\_module manual page](https://www.openssl.org/docs/man3.0/man7/fips_module.html) Important
+* [fips_module manual page](https://www.openssl.org/docs/man3.0/man7/fips_module.html) Important
 
 FIPS mode imposes conditions on cryptographic operations such as restrictions on acceptable encryption algorithms or requirements for longer key lengths. For OpenSSL, the exact FIPS behavior depends on the OpenSSL version.
 

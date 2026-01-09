@@ -32,7 +32,7 @@ Em sistemas Unix e Unix-like, o **mysqld** usa a opção `--log-error` para dete
 
 * Se `--log-error` for fornecido para nomear um arquivo, o destino padrão é esse arquivo (com um sufixo `.err` adicionado se o nome não tiver sufixo). A localização do arquivo está sob o diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar uma localização diferente.
 
-* Se `--log-error` for fornecido em um arquivo de opções em uma seção de `[mysqld]`, `[server]` ou `[mysqld_safe]`, em sistemas que usam **mysqld\_safe** para iniciar o servidor, **mysqld\_safe** encontra e usa a opção e a passa para o **mysqld**.
+* Se `--log-error` for fornecido em um arquivo de opções em uma seção de `[mysqld]`, `[server]` ou `[mysqld_safe]`, em sistemas que usam **mysqld_safe** para iniciar o servidor, **mysqld_safe** encontra e usa a opção e a passa para o **mysqld**.
 
 Nota
 

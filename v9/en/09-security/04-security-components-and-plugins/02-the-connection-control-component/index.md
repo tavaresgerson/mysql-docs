@@ -14,7 +14,7 @@ The Connection Control component for MySQL (`component_connection_control`) make
 
 `component_connection_control` was introduced in MySQL 9.2.0 as a single replacement for both Connection Control plugins, which are now deprecated (see Section 8.4.3, “Connection Control Plugins”, for more information about these plugins).
 
-This component also exposes system variables that enable its operation to be configured and a status variable that provides basic monitoring information; these are described in Section 8.4.2.2, “Connection Control Component Configuration”, and elsewhere. In addition, `component_connection_control` implements a Performance Schema table `connection_control_failed_login_attempts` which provides detailed monitoring information for failed connection attempts. For more information about this table, see Section 29.12.22.2, “The connection\_control\_failed\_login\_attempts Table”.
+This component also exposes system variables that enable its operation to be configured and a status variable that provides basic monitoring information; these are described in Section 8.4.2.2, “Connection Control Component Configuration”, and elsewhere. In addition, `component_connection_control` implements a Performance Schema table `connection_control_failed_login_attempts` which provides detailed monitoring information for failed connection attempts. For more information about this table, see Section 29.12.22.2, “The connection_control_failed_login_attempts Table”.
 
 The component also supports the MySQL Option Tracker component (part of MySQL Enterprise Edition, a commercial offering). See Section 7.5.8.2, “Option Tracker Supported Components”, for more information.
 

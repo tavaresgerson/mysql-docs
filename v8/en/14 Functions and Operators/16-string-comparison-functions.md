@@ -50,12 +50,12 @@ If a string function is invoked from within the `mysql` client, binary strings d
   To test for literal instances of a wildcard character, precede it by the escape character. If you do not specify the `ESCAPE` character, `\` is assumed, unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled. In that case, no escape character is used.
 
   + `\%` matches one `%` character.
-  + `\_` matches one `_` character.
+  + `_` matches one `_` character.
 
   ```
-  mysql> SELECT 'David!' LIKE 'David\_';
+  mysql> SELECT 'David!' LIKE 'David_';
           -> 0
-  mysql> SELECT 'David_' LIKE 'David\_';
+  mysql> SELECT 'David_' LIKE 'David_';
           -> 1
   ```
 

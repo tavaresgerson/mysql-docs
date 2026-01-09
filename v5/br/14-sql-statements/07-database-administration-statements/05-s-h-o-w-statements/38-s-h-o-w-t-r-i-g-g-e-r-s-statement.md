@@ -6,7 +6,7 @@ SHOW TRIGGERS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-`SHOW TRIGGERS` lista os gatilhos atualmente definidos para tabelas em um banco de dados (o banco de dados padrão, a menos que uma cláusula `FROM` seja fornecida). Esta declaração retorna resultados apenas para bancos de dados e tabelas para os quais você tem o privilégio `[TRIGGER]` (privilegios-fornecidos.html#priv\_trigger). A cláusula `LIKE` (funções de comparação de strings.html#operador\_like), se presente, indica quais nomes de tabelas (e não nomes de gatilhos) devem ser correspondidos e faz com que a declaração exiba gatilhos para essas tabelas. A cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Declarações SHOW”.
+`SHOW TRIGGERS` lista os gatilhos atualmente definidos para tabelas em um banco de dados (o banco de dados padrão, a menos que uma cláusula `FROM` seja fornecida). Esta declaração retorna resultados apenas para bancos de dados e tabelas para os quais você tem o privilégio `[TRIGGER]` (privilegios-fornecidos.html#priv_trigger). A cláusula `LIKE` (funções de comparação de strings.html#operador_like), se presente, indica quais nomes de tabelas (e não nomes de gatilhos) devem ser correspondidos e faz com que a declaração exiba gatilhos para essas tabelas. A cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Declarações SHOW”.
 
 Para o gatilho `ins_sum` definido em Seção 23.3, “Usando gatilhos”, o resultado da consulta `SHOW TRIGGERS` é mostrado aqui:
 
@@ -75,4 +75,4 @@ A saída `SHOW TRIGGERS` tem essas colunas:
 
   A agregação do banco de dados com o qual o gatilho está associado.
 
-As informações sobre gatilhos também estão disponíveis na tabela `INFORMATION_SCHEMA [`TRIGGERS\`]\(information-schema-triggers-table.html). Veja Seção 24.3.29, “A Tabela INFORMATION\_SCHEMA TRIGGERS”.
+As informações sobre gatilhos também estão disponíveis na tabela `INFORMATION_SCHEMA [`TRIGGERS\`]\(information-schema-triggers-table.html). Veja Seção 24.3.29, “A Tabela INFORMATION_SCHEMA TRIGGERS”.

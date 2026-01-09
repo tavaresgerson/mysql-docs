@@ -1,4 +1,4 @@
-#### 25.12.9.1 Tabela session\_account\_connect\_attrs
+#### 25.12.9.1 Tabela session_account_connect_attrs
 
 Os programas de aplicação podem fornecer atributos de conexão de chave-valor para serem passados ao servidor no momento da conexão. Para descrições de atributos comuns, consulte Seção 25.12.9, “Tabelas de Atributos de Conexão do Schema de Desempenho”.
 

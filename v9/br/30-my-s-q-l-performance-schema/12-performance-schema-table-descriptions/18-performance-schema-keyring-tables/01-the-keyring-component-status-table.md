@@ -1,4 +1,4 @@
-#### 29.12.18.1 Tabela keyring\_component\_status
+#### 29.12.18.1 Tabela keyring_component_status
 
 A tabela `keyring_component_status` fornece informações de status sobre as propriedades do componente do bloco de chaves em uso, se um estiver instalado. A tabela está vazia se nenhum componente do bloco de chaves estiver instalado (por exemplo, se o bloco de chaves não estiver sendo usado ou estiver configurado para gerenciar o keystore usando um plugin de bloco de chaves em vez de um componente do bloco de chaves).
 

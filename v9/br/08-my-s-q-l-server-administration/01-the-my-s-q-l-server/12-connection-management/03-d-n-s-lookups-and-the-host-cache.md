@@ -1,6 +1,6 @@
 #### 7.1.12.3 Consultas de DNS e o Cache de Anfitriões
 
-O servidor MySQL mantém um cache de anfitriões em memória que contém informações sobre os clientes: endereço IP, nome do host e informações de erro. A tabela do Schema de Desempenho `host_cache` expõe o conteúdo do cache de anfitriões para que ele possa ser examinado usando instruções `SELECT`. Isso pode ajudá-lo a diagnosticar as causas dos problemas de conexão. Veja a Seção 29.12.22.4, “A Tabela host\_cache”.
+O servidor MySQL mantém um cache de anfitriões em memória que contém informações sobre os clientes: endereço IP, nome do host e informações de erro. A tabela do Schema de Desempenho `host_cache` expõe o conteúdo do cache de anfitriões para que ele possa ser examinado usando instruções `SELECT`. Isso pode ajudá-lo a diagnosticar as causas dos problemas de conexão. Veja a Seção 29.12.22.4, “A Tabela host_cache”.
 
 As seções a seguir discutem como o cache de anfitriões funciona, bem como outros tópicos, como como configurar e monitorar o cache.
 
@@ -30,7 +30,7 @@ O servidor lida com as entradas no cache de hosts da seguinte forma:
 
 2. Se o sinalizador de validação da entrada do IP do cliente for falso, o servidor tenta uma resolução DNS de IP para nome de host para IP. Se isso for bem-sucedido, o nome do host é atualizado com o nome de host resolvido e o sinalizador de validação é definido como verdadeiro. Se a resolução não for bem-sucedida, a ação tomada depende se o erro é permanente ou transitório. Para falhas permanentes, o nome do host permanece `NULL` e o sinalizador de validação é definido como verdadeiro. Para falhas transitórias, o nome do host e o sinalizador de validação permanecem inalterados. (Neste caso, outra tentativa de resolução DNS ocorre da próxima vez que um cliente se conecta a partir deste IP.)
 
-3. Se ocorrer um erro ao processar uma conexão de cliente recebida de um endereço IP específico, o servidor atualiza os respectivos contadores de erros na entrada desse IP. Para uma descrição dos erros registrados, consulte a Seção 29.12.22.4, “A tabela host\_cache”.
+3. Se ocorrer um erro ao processar uma conexão de cliente recebida de um endereço IP específico, o servidor atualiza os respectivos contadores de erros na entrada desse IP. Para uma descrição dos erros registrados, consulte a Seção 29.12.22.4, “A tabela host_cache”.
 
 Para desbloquear hosts bloqueados, limpe o cache do host; consulte Como lidar com hosts bloqueados.
 
@@ -82,7 +82,7 @@ SET GLOBAL max_connect_errors=10000;
 
 ##### Monitoramento do Cache do Host
 
-A tabela do Schema de Desempenho `host_cache` expõe o conteúdo do cache do host. Essa tabela pode ser examinada usando instruções `SELECT`, o que pode ajudá-lo a diagnosticar as causas dos problemas de conexão. Para informações sobre essa tabela, consulte a Seção 29.12.22.4, “A tabela host\_cache”.
+A tabela do Schema de Desempenho `host_cache` expõe o conteúdo do cache do host. Essa tabela pode ser examinada usando instruções `SELECT`, o que pode ajudá-lo a diagnosticar as causas dos problemas de conexão. Para informações sobre essa tabela, consulte a Seção 29.12.22.4, “A tabela host_cache”.
 
 ##### Esvaziar o Cache do Host
 

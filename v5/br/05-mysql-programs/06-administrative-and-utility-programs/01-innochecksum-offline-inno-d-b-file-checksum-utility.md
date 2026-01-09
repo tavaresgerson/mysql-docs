@@ -8,7 +8,7 @@ Se forem encontrados desalinhamentos de verificação de checksum, restaure o ta
 
 Invoque **innochecksum** da seguinte forma:
 
-```sql
+```sh
 innochecksum [options] file_name
 ```
 
@@ -22,7 +22,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Exibe a ajuda da linha de comando. Exemplo de uso:
 
-  ```sql
+  ```sh
   innochecksum --help
   ```
 
@@ -32,7 +32,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Sinônimo de `--help`. Exibe a ajuda da linha de comando. Exemplo de uso:
 
-  ```sql
+  ```sh
   innochecksum --info
   ```
 
@@ -42,7 +42,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Exibe informações sobre a versão. Exemplo de uso:
 
-  ```sql
+  ```sh
   innochecksum --version
   ```
 
@@ -52,31 +52,31 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Modo verbose; imprime um indicador de progresso no arquivo de log a cada cinco segundos. Para que o indicador de progresso seja impresso, o arquivo de log deve ser especificado usando a opção `--log`. Para ativar o modo `verbose`, execute:
 
-  ```sql
+  ```sh
   innochecksum --verbose
   ```
 
   Para desativar o modo verbose, execute:
 
-  ```sql
+  ```sh
   innochecksum --verbose=FALSE
   ```
 
   A opção `--verbose` e a opção `--log` podem ser especificadas ao mesmo tempo. Por exemplo:
 
-  ```sql
+  ```sh
   innochecksum --verbose --log=/var/lib/mysql/test/logtest.txt
   ```
 
   Para localizar as informações do indicador de progresso no arquivo de log, você pode realizar a seguinte pesquisa:
 
-  ```sql
+  ```sh
   cat ./logtest.txt | grep -i "okay"
   ```
 
   As informações do indicador de progresso no arquivo de log aparecem de forma semelhante à seguinte:
 
-  ```sql
+  ```sh
   page 1663 okay: 2.863% done
   page 8447 okay: 14.537% done
   page 13695 okay: 23.568% done
@@ -97,7 +97,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Imprima um contador do número de páginas no arquivo e saia. Uso exemplo:
 
-  ```sql
+  ```sh
   innochecksum --count ../data/test/tab1.ibd
   ```
 
@@ -107,13 +107,13 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Comece a partir deste número de página. Exemplo de uso:
 
-  ```sql
+  ```sh
   innochecksum --start-page=600 ../data/test/tab1.ibd
   ```
 
   ou:
 
-  ```sql
+  ```sh
   innochecksum -s 600 ../data/test/tab1.ibd
   ```
 
@@ -123,13 +123,13 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Finalize nesta página. Exemplo de uso:
 
-  ```sql
+  ```sh
   innochecksum --end-page=700 ../data/test/tab1.ibd
   ```
 
   ou:
 
-  ```sql
+  ```sh
   innochecksum --p 700 ../data/test/tab1.ibd
   ```
 
@@ -139,25 +139,25 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Verifique apenas este número da página. Exemplo de uso:
 
-  ```sql
+  ```sh
   innochecksum --page=701 ../data/test/tab1.ibd
   ```
 
 - `--strict-check`, `-C`
 
-  <table frame="box" rules="all" summary="Propriedades para verificação rigorosa"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--strict-check=algorithm</code>]]</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>crc32</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>innodb</code>]]</p><p class="valid-value">[[<code>crc32</code>]]</p><p class="valid-value">[[<code>none</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verificação rigorosa"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--strict-check=algorithm</code>]]</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>crc32</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p>[[<code>innodb</code>]]</p><p>[[<code>crc32</code>]]</p><p>[[<code>none</code>]]</p></td> </tr></tbody></table>
 
   Especifique um algoritmo de verificação de checksum rigoroso. As opções incluem `innodb`, `crc32` e `none`.
 
   Neste exemplo, o algoritmo de verificação de checksum `innodb` é especificado:
 
-  ```sql
+  ```sh
   innochecksum --strict-check=innodb ../data/test/tab1.ibd
   ```
 
   Neste exemplo, o algoritmo de verificação de checksum `crc32` é especificado:
 
-  ```sql
+  ```sh
   innochecksum -C crc32 ../data/test/tab1.ibd
   ```
 
@@ -179,7 +179,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Neste exemplo, um checksum `innodb` é reescrito para substituir um checksum inválido:
 
-  ```sql
+  ```sh
   innochecksum --no-check --write innodb ../data/test/tab1.ibd
   ```
 
@@ -191,7 +191,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Neste exemplo, um checksum `innodb` existente é reescrito para definir `--allow-mismatches` para 1.
 
-  ```sql
+  ```sh
   innochecksum --allow-mismatches=1 --write innodb ../data/test/tab1.ibd
   ```
 
@@ -217,13 +217,13 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Neste exemplo, um checksum `crc32` é escrito para `tab1.ibd`:
 
-  ```sql
+  ```sh
   innochecksum -w crc32 ../data/test/tab1.ibd
   ```
 
   Neste exemplo, um checksum `crc32` é reescrito para substituir um checksum `crc32` inválido:
 
-  ```sql
+  ```sh
   innochecksum --no-check --write crc32 ../data/test/tab1.ibd
   ```
 
@@ -233,7 +233,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Exiba um contagem de cada tipo de página em um tablespace. Exemplo de uso:
 
-  ```sql
+  ```sh
   innochecksum --page-type-summary ../data/test/tab1.ibd
   ```
 
@@ -269,7 +269,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Descarte as informações do tipo de página para cada página em um tablespace para `stderr` ou `stdout`. Exemplo de uso:
 
-  ```sql
+  ```sh
   innochecksum --page-type-dump=/tmp/a.txt ../data/test/tab1.ibd
   ```
 
@@ -279,13 +279,13 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Saída de log da ferramenta **innochecksum**. Um nome de arquivo de log deve ser fornecido. A saída de log contém valores de verificação de integridade para cada página do espaço de tabelas. Para tabelas não compactadas, os valores LSN também são fornecidos. A opção `--log` substitui a opção `--debug`, que estava disponível em versões anteriores. Exemplo de uso:
 
-  ```sql
+  ```sh
   innochecksum --log=/tmp/log.txt ../data/test/tab1.ibd
   ```
 
   ou:
 
-  ```sql
+  ```sh
   innochecksum -l /tmp/log.txt ../data/test/tab1.ibd
   ```
 
@@ -293,13 +293,13 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
   Especifique a opção `-` para ler a partir da entrada padrão. Se a opção `-` estiver ausente quando se espera que seja lida a partir da entrada padrão, o **innochecksum** imprimirá informações de uso do **innochecksum**, indicando que a opção `-` foi omitida. Exemplos de uso:
 
-  ```sql
+  ```sh
   cat t1.ibd | innochecksum -
   ```
 
   Neste exemplo, o **innochecksum** escreve o algoritmo de verificação de checksum `crc32` no arquivo `a.ibd` sem alterar o arquivo original `t1.ibd`.
 
-  ```sql
+  ```sh
   cat t1.ibd | innochecksum --write=crc32 - > a.ibd
   ```
 
@@ -309,54 +309,54 @@ Os exemplos a seguir demonstram como executar o **innochecksum** em vários arqu
 
 Execute **innochecksum** para todos os arquivos de espaço de tabela (`.ibd`) no banco de dados “test”:
 
-```sql
+```sh
 innochecksum ./data/test/*.ibd
 ```
 
 Execute **innochecksum** para todos os arquivos de espaço de tabela (arquivos `.ibd`) que tenham um nome de arquivo começando com “t”:
 
-```sql
+```sh
 innochecksum ./data/test/t*.ibd
 ```
 
 Execute **innochecksum** para todos os arquivos de espaço de tabela (arquivos `.ibd`) no diretório `data`:
 
-```sql
+```sh
 innochecksum ./data/*/*.ibd
 ```
 
-Nota
-
+::: info Nota
 Executar **innochecksum** em vários arquivos de espaço de tabela definidos pelo usuário não é suportado em sistemas operacionais Windows, pois shells do Windows, como **cmd.exe**, não suportam a expansão de padrões globais. Em sistemas Windows, **innochecksum** deve ser executado separadamente para cada arquivo de espaço de tabela definido pelo usuário. Por exemplo:
 
-```sql
+```sh
 innochecksum.exe t1.ibd
 innochecksum.exe t2.ibd
 innochecksum.exe t3.ibd
 ```
+:::
 
 #### Executar innochecksum em arquivos de espaço de tabela de sistema múltiplo
 
 Por padrão, há apenas um arquivo de espaço de tabela do sistema `InnoDB` (`ibdata1`), mas vários arquivos para o espaço de tabela do sistema podem ser definidos usando a opção `innodb_data_file_path`. No exemplo a seguir, três arquivos para o espaço de tabela do sistema são definidos usando a opção `innodb_data_file_path`: `ibdata1`, `ibdata2` e `ibdata3`.
 
-```sql
+```sh
 ./bin/mysqld --no-defaults --innodb-data-file-path="ibdata1:10M;ibdata2:10M;ibdata3:10M:autoextend"
 ```
 
 Os três arquivos (`ibdata1`, `ibdata2` e `ibdata3`) formam um espaço de tabela lógico do sistema. Para executar o **innochecksum** em vários arquivos que formam um espaço de tabela lógico do sistema, o **innochecksum** requer a opção `-` para ler os arquivos do espaço de tabela em padrão de entrada, o que é equivalente a concatenar vários arquivos para criar um único arquivo. Para o exemplo fornecido acima, o seguinte comando **innochecksum** seria usado:
 
-```sql
+```sh
 cat ibdata* | innochecksum -
 ```
 
 Consulte as informações sobre as opções **innochecksum** para obter mais informações sobre a opção “-”.
 
-Nota
-
+::: info Nota
 Executar **innochecksum** em vários arquivos no mesmo espaço de tabela não é suportado em sistemas operacionais Windows, pois shells do Windows, como **cmd.exe**, não suportam a expansão de padrões globais. Em sistemas Windows, **innochecksum** deve ser executado separadamente para cada arquivo de espaço de tabela do sistema. Por exemplo:
 
-```sql
+```sh
 innochecksum.exe ibdata1
 innochecksum.exe ibdata2
 innochecksum.exe ibdata3
 ```
+:::

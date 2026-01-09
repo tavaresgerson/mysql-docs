@@ -1,4 +1,4 @@
-#### 26.4.4.22 The ps\_trace\_statement\_digest() Procedure
+#### 26.4.4.22 The ps_trace_statement_digest() Procedure
 
 Traces all Performance Schema instrumentation for a specific statement digest.
 

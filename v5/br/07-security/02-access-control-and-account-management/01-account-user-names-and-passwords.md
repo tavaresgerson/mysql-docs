@@ -32,25 +32,25 @@ O processo de instalação do MySQL preenche as tabelas de concessão com uma co
 
 Para se conectar a um servidor MySQL com um cliente de linha de comando, especifique as opções de nome de usuário e senha conforme necessário para a conta que você deseja usar:
 
-```sql
+```sh
 $> mysql --user=finley --password db_name
 ```
 
 Se você prefere opções curtas, o comando é o seguinte:
 
-```sql
+```sh
 $> mysql -u finley -p db_name
 ```
 
-Se você omitir o valor da senha após a opção `--password` (connection-options.html#option\_general\_password) ou `-p` na linha de comando (como mostrado acima), o cliente solicitará uma senha. Alternativamente, a senha pode ser especificada na linha de comando:
+Se você omitir o valor da senha após a opção `--password` (connection-options.html#option_general_password) ou `-p` na linha de comando (como mostrado acima), o cliente solicitará uma senha. Alternativamente, a senha pode ser especificada na linha de comando:
 
-```sql
+```sh
 $> mysql --user=finley --password=password db_name
 $> mysql -u finley -ppassword db_name
 ```
 
 Se você usar a opção `-p`, não pode haver *espaço* entre `-p` e o valor da senha a seguir.
 
-Especificar uma senha na linha de comando deve ser considerado inseguro. Consulte Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”. Para evitar fornecer a senha na linha de comando, use um arquivo de opção ou um arquivo de caminho de login. Consulte Seção 4.2.2.2, “Uso de Arquivos de Opção” e Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+Especificar uma senha na linha de comando deve ser considerado inseguro. Consulte Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”. Para evitar fornecer a senha na linha de comando, use um arquivo de opção ou um arquivo de caminho de login. Consulte Seção 4.2.2.2, “Uso de Arquivos de Opção” e Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para obter informações adicionais sobre a especificação de nomes de usuário, senhas e outros parâmetros de conexão, consulte Seção 4.2.4, “Conectando ao Servidor MySQL Usando Opções de Comando”.

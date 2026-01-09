@@ -1,4 +1,4 @@
-#### 6.4.4.2 Usando o plugin de cartela de chaves baseado em arquivo keyring\_file
+#### 6.4.4.2 Usando o plugin de cartela de chaves baseado em arquivo keyring_file
 
 O plugin `keyring_file` armazena os dados do bloco de chaves em um arquivo localizado no host do servidor.
 
@@ -8,7 +8,7 @@ Para a gestão de chaves de criptografia, o plugin `keyring_file` não é destin
 
 Para instalar o `keyring_file`, use as instruções gerais encontradas em Seção 6.4.4.1, “Instalação do Plugin do Keychain”, juntamente com as informações de configuração específicas para o `keyring_file` encontradas aqui.
 
-Para ser utilizado durante o processo de inicialização do servidor, o `keyring_file` deve ser carregado usando a opção `--early-plugin-load` (opções do servidor.html#opção\_mysqld\_early-plugin-load). A variável de sistema `keyring_file_data` (variáveis de sistema de keyring) configura opcionalmente a localização do arquivo usado pelo plugin `keyring_file` para armazenamento de dados. O valor padrão é específico da plataforma. Para configurar a localização do arquivo explicitamente, defina o valor da variável durante a inicialização. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e a localização do arquivo para sua plataforma conforme necessário:
+Para ser utilizado durante o processo de inicialização do servidor, o `keyring_file` deve ser carregado usando a opção `--early-plugin-load` (opções do servidor.html#opção_mysqld_early-plugin-load). A variável de sistema `keyring_file_data` (variáveis de sistema de keyring) configura opcionalmente a localização do arquivo usado pelo plugin `keyring_file` para armazenamento de dados. O valor padrão é específico da plataforma. Para configurar a localização do arquivo explicitamente, defina o valor da variável durante a inicialização. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e a localização do arquivo para sua plataforma conforme necessário:
 
 ```sql
 [mysqld]

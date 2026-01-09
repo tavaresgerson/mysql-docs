@@ -95,7 +95,7 @@ The data types may differ from what you expect them to be based on a `CREATE TAB
 
   Any comment included in the column definition. This value is displayed only if you use the `FULL` keyword.
 
-Table column information is also available from the `INFORMATION_SCHEMA` `COLUMNS` table. See Section 28.3.8, “The INFORMATION\_SCHEMA COLUMNS Table”. The extended information about hidden columns is available only using `SHOW EXTENDED COLUMNS`; it cannot be obtained from the `COLUMNS` table.
+Table column information is also available from the `INFORMATION_SCHEMA` `COLUMNS` table. See Section 28.3.8, “The INFORMATION_SCHEMA COLUMNS Table”. The extended information about hidden columns is available only using `SHOW EXTENDED COLUMNS`; it cannot be obtained from the `COLUMNS` table.
 
 You can list a table's columns with the **mysqlshow *`db_name`* *`tbl_name`*** command.
 

@@ -90,7 +90,7 @@ A lista a seguir descreve marcadores especiais que podem aparecer na saída ampl
 
   A materialização de subconsultas é usada.
 
-- "materializado-subquery".col\_name
+- "materializado-subquery".col_name
 
   Uma referência à coluna *`col_name`* em uma tabela temporária interna materializada para armazenar o resultado da avaliação de uma subconsulta.
 

@@ -87,7 +87,7 @@ Distribution specific instructions are shown below:
   $> systemctl start mysqld
   ```
 
-  The database tables are automatically created for you, if they do not already exist. You should, however, run **mysql\_secure\_installation** to set the root passwords on your server.
+  The database tables are automatically created for you, if they do not already exist. You should, however, run **mysql_secure_installation** to set the root passwords on your server.
 
 * **Debian, Ubuntu, Kubuntu**
 

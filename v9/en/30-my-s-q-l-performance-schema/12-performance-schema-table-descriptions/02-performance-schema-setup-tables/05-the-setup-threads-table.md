@@ -1,4 +1,4 @@
-#### 29.12.2.5 The setup\_threads Table
+#### 29.12.2.5 The setup_threads Table
 
 The `setup_threads` table lists instrumented thread classes. It exposes thread class names and attributes:
 
@@ -64,7 +64,7 @@ The `setup_threads` table has these columns:
 
 * `VOLATILITY`
 
-  The instrument volatility. This column has the same meaning as in the `setup_instruments` table. See Section 29.12.2.3, “The setup\_instruments Table”.
+  The instrument volatility. This column has the same meaning as in the `setup_instruments` table. See Section 29.12.2.3, “The setup_instruments Table”.
 
 * `DOCUMENTATION`
 

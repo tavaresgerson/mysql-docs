@@ -1,4 +1,4 @@
-#### 26.4.3.12 The io\_global\_by\_file\_by\_latency and x$io\_global\_by\_file\_by\_latency Views
+#### 26.4.3.12 The io_global_by_file_by_latency and x$io_global_by_file_by_latency Views
 
 These views summarize global I/O consumers to display time waiting for I/O, grouped by file. By default, rows are sorted by descending total latency.
 

@@ -1,12 +1,12 @@
-### 4.7.3 resolve\_stack\_dump — Resolver o dump da pilha numérica para símbolos
+### 4.7.3 resolve_stack_dump — Resolver o dump da pilha numérica para símbolos
 
-**resolve\_stack\_dump** resolve um dump de pilha numérica para símbolos.
+**resolve_stack_dump** resolve um dump de pilha numérica para símbolos.
 
-Nota
+::: info Nota
+**resolve_stack_dump** está desatualizado e será removido no MySQL 8.0. As traças de pilha das compilações oficiais do MySQL são sempre simbolizadas, portanto, não há necessidade de usar **resolve_stack_dump**.
+:::
 
-**resolve\_stack\_dump** está desatualizado e será removido no MySQL 8.0. As traças de pilha das compilações oficiais do MySQL são sempre simbolizadas, portanto, não há necessidade de usar **resolve\_stack\_dump**.
-
-Invoque **resolve\_stack\_dump** da seguinte forma:
+Invoque **resolve_stack_dump** da seguinte forma:
 
 ```sql
 resolve_stack_dump [options] symbols_file [numeric_dump_file]
@@ -14,7 +14,7 @@ resolve_stack_dump [options] symbols_file [numeric_dump_file]
 
 O arquivo de símbolos deve incluir a saída do comando **nm --numeric-sort mysqld**. O arquivo de depuração numérica deve conter uma trilha de pilha numérica do **mysqld**. Se nenhum arquivo de depuração numérica estiver nomeado na linha de comando, a depuração da pilha é lida a partir da entrada padrão.
 
-**resolve\_stack\_dump** suporta as seguintes opções.
+**resolve_stack_dump** suporta as seguintes opções.
 
 - `--help`, `-h`
 

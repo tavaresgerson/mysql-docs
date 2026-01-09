@@ -1,4 +1,4 @@
-#### 29.12.2.1 The setup\_actors Table
+#### 29.12.2.1 The setup_actors Table
 
 The `setup_actors` table contains information that determines whether to enable monitoring and historical event logging for new foreground server threads (threads associated with client connections). This table has a maximum size of 100 rows by default. To change the table size, modify the `performance_schema_setup_actors_size` system variable at server startup.
 

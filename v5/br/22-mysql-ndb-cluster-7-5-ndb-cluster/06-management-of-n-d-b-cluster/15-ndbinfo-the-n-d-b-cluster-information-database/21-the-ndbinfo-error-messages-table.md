@@ -1,4 +1,4 @@
-#### 21.6.15.21 Tabela de mensagens de erro ndbinfo\_messages
+#### 21.6.15.21 Tabela de mensagens de erro ndbinfo_messages
 
 A tabela `mensagens_de_erro` fornece informações sobre
 
@@ -22,7 +22,7 @@ A tabela `error_messages` contém as seguintes colunas:
 
 ##### Notas
 
-`error_code` é um código de erro numérico do NDB. Este é o mesmo código de erro que pode ser fornecido ao **ndb\_perror** ou ao **perror** `--ndb` (perror.html#option\_perror\_ndb).
+`error_code` é um código de erro numérico do NDB. Este é o mesmo código de erro que pode ser fornecido ao **ndb_perror** ou ao **perror** `--ndb` (perror.html#option_perror_ndb).
 
 `error_description` fornece uma descrição básica da condição que está causando o erro.
 
@@ -82,6 +82,6 @@ A coluna `error_status` fornece informações de status relacionadas ao erro. Os
 
 - "Desconhecido"
 
-A coluna error\_classification mostra a classificação do erro. Consulte Classificações de Erros do NDB para obter informações sobre os códigos de classificação e seus significados.
+A coluna error_classification mostra a classificação do erro. Consulte Classificações de Erros do NDB para obter informações sobre os códigos de classificação e seus significados.
 
 A tabela `error_messages` foi adicionada no NDB 7.6.

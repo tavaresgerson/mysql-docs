@@ -1,4 +1,4 @@
-#### 26.4.4.16 O procedimento ps\_setup\_show\_disabled\_consumers()
+#### 26.4.4.16 O procedimento ps_setup_show_disabled_consumers()
 
 Exibe todos os consumidores do Schema de Desempenho atualmente desabilitados.
 

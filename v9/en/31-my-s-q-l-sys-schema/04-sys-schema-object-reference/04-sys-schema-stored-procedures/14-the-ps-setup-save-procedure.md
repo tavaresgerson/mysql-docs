@@ -1,4 +1,4 @@
-#### 30.4.4.14 The ps\_setup\_save() Procedure
+#### 30.4.4.14 The ps_setup_save() Procedure
 
 Saves the current Performance Schema configuration. This enables you to alter the configuration temporarily for debugging or other purposes, then restore it to the previous state by invoking the `ps_setup_reload_saved()` Procedure") procedure.
 

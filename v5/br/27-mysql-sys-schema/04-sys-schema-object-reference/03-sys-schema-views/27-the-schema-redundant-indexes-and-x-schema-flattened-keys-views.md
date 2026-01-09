@@ -1,4 +1,4 @@
-#### 26.4.3.27 As visualizações schema\_redundant\_indexes e x$schema\_flattened\_keys
+#### 26.4.3.27 As visualizações schema_redundant_indexes e x$schema_flattened_keys
 
 A visualização `schema_redundant_indexes` exibe índices que duplicam outros índices ou são tornados redundantes por eles. A visualização `x$schema_flattened_keys` é uma visualização auxiliar para `schema_redundant_indexes`.
 

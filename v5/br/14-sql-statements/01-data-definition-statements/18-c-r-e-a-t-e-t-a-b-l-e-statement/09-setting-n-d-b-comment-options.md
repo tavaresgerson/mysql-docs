@@ -1,7 +1,7 @@
 #### 13.1.18.9 Definindo as Opções de Comentário do NDB
 
-- NDB\_COLUMN Opções
-- Opções do NDB\_TABLE
+- NDB_COLUMN Opções
+- Opções do NDB_TABLE
 
 É possível definir uma série de opções específicas para o NDB Cluster na tabela de comentários ou nos comentários das colunas de uma tabela `NDB`. As opções de nível de tabela para controlar a leitura de qualquer replica e o equilíbrio de partições podem ser incorporadas em um comentário de tabela usando `NDB_TABLE`.
 
@@ -11,7 +11,7 @@
 
 O restante desta seção descreve essas opções e seu uso.
 
-##### Opções de NDB\_COLUMN
+##### Opções de NDB_COLUMN
 
 No NDB Cluster, um comentário de coluna em uma declaração `CREATE TABLE` ou `ALTER TABLE` também pode ser usado para especificar uma opção `NDB_COLUMN`. O NDB 7.5 e 7.6 suportam uma única opção de comentário de coluna `MAX_BLOB_PART_SIZE`; a sintaxe para essa opção é mostrada aqui:
 
@@ -36,7 +36,7 @@ mysql> CREATE TABLE test.t (
 Query OK, 0 rows affected (0.32 sec)
 ```
 
-No shell do sistema, execute o utilitário **ndb\_desc** para obter informações sobre a tabela recém-criada, conforme mostrado neste exemplo:
+No shell do sistema, execute o utilitário **ndb_desc** para obter informações sobre a tabela recém-criada, conforme mostrado neste exemplo:
 
 ```sql
 $> ndb_desc -d test t
@@ -95,7 +95,7 @@ mysql> EXIT
 Bye
 ```
 
-A saída do **ndb\_desc** mostra que os tamanhos das partes de blob das colunas foram alterados conforme esperado:
+A saída do **ndb_desc** mostra que os tamanhos das partes de blob das colunas foram alterados conforme esperado:
 
 ```sql
 $> ndb_desc -d test t
@@ -299,4 +299,4 @@ mysql> SELECT TABLE_NAME, TABLE_SCHEMA, TABLE_COMMENT
 
 Antes da NDB 7.6.15, o comentário da tabela usado com `ALTER TABLE` substituía qualquer comentário existente que a tabela pudesse ter tido. Isso significava que, por exemplo, o valor `READ_BACKUP` não era transferido para o novo comentário definido pela instrução `ALTER TABLE`, e que quaisquer valores não especificados retornavam aos seus valores padrão. (BUG#30428829) Assim, não havia mais nenhuma maneira de usar o SQL para recuperar o valor previamente definido para o comentário. Para evitar que os valores dos comentários retornem aos seus valores padrão, era necessário preservar quaisquer desses valores da string de comentário existente e incluí-los no comentário passado para `ALTER TABLE`.
 
-Você também pode ver o valor da opção `PARTITION_BALANCE` na saída do **ndb\_desc**. **ndb\_desc** também mostra se as opções `READ_BACKUP` e `FULLY_REPLICATED` estão definidas para a tabela. Consulte a descrição deste programa para obter mais informações.
+Você também pode ver o valor da opção `PARTITION_BALANCE` na saída do **ndb_desc**. **ndb_desc** também mostra se as opções `READ_BACKUP` e `FULLY_REPLICATED` estão definidas para a tabela. Consulte a descrição deste programa para obter mais informações.

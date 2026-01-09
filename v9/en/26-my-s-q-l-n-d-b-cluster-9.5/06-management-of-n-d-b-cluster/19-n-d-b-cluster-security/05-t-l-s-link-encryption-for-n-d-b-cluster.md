@@ -69,20 +69,20 @@ Created 3 keys and 3 certificates.
 $>
 ```
 
-`--create-key` causes **ndb\_sign\_keys** to connect to the management server, read the cluster configuration, and then create a full set of keys and certificates for all NDB nodes configured to run on the local host. The cluster management server must be running for this to work. If the management server is not running, ndb\_sign\_keys can read the cluster configuration file directly using the `--config-file` option. **ndb\_sign\_keys** can also create a single key-certificate pair for a single node type using `--no-config` to ignore the cluster configuration and `--node-type` to specify the node type (one of `mgmd`, `db`, or `api`). In addition, you must either specify a hostname for the certificate with `--bound-hostname=host_name`, or disable hostname binding by supplying `--bind-host=0`.
+`--create-key` causes **ndb_sign_keys** to connect to the management server, read the cluster configuration, and then create a full set of keys and certificates for all NDB nodes configured to run on the local host. The cluster management server must be running for this to work. If the management server is not running, ndb_sign_keys can read the cluster configuration file directly using the `--config-file` option. **ndb_sign_keys** can also create a single key-certificate pair for a single node type using `--no-config` to ignore the cluster configuration and `--node-type` to specify the node type (one of `mgmd`, `db`, or `api`). In addition, you must either specify a hostname for the certificate with `--bound-hostname=host_name`, or disable hostname binding by supplying `--bind-host=0`.
 
 Key signing by a remote host is accomplished by connecting to the CA host using **ssh**.
 
 ##### 25.6.19.5.3 Using TLS Connections
 
-Once you have created a CA and certificate, you can test the availability of the TLS connection to the management server by running the **ndb\_mgm** client with `--test-tls`, like this:
+Once you have created a CA and certificate, you can test the availability of the TLS connection to the management server by running the **ndb_mgm** client with `--test-tls`, like this:
 
 ```
 $> ndb_mgm --test-tls
 No valid certificate.
 ```
 
-An appropriate message is generated if the client can connect using TLS. You may need to include other **ndb\_mgm** options such as `--ndb-tls-search-path` to facilitate the TLS connection, as shown here:
+An appropriate message is generated if the client can connect using TLS. You may need to include other **ndb_mgm** options such as `--ndb-tls-search-path` to facilitate the TLS connection, as shown here:
 
 ```
 $> ndb_mgm --test-tls --ndb-tls-search-path="CA:keys"
@@ -97,7 +97,7 @@ Connected to management server at localhost port 1186 (using cleartext)
 $>
 ```
 
-You can cause the cluster to use the CA and certificates created with **ndb\_sign\_keys** by performing a rolling restart of the cluster, beginning with the management nodes, which should be restarted using the `--ndb-tls-search-path` option. After this, restart the data nodes, again using `--ndb-tls-search-path`. `--ndb-tls-search-path` is also supported for **mysqld** run as a cluster API node.
+You can cause the cluster to use the CA and certificates created with **ndb_sign_keys** by performing a rolling restart of the cluster, beginning with the management nodes, which should be restarted using the `--ndb-tls-search-path` option. After this, restart the data nodes, again using `--ndb-tls-search-path`. `--ndb-tls-search-path` is also supported for **mysqld** run as a cluster API node.
 
 For TLS to function, every node connecting to the cluster must have a valid certificate and key. This includes data nodes, API nodes, and utility programs. The same certificate and key files can be used by more than one node.
 
@@ -110,7 +110,7 @@ $> ndbmtd -c localhost:1186 --ndb-tls-search-path='CA:keys'
 2023-12-19 12:02:15 [ndbd] INFO     -- Angel allocated nodeid: 5
 ```
 
-You can verify that cluster nodes are using TLS to connect by checking the output of the `TLS INFO` command in the **ndb\_mgm** client, like this:
+You can verify that cluster nodes are using TLS to connect by checking the output of the `TLS INFO` command in the **ndb_mgm** client, like this:
 
 ```
 $> ndb_mgm --ndb-tls-search-path="CA:keys"
@@ -171,12 +171,12 @@ ndb_mgm>
 
 If `Current connections` and `Current connections using TLS` are the same, this means that all cluster connections are using TLS.
 
-Once you have established TLS connections for all nodes, you should make TLS a strict requirement. For clients, you can do this by setting `ndb-mgm-tls=strict` in the `my.cnf` file on each cluster host. Enforce the TLS requirement on the management server by setting `RequireTls=true` in the `[mgm default]` section of the cluster `config.ini` file, then performing a rolling restart of the cluster so that this change takes effect. Do this for the data nodes as well, by setting `RequireTls=true` in the `[ndbd default]` section of the configuration file; after this, perform a second rolling restart of the cluster to make the changes take effect on the data nodes. Start **ndb\_mgmd** with the `--reload` and `--config-file` options both times to ensure that each of the two configuration file changes is read by the management server.
+Once you have established TLS connections for all nodes, you should make TLS a strict requirement. For clients, you can do this by setting `ndb-mgm-tls=strict` in the `my.cnf` file on each cluster host. Enforce the TLS requirement on the management server by setting `RequireTls=true` in the `[mgm default]` section of the cluster `config.ini` file, then performing a rolling restart of the cluster so that this change takes effect. Do this for the data nodes as well, by setting `RequireTls=true` in the `[ndbd default]` section of the configuration file; after this, perform a second rolling restart of the cluster to make the changes take effect on the data nodes. Start **ndb_mgmd** with the `--reload` and `--config-file` options both times to ensure that each of the two configuration file changes is read by the management server.
 
-To replace a private key, use **ndb\_sign\_keys** `--create-key` to create the new key and certificate, with the `--node-id` and `--node-type options` if and as necessary to limit the replacement to a single node ID, node type, or both. If the tool finds existing key and certificate files, it renames them to reflect their retired status, and saves the newly created key and certificate as active files; the new files are used the next time that the node is restarted.
+To replace a private key, use **ndb_sign_keys** `--create-key` to create the new key and certificate, with the `--node-id` and `--node-type options` if and as necessary to limit the replacement to a single node ID, node type, or both. If the tool finds existing key and certificate files, it renames them to reflect their retired status, and saves the newly created key and certificate as active files; the new files are used the next time that the node is restarted.
 
-To replace a certificate without replacing the private key, use **ndb\_sign\_keys** without supplying the `--create-key` option. This creates a new certificate for the existing key (without replacing the key), and retires the old certificate.
+To replace a certificate without replacing the private key, use **ndb_sign_keys** without supplying the `--create-key` option. This creates a new certificate for the existing key (without replacing the key), and retires the old certificate.
 
-Remote key siging is is also supported by ndb\_sign\_keys. Using SSH, the `--remote-CA-host` option supplies the SSH address of the CA host in `user@host` format. By default, the local **ndb\_sign\_keys** process uses the system **ssh** utility and address to run **ndb\_sign\_keys** on the remote host with the correct options to perform the desired signing. Alternately, if `--remote-openssl=true`, **openssl** rather than **ndb\_sign\_keys** is used on the remote host.
+Remote key siging is is also supported by ndb_sign_keys. Using SSH, the `--remote-CA-host` option supplies the SSH address of the CA host in `user@host` format. By default, the local **ndb_sign_keys** process uses the system **ssh** utility and address to run **ndb_sign_keys** on the remote host with the correct options to perform the desired signing. Alternately, if `--remote-openssl=true`, **openssl** rather than **ndb_sign_keys** is used on the remote host.
 
 When using remote signing, the data sent over the network is a PKCS#10 signing request, and not the private key, which never leaves the local host.

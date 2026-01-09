@@ -8,6 +8,6 @@ SET GLOBAL audit_log_disable = true;
 
 Definir `audit_log_disable` para `true` desativa o plugin de log de auditoria. O plugin é reativado quando `audit_log_disable` é definido novamente para `false`, que é o ajuste padrão.
 
-Iniciar o plugin do log de auditoria com `audit_log_disable = true` gera um aviso (`ER_WARN_AUDIT_LOG_DISABLED`) com a seguinte mensagem: O log de auditoria está desativado. Ative-o com audit\_log\_disable = false. Definir `audit_log_disable` para false também gera um aviso. Quando `audit_log_disable` é definido para true, as chamadas de função do log de auditoria e as alterações de variáveis geram um aviso de sessão.
+Iniciar o plugin do log de auditoria com `audit_log_disable = true` gera um aviso (`ER_WARN_AUDIT_LOG_DISABLED`) com a seguinte mensagem: O log de auditoria está desativado. Ative-o com audit_log_disable = false. Definir `audit_log_disable` para false também gera um aviso. Quando `audit_log_disable` é definido para true, as chamadas de função do log de auditoria e as alterações de variáveis geram um aviso de sessão.
 
 Definir o valor de execução de `audit_log_disable` requer o privilégio `SUPER`.

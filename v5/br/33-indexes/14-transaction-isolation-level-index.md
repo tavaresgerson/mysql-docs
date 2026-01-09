@@ -4,7 +4,7 @@
 
 ### R
 
-\[[index superior](dynindex-isolevel.html#isolevel-index-superior)]
+[[index superior](dynindex-isolevel.html#isolevel-index-superior)]
 
 ### LEIA COM PROMESSA DE COMPROMISSO
 
@@ -36,7 +36,7 @@
 
 [Seção 5.4.4.2, “Definindo o formato do log binário”](binary-log-setting.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
 
@@ -58,7 +58,7 @@
 
 [Seção 5.4.4.2, “Definindo o formato do log binário”](binary-log-setting.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
 
@@ -102,7 +102,7 @@
 
 [Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
 
@@ -118,7 +118,7 @@
 
 ### S
 
-\[[index superior](dynindex-isolevel.html#isolevel-index-superior)]
+[[index superior](dynindex-isolevel.html#isolevel-index-superior)]
 
 ### SERIALIZÁVEL
 
@@ -144,7 +144,7 @@
 
 [Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
 

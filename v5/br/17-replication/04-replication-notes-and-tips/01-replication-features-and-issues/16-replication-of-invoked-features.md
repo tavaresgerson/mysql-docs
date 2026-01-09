@@ -26,7 +26,7 @@ A replicação de recursos invocados, como funções carregáveis e programas ar
 
   - O status do evento está definido como `SLAVESIDE_DISABLED` na replica, independentemente do estado especificado (isso não se aplica a `DROP EVENT`).
 
-  - A fonte da qual o evento foi criado é identificada na replica por seu ID de servidor. A coluna `ORIGINATOR` na tabela do Schema de Informações `EVENTS` e a coluna `originator` na loja `mysql.event` armazenam essas informações. Consulte Seção 24.3.8, “A Tabela INFORMATION\_SCHEMA EVENTS” e Seção 13.7.5.18, “Instrução SHOW EVENTS” para obter mais informações.
+  - A fonte da qual o evento foi criado é identificada na replica por seu ID de servidor. A coluna `ORIGINATOR` na tabela do Schema de Informações `EVENTS` e a coluna `originator` na loja `mysql.event` armazenam essas informações. Consulte Seção 24.3.8, “A Tabela INFORMATION_SCHEMA EVENTS” e Seção 13.7.5.18, “Instrução SHOW EVENTS” para obter mais informações.
 
 - A implementação do recurso reside na replica em um estado renovável, para que, caso a fonte falhe, a replica possa ser usada como fonte sem perda do processamento de eventos.
 

@@ -1,4 +1,4 @@
-#### 30.4.5.12 A função ps\_is\_instrument\_default\_timed()
+#### 30.4.5.12 A função ps_is_instrument_default_timed()
 
 Retorna `YES` ou `NO` para indicar se um instrumento do Schema de Desempenho é temporizado por padrão.
 

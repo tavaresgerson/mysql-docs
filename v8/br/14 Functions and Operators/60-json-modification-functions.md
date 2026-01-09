@@ -141,7 +141,7 @@ Realiza uma fusão compatível com o RFC 7396 de dois ou mais documentos JSON e 
 
 ::: info Nota
 
-Para uma explicação e exemplo das diferenças entre esta função e `JSON_MERGE_PRESERVE()`, consulte JSON\_MERGE\_PATCH() em comparação com JSON\_MERGE\_PRESERVE() em comparação com JSON_MERGE_PRESERVE()").
+Para uma explicação e exemplo das diferenças entre esta função e `JSON_MERGE_PRESERVE()`, consulte JSON_MERGE_PATCH() em comparação com JSON_MERGE_PRESERVE() em comparação com JSON_MERGE_PRESERVE()").
 
 
 :::
@@ -226,7 +226,7 @@ Este exemplo mostra que a função opera de forma recursiva; ou seja, os valores
   +----------------------------------------------------+
   ```
 
-**JSON\_MERGE\_PATCH() em comparação com JSON\_MERGE\_PRESERVE().** O comportamento de `JSON_MERGE_PATCH()` é o mesmo de `JSON_MERGE_PRESERVE()`, com as seguintes duas exceções:
+**JSON_MERGE_PATCH() em comparação com JSON_MERGE_PRESERVE().** O comportamento de `JSON_MERGE_PATCH()` é o mesmo de `JSON_MERGE_PRESERVE()`, com as seguintes duas exceções:
 
 + `JSON_MERGE_PATCH()` remove qualquer membro no primeiro objeto com uma chave correspondente no segundo objeto, desde que o valor associado à chave no segundo objeto não seja `null` JSON.
 + Se o segundo objeto tiver um membro com uma chave correspondente a um membro no primeiro objeto, `JSON_MERGE_PATCH()` *replaça* o valor no primeiro objeto com o valor no segundo objeto, enquanto `JSON_MERGE_PRESERVE()` *apende* o segundo valor ao primeiro valor.
@@ -301,7 +301,7 @@ A junção ocorre de acordo com as seguintes regras. Para informações adiciona
   +----------------------------------------------------------------------------------+
   ```
 
-Esta função é semelhante a `JSON_MERGE_PATCH()` em vários aspectos, mas difere significativamente; consulte JSON\_MERGE\_PATCH() em comparação com JSON\_MERGE\_PRESERVE() em comparação com JSON_MERGE_PRESERVE()"), para mais informações.
+Esta função é semelhante a `JSON_MERGE_PATCH()` em vários aspectos, mas difere significativamente; consulte JSON_MERGE_PATCH() em comparação com JSON_MERGE_PRESERVE() em comparação com JSON_MERGE_PRESERVE()"), para mais informações.
 * `JSON_REMOVE(json_doc, path[, path] ...)`
 
 Remove dados de um documento JSON e retorna o resultado. Retorna `NULL` se qualquer argumento for `NULL`. Um erro ocorre se o argumento *`json_doc`* não for um documento JSON válido ou se qualquer argumento *`path`* não for uma expressão de caminho válida ou contiver um caractere `*` ou `**` wildcard.
@@ -409,9 +409,9 @@ Os seguintes exemplos ilustram essas diferenças, usando um caminho que existe n
 
   Desunquote o valor JSON e retorna o resultado como uma string `utf8mb4`. Retorna `NULL` se o argumento for `NULL`. Um erro ocorre se o valor começar e terminar com aspas duplas, mas não for um literal válido de string JSON.
 
-  Dentro de uma string, certas sequências têm significado especial, a menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado. Cada uma dessas sequências começa com uma barra invertida (`\`), conhecida como *caractere de escape*. O MySQL reconhece as sequências de escape mostradas na Tabela 14.23, “Sequências de escape de caracteres especiais JSON\_UNQUOTE()”. Sequências de escape especiais”). Para todas as outras sequências de escape, a barra invertida é ignorada. Ou seja, o caractere escapado é interpretado como se não tivesse sido escapado. Por exemplo, `\x` é apenas `x`. Essas sequências são sensíveis a maiúsculas e minúsculas. Por exemplo, `\b` é interpretado como um espaço em branco, mas `\B` é interpretado como `B`.
+  Dentro de uma string, certas sequências têm significado especial, a menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado. Cada uma dessas sequências começa com uma barra invertida (`\`), conhecida como *caractere de escape*. O MySQL reconhece as sequências de escape mostradas na Tabela 14.23, “Sequências de escape de caracteres especiais JSON_UNQUOTE()”. Sequências de escape especiais”). Para todas as outras sequências de escape, a barra invertida é ignorada. Ou seja, o caractere escapado é interpretado como se não tivesse sido escapado. Por exemplo, `\x` é apenas `x`. Essas sequências são sensíveis a maiúsculas e minúsculas. Por exemplo, `\b` é interpretado como um espaço em branco, mas `\B` é interpretado como `B`.
 
-  **Tabela 14.23 Sequências de escape de caracteres especiais JSON\_UNQUOTE()**
+  **Tabela 14.23 Sequências de escape de caracteres especiais JSON_UNQUOTE()**
 
   <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Sequência de escape</th> <th>Caractere Representado pela Sequência</th> </tr></thead><tbody><tr> <td><code>\"</code></td> <td>Um caractere de aspas (<code>"</code>)</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de espaço em branco</td> </tr><tr> <td><code>\f</code></td> <td>Um caractere de formfeed</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\\</code></td> <td>Um caractere de barra invertida (<code>\</code>)</td> </tr><tr> <td><code>\u<em><code>XXXX</code></em></code></td> <td>Bytes UTF-8 para o valor Unicode <em><code>XXXX</code></em></td> </tr></tbody></table>
 

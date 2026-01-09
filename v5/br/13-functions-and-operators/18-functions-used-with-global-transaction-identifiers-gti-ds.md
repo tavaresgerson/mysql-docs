@@ -14,7 +14,7 @@ Para obter mais informações sobre GTIDs e como essas funções de GTID são us
 
 **Tabela 12.24 Funções GTID**
 
-<table frame="box" rules="all" summary="Uma referência que lista as funções usadas com identificadores de transação global (GTIDs)."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="gtid-functions.html#function_gtid-subset">[[<code>GTID_SUBSET()</code>]]</a></td> <td>Retorne verdadeiro se todos os GTIDs no subconjunto também estiverem no conjunto; caso contrário, falso.</td> </tr><tr><td><a class="link" href="gtid-functions.html#function_gtid-subtract">[[<code>GTID_SUBTRACT()</code>]]</a></td> <td>Retorne todos os GTIDs em um conjunto que não estão em um subconjunto.</td> </tr><tr><td><a class="link" href="gtid-functions.html#function_wait-for-executed-gtid-set">[[<code>WAIT_FOR_EXECUTED_GTID_SET()</code>]]</a></td> <td>Aguarde até que os GTIDs fornecidos tenham sido executados na replica.</td> </tr><tr><td><a class="link" href="gtid-functions.html#function_wait-until-sql-thread-after-gtids">[[<code>WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()</code>]]</a></td> <td>Use [[<code>WAIT_FOR_EXECUTED_GTID_SET()</code>]].</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista as funções usadas com identificadores de transação global (GTIDs)."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>GTID_SUBSET()</code>]]</td> <td>Retorne verdadeiro se todos os GTIDs no subconjunto também estiverem no conjunto; caso contrário, falso.</td> </tr><tr><td>[[<code>GTID_SUBTRACT()</code>]]</td> <td>Retorne todos os GTIDs em um conjunto que não estão em um subconjunto.</td> </tr><tr><td>[[<code>WAIT_FOR_EXECUTED_GTID_SET()</code>]]</td> <td>Aguarde até que os GTIDs fornecidos tenham sido executados na replica.</td> </tr><tr><td>[[<code>WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()</code>]]</td> <td>Use [[<code>WAIT_FOR_EXECUTED_GTID_SET()</code>]].</td> </tr></tbody></table>
 
 - `GTID_SUBSET(conjunto1, conjunto2)`
 
@@ -87,7 +87,7 @@ Para obter mais informações sobre GTIDs e como essas funções de GTID são us
 
 - `WAIT_FOR_EXECUTED_GTID_SET(gtid_set[, timeout])`
 
-  Aguarde até que o servidor tenha aplicado todas as transações cujos identificadores de transação global estejam contidos em *`gtid_set`*; ou seja, até que a condição GTID\_SUBSET(*`gtid_subset`*, `@@GLOBAL.gtid_executed`) seja atendida. Consulte a Seção 16.1.3.1, “Formato e Armazenamento de GTID”, para uma definição dos conjuntos de GTID.
+  Aguarde até que o servidor tenha aplicado todas as transações cujos identificadores de transação global estejam contidos em *`gtid_set`*; ou seja, até que a condição GTID_SUBSET(*`gtid_subset`*, `@@GLOBAL.gtid_executed`) seja atendida. Consulte a Seção 16.1.3.1, “Formato e Armazenamento de GTID”, para uma definição dos conjuntos de GTID.
 
   Se um tempo de espera for especificado e *`timeout`* segundos se passarem antes que todas as transações no conjunto GTID tenham sido aplicadas, a função para de esperar. *`timeout`* é opcional e o tempo de espera padrão é 0 segundos, caso em que a função sempre espera até que todas as transações no conjunto GTID tenham sido aplicadas. *`timeout`* deve ser maior ou igual a 0; a partir do MySQL 5.7.18, ao ser executado no modo SQL rigoroso, um valor de *`timeout`* negativo é rejeitado imediatamente com um erro; caso contrário, a função retorna `NULL` e emite uma mensagem de aviso.
 

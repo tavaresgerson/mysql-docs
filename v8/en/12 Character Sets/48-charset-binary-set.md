@@ -1,6 +1,6 @@
 ### 12.10.8 The Binary Character Set
 
-The `binary` character set is the character set for binary strings, which are sequences of bytes. The `binary` character set has one collation, also named `binary`. Comparison and sorting are based on numeric byte values, rather than on numeric character code values (which for multibyte characters differ from numeric byte values). For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see  Section 12.8.5, “The binary Collation Compared to \_bin Collations”.
+The `binary` character set is the character set for binary strings, which are sequences of bytes. The `binary` character set has one collation, also named `binary`. Comparison and sorting are based on numeric byte values, rather than on numeric character code values (which for multibyte characters differ from numeric byte values). For information about the differences between the `binary` collation of the `binary` character set and the `_bin` collations of nonbinary character sets, see  Section 12.8.5, “The binary Collation Compared to _bin Collations”.
 
 For the `binary` character set, the concepts of lettercase and accent equivalence do not apply:
 

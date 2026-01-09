@@ -1,16 +1,16 @@
-### 4.7.1 mysql\_config — Display Options for Compiling Clients
+### 4.7.1 mysql_config — Display Options for Compiling Clients
 
-[**mysql\_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") provides you with useful information for compiling your MySQL client and connecting it to MySQL. It is a shell script, so it is available only on Unix and Unix-like systems.
-
-Note
-
-As of MySQL 5.7.9, **pkg-config** can be used as an alternative to [**mysql\_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") for obtaining information such as compiler flags or link libraries required to compile MySQL applications. For more information, see [Building C API Client Programs Using pkg-config](/doc/c-api/5.7/en/c-api-building-clients-pkg-config.html).
+[**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") provides you with useful information for compiling your MySQL client and connecting it to MySQL. It is a shell script, so it is available only on Unix and Unix-like systems.
 
 Note
 
-As of MySQL 5.7.4, for binary distributions for Solaris, [**mysql\_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") does not provide arguments for linking with the embedded library. To get linking arguments for the embedded library, use the **mysql\_server\_config** script instead.
+As of MySQL 5.7.9, **pkg-config** can be used as an alternative to [**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") for obtaining information such as compiler flags or link libraries required to compile MySQL applications. For more information, see [Building C API Client Programs Using pkg-config](/doc/c-api/5.7/en/c-api-building-clients-pkg-config.html).
 
-[**mysql\_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") supports the following options.
+Note
+
+As of MySQL 5.7.4, for binary distributions for Solaris, [**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") does not provide arguments for linking with the embedded library. To get linking arguments for the embedded library, use the **mysql_server_config** script instead.
+
+[**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") supports the following options.
 
 * [`--cflags`](mysql-config.html#option_mysql_config_cflags)
 
@@ -60,7 +60,7 @@ As of MySQL 5.7.4, for binary distributions for Solaris, [**mysql\_config**](mys
 
   Version number for the MySQL distribution.
 
-If you invoke [**mysql\_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") with no options, it displays a list of all options that it supports, and their values:
+If you invoke [**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") with no options, it displays a list of all options that it supports, and their values:
 
 ```sql
 $> mysql_config
@@ -85,7 +85,7 @@ Options:
           plugindir     [/usr/local/mysql/lib/plugin]
 ```
 
-You can use [**mysql\_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") within a command line using backticks to include the output that it produces for particular options. For example, to compile and link a MySQL client program, use [**mysql\_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") as follows:
+You can use [**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") within a command line using backticks to include the output that it produces for particular options. For example, to compile and link a MySQL client program, use [**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") as follows:
 
 ```sql
 gcc -c `mysql_config --cflags` progname.c

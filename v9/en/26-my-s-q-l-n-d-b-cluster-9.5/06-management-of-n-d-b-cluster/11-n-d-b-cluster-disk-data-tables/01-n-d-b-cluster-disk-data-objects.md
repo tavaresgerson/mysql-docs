@@ -137,7 +137,7 @@ mysql> SELECT
 4 rows in set (0.00 sec)
 ```
 
-For more information and examples, see Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.
+For more information and examples, see Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.
 
 **Indexing of columns implicitly stored on disk.** For table `dt_1` as defined in the example just shown, only the `dob` and `joined` columns are stored on disk. This is because there are indexes on the `id`, `last_name`, and `first_name` columns, and so data belonging to these columns is stored in RAM. Only nonindexed columns can be held on disk; indexes and indexed column data continue to be stored in memory. This tradeoff between the use of indexes and conservation of RAM is something you must keep in mind as you design Disk Data tables.
 
@@ -186,7 +186,7 @@ Create Table: CREATE TABLE `ti` (
 1 row in set (0.00 sec)
 ```
 
-You can see using **ndb\_desc** that the indexed columns (emphasized text) now use in-memory rather than on-disk storage:
+You can see using **ndb_desc** that the indexed columns (emphasized text) now use in-memory rather than on-disk storage:
 
 ```
 $> ./ndb_desc -d test t1

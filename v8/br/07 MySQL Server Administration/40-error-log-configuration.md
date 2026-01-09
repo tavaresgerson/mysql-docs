@@ -40,7 +40,7 @@ Esse valor indica que os eventos de log passam primeiro pelo componente de filtr
 A combinação de `log_filter_internal` e `log_sink_internal` implementa o comportamento padrão de filtragem e saída do log de erro. A ação desses componentes é afetada por outras opções do servidor e variáveis de sistema:
 
 * O destino da saída é determinado pela opção `--log-error` (e, no Windows, `--pid-file` e `--console`). Essas determinam se os erros devem ser escritos na console ou em um arquivo e, se em um arquivo, o nome do arquivo de log de erro. Veja a Seção 7.4.2.2, “Configuração de Destino Padrão do Log de Erro”.
-* As variáveis de sistema `log_error_verbosity` e `log_error_suppression_list` afetam quais tipos de eventos de log `log_filter_internal` permite ou suprime. Veja a Seção 7.4.2.5, “Filtragem Prioritária do Log de Erro (log\_filter\_internal”)”).
+* As variáveis de sistema `log_error_verbosity` e `log_error_suppression_list` afetam quais tipos de eventos de log `log_filter_internal` permite ou suprime. Veja a Seção 7.4.2.5, “Filtragem Prioritária do Log de Erro (log_filter_internal”)”).
 
 Ao configurar `log_error_services`, esteja ciente das seguintes características:
 

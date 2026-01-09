@@ -77,7 +77,7 @@ Se uma coluna gerada for atualizada explicitamente, o único valor permitido é 
 
 `UPDATE` retorna o número de linhas que foram realmente alteradas. A função C API `mysql_info()` retorna o número de linhas que foram encontradas e atualizadas, além do número de avisos que ocorreram durante a atualização (`UPDATE`).
 
-Você pode usar `LIMIT row_count` para restringir o escopo da consulta `[UPDATE]` (\[update.html]). Uma cláusula `LIMIT` é uma restrição de correspondência de linhas. A instrução para de imediato assim que encontrar *`row_count`* linhas que satisfazem a cláusula `WHERE`, independentemente de elas terem sido realmente alteradas ou
+Você pode usar `LIMIT row_count` para restringir o escopo da consulta `[UPDATE]` ([update.html]). Uma cláusula `LIMIT` é uma restrição de correspondência de linhas. A instrução para de imediato assim que encontrar *`row_count`* linhas que satisfazem a cláusula `WHERE`, independentemente de elas terem sido realmente alteradas ou
 
 Se uma declaração de `UPDATE` incluir uma cláusula `ORDER BY`, as linhas são atualizadas na ordem especificada pela cláusula. Isso pode ser útil em certas situações que, de outra forma, poderiam resultar em um erro. Suponha que uma tabela `t` contenha uma coluna `id` que tem um índice único. A seguinte declaração poderia falhar com um erro de chave duplicada, dependendo da ordem em que as linhas são atualizadas:
 

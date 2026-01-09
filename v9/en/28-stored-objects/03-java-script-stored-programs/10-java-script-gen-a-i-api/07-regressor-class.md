@@ -105,7 +105,7 @@ This version of `predict()` predicts labels, then saves them in an output table 
 * *`options`*
   (`Object`)
   (*optional*): Set of options in JSON
-  format. See ML\_PREDICT\_TABLE,
+  format. See ML_PREDICT_TABLE,
   for more information.
 
 **Return type**
@@ -115,7 +115,7 @@ This version of `predict()` predicts labels, then saves them in an output table 
 ###### Version 2
 
 Predicts a label for a single sample of data, and returns it
-to the caller. See ML\_PREDICT\_ROW,
+to the caller. See ML_PREDICT_ROW,
 for more information.
 
 **Signature**
@@ -132,7 +132,7 @@ for more information.
 
 **Return type**
 
-* `String`. See ML\_PREDICT\_ROW.
+* `String`. See ML_PREDICT_ROW.
 
 ##### Regressor.score()
 
@@ -196,7 +196,7 @@ trained explainer; a wrapper for the MySQL HeatWave
 
 **Return type**
 
-* Adds a model explainer to the model catalog; does not return a value. See ML\_EXPLAIN, for more information.
+* Adds a model explainer to the model catalog; does not return a value. See ML_EXPLAIN, for more information.
 
 ##### Regressor.getExplainer()
 

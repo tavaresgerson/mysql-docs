@@ -1,4 +1,4 @@
-#### 25.12.3.2 The file\_instances Table
+#### 25.12.3.2 The file_instances Table
 
 The [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table lists all the files seen by the Performance Schema when executing file I/O instrumentation. If a file on disk has never been opened, it is not in [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table"). When a file is deleted from the disk, it is also removed from the [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table.
 

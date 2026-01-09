@@ -1,4 +1,4 @@
-#### 30.4.5.10 A função ps\_is\_consumer\_enabled()
+#### 30.4.5.10 A função ps_is_consumer_enabled()
 
 Retorna `YES` ou `NO` para indicar se um consumidor do Schema de Desempenho é habilitado, ou `NULL` se o argumento for `NULL`. Se o argumento não for um nome de consumidor válido, ocorrerá um erro.
 

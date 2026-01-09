@@ -108,7 +108,7 @@
   </tr>
   <tr>
     <th>=</th>
-    <td> Atribuição de valor (como parte de uma declaração <a class="link" href="set-variable.html" title="15.7.6.1 SET Syntax for Variable Assignment"><code>SET</code></a> ou como parte da cláusula <code>SET</code> em uma declaração <a class="link" href="update.html" title="15.2.17 UPDATE Statement"><code>UPDATE</code></a>)</td>
+    <td> Atribuição de valor (como parte de uma declaração <code>SET</code> ou como parte da cláusula <code>SET</code> em uma declaração <code>UPDATE</code>)</td>
     <td></td>
   </tr>
   <tr>

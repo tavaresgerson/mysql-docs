@@ -311,7 +311,7 @@ This section provides an overview of how MySQL and WebAuthn work together to aut
 An account that uses WebAuthn authentication must perform an initial device registration step before it can connect to the server. After the device has been registered, authentication can proceed. WebAuthn device registration process is as follows:
 
 1. The server sends a random challenge, user ID, and relying party ID (which uniquely identifies a server) to the client in JSON format. The relying party ID is defined by the `authentication_webauthn_rp_id` system variable. The default value is `mysql.com`.
-2. The client receives that information and sends it to the client-side WebAuthn authentication plugin, which in turn provides it to the FIDO/FIDO2 device. Client also sends 1-byte capability, with RESIDENT\_KEYS bit set to `ON` (if it is FIDO2 device) or `OFF`.
+2. The client receives that information and sends it to the client-side WebAuthn authentication plugin, which in turn provides it to the FIDO/FIDO2 device. Client also sends 1-byte capability, with RESIDENT_KEYS bit set to `ON` (if it is FIDO2 device) or `OFF`.
 3. After the user has performed the appropriate device action (for example, touching the device or performing a biometric scan) the FIDO/FIDO2 device generates a public/private key pair, a key handle, an X.509 certificate, and a signature, which is returned to the server.
 4. The server-side WebAuthn authentication plugin verifies the signature. With successful verification, the server stores the credential ID (for FIDO devices only) and public key in the `mysql.user` system table.
 

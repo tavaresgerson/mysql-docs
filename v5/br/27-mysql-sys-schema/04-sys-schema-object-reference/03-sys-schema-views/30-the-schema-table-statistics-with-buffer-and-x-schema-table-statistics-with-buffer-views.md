@@ -1,4 +1,4 @@
-#### 26.4.3.30 As visualizações schema\_table\_statistics\_with\_buffer e x$schema\_table\_statistics\_with\_buffer
+#### 26.4.3.30 As visualizações schema_table_statistics_with_buffer e x$schema_table_statistics_with_buffer
 
 Esses pontos de vista resumem as estatísticas da tabela, incluindo as estatísticas do pool de buffer do InnoDB. Por padrão, as linhas são ordenadas por tempo de espera total decrescente (as tabelas com mais concorrência primeiro).
 

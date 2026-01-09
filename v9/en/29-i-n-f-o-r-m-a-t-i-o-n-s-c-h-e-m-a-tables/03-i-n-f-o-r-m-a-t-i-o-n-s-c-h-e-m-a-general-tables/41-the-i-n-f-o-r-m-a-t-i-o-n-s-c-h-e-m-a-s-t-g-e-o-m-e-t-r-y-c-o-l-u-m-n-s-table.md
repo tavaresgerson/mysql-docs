@@ -1,4 +1,4 @@
-### 28.3.41 The INFORMATION\_SCHEMA ST\_GEOMETRY\_COLUMNS Table
+### 28.3.41 The INFORMATION_SCHEMA ST_GEOMETRY_COLUMNS Table
 
 The `ST_GEOMETRY_COLUMNS` table provides information about table columns that store spatial data. This table is based on the SQL/MM (ISO/IEC 13249-3) standard, with extensions as noted. MySQL implements `ST_GEOMETRY_COLUMNS` as a view on the `INFORMATION_SCHEMA` `COLUMNS` table.
 

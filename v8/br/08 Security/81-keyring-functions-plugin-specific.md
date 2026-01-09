@@ -43,7 +43,7 @@ Para cada função específica de cofre de chave do plugin, esta seção descrev
 
   Plugin de cofre associado: `keyring_hashicorp`
 
-Quando invocada, a função `keyring_hashicorp_update_config()` faz com que o `keyring_hashicorp` realize uma reconfiguração em tempo de execução, conforme descrito na Configuração do keyring\_hashicorp.
+Quando invocada, a função `keyring_hashicorp_update_config()` faz com que o `keyring_hashicorp` realize uma reconfiguração em tempo de execução, conforme descrito na Configuração do keyring_hashicorp.
 
 Esta função requer o privilégio `SYSTEM_VARIABLES_ADMIN` porque modifica variáveis de sistema globais.
 

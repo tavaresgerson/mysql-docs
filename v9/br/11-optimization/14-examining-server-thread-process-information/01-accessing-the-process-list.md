@@ -14,7 +14,7 @@ As informações sobre processos estão disponíveis nessas fontes:
 
 * O comando **mysqladmin processlist**: Seção 6.5.2, “mysqladmin — Um Programa de Administração do Servidor MySQL”
 
-* A tabela `PROCESSLIST` do esquema `INFORMATION_SCHEMA`: Seção 28.3.28, “A Tabela INFORMATION\_SCHEMA PROCESSLIST”
+* A tabela `PROCESSLIST` do esquema `INFORMATION_SCHEMA`: Seção 28.3.28, “A Tabela INFORMATION_SCHEMA PROCESSLIST”
 
 * A tabela `processlist` do Schema Performance Schema: Seção 29.12.22.9, “A tabela processlist”
 

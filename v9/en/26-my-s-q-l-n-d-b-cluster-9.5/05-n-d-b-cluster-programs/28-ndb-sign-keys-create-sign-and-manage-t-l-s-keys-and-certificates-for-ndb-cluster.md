@@ -1,14 +1,14 @@
-### 25.5.28 ndb\_sign\_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster
+### 25.5.28 ndb_sign_keys — Create, Sign, and Manage TLS Keys and Certificates for NDB Cluster
 
-Management of TLS keys and certificates in implemented in NDB Cluster as the executable utility program **ndb\_sign\_keys**, which can normally be found in the MySQL `bin` directory. The program performs such functions as creating, signing, and retiring keys and certificates, and normally works as follows:
+Management of TLS keys and certificates in implemented in NDB Cluster as the executable utility program **ndb_sign_keys**, which can normally be found in the MySQL `bin` directory. The program performs such functions as creating, signing, and retiring keys and certificates, and normally works as follows:
 
-1. **ndb\_sign\_keys** connects to **ndb\_mgmd** and fetches the cluster' configuration.
+1. **ndb_sign_keys** connects to **ndb_mgmd** and fetches the cluster' configuration.
 
-2. For each cluster node that is configured to run on the local machine, **ndb\_sign\_keys** finds the node' private key and sign it, creating an active node certificate.
+2. For each cluster node that is configured to run on the local machine, **ndb_sign_keys** finds the node' private key and sign it, creating an active node certificate.
 
-Some additional tasks that can be performed by **ndb\_sign\_keys** are listed here:
+Some additional tasks that can be performed by **ndb_sign_keys** are listed here:
 
-* Obtaining configuration information from a config.ini file rather than a running **ndb\_mgmd**
+* Obtaining configuration information from a config.ini file rather than a running **ndb_mgmd**
 
 * Creating the cluster' certificate authority (CA) if it does not yet exist
 
@@ -18,7 +18,7 @@ Some additional tasks that can be performed by **ndb\_sign\_keys** are listed he
 
 * Requesting a CA located on a remote host to sign a local key
 
-Options that can be used with **ndb\_sign\_keys** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_sign_keys** are shown in the following table. Additional descriptions follow the table.
 
 * `--bind-host`
 
@@ -46,7 +46,7 @@ Options that can be used with **ndb\_sign\_keys** are shown in the following tab
 
 * `--CA-ordinal`
 
-  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>First</code></p><p class="valid-value"><code>Second</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>First</code></p><p><code>Second</code></p></td> </tr></tbody></table>
 
   Set the ordinal CA name; defaults to `First` for `--create-CA` and `Second` for `--rotate-CA`. The Common Name in the CA certificate is “MySQL NDB Cluster *`ordinal`* Certificate”, where *`ordinal`* is the ordinal name passed to this option.
 
@@ -82,13 +82,13 @@ Options that can be used with **ndb\_sign\_keys** are shown in the following tab
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>-1</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set the number of times that **ndb\_sign\_keys** attempts to connect to the cluster. If you use `-1`, the program keeps trying to connect until it succeeds or is forced to stop.
+  Set the number of times that **ndb_sign_keys** attempts to connect to the cluster. If you use `-1`, the program keeps trying to connect until it succeeds or is forced to stop.
 
 * `--connect-retry-delay`
 
   <table frame="box" rules="all" summary="Properties for bound-hostname"><tbody><tr><th>Command-Line Format</th> <td><code>--bound-hostname=hostname</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Set the number of seconds after a failed connection attempt which **ndb\_sign\_keys** waits before trying again, up to the number of times determined by `--connect-retries`.
+  Set the number of seconds after a failed connection attempt which **ndb_sign_keys** waits before trying again, up to the number of times determined by `--connect-retries`.
 
 * `--create-CA`
 
@@ -162,13 +162,13 @@ Options that can be used with **ndb\_sign\_keys** are shown in the following tab
 
   <table frame="box" rules="all" summary="Properties for CA-cert"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-cert=name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
-  Set the connection string to use for connecting to **ndb\_mgmd**, using the syntax `[nodeid=id;][host=]hostname[:port]`. If this option is set, it overrides the value set for `NDB_CONNECTSTRING` (if any), as well as any value set in a `my.cnf`. file.
+  Set the connection string to use for connecting to **ndb_mgmd**, using the syntax `[nodeid=id;][host=]hostname[:port]`. If this option is set, it overrides the value set for `NDB_CONNECTSTRING` (if any), as well as any value set in a `my.cnf`. file.
 
 * `--ndb-mgm-tls`
 
   <table frame="box" rules="all" summary="Properties for CA-cert"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-cert=name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
-  Sets the level of TLS support required for the **ndb\_mgm** client; one of `relaxed` or `strict`. `relaxed` (the default) means that a TLS connection is attempted, but success is not required; `strict` means that TLS is required to connect.
+  Sets the level of TLS support required for the **ndb_mgm** client; one of `relaxed` or `strict`. `relaxed` (the default) means that a TLS connection is attempted, but success is not required; `strict` means that TLS is required to connect.
 
 * `--ndb-tls-search-path`
 
@@ -260,7 +260,7 @@ Options that can be used with **ndb\_sign\_keys** are shown in the following tab
 
   <table frame="box" rules="all" summary="Properties for CA-key"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-key=name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>NDB-Cluster-private-key</code></td> </tr></tbody></table>
 
-  Replace an older CA with a newer one. The new CA can be created using OpenSSL, or you can allow **ndb\_sign\_keys** to create the new one, in which case the new CA is created with an intermediate CA certificate, signed by the old CA.
+  Replace an older CA with a newer one. The new CA can be created using OpenSSL, or you can allow **ndb_sign_keys** to create the new one, in which case the new CA is created with an intermediate CA certificate, signed by the old CA.
 
 * `--schedule`
 
@@ -296,36 +296,36 @@ Options that can be used with **ndb\_sign\_keys** are shown in the following tab
 
 * `--sign`
 
-  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>First</code></p><p class="valid-value"><code>Second</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>First</code></p><p><code>Second</code></p></td> </tr></tbody></table>
 
   Create signed certificates; enabled by default. Use `--skip-sign` to create certificate signing requests instead.
 
 * `--skip-sign`
 
-  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>First</code></p><p class="valid-value"><code>Second</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>First</code></p><p><code>Second</code></p></td> </tr></tbody></table>
 
   Create certificate signing requests instead of signed certificates.
 
 * `--stdio`
 
-  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>First</code></p><p class="valid-value"><code>Second</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>First</code></p><p><code>Second</code></p></td> </tr></tbody></table>
 
   Read certificate signing requests from `stdin`, and write X.509 to `stdout`.
 
 * `--to-dir`
 
-  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>First</code></p><p class="valid-value"><code>Second</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>First</code></p><p><code>Second</code></p></td> </tr></tbody></table>
 
   Specify the output directory for created files. For private key files, this can be overriden using `--keys-to-dir`.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>First</code></p><p class="valid-value"><code>Second</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>First</code></p><p><code>Second</code></p></td> </tr></tbody></table>
 
   Print help text, then exit (alias for `--help`).
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>First</code></p><p class="valid-value"><code>Second</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for CA-ordinal"><tbody><tr><th>Command-Line Format</th> <td><code>--CA-ordinal=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>First</code></p><p><code>Second</code></p></td> </tr></tbody></table>
 
   Print version information, then exit.

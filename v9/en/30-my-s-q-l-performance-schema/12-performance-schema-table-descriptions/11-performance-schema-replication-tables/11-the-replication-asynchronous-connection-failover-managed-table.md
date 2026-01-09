@@ -1,4 +1,4 @@
-#### 29.12.11.11 The replication\_asynchronous\_connection\_failover\_managed Table
+#### 29.12.11.11 The replication_asynchronous_connection_failover_managed Table
 
 This table holds configuration information used by the replica's asynchronous connection failover mechanism to handle managed groups, including Group Replication topologies.
 

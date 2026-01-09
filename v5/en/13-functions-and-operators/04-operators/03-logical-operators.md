@@ -2,7 +2,7 @@
 
 **Table 12.5 Logical Operators**
 
-<table frame="box" rules="all" summary="A reference that lists logical operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="logical-operators.html#operator_and"><code>AND</code>, <code>&amp;&amp;</code></a></td> <td> Logical AND </td> </tr><tr><td><a class="link" href="logical-operators.html#operator_not"><code>NOT</code>, <code>!</code></a></td> <td> Negates value </td> </tr><tr><td><a class="link" href="logical-operators.html#operator_or"><code>OR</code>, <code>||</code></a></td> <td> Logical OR </td> </tr><tr><td><a class="link" href="logical-operators.html#operator_xor"><code>XOR</code></a></td> <td> Logical XOR </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists logical operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>AND</code>, <code>&amp;&amp;</code></td> <td> Logical AND </td> </tr><tr><td><code>NOT</code>, <code>!</code></td> <td> Negates value </td> </tr><tr><td><code>OR</code>, <code>||</code></td> <td> Logical OR </td> </tr><tr><td><code>XOR</code></td> <td> Logical XOR </td> </tr></tbody></table>
 
 In SQL, all logical operators evaluate to `TRUE`, `FALSE`, or `NULL` (`UNKNOWN`). In MySQL, these are implemented as 1 (`TRUE`), 0 (`FALSE`), and `NULL`. Most of this is common to different SQL database servers, although some servers may return any nonzero value for `TRUE`.
 

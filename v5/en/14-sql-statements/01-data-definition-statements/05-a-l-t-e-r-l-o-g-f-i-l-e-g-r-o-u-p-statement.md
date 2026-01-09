@@ -52,7 +52,7 @@ mysql> SELECT FILE_NAME, LOGFILE_GROUP_NUMBER, EXTRA
 4 rows in set (0.01 sec)
 ```
 
-(See [Section 24.3.9, “The INFORMATION\_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").)
+(See [Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").)
 
 Memory used for `UNDO_BUFFER_SIZE` comes from the global pool whose size is determined by the value of the [`SharedGlobalMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-sharedglobalmemory) data node configuration parameter. This includes any default value implied for this option by the setting of the [`InitialLogFileGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initiallogfilegroup) data node configuration parameter.
 

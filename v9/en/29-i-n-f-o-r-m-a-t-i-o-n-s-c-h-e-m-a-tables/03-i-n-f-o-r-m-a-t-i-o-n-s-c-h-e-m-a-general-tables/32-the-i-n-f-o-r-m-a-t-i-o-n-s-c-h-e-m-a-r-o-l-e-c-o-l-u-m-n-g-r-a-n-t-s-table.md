@@ -1,4 +1,4 @@
-### 28.3.32 The INFORMATION\_SCHEMA ROLE\_COLUMN\_GRANTS Table
+### 28.3.32 The INFORMATION_SCHEMA ROLE_COLUMN_GRANTS Table
 
 The `ROLE_COLUMN_GRANTS` table provides information about the column privileges for roles that are available to or granted by the currently enabled roles.
 

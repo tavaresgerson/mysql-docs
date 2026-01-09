@@ -28,7 +28,7 @@ Você precisa especificar o endereço da instância do servidor MySQL a que dese
 
 * `ds1.example.com` é o hostname da instância do servidor que está executando o MySQL. Substitua isso pelo hostname da instância do servidor MySQL que você está usando como Armazenamento de Documentos.
 
-* O esquema padrão para esta sessão é `world_x`. Para obter instruções sobre como configurar o esquema `world_x`, consulte a Seção 22.4.2, “Baixar e importar o banco de dados world\_x”.
+* O esquema padrão para esta sessão é `world_x`. Para obter instruções sobre como configurar o esquema `world_x`, consulte a Seção 22.4.2, “Baixar e importar o banco de dados world_x”.
 
 Para mais informações, consulte a Seção 6.2.5, “Conectar ao servidor usando strings semelhantes a URI ou pares de chave-valor”.
 

@@ -6,7 +6,7 @@ O Rastreador de Opções fornece informações sobre as opções na forma de dua
 
   Esta tabela, como outras tabelas do Schema de Desempenho, é de leitura somente e, portanto, não pode ser atualizada ou truncada por usuários.
 
-  Veja a Seção 29.12.22.7, “A Tabela mysql\_option”, para obter informações mais detalhadas sobre esta tabela, como colunas e seus possíveis valores.
+  Veja a Seção 29.12.22.7, “A Tabela mysql_option”, para obter informações mais detalhadas sobre esta tabela, como colunas e seus possíveis valores.
 
 * `mysql_option.option_usage`: Mostra, para cada opção instalada, o nome do recurso associado, dados de uso do recurso no formato `JSON` e outras informações. Esta tabela é instalada executando o script SQL `option_tracker_install.sql`, e desinstalada executando `option_tracker_uninstall.sql`, ambos encontrados no diretório `share` do MySQL.
 

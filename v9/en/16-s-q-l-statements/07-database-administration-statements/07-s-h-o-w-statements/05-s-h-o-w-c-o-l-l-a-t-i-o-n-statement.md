@@ -69,4 +69,4 @@ mysql> SHOW COLLATION WHERE `Default` = 'Yes';
 ...
 ```
 
-Collation information is also available from the `INFORMATION_SCHEMA` `COLLATIONS` table. See Section 28.3.6, “The INFORMATION\_SCHEMA COLLATIONS Table”.
+Collation information is also available from the `INFORMATION_SCHEMA` `COLLATIONS` table. See Section 28.3.6, “The INFORMATION_SCHEMA COLLATIONS Table”.

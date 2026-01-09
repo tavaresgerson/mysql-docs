@@ -24,7 +24,7 @@ OS error code  13:  Permission denied
 MySQL error code MY-000013: Can't get stat of '%s' (OS errno %d - %s)
 ```
 
-Para obter a mensagem de erro para um código de erro do MySQL Cluster, use o utilitário **ndb\_perror**.
+Para obter a mensagem de erro para um código de erro do MySQL Cluster, use o utilitário **ndb_perror**.
 
 O significado das mensagens de erro do sistema pode depender do seu sistema operacional. Um código de erro dado pode significar coisas diferentes em diferentes sistemas operacionais.
 

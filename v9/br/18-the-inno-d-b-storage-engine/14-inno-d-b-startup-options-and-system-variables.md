@@ -21,13 +21,13 @@
 
 **Tabela 17.21 Referência de Opções e Variáveis do InnoDB**
 
-<tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_now">innodb_data_write_now</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th><a class="link" href="server-status-variables.html#statvar_Innodb_data_write_at_shutdown">innodb_data_write_at_shutdown</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_pct">innodb_data_write_pct</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th><a class="link" href="server-status-variables.html#statvar_Innodb_data_write_status">Innodb_data_write_status</a></th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_wait">innodb_data_write_wait</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_evicted">innodb_data_write_evicted</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th><a class="link" href="server-status-variables.html#statvar_Innodb_data_write_requests">Innodb_data_write_requests</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_latched">innodb_data_write_latched</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_misc">innodb_data_write_misc</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_total">innodb_data_write_total</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_evicted_status">innodb_data_write_evicted_status</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_wait_status">innodb_data_write_wait_status</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_evicted_requests">innodb_data_write_evicted_requests</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th><a class="link" href="innodb-parameters.html#sysvar_innodb_data_write_wait_requests">innodb_data_write_wait_requests</a></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th><a class="
+<tr><th>innodb_data_write_now</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_data_write_at_shutdown</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_data_write_pct</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>Innodb_data_write_status</th> <td></td> <td></td> <td></td> <td>Yes</td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_data_write_wait</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_data_write_evicted</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>Innodb_data_write_requests</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_data_write_latched</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_data_write_misc</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_data_write_total</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_data_write_evicted_status</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_data_write_wait_status</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>innodb_data_write_evicted_requests</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>innodb_data_write_wait_requests</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th><a class="
 
 ### Opções de Inicialização do InnoDB
 
 * `--innodb-dedicated-server`
 
-  <table frame="box" rules="all" summary="Propriedades para o `innodb-dedicated-server`"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Hinta de Definição de Variável" target="_blank">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o `innodb-dedicated-server`"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Quando esta opção é definida ao iniciar o servidor com `--innodb-dedicated-server` ou `--innodb-dedicated-server=ON`, seja na linha de comando ou em um arquivo `my.cnf`, o `InnoDB` calcula e define automaticamente os valores das seguintes variáveis:
 
@@ -56,10 +56,10 @@
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -70,10 +70,10 @@ Especifica se é necessário ajustar dinamicamente a taxa de esvaziamento de pá
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -86,10 +86,10 @@ Especifica se é necessário ajustar dinamicamente a taxa de esvaziamento de pá
 
 <table frame="box" rules="all" summary="Propriedades para o índice hash adaptável do InnoDB">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr>
 </table>
@@ -104,7 +104,7 @@ Antes do MySQL 8.4, essa opção estava habilitada por padrão.
 
 * `innodb_adaptive_hash_index_parts`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>8</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>512</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>8</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>512</code></td> </tr></tbody></table>
 
   Divide o sistema de busca do índice de hash adaptável. Cada índice está vinculado a uma partição específica, com cada partição protegida por um gatilho separado.
 
@@ -116,10 +116,10 @@ Antes do MySQL 8.4, essa opção estava habilitada por padrão.
 
 <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_max_sleep_delay">innodb_adaptive_max_sleep_delay</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_max_sleep_delay</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>150000</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
@@ -135,10 +135,10 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> Aplica</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>64</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -152,7 +152,7 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 * `innodb_autoinc_lock_mode`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc-lock-mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc-lock-mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   O modo de bloqueio a ser usado para gerar valores de autoincremento. Os valores permitidos são 0, 1 ou 2, para tradicional, consecutivo ou entrelaçado, respectivamente.
 
@@ -162,13 +162,13 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 * `innodb_background_drop_list_empty`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 * Ativação da opção de depuração `innodb_background_drop_list_empty` ajuda a evitar falhas nos casos de teste, atrasando a criação da tabela até que a lista de exclusão em segundo plano esteja vazia. Por exemplo, se o caso de teste A colocar a tabela `t1` na lista de exclusão em segundo plano, o caso de teste B aguarda até que a lista de exclusão em segundo plano esteja vazia antes de criar a tabela `t1`.
 
 * `innodb_buffer_pool_chunk_size`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   `innodb_buffer_pool_chunk_size` define o tamanho do bloco para as operações de redimensionamento do buffer pool do `InnoDB`.
 
@@ -192,11 +192,11 @@ Consulte a Seção 17.8.3.1, “Configurando o Tamanho do Pool de Tampão InnoDB
 
 * `innodb_buffer_pool_debug`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 * `innodb_buffer_pool_dump_at_shutdown`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Especifica se as páginas cacheadas no pool de buffer do `InnoDB` devem ser registradas quando o servidor MySQL é desligado, para encurtar o processo de aquecimento na próxima reinicialização. Tipicamente, é usado em combinação com `innodb_buffer_pool_load_at_startup`. A opção `innodb_buffer_pool_dump_pct` define a porcentagem das páginas do pool de buffer mais recentemente usadas para serem excluídas.
 
@@ -206,7 +206,7 @@ Consulte a Seção 17.8.3.1, “Configurando o Tamanho do Pool de Tampão InnoDB
 
 * `innodb_buffer_pool_dump_now`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Faz um registro imediato das páginas armazenadas em cache no pool de buffer do `InnoDB`. Tipicamente usado em combinação com `innodb_buffer_pool_load_now`.
 
@@ -218,13 +218,13 @@ Consulte a Seção 17.8.3.1, “Configurando o Tamanho do Pool de Tampão InnoDB
 
 * `innodb_buffer_pool_dump_pct`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Especifica a porcentagem das páginas mais recentemente usadas para cada pool de buffers para serem lidas e descartadas. O intervalo é de 1 a 100. O valor padrão é 25. Por exemplo, se houver 4 pools de buffers com 100 páginas cada, e `innodb_buffer_pool_dump_pct` estiver configurado para 25, as 25 páginas mais recentemente usadas de cada pool de buffers serão descartadas.
 
 * `innodb_buffer_pool_filename`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Especifica o nome do arquivo que contém a lista de IDs de tablespace e IDs de página produzidos por `innodb_buffer_pool_dump_at_shutdown` ou `innodb_buffer_pool_dump_now`. Os IDs de tablespace e IDs de página são salvos no seguinte formato: `space, page_id`. Por padrão, o arquivo é chamado `ib_buffer_pool` e está localizado no diretório de dados do `InnoDB`. Uma localização não padrão deve ser especificada em relação ao diretório de dados.
 
@@ -240,7 +240,7 @@ Especifica a porcentagem das páginas mais recentemente usadas para cada pool de
 
 * `innodb_buffer_pool_in_core_file`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Desabilitando (padrão) a variável `innodb_buffer_pool_in_core_file`, o tamanho dos arquivos de núcleo é reduzido, excluindo as páginas do buffer pool do `InnoDB`.
 
@@ -252,7 +252,7 @@ Antes do MySQL 8.4, essa opção estava habilitada por padrão.
 
 * `innodb_buffer_pool_instances`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O número de regiões em que o pool de buffer do `InnoDB` é dividido. Para sistemas com pools de buffer na faixa de vários gigabytes, dividir o pool de buffer em instâncias separadas pode melhorar a concorrência, reduzindo a concorrência à medida que diferentes threads leem e escrevem em páginas armazenadas em cache. Cada página que é armazenada ou lida do pool de buffer é atribuída aleatoriamente a uma das instâncias do pool de buffer, usando uma função de hashing. Cada instância do pool de buffer gerencia suas próprias listas de livre, listas de esvaziamento, LRUs e todas as outras estruturas de dados conectadas a um pool de buffer, e é protegida por seu próprio mutex do pool de buffer.
 
@@ -270,7 +270,7 @@ Se `innodb_buffer_pool_size` for maior que 1 GiB, o valor padrão de `innodb_buf
 
 * `innodb_buffer_pool_load_abort`
 
-  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado a InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Aplicação da dica <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado a InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Aplicação da dica <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Interrompe o processo de restauração do conteúdo do pool de buffer `InnoDB`, acionado por `innodb_buffer_pool_load_at_startup` ou `innodb_buffer_pool_load_now`.
 
@@ -334,7 +334,7 @@ Se o servidor for iniciado com `--innodb-dedicated-server`, o valor de `innodb_b
 
   Se o `InnoDB` realiza a bufferização de alterações, uma otimização que adiatra as operações de escrita em índices secundários para que as operações de I/O possam ser realizadas sequencialmente. Os valores permitidos estão descritos na tabela a seguir. Os valores também podem ser especificados numericamente.
 
-**Tabela 17.22 Valores Permitidos para innodb\_change\_buffering**
+**Tabela 17.22 Valores Permitidos para innodb_change_buffering**
 
 <table frame="box" rules="all" summary="Propriedades para innodb-status-file">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr>
@@ -378,11 +378,11 @@ A forma rigorosa de um algoritmo de verificação de integridade reporta um erro
 
 A tabela a seguir mostra a diferença entre os valores das opções `none`, `innodb` e `crc32`, e suas contrapartes rigorosas. `none`, `innodb` e `crc32` escrevem o tipo especificado de valor de verificação de integridade em cada bloco de dados, mas, para compatibilidade, aceitam outros valores de verificação de integridade ao verificar um bloco durante uma operação de leitura. As configurações rigorosas também aceitam valores de verificação de integridade válidos, mas imprimem uma mensagem de erro quando um valor de verificação de integridade válido, mas não correspondente, é encontrado. O uso da forma rigorosa pode tornar a verificação mais rápida se todos os arquivos de dados `InnoDB` em uma instância forem criados com o mesmo valor de `innodb_checksum_algorithm`.
 
-**Tabela 17.23 Valores permitidos para `innodb\_checksum\_algorithm`**
+**Tabela 17.23 Valores permitidos para `innodb_checksum_algorithm`**
 
 <table frame="box" rules="all" summary="Propriedades para `innodb-status-file`"><tr><th>Formato de linha de comando</th> <td><code>--innodb-status-file[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Habilita estatísticas relacionadas à compressão por índice por índice na tabela do esquema de informações `INNODB_CMP_PER_INDEX`. Como essas estatísticas podem ser caras de coletar, apenas habilite essa opção em instâncias de desenvolvimento, teste ou replica durante o ajuste de desempenho relacionado a tabelas compactadas do `InnoDB`.
 
@@ -392,10 +392,10 @@ A tabela a seguir mostra a diferença entre os valores das opções `none`, `inn
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -406,7 +406,7 @@ A tabela a seguir mostra a diferença entre os valores das opções `none`, `inn
 
 * `innodb_compress_debug`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de dica de configuração <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de dica de configuração <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
 Compreende todas as tabelas usando um algoritmo de compressão especificado sem precisar definir um atributo `COMPRESSION` para cada tabela. Esta opção só está disponível se o suporte de depuração estiver compilado usando a opção **CMake** `WITH_DEBUG`.
 
@@ -414,7 +414,7 @@ Para informações relacionadas, consulte a Seção 17.9.2, “Compressão de p�
 
 * `innodb_compression_failure_threshold_pct`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Define o limiar de taxa de falha de compressão para uma tabela, como porcentagem, no qual o MySQL começa a adicionar preenchimento dentro das páginas compactadas para evitar falhas de compactação caras. Quando esse limiar é ultrapassado, o MySQL começa a deixar espaço livre adicional dentro de cada nova página compactada, ajustando dinamicamente a quantidade de espaço livre até a porcentagem do tamanho da página especificada por `innodb_compression_pad_pct_max`. Um valor de zero desativa o mecanismo que monitora a eficiência da compactação e ajusta dinamicamente a quantidade de preenchimento.
 
@@ -422,7 +422,7 @@ Para informações relacionadas, consulte a Seção 17.9.2, “Compressão de p�
 
 * `innodb_compression_level`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de configuração da dica <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de configuração da dica <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Especifica o nível de compressão zlib a ser usado para tabelas e índices compactados do `InnoDB`. Um valor maior permite que você coloque mais dados em um dispositivo de armazenamento, às custas de mais overhead de CPU durante a compressão. Um valor menor permite reduzir o overhead de CPU quando o espaço de armazenamento não é crítico ou você espera que os dados não sejam especialmente compressivos.
 
@@ -432,10 +432,10 @@ Para informações relacionadas, consulte a Seção 17.9.2, “Compressão de p�
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de Aplicação do Hino <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hino de Definição de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de Aplicação do Hino <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -446,7 +446,7 @@ Para informações relacionadas, consulte a Seção 17.9.2, “Compressão de p�
 
 * `innodb_concurrency_tickets`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
 Determina o número de threads que podem entrar no `InnoDB` simultaneamente. Um thread é colocado em uma fila quando tenta entrar no `InnoDB` se o número de threads já tiver atingido o limite de concorrência. Quando um thread é permitido entrar no `InnoDB`, ele recebe um número de “bilhetes” igual ao valor de `innodb_concurrency_tickets`, e o thread pode entrar e sair livremente do `InnoDB` até esgotar seus bilhetes. Após esse ponto, o thread novamente fica sujeito à verificação de concorrência (e possível colocação em fila) da próxima vez que tentar entrar no `InnoDB`. O valor padrão é 5000.
 
@@ -462,10 +462,10 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 <table frame="box" rules="all" summary="Propriedades para o espaço de dados do `innodb_adaptive_flushing`">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -486,10 +486,10 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_flushing`">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de Ajuda <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Ajuda para Definir Variáveis">SET_VAR</a> Aplica</th> <td>Não</td> </tr>
+  <tr><th>Hinta de Ajuda SET_VAR Aplica</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </tbody></table>
@@ -511,10 +511,10 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing">innodb_adaptive_flushing</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr>
 </table>
@@ -525,10 +525,10 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
@@ -541,10 +541,10 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -557,10 +557,10 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de Ajuda <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Ajuda para Definir Variáveis">SET_VAR</a> Aplica</th> <td>Não</td> </tr>
+  <tr><th>Hinta de Ajuda SET_VAR Aplica</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -575,10 +575,10 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando a Concorrên
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -595,7 +595,7 @@ Tabelas temporárias internas do `InnoDB` criadas pelo servidor para processar c
 
 * `innodb_directories`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>10</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>70</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>10</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>70</code></td> </tr></tbody></table>
 
   Define diretórios para varredura no início em busca de arquivos de espaço de tabelas. Esta opção é usada ao mover ou restaurar arquivos de espaço de tabelas para um novo local enquanto o servidor está offline. Também é usada para especificar diretórios de arquivos de espaço de tabelas criados usando um caminho absoluto ou que residem fora do diretório de dados.
 
@@ -628,10 +628,10 @@ Para mais informações, consulte a Seção 17.6.3.6, “Movendo arquivos do esp
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -644,10 +644,10 @@ Desabilita o cache do sistema de arquivos do sistema operacional para arquivos t
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
@@ -668,10 +668,10 @@ Para informações relacionadas, consulte a Seção 17.6.4, “Buffer de Dupla G
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -684,10 +684,10 @@ Para informações relacionadas, consulte a Seção 17.6.4, “Buffer de Dupla G
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -702,10 +702,10 @@ Para informações relacionadas, consulte a Seção 17.6.4, “Buffer de Dupla G
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_flushing_lwm">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-flushing-lwm=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_flushing_lwm">innodb_adaptive_flushing_lwm</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_flushing_lwm</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -720,10 +720,10 @@ Para informações relacionadas, consulte a Seção 17.6.4, “Buffer de Dupla G
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> Aplica</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr>
 </table>
@@ -738,10 +738,10 @@ Para informações relacionadas, consulte a Seção 17.6.4, “Buffer de Dupla G
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr>
 </table>
@@ -756,7 +756,7 @@ Para mais informações, consulte a Seção 17.6.3.8, “Otimização da alocaç
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
   <tr><th>Hint de configuração de variável</th> <td><code>SET_VAR</code></a> HINT Aplica</td> <td>Não</td> </tr>
@@ -774,10 +774,10 @@ Para mais informações, consulte a Seção 17.6.3.8, “Otimização da alocaç
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr>
 </table>
@@ -786,10 +786,10 @@ Para mais informações, consulte a Seção 17.6.3.8, “Otimização da alocaç
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr>
 </table>
@@ -804,7 +804,7 @@ A configuração `innodb_file_per-table` não afeta a criação de tabelas tempo
 
 * `innodb_fill_factor`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 O `InnoDB` realiza uma carga em lote ao criar ou reconstruir índices. Esse método de criação de índices é conhecido como “construção de índice ordenado”.
 
@@ -818,13 +818,13 @@ Para mais informações, consulte a Seção 17.6.2.3, “Construção de Índice
 
 * `innodb_flush_log_at_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Escreva e limpe os logs a cada `N` segundos. `innodb_flush_log_at_timeout` permite que o período de espera entre limpos seja aumentado para reduzir o processo de limpeza e evitar o impacto no desempenho do commit do grupo de log binário. O valor padrão para `innodb_flush_log_at_timeout` é uma vez por segundo.
 
 * `innodb_flush_log_at_trx_commit`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Controla o equilíbrio entre a conformidade estrita com ACID para operações de commit e o desempenho mais alto que é possível quando as operações de I/O relacionadas ao commit são reorganizadas e realizadas em lotes. Você pode obter um melhor desempenho alterando o valor padrão, mas então pode perder transações em um crash.
 
@@ -856,7 +856,7 @@ Muitos sistemas operacionais e alguns hardwares de disco enganam a operação de
 
 * `innodb_flush_method`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_hash_index</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Define o método usado para gravar dados nos arquivos de dados e arquivos de log do `InnoDB`, o que pode afetar o desempenho de E/S.
 
@@ -903,7 +903,7 @@ Como cada configuração afeta o desempenho depende da configuração do hardwar
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index">innodb_adaptive_hash_index</a></code></td>
+    <td><code>innodb_adaptive_hash_index</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -914,7 +914,7 @@ Como cada configuração afeta o desempenho depende da configuração do hardwar
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -941,10 +941,10 @@ Como cada configuração afeta o desempenho depende da configuração do hardwar
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
   <tr><th>Valor padrão</th> <td><code>8</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -959,10 +959,10 @@ Para obter informações sobre a configuração da variável `innodb_flush_sync`
 
 <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_hash_index_parts`">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
   <tr><th>Valor padrão</th> <td><code>8</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -977,10 +977,10 @@ Para informações relacionadas, consulte a Seção 17.8.3.5, “Configurando a 
 
 <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_hash_index_parts`">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>8</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -993,10 +993,10 @@ Permite que o `InnoDB` carregue tabelas ao inicializar que estejam marcadas como
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Numérico</td> </tr>
   <tr><th>Valor padrão</th> <td><code>8</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -1013,7 +1013,7 @@ Permite que o `InnoDB` carregue tabelas ao inicializar que estejam marcadas como
 
 * `innodb_fsync_threshold`
 
-  <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_hash_index_parts`"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>8</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>512</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_hash_index_parts`"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>8</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>512</code></td> </tr></table>
 
   Por padrão, quando o `InnoDB` cria um novo arquivo de dados, como um novo arquivo de log ou arquivo de espaço de tabelas, o arquivo é totalmente escrito na cache do sistema operacional antes de ser descarregado no disco, o que pode causar uma grande quantidade de atividade de escrita no disco de uma só vez. Para forçar limpezas periódicas e menores do conteúdo da cache do sistema operacional, você pode usar a variável `innodb_fsync_threshold` para definir um valor limite, em bytes. Quando o limite de bytes é atingido, o conteúdo da cache do sistema operacional é descarregado no disco. O valor padrão de 0 força o comportamento padrão, que é descarregar os dados no disco apenas após um arquivo ser totalmente escrito na cache.
 
@@ -1025,10 +1025,10 @@ Especificar um limite para forçar limpezas periódicas menores pode ser benéfi
     
     <tbody>
       <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr>
-      <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr>
+      <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr>
       <tr><th>Alcance</th> <td>Global</td> </tr>
       <tr><th>Dinâmico</th> <td>Não</td> </tr>
-      <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+      <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
       <tr><th>Tipo</th> <td>Numérico</td> </tr>
       <tr><th>Valor padrão</th> <td><code>8</code></td> </tr>
       <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -1048,7 +1048,7 @@ Para mais informações, consulte a Seção 17.15.4, “Tabelas de índice FULLT
 
 * `innodb_ft_cache_size`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>8</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>512</code></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>8</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>512</code></td> </tr></table>
 
 A memória alocada, em bytes, para o cache do índice de pesquisa full-text (`FULLTEXT`) do `InnoDB`, que armazena um documento analisado na memória durante a criação de um índice `FULLTEXT` do `InnoDB`. As inserções e atualizações do índice são comprometidas no disco apenas quando o limite de tamanho do `innodb_ft_cache_size` é atingido. O `innodb_ft_cache_size` define o tamanho do cache por tabela. Para definir um limite global para todas as tabelas, consulte `innodb_ft_total_cache_size`.
 
@@ -1056,7 +1056,7 @@ Para obter mais informações, consulte o cache de índice full-text do InnoDB.
 
 * `innodb_ft_enable_diag_print`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>8</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>512</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>8</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>512</code></td> </tr></table>
 
   Se habilitar a saída de diagnóstico adicional de pesquisa full-text (FTS). Esta opção é destinada principalmente ao depuração avançada do FTS e não é de interesse para a maioria dos usuários. A saída é impressa no log de erro e inclui informações como:
 
@@ -1090,7 +1090,7 @@ Para obter mais informações, consulte o cache de índice full-text do InnoDB.
 
 * `innodb_ft_enable_stopword`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>8</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>512</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_hash_index_parts"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>8</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>512</code></td> </tr></tbody></table>
 
   Especifica que um conjunto de palavras-chave é associado a um índice `FULLTEXT` `InnoDB` no momento em que o índice é criado. Se a opção `innodb_ft_user_stopword_table` for definida, as palavras-chave são tiradas dessa tabela. Caso contrário, se a opção `innodb_ft_server_stopword_table` for definida, as palavras-chave são tiradas dessa tabela. Caso contrário, um conjunto padrão de palavras-chave padrão é usado.
 
@@ -1098,7 +1098,7 @@ Para obter mais informações, consulte a Seção 14.9.4, “Palavras-chave Full
 
 * `innodb_ft_max_token_size`
 
-  <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_hash_index_parts`"><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_hash_index_parts">innodb_adaptive_hash_index_parts</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td><code>SET_VAR</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>8</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>512</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_hash_index_parts`"><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-hash-index-parts=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_hash_index_parts</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td><code>SET_VAR</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>8</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>512</code></td> </tr></table>
 
   Comprimento máximo de caracteres das palavras que são armazenadas em um índice `FULLTEXT` de `InnoDB`. Definir um limite para esse valor reduz o tamanho do índice, acelerando assim as consultas, ao omitir palavras longas ou coleções arbitrárias de letras que não são palavras reais e que provavelmente não serão termos de busca.
 
@@ -1113,7 +1113,7 @@ Para obter mais informações, consulte a Seção 14.9.4, “Palavras-chave Full
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_max_sleep_delay">innodb_adaptive_max_sleep_delay</a></code></td>
+    <td><code>innodb_adaptive_max_sleep_delay</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1124,7 +1124,7 @@ Para obter mais informações, consulte a Seção 14.9.4, “Palavras-chave Full
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> se aplica</th>
+    <th>Hinta de <code>SET_VAR</code></a> se aplica</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1157,10 +1157,10 @@ Para obter mais informações, consulte a Seção 14.9.4, “Palavras-chave Full
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_max_sleep_delay">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive-max-sleep-delay">innodb_adaptive-max-sleep-delay</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive-max-sleep-delay</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>150000</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
@@ -1176,10 +1176,10 @@ Para mais informações, consulte a Seção 14.9.6, “Ajuste fino da pesquisa f
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_max_sleep_delay">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_max_sleep_delay">innodb_adaptive_max_sleep_delay</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_max_sleep_delay</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>150000</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
@@ -1194,7 +1194,7 @@ O valor máximo de `innodb_ft_result_cache_limit` para todos os tipos de platafo
 
 * `innodb_ft_server_stopword_table`
 
-  <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_max_sleep_delay">innodb_adaptive_max_sleep_delay</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>150000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1000000</code></td> </tr><tr><th>Unidade</th> <td>microsegundos</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_max_sleep_delay</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>150000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1000000</code></td> </tr><tr><th>Unidade</th> <td>microsegundos</td> </tr></tbody></table>
 
   Esta opção é usada para especificar sua própria lista de stopwords para o índice `FULLTEXT` do `InnoDB` para todas as tabelas `InnoDB`. Para configurar sua própria lista de stopwords para uma tabela específica do `InnoDB`, use `innodb_ft_user_stopword_table`.
 
@@ -1208,7 +1208,7 @@ Para obter mais informações, consulte a Seção 14.9.4, “Palavras-chave de s
 
 * `innodb_ft_sort_pll_degree`
 
-<table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_max_sleep_delay">innodb_adaptive_max_sleep_delay</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>150000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1000000</code></td> </tr><tr><th>Unidade</th> <td>microsegundos</td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`"><tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_adaptive_max_sleep_delay</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>150000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1000000</code></td> </tr><tr><th>Unidade</th> <td>microsegundos</td> </tr></table>
 
 Número de threads usados em paralelo para indexar e tokenizar texto em um índice `FULLTEXT` `InnoDB` ao construir um índice de busca.
 
@@ -1218,7 +1218,7 @@ Para informações relacionadas, consulte a Seção 17.6.2.4, “Indizes de text
 
 <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive-max-sleep-delay">innodb_adaptive-max-sleep-delay</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive-max-sleep-delay</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
   <tr><th>Hinta de sintaxe de definição de variável</th> <td><code>SET_VAR</a></code></td> <td>Não</td> </tr>
@@ -1237,10 +1237,10 @@ Para informações relacionadas, consulte a Seção 17.6.2.4, “Indizes de text
 
 <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_max_sleep_delay">innodb_adaptive_max_sleep_delay</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_max_sleep_delay</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>150000</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -1260,7 +1260,7 @@ Para informações relacionadas, consulte a Seção 17.6.2.4, “Indizes de text
 
 * `innodb_idle_flush_pct`
 
-  <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`"><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_max_sleep_delay">innodb_adaptive_max_sleep_delay</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração da Variável"><code>SET_VAR</code></a></code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>150000</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1000000</code></td> </tr><tr><th>Unidade</th> <td>microsegundos</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`"><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_max_sleep_delay</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code></code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>150000</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1000000</code></td> </tr><tr><th>Unidade</th> <td>microsegundos</td> </tr></table>
 
   Limita o esvaziamento da página quando o `InnoDB` está idle. O valor `innodb_idle_flush_pct` é uma porcentagem do ajuste `innodb_io_capacity`, que define o número de operações de I/O por segundo disponíveis para o `InnoDB`. Para mais informações, consulte Limitar o Esvaziamento do Buffer Durante Períodos Idle.
 
@@ -1268,10 +1268,10 @@ Para informações relacionadas, consulte a Seção 17.6.2.4, “Indizes de text
 
 <table frame="box" rules="all" summary="Propriedades para `innodb_adaptive_max_sleep_delay`">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_max_sleep_delay">innodb_adaptive_max_sleep_delay</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_adaptive_max_sleep_delay</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de Configuração do <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr>
+  <tr><th>Hinta de Configuração do <code>SET_VAR</code></a> Aplica</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>150000</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -1287,10 +1287,10 @@ Para obter informações sobre a configuração da variável `innodb_io_capacity
 
 <table frame="box" rules="all" summary="Propriedades para innodb_adaptive_max_sleep_delay">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-adaptive-max-sleep-delay=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_adaptive_max_sleep_delay">innodb_adaptive_max_sleep_delay</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_adaptive_max_sleep_delay</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>150000</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
@@ -1308,10 +1308,10 @@ Para obter informações sobre a configuração da variável `innodb_io_capacity
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> Aplica</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>64</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -1325,10 +1325,10 @@ Limita o número de registros por página de árvore B. Um valor padrão de 0 si
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> se aplica</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> se aplica</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>64</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -1356,10 +1356,10 @@ O valor do tempo de espera do bloqueio de espera não se aplica a deadlocks quan
 
 <table frame="box" rules="all" summary="Propriedades para `innodb_autoextend_increment`">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> se aplica</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> se aplica</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>64</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -1371,10 +1371,10 @@ O valor do tempo de espera do bloqueio de espera não se aplica a deadlocks quan
 
 <table frame="box" rules="all" summary="Propriedades para `innodb_autoextend_increment`">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>64</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -1388,10 +1388,10 @@ O valor do tempo de espera do bloqueio de espera não se aplica a deadlocks quan
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code></a> Aplica</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>64</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -1405,10 +1405,10 @@ O valor do tempo de espera do bloqueio de espera não se aplica a deadlocks quan
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>64</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>1</code></td> </tr>
@@ -1425,10 +1425,10 @@ O valor do tempo de espera do bloqueio de espera não se aplica a deadlocks quan
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th></a> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>64</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -1446,7 +1446,7 @@ Para informações relacionadas, consulte a Seção 17.9.1.6, “Compressão par
 
 * `innodb_log_group_home_dir`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment"><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>64</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>1000</code></td> </tr><tr><th>Unidade</th> <td>megabytes</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment"><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>64</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>1000</code></td> </tr><tr><th>Unidade</th> <td>megabytes</td> </tr></tbody></table>
 
 O caminho do diretório para os arquivos de log de redo de `InnoDB`.
 
@@ -1456,7 +1456,7 @@ Para informações relacionadas, consulte Configuração do Log de Redo.
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-autoextend-increment=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
   <tr><th>Hint de Configuração de Variável</th> <td>Não</td> </tr>
@@ -1473,7 +1473,7 @@ Para informações relacionadas, consulte Configuração do Log de Redo.
 
 * `innodb_log_spin_cpu_pct_hwm`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend_increment=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoextend_increment">innodb_autoextend_increment</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas Aplica</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>64</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>1000</code></td> </tr><tr><th>Unidade</th> <td>megabytes</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_autoextend_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoextend_increment=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_autoextend_increment</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplica</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>64</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>1000</code></td> </tr><tr><th>Unidade</th> <td>megabytes</td> </tr></tbody></table>
 
   Define a quantidade máxima de uso de CPU acima da qual os threads do usuário não giram mais enquanto aguardam o término do redo esvaziado. O valor é expresso como uma porcentagem do poder de processamento total combinado de todos os núcleos da CPU. O valor padrão é de 50%. Por exemplo, o uso de 100% de dois núcleos da CPU é de 50% do poder de processamento total da CPU em um servidor com quatro núcleos da CPU.
 
@@ -1483,7 +1483,7 @@ Para informações relacionadas, consulte Configuração do Log de Redo.
 
 * `innodb_log_wait_for_flush_spin_cpu_pct_hwm`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc-lock-mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de dica de configuração <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc-lock-mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de dica de configuração <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   Define o tempo médio máximo de gravação de log além do qual os threads do usuário não retornam ao estado de espera enquanto aguardam o log redo ser gravado. O valor padrão é de 400 microsegundos.
 
@@ -1493,13 +1493,13 @@ Para informações relacionadas, consulte Configuração do Log de Redo.
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-autoinc_lock_mode=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>2</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr>
 </table>
 
   Define o tamanho do bloco de pré-gravação para o log de refazer, em bytes. Para evitar o "leitura durante a gravação", defina `innodb_log_write_ahead_size` para corresponder ao tamanho do bloco de cache do sistema operacional ou do sistema de arquivos. O valor padrão é de 8192 bytes. A leitura durante a gravação ocorre quando os blocos do log de refazer não são completamente cacheados no sistema operacional ou no sistema de arquivos devido a uma incompatibilidade entre o tamanho do bloco de pré-gravação do log de refazer e o tamanho do bloco de cache do sistema operacional ou do sistema de arquivos.
@@ -1514,13 +1514,13 @@ Para informações relacionadas, consulte a Seção 10.5.4, “Otimizando o Regi
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc-lock-mode=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>2</code></td> </tr>
-  <tr><th>Valores válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr>
+  <tr><th>Valores válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr>
 </table>
 
   Habilita threads de escritor de log dedicado para escrever registros de log de revisão da memória da memória de buffer para os buffers do sistema e para esvaziar os buffers do sistema para os arquivos de log de revisão. Threads de escritor de log dedicado podem melhorar o desempenho em sistemas de alta concorrência, mas para sistemas de baixa concorrência, desativar threads de escritor de log dedicado proporciona um melhor desempenho.
@@ -1529,13 +1529,13 @@ Para informações relacionadas, consulte a Seção 10.5.4, “Otimizando o Regi
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-autoinc-lock-mode=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>2</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr>
 </table>
 
 Um valor menor que o padrão geralmente é adequado para a maioria das cargas de trabalho. Um valor muito maior do que o necessário pode afetar o desempenho. Considere apenas aumentar o valor se você tiver capacidade de E/S disponível sob uma carga de trabalho típica. Por outro lado, se uma carga de trabalho intensiva em escrita saturar sua capacidade de E/S, diminua o valor, especialmente no caso de um grande pool de tampões.
@@ -1548,13 +1548,13 @@ Para informações relacionadas, consulte a Seção 17.8.3.5, “Configurando o 
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode">
   <tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc-lock-mode=#</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de aplicação do HINT <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de aplicação do HINT <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>2</code></td> </tr>
-  <tr><th>Valores válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr>
+  <tr><th>Valores válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr>
 </table>
 
 O `InnoDB` tenta esvaziar os dados do buffer pool para que a porcentagem de páginas sujas não exceda este valor.
@@ -1565,13 +1565,13 @@ Para informações relacionadas, consulte a Seção 17.8.3.5, “Configurando o 
 
 * `innodb_max_dirty_pages_pct_lwm`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc_lock_mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc_lock_mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   Define um limiar de água baixa que representa a porcentagem de páginas sujas na qual o preflush é habilitado para controlar a proporção de páginas sujas. Um valor de 0 desabilita o comportamento de preflush completamente. O valor configurado deve sempre ser menor que o valor de `innodb_max_dirty_pages_pct`. Para mais informações, consulte a Seção 17.8.3.5, “Configurando o preflush do pool de buffers”.
 
 * `innodb_max_purge_lag`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc_lock_mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc_lock_mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   Define o atraso máximo de purga desejado. Se esse valor for excedido, uma demora é imposta nas operações `INSERT`, `UPDATE` e `DELETE` para permitir que a purga alcance o atraso. O valor padrão é 0, o que significa que não há atraso máximo de purga e nenhuma demora.
 
@@ -1579,7 +1579,7 @@ Para informações relacionadas, consulte a Seção 17.8.3.5, “Configurando o 
 
 * `innodb_max_purge_lag_delay`
 
-<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc_lock_mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-autoinc_lock_mode=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>2</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   Especifica o atraso máximo em microsegundos para o atraso imposto quando o limite `innodb_max_purge_lag` é excedido. O valor especificado de `innodb_max_purge_lag_delay` é um limite superior para o período de atraso calculado pela fórmula `innodb_max_purge_lag`.
 
@@ -1589,13 +1589,13 @@ Para informações relacionadas, consulte a Seção 17.8.3.5, “Configurando o 
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-autoinc-lock-mode=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>2</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr>
 </table>
 
   Define um tamanho limite para os espaços de tabelas de undo. Se um espaço de tabelas de undo exceder o limite, ele pode ser marcado para truncação quando o `innodb_undo_log_truncate` estiver habilitado. O valor padrão é 1073741824 bytes (1024 MiB).
@@ -1606,20 +1606,20 @@ Para informações relacionadas, consulte a Seção 17.8.3.5, “Configurando o 
 
 <table frame="box" rules="all" summary="Propriedades para innodb_autoinc_lock_mode">
   <tr><th>Formato de Linha de Comando</th> <td><code>--innodb-autoinc-lock-mode=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="innodb-parameters.html#sysvar_innodb_autoinc_lock_mode">innodb_autoinc_lock_mode</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>innodb_autoinc_lock_mode</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>2</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>0</code></p><p class="valid-value"><code>1</code></p><p class="valid-value"><code>2</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr>
 </table>
 
   Define um valor percentual de página para páginas de índice que substitui o ajuste atual de `MERGE_THRESHOLD` para todos os índices que estão atualmente na cache do dicionário. Esta opção só está disponível se o suporte de depuração estiver compilado usando a opção **CMake** `WITH_DEBUG`. Para informações relacionadas, consulte a Seção 17.8.11, “Configurando o Limite de Fusão para Páginas de Índices”.
 
 * `innodb_monitor_disable`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Esta variável atua como um interruptor, desativando os contadores de métricas do `InnoDB`. Os dados dos contadores podem ser consultados usando a tabela do esquema de informações `INNODB_METRICS`. Para informações de uso, consulte a Seção 17.15.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”.
 
@@ -1627,7 +1627,7 @@ Esta variável atua como um interruptor, desativando os contadores de métricas 
 
 * `innodb_monitor_enable`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Esta variável atua como um interruptor, habilitando os contadores de métricas do `InnoDB`. Os dados dos contadores podem ser consultados usando a tabela do esquema de informações `INNODB_METRICS`. Para informações de uso, consulte a Seção 17.15.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”.
 
@@ -1635,7 +1635,7 @@ Esta variável atua como um interruptor, habilitando os contadores de métricas 
 
 * `innodb_monitor_reset`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Esta variável atua como um interruptor, redefinindo o valor de contagem para os contadores de métricas do `InnoDB` para zero. Os dados dos contadores podem ser consultados usando a tabela do Schema de Informações `INNODB_METRICS`. Para informações de uso, consulte a Seção 17.15.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”.
 
@@ -1643,13 +1643,13 @@ Esta variável atua como um interruptor, redefinindo o valor de contagem para os
 
 * `innodb_monitor_reset_all`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Esta variável atua como um interruptor, redefinindo todos os valores (mínimo, máximo, etc.) para os contadores de métricas do `InnoDB`. Os dados dos contadores podem ser consultados usando a tabela do esquema de informações `INNODB_METRICS`. Para informações de uso, consulte a Seção 17.15.6, “Tabela de métricas do esquema de informações InnoDB”.
 
 * `innodb_numa_interleave`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Habilita a política de interligação de memória NUMA para a alocação do pool de buffers do `InnoDB`. Quando `innodb_numa_interleave` é habilitado, a política de memória NUMA é definida como `MPOL_INTERLEAVE` para o processo **mysqld**. Após a alocação do pool de buffers do `InnoDB`, a política de memória NUMA é definida de volta como `MPOL_DEFAULT`. Para que a opção `innodb_numa_interleave` esteja disponível, o MySQL deve ser compilado em um sistema Linux com suporte a NUMA. O valor padrão é `ON` se o sistema o suportar, caso contrário, ele é definido como `OFF`.
 
@@ -1657,7 +1657,7 @@ Esta variável atua como um interruptor, redefinindo todos os valores (mínimo, 
 
 * `innodb_old_blocks_pct`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Especifica a porcentagem aproximada do `InnoDB` buffer pool usado para a sublista de blocos antigos. A faixa de valores é de 5 a 95. O valor padrão é 37 (ou seja, 3/8 do pool). Frequentemente usado em combinação com `innodb_old_blocks_time`.
 
@@ -1665,7 +1665,7 @@ Para mais informações, consulte a Seção 17.8.3.3, “Tornando o varredura do
 
 * `innodb_old_blocks_time`
 
-<table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Valores não nulos protegem contra o pool de buffers sendo preenchido por dados que são referenciados apenas por um curto período, como durante uma varredura completa da tabela. Aumentar esse valor oferece mais proteção contra varreduras completas da tabela que interferem com os dados cacheados no pool de buffers.
 
@@ -1677,13 +1677,13 @@ Esta variável é frequentemente usada em combinação com `innodb_old_blocks_pc
 
 * `innodb_online_alter_log_max_size`
 
-  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Configuração da Hinta <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Hinta de Configuração de Variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Configuração da Hinta <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Especifica um limite superior em bytes para o tamanho dos arquivos de registro temporários usados durante operações DDL online para tabelas `InnoDB`. Há um arquivo de registro para cada índice sendo criado ou tabela sendo alterada. Esse arquivo de registro armazena dados inseridos, atualizados ou excluídos na tabela durante a operação DDL. O arquivo de registro temporário é estendido conforme necessário pelo valor de `innodb_sort_buffer_size`, até o máximo especificado por `innodb_online_alter_log_max_size`. Se um arquivo de registro temporário exceder o limite de tamanho superior, a operação `ALTER TABLE` falha e todas as operações DML concorrentes não confirmadas são revertidas. Assim, um valor grande para essa opção permite que mais DML ocorra durante uma operação DDL online, mas também estende o período de tempo no final da operação DDL quando a tabela é bloqueada para aplicar os dados do log.
 
 * `innodb_open_files`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Especifica o número máximo de arquivos que o `InnoDB` pode ter abertos de uma só vez. O valor mínimo é 10. Se `innodb_file_per_table` estiver desativado, o valor padrão é 300; caso contrário, o valor padrão é 300 ou o ajuste `table_open_cache`, dependendo do valor maior.
 
@@ -1703,7 +1703,7 @@ Para evitar que arquivos não gerenciados LRU consumam todo o limite de `innodb_
 
 * `innodb_optimize_fulltext_only`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Altera a forma como o `OPTIMIZE TABLE` opera em tabelas `InnoDB`. Destinado a ser habilitado temporariamente, durante operações de manutenção para tabelas `InnoDB` com índices `FULLTEXT`.
 
@@ -1711,7 +1711,7 @@ Por padrão, o `OPTIMIZE TABLE` reorganiza os dados no índice agrupado da tabel
 
 * `innodb_page_cleaners`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O número de threads de limpador de página que limpem páginas sujas das instâncias do pool de buffers. Os threads de limpador de página realizam a limpeza da lista e a limpeza LRU. Quando há vários threads de limpador de página, as tarefas de limpeza de buffers para cada instância do pool de buffers são enviadas para os threads de limpador de página ociosos. O valor padrão de `innodb_page_cleaners` é definido com o mesmo valor que `innodb_buffer_pool_instances`. Se o número especificado de threads de limpador de página exceder o número de instâncias do pool de buffers, então `innodb_page_cleaners` é automaticamente definido com o mesmo valor que `innodb_buffer_pool_instances`.
 
@@ -1759,7 +1759,7 @@ A chamada de sistema `setpriority()` é usada em plataformas Linux onde é supor
 
 * `innodb_page_size`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Especifica o tamanho da página para os espaços de tabelas `InnoDB`. Os valores podem ser especificados em bytes ou kilobytes. Por exemplo, um valor de tamanho de página de 16 kilobytes pode ser especificado como 16384, 16KB ou 16k.
 
@@ -1777,7 +1777,7 @@ Para obter conselhos gerais sobre o ajuste de I/O, consulte a Seção 10.5.8, �
 
 * `innodb_parallel_read_threads`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Define o número de threads que podem ser usados para leituras paralelas de índices agrupados. O varredura paralela de partições também é suportado. Os threads de leitura paralelos podem melhorar o desempenho da consulta `CHECK TABLE`. O `InnoDB` lê o índice agrupado duas vezes durante uma operação `CHECK TABLE`. A segunda leitura pode ser realizada em paralelo. Este recurso não se aplica às varreduras de índices secundários. A variável de sessão `innodb_parallel_read_threads` deve ser definida para um valor maior que 1 para que as leituras paralelas de índices agrupados ocorram. O número real de threads usados para realizar uma leitura paralela de índice agrupado é determinado pelo ajuste `innodb_parallel_read_threads` ou pelo número de subárvores de índice a serem varridas, o que for menor. As páginas lidas no pool de buffer durante a varredura são mantidas na extremidade da lista LRU do pool de buffer para que possam ser descartadas rapidamente quando páginas do pool de buffer estão livres.
 
@@ -1787,7 +1787,7 @@ Antes do MySQL 8.4, o valor padrão era sempre 4.
 
 * `innodb_print_all_deadlocks`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Quando esta opção é habilitada, as informações sobre todos os bloqueios em transações do usuário do `InnoDB` são registradas no log de erro do `mysqld`. Caso contrário, você verá informações apenas sobre o último bloqueio, usando a instrução `SHOW ENGINE INNODB STATUS`. Um bloqueio ocasional no `InnoDB` não é necessariamente um problema, porque o `InnoDB` detecta a condição imediatamente e desfaz uma das transações automaticamente. Você pode usar esta opção para solucionar o motivo pelo qual os bloqueios estão ocorrendo se um aplicativo não tiver a lógica apropriada de tratamento de erros para detectar o desfazimento e tentar novamente sua operação. Um grande número de bloqueios pode indicar a necessidade de reestruturar transações que emitem instruções DML ou `SELECT ... FOR UPDATE` para múltiplas tabelas, para que cada transação acesse as tabelas na mesma ordem, evitando assim a condição de bloqueio.
 
@@ -1795,13 +1795,13 @@ Antes do MySQL 8.4, o valor padrão era sempre 4.
 
 * `innodb_print_ddl_logs`
 
-<table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Ao habilitar essa opção, o MySQL começa a gravar logs de DDL no `stderr`. Para mais informações, consulte Visualizando logs de DDL.
 
 * `innodb_purge_batch_size`
 
-  <table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Define o número de páginas do log de desfazer que são limpas e processadas em um único lote da lista de histórico. Em uma configuração de limpeza multisserial, o fio de limpeza do coordenador divide `innodb_purge_batch_size` por `innodb_purge_threads` e atribui esse número de páginas a cada fio de limpeza. A variável `innodb_purge_batch_size` também define o número de páginas do log de desfazer que são liberadas após cada 128 iterações pelos logs de desfazer.
 
@@ -1811,7 +1811,7 @@ Para informações relacionadas, consulte a Seção 17.8.9, “Configuração de
 
 * `innodb_purge_threads`
 
-  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O número de threads de segundo plano dedicados à operação de limpeza do `InnoDB`. Aumentar o valor cria threads de limpeza adicionais, o que pode melhorar a eficiência em sistemas onde operações DML são realizadas em múltiplas tabelas.
 
@@ -1819,7 +1819,7 @@ Para informações relacionadas, consulte a Seção 17.8.9, “Configuração de
 
 * `innodb_purge_rseg_truncate_frequency`
 
-  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Define a frequência com que o sistema de purga libera segmentos de rollback em termos do número de vezes que a purga é invocada. Um espaço de tabelas de desfazer não pode ser truncado até que seus segmentos de rollback sejam liberados. Normalmente, o sistema de purga libera segmentos de rollback uma vez a cada 128 vezes que a purga é invocada. O valor padrão é 128. Reduzir esse valor aumenta a frequência com que o thread de purga libera segmentos de rollback.
 
@@ -1827,7 +1827,7 @@ Para informações relacionadas, consulte a Seção 17.8.9, “Configuração de
 
 * `innodb_random_read_ahead`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Habilita a técnica de leitura prévia aleatória para otimizar o I/O do `InnoDB`.
 
@@ -1835,7 +1835,7 @@ Para obter detalhes sobre as considerações de desempenho para diferentes tipos
 
 * `innodb_read_ahead_threshold`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Controla a sensibilidade do pré-visualização linear que o `InnoDB` usa para pré-carregar páginas no pool de buffer. Se o `InnoDB` ler pelo menos `innodb_read_ahead_threshold` páginas sequencialmente de um intervalo (64 páginas), ele inicia uma leitura assíncrona para todo o intervalo seguinte. A faixa de valores permitida é de 0 a 64. Um valor de 0 desativa a pré-visualização. Para o valor padrão de 56, o `InnoDB` deve ler pelo menos 56 páginas sequencialmente de um intervalo para iniciar uma leitura assíncrona para o intervalo seguinte.
 
@@ -1847,7 +1847,7 @@ Para mais informações, consulte a Seção 17.8.3.4, “Configurando a Pré-vis
 
 * `innodb_read_io_threads`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O número de threads de E/S para operações de leitura no `InnoDB`. Sua contraparte para threads de escrita é `innodb_write_io_threads`. Para mais informações, consulte a Seção 17.8.5, “Configurando o Número de Threads de E/S InnoDB em Segundo Plano”. Para conselhos gerais sobre o ajuste do E/S, consulte a Seção 10.5.8, “Otimizando o E/S de Disco do InnoDB”. O valor padrão é o número de processadores lógicos disponíveis no sistema dividido por 2, com um valor padrão mínimo de 4.
 
@@ -1859,7 +1859,7 @@ Para mais informações, consulte a Seção 17.8.3.4, “Configurando a Pré-vis
 
 * `innodb_read_only`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Começa o `InnoDB` no modo de leitura somente. Para distribuir aplicações de banco de dados ou conjuntos de dados em mídia de leitura somente. Também pode ser usado em data warehouses para compartilhar o mesmo diretório de dados entre múltiplas instâncias. Para mais informações, consulte a Seção 17.8.2, “Configurando o InnoDB para operação de leitura somente”.
 
@@ -1879,7 +1879,7 @@ Além disso, outras tabelas no banco de dados `mysql` usam o motor de armazename
 
 * `innodb_redo_log_archive_dirs`
 
-<table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Define diretórios com rótulos onde os arquivos de arquivo de log de reverso podem ser criados. Você pode definir vários diretórios com rótulos em uma lista separada por ponto e vírgula. Por exemplo:
 
@@ -1893,7 +1893,7 @@ Um caminho deve ser especificado, e o diretório deve existir. O caminho pode co
 
 * `innodb_redo_log_capacity`
 
-<table frame="box" rules="all" summary="Propriedades para servidor dedicado InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para servidor dedicado InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Define a quantidade de espaço em disco ocupada pelos arquivos de log de refazer.
 
@@ -1905,7 +1905,7 @@ Um caminho deve ser especificado, e o diretório deve existir. O caminho pode co
 
 * `innodb_redo_log_encrypt`
 
-<table frame="box" rules="all" summary="Propriedades para servidor dedicado ao InnoDB"><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis" target="_blank"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para servidor dedicado ao InnoDB"><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
 
 Controla a criptografia dos dados do log de revisão para tabelas criptografadas usando a funcionalidade de criptografia de dados em repouso do `InnoDB`. A criptografia dos dados do log de revisão é desativada por padrão. Para mais informações, consulte Criptografia do Log de Revisão.
 
@@ -1915,7 +1915,7 @@ O atraso do fio de replicação em milissegundos em um servidor dedicado a `inno
 
 * `innodb_rollback_on_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado a `innodb`"><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado a `innodb`"><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
 
   O `InnoDB` reverte apenas a última instrução de uma transação no limite de tempo de espera por padrão. Se `--innodb-rollback-on-timeout` for especificado, um limite de tempo de espera do `InnoDB` faz com que o `InnoDB` abordem e reverta toda a transação.
 
@@ -1923,7 +1923,7 @@ O atraso do fio de replicação em milissegundos em um servidor dedicado a `inno
 
 * `innodb_rollback_segments`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 `innodb_rollback_segments` define o número de segmentos de rollback alocados para cada espaço de tabelas undo e para o espaço de tabelas temporárias global para transações que geram registros de undo. O número de transações que cada segmento de rollback suporta depende do tamanho da página do `InnoDB` e do número de logs de undo atribuídos a cada transação. Para mais informações, consulte a Seção 17.6.6, “Logs de undo”.
 
@@ -1931,13 +1931,13 @@ Para informações relacionadas, consulte a Seção 17.3, “Multiversão do Inn
 
 * `innodb_saved_page_number_debug`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Salva um número de página. Ao definir a opção `innodb_fil_make_page_dirty_debug`, a página definida por `innodb_saved_page_number_debug` é suja. A opção `innodb_saved_page_number_debug` só está disponível se o suporte de depuração estiver compilado com a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_segment_reserve_factor`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Define a porcentagem de páginas do segmento do espaço de tabela reservadas como páginas vazias. O ajuste é aplicável a espaços de tabela por arquivo e espaços de tabela gerais. O ajuste padrão de `innodb_segment_reserve_factor` é de 12,5%, que é a mesma porcentagem de páginas reservadas em versões anteriores do MySQL.
 
@@ -1945,7 +1945,7 @@ Para obter mais informações, consulte Configurando a porcentagem de páginas d
 
 * `innodb_sort_buffer_size`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Esta variável define a quantidade pela qual o arquivo de log temporário é estendido ao registrar DML concorrente durante uma operação de DDL online, e o tamanho do buffer de leitura e do buffer de escrita do arquivo de log temporário.
 
@@ -1953,7 +1953,7 @@ Para mais informações, consulte a Seção 17.12.3, “Requisitos de espaço pa
 
 * `innodb_spin_wait_delay`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 O atraso máximo entre as pesquisas para um bloqueio de rotação. A implementação de nível baixo deste mecanismo varia dependendo da combinação de hardware e sistema operacional, portanto, o atraso não corresponde a um intervalo de tempo fixo.
 
@@ -1963,7 +1963,7 @@ Para mais informações, consulte a Seção 17.8.8, “Configurando a Pesquisa d
 
 * `innodb_spin_wait_pause_multiplier`
 
-<table frame="box" rules="all" summary="Propriedades para servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Define um valor de multiplicador usado para determinar o número de instruções PAUSE em loops de espera de rotação que ocorrem quando um thread espera para adquirir um mutex ou bloqueio de leitura/escrita.
 
@@ -1977,7 +1977,7 @@ Para obter mais informações, consulte a Seção 17.8.10.1, “Configurando Par
 
 * `innodb_stats_include_delete_marked`
 
-<table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Por padrão, o `InnoDB` lê dados não confirmados ao calcular estatísticas. No caso de uma transação não confirmada que exclui linhas de uma tabela, o `InnoDB` exclui registros marcados para exclusão ao calcular estimativas de linhas e estatísticas de índices, o que pode levar a planos de execução não ótimos para outras transações que operam na tabela simultaneamente usando um nível de isolamento de transação diferente de `READ UNCOMMITTED`. Para evitar esse cenário, o `innodb_stats_include_delete_marked` pode ser habilitado para garantir que o `InnoDB` inclua registros marcados para exclusão ao calcular estatísticas do otimizador persistentes.
 
@@ -1989,7 +1989,7 @@ Para informações relacionadas, consulte a Seção 17.8.10.1, “Configurando P
 
 * `innodb_stats_method`
 
-<table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Como o servidor trata os valores `NULL` ao coletar estatísticas sobre a distribuição dos valores de índice para tabelas `InnoDB`. Os valores permitidos são `nulls_equal`, `nulls_unequal` e `nulls_ignored`. Para `nulls_equal`, todos os valores `NULL` são considerados iguais e formam um único grupo de valor com um tamanho igual ao número de valores `NULL`. Para `nulls_unequal`, os valores `NULL` são considerados desiguais, e cada `NULL` forma um grupo de valor distinto de tamanho
 
@@ -1999,7 +1999,7 @@ O método usado para gerar estatísticas de tabela influencia como o otimizador 
 
 * `innodb_stats_on_metadata`
 
-  <table frame="box" rules="all" summary="Propriedades para servidor dedicado a InnoDB"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para servidor dedicado a InnoDB"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Esta opção só se aplica quando as estatísticas do otimizador estão configuradas para não serem persistentes. As estatísticas do otimizador não são armazenadas em disco quando o `innodb_stats_persistent` está desativado ou quando tabelas individuais são criadas ou alteradas com `STATS_PERSISTENT=0`. Para mais informações, consulte a Seção 17.8.10.2, “Configurando Parâmetros de Estatísticas do Otimizador Não Persistentes”.
 
@@ -2009,7 +2009,7 @@ Para alterar a configuração, execute a instrução `SET GLOBAL innodb_stats_on
 
 * `innodb_stats_persistent`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Especifica se as estatísticas de índices do InnoDB são persistidas no disco. Caso contrário, as estatísticas podem ser recalculadas frequentemente, o que pode levar a variações nos planos de execução das consultas. Esta configuração é armazenada com cada tabela quando a tabela é criada. Você pode definir `innodb_stats_persistent` no nível global antes de criar uma tabela ou usar a cláusula `STATS_PERSISTENT` das instruções `CREATE TABLE` e `ALTER TABLE` para sobrescrever a configuração de nível global e configurar estatísticas persistentes para tabelas individuais.
 
@@ -2017,7 +2017,7 @@ Para obter mais informações, consulte a Seção 17.8.10.1, “Configurando par
 
 * `innodb_stats_persistent_sample_pages`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O número de páginas de índice a serem amostradas ao estimar a cardinalidade e outras estatísticas para uma coluna indexada, como as calculadas por `ANALYZE TABLE`. Aumentar o valor melhora a precisão das estatísticas do índice, o que pode melhorar o plano de execução da consulta, em detrimento do aumento do I/O durante a execução de `ANALYZE TABLE` para uma tabela `InnoDB`. Para mais informações, consulte a Seção 17.8.10.1, “Configurando Parâmetros de Estatísticas de Otimizador Persistente”.
 
@@ -2029,7 +2029,7 @@ Para obter mais informações, consulte a Seção 17.8.10.1, “Configurando par
 
 * `innodb_stats_transient_sample_pages`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 O número de páginas de índice a serem amostradas ao estimar a cardinalidade e outras estatísticas para uma coluna indexada, como as calculadas por `ANALYZE TABLE`. O valor padrão é 8. Aumentar o valor melhora a precisão das estatísticas do índice, o que pode melhorar o plano de execução da consulta, em detrimento do aumento do I/O ao abrir uma tabela `InnoDB` ou recalcular as estatísticas. Para mais informações, consulte a Seção 17.8.10.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistentes”.
 
@@ -2041,17 +2041,17 @@ Definir um valor alto para `innodb_stats_transient_sample_pages` pode resultar e
 
 * `innodb_status_output`
 
-  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado `innodb`"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado `innodb`"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Habilita ou desabilita a saída periódica para o monitor padrão `InnoDB`. Também é usado em combinação com `innodb_status_output_locks` para habilitar ou desabilitar a saída periódica para o Monitor de Bloqueio `InnoDB`. Para mais informações, consulte a Seção 17.17.2, “Habilitando Monitores `InnoDB’”.
 
 * `innodb_status_output_locks`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 * `innodb_strict_mode`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Quando o `innodb_strict_mode` é habilitado, o `InnoDB` retorna erros em vez de avisos ao verificar opções de tabela inválidas ou incompatíveis.
 
@@ -2065,25 +2065,25 @@ Definir o valor da variável de sessão desta variável de sistema é uma opera�
 
 * `innodb_sync_array_size`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Define o tamanho da matriz de espera do mutex/bloqueio. Aumentar o valor divide a estrutura de dados interna usada para coordenar os threads, para maior concorrência em cargas de trabalho com um grande número de threads em espera. Este ajuste deve ser configurado quando a instância do MySQL está sendo iniciada e não pode ser alterado posteriormente. O aumento do valor é recomendado para cargas de trabalho que frequentemente produzem um grande número de threads em espera, tipicamente maior que 768.
 
 * `innodb_sync_spin_loops`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O número de vezes que um thread espera por um mutex `InnoDB` ser liberado antes de ser suspenso.
 
 * `innodb_sync_debug`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
 
 Habilita a verificação de depuração de sincronização para o mecanismo de armazenamento `InnoDB`. Esta opção só está disponível se o suporte de depuração for compilado usando a opção **CMake** `WITH_DEBUG`.
 
 * `innodb_table_locks`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></table>
 
 Se `autocommit = 0`, o `InnoDB` respeita `LOCK TABLES`; o MySQL não retorna do `LOCK TABLES ... WRITE` até que todos os outros threads tenham liberado todos os seus bloqueios para a tabela. O valor padrão de `innodb_table_locks` é 1, o que significa que `LOCK TABLES` faz com que o InnoDB bloqueie uma tabela internamente se `autocommit = 0`.
 
@@ -2093,7 +2093,7 @@ Para informações relacionadas, consulte a Seção 17.7, “Modelo de Bloqueio 
 
 * `innodb_temp_data_file_path`
 
-<table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Define o caminho relativo, nome, tamanho e atributos dos arquivos de dados do espaço de tabelas temporárias globais. O espaço de tabelas temporárias globais armazena segmentos de rollback para alterações feitas em tabelas temporárias criadas pelo usuário.
 
@@ -2128,7 +2128,7 @@ Para obter mais informações, consulte Espaços de Tabela Temporários Dedicado
 
 * `innodb_temp_tablespaces_dir`
 
-  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Configuração de Variável <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th> <td>Não Aplica</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Configuração de Variável <code>SET_VAR</th> <td>Não Aplica</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Define a localização onde o `InnoDB` cria um conjunto de espaços de tabela temporários para sessões ao iniciar. O local padrão é o diretório `#innodb_temp` no diretório de dados. É permitido um caminho completo ou relativo ao diretório de dados.
 
@@ -2138,7 +2138,7 @@ Para obter mais informações, consulte Espaços de Tabela Temporários Dedicado
 
 * `innodb_thread_concurrency`
 
-<table frame="box" rules="all" summary="Propriedades para servidor dedicado `innodb`"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para servidor dedicado `innodb`"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Define o número máximo de threads permitido dentro do `InnoDB`. Um valor de 0 (o padrão) é interpretado como concorrência infinita (sem limite). Esta variável é destinada ao ajuste de desempenho em sistemas de alta concorrência.
 
@@ -2170,7 +2170,7 @@ Do ponto de vista do sistema operacional, usar uma solução de gerenciamento de
 
 * `innodb_thread_sleep_delay`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Quanto tempo as threads do `InnoDB` permanecem em espera antes de se juntarem à fila do `InnoDB`, em microsegundos. O valor padrão é 10000. Um valor de 0 desativa a espera. Você pode definir `innodb_adaptive_max_sleep_delay` para o maior valor que você permitiria para `innodb_thread_sleep_delay`, e o `InnoDB` ajusta automaticamente `innodb_thread_sleep_delay` para cima ou para baixo, dependendo da atividade atual de escalonamento de threads. Esse ajuste dinâmico ajuda o mecanismo de escalonamento de threads a funcionar de forma suave durante momentos em que o sistema está levemente carregado ou quando está operando próximo da capacidade máxima.
 
@@ -2178,7 +2178,7 @@ Para mais informações, consulte a Seção 17.8.4, “Configurando Concorrênci
 
 * `innodb_tmpdir`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Usado para definir um diretório alternativo para arquivos de classificação temporários criados durante operações `ALTER TABLE` online que reconstroem a tabela.
 
@@ -2196,13 +2196,13 @@ Para mais informações, consulte a Seção 17.12.3, “Requisitos de Espaço DD
 
 * `innodb_trx_purge_view_update_only_debug`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável de sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Pausa a limpeza de registros marcados para exclusão enquanto permite que a visualização de limpeza seja atualizada. Esta opção cria artificialmente uma situação em que a visualização de limpeza é atualizada, mas as purges ainda não foram realizadas. Esta opção só está disponível se o suporte de depuração estiver compilado usando a opção `WITH_DEBUG` do **CMake**.
 
 * `innodb_trx_rseg_n_slots_debug`
 
-<table frame="box" rules="all" summary="Propriedades para servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Define uma bandeira de depuração que limita `TRX_RSEG_N_SLOTS` a um valor específico para a função `trx_rsegf_undo_find_free` que procura por slots livres para segmentos do log de desfazer. Esta opção só está disponível se o suporte de depuração estiver compilado usando a opção **CMake** `WITH_DEBUG`.
 
@@ -2220,13 +2220,13 @@ Para mais informações, consulte a Seção 17.6.3.4, “Espaços de tabelas de 
 
 * `innodb_undo_log_encrypt`
 
-<table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Controla a criptografia dos dados do log de desfazer para tabelas criptografadas usando o recurso de criptografia de dados em repouso do `InnoDB`. Aplica-se apenas aos logs de desfazer que residem em espaços de tabelas de desfazer separados. Consulte a Seção 17.6.3.4, “Espaços de Tabelas de Desfazer”. A criptografia não é suportada para dados de log de desfazer que residem no espaço de tabelas do sistema. Para mais informações, consulte Criptografia de Log de Desfazer.
 
 * `innodb_undo_log_truncate`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Quando habilitado, os espaços de tabelas de desfazer que excedem o valor limite definido por `innodb_max_undo_log_size` são marcados para truncação. Apenas espaços de tabelas de desfazer podem ser truncados. A truncação de logs de desfazer que residem no espaço de tabelas do sistema não é suportada. Para que a truncação ocorra, deve haver pelo menos dois espaços de tabelas de desfazer.
 
@@ -2236,7 +2236,7 @@ Controla a criptografia dos dados do log de desfazer para tabelas criptografadas
 
 * `innodb_use_fdatasync`
 
-<table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para servidor dedicado innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Em plataformas que suportam chamadas de sistema `fdatasync()`, ter `innodb_use_fdatasync` habilitado permite o uso de `fdatasync()` em vez de chamadas de sistema `fsync()`. Uma chamada `fdatasync()` não esvazia as alterações no metadados do arquivo, a menos que seja necessário para a recuperação subsequente de dados, proporcionando um potencial benefício de desempenho.
 
@@ -2246,7 +2246,7 @@ Antes do MySQL 8.4, essa opção estava desabilitada por padrão.
 
 * `innodb_use_native_aio`
 
-<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Especifica se usar o subsistema de E/S assíncrona. Essa variável não pode ser alterada enquanto o servidor estiver em execução. Normalmente, você não precisa configurar essa opção, pois ela está habilitada por padrão.
 
@@ -2266,7 +2266,7 @@ Para mais informações, consulte a Seção 17.8.6, “Usando E/S Assíncrona no
 
 * `innodb_validate_tablespace_paths`
 
-  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para innodb-dedicated-server"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Controla a validação do caminho do arquivo do tablespace. Durante o inicialização, o `InnoDB` valida os caminhos dos arquivos de tablespace conhecidos contra os caminhos de arquivos de tablespace armazenados no dicionário de dados, caso os arquivos de tablespace tenham sido movidos para um local diferente. A variável `innodb_validate_tablespace_paths` permite desativar a validação de caminhos de tablespace. Esse recurso é destinado a ambientes onde os arquivos de tablespace não são movidos. Desativar a validação de caminhos melhora o tempo de inicialização em sistemas com um grande número de arquivos de tablespace.
 
@@ -2282,7 +2282,7 @@ Para mais informações, consulte a Seção 17.6.3.7, “Desativar a Validação
 
 * `innodb_write_io_threads`
 
-  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o servidor dedicado ao InnoDB"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--innodb-dedicated-server[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>innodb_dedicated_server</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O número de threads de E/S para operações de escrita no `InnoDB`. O valor padrão é 4. Sua contraparte para threads de leitura é `innodb_read_io_threads`. Para mais informações, consulte a Seção 17.8.5, “Configurando o Número de Threads de E/S de InnoDB em Segundo Plano”. Para conselhos gerais sobre o ajuste de E/S, consulte a Seção 10.5.8, “Otimizando o E/S de Disco do InnoDB”.
 

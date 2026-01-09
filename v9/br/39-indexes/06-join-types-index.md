@@ -38,7 +38,7 @@ Seção 15.2.13, “Instrução SELECT”
 
 [index top]
 
-### eq\_ref
+### eq_ref
 
 Seção 10.2.1.12, “Conjuntos de Busca em Loop Bloco e Acesso a Chave em Batelada”
 
@@ -52,7 +52,7 @@ Seção 25.4.3.9.2, “Variáveis do Sistema de Clúster NDB”
 
 Seção 10.2.2.3, “Otimização de Subconsultas com a Estratégia EXISTS”
 
-Seção 29.12.4.1, “A tabela events\_waits\_current”
+Seção 29.12.4.1, “A tabela events_waits_current”
 
 ### F
 
@@ -72,13 +72,13 @@ Seção 10.2.1.12, “Conjuntos de Busca em Loop Bloco e Acesso a Chave em Bate
 
 Seção 10.8.2, “Formato de Saída do EXPLAIN”
 
-### index\_merge
+### index_merge
 
 Seção 10.8.2, “Formato de Saída do EXPLAIN”
 
 Seção 10.2.1.3, “Otimização de Mesclagem de Índices”
 
-### index\_subquery
+### index_subquery
 
 Seção 10.8.2, “Formato de Saída do EXPLAIN”
 
@@ -126,7 +126,7 @@ Seção 10.2.2.4, “Otimização de tabelas derivadas, referências de visuali
 
 Seção 10.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”
 
-### ref\_or\_null
+### ref_or_null
 
 Seção 10.8.2, “Formato de saída do EXPLAIN”
 
@@ -154,7 +154,7 @@ Seção 15.2.13, “Instrução SELECT”
 
 [topo do índice]
 
-### subquery\_única
+### subquery_única
 
 Seção 10.8.2, “Formato de saída do EXPLAIN”
 

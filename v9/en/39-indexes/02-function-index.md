@@ -1,6 +1,6 @@
 ## C Function Index
 
-### mysql\_affected\_rows()
+### mysql_affected_rows()
 
 Section 15.2.1, “CALL Statement”
 
@@ -10,19 +10,19 @@ Section 15.2.7, “INSERT Statement”
 
 Section 15.2.12, “REPLACE Statement”
 
-### mysql\_bind\_param()
+### mysql_bind_param()
 
 Section 11.6, “Query Attributes”
 
-### mysql\_change\_user()
+### mysql_change_user()
 
 Section 6.5.1.2, “mysql Client Commands”
 
-### mysql\_close()
+### mysql_close()
 
 Section B.3.2.9, “Communication Errors and Aborted Connections”
 
-### mysql\_errno()
+### mysql_errno()
 
 Section 8.4.6.4, “Audit Log File Formats”
 
@@ -30,29 +30,29 @@ Section B.2, “Error Information Interfaces”
 
 Section 15.6.7.5, “SIGNAL Statement”
 
-### mysql\_error()
+### mysql_error()
 
 Section B.2, “Error Information Interfaces”
 
 Section 15.6.7.5, “SIGNAL Statement”
 
-### mysql\_escape\_string()
+### mysql_escape_string()
 
 Section 8.1.7, “Client Programming Security Guidelines”
 
-### mysql\_fetch\_row()
+### mysql_fetch_row()
 
 Section 18.8.1, “FEDERATED Storage Engine Overview”
 
-### mysql\_free\_result()
+### mysql_free_result()
 
 Section B.3.2.12, “Commands out of sync”
 
-### mysql\_get\_character\_set\_info()
+### mysql_get_character_set_info()
 
 Section 12.14.2, “Choosing a Collation ID”
 
-### mysql\_info()
+### mysql_info()
 
 Section 15.1.11, “ALTER TABLE Statement”
 
@@ -64,7 +64,7 @@ Section 1.7.3.1, “PRIMARY KEY and UNIQUE Index Constraints”
 
 Section 15.2.17, “UPDATE Statement”
 
-### mysql\_insert\_id()
+### mysql_insert_id()
 
 Section 15.1.24, “CREATE TABLE Statement”
 
@@ -74,13 +74,13 @@ Section 15.2.7, “INSERT Statement”
 
 Section 7.1.8, “Server System Variables”
 
-Section 5.6.9, “Using AUTO\_INCREMENT”
+Section 5.6.9, “Using AUTO_INCREMENT”
 
-### mysql\_next\_result()
+### mysql_next_result()
 
 Section 15.2.1, “CALL Statement”
 
-### mysql\_options()
+### mysql_options()
 
 Section 8.2.1, “Account User Names and Passwords”
 
@@ -96,9 +96,9 @@ Section 6.5.1.1, “mysql Client Options”
 
 Section B.3.2.7, “MySQL server has gone away”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -128,21 +128,21 @@ Section 8.4.1.2, “SHA-256 Pluggable Authentication”
 
 Section 7.8.4, “Using Client Programs in a Multiple-Server Environment”
 
-### mysql\_options4()
+### mysql_options4()
 
 Section 8.2.18, “Multifactor Authentication”
 
 Section 29.12.9, “Performance Schema Connection Attribute Tables”
 
-### mysql\_ping()
+### mysql_ping()
 
 Section B.3.2.7, “MySQL server has gone away”
 
-### mysql\_query()
+### mysql_query()
 
 Section 15.2.1, “CALL Statement”
 
-### mysql\_real\_connect()
+### mysql_real_connect()
 
 Section 15.2.1, “CALL Statement”
 
@@ -170,13 +170,13 @@ Section 6.10, “Unix Signal Handling in MySQL”
 
 Section 7.8.4, “Using Client Programs in a Multiple-Server Environment”
 
-### mysql\_real\_connect\_dns\_srv()
+### mysql_real_connect_dns_srv()
 
 Section 6.2.6, “Connecting to the Server Using DNS SRV Records”
 
 Section 6.5.1.1, “mysql Client Options”
 
-### mysql\_real\_escape\_string\_quote()
+### mysql_real_escape_string_quote()
 
 Section 8.1.7, “Client Programming Security Guidelines”
 
@@ -184,71 +184,71 @@ Section 13.4.7, “Populating Spatial Columns”
 
 Section 11.1.1, “String Literals”
 
-### mysql\_real\_query()
+### mysql_real_query()
 
 Section 15.2.1, “CALL Statement”
 
 Section 18.8.1, “FEDERATED Storage Engine Overview”
 
-### mysql\_session\_track\_get\_first()
+### mysql_session_track_get_first()
 
 Section 7.1.18, “Server Tracking of Client Session State”
 
-### mysql\_session\_track\_get\_next()
+### mysql_session_track_get_next()
 
 Section 7.1.18, “Server Tracking of Client Session State”
 
-### mysql\_shutdown()
+### mysql_shutdown()
 
 Section 8.2.2, “Privileges Provided by MySQL”
 
-### mysql\_sqlstate()
+### mysql_sqlstate()
 
 Section B.2, “Error Information Interfaces”
 
 Section 15.6.7.5, “SIGNAL Statement”
 
-### mysql\_stmt\_attr\_set()
+### mysql_stmt_attr_set()
 
 Section 15.6.6.5, “Restrictions on Server-Side Cursors”
 
-### mysql\_stmt\_close()
+### mysql_stmt_close()
 
-Section 29.12.6.4, “The prepared\_statements\_instances Table”
+Section 29.12.6.4, “The prepared_statements_instances Table”
 
-### mysql\_stmt\_errno()
-
-Section B.2, “Error Information Interfaces”
-
-### mysql\_stmt\_error()
+### mysql_stmt_errno()
 
 Section B.2, “Error Information Interfaces”
 
-### mysql\_stmt\_execute()
+### mysql_stmt_error()
 
-Section 29.12.6.4, “The prepared\_statements\_instances Table”
+Section B.2, “Error Information Interfaces”
 
-### mysql\_stmt\_next\_result()
+### mysql_stmt_execute()
+
+Section 29.12.6.4, “The prepared_statements_instances Table”
+
+### mysql_stmt_next_result()
 
 Section 15.2.1, “CALL Statement”
 
-### mysql\_stmt\_prepare()
+### mysql_stmt_prepare()
 
 Section 10.10.3, “Caching of Prepared Statements and Stored Programs”
 
 Section 15.5, “Prepared Statements”
 
-Section 29.12.6.4, “The prepared\_statements\_instances Table”
+Section 29.12.6.4, “The prepared_statements_instances Table”
 
-### mysql\_stmt\_send\_long\_data()
+### mysql_stmt_send_long_data()
 
 Section 7.1.8, “Server System Variables”
 
-### mysql\_stmt\_sqlstate()
+### mysql_stmt_sqlstate()
 
 Section B.2, “Error Information Interfaces”
 
-### mysql\_store\_result()
+### mysql_store_result()
 
 Section B.3.2.12, “Commands out of sync”
 
@@ -256,7 +256,7 @@ Section 18.8.1, “FEDERATED Storage Engine Overview”
 
 Section 6.5.1, “mysql — The MySQL Command-Line Client”
 
-### mysql\_use\_result()
+### mysql_use_result()
 
 Section B.3.2.12, “Commands out of sync”
 
@@ -264,7 +264,7 @@ Section 6.5.1, “mysql — The MySQL Command-Line Client”
 
 Section B.3.2.6, “Out of memory”
 
-### mysql\_warning\_count()
+### mysql_warning_count()
 
 Section B.2, “Error Information Interfaces”
 

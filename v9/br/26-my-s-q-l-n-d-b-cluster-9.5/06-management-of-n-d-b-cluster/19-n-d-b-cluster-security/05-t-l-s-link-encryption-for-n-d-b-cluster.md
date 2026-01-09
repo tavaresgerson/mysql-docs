@@ -69,20 +69,20 @@ Created 3 keys and 3 certificates.
 $>
 ```
 
-`--create-key` faz com que o **ndb\_sign\_keys** se conecte ao servidor de gerenciamento, leia a configuração do cluster e, em seguida, crie um conjunto completo de chaves e certificados para todos os nós NDB configurados para rodar no host local. O servidor de gerenciamento do cluster deve estar em execução para que isso funcione. Se o servidor de gerenciamento não estiver em execução, o **ndb\_sign\_keys** pode ler o arquivo de configuração do cluster diretamente usando a opção `--config-file`. O **ndb\_sign\_keys** também pode criar um único par de chave-certificado para um único tipo de nó usando `--no-config` para ignorar a configuração do cluster e `--node-type` para especificar o tipo de nó (um dos `mgmd`, `db` ou `api`). Além disso, você deve especificar um nome de host para o certificado com `--bound-hostname=host_name`, ou desabilitar a vinculação de nome de host fornecendo `--bind-host=0`.
+`--create-key` faz com que o **ndb_sign_keys** se conecte ao servidor de gerenciamento, leia a configuração do cluster e, em seguida, crie um conjunto completo de chaves e certificados para todos os nós NDB configurados para rodar no host local. O servidor de gerenciamento do cluster deve estar em execução para que isso funcione. Se o servidor de gerenciamento não estiver em execução, o **ndb_sign_keys** pode ler o arquivo de configuração do cluster diretamente usando a opção `--config-file`. O **ndb_sign_keys** também pode criar um único par de chave-certificado para um único tipo de nó usando `--no-config` para ignorar a configuração do cluster e `--node-type` para especificar o tipo de nó (um dos `mgmd`, `db` ou `api`). Além disso, você deve especificar um nome de host para o certificado com `--bound-hostname=host_name`, ou desabilitar a vinculação de nome de host fornecendo `--bind-host=0`.
 
 A assinatura de chave por um host remoto é realizada conectando-se ao host CA usando **ssh**.
 
 ##### 25.6.19.5.3 Usando Conexões TLS
 
-Uma vez que você criou um CA e um certificado, pode testar a disponibilidade da conexão TLS para o servidor de gerenciamento executando o cliente **ndb\_mgm** com `--test-tls`, assim:
+Uma vez que você criou um CA e um certificado, pode testar a disponibilidade da conexão TLS para o servidor de gerenciamento executando o cliente **ndb_mgm** com `--test-tls`, assim:
 
 ```
 $> ndb_mgm --test-tls
 No valid certificate.
 ```
 
-Uma mensagem apropriada é gerada se o cliente conseguir se conectar usando TLS. Você pode precisar incluir outras opções de **ndb\_mgm**, como `--ndb-tls-search-path`, para facilitar a conexão TLS, como mostrado aqui:
+Uma mensagem apropriada é gerada se o cliente conseguir se conectar usando TLS. Você pode precisar incluir outras opções de **ndb_mgm**, como `--ndb-tls-search-path`, para facilitar a conexão TLS, como mostrado aqui:
 
 ```
 $> ndb_mgm --test-tls --ndb-tls-search-path="CA:keys"
@@ -97,7 +97,7 @@ Connected to management server at localhost port 1186 (using cleartext)
 $>
 ```
 
-Você pode fazer com que o cluster use a CA e os certificados criados com **ndb\_sign\_keys** realizando um reinício contínuo do cluster, começando com os nós de gerenciamento, que devem ser reiniciados usando a opção `--ndb-tls-search-path`. Depois disso, reinicie os nós de dados, novamente usando `--ndb-tls-search-path`. `--ndb-tls-search-path` também é suportado para **mysqld** executado como um nó de API de cluster.
+Você pode fazer com que o cluster use a CA e os certificados criados com **ndb_sign_keys** realizando um reinício contínuo do cluster, começando com os nós de gerenciamento, que devem ser reiniciados usando a opção `--ndb-tls-search-path`. Depois disso, reinicie os nós de dados, novamente usando `--ndb-tls-search-path`. `--ndb-tls-search-path` também é suportado para **mysqld** executado como um nó de API de cluster.
 
 Para que o TLS funcione, cada nó que se conecta ao cluster deve ter um certificado e uma chave válidos. Isso inclui nós de dados, nós de API e programas utilitários. Os mesmos arquivos de certificado e chave podem ser usados por mais de um nó.
 
@@ -110,7 +110,7 @@ $> ndbmtd -c localhost:1186 --ndb-tls-search-path='CA:keys'
 2023-12-19 12:02:15 [ndbd] INFO     -- Angel allocated nodeid: 5
 ```
 
-Você pode verificar se os nós do cluster estão usando TLS para se conectar verificando a saída do comando `TLS INFO` no cliente **ndb\_mgm**, assim:
+Você pode verificar se os nós do cluster estão usando TLS para se conectar verificando a saída do comando `TLS INFO` no cliente **ndb_mgm**, assim:
 
 ```
 $> ndb_mgm --ndb-tls-search-path="CA:keys"
@@ -171,12 +171,12 @@ ndb_mgm>
 
 Se `Conexões atuais` e `Conexões atuais usando TLS` forem as mesmas, isso significa que todas as conexões do cluster estão usando TLS.
 
-Depois de estabelecer conexões TLS para todos os nós, você deve tornar o TLS uma exigência rigorosa. Para clientes, você pode fazer isso configurando `ndb-mgm-tls=strict` no arquivo `my.cnf` em cada host do clúster. Imponha a exigência de TLS no servidor de gerenciamento configurando `RequireTls=true` na seção `[mgm default]` do arquivo `config.ini` do clúster, e então realize um reinício em rolagem do clúster para que essa mudança entre em vigor. Faça isso também para os nós de dados, configurando `RequireTls=true` na seção `[ndbd default]` do arquivo de configuração; depois disso, realize um segundo reinício em rolagem do clúster para que as mudanças entrem em vigor nos nós de dados. Inicie o **ndb\_mgmd** com as opções `--reload` e `--config-file` ambas as vezes para garantir que cada uma das duas mudanças no arquivo de configuração seja lida pelo servidor de gerenciamento.
+Depois de estabelecer conexões TLS para todos os nós, você deve tornar o TLS uma exigência rigorosa. Para clientes, você pode fazer isso configurando `ndb-mgm-tls=strict` no arquivo `my.cnf` em cada host do clúster. Imponha a exigência de TLS no servidor de gerenciamento configurando `RequireTls=true` na seção `[mgm default]` do arquivo `config.ini` do clúster, e então realize um reinício em rolagem do clúster para que essa mudança entre em vigor. Faça isso também para os nós de dados, configurando `RequireTls=true` na seção `[ndbd default]` do arquivo de configuração; depois disso, realize um segundo reinício em rolagem do clúster para que as mudanças entrem em vigor nos nós de dados. Inicie o **ndb_mgmd** com as opções `--reload` e `--config-file` ambas as vezes para garantir que cada uma das duas mudanças no arquivo de configuração seja lida pelo servidor de gerenciamento.
 
-Para substituir uma chave privada, use **ndb\_sign\_keys** `--create-key` para criar a nova chave e certificado, com as opções `--node-id` e `--node-type` se e quando necessário para limitar a substituição a um único ID de nó, tipo de nó ou ambos. Se a ferramenta encontrar arquivos de chave e certificado existentes, ela renomeia-os para refletir seu status de aposentadoria e salva a nova chave e certificado como arquivos ativos; os novos arquivos são usados na próxima vez que o nó for reiniciado.
+Para substituir uma chave privada, use **ndb_sign_keys** `--create-key` para criar a nova chave e certificado, com as opções `--node-id` e `--node-type` se e quando necessário para limitar a substituição a um único ID de nó, tipo de nó ou ambos. Se a ferramenta encontrar arquivos de chave e certificado existentes, ela renomeia-os para refletir seu status de aposentadoria e salva a nova chave e certificado como arquivos ativos; os novos arquivos são usados na próxima vez que o nó for reiniciado.
 
-Para substituir um certificado sem substituir a chave privada, use **ndb\_sign\_keys** sem fornecer a opção `--create-key`. Isso cria um novo certificado para a chave existente (sem substituir a chave) e aposenta o certificado antigo.
+Para substituir um certificado sem substituir a chave privada, use **ndb_sign_keys** sem fornecer a opção `--create-key`. Isso cria um novo certificado para a chave existente (sem substituir a chave) e aposenta o certificado antigo.
 
-A assinatura remota de chaves também é suportada pelo ndb\_sign\_keys. Usando o SSH, a opção `--remote-CA-host` fornece o endereço SSH do host CA no formato `user@host`. Por padrão, o processo local **ndb\_sign\_keys** usa o utilitário **ssh** do sistema e o endereço para executar **ndb\_sign\_keys** no host remoto com as opções corretas para realizar a assinatura desejada. Alternativamente, se `--remote-openssl=true`, o **openssl** é usado no host remoto em vez do **ndb\_sign\_keys**.
+A assinatura remota de chaves também é suportada pelo ndb_sign_keys. Usando o SSH, a opção `--remote-CA-host` fornece o endereço SSH do host CA no formato `user@host`. Por padrão, o processo local **ndb_sign_keys** usa o utilitário **ssh** do sistema e o endereço para executar **ndb_sign_keys** no host remoto com as opções corretas para realizar a assinatura desejada. Alternativamente, se `--remote-openssl=true`, o **openssl** é usado no host remoto em vez do **ndb_sign_keys**.
 
 Ao usar a assinatura remota, os dados enviados pela rede são um pedido de assinatura PKCS#10, e não a chave privada, que nunca sai do host local.

@@ -1,4 +1,4 @@
-### 28.3.37 The INFORMATION\_SCHEMA SCHEMATA Table
+### 28.3.37 The INFORMATION_SCHEMA SCHEMATA Table
 
 A schema is a database, so the `SCHEMATA` table provides information about databases.
 

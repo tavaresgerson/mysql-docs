@@ -135,7 +135,7 @@ As variáveis de status do esquema de desempenho têm os seguintes significados:
 
   Quantos instrumentos de palco não puderam ser carregados.
 
-- \[`Classes de declarações do esquema de desempenho perdidas`]\(performance-schema-status-variables.html#statvar\_Classes de declarações do esquema de desempenho perdidas)
+- [`Classes de declarações do esquema de desempenho perdidas`]\(performance-schema-status-variables.html#statvar_Classes de declarações do esquema de desempenho perdidas)
 
   Quantos instrumentos de declaração não puderam ser carregados.
 

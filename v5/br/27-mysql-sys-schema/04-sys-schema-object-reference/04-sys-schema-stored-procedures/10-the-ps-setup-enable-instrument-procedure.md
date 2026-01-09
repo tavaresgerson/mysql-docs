@@ -1,4 +1,4 @@
-#### 26.4.4.10 O procedimento ps\_setup\_enable\_instrument()
+#### 26.4.4.10 O procedimento ps_setup_enable_instrument()
 
 Habilita instrumentos do Schema de Desempenho com nomes que contêm o argumento. Produz um conjunto de resultados indicando quantos instrumentos foram habilitados. Os instrumentos já habilitados não são contabilizados.
 

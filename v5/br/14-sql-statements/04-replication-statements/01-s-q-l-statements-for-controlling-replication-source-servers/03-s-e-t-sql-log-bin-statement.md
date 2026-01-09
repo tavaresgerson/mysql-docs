@@ -1,4 +1,4 @@
-#### 13.4.1.3 Declaração sql\_log\_bin do SET
+#### 13.4.1.3 Declaração sql_log_bin do SET
 
 ```sql
 SET sql_log_bin = {OFF|ON}

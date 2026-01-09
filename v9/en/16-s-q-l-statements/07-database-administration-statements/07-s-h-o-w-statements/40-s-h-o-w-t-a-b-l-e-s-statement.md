@@ -14,6 +14,6 @@ The optional `EXTENDED` modifier causes `SHOW TABLES` to list hidden tables crea
 
 This statement also lists any views in the database. The optional `FULL` modifier causes `SHOW TABLES` to display a second output column with values of `BASE TABLE` for a table, `VIEW` for a view, or `SYSTEM VIEW` for an `INFORMATION_SCHEMA` table.
 
-If you have no privileges for a base table or view, it does not show up in the output from `SHOW TABLES` or **mysqlshow db\_name**.
+If you have no privileges for a base table or view, it does not show up in the output from `SHOW TABLES` or **mysqlshow db_name**.
 
-Table information is also available from the `INFORMATION_SCHEMA` `TABLES` table. See Section 28.3.44, “The INFORMATION\_SCHEMA TABLES Table”.
+Table information is also available from the `INFORMATION_SCHEMA` `TABLES` table. See Section 28.3.44, “The INFORMATION_SCHEMA TABLES Table”.

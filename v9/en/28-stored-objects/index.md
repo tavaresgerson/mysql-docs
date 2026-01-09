@@ -10,7 +10,7 @@
 
     27.2.3 Stored Routine Metadata
 
-    27.2.4 Stored Procedures, Functions, Triggers, and LAST\_INSERT\_ID()
+    27.2.4 Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()
 
 27.3 JavaScript Stored Programs :   27.3.1 JavaScript Stored Program Creation and Management
 

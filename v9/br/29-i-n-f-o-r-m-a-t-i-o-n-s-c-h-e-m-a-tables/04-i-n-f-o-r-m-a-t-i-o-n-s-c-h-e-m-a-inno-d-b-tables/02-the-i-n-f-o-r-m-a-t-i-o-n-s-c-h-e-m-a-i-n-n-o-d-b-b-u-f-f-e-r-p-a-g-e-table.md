@@ -1,8 +1,8 @@
-### 28.4.2 Tabela `INFORMATION\_SCHEMA\_INNODB\_BUFFER\_PAGE`
+### 28.4.2 Tabela `INFORMATION_SCHEMA_INNODB_BUFFER_PAGE`
 
 A tabela `INNODB_BUFFER_PAGE` fornece informações sobre cada página no pool de buffer do `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.5, “Tabelas do Pool de Buffer do INFORMATION\_SCHEMA do InnoDB”.
+Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.5, “Tabelas do Pool de Buffer do INFORMATION_SCHEMA do InnoDB”.
 
 Aviso
 
@@ -26,11 +26,11 @@ A tabela `INNODB_BUFFER_PAGE` tem as seguintes colunas:
 
   O número da página.
 
-* `PAGE\_TYPE`
+* `PAGE_TYPE`
 
   O tipo de página. A tabela a seguir mostra os valores permitidos.
 
-**Tabela 28.4 Valores de `PAGE\_TYPE` do INNODB\_BUFFER\_PAGE**
+**Tabela 28.4 Valores de `PAGE_TYPE` do INNODB_BUFFER_PAGE**
 
 <table summary="Mapeamento para interpretar os valores de INNODB_BUFFER_PAGE.PAGE_TYPE.">
 <tr> <td style="width: 30%">Tipo de Página</td> <td>Descrição</td> </tr>
@@ -117,7 +117,7 @@ A tabela `INNODB_BUFFER_PAGE` tem as seguintes colunas:
 
   O estado da página. A tabela a seguir mostra os valores permitidos.
 
-  **Tabela 28.5 INNODB\_BUFFER\_PAGE.PAGE\_STATE Valores**
+  **Tabela 28.5 INNODB_BUFFER_PAGE.PAGE_STATE Valores**
 
 <table summary="Mapeamento para interpretar os valores de INNODB_BUFFER_PAGE.PAGE_STATE."><thead><tr> <th>Estado da Página</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>FILE_PAGE</code></td> <td>Uma página de arquivo em buffer</td> </tr><tr> <td><code>MEMORY</code></td> <td>Contém um objeto de memória principal</td> </tr><tr> <td><code>NOT_USED</code></td> <td>Na lista de livre</td> </tr><tr> <td><code>NULL</code></td> <td>Páginas limpas comprimidas, páginas comprimidas na lista de varredura, páginas usadas como sentinelas de buffer do pool</td> </tr><tr> <td><code>READY_FOR_USE</code></td> <td>Uma página livre</td> </tr><tr> <td><code>REMOVE_HASH</code></td> <td>O índice de hash deve ser removido antes de ser colocado na lista de livre</td> </tr></tbody></table>
 

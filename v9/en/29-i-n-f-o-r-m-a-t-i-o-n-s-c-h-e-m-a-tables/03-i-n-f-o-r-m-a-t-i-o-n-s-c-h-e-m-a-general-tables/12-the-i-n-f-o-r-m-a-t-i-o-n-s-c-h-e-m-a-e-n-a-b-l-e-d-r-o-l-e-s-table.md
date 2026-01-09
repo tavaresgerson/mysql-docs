@@ -1,4 +1,4 @@
-### 28.3.12 The INFORMATION\_SCHEMA ENABLED\_ROLES Table
+### 28.3.12 The INFORMATION_SCHEMA ENABLED_ROLES Table
 
 The `ENABLED_ROLES` table provides information about the roles that are enabled within the current session.
 

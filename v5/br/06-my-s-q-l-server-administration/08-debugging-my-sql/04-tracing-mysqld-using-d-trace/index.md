@@ -16,7 +16,7 @@ As informações globais são fornecidas nos argumentos das sondagens DTrace em 
 
 O MySQL inclui suporte para as ferramentas DTrace nessas plataformas:
 
-- Solaris 10 Update 5 (Solaris 5/08) nas plataformas SPARC, x86 e x86\_64
+- Solaris 10 Update 5 (Solaris 5/08) nas plataformas SPARC, x86 e x86_64
 
 - OS X/macOS 10.4 e superior
 

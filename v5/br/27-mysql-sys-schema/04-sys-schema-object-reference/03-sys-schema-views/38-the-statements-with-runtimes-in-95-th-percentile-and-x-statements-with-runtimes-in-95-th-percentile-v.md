@@ -1,4 +1,4 @@
-#### 26.4.3.38 declarações\_com\_runtimes\_no\_95º percentil e x$declarações\_com\_runtimes\_no\_95º percentil Visualizações
+#### 26.4.3.38 declarações_com_runtimes_no_95º percentil e x$declarações_com_runtimes_no_95º percentil Visualizações
 
 Essas visualizações listam declarações com tempos de execução no 95º percentil. Por padrão, as linhas são ordenadas por latência média decrescente.
 

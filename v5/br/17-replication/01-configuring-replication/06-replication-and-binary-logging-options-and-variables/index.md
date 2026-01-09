@@ -14,7 +14,7 @@ As seções a seguir contêm informações sobre as opções do **mysqld** e as 
 
 De particular importância é a variável de sistema `server_id`.
 
-<table frame="box" rules="all" summary="Propriedades para server_id"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--server-id=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="replication-options.html#sysvar_server_id">server_id</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>4294967295</code>]]</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para server_id"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--server-id=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>server_id</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>4294967295</code>]]</td> </tr></tbody></table>
 
 Esta variável especifica o ID do servidor. No MySQL 5.7, `server_id` deve ser especificado se o registro binário estiver habilitado, caso contrário, o servidor não poderá ser iniciado.
 
@@ -32,7 +32,7 @@ Nota
 
 A presença da variável de sistema `server_uuid` no MySQL 5.7 não altera a exigência de definir um valor único para o `server_id` para cada servidor MySQL como parte da preparação e execução da replicação do MySQL, conforme descrito anteriormente nesta seção.
 
-<table frame="box" rules="all" summary="Propriedades para server_uuid"><tbody><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="replication-options.html#sysvar_server_uuid">server_uuid</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para server_uuid"><tbody><tr><th>Variável do sistema</th> <td>[[<code>server_uuid</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Ao iniciar, o servidor MySQL obtém automaticamente um UUID da seguinte forma:
 
@@ -40,7 +40,7 @@ Ao iniciar, o servidor MySQL obtém automaticamente um UUID da seguinte forma:
 
 2. Se o `data_dir/auto.cnf` não for encontrado, gere um novo UUID e salve-o neste arquivo, criando o arquivo se necessário.
 
-O arquivo `auto.cnf` tem um formato semelhante ao utilizado para os arquivos `my.cnf` ou `my.ini`. No MySQL 5.7, o `auto.cnf` possui apenas uma única seção `[auto]` contendo uma única configuração e valor de `server_uuid` (opções de replicação.html#sysvar\_server\_uuid); o conteúdo do arquivo parece semelhante ao mostrado aqui:
+O arquivo `auto.cnf` tem um formato semelhante ao utilizado para os arquivos `my.cnf` ou `my.ini`. No MySQL 5.7, o `auto.cnf` possui apenas uma única seção `[auto]` contendo uma única configuração e valor de `server_uuid` (opções de replicação.html#sysvar_server_uuid); o conteúdo do arquivo parece semelhante ao mostrado aqui:
 
 ```sql
 [auto]
@@ -61,6 +61,6 @@ O `server_uuid` de um servidor também é usado em GTIDs para transações que t
 
 Ao iniciar, o fio de I/O de replicação gera um erro e é interrompido se o UUID da fonte for igual ao seu próprio, a menos que a opção `--replicate-same-server-id` tenha sido definida. Além disso, o fio de I/O de replicação gera uma mensagem de aviso se qualquer um dos seguintes for verdadeiro:
 
-- Não existe nenhuma fonte com o `server_uuid` esperado (replication-options.html#sysvar\_server\_uuid).
+- Não existe nenhuma fonte com o `server_uuid` esperado (replication-options.html#sysvar_server_uuid).
 
 - O `server_uuid` da fonte mudou, embora nenhuma declaração `CHANGE MASTER TO` tenha sido executada.

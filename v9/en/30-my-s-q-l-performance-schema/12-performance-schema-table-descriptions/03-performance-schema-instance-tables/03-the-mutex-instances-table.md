@@ -1,4 +1,4 @@
-#### 29.12.3.3 The mutex\_instances Table
+#### 29.12.3.3 The mutex_instances Table
 
 The `mutex_instances` table lists all the mutexes seen by the Performance Schema while the server executes. A mutex is a synchronization mechanism used in the code to enforce that only one thread at a given time can have access to some common resource. The resource is said to be “protected” by the mutex.
 

@@ -145,7 +145,7 @@ partition_options:
 
 * For usage examples, see [Section 13.1.8.3, “ALTER TABLE Examples”](alter-table-examples.html "13.1.8.3 ALTER TABLE Examples").
 
-* With the [`mysql_info()`](/doc/c-api/5.7/en/mysql-info.html) C API function, you can find out how many rows were copied by [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"). See [mysql\_info()](/doc/c-api/5.7/en/mysql-info.html).
+* With the [`mysql_info()`](/doc/c-api/5.7/en/mysql-info.html) C API function, you can find out how many rows were copied by [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"). See [mysql_info()](/doc/c-api/5.7/en/mysql-info.html).
 
 There are several additional aspects to the `ALTER TABLE` statement, described under the following topics in this section:
 
@@ -250,7 +250,7 @@ Use of table options with [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE 
       COMMENT = 'NDB_COLUMN=MAX_BLOB_PART_SIZE';
   ```
 
-  Bear in mind that `ALTER TABLE ... COMMENT ...` discards any existing comment for the table. See [Setting NDB\_TABLE options](create-table.html#create-table-comment-ndb-table-options "Setting NDB_TABLE options"), for additional information and examples.
+  Bear in mind that `ALTER TABLE ... COMMENT ...` discards any existing comment for the table. See [Setting NDB_TABLE options](create-table.html#create-table-comment-ndb-table-options "Setting NDB_TABLE options"), for additional information and examples.
 
 To verify that the table options were changed as intended, use [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"), or query the Information Schema [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") table.
 
@@ -494,7 +494,7 @@ The server prohibits changes to foreign key columns that have the potential to c
 
 * Changing a `NULL` column to `NOT NULL` in non-strict mode is prohibited to prevent converting `NULL` values to default non-`NULL` values, for which there are no corresponding values in the referenced table. The operation is permitted in strict mode, but an error is returned if any such conversion is required.
 
-`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*\_ibfk\_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*\_ibfk\_” as internally generated names.
+`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” as internally generated names.
 
 #### Changing the Character Set
 
@@ -567,4 +567,4 @@ It is possible for an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Stat
 
 For more information about partition options, see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"), and [Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations"). For information about and examples of `ALTER TABLE ... EXCHANGE PARTITION` statements, see [Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables").
 
-Prior to MySQL 5.7.6, partitioned `InnoDB` tables used the generic `ha_partition` partitioning handler employed by `MyISAM` and other storage engines not supplying their own partitioning handlers; in MySQL 5.7.6 and later, such tables are created using the `InnoDB` storage engine's own (or “native”) partitioning handler. Beginning with MySQL 5.7.9, you can upgrade an `InnoDB` table that was created in MySQL 5.7.6 or earlier (that is, created using `ha_partition`) to the `InnoDB` native partition handler using `ALTER TABLE ... UPGRADE PARTITIONING`. (Bug #76734, Bug #20727344) This `ALTER TABLE` syntax does not accept any other options and can be used only on a single table at a time. You can also use [**mysql\_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") in MySQL 5.7.9 or later to upgrade older partitioned **InnoDB** tables to the native partitioning handler.
+Prior to MySQL 5.7.6, partitioned `InnoDB` tables used the generic `ha_partition` partitioning handler employed by `MyISAM` and other storage engines not supplying their own partitioning handlers; in MySQL 5.7.6 and later, such tables are created using the `InnoDB` storage engine's own (or “native”) partitioning handler. Beginning with MySQL 5.7.9, you can upgrade an `InnoDB` table that was created in MySQL 5.7.6 or earlier (that is, created using `ha_partition`) to the `InnoDB` native partition handler using `ALTER TABLE ... UPGRADE PARTITIONING`. (Bug #76734, Bug #20727344) This `ALTER TABLE` syntax does not accept any other options and can be used only on a single table at a time. You can also use [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") in MySQL 5.7.9 or later to upgrade older partitioned **InnoDB** tables to the native partitioning handler.

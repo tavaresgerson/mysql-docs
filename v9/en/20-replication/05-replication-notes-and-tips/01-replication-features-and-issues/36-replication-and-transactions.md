@@ -21,7 +21,7 @@ The server uses these rules for binary logging:
 A mixed statement that updates a transactional table is considered unsafe if the statement also performs either of the following actions:
 
 * Updates or reads a temporary table
-* Reads a nontransactional table and the transaction isolation level is less than REPEATABLE\_READ
+* Reads a nontransactional table and the transaction isolation level is less than REPEATABLE_READ
 
 A mixed statement following the update of a transactional table within a transaction is considered unsafe if it performs either of the following actions:
 

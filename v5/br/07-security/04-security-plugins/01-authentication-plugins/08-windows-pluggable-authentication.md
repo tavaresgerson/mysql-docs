@@ -1,10 +1,10 @@
 #### 6.4.1.8 Autenticação Plugável no Windows
 
-Nota
-
+::: info Nota
 A autenticação plugável do Windows é uma extensão incluída na MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
 
 A Edição Empresarial do MySQL para Windows suporta um método de autenticação que realiza autenticação externa no Windows, permitindo que o MySQL Server use serviços nativos do Windows para autenticar conexões de clientes. Usuários que estiveram autenticados no Windows podem se conectar a partir de programas clientes do MySQL ao servidor com base nas informações de seu ambiente, sem precisar especificar uma senha adicional.
+:::
 
 O cliente e o servidor trocam pacotes de dados no aperto de mão de autenticação. Como resultado dessa troca, o servidor cria um objeto de contexto de segurança que representa a identidade do cliente no sistema operacional Windows. Essa identidade inclui o nome da conta do cliente. A autenticação plugável do Windows usa a identidade do cliente para verificar se é uma conta específica ou um membro de um grupo. Por padrão, a negociação usa o Kerberos para autenticar, e depois o NTLM se o Kerberos estiver indisponível.
 
@@ -18,7 +18,7 @@ A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O arquivo
 
 **Tabela 6.14 Nomes de plugins e bibliotecas para autenticação no Windows**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha do Windows."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>authentication_windows</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code>authentication_windows_client</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">authentication_windows.dll</code>]]</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha do Windows."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>authentication_windows</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code>authentication_windows_client</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code>authentication_windows.dll</code>]]</td> </tr></tbody></table>
 
 O arquivo da biblioteca inclui apenas o plugin do lado do servidor. O plugin do lado do cliente está integrado à biblioteca de clientes `libmysqlclient`.
 
@@ -40,7 +40,7 @@ Para que o plugin possa ser usado pelo servidor, o arquivo da biblioteca do plug
 
 Para carregar o plugin na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugins, a opção deve ser fornecida toda vez que o servidor for iniciado. Por exemplo, coloque essas linhas no arquivo `my.cnf` do servidor:
 
-```sql
+```
 [mysqld]
 plugin-load-add=authentication_windows.dll
 ```
@@ -53,7 +53,7 @@ Alternativamente, para carregar o plugin em tempo de execução, use esta declar
 INSTALL PLUGIN authentication_windows SONAME 'authentication_windows.dll';
 ```
 
-`INSTALE O PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
+`INSTALL PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
 
 Para verificar a instalação do plugin, examine a tabela Schema de Informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte Seção 5.5.2, “Obtendo Informações de Plugins do Servidor”). Por exemplo:
 
@@ -102,7 +102,7 @@ O nome do plugin é `authentication_windows`. A string que segue a palavra-chave
 
 Depois de criar a conta `sql_admin`, um usuário que tenha iniciado sessão no Windows pode tentar se conectar ao servidor usando essa conta:
 
-```sql
+```sh
 C:\> mysql --user=sql_admin
 ```
 
@@ -114,7 +114,7 @@ A sintaxe da string de autenticação para o plugin de autenticação do Windows
 
 - Cada mapeamento de usuário associa um nome de usuário ou grupo do Windows com um nome de usuário do MySQL:
 
-  ```sql
+  ```sh
   win_user_or_group_name=mysql_user_name
   win_user_or_group_name
   ```
@@ -142,7 +142,7 @@ A sintaxe da string de autenticação para o plugin de autenticação do Windows
 
 - Os valores de `win_user_or_group_name` usam a sintaxe convencional para princípios do Windows, sejam eles locais ou em um domínio. Exemplos (observe o duplicar de barras invertidas):
 
-  ```sql
+  ```
   domain\\user
   .\\user
   domain\\group
@@ -154,7 +154,7 @@ Quando invocado pelo servidor para autenticar um cliente, o plugin verifica a st
 
 Uma correspondência de nome de usuário tem preferência sobre uma correspondência de nome de grupo. Suponha que o usuário do Windows chamado `win_user` seja membro do `win_group` e que a string de autenticação seja a seguinte:
 
-```sql
+```
 'win_group = sql_user1, win_user = sql_user2'
 ```
 
@@ -218,8 +218,8 @@ Agora, os usuários `local_user` e `MyDomain\domain_user` do Windows podem se co
 
 Para configurar a autenticação de modo que todos os usuários do Windows que não tenham sua própria conta MySQL passem por uma conta proxy, substitua a conta proxy padrão (`''@''`) pelo `win_proxy` nas instruções anteriores. Para obter informações sobre contas de proxy padrão, consulte Seção 6.2.14, “Usuários Proxy”.
 
-Nota
-
+::: info Nota
 Se a sua instalação do MySQL tiver usuários anônimos, eles podem entrar em conflito com o usuário padrão do proxy. Para obter mais informações sobre esse problema e maneiras de resolvê-lo, consulte Conflitos entre o Usuário Padrão do Proxy e o Usuário Anônimo.
 
 Para usar o plugin de autenticação do Windows com as cadeias de conexão Connector/NET no Connector/NET 8.0 e versões posteriores, consulte Autenticação do Connector/NET.
+:::

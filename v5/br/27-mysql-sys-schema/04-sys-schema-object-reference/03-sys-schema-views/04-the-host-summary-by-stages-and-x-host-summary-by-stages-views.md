@@ -1,4 +1,4 @@
-#### 26.4.3.4 As visualizações host\_summary\_by\_stages e x$host\_summary\_by\_stages
+#### 26.4.3.4 As visualizações host_summary_by_stages e x$host_summary_by_stages
 
 Essas visualizações resumem as etapas da declaração, agrupadas por host. Por padrão, as linhas são ordenadas por host e latência total decrescente.
 

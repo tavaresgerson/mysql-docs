@@ -1,8 +1,8 @@
-### 28.3.44 A Tabela TABLES do esquema INFORMATION\_SCHEMA
+### 28.3.44 A Tabela TABLES do esquema INFORMATION_SCHEMA
 
 A tabela `TABLES` fornece informações sobre as tabelas nos bancos de dados.
 
-As colunas da `TABLES` que representam estatísticas de tabela armazenam valores cacheados. A variável de sistema `information_schema_stats_expiry` define o período de tempo antes que as estatísticas de tabela cacheadas expirem. O padrão é de 86400 segundos (24 horas). Se não houver estatísticas cacheadas ou se as estatísticas expiraram, as estatísticas são recuperadas dos mecanismos de armazenamento ao fazer uma consulta às colunas de estatísticas de tabela. Para atualizar os valores cacheados a qualquer momento para uma determinada tabela, use `ANALYZE TABLE`. Para sempre recuperar as estatísticas mais recentes diretamente dos mecanismos de armazenamento, defina `information_schema_stats_expiry` para `0`. Para obter mais informações, consulte a Seção 10.2.3, “Otimizando consultas do esquema INFORMATION\_SCHEMA”.
+As colunas da `TABLES` que representam estatísticas de tabela armazenam valores cacheados. A variável de sistema `information_schema_stats_expiry` define o período de tempo antes que as estatísticas de tabela cacheadas expirem. O padrão é de 86400 segundos (24 horas). Se não houver estatísticas cacheadas ou se as estatísticas expiraram, as estatísticas são recuperadas dos mecanismos de armazenamento ao fazer uma consulta às colunas de estatísticas de tabela. Para atualizar os valores cacheados a qualquer momento para uma determinada tabela, use `ANALYZE TABLE`. Para sempre recuperar as estatísticas mais recentes diretamente dos mecanismos de armazenamento, defina `information_schema_stats_expiry` para `0`. Para obter mais informações, consulte a Seção 10.2.3, “Otimizando consultas do esquema INFORMATION_SCHEMA”.
 
 Observação
 
@@ -24,7 +24,7 @@ A tabela `TABLES` tem essas colunas:
 
 * `TABLE_TYPE`
 
-  `BASE TABLE` para uma tabela, `VIEW` para uma vista ou `SYSTEM VIEW` para uma tabela do esquema `INFORMATION\_SCHEMA`.
+  `BASE TABLE` para uma tabela, `VIEW` para uma vista ou `SYSTEM VIEW` para uma tabela do esquema `INFORMATION_SCHEMA`.
 
   A tabela `TABLES` não lista tabelas `TEMPORARY`.
 
@@ -84,9 +84,9 @@ Consulte as notas no final desta seção para obter informações sobre outros m
 
   As tabelas `InnoDB` relatam o espaço livre do espaço de tabelas ao qual a tabela pertence. Para uma tabela localizada no espaço de tabelas compartilhado, este é o espaço livre do espaço de tabelas compartilhado. Se você estiver usando vários espaços de tabelas e a tabela tiver seu próprio espaço de tabela, o espaço livre é apenas para essa tabela. Espaço livre significa o número de bytes em extensões completamente livres, menos uma margem de segurança. Mesmo que o espaço livre seja exibido como 0, pode ser possível inserir linhas, desde que não seja necessário alocar novas extensões.
 
-  Para NDB Cluster, `DATA_FREE` mostra o espaço alocado no disco para, mas não utilizado por, uma tabela de dados de disco ou fragmento no disco. (O uso do recurso de dados em memória é relatado pela coluna `DATA\_LENGTH`.)
+  Para NDB Cluster, `DATA_FREE` mostra o espaço alocado no disco para, mas não utilizado por, uma tabela de dados de disco ou fragmento no disco. (O uso do recurso de dados em memória é relatado pela coluna `DATA_LENGTH`.)
 
-  Para tabelas particionadas, este valor é apenas uma estimativa e pode não ser absolutamente correto. Um método mais preciso de obter essas informações nesses casos é consultar a tabela `INFORMATION\_SCHEMA` `PARTITIONS`, como mostrado neste exemplo:
+  Para tabelas particionadas, este valor é apenas uma estimativa e pode não ser absolutamente correto. Um método mais preciso de obter essas informações nesses casos é consultar a tabela `INFORMATION_SCHEMA` `PARTITIONS`, como mostrado neste exemplo:
 
   ```
   SELECT SUM(DATA_FREE)
@@ -95,17 +95,17 @@ Consulte as notas no final desta seção para obter informações sobre outros m
       AND   TABLE_NAME   = 'mytable';
   ```
 
-  Para mais informações, consulte a Seção 28.3.26, “A Tabela INFORMATION\_SCHEMA PARTITIONS”.
+  Para mais informações, consulte a Seção 28.3.26, “A Tabela INFORMATION_SCHEMA PARTITIONS”.
 
 * `AUTO_INCREMENT`
 
   O próximo valor `AUTO_INCREMENT`.
 
-* `CREATE\_TIME`
+* `CREATE_TIME`
 
   Quando a tabela foi criada.
 
-* `UPDATE\_TIME`
+* `UPDATE_TIME`
 
 Quando a tabela foi atualizada pela última vez. Para alguns motores de armazenamento, esse valor é `NULL`. Mesmo com o modo de arquivo por tabela, com cada tabela `InnoDB` em um arquivo `.ibd` separado, a mudança de buffer pode atrasar a escrita no arquivo de dados, então o tempo de modificação do arquivo é diferente do tempo da última inserção, atualização ou exclusão. Para `MyISAM`, o timestamp do arquivo de dados é usado; no entanto, em Windows, o timestamp não é atualizado por atualizações, então o valor é impreciso.
 

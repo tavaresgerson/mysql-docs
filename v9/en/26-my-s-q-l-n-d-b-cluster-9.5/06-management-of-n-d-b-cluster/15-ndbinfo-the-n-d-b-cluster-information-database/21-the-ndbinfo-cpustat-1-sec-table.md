@@ -1,4 +1,4 @@
-#### 25.6.15.21 The ndbinfo cpustat\_1sec Table
+#### 25.6.15.21 The ndbinfo cpustat_1sec Table
 
 The `cpustat-1sec` table provides raw, per-thread CPU data obtained each second for each thread running in the `NDB` kernel.
 

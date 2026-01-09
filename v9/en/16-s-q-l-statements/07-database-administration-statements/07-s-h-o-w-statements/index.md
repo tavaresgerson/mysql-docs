@@ -52,7 +52,7 @@
 
 15.7.7.26 SHOW OPEN TABLES Statement
 
-15.7.7.27 SHOW PARSE\_TREE Statement
+15.7.7.27 SHOW PARSE_TREE Statement
 
 15.7.7.28 SHOW PLUGINS Statement
 
@@ -141,4 +141,4 @@ Several `SHOW` statements also accept a `WHERE` clause that provides more flexib
 
 In `SHOW` statement results, user names and host names are quoted using backticks (`).
 
-Many MySQL APIs (such as PHP) enable you to treat the result returned from a `SHOW` statement as you would a result set from a `SELECT`; see Chapter 31, *Connectors and APIs*, or your API documentation for more information. In addition, you can work in SQL with results from queries on tables in the `INFORMATION_SCHEMA` database, which you cannot easily do with results from `SHOW` statements. See Chapter 28, *INFORMATION\_SCHEMA Tables*.
+Many MySQL APIs (such as PHP) enable you to treat the result returned from a `SHOW` statement as you would a result set from a `SELECT`; see Chapter 31, *Connectors and APIs*, or your API documentation for more information. In addition, you can work in SQL with results from queries on tables in the `INFORMATION_SCHEMA` database, which you cannot easily do with results from `SHOW` statements. See Chapter 28, *INFORMATION_SCHEMA Tables*.

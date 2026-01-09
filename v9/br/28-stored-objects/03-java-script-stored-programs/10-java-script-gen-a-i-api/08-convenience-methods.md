@@ -181,7 +181,7 @@ Este método estático carrega um modelo existente (e já treinado) do MySQL Hea
   do tipo de modelo carregado.
 
 Para mais informações, consulte
-ML\_MODEL\_LOAD.
+ML_MODEL_LOAD.
 
 ##### ml.rag()
 

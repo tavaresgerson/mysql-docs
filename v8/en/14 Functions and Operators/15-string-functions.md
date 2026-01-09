@@ -440,7 +440,7 @@ For functions that take length arguments, noninteger arguments are rounded to th
           -> NULL
   ```
 
-  For comparison, see the quoting rules for literal strings and within the C API in  Section 11.1.1, “String Literals”, and mysql\_real\_escape\_string\_quote().
+  For comparison, see the quoting rules for literal strings and within the C API in  Section 11.1.1, “String Literals”, and mysql_real_escape_string_quote().
 *  `REPEAT(str,count)`
 
   Returns a string consisting of the string *`str`* repeated *`count`* times. If *`count`* is less than 1, returns an empty string. Returns `NULL` if *`str`* or *`count`* is `NULL`.

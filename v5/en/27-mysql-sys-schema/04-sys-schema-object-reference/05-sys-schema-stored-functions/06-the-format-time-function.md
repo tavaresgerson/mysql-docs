@@ -1,4 +1,4 @@
-#### 26.4.5.6 The format\_time() Function
+#### 26.4.5.6 The format_time() Function
 
 Given a Performance Schema latency or wait time in picoseconds, converts it to human-readable format and returns a string consisting of a value and a units indicator. Depending on the size of the value, the units part is `ps` (picoseconds), `ns` (nanoseconds), `us` (microseconds), `ms` (milliseconds), `s` (seconds), `m` (minutes), `h` (hours), `d` (days), or `w` (weeks).
 

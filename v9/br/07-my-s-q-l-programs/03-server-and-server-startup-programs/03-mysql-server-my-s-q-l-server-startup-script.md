@@ -1,12 +1,12 @@
 ### 6.3.3 mysql.server — Script de Inicialização do Servidor MySQL
 
-As distribuições do MySQL em sistemas Unix e similares incluem um script chamado **mysql.server**, que inicia o servidor MySQL usando **mysqld\_safe**. Ele pode ser usado em sistemas como Linux e Solaris que utilizam diretórios de execução estilo System V para iniciar e parar serviços do sistema. Também é usado pelo Item de Inicialização do macOS para MySQL.
+As distribuições do MySQL em sistemas Unix e similares incluem um script chamado **mysql.server**, que inicia o servidor MySQL usando **mysqld_safe**. Ele pode ser usado em sistemas como Linux e Solaris que utilizam diretórios de execução estilo System V para iniciar e parar serviços do sistema. Também é usado pelo Item de Inicialização do macOS para MySQL.
 
 **mysql.server** é o nome do script conforme usado dentro da árvore de código-fonte do MySQL. O nome instalado pode ser diferente (por exemplo, **mysqld** ou **mysql**). Na discussão a seguir, ajuste o nome **mysql.server** conforme apropriado para o seu sistema.
 
 Nota
 
-Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, **mysql.server** e **mysqld\_safe** não são instalados porque são desnecessários. Para mais informações, consulte a Seção 2.5.9, “Gerenciamento do Servidor MySQL com systemd”.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, **mysql.server** e **mysqld_safe** não são instalados porque são desnecessários. Para mais informações, consulte a Seção 2.5.9, “Gerenciamento do Servidor MySQL com systemd”.
 
 Para iniciar ou parar o servidor manualmente usando o script **mysql.server**, invocá-lo a partir da linha de comando com os argumentos `start` ou `stop`:
 
@@ -15,7 +15,7 @@ mysql.server start
 mysql.server stop
 ```
 
-**mysql.server** muda a localização para o diretório de instalação do MySQL, e então invoca **mysqld\_safe**. Para executar o servidor como um usuário específico, adicione uma opção apropriada `user` ao grupo `[mysqld]` do arquivo de opção global `/etc/my.cnf`, conforme mostrado mais adiante nesta seção. (É possível que você precise editar **mysql.server** se você instalou uma distribuição binária do MySQL em um local não padrão. Modifique-o para mudar a localização para o diretório apropriado antes que ele inicie **mysqld\_safe**. Se você fizer isso, sua versão modificada de **mysql.server** pode ser sobrescrita se você atualizar o MySQL no futuro; faça uma cópia da sua versão editada que você pode reinstalar.)
+**mysql.server** muda a localização para o diretório de instalação do MySQL, e então invoca **mysqld_safe**. Para executar o servidor como um usuário específico, adicione uma opção apropriada `user` ao grupo `[mysqld]` do arquivo de opção global `/etc/my.cnf`, conforme mostrado mais adiante nesta seção. (É possível que você precise editar **mysql.server** se você instalou uma distribuição binária do MySQL em um local não padrão. Modifique-o para mudar a localização para o diretório apropriado antes que ele inicie **mysqld_safe**. Se você fizer isso, sua versão modificada de **mysql.server** pode ser sobrescrita se você atualizar o MySQL no futuro; faça uma cópia da sua versão editada que você pode reinstalar.)
 
 **mysql.server stop** para o servidor parar enviando um sinal para ele. Você também pode parar o servidor manualmente executando **mysqladmin shutdown**.
 
@@ -79,22 +79,22 @@ O script **mysql.server** suporta as opções mostradas na tabela a seguir. Se e
   </tr>
   <tbody>
     <tr>
-      <th><a class="link" href="mysql-server.html#option_mysql_server_basedir"><code>basedir</code></a></th>
+      <th><code>basedir</code></th>
       <td>Caminho para o diretório de instalação do MySQL</td>
       <td>Nome do diretório</td>
     </tr>
     <tr>
-      <th><a class="link" href="mysql-server.html#option_mysql_server_datadir"><code>datadir</code></a></th>
+      <th><code>datadir</code></th>
       <td>Caminho para o diretório de dados do MySQL</td>
       <td>Nome do diretório</td>
     </tr>
     <tr>
-      <th><a class="link" href="mysql-server.html#option_mysql_server_pid-file"><code>pid-file</code></a></th>
+      <th><code>pid-file</code></th>
       <td>Nome do arquivo no qual o servidor deve gravar seu ID de processo</td>
       <td>Nome do arquivo</td>
     </tr>
     <tr>
-      <th><a class="link" href="mysql-server.html#option_mysql_server_service-startup-timeout"><code>service-startup-timeout</code></a></th>
+      <th><code>service-startup-timeout</code></th>
       <td>Tempo de espera para o início do servidor</td>
       <td>Inteiro</td>
     </tr>

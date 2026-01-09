@@ -1,4 +1,4 @@
-### 28.3.26 The INFORMATION\_SCHEMA PARTITIONS Table
+### 28.3.26 The INFORMATION_SCHEMA PARTITIONS Table
 
 The `PARTITIONS` table provides information about table partitions. Each row in this table corresponds to an individual partition or subpartition of a partitioned table. For more information about partitioning tables, see Chapter 26, *Partitioning*.
 
@@ -91,37 +91,37 @@ The `PARTITIONS` table has these columns:
 
   For partitioned `InnoDB` tables, the row count given in the `TABLE_ROWS` column is only an estimated value used in SQL optimization, and may not always be exact.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `AVG_ROW_LENGTH`
 
   The average length of the rows stored in this partition or subpartition, in bytes. This is the same as `DATA_LENGTH` divided by `TABLE_ROWS`.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `DATA_LENGTH`
 
   The total length of all rows stored in this partition or subpartition, in bytes; that is, the total number of bytes stored in the partition or subpartition.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `MAX_DATA_LENGTH`
 
   The maximum number of bytes that can be stored in this partition or subpartition.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `INDEX_LENGTH`
 
   The length of the index file for this partition or subpartition, in bytes.
 
-  For partitions of `NDB` tables, whether the tables use implicit or explicit partitioning, the `INDEX_LENGTH` column value is always 0. However, you can obtain equivalent information using the **ndb\_desc** utility.
+  For partitions of `NDB` tables, whether the tables use implicit or explicit partitioning, the `INDEX_LENGTH` column value is always 0. However, you can obtain equivalent information using the **ndb_desc** utility.
 
 * `DATA_FREE`
 
   The number of bytes allocated to the partition or subpartition but not used.
 
-  For `NDB` tables, you can also obtain this information using the **ndb\_desc** utility.
+  For `NDB` tables, you can also obtain this information using the **ndb_desc** utility.
 
 * `CREATE_TIME`
 

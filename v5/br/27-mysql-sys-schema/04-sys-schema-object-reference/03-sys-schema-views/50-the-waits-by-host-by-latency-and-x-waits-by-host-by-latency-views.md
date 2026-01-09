@@ -1,4 +1,4 @@
-#### 26.4.3.50 As visualizações waits\_by\_host\_by\_latency e x$waits\_by\_host\_by\_latency
+#### 26.4.3.50 As visualizações waits_by_host_by_latency e x$waits_by_host_by_latency
 
 Esses pontos de vista resumem eventos de espera, agrupados por host e evento. Por padrão, as linhas são ordenadas por host e latência total decrescente. Eventos em espera são ignorados.
 

@@ -72,7 +72,7 @@ interval:
     (n >= 1)
 ```
 
-##### mysql.gtid\_executed Table
+##### mysql.gtid_executed Table
 
 GTIDs are stored in a table named `gtid_executed`, in the `mysql` database. A row in this table contains, for each GTID or set of GTIDs that it represents, the UUID of the originating server, and the starting and ending transaction IDs of the set; for a row referencing only a single GTID, these last two values are the same.
 
@@ -95,7 +95,7 @@ The `mysql.gtid_executed` table is provided for internal use by the MySQL server
 
 GTIDs are stored in the `mysql.gtid_executed` table only when [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is `ON` or `ON_PERMISSIVE`. The point at which GTIDs are stored depends on whether binary logging is enabled or disabled:
 
-* If binary logging is disabled (`log_bin` is `OFF`), or if [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) is disabled, the server stores the GTID belonging to each transaction together with the transaction in the buffer when the transaction is committed, and the background thread adds the contents of the buffer periodically as one or more entries to the `mysql.gtid_executed` table. In addition, the table is compressed periodically at a user-configurable rate; see [mysql.gtid\_executed Table Compression](replication-gtids-concepts.html#replication-gtids-gtid-executed-table-compression "mysql.gtid_executed Table Compression"), for more information. This situation can only apply on a replica where binary logging or replica update logging is disabled. It does not apply on a replication source server, because on the source, binary logging must be enabled for replication to take place.
+* If binary logging is disabled (`log_bin` is `OFF`), or if [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) is disabled, the server stores the GTID belonging to each transaction together with the transaction in the buffer when the transaction is committed, and the background thread adds the contents of the buffer periodically as one or more entries to the `mysql.gtid_executed` table. In addition, the table is compressed periodically at a user-configurable rate; see [mysql.gtid_executed Table Compression](replication-gtids-concepts.html#replication-gtids-gtid-executed-table-compression "mysql.gtid_executed Table Compression"), for more information. This situation can only apply on a replica where binary logging or replica update logging is disabled. It does not apply on a replication source server, because on the source, binary logging must be enabled for replication to take place.
 
 * If binary logging is enabled (`log_bin` is `ON`), whenever the binary log is rotated or the server is shut down, the server writes GTIDs for all transactions that were written into the previous binary log into the `mysql.gtid_executed` table. This situation applies on a replication source server, or a replica where binary logging is enabled.
 
@@ -103,7 +103,7 @@ GTIDs are stored in the `mysql.gtid_executed` table only when [`gtid_mode`](repl
 
   When binary logging is enabled, the `mysql.gtid_executed` table does not hold a complete record of the GTIDs for all executed transactions. That information is provided by the global value of the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) system variable. Always use `@@GLOBAL.gtid_executed`, which is updated after every commit, to represent the GTID state for the MySQL server, and do not query the `mysql.gtid_executed` table.
 
-##### mysql.gtid\_executed Table Compression
+##### mysql.gtid_executed Table Compression
 
 Over the course of time, the `mysql.gtid_executed` table can become filled with many rows referring to individual GTIDs that originate on the same server, and whose transaction IDs make up a range, similar to what is shown here:
 

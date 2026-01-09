@@ -1,4 +1,4 @@
-#### 30.4.5.16 The ps\_thread\_stack() Function
+#### 30.4.5.16 The ps_thread_stack() Function
 
 Returns a JSON formatted stack of all statements, stages, and events within the Performance Schema for a given thread ID.
 

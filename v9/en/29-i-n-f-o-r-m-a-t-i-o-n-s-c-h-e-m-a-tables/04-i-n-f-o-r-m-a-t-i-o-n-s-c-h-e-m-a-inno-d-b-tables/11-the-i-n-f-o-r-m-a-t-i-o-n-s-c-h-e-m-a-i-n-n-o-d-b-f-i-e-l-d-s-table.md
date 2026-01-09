@@ -1,8 +1,8 @@
-### 28.4.11 The INFORMATION\_SCHEMA INNODB\_FIELDS Table
+### 28.4.11 The INFORMATION_SCHEMA INNODB_FIELDS Table
 
 The `INNODB_FIELDS` table provides metadata about the key columns (fields) of `InnoDB` indexes.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_FIELDS` table has these columns:
 

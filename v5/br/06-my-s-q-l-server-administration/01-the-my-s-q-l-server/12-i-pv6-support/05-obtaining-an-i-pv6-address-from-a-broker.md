@@ -2,7 +2,7 @@
 
 Se você não tiver um endereço IPv6 público que permita que seu sistema se comunique via IPv6 fora da sua rede local, você pode obtê-lo de um intermediário de túnel IPv6. A página Wikipedia IPv6 Tunnel Broker lista vários intermediários e suas características, como se eles fornecem endereços estáticos e os protocolos de roteamento suportados.
 
-Depois de configurar o seu servidor hospedeiro para usar um endereço IPv6 fornecido pelo intermediário, inicie o servidor MySQL com um ajuste apropriado para o endereço de ligação (`bind_address`) (server-system-variables.html#sysvar\_bind\_address) para permitir que o servidor aceite conexões IPv6. Por exemplo, coloque as seguintes linhas no arquivo de opção do servidor e reinicie o servidor:
+Depois de configurar o seu servidor hospedeiro para usar um endereço IPv6 fornecido pelo intermediário, inicie o servidor MySQL com um ajuste apropriado para o endereço de ligação (`bind_address`) (server-system-variables.html#sysvar_bind_address) para permitir que o servidor aceite conexões IPv6. Por exemplo, coloque as seguintes linhas no arquivo de opção do servidor e reinicie o servidor:
 
 ```sql
 [mysqld]

@@ -87,7 +87,7 @@ O suporte do RSA possui essas características, onde todos os aspectos que perte
 
   O uso de uma cópia local confiável da chave pública permite que o cliente evite uma ida e volta no protocolo cliente/servidor e é mais seguro do que solicitar a chave pública do servidor. Por outro lado, solicitar a chave pública do servidor é mais conveniente (não requer a gestão de um arquivo no lado do cliente) e pode ser aceitável em ambientes de rede seguros.
 
-  - Para clientes de linha de comando, use a opção `--server-public-key-path` para especificar o arquivo da chave pública RSA. Use a opção `--get-server-public-key` para solicitar a chave pública do servidor. Os seguintes programas suportam as duas opções: **mysql**, **mysqladmin**, **mysqlbinlog**, **mysqlcheck**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, **mysqlbinlog**, \[**mysqlbinlog**]\(mysqlbinlog
+  - Para clientes de linha de comando, use a opção `--server-public-key-path` para especificar o arquivo da chave pública RSA. Use a opção `--get-server-public-key` para solicitar a chave pública do servidor. Os seguintes programas suportam as duas opções: **mysql**, **mysqltest**, and (as of MySQL 5.7.23) **mysqladmin**, **mysqlbinlog**, **mysqlcheck**, **mysqldump**, **mysqlimport**, **mysqlpump**, **mysqlshow**, **mysqlslap**, **mysqltest**.
 
   - Para programas que utilizam a API C, chame `mysql_options()` para especificar o arquivo da chave pública RSA passando a opção `MYSQL_SERVER_PUBLIC_KEY` e o nome do arquivo, ou solicite a chave pública ao servidor passando a opção `MYSQL_OPT_GET_SERVER_PUBLIC_KEY`.
 
@@ -115,7 +115,7 @@ Os aspectos desse procedimento que se referem à configuração do servidor deve
 
    Caso contrário, para nomear os arquivos-chave explicitamente, defina as variáveis do sistema com os nomes dos arquivos-chave no arquivo de opção do servidor. Se os arquivos estiverem localizados no diretório de dados do servidor, você não precisa especificar seus nomes completos de caminho:
 
-   ```sql
+   ```
    [mysqld]
    caching_sha2_password_private_key_path=myprivkey.pem
    caching_sha2_password_public_key_path=mypubkey.pem
@@ -123,7 +123,7 @@ Os aspectos desse procedimento que se referem à configuração do servidor deve
 
    Se os arquivos de chave não estiverem localizados no diretório de dados, ou para tornar suas localizações explícitas nos valores da variável do sistema, use nomes de caminho completos:
 
-   ```sql
+   ```
    [mysqld]
    caching_sha2_password_private_key_path=/usr/local/mysql/myprivkey.pem
    caching_sha2_password_public_key_path=/usr/local/mysql/mypubkey.pem
@@ -147,21 +147,21 @@ Os aspectos desse procedimento que se referem à configuração do servidor deve
 
 Depois que o servidor foi configurado com os arquivos de chave RSA, as contas que se autenticam com o plugin `caching_sha2_password` têm a opção de usar esses arquivos de chave para se conectar ao servidor. Como mencionado anteriormente, tais contas podem usar uma conexão segura (neste caso, o RSA não é usado) ou uma conexão não criptografada que realiza a troca de senha usando RSA. Suponha que uma conexão não criptografada seja usada. Por exemplo:
 
-```sql
+```sh
 $> mysql --ssl-mode=DISABLED -u sha2user -p
 Enter password: password
 ```
 
 Para essa tentativa de conexão pelo `sha2user`, o servidor determina que `caching_sha2_password` é o plugin de autenticação apropriado e o invoca (porque foi esse o plugin especificado no momento de `CREATE USER`. O plugin descobre que a conexão não está criptografada e, portanto, exige que a senha seja transmitida usando criptografia RSA. No entanto, o servidor não envia a chave pública para o cliente, e o cliente não forneceu nenhuma chave pública, então não pode criptografar a senha e a conexão falha:
 
-```sql
+```
 ERROR 2061 (HY000): Authentication plugin 'caching_sha2_password'
 reported error: Authentication requires secure connection.
 ```
 
 Para solicitar a chave pública RSA do servidor, especifique a opção `--get-server-public-key`:
 
-```sql
+```sh
 $> mysql --ssl-mode=DISABLED -u sha2user -p --get-server-public-key
 Enter password: password
 ```
@@ -170,7 +170,7 @@ Nesse caso, o servidor envia a chave pública RSA para o cliente, que a usa para
 
 Alternativamente, se o cliente tiver um arquivo contendo uma cópia local da chave pública RSA necessária pelo servidor, ele pode especificar o arquivo usando a opção `--server-public-key-path`:
 
-```sql
+```sh
 $> mysql --ssl-mode=DISABLED -u sha2user -p --server-public-key-path=file_name
 Enter password: password
 ```

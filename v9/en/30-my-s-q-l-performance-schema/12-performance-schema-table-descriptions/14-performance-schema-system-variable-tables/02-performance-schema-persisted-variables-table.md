@@ -1,4 +1,4 @@
-#### 29.12.14.2 Performance Schema persisted\_variables Table
+#### 29.12.14.2 Performance Schema persisted_variables Table
 
 The `persisted_variables` table provides an SQL interface to the `mysqld-auto.cnf` file that stores persisted global system variable settings, enabling the file contents to be inspected at runtime using `SELECT` statements. Variables are persisted using `SET PERSIST` or `PERSIST_ONLY` statements; see Section 15.7.6.1, “SET Syntax for Variable Assignment”. The table contains a row for each persisted system variable in the file. Variables not persisted do not appear in the table.
 

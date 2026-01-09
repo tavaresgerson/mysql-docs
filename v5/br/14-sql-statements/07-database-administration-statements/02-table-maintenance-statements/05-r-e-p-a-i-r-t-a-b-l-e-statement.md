@@ -16,7 +16,7 @@ Embora normalmente você nunca deva precisar executar `REPAIR TABLE`, se um desa
 
 Importante
 
-- Faça um backup de uma tabela antes de realizar uma operação de reparo de tabela; em algumas circunstâncias, a operação pode causar perda de dados. As possíveis causas incluem, mas não estão limitadas a, erros no sistema de arquivos. Consulte \[Capítulo 7, *Backup e Recuperação*] (backup-and-recovery.html).
+- Faça um backup de uma tabela antes de realizar uma operação de reparo de tabela; em algumas circunstâncias, a operação pode causar perda de dados. As possíveis causas incluem, mas não estão limitadas a, erros no sistema de arquivos. Consulte [Capítulo 7, *Backup e Recuperação*] (backup-and-recovery.html).
 
 - Se o servidor sair durante uma operação de `REPAIR TABLE`, é essencial, após o reinício, executar imediatamente outra instrução `REPAIR TABLE` para a tabela antes de realizar qualquer outra operação nela. No pior dos casos, você pode ter um novo arquivo de índice limpo sem informações sobre o arquivo de dados, e então a próxima operação que você realizar pode sobrescrever o arquivo de dados. Esse é um cenário improvável, mas possível, que destaca o valor de fazer um backup primeiro.
 

@@ -8,7 +8,7 @@ Vários conceitos centrais para uma compreensão deste tópico são discutidos n
 
 Cada nó de dados deve estar localizado em um computador separado. Embora seja possível hospedar vários processos de nó de dados em um único computador, essa configuração geralmente não é recomendada.
 
-É comum que os termos "nó" e "nó de dados" sejam usados de forma intercambiável ao se referir a um processo **ndbd** ou **ndbmtd**; onde mencionado, os nós de gerenciamento (**ndb\_mgmd** processos) e os nós SQL (**mysqld** processos) são especificados como tal nesta discussão.
+É comum que os termos "nó" e "nó de dados" sejam usados de forma intercambiável ao se referir a um processo **ndbd** ou **ndbmtd**; onde mencionado, os nós de gerenciamento (**ndb_mgmd** processos) e os nós SQL (**mysqld** processos) são especificados como tal nesta discussão.
 
 **Grupo de nós.** Um grupo de nós é composto por um ou mais nós e armazena partições ou conjuntos de réplicas de fragmentos (veja o próximo item).
 
@@ -54,7 +54,7 @@ O diagrama a seguir ilustra um NDB Cluster com quatro nós de dados executando *
 
 Nota
 
-Aqui, apenas os nós de dados são mostrados; embora um NDB Cluster funcional exija um processo **ndb\_mgmd** para a gestão do cluster e pelo menos um nó SQL para acessar os dados armazenados pelo cluster, esses foram omitidos da figura para maior clareza.
+Aqui, apenas os nós de dados são mostrados; embora um NDB Cluster funcional exija um processo **ndb_mgmd** para a gestão do cluster e pelo menos um nó SQL para acessar os dados armazenados pelo cluster, esses foram omitidos da figura para maior clareza.
 
 **Figura 21.2. NDB Cluster com Dois Grupos de Nodos**
 

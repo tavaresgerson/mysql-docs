@@ -4,7 +4,7 @@ O **myisamlog** processa o conteúdo de um arquivo de log `MyISAM`. Para criar u
 
 Invoque **myisamlog** da seguinte forma:
 
-```sql
+```sh
 myisamlog [options] [file_name [tbl_name] ...]
 ```
 

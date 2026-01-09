@@ -391,7 +391,7 @@ Quando um perfil é atribuído a qualquer um dos valores de modo anteriores, o f
 
 Observação
 
-Mensagens escritas no log de erro no modo `DESCOBRIMENTO` ou porque o `mysql_firewall_trace` está habilitado são escritas como Notas, que são mensagens de informação. Para garantir que essas mensagens apareçam no log de erro e não sejam descartadas, certifique-se de que a granularidade do registro de erro é suficiente para incluir mensagens de informação. Por exemplo, se você estiver usando a filtragem de log com base na prioridade, conforme descrito na Seção 7.4.2.5, “Filtragem de Log de Erro com Base na Prioridade (log\_filter\_internal)”), defina `log_error_verbosity` para `3`.
+Mensagens escritas no log de erro no modo `DESCOBRIMENTO` ou porque o `mysql_firewall_trace` está habilitado são escritas como Notas, que são mensagens de informação. Para garantir que essas mensagens apareçam no log de erro e não sejam descartadas, certifique-se de que a granularidade do registro de erro é suficiente para incluir mensagens de informação. Por exemplo, se você estiver usando a filtragem de log com base na prioridade, conforme descrito na Seção 7.4.2.5, “Filtragem de Log de Erro com Base na Prioridade (log_filter_internal)”), defina `log_error_verbosity` para `3`.
 
 ###### Gerenciamento de Declarações do Firewall Quando Múltiplos Perfis Se Aplicam
 
@@ -951,23 +951,23 @@ O componente do firewall do MySQL Enterprise fornece as variáveis de sistema li
 
 * `component_firewall.database`
 
-<table frame="box" rules="all" summary="Propriedades para o componente_firewall.database"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="firewall-component.html#sysvar_component_firewall.database">component_firewall.database</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a></code> Dicas de Configuração Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>mysql</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o componente_firewall.database"><tbody><tr><th>Variável do Sistema</th> <td><code>component_firewall.database</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code></code> Dicas de Configuração Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>mysql</code></td> </tr></tbody></table>
 
   O nome da base de dados utilizada para as tabelas do componente MySQL Enterprise Firewall. Para obter mais informações sobre essas tabelas, consulte Tabelas de Componentes do MySQL Enterprise Firewall.
 
 * `component_firewall.enabled`
 
-  <table frame="box" rules="all" summary="Propriedades para o componente_firewall.enabled"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="firewall-component.html#sysvar_component_firewall.enabled">component_firewall.enabled</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a></code> Dicas de Configuração Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o componente_firewall.enabled"><tbody><tr><th>Variável do Sistema</th> <td><code>component_firewall.enabled</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code></code> Dicas de Configuração Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Se o componente MySQL Enterprise Firewall está habilitado.
 
 * `component_firewall.reload_interval_seconds`
 
 <table frame="box" rules="all" summary="Propriedades para component_firewall.reload_interval_seconds">
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="firewall-component.html#sysvar_component_firewall.reload_interval_seconds">component_firewall.reload_interval_seconds</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>component_firewall.reload_interval_seconds</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>0</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>60 (0 = sem recarga)</code></td> </tr>
@@ -979,7 +979,7 @@ Tempo em segundos entre as recargas do cache interno do Firewall Empresarial MyS
 
 * `component_firewall.trace`
 
-<table frame="box" rules="all" summary="Propriedades para o componente_firewall.trace"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="firewall-component.html#sysvar_component_firewall.trace">component_firewall.trace</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o componente_firewall.trace"><tbody><tr><th>Variável do Sistema</th> <td><code>component_firewall.trace</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Se o rastreamento do componente firewall está habilitado ou desabilitado (o padrão). Quando o rastreamento está habilitado, para o modo `PROTECTING`, o firewall escreve declarações rejeitadas no log de erro.
 

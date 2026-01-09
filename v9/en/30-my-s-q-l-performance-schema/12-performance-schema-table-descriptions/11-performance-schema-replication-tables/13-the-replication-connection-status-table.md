@@ -1,4 +1,4 @@
-#### 29.12.11.13 The replication\_connection\_status Table
+#### 29.12.11.13 The replication_connection_status Table
 
 This table shows the current status of the I/O thread that handles the replica's connection to the source, information on the last transaction queued in the relay log, and information on the transaction currently being queued in the relay log.
 

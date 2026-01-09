@@ -2,9 +2,9 @@
 
 A utilidade **resolveip** resolve nomes de host para endereços IP e vice-versa.
 
-Nota
-
+::: info Nota
 O **resolveip** está desatualizado e será removido no MySQL 8.0. Você pode usar **nslookup**, **host** ou **dig** no lugar dele.
+:::
 
 Invoque o **resolveip** da seguinte forma:
 

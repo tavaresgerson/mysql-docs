@@ -56,7 +56,7 @@ SHOW VARIABLES LIKE 'component_scheduler%';
 +-----------------------------+-------+
 ```
 
-With the firewall installed, set the `mysql_firewall_reload_interval_seconds` global system variable at server startup to a number between 60 and the INT\_MAX macro value of the platform hosting the server. Values between zero and 60 (1 through 59) reset to 60. For example:
+With the firewall installed, set the `mysql_firewall_reload_interval_seconds` global system variable at server startup to a number between 60 and the INT_MAX macro value of the platform hosting the server. Values between zero and 60 (1 through 59) reset to 60. For example:
 
 ```
 $> mysqld [server-options] --mysql-firewall-reload-interval-seconds=40
@@ -178,7 +178,7 @@ When a profile is assigned any of the preceding mode values, the firewall stores
 
 ::: info Note
 
-Messages written to the error log in `DETECTING` mode or because `mysql_firewall_trace` is enabled are written as Notes, which are information messages. To ensure that such messages appear in the error log and are not discarded, make sure that error-logging verbosity is sufficient to include information messages. For example, if you are using priority-based log filtering, as described in Section 7.4.2.5, “Priority-Based Error Log Filtering (log\_filter\_internal)”"), set the  `log_error_verbosity` system variable to a value of 3.
+Messages written to the error log in `DETECTING` mode or because `mysql_firewall_trace` is enabled are written as Notes, which are information messages. To ensure that such messages appear in the error log and are not discarded, make sure that error-logging verbosity is sufficient to include information messages. For example, if you are using priority-based log filtering, as described in Section 7.4.2.5, “Priority-Based Error Log Filtering (log_filter_internal)”"), set the  `log_error_verbosity` system variable to a value of 3.
 
 :::
 

@@ -1,4 +1,4 @@
-#### 30.4.5.15 The ps\_thread\_id() Function
+#### 30.4.5.15 The ps_thread_id() Function
 
 Note
 

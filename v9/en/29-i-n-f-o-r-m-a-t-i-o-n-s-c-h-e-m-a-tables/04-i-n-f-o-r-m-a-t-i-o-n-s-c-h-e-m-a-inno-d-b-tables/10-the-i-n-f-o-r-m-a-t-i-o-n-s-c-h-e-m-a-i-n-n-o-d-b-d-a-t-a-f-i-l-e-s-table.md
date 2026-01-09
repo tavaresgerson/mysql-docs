@@ -1,8 +1,8 @@
-### 28.4.10 The INFORMATION\_SCHEMA INNODB\_DATAFILES Table
+### 28.4.10 The INFORMATION_SCHEMA INNODB_DATAFILES Table
 
 The `INNODB_DATAFILES` table provides data file path information for `InnoDB` file-per-table and general tablespaces.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 Note
 

@@ -1,12 +1,12 @@
 ### 19.3.3 Verificação de Privilégios de Replicação
 
-19.3.3.1 Privilegios para a Conta de VERIFICAÇÃO\_DE\_PRIVILÉGIOS\_USER
+19.3.3.1 Privilegios para a Conta de VERIFICAÇÃO_DE_PRIVILÉGIOS_USER
 
 19.3.3.2 Verificação de Privilegios para Canais de Replicação de Grupo
 
 19.3.3.3 Recuperação de Verificações de Privilégios de Replicação Falhas
 
-Por padrão, a replicação do MySQL (incluindo a Replicação de Grupo) não realiza verificações de privilégios quando as transações que já foram aceitas por outro servidor são aplicadas em uma réplica ou membro do grupo. Você pode criar uma conta de usuário com os privilégios apropriados para aplicar as transações que normalmente são replicadas em um canal, e especificar essa conta como a `PRIVILEGE_CHECKS_USER` para o aplicativo de replicação, usando uma declaração `ALTERAR\_FONTE\_DE\_REPLICAÇÃO PARA`. O MySQL então verifica cada transação contra os privilégios da conta de usuário para verificar se você autorizou a operação para esse canal. A conta também pode ser usada com segurança por um administrador para aplicar ou reaplicar transações a partir da saída de **mysqlbinlog**, por exemplo, para recuperar de um erro de replicação no canal.
+Por padrão, a replicação do MySQL (incluindo a Replicação de Grupo) não realiza verificações de privilégios quando as transações que já foram aceitas por outro servidor são aplicadas em uma réplica ou membro do grupo. Você pode criar uma conta de usuário com os privilégios apropriados para aplicar as transações que normalmente são replicadas em um canal, e especificar essa conta como a `PRIVILEGE_CHECKS_USER` para o aplicativo de replicação, usando uma declaração `ALTERAR_FONTE_DE_REPLICAÇÃO PARA`. O MySQL então verifica cada transação contra os privilégios da conta de usuário para verificar se você autorizou a operação para esse canal. A conta também pode ser usada com segurança por um administrador para aplicar ou reaplicar transações a partir da saída de **mysqlbinlog**, por exemplo, para recuperar de um erro de replicação no canal.
 
 O uso de uma conta `PRIVILEGE_CHECKS_USER` ajuda a proteger um canal de replicação contra o uso não autorizado ou acidental de operações privilegiadas ou indesejadas. A conta `PRIVILEGE_CHECKS_USER` fornece uma camada adicional de segurança em situações como essas:
 
@@ -31,13 +31,13 @@ mysql> GRANT REPLICATION_APPLIER ON *.* TO 'priv_repl'@'%.example.com';
 mysql> SET sql_log_bin = 1;
 ```
 
-As instruções `SET sql_log_bin` são usadas para que as instruções de gerenciamento de conta não sejam adicionadas ao log binário e enviadas para os canais de replicação (veja a Seção 15.4.1.3, “Instrução SET sql\_log\_bin”).
+As instruções `SET sql_log_bin` são usadas para que as instruções de gerenciamento de conta não sejam adicionadas ao log binário e enviadas para os canais de replicação (veja a Seção 15.4.1.3, “Instrução SET sql_log_bin”).
 
 Importante
 
 O plugin de autenticação `caching_sha2_password` é o padrão para novos usuários (para detalhes, consulte a Seção 8.4.1.1, “Autenticação Caching SHA-2 Pluggable”). Para se conectar a um servidor usando uma conta de usuário que autentica com este plugin, você deve configurar uma conexão criptografada conforme descrito na Seção 19.3.1, “Configuração da Replicação para Usar Conexões Criptografadas” ou habilitar a conexão não criptografada para suportar a troca de senhas usando um par de chaves RSA.
 
-Após configurar a conta de usuário, use a instrução `GRANT` para conceder privilégios adicionais para permitir que a conta de usuário faça as alterações no banco de dados que você espera que o thread do aplicável realize, como atualizar tabelas específicas mantidas no servidor. Esses mesmos privilégios permitem que um administrador use a conta se precisar executar qualquer uma dessas transações manualmente no canal de replicação. Se uma operação inesperada for realizada para a qual você não concedeu os privilégios apropriados, a operação é desabilitada e o thread do aplicável de replicação pára com um erro. A seção 19.3.3.1, “Privilégios para a Conta de Usuário PRIVILEGE\_CHECKS\_USER de Replicação”, explica quais privilégios adicionais a conta precisa. Por exemplo, para conceder à conta de usuário `priv_repl` o privilégio `INSERT` para adicionar linhas à tabela `cust` em `db1`, execute a seguinte instrução:
+Após configurar a conta de usuário, use a instrução `GRANT` para conceder privilégios adicionais para permitir que a conta de usuário faça as alterações no banco de dados que você espera que o thread do aplicável realize, como atualizar tabelas específicas mantidas no servidor. Esses mesmos privilégios permitem que um administrador use a conta se precisar executar qualquer uma dessas transações manualmente no canal de replicação. Se uma operação inesperada for realizada para a qual você não concedeu os privilégios apropriados, a operação é desabilitada e o thread do aplicável de replicação pára com um erro. A seção 19.3.3.1, “Privilégios para a Conta de Usuário PRIVILEGE_CHECKS_USER de Replicação”, explica quais privilégios adicionais a conta precisa. Por exemplo, para conceder à conta de usuário `priv_repl` o privilégio `INSERT` para adicionar linhas à tabela `cust` em `db1`, execute a seguinte instrução:
 
 ```
 mysql> GRANT INSERT ON db1.cust TO 'priv_repl'@'%.example.com';

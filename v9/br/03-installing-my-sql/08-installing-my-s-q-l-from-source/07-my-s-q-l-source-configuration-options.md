@@ -30,7 +30,7 @@ A tabela a seguir mostra as opções do **CMake** disponíveis. Na coluna `Defau
 
 **Tabela 2.15 Referência de Opções de Configuração de Fonte do MySQL (CMake)**
 
-="literal">PREFIX/bin</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_shareddir"><code>INSTALL_SHAREDIR</code></a></th> <td>Shared library directory</td> <td><code>PREFIX/lib</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_sysvardir"><code>INSTALL_SYSVARDIR</code></a></th> <td>InnoDB system variable directory</td> <td><code>PREFIX/include</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrdir"><code>INSTALL_USRDIR</code></a></th> <td>User data directory</td> <td><code>PREFIX</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocaldir"><code>INSTALL_USRLOCALDIR</code></a></th> <td>User local data directory</td> <td><code>PREFIX/usr</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocallibdir"><code>INSTALL_USRLOCALLIBDIR</code></a></th> <td>User local library directory</td> <td><code>PREFIX/usr/lib</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocallibdir_bindir"><code>INSTALL_USRLOCALLIBDIR_BINDIR</code></a></th> <td>User local library directory executable directory</td> <td><code>PREFIX/bin</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocallibdir_libdir"><code>INSTALL_USRLOCALLIBDIR_LIBDIR</code></a></th> <td>User local library directory library directory</td> <td><code>PREFIX/lib</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocallibdir_plugindir"><code>INSTALL_USRLOCALLIBDIR_PLUGINDIR</code></a></th> <td>User local library directory plugin directory</td> <td><code>PREFIX/lib/plugin</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocallibdir_sbindir"><code>INSTALL_USRLOCALLIBDIR_SBINDIR</code></a></th> <td>User local library directory server executable directory</td> <td><code>PREFIX/bin</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocallibdir_sysvardir"><code>INSTALL_USRLOCALLIBDIR_SYSVARDIR</code></a></th> <td>User local library directory system variable directory</td> <td><code>PREFIX/include</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocallibdir_usrdir"><code>INSTALL_USRLOCALLIBDIR_USDIR</code></a></th> <td>User local library directory user data directory</td> <td><code>PREFIX</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocallibdir_usrlocaldir"><code>INSTALL_USRLOCALLIBDIR_USRLOCALDIR</code></a></th> <td>User local library directory user local data directory</td> <td><code>PREFIX/usr</code></td> </tr><tr><th><a class="link" href="source-configuration-options.html#option_cmake_install_usrlocallibdir_usrlocallibdir"><code>INSTALL_USRLOCALLIBDIR_USRLOCALLIBDIR</code></a></th> <td>User local library directory user local library directory</td> <td><code>PREFIX/usr/lib
+="literal">PREFIX/bin</code></td> </tr><tr><th><code>INSTALL_SHAREDIR</code></th> <td>Shared library directory</td> <td><code>PREFIX/lib</code></td> </tr><tr><th><code>INSTALL_SYSVARDIR</code></th> <td>InnoDB system variable directory</td> <td><code>PREFIX/include</code></td> </tr><tr><th><code>INSTALL_USRDIR</code></th> <td>User data directory</td> <td><code>PREFIX</code></td> </tr><tr><th><code>INSTALL_USRLOCALDIR</code></th> <td>User local data directory</td> <td><code>PREFIX/usr</code></td> </tr><tr><th><code>INSTALL_USRLOCALLIBDIR</code></th> <td>User local library directory</td> <td><code>PREFIX/usr/lib</code></td> </tr><tr><th><code>INSTALL_USRLOCALLIBDIR_BINDIR</code></th> <td>User local library directory executable directory</td> <td><code>PREFIX/bin</code></td> </tr><tr><th><code>INSTALL_USRLOCALLIBDIR_LIBDIR</code></th> <td>User local library directory library directory</td> <td><code>PREFIX/lib</code></td> </tr><tr><th><code>INSTALL_USRLOCALLIBDIR_PLUGINDIR</code></th> <td>User local library directory plugin directory</td> <td><code>PREFIX/lib/plugin</code></td> </tr><tr><th><code>INSTALL_USRLOCALLIBDIR_SBINDIR</code></th> <td>User local library directory server executable directory</td> <td><code>PREFIX/bin</code></td> </tr><tr><th><code>INSTALL_USRLOCALLIBDIR_SYSVARDIR</code></th> <td>User local library directory system variable directory</td> <td><code>PREFIX/include</code></td> </tr><tr><th><code>INSTALL_USRLOCALLIBDIR_USDIR</code></th> <td>User local library directory user data directory</td> <td><code>PREFIX</code></td> </tr><tr><th><code>INSTALL_USRLOCALLIBDIR_USRLOCALDIR</code></th> <td>User local library directory user local data directory</td> <td><code>PREFIX/usr</code></td> </tr><tr><th><code>INSTALL_USRLOCALLIBDIR_USRLOCALLIBDIR</code></th> <td>User local library directory user local library directory</td> <td><code>PREFIX/usr/lib
 
 #### Opções Gerais
 
@@ -394,7 +394,7 @@ Exclua as instâncias de instrumentação de declarações do Schema de Desempen
 
 * `-DENABLE_EXPERIMENTAL_SYSVARS=bool`
 
-  Se habilitar as variáveis de sistema experimentais `InnoDB`. As variáveis de sistema experimentais são destinadas a desenvolvedores do MySQL, devem ser usadas apenas em ambientes de desenvolvimento ou teste e podem ser removidas sem aviso prévio em uma futura versão do MySQL. Para obter informações sobre as variáveis de sistema experimentais, consulte `/storage/innobase/handler/ha_innodb.cc` no repositório de código-fonte do MySQL. As variáveis de sistema experimentais podem ser identificadas pesquisando por “PLUGIN\_VAR\_EXPERIMENTAL”.
+  Se habilitar as variáveis de sistema experimentais `InnoDB`. As variáveis de sistema experimentais são destinadas a desenvolvedores do MySQL, devem ser usadas apenas em ambientes de desenvolvimento ou teste e podem ser removidas sem aviso prévio em uma futura versão do MySQL. Para obter informações sobre as variáveis de sistema experimentais, consulte `/storage/innobase/handler/ha_innodb.cc` no repositório de código-fonte do MySQL. As variáveis de sistema experimentais podem ser identificadas pesquisando por “PLUGIN_VAR_EXPERIMENTAL”.
 
 * `-DENABLE_GCOV=bool`
 
@@ -616,7 +616,7 @@ Para uma descrição da facilidade Debug Sync e de como usar pontos de sincroniz
 
 * `-DWITH_LOCK_ORDER=bool`
 
-  Se habilitar a ferramenta LOCK\_ORDER. Por padrão, esta opção está desabilitada e as compilações do servidor não contêm ferramentas. Se a ferramenta for habilitada, a ferramenta LOCK\_ORDER estará disponível e pode ser usada conforme descrito na Seção 7.9.3, “A Ferramenta LOCK\_ORDER”.
+  Se habilitar a ferramenta LOCK_ORDER. Por padrão, esta opção está desabilitada e as compilações do servidor não contêm ferramentas. Se a ferramenta for habilitada, a ferramenta LOCK_ORDER estará disponível e pode ser usada conforme descrito na Seção 7.9.3, “A Ferramenta LOCK_ORDER”.
 
   Nota
 
@@ -730,11 +730,11 @@ Para obter informações adicionais sobre a configuração da biblioteca SSL, co
 
 * `-DWITH_SYSTEMD=bool`
 
-  Se ativar o suporte à instalação de arquivos de **systemd**. Por padrão, essa opção está desabilitada. Quando ativada, os arquivos de suporte a **systemd** são instalados, e os scripts como **mysqld\_safe** e o script de inicialização System V não são instalados. Em plataformas onde **systemd** não está disponível, a ativação de `WITH_SYSTEMD` resulta em um erro do **CMake**.
+  Se ativar o suporte à instalação de arquivos de **systemd**. Por padrão, essa opção está desabilitada. Quando ativada, os arquivos de suporte a **systemd** são instalados, e os scripts como **mysqld_safe** e o script de inicialização System V não são instalados. Em plataformas onde **systemd** não está disponível, a ativação de `WITH_SYSTEMD` resulta em um erro do **CMake**.
 
   Quando o servidor foi construído usando essa opção, o MySQL inclui todas as mensagens de **systemd** no log de erro do servidor (consulte a Seção 7.4.2, “O Log de Erro”).
 
-  Para obter mais informações sobre o uso de **systemd**, consulte a Seção 2.5.9, “Gerenciando o Servidor MySQL com systemd”. Essa seção também inclui informações sobre a especificação de opções que não são especificadas explicitamente nos grupos de opções de `[mysqld_safe]`. Como o **mysqld\_safe** não é instalado quando **systemd** é usado, tais opções devem ser especificadas de outra forma.
+  Para obter mais informações sobre o uso de **systemd**, consulte a Seção 2.5.9, “Gerenciando o Servidor MySQL com systemd”. Essa seção também inclui informações sobre a especificação de opções que não são especificadas explicitamente nos grupos de opções de `[mysqld_safe]`. Como o **mysqld_safe** não é instalado quando **systemd** é usado, tais opções devem ser especificadas de outra forma.
 
 * `-DWITH_SYSTEM_LIBS=bool`
 
@@ -867,7 +867,7 @@ As seguintes opções se aplicam ao compilar as fontes do MySQL com suporte para
 
 * `-DNDB_UTILS_LINK_DYNAMIC={ON|OFF}`
 
-  Controla se as utilidades NDB, como **ndb\_drop\_table**, são vinculadas com o `ndbclient` staticamente (`OFF`) ou dinamicamente (`ON`); `OFF` (vinculação estática) é o padrão. Normalmente, a vinculação estática é usada ao compilar essas utilidades para evitar problemas com `LD_LIBRARY_PATH`, ou quando múltiplas versões do `ndbclient` estão instaladas. Esta opção é destinada à criação de imagens Docker e possivelmente outros casos em que o ambiente de destino está sujeito a controle preciso e é desejável reduzir o tamanho da imagem.
+  Controla se as utilidades NDB, como **ndb_drop_table**, são vinculadas com o `ndbclient` staticamente (`OFF`) ou dinamicamente (`ON`); `OFF` (vinculação estática) é o padrão. Normalmente, a vinculação estática é usada ao compilar essas utilidades para evitar problemas com `LD_LIBRARY_PATH`, ou quando múltiplas versões do `ndbclient` estão instaladas. Esta opção é destinada à criação de imagens Docker e possivelmente outros casos em que o ambiente de destino está sujeito a controle preciso e é desejável reduzir o tamanho da imagem.
 
 * `-DWITH_CLASSPATH=path`
 
@@ -911,7 +911,7 @@ Permite a injeção de erros no kernel `NDB`. Apenas para testes; não é destin
 
 * `-DWITH_NDB_PORT=port`
 
-  Faz com que o servidor de gerenciamento do NDB Cluster (**ndb\_mgmd**) que é construído use este *`port`* por padrão. Se esta opção não for definida, o servidor de gerenciamento resultante tenta usar o port 1186 por padrão.
+  Faz com que o servidor de gerenciamento do NDB Cluster (**ndb_mgmd**) que é construído use este *`port`* por padrão. Se esta opção não for definida, o servidor de gerenciamento resultante tenta usar o port 1186 por padrão.
 
 * `-DWITH_NDB_TEST={ON|OFF}`
 
@@ -919,6 +919,6 @@ Se habilitado, inclua um conjunto de programas de teste da API NDB. O padrão é
 
 * `-DWITH_NDB_TLS_SEARCH_PATH=caminho`
 
-  Defina o caminho padrão pesquisado pelo **ndb\_sign\_keys** e outros programas `NDB` para arquivos de certificados e chaves TLS.
+  Defina o caminho padrão pesquisado pelo **ndb_sign_keys** e outros programas `NDB` para arquivos de certificados e chaves TLS.
 
   O padrão para plataformas Windows é `$HOMEDIR/ndb-tls`; para outras plataformas, como Linux, é `$HOME/ndb-tls`.

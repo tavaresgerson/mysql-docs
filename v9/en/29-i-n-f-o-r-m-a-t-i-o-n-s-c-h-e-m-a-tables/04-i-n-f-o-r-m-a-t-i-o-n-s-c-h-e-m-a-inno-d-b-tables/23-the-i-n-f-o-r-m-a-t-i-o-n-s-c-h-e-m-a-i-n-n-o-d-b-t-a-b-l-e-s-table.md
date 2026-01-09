@@ -1,8 +1,8 @@
-### 28.4.23 The INFORMATION\_SCHEMA INNODB\_TABLES Table
+### 28.4.23 The INFORMATION_SCHEMA INNODB_TABLES Table
 
 The `INNODB_TABLES` table provides metadata about `InnoDB` tables.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 The `INNODB_TABLES` table has these columns:
 

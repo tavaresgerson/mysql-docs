@@ -111,7 +111,7 @@ Os intervalos mostrados estão em graus. Os limites exatos do intervalo variam l
 
 + Se uma unidade não for especificada, o resultado está na unidade do SRS das geometrias, seja cartesiano ou geográfico. Atualmente, todos os SRS do MySQL são expressos em metros.
 
-Uma unidade é suportada se for encontrada na tabela `INFORMATION_SCHEMA` `ST_UNITS_OF_MEASURE`. Veja a Seção 28.3.43, “A Tabela INFORMATION\_SCHEMA ST\_UNITS\_OF\_MEASURE”.
+Uma unidade é suportada se for encontrada na tabela `INFORMATION_SCHEMA` `ST_UNITS_OF_MEASURE`. Veja a Seção 28.3.43, “A Tabela INFORMATION_SCHEMA ST_UNITS_OF_MEASURE”.
 
 ```
   mysql> SET @ls = ST_GeomFromText('LineString(1 1,2 2,3 3)');

@@ -5,7 +5,7 @@ SHOW COLLATION
     [LIKE 'pattern' | WHERE expr]
 ```
 
-Esta declaração lista as collation suportadas pelo servidor. Por padrão, o resultado da consulta `SHOW COLLATION` inclui todas as collation disponíveis. A cláusula `LIKE` (funções de comparação de strings # operador\_like), se presente, indica quais nomes de collation devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”. Por exemplo:
+Esta declaração lista as collation suportadas pelo servidor. Por padrão, o resultado da consulta `SHOW COLLATION` inclui todas as collation disponíveis. A cláusula `LIKE` (funções de comparação de strings # operador_like), se presente, indica quais nomes de collation devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido na Seção 24.8, “Extensões para Declarações SHOW”. Por exemplo:
 
 ```sql
 mysql> SHOW COLLATION WHERE Charset = 'latin1';
@@ -65,4 +65,4 @@ mysql> SHOW COLLATION WHERE `Default` = 'Yes';
 ...
 ```
 
-Informações de colagem também estão disponíveis na tabela `INFORMATION_SCHEMA` `COLLATIONS`. Veja Seção 24.3.3, “A Tabela INFORMATION\_SCHEMA COLLATIONS”.
+Informações de colagem também estão disponíveis na tabela `INFORMATION_SCHEMA` `COLLATIONS`. Veja Seção 24.3.3, “A Tabela INFORMATION_SCHEMA COLLATIONS”.

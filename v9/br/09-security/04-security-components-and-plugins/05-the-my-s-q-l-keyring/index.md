@@ -6,23 +6,23 @@
 
 8.4.5.3 Instalação de Plugins do Keyring
 
-8.4.5.4 Uso do componente\_keyring\_file Componente do Keyring com Arquivo de Dados
+8.4.5.4 Uso do componente_keyring_file Componente do Keyring com Arquivo de Dados
 
-8.4.5.5 Uso do componente\_keyring\_encrypted\_file Componente do Keyring com Arquivo Encriptado
+8.4.5.5 Uso do componente_keyring_encrypted_file Componente do Keyring com Arquivo Encriptado
 
-8.4.5.6 Uso do plugin\_keyring\_okv Plugin KMIP do HashiCorp
+8.4.5.6 Uso do plugin_keyring_okv Plugin KMIP do HashiCorp
 
-8.4.5.7 Uso do componente\_keyring\_kmip Componente KMIP do HashiCorp
+8.4.5.7 Uso do componente_keyring_kmip Componente KMIP do HashiCorp
 
-8.4.5.8 Uso do plugin\_keyring\_aws Plugin do Keyring do Amazon Web Services
+8.4.5.8 Uso do plugin_keyring_aws Plugin do Keyring do Amazon Web Services
 
-8.4.5.9 Uso do componente\_keyring\_aws Componente AWS do Keyring do HashiCorp
+8.4.5.9 Uso do componente_keyring_aws Componente AWS do Keyring do HashiCorp
 
-8.4.5.10 Uso do plugin\_vault\_keyring Plugin do Keyring do Vault da HashiCorp
+8.4.5.10 Uso do plugin_vault_keyring Plugin do Keyring do Vault da HashiCorp
 
-8.4.5.11 Uso do componente\_vault\_keyring Plugin do Keyring do Vault da HashiCorp
+8.4.5.11 Uso do componente_vault_keyring Plugin do Keyring do Vault da HashiCorp
 
-8.4.5.12 Uso do componente\_vault\_keyring Plugin do Keyring do Vault da Oracle Cloud Infrastructure
+8.4.5.12 Uso do componente_vault_keyring Plugin do Keyring do Vault da Oracle Cloud Infrastructure
 
 8.4.5.13 Tipos e comprimentos de chaves suportados pelo Keyring
 
@@ -42,21 +42,21 @@ O servidor MySQL suporta um keyring que permite que componentes e plugins intern
 
   Esses componentes do Keyring estão disponíveis:
 
-+ `component_keyring_file`: Armazena dados do carteiro em um arquivo local ao hospedeiro do servidor. Disponível nas distribuições MySQL Community Edition e MySQL Enterprise Edition. Veja a Seção 8.4.5.4, “Usando o componente\_keyring\_file Componente de Carteiro com Arquivo Baseado em Arquivo”.
++ `component_keyring_file`: Armazena dados do carteiro em um arquivo local ao hospedeiro do servidor. Disponível nas distribuições MySQL Community Edition e MySQL Enterprise Edition. Veja a Seção 8.4.5.4, “Usando o componente_keyring_file Componente de Carteiro com Arquivo Baseado em Arquivo”.
 
-  + `component_keyring_encrypted_file`: Armazena dados do carteiro em um arquivo criptografado e protegido por senha local ao hospedeiro do servidor. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.5, “Usando o componente\_keyring\_encrypted\_file Componente de Carteiro com Arquivo Baseado em Arquivo Criptografado”.
+  + `component_keyring_encrypted_file`: Armazena dados do carteiro em um arquivo criptografado e protegido por senha local ao hospedeiro do servidor. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.5, “Usando o componente_keyring_encrypted_file Componente de Carteiro com Arquivo Baseado em Arquivo Criptografado”.
 
-  + `component_keyring_oci`: Armazena dados do carteiro no Vault da Oracle Cloud Infrastructure. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.12, “Usando o componente\_keyring\_oci Vault de Infraestrutura da Nuvem da Oracle”.
+  + `component_keyring_oci`: Armazena dados do carteiro no Vault da Oracle Cloud Infrastructure. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.12, “Usando o componente_keyring_oci Vault de Infraestrutura da Nuvem da Oracle”.
 
-  + `component_keyring_aws`: Comunica-se com o Serviço de Gerenciamento de Chaves da Amazon Web Services para geração de chaves e usa um arquivo local para armazenamento de chaves. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.9, “Usando o componente\_keyring\_aws Componente de Carteiro AWS”.
+  + `component_keyring_aws`: Comunica-se com o Serviço de Gerenciamento de Chaves da Amazon Web Services para geração de chaves e usa um arquivo local para armazenamento de chaves. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.9, “Usando o componente_keyring_aws Componente de Carteiro AWS”.
 
-  + `component_keyring_hashicorp`: Comunica-se com o Vault da HashiCorp para armazenamento no back-end. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.11, “Usando o componente\_keyring\_hashicorp Vault de Chaves”.
+  + `component_keyring_hashicorp`: Comunica-se com o Vault da HashiCorp para armazenamento no back-end. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.11, “Usando o componente_keyring_hashicorp Vault de Chaves”.
 
 Estes plugins de carteiro estão disponíveis:
 
-  + `keyring_okv`: Um plugin KMIP 1.1 para uso com produtos de armazenamento de carteiro de back-end compatíveis com KMIP, como o Oracle Key Vault e o Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.6, “Usando o plugin\_keyring\_okv KMIP”.
+  + `keyring_okv`: Um plugin KMIP 1.1 para uso com produtos de armazenamento de carteiro de back-end compatíveis com KMIP, como o Oracle Key Vault e o Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições MySQL Enterprise Edition. Veja a Seção 8.4.5.6, “Usando o plugin_keyring_okv KMIP”.
 
-+ `keyring_aws`: (*Descontinuado*) Comunica-se com o Serviço de Gerenciamento de Chaves do Amazon Web Services para geração e criptografia de chaves, usando um arquivo local para armazenamento de chaves. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.5.8, “Usando o Plugin de Cadastro de Chaves Amazon Web Services keyring\_aws”.
++ `keyring_aws`: (*Descontinuado*) Comunica-se com o Serviço de Gerenciamento de Chaves do Amazon Web Services para geração e criptografia de chaves, usando um arquivo local para armazenamento de chaves. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.5.8, “Usando o Plugin de Cadastro de Chaves Amazon Web Services keyring_aws”.
 
   + (*Descontinuado*) `keyring_hashicorp`: Comunica-se com o HashiCorp Vault para armazenamento de dados no back-end. Disponível nas distribuições da Edição Empresarial do MySQL. Veja a Seção 8.4.5.10, “Usando o Plugin de Cadastro de Chaves HashiCorp Vault”.
 
@@ -68,9 +68,9 @@ Estes plugins de carteiro estão disponíveis:
 
 * Acesso a metadados de chaves:
 
-  + A tabela `keyring_keys` do Schema de Desempenho exibe metadados para as chaves no cadastro de chaves. Os metadados das chaves incluem IDs de chave, proprietários de chave e IDs de chave de back-end. A tabela `keyring_keys` não exibe nenhum dado sensível do cadastro de chaves, como o conteúdo das chaves. Veja a Seção 29.12.18.2, “A tabela keyring\_keys”.
+  + A tabela `keyring_keys` do Schema de Desempenho exibe metadados para as chaves no cadastro de chaves. Os metadados das chaves incluem IDs de chave, proprietários de chave e IDs de chave de back-end. A tabela `keyring_keys` não exibe nenhum dado sensível do cadastro de chaves, como o conteúdo das chaves. Veja a Seção 29.12.18.2, “A tabela keyring_keys”.
 
-  + A tabela `keyring_component_status` do Schema de Desempenho fornece informações de status sobre o componente de cadastro de chaves em uso, se um estiver instalado. Veja a Seção 29.12.18.1, “A tabela keyring\_component\_status”.
+  + A tabela `keyring_component_status` do Schema de Desempenho fornece informações de status sobre o componente de cadastro de chaves em uso, se um estiver instalado. Veja a Seção 29.12.18.1, “A tabela keyring_component_status”.
 
 * Uma capacidade de migração de chaves. O MySQL suporta a migração de chaves entre cadastros de chaves, permitindo que os DBAs mudem uma instalação do MySQL de um cadastro de chaves para outro. Veja a Seção 8.4.5.14, “Migrando Chaves Entre Cadastros de Chaves de Cadastro”.
 

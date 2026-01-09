@@ -134,7 +134,7 @@ O uso de comandos de formato curto dentro de comentários de várias linhas `/* 
 
   Reinicie a conexão para limpar o estado da sessão.
 
-  A reinicialização de uma conexão tem efeitos semelhantes aos de `mysql_change_user()` ou de um controle de reconexão automática, exceto que a conexão não é fechada e reaberta, e a reautenticação não é realizada. Veja mysql\_change\_user() e Controle de Reconexão Automática.
+  A reinicialização de uma conexão tem efeitos semelhantes aos de `mysql_change_user()` ou de um controle de reconexão automática, exceto que a conexão não é fechada e reaberta, e a reautenticação não é realizada. Veja mysql_change_user() e Controle de Reconexão Automática.
 
   Este exemplo mostra como `resetconnection` limpa um valor mantido no estado da sessão:
 
@@ -335,7 +335,7 @@ O comando `prompt` reconfigura o prompt padrão `mysql>`. A string para definir 
          <td>O ano atual, com dois dígitos</td>
       </tr>
       <tr>
-         <td><code>\_</code></td>
+         <td><code>_</code></td>
          <td>Um espaço</td>
       </tr>
       <tr>
@@ -382,7 +382,7 @@ Você pode definir o prompt de várias maneiras:
 
   ```
   [mysql]
-  prompt=(\\u@\\h) [\\d]>\\_
+  prompt=(\\u@\\h) [\\d]>_
   ```
 
   Neste exemplo, observe que os backslashes são duplicados. Se você definir o prompt usando a opção `prompt` em um arquivo de opção, é aconselhável duplicar os backslashes ao usar as opções de prompt especiais. Há alguma sobreposição no conjunto de opções de prompt permitidas e no conjunto de sequências de escape especiais reconhecidas em arquivos de opção. (As regras para sequências de escape em arquivos de opção estão listadas na Seção 4.2.2.2, “Usando Arquivos de Opção”). A sobreposição pode causar problemas se você usar backslashes simples. Por exemplo, `\s` é interpretado como um espaço em vez do valor atual dos segundos. O exemplo a seguir mostra como definir um prompt dentro de um arquivo de opção para incluir a hora atual no formato `hh:mm:ss>`:
@@ -395,8 +395,8 @@ Você pode definir o prompt de várias maneiras:
 - *Defina o prompt interativamente.* Você pode alterar o prompt interativamente usando o comando `prompt` (ou `\R`). Por exemplo:
 
   ```sql
-  mysql> prompt (\u@\h) [\d]>\_
-  PROMPT set to '(\u@\h) [\d]>\_'
+  mysql> prompt (\u@\h) [\d]>_
+  PROMPT set to '(\u@\h) [\d]>_'
   (user@host) [database]>
   (user@host) [database]> prompt
   Returning to default PROMPT of mysql>

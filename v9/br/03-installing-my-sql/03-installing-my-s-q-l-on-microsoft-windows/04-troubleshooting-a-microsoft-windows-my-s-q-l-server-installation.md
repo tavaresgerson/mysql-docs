@@ -36,7 +36,7 @@ Você pode criar ou modificar um arquivo de opções com qualquer editor de text
   datadir=D:/MySQLdata
   ```
 
-Os nomes de caminho do Microsoft Windows são especificados em arquivos de opções usando barras invertidas (`) em vez de barras (\_). Se você usar barras (\_), duplique-as:
+Os nomes de caminho do Microsoft Windows são especificados em arquivos de opções usando barras invertidas (`) em vez de barras (_). Se você usar barras (_), duplique-as:
 
 ```
   [mysqld]

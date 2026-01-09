@@ -28,7 +28,7 @@ Esses parâmetros também se aplicam a **ndbmtd**, a versão multithread do **nd
 
 - `BatchSizePerLocalScan`: Usado para calcular o número de registros bloqueados para varredura com bloqueio de retenção.
 
-- `BuildIndexThreads`: Número de threads a serem usadas para a construção de índices ordenados durante o reinício do sistema ou do nó. Também se aplica ao executar ndb\_restore --rebuild-indexes. Definir este parâmetro para 0 desativa a construção de índices ordenados em múltiplas threads.
+- `BuildIndexThreads`: Número de threads a serem usadas para a construção de índices ordenados durante o reinício do sistema ou do nó. Também se aplica ao executar ndb_restore --rebuild-indexes. Definir este parâmetro para 0 desativa a construção de índices ordenados em múltiplas threads.
 
 - `CompressedBackup`: Use o zlib para comprimir os backups conforme eles são escritos.
 
@@ -220,9 +220,9 @@ Esses parâmetros também se aplicam a **ndbmtd**, a versão multithread do **nd
 
 - `Numa`: (apenas Linux; requer libnuma) Controla o suporte NUMA. Definir para 0 permite que o sistema determine o uso de interleaving pelo processo do nó de dados; 1 significa que é determinado pelo nó de dados.
 
-- `ODirect`: Use leituras e escritas de arquivos O\_DIRECT quando possível.
+- `ODirect`: Use leituras e escritas de arquivos O_DIRECT quando possível.
 
-- `ODirectSyncFlag`: As escritas O\_DIRECT são tratadas como escritas sincronizadas; são ignoradas quando o ODirect não está habilitado, o InitFragmentLogFiles está configurado como SPARSE ou ambos.
+- `ODirectSyncFlag`: As escritas O_DIRECT são tratadas como escritas sincronizadas; são ignoradas quando o ODirect não está habilitado, o InitFragmentLogFiles está configurado como SPARSE ou ambos.
 
 - `RealtimeScheduler`: Quando verdadeiro, os threads dos nós de dados são agendados como threads em tempo real. O padrão é falso.
 
@@ -266,7 +266,7 @@ Esses parâmetros também se aplicam a **ndbmtd**, a versão multithread do **nd
 
 - `StringMemory`: Tamanho padrão da memória de strings (0 a 100 = % do máximo, 101+ = bytes reais).
 
-- `TcpBind_INADDR_ANY`: Vincule o IP\_ADDR\_ANY para que as conexões possam ser feitas de qualquer lugar (para conexões geradas automaticamente).
+- `TcpBind_INADDR_ANY`: Vincule o IP_ADDR_ANY para que as conexões possam ser feitas de qualquer lugar (para conexões geradas automaticamente).
 
 - `TimeBetweenEpochs`: Tempo entre épocas (sincronização usada para replicação).
 

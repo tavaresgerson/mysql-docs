@@ -104,19 +104,19 @@ Predicts labels and saves them in the specified output table.
 * *`options`*
   (`Object`)
   (*optional*): Set of options in JSON
-  format. See ML\_PREDICT\_TABLE,
+  format. See ML_PREDICT_TABLE,
   for more information.
 
 **Return type**
 
 * *None*. (Inserts into
   *`outputTable`*; see
-  ML\_PREDICT\_ROW.)
+  ML_PREDICT_ROW.)
 
 ###### Version 2
 
 Predicts a label for a single sample of data, and returns it.
-See ML\_PREDICT\_ROW, for more
+See ML_PREDICT_ROW, for more
 information.
 
 **Signature**
@@ -220,7 +220,7 @@ This method serves as a wrapper for the MySQL HeatWave AutoML `sys.ML_EXPLAIN` r
 **Return type**
 
 * *None*. Adds a model explainer to the
-  model catalog; see ML\_EXPLAIN,
+  model catalog; see ML_EXPLAIN,
   for more information.
 
 ##### Classifier.getExplainer()

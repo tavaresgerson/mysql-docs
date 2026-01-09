@@ -19,7 +19,7 @@ O `valor_condição` para `DECLARE ... CONDITION` indica a condição específic
 
   Não use o código de erro do MySQL 0, pois ele indica sucesso em vez de uma condição de erro. Para uma lista de códigos de erro do MySQL, consulte Referência de Mensagem de Erro do Servidor.
 
-- SQLSTATE \[VALOR] *`sqlstate_value`*: Uma literal de cadeia de caracteres de 5 caracteres que indica um valor SQLSTATE.
+- SQLSTATE [VALOR] *`sqlstate_value`*: Uma literal de cadeia de caracteres de 5 caracteres que indica um valor SQLSTATE.
 
   Não use valores SQLSTATE que comecem com `'00'`, pois esses indicam sucesso em vez de uma condição de erro. Para uma lista de valores SQLSTATE, consulte Referência de Mensagem de Erro do Servidor.
 

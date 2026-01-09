@@ -1,4 +1,4 @@
-### 28.3.25 The INFORMATION\_SCHEMA PARAMETERS Table
+### 28.3.25 The INFORMATION_SCHEMA PARAMETERS Table
 
 The `PARAMETERS` table provides information about parameters for stored routines (stored procedures and stored functions), and about return values for stored functions. The `PARAMETERS` table does not include built-in (native) functions or loadable functions.
 

@@ -129,7 +129,7 @@ O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na
    </tbody>
 </table>
 
-  O caminho para o programa **my\_print\_defaults**.
+  O caminho para o programa **my_print_defaults**.
 
 - `--mysqld=nome_do_arquivo`, `-b nome_do_arquivo`
 

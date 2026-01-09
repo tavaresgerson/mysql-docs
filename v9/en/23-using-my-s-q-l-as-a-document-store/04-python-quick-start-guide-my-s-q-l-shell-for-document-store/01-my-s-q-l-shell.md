@@ -28,7 +28,7 @@ You need to specify the address of the MySQL server instance which you want to c
 
 * `ds1.example.com` is the hostname of the server instance running MySQL. Replace this with the hostname of the MySQL server instance you are using as a Document Store.
 
-* The default schema for this session is `world_x`. For instructions on setting up the `world_x` schema, see Section 22.4.2, “Download and Import world\_x Database”.
+* The default schema for this session is `world_x`. For instructions on setting up the `world_x` schema, see Section 22.4.2, “Download and Import world_x Database”.
 
 For more information, see Section 6.2.5, “Connecting to the Server Using URI-Like Strings or Key-Value Pairs”.
 

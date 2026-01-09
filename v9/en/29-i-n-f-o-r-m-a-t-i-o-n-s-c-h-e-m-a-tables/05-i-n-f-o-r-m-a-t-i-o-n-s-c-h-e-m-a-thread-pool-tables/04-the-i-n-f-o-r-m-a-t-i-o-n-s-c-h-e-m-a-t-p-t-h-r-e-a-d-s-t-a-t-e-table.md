@@ -1,4 +1,4 @@
-### 28.5.4 The INFORMATION\_SCHEMA TP\_THREAD\_STATE Table
+### 28.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table
 
 Note
 
@@ -16,4 +16,4 @@ SELECT * FROM performance_schema.tp_thread_state;
 
 The `TP_THREAD_STATE` table has one row per thread created by the thread pool to handle connections.
 
-For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_STATE` table, see Section 29.12.16.4, “The tp\_thread\_state Table”. The Performance Schema `tp_thread_state` table has equivalent columns.
+For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_STATE` table, see Section 29.12.16.4, “The tp_thread_state Table”. The Performance Schema `tp_thread_state` table has equivalent columns.

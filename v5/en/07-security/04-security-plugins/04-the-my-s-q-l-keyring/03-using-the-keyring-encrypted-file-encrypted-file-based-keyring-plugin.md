@@ -1,4 +1,4 @@
-#### 6.4.4.3 Using the keyring\_encrypted\_file Encrypted File-Based Keyring Plugin
+#### 6.4.4.3 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin
 
 Note
 

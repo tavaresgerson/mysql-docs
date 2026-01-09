@@ -14,7 +14,7 @@ mysql> SHOW GRANTS for 'jon'@'localhost';
 +---------------------------------------------------+
 ```
 
-Você também pode verificar se os privilégios são compartilhados para essa conta usando o utilitário **ndb\_select\_all** fornecido com o NDB Cluster, como este (algum output formatado para preservar a formatação):
+Você também pode verificar se os privilégios são compartilhados para essa conta usando o utilitário **ndb_select_all** fornecido com o NDB Cluster, como este (algum output formatado para preservar a formatação):
 
 ```
 $> ndb_select_all -d mysql ndb_sql_metadata | grep '`jon`@`localhost`'

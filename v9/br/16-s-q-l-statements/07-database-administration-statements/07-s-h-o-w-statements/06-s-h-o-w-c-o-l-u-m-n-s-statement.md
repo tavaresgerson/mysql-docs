@@ -95,7 +95,7 @@ Um índice `UNIQUE` pode ser exibido como `PRI` se não puder conter valores `NU
 
 Qualquer comentário incluído na definição da coluna. Esse valor é exibido apenas se você usar a palavra-chave `FULL`.
 
-As informações das colunas da tabela também estão disponíveis na tabela `INFORMATION_SCHEMA` `COLUMNS`. Veja a Seção 28.3.8, “A Tabela INFORMATION\_SCHEMA COLUMNS”. As informações extensas sobre colunas ocultas estão disponíveis apenas usando `SHOW EXTENDED COLUMNS`; não podem ser obtidas da tabela `COLUMNS`.
+As informações das colunas da tabela também estão disponíveis na tabela `INFORMATION_SCHEMA` `COLUMNS`. Veja a Seção 28.3.8, “A Tabela INFORMATION_SCHEMA COLUMNS”. As informações extensas sobre colunas ocultas estão disponíveis apenas usando `SHOW EXTENDED COLUMNS`; não podem ser obtidas da tabela `COLUMNS`.
 
 Você pode listar as colunas de uma tabela com o comando **mysqlshow *`db_name`* *`tbl_name`***.
 

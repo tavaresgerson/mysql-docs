@@ -1,6 +1,6 @@
 #### 5.1.11.2 DNS Lookups and the Host Cache
 
-The MySQL server maintains an in-memory host cache that contains information about clients: IP address, host name, and error information. The Performance Schema [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table exposes the contents of the host cache so that it can be examined using [`SELECT`](select.html "13.2.9 SELECT Statement") statements. This may help you diagnose the causes of connection problems. See [Section 25.12.16.1, “The host\_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table").
+The MySQL server maintains an in-memory host cache that contains information about clients: IP address, host name, and error information. The Performance Schema [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table exposes the contents of the host cache so that it can be examined using [`SELECT`](select.html "13.2.9 SELECT Statement") statements. This may help you diagnose the causes of connection problems. See [Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table").
 
 The following sections discuss how the host cache works, as well as other topics such as how to configure and monitor the cache.
 
@@ -30,7 +30,7 @@ The server handles entries in the host cache like this:
 
 2. If the validation flag for the client IP entry is false, the server attempts an IP-to-host name-to-IP DNS resolution. If that is successful, the host name is updated with the resolved host name and the validation flag is set to true. If resolution is unsuccessful, the action taken depends on whether the error is permanent or transient. For permanent failures, the host name remains `NULL` and the validation flag is set to true. For transient failures, the host name and validation flag remain unchanged. (In this case, another DNS resolution attempt occurs the next time a client connects from this IP.)
 
-3. If an error occurs while processing an incoming client connection from a given IP address, the server updates the corresponding error counters in the entry for that IP. For a description of the errors recorded, see [Section 25.12.16.1, “The host\_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table").
+3. If an error occurs while processing an incoming client connection from a given IP address, the server updates the corresponding error counters in the entry for that IP. For a description of the errors recorded, see [Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table").
 
 To unblock blocked hosts, flush the host cache; see [Dealing with Blocked Hosts](host-cache.html#blocked-host "Dealing with Blocked Hosts").
 
@@ -84,7 +84,7 @@ SET GLOBAL max_connect_errors=10000;
 
 ##### Monitoring the Host Cache
 
-The Performance Schema [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table exposes the contents of the host cache. This table can be examined using [`SELECT`](select.html "13.2.9 SELECT Statement") statements, which may help you diagnose the causes of connection problems. The Performance Schema must be enabled or this table is empty. For information about this table, see [Section 25.12.16.1, “The host\_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table").
+The Performance Schema [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table exposes the contents of the host cache. This table can be examined using [`SELECT`](select.html "13.2.9 SELECT Statement") statements, which may help you diagnose the causes of connection problems. The Performance Schema must be enabled or this table is empty. For information about this table, see [Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table").
 
 ##### Flushing the Host Cache
 

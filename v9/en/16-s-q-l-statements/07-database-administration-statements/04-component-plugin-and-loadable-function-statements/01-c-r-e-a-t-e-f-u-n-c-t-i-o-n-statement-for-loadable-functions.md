@@ -20,7 +20,7 @@ The `AGGREGATE` keyword, if given, signifies that the function is an aggregate (
 
 `CREATE FUNCTION` requires the `INSERT` privilege for the `mysql` system schema because it adds a row to the `mysql.func` system table to register the function.
 
-`CREATE FUNCTION` also adds the function to the Performance Schema `user_defined_functions` table that provides runtime information about installed loadable functions. See Section 29.12.22.12, “The user\_defined\_functions Table”.
+`CREATE FUNCTION` also adds the function to the Performance Schema `user_defined_functions` table that provides runtime information about installed loadable functions. See Section 29.12.22.12, “The user_defined_functions Table”.
 
 Note
 

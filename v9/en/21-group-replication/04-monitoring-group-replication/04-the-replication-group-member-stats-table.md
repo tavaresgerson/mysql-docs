@@ -1,4 +1,4 @@
-### 20.4.4 The replication\_group\_member\_stats Table
+### 20.4.4 The replication_group_member_stats Table
 
 Each member in a replication group certifies and applies transactions received by the group. Statistics regarding the certifier and applier procedures are useful to understand how the applier queue is growing, how many conflicts have been found, how many transactions were checked, which transactions are committed everywhere, and so on.
 

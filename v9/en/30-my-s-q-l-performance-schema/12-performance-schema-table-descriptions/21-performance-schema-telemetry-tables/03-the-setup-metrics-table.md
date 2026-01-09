@@ -1,4 +1,4 @@
-#### 29.12.21.3 The setup\_metrics Table
+#### 29.12.21.3 The setup_metrics Table
 
 The `setup_metrics` table lists the available metrics:
 

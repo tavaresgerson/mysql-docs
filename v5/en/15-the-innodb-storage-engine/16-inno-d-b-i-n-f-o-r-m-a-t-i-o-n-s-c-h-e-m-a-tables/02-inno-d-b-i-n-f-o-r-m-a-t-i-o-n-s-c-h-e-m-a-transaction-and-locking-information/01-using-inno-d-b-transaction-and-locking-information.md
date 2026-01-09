@@ -2,7 +2,7 @@
 
 ##### Identifying Blocking Transactions
 
-It is sometimes helpful to identify which transaction blocks another. The tables that contain information about `InnoDB` transactions and data locks enable you to determine which transaction is waiting for another, and which resource is being requested. (For descriptions of these tables, see Section 14.16.2, “InnoDB INFORMATION\_SCHEMA Transaction and Locking Information”.)
+It is sometimes helpful to identify which transaction blocks another. The tables that contain information about `InnoDB` transactions and data locks enable you to determine which transaction is waiting for another, and which resource is being requested. (For descriptions of these tables, see Section 14.16.2, “InnoDB INFORMATION_SCHEMA Transaction and Locking Information”.)
 
 Suppose that three sessions are running concurrently. Each session corresponds to a MySQL thread, and executes one transaction after another. Consider the state of the system when these sessions have issued the following statements, but none has yet committed its transaction:
 

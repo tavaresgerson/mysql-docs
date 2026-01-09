@@ -1,4 +1,4 @@
-#### 29.12.11.2 The replication\_applier\_configuration Table
+#### 29.12.11.2 The replication_applier_configuration Table
 
 This table shows the configuration parameters that affect transactions applied by the replica. Parameters stored in the table can be changed at runtime with the `CHANGE REPLICATION SOURCE TO` statement.
 

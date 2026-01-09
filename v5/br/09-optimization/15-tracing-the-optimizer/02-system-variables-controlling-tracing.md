@@ -2,7 +2,7 @@
 
 As seguintes variáveis de sistema afetam o rastreamento do otimizador:
 
-- `optimizer_trace`: Habilita ou desabilita o rastreamento do otimizador. Consulte a Seção 8.15.8, “A variável de sistema optimizer\_trace”.
+- `optimizer_trace`: Habilita ou desabilita o rastreamento do otimizador. Consulte a Seção 8.15.8, “A variável de sistema optimizer_trace”.
 
 - `optimizer_trace_features`: Habilita ou desabilita as características selecionadas do MySQL Optimizer, usando a sintaxe mostrada aqui:
 
@@ -24,4 +24,4 @@ As seguintes variáveis de sistema afetam o rastreamento do otimizador:
 
 - `optimizer_trace_offset`: Deslocamento do primeiro rastreamento exibido. Veja a Seção 8.15.4, “Ajuste da Purga de Rastreamentos”.
 
-- `end_markers_in_json`: Se definido como `1`, faz com que o registro repita a chave (se presente) perto do parêntese de fechamento. Isso também afeta a saída do `EXPLAIN FORMAT=JSON` nas versões do MySQL que suportam essa declaração. Veja a Seção 8.15.9, “A variável de sistema end\_markers\_in\_json”.
+- `end_markers_in_json`: Se definido como `1`, faz com que o registro repita a chave (se presente) perto do parêntese de fechamento. Isso também afeta a saída do `EXPLAIN FORMAT=JSON` nas versões do MySQL que suportam essa declaração. Veja a Seção 8.15.9, “A variável de sistema end_markers_in_json”.

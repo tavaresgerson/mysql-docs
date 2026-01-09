@@ -1,4 +1,4 @@
-### 28.3.45 The INFORMATION\_SCHEMA TABLES\_EXTENSIONS Table
+### 28.3.45 The INFORMATION_SCHEMA TABLES_EXTENSIONS Table
 
 The `TABLES_EXTENSIONS` table provides information about table attributes defined for primary and secondary storage engines.
 

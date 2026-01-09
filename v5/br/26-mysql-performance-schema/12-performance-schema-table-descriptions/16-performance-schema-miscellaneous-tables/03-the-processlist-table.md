@@ -50,7 +50,7 @@ A tabela `processlist` tem as seguintes colunas:
 
 - `ID`
 
-  O identificador de conexão. Este é o mesmo valor exibido na coluna `Id` da declaração `SHOW PROCESSLIST` (show-processlist.html), exibida na coluna `PROCESSLIST_ID` da tabela do Schema de Desempenho `threads` (performance-schema-threads-table.html) e retornada pela função `CONNECTION_ID()` (information-functions.html#function\_connection-id) dentro do thread.
+  O identificador de conexão. Este é o mesmo valor exibido na coluna `Id` da declaração `SHOW PROCESSLIST` (show-processlist.html), exibida na coluna `PROCESSLIST_ID` da tabela do Schema de Desempenho `threads` (performance-schema-threads-table.html) e retornada pela função `CONNECTION_ID()` (information-functions.html#function_connection-id) dentro do thread.
 
 - `USUARIO`
 
@@ -104,7 +104,7 @@ A configuração do MySQL afeta o conteúdo da tabela `processlist` da seguinte 
 
 - Configuração mínima necessária:
 
-  - O servidor MySQL deve ser configurado e compilado com a instrumentação de threads habilitada. Isso é feito por padrão; ele é controlado usando a opção `DISABLE_PSI_THREAD` (opções de configuração de fonte.html#option\_cmake\_disable\_psi\_thread) do **CMake**.
+  - O servidor MySQL deve ser configurado e compilado com a instrumentação de threads habilitada. Isso é feito por padrão; ele é controlado usando a opção `DISABLE_PSI_THREAD` (opções de configuração de fonte.html#option_cmake_disable_psi_thread) do **CMake**.
 
   - O Schema de Desempenho deve ser habilitado na inicialização do servidor. Isso é feito por padrão; ele é controlado usando a variável de sistema `performance_schema`.
 

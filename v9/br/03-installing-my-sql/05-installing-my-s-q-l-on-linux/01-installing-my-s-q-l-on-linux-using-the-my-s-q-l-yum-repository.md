@@ -230,7 +230,7 @@ $> sudo yum install mysql-community-libs
 
 Suporte ARM
 
-O suporte ARM 64-bit (aarch64) é suportado no Oracle Linux 7 e requer o Repositório de Coleções de Software do Oracle Linux 7 (ol7\_software\_collections). Por exemplo, para instalar o servidor:
+O suporte ARM 64-bit (aarch64) é suportado no Oracle Linux 7 e requer o Repositório de Coleções de Software do Oracle Linux 7 (ol7_software_collections). Por exemplo, para instalar o servidor:
 
 ```
 $> yum-config-manager --enable ol7_software_collections

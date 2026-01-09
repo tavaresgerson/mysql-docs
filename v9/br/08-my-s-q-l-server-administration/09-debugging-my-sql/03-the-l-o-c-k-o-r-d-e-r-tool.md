@@ -1,4 +1,4 @@
-### 7.9.3 A Ferramenta LOCK\_ORDER
+### 7.9.3 A Ferramenta LOCK_ORDER
 
 O servidor MySQL é uma aplicação multithread que utiliza inúmeros primitivos internos de bloqueio e relacionados a bloqueios, como mutexes, rwlocks (incluindo prlocks e sxlocks), condições e arquivos. Dentro do servidor, o conjunto de objetos relacionados a bloqueios muda com a implementação de novos recursos e refatoração de código para melhorias de desempenho. Como em qualquer aplicação multithread que utiliza primitivos de bloqueio, há sempre o risco de encontrar um impasse durante a execução quando múltiplos bloqueios são mantidos simultaneamente. Para o MySQL, o efeito de um impasse é catastrófico, causando uma perda completa do serviço.
 
@@ -38,15 +38,15 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
 
 * Se a variável `_trace_` estiver habilitada, um erro é impresso nos logs.
 
-**Tabela 7.13 Resumo das Variáveis de Sistema LOCK\_ORDER**
+**Tabela 7.13 Resumo das Variáveis de Sistema LOCK_ORDER**
 
 <table frame="box" rules="all" summary="Referência para as variáveis do sistema LOCK_ORDER.">
 <col style="width: 40%"/><col style="width: 20%"/><col align="center" style="width: 20%"/>
-<thead><tr><th>Nome da Variável</th> <th>Tipo da Variável</th> <th>Alcance da Variável</th> </tr></thead><tbody><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order">lock_order</a></th> <td>Boolean</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_debug_loop">lock_order_debug_loop</a></th> <td>Boolean</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_debug_missing_arc">lock_order_debug_missing_arc</a></th> <td>Boolean</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_debug_missing_key">lock_order_debug_missing_key</a></th> <td>Boolean</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_debug_missing_unlock">lock_order_debug_missing_unlock</a></th> <td>Boolean</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_dependencies">lock_order_dependencies</a></th> <td>Nome do arquivo</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_extra_dependencies">lock_order_extra_dependencies</a></th> <td>Nome do arquivo</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_output_directory">lock_order_output_directory</a></th> <td>Nome de diretório</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_print_txt">lock_order_print_txt</a></th> <td>Boolean</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_trace_loop">lock_order_trace_loop</a></th> <td>Boolean</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_trace_missing_arc">lock_order_trace_missing_arc</a></th> <td>Boolean</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_trace_missing_key">lock_order_trace_missing_key</a></th> <td>Boolean</td> <td>Global</td> </tr><tr><th><a class="link" href="lock-order-tool.html#sysvar_lock_order_trace_missing_unlock">lock_order_trace_missing_unlock</a></th> <td>Boolean</td> <td>Global</td> </tr></tbody></table>
+<thead><tr><th>Nome da Variável</th> <th>Tipo da Variável</th> <th>Alcance da Variável</th> </tr></thead><tbody><tr><th>lock_order</th> <td>Boolean</td> <td>Global</td> </tr><tr><th>lock_order_debug_loop</th> <td>Boolean</td> <td>Global</td> </tr><tr><th>lock_order_debug_missing_arc</th> <td>Boolean</td> <td>Global</td> </tr><tr><th>lock_order_debug_missing_key</th> <td>Boolean</td> <td>Global</td> </tr><tr><th>lock_order_debug_missing_unlock</th> <td>Boolean</td> <td>Global</td> </tr><tr><th>lock_order_dependencies</th> <td>Nome do arquivo</td> <td>Global</td> </tr><tr><th>lock_order_extra_dependencies</th> <td>Nome do arquivo</td> <td>Global</td> </tr><tr><th>lock_order_output_directory</th> <td>Nome de diretório</td> <td>Global</td> </tr><tr><th>lock_order_print_txt</th> <td>Boolean</td> <td>Global</td> </tr><tr><th>lock_order_trace_loop</th> <td>Boolean</td> <td>Global</td> </tr><tr><th>lock_order_trace_missing_arc</th> <td>Boolean</td> <td>Global</td> </tr><tr><th>lock_order_trace_missing_key</th> <td>Boolean</td> <td>Global</td> </tr><tr><th>lock_order_trace_missing_unlock</th> <td>Boolean</td> <td>Global</td> </tr></tbody></table>
 
 * `lock_order`
 
-  <table frame="box" rules="all" summary="Propriedades para `lock_order`"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--lock-order[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order">lock_order</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para `lock_order`"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--lock-order[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>lock_order</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Se habilitar ou desabilitar a ferramenta `LOCK_ORDER` em tempo de execução. Se `lock_order` estiver desativado (o padrão), nenhuma outra variável do sistema `LOCK_ORDER` terá efeito. Se `lock_order` estiver ativado, as outras variáveis do sistema configuram quais recursos do `LOCK_ORDER` serão habilitados.
 
@@ -56,10 +56,10 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
 
 <table frame="box" rules="all" summary="Propriedades para lock_order_debug_loop">
   <tr><th>Formato de Linha de Comando</th> <td><code>--lock-order-debug-loop[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order_debug_loop">lock_order_debug_loop</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>lock_order_debug_loop</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr>
 </table>
@@ -70,24 +70,24 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
 
 <table frame="box" rules="all" summary="Propriedades para lock_order_debug_missing_arc">
   <tr><th>Formato de Linha de Comando</th> <td><code>--lock-order-debug-missing-arc[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order_debug_missing_arc">lock_order_debug_missing_arc</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>lock_order_debug_missing_arc</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de SET_VAR Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr>
 </table>
 
-  Se a ferramenta LOCK\_ORDER causa uma falha de asserção de depuração quando encontra uma dependência que não é declarada no gráfico de ordem de bloqueio.
+  Se a ferramenta LOCK_ORDER causa uma falha de asserção de depuração quando encontra uma dependência que não é declarada no gráfico de ordem de bloqueio.
 
 * `lock_order_debug_missing_key`
 
 <table frame="box" rules="all" summary="Propriedades para lock_order_debug_missing_key">
   <tr><th>Formato de Linha de Comando</th> <td><code>--lock-order-debug-missing-key[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order_debug_missing_key">lock_order_debug_missing_key</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>lock_order_debug_missing_key</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr>
 </table>
@@ -98,10 +98,10 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
 
 <table frame="box" rules="all" summary="Propriedades para lock_order_debug_missing_unlock">
   <tr><th>Formato de Linha de Comando</th> <td><code>--lock-order-debug-missing-unlock[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock-order-debug-missing-unlock">lock-order-debug-missing-unlock</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>lock-order-debug-missing-unlock</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr>
 </table>
@@ -112,10 +112,10 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
 
 <table frame="box" rules="all" summary="Propriedades para lock_order_dependencies">
   <tr><th>Formato de Linha de Comando</th> <td><code>--lock-order-dependencies=nome_do_arquivo</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order_dependencies">lock_order_dependencies</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>lock_order_dependencies</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>string vazia</code></td> </tr>
 </table>
@@ -133,7 +133,7 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order_extra_dependencies">lock_order_extra_dependencies</a></code></td>
+    <td><code>lock_order_extra_dependencies</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -144,7 +144,7 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -165,10 +165,10 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
 
 <table frame="box" rules="all" summary="Propriedades para lock_order_output_directory">
   <tr><th>Formato de Linha de Comando</th> <td><code>--lock-order-output-directory=dir_name</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock-order-output-directory">lock-order-output-directory</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>lock-order-output-directory</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do diretório</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>string vazia</code></td> </tr>
 </table>
@@ -179,10 +179,10 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
 
 <table frame="box" rules="all" summary="Propriedades para lock_order_print_txt">
   <tr><th>Formato de Linha de Comando</th> <td><code>--lock-order-print-txt[={OFF|ON}]</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order_print_txt">lock_order_print_txt</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>lock_order_print_txt</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Booleano</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr>
 </table>
@@ -193,10 +193,10 @@ Algumas variáveis de sistema existem em pares, como `lock_order_debug_loop` e `
 
   <table frame="box" rules="all" summary="Propriedades para lock_order">
     <tr><th>Formato de Linha de Comando</th> <td><code>--lock-order[={OFF|ON}]</code></td> </tr>
-    <tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order">lock_order</a></code></td> </tr>
+    <tr><th>Variável do Sistema</th> <td><code>lock_order</code></td> </tr>
     <tr><th>Alcance</th> <td>Global</td> </tr>
     <tr><th>Dinâmico</th> <td>Não</td> </tr>
-    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+    <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
     <tr><th>Tipo</th> <td>Booleano</td> </tr>
     <tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr>
   </table>
@@ -205,7 +205,7 @@ Se a ferramenta `LOCK_ORDER` imprime uma traça no arquivo de log quando encontr
 
 * `lock_order_trace_missing_arc`
 
-  <table frame="box" rules="all" summary="Propriedades para lock_order"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--lock-order[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order">lock_order</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para lock_order"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--lock-order[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>lock_order</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Se a ferramenta `LOCK_ORDER` imprime uma traça no arquivo de log quando encontra uma dependência que não é declarada no gráfico de ordem de bloqueio.
 
@@ -218,7 +218,7 @@ Se a ferramenta `LOCK_ORDER` imprime uma traça no arquivo de log quando encontr
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order">lock_order</a></code></td>
+    <td><code>lock_order</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -229,7 +229,7 @@ Se a ferramenta `LOCK_ORDER` imprime uma traça no arquivo de log quando encontr
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -254,7 +254,7 @@ Se a ferramenta `LOCK_ORDER` imprime uma traça no arquivo de log quando encontr
     </tr>
     <tr>
       <th>Variável do Sistema</th>
-      <td><code><a class="link" href="lock-order-tool.html#sysvar_lock_order">lock_order</a></code></td>
+      <td><code>lock_order</code></td>
     </tr>
     <tr>
       <th>Alcance</th>
@@ -265,7 +265,7 @@ Se a ferramenta `LOCK_ORDER` imprime uma traça no arquivo de log quando encontr
       <td>Não</td>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></code> Aplica-se</th>
+      <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
       <td>Não</td>
     </tr>
     <tr>

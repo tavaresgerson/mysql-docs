@@ -10,7 +10,7 @@ Mtodos alternativos para realizar o processo descrito nesta seção:
 
 * No Windows, você pode realizar o processo durante a instalação com o MySQL Configurator (consulte a Seção 2.3.2, “Configuração: Usando o MySQL Configurator”).
 
-* Em todas as plataformas, a distribuição do MySQL inclui o **mysql\_secure\_installation**, um utilitário de linha de comando que automatiza grande parte do processo de segurança de uma instalação do MySQL.
+* Em todas as plataformas, a distribuição do MySQL inclui o **mysql_secure_installation**, um utilitário de linha de comando que automatiza grande parte do processo de segurança de uma instalação do MySQL.
 
 * Em todas as plataformas, o MySQL Workbench está disponível e oferece a capacidade de gerenciar contas de usuário (consulte o Capítulo 33, *MySQL Workbench*).
 

@@ -95,7 +95,7 @@ Distribution specific instructions are shown below:
 
   Which enables the MySQL server to be started (and stopped) automatically at the specified the run levels.
 
-  The database tables are automatically created for you, if they do not already exist. You should, however, run **mysql\_secure\_installation** to set the root passwords on your server.
+  The database tables are automatically created for you, if they do not already exist. You should, however, run **mysql_secure_installation** to set the root passwords on your server.
 
 * **Debian, Ubuntu, Kubuntu**
 

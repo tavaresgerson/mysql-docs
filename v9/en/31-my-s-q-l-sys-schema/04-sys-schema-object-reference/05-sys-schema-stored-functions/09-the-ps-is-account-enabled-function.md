@@ -1,4 +1,4 @@
-#### 30.4.5.9 The ps\_is\_account\_enabled() Function
+#### 30.4.5.9 The ps_is_account_enabled() Function
 
 Returns `YES` or `NO` to indicate whether Performance Schema instrumentation for a given account is enabled.
 

@@ -13,7 +13,7 @@ Se o servidor foi iniciado com a opção `--skip-show-database`, você não pode
 
 O MySQL implementa as bases de dados como diretórios no diretório de dados, então essa declaração simplesmente lista diretórios nessa localização. No entanto, a saída pode incluir nomes de diretórios que não correspondem a bases de dados reais.
 
-As informações das bases de dados também estão disponíveis na tabela `INFORMATION_SCHEMA` `SCHEMATA`. Veja a Seção 28.3.37, “A Tabela INFORMATION\_SCHEMA SCHEMATA”.
+As informações das bases de dados também estão disponíveis na tabela `INFORMATION_SCHEMA` `SCHEMATA`. Veja a Seção 28.3.37, “A Tabela INFORMATION_SCHEMA SCHEMATA”.
 
 Cuidado
 

@@ -28,9 +28,9 @@ No MySQL 5.7, é possível trocar uma partição ou subpartição de uma tabela 
 
 12. Não podem ser usadas opções de tabela ou partição `TABLESPACE` em nenhuma das tabelas.
 
-Além dos privilégios `ALTER` (privileges-provided.html#priv\_alter), `INSERT` (privileges-provided.html#priv\_insert) e `CREATE` (privileges-provided.html#priv\_create) geralmente necessários para as instruções `ALTER TABLE` (alter-table.html), você deve ter o privilégio `DROP` (privileges-provided.html#priv\_drop) para executar `ALTER TABLE ... EXCHANGE PARTITION` (alter-table.html).
+Além dos privilégios `ALTER` (privileges-provided.html#priv_alter), `INSERT` (privileges-provided.html#priv_insert) e `CREATE` (privileges-provided.html#priv_create) geralmente necessários para as instruções `ALTER TABLE` (alter-table.html), você deve ter o privilégio `DROP` (privileges-provided.html#priv_drop) para executar `ALTER TABLE ... EXCHANGE PARTITION` (alter-table.html).
 
-Você também deve estar ciente dos seguintes efeitos da alteração de tabela com troca de partição (`ALTER TABLE ... EXCHANGE PARTITION`): \[alter-table.html]
+Você também deve estar ciente dos seguintes efeitos da alteração de tabela com troca de partição (`ALTER TABLE ... EXCHANGE PARTITION`): [alter-table.html]
 
 - A execução de `ALTER TABLE ... EXCHANGE PARTITION` não invoca nenhum gatilho na tabela particionada ou na tabela a ser trocada.
 

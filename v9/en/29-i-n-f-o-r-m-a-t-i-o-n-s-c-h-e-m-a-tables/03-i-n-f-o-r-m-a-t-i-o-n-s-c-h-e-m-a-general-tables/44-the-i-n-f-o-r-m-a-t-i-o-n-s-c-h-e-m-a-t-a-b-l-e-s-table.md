@@ -1,8 +1,8 @@
-### 28.3.44 The INFORMATION\_SCHEMA TABLES Table
+### 28.3.44 The INFORMATION_SCHEMA TABLES Table
 
 The `TABLES` table provides information about tables in databases.
 
-Columns in `TABLES` that represent table statistics hold cached values. The `information_schema_stats_expiry` system variable defines the period of time before cached table statistics expire. The default is 86400 seconds (24 hours). If there are no cached statistics or statistics have expired, statistics are retrieved from storage engines when querying table statistics columns. To update cached values at any time for a given table, use `ANALYZE TABLE`. To always retrieve the latest statistics directly from storage engines, set `information_schema_stats_expiry` to `0`. For more information, see Section 10.2.3, “Optimizing INFORMATION\_SCHEMA Queries”.
+Columns in `TABLES` that represent table statistics hold cached values. The `information_schema_stats_expiry` system variable defines the period of time before cached table statistics expire. The default is 86400 seconds (24 hours). If there are no cached statistics or statistics have expired, statistics are retrieved from storage engines when querying table statistics columns. To update cached values at any time for a given table, use `ANALYZE TABLE`. To always retrieve the latest statistics directly from storage engines, set `information_schema_stats_expiry` to `0`. For more information, see Section 10.2.3, “Optimizing INFORMATION_SCHEMA Queries”.
 
 Note
 
@@ -95,7 +95,7 @@ The `TABLES` table has these columns:
       AND   TABLE_NAME   = 'mytable';
   ```
 
-  For more information, see Section 28.3.26, “The INFORMATION\_SCHEMA PARTITIONS Table”.
+  For more information, see Section 28.3.26, “The INFORMATION_SCHEMA PARTITIONS Table”.
 
 * `AUTO_INCREMENT`
 

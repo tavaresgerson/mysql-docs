@@ -10,27 +10,27 @@
 
 <table> frame="box" rules="all" summary="Uma referência que lista funções de string e operadores.">
 <tr><th>Nome</th> <th>Descrição</th> </tr>
-<tr><td><a class="link" href="string-functions.html#function_ascii">ASCII()</a></td> <td> Retorna o valor numérico do caractere mais à esquerda </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_bin">BIN()</a></td> <td> Retorna uma string contendo a representação binária de um número </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_bit-length">BIT_LENGTH()</a></td> <td> Retorna o comprimento do argumento em bits </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_char">CHAR()</a></td> <td> Retorna o caractere para cada inteiro passado </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_char-length">CHAR_LENGTH()</a></td> <td> Retorna o número de caracteres na string </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_character-length">CHARACTER_LENGTH()</a></td> <td> Síntese de CHAR_LENGTH() </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_concat">CONCAT()</a></td> <td> Retorna uma string concatenada </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_concat-ws">CONCAT_WS()</a></td> <td> Retorna uma string concatenada com um separador </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_elt">ELT()</a></td> <td> Retorna uma string no índice número </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_export-set">EXPORT_SET()</a></td> <td> Retorna uma string de tal forma que, para cada bit definido no valor, você obtém uma string "on" e para cada bit definido, obtém uma string "off" </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_field">FIELD()</a></td> <td> Índice (posição) do primeiro argumento nos argumentos subsequentes </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_find-in-set">FIND_IN_SET()</a></td> <td> Índice (posição) do primeiro argumento dentro do segundo argumento </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_format">FORMAT()</a></td> <td> Retorna um número formatado para um número decimal especificado </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_from-base64">FROM_BASE64()</a></td> <td> Decodifica a string base64 e retorna o resultado </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_hex">HEX()</a></td> <td> Representação hexadecimal de um valor decimal ou string </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_insert">INSERT()</a></td> <td> Insere uma subcadeia na posição especificada até o número especificado de caracteres </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_instr">INSTR()</a></td> <td> Retorna o índice da primeira ocorrência de uma subcadeia </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_lcase">LCASE()</a></td> <td> Síntese de LOWER() </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_left">LEFT()</a></td> <td> Retorna o número de caracteres mais à esquerda especificados </td> </tr>
-<tr><td><a class="link" href="string-functions.html#function_length">LENGTH()</a></td> <td> Retorna o comprimento de uma string em bytes </td> </tr>
-<tr><td><a class="link" href="string-comparison-functions.html#operator_like">LIKE</a></td> <td> Simples correspondência de padrões </td> </tr>
+<tr><td>ASCII()</td> <td> Retorna o valor numérico do caractere mais à esquerda </td> </tr>
+<tr><td>BIN()</td> <td> Retorna uma string contendo a representação binária de um número </td> </tr>
+<tr><td>BIT_LENGTH()</td> <td> Retorna o comprimento do argumento em bits </td> </tr>
+<tr><td>CHAR()</td> <td> Retorna o caractere para cada inteiro passado </td> </tr>
+<tr><td>CHAR_LENGTH()</td> <td> Retorna o número de caracteres na string </td> </tr>
+<tr><td>CHARACTER_LENGTH()</td> <td> Síntese de CHAR_LENGTH() </td> </tr>
+<tr><td>CONCAT()</td> <td> Retorna uma string concatenada </td> </tr>
+<tr><td>CONCAT_WS()</td> <td> Retorna uma string concatenada com um separador </td> </tr>
+<tr><td>ELT()</td> <td> Retorna uma string no índice número </td> </tr>
+<tr><td>EXPORT_SET()</td> <td> Retorna uma string de tal forma que, para cada bit definido no valor, você obtém uma string "on" e para cada bit definido, obtém uma string "off" </td> </tr>
+<tr><td>FIELD()</td> <td> Índice (posição) do primeiro argumento nos argumentos subsequentes </td> </tr>
+<tr><td>FIND_IN_SET()</td> <td> Índice (posição) do primeiro argumento dentro do segundo argumento </td> </tr>
+<tr><td>FORMAT()</td> <td> Retorna um número formatado para um número decimal especificado </td> </tr>
+<tr><td>FROM_BASE64()</td> <td> Decodifica a string base64 e retorna o resultado </td> </tr>
+<tr><td>HEX()</td> <td> Representação hexadecimal de um valor decimal ou string </td> </tr>
+<tr><td>INSERT()</td> <td> Insere uma subcadeia na posição especificada até o número especificado de caracteres </td> </tr>
+<tr><td>INSTR()</td> <td> Retorna o índice da primeira ocorrência de uma subcadeia </td> </tr>
+<tr><td>LCASE()</td> <td> Síntese de LOWER() </td> </tr>
+<tr><td>LEFT()</td> <td> Retorna o número de caracteres mais à esquerda especificados </td> </tr>
+<tr><td>LENGTH()</td> <td> Retorna o comprimento de uma string em bytes </td> </tr>
+<tr><td>LIKE</td> <td> Simples correspondência de padrões </td> </tr>
 <tr><td><a class="link" href="string-functions.html#function_
 
 As funções de valor de cadeia de caracteres retornam `NULL` se o comprimento do resultado fosse maior que o valor da variável de sistema `max_allowed_packet`. Veja a Seção 7.1.1, “Configurando o Servidor”.
@@ -497,7 +497,7 @@ A variável de sistema `character_set_filesystem` controla a interpretação dos
           -> NULL
   ```
 
-  Para comparação, veja as regras de citação para strings literais e dentro da API C na Seção 11.1.1, “Strings Literais”, e mysql\_real\_escape\_string\_quote().
+  Para comparação, veja as regras de citação para strings literais e dentro da API C na Seção 11.1.1, “Strings Literais”, e mysql_real_escape_string_quote().
 
 * `REPEAT(str,count)`
 

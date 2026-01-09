@@ -1,4 +1,4 @@
-#### 29.12.11.5 A tabela `replication\_applier\_metrics`
+#### 29.12.11.5 A tabela `replication_applier_metrics`
 
 Esta tabela fornece estatísticas do aplicador de replicação, como tempos de espera, contagem de espera, contagem de transações, contagem de eventos e contagem de bytes para o coordenador do aplicador.
 

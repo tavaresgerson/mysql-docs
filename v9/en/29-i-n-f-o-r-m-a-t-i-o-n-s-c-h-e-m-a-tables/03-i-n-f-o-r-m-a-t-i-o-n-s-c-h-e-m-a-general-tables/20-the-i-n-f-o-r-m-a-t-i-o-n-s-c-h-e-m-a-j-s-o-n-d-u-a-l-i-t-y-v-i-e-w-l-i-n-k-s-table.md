@@ -1,4 +1,4 @@
-### 28.3.20 The INFORMATION SCHEMA JSON\_DUALITY\_VIEW\_LINKS Table
+### 28.3.20 The INFORMATION SCHEMA JSON_DUALITY_VIEW_LINKS Table
 
 The `JSON_DUALITY_VIEW_LINKS` table shows information about the relationships between parent and child tables for all views accessible by the current user. There is one row per view.
 

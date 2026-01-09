@@ -34,14 +34,14 @@ Para obter informações sobre as características dos valores de chave permitid
 
 Para instalar `keyring_okv`, use as instruções gerais encontradas na Seção 8.4.5.3, “Instalação do Plugin de Chaveiro”, juntamente com as informações de configuração específicas para `keyring_okv` encontradas aqui.
 
-* Configuração geral do keyring\_okv
-* Configurando o keyring\_okv para o Oracle Key Vault
-* Configurando o keyring\_okv para o Gemalto SafeNet KeySecure Appliance
-* Configurando o keyring\_okv para o Townsend Alliance Key Manager
-* Configurando o keyring\_okv para o Entrust KeyControl
-* Protegendo a senha do arquivo de chave do keyring\_okv
+* Configuração geral do keyring_okv
+* Configurando o keyring_okv para o Oracle Key Vault
+* Configurando o keyring_okv para o Gemalto SafeNet KeySecure Appliance
+* Configurando o keyring_okv para o Townsend Alliance Key Manager
+* Configurando o keyring_okv para o Entrust KeyControl
+* Protegendo a senha do arquivo de chave do keyring_okv
 
-##### Configuração geral do keyring\_okv
+##### Configuração geral do keyring_okv
 
 Independentemente do backend KMIP que o plugin `keyring_okv` usa para armazenamento de chaveiro, a variável de sistema `keyring_okv_conf_dir` configura a localização do diretório usado pelo `keyring_okv` para seus arquivos de suporte. O valor padrão é vazio, então você deve definir a variável para nomear um diretório configurado corretamente antes que o plugin possa se comunicar com o backend KMIP. A menos que você faça isso, o `keyring_okv` escreve uma mensagem no log de erro durante o inicialização do servidor que ele não pode se comunicar:
 
@@ -83,7 +83,7 @@ Observação
 
 Para obter informações adicionais sobre `keyring_okv_conf_dir`, consulte a Seção 8.4.5.19, “Variáveis do Sistema de Keyring”.
 
-##### Configurando keyring\_okv para o Oracle Key Vault
+##### Configurando keyring_okv para o Oracle Key Vault
 ```
    java -jar okvclient.jar -d dir_name [-v]
    ```
@@ -108,7 +108,7 @@ O seguinte procedimento resume brevemente o processo de configuração do `keyri
 
 Use o seguinte procedimento para configurar o `keyring_okv` e o Oracle Key Vault para trabalhar juntos. Esta descrição resume apenas como interagir com o Oracle Key Vault. Para detalhes, visite o site do Oracle Key Vault e consulte o *Guia do Administrador do Oracle Key Vault*.
 
-1. Crie o diretório de configuração que contém os arquivos de suporte do Oracle Key Vault, e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida para o nome desse diretório (para detalhes, consulte Configuração Geral do keyring\_okv).
+1. Crie o diretório de configuração que contém os arquivos de suporte do Oracle Key Vault, e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida para o nome desse diretório (para detalhes, consulte Configuração Geral do keyring_okv).
 
 2. Faça login na console de gerenciamento do Oracle Key Vault como um usuário que tenha o papel de Administrador do Sistema.
 
@@ -185,17 +185,17 @@ Certifique-se de que a lista de servidores de espera seja mantida curta, precisa
 
 10. Copie os arquivos de suporte do Oracle Key Vault (o arquivo `okvclient.ora` e o diretório `ssl`) para o diretório de configuração.
 
-11. (Opcional) Se você deseja proteger a senha do arquivo de chave, use as instruções em Protegendo a senha do arquivo de chave keyring\_okv.
+11. (Opcional) Se você deseja proteger a senha do arquivo de chave, use as instruções em Protegendo a senha do arquivo de chave keyring_okv.
 
 Após concluir o procedimento anterior, reinicie o servidor MySQL. Ele carrega o plugin `keyring_okv` e o `keyring_okv` usa os arquivos em seu diretório de configuração para se comunicar com o Oracle Key Vault.
 
-##### Configurando keyring\_okv para a Gemalto SafeNet KeySecure Appliance
+##### Configurando keyring_okv para a Gemalto SafeNet KeySecure Appliance
 
 A Gemalto SafeNet KeySecure Appliance usa o protocolo KMIP (versão 1.1 ou 1.2). O plugin de chave `keyring_okv` (que suporta KMIP 1.1) pode usar o KeySecure como seu backend KMIP para armazenamento de chaves.
 
 Use o seguinte procedimento para configurar o `keyring_okv` e o KeySecure para trabalhar juntos. A descrição resume apenas como interagir com o KeySecure. Para detalhes, consulte a seção chamada Adicionar um servidor KMIP no [Guia do Usuário do KeySecure](https://www2.gemalto.com/aws-marketplace/usage/vks/uploadedFiles/Support_and_Downloads/AWS/007-012362-001-keysecure-appliance-user-guide-v7.1.0.pdf).
 
-1. Crie o diretório de configuração que contém os arquivos de suporte ao KeySecure e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida para o nome desse diretório (para detalhes, consulte Configuração geral do keyring\_okv).
+1. Crie o diretório de configuração que contém os arquivos de suporte ao KeySecure e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida para o nome desse diretório (para detalhes, consulte Configuração geral do keyring_okv).
 
 2. No diretório de configuração, crie um subdiretório chamado `ssl` para usar para armazenar os arquivos de certificado SSL e chave necessários.
 
@@ -254,15 +254,15 @@ Você pode especificar mais de um servidor de espera (até um máximo de 64). Se
 
 14. Copie o certificado assinado para a área de transferência e, em seguida, armazene o conteúdo da área de transferência como um arquivo chamado `cert.pem` no diretório `ssl`.
 
-15. (Opcional) Se você deseja proteger a senha do arquivo de chave, use as instruções em Proteger a senha do arquivo de chave keyring\_okv.
+15. (Opcional) Se você deseja proteger a senha do arquivo de chave, use as instruções em Proteger a senha do arquivo de chave keyring_okv.
 
 Após completar o procedimento anterior, reinicie o servidor MySQL. Ele carrega o plugin `keyring_okv` e o `keyring_okv` usa os arquivos em seu diretório de configuração para se comunicar com o KeySecure.
 
-##### Configurando keyring\_okv para o Townsend Alliance Key Manager
+##### Configurando keyring_okv para o Townsend Alliance Key Manager
 
 O Townsend Alliance Key Manager usa o protocolo KMIP. O plugin de chaveiro `keyring_okv` pode usar o Key Manager Alliance como seu backend KMIP para armazenamento de chaveiro. Para informações adicionais, consulte [Key Manager Alliance para MySQL](https://www.townsendsecurity.com/product/encryption-key-management-mysql).
 
-##### Configurando keyring\_okv para o Entrust KeyControl
+##### Configurando keyring_okv para o Entrust KeyControl
 
 O Entrust KeyControl usa o protocolo KMIP. O plugin de chaveiro `keyring_okv` pode usar o Entrust KeyControl como seu backend KMIP para armazenamento de chaveiro. Para informações adicionais, consulte o [Guia de Integração Oracle MySQL e Entrust KeyControl com nShield HSM](https://www.entrust.com/-/media/documentation/integration-guides/oracle-mysql-enterprise-keycontrol-nshield-ig.pdf).
 

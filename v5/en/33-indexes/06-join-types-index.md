@@ -38,7 +38,7 @@
 
 [[index top](dynindex-jointype.html#jointype-index-top)]
 
-### eq\_ref
+### eq_ref
 
 [Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”](bnl-bka-optimization.html "8.2.1.11 Block Nested-Loop and Batched Key Access Joins")
 
@@ -52,7 +52,7 @@
 
 [Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
-[Section 25.12.4.1, “The events\_waits\_current Table”](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table")
+[Section 25.12.4.1, “The events_waits_current Table”](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table")
 
 ### F
 
@@ -74,13 +74,13 @@
 
 [Section 8.2.1.6, “Nested-Loop Join Algorithms”](nested-loop-joins.html "8.2.1.6 Nested-Loop Join Algorithms")
 
-### index\_merge
+### index_merge
 
 [Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
 [Section 8.2.1.3, “Index Merge Optimization”](index-merge-optimization.html "8.2.1.3 Index Merge Optimization")
 
-### index\_subquery
+### index_subquery
 
 [Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
@@ -128,7 +128,7 @@
 
 [Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
-### ref\_or\_null
+### ref_or_null
 
 [Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
@@ -156,7 +156,7 @@
 
 [[index top](dynindex-jointype.html#jointype-index-top)]
 
-### unique\_subquery
+### unique_subquery
 
 [Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 

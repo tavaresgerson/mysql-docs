@@ -4,11 +4,11 @@ Os usuários do MySQL devem seguir as diretrizes a seguir para manter as senhas 
 
 Quando você executa um programa cliente para se conectar ao servidor MySQL, não é recomendável especificar sua senha de uma maneira que a exponga à descoberta por outros usuários. Os métodos que você pode usar para especificar sua senha ao executar programas cliente estão listados aqui, juntamente com uma avaliação dos riscos de cada método. Em resumo, os métodos mais seguros são fazer o programa cliente solicitar a senha ou especificar a senha em um arquivo de opção de proteção adequada.
 
-- Use o utilitário **mysql\_config\_editor**, que permite armazenar credenciais de autenticação em um arquivo criptografado de caminho de login chamado `.mylogin.cnf`. O arquivo pode ser lido posteriormente por programas clientes do MySQL para obter credenciais de autenticação para se conectar ao MySQL Server. Veja Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+- Use o utilitário **mysql_config_editor**, que permite armazenar credenciais de autenticação em um arquivo criptografado de caminho de login chamado `.mylogin.cnf`. O arquivo pode ser lido posteriormente por programas clientes do MySQL para obter credenciais de autenticação para se conectar ao MySQL Server. Veja Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 - Use a opção `--password=password` ou `-ppassword` na linha de comando. Por exemplo:
 
-  ```sql
+  ```sh
   $> mysql -u francis -pfrank db_name
   ```
 
@@ -18,9 +18,9 @@ Quando você executa um programa cliente para se conectar ao servidor MySQL, nã
 
   Se o ambiente operacional estiver configurado para exibir o comando atual na barra de título da janela do terminal, a senha permanecerá visível enquanto o comando estiver em execução, mesmo que o comando tenha saído da área de conteúdo da janela.
 
-- Use a opção `--password` (connection-options.html#option\_general\_password) ou `-p` na linha de comando sem valor de senha especificado. Nesse caso, o programa cliente solicita a senha de forma interativa:
+- Use a opção `--password` (connection-options.html#option_general_password) ou `-p` na linha de comando sem valor de senha especificado. Nesse caso, o programa cliente solicita a senha de forma interativa:
 
-  ```sql
+  ```sh
   $> mysql -u francis -p db_name
   Enter password: ********
   ```
@@ -31,20 +31,20 @@ Quando você executa um programa cliente para se conectar ao servidor MySQL, nã
 
 - Armazene sua senha em um arquivo de opção. Por exemplo, no Unix, você pode listar sua senha na seção `[client]` do arquivo `.my.cnf` em seu diretório home:
 
-  ```sql
+  ```
   [client]
   password=password
   ```
 
   Para manter a senha segura, o arquivo não deve ser acessível a ninguém, exceto a você. Para garantir isso, defina o modo de acesso ao arquivo para `400` ou `600`. Por exemplo:
 
-  ```sql
+  ```sh
   $> chmod 600 .my.cnf
   ```
 
   Para nomear, a partir da linha de comando, um arquivo de opções específico que contém a senha, use a opção `--defaults-file=file_name`, onde `file_name` é o nome completo do caminho do arquivo. Por exemplo:
 
-  ```sql
+  ```sh
   $> mysql --defaults-file=/home/francis/mysql-opts
   ```
 

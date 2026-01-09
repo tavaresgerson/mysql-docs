@@ -46,7 +46,7 @@ Para obter informações adicionais sobre `INSERT ... SELECT` e `INSERT ... ON D
 
 No MySQL 5.7, a palavra-chave `DELAYED` é aceita, mas ignorada pelo servidor. Para saber as razões disso, consulte Seção 13.2.5.3, “Instrução INSERT DELAYED”,
 
-Para inserir em uma tabela, é necessário o privilégio `INSERT` para a tabela. Se a cláusula `ON DUPLICATE KEY UPDATE` for usada e uma chave duplicada causar a execução de uma atualização (`UPDATE` em vez disso), a instrução requer o privilégio `UPDATE`]\(privileges-provided.html#priv\_update) para as colunas serem atualizadas. Para colunas que são lidas, mas não modificadas, você precisa apenas do privilégio `SELECT`]\(privileges-provided.html#priv\_select) (como para uma coluna referenciada apenas no lado direito de uma atribuição *`col_name`*=*`expr`* em uma cláusula `ON DUPLICATE KEY UPDATE`).
+Para inserir em uma tabela, é necessário o privilégio `INSERT` para a tabela. Se a cláusula `ON DUPLICATE KEY UPDATE` for usada e uma chave duplicada causar a execução de uma atualização (`UPDATE` em vez disso), a instrução requer o privilégio `UPDATE`]\(privileges-provided.html#priv_update) para as colunas serem atualizadas. Para colunas que são lidas, mas não modificadas, você precisa apenas do privilégio `SELECT`]\(privileges-provided.html#priv_select) (como para uma coluna referenciada apenas no lado direito de uma atribuição *`col_name`*=*`expr`* em uma cláusula `ON DUPLICATE KEY UPDATE`).
 
 Ao inserir em uma tabela particionada, você pode controlar quais particionações e subparticionações aceitam novas linhas. A cláusula `PARTITION` recebe uma lista de nomes separados por vírgula de uma ou mais particionações ou subparticionações (ou ambas) da tabela. Se alguma das linhas a serem inseridas por uma declaração `INSERT` (insert.html) não corresponder a uma das particionações listadas, a declaração `INSERT` falha com o erro "Encontrou uma linha que não corresponde ao conjunto de particionações fornecido". Para mais informações e exemplos, consulte Seção 22.5, "Seleção de particionações".
 
@@ -108,7 +108,7 @@ INSERT INTO tbl_name (a,b,c) VALUES(1,2,3,4,5,6,7,8,9);
 
 `VALUE` é sinônimo de `VALUES` neste contexto. Nenhum deles implica em nada sobre o número de listas de valores, nem sobre o número de valores por lista. Pode ser usado tanto se houver uma única lista de valores quanto se houver várias listas, e independentemente do número de valores por lista.
 
-O valor de `affected-rows` para um `INSERT` pode ser obtido usando a função SQL `[ROW_COUNT()`]\(information-functions.html#function\_row-count) ou a função C API `[mysql_affected_rows()`]\(/doc/c-api/5.7/en/mysql-affected-rows.html). Veja Seção 12.15, “Funções de Informação” e mysql\_affected\_rows().
+O valor de `affected-rows` para um `INSERT` pode ser obtido usando a função SQL `[ROW_COUNT()`]\(information-functions.html#function_row-count) ou a função C API `[mysql_affected_rows()`]\(/doc/c-api/5.7/en/mysql-affected-rows.html). Veja Seção 12.15, “Funções de Informação” e mysql_affected_rows().
 
 Se você usar uma instrução `INSERT ... VALUES` (insert.html) com várias listas de valores ou `INSERT ... SELECT` (insert-select.html), a instrução retorna uma string de informações no seguinte formato:
 
@@ -116,7 +116,7 @@ Se você usar uma instrução `INSERT ... VALUES` (insert.html) com várias list
 Records: N1 Duplicates: N2 Warnings: N3
 ```
 
-Se você estiver usando a API C, a string de informações pode ser obtida invocando a função `mysql_info()`. Veja mysql\_info().
+Se você estiver usando a API C, a string de informações pode ser obtida invocando a função `mysql_info()`. Veja mysql_info().
 
 `Registros` indica o número de linhas processadas pela declaração. (Isso não é necessariamente o número de linhas realmente inseridas, pois `Duplicatas` pode ser diferente de zero.) `Duplicatas` indica o número de linhas que não puderam ser inseridas porque elas duplicariam algum valor de índice único existente. `Avisos` indica o número de tentativas de inserir valores de coluna que foram problemáticos de alguma forma. Os avisos podem ocorrer sob qualquer uma das seguintes condições:
 
@@ -130,13 +130,13 @@ Se você estiver usando a API C, a string de informações pode ser obtida invoc
 
 - Inserir um valor em uma coluna de data ou hora que seja ilegal para o tipo de dados. A coluna é definida com o valor zero apropriado para o tipo.
 
-- Para exemplos de `INSERT` que envolvem valores de colunas `AUTO_INCREMENT`, consulte Seção 3.6.9, “Usando AUTO\_INCREMENT”.
+- Para exemplos de `INSERT` que envolvem valores de colunas `AUTO_INCREMENT`, consulte Seção 3.6.9, “Usando AUTO_INCREMENT”.
 
   Se `INSERT` inserir uma linha em uma tabela que possui uma coluna `AUTO_INCREMENT`, você pode encontrar o valor usado para essa coluna usando a função SQL `LAST_INSERT_ID()` ou a função C API `mysql_insert_id()`.
 
   Nota
 
-  Essas duas funções nem sempre se comportam da mesma maneira. O comportamento das instruções `INSERT` em relação às colunas `AUTO_INCREMENT` é discutido mais detalhadamente em Seção 12.15, “Funções de Informação” e mysql\_insert\_id().
+  Essas duas funções nem sempre se comportam da mesma maneira. O comportamento das instruções `INSERT` em relação às colunas `AUTO_INCREMENT` é discutido mais detalhadamente em Seção 12.15, “Funções de Informação” e mysql_insert_id().
 
 A instrução `INSERT` suporta os seguintes modificadores:
 
@@ -148,7 +148,7 @@ A instrução `INSERT` suporta os seguintes modificadores:
 
   `LOW_PRIORITY` normalmente não deve ser usado com tabelas `MyISAM`, pois isso desabilita as inserções concorrentes. Veja Seção 8.11.3, “Inserções Concorrentes”.
 
-- Se você especificar `HIGH_PRIORITY`, ele substitui o efeito da opção `--low-priority-updates` (server-system-variables.html#sysvar\_low\_priority\_updates) se o servidor foi iniciado com essa opção. Isso também faz com que as inserções concorrentes não sejam usadas. Veja Seção 8.11.3, “Inserções Concorrentes”.
+- Se você especificar `HIGH_PRIORITY`, ele substitui o efeito da opção `--low-priority-updates` (server-system-variables.html#sysvar_low_priority_updates) se o servidor foi iniciado com essa opção. Isso também faz com que as inserções concorrentes não sejam usadas. Veja Seção 8.11.3, “Inserções Concorrentes”.
 
   `HIGH_PRIORITY` afeta apenas os motores de armazenamento que usam apenas bloqueio de nível de tabela (como `MyISAM`, `MEMORY` e `MERGE`).
 

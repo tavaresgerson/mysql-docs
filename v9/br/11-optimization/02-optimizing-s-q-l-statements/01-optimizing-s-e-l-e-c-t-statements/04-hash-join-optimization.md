@@ -1,6 +1,6 @@
 #### 10.2.1.4 Otimização de Conjunções Hash
 
-Por padrão, o MySQL emprega junções hash sempre que possível. É possível controlar se as junções hash são empregadas usando uma das dicas de otimizador `BNL` e `NO_BNL`, ou definindo `block_nested_loop=on` ou `block_nested_loop=off` como parte da definição da variável de sistema do servidor optimizer\_switch.
+Por padrão, o MySQL emprega junções hash sempre que possível. É possível controlar se as junções hash são empregadas usando uma das dicas de otimizador `BNL` e `NO_BNL`, ou definindo `block_nested_loop=on` ou `block_nested_loop=off` como parte da definição da variável de sistema do servidor optimizer_switch.
 
 O MySQL emprega uma junção hash para qualquer consulta para a qual cada junção tenha uma condição de junção equi, e na qual não haja índices que possam ser aplicados a quaisquer condições de junção, como esta:
 

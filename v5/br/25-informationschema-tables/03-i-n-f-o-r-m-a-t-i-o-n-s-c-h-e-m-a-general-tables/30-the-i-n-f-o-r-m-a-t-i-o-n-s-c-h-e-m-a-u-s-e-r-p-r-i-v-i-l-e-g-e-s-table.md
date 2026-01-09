@@ -1,4 +1,4 @@
-### 24.3.30 A tabela INFORMATION\_SCHEMA USER\_PRIVILEGES
+### 24.3.30 A tabela INFORMATION_SCHEMA USER_PRIVILEGES
 
 A tabela [`USER_PRIVILEGES`](https://pt.wikipedia.org/wiki/Tabela_de_informa%C3%A7%C3%A3o_sobre_usu%C3%A1rios_com_privilegios) fornece informações sobre privilégios globais. Ela obtém seus valores da tabela `mysql.user` do sistema.
 

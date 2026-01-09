@@ -1,10 +1,10 @@
-### 24.4.9 The INFORMATION\_SCHEMA INNODB\_FT\_CONFIG Table
+### 24.4.9 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table
 
 The [`INNODB_FT_CONFIG`](information-schema-innodb-ft-config-table.html "24.4.9 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table") table provides metadata about the `FULLTEXT` index and associated processing for an `InnoDB` table.
 
 This table is empty initially. Before querying it, set the value of the [`innodb_ft_aux_table`](innodb-parameters.html#sysvar_innodb_ft_aux_table) system variable to the name (including the database name) of the table that contains the `FULLTEXT` index; for example `test/articles`.
 
-For related usage information and examples, see [Section 14.16.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”](innodb-information-schema-fulltext_index-tables.html "14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables").
+For related usage information and examples, see [Section 14.16.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”](innodb-information-schema-fulltext_index-tables.html "14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables").
 
 The [`INNODB_FT_CONFIG`](information-schema-innodb-ft-config-table.html "24.4.9 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table") table has these columns:
 

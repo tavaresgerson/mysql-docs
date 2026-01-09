@@ -16,7 +16,7 @@ mysql    10512  0.2  2.5  58528 26636 pts/3    Sl   11:53   0:00 \
 jon      10579  0.0  0.0   2736   688 pts/0    S+   11:54   0:00 grep mysql
 ```
 
-Se o processo **mysqld** estiver executando como qualquer outro usuário que não seja `mysql`, você deve imediatamente interromper e reiniciar o processo como o usuário `mysql`. Se esse usuário não existir no sistema, a conta de usuário `mysql` deve ser criada, e esse usuário deve fazer parte do grupo de usuário `mysql`; nesse caso, você também deve garantir que o diretório de dados do MySQL neste sistema (definido usando a opção `--datadir` para **mysqld**) seja de propriedade do usuário `mysql`, e que o arquivo `my.cnf` do nó SQL inclua `user=mysql` na seção `[mysqld]`. Alternativamente, você pode iniciar o processo do servidor MySQL com `--user=mysql` na linha de comando, mas é preferível usar a opção `my.cnf`, pois você pode esquecer de usar a opção de linha de comando e, assim, ter o **mysqld** executando como outro usuário acidentalmente. O script de inicialização **mysqld\_safe** força o MySQL a executar como o usuário `mysql`.
+Se o processo **mysqld** estiver executando como qualquer outro usuário que não seja `mysql`, você deve imediatamente interromper e reiniciar o processo como o usuário `mysql`. Se esse usuário não existir no sistema, a conta de usuário `mysql` deve ser criada, e esse usuário deve fazer parte do grupo de usuário `mysql`; nesse caso, você também deve garantir que o diretório de dados do MySQL neste sistema (definido usando a opção `--datadir` para **mysqld**) seja de propriedade do usuário `mysql`, e que o arquivo `my.cnf` do nó SQL inclua `user=mysql` na seção `[mysqld]`. Alternativamente, você pode iniciar o processo do servidor MySQL com `--user=mysql` na linha de comando, mas é preferível usar a opção `my.cnf`, pois você pode esquecer de usar a opção de linha de comando e, assim, ter o **mysqld** executando como outro usuário acidentalmente. O script de inicialização **mysqld_safe** força o MySQL a executar como o usuário `mysql`.
 
 Importante
 
@@ -41,6 +41,6 @@ Tenha muito cuidado ao executar a instrução `DELETE` para não omitir a cláus
 
 Observação
 
-Muitas das ferramentas do NDB Cluster, como **ndb\_show\_tables**, **ndb\_desc** e **ndb\_select\_all**, também funcionam sem autenticação e podem revelar nomes de tabelas, esquemas e dados. Por padrão, elas são instaladas em sistemas de estilo Unix com as permissões `wxr-xr-x` (755), o que significa que podem ser executadas por qualquer usuário que possa acessar o diretório `mysql/bin`.
+Muitas das ferramentas do NDB Cluster, como **ndb_show_tables**, **ndb_desc** e **ndb_select_all**, também funcionam sem autenticação e podem revelar nomes de tabelas, esquemas e dados. Por padrão, elas são instaladas em sistemas de estilo Unix com as permissões `wxr-xr-x` (755), o que significa que podem ser executadas por qualquer usuário que possa acessar o diretório `mysql/bin`.
 
 Consulte a Seção 25.5, “Programas do NDB Cluster”, para obter mais informações sobre essas ferramentas.

@@ -1,4 +1,4 @@
-#### 30.4.4.26 The statement\_performance\_analyzer() Procedure
+#### 30.4.4.26 The statement_performance_analyzer() Procedure
 
 Creates a report of the statements running on the server. The views are calculated based on the overall and/or delta activity.
 
@@ -44,7 +44,7 @@ This procedure disables binary logging during its execution by manipulating the 
 
 ##### Configuration Options
 
-`statement_performance_analyzer()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys\_config Table”):
+`statement_performance_analyzer()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 30.4.2.1, “The sys_config Table”):
 
 * `debug`, `@sys.debug`
 

@@ -84,7 +84,7 @@ The status variables have the meanings shown in the following list.
   + `Com_stmt_reset`
   + `Com_stmt_close`
 
-  Those variables stand for prepared statement commands. Their names refer to the `COM_xxx` command set used in the network layer. In other words, their values increase whenever prepared statement API calls such as **mysql\_stmt\_prepare()**, **mysql\_stmt\_execute()**, and so forth are executed. However, `Com_stmt_prepare`, `Com_stmt_execute` and `Com_stmt_close` also increase for [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), or [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement"), respectively. Additionally, the values of the older statement counter variables `Com_prepare_sql`, `Com_execute_sql`, and `Com_dealloc_sql` increase for the [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), and [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement") statements. `Com_stmt_fetch` stands for the total number of network round-trips issued when fetching from cursors.
+  Those variables stand for prepared statement commands. Their names refer to the `COM_xxx` command set used in the network layer. In other words, their values increase whenever prepared statement API calls such as **mysql_stmt_prepare()**, **mysql_stmt_execute()**, and so forth are executed. However, `Com_stmt_prepare`, `Com_stmt_execute` and `Com_stmt_close` also increase for [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), or [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement"), respectively. Additionally, the values of the older statement counter variables `Com_prepare_sql`, `Com_execute_sql`, and `Com_dealloc_sql` increase for the [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), and [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement") statements. `Com_stmt_fetch` stands for the total number of network round-trips issued when fetching from cursors.
 
   `Com_stmt_reprepare` indicates the number of times statements were automatically reprepared by the server after metadata changes to tables or views referred to by the statement. A reprepare operation increments `Com_stmt_reprepare`, and also `Com_stmt_prepare`.
 
@@ -786,7 +786,7 @@ The status variables have the meanings shown in the following list.
 
   Shows the replication heartbeat interval (in seconds) on a replication replica.
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show\_compatibility\_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 
@@ -796,7 +796,7 @@ The status variables have the meanings shown in the following list.
 
   Shows when the most recent heartbeat signal was received by a replica, as a [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") value.
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show\_compatibility\_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 
@@ -810,7 +810,7 @@ The status variables have the meanings shown in the following list.
 
   This counter increments with each replication heartbeat received by a replication replica since the last time that the replica was restarted or reset, or a [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement was issued.
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show\_compatibility\_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 
@@ -820,7 +820,7 @@ The status variables have the meanings shown in the following list.
 
   The total number of times since startup that the replication replica SQL thread has retried transactions.
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show\_compatibility\_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 
@@ -838,7 +838,7 @@ The status variables have the meanings shown in the following list.
 
   This is `ON` if this server is a replica that is connected to a replication source, and both the I/O and SQL threads are running; otherwise, it is `OFF`.
 
-  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show\_compatibility\_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
+  This variable is affected by the value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
   Note
 

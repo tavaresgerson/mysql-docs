@@ -120,7 +120,7 @@ Essas tabelas de sistema contêm informações sobre componentes, funções carr
 
 ::: info Nota
 
-Assim como a tabela `mysql.func` do sistema, a tabela `user_defined_functions` do Schema de Desempenho lista funções carregáveis instaladas usando `CREATE FUNCTION`. Ao contrário da tabela `mysql.func`, a tabela `user_defined_functions` também lista funções instaladas automaticamente por componentes do servidor ou plugins. Essa diferença torna a tabela `user_defined_functions` preferível à tabela `mysql.func` para verificar quais funções estão instaladas. Veja a Seção 29.12.22.10, “A tabela user\_defined\_functions”.
+Assim como a tabela `mysql.func` do sistema, a tabela `user_defined_functions` do Schema de Desempenho lista funções carregáveis instaladas usando `CREATE FUNCTION`. Ao contrário da tabela `mysql.func`, a tabela `user_defined_functions` também lista funções instaladas automaticamente por componentes do servidor ou plugins. Essa diferença torna a tabela `user_defined_functions` preferível à tabela `mysql.func` para verificar quais funções estão instaladas. Veja a Seção 29.12.22.10, “A tabela user_defined_functions”.
 
 :::
 

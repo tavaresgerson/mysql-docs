@@ -1,4 +1,4 @@
-#### 19.5.1.1 Replication and AUTO\_INCREMENT
+#### 19.5.1.1 Replication and AUTO_INCREMENT
 
 Statement-based replication of `AUTO_INCREMENT`, `LAST_INSERT_ID()`, and `TIMESTAMP` values is carried out subject to the following exceptions:
 
@@ -6,7 +6,7 @@ Statement-based replication of `AUTO_INCREMENT`, `LAST_INSERT_ID()`, and `TIMEST
 
 * An `INSERT` into a table that has a composite primary key that includes an `AUTO_INCREMENT` column that is not the first column of this composite key is not safe for statement-based logging or replication. These statements are marked as unsafe. (Bug #11754117, Bug #45670)
 
-  This issue does not affect tables using the `InnoDB` storage engine, since an `InnoDB` table with an AUTO\_INCREMENT column requires at least one key where the auto-increment column is the only or leftmost column.
+  This issue does not affect tables using the `InnoDB` storage engine, since an `InnoDB` table with an AUTO_INCREMENT column requires at least one key where the auto-increment column is the only or leftmost column.
 
 * Adding an `AUTO_INCREMENT` column to a table with `ALTER TABLE` might not produce the same ordering of the rows on the replica and the source. This occurs because the order in which the rows are numbered depends on the specific storage engine used for the table and the order in which the rows were inserted. If it is important to have the same order on the source and replica, the rows must be ordered before assigning an `AUTO_INCREMENT` number. Assuming that you want to add an `AUTO_INCREMENT` column to a table `t1` that has columns `col1` and `col2`, the following statements produce a new table `t2` identical to `t1` but with an `AUTO_INCREMENT` column:
 

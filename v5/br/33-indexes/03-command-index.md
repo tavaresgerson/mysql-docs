@@ -4,7 +4,7 @@
 
 ### A
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### Acesso
 
@@ -48,7 +48,7 @@
 
 ### B
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### bash
 
@@ -76,7 +76,7 @@
 
 ### C
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### c++filt
 
@@ -208,9 +208,9 @@
 
 [Seção 4.2.1, “Invocação de programas MySQL”](invoking-programs.html)
 
-### comp\_err
+### comp_err
 
-[Seção 4.4.1, “comp\_err — Arquivo de Mensagem de Erro de Compilação do MySQL”](comp-err.html)
+[Seção 4.4.1, “comp_err — Arquivo de Mensagem de Erro de Compilação do MySQL”](comp-err.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
@@ -264,9 +264,9 @@
 
 ### D
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
-### daemon\_memcached
+### daemon_memcached
 
 [Seção 14.21.5.2, “Adaptando um aplicativo memcached para o plugin memcached do InnoDB”](innodb-memcached-porting-memcached.html)
 
@@ -274,7 +274,7 @@
 
 ### data
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 ### df
 
@@ -356,7 +356,7 @@
 
 ### E
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### executar()
 
@@ -368,7 +368,7 @@
 
 ### G
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### gcc
 
@@ -478,7 +478,7 @@
 
 ### H
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### conteúdos de ajuda
 
@@ -496,7 +496,7 @@
 
 ### Eu
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### icc
 
@@ -530,15 +530,15 @@
 
 ### J
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### java
 
-[Seção 6.4.4.4, “Usando o plugin KMIP keyring\_okv”](keyring-okv-plugin.html)
+[Seção 6.4.4.4, “Usando o plugin KMIP keyring_okv”](keyring-okv-plugin.html)
 
 ### K
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### matar
 
@@ -564,7 +564,7 @@
 
 ### L
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### launchd
 
@@ -584,7 +584,7 @@
 
 ### logger
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 ### ls
 
@@ -600,9 +600,9 @@
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
-### lz4\_decompress
+### lz4_decompress
 
-[Seção 4.8.1, “lz4\_decompress — Descompactar saída comprimida do mysqlpump com LZ4”](lz4-decompress.html)
+[Seção 4.8.1, “lz4_decompress — Descompactar saída comprimida do mysqlpump com LZ4”](lz4-decompress.html)
 
 [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
 
@@ -610,11 +610,11 @@
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
-[Seção 4.8.5, “zlib\_decompress — Descompactar saída comprimida do mysqlpump com ZLIB”](zlib-decompress.html)
+[Seção 4.8.5, “zlib_decompress — Descompactar saída comprimida do mysqlpump com ZLIB”](zlib-decompress.html)
 
 ### M
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### m4
 
@@ -744,21 +744,21 @@
 
 [Seção 5.4.3, “O Log de Consulta Geral”](query-log.html)
 
-### my\_print\_defaults
+### my_print_defaults
 
-[Seção 4.7.2, “my\_print\_defaults — Opções de exibição a partir de arquivos de opção”](my-print-defaults.html)
+[Seção 4.7.2, “my_print_defaults — Opções de exibição a partir de arquivos de opção”](my-print-defaults.html)
 
-[Seção 4.4.3, “mysql\_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
+[Seção 4.4.3, “mysql_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
 [Seção 4.7, “Ferramentas de Desenvolvimento de Programas”](programs-development.html)
 
-### myisam\_ftdump
+### myisam_ftdump
 
 [Seção 12.9, “Funções de Busca de Texto Completo”](fulltext-search.html)
 
-[Seção 4.6.2, “myisam\_ftdump — Exibir informações do índice de texto completo”](myisam-ftdump.html)
+[Seção 4.6.2, “myisam_ftdump — Exibir informações do índice de texto completo”](myisam-ftdump.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
@@ -852,9 +852,9 @@
 
 [Seção 8.12.1, “Fatores do Sistema”](system-optimization.html)
 
-[Seção 24.3.24, “A Tabela INFORMATION\_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
 
-[Seção 24.3.25, “A tabela INFORMATION\_SCHEMA TABLES”](information-schema-tables-table.html)
+[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
 
 [Seção 1.2.2, “Principais características do MySQL”](features.html)
 
@@ -872,7 +872,7 @@
 
 [Seção 7.6.3, “Como reparar as tabelas MyISAM”](myisam-repair.html)
 
-### myisamchk tbl\_name
+### myisamchk tbl_name
 
 [Seção 7.6.2, “Como verificar as tabelas MyISAM em busca de erros”](myisam-check.html)
 
@@ -1030,7 +1030,7 @@
 
 [Seção 4.5.1.5, “Executando instruções SQL a partir de um arquivo de texto”](mysql-batch-commands.html)
 
-\[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Capítulo 12, *Funções e Operadores*] (functions.html)
 
 [Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
 
@@ -1116,19 +1116,19 @@
 
 [Seção 21.6.10, “Uso do Servidor MySQL para NDB Cluster”](mysql-cluster-mysqld.html)
 
-\[Capítulo 18, *MySQL Shell*] (mysql-shell-userguide.html)
+[Capítulo 18, *MySQL Shell*] (mysql-shell-userguide.html)
 
 [Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”](mysql.html)
 
 [Seção 4.3.3, “mysql.server — Script de inicialização do servidor MySQL”](mysql-server.html)
 
-[Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
+[Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
-[Seção 4.4.6, “mysql\_tzinfo\_to\_sql — Carregar as tabelas de fuso horário”](mysql-tzinfo-to-sql.html)
+[Seção 4.4.6, “mysql_tzinfo_to_sql — Carregar as tabelas de fuso horário”](mysql-tzinfo-to-sql.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
 
@@ -1138,7 +1138,7 @@
 
 [Seção 4.5.7, “mysqlshow — Exibir informações da base de dados, tabela e coluna”](mysqlshow.html)
 
-\[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
 
 [Seção 21.7.9, "Backup do NDB Cluster com Replicação do NDB Cluster"](mysql-cluster-replication-backups.html)
 
@@ -1150,17 +1150,17 @@
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-[Seção 21.5.10, “ndb\_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
+[Seção 21.5.10, “ndb_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
-[Seção 21.5.15, “ndb\_index\_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
+[Seção 21.5.15, “ndb_index_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
 
-[Seção 21.5.5, “ndb\_mgm — O cliente de gerenciamento de cluster NDB”](mysql-cluster-programs-ndb-mgm.html)
+[Seção 21.5.5, “ndb_mgm — O cliente de gerenciamento de cluster NDB”](mysql-cluster-programs-ndb-mgm.html)
 
 [Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
 
-[Seção 21.5.2, “ndbinfo\_select\_all — Selecionar de tabelas ndbinfo”](mysql-cluster-programs-ndbinfo-select-all.html)
+[Seção 21.5.2, “ndbinfo_select_all — Selecionar de tabelas ndbinfo”](mysql-cluster-programs-ndbinfo-select-all.html)
 
 [Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
 
@@ -1234,7 +1234,7 @@
 
 [Seção 2.3.4.8, “Iniciar o MySQL como um serviço do Windows”](windows-start-service.html)
 
-\[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
+[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
 
 [Seção 12.8.1, “Funções e operadores de comparação de strings”](string-comparison-functions.html)
 
@@ -1252,7 +1252,7 @@
 
 [Seção 26.4.4.2, "O procedimento diagnostics()"](sys-diagnostics.html)
 
-[Seção 21.6.15.27, “Tabela ndbinfo memory\_per\_fragment”](mysql-cluster-ndbinfo-memory-per-fragment.html)
+[Seção 21.6.15.27, “Tabela ndbinfo memory_per_fragment”](mysql-cluster-ndbinfo-memory-per-fragment.html)
 
 [Seção 21.6.15.44, “Tabela de transportadores ndbinfo”](mysql-cluster-ndbinfo-transporters.html)
 
@@ -1262,7 +1262,7 @@
 
 [Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
 
-\[Capítulo 3, *Tutoriais*] (tutorial.html)
+[Capítulo 3, *Tutoriais*] (tutorial.html)
 
 [Seção 4.10, "Tratamento de Sinais Unix no MySQL"](unix-signal-response.html)
 
@@ -1304,7 +1304,7 @@
 
 [Seção 12.11, “Funções XML”](xml-functions.html)
 
-### mysql < arquivo\_de\_dump
+### mysql < arquivo_de_dump
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -1314,7 +1314,7 @@
 
 ### mysql-test-run.pl
 
-[Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
+[Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
 
 [Seção 4.2.2.2, “Usando arquivos de opção”](option-files.html)
 
@@ -1350,23 +1350,23 @@
 
 [Seção 4.3.3, “mysql.server — Script de inicialização do servidor MySQL”](mysql-server.html)
 
-### mysql\_client\_test\_embedded
+### mysql_client_test_embedded
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_config
+### mysql_config
 
 [Seção 27.6.1, “Compilar programas com libmysqld”](libmysqld-compiling.html)
 
 [Seção 2.8.8, “Lidando com problemas de compilação do MySQL”](compilation-problems.html)
 
-[Seção 4.7.1, “mysql\_config — Opções de Exibição para Compilação de Clientes”](mysql-config.html)
+[Seção 4.7.1, “mysql_config — Opções de Exibição para Compilação de Clientes”](mysql-config.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_config\_editor
+### mysql_config_editor
 
 [Seção 4.2.2.3, “Opções da linha de comando que afetam o manuseio de arquivos Opção”](option-file-options.html)
 
@@ -1374,19 +1374,19 @@
 
 [Seção 4.9, “Variáveis de Ambiente”](environment-variables.html)
 
-[Seção 4.7.2, “my\_print\_defaults — Opções de exibição a partir de arquivos de opção”](my-print-defaults.html)
+[Seção 4.7.2, “my_print_defaults — Opções de exibição a partir de arquivos de opção”](my-print-defaults.html)
 
 [Seção 4.6.3.1, “Opções Gerais do myisamchk”](myisamchk-general-options.html)
 
 [Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
 
-[Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
+[Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
-[Seção 4.4.4, “mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL”](mysql-secure-installation.html)
+[Seção 4.4.4, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”](mysql-secure-installation.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
 
@@ -1408,25 +1408,25 @@
 
 [Seção 4.2.2.2, “Usando arquivos de opção”](option-files.html)
 
-### mysql\_convert\_table\_format
+### mysql_convert_table_format
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_find\_rows
+### mysql_find_rows
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_fix\_extensions
+### mysql_fix_extensions
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_install\_db
+### mysql_install_db
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
 [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
@@ -1434,15 +1434,15 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_plugin
+### mysql_plugin
 
-[Seção 4.4.3, “mysql\_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
+[Seção 4.4.3, “mysql_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_secure\_installation
+### mysql_secure_installation
 
 [Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
 
@@ -1452,23 +1452,23 @@
 
 [Seção 2.7.1, “Instalando o MySQL no Solaris usando um PKG Solaris”](solaris-installation-pkg.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
-[Seção 4.4.4, “mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL”](mysql-secure-installation.html)
+[Seção 4.4.4, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”](mysql-secure-installation.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
 [Seção 2.9.4, “Segurança da Conta Inicial do MySQL”](default-privileges.html)
 
-### mysql\_server\_config
+### mysql_server_config
 
-[Seção 4.7.1, “mysql\_config — Opções de Exibição para Compilação de Clientes”](mysql-config.html)
+[Seção 4.7.1, “mysql_config — Opções de Exibição para Compilação de Clientes”](mysql-config.html)
 
-### mysql\_setpermission
+### mysql_setpermission
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_ssl\_rsa\_setup
+### mysql_ssl_rsa_setup
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -1482,7 +1482,7 @@
 
 [Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
 
-[Seção 4.4.5, “mysql\_ssl\_rsa\_setup — Criar arquivos SSL/RSA”](mysql-ssl-rsa-setup.html)
+[Seção 4.4.5, “mysql_ssl_rsa_setup — Criar arquivos SSL/RSA”](mysql-ssl-rsa-setup.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
@@ -1490,23 +1490,23 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_stmt\_execute()
+### mysql_stmt_execute()
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-### mysql\_stmt\_prepare()
+### mysql_stmt_prepare()
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-### mysql\_tzinfo\_to\_sql
+### mysql_tzinfo_to_sql
 
 [Seção 5.1.13, “Suporte de Fuso Horário do MySQL Server”](time-zone-support.html)
 
-[Seção 4.4.6, “mysql\_tzinfo\_to\_sql — Carregar as tabelas de fuso horário”](mysql-tzinfo-to-sql.html)
+[Seção 4.4.6, “mysql_tzinfo_to_sql — Carregar as tabelas de fuso horário”](mysql-tzinfo-to-sql.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
-### mysql\_upgrade
+### mysql_upgrade
 
 [Seção 11.2.5, “Limitações do ANO(2) de 2 dígitos e migração para o ANO de 4 dígitos”](migrando-de-ano2.html)
 
@@ -1530,13 +1530,13 @@
 
 [Seção 6.4.5.2, “Instalando ou Desinstalando o Auditoria do MySQL Enterprise”](audit-log-installation.html)
 
-[Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql\_old\_password”](account-upgrades.html)
+[Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql_old_password”](account-upgrades.html)
 
 [Capítulo 26, *MySQL sys Schema*](sys-schema.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 21.7.4, “Esquema e tabelas de replicação de cluster NDB”](mysql-cluster-replication-schema.html)
 
@@ -1572,11 +1572,11 @@
 
 [Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
 
-### mysql\_waitpid
+### mysql_waitpid
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysql\_zap
+### mysql_zap
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
@@ -1630,13 +1630,13 @@
 
 [Seção 5.4, "Logs do Servidor MySQL"](server-logs.html)
 
-[Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
+[Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
 [Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
 
-[Seção 4.3.4, “mysqld\_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
+[Seção 4.3.4, “mysqld_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
@@ -1682,9 +1682,9 @@
 
 [Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
 
-### mysqladmin status\_extendido
+### mysqladmin status_extendido
 
-\[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
+[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
 
 ### mysqladmin flush-hosts
 
@@ -1826,7 +1826,7 @@
 
 [Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
 [Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
 
@@ -2000,7 +2000,7 @@
 
 [Seção 9.2.4, “Mapeamento de Identificadores para Nomes de Arquivos”](identifier-mapping.html)
 
-[Seção 4.7.2, “my\_print\_defaults — Opções de exibição a partir de arquivos de opção”](my-print-defaults.html)
+[Seção 4.7.2, “my_print_defaults — Opções de exibição a partir de arquivos de opção”](my-print-defaults.html)
 
 [Seção 7.6, “Manutenção de tabelas MyISAM e recuperação em caso de falha”](myisam-table-maintenance.html)
 
@@ -2052,7 +2052,7 @@
 
 [Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”](communication-errors.html)
 
-[Seção 4.4.1, “comp\_err — Arquivo de Mensagem de Erro de Compilação do MySQL”](comp-err.html)
+[Seção 4.4.1, “comp_err — Arquivo de Mensagem de Erro de Compilação do MySQL”](comp-err.html)
 
 [Seção 5.8.1.1, “Compilar o MySQL para depuração”](compiling-for-debugging.html)
 
@@ -2260,9 +2260,9 @@
 
 [Seção 4.3.3, “mysql.server — Script de inicialização do servidor MySQL”](mysql-server.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
-[Seção 4.4.3, “mysql\_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
+[Seção 4.4.3, “mysql_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
 
 [Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
 
@@ -2270,13 +2270,13 @@
 
 [Seção 4.3.1, “mysqld — O Servidor MySQL”](mysqld.html)
 
-[Seção 4.3.4, “mysqld\_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
+[Seção 4.3.4, “mysqld_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 [Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
 
-\[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
 
 [Seção 21.6.18.3, “Procedimentos de segurança do NDB Cluster e MySQL”](mysql-cluster-security-mysql-security-procedures.html)
 
@@ -2306,15 +2306,15 @@
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
-[Seção 21.5.4, “ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
+[Seção 21.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
-[Seção 21.5.27, “ndb\_show\_tables — Exibir Lista de Tabelas NDB”](mysql-cluster-programs-ndb-show-tables.html)
+[Seção 21.5.27, “ndb_show_tables — Exibir Lista de Tabelas NDB”](mysql-cluster-programs-ndb-show-tables.html)
 
-[Seção 21.5.29, “ndb\_top — Visualizar informações de uso da CPU para threads NDB”](mysql-cluster-programs-ndb-top.html)
+[Seção 21.5.29, “ndb_top — Visualizar informações de uso da CPU para threads NDB”](mysql-cluster-programs-ndb-top.html)
 
 [Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
 
@@ -2372,7 +2372,7 @@
 
 [Seção B.3.3.2.1, “Redefinindo a Senha de Root: Sistemas Windows”](resetting-permissions.html#resetting-permissions-windows)
 
-[Seção 4.7.3, “resolve\_stack\_dump — Resolver o registro de pilha numérico para símbolos”](resolve-stack-dump.html)
+[Seção 4.7.3, “resolve_stack_dump — Resolver o registro de pilha numérico para símbolos”](resolve-stack-dump.html)
 
 [Seção 21.5.24.1.2, “Restauração de um backup do NDB para uma versão posterior do NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-later-version)
 
@@ -2436,7 +2436,7 @@
 
 [Seção 2.3.4.6, “Iniciando o MySQL a partir da linha de comando do Windows”](windows-start-command-line.html)
 
-\[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
+[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
 
 [Seção 16.2.2.3, “Opções de inicialização e canais de replicação”](channels-startup-options.html)
 
@@ -2470,9 +2470,9 @@
 
 [Seção 5.1, “O Servidor MySQL”](mysqld-server.html)
 
-[Seção 21.6.15.29, “Tabela ndbinfo operations\_per\_fragment”](mysql-cluster-ndbinfo-operations-per-fragment.html)
+[Seção 21.6.15.29, “Tabela ndbinfo operations_per_fragment”](mysql-cluster-ndbinfo-operations-per-fragment.html)
 
-[Seção 21.6.15.33, “Tabela server\_locks do ndbinfo server”](mysql-cluster-ndbinfo-server-locks.html)
+[Seção 21.6.15.33, “Tabela server_locks do ndbinfo server”](mysql-cluster-ndbinfo-server-locks.html)
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
@@ -2542,7 +2542,7 @@
 
 [Seção 4.3.1, “mysqld — O Servidor MySQL”](mysqld.html)
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 [Seção 2.3.4.3, “Selecionando um tipo de servidor MySQL”](windows-select-server.html)
 
@@ -2554,21 +2554,21 @@
 
 [Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”](mysql-cluster-install-windows-service.html)
 
-### mysqld\_multi
+### mysqld_multi
 
 [Seção 2.5.10, “Gerenciamento do servidor MySQL com systemd”](using-systemd.html)
 
-[Seção 4.3.4, “mysqld\_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
+[Seção 4.3.4, “mysqld_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
 [Seção 5.7.3, “Executando múltiplas instâncias do MySQL no Unix”](multiple-unix-servers.html)
 
-### mysqld\_multi.server
+### mysqld_multi.server
 
 [Seção 2.5.10, “Gerenciamento do servidor MySQL com systemd”](using-systemd.html)
 
-### mysqld\_safe
+### mysqld_safe
 
 [Seção 21.6.7.3, “Adicionar nós de dados do NDB Cluster Online: Exemplo detalhado”](mysql-cluster-online-add-node-example.html)
 
@@ -2606,9 +2606,9 @@
 
 [Seção 4.3.3, “mysql.server — Script de inicialização do servidor MySQL”](mysql-server.html)
 
-[Seção 4.3.4, “mysqld\_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
+[Seção 4.3.4, “mysqld_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 [Seção 21.6.18.3, “Procedimentos de segurança do NDB Cluster e MySQL”](mysql-cluster-security-mysql-security-procedures.html)
 
@@ -2654,7 +2654,7 @@
 
 [Seção 16.3.1.3, “Fazer uma cópia de segurança de uma fonte ou réplica tornando-a apenas de leitura”](replication-solutions-backups-read-only.html)
 
-\[Capítulo 7, *Backup e Recuperação*] (backup-e-recuperacao.html)
+[Capítulo 7, *Backup e Recuperação*] (backup-e-recuperacao.html)
 
 [Seção 7.1, “Tipos de Backup e Recuperação”](backup-types.html)
 
@@ -2744,7 +2744,7 @@
 
 [Seção 5.4, "Logs do Servidor MySQL"](server-logs.html)
 
-[Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
+[Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”](mysql-config-editor.html)
 
 [Seção 7.4.5, “Dicas do mysqldump”](mysqldump-tips.html)
 
@@ -2754,7 +2754,7 @@
 
 [Seção 21.2, “Visão geral do cluster NDB”](mysql-cluster-overview.html)
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
 [Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
 
@@ -2922,7 +2922,7 @@
 
 [Seção 2.6, “Instalando o MySQL usando Unbreakable Linux Network (ULN”](uln-installation.html)
 
-[Seção 4.8.1, “lz4\_decompress — Descompactar saída comprimida do mysqlpump com LZ4”](lz4-decompress.html)
+[Seção 4.8.1, “lz4_decompress — Descompactar saída comprimida do mysqlpump com LZ4”](lz4-decompress.html)
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
@@ -2934,7 +2934,7 @@
 
 [Seção 26.2, “Usando o esquema sys”](sys-schema-usage.html)
 
-[Seção 4.8.5, “zlib\_decompress — Descompactar saída comprimida do mysqlpump com ZLIB”](zlib-decompress.html)
+[Seção 4.8.5, “zlib_decompress — Descompactar saída comprimida do mysqlpump com ZLIB”](zlib-decompress.html)
 
 ### mysqlrepair
 
@@ -2972,11 +2972,11 @@
 
 [Seção 2.3.6, “Procedimentos pós-instalação do Windows”](windows-postinstallation.html)
 
-### mysqlshow db\_name
+### mysqlshow db_name
 
 [Seção 13.7.5.37, "Instrução SHOW TABLES"](show-tables.html)
 
-### mysqlshow db\_name tbl\_name
+### mysqlshow db_name tbl_name
 
 [Seção 13.7.5.5, "Declaração SHOW COLUMNS"](show-columns.html)
 
@@ -3008,41 +3008,41 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mysqltest\_embedded
+### mysqltest_embedded
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
 ### N
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### nbdmtd
 
 [Seção 21.4.3.6, “Definindo nós de dados do cluster NDB”](mysql-cluster-ndbd-definition.html)
 
-### ndb\_blob\_tool
+### ndb_blob_tool
 
-[Seção 21.5.6, “ndb\_blob\_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”](mysql-cluster-programs-ndb-blob-tool.html)
+[Seção 21.5.6, “ndb_blob_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”](mysql-cluster-programs-ndb-blob-tool.html)
 
 [Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_config
+### ndb_config
 
 [Seção 21.3.1.2, “Instalando o NDB Cluster a partir do RPM”](mysql-cluster-install-linux-rpm.html)
 
 [Seção 21.5, “Programas de Cluster NDB”](mysql-cluster-programs.html)
 
-[Seção 21.5.7, “ndb\_config — Extrair informações de configuração do NDB Cluster”](mysql-cluster-programs-ndb-config.html)
+[Seção 21.5.7, “ndb_config — Extrair informações de configuração do NDB Cluster”](mysql-cluster-programs-ndb-config.html)
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_delete\_all
+### ndb_delete_all
 
-[Seção 21.5.9, “ndb\_delete\_all — Deletar todas as linhas de uma tabela NDB”](mysql-cluster-programs-ndb-delete-all.html)
+[Seção 21.5.9, “ndb_delete_all — Deletar todas as linhas de uma tabela NDB”](mysql-cluster-programs-ndb-delete-all.html)
 
-### ndb\_desc
+### ndb_desc
 
 [Seção 21.6.7.3, “Adicionar nós de dados do NDB Cluster Online: Exemplo detalhado”](mysql-cluster-online-add-node-example.html)
 
@@ -3056,49 +3056,49 @@
 
 [Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
 
-[Seção 21.5.10, “ndb\_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
+[Seção 21.5.10, “ndb_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
 [Seção 13.1.18.9, “Definindo opções de comentário do NDB”](create-table-ndb-comment-options.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
-[Seção 24.3.16, “A tabela INFORMATION\_SCHEMA PARTITIONS”](information-schema-partitions-table.html)
+[Seção 24.3.16, “A tabela INFORMATION_SCHEMA PARTITIONS”](information-schema-partitions-table.html)
 
-[Seção 21.6.15.5, “Tabela ndbinfo cluster\_operations”](mysql-cluster-ndbinfo-cluster-operations.html)
+[Seção 21.6.15.5, “Tabela ndbinfo cluster_operations”](mysql-cluster-ndbinfo-cluster-operations.html)
 
-[Seção 21.6.15.34, “Tabela server\_operations do ndbinfo server”](mysql-cluster-ndbinfo-server-operations.html)
+[Seção 21.6.15.34, “Tabela server_operations do ndbinfo server”](mysql-cluster-ndbinfo-server-operations.html)
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_drop\_index
+### ndb_drop_index
 
-[Seção 21.5.11, “ndb\_drop\_index — Remover índice de uma tabela NDB”](mysql-cluster-programs-ndb-drop-index.html)
+[Seção 21.5.11, “ndb_drop_index — Remover índice de uma tabela NDB”](mysql-cluster-programs-ndb-drop-index.html)
 
-### ndb\_drop\_table
+### ndb_drop_table
 
-[Seção 21.5.11, “ndb\_drop\_index — Remover índice de uma tabela NDB”](mysql-cluster-programs-ndb-drop-index.html)
+[Seção 21.5.11, “ndb_drop_index — Remover índice de uma tabela NDB”](mysql-cluster-programs-ndb-drop-index.html)
 
-[Seção 21.5.12, “ndb\_drop\_table — Remover uma tabela NDB”](mysql-cluster-programs-ndb-drop-table.html)
+[Seção 21.5.12, “ndb_drop_table — Remover uma tabela NDB”](mysql-cluster-programs-ndb-drop-table.html)
 
-### reporter\_de\_erro\_do\_ndb
+### reporter_de_erro_do_ndb
 
-[Seção 21.5.13, “ndb\_error\_reporter — Ferramenta de Relatório de Erros NDB”](mysql-cluster-programs-ndb-error-reporter.html)
+[Seção 21.5.13, “ndb_error_reporter — Ferramenta de Relatório de Erros NDB”](mysql-cluster-programs-ndb-error-reporter.html)
 
-### ndb\_import
+### ndb_import
 
 [Seção 21.6.9, “Importando dados no MySQL Cluster”](mysql-cluster-importing-data.html)
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_index\_stat
+### ndb_index_stat
 
-[Seção 21.5.15, “ndb\_index\_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
+[Seção 21.5.15, “ndb_index_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
 
-### ndb\_mgm
+### ndb_mgm
 
 [Seção 21.6.7.3, “Adicionar nós de dados do NDB Cluster Online: Exemplo detalhado”](mysql-cluster-online-add-node-example.html)
 
@@ -3138,11 +3138,11 @@
 
 [Seção 21.6.6, “Modo de Usuário Único do NDB Cluster”](mysql-cluster-single-user-mode.html)
 
-[Seção 21.5.5, “ndb\_mgm — O cliente de gerenciamento de cluster NDB”](mysql-cluster-programs-ndb-mgm.html)
+[Seção 21.5.5, “ndb_mgm — O cliente de gerenciamento de cluster NDB”](mysql-cluster-programs-ndb-mgm.html)
 
-[Seção 21.5.4, “ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
+[Seção 21.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
 [Seção 21.6.8, "Backup Online de NDB Cluster"](mysql-cluster-backup.html)
 
@@ -3156,7 +3156,7 @@
 
 [Seção 21.3.6, "Desligamento e Reinício Seguro do NDB Cluster"](mysql-cluster-install-shutdown-restart.html)
 
-[Seção 21.6.15.1, “A tabela ndbinfo arbitrator\_validity\_detail”](mysql-cluster-ndbinfo-arbitrator-validity-detail.html)
+[Seção 21.6.15.1, “A tabela ndbinfo arbitrator_validity_detail”](mysql-cluster-ndbinfo-arbitrator-validity-detail.html)
 
 [Seção 21.6.15.25, “Tabela de Membros ndbinfo”](mysql-cluster-ndbinfo-membership.html)
 
@@ -3172,13 +3172,13 @@
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_mgm.exe
+### ndb_mgm.exe
 
 [Seção 21.3.2.3, “Inicialização do NDB Cluster no Windows”](mysql-cluster-install-windows-initial-start.html)
 
 [Seção 21.3.2.1, “Instalando o NDB Cluster no Windows a partir de uma versão binária”](mysql-cluster-install-windows-binary.html)
 
-### ndb\_mgmd
+### ndb_mgmd
 
 [Seção 21.3.1.4, “Construindo um NDB Cluster a partir do Código-Fonte no Linux”](mysql-cluster-install-linux-source.html)
 
@@ -3216,11 +3216,11 @@
 
 [Seção 21.5, “Programas de Cluster NDB”](mysql-cluster-programs.html)
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
-[Seção 21.5.5, “ndb\_mgm — O cliente de gerenciamento de cluster NDB”](mysql-cluster-programs-ndb-mgm.html)
+[Seção 21.5.5, “ndb_mgm — O cliente de gerenciamento de cluster NDB”](mysql-cluster-programs-ndb-mgm.html)
 
-[Seção 21.5.4, “ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
+[Seção 21.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
 
 [Seção 21.5.1, “ndbd — O daemon do nó de dados do clúster NDB”](mysql-cluster-programs-ndbd.html)
 
@@ -3234,7 +3234,7 @@
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_mgmd.exe
+### ndb_mgmd.exe
 
 [Seção 21.3.2.3, “Inicialização do NDB Cluster no Windows”](mysql-cluster-install-windows-initial-start.html)
 
@@ -3242,75 +3242,75 @@
 
 [Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”](mysql-cluster-install-windows-service.html)
 
-### ndb\_move\_data
+### ndb_move_data
 
-[Seção 21.5.16, “ndb\_move\_data — Ferramenta de cópia de dados NDB”](mysql-cluster-programs-ndb-move-data.html)
+[Seção 21.5.16, “ndb_move_data — Ferramenta de cópia de dados NDB”](mysql-cluster-programs-ndb-move-data.html)
 
-### ndb\_perror
+### ndb_perror
 
 [Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
 
-[Seção 21.5.17, “ndb\_perror — Obter informações da mensagem de erro do NDB”](mysql-cluster-programs-ndb-perror.html)
+[Seção 21.5.17, “ndb_perror — Obter informações da mensagem de erro do NDB”](mysql-cluster-programs-ndb-perror.html)
 
 [Seção 4.8.2, “perror — Exibir informações do erro do MySQL”](perror.html)
 
-[Seção 21.6.15.21, “Tabela ndbinfo error\_messages”](mysql-cluster-ndbinfo-error-messages.html)
+[Seção 21.6.15.21, “Tabela ndbinfo error_messages”](mysql-cluster-ndbinfo-error-messages.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_print\_backup\_file
+### ndb_print_backup_file
 
-[Seção 21.5.18, “ndb\_print\_backup\_file — Imprimir conteúdo do arquivo de backup do NDB”](mysql-cluster-programs-ndb-print-backup-file.html)
+[Seção 21.5.18, “ndb_print_backup_file — Imprimir conteúdo do arquivo de backup do NDB”](mysql-cluster-programs-ndb-print-backup-file.html)
 
-[Seção 21.5.20, “ndb\_print\_frag\_file — Imprimir conteúdo do arquivo de lista de fragmentos do NDB”](mysql-cluster-programs-ndb-print-frag-file.html)
+[Seção 21.5.20, “ndb_print_frag_file — Imprimir conteúdo do arquivo de lista de fragmentos do NDB”](mysql-cluster-programs-ndb-print-frag-file.html)
 
-[Seção 21.5.21, “ndb\_print\_schema\_file — Imprimir conteúdos do arquivo de esquema NDB”](mysql-cluster-programs-ndb-print-schema-file.html)
+[Seção 21.5.21, “ndb_print_schema_file — Imprimir conteúdos do arquivo de esquema NDB”](mysql-cluster-programs-ndb-print-schema-file.html)
 
-[Seção 21.5.22, “ndb\_print\_sys\_file — Imprimir conteúdo do arquivo do sistema NDB”](mysql-cluster-programs-ndb-print-sys-file.html)
+[Seção 21.5.22, “ndb_print_sys_file — Imprimir conteúdo do arquivo do sistema NDB”](mysql-cluster-programs-ndb-print-sys-file.html)
 
-[Seção 21.5.23, “ndb\_redo\_log\_reader — Verificar e imprimir o conteúdo do log de refazer do cluster”](mysql-cluster-programs-ndb-redo-log-reader.html)
+[Seção 21.5.23, “ndb_redo_log_reader — Verificar e imprimir o conteúdo do log de refazer do cluster”](mysql-cluster-programs-ndb-redo-log-reader.html)
 
-### ndb\_print\_file
+### ndb_print_file
 
-[Seção 21.5.19, “ndb\_print\_file — Imprimir conteúdo do arquivo de dados do disco NDB”](mysql-cluster-programs-ndb-print-file.html)
+[Seção 21.5.19, “ndb_print_file — Imprimir conteúdo do arquivo de dados do disco NDB”](mysql-cluster-programs-ndb-print-file.html)
 
-### ndb\_print\_frag\_file
+### ndb_print_frag_file
 
-[Seção 21.5.20, “ndb\_print\_frag\_file — Imprimir conteúdo do arquivo de lista de fragmentos do NDB”](mysql-cluster-programs-ndb-print-frag-file.html)
+[Seção 21.5.20, “ndb_print_frag_file — Imprimir conteúdo do arquivo de lista de fragmentos do NDB”](mysql-cluster-programs-ndb-print-frag-file.html)
 
-### ndb\_print\_schema\_file
+### ndb_print_schema_file
 
-[Seção 21.5.18, “ndb\_print\_backup\_file — Imprimir conteúdo do arquivo de backup do NDB”](mysql-cluster-programs-ndb-print-backup-file.html)
+[Seção 21.5.18, “ndb_print_backup_file — Imprimir conteúdo do arquivo de backup do NDB”](mysql-cluster-programs-ndb-print-backup-file.html)
 
-[Seção 21.5.19, “ndb\_print\_file — Imprimir conteúdo do arquivo de dados do disco NDB”](mysql-cluster-programs-ndb-print-file.html)
+[Seção 21.5.19, “ndb_print_file — Imprimir conteúdo do arquivo de dados do disco NDB”](mysql-cluster-programs-ndb-print-file.html)
 
-[Seção 21.5.20, “ndb\_print\_frag\_file — Imprimir conteúdo do arquivo de lista de fragmentos do NDB”](mysql-cluster-programs-ndb-print-frag-file.html)
+[Seção 21.5.20, “ndb_print_frag_file — Imprimir conteúdo do arquivo de lista de fragmentos do NDB”](mysql-cluster-programs-ndb-print-frag-file.html)
 
-[Seção 21.5.21, “ndb\_print\_schema\_file — Imprimir conteúdos do arquivo de esquema NDB”](mysql-cluster-programs-ndb-print-schema-file.html)
+[Seção 21.5.21, “ndb_print_schema_file — Imprimir conteúdos do arquivo de esquema NDB”](mysql-cluster-programs-ndb-print-schema-file.html)
 
-[Seção 21.5.22, “ndb\_print\_sys\_file — Imprimir conteúdo do arquivo do sistema NDB”](mysql-cluster-programs-ndb-print-sys-file.html)
+[Seção 21.5.22, “ndb_print_sys_file — Imprimir conteúdo do arquivo do sistema NDB”](mysql-cluster-programs-ndb-print-sys-file.html)
 
-[Seção 21.5.23, “ndb\_redo\_log\_reader — Verificar e imprimir o conteúdo do log de refazer do cluster”](mysql-cluster-programs-ndb-redo-log-reader.html)
+[Seção 21.5.23, “ndb_redo_log_reader — Verificar e imprimir o conteúdo do log de refazer do cluster”](mysql-cluster-programs-ndb-redo-log-reader.html)
 
-### ndb\_print\_sys\_file
+### ndb_print_sys_file
 
-[Seção 21.5.18, “ndb\_print\_backup\_file — Imprimir conteúdo do arquivo de backup do NDB”](mysql-cluster-programs-ndb-print-backup-file.html)
+[Seção 21.5.18, “ndb_print_backup_file — Imprimir conteúdo do arquivo de backup do NDB”](mysql-cluster-programs-ndb-print-backup-file.html)
 
-[Seção 21.5.19, “ndb\_print\_file — Imprimir conteúdo do arquivo de dados do disco NDB”](mysql-cluster-programs-ndb-print-file.html)
+[Seção 21.5.19, “ndb_print_file — Imprimir conteúdo do arquivo de dados do disco NDB”](mysql-cluster-programs-ndb-print-file.html)
 
-[Seção 21.5.20, “ndb\_print\_frag\_file — Imprimir conteúdo do arquivo de lista de fragmentos do NDB”](mysql-cluster-programs-ndb-print-frag-file.html)
+[Seção 21.5.20, “ndb_print_frag_file — Imprimir conteúdo do arquivo de lista de fragmentos do NDB”](mysql-cluster-programs-ndb-print-frag-file.html)
 
-[Seção 21.5.21, “ndb\_print\_schema\_file — Imprimir conteúdos do arquivo de esquema NDB”](mysql-cluster-programs-ndb-print-schema-file.html)
+[Seção 21.5.21, “ndb_print_schema_file — Imprimir conteúdos do arquivo de esquema NDB”](mysql-cluster-programs-ndb-print-schema-file.html)
 
-[Seção 21.5.22, “ndb\_print\_sys\_file — Imprimir conteúdo do arquivo do sistema NDB”](mysql-cluster-programs-ndb-print-sys-file.html)
+[Seção 21.5.22, “ndb_print_sys_file — Imprimir conteúdo do arquivo do sistema NDB”](mysql-cluster-programs-ndb-print-sys-file.html)
 
-### ndb\_redo\_log\_reader
+### ndb_redo_log_reader
 
-[Seção 21.5.23, “ndb\_redo\_log\_reader — Verificar e imprimir o conteúdo do log de refazer do cluster”](mysql-cluster-programs-ndb-redo-log-reader.html)
+[Seção 21.5.23, “ndb_redo_log_reader — Verificar e imprimir o conteúdo do log de refazer do cluster”](mysql-cluster-programs-ndb-redo-log-reader.html)
 
-### ndb\_restore
+### ndb_restore
 
 [Seção 7.1, “Tipos de Backup e Recuperação”](backup-types.html)
 
@@ -3336,7 +3336,7 @@
 
 [Seção 21.6.6, “Modo de Usuário Único do NDB Cluster”](mysql-cluster-single-user-mode.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
 [Seção 21.6.8, "Backup Online de NDB Cluster"](mysql-cluster-backup.html)
 
@@ -3356,65 +3356,65 @@
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_select\_all
+### ndb_select_all
 
 [Seção 21.6.18.3, “Procedimentos de segurança do NDB Cluster e MySQL”](mysql-cluster-security-mysql-security-procedures.html)
 
-[Seção 21.5.25, “ndb\_select\_all — Imprimir linhas de uma tabela NDB”](mysql-cluster-programs-ndb-select-all.html)
+[Seção 21.5.25, “ndb_select_all — Imprimir linhas de uma tabela NDB”](mysql-cluster-programs-ndb-select-all.html)
 
-[Seção 21.5.27, “ndb\_show\_tables — Exibir Lista de Tabelas NDB”](mysql-cluster-programs-ndb-show-tables.html)
+[Seção 21.5.27, “ndb_show_tables — Exibir Lista de Tabelas NDB”](mysql-cluster-programs-ndb-show-tables.html)
 
-### ndb\_select\_count
+### ndb_select_count
 
-[Seção 21.5.26, “ndb\_select\_count — Imprimir contagem de linhas para tabelas NDB”](mysql-cluster-programs-ndb-select-count.html)
+[Seção 21.5.26, “ndb_select_count — Imprimir contagem de linhas para tabelas NDB”](mysql-cluster-programs-ndb-select-count.html)
 
-### ndb\_setup.py
+### ndb_setup.py
 
 [Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_show\_tables
+### ndb_show_tables
 
 [Seção 21.6.18.3, “Procedimentos de segurança do NDB Cluster e MySQL”](mysql-cluster-security-mysql-security-procedures.html)
 
 [Seção 21.5, “Programas de Cluster NDB”](mysql-cluster-programs.html)
 
-[Seção 21.5.27, “ndb\_show\_tables — Exibir Lista de Tabelas NDB”](mysql-cluster-programs-ndb-show-tables.html)
+[Seção 21.5.27, “ndb_show_tables — Exibir Lista de Tabelas NDB”](mysql-cluster-programs-ndb-show-tables.html)
 
-[Seção 21.6.15.4, “Tabela ndbinfo cluster\_locks”](mysql-cluster-ndbinfo-cluster-locks.html)
+[Seção 21.6.15.4, “Tabela ndbinfo cluster_locks”](mysql-cluster-ndbinfo-cluster-locks.html)
 
-[Seção 21.6.15.5, “Tabela ndbinfo cluster\_operations”](mysql-cluster-ndbinfo-cluster-operations.html)
+[Seção 21.6.15.5, “Tabela ndbinfo cluster_operations”](mysql-cluster-ndbinfo-cluster-operations.html)
 
-[Seção 21.6.15.22, “A tabela ndbinfo locks\_per\_fragment”](mysql-cluster-ndbinfo-locks-per-fragment.html)
+[Seção 21.6.15.22, “A tabela ndbinfo locks_per_fragment”](mysql-cluster-ndbinfo-locks-per-fragment.html)
 
-[Seção 21.6.15.29, “Tabela ndbinfo operations\_per\_fragment”](mysql-cluster-ndbinfo-operations-per-fragment.html)
+[Seção 21.6.15.29, “Tabela ndbinfo operations_per_fragment”](mysql-cluster-ndbinfo-operations-per-fragment.html)
 
-[Seção 21.6.15.33, “Tabela server\_locks do ndbinfo server”](mysql-cluster-ndbinfo-server-locks.html)
+[Seção 21.6.15.33, “Tabela server_locks do ndbinfo server”](mysql-cluster-ndbinfo-server-locks.html)
 
-[Seção 21.6.15.34, “Tabela server\_operations do ndbinfo server”](mysql-cluster-ndbinfo-server-operations.html)
+[Seção 21.6.15.34, “Tabela server_operations do ndbinfo server”](mysql-cluster-ndbinfo-server-operations.html)
 
 [Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_size.pl
+### ndb_size.pl
 
 [Seção 11.7, “Requisitos de Armazenamento de Tipo de Dados”](storage-requirements.html)
 
 [Seção A.10, “Perguntas frequentes sobre o MySQL 5.7: NDB Cluster”](faqs-mysql-cluster.html)
 
-[Seção 21.5.28, “ndb\_size.pl — Estimator de Requisitos de Tamanho NDBCLUSTER”](mysql-cluster-programs-ndb-size-pl.html)
+[Seção 21.5.28, “ndb_size.pl — Estimator de Requisitos de Tamanho NDBCLUSTER”](mysql-cluster-programs-ndb-size-pl.html)
 
-### ndb\_top
+### ndb_top
 
-[Seção 21.5.29, “ndb\_top — Visualizar informações de uso da CPU para threads NDB”](mysql-cluster-programs-ndb-top.html)
+[Seção 21.5.29, “ndb_top — Visualizar informações de uso da CPU para threads NDB”](mysql-cluster-programs-ndb-top.html)
 
 [Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
 
-### ndb\_waiter
+### ndb_waiter
 
-[Seção 21.5.30, “ndb\_waiter — Aguarde o NDB Cluster atingir um status específico”](mysql-cluster-programs-ndb-waiter.html)
+[Seção 21.5.30, “ndb_waiter — Aguarde o NDB Cluster atingir um status específico”](mysql-cluster-programs-ndb-waiter.html)
 
 [Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
 
@@ -3462,9 +3462,9 @@
 
 [Seção 21.5, “Programas de Cluster NDB”](mysql-cluster-programs.html)
 
-[Seção 21.5.4, “ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
+[Seção 21.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
 
-[Seção 21.5.30, “ndb\_waiter — Aguarde o NDB Cluster atingir um status específico”](mysql-cluster-programs-ndb-waiter.html)
+[Seção 21.5.30, “ndb_waiter — Aguarde o NDB Cluster atingir um status específico”](mysql-cluster-programs-ndb-waiter.html)
 
 [Seção 21.5.1, “ndbd — O daemon do nó de dados do clúster NDB”](mysql-cluster-programs-ndbd.html)
 
@@ -3496,9 +3496,9 @@
 
 [Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”](mysql-cluster-install-windows-service.html)
 
-### ndbinfo\_select\_all
+### ndbinfo_select_all
 
-[Seção 21.5.2, “ndbinfo\_select\_all — Selecionar de tabelas ndbinfo”](mysql-cluster-programs-ndbinfo-select-all.html)
+[Seção 21.5.2, “ndbinfo_select_all — Selecionar de tabelas ndbinfo”](mysql-cluster-programs-ndbinfo-select-all.html)
 
 ### ndbmtd
 
@@ -3528,9 +3528,9 @@
 
 [Seção 21.5, “Programas de Cluster NDB”](mysql-cluster-programs.html)
 
-[Seção 21.5.4, “ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
+[Seção 21.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”](mysql-cluster-programs-ndb-mgmd.html)
 
-[Seção 21.5.29, “ndb\_top — Visualizar informações de uso da CPU para threads NDB”](mysql-cluster-programs-ndb-top.html)
+[Seção 21.5.29, “ndb_top — Visualizar informações de uso da CPU para threads NDB”](mysql-cluster-programs-ndb-top.html)
 
 [Seção 21.5.1, “ndbd — O daemon do nó de dados do clúster NDB”](mysql-cluster-programs-ndbd.html)
 
@@ -3574,7 +3574,7 @@
 
 [Seção 5.7.2.2, “Iniciar múltiplas instâncias do MySQL como serviços do Windows”](multiple-windows-services.html)
 
-### NET START mysqld\_service\_name
+### NET START mysqld_service_name
 
 [Seção 2.3.4.8, “Iniciar o MySQL como um serviço do Windows”](windows-start-service.html)
 
@@ -3588,19 +3588,19 @@
 
 [Seção 5.7.2.2, “Iniciar múltiplas instâncias do MySQL como serviços do Windows”](multiple-windows-services.html)
 
-### NET STOP mysqld\_service\_name
+### NET STOP mysqld_service_name
 
 [Seção 2.3.4.8, “Iniciar o MySQL como um serviço do Windows”](windows-start-service.html)
 
 [Seção 2.10.8, “Atualização do MySQL no Windows”](windows-upgrading.html)
 
-### NET STOP service\_name
+### NET STOP service_name
 
 [Seção 21.3.6, "Desligamento e Reinício Seguro do NDB Cluster"](mysql-cluster-install-shutdown-restart.html)
 
 ### nm
 
-[Seção 4.7.3, “resolve\_stack\_dump — Resolver o registro de pilha numérico para símbolos”](resolve-stack-dump.html)
+[Seção 4.7.3, “resolve_stack_dump — Resolver o registro de pilha numérico para símbolos”](resolve-stack-dump.html)
 
 [Seção 5.8.1.5, “Usando uma Traça de Pilha”](using-stack-trace.html)
 
@@ -3620,11 +3620,11 @@
 
 ### O
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### okvutil
 
-[Seção 6.4.4.4, “Usando o plugin KMIP keyring\_okv”](keyring-okv-plugin.html)
+[Seção 6.4.4.4, “Usando o plugin KMIP keyring_okv”](keyring-okv-plugin.html)
 
 ### openssl
 
@@ -3640,11 +3640,11 @@
 
 [Seção 6.3.3.2, “Criando Certificados e Chaves SSL Usando o openssl”](criando-arquivos-ssl-usando-openssl.html)
 
-[Seção 4.4.5, “mysql\_ssl\_rsa\_setup — Criar arquivos SSL/RSA”](mysql-ssl-rsa-setup.html)
+[Seção 4.4.5, “mysql_ssl_rsa_setup — Criar arquivos SSL/RSA”](mysql-ssl-rsa-setup.html)
 
-[Seção 6.4.4.4, “Usando o plugin KMIP keyring\_okv”](keyring-okv-plugin.html)
+[Seção 6.4.4.4, “Usando o plugin KMIP keyring_okv”](keyring-okv-plugin.html)
 
-### pacote openssl md5\_nome\_do\_pacote
+### pacote openssl md5_nome_do_pacote
 
 [Seção 2.1.4.1, “Verificação do checksum MD5”](verificando-checksum-md5.html)
 
@@ -3654,7 +3654,7 @@
 
 ### P
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### perf
 
@@ -3672,13 +3672,13 @@
 
 [Seção A.10, “Perguntas frequentes sobre o MySQL 5.7: NDB Cluster”](faqs-mysql-cluster.html)
 
-[Seção 21.5.17, “ndb\_perror — Obter informações da mensagem de erro do NDB”](mysql-cluster-programs-ndb-perror.html)
+[Seção 21.5.17, “ndb_perror — Obter informações da mensagem de erro do NDB”](mysql-cluster-programs-ndb-perror.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
 [Seção 4.8.2, “perror — Exibir informações do erro do MySQL”](perror.html)
 
-[Seção 21.6.15.21, “Tabela ndbinfo error\_messages”](mysql-cluster-ndbinfo-error-messages.html)
+[Seção 21.6.15.21, “Tabela ndbinfo error_messages”](mysql-cluster-ndbinfo-error-messages.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
@@ -3702,7 +3702,7 @@
 
 [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
 
-[Seção 4.7.1, “mysql\_config — Opções de Exibição para Compilação de Clientes”](mysql-config.html)
+[Seção 4.7.1, “mysql_config — Opções de Exibição para Compilação de Clientes”](mysql-config.html)
 
 ### pkgadd
 
@@ -3742,7 +3742,7 @@
 
 ### R
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### renomear
 
@@ -3762,11 +3762,11 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### resolve\_stack\_dump
+### resolve_stack_dump
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
-[Seção 4.7.3, “resolve\_stack\_dump — Resolver o registro de pilha numérico para símbolos”](resolve-stack-dump.html)
+[Seção 4.7.3, “resolve_stack_dump — Resolver o registro de pilha numérico para símbolos”](resolve-stack-dump.html)
 
 [Seção 5.8.1.5, “Usando uma Traça de Pilha”](using-stack-trace.html)
 
@@ -3816,7 +3816,7 @@
 
 ### S
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### SC
 
@@ -3826,13 +3826,13 @@
 
 [Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”](mysql-cluster-install-windows-service.html)
 
-### SC DELETE mysqld\_service\_name
+### SC DELETE mysqld_service_name
 
 [Seção 5.7.2.2, “Iniciar múltiplas instâncias do MySQL como serviços do Windows”](multiple-windows-services.html)
 
 [Seção 2.3.4.8, “Iniciar o MySQL como um serviço do Windows”](windows-start-service.html)
 
-### SC DELETE service\_name
+### SC DELETE service_name
 
 [Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”](mysql-cluster-install-windows-service.html)
 
@@ -3844,13 +3844,13 @@
 
 [Seção 5.7.2.2, “Iniciar múltiplas instâncias do MySQL como serviços do Windows”](multiple-windows-services.html)
 
-### SC START mysqld\_service\_name
+### SC START mysqld_service_name
 
 [Seção 2.3.5, “Solução de problemas de instalação do Microsoft Windows MySQL Server”](windows-troubleshooting.html)
 
 [Seção 2.10.8, “Atualização do MySQL no Windows”](windows-upgrading.html)
 
-### sc start mysqld\_service\_name
+### sc start mysqld_service_name
 
 [Seção 2.3.4.8, “Iniciar o MySQL como um serviço do Windows”](windows-start-service.html)
 
@@ -3862,15 +3862,15 @@
 
 [Seção 5.7.2.2, “Iniciar múltiplas instâncias do MySQL como serviços do Windows”](multiple-windows-services.html)
 
-### SC STOP mysqld\_service\_name
+### SC STOP mysqld_service_name
 
 [Seção 2.3.4.8, “Iniciar o MySQL como um serviço do Windows”](windows-start-service.html)
 
-### sc stop mysqld\_service\_name
+### sc stop mysqld_service_name
 
 [Seção 2.3.4.8, “Iniciar o MySQL como um serviço do Windows”](windows-start-service.html)
 
-### SC STOP service\_name
+### SC STOP service_name
 
 [Seção 21.3.6, "Desligamento e Reinício Seguro do NDB Cluster"](mysql-cluster-install-shutdown-restart.html)
 
@@ -3958,7 +3958,7 @@
 
 ### dormir
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 ### ssh
 
@@ -4014,7 +4014,7 @@
 
 ### T
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### tárrega
 
@@ -4050,7 +4050,7 @@
 
 [Seção 2.8.2, “Pré-requisitos para instalação da fonte”](source-installation-prerequisites.html)
 
-[Seção 6.4.4.4, “Usando o plugin KMIP keyring\_okv”](keyring-okv-plugin.html)
+[Seção 6.4.4.4, “Usando o plugin KMIP keyring_okv”](keyring-okv-plugin.html)
 
 [Seção 2.1.2, “Qual versão e distribuição do MySQL para instalar”](which-version.html)
 
@@ -4096,7 +4096,7 @@
 
 ### U
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### u
 
@@ -4108,7 +4108,7 @@
 
 [Seção B.3.2.16, “Arquivo não encontrado e erros semelhantes”](not-enough-file-handles.html)
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 [Seção B.3.2.8, “Pacote muito grande”](packet-too-large.html)
 
@@ -4116,7 +4116,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### unix\_chkpwd
+### unix_chkpwd
 
 [Seção 6.4.1.7, “Autenticação Conectada (PAM)](pam-pluggable-authentication.html)
 
@@ -4134,7 +4134,7 @@
 
 ### V
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### vi
 
@@ -4146,11 +4146,11 @@
 
 ### W
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### assistir
 
-[Seção 26.4.4.25, “O procedimento statement\_performance\_analyzer()”](sys-statement-performance-analyzer.html)
+[Seção 26.4.4.25, “O procedimento statement_performance_analyzer()”](sys-statement-performance-analyzer.html)
 
 ### WinDbg
 
@@ -4178,7 +4178,7 @@
 
 ### Y
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### yacc
 
@@ -4224,7 +4224,7 @@
 
 ### Z
 
-\[[index top](dynindex-command.html#command-index-top)]
+[[index top](dynindex-command.html#command-index-top)]
 
 ### zip
 
@@ -4232,15 +4232,15 @@
 
 [Seção 1.5, “Como relatar bugs ou problemas”](bug-reports.html)
 
-### zlib\_decompress
+### zlib_decompress
 
-[Seção 4.8.1, “lz4\_decompress — Descompactar saída comprimida do mysqlpump com LZ4”](lz4-decompress.html)
+[Seção 4.8.1, “lz4_decompress — Descompactar saída comprimida do mysqlpump com LZ4”](lz4-decompress.html)
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
 [Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
 
-[Seção 4.8.5, “zlib\_decompress — Descompactar saída comprimida do mysqlpump com ZLIB”](zlib-decompress.html)
+[Seção 4.8.5, “zlib_decompress — Descompactar saída comprimida do mysqlpump com ZLIB”](zlib-decompress.html)
 
 ### zsh
 

@@ -1,7 +1,7 @@
-#### 21.6.15.27 The ndbinfo memory\_per\_fragment Table
+#### 21.6.15.27 The ndbinfo memory_per_fragment Table
 
-* [memory\_per\_fragment Table: Notes](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-notes "memory_per_fragment Table: Notes")
-* [memory\_per\_fragment Table: Examples](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-examples "memory_per_fragment Table: Examples")
+* [memory_per_fragment Table: Notes](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-notes "memory_per_fragment Table: Notes")
+* [memory_per_fragment Table: Examples](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-examples "memory_per_fragment Table: Examples")
 
 The `memory_per_fragment` table provides information about the usage of memory by individual fragments. See the [Notes](mysql-cluster-ndbinfo-memory-per-fragment.html#mysql-cluster-ndbinfo-memory-per-fragment-notes "memory_per_fragment Table: Notes") later in this section to see how you can use this to find out how much memory is used by `NDB` tables.
 
@@ -73,7 +73,7 @@ The `memory_per_fragment` table contains the following columns:
 
   Number of bytes allocated to hash indexes
 
-##### memory\_per\_fragment Table: Notes
+##### memory_per_fragment Table: Notes
 
 The `memory_per_fragment` table contains one row for every table fragment replica and every index fragment replica in the system; this means that, for example, when [`NoOfReplicas=2`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas), there are normally two fragment replicas for each fragment. This is true as long as all data nodes are running and connected to the cluster; for a data node that is missing, there are no rows for the fragment replicas that it hosts.
 
@@ -171,7 +171,7 @@ Secondary ordered indexes are fragmented and distributed in the same way as the 
 
 If free space in a page is fragmented, the page is defragmented. [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") can be used to defragment a table's variable-sized pages; this moves row variable-sized parts between pages so that some whole pages can be freed for re-use.
 
-##### memory\_per\_fragment Table: Examples
+##### memory_per_fragment Table: Examples
 
 * [Getting general information about fragments and memory usage](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-memory-general "Getting general information about fragments and memory usage")
 * [Finding a table and its indexes](mysql-cluster-ndbinfo-memory-per-fragment.html#memory-per-fragment-table-indexes "Finding a table and its indexes")

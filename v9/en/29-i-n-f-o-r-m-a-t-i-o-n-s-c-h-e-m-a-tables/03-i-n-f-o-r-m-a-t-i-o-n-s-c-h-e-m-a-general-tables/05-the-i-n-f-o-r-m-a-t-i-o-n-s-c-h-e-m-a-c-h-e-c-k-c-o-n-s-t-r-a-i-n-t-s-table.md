@@ -1,4 +1,4 @@
-### 28.3.5 The INFORMATION\_SCHEMA CHECK\_CONSTRAINTS Table
+### 28.3.5 The INFORMATION_SCHEMA CHECK_CONSTRAINTS Table
 
 `CREATE TABLE` supports the core features of table and column `CHECK` constraints; the `CHECK_CONSTRAINTS` table provides information about these constraints.
 

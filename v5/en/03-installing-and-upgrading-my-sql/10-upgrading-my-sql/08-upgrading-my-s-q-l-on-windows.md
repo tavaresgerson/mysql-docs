@@ -66,6 +66,6 @@ To perform an upgrade using the Windows ZIP archive distribution:
 
 4. Restart the server. For example, use the **SC START *`mysqld_service_name`*** or **NET START *`mysqld_service_name`*** command if you run MySQL as a service, or invoke **mysqld** directly otherwise.
 
-5. As Administrator, run **mysql\_upgrade** to check your tables, attempt to repair them if necessary, and update your grant tables if they have changed so that you can take advantage of any new capabilities. See Section 4.4.7, “mysql\_upgrade — Check and Upgrade MySQL Tables”.
+5. As Administrator, run **mysql_upgrade** to check your tables, attempt to repair them if necessary, and update your grant tables if they have changed so that you can take advantage of any new capabilities. See Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”.
 
 6. If you encounter errors, see Section 2.3.5, “Troubleshooting a Microsoft Windows MySQL Server Installation”.

@@ -1,4 +1,4 @@
-#### 30.4.3.31 As vistas schema\_tables\_with\_full\_table\_scans e x$schema\_tables\_with\_full\_table\_scans
+#### 30.4.3.31 As vistas schema_tables_with_full_table_scans e x$schema_tables_with_full_table_scans
 
 Essas vistas mostram quais tabelas estão sendo acessadas com varreduras de tabela completas. Por padrão, as linhas são ordenadas em ordem decrescente de varreduras de linhas completas.
 

@@ -1,8 +1,8 @@
-### 25.5.4 ndb\_mgmd — The NDB Cluster Management Server Daemon
+### 25.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon
 
 The management server is the process that reads the cluster configuration file and distributes this information to all nodes in the cluster that request it. It also maintains a log of cluster activities. Management clients can connect to the management server and check the cluster's status.
 
-All options that can be used with **ndb\_mgmd** are shown in the following table. Additional descriptions follow the table.
+All options that can be used with **ndb_mgmd** are shown in the following table. Additional descriptions follow the table.
 
 * `--bind-address=host`
 
@@ -26,7 +26,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-  This option, whose default value is `1` (or `TRUE`, or `ON`), can be used to disable the management server's configuration cache, so that it reads its configuration from `config.ini` every time it starts (see Section 25.4.3, “NDB Cluster Configuration Files”). You can do this by starting the **ndb\_mgmd** process with any one of the following options:
+  This option, whose default value is `1` (or `TRUE`, or `ON`), can be used to disable the management server's configuration cache, so that it reads its configuration from `config.ini` every time it starts (see Section 25.4.3, “NDB Cluster Configuration Files”). You can do this by starting the **ndb_mgmd** process with any one of the following options:
 
   + `--config-cache=0`
   + `--config-cache=FALSE`
@@ -43,25 +43,25 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   *`node-id`* is the management server's node ID; *`seq-number`* is a sequence number, beginning with 1. For example, if the management server's node ID is 5, then the first three configuration cache files would, when they are created, be named `ndb_5_config.bin.1`, `ndb_5_config.bin.2`, and `ndb_5_config.bin.3`.
 
-  If your intent is to purge or reload the configuration cache without actually disabling caching, you should start **ndb\_mgmd** with one of the options `--reload` or `--initial` instead of `--skip-config-cache`.
+  If your intent is to purge or reload the configuration cache without actually disabling caching, you should start **ndb_mgmd** with one of the options `--reload` or `--initial` instead of `--skip-config-cache`.
 
   To re-enable the configuration cache, simply restart the management server, but without the `--config-cache` or `--skip-config-cache` option that was used previously to disable the configuration cache.
 
-  **ndb\_mgmd** does not check for the configuration directory (`--configdir`) or attempts to create one when `--skip-config-cache` is used. (Bug #13428853)
+  **ndb_mgmd** does not check for the configuration directory (`--configdir`) or attempts to create one when `--skip-config-cache` is used. (Bug #13428853)
 
 * `--config-file=filename`, `-f filename`
 
   <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-config-file</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Instructs the management server as to which file it should use for its configuration file. By default, the management server looks for a file named `config.ini` in the same directory as the **ndb\_mgmd** executable; otherwise the file name and location must be specified explicitly.
+  Instructs the management server as to which file it should use for its configuration file. By default, the management server looks for a file named `config.ini` in the same directory as the **ndb_mgmd** executable; otherwise the file name and location must be specified explicitly.
 
-  This option has no default value, and is ignored unless the management server is forced to read the configuration file, either because **ndb\_mgmd** was started with the `--reload` or `--initial` option, or because the management server could not find any configuration cache. If `--config-file` is specified without either of `--initial` or `--reload`, **ndb\_mgmd** refuses to start.
+  This option has no default value, and is ignored unless the management server is forced to read the configuration file, either because **ndb_mgmd** was started with the `--reload` or `--initial` option, or because the management server could not find any configuration cache. If `--config-file` is specified without either of `--initial` or `--reload`, **ndb_mgmd** refuses to start.
 
-  The `--config-file` option is also read if **ndb\_mgmd** was started with `--config-cache=OFF`. See Section 25.4.3, “NDB Cluster Configuration Files”, for more information.
+  The `--config-file` option is also read if **ndb_mgmd** was started with `--config-cache=OFF`. See Section 25.4.3, “NDB Cluster Configuration Files”, for more information.
 
 * `--configdir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for configdir"><tbody><tr><th>Command-Line Format</th> <td><p class="valid-value"><code>--configdir=directory</code></p><p class="valid-value"><code>--config-dir=directory</code></p></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>$INSTALLDIR/mysql-cluster</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for configdir"><tbody><tr><th>Command-Line Format</th> <td><p><code>--configdir=directory</code></p><p><code>--config-dir=directory</code></p></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code>$INSTALLDIR/mysql-cluster</code></td> </tr></tbody></table>
 
   Specifies the cluster management server's configuration cache directory. This must be an absolute path. Otherwise, the management server refuses to start.
 
@@ -95,9 +95,9 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Instructs **ndb\_mgmd** to start as a daemon process. This is the default behavior.
+  Instructs **ndb_mgmd** to start as a daemon process. This is the default behavior.
 
-  This option has no effect when running **ndb\_mgmd** on Windows platforms.
+  This option has no effect when running **ndb_mgmd** on Windows platforms.
 
 * `--defaults-extra-file`
 
@@ -131,7 +131,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   This differs in two ways from the `--reload` option. First, `--reload` forces the server to check the configuration file against the cache and reload its data only if the contents of the file are different from the cache. Second, `--reload` does not delete any existing cache files.
 
-  If **ndb\_mgmd** is invoked with `--initial` but cannot find a global configuration file, the management server cannot start.
+  If **ndb_mgmd** is invoked with `--initial` but cannot find a global configuration file, the management server cannot start.
 
   When a management server starts, it checks for another management server in the same NDB Cluster and tries to use the other management server's configuration data. This behavior has implications when performing a rolling restart of an NDB Cluster with multiple management nodes. See Section 25.6.5, “Performing a Rolling Restart of an NDB Cluster”, for more information.
 
@@ -141,9 +141,9 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Causes **ndb\_mgmd** to be installed as a Windows service. Optionally, you can specify a name for the service; if not set, the service name defaults to `ndb_mgmd`. Although it is preferable to specify other **ndb\_mgmd** program options in a `my.ini` or `my.cnf` configuration file, it is possible to use them together with `--install`. However, in such cases, the `--install` option must be specified first, before any other options are given, for the Windows service installation to succeed.
+  Causes **ndb_mgmd** to be installed as a Windows service. Optionally, you can specify a name for the service; if not set, the service name defaults to `ndb_mgmd`. Although it is preferable to specify other **ndb_mgmd** program options in a `my.ini` or `my.cnf` configuration file, it is possible to use them together with `--install`. However, in such cases, the `--install` option must be specified first, before any other options are given, for the Windows service installation to succeed.
 
-  It is generally not advisable to use this option together with the `--initial` option, since this causes the configuration cache to be wiped and rebuilt every time the service is stopped and started. Care should also be taken if you intend to use any other **ndb\_mgmd** options that affect the starting of the management server, and you should make absolutely certain you fully understand and allow for any possible consequences of doing so.
+  It is generally not advisable to use this option together with the `--initial` option, since this causes the configuration cache to be wiped and rebuilt every time the service is stopped and started. Care should also be taken if you intend to use any other **ndb_mgmd** options that affect the starting of the management server, and you should make absolutely certain you fully understand and allow for any possible consequences of doing so.
 
   The `--install` option has no effect on non-Windows platforms.
 
@@ -151,7 +151,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Starts **ndb\_mgmd** in interactive mode; that is, an **ndb\_mgm** client session is started as soon as the management server is running. This option does not start any other NDB Cluster nodes.
+  Starts **ndb_mgmd** in interactive mode; that is, an **ndb_mgm** client session is started as soon as the management server is running. This option does not start any other NDB Cluster nodes.
 
 * `--log-name=name`
 
@@ -241,9 +241,9 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-  Instructs **ndb\_mgmd** not to start as a daemon process.
+  Instructs **ndb_mgmd** not to start as a daemon process.
 
-  The default behavior for **ndb\_mgmd** on Windows is to run in the foreground, making this option unnecessary on Windows platforms.
+  The default behavior for **ndb_mgmd** on Windows is to run in the foreground, making this option unnecessary on Windows platforms.
 
 * `--no-defaults`
 
@@ -255,7 +255,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-  When starting an NDB Cluster is configured with two management nodes, each management server normally checks to see whether the other **ndb\_mgmd** is also operational and whether the other management server's configuration is identical to its own. However, it is sometimes desirable to start the cluster with only one management node (and perhaps to allow the other **ndb\_mgmd** to be started later). This option causes the management node to bypass any checks for any other management nodes whose node IDs are passed to this option, permitting the cluster to start as though configured to use only the management node that was started.
+  When starting an NDB Cluster is configured with two management nodes, each management server normally checks to see whether the other **ndb_mgmd** is also operational and whether the other management server's configuration is identical to its own. However, it is sometimes desirable to start the cluster with only one management node (and perhaps to allow the other **ndb_mgmd** to be started later). This option causes the management node to bypass any checks for any other management nodes whose node IDs are passed to this option, permitting the cluster to start as though configured to use only the management node that was started.
 
   For purposes of illustration, consider the following portion of a `config.ini` file (where we have omitted most of the configuration parameters that are not relevant to this example):
 
@@ -299,7 +299,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
   $> ndb_mgmd --ndb-nodeid=10 --nowait-nodes=11
   ```
 
-  As shown in the preceding example, when using `--nowait-nodes`, you must also use the `--ndb-nodeid` option to specify the node ID of this **ndb\_mgmd** process.
+  As shown in the preceding example, when using `--nowait-nodes`, you must also use the `--ndb-nodeid` option to specify the node ID of this **ndb_mgmd** process.
 
   You can then start each of the cluster's data nodes in the usual way. If you wish to start and use the second management server in addition to the first management server at a later time without restarting the data nodes, you must start each data node with a connection string that references both management servers, like this:
 
@@ -309,7 +309,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   The same is true with regard to the connection string used with any **mysqld** processes that you wish to start as NDB Cluster SQL nodes connected to this cluster. See Section 25.4.3.3, “NDB Cluster Connection Strings”, for more information.
 
-  When used with **ndb\_mgmd**, this option affects the behavior of the management node with regard to other management nodes only. Do not confuse it with the `--nowait-nodes` option used with **ndbd** or **ndbmtd**") to permit a cluster to start with fewer than its full complement of data nodes; when used with data nodes, this option affects their behavior only with regard to other data nodes.
+  When used with **ndb_mgmd**, this option affects the behavior of the management node with regard to other management nodes only. Do not confuse it with the `--nowait-nodes` option used with **ndbd** or **ndbmtd**") to permit a cluster to start with fewer than its full complement of data nodes; when used with data nodes, this option affects their behavior only with regard to other data nodes.
 
   Multiple management node IDs may be passed to this option as a comma-separated list. Each node ID must be no less than 1 and no greater than 255. In practice, it is quite rare to use more than two management servers for the same NDB Cluster (or to have any need for doing so); in most cases you need to pass to this option only the single node ID for the one management server that you do not wish to use when starting the cluster.
 
@@ -327,7 +327,7 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
   <table frame="box" rules="all" summary="Properties for config-cache"><tbody><tr><th>Command-Line Format</th> <td><code>--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>TRUE</code></td> </tr></tbody></table>
 
-  Shows extended information regarding the configuration of the cluster. With this option on the command line the **ndb\_mgmd** process prints information about the cluster setup including an extensive list of the cluster configuration sections as well as parameters and their values. Normally used together with the `--config-file` (`-f`) option.
+  Shows extended information regarding the configuration of the cluster. With this option on the command line the **ndb_mgmd** process prints information about the cluster setup including an extensive list of the cluster configuration sections as well as parameters and their values. Normally used together with the `--config-file` (`-f`) option.
 
 * `--reload`
 
@@ -373,9 +373,9 @@ All options that can be used with **ndb\_mgmd** are shown in the following table
 
 It is not strictly necessary to specify a connection string when starting the management server. However, if you are using more than one management server, a connection string should be provided and each node in the cluster should specify its node ID explicitly.
 
-See Section 25.4.3.3, “NDB Cluster Connection Strings”, for information about using connection strings. Section 25.5.4, “ndb\_mgmd — The NDB Cluster Management Server Daemon”, describes other options for **ndb\_mgmd**.
+See Section 25.4.3.3, “NDB Cluster Connection Strings”, for information about using connection strings. Section 25.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”, describes other options for **ndb_mgmd**.
 
-The following files are created or used by **ndb\_mgmd** in its starting directory, and are placed in the `DataDir` as specified in the `config.ini` configuration file. In the list that follows, *`node_id`* is the unique node identifier.
+The following files are created or used by **ndb_mgmd** in its starting directory, and are placed in the `DataDir` as specified in the `config.ini` configuration file. In the list that follows, *`node_id`* is the unique node identifier.
 
 * `config.ini` is the configuration file for the cluster as a whole. This file is created by the user and read by the management server. Section 25.4, “Configuration of NDB Cluster”, discusses how to set up this file.
 

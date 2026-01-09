@@ -1,4 +1,4 @@
-### 28.3.39 The INFORMATION\_SCHEMA SCHEMA\_PRIVILEGES Table
+### 28.3.39 The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table
 
 The `SCHEMA_PRIVILEGES` table provides information about schema (database) privileges. It takes its values from the `mysql.db` system table.
 

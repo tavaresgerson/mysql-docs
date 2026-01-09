@@ -1,4 +1,4 @@
-### 28.3.2 The INFORMATION\_SCHEMA ADMINISTRABLE\_ROLE\_AUTHORIZATIONS Table
+### 28.3.2 The INFORMATION_SCHEMA ADMINISTRABLE_ROLE_AUTHORIZATIONS Table
 
 The `ADMINISTRABLE_ROLE_AUTHORIZATIONS` table provides information about which roles applicable for the current user or role can be granted to other users or roles.
 

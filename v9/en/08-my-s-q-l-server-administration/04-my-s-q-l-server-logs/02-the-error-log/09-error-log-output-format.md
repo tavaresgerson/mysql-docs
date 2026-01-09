@@ -10,13 +10,13 @@ Each error log sink (writer) component has a characteristic output format it use
 
 For names and descriptions of the fields in error events, see Section 7.4.2.3, “Error Event Fields”. For all log sinks, the thread ID included in error log messages is that of the thread within **mysqld** responsible for writing the message. This ID indicates which part of the server produced the message, and is consistent with general query log and slow query log messages, which include the connection thread ID.
 
-* log\_sink\_internal Output Format
-* log\_sink\_json Output Format
-* log\_sink\_syseventlog Output Format
+* log_sink_internal Output Format
+* log_sink_json Output Format
+* log_sink_syseventlog Output Format
 * Early-Startup Logging Output Format
 * System Variables That Affect Error Log Format
 
-##### log\_sink\_internal Output Format
+##### log_sink_internal Output Format
 
 The internal log sink produces traditional error log output. For example:
 
@@ -37,7 +37,7 @@ The `[` and `]` square bracket characters are literal characters in the message 
 
 The `label` value corresponds to the string form of the `prio` error event priority field.
 
-##### log\_sink\_json Output Format
+##### log_sink_json Output Format
 
 The JSON-format log sink produces messages as JSON objects that contain key-value pairs. For example:
 
@@ -82,7 +82,7 @@ mysql> SELECT FROM_UNIXTIME(1596723903109022/1000000.0);
 +-------------------------------------------+
 ```
 
-##### log\_sink\_syseventlog Output Format
+##### log_sink_syseventlog Output Format
 
 The system log sink produces output that conforms to the system log format used on the local platform.
 

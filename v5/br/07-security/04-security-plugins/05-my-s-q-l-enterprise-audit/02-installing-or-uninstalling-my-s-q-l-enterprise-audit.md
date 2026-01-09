@@ -37,7 +37,7 @@ Enter password: (enter root password here)
 
 Nota
 
-Algumas versões do MySQL introduziram alterações na estrutura das tabelas de Auditoria do MySQL Enterprise. Para garantir que suas tabelas estejam atualizadas para atualizações a partir de versões anteriores do MySQL 5.7, execute **mysql\_upgrade --force** (que também realiza quaisquer outras atualizações necessárias). Se você preferir executar as declarações de atualização apenas para as tabelas de Auditoria do MySQL Enterprise, consulte a discussão a seguir.
+Algumas versões do MySQL introduziram alterações na estrutura das tabelas de Auditoria do MySQL Enterprise. Para garantir que suas tabelas estejam atualizadas para atualizações a partir de versões anteriores do MySQL 5.7, execute **mysql_upgrade --force** (que também realiza quaisquer outras atualizações necessárias). Se você preferir executar as declarações de atualização apenas para as tabelas de Auditoria do MySQL Enterprise, consulte a discussão a seguir.
 
 A partir do MySQL 5.7.23, para novas instalações do MySQL, as colunas `USER` e `HOST` na tabela `audit_log_user` usadas pelo MySQL Enterprise Audit têm definições que correspondem melhor às definições das colunas `User` e `Host` na tabela `mysql.user` do sistema. Para atualizações para 5.7.23 ou superior de uma instalação para a qual o MySQL Enterprise Audit já está instalado, recomenda-se alterar as definições da tabela da seguinte forma:
 
@@ -88,7 +88,7 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 
 Se o plugin não conseguir se inicializar, verifique o log de erro do servidor para obter mensagens de diagnóstico.
 
-Após a instalação do MySQL Enterprise Audit, você pode usar a opção `--audit-log` (referência do log de auditoria.html#option\_mysqld\_audit-log) nas próximas inicializações do servidor para controlar a ativação do plugin `audit_log`. Por exemplo, para impedir que o plugin seja removido durante a execução, use esta opção:
+Após a instalação do MySQL Enterprise Audit, você pode usar a opção `--audit-log` (referência do log de auditoria.html#option_mysqld_audit-log) nas próximas inicializações do servidor para controlar a ativação do plugin `audit_log`. Por exemplo, para impedir que o plugin seja removido durante a execução, use esta opção:
 
 ```sql
 [mysqld]

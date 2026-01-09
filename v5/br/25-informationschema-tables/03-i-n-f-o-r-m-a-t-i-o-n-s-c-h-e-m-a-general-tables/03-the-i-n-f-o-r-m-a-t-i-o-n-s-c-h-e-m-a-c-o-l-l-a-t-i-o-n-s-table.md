@@ -1,4 +1,4 @@
-### 24.3.3 A tabela INFORMATION\_SCHEMA COLLATIONS
+### 24.3.3 A tabela INFORMATION_SCHEMA COLLATIONS
 
 A tabela `COLLATIONS` fornece informações sobre as colligações para cada conjunto de caracteres.
 

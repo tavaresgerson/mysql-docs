@@ -1,4 +1,4 @@
-#### 30.4.3.32 The schema\_unused\_indexes View
+#### 30.4.3.32 The schema_unused_indexes View
 
 These views display indexes for which there are no events, which indicates that they are not being used. By default, rows are sorted by schema and table.
 

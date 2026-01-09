@@ -368,7 +368,7 @@ To configure activation of the audit log plugin, use this option:
 
 *  `--audit-log[=value]`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   This option controls how the server loads the `audit_log` plugin at startup. It is available only if the plugin has been previously registered with `INSTALL PLUGIN` or is loaded with `--plugin-load` or `--plugin-load-add`. See Section 8.4.5.2, “Installing or Uninstalling MySQL Enterprise Audit”.
 
@@ -416,12 +416,12 @@ You can set any of these variables at server startup, and some of them at runtim
   When the audit log plugin writes events to the log asynchronously, it uses a buffer to store event contents prior to writing them. This variable controls the size of that buffer, in bytes. The server adjusts the value to a multiple of 4096. The plugin uses a single buffer, which it allocates when it initializes and removes when it terminates. The plugin allocates this buffer only if logging is asynchronous.
 *  `audit_log_compression`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-compression=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_compression</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>NONE</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>NONE</code></p><p class="valid-value"><code>GZIP</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-compression=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_compression</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>NONE</code></td> </tr><tr><th>Valid Values</th> <td><p><code>NONE</code></p><p><code>GZIP</code></p></td> </tr></tbody></table>
 
   The type of compression for the audit log file. Permitted values are `NONE` (no compression; the default) and `GZIP` (GNU Zip compression). For more information, see Compressing Audit Log Files.
 *  `audit_log_connection_policy`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-connection-policy=value</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>audit_log_connection_policy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ALL</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>ALL</code></p><p class="valid-value"><code>ERRORS</code></p><p class="valid-value"><code>NONE</code></p></td> </tr></tbody></table> 
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-connection-policy=value</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>audit_log_connection_policy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ALL</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ALL</code></p><p><code>ERRORS</code></p><p><code>NONE</code></p></td> </tr></tbody></table> 
   
   ::: info Note
 
@@ -456,7 +456,7 @@ You can set any of these variables at server startup, and some of them at runtim
   Permits disabling audit logging for all connecting and connected sessions. In addition to the `SYSTEM_VARIABLES_ADMIN` privilege, disabling audit logging requires the `AUDIT_ADMIN` privilege. See Section 8.4.5.9, “Disabling Audit Logging”.
 *  `audit_log_encryption`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-encryption=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_encryption</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>NONE</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>NONE</code></p><p class="valid-value"><code>AES</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-encryption=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_encryption</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>NONE</code></td> </tr><tr><th>Valid Values</th> <td><p><code>NONE</code></p><p><code>AES</code></p></td> </tr></tbody></table>
 
   The type of encryption for the audit log file. Permitted values are `NONE` (no encryption; the default) and `AES` (AES-256-CBC cipher encryption). For more information, see Encrypting Audit Log Files.
 *  `audit_log_exclude_accounts`
@@ -521,7 +521,7 @@ You can set any of these variables at server startup, and some of them at runtim
   To persist this global system variable to the `mysqld-auto.cnf` file without setting the global variable runtime value, precede the variable name by the `PERSIST_ONLY` keyword or the `@@PERSIST_ONLY.` qualifier.
 *  `audit_log_format`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-format=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_format</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>NEW</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>OLD</code></p><p class="valid-value"><code>NEW</code></p><p class="valid-value"><code>JSON</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-format=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_format</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>NEW</code></td> </tr><tr><th>Valid Values</th> <td><p><code>OLD</code></p><p><code>NEW</code></p><p><code>JSON</code></p></td> </tr></tbody></table>
 
   The audit log file format. Permitted values are `OLD` (old-style XML), `NEW` (new-style XML; the default), and `JSON`. For details about each format, see  Section 8.4.5.4, “Audit Log File Formats”.
 *  `audit_log_format_unix_timestamp`
@@ -607,7 +607,7 @@ You can set any of these variables at server startup, and some of them at runtim
   Setting the runtime value of `audit_log_password_history_keep_days` requires the  `AUDIT_ADMIN` privilege, in addition to the `SYSTEM_VARIABLES_ADMIN` privilege (or the deprecated `SUPER` privilege) normally required to set a global system variable runtime value.
 *  `audit_log_policy`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-policy=value</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>audit_log_policy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ALL</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>ALL</code></p><p class="valid-value"><code>LOGINS</code></p><p class="valid-value"><code>QUERIES</code></p><p class="valid-value"><code>NONE</code></p></td> </tr></tbody></table> 
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-policy=value</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>audit_log_policy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ALL</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ALL</code></p><p><code>LOGINS</code></p><p><code>QUERIES</code></p><p><code>NONE</code></p></td> </tr></tbody></table> 
   
   ::: info Note
 
@@ -659,7 +659,7 @@ You can set any of these variables at server startup, and some of them at runtim
 
 *  `audit_log_statement_policy`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-statement-policy=value</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>audit_log_statement_policy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ALL</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>ALL</code></p><p class="valid-value"><code>ERRORS</code></p><p class="valid-value"><code>NONE</code></p></td> </tr></tbody></table> 
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-statement-policy=value</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>System Variable</th> <td><code>audit_log_statement_policy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ALL</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ALL</code></p><p><code>ERRORS</code></p><p><code>NONE</code></p></td> </tr></tbody></table> 
   
   ::: info Note
 
@@ -678,7 +678,7 @@ You can set any of these variables at server startup, and some of them at runtim
   :::
 *  `audit_log_strategy`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-strategy=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_strategy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ASYNCHRONOUS</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>ASYNCHRONOUS</code></p><p class="valid-value"><code>PERFORMANCE</code></p><p class="valid-value"><code>SEMISYNCHRONOUS</code></p><p class="valid-value"><code>SYNCHRONOUS</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--audit-log-strategy=value</code></td> </tr><tr><th>System Variable</th> <td><code>audit_log_strategy</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ASYNCHRONOUS</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ASYNCHRONOUS</code></p><p><code>PERFORMANCE</code></p><p><code>SEMISYNCHRONOUS</code></p><p><code>SYNCHRONOUS</code></p></td> </tr></tbody></table>
 
   The logging method used by the audit log plugin. These strategy values are permitted:
 

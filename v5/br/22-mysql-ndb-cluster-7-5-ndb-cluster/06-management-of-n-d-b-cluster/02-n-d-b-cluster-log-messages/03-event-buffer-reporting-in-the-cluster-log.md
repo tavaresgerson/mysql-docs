@@ -2,7 +2,7 @@
 
 O `NDB` utiliza um ou mais buffers de memória para eventos recebidos dos nós de dados. Há um buffer para cada objeto `[Ndb]` (/doc/ndbapi/pt-BR/ndb-ndb.html) que se inscreve em eventos de tabela, o que significa que geralmente há dois buffers para cada **mysqld** que realiza o registro binário (um buffer para eventos de esquema e outro para eventos de dados). Cada buffer contém épocas compostas por eventos. Esses eventos consistem em tipos de operação (inserção, atualização, exclusão) e dados de linha (imagens antes e depois, além de metadados).
 
-O `NDB` gera mensagens no log do clúster para descrever o estado desses buffers. Embora esses relatórios apareçam no log do clúster, eles se referem a buffers em nós da API (ao contrário da maioria das outras mensagens do log do clúster, que são geradas por nós de dados). Essas mensagens e as estruturas de dados subjacentes a elas foram significativamente alteradas no NDB 7.5.1, com a adição do tipo de evento `NDB_LE_EventBufferStatus2` e da estrutura de dados `ndb_logevent_EventBufferStatus2` (veja O tipo de evento Ndb\_logevent\_type). O restante desta discussão foca na implementação baseada em `NDB_LE_EventBufferStatus2`.
+O `NDB` gera mensagens no log do clúster para descrever o estado desses buffers. Embora esses relatórios apareçam no log do clúster, eles se referem a buffers em nós da API (ao contrário da maioria das outras mensagens do log do clúster, que são geradas por nós de dados). Essas mensagens e as estruturas de dados subjacentes a elas foram significativamente alteradas no NDB 7.5.1, com a adição do tipo de evento `NDB_LE_EventBufferStatus2` e da estrutura de dados `ndb_logevent_EventBufferStatus2` (veja O tipo de evento Ndb_logevent_type). O restante desta discussão foca na implementação baseada em `NDB_LE_EventBufferStatus2`.
 
 Os relatórios de registro de buffer de eventos no log do cluster usam o formato mostrado aqui:
 
@@ -53,6 +53,6 @@ As possíveis razões para a denúncia estão descritas na lista a seguir:
 
 - `COMPLETEMENTE_DESCARREGANDO`: Nenhuma época é armazenada em cache.
 
-- `PARTIALLY_BUFFERING`: A porcentagem de buffer livre após a lacuna aumentou para o limite, que pode ser definido no cliente **mysql** usando a variável de sistema `**ndb_eventbuffer_free_percent** ou em aplicativos da API NDB, chamando `**set\_eventbuffer\_free\_percent()**\`. Novas épocas são buffereadas. As épocas que não puderam ser concluídas devido à lacuna são descartadas.
+- `PARTIALLY_BUFFERING`: A porcentagem de buffer livre após a lacuna aumentou para o limite, que pode ser definido no cliente **mysql** usando a variável de sistema `**ndb_eventbuffer_free_percent** ou em aplicativos da API NDB, chamando `**set_eventbuffer_free_percent()**\`. Novas épocas são buffereadas. As épocas que não puderam ser concluídas devido à lacuna são descartadas.
 
 - `COMPLETEMENTE_BUFFERANDO`: Todos os eixos recebidos estão sendo armazenados em cache, o que significa que há memória de buffer de eventos suficiente. A lacuna no fluxo de eventos foi fechada.

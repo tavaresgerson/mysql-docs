@@ -1,4 +1,4 @@
-#### 26.4.2.1 The sys\_config Table
+#### 26.4.2.1 The sys_config Table
 
 This table contains `sys` schema configuration options, one row per option. Configuration changes made by updating this table persist across client sessions and server restarts.
 

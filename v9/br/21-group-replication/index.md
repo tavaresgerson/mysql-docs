@@ -24,9 +24,9 @@
 
     20.4.2 Estados dos Servidores de Replicação em Grupo
 
-    20.4.3 A Tabela replication\_group\_members
+    20.4.3 A Tabela replication_group_members
 
-    20.4.4 A Tabela replication\_group\_member\_stats
+    20.4.4 A Tabela replication_group_member_stats
 
 20.5 Operações de Replicação em Grupo:   20.5.1 Configurando um Grupo Online
 

@@ -154,7 +154,7 @@ When initializing the data directory, you should not specify any options other t
 
 Note
 
-The data directory initialization sequence performed by the server does not substitute for the actions performed by **mysql\_secure\_installation**.
+The data directory initialization sequence performed by the server does not substitute for the actions performed by **mysql_secure_installation**.
 
 When invoked with the `--initialize` or `--initialize-insecure` option, **mysqld** performs the following actions during the data directory initialization sequence:
 

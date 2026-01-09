@@ -5,11 +5,8 @@ Uma maneira de restringir o uso dos recursos do servidor MySQL pelo cliente é d
 Para resolver essas preocupações, o MySQL permite limites para contas individuais no uso desses recursos do servidor:
 
 - O número de consultas que uma conta pode emitir por hora
-
 - O número de atualizações que uma conta pode emitir por hora
-
 - O número de vezes que uma conta pode se conectar ao servidor por hora
-
 - Número de conexões simultâneas ao servidor por uma conta
 
 Qualquer declaração que um cliente possa emitir conta para o limite de consulta, a menos que seus resultados sejam servidos a partir do cache de consulta. Apenas as declarações que modificam bancos de dados ou tabelas contam para o limite de atualização.

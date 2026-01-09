@@ -4,7 +4,7 @@
 
 6.6.2 innochecksum — Ferramenta de Verificação de Criptografia de Arquivos InnoDB Off-line
 
-6.6.3 myisam\_ftdump — Exibir Informações do Índice de Texto Completo
+6.6.3 myisam_ftdump — Exibir Informações do Índice de Texto Completo
 
 6.6.4 myisamchk — Ferramenta de Manutenção de Tabelas MyISAM
 
@@ -12,9 +12,9 @@
 
 6.6.6 myisampack — Gerar Tabelas MyISAM Compactadas e Apenas de Leitura
 
-6.6.7 mysql\_config\_editor — Ferramenta de Configuração do MySQL
+6.6.7 mysql_config_editor — Ferramenta de Configuração do MySQL
 
-6.6.8 mysql\_migrate\_keyring — Ferramenta de Migração de Chaves do Keychain
+6.6.8 mysql_migrate_keyring — Ferramenta de Migração de Chaves do Keychain
 
 6.6.9 mysqlbinlog — Ferramenta para Processar Arquivos de Log Binários
 

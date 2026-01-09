@@ -1,12 +1,12 @@
-### 28.4.19 A Tabela `INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE`
+### 28.4.19 A Tabela `INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE`
 
 A tabela `INNODB_FT_INDEX_TABLE` fornece informações sobre o índice invertido usado para processar pesquisas de texto contra o índice `FULLTEXT` de uma tabela `InnoDB`.
 
 Esta tabela está inicialmente vazia. Antes de fazer uma consulta, defina o valor da variável de sistema `innodb_ft_aux_table` para o nome (incluindo o nome do banco de dados) da tabela que contém o índice `FULLTEXT` (por exemplo, `test/articles`).
 
-Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.4, “Tabelas de Índices `FULLTEXT` do INFORMATION\_SCHEMA de InnoDB”.
+Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.4, “Tabelas de Índices `FULLTEXT` do INFORMATION_SCHEMA de InnoDB”.
 
-A tabela `INNODB_FT\_INDEX\_TABLE` tem as seguintes colunas:
+A tabela `INNODB_FT_INDEX_TABLE` tem as seguintes colunas:
 
 * `WORD`
 

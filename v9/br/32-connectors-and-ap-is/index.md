@@ -83,85 +83,85 @@ A Tabela 31.1, “APIs e Interfaces MySQL”, lista muitas das bibliotecas e in
 <th>Ada</th>
 <td>GNU Ada MySQL Bindings</td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="http://gnade.sourceforge.net/" target="_blank">MySQL Bindings for GNU Ada</a></td>
+<td>Veja MySQL Bindings for GNU Ada</td>
 </tr>
 <tr>
 <th>C</th>
 <td>C API</td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="/doc/c-api/9.5/en/" target="_top">MySQL 9.5 C API Developer Guide</a>.</td>
+<td>Veja MySQL 9.5 C API Developer Guide.</td>
 </tr>
 <tr>
 <th>C++</th>
 <td>Connector/C++</td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="/doc/connector-cpp/9.5/en/" target="_top">MySQL Connector/C++ 9.5 Developer Guide</a>.</td>
+<td>Veja MySQL Connector/C++ 9.5 Developer Guide.</td>
 </tr>
 <tr>
 <th></th>
 <td>MySQL++</td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="http://tangentsoft.net/mysql++/doc/" target="_blank">MySQL++ website</a>.</td>
+<td>Veja MySQL++ website.</td>
 </tr>
 <tr>
 <th></th>
 <td>MySQL wrapped</td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="http://www.alhem.net/project/mysql/" target="_blank">MySQL wrapped</a>.</td>
+<td>Veja MySQL wrapped.</td>
 </tr>
 <tr>
 <th>Cocoa</th>
 <td>MySQL-Cocoa</td>
 <td><code>libmysqlclient</code></td>
-<td>Compatível com o ambiente Cocoa Objective-C. Veja <a class="ulink" href="http://mysql-cocoa.sourceforge.net/" target="_blank">http://mysql-cocoa.sourceforge.net/</a></td>
+<td>Compatível com o ambiente Cocoa Objective-C. Veja http://mysql-cocoa.sourceforge.net/</td>
 </tr>
 <tr>
 <th>D</th>
 <td>MySQL for D</td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="http://www.steinmole.de/d/" target="_blank">MySQL for D</a>.</td>
+<td>Veja MySQL for D.</td>
 </tr>
 <tr>
 <th>Eiffel</th>
 <td>Eiffel MySQL</td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="xref" href="apis-eiffel.html" title="31.13 MySQL Eiffel Wrapper">Seção 31.13, “MySQL Eiffel Wrapper”</a>.</td>
+<td>Veja Seção 31.13, “MySQL Eiffel Wrapper”.</td>
 </tr>
 <tr>
 <th>Erlang</th>
 <td><code>erlang-mysql-driver</code></td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="http://code.google.com/p/erlang-mysql-driver/" target="_blank"><code>erlang-mysql-driver</a>.</a></td>
+<td>Veja <code>erlang-mysql-driver.</a></td>
 </tr>
 <tr>
 <th>Haskell</th>
 <td>Haskell MySQL Bindings</td>
 <td>Driver nativo</td>
-<td>Veja <a class="ulink" href="http://www.serpentine.com/blog/software/mysql/" target="_blank">Brian O'Sullivan's pure Haskell MySQL bindings</a>.</td>
+<td>Veja Brian O'Sullivan's pure Haskell MySQL bindings.</td>
 </tr>
 <tr>
 <th></th>
 <td><code>hsql-mysql</code></td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="http://hackage.haskell.org/cgi-bin/hackage-scripts/package/hsql-mysql-1.7" target="_blank"><code>hsql-mysql</a></a></td>
+<td>Veja <code>hsql-mysql</a></td>
 </tr>
 <tr>
 <th>Java/JDBC</th>
 <td>Connector/J</td>
 <td>Driver nativo</td>
-<td>Veja <a class="ulink" href="/doc/connector-j/en/" target="_top">MySQL Connector/J Developer Guide</a>.</td>
+<td>Veja MySQL Connector/J Developer Guide.</td>
 </tr>
 <tr>
 <th>Kaya</th>
 <td>MyDB</td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="http://kayalang.org/library/latest/MyDB" target="_blank">MyDB</a>.</td>
+<td>Veja MyDB.</td>
 </tr>
 <tr>
 <th>Lua</th>
 <td>LuaSQL</td>
 <td><code>libmysqlclient</code></td>
-<td>Veja <a class="ulink" href="http://keplerproject.github.io/luasql/doc/us/" target="_blank">LuaSQL</a>.</td>
+<td>Veja LuaSQL.</td>
 </tr>
 <tr>
 <th>.NET/Mono</th>

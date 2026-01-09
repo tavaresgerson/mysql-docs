@@ -44,11 +44,11 @@ Os seguintes parâmetros se aplicam à seção `[tcp]` do arquivo `config.ini`:
 
 * `TcpSpinTime`: Tempo para girar antes de entrar em modo de espera ao receber.
 
-* `TCP_MAXSEG_SIZE`: Valor usado para TCP\_MAXSEG.
+* `TCP_MAXSEG_SIZE`: Valor usado para TCP_MAXSEG.
 
-* `TCP_RCV_BUF_SIZE`: Valor usado para SO\_RCVBUF.
+* `TCP_RCV_BUF_SIZE`: Valor usado para SO_RCVBUF.
 
-* `TCP_SND_BUF_SIZE`: Valor usado para SO\_SNDBUF.
+* `TCP_SND_BUF_SIZE`: Valor usado para SO_SNDBUF.
 
 * `TcpBind_INADDR_ANY`: Vincule InAddrAny em vez do nome do host para a parte do servidor da conexão.
 

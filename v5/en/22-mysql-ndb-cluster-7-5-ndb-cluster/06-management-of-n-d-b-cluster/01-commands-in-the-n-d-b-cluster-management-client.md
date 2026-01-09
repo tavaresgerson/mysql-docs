@@ -1,12 +1,12 @@
 ### 21.6.1 Commands in the NDB Cluster Management Client
 
-In addition to the central configuration file, a cluster may also be controlled through a command-line interface available through the management client [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"). This is the primary administrative interface to a running cluster.
+In addition to the central configuration file, a cluster may also be controlled through a command-line interface available through the management client [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"). This is the primary administrative interface to a running cluster.
 
 Commands for the event logs are given in [Section 21.6.3, “Event Reports Generated in NDB Cluster”](mysql-cluster-event-reports.html "21.6.3 Event Reports Generated in NDB Cluster"); commands for creating backups and restoring from them are provided in [Section 21.6.8, “Online Backup of NDB Cluster”](mysql-cluster-backup.html "21.6.8 Online Backup of NDB Cluster").
 
-**Using ndb\_mgm with MySQL Cluster Manager.**
+**Using ndb_mgm with MySQL Cluster Manager.**
 
-MySQL Cluster Manager handles starting and stopping processes and tracks their states internally, so it is not necessary to use [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") for these tasks for an NDB Cluster that is under MySQL Cluster Manager control. it is recommended *not* to use the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") command-line client that comes with the NDB Cluster distribution to perform operations that involve starting or stopping nodes. These include but are not limited to the [`START`](mysql-cluster-mgm-client-commands.html#ndbclient-start), [`STOP`](mysql-cluster-mgm-client-commands.html#ndbclient-stop), [`RESTART`](mysql-cluster-mgm-client-commands.html#ndbclient-restart), and [`SHUTDOWN`](mysql-cluster-mgm-client-commands.html#ndbclient-shutdown) commands. For more information, see [MySQL Cluster Manager Process Commands](/doc/mysql-cluster-manager/1.4/en/mcm-process-commands.html).
+MySQL Cluster Manager handles starting and stopping processes and tracks their states internally, so it is not necessary to use [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") for these tasks for an NDB Cluster that is under MySQL Cluster Manager control. it is recommended *not* to use the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") command-line client that comes with the NDB Cluster distribution to perform operations that involve starting or stopping nodes. These include but are not limited to the [`START`](mysql-cluster-mgm-client-commands.html#ndbclient-start), [`STOP`](mysql-cluster-mgm-client-commands.html#ndbclient-stop), [`RESTART`](mysql-cluster-mgm-client-commands.html#ndbclient-restart), and [`SHUTDOWN`](mysql-cluster-mgm-client-commands.html#ndbclient-shutdown) commands. For more information, see [MySQL Cluster Manager Process Commands](/doc/mysql-cluster-manager/1.4/en/mcm-process-commands.html).
 
 The management client has the following basic commands. In the listing that follows, *`node_id`* denotes either a data node ID or the keyword `ALL`, which indicates that the command should be applied to all of the cluster's data nodes.
 
@@ -36,9 +36,9 @@ The management client has the following basic commands. In the listing that foll
   id=3    @10.100.2.67  (5.7.44-ndb-7.5.36, no nodegroup)
   ```
 
-  `DROP NODEGROUP` works only when all data nodes in the node group to be dropped are completely empty of any table data and table definitions. Since there is currently no way using [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") or the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to remove all data from a specific data node or node group, this means that the command succeeds only in the two following cases:
+  `DROP NODEGROUP` works only when all data nodes in the node group to be dropped are completely empty of any table data and table definitions. Since there is currently no way using [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") or the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to remove all data from a specific data node or node group, this means that the command succeeds only in the two following cases:
 
-  1. After issuing [`CREATE NODEGROUP`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup) in the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client, but before issuing any [`ALTER TABLE ... REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statements in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client.
+  1. After issuing [`CREATE NODEGROUP`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup) in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client, but before issuing any [`ALTER TABLE ... REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statements in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client.
 
   2. After dropping all [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables using [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement").
 
@@ -70,7 +70,7 @@ The management client has the following basic commands. In the listing that foll
 
 * [`PROMPT [prompt]`](mysql-cluster-mgm-client-commands.html#ndbclient-prompt)
 
-  Changes the prompt shown by [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") to the string literal *`prompt`*.
+  Changes the prompt shown by [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") to the string literal *`prompt`*.
 
   *`prompt`* should not be quoted (unless you want the prompt to include the quotation marks). Unlike the case with the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, special character sequences and escapes are not recognized. If called without an argument, the command resets the prompt to the default value (`ndb_mgm>`).
 
@@ -240,7 +240,7 @@ The management client has the following basic commands. In the listing that foll
 
   `ALL STOP` works to stop all data nodes only, and does not affect management nodes.
 
-  A node affected by this command disconnects from the cluster, and its associated [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndb\_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") process terminates.
+  A node affected by this command disconnects from the cluster, and its associated [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") process terminates.
 
   The `-a` option causes the node to be stopped immediately, without waiting for the completion of any pending transactions.
 
@@ -250,9 +250,9 @@ The management client has the following basic commands. In the listing that foll
 
   Use of the `-a` option also disables the safety check otherwise performed when `STOP` is invoked to insure that stopping the node does not cause an incomplete cluster. In other words, you should exercise extreme care when using the `-a` option with the `STOP` command, due to the fact that this option makes it possible for the cluster to undergo a forced shutdown because it no longer has a complete copy of all data stored in [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
 
-**Additional commands.** A number of other commands available in the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client are described elsewhere, as shown in the following list:
+**Additional commands.** A number of other commands available in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client are described elsewhere, as shown in the following list:
 
-* [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") is used to perform an online backup in the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client; the [`ABORT BACKUP`](mysql-cluster-backup-using-management-client.html#ndbclient-abort-backup "Cancelling backups") command is used to cancel a backup already in progress. For more information, see [Section 21.6.8, “Online Backup of NDB Cluster”](mysql-cluster-backup.html "21.6.8 Online Backup of NDB Cluster").
+* [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") is used to perform an online backup in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client; the [`ABORT BACKUP`](mysql-cluster-backup-using-management-client.html#ndbclient-abort-backup "Cancelling backups") command is used to cancel a backup already in progress. For more information, see [Section 21.6.8, “Online Backup of NDB Cluster”](mysql-cluster-backup.html "21.6.8 Online Backup of NDB Cluster").
 
 * The [`CLUSTERLOG`](mysql-cluster-logging-management-commands.html "21.6.3.1 NDB Cluster Logging Management Commands") command is used to perform various logging functions. See [Section 21.6.3, “Event Reports Generated in NDB Cluster”](mysql-cluster-event-reports.html "21.6.3 Event Reports Generated in NDB Cluster"), for more information and examples. NDB 7.6 adds [`NODELOG DEBUG`](mysql-cluster-mgm-client-commands.html#ndbclient-nodelog-debug) to activate or deactivate debug printouts in node logs, as described previously in this section.
 

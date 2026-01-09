@@ -1,4 +1,4 @@
-#### 25.12.3.5 The socket\_instances Table
+#### 25.12.3.5 The socket_instances Table
 
 The [`socket_instances`](performance-schema-socket-instances-table.html "25.12.3.5 The socket_instances Table") table provides a real-time snapshot of the active connections to the MySQL server. The table contains one row per TCP/IP or Unix socket file connection. Information available in this table provides a real-time snapshot of the active connections to the server. (Additional information is available in socket summary tables, including network activity such as socket operations and number of bytes transmitted and received; see [Section 25.12.15.8, “Socket Summary Tables”](performance-schema-socket-summary-tables.html "25.12.15.8 Socket Summary Tables")).
 

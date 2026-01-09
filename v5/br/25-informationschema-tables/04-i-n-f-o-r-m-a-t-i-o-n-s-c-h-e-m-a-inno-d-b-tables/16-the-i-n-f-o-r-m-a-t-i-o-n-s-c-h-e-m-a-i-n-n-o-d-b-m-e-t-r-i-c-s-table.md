@@ -1,4 +1,4 @@
-### 24.4.16 A tabela INFORMATION\_SCHEMA INNODB\_METRICS
+### 24.4.16 A tabela INFORMATION_SCHEMA INNODB_METRICS
 
 A tabela `INNODB_METRICS` fornece uma ampla variedade de informações de desempenho do `InnoDB`, complementando as áreas de foco específicas das tabelas do Schema de Desempenho para `InnoDB`. Com consultas simples, você pode verificar a saúde geral do sistema. Com consultas mais detalhadas, você pode diagnosticar problemas como gargalos de desempenho, escassez de recursos e problemas de aplicação.
 
@@ -6,7 +6,7 @@ Cada monitor representa um ponto dentro do código-fonte do `InnoDB` que é inst
 
 Por padrão, são coletados dados relativamente baixos. Para iniciar, parar e reiniciar contadores, defina uma das variáveis do sistema `innodb_monitor_enable`, `innodb_monitor_disable`, `innodb_monitor_reset` ou `innodb_monitor_reset_all`, usando o nome do contador, o nome do módulo, uma correspondência de ponto de interrogação para um nome desse tipo usando o caractere “%” ou a palavra-chave especial `all`.
 
-Para informações sobre o uso, consulte Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION\_SCHEMA”.
+Para informações sobre o uso, consulte Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”.
 
 A tabela `INNODB_METRICS` tem as seguintes colunas:
 
@@ -36,7 +36,7 @@ A tabela `INNODB_METRICS` tem as seguintes colunas:
 
 - `COUNT_RESET`
 
-  O valor do contador desde que foi redefinido pela última vez. (As colunas \_RESET funcionam como o contador de voltas de um cronômetro: você pode medir a atividade durante algum intervalo de tempo, enquanto os valores acumulados ainda estão disponíveis em COUNT, MAX\_COUNT, e assim por diante.)
+  O valor do contador desde que foi redefinido pela última vez. (As colunas _RESET funcionam como o contador de voltas de um cronômetro: você pode medir a atividade durante algum intervalo de tempo, enquanto os valores acumulados ainda estão disponíveis em COUNT, MAX_COUNT, e assim por diante.)
 
 - `MAX_COUNT_RESET`
 

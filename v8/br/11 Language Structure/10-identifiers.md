@@ -8,7 +8,7 @@ Internacionalmente, os identificadores são convertidos e armazenados como Unico
 
 * Caracteres permitidos em identificadores não citados:
 
-  + ASCII: [0-9,a-z,A-Z$\_] (letras latinas básicas, dígitos 0-9, dólar, sublinhado)
+  + ASCII: [0-9,a-z,A-Z$_] (letras latinas básicas, dígitos 0-9, dólar, sublinhado)
   + Extendido: U+0080 .. U+FFFF
 * Caracteres permitidos em identificadores citados incluem o Plano Multilíngue Básico Unicode (BMP) completo, exceto U+0000:
 

@@ -14,6 +14,6 @@ O modificador opcional `EXTENDED` faz com que `SHOW TABLES` liste tabelas oculta
 
 Esta declaração também lista quaisquer visualizações no banco de dados. O modificador opcional `FULL` faz com que `SHOW TABLES` exiba uma segunda coluna de saída com valores de `BASE TABLE` para uma tabela, `VIEW` para uma visualização ou `SYSTEM VIEW` para uma tabela do `INFORMATION_SCHEMA`.
 
-Se você não tiver privilégios para uma tabela ou visualização base, ela não aparecerá na saída de `SHOW TABLES` ou **mysqlshow db\_name**.
+Se você não tiver privilégios para uma tabela ou visualização base, ela não aparecerá na saída de `SHOW TABLES` ou **mysqlshow db_name**.
 
-As informações da tabela também estão disponíveis na tabela `TABLES` do `INFORMATION_SCHEMA`. Veja a Seção 28.3.44, “A Tabela TABLES do INFORMATION\_SCHEMA”.
+As informações da tabela também estão disponíveis na tabela `TABLES` do `INFORMATION_SCHEMA`. Veja a Seção 28.3.44, “A Tabela TABLES do INFORMATION_SCHEMA”.

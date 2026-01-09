@@ -293,7 +293,7 @@ The following example sets up a MySQL server that listens for connections in the
 
 For replication monitoring purposes, these information sources have a column that displays the applicable network namespace for connections:
 
-* The Performance Schema `replication_connection_configuration` table. See Section 29.12.11.12, “The replication\_connection\_configuration Table”.
+* The Performance Schema `replication_connection_configuration` table. See Section 29.12.11.12, “The replication_connection_configuration Table”.
 
 * The replica server connection metadata repository. See Section 19.2.4.2, “Replication Metadata Repositories”.
 

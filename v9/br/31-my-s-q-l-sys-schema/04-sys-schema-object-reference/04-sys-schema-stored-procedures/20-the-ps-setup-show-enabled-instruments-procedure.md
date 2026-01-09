@@ -1,4 +1,4 @@
-#### 30.4.4.20 O procedimento ps\_setup\_show\_enabled\_instruments()
+#### 30.4.4.20 O procedimento ps_setup_show_enabled_instruments()
 
 Exibe todos os instrumentos do Schema de Desempenho atualmente habilitados. Isso pode ser uma lista longa.
 

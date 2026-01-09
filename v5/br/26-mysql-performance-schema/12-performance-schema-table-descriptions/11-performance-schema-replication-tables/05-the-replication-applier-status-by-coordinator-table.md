@@ -1,4 +1,4 @@
-#### 25.12.11.5 Tabela replication\_applier\_status\_by\_coordinator
+#### 25.12.11.5 Tabela replication_applier_status_by_coordinator
 
 Para uma replica multithreading, a replica usa vários threads de trabalhador e um thread de coordenador para gerenciá-los, e esta tabela mostra o status do thread de coordenador. Para uma replica de único thread, esta tabela está vazia. Para uma replica multithreading, a tabela `replication_applier_status_by_worker` mostra o status dos threads de trabalhador.
 

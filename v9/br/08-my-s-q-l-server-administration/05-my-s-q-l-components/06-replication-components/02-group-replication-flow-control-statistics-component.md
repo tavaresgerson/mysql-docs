@@ -6,7 +6,7 @@ O componente de Estatísticas de Controle de Fluxo de Replicação em Grupo (`co
 
 * URN: `file://component_group_replication_flow_control_stats`
 
-Antes de instalar o componente de Estatísticas de Controle de Fluxo de Replicação em Grupo, o plugin de Replicação em Grupo deve ser instalado usando `INSTALL PLUGIN` ou `--plugin-load-add` (consulte a Seção 20.2.1.2, “Configurando uma Instância para Replicação em Grupo”); caso contrário, a instrução `INSTALL COMPONENT` é rejeitada com o erro Não é possível satisfazer a dependência para o serviço 'group\_replication\_flow\_control\_metrics\_service' requerido pelo componente 'mysql:group\_replication\_flow\_control\_stats'. Se você tentar desinstalar o plugin de Replicação em Grupo quando o componente de Estatísticas de Controle de Fluxo de Replicação em Grupo estiver instalado, `UNINSTALL PLUGIN` falha com o erro Plugin 'group\_replication' não pode ser desinstalado agora. Por favor, desinstale o componente 'component_group_replication_flow_control_stats' e depois desinstale o plugin group\_replication.
+Antes de instalar o componente de Estatísticas de Controle de Fluxo de Replicação em Grupo, o plugin de Replicação em Grupo deve ser instalado usando `INSTALL PLUGIN` ou `--plugin-load-add` (consulte a Seção 20.2.1.2, “Configurando uma Instância para Replicação em Grupo”); caso contrário, a instrução `INSTALL COMPONENT` é rejeitada com o erro Não é possível satisfazer a dependência para o serviço 'group_replication_flow_control_metrics_service' requerido pelo componente 'mysql:group_replication_flow_control_stats'. Se você tentar desinstalar o plugin de Replicação em Grupo quando o componente de Estatísticas de Controle de Fluxo de Replicação em Grupo estiver instalado, `UNINSTALL PLUGIN` falha com o erro Plugin 'group_replication' não pode ser desinstalado agora. Por favor, desinstale o componente 'component_group_replication_flow_control_stats' e depois desinstale o plugin group_replication.
 
 Dadas essas condições, o componente de Estatísticas de Controle de Fluxo de Replicação em Grupo pode ser instalado e desinstalado usando `INSTALL COMPONENT` e `UNINSTALL COMPONENT`, respectivamente. Consulte as descrições dessas instruções, bem como a Seção 7.5.1, “Instalando e Desinstalando Componentes”, para obter mais informações.
 
@@ -41,7 +41,7 @@ mysql> SELECT * FROM performance_schema.global_status
 Você também pode observar esses valores na saída do `SHOW GLOBAL STATUS`, assim:
 
 ```
-mysql> SHOW GLOBAL STATUS LIKE 'Gr\_flow\_control%';
+mysql> SHOW GLOBAL STATUS LIKE 'Gr_flow_control%';
 +--------------------------------------------------+---------------------+
 | Variable_Name	                                  | Value               |
 +--------------------------------------------------+---------------------+

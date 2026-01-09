@@ -106,4 +106,4 @@ The output from `SHOW ENGINES` may vary according to the MySQL version used and 
 
   Whether the storage engine supports savepoints.
 
-Storage engine information is also available from the `INFORMATION_SCHEMA` `ENGINES` table. See Section 28.3.13, “The INFORMATION\_SCHEMA ENGINES Table”.
+Storage engine information is also available from the `INFORMATION_SCHEMA` `ENGINES` table. See Section 28.3.13, “The INFORMATION_SCHEMA ENGINES Table”.

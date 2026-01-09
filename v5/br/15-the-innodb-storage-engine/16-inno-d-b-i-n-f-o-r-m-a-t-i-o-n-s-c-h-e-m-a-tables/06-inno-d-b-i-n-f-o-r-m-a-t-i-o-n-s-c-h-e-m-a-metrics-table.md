@@ -2,7 +2,7 @@
 
 A tabela `INNODB_METRICS` fornece informações sobre os contadores de desempenho e recursos relacionados ao `InnoDB`.
 
-As colunas da tabela `INNODB_METRICS` estão mostradas abaixo. Para descrições de colunas, consulte a Seção 24.4.16, “A Tabela INFORMATION\_SCHEMA INNODB\_METRICS”.
+As colunas da tabela `INNODB_METRICS` estão mostradas abaixo. Para descrições de colunas, consulte a Seção 24.4.16, “A Tabela INFORMATION_SCHEMA INNODB_METRICS”.
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts" \G
@@ -376,7 +376,7 @@ Os nomes dos módulos e os nomes correspondentes ao `SUBSYSTEM` estão listados 
 
 - `module_trx` (subsistema = `transação`)
 
-**Exemplo 14.11: Trabalhando com Contadores da Tabela INNODB\_METRICS**
+**Exemplo 14.11: Trabalhando com Contadores da Tabela INNODB_METRICS**
 
 Este exemplo demonstra como habilitar, desabilitar e reiniciar um contador e como consultar os dados do contador na tabela `INNODB_METRICS`.
 

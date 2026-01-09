@@ -2,7 +2,7 @@
 
 **Tabela 14.6 Operadores de Atribuição**
 
-<table frame="box" rules="all" summary="Uma referência que lista os operadores de atribuição."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="operadores-de-atribuicao.html#operador_assign-valor"><code>:=</code></a></td> <td> Atribuir um valor </td> </tr><tr><td><a class="link" href="operadores-de-atribuicao.html#operador_assign-igual"><code>=</code></a></td> <td> Atribuir um valor (como parte de uma declaração <a class="link" href="set-variable.html" title="15.7.6.1 Sintaxe SET para Atribuição de Variáveis"><code>SET</code></a>, ou como parte da cláusula <code>SET</code> em uma declaração <a class="link" href="update.html" title="15.2.17 Declaração UPDATE"><code>UPDATE</code></a> statement) </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista os operadores de atribuição."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>:=</code></td> <td> Atribuir um valor </td> </tr><tr><td><code>=</code></td> <td> Atribuir um valor (como parte de uma declaração <code>SET</code>, ou como parte da cláusula <code>SET</code> em uma declaração <code>UPDATE</code> statement) </td> </tr></tbody></table>
 
 * `:=`
 

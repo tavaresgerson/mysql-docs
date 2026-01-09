@@ -4,25 +4,25 @@
 
 <table frame="box" rules="all" summary="Uma referência que lista funções destinadas apenas para uso interno pelo servidor.">
 <tr><th>Nome</th> <th>Descrição</th> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_can-access-column"><code>CAN_ACCESS_COLUMN()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_can-access-database"><code>CAN_ACCESS_DATABASE()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_can-access-table"><code>CAN_ACCESS_TABLE()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_can-access-user"><code>CAN_ACCESS_USER()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_can-access-view"><code>CAN_ACCESS_VIEW()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_get-dd-column-privileges"><code>GET_DD_COLUMN_PRIVILEGES()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_get-dd-create-options"><code>GET_DD_CREATE_OPTIONS()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_get-dd-index-sub-part-length"><code>GET_DD_INDEX_SUB_PART_LENGTH()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-auto-increment"><code>INTERNAL_AUTO_INCREMENT()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-avg-row-length"><code>INTERNAL_AVG_ROW_LENGTH()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-check-time"><code>INTERNAL_CHECK_TIME()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-checksum"><code>INTERNAL_CHECKSUM()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-data-free"><code>INTERNAL_DATA_FREE()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-data-length"><code>INTERNAL_DATA_LENGTH()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-dd-char-length"><code>INTERNAL_DD_CHAR_LENGTH()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-get-comment-or-error"><code>INTERNAL_GET_COMMENT_OR_ERROR()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-get-enabled-role-json"><code>INTERNAL_GET_ENABLED_ROLE_JSON()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-get-hostname"><code>INTERNAL_GET_HOSTNAME()</code></a></td> <td> Uso interno apenas </td> </tr>
-<tr><td><a class="link" href="internal-functions.html#function_internal-get-username"><code>INTERNAL_GET_USERNAME()</code></a></td>
+<tr><td><code>CAN_ACCESS_COLUMN()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>CAN_ACCESS_DATABASE()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>CAN_ACCESS_TABLE()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>CAN_ACCESS_USER()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>CAN_ACCESS_VIEW()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>GET_DD_COLUMN_PRIVILEGES()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>GET_DD_CREATE_OPTIONS()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>GET_DD_INDEX_SUB_PART_LENGTH()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_AUTO_INCREMENT()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_AVG_ROW_LENGTH()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_CHECK_TIME()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_CHECKSUM()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_DATA_FREE()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_DATA_LENGTH()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_DD_CHAR_LENGTH()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_GET_COMMENT_OR_ERROR()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_GET_ENABLED_ROLE_JSON()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_GET_HOSTNAME()</code></td> <td> Uso interno apenas </td> </tr>
+<tr><td><code>INTERNAL_GET_USERNAME()</code></td>
 
 As funções listadas nesta seção são destinadas apenas para uso interno pelo servidor. Tentativas de invocação por parte dos usuários resultam em um erro.
 

@@ -80,9 +80,9 @@ COMMIT;
 
 Para permitir que os aplicativos do cliente extraiam informações sobre mudanças de estado dos pacotes OK retornados pelo servidor, a API C do MySQL fornece um par de funções:
 
-* `mysql_session_track_get_first()` recupera a primeira parte das informações sobre mudanças de estado recebidas do servidor. Veja mysql\_session\_track\_get\_first().
+* `mysql_session_track_get_first()` recupera a primeira parte das informações sobre mudanças de estado recebidas do servidor. Veja mysql_session_track_get_first().
 
-* `mysql_session_track_get_next()` recupera quaisquer informações sobre mudanças de estado restantes recebidas do servidor. Após uma chamada bem-sucedida a `mysql_session_track_get_first()`, chame essa função repetidamente enquanto ela retornar sucesso. Veja mysql\_session\_track\_get\_next().
+* `mysql_session_track_get_next()` recupera quaisquer informações sobre mudanças de estado restantes recebidas do servidor. Após uma chamada bem-sucedida a `mysql_session_track_get_first()`, chame essa função repetidamente enquanto ela retornar sucesso. Veja mysql_session_track_get_next().
 
 #### Suporte ao Rastreador de Estado de Sessão do Conjunto de Testes
 
@@ -175,7 +175,7 @@ COMMIT;
 ok
 ```
 
-Execute o script da seguinte forma para ver as informações fornecidas pelos rastreadores habilitados. Para uma descrição das informações `Tracker:` exibidas pelo **mysqltest** para os vários rastreadores, veja mysql\_session\_track\_get\_first().
+Execute o script da seguinte forma para ver as informações fornecidas pelos rastreadores habilitados. Para uma descrição das informações `Tracker:` exibidas pelo **mysqltest** para os vários rastreadores, veja mysql_session_track_get_first().
 
 
 

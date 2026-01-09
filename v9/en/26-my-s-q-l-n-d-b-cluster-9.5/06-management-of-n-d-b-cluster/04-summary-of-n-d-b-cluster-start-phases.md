@@ -25,7 +25,7 @@ These phases are the same as those reported in the output from the `node_id STAT
 3. Allocate ports to be used for inter-node communications
 4. Allocate memory according to settings obtained from the configuration file
 
-When a data node or SQL node first connects to the management node, it reserves a cluster node ID. To make sure that no other node allocates the same node ID, this ID is retained until the node has managed to connect to the cluster and at least one **ndbd** reports that this node is connected. This retention of the node ID is guarded by the connection between the node in question and **ndb\_mgmd**.
+When a data node or SQL node first connects to the management node, it reserves a cluster node ID. To make sure that no other node allocates the same node ID, this ID is retained until the node has managed to connect to the cluster and at least one **ndbd** reports that this node is connected. This retention of the node ID is guarded by the connection between the node in question and **ndb_mgmd**.
 
 After each data node has been initialized, the cluster startup process can proceed. The stages which the cluster goes through during this process are listed here:
 

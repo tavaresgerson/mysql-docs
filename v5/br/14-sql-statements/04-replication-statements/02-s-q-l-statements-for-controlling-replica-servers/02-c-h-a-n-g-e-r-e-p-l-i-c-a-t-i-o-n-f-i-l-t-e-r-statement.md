@@ -42,19 +42,19 @@ Os filtros de replicação não podem ser configurados em uma instância do serv
 
 A lista a seguir mostra as opções de `FILTER DE REPLICAÇÃO DE MUDANÇAS` e como elas se relacionam com as opções de servidor `--replicate-*`:
 
-- `REPLICATE_DO_DB`: Inclua atualizações com base no nome do banco de dados. É equivalente a \[`--replicate-do-db`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(MySQL#Replica%C3%A7%C3%A3o_do_banco_de_dados)>.
+- `REPLICATE_DO_DB`: Inclua atualizações com base no nome do banco de dados. É equivalente a [`--replicate-do-db`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(MySQL#Replica%C3%A7%C3%A3o_do_banco_de_dados)>.
 
-- `REPLICATE_IGNORE_DB`: Exclua atualizações com base no nome do banco de dados. É equivalente a \[`--replicate-ignore-db`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(MySQL#Replic%C3%A3o)>.
+- `REPLICATE_IGNORE_DB`: Exclua atualizações com base no nome do banco de dados. É equivalente a [`--replicate-ignore-db`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(MySQL#Replic%C3%A3o)>.
 
 - `REPLICATE_DO_TABLE`: Inclua atualizações com base no nome da tabela. É equivalente a [`--replicate-do-table`](https://pt.wikipedia.org/wiki/Op%C3%A9rnia_\(MySQL\)#%C3%8Dnica_mysqld_replicate-do-table).
 
-- `REPLICATE_IGNORE_TABLE`: Exclua atualizações com base no nome da tabela. É equivalente a \[`--replicate-ignore-table`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(MySQL#Op%C3%A9rnia_mysqld_replicate-ignore-table)>.
+- `REPLICATE_IGNORE_TABLE`: Exclua atualizações com base no nome da tabela. É equivalente a [`--replicate-ignore-table`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(MySQL#Op%C3%A9rnia_mysqld_replicate-ignore-table)>.
 
 - `REPLICATE_WILD_DO_TABLE`: Inclua atualizações com base na correspondência de padrões de caracteres especiais no nome da tabela. É equivalente a `--replicate-wild-do-table`.
 
 - `REPLICATE_WILD_IGNORE_TABLE`: Exclua atualizações com base na tabela de correspondência de padrões de caracteres. É equivalente a [`--replicate-wild-ignore-table`](https://pt.wikipedia.org/wiki/Op%C3%A9rnia_\(MySQL\)#op%C3%A3o_mysqld_replicate-wild-ignore-table).
 
-- `REPLICATE_REWRITE_DB`: Realize atualizações na replica após substituir o novo nome da replica pelo banco de dados especificado na fonte. É equivalente a \[`--replicate-rewrite-db`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(MySQL#Op%C3%A3o_mysqld_replicate-rewrite-db)>.
+- `REPLICATE_REWRITE_DB`: Realize atualizações na replica após substituir o novo nome da replica pelo banco de dados especificado na fonte. É equivalente a [`--replicate-rewrite-db`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(MySQL#Op%C3%A3o_mysqld_replicate-rewrite-db)>.
 
 Os efeitos precisos dos filtros `REPLICATE_DO_DB` e `REPLICATE_IGNORE_DB` dependem se a replicação baseada em declarações ou baseada em linhas está em vigor. Consulte Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação” para obter mais informações.
 

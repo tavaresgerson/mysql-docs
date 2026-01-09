@@ -26,7 +26,7 @@ O suporte para colagem do `utf16le` é limitado. As únicas colagens disponívei
 
 - Algoritmo de Cotação Unicode (UCA) (Versões)
 - Colagens específicas para cada idioma
-- Colagens \_general\_ci versus \_unicode\_ci
+- Colagens _general_ci versus _unicode_ci
 - Pesos de Coleta de Caracteres
 - Informações Diversas
 
@@ -68,7 +68,7 @@ As collation suecas incluem regras suecas. Por exemplo, em sueco, a seguinte rel
 Ü = Y < Ö
 ```
 
-#### Colagens \_general\_ci versus \_unicode\_ci
+#### Colagens _general_ci versus _unicode_ci
 
 Para qualquer conjunto de caracteres Unicode, as operações realizadas com a concordância `xxx_general_ci` são mais rápidas do que as realizadas com a concordância `xxx_unicode_ci`. Por exemplo, as comparações para a concordância `utf8_general_ci` são mais rápidas, mas um pouco menos precisas, do que as comparações para `utf8_unicode_ci`. A razão é que `utf8_unicode_ci` suporta mapeamentos como expansões; ou seja, quando um caractere é comparado como igual a combinações de outros caracteres. Por exemplo, `ß` é igual a `ss` em alemão e em algumas outras línguas. `utf8_unicode_ci` também suporta contrações e caracteres ignoráveis. `utf8_general_ci` é uma concordância legada que não suporta expansões, contrações ou caracteres ignoráveis. Ela pode realizar apenas comparações um-para-um entre caracteres.
 
@@ -111,7 +111,7 @@ Se você precisar de uma ordem em alemão DIN-2 (anúncios telefônicos), use a 
 
 O peso de agregação de um personagem é determinado da seguinte forma:
 
-- Para todas as colorações Unicode, exceto as colorações \_bin (binária), o MySQL realiza uma pesquisa na tabela para encontrar o peso de ordenação de um caractere.
+- Para todas as colorações Unicode, exceto as colorações _bin (binária), o MySQL realiza uma pesquisa na tabela para encontrar o peso de ordenação de um caractere.
 
 - Para as colunas `_bin`, o peso é baseado no código de ponto, possivelmente com bytes de zero inicial adicionados.
 
@@ -208,7 +208,7 @@ Code point  Character                    utf8         utf16
 
 Os dois caracteres no gráfico estão em ordem por valor de ponto de código porque `0xff9d` < `0x10384`. E estão em ordem por valor `utf8` porque `0xef` < `0xf0`. Mas não estão em ordem por valor `utf16`, se usarmos a comparação caracter a caractere, porque `0xff` > `0xd8`.
 
-Portanto, a collation `utf16_bin` do MySQL não é “byte por byte”. É “por ponto de código”. Quando o MySQL vê uma codificação de caracteres suplementares em `utf16`, ele converte o valor do ponto de código do caractere e, em seguida, compara. Portanto, `utf8_bin` e `utf16_bin` têm a mesma ordem. Isso está de acordo com o requisito do padrão SQL:2008 para uma collation UCS\_BASIC: “UCS\_BASIC é uma collation na qual a ordem é determinada inteiramente pelos valores escalares Unicode dos caracteres nas strings que estão sendo ordenadas. É aplicável ao repertório de caracteres UCS. Como todo repertório de caracteres é um subconjunto do repertório UCS, a collation UCS\_BASIC é potencialmente aplicável a todo conjunto de caracteres. NOTA 11: O valor escalar Unicode de um caractere é seu ponto de código tratado como um inteiro não assinado.”
+Portanto, a collation `utf16_bin` do MySQL não é “byte por byte”. É “por ponto de código”. Quando o MySQL vê uma codificação de caracteres suplementares em `utf16`, ele converte o valor do ponto de código do caractere e, em seguida, compara. Portanto, `utf8_bin` e `utf16_bin` têm a mesma ordem. Isso está de acordo com o requisito do padrão SQL:2008 para uma collation UCS_BASIC: “UCS_BASIC é uma collation na qual a ordem é determinada inteiramente pelos valores escalares Unicode dos caracteres nas strings que estão sendo ordenadas. É aplicável ao repertório de caracteres UCS. Como todo repertório de caracteres é um subconjunto do repertório UCS, a collation UCS_BASIC é potencialmente aplicável a todo conjunto de caracteres. NOTA 11: O valor escalar Unicode de um caractere é seu ponto de código tratado como um inteiro não assinado.”
 
 Se o conjunto de caracteres for `ucs2`, a comparação é caracter a caractere, mas as strings `ucs2` não devem conter surrogados, de qualquer forma.
 

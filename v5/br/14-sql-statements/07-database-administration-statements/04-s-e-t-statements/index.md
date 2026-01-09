@@ -4,7 +4,7 @@
 
 13.7.4.2 Declaração de conjunto de caracteres do personagem
 
-13.7.4.3 Declaração de NOME\_SET
+13.7.4.3 Declaração de NOME_SET
 
 A instrução `SET` tem várias formas. As descrições dessas formas que não estão associadas a uma capacidade específica do servidor aparecem em subseções desta seção:
 

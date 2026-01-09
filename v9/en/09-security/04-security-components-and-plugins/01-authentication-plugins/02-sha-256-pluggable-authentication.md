@@ -10,7 +10,7 @@ This section describes the original noncaching SHA-2 authentication plugin. For 
 
 Important
 
-In MySQL 9.5, `caching_sha2_password` is the default authentication plugin; `mysql_native_password` is no longer available. For information about the implications of this change for server operation and compatibility of the server with clients and connectors, see caching\_sha2\_password as the Preferred Authentication Plugin.
+In MySQL 9.5, `caching_sha2_password` is the default authentication plugin; `mysql_native_password` is no longer available. For information about the implications of this change for server operation and compatibility of the server with clients and connectors, see caching_sha2_password as the Preferred Authentication Plugin.
 
 Because `caching_sha2_password` is the default authentication plugin in MySQL 9.5 and provides a superset of the capabilities of the `sha256_password` authentication plugin, `sha256_password` is deprecated; expect it to be removed in a future version of MySQL. MySQL accounts that authenticate using `sha256_password` should be migrated to use `caching_sha2_password` instead.
 

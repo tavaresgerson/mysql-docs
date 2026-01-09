@@ -22,7 +22,7 @@ The following system variables are used to control sources:
 
 * [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment)
 
-  <table frame="box" rules="all" summary="Properties for auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-increment-increment=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="replication-options-source.html#sysvar_auto_increment_increment">auto_increment_increment</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-increment-increment=#</code></td> </tr><tr><th>System Variable</th> <td><code>auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) and [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset) are intended for use with source-to-source replication, and can be used to control the operation of `AUTO_INCREMENT` columns. Both variables have global and session values, and each can assume an integer value between 1 and 65,535 inclusive. Setting the value of either of these two variables to 0 causes its value to be set to 1 instead. Attempting to set the value of either of these two variables to an integer greater than 65,535 or less than 0 causes its value to be set to 65,535 instead. Attempting to set the value of [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) or [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset) to a noninteger value produces an error, and the actual value of the variable remains unchanged.
 
@@ -168,11 +168,11 @@ The following system variables are used to control sources:
 
   The default value of [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) is
 
-  1. See [Section 16.4.1.1, “Replication and AUTO\_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT").
+  1. See [Section 16.4.1.1, “Replication and AUTO_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT").
 
 * [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset)
 
-  <table frame="box" rules="all" summary="Properties for auto_increment_offset"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-increment-offset=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="replication-options-source.html#sysvar_auto_increment_offset">auto_increment_offset</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto_increment_offset"><tbody><tr><th>Command-Line Format</th> <td><code>--auto-increment-offset=#</code></td> </tr><tr><th>System Variable</th> <td><code>auto_increment_offset</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   This variable has a default value of 1. If it is left with its default value, and Group Replication is started on the server, it is changed to the server ID. For more information, see the description for [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment).
 
@@ -182,7 +182,7 @@ The following system variables are used to control sources:
 
 * [`rpl_semi_sync_master_enabled`](replication-options-source.html#sysvar_rpl_semi_sync_master_enabled)
 
-  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_enabled"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-enabled[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_enabled">rpl_semi_sync_master_enabled</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_enabled"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-enabled[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>rpl_semi_sync_master_enabled</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Controls whether semisynchronous replication is enabled on the source. To enable or disable the plugin, set this variable to `ON` or `OFF` (or 1 or 0), respectively. The default is `OFF`.
 
@@ -190,7 +190,7 @@ The following system variables are used to control sources:
 
 * [`rpl_semi_sync_master_timeout`](replication-options-source.html#sysvar_rpl_semi_sync_master_timeout)
 
-  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-timeout=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_timeout">rpl_semi_sync_master_timeout</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10000</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>milliseconds</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-timeout=#</code></td> </tr><tr><th>System Variable</th> <td><code>rpl_semi_sync_master_timeout</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>10000</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>milliseconds</td> </tr></tbody></table>
 
   A value in milliseconds that controls how long the source waits on a commit for acknowledgment from a replica before timing out and reverting to asynchronous replication. The default value is 10000 (10 seconds).
 
@@ -198,7 +198,7 @@ The following system variables are used to control sources:
 
 * [`rpl_semi_sync_master_trace_level`](replication-options-source.html#sysvar_rpl_semi_sync_master_trace_level)
 
-  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_trace_level"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-trace-level=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_trace_level">rpl_semi_sync_master_trace_level</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_trace_level"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-trace-level=#</code></td> </tr><tr><th>System Variable</th> <td><code>rpl_semi_sync_master_trace_level</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   The semisynchronous replication debug trace level on the source. Four levels are defined:
 
@@ -212,7 +212,7 @@ The following system variables are used to control sources:
 
 * [`rpl_semi_sync_master_wait_for_slave_count`](replication-options-source.html#sysvar_rpl_semi_sync_master_wait_for_slave_count)
 
-  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_wait_for_slave_count"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-wait-for-slave-count=#</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_wait_for_slave_count">rpl_semi_sync_master_wait_for_slave_count</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_wait_for_slave_count"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-wait-for-slave-count=#</code></td> </tr><tr><th>System Variable</th> <td><code>rpl_semi_sync_master_wait_for_slave_count</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
   The number of replica acknowledgments the source must receive per transaction before proceeding. By default `rpl_semi_sync_master_wait_for_slave_count` is `1`, meaning that semisynchronous replication proceeds after receiving a single replica acknowledgment. Performance is best for small values of this variable.
 
@@ -226,7 +226,7 @@ The following system variables are used to control sources:
 
 * [`rpl_semi_sync_master_wait_no_slave`](replication-options-source.html#sysvar_rpl_semi_sync_master_wait_no_slave)
 
-  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_wait_no_slave"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-wait-no-slave[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_wait_no_slave">rpl_semi_sync_master_wait_no_slave</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_wait_no_slave"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-wait-no-slave[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>rpl_semi_sync_master_wait_no_slave</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Controls whether the source waits for the timeout period configured by [`rpl_semi_sync_master_timeout`](replication-options-source.html#sysvar_rpl_semi_sync_master_timeout) to expire, even if the replica count drops to less than the number of replicas configured by [`rpl_semi_sync_master_wait_for_slave_count`](replication-options-source.html#sysvar_rpl_semi_sync_master_wait_for_slave_count) during the timeout period.
 
@@ -238,7 +238,7 @@ The following system variables are used to control sources:
 
 * [`rpl_semi_sync_master_wait_point`](replication-options-source.html#sysvar_rpl_semi_sync_master_wait_point)
 
-  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_wait_point"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-wait-point=value</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="replication-options-source.html#sysvar_rpl_semi_sync_master_wait_point">rpl_semi_sync_master_wait_point</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>AFTER_SYNC</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>AFTER_SYNC</code></p><p class="valid-value"><code>AFTER_COMMIT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rpl_semi_sync_master_wait_point"><tbody><tr><th>Command-Line Format</th> <td><code>--rpl-semi-sync-master-wait-point=value</code></td> </tr><tr><th>System Variable</th> <td><code>rpl_semi_sync_master_wait_point</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>AFTER_SYNC</code></td> </tr><tr><th>Valid Values</th> <td><p><code>AFTER_SYNC</code></p><p><code>AFTER_COMMIT</code></p></td> </tr></tbody></table>
 
   This variable controls the point at which a semisynchronous source waits for replica acknowledgment of transaction receipt before returning a status to the client that committed the transaction. These values are permitted:
 

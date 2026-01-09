@@ -84,7 +84,7 @@ As variáveis de status têm os significados mostrados na lista a seguir.
   - `Com_stmt_reset`
   - `Com_stmt_close`
 
-  Essas variáveis representam comandos de declaração preparada. Seus nomes referem-se ao conjunto de comandos `COM_xxx` usado na camada de rede. Em outras palavras, seus valores aumentam sempre que chamadas da API de declaração preparada, como **mysql\_stmt\_prepare()**, **mysql\_stmt\_execute()**, e assim por diante, são executadas. No entanto, `Com_stmt_prepare`, `Com_stmt_execute` e `Com_stmt_close` também aumentam para `PREPARE`, `EXECUTE` ou `DEALLOCATE PREPARE`, respectivamente. Além disso, os valores das variáveis de contador de declarações mais antigas `Com_prepare_sql`, `Com_execute_sql` e `Com_dealloc_sql` aumentam para as declarações `PREPARE`, `EXECUTE` e `DEALLOCATE PREPARE`. `Com_stmt_fetch` representa o número total de viagens de ida e volta na rede emitidas ao recuperar de cursors.
+  Essas variáveis representam comandos de declaração preparada. Seus nomes referem-se ao conjunto de comandos `COM_xxx` usado na camada de rede. Em outras palavras, seus valores aumentam sempre que chamadas da API de declaração preparada, como **mysql_stmt_prepare()**, **mysql_stmt_execute()**, e assim por diante, são executadas. No entanto, `Com_stmt_prepare`, `Com_stmt_execute` e `Com_stmt_close` também aumentam para `PREPARE`, `EXECUTE` ou `DEALLOCATE PREPARE`, respectivamente. Além disso, os valores das variáveis de contador de declarações mais antigas `Com_prepare_sql`, `Com_execute_sql` e `Com_dealloc_sql` aumentam para as declarações `PREPARE`, `EXECUTE` e `DEALLOCATE PREPARE`. `Com_stmt_fetch` representa o número total de viagens de ida e volta na rede emitidas ao recuperar de cursors.
 
   `Com_stmt_reprepare` indica quantas vezes as instruções foram reprogramadas automaticamente pelo servidor após alterações de metadados em tabelas ou visualizações referenciadas pela instrução. Uma operação de reprogramação incrementa `Com_stmt_reprepare` e também `Com_stmt_prepare`.
 
@@ -102,7 +102,7 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   A partir do MySQL 5.7.3, as variáveis de status `Connection_errors_xxx` não são visíveis no servidor integrado, pois, para esse servidor, elas não são atualizadas e não têm significado.
 
-  - \[`Erros de conexão_aceitar`]\(server-status-variables.html#statvar\_Erros de conexão\_aceitar)
+  - [`Erros de conexão_aceitar`]\(server-status-variables.html#statvar_Erros de conexão_aceitar)
 
     O número de erros que ocorreram durante as chamadas para `accept()` na porta de escuta.
 
@@ -118,7 +118,7 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
     O número de erros que ocorreram ao procurar por endereços IP do cliente de conexão.
 
-  - \[`Erros de conexão_selecionar`]\(server-status-variables.html#statvar\_Erros de conexão\_selecionar)
+  - [`Erros de conexão_selecionar`]\(server-status-variables.html#statvar_Erros de conexão_selecionar)
 
     O número de erros que ocorreram durante chamadas para `select()` ou `poll()` na porta de escuta. (O falha desta operação não significa necessariamente que uma conexão com o cliente foi rejeitada.)
 
@@ -246,11 +246,11 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   A variável de status `Innodb_available_undo_logs` está desatualizada a partir do MySQL 5.7.19; espere-se que ela seja removida em uma futura versão.
 
-  O número total de segmentos de rollback disponíveis do `InnoDB` \[glossary.html#glos\_rollback\_segment]. Complementa a variável de sistema `innodb_rollback_segments`, que define o número de segmentos de rollback ativos.
+  O número total de segmentos de rollback disponíveis do `InnoDB` [glossary.html#glos_rollback_segment]. Complementa a variável de sistema `innodb_rollback_segments`, que define o número de segmentos de rollback ativos.
 
   Um segmento de rollback sempre reside no espaço de tabelas do sistema, e 32 segmentos de rollback são reservados para uso de tabelas temporárias e hospedados no espaço de tabelas temporárias (`ibtmp1`). Veja Seção 14.6.7, “Logs de Undo”.
 
-  Se você iniciar uma instância MySQL com 32 ou menos segmentos de rollback, o `InnoDB` ainda atribui um segmento de rollback ao espaço de tabelas do sistema e 32 segmentos de rollback ao espaço de tabelas temporárias. Nesse caso, `Innodb_available_undo_logs` relata 33 segmentos de rollback disponíveis, mesmo que a instância tenha sido inicializada com um valor menor de `innodb_rollback_segments` (innodb-parameters.html#sysvar\_innodb\_rollback\_segments).
+  Se você iniciar uma instância MySQL com 32 ou menos segmentos de rollback, o `InnoDB` ainda atribui um segmento de rollback ao espaço de tabelas do sistema e 32 segmentos de rollback ao espaço de tabelas temporárias. Nesse caso, `Innodb_available_undo_logs` relata 33 segmentos de rollback disponíveis, mesmo que a instância tenha sido inicializada com um valor menor de `innodb_rollback_segments` (innodb-parameters.html#sysvar_innodb_rollback_segments).
 
 - `Innodb_buffer_pool_dump_status`
 
@@ -266,15 +266,15 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
 - `Innodb_buffer_pool_bytes_data`
 
-  O número total de bytes no `InnoDB` pool de buffers que contém dados. O número inclui páginas sujas e limpas. Para cálculos mais precisos de uso de memória do que com `Innodb_buffer_pool_pages_data`, quando tabelas \[comprimidos]\(glossary.html#glos\_compression] causam o pool de buffers a reter páginas de tamanhos diferentes.
+  O número total de bytes no `InnoDB` pool de buffers que contém dados. O número inclui páginas sujas e limpas. Para cálculos mais precisos de uso de memória do que com `Innodb_buffer_pool_pages_data`, quando tabelas [comprimidos]\(glossary.html#glos_compression] causam o pool de buffers a reter páginas de tamanhos diferentes.
 
 - `Innodb_buffer_pool_pages_data`
 
-  O número de páginas no `pool de buffers InnoDB` (glossary.html#glos\_buffer\_pool) que contêm dados. O número inclui tanto páginas sujas quanto páginas limpas. Ao usar tabelas compactadas, o valor relatado de `Innodb_buffer_pool_pages_data` pode ser maior que `Innodb_buffer_pool_pages_total` (Bug #59550).
+  O número de páginas no `pool de buffers InnoDB` (glossary.html#glos_buffer_pool) que contêm dados. O número inclui tanto páginas sujas quanto páginas limpas. Ao usar tabelas compactadas, o valor relatado de `Innodb_buffer_pool_pages_data` pode ser maior que `Innodb_buffer_pool_pages_total` (Bug #59550).
 
 - `Innodb_buffer_pool_bytes_dirty`
 
-  O número total atual de bytes mantidos nas páginas sujas (\[glossary.html#glos\_dirty\_page]) no `InnoDB` buffer pool. Para cálculos mais precisos de uso de memória do que com `Innodb_buffer_pool_pages_dirty`, quando tabelas comprimidos fazem com que o buffer pool mantenha páginas de tamanhos diferentes.
+  O número total atual de bytes mantidos nas páginas sujas ([glossary.html#glos_dirty_page]) no `InnoDB` buffer pool. Para cálculos mais precisos de uso de memória do que com `Innodb_buffer_pool_pages_dirty`, quando tabelas comprimidos fazem com que o buffer pool mantenha páginas de tamanhos diferentes.
 
 - `Innodb_buffer_pool_pages_dirty`
 
@@ -290,7 +290,7 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
 - `Innodb_buffer_pool_pages_latched`
 
-  O número de páginas abertas (glossary.html#glos\_page) no `InnoDB` buffer pool. São páginas que estão sendo lidas ou escritas atualmente, ou que não podem ser limpadas ou removidas por algum outro motivo. O cálculo dessa variável é caro, portanto, ela está disponível apenas quando o sistema `UNIV_DEBUG` é definido durante a construção do servidor.
+  O número de páginas abertas (glossary.html#glos_page) no `InnoDB` buffer pool. São páginas que estão sendo lidas ou escritas atualmente, ou que não podem ser limpadas ou removidas por algum outro motivo. O cálculo dessa variável é caro, portanto, ela está disponível apenas quando o sistema `UNIV_DEBUG` é definido durante a construção do servidor.
 
 - `Innodb_buffer_pool_pages_misc`
 
@@ -434,11 +434,11 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
 - `Innodb_row_lock_time_avg`
 
-  O tempo médio para adquirir um bloqueio de linha (glossary.html#glos\_row\_lock) para tabelas `InnoDB`, em milissegundos.
+  O tempo médio para adquirir um bloqueio de linha (glossary.html#glos_row_lock) para tabelas `InnoDB`, em milissegundos.
 
 - `Innodb_row_lock_time_max`
 
-  O tempo máximo para adquirir um bloqueio de linha (glossary.html#glos\_row\_lock) para tabelas `InnoDB`, em milissegundos.
+  O tempo máximo para adquirir um bloqueio de linha (glossary.html#glos_row_lock) para tabelas `InnoDB`, em milissegundos.
 
 - `Innodb_row_lock_waits`
 
@@ -540,15 +540,15 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   O conjunto de caracteres atualmente utilizado pelo plugin de analisador de texto completo MeCab. Para informações relacionadas, consulte Seção 12.9.9, “Plugin de Analisador de Texto Completo MeCab”.
 
-- \[`Número de transações anônimas em andamento`]\(server-status-variables.html#statvar\_Número de transações anônimas em andamento)
+- [`Número de transações anônimas em andamento`]\(server-status-variables.html#statvar_Número de transações anônimas em andamento)
 
   Mostra o número de transações em andamento que foram marcadas como anônimas. Isso pode ser usado para garantir que nenhuma transação adicional esteja aguardando processamento.
 
-- `Número de transações anônimas em violação de `ongoing\_anonymous\_gtid` em andamento`
+- `Número de transações anônimas em violação de `ongoing_anonymous_gtid` em andamento`
 
   Essa variável de status está disponível apenas em builds de depuração. Mostra o número de transações em andamento que usam [`gtid_next=ANONYMOUS`](https://pt.wikipedia.org/wiki/GTID) e que violam a consistência do GTID.
 
-- `Número de transações que estão violando `ongoing\_automatic\_gtid` em andamento`
+- `Número de transações que estão violando `ongoing_automatic_gtid` em andamento`
 
   Essa variável de status está disponível apenas em builds de depuração. Mostra o número de transações em andamento que usam [`gtid_next=AUTOMATIC`](https://pt.wikipedia.org/wiki/GTID) e que violam a consistência do GTID.
 
@@ -560,11 +560,11 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   O número de fluxos abertos (usados principalmente para registro).
 
-- \[`Definições de tabela aberta`]\(server-status-variables.html#statvar\_Definições de tabela aberta)
+- [`Definições de tabela aberta`]\(server-status-variables.html#statvar_Definições de tabela aberta)
 
   O número de arquivos `.frm` armazenados em cache.
 
-- \[`Tabelas abertas`]\(server-status-variables.html#statvar\_Tabelas abertas)
+- [`Tabelas abertas`]\(server-status-variables.html#statvar_Tabelas abertas)
 
   O número de tabelas abertas.
 
@@ -572,11 +572,11 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   O número de arquivos abertos com `my_open()` (uma função da biblioteca `mysys`). Parte do servidor que abre arquivos sem usar essa função não incrementa o contador.
 
-- \[`Definições de tabela abertas`]\(server-status-variables.html#statvar\_Definições de tabela abertas)
+- [`Definições de tabela abertas`]\(server-status-variables.html#statvar_Definições de tabela abertas)
 
   O número de arquivos `.frm` que foram cacheados.
 
-- \[`Tabelas abertas`]\(server-status-variables.html#statvar\_Tabelas abertas)
+- [`Tabelas abertas`]\(server-status-variables.html#statvar_Tabelas abertas)
 
   O número de tabelas que foram abertas. Se `Opened_tables` for grande, o valor de `table_open_cache` provavelmente é muito pequeno.
 
@@ -770,15 +770,15 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   O número de junções que usaram uma pesquisa de intervalo em uma tabela de referência.
 
-- \[`Selecionar intervalo`]\(server-status-variables.html#statvar\_Selecionar intervalo)
+- [`Selecionar intervalo`]\(server-status-variables.html#statvar_Selecionar intervalo)
 
   O número de junções que utilizaram intervalos na primeira tabela. Normalmente, isso não é um problema crítico, mesmo que o valor seja bastante grande.
 
-- \[`Selecionar intervalo de verificação`]\(server-status-variables.html#statvar\_Selecionar intervalo de verificação)
+- [`Selecionar intervalo de verificação`]\(server-status-variables.html#statvar_Selecionar intervalo de verificação)
 
   O número de junções sem chaves que verificam o uso de chaves após cada linha. Se este número não for 0, você deve verificar cuidadosamente os índices de suas tabelas.
 
-- \[`Selecionar varredura`]\(server-status-variables.html#statvar\_Selecionar varredura)
+- [`Selecionar varredura`]\(server-status-variables.html#statvar_Selecionar varredura)
 
   O número de junções que realizaram uma varredura completa da primeira tabela.
 
@@ -786,7 +786,7 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   Mostra o intervalo de batida de replicação (em segundos) em uma replica de replicação.
 
-  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show\_compatibility\_56 nas variáveis de status do escravo.
+  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show_compatibility_56 nas variáveis de status do escravo.
 
   Nota
 
@@ -796,11 +796,11 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   Mostra quando o sinal de batimento cardíaco mais recente foi recebido por uma réplica, como um valor de `TIMESTAMP`.
 
-  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show\_compatibility\_56 nas variáveis de status do escravo.
+  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show_compatibility_56 nas variáveis de status do escravo.
 
   Nota
 
-  Essa variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `LAST_HEARTBEAT_TIMESTAMP` na tabela `replication_connection_status` para o canal de replicação. `Slave_last_heartbeat` (variáveis de status do servidor.html#statvar\_Slave\_last\_heartbeat) está desatualizado e será removido no MySQL 8.0.
+  Essa variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `LAST_HEARTBEAT_TIMESTAMP` na tabela `replication_connection_status` para o canal de replicação. `Slave_last_heartbeat` (variáveis de status do servidor.html#statvar_Slave_last_heartbeat) está desatualizado e será removido no MySQL 8.0.
 
 - `Slave_open_temp_tables`
 
@@ -810,21 +810,21 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   Esse contador é incrementado a cada batida de replicação recebida por uma réplica de replicação desde a última vez que a réplica foi reiniciada ou redefinida, ou uma declaração `CHANGE MASTER TO` foi emitida.
 
-  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show\_compatibility\_56 nas variáveis de status do escravo.
+  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show_compatibility_56 nas variáveis de status do escravo.
 
   Nota
 
-  Essa variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `COUNT_RECEIVED_HEARTBEATS` na tabela `replication_connection_status` para o canal de replicação. `Slave_received_heartbeats` (variáveis de estado do servidor.html#statvar\_Slave\_received\_heartbeats) está desatualizado e será removido no MySQL 8.0.
+  Essa variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `COUNT_RECEIVED_HEARTBEATS` na tabela `replication_connection_status` para o canal de replicação. `Slave_received_heartbeats` (variáveis de estado do servidor.html#statvar_Slave_received_heartbeats) está desatualizado e será removido no MySQL 8.0.
 
 - `Slave_retried_transactions`
 
   O número total de vezes desde a inicialização em que o fio de replicação SQL tentou novamente as transações.
 
-  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show\_compatibility\_56 nas variáveis de status do escravo.
+  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show_compatibility_56 nas variáveis de status do escravo.
 
   Nota
 
-  Essa variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `COUNT_TRANSACTIONS_RETRIES` na tabela `replication_applier_status` para o canal de replicação. `Slave_retried_transactions` (variáveis de estado do servidor.html#statvar\_Slave\_retried\_transactions) está desatualizado e será removido no MySQL 8.0.
+  Essa variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `COUNT_TRANSACTIONS_RETRIES` na tabela `replication_applier_status` para o canal de replicação. `Slave_retried_transactions` (variáveis de estado do servidor.html#statvar_Slave_retried_transactions) está desatualizado e será removido no MySQL 8.0.
 
 - `Slave_rows_last_search_algorithm_used`
 
@@ -838,11 +838,11 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   Esta opção está ativada se este servidor for uma réplica conectada a uma fonte de replicação e se os threads de E/S e SQL estiverem em execução; caso contrário, está desativada.
 
-  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show\_compatibility\_56 nas variáveis de status do escravo.
+  Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show_compatibility_56 nas variáveis de status do escravo.
 
   Nota
 
-  Essa variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `SERVICE_STATE` nas tabelas `[replication_applier_status]` (performance-schema-replication-applier-status-table.html) ou `[replication_connection_status]` (performance-schema-replication-connection-status-table.html) do canal de replicação. `Slave_running` (server-status-variables.html#statvar\_Slave\_running) está desatualizado e será removido no MySQL 8.0.
+  Essa variável mostra apenas o status do canal de replicação padrão. Para monitorar qualquer canal de replicação, use a coluna `SERVICE_STATE` nas tabelas `[replication_applier_status]` (performance-schema-replication-applier-status-table.html) ou `[replication_connection_status]` (performance-schema-replication-connection-status-table.html) do canal de replicação. `Slave_running` (server-status-variables.html#statvar_Slave_running) está desatualizado e será removido no MySQL 8.0.
 
 - `Slow_launch_threads`
 
@@ -858,7 +858,7 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
   O número de passes de fusão que o algoritmo de ordenação teve que realizar. Se esse valor for grande, você deve considerar aumentar o valor da variável de sistema `sort_buffer_size`.
 
-- \[`Intervalo de classificação`]\(server-status-variables.html#statvar\_Intervalo de classificação)
+- [`Intervalo de classificação`]\(server-status-variables.html#statvar_Intervalo de classificação)
 
   O número de tipos de classificação que foram feitos usando intervalos.
 

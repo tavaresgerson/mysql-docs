@@ -1,10 +1,10 @@
-### 24.4.11 The INFORMATION\_SCHEMA INNODB\_FT\_DELETED Table
+### 24.4.11 The INFORMATION_SCHEMA INNODB_FT_DELETED Table
 
 The [`INNODB_FT_DELETED`](information-schema-innodb-ft-deleted-table.html "24.4.11 The INFORMATION_SCHEMA INNODB_FT_DELETED Table") table stores rows that are deleted from the `FULLTEXT` index for an `InnoDB` table. To avoid expensive index reorganization during DML operations for an `InnoDB` `FULLTEXT` index, the information about newly deleted words is stored separately, filtered out of search results when you do a text search, and removed from the main search index only when you issue an [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") statement for the `InnoDB` table. For more information, see [Optimizing InnoDB Full-Text Indexes](fulltext-fine-tuning.html#fulltext-optimize "Optimizing InnoDB Full-Text Indexes").
 
 This table is empty initially. Before querying it, set the value of the [`innodb_ft_aux_table`](innodb-parameters.html#sysvar_innodb_ft_aux_table) system variable to the name (including the database name) of the table that contains the `FULLTEXT` index; for example `test/articles`.
 
-For related usage information and examples, see [Section 14.16.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”](innodb-information-schema-fulltext_index-tables.html "14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables").
+For related usage information and examples, see [Section 14.16.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”](innodb-information-schema-fulltext_index-tables.html "14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables").
 
 The [`INNODB_FT_DELETED`](information-schema-innodb-ft-deleted-table.html "24.4.11 The INFORMATION_SCHEMA INNODB_FT_DELETED Table") table has these columns:
 

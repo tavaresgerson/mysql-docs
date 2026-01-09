@@ -1,4 +1,4 @@
-#### 26.4.5.22 A função version\_patch()
+#### 26.4.5.22 A função version_patch()
 
 Essa função retorna a versão de lançamento do patch do servidor MySQL.
 

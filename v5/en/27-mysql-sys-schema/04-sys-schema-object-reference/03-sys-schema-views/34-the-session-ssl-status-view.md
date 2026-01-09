@@ -1,4 +1,4 @@
-#### 26.4.3.34 The session\_ssl\_status View
+#### 26.4.3.34 The session_ssl_status View
 
 For each connection, this view displays the SSL version, cipher, and count of reused SSL sessions.
 

@@ -81,13 +81,13 @@ The `Rewriter` query rewrite plugin supports the following system variables. The
 
 * [`rewriter_enabled`](rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled)
 
-  <table frame="box" rules="all" summary="Properties for rewriter_enabled"><tbody><tr><th>System Variable</th> <td><code><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled">rewriter_enabled</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rewriter_enabled"><tbody><tr><th>System Variable</th> <td><code>rewriter_enabled</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Whether the `Rewriter` query rewrite plugin is enabled.
 
 * [`rewriter_verbose`](rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_verbose)
 
-  <table frame="box" rules="all" summary="Properties for rewriter_verbose"><tbody><tr><th>System Variable</th> <td><code><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_verbose">rewriter_verbose</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rewriter_verbose"><tbody><tr><th>System Variable</th> <td><code>rewriter_verbose</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
 
   For internal use.
 

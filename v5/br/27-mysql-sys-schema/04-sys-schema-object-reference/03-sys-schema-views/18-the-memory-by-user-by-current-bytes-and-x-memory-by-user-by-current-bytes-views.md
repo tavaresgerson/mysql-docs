@@ -1,4 +1,4 @@
-#### 26.4.3.18 As visualizações memory\_by\_user\_by\_current\_bytes e x$memory\_by\_user\_by\_current\_bytes
+#### 26.4.3.18 As visualizações memory_by_user_by_current_bytes e x$memory_by_user_by_current_bytes
 
 Esses pontos resumem o uso da memória, agrupados por usuário. Por padrão, as linhas são ordenadas por quantidade de memória usada em ordem decrescente.
 

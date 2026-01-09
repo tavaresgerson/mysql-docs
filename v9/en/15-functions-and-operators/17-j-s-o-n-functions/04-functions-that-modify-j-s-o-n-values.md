@@ -146,7 +146,7 @@ The functions in this section modify JSON values and return the result.
 
   Note
 
-  For an explanation and example of the differences between this function and `JSON_MERGE_PRESERVE()`, see JSON\_MERGE\_PATCH() compared with JSON\_MERGE\_PRESERVE() compared with JSON_MERGE_PRESERVE()").
+  For an explanation and example of the differences between this function and `JSON_MERGE_PRESERVE()`, see JSON_MERGE_PATCH() compared with JSON_MERGE_PRESERVE() compared with JSON_MERGE_PRESERVE()").
 
   `JSON_MERGE_PATCH()` performs a merge as follows:
 
@@ -232,7 +232,7 @@ The functions in this section modify JSON values and return the result.
   +----------------------------------------------------+
   ```
 
-  **JSON\_MERGE\_PATCH() compared with JSON\_MERGE\_PRESERVE().** The behavior of `JSON_MERGE_PATCH()` is the same as that of `JSON_MERGE_PRESERVE()`, with the following two exceptions:
+  **JSON_MERGE_PATCH() compared with JSON_MERGE_PRESERVE().** The behavior of `JSON_MERGE_PATCH()` is the same as that of `JSON_MERGE_PRESERVE()`, with the following two exceptions:
 
   + `JSON_MERGE_PATCH()` removes any member in the first object with a matching key in the second object, provided that the value associated with the key in the second object is not JSON `null`.
 
@@ -310,7 +310,7 @@ The functions in this section modify JSON values and return the result.
   +----------------------------------------------------------------------------------+
   ```
 
-  This function is similar to but differs from `JSON_MERGE_PATCH()` in significant respects; see JSON\_MERGE\_PATCH() compared with JSON\_MERGE\_PRESERVE() compared with JSON_MERGE_PRESERVE()"), for more information.
+  This function is similar to but differs from `JSON_MERGE_PATCH()` in significant respects; see JSON_MERGE_PATCH() compared with JSON_MERGE_PRESERVE() compared with JSON_MERGE_PRESERVE()"), for more information.
 
 * `JSON_REMOVE(json_doc, path[, path] ...)`
 
@@ -425,11 +425,11 @@ The functions in this section modify JSON values and return the result.
 
   Unquotes JSON value and returns the result as a `utf8mb4` string. Returns `NULL` if the argument is `NULL`. An error occurs if the value starts and ends with double quotes but is not a valid JSON string literal.
 
-  Within a string, certain sequences have special meaning unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled. Each of these sequences begins with a backslash (`\`), known as the *escape character*. MySQL recognizes the escape sequences shown in Table 14.23, “JSON\_UNQUOTE() Special Character Escape Sequences” Special Character Escape Sequences"). For all other escape sequences, backslash is ignored. That is, the escaped character is interpreted as if it was not escaped. For example, `\x` is just `x`. These sequences are case-sensitive. For example, `\b` is interpreted as a backspace, but `\B` is interpreted as `B`.
+  Within a string, certain sequences have special meaning unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled. Each of these sequences begins with a backslash (`\`), known as the *escape character*. MySQL recognizes the escape sequences shown in Table 14.23, “JSON_UNQUOTE() Special Character Escape Sequences” Special Character Escape Sequences"). For all other escape sequences, backslash is ignored. That is, the escaped character is interpreted as if it was not escaped. For example, `\x` is just `x`. These sequences are case-sensitive. For example, `\b` is interpreted as a backspace, but `\B` is interpreted as `B`.
 
-  **Table 14.23 JSON\_UNQUOTE() Special Character Escape Sequences**
+  **Table 14.23 JSON_UNQUOTE() Special Character Escape Sequences**
 
-  <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Character Represented by Sequence</th> </tr></thead><tbody><tr> <td><code class="literal">\"</code><a class="indexterm" name="id235510"></a><a class="indexterm" name="id235512"></a></td> <td>A double quote (<code class="literal">"</code>) character</td> </tr><tr> <td><code class="literal">\b</code><a class="indexterm" name="id235519"></a><a class="indexterm" name="id235521"></a></td> <td>A backspace character</td> </tr><tr> <td><code class="literal">\f</code><a class="indexterm" name="id235527"></a><a class="indexterm" name="id235529"></a></td> <td>A formfeed character</td> </tr><tr> <td><code class="literal">\n</code><a class="indexterm" name="id235535"></a><a class="indexterm" name="id235537"></a><a class="indexterm" name="id235539"></a><a class="indexterm" name="id235541"></a></td> <td>A newline (linefeed) character</td> </tr><tr> <td><code class="literal">\r</code><a class="indexterm" name="id235547"></a><a class="indexterm" name="id235549"></a><a class="indexterm" name="id235551"></a></td> <td>A carriage return character</td> </tr><tr> <td><code class="literal">\t</code><a class="indexterm" name="id235557"></a><a class="indexterm" name="id235559"></a></td> <td>A tab character</td> </tr><tr> <td><code class="literal">\\</code><a class="indexterm" name="id235565"></a><a class="indexterm" name="id235567"></a></td> <td>A backslash (<code class="literal">\</code>) character</td> </tr><tr> <td><code class="literal">\u<em class="replaceable"><code>XXXX</code></em></code><a class="indexterm" name="id235575"></a><a class="indexterm" name="id235577"></a></td> <td>UTF-8 bytes for Unicode value <em class="replaceable"><code>XXXX</code></em></td> </tr></tbody></table>
+  <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Escape Sequence</th> <th>Character Represented by Sequence</th> </tr></thead><tbody><tr> <td><code class="literal">\"</code></td> <td>A double quote (<code class="literal">"</code>) character</td> </tr><tr> <td><code class="literal">\b</code></td> <td>A backspace character</td> </tr><tr> <td><code class="literal">\f</code></td> <td>A formfeed character</td> </tr><tr> <td><code class="literal">\n</code></td> <td>A newline (linefeed) character</td> </tr><tr> <td><code class="literal">\r</code></td> <td>A carriage return character</td> </tr><tr> <td><code class="literal">\t</code></td> <td>A tab character</td> </tr><tr> <td><code class="literal">\\</code></td> <td>A backslash (<code class="literal">\</code>) character</td> </tr><tr> <td><code class="literal">\u<em class="replaceable"><code>XXXX</code></em></code></td> <td>UTF-8 bytes for Unicode value <em class="replaceable"><code>XXXX</code></em></td> </tr></tbody></table>
 
   Two simple examples of the use of this function are shown here:
 

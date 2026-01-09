@@ -1,14 +1,14 @@
 ### 25.12.3 Tabelas de Instâncias do Schema de Desempenho
 
-25.12.3.1 A tabela cond\_instances
+25.12.3.1 A tabela cond_instances
 
-25.12.3.2 A tabela file\_instances
+25.12.3.2 A tabela file_instances
 
-25.12.3.3 A tabela mutex\_instances
+25.12.3.3 A tabela mutex_instances
 
-Tabela rwlock\_instances
+Tabela rwlock_instances
 
-25.12.3.5 A tabela socket\_instances
+25.12.3.5 A tabela socket_instances
 
 As tabelas de instâncias documentam os tipos de objetos que estão instrumentados. Elas fornecem nomes de eventos e notas explicativas ou informações de status:
 

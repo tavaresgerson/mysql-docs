@@ -98,7 +98,7 @@ Notas:
 
 **Tabela 27.6 Conversão dos tipos MySQL ENUM e SET para JavaScript**
 
-<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <td>Tipo MySQL</td> <td>Tipo JavaScript</td> </tr></thead><tbody><tr> <td><a class="link" href="enum.html" title="13.3.6 O tipo ENUM"><code>ENUM</code></a></td> <td><code>String</code></td> </tr><tr> <td><a class="link" href="set.html" title="13.3.7 O tipo SET"><code>SET</code></a></td> <td><code><a class="ulink" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference//Global_Objects/Set" target="_blank">Set</a></code></td> </tr></tbody></table>
+<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <td>Tipo MySQL</td> <td>Tipo JavaScript</td> </tr></thead><tbody><tr> <td><code>ENUM</code></td> <td><code>String</code></td> </tr><tr> <td><code>SET</code></td> <td><code>Set</code></td> </tr></tbody></table>
 
 A tabela a seguir mostra as regras para converter um tipo do JavaScript para um tipo MySQL `ENUM` ou `SET`:
 

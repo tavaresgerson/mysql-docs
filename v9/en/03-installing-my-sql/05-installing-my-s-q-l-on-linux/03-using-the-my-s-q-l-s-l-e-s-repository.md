@@ -141,7 +141,7 @@ when the initialization process begins):
 
 * The SSL certificate and key files are generated in the data
   directory.
-* The [validate\_password
+* The [validate_password
   plugin](validate-password.html "8.4.4 The Password Validation Component") is installed and enabled.
 * A superuser account `'root'@'localhost'` is
   created. A password for the superuser is set and stored in the
@@ -166,7 +166,7 @@ when the initialization process begins):
 Note
 
 MySQL's
-validate\_password
+validate_password
 plugin is installed by default. This will require that passwords
 contain at least one uppercase letter, one lowercase letter, one
 digit, and one special character, and that the total password

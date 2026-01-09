@@ -1,10 +1,10 @@
-### 24.4.4 The INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS Table
+### 24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table
 
 The [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") table provides much of the same buffer pool information provided in [`SHOW ENGINE INNODB STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") output. Much of the same information may also be obtained using `InnoDB` buffer pool [server status variables](server-status-variables.html "5.1.9 Server Status Variables").
 
 The idea of making pages in the buffer pool “young” or “not young” refers to transferring them between the [sublists](glossary.html#glos_sublist "sublist") at the head and tail of the buffer pool data structure. Pages made “young” take longer to age out of the buffer pool, while pages made “not young” are moved much closer to the point of [eviction](glossary.html#glos_eviction "eviction").
 
-For related usage information and examples, see [Section 14.16.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”](innodb-information-schema-buffer-pool-tables.html "14.16.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables").
+For related usage information and examples, see [Section 14.16.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”](innodb-information-schema-buffer-pool-tables.html "14.16.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables").
 
 The [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") table has these columns:
 

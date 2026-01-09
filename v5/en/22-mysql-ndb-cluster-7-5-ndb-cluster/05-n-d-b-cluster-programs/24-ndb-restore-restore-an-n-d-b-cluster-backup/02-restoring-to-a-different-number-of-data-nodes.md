@@ -38,7 +38,7 @@ You can restore to a cluster having fewer data nodes than the original provided 
 
    These files are found under [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir)`/BACKUP/BACKUP-B`, on each data node. For the rest of this example, we assume that the backup ID is 1.
 
-   Have all of these files available for later copying to the new data nodes (where they can be accessed on the data node's local file system by [**ndb\_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup")). It is simplest to copy them all to a single location; we assume that this is what you have done.
+   Have all of these files available for later copying to the new data nodes (where they can be accessed on the data node's local file system by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup")). It is simplest to copy them all to a single location; we assume that this is what you have done.
 
 4. The management server for the target cluster is on host `host20`, and the target has two data nodes, with the node IDs and host names shown, from the management server `config.ini` file on `host20`:
 
@@ -74,7 +74,7 @@ You can restore to a cluster having fewer data nodes than the original provided 
 
    For the remainder of this example, we assume that the respective backup files have been saved to the directory `/BACKUP-1` on each of nodes 3 and 5.
 
-6. On each of the two target data nodes, you must restore from both sets of backups. First, restore the backups from nodes 2 and 4 to node 3 by invoking [**ndb\_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") on `host3` as shown here:
+6. On each of the two target data nodes, you must restore from both sets of backups. First, restore the backups from nodes 2 and 4 to node 3 by invoking [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") on `host3` as shown here:
 
    ```sql
    $> ndb_restore -c host20 --nodeid=2 --backupid=1 --restore-data --backup-path=/BACKUP-1
@@ -82,7 +82,7 @@ You can restore to a cluster having fewer data nodes than the original provided 
    $> ndb_restore -c host20 --nodeid=4 --backupid=1 --restore-data --backup-path=/BACKUP-1
    ```
 
-   Then restore the backups from nodes 6 and 8 to node 5 by invoking [**ndb\_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") on `host5`, like this:
+   Then restore the backups from nodes 6 and 8 to node 5 by invoking [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") on `host5`, like this:
 
    ```sql
    $> ndb_restore -c host20 --nodeid=6 --backupid=1 --restore-data --backup-path=/BACKUP-1
@@ -92,13 +92,13 @@ You can restore to a cluster having fewer data nodes than the original provided 
 
 ##### 21.5.24.2.2 Restoring to More Nodes Than the Original
 
-The node ID specified for a given [**ndb\_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") command is that of the node in the original backup and not that of the data node to restore it to. When performing a backup using the method described in this section, [**ndb\_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") connects to the management server and obtains a list of data nodes in the cluster the backup is being restored to. The restored data is distributed accordingly, so that the number of nodes in the target cluster does not need to be to be known or calculated when performing the backup.
+The node ID specified for a given [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") command is that of the node in the original backup and not that of the data node to restore it to. When performing a backup using the method described in this section, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") connects to the management server and obtains a list of data nodes in the cluster the backup is being restored to. The restored data is distributed accordingly, so that the number of nodes in the target cluster does not need to be to be known or calculated when performing the backup.
 
 Note
 
 When changing the total number of LCP threads or LQH threads per node group, you should recreate the schema from backup created using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program").
 
-1. *Create the backup of the data*. You can do this by invoking the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client `START BACKUP` command from the system shell, like this:
+1. *Create the backup of the data*. You can do this by invoking the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client `START BACKUP` command from the system shell, like this:
 
    ```sql
    $> ndb_mgm -e "START BACKUP 1"
@@ -114,7 +114,7 @@ When changing the total number of LCP threads or LQH threads per node group, you
 
    Important
 
-   Once you have created the `NDB` native backup using [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"), you must not make any schema changes before creating the backup of the schema, if you do so.
+   Once you have created the `NDB` native backup using [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"), you must not make any schema changes before creating the backup of the schema, if you do so.
 
 3. Copy the backup directory to the new cluster. For example if the backup you want to restore has ID 1 and `BackupDataDir` = `/backups/node_nodeid`, then the path to the backup on this node is `/backups/node_1/BACKUP/BACKUP-1`. Inside this directory there are three files, listed here:
 
@@ -140,13 +140,13 @@ To restore from the backup just created, perform the following steps:
 
      When importing the schema file, you may need to specify the [`--user`](mysql-command-options.html#option_mysql_user) and [`--password`](mysql-command-options.html#option_mysql_password) options (and possibly others) in addition to what is shown, in order for the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to be able to connect to the MySQL server.
 
-   * If you did *not* need to create a schema file, you can re-create the schema using [**ndb\_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--restore-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-meta) (short form `-m`), similar to what is shown here:
+   * If you did *not* need to create a schema file, you can re-create the schema using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--restore-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-meta) (short form `-m`), similar to what is shown here:
 
      ```sql
      $> ndb_restore --nodeid=1 --backupid=1 --restore-meta --backup-path=/backups/node_1/BACKUP/BACKUP-1
      ```
 
-     [**ndb\_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") must be able to contact the management server; add the [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring) option if and as needed to make this possible.
+     [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") must be able to contact the management server; add the [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring) option if and as needed to make this possible.
 
 2. *Restore the data*. This needs to be done once for each data node in the original cluster, each time using that data node's node ID. Assuming that there were 4 data nodes originally, the set of commands required would look something like this:
 
@@ -167,4 +167,4 @@ To restore from the backup just created, perform the following steps:
    $> ndb_restore --nodeid=1 --backupid=1 --backup-path=/backups/node_1/BACKUP/BACKUP-1 --rebuild-indexes
    ```
 
-   As mentioned previously, you may need to add the [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring) option, so that [**ndb\_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") can contact the management server.
+   As mentioned previously, you may need to add the [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring) option, so that [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") can contact the management server.

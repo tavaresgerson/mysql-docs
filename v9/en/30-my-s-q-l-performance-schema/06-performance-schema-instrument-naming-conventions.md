@@ -62,7 +62,7 @@ The suffix part of instrument names comes from the code for the instruments them
 
 ### Idle Instrument Elements
 
-The `idle` instrument is used for idle events, which The Performance Schema generates as discussed in the description of the `socket_instances.STATE` column in Section 29.12.3.5, “The socket\_instances Table”.
+The `idle` instrument is used for idle events, which The Performance Schema generates as discussed in the description of the `socket_instances.STATE` column in Section 29.12.3.5, “The socket_instances Table”.
 
 ### Error Instrument Elements
 

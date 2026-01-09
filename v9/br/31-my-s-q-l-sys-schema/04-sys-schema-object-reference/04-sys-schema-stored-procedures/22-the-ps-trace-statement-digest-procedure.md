@@ -1,4 +1,4 @@
-#### 30.4.4.22 O procedimento ps\_trace\_statement\_digest()
+#### 30.4.4.22 O procedimento ps_trace_statement_digest()
 
 Traça toda a instrumentação do Performance Schema para um digest específico de uma declaração.
 

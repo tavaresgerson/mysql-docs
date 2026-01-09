@@ -44,7 +44,7 @@ Para usar as funções para ler o log de auditoria, siga esses princípios:
 
 - Uma chamada bem-sucedida para `audit_log_read()` para ler eventos retorna uma string de `JSON` contendo um array de eventos de auditoria:
 
-  - Se o valor final da matriz retornada não for um valor `null` de `JSON` (\[json.html]), há mais eventos após os que foram lidos e `audit_log_read()` (\[audit-log-reference.html#function\_audit-log-read]) pode ser chamado novamente para lê-los.
+  - Se o valor final da matriz retornada não for um valor `null` de `JSON` ([json.html]), há mais eventos após os que foram lidos e `audit_log_read()` ([audit-log-reference.html#function_audit-log-read]) pode ser chamado novamente para lê-los.
 
   - Se o valor final da matriz retornada for um valor `null` de tipo `JSON` (json.html), não há mais eventos para serem lidos na sequência atual de leitura.
 

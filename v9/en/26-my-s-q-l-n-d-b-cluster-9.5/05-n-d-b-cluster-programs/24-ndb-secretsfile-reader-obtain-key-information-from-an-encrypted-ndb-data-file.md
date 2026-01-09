@@ -1,6 +1,6 @@
-### 25.5.24 ndb\_secretsfile\_reader — Obtain Key Information from an Encrypted NDB Data File
+### 25.5.24 ndb_secretsfile_reader — Obtain Key Information from an Encrypted NDB Data File
 
-**ndb\_secretsfile\_reader** gets the encryption key from an `NDB` encryption secrets file, given the password.
+**ndb_secretsfile_reader** gets the encryption key from an `NDB` encryption secrets file, given the password.
 
 #### Usage
 
@@ -16,7 +16,7 @@ ndb_secretsfile_reader: [Warning] Using a password on the command line interface
 cac256e18b2ddf6b5ef82d99a72f18e864b78453cc7fa40bfaf0c40b91122d18
 ```
 
-These and other options that can be used with **ndb\_secretsfile\_reader** are shown in the following table. Additional descriptions follow the table.
+These and other options that can be used with **ndb_secretsfile_reader** are shown in the following table. Additional descriptions follow the table.
 
 * `--defaults-extra-file`
 
@@ -40,13 +40,13 @@ These and other options that can be used with **ndb\_secretsfile\_reader** are s
 
   <table frame="box" rules="all" summary="Properties for filesystem-password"><tbody><tr><th>Command-Line Format</th> <td><code>--filesystem-password=password</code></td> </tr></tbody></table>
 
-  Pass the filesystem encryption and decryption password to **ndb\_secretsfile\_reader** using `stdin`, `tty`, or the `my.cnf` file.
+  Pass the filesystem encryption and decryption password to **ndb_secretsfile_reader** using `stdin`, `tty`, or the `my.cnf` file.
 
 * `--filesystem-password-from-stdin`
 
   <table frame="box" rules="all" summary="Properties for filesystem-password-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code>--filesystem-password-from-stdin={TRUE|FALSE}</code></td> </tr></tbody></table>
 
-  Pass the filesystem encryption and decryption password to **ndb\_secretsfile\_reader** from `stdin` (only).
+  Pass the filesystem encryption and decryption password to **ndb_secretsfile_reader** from `stdin` (only).
 
 * `--help`
 

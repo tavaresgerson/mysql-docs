@@ -6,7 +6,7 @@ To control activation of the `ddl_rewriter` plugin, use this option:
 
 *  `--ddl-rewriter[=value]`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ddl-rewriter[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--ddl-rewriter[=value]</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   This option controls how the server loads the `ddl_rewriter` plugin at startup. It is available only if the plugin has been previously registered with  `INSTALL PLUGIN` or is loaded with  `--plugin-load` or `--plugin-load-add`. See Section 7.6.5.1, “Installing or Uninstalling `ddl_rewriter`”.
 

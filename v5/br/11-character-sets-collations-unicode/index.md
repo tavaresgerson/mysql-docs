@@ -49,11 +49,11 @@
 
 10.8.4 Collation Coercibility in Expressions
 
-10.8.5 The binary Collation Compared to \_bin Collations
+10.8.5 The binary Collation Compared to _bin Collations
 
 10.8.6 Examples of the Effect of Collation
 
-10.8.7 Using Collation in INFORMATION\_SCHEMA Searches
+10.8.7 Using Collation in INFORMATION_SCHEMA Searches
 ```
 
 10.9 Suporte a Unicode:   10.9.1 Conjunto de Caracteres utf8mb4 (Codificação Unicode UTF-8 de 4 bytes)

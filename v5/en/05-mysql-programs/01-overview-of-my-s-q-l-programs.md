@@ -14,47 +14,47 @@ The MySQL server, **mysqld**, is the main program that does most of the work in 
 
   The SQL daemon (that is, the MySQL server). To use client programs, **mysqld** must be running, because clients gain access to databases by connecting to the server. See Section 4.3.1, “mysqld — The MySQL Server”.
 
-* **mysqld\_safe**
+* **mysqld_safe**
 
-  A server startup script. **mysqld\_safe** attempts to start **mysqld**. See Section 4.3.2, “mysqld\_safe — MySQL Server Startup Script”.
+  A server startup script. **mysqld_safe** attempts to start **mysqld**. See Section 4.3.2, “mysqld_safe — MySQL Server Startup Script”.
 
 * **mysql.server**
 
-  A server startup script. This script is used on systems that use System V-style run directories containing scripts that start system services for particular run levels. It invokes **mysqld\_safe** to start the MySQL server. See Section 4.3.3, “mysql.server — MySQL Server Startup Script”.
+  A server startup script. This script is used on systems that use System V-style run directories containing scripts that start system services for particular run levels. It invokes **mysqld_safe** to start the MySQL server. See Section 4.3.3, “mysql.server — MySQL Server Startup Script”.
 
-* **mysqld\_multi**
+* **mysqld_multi**
 
-  A server startup script that can start or stop multiple servers installed on the system. See Section 4.3.4, “mysqld\_multi — Manage Multiple MySQL Servers”.
+  A server startup script that can start or stop multiple servers installed on the system. See Section 4.3.4, “mysqld_multi — Manage Multiple MySQL Servers”.
 
 Several programs perform setup operations during MySQL installation or upgrading:
 
-* **comp\_err**
+* **comp_err**
 
-  This program is used during the MySQL build/installation process. It compiles error message files from the error source files. See Section 4.4.1, “comp\_err — Compile MySQL Error Message File”.
+  This program is used during the MySQL build/installation process. It compiles error message files from the error source files. See Section 4.4.1, “comp_err — Compile MySQL Error Message File”.
 
-* **mysql\_install\_db**
+* **mysql_install_db**
 
-  This program initializes the MySQL data directory, creates the `mysql` database and initializes its grant tables with default privileges, and sets up the `InnoDB` system tablespace. It is usually executed only once, when first installing MySQL on a system. See Section 4.4.2, “mysql\_install\_db — Initialize MySQL Data Directory”, and Section 2.9, “Postinstallation Setup and Testing”.
+  This program initializes the MySQL data directory, creates the `mysql` database and initializes its grant tables with default privileges, and sets up the `InnoDB` system tablespace. It is usually executed only once, when first installing MySQL on a system. See Section 4.4.2, “mysql_install_db — Initialize MySQL Data Directory”, and Section 2.9, “Postinstallation Setup and Testing”.
 
-* **mysql\_plugin**
+* **mysql_plugin**
 
-  This program configures MySQL server plugins. See Section 4.4.3, “mysql\_plugin — Configure MySQL Server Plugins”.
+  This program configures MySQL server plugins. See Section 4.4.3, “mysql_plugin — Configure MySQL Server Plugins”.
 
-* **mysql\_secure\_installation**
+* **mysql_secure_installation**
 
-  This program enables you to improve the security of your MySQL installation. See Section 4.4.4, “mysql\_secure\_installation — Improve MySQL Installation Security”.
+  This program enables you to improve the security of your MySQL installation. See Section 4.4.4, “mysql_secure_installation — Improve MySQL Installation Security”.
 
-* **mysql\_ssl\_rsa\_setup**
+* **mysql_ssl_rsa_setup**
 
-  This program creates the SSL certificate and key files and RSA key-pair files required to support secure connections, if those files are missing. Files created by **mysql\_ssl\_rsa\_setup** can be used for secure connections using SSL or RSA. See Section 4.4.5, “mysql\_ssl\_rsa\_setup — Create SSL/RSA Files”.
+  This program creates the SSL certificate and key files and RSA key-pair files required to support secure connections, if those files are missing. Files created by **mysql_ssl_rsa_setup** can be used for secure connections using SSL or RSA. See Section 4.4.5, “mysql_ssl_rsa_setup — Create SSL/RSA Files”.
 
-* **mysql\_tzinfo\_to\_sql**
+* **mysql_tzinfo_to_sql**
 
-  This program loads the time zone tables in the `mysql` database using the contents of the host system zoneinfo database (the set of files describing time zones). See Section 4.4.6, “mysql\_tzinfo\_to\_sql — Load the Time Zone Tables”.
+  This program loads the time zone tables in the `mysql` database using the contents of the host system zoneinfo database (the set of files describing time zones). See Section 4.4.6, “mysql_tzinfo_to_sql — Load the Time Zone Tables”.
 
-* **mysql\_upgrade**
+* **mysql_upgrade**
 
-  This program is used after a MySQL upgrade operation. It updates the grant tables with any changes that have been made in newer versions of MySQL, and checks tables for incompatibilities and repairs them if necessary. See Section 4.4.7, “mysql\_upgrade — Check and Upgrade MySQL Tables”.
+  This program is used after a MySQL upgrade operation. It updates the grant tables with any changes that have been made in newer versions of MySQL, and checks tables for incompatibilities and repairs them if necessary. See Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”.
 
 MySQL client programs that connect to the MySQL server:
 
@@ -100,9 +100,9 @@ MySQL administrative and utility programs:
 
   An offline `InnoDB` offline file checksum utility. See Section 4.6.1, “innochecksum — Offline InnoDB File Checksum Utility”.
 
-* **myisam\_ftdump**
+* **myisam_ftdump**
 
-  A utility that displays information about full-text indexes in `MyISAM` tables. See Section 4.6.2, “myisam\_ftdump — Display Full-Text Index information”.
+  A utility that displays information about full-text indexes in `MyISAM` tables. See Section 4.6.2, “myisam_ftdump — Display Full-Text Index information”.
 
 * **myisamchk**
 
@@ -116,9 +116,9 @@ MySQL administrative and utility programs:
 
   A utility that compresses `MyISAM` tables to produce smaller read-only tables. See Section 4.6.5, “myisampack — Generate Compressed, Read-Only MyISAM Tables”.
 
-* **mysql\_config\_editor**
+* **mysql_config_editor**
 
-  A utility that enables you to store authentication credentials in a secure, encrypted login path file named `.mylogin.cnf`. See Section 4.6.6, “mysql\_config\_editor — MySQL Configuration Utility”.
+  A utility that enables you to store authentication credentials in a secure, encrypted login path file named `.mylogin.cnf`. See Section 4.6.6, “mysql_config_editor — MySQL Configuration Utility”.
 
 * **mysqlbinlog**
 
@@ -130,23 +130,23 @@ MySQL administrative and utility programs:
 
 MySQL program-development utilities:
 
-* **mysql\_config**
+* **mysql_config**
 
-  A shell script that produces the option values needed when compiling MySQL programs. See Section 4.7.1, “mysql\_config — Display Options for Compiling Clients”.
+  A shell script that produces the option values needed when compiling MySQL programs. See Section 4.7.1, “mysql_config — Display Options for Compiling Clients”.
 
-* **my\_print\_defaults**
+* **my_print_defaults**
 
-  A utility that shows which options are present in option groups of option files. See Section 4.7.2, “my\_print\_defaults — Display Options from Option Files”.
+  A utility that shows which options are present in option groups of option files. See Section 4.7.2, “my_print_defaults — Display Options from Option Files”.
 
-* **resolve\_stack\_dump**
+* **resolve_stack_dump**
 
-  A utility program that resolves a numeric stack trace dump to symbols. See Section 4.7.3, “resolve\_stack\_dump — Resolve Numeric Stack Trace Dump to Symbols”.
+  A utility program that resolves a numeric stack trace dump to symbols. See Section 4.7.3, “resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols”.
 
 Miscellaneous utilities:
 
-* **lz4\_decompress**
+* **lz4_decompress**
 
-  A utility that decompresses **mysqlpump** output that was created using LZ4 compression. See Section 4.8.1, “lz4\_decompress — Decompress mysqlpump LZ4-Compressed Output”.
+  A utility that decompresses **mysqlpump** output that was created using LZ4 compression. See Section 4.8.1, “lz4_decompress — Decompress mysqlpump LZ4-Compressed Output”.
 
 * **perror**
 
@@ -160,9 +160,9 @@ Miscellaneous utilities:
 
   A utility program that resolves a host name to an IP address or vice versa. See Section 4.8.4, “resolveip — Resolve Host name to IP Address or Vice Versa”.
 
-* **zlib\_decompress**
+* **zlib_decompress**
 
-  A utility that decompresses **mysqlpump** output that was created using ZLIB compression. See Section 4.8.5, “zlib\_decompress — Decompress mysqlpump ZLIB-Compressed Output”.
+  A utility that decompresses **mysqlpump** output that was created using ZLIB compression. See Section 4.8.5, “zlib_decompress — Decompress mysqlpump ZLIB-Compressed Output”.
 
 Oracle Corporation also provides the MySQL Workbench GUI tool, which is used to administer MySQL servers and databases, to create, execute, and evaluate queries, and to migrate schemas and data from other relational database management systems for use with MySQL.
 

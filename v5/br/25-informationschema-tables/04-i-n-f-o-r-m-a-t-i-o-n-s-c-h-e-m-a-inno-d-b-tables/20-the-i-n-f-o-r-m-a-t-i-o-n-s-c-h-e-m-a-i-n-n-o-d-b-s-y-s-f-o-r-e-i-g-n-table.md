@@ -1,8 +1,8 @@
-### 24.4.20 Tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN
+### 24.4.20 Tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN
 
 A tabela `INNODB_SYS_FOREIGN` (<https://dev.mysql.com/doc/refman/8.0/en/innodb-sys-foreign-table.html>) fornece metadados sobre as chaves estrangeiras do `InnoDB` (<https://dev.mysql.com/doc/refman/8.0/pt/glossary.html#glos_foreign_key>), equivalentes às informações da tabela `SYS_FOREIGN` no dicionário de dados do `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
 
 A tabela [`INNODB_SYS_FOREIGN`](https://pt.wikipedia.org/wiki/Tabela_INNODB_SYS_FOREIGN) tem as seguintes colunas:
 

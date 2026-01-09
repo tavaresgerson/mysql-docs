@@ -2,13 +2,13 @@
 
 [6.4.4.1 Keyring Plugin Installation](keyring-plugin-installation.html)
 
-[6.4.4.2 Using the keyring\_file File-Based Keyring Plugin](keyring-file-plugin.html)
+[6.4.4.2 Using the keyring_file File-Based Keyring Plugin](keyring-file-plugin.html)
 
-[6.4.4.3 Using the keyring\_encrypted\_file Encrypted File-Based Keyring Plugin](keyring-encrypted-file-plugin.html)
+[6.4.4.3 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin](keyring-encrypted-file-plugin.html)
 
-[6.4.4.4 Using the keyring\_okv KMIP Plugin](keyring-okv-plugin.html)
+[6.4.4.4 Using the keyring_okv KMIP Plugin](keyring-okv-plugin.html)
 
-[6.4.4.5 Using the keyring\_aws Amazon Web Services Keyring Plugin](keyring-aws-plugin.html)
+[6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin](keyring-aws-plugin.html)
 
 [6.4.4.6 Supported Keyring Key Types and Lengths](keyring-key-types.html)
 
@@ -28,13 +28,13 @@ MySQL Server supports a keyring that enables internal server components and plug
 
 * Keyring plugins that manage a backing store or communicate with a storage back end. These keyring plugins are available:
 
-  + `keyring_file`: Stores keyring data in a file local to the server host. Available in MySQL Community Edition and MySQL Enterprise Edition distributions as of MySQL 5.7.11. See [Section 6.4.4.2, “Using the keyring\_file File-Based Keyring Plugin”](keyring-file-plugin.html "6.4.4.2 Using the keyring_file File-Based Keyring Plugin").
+  + `keyring_file`: Stores keyring data in a file local to the server host. Available in MySQL Community Edition and MySQL Enterprise Edition distributions as of MySQL 5.7.11. See [Section 6.4.4.2, “Using the keyring_file File-Based Keyring Plugin”](keyring-file-plugin.html "6.4.4.2 Using the keyring_file File-Based Keyring Plugin").
 
-  + `keyring_encrypted_file`: Stores keyring data in an encrypted, password-protected file local to the server host. Available in MySQL Enterprise Edition distributions as of MySQL 5.7.21. See [Section 6.4.4.3, “Using the keyring\_encrypted\_file Encrypted File-Based Keyring Plugin”](keyring-encrypted-file-plugin.html "6.4.4.3 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin").
+  + `keyring_encrypted_file`: Stores keyring data in an encrypted, password-protected file local to the server host. Available in MySQL Enterprise Edition distributions as of MySQL 5.7.21. See [Section 6.4.4.3, “Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin”](keyring-encrypted-file-plugin.html "6.4.4.3 Using the keyring_encrypted_file Encrypted File-Based Keyring Plugin").
 
-  + `keyring_okv`: A KMIP 1.1 plugin for use with KMIP-compatible back end keyring storage products such as Oracle Key Vault and Gemalto SafeNet KeySecure Appliance. Available in MySQL Enterprise Edition distributions as of MySQL 5.7.12. See [Section 6.4.4.4, “Using the keyring\_okv KMIP Plugin”](keyring-okv-plugin.html "6.4.4.4 Using the keyring_okv KMIP Plugin").
+  + `keyring_okv`: A KMIP 1.1 plugin for use with KMIP-compatible back end keyring storage products such as Oracle Key Vault and Gemalto SafeNet KeySecure Appliance. Available in MySQL Enterprise Edition distributions as of MySQL 5.7.12. See [Section 6.4.4.4, “Using the keyring_okv KMIP Plugin”](keyring-okv-plugin.html "6.4.4.4 Using the keyring_okv KMIP Plugin").
 
-  + `keyring_aws`: Communicates with the Amazon Web Services Key Management Service for key generation and uses a local file for key storage. Available in MySQL Enterprise Edition distributions as of MySQL 5.7.19. See [Section 6.4.4.5, “Using the keyring\_aws Amazon Web Services Keyring Plugin”](keyring-aws-plugin.html "6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin").
+  + `keyring_aws`: Communicates with the Amazon Web Services Key Management Service for key generation and uses a local file for key storage. Available in MySQL Enterprise Edition distributions as of MySQL 5.7.19. See [Section 6.4.4.5, “Using the keyring_aws Amazon Web Services Keyring Plugin”](keyring-aws-plugin.html "6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin").
 
 * A keyring service interface for keyring key management (MySQL 5.7.13 and higher). This service is accessible at two levels:
 

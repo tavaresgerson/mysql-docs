@@ -1,4 +1,4 @@
-#### 21.6.15.32 The ndbinfo restart\_info Table
+#### 21.6.15.32 The ndbinfo restart_info Table
 
 The `restart_info` table contains information about node restart operations. Each entry in the table corresponds to a node restart status report in real time from a data node with the given node ID. Only the most recent report for any given node is shown.
 

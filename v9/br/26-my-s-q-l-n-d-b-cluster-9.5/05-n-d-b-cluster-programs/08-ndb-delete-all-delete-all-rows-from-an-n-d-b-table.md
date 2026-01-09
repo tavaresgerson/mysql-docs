@@ -1,6 +1,6 @@
-### 25.5.8 ndb\_delete\_all — Deletar Todas as Linhas de uma Tabela NDB
+### 25.5.8 ndb_delete_all — Deletar Todas as Linhas de uma Tabela NDB
 
-**ndb\_delete\_all** exclui todas as linhas da tabela `NDB` especificada. Em alguns casos, isso pode ser muito mais rápido do que `DELETE` ou até mesmo `TRUNCATE TABLE`.
+**ndb_delete_all** exclui todas as linhas da tabela `NDB` especificada. Em alguns casos, isso pode ser muito mais rápido do que `DELETE` ou até mesmo `TRUNCATE TABLE`.
 
 #### Uso
 
@@ -10,7 +10,7 @@ ndb_delete_all -c connection_string tbl_name -d db_name
 
 Isso exclui todas as linhas da tabela chamada *`tbl_name`* no banco de dados chamado *`db_name`*. É exatamente equivalente a executar `TRUNCATE db_name.tbl_name` no MySQL.
 
-As opções que podem ser usadas com **ndb\_delete\_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_delete_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 * `--character-sets-dir`
 
@@ -147,7 +147,7 @@ Leia o arquivo fornecido após a leitura dos arquivos globais.
   <tr><th>Valor máximo</th> <td><code>12</code></td> </tr>
 </table>
 
-  Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina entradas no `NDB_CONNECTSTRING` e `my.cnf`.
+  Defina a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina entradas no `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 

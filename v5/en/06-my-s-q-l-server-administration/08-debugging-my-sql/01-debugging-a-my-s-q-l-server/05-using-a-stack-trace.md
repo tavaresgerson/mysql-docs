@@ -48,7 +48,7 @@ stack_bottom = 0x41fd0110 thread_stack 0x40000
 [0x66e05e]
 ```
 
-In the latter case, you can use the [**resolve\_stack\_dump**](resolve-stack-dump.html "4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols") utility to determine where [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") died by using the following procedure:
+In the latter case, you can use the [**resolve_stack_dump**](resolve-stack-dump.html "4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols") utility to determine where [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") died by using the following procedure:
 
 1. Copy the numbers from the stack trace to a file, for example `mysqld.stack`. The numbers should not include the surrounding square brackets:
 
@@ -87,7 +87,7 @@ In the latter case, you can use the [**resolve\_stack\_dump**](resolve-stack-dum
    $> resolve_stack_dump -s /tmp/mysqld.sym -n mysqld.stack
    ```
 
-   If you were not able to include demangled C++ names in your symbol file, process the [**resolve\_stack\_dump**](resolve-stack-dump.html "4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols") output using **c++filt**:
+   If you were not able to include demangled C++ names in your symbol file, process the [**resolve_stack_dump**](resolve-stack-dump.html "4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols") output using **c++filt**:
 
    ```sql
    $> resolve_stack_dump -s /tmp/mysqld.sym -n mysqld.stack | c++filt

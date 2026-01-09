@@ -1,4 +1,4 @@
-#### 30.4.3.14 The io\_global\_by\_wait\_by\_latency and x$io\_global\_by\_wait\_by\_latency Views
+#### 30.4.3.14 The io_global_by_wait_by_latency and x$io_global_by_wait_by_latency Views
 
 These views summarize global I/O consumers to display amount of I/O and time waiting for I/O, grouped by event. By default, rows are sorted by descending total latency.
 

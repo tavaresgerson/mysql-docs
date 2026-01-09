@@ -1,4 +1,4 @@
-#### 30.4.3.26 A visualização schema\_object\_overview
+#### 30.4.3.26 A visualização schema_object_overview
 
 Essa visualização resume os tipos de objetos dentro de cada esquema. Por padrão, as linhas são ordenadas por esquema e tipo de objeto.
 

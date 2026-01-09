@@ -21,7 +21,7 @@ Select package(s) you wish to process (or 'all' to process
 all packages). (default: all) [?,??,q]:
 ```
 
-O instalador PKG instala todos os arquivos e ferramentas necessários e, em seguida, inicializa sua base de dados, se não existir. Para completar a instalação, você deve definir a senha do root para o MySQL conforme fornecido nas instruções no final da instalação. Alternativamente, você pode executar o script **mysql\_secure\_installation** que vem com a instalação.
+O instalador PKG instala todos os arquivos e ferramentas necessários e, em seguida, inicializa sua base de dados, se não existir. Para completar a instalação, você deve definir a senha do root para o MySQL conforme fornecido nas instruções no final da instalação. Alternativamente, você pode executar o script **mysql_secure_installation** que vem com a instalação.
 
 Por padrão, o pacote PKG instala o MySQL no caminho raiz `/opt/mysql`. Você pode alterar apenas o caminho de raiz de instalação ao usar **pkgadd**, que pode ser usado para instalar o MySQL em uma zona Solaris diferente. Se você precisar instalar em um diretório específico, use uma distribuição de arquivo **tar** binário.
 

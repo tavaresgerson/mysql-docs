@@ -387,7 +387,7 @@ Quando um dicionário é carregado, ele se torna parte do registro do dicionári
   +---------------------------------------------------+
   ```
 
-- \`gen\_dictionary(nome\_dicionário)
+- \`gen_dictionary(nome_dicionário)
 
   Retorna um termo aleatório de um dicionário.
 
@@ -416,7 +416,7 @@ Quando um dicionário é carregado, ele se torna parte do registro do dicionári
   +--------------------------------+
   ```
 
-- \`gen\_dictionary\_drop(nome\_dicionário)
+- \`gen_dictionary_drop(nome_dicionário)
 
   Remove um dicionário do registro de dicionários.
 

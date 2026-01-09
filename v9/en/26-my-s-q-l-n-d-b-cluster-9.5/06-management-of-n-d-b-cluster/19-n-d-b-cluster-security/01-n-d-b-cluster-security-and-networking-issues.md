@@ -14,7 +14,7 @@ You should be aware that, if encrypted connections are not used, there is no che
 
   See Section 25.4.1, “Quick Test Setup of NDB Cluster”, for configuration examples using `HostName` with API nodes.
 
-* Any **ndb\_mgm** client
+* Any **ndb_mgm** client
 
   This means that any cluster management client that is given the management server's host name (or IP address) and port (if not the standard port) can connect to the cluster and execute any management client command. This includes commands such as `ALL STOP` and `SHUTDOWN`.
 
@@ -80,4 +80,4 @@ Note
 
 If you wish to administer an NDB Cluster remotely (that is, from outside the local network), the recommended way to do this is to use **ssh** or another secure login shell to access an SQL node host. From this host, you can then run the management client to access the management server safely, from within the cluster's own local network.
 
-Even though it is possible to do so in theory, it is *not* recommended to use **ndb\_mgm** to manage a Cluster directly from outside the local network on which the Cluster is running. Since neither authentication nor encryption takes place between the management client and the management server, this represents an extremely insecure means of managing the cluster, and is almost certain to be compromised sooner or later.
+Even though it is possible to do so in theory, it is *not* recommended to use **ndb_mgm** to manage a Cluster directly from outside the local network on which the Cluster is running. Since neither authentication nor encryption takes place between the management client and the management server, this represents an extremely insecure means of managing the cluster, and is almost certain to be compromised sooner or later.

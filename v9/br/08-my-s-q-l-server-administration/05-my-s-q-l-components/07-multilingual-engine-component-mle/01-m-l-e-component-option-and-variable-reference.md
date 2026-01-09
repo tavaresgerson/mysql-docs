@@ -166,7 +166,7 @@ Esta seção fornece uma descrição de cada variável do sistema específica pa
 
 * `mle.memory_max`
 
-  <table frame="box" rules="all" summary="Propriedades para mle.memory_max"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mle.memory-max=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="mle-component-options-variables.html#sysvar_mle.memory_max">mle.memory_max</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Específica à Plataforma</th> <td>Linux</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>(0.05) * (memória física total em GB)</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>320M</code></td> </tr><tr><th>Valor Máximo</th> <td><code>64G</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mle.memory_max"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mle.memory-max=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mle.memory_max</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Específica à Plataforma</th> <td>Linux</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>(0.05) * (memória física total em GB)</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>320M</code></td> </tr><tr><th>Valor Máximo</th> <td><code>64G</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   Determina a quantidade máxima de memória a ser alocada ao componente MLE. Esta variável é dinâmica, mas pode ser definida apenas quando o componente está inativo; você pode determinar se isso é o caso verificando o valor da variável de status `mle_status`.
 
@@ -283,4 +283,4 @@ O número máximo de threads MLE ativas em qualquer momento, desde que o compone
 
 Disponível apenas se o componente MLE estiver instalado. Consulte a Seção 7.5.7.3, “Uso de Memória e Threads de Componente MLE”, para obter mais informações.
 
-Além daquelas listadas aqui, vários variáveis de status que fornecem contagens de instruções SQL da biblioteca JavaScript são suportadas. Consulte as Variáveis Com\_xxx para obter informações sobre essas.
+Além daquelas listadas aqui, vários variáveis de status que fornecem contagens de instruções SQL da biblioteca JavaScript são suportadas. Consulte as Variáveis Com_xxx para obter informações sobre essas.

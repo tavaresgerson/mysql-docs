@@ -1,8 +1,8 @@
-### 28.3.40 A Tabela `INFORMATION\_SCHEMA STATISTICS`
+### 28.3.40 A Tabela `INFORMATION_SCHEMA STATISTICS`
 
 A tabela `STATISTICS` fornece informações sobre índices de tabelas.
 
-As colunas da `STATISTICS` que representam estatísticas de tabelas armazenam valores armazenados em cache. A variável de sistema `information_schema_stats_expiry` define o período de tempo antes que as estatísticas de tabelas armazenadas expirem. O valor padrão é de 86400 segundos (24 horas). Se não houver estatísticas armazenadas ou se as estatísticas expiraram, as estatísticas são recuperadas dos mecanismos de armazenamento ao consultar as colunas de estatísticas de tabelas. Para atualizar os valores armazenados a qualquer momento para uma determinada tabela, use `ANALYZE TABLE`. Para sempre recuperar as estatísticas mais recentes diretamente dos mecanismos de armazenamento, defina `information_schema_stats_expiry=0`. Para obter mais informações, consulte a Seção 10.2.3, “Otimizando Consultas `INFORMATION\_SCHEMA`”.
+As colunas da `STATISTICS` que representam estatísticas de tabelas armazenam valores armazenados em cache. A variável de sistema `information_schema_stats_expiry` define o período de tempo antes que as estatísticas de tabelas armazenadas expirem. O valor padrão é de 86400 segundos (24 horas). Se não houver estatísticas armazenadas ou se as estatísticas expiraram, as estatísticas são recuperadas dos mecanismos de armazenamento ao consultar as colunas de estatísticas de tabelas. Para atualizar os valores armazenados a qualquer momento para uma determinada tabela, use `ANALYZE TABLE`. Para sempre recuperar as estatísticas mais recentes diretamente dos mecanismos de armazenamento, defina `information_schema_stats_expiry=0`. Para obter mais informações, consulte a Seção 10.2.3, “Otimizando Consultas `INFORMATION_SCHEMA`”.
 
 Observação
 

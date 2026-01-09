@@ -31,4 +31,4 @@ max_allowed_packet=128M
 
 It is safe to increase the value of this variable because the extra memory is allocated only when needed. For example, **mysqld** allocates more memory only when you issue a long query or when **mysqld** must return a large result row. The small default value of the variable is a precaution to catch incorrect packets between the client and server and also to ensure that you do not run out of memory by using large packets accidentally.
 
-You can also get strange problems with large packets if you are using large `BLOB` values but have not given **mysqld** access to enough memory to handle the query. If you suspect this is the case, try adding **ulimit -d 256000** to the beginning of the **mysqld\_safe** script and restarting **mysqld**.
+You can also get strange problems with large packets if you are using large `BLOB` values but have not given **mysqld** access to enough memory to handle the query. If you suspect this is the case, try adding **ulimit -d 256000** to the beginning of the **mysqld_safe** script and restarting **mysqld**.

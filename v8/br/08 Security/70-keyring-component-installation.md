@@ -90,8 +90,8 @@ Dadas as propriedades do arquivo de manifesto anterior, para configurar o servid
 
 Com o manifesto em vigor, proceda a configurar o componente de cartela de chaves. Para fazer isso, consulte as notas do componente escolhido para obter instruções de configuração específicas para esse componente:
 
-* `component_keyring_file`: Seção 8.4.4.4, “Usando o componente\_keyring\_file Componente de Cartela de Chaves Baseado em Arquivo”.
-* `component_keyring_encrypted_file`: Seção 8.4.4.5, “Usando o componente\_keyring\_encrypted\_file Componente de Cartela de Chaves Encriptado Baseado em Arquivo”.
+* `component_keyring_file`: Seção 8.4.4.4, “Usando o componente_keyring_file Componente de Cartela de Chaves Baseado em Arquivo”.
+* `component_keyring_encrypted_file`: Seção 8.4.4.5, “Usando o componente_keyring_encrypted_file Componente de Cartela de Chaves Encriptado Baseado em Arquivo”.
 * `component_keyring_oci`: Seção 8.4.4.9, “Usando o Componente de Cartela de Chaves Oracle Cloud Infrastructure Vault”.
 
 Após realizar qualquer configuração específica do componente, inicie o servidor. Verifique a instalação do componente examinando a tabela do Schema de Desempenho `keyring_component_status`:

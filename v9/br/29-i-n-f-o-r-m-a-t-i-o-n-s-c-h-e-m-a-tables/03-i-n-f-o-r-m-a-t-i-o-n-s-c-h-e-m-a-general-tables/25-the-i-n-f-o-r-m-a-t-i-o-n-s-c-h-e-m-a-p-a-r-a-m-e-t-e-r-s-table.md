@@ -1,4 +1,4 @@
-### 28.3.25 A Tabela PARAMETERS da INFORMATION\_SCHEMA
+### 28.3.25 A Tabela PARAMETERS da INFORMATION_SCHEMA
 
 A tabela `PARAMETERS` fornece informações sobre os parâmetros de rotinas armazenadas (procedimentos armazenados e funções armazenadas) e sobre os valores de retorno para funções armazenadas. A tabela `PARAMETERS` não inclui funções nativas (integradas) ou funções carregáveis.
 

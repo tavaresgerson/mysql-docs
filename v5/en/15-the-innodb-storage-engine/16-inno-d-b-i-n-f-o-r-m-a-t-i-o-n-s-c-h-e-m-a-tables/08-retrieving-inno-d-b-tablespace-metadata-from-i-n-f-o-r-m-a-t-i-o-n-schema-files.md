@@ -1,8 +1,8 @@
-### 14.16.8 Retrieving InnoDB Tablespace Metadata from INFORMATION\_SCHEMA.FILES
+### 14.16.8 Retrieving InnoDB Tablespace Metadata from INFORMATION_SCHEMA.FILES
 
 The Information Schema `FILES` table provides metadata about all `InnoDB` tablespace types including file-per-table tablespaces, general tablespaces, the system tablespace, temporary table tablespaces, and undo tablespaces (if present).
 
-This section provides `InnoDB`-specific usage examples. For more information, see Section 24.3.9, “The INFORMATION\_SCHEMA FILES Table”.
+This section provides `InnoDB`-specific usage examples. For more information, see Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”.
 
 Note
 

@@ -1,4 +1,4 @@
-### 28.3.52 The INFORMATION\_SCHEMA USER\_PRIVILEGES Table
+### 28.3.52 The INFORMATION_SCHEMA USER_PRIVILEGES Table
 
 The `USER_PRIVILEGES` table provides information about global privileges. It takes its values from the `mysql.user` system table.
 

@@ -97,4 +97,4 @@ Os exemplos a seguir indicam alguns valores variáveis típicos para diferentes 
 
 Se você estiver executando operações de `GROUP BY` ou `ORDER BY` em tabelas muito maiores do que a memória disponível, aumente o valor de `read_rnd_buffer_size` para acelerar a leitura de linhas após operações de ordenação.
 
-Se você especificar uma opção na linha de comando para **mysqld** ou **mysqld\_safe**, ela permanecerá em vigor apenas para essa invocação do servidor. Para usar a opção toda vez que o servidor for executado, coloque-a em um arquivo de opção. Veja Seção 4.2.2.2, “Usando Arquivos de Opção”.
+Se você especificar uma opção na linha de comando para **mysqld** ou **mysqld_safe**, ela permanecerá em vigor apenas para essa invocação do servidor. Para usar a opção toda vez que o servidor for executado, coloque-a em um arquivo de opção. Veja Seção 4.2.2.2, “Usando Arquivos de Opção”.

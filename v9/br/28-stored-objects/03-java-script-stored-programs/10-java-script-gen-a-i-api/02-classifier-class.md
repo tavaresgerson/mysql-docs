@@ -102,19 +102,19 @@ Preveê rótulos e os armazena na tabela de saída especificada.
   na qual os rótulos serão armazenados. O conteúdo e o formato da saída são os mesmos gerados por `ML_PREDICT_TABLE`.
 * *`options`*
   (`Object`)
-  (*opcional*): Conjunto de opções no formato JSON. Consulte ML\_PREDICT\_TABLE,
+  (*opcional*): Conjunto de opções no formato JSON. Consulte ML_PREDICT_TABLE,
   para mais informações.
 
 **Tipo de retorno**
 
 * `None`. (Insere na
   *`outputTable`; consulte
-  ML\_PREDICT\_ROW.)
+  ML_PREDICT_ROW.)
 
 ###### Versão 2
 
 Preveê um rótulo para um único conjunto de dados de amostra e o retorna.
-Consulte ML\_PREDICT\_ROW, para mais
+Consulte ML_PREDICT_ROW, para mais
 informações.
 
 **Assinatura**

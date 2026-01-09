@@ -1,4 +1,4 @@
-#### 30.4.4.6 The ps\_setup\_disable\_instrument() Procedure
+#### 30.4.4.6 The ps_setup_disable_instrument() Procedure
 
 Disables Performance Schema instruments with names that contain the argument. Produces a result set indicating how many instruments were disabled. Already disabled instruments do not count.
 

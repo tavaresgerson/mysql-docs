@@ -1,4 +1,4 @@
-### 24.3.17 The INFORMATION\_SCHEMA PLUGINS Table
+### 24.3.17 The INFORMATION_SCHEMA PLUGINS Table
 
 The [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table provides information about server plugins.
 

@@ -38,7 +38,7 @@ O processo de desligamento do servidor ocorre da seguinte forma:
 
    Nesta etapa, o servidor descarrega o cache da tabela e fecha todas as tabelas abertas.
 
-   Cada mecanismo de armazenamento executa as ações necessárias para as tabelas que ele gerencia. O `InnoDB` esvazia seu pool de buffers no disco (a menos que `innodb_fast_shutdown` (innodb-parameters.html#sysvar\_innodb\_fast\_shutdown) seja 2), escreve o LSN atual no espaço de tabelas e termina seus próprios threads internos. O `MyISAM` esvazia quaisquer escritas de índices pendentes para uma tabela.
+   Cada mecanismo de armazenamento executa as ações necessárias para as tabelas que ele gerencia. O `InnoDB` esvazia seu pool de buffers no disco (a menos que `innodb_fast_shutdown` (innodb-parameters.html#sysvar_innodb_fast_shutdown) seja 2), escreve o LSN atual no espaço de tabelas e termina seus próprios threads internos. O `MyISAM` esvazia quaisquer escritas de índices pendentes para uma tabela.
 
 6. O servidor sai.
 

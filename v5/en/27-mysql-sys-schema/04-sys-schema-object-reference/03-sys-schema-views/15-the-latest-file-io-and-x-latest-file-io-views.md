@@ -1,4 +1,4 @@
-#### 26.4.3.15 The latest\_file\_io and x$latest\_file\_io Views
+#### 26.4.3.15 The latest_file_io and x$latest_file_io Views
 
 These views summarize file I/O activity, grouped by file and thread. By default, rows are sorted with most recent I/O first.
 

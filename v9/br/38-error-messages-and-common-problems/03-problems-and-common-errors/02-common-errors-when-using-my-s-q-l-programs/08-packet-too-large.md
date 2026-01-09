@@ -31,4 +31,4 @@ max_allowed_packet=128M
 
 É seguro aumentar o valor desta variável, pois a memória extra é alocada apenas quando necessário. Por exemplo, o **mysqld** aloca mais memória apenas quando você emite uma consulta longa ou quando o **mysqld** deve retornar uma grande linha de resultado. O pequeno valor padrão da variável é uma precaução para capturar pacotes incorretos entre o cliente e o servidor e também para garantir que você não se esgote de memória ao usar pacotes grandes acidentalmente.
 
-Você também pode ter problemas estranhos com pacotes grandes se estiver usando valores grandes de `BLOB` mas não tiver dado ao **mysqld** acesso a memória suficiente para lidar com a consulta. Se você suspeitar que este é o caso, tente adicionar **ulimit -d 256000** no início do script **mysqld\_safe** e reiniciar o **mysqld**.
+Você também pode ter problemas estranhos com pacotes grandes se estiver usando valores grandes de `BLOB` mas não tiver dado ao **mysqld** acesso a memória suficiente para lidar com a consulta. Se você suspeitar que este é o caso, tente adicionar **ulimit -d 256000** no início do script **mysqld_safe** e reiniciar o **mysqld**.

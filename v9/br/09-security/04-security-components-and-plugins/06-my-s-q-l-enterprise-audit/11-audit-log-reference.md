@@ -627,7 +627,7 @@ Para configurar a ativação do plugin de log de auditoria, use esta opção:
 
 * `--audit-log[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit-log"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Esta opção controla como o servidor carrega o plugin `audit_log` no início. Está disponível apenas se o plugin tiver sido registrado anteriormente com `INSTALL PLUGIN` ou tiver sido carregado com `--plugin-load` ou `--plugin-load-add`. Veja a Seção 8.4.6.2, “Instalando ou Desinstalando o MySQL Enterprise Audit”.
 
@@ -670,13 +670,13 @@ Você pode definir qualquer uma dessas variáveis no início do servidor e algum
 
 * `audit_log_buffer_size`
 
-  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Tamanho do Bloco">Tamanho do Bloco</a></th> <td><code>4096</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th>Tamanho do Bloco</th> <td><code>4096</code></td> </tr></tbody></table>
 
 Quando o plugin de log de auditoria escreve eventos no log de forma assíncrona, ele usa um buffer para armazenar o conteúdo dos eventos antes de escrevê-los. Essa variável controla o tamanho desse buffer, em bytes. O servidor ajusta o valor para um múltiplo de 4096. O plugin usa um único buffer, que aloca quando inicializa e remove quando termina. O plugin aloca esse buffer apenas se a logagem for assíncrona.
 
 * `audit_log_compression`
 
-  <table frame="box" rules="all" summary="Propriedades para audit_log_compression"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-compression=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_compression">audit_log_compression</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>NONE</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>NONE</code></p><p class="valid-value"><code>GZIP</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_compression"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-compression=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_compression</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>NONE</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>NONE</code></p><p><code>GZIP</code></p></td> </tr></tbody></table>
 
   O tipo de compressão para o arquivo de log de auditoria. Os valores permitidos são `NONE` (sem compressão; o padrão) e `GZIP` (compressão GNU Zip). Para mais informações, consulte Compressão de Arquivos de Log de Auditoria.
 
@@ -693,7 +693,7 @@ Quando o plugin de log de auditoria escreve eventos no log de forma assíncrona,
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_connection_policy">audit_log_connection_policy</a></code></td>
+    <td><code>audit_log_connection_policy</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -704,7 +704,7 @@ Quando o plugin de log de auditoria escreve eventos no log de forma assíncrona,
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -717,7 +717,7 @@ Quando o plugin de log de auditoria escreve eventos no log de forma assíncrona,
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>ALL</code></p><p class="valid-value"><code>ERRORS</code></p><p class="valid-value"><code>NONE</code></p></td>
+    <td><p><code>ALL</code></p><p><code>ERRORS</code></p><p><code>NONE</code></p></td>
   </tr>
 </table>
 
@@ -735,13 +735,13 @@ Quando o plugin de log de auditoria escreve eventos no log de forma assíncrona,
 
 * `audit_log_current_session`
 
-  <table frame="box" rules="all" summary="Propriedades para audit_log_current_session"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_current_session">audit_log_current_session</a></code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>depends on filtering policy</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_current_session"><tbody><tr><th>Variável do Sistema</th> <td><code>audit_log_current_session</code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>depends on filtering policy</code></td> </tr></tbody></table>
 
 Se o registro de auditoria está habilitado para a sessão atual. O valor da sessão desta variável é somente leitura. É definido quando a sessão começa com base nos valores das variáveis de sistema `audit_log_include_accounts` e `audit_log_exclude_accounts`. O plugin de log de auditoria usa o valor da sessão para determinar se deve auditar eventos para a sessão. (Há um valor global, mas o plugin não o usa.)
 
 * `audit_log_database`
 
-  <table frame="box" rules="all" summary="Propriedades para audit_log_database"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-database=value</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_database">audit_log_database</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>mysql</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_database"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-database=value</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>audit_log_database</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>mysql</code></td> </tr></tbody></table>
 
   Especifica qual banco de dados o plugin `audit_log` usa para encontrar suas tabelas. Esta variável é somente leitura. Para mais informações, consulte a Seção 8.4.6.2, “Instalando ou Desinstalando MySQL Enterprise Audit”).
 
@@ -754,7 +754,7 @@ Se o registro de auditoria está habilitado para a sessão atual. O valor da ses
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_disable">audit_log_disable</a></code></td>
+    <td><code>audit_log_disable</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -765,7 +765,7 @@ Se o registro de auditoria está habilitado para a sessão atual. O valor da ses
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -789,7 +789,7 @@ Permite desativar o registro de auditoria para todas as sessões de conexão e c
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_encryption">audit_log_encryption</a></code></td>
+    <td><code>audit_log_encryption</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -800,7 +800,7 @@ Permite desativar o registro de auditoria para todas as sessões de conexão e c
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -813,7 +813,7 @@ Permite desativar o registro de auditoria para todas as sessões de conexão e c
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>NONE</code></p><p class="valid-value"><code>AES</code></p></td>
+    <td><p><code>NONE</code></p><p><code>AES</code></p></td>
   </tr>
 </table>
 
@@ -821,7 +821,7 @@ Permite desativar o registro de auditoria para todas as sessões de conexão e c
 
 * `audit_log_exclude_accounts`
 
-<table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Nota
 
@@ -833,7 +833,7 @@ Permite desativar o registro de auditoria para todas as sessões de conexão e c
 
 * `audit_log_file`
 
-<table frame="box" rules="all" summary="Propriedades para o plugin de log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o plugin de log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   O nome base e o sufixo do arquivo para o qual o plugin de log de auditoria escreve eventos. O valor padrão é `audit.log`, independentemente do formato de registro. Para que o sufixo do nome corresponda ao formato, defina o nome explicitamente, escolhendo um sufixo diferente (por exemplo, `audit.xml` para o formato XML, `audit.json` para o formato JSON).
 
@@ -845,13 +845,13 @@ O plugin de log de auditoria usa o diretório que contém o arquivo de log de au
 
 * `audit_log_filter_id`
 
-  <table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   O valor da sessão desta variável indica o ID mantido internamente do filtro de auditoria para a sessão atual. Um valor de 0 significa que a sessão não tem nenhum filtro atribuído.
 
 * `audit_log_flush`
 
-<table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Nota
 
@@ -861,7 +861,7 @@ O plugin de log de auditoria usa o diretório que contém o arquivo de log de au
 
 * `audit_log_flush_interval_seconds`
 
-<table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tbody><tr><th>Formato de linha de comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tbody><tr><th>Formato de linha de comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
 Este sistema depende do componente `scheduler`, que deve ser instalado e habilitado (consulte a Seção 7.5.5, “Componente scheduler”). Para verificar o status do componente:
 
@@ -886,7 +886,7 @@ Para persistir esta variável de sistema global no arquivo `mysqld-auto.cnf` sem
   <tr><th>Formato do arquivo de log de auditoria</th> <td><code>--audit-log[=valor]</code></td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
   <tr><th>Valor padrão</th> <td><code>ON</code></td> </tr>
-  <tr><th>Valores válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr>
+  <tr><th>Valores válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr>
 </table>
 
 * `audit_log_format_timestamp_unix`
@@ -899,7 +899,7 @@ A definição do valor em tempo de execução de `audit_log_format_unix_timestam
 
 * `audit_log_include_accounts`
 
-  <table frame="box" rules="all" summary="Propriedades para o filtro do log de auditoria"><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o filtro do log de auditoria"><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Observação
 
@@ -911,7 +911,7 @@ As modificações em `audit_log_include_accounts` afetam apenas as conexões cri
 
 * `audit_log_max_size`
 
-  <table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para o log de auditoria"><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></table>
 
   `audit_log_max_size` diz respeito à poda do arquivo de log de auditoria, que é suportada apenas para arquivos de log no formato JSON. Ele controla a poda com base no tamanho combinado do arquivo de log:
 
@@ -929,7 +929,7 @@ Definir `audit_log_max_size` isoladamente não é suficiente para fazer com que 
 
 * `audit_log_password_history_keep_days`
 
-  <table frame="box" rules="all" summary="Propriedades para o plugin de log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o plugin de log de auditoria"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=value]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   O plugin de log de auditoria implementa a criptografia de arquivos de log usando senhas de criptografia armazenadas no chaveiro MySQL (consulte Criptografar Arquivos de Log de Auditoria). O plugin também implementa o histórico de senhas, que inclui arquivamento e expiração de senhas (remoção).
 
@@ -976,7 +976,7 @@ Definir o valor de tempo de execução de `audit_log_password_history_keep_days`
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td>
+    <td><code>audit_log_buffer_size</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -987,7 +987,7 @@ Definir o valor de tempo de execução de `audit_log_password_history_keep_days`
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1019,7 +1019,7 @@ Definir o valor de tempo de execução de `audit_log_password_history_keep_days`
     <td><code>4096</code></td>
   </tr>
   <tr>
-    <th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Nota</a></th>
+    <th>Nota</th>
   </tr>
 </table>
 
@@ -1031,17 +1031,17 @@ Definir o valor de tempo de execução de `audit_log_password_history_keep_days`
 
 <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size">
 <tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr>
-<tr><th>Variável do Sistema</th> <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td> </tr>
+<tr><th>Variável do Sistema</th> <td><code>audit_log_buffer_size</code></td> </tr>
 <tr><th>Alcance</th> <td>Global</td> </tr>
 <tr><th>Dinâmico</th> <td>Não</td> </tr>
-<tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+<tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
 <tr><th>Tipo</th> <td>Inteiro</td> </tr>
 <tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr>
 <tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr>
 <tr><th>Valor Máximo (plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr>
 <tr><th>Valor Máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr>
 <tr><th>Unidade</th> <td>bytes</td> </tr>
-<tr><th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Tamanho do Bloco</a></th> <td><code>4096</code></td> </tr>
+<tr><th>Tamanho do Bloco</th> <td><code>4096</code></td> </tr>
 </table>
 
 `audit_log_policy` pode ser definido apenas no início da inicialização do servidor. Em tempo de execução, é uma variável de leitura somente. Outras duas variáveis do sistema, `audit_log_connection_policy` e `audit_log_statement_policy`, fornecem um controle mais fino sobre a política de registro e podem ser definidas no início ou em tempo de execução. Se você usar `audit_log_policy` no início em vez das outras duas variáveis, o servidor usa seu valor para definir essas variáveis. Para mais informações sobre as variáveis de política e sua interação, consulte a Seção 8.4.6.5, “Configurando as Características de Registro de Auditoria”.
@@ -1055,7 +1055,7 @@ Definir o valor de tempo de execução de `audit_log_password_history_keep_days`
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td>
+    <td><code>audit_log_buffer_size</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1066,7 +1066,7 @@ Definir o valor de tempo de execução de `audit_log_password_history_keep_days`
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1111,7 +1111,7 @@ Definir `audit_log_prune_seconds` por si só não é suficiente para fazer com q
 
 * `audit_log_read_buffer_size`
 
-  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Definição de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Tamanho do Bloco</a></th> <td><code>4096</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th>Tamanho do Bloco</th> <td><code>4096</code></td> </tr></table>
 
 O tamanho do buffer para leitura do arquivo de log de auditoria, em bytes. A função `audit_log_read()` não lê mais do que esse número de bytes. A leitura de arquivos de log é suportada apenas para o formato de log JSON. Para mais informações, consulte a Seção 8.4.6.6, “Leitura de Arquivos de Log de Auditoria”.
 
@@ -1119,7 +1119,7 @@ Esta variável tem um valor padrão de 32 KB e pode ser definida em tempo de exe
 
 * `audit_log_rotate_on_size`
 
-  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Definição de Variável"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Tamanho do Bloco</a></th> <td><code>4096</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para audit_log_buffer_size"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-buffer-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_buffer_size</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>1048576</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>4096</code></td> </tr><tr><th>Valor Máximo (Plataformas de 64 bits)</th> <td><code>18446744073709547520</code></td> </tr><tr><th>Valor Máximo (Plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th>Tamanho do Bloco</th> <td><code>4096</code></td> </tr></table>
 
 Se `audit_log_rotate_on_size` for 0, o plugin de log de auditoria não realiza a rotação automática de arquivos de log baseada em tamanho. Se a rotação ocorrer, você deve realizá-la manualmente; consulte Rotação Manual de Arquivos de Log de Auditoria.
 
@@ -1140,7 +1140,7 @@ Nota
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td>
+    <td><code>audit_log_buffer_size</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1151,7 +1151,7 @@ Nota
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1197,7 +1197,7 @@ Nota
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td>
+    <td><code>audit_log_buffer_size</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1208,7 +1208,7 @@ Nota
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -1240,7 +1240,7 @@ Nota
     <td><code>4096</code></td>
   </tr>
   <tr>
-    <th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Tamanho do Bloco</a></th>
+    <th>Tamanho do Bloco</th>
   </tr>
 </table>
 
@@ -1257,7 +1257,7 @@ Nota
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td>
+    <td><code>audit_log_buffer_size</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1268,7 +1268,7 @@ Nota
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -1332,7 +1332,7 @@ Se o plugin de log de auditoria estiver habilitado, ele expõe várias variávei
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="audit-log-reference.html#sysvar_audit_log_buffer_size">audit_log_buffer_size</a></code></td>
+    <td><code>audit_log_buffer_size</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1343,7 +1343,7 @@ Se o plugin de log de auditoria estiver habilitado, ele expõe várias variávei
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>

@@ -137,7 +137,7 @@ mysql> SELECT
 4 rows in set (0.00 sec)
 ```
 
-Para obter mais informações e exemplos, consulte a Seção 28.3.15, “A Tabela INFORMATION\_SCHEMA FILES”.
+Para obter mais informações e exemplos, consulte a Seção 28.3.15, “A Tabela INFORMATION_SCHEMA FILES”.
 
 **Indexação de colunas armazenadas implicitamente no disco.** Para a tabela `dt_1` conforme definida no exemplo mostrado anteriormente, apenas as colunas `dob` e `joined` são armazenadas no disco. Isso ocorre porque há índices nas colunas `id`, `last_name` e `first_name`, e, portanto, os dados pertencentes a essas colunas são armazenados na RAM. Apenas colunas não indexadas podem ser mantidas no disco; índices e dados de colunas indexadas continuam sendo armazenados na memória. Esse trade-off entre o uso de índices e a conservação da RAM é algo que você deve ter em mente ao projetar tabelas de Dados de Disco.
 
@@ -186,7 +186,7 @@ Create Table: CREATE TABLE `ti` (
 1 row in set (0.00 sec)
 ```
 
-Você pode ver usando **ndb\_desc** que as colunas indexadas (texto em destaque) agora usam armazenamento em memória em vez de armazenamento no disco:
+Você pode ver usando **ndb_desc** que as colunas indexadas (texto em destaque) agora usam armazenamento em memória em vez de armazenamento no disco:
 
 ```
 $> ./ndb_desc -d test t1

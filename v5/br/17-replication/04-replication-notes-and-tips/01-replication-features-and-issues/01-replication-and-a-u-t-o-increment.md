@@ -1,4 +1,4 @@
-#### 16.4.1.1 Replicação e AUTO\_INCREMENT
+#### 16.4.1.1 Replicação e AUTO_INCREMENT
 
 A replicação baseada em declarações de valores de `AUTO_INCREMENT`, `LAST_INSERT_ID()` e `TIMESTAMP` é feita corretamente, sujeito às seguintes exceções:
 
@@ -8,7 +8,7 @@ A replicação baseada em declarações de valores de `AUTO_INCREMENT`, `LAST_IN
 
 - Uma inserção em uma tabela que possui uma chave primária composta que inclui uma coluna `AUTO_INCREMENT` que não é a primeira coluna dessa chave composta não é segura para registro baseado em instruções ou replicação. Essas instruções são marcadas como inseguras. (Bug #11754117, Bug #45670)
 
-  Este problema não afeta tabelas que utilizam o mecanismo de armazenamento `InnoDB`, uma vez que uma tabela `InnoDB` com uma coluna AUTO\_INCREMENT requer pelo menos uma chave onde a coluna de autoincremento é a única ou a coluna mais à esquerda.
+  Este problema não afeta tabelas que utilizam o mecanismo de armazenamento `InnoDB`, uma vez que uma tabela `InnoDB` com uma coluna AUTO_INCREMENT requer pelo menos uma chave onde a coluna de autoincremento é a única ou a coluna mais à esquerda.
 
 - Adicionar uma coluna `AUTO_INCREMENT` a uma tabela com `ALTER TABLE` pode não produzir a mesma ordem das linhas na replica e na fonte. Isso ocorre porque a ordem em que as linhas são numeradas depende do motor de armazenamento específico usado para a tabela e da ordem em que as linhas foram inseridas. Se é importante ter a mesma ordem na fonte e na replica, as linhas devem ser ordenadas antes de atribuir um número `AUTO_INCREMENT`. Supondo que você queira adicionar uma coluna `AUTO_INCREMENT` a uma tabela `t1` que tem as colunas `col1` e `col2`, as seguintes instruções produzem uma nova tabela `t2` idêntica a `t1`, mas com uma coluna `AUTO_INCREMENT`:
 

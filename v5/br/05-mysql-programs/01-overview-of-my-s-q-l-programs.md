@@ -152,7 +152,7 @@ Serviços diversos:
 
   Uma ferramenta que exibe o significado dos códigos de erro do sistema ou do MySQL. Veja a Seção 4.8.2, “perror — Exibir informações do erro do MySQL”.
 
-- **substitua**
+- **“replace**
 
   Um programa utilitário que realiza a substituição de strings no texto de entrada. Veja a Seção 4.8.3, “replace — Um utilitário de substituição de strings”.
 

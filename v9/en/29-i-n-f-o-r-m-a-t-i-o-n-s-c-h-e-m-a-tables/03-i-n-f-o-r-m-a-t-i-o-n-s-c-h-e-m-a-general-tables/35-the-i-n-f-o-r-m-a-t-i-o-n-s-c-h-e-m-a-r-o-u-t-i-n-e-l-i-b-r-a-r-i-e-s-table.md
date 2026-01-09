@@ -1,4 +1,4 @@
-### 28.3.35 The INFORMATION\_SCHEMA ROUTINE\_LIBRARIES Table
+### 28.3.35 The INFORMATION_SCHEMA ROUTINE_LIBRARIES Table
 
 The `ROUTINE_LIBRARIES` table lists different JavaScript routines and the libraries supported by MLE Component (see Section 7.5.7, “Multilingual Engine Component (MLE)”")) that are imported by these JavaScript routines.
 

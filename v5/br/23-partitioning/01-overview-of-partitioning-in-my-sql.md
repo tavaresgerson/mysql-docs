@@ -24,7 +24,7 @@ Para obter mais informações sobre os tipos de coluna de particionamento permit
 
 Isso é conhecido como particionamento horizontal, ou seja, diferentes linhas de uma tabela podem ser atribuídas a diferentes partições físicas. O MySQL 5.7 não suporta particionamento vertical, no qual diferentes colunas de uma tabela são atribuídas a diferentes partições físicas. Não há planos para introduzir o particionamento vertical no MySQL neste momento.
 
-Para obter informações sobre como determinar se o binário do seu servidor MySQL suporta partição definida pelo usuário, consulte \[Capítulo 22, *Partição*] (partitioning.html).
+Para obter informações sobre como determinar se o binário do seu servidor MySQL suporta partição definida pelo usuário, consulte [Capítulo 22, *Partição*] (partitioning.html).
 
 Para criar tabelas particionadas, você pode usar a maioria dos mecanismos de armazenamento suportados pelo seu servidor MySQL; o mecanismo de particionamento do MySQL funciona em uma camada separada e pode interagir com qualquer um deles. No MySQL 5.7, todas as partições da mesma tabela particionada devem usar o mesmo mecanismo de armazenamento; por exemplo, você não pode usar `MyISAM` para uma partição e `InnoDB` para outra. No entanto, não há nada que impeça você de usar diferentes mecanismos de armazenamento para diferentes tabelas particionadas no mesmo servidor MySQL ou até mesmo na mesma base de dados.
 

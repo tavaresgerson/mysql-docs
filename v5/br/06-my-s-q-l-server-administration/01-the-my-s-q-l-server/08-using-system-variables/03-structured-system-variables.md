@@ -83,7 +83,7 @@ Para recuperar o tamanho do cache, faça o seguinte:
 mysql> SELECT @@GLOBAL.hot_cache.key_buffer_size;
 ```
 
-No entanto, a seguinte declaração não funciona. A variável não é interpretada como um nome composto, mas como uma string simples para uma operação de correspondência de padrões `LIKE` (funções de comparação de strings.html#operador\_like):
+No entanto, a seguinte declaração não funciona. A variável não é interpretada como um nome composto, mas como uma string simples para uma operação de correspondência de padrões `LIKE` (funções de comparação de strings.html#operador_like):
 
 ```sql
 mysql> SHOW GLOBAL VARIABLES LIKE 'hot_cache.key_buffer_size';

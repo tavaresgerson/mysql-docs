@@ -1,4 +1,4 @@
-### 24.4.7 As tabelas INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET
+### 24.4.7 As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET
 
 As tabelas [`INNODB_CMP_PER_INDEX`](https://pt.wikipedia.org/wiki/T%C3%A1bula_INNODB_CMP_PER_INDEX) e [`INNODB_CMP_PER_INDEX_RESET`](https://pt.wikipedia.org/wiki/T%C3%A1bula_INNODB_CMP_PER_INDEX_RESET) fornecem informações de status sobre operações relacionadas a tabelas e índices `InnoDB` compactados, com estatísticas separadas para cada combinação de banco de dados, tabela e índice, para ajudá-lo a avaliar o desempenho e a utilidade da compactação para tabelas específicas.
 

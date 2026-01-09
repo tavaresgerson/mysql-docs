@@ -41,7 +41,7 @@ DataDir= /var/lib/mysql-cluster
 [mysqld]
 ```
 
-Agora você pode iniciar o servidor de gerenciamento do **ndb\_mgmd**. Por padrão, ele tenta ler o arquivo `config.ini` no diretório de trabalho atual, então mude a localização para o diretório onde o arquivo está localizado e então inicie o **ndb\_mgmd**:
+Agora você pode iniciar o servidor de gerenciamento do **ndb_mgmd**. Por padrão, ele tenta ler o arquivo `config.ini` no diretório de trabalho atual, então mude a localização para o diretório onde o arquivo está localizado e então inicie o **ndb_mgmd**:
 
 ```sql
 $> cd /var/lib/mysql-cluster
@@ -58,7 +58,7 @@ Por padrão, o **ndbd** procura pelo servidor de gerenciamento em `localhost` na
 
 Nota
 
-Se você instalou o MySQL a partir de um tarball binário, você deve especificar explicitamente o caminho dos servidores **ndb\_mgmd** e **ndbd**. (Normalmente, esses podem ser encontrados em `/usr/local/mysql/bin`.)
+Se você instalou o MySQL a partir de um tarball binário, você deve especificar explicitamente o caminho dos servidores **ndb_mgmd** e **ndbd**. (Normalmente, esses podem ser encontrados em `/usr/local/mysql/bin`.)
 
 Por fim, mude a localização para o diretório de dados MySQL (geralmente `/var/lib/mysql` ou `/usr/local/mysql/data`) e certifique-se de que o arquivo `my.cnf` contenha a opção necessária para habilitar o mecanismo de armazenamento NDB:
 

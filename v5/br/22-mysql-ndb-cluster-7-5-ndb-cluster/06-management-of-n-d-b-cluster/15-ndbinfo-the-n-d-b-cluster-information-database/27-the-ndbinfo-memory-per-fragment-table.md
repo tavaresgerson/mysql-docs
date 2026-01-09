@@ -1,7 +1,7 @@
-#### 21.6.15.27 Tabela ndbinfo memory\_per\_fragment
+#### 21.6.15.27 Tabela ndbinfo memory_per_fragment
 
 - tabela de memória por fragmento: Notas
-- tabela memória\_por\_fragmento: exemplos
+- tabela memória_por_fragmento: exemplos
 
 A tabela `memory_per_fragment` fornece informações sobre o uso da memória por fragmentos individuais. Veja as Notas mais adiante nesta seção para ver como você pode usar isso para descobrir quanto memória é usada pelas tabelas `NDB`.
 
@@ -73,7 +73,7 @@ A tabela `memory_per_fragment` contém as seguintes colunas:
 
   Número de bytes alocados para índices de hash
 
-##### tabela memory\_per\_fragment: Notas
+##### tabela memory_per_fragment: Notas
 
 A tabela `memory_per_fragment` contém uma linha para cada replica de fragmento de tabela e cada replica de fragmento de índice no sistema; isso significa que, por exemplo, quando `NoOfReplicas=2`, normalmente existem duas réplicas de fragmento para cada fragmento. Isso é verdade enquanto todos os nós de dados estiverem em execução e conectados ao cluster; para um nó de dados que está ausente, não existem linhas para as réplicas de fragmento que ele hospeda.
 
@@ -171,7 +171,7 @@ Os índices ordenados secundários são fragmentados e distribuídos da mesma ma
 
 Se o espaço livre em uma página estiver fragmentado, a página será desfragmentada. O comando `OPTIMIZE TABLE` pode ser usado para desfragmentar páginas de tamanho variável de uma tabela; isso move partes de linhas de tamanho variável entre páginas, de modo que algumas páginas inteiras possam ser liberadas para uso novamente.
 
-##### tabela memory\_per\_fragment: Exemplos
+##### tabela memory_per_fragment: Exemplos
 
 - Obter informações gerais sobre fragmentos e uso de memória
 - Encontrar uma tabela e seus índices

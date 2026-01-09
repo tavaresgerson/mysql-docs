@@ -1,10 +1,10 @@
 ### 25.12.7 Tabelas de Transações do Schema de Desempenho
 
-25.12.7.1 Tabela events\_transactions\_current
+25.12.7.1 Tabela events_transactions_current
 
-25.12.7.2 Tabela de histórico de eventos\_transações
+25.12.7.2 Tabela de histórico de eventos_transações
 
-25.12.7.3 A tabela de histórico de eventos\_transações
+25.12.7.3 A tabela de histórico de eventos_transações
 
 Os instrumentos do Schema de Desempenho transacionam. Na hierarquia de eventos, os eventos de espera estão dentro dos eventos de estágio, que estão dentro dos eventos de declaração, que estão dentro dos eventos de transação.
 

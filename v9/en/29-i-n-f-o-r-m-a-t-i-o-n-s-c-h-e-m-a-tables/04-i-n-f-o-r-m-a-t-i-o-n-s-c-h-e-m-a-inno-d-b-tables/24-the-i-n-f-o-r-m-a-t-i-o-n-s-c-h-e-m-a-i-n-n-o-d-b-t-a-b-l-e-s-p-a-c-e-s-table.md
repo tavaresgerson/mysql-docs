@@ -1,8 +1,8 @@
-### 28.4.24 The INFORMATION\_SCHEMA INNODB\_TABLESPACES Table
+### 28.4.24 The INFORMATION_SCHEMA INNODB_TABLESPACES Table
 
 The `INNODB_TABLESPACES` table provides metadata about `InnoDB` file-per-table, general, and undo tablespaces.
 
-For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For related usage information and examples, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.
 
 Note
 

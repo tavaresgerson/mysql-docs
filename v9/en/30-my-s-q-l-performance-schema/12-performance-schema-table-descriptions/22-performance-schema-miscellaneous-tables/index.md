@@ -1,28 +1,28 @@
 ### 29.12.22 Performance Schema Miscellaneous Tables
 
-29.12.22.1 The component\_scheduler\_tasks Table
+29.12.22.1 The component_scheduler_tasks Table
 
-29.12.22.2 The connection\_control\_failed\_login\_attempts Table
+29.12.22.2 The connection_control_failed_login_attempts Table
 
-29.12.22.3 The error\_log Table
+29.12.22.3 The error_log Table
 
-29.12.22.4 The host\_cache Table
+29.12.22.4 The host_cache Table
 
-29.12.22.5 The innodb\_redo\_log\_files Table
+29.12.22.5 The innodb_redo_log_files Table
 
-29.12.22.6 The log\_status Table
+29.12.22.6 The log_status Table
 
-29.12.22.7 The mysql\_option Table
+29.12.22.7 The mysql_option Table
 
-29.12.22.8 The performance\_timers Table
+29.12.22.8 The performance_timers Table
 
 29.12.22.9 The processlist Table
 
 29.12.22.10 The threads Table
 
-29.12.22.11 The tls\_channel\_status Table
+29.12.22.11 The tls_channel_status Table
 
-29.12.22.12 The user\_defined\_functions Table
+29.12.22.12 The user_defined_functions Table
 
 The following sections describe tables that do not fall into the table categories discussed in the preceding sections:
 

@@ -24,7 +24,7 @@ As distribuições do MySQL incluem vários plugins que implementam extensões d
 
 - Os plugins de replicação semiesincronizada implementam uma interface para as capacidades de replicação que permitem que a fonte prossiga enquanto pelo menos uma réplica responder a cada transação. Veja Seção 16.3.9, “Replicação Semiesincronizada”.
 
-- A Replicação em Grupo permite que você crie um serviço MySQL distribuído altamente disponível em um grupo de instâncias do servidor MySQL, com consistência de dados, detecção e resolução de conflitos e serviços de participação em grupo integrados. Veja \[Capítulo 17, *Replicação em Grupo*] (group-replication.html).
+- A Replicação em Grupo permite que você crie um serviço MySQL distribuído altamente disponível em um grupo de instâncias do servidor MySQL, com consistência de dados, detecção e resolução de conflitos e serviços de participação em grupo integrados. Veja [Capítulo 17, *Replicação em Grupo*] (group-replication.html).
 
 - A Edição Empresarial do MySQL inclui um plugin de pool de threads que gerencia os threads de conexão para aumentar o desempenho do servidor, gerenciando eficientemente os threads de execução de instruções para um grande número de conexões de clientes. Veja Seção 5.5.3, “MySQL Enterprise Thread Pool”.
 

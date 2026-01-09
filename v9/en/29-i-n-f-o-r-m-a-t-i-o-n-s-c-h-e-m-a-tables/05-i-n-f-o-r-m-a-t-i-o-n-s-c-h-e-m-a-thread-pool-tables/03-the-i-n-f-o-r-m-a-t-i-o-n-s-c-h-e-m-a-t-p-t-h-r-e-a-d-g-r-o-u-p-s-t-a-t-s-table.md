@@ -1,4 +1,4 @@
-### 28.5.3 The INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS Table
+### 28.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table
 
 Note
 
@@ -16,4 +16,4 @@ SELECT * FROM performance_schema.tp_thread_group_stats;
 
 The `TP_THREAD_GROUP_STATS` table reports statistics per thread group. There is one row per group.
 
-For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_GROUP_STATS` table, see Section 29.12.16.3, “The tp\_thread\_group\_stats Table”. The Performance Schema `tp_thread_group_stats` table has equivalent columns.
+For descriptions of the columns in the `INFORMATION_SCHEMA` `TP_THREAD_GROUP_STATS` table, see Section 29.12.16.3, “The tp_thread_group_stats Table”. The Performance Schema `tp_thread_group_stats` table has equivalent columns.

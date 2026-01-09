@@ -38,7 +38,7 @@ Essas informações também podem ser obtidas usando as definições corresponde
 
 `totalBytes` é o total de memória consumido por todos os índices da tabela, em bytes.
 
-Os tempos mostrados nos exemplos anteriores são específicos para cada invocação do **ndb\_index\_stat**.
+Os tempos mostrados nos exemplos anteriores são específicos para cada invocação do **ndb_index_stat**.
 
 A opção `--verbose` fornece uma saída adicional, conforme mostrado aqui:
 
@@ -58,11 +58,11 @@ disconnected
 $>
 ```
 
-Se a saída do programa estiver vazia, isso pode indicar que ainda não existem estatísticas. Para forçar a criação (ou atualização, se já existirem) delas, invocando **ndb\_index\_stat** com a opção `--update`, ou executando `ANALYZE TABLE` na tabela no cliente **mysql**.
+Se a saída do programa estiver vazia, isso pode indicar que ainda não existem estatísticas. Para forçar a criação (ou atualização, se já existirem) delas, invocando **ndb_index_stat** com a opção `--update`, ou executando `ANALYZE TABLE` na tabela no cliente **mysql**.
 
 #### Opções
 
-A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **ndb\_index\_stat**. Descrições adicionais estão listadas após a tabela.
+A tabela a seguir inclui opções específicas para o utilitário NDB Cluster **ndb_index_stat**. Descrições adicionais estão listadas após a tabela.
 
 * `--character-sets-dir`
 
@@ -241,7 +241,7 @@ Repita os comandos quantas vezes este número (para uso em testes).
 
 <table frame="box" rules="all" summary="Propriedades para connect-retries"><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></table>
 
-Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrime entradas em `NDB_CONNECTSTRING` e `my.cnf`.
+Defina a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrime entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -418,7 +418,7 @@ Crie todas as tabelas de estatísticas e eventos no kernel NDB. Isso funciona ap
 
   Exibir informações da versão e sair.
 
-**Opções do sistema ndb\_index\_stat.** As seguintes opções são usadas para gerar e atualizar as tabelas de estatísticas no kernel NDB. Nenhuma dessas opções pode ser combinada com opções de estatísticas (veja as opções de estatísticas ndb\_index\_stat).
+**Opções do sistema ndb_index_stat.** As seguintes opções são usadas para gerar e atualizar as tabelas de estatísticas no kernel NDB. Nenhuma dessas opções pode ser combinada com opções de estatísticas (veja as opções de estatísticas ndb_index_stat).
 
 * `--sys-drop`
 * `--sys-create`
@@ -428,7 +428,7 @@ Crie todas as tabelas de estatísticas e eventos no kernel NDB. Isso funciona ap
 * `--sys-skip-tables`
 * `--sys-skip-events`
 
-**Opções de estatísticas ndb\_index\_stat.** As opções listadas aqui são usadas para gerar estatísticas de índice. Elas funcionam com uma tabela e um banco de dados específicos. Não podem ser combinadas com opções de sistema (veja as opções de sistema ndb\_index\_stat).
+**Opções de estatísticas ndb_index_stat.** As opções listadas aqui são usadas para gerar estatísticas de índice. Elas funcionam com uma tabela e um banco de dados específicos. Não podem ser combinadas com opções de sistema (veja as opções de sistema ndb_index_stat).
 
 * `--database`
 * `--delete`

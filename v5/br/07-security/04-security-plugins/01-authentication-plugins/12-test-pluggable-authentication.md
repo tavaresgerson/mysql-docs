@@ -4,15 +4,15 @@ O MySQL inclui um plugin de teste que verifica as credenciais da conta e registr
 
 O código-fonte do plugin de teste é separado do código-fonte do servidor, ao contrário do plugin nativo integrado, então ele pode ser examinado como um exemplo relativamente simples que demonstra como escrever um plugin de autenticação carregável.
 
-Nota
-
+::: info Nota
 Este plugin é destinado a fins de teste e desenvolvimento e não deve ser usado em ambientes de produção ou em servidores expostos a redes públicas.
+:::
 
 A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O sufixo do nome do arquivo pode variar no seu sistema. O arquivo deve estar localizado no diretório nomeado pela variável de sistema `plugin_dir`.
 
 **Tabela 6.19 Nomes de plugins e bibliotecas para autenticação de teste**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha de teste."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>test_plugin_server</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code>auth_test_plugin</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">auth_test_plugin.so</code>]]</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha de teste."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>test_plugin_server</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code>auth_test_plugin</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code>auth_test_plugin.so</code>]]</td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para a autenticação plugável de teste:
 
@@ -30,7 +30,7 @@ Para que o plugin possa ser usado pelo servidor, o arquivo da biblioteca do plug
 
 Para carregar o plugin no início do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugins, a opção deve ser fornecida toda vez que o servidor for iniciado. Por exemplo, coloque essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
-```sql
+```
 [mysqld]
 plugin-load-add=auth_test_plugin.so
 ```
@@ -43,7 +43,7 @@ Como alternativa, para carregar o plugin em tempo de execução, use esta declar
 INSTALL PLUGIN test_plugin_server SONAME 'auth_test_plugin.so';
 ```
 
-`INSTALE O PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
+`INSTALL PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
 
 Para verificar a instalação do plugin, examine a tabela Schema de Informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte Seção 5.5.2, “Obtendo Informações de Plugins do Servidor”). Por exemplo:
 
@@ -86,7 +86,7 @@ BY 'testpassword';
 
 Em seguida, forneça as opções `--user` e `--password` para essa conta ao se conectar ao servidor. Por exemplo:
 
-```sql
+```sh
 $> mysql --user=testuser --password
 Enter password: testpassword
 ```
@@ -95,7 +95,7 @@ O plugin obtém a senha conforme recebida do cliente e a compara com o valor arm
 
 Você pode procurar no log de erro do servidor uma mensagem que indique se a autenticação foi bem-sucedida (observe que a senha é relatada como o “usuário”):
 
-```sql
+```
 [Note] Plugin test_plugin_server reported:
 'successfully authenticated user testpassword'
 ```

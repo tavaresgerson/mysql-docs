@@ -99,7 +99,7 @@ O servidor utiliza as tabelas `user` e `db` no banco de dados `mysql` nas duas p
 
 **Tabela 8.4 Colunas das tabelas user e db**
 
-<table><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Nome da Tabela</th> <th><code>user</code></th> <th><code>db</code></th> </tr></thead><tbody><tr> <th><span class="bold">Colunas de escopo</span></th> <td><code>Host</code></td> <td><code>Host</code></td> </tr><tr> <th></th> <td><code>User</code></td> <td><code>Db</code></td> </tr><tr> <th></th> <td></td> <td><code>User</code></td> </tr><tr> <th><span class="bold">Colunas de privilégio</span></th> <td><code>Select_priv</code></td> <td><code>Select_priv</code></td> </tr><tr> <th></th> <td><code>Insert_priv</code></td> <td><code>Insert_priv</code></td> </tr><tr> <th></th> <td><code>Update_priv</code></td> <td><code>Update_priv</code></td> </tr><tr> <th></th> <td><code>Delete_priv</code></td> <td><code>Delete_priv</code></td> </tr><tr> <th></th> <td><code>Index_priv</code></td> <td><code>Index_priv</code></td> </tr><tr> <th></th> <td><code>Alter_priv</code></td> <td><code>Alter_priv</code></td> </tr><tr> <th></th> <td><code>Create_priv</code></td> <td><code>Create_priv</code></td> </tr><tr> <th></th> <td><code>Drop_priv</code></td> <td><code>Drop_priv</code></td> </tr><tr> <th></th> <td><code>Grant_priv</code></td> <td><code>Grant_priv</code></td> </tr><tr> <th></th> <td><code>Create_view_priv</code></td> <td><code>Create_view_priv</code></td> </tr><tr> <th></th> <td><code>Show_view_priv</code></td> <td><code>Show_view_priv</code></td> </tr><tr> <th></th> <td><code>Create_routine_priv</code></td> <td><code>Create_routine_priv</code></td> </tr><tr> <th></th> <td><code>Alter_routine_priv</code></td> <td><code>Alter_routine_priv</code></td> </tr><tr> <th></th> <td><code>Execute_priv</code></td> <td><code>Execute_priv</code></td> </tr><tr> <th></th> <td><code>Trigger_priv</code></td> <td><code>Trigger_priv</code></td> </tr><tr> <th></th> <td><code>Event_priv</code></td> <td><code>Event_priv</code></td> </tr><tr> <th></th> <td><code>Create_tmp_table_priv</code></td> <td><code>Create_tmp_table_priv</code></td> </tr><tr> <th></th> <td><code>Lock_tables_priv</code></td> <td><code>Lock_tables_priv</code></td> </tr><tr> <th></th> <td><code>References_priv</code></td> <td><code>References_priv</code></td> </tr><tr> <th></th> <td><code>Reload_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Shutdown_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Process_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>File_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal
+<table><col style="width: 40%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Nome da Tabela</th> <th><code>user</code></th> <th><code>db</code></th> </tr></thead><tbody><tr> <th><span>Colunas de escopo</span></th> <td><code>Host</code></td> <td><code>Host</code></td> </tr><tr> <th></th> <td><code>User</code></td> <td><code>Db</code></td> </tr><tr> <th></th> <td></td> <td><code>User</code></td> </tr><tr> <th><span>Colunas de privilégio</span></th> <td><code>Select_priv</code></td> <td><code>Select_priv</code></td> </tr><tr> <th></th> <td><code>Insert_priv</code></td> <td><code>Insert_priv</code></td> </tr><tr> <th></th> <td><code>Update_priv</code></td> <td><code>Update_priv</code></td> </tr><tr> <th></th> <td><code>Delete_priv</code></td> <td><code>Delete_priv</code></td> </tr><tr> <th></th> <td><code>Index_priv</code></td> <td><code>Index_priv</code></td> </tr><tr> <th></th> <td><code>Alter_priv</code></td> <td><code>Alter_priv</code></td> </tr><tr> <th></th> <td><code>Create_priv</code></td> <td><code>Create_priv</code></td> </tr><tr> <th></th> <td><code>Drop_priv</code></td> <td><code>Drop_priv</code></td> </tr><tr> <th></th> <td><code>Grant_priv</code></td> <td><code>Grant_priv</code></td> </tr><tr> <th></th> <td><code>Create_view_priv</code></td> <td><code>Create_view_priv</code></td> </tr><tr> <th></th> <td><code>Show_view_priv</code></td> <td><code>Show_view_priv</code></td> </tr><tr> <th></th> <td><code>Create_routine_priv</code></td> <td><code>Create_routine_priv</code></td> </tr><tr> <th></th> <td><code>Alter_routine_priv</code></td> <td><code>Alter_routine_priv</code></td> </tr><tr> <th></th> <td><code>Execute_priv</code></td> <td><code>Execute_priv</code></td> </tr><tr> <th></th> <td><code>Trigger_priv</code></td> <td><code>Trigger_priv</code></td> </tr><tr> <th></th> <td><code>Event_priv</code></td> <td><code>Event_priv</code></td> </tr><tr> <th></th> <td><code>Create_tmp_table_priv</code></td> <td><code>Create_tmp_table_priv</code></td> </tr><tr> <th></th> <td><code>Lock_tables_priv</code></td> <td><code>Lock_tables_priv</code></td> </tr><tr> <th></th> <td><code>References_priv</code></td> <td><code>References_priv</code></td> </tr><tr> <th></th> <td><code>Reload_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Shutdown_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>Process_priv</code></td> <td></td> </tr><tr> <th></th> <td><code>File_priv</code></td> <td></td> </tr><tr> <th></th> <td><code class="literal
 
 As colunas `user` `plugin` e `authentication_string` armazenam informações de autenticação do plugin e credenciais.
 
@@ -135,7 +135,7 @@ Embora seja possível "redefinir" uma senha expirada, definindo-a para seu valor
 
 `Password_require_current` corresponde ao valor da opção `PASSWORD REQUIRE` para a conta, conforme mostrado na tabela a seguir.
 
-**Tabela 8.5 Valores Permitidos para Password_require\_current**
+**Tabela 8.5 Valores Permitidos para Password_require_current**
 
 <table summary="Valores permitidos da coluna user.Password_require_current e como eles correspondem às opções PASSWORD REQUIRE."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Valor de Password_require_current</th> <th>Opção PASSWORD REQUIRE Correspondente</th> </tr></thead><tbody><tr> <td><code>'Y'</code></td> <td><code>PASSWORD REQUIRE CURRENT</code></td> </tr><tr> <td><code>'N'</code></td> <td><code>PASSWORD REQUIRE CURRENT OPTIONAL</code></td> </tr><tr> <td><code>NULL</code></td> <td><code>PASSWORD REQUIRE CURRENT DEFAULT</code></td> </tr></tbody></table>
 
@@ -210,23 +210,23 @@ Aqui está um exemplo do tipo de informação armazenada para `multi_factor_auth
 }
 ```
 
-#### As tabelas\_priv e as colunas\_priv Conceder Tabelas
+#### As tabelas_priv e as colunas_priv Conceder Tabelas
 
 Durante a segunda etapa do controle de acesso, o servidor realiza a verificação da solicitação para garantir que cada cliente tenha privilégios suficientes para cada solicitação que emite. Além das tabelas `user` e `db`, o servidor também pode consultar as tabelas `tables_priv` e `columns_priv` para solicitações que envolvem tabelas. Essas últimas tabelas fornecem um controle de privilégio mais fino aos níveis de tabela e coluna. Elas têm as colunas mostradas na tabela a seguir.
 
 **Tabela 8.6 Colunas das tabelas _priv e _priv**
 
-<table><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Nome da Tabela</th> <th><code>tables_priv</code></th> <th><code>columns_priv</code></th> </tr></thead><tbody><tr> <th><span class="bold">Colunas de escopo</span></th> <td><code>Host</code></td> <td><code>Host</code></td> </tr><tr> <th></th> <td><code>Db</code></td> <td><code>Db</code></td> </tr><tr> <th></th> <td><code>User</code></td> <td><code>User</code></td> </tr><tr> <th></th> <td><code>Table_name</code></td> <td><code>Table_name</code></td> </tr><tr> <th></th> <td></td> <td><code>Column_name</code></td> </tr><tr> <th><span class="bold">Colunas de privilégio</span></th> <td><code>Table_priv</code></td> <td><code>Column_priv</code></td> </tr><tr> <th></th> <td><code>Column_priv</code></td> <td></td> </tr><tr> <th><span class="bold">Outras colunas</span></th> <td><code>Timestamp</code></td> <td><code>Timestamp</code></td> </tr><tr> <th></th> <td><code>Grantor</code></td> <td></td> </tr></tbody></table>
+<table><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Nome da Tabela</th> <th><code>tables_priv</code></th> <th><code>columns_priv</code></th> </tr></thead><tbody><tr> <th><span>Colunas de escopo</span></th> <td><code>Host</code></td> <td><code>Host</code></td> </tr><tr> <th></th> <td><code>Db</code></td> <td><code>Db</code></td> </tr><tr> <th></th> <td><code>User</code></td> <td><code>User</code></td> </tr><tr> <th></th> <td><code>Table_name</code></td> <td><code>Table_name</code></td> </tr><tr> <th></th> <td></td> <td><code>Column_name</code></td> </tr><tr> <th><span>Colunas de privilégio</span></th> <td><code>Table_priv</code></td> <td><code>Column_priv</code></td> </tr><tr> <th></th> <td><code>Column_priv</code></td> <td></td> </tr><tr> <th><span>Outras colunas</span></th> <td><code>Timestamp</code></td> <td><code>Timestamp</code></td> </tr><tr> <th></th> <td><code>Grantor</code></td> <td></td> </tr></tbody></table>
 
 As colunas `Timestamp` e `Grantor` são definidas como o timestamp atual e o valor `CURRENT_USER`, respectivamente, mas, de outra forma, não são utilizadas.
 
-#### A tabela de concessão procs\_priv
+#### A tabela de concessão procs_priv
 
 Para a verificação de solicitações que envolvem rotinas armazenadas, o servidor pode consultar a tabela `procs_priv`, que possui as colunas mostradas na tabela a seguir.
 
 **Tabela 8.7 colunas da tabela `procs_priv`**
 
-<table><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Nome da tabela</th> <th><code>procs_priv</code></th> </tr></thead><tbody><tr> <td><span class="bold"><strong>Colunas de escopo</strong></span></td> <td><code>Host</code></td> </tr><tr> <td></td> <td><code>Db</code></td> </tr><tr> <td></td> <td><code>User</code></td> </tr><tr> <td></td> <td><code>Routine_name</code></td> </tr><tr> <td></td> <td><code>Routine_type</code></td> </tr><tr> <td><span class="bold"><strong>Colunas de privilégio</strong></span></td> <td><code>Proc_priv</code></td> </tr><tr> <td><span class="bold"><strong>Outras colunas</strong></span></td> <td><code>Timestamp</code></td> </tr><tr> <td></td> <td><code>Grantor</code></td> </tr></tbody></table>
+<table><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th>Nome da tabela</th> <th><code>procs_priv</code></th> </tr></thead><tbody><tr> <td><span><strong>Colunas de escopo</strong></span></td> <td><code>Host</code></td> </tr><tr> <td></td> <td><code>Db</code></td> </tr><tr> <td></td> <td><code>User</code></td> </tr><tr> <td></td> <td><code>Routine_name</code></td> </tr><tr> <td></td> <td><code>Routine_type</code></td> </tr><tr> <td><span><strong>Colunas de privilégio</strong></span></td> <td><code>Proc_priv</code></td> </tr><tr> <td><span><strong>Outras colunas</strong></span></td> <td><code>Timestamp</code></td> </tr><tr> <td></td> <td><code>Grantor</code></td> </tr></tbody></table>
 
 A coluna `Routine_type` é uma coluna `ENUM` com valores de `'FUNCTION'` ou `'PROCEDURE'` para indicar o tipo de rotina a que a linha se refere. Essa coluna permite que privilégios sejam concedidos separadamente para uma função e um procedimento com o mesmo nome.
 
@@ -246,7 +246,7 @@ A tabela `proxies_priv` registra informações sobre contas de proxy. Ela possui
 
 Para que uma conta possa conceder o privilégio `PROXY` a outras contas, ela deve ter uma linha na tabela `proxies_priv` com `With_grant` definida como 1 e `Proxied_host` e `Proxied_user` definidos para indicar a conta ou contas para as quais o privilégio pode ser concedido. Por exemplo, a conta `'root'@'localhost'` criada durante a instalação do MySQL tem uma linha na tabela `proxies_priv` que permite conceder o privilégio `PROXY` para `''@''`, ou seja, para todos os usuários e todos os hosts. Isso permite que o `root` configure usuários proxy, bem como delegar a outras contas a autoridade para configurar usuários proxy. Veja a Seção 8.2.19, “Usuários Proxy”.
 
-#### A tabela de concessões global\_grants
+#### A tabela de concessões global_grants
 
 A tabela `global_grants` lista as atribuições atuais de privilégios globais dinâmicos para contas de usuário. A tabela tem essas colunas:
 
@@ -255,7 +255,7 @@ A tabela `global_grants` lista as atribuições atuais de privilégios globais d
 * `PRIV`: O nome do privilégio.
 * `WITH_GRANT_OPTION`: Se a conta pode conceder o privilégio a outras contas.
 
-#### A tabela de concessões default\_roles
+#### A tabela de concessões default_roles
 
 A tabela `default_roles` lista os papéis de usuário padrão. Ela tem essas colunas:
 
@@ -263,7 +263,7 @@ A tabela `default_roles` lista os papéis de usuário padrão. Ela tem essas col
 
 * `DEFAULT_ROLE_HOST`, `DEFAULT_ROLE_USER`: O papel padrão.
 
-#### A tabela de concessões role\_edges
+#### A tabela de concessões role_edges
 
 A tabela `role_edges` lista os vértices para subgrafos de papéis. Ela tem essas colunas:
 
@@ -273,7 +273,7 @@ A tabela `role_edges` lista os vértices para subgrafos de papéis. Ela tem essa
 
 * `WITH_ADMIN_OPTION`: Se a conta pode conceder o papel e revogá-lo de outras contas usando `WITH ADMIN OPTION`.
 
-#### A tabela de concessões password\_history
+#### A tabela de concessões password_history
 
 A tabela `password_history` contém informações sobre as alterações de senha. Ela possui as seguintes colunas:
 

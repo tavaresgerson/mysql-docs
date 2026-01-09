@@ -131,4 +131,4 @@ SHOW VARIABLES LIKE '%size%';
 SHOW GLOBAL VARIABLES LIKE '%size%';
 ```
 
-Os caracteres curinga podem ser usados em qualquer posição dentro do padrão a ser correspondido. Estritamente falando, porque `_` é um curinga que corresponde a qualquer único caractere, você deve escapar `_` como `\_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.
+Os caracteres curinga podem ser usados em qualquer posição dentro do padrão a ser correspondido. Estritamente falando, porque `_` é um curinga que corresponde a qualquer único caractere, você deve escapar `_` como `_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.

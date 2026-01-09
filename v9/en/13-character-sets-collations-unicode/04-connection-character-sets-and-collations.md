@@ -62,8 +62,8 @@ WHERE VARIABLE_NAME IN (
 The following simpler statements also display the connection variables, but include other related variables as well. They can be useful to see *all* character set and collation system variables:
 
 ```
-SHOW SESSION VARIABLES LIKE 'character\_set\_%';
-SHOW SESSION VARIABLES LIKE 'collation\_%';
+SHOW SESSION VARIABLES LIKE 'character_set_%';
+SHOW SESSION VARIABLES LIKE 'collation_%';
 ```
 
 Clients can fine-tune the settings for these variables, or depend on the defaults (in which case, you can skip the rest of this section). If you do not use the defaults, you must change the character settings *for each connection to the server*.
@@ -213,7 +213,7 @@ ERROR 2019 (HY000): Can't initialize character set bogus
 If you specify a character set that the client recognizes but the server does not, the server falls back to its default character set and collation. Suppose that the server is configured to use `latin1` and `latin1_swedish_ci` as its defaults, and that it does not recognize `gb18030` as a valid character set. A client that specifies `--default-character-set=gb18030` is able to connect to the server, but the resulting character set is not what the client wants:
 
 ```
-mysql> SHOW SESSION VARIABLES LIKE 'character\_set\_%';
+mysql> SHOW SESSION VARIABLES LIKE 'character_set_%';
 +--------------------------+--------+
 | Variable_name            | Value  |
 +--------------------------+--------+

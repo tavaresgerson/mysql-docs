@@ -4,7 +4,7 @@
 
 8.13.2 Using Your Own Benchmarks
 
-8.13.3 Measuring Performance with performance\_schema
+8.13.3 Measuring Performance with performance_schema
 
 To measure performance, consider the following factors:
 

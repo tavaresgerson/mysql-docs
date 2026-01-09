@@ -1,4 +1,4 @@
-#### 26.4.5.1 The extract\_schema\_from\_file\_name() Function
+#### 26.4.5.1 The extract_schema_from_file_name() Function
 
 Given a file path name, returns the path component that represents the schema name. This function assumes that the file name lies within the schema directory. For this reason, it does not work with partitions or tables defined using their own `DATA_DIRECTORY` table option.
 

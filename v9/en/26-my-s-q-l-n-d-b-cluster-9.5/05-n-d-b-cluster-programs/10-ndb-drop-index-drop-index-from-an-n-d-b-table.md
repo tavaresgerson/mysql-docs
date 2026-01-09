@@ -1,6 +1,6 @@
-### 25.5.10 ndb\_drop\_index — Drop Index from an NDB Table
+### 25.5.10 ndb_drop_index — Drop Index from an NDB Table
 
-**ndb\_drop\_index** drops the specified index from an `NDB` table. *It is recommended that you use this utility only as an example for writing NDB API applications*—see the Warning later in this section for details.
+**ndb_drop_index** drops the specified index from an `NDB` table. *It is recommended that you use this utility only as an example for writing NDB API applications*—see the Warning later in this section for details.
 
 #### Usage
 
@@ -10,7 +10,7 @@ ndb_drop_index -c connection_string table_name index -d db_name
 
 The statement shown above drops the index named *`index`* from the *`table`* in the *`database`*.
 
-Options that can be used with **ndb\_drop\_index** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_drop_index** are shown in the following table. Additional descriptions follow the table.
 
 * `--character-sets-dir`
 
@@ -88,7 +88,7 @@ Options that can be used with **ndb\_drop\_index** are shown in the following ta
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -183,4 +183,4 @@ mysql> SELECT * FROM dogs;
 ERROR 1296 (HY000): Got error 4243 'Index not found' from NDBCLUSTER
 ```
 
-In such a case, your *only* option for making the table available to MySQL again is to drop the table and re-create it. You can use either the SQL statement`DROP TABLE` or the **ndb\_drop\_table** utility (see Section 25.5.11, “ndb\_drop\_table — Drop an NDB Table”) to drop the table.
+In such a case, your *only* option for making the table available to MySQL again is to drop the table and re-create it. You can use either the SQL statement`DROP TABLE` or the **ndb_drop_table** utility (see Section 25.5.11, “ndb_drop_table — Drop an NDB Table”) to drop the table.

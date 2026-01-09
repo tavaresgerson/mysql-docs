@@ -1,4 +1,4 @@
-#### 26.4.5.18 A função quote\_identifier()
+#### 26.4.5.18 A função quote_identifier()
 
 Dada uma string como argumento, essa função gera um identificador com aspas, adequado para inclusão em instruções SQL. Isso é útil quando um valor a ser usado como identificador é uma palavra reservada ou contém caracteres de backtick (\`\`\`). Foi adicionado no MySQL 5.7.14.
 

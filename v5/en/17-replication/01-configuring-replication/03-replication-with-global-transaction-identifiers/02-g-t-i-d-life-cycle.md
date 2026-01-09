@@ -96,7 +96,7 @@ When you issue [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statem
 
 * The global value (but not the session value) of the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) system variable is set to an empty string.
 
-* The `mysql.gtid_executed` table is cleared (see [mysql.gtid\_executed Table](replication-gtids-concepts.html#replication-gtids-gtid-executed-table "mysql.gtid_executed Table")).
+* The `mysql.gtid_executed` table is cleared (see [mysql.gtid_executed Table](replication-gtids-concepts.html#replication-gtids-gtid-executed-table "mysql.gtid_executed Table")).
 
 * If the server has binary logging enabled, the existing binary log files are deleted and the binary log index file is cleared.
 

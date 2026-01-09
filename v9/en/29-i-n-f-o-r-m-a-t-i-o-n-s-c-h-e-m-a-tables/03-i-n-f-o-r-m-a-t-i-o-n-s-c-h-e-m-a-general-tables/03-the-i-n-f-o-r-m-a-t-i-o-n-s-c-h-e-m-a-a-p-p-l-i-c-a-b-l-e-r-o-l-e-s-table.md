@@ -1,4 +1,4 @@
-### 28.3.3 The INFORMATION\_SCHEMA APPLICABLE\_ROLES Table
+### 28.3.3 The INFORMATION_SCHEMA APPLICABLE_ROLES Table
 
 The `APPLICABLE_ROLES` table provides information about the roles that are applicable for the current user.
 

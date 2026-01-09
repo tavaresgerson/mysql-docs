@@ -40,6 +40,6 @@ Se um programa falhar, é sempre útil saber as seguintes informações:
 
 - Se o servidor [**mysqld**](mysqld.html) estiver causando problemas, você consegue obter alguma resposta dele com [**mysqladmin -u root ping**](mysqladmin.html) ou [**mysqladmin -u root processlist**](mysqladmin.html)?
 
-- O que um programa cliente diz quando você tenta se conectar ao servidor MySQL? (Tente com \[**mysql**]\(mysql.html], por exemplo.) O cliente travam? Você obtém algum tipo de saída do programa?
+- O que um programa cliente diz quando você tenta se conectar ao servidor MySQL? (Tente com [**mysql**]\(mysql.html], por exemplo.) O cliente travam? Você obtém algum tipo de saída do programa?
 
 Ao enviar um relatório de erro, você deve seguir o esquema descrito em [Seção 1.5, “Como relatar erros ou problemas”](bug-reports.html).

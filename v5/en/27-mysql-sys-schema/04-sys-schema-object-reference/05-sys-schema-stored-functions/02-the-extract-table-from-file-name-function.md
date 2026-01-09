@@ -1,4 +1,4 @@
-#### 26.4.5.2 The extract\_table\_from\_file\_name() Function
+#### 26.4.5.2 The extract_table_from_file_name() Function
 
 Given a file path name, returns the path component that represents the table name.
 

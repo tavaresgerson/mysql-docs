@@ -1,4 +1,4 @@
-### 24.3.5 The INFORMATION\_SCHEMA COLUMNS Table
+### 24.3.5 The INFORMATION_SCHEMA COLUMNS Table
 
 The [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table provides information about columns in tables.
 

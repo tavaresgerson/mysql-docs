@@ -1,10 +1,10 @@
 #### 25.6.2.1 NDB Cluster: Mensagens no Log do Cluster
 
-A tabela a seguir lista as mensagens mais comuns do log do cluster `NDB`. Para obter informações sobre o log do cluster, eventos de log e tipos de eventos, consulte a Seção 25.6.3, “Relatórios de Eventos Gerados no NDB Cluster”. Essas mensagens de log também correspondem aos tipos de eventos de log na API MGM; consulte O Tipo Ndb\_logevent\_type, para informações relacionadas de interesse para desenvolvedores da API Cluster.
+A tabela a seguir lista as mensagens mais comuns do log do cluster `NDB`. Para obter informações sobre o log do cluster, eventos de log e tipos de eventos, consulte a Seção 25.6.3, “Relatórios de Eventos Gerados no NDB Cluster”. Essas mensagens de log também correspondem aos tipos de eventos de log na API MGM; consulte O Tipo Ndb_logevent_type, para informações relacionadas de interesse para desenvolvedores da API Cluster.
 
 **Tabela 25.25 Mensagens comuns do log do cluster NDB**
 
-" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code>NDB</code></a> error codes, see <a class="ulink" href="/doc/ndb-internals/en/ndb-internals-ndb-error-codes.html" target="_top">NDB Error Codes</a>.</td> <td><code>NDBStopCompleted</code></td> <td><code>StartUp</code></td> <td>1</td> <td><code>INFO</code></td> </tr></tbody></table>
+" href="mysql-cluster.html" title="Chapter 25 MySQL NDB Cluster 9.5"><code>NDB</code></a> error codes, see NDB Error Codes.</td> <td><code>NDBStopCompleted</code></td> <td><code>StartUp</code></td> <td>1</td> <td><code>INFO</code></td> </tr></tbody></table>
 python
 
 

@@ -1,4 +1,4 @@
-#### 30.4.3.12 As visualizações io\_global\_by\_file\_by\_latency e x$io\_global\_by\_file\_by\_latency
+#### 30.4.3.12 As visualizações io_global_by_file_by_latency e x$io_global_by_file_by_latency
 
 Essas visualizações resumem os consumidores de E/S globais para exibir o tempo de espera por E/S, agrupados por arquivo. Por padrão, as linhas são ordenadas em ordem decrescente de latência total.
 

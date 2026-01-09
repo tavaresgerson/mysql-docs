@@ -22,7 +22,7 @@ Algumas instruções SQL relacionadas a certas funcionalidades do MySQL produzem
 
   - Colunas `BIT`. Uma coluna `BIT` (tipo bit) não pode ser uma chave primária, chave única ou índice, nem pode fazer parte de uma chave primária, chave única ou índice compostos.
 
-  - **Colunas AUTO\_INCREMENT.** Como outros motores de armazenamento do MySQL, o motor de armazenamento `NDB` pode lidar com no máximo uma coluna `AUTO_INCREMENT` por tabela, e essa coluna deve ser indexada. No entanto, no caso de uma tabela NDB sem uma chave primária explícita, uma coluna `AUTO_INCREMENT` é definida automaticamente e usada como uma chave primária “oculta”. Por essa razão, você não pode criar uma tabela `NDB` com uma coluna `AUTO_INCREMENT` e sem uma chave primária explícita.
+  - **Colunas AUTO_INCREMENT.** Como outros motores de armazenamento do MySQL, o motor de armazenamento `NDB` pode lidar com no máximo uma coluna `AUTO_INCREMENT` por tabela, e essa coluna deve ser indexada. No entanto, no caso de uma tabela NDB sem uma chave primária explícita, uma coluna `AUTO_INCREMENT` é definida automaticamente e usada como uma chave primária “oculta”. Por essa razão, você não pode criar uma tabela `NDB` com uma coluna `AUTO_INCREMENT` e sem uma chave primária explícita.
 
     As seguintes instruções `CREATE TABLE` não funcionam, conforme mostrado aqui:
 

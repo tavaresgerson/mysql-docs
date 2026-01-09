@@ -6,7 +6,7 @@ Para desligar o cluster, insira o seguinte comando em uma janela de shell na má
 $> ndb_mgm -e shutdown
 ```
 
-A opção `-e` é usada para passar um comando ao cliente **ndb\_mgm** a partir da shell. O comando faz com que o **ndb\_mgm**, **ndb\_mgmd** e quaisquer processos **ndbd** ou **ndbmtd**) sejam encerrados de forma suave. Qualquer nó SQL pode ser encerrado usando **mysqladmin shutdown** e outros meios. Em plataformas Windows, assumindo que você instalou o nó SQL como um serviço do Windows, você pode usar **SC STOP *`service_name`*** ou **NET STOP *`service_name`***.
+A opção `-e` é usada para passar um comando ao cliente **ndb_mgm** a partir da shell. O comando faz com que o **ndb_mgm**, **ndb_mgmd** e quaisquer processos **ndbd** ou **ndbmtd**) sejam encerrados de forma suave. Qualquer nó SQL pode ser encerrado usando **mysqladmin shutdown** e outros meios. Em plataformas Windows, assumindo que você instalou o nó SQL como um serviço do Windows, você pode usar **SC STOP *`service_name`*** ou **NET STOP *`service_name`***.
 
 Para reiniciar o cluster em plataformas Unix, execute esses comandos:
 
@@ -22,7 +22,7 @@ Para reiniciar o cluster em plataformas Unix, execute esses comandos:
   $> ndbd
   ```
 
-* Use o cliente **ndb\_mgm** para verificar se ambos os nós de dados iniciaram com sucesso.
+* Use o cliente **ndb_mgm** para verificar se ambos os nós de dados iniciaram com sucesso.
 
 * No host SQL (`198.51.100.20`):
 
@@ -44,7 +44,7 @@ Em plataformas Windows, assumindo que você instalou todos os processos do NDB C
   C:\> SC START ndbd
   ```
 
-* No host do nó de gerenciamento, use o cliente **ndb\_mgm** para verificar se o nó de gerenciamento e ambos os nós de dados iniciaram com sucesso (veja a Seção 25.3.2.3, “Início Inicial do NDB Cluster no Windows”).
+* No host do nó de gerenciamento, use o cliente **ndb_mgm** para verificar se o nó de gerenciamento e ambos os nós de dados iniciaram com sucesso (veja a Seção 25.3.2.3, “Início Inicial do NDB Cluster no Windows”).
 
 * No host do nó SQL (`198.51.100.20`), execute o seguinte comando:
 

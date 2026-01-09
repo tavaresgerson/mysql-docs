@@ -1,4 +1,4 @@
-### 27.2.4 Stored Procedures, Functions, Triggers, and LAST\_INSERT\_ID()
+### 27.2.4 Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()
 
 Within the body of a stored routine (procedure or function) or a trigger, the value of `LAST_INSERT_ID()` changes the same way as for statements executed outside the body of these kinds of objects (see Section 14.15, “Information Functions”). The effect of a stored routine or trigger upon the value of `LAST_INSERT_ID()` that is seen by following statements depends on the kind of routine:
 

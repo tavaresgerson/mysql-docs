@@ -109,6 +109,6 @@ If you have installed a third-party distribution of MySQL from a nonnative softw
 
    Important
 
-   If you have chosen to replace your third-party MySQL distribution with a newer version of MySQL from the MySQL Yum repository, remember to run **mysql\_upgrade** after the server starts, to check and possibly resolve any incompatibilities between the old data and the upgraded software. **mysql\_upgrade** also performs other functions; see Section 4.4.7, “mysql\_upgrade — Check and Upgrade MySQL Tables” for details.
+   If you have chosen to replace your third-party MySQL distribution with a newer version of MySQL from the MySQL Yum repository, remember to run **mysql_upgrade** after the server starts, to check and possibly resolve any incompatibilities between the old data and the upgraded software. **mysql_upgrade** also performs other functions; see Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables” for details.
 
    *For EL7-based platforms:* See Compatibility Information for EL7-based platforms.

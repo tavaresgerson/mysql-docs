@@ -1,4 +1,4 @@
-### 10.8.5 A Colagem Binária Comparada às Colagens \_bin
+### 10.8.5 A Colagem Binária Comparada às Colagens _bin
 
 Esta seção descreve como a ordenação `binary` para strings binárias é comparada às ordenações `_bin` para strings não binárias.
 

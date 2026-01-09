@@ -36,7 +36,7 @@ Se um canal de replicação tiver lacunas, isso terá as seguintes consequência
 
 3. As declarações `CHANGE MASTER TO` para esse canal falham com um erro, a menos que os threads do aplicativo estejam em execução e a declaração `CHANGE MASTER TO` apenas defina as opções do receptor.
 
-4. Se o **mysqld** for iniciado com `--relay-log-recovery` (opções de replicação-replica.html#sysvar\_relay\_log\_recovery), não será realizada nenhuma recuperação para esse canal, e uma mensagem de aviso será impressa.
+4. Se o **mysqld** for iniciado com `--relay-log-recovery` (opções de replicação-replica.html#sysvar_relay_log_recovery), não será realizada nenhuma recuperação para esse canal, e uma mensagem de aviso será impressa.
 
 5. Se o **mysqldump** for usado com `--dump-slave`, ele não registra a existência de lacunas; assim, ele imprime `CHANGE MASTER TO` com `RELAY_LOG_POS` definido para a posição do "nível mínimo" em `Exec_master_log_pos`.
 

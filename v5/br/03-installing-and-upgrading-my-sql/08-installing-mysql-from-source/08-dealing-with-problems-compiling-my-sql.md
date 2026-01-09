@@ -38,7 +38,7 @@ Em alguns sistemas, podem ocorrer avisos devido a diferenças nos arquivos de in
 
   Para especificar suas próprias flags do compilador C e C++, use as opções `CMAKE_C_FLAGS` e `CMAKE_CXX_FLAGS` do CMake. Veja Flags do compilador.
 
-  Para ver quais flags você pode precisar especificar, invocando **mysql\_config** com as opções `--cflags` e `--cxxflags`.
+  Para ver quais flags você pode precisar especificar, invocando **mysql_config** com as opções `--cflags` e `--cxxflags`.
 
 - Para ver quais comandos são executados durante a fase de compilação, após usar o **CMake** para configurar o MySQL, execute **make VERBOSE=1** em vez de apenas **make**.
 

@@ -149,8 +149,8 @@ Bit functions and operators permit binary string type arguments ( `BINARY`, `VAR
 *  Binary String Bit-Operation Examples
 *  Bitwise AND, OR, and XOR Operations
 *  Bitwise Complement and Shift Operations
-*  BIT\_COUNT() Operations Operations")
-*  BIT\_AND(), BIT\_OR(), and BIT\_XOR() Operations, BIT_OR(), and BIT_XOR() Operations")
+*  BIT_COUNT() Operations Operations")
+*  BIT_AND(), BIT_OR(), and BIT_XOR() Operations, BIT_OR(), and BIT_XOR() Operations")
 * Special Handling of Hexadecimal Literals, Bit Literals, and NULL Literals
 
 ### Bit Operations
@@ -490,7 +490,7 @@ mysql> SELECT HEX(~@var1);
 +-------------+
 ```
 
-### BIT\_COUNT() Operations
+### BIT_COUNT() Operations
 
 The  `BIT_COUNT()` function always returns an unsigned 64-bit integer, or `NULL` if the argument is `NULL`.
 
@@ -509,7 +509,7 @@ mysql> SELECT BIT_COUNT(b'010101'), BIT_COUNT(_binary b'010101');
 +----------------------+------------------------------+
 ```
 
-### BIT\_AND(), BIT\_OR(), and BIT\_XOR() Operations
+### BIT_AND(), BIT_OR(), and BIT_XOR() Operations
 
 For the  `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` bit functions, the result type depends on whether the function argument values are evaluated as binary strings or numbers:
 

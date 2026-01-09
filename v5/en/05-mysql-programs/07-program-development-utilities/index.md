@@ -1,14 +1,14 @@
 ## 4.7 Program Development Utilities
 
-4.7.1 mysql\_config — Display Options for Compiling Clients
+4.7.1 mysql_config — Display Options for Compiling Clients
 
-4.7.2 my\_print\_defaults — Display Options from Option Files
+4.7.2 my_print_defaults — Display Options from Option Files
 
-4.7.3 resolve\_stack\_dump — Resolve Numeric Stack Trace Dump to Symbols
+4.7.3 resolve_stack_dump — Resolve Numeric Stack Trace Dump to Symbols
 
 This section describes some utilities that you may find useful when developing MySQL programs.
 
-In shell scripts, you can use the **my\_print\_defaults** program to parse option files and see what options would be used by a given program. The following example shows the output that **my\_print\_defaults** might produce when asked to show the options found in the `[client]` and `[mysql]` groups:
+In shell scripts, you can use the **my_print_defaults** program to parse option files and see what options would be used by a given program. The following example shows the output that **my_print_defaults** might produce when asked to show the options found in the `[client]` and `[mysql]` groups:
 
 ```sql
 $> my_print_defaults client mysql

@@ -83,7 +83,7 @@ Para tabelas particionadas, esse valor é apenas uma estimativa e pode não ser 
       AND   TABLE_NAME   = 'mytable';
   ```
 
-Para mais informações, consulte a Seção 28.3.26, “A Tabela INFORMATION\_SCHEMA PARTITIONS”.
+Para mais informações, consulte a Seção 28.3.26, “A Tabela INFORMATION_SCHEMA PARTITIONS”.
 
 * `Auto_increment`
 
@@ -143,4 +143,4 @@ Para tabelas `InnoDB` particionadas, `Check_time` é sempre `NULL`.
 
 * Para as visualizações, a maioria das colunas exibidas pelo `SHOW TABLE STATUS` é 0 ou `NULL`, exceto que `Name` indica o nome da visualização, `Create_time` indica o tempo de criação e `Comment` diz `VIEW`.
 
-As informações da tabela também estão disponíveis na tabela `INFORMATION_SCHEMA` `TABLES`. Veja a Seção 28.3.44, “A Tabela INFORMATION\_SCHEMA”.
+As informações da tabela também estão disponíveis na tabela `INFORMATION_SCHEMA` `TABLES`. Veja a Seção 28.3.44, “A Tabela INFORMATION_SCHEMA”.

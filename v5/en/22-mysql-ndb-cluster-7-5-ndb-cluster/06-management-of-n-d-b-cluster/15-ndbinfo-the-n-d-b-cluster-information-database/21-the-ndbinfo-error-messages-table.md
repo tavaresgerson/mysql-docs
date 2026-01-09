@@ -1,4 +1,4 @@
-#### 21.6.15.21 The ndbinfo error\_messages Table
+#### 21.6.15.21 The ndbinfo error_messages Table
 
 The `error_messages` table provides information about
 
@@ -22,7 +22,7 @@ The `error_messages` table contains the following columns:
 
 ##### Notes
 
-`error_code` is a numeric NDB error code. This is the same error code that can be supplied to [**ndb\_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") or [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information") [`--ndb`](perror.html#option_perror_ndb).
+`error_code` is a numeric NDB error code. This is the same error code that can be supplied to [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") or [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information") [`--ndb`](perror.html#option_perror_ndb).
 
 `error_description` provides a basic description of the condition causing the error.
 
@@ -57,6 +57,6 @@ The `error_status` column provides status information relating to the error. Pos
 
 * `Unknown`
 
-The error\_classification column shows the error classification. See [NDB Error Classifications](/doc/ndbapi/en/ndb-error-classifications.html), for information about classification codes and their meanings.
+The error_classification column shows the error classification. See [NDB Error Classifications](/doc/ndbapi/en/ndb-error-classifications.html), for information about classification codes and their meanings.
 
 The `error_messages` table was added in NDB 7.6.

@@ -34,7 +34,7 @@ As funções listadas nesta seção compõem valores JSON a partir de elementos 
 
   Essa função é normalmente usada para produzir uma string literal JSON válida para inclusão dentro de um documento JSON.
 
-  Certos caracteres especiais são escapados com barras invertidas conforme as sequências de escape mostradas na Tabela 12.23, "Sequências de escape de caracteres especiais JSON\_UNQUOTE()". Sequências de escape de caracteres especiais).
+  Certos caracteres especiais são escapados com barras invertidas conforme as sequências de escape mostradas na Tabela 12.23, "Sequências de escape de caracteres especiais JSON_UNQUOTE()". Sequências de escape de caracteres especiais).
 
   ```sql
   mysql> SELECT JSON_QUOTE('null'), JSON_QUOTE('"null"');

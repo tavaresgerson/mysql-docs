@@ -1,4 +1,4 @@
-#### 21.6.15.29 The ndbinfo operations\_per\_fragment Table
+#### 21.6.15.29 The ndbinfo operations_per_fragment Table
 
 The `operations_per_fragment` table provides information about the operations performed on individual fragments and fragment replicas, as well as about some of the results from these operations.
 
@@ -166,7 +166,7 @@ For indexes or `BLOB` tables, the `parent_fq_name` column contains the `fq_name`
 
 The `type` column shows the schema object type used for this fragment, which can take any one of the values `System table`, `User table`, `Unique hash index`, or `Ordered index`. `BLOB` tables are shown as `User table`.
 
-The `table_id` column value is unique at any given time, but can be reused if the corresponding object has been deleted. The same ID can be seen using the [**ndb\_show\_tables**](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables") utility.
+The `table_id` column value is unique at any given time, but can be reused if the corresponding object has been deleted. The same ID can be seen using the [**ndb_show_tables**](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables") utility.
 
 The `block_instance` column shows which LDM instance this fragment replica belongs to. You can use this to obtain information about specific threads from the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table. The first such instance is always numbered 0.
 

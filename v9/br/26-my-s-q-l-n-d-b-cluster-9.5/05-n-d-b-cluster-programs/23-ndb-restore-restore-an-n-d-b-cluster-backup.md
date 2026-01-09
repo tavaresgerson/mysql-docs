@@ -14,7 +14,7 @@ As opções que podem ser usadas com **ndb_restore** são mostradas na tabela a 
 
   <table frame="box" rules="all" summary="Propriedades para allow-pk-changes"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--allow-pk-changes[=0|1]</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>0</code></td> </tr><tr><th>Valor Mínima</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1</code></td> </tr></tbody></table>
 
-Quando esta opção é definida como `1`, o **ndb\_restore** permite que as chaves primárias em uma definição de tabela diferem daquelas da mesma tabela no backup. Isso pode ser desejável ao fazer backup e restaurar entre diferentes versões do esquema com alterações nas chaves primárias de uma ou mais tabelas, e parece que realizar a operação de restauração usando o **ndb\_restore** é mais simples ou mais eficiente do que emitir muitas instruções `ALTER TABLE` após restaurar os esquemas e dados das tabelas.
+Quando esta opção é definida como `1`, o **ndb_restore** permite que as chaves primárias em uma definição de tabela diferem daquelas da mesma tabela no backup. Isso pode ser desejável ao fazer backup e restaurar entre diferentes versões do esquema com alterações nas chaves primárias de uma ou mais tabelas, e parece que realizar a operação de restauração usando o **ndb_restore** é mais simples ou mais eficiente do que emitir muitas instruções `ALTER TABLE` após restaurar os esquemas e dados das tabelas.
 
 As seguintes alterações nas definições de chave primária são suportadas pelo `--allow-pk-changes`:
 
@@ -22,27 +22,27 @@ As seguintes alterações nas definições de chave primária são suportadas pe
 
 Importante
 
-Ao estender a chave primária de uma tabela, quaisquer colunas que se tornem parte da chave primária devem não ser atualizadas enquanto o backup estiver sendo feito; quaisquer atualizações descobertas pelo **ndb\_restore** causam o falhar da operação de restauração, mesmo quando não ocorre alteração no valor. Em alguns casos, pode ser possível sobrepor esse comportamento usando a opção `--ignore-extended-pk-updates`; consulte a descrição dessa opção para mais informações.
+Ao estender a chave primária de uma tabela, quaisquer colunas que se tornem parte da chave primária devem não ser atualizadas enquanto o backup estiver sendo feito; quaisquer atualizações descobertas pelo **ndb_restore** causam o falhar da operação de restauração, mesmo quando não ocorre alteração no valor. Em alguns casos, pode ser possível sobrepor esse comportamento usando a opção `--ignore-extended-pk-updates`; consulte a descrição dessa opção para mais informações.
 
 + **Contração da chave primária (1)**: Uma coluna que já faz parte da chave primária da tabela no esquema do backup não faz mais parte da chave primária, mas permanece na tabela.
 
 + **Contração da chave primária (2)**: Uma coluna que já faz parte da chave primária da tabela no esquema do backup é removida da tabela completamente.
 
-Essas diferenças podem ser combinadas com outras diferenças de esquema suportadas pelo **ndb\_restore**, incluindo alterações em colunas blob e texto que requerem o uso de tabelas de preparação.
+Essas diferenças podem ser combinadas com outras diferenças de esquema suportadas pelo **ndb_restore**, incluindo alterações em colunas blob e texto que requerem o uso de tabelas de preparação.
 
 Os passos básicos em um cenário típico usando alterações no esquema da chave primária são listados aqui:
 
-1. Restaure os esquemas da tabela usando **ndb\_restore** `--restore-meta`
+1. Restaure os esquemas da tabela usando **ndb_restore** `--restore-meta`
 
   2. Altere o esquema para o desejado ou crie-o
   3. Faça backup do esquema desejado
-  4. Execute **ndb\_restore** `--disable-indexes` usando o backup do passo anterior, para descartar índices e restrições
+  4. Execute **ndb_restore** `--disable-indexes` usando o backup do passo anterior, para descartar índices e restrições
 
-  5. Execute **ndb\_restore** `--allow-pk-changes` (possível junto com `--ignore-extended-pk-updates`, `--disable-indexes` e possivelmente outras opções conforme necessário) para restaurar todos os dados
+  5. Execute **ndb_restore** `--allow-pk-changes` (possível junto com `--ignore-extended-pk-updates`, `--disable-indexes` e possivelmente outras opções conforme necessário) para restaurar todos os dados
 
-  6. Execute **ndb\_restore** `--rebuild-indexes` usando o backup feito com o esquema desejado, para reconstruir índices e restrições
+  6. Execute **ndb_restore** `--rebuild-indexes` usando o backup feito com o esquema desejado, para reconstruir índices e restrições
 
-  Ao estender a chave primária, pode ser necessário que **ndb\_restore** use um índice secundário único temporário durante a operação de restauração para mapear a antiga chave primária para a nova. Esse índice é criado apenas quando necessário para aplicar eventos do log de backup a uma tabela que tem uma chave primária estendida. Esse índice é chamado `NDB$RESTORE_PK_MAPPING` e é criado em cada tabela que o requer; ele pode ser compartilhado, se necessário, por múltiplas instâncias da instância **ndb\_restore** em execução em paralelo. (Executar **ndb\_restore** `--rebuild-indexes` no final do processo de restauração faz com que esse índice seja descartado.)
+  Ao estender a chave primária, pode ser necessário que **ndb_restore** use um índice secundário único temporário durante a operação de restauração para mapear a antiga chave primária para a nova. Esse índice é criado apenas quando necessário para aplicar eventos do log de backup a uma tabela que tem uma chave primária estendida. Esse índice é chamado `NDB$RESTORE_PK_MAPPING` e é criado em cada tabela que o requer; ele pode ser compartilhado, se necessário, por múltiplas instâncias da instância **ndb_restore** em execução em paralelo. (Executar **ndb_restore** `--rebuild-indexes` no final do processo de restauração faz com que esse índice seja descartado.)
 
 * `--append`
 
@@ -54,17 +54,17 @@ Os passos básicos em um cenário típico usando alterações no esquema da chav
 
 <table frame="box" rules="all" summary="Propriedades para backup-path"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--backup-path=caminho</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>./</code></td> </tr></tbody></table>
 
-  O caminho para o diretório de backup é obrigatório; ele é fornecido ao **ndb\_restore** usando a opção `--backup-path`, e deve incluir o subdiretório correspondente ao backup de ID do backup a ser restaurado. Por exemplo, se o `DataDir` do nó de dados for `/var/lib/mysql-cluster`, então o diretório de backup é `/var/lib/mysql-cluster/BACKUP`, e os arquivos de backup do backup com o ID 3 podem ser encontrados em `/var/lib/mysql-cluster/BACKUP/BACKUP-3`. O caminho pode ser absoluto ou relativo ao diretório em que o executável **ndb\_restore** está localizado, e pode ser opcionalmente prefixado com `backup-path=`.
+  O caminho para o diretório de backup é obrigatório; ele é fornecido ao **ndb_restore** usando a opção `--backup-path`, e deve incluir o subdiretório correspondente ao backup de ID do backup a ser restaurado. Por exemplo, se o `DataDir` do nó de dados for `/var/lib/mysql-cluster`, então o diretório de backup é `/var/lib/mysql-cluster/BACKUP`, e os arquivos de backup do backup com o ID 3 podem ser encontrados em `/var/lib/mysql-cluster/BACKUP/BACKUP-3`. O caminho pode ser absoluto ou relativo ao diretório em que o executável **ndb_restore** está localizado, e pode ser opcionalmente prefixado com `backup-path=`.
 
-  É possível restaurar um backup para um banco de dados com uma configuração diferente daquela em que foi criado. Por exemplo, suponha que um backup com o ID de backup `12`, criado em um cluster com dois nós de armazenamento com os IDs de nó `2` e `3`, deve ser restaurado para um cluster com quatro nós. Então, o **ndb\_restore** deve ser executado duas vezes — uma vez para cada nó de armazenamento no cluster onde o backup foi feito. No entanto, o **ndb\_restore** nem sempre pode restaurar backups feitos de um cluster executando uma versão do MySQL para um cluster executando uma versão diferente do MySQL. Consulte a Seção 25.3.7, “Atualização e Downgrade do NDB Cluster”, para obter mais informações.
+  É possível restaurar um backup para um banco de dados com uma configuração diferente daquela em que foi criado. Por exemplo, suponha que um backup com o ID de backup `12`, criado em um cluster com dois nós de armazenamento com os IDs de nó `2` e `3`, deve ser restaurado para um cluster com quatro nós. Então, o **ndb_restore** deve ser executado duas vezes — uma vez para cada nó de armazenamento no cluster onde o backup foi feito. No entanto, o **ndb_restore** nem sempre pode restaurar backups feitos de um cluster executando uma versão do MySQL para um cluster executando uma versão diferente do MySQL. Consulte a Seção 25.3.7, “Atualização e Downgrade do NDB Cluster”, para obter mais informações.
 
   Importante
 
-Não é possível restaurar um backup feito a partir de uma versão mais recente do NDB Cluster usando uma versão mais antiga do **ndb\_restore**. Você pode restaurar um backup feito a partir de uma versão mais recente do MySQL para um cluster mais antigo, mas você deve usar uma cópia do **ndb\_restore** da versão mais recente do NDB Cluster para fazer isso.
+Não é possível restaurar um backup feito a partir de uma versão mais recente do NDB Cluster usando uma versão mais antiga do **ndb_restore**. Você pode restaurar um backup feito a partir de uma versão mais recente do MySQL para um cluster mais antigo, mas você deve usar uma cópia do **ndb_restore** da versão mais recente do NDB Cluster para fazer isso.
 
-Por exemplo, para restaurar um backup de cluster feito de um cluster que está executando o NDB Cluster 8.4.7 para um cluster que está executando o NDB Cluster 8.0.44, você deve usar o **ndb\_restore** que vem com a distribuição do NDB Cluster 8.0.44.
+Por exemplo, para restaurar um backup de cluster feito de um cluster que está executando o NDB Cluster 8.4.7 para um cluster que está executando o NDB Cluster 8.0.44, você deve usar o **ndb_restore** que vem com a distribuição do NDB Cluster 8.0.44.
 
-Para uma restauração mais rápida, os dados podem ser restaurados em paralelo, desde que haja um número suficiente de conexões de cluster disponíveis. Ou seja, ao restaurar para múltiplos nós em paralelo, você deve ter uma seção `[api]` ou `[mysqld]` no arquivo `config.ini` do cluster disponível para cada processo de **ndb\_restore** concorrente. No entanto, os arquivos de dados devem ser aplicados sempre antes dos logs.
+Para uma restauração mais rápida, os dados podem ser restaurados em paralelo, desde que haja um número suficiente de conexões de cluster disponíveis. Ou seja, ao restaurar para múltiplos nós em paralelo, você deve ter uma seção `[api]` ou `[mysqld]` no arquivo `config.ini` do cluster disponível para cada processo de **ndb_restore** concorrente. No entanto, os arquivos de dados devem ser aplicados sempre antes dos logs.
 
 * `--backup-password=password`
 
@@ -74,7 +74,7 @@ Para uma restauração mais rápida, os dados podem ser restaurados em paralelo,
 
 A senha deve ter de 1 a 256 caracteres e deve estar entre aspas simples ou duplas. Ela pode conter qualquer um dos caracteres ASCII com códigos de caracteres 32, 35, 38, 40-91, 93, 95 e 97-126; em outras palavras, pode usar qualquer caractere ASCII imprimível, exceto `!`, `'`, `"`, `$`, `%`, `\` e `^`.
 
-É possível omitir a senha, caso em que o **ndb\_restore** aguarda por ela ser fornecida pelo `stdin`, como ao usar `--backup-password-from-stdin`.
+É possível omitir a senha, caso em que o **ndb_restore** aguarda por ela ser fornecida pelo `stdin`, como ao usar `--backup-password-from-stdin`.
 
 * `--backup-password-from-stdin[=TRUE|FALSE]`
 
@@ -205,13 +205,13 @@ Número de segundos para esperar entre as tentativas de contato com o servidor d
 
 <table frame="box" rules="all" summary="Propriedades para backup-path"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-path=caminho</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>./</code></td> </tr></tbody></table>
 
-  É possível restaurar apenas as colunas da tabela selecionadas usando essa opção, o que faz com que o **ndb\_restore** ignore quaisquer colunas ausentes das tabelas que estão sendo restauradas em comparação com as versões dessas tabelas encontradas no backup. Essa opção se aplica a todas as tabelas que estão sendo restauradas. Se você deseja aplicar essa opção apenas a tabelas ou bancos de dados selecionados, pode usá-la em combinação com uma ou mais das opções `--include-*` ou `--exclude-*` descritas em outra parte desta seção para fazer isso, e depois restaurar os dados para as tabelas restantes usando um conjunto complementar dessas opções.
+  É possível restaurar apenas as colunas da tabela selecionadas usando essa opção, o que faz com que o **ndb_restore** ignore quaisquer colunas ausentes das tabelas que estão sendo restauradas em comparação com as versões dessas tabelas encontradas no backup. Essa opção se aplica a todas as tabelas que estão sendo restauradas. Se você deseja aplicar essa opção apenas a tabelas ou bancos de dados selecionados, pode usá-la em combinação com uma ou mais das opções `--include-*` ou `--exclude-*` descritas em outra parte desta seção para fazer isso, e depois restaurar os dados para as tabelas restantes usando um conjunto complementar dessas opções.
 
 * `--exclude-tables`
 
   <table frame="box" rules="all" summary="Propriedades para backup-path"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-path=caminho</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>./</code></td> </tr></tbody></table>
 
-  É possível restaurar apenas as tabelas selecionadas usando essa opção, o que faz com que o **ndb\_restore** ignore quaisquer tabelas do backup que não estão no banco de dados de destino.
+  É possível restaurar apenas as tabelas selecionadas usando essa opção, o que faz com que o **ndb_restore** ignore quaisquer tabelas do backup que não estão no banco de dados de destino.
 
 * `--exclude-tables=*``table-list`*
 
@@ -219,11 +219,11 @@ Número de segundos para esperar entre as tentativas de contato com o servidor d
 
   Lista de uma ou mais tabelas a serem excluídas; cada referência de tabela deve incluir o nome do banco de dados. Frequentemente usada em conjunto com `--exclude-databases`.
 
-  Quando `--exclude-databases` ou `--exclude-tables` é usado, apenas esses bancos de dados ou tabelas nomeados pela opção são excluídos; todos os outros bancos de dados e tabelas são restaurados pelo **ndb\_restore**.
+  Quando `--exclude-databases` ou `--exclude-tables` é usado, apenas esses bancos de dados ou tabelas nomeados pela opção são excluídos; todos os outros bancos de dados e tabelas são restaurados pelo **ndb_restore**.
 
-  Esta tabela mostra várias invocações do **ndb\_restore** usando as opções `--exclude-*` (outras opções possivelmente necessárias foram omitidas para clareza), e os efeitos que essas opções têm na restauração a partir de um backup de NDB Cluster:
+  Esta tabela mostra várias invocações do **ndb_restore** usando as opções `--exclude-*` (outras opções possivelmente necessárias foram omitidas para clareza), e os efeitos que essas opções têm na restauração a partir de um backup de NDB Cluster:
 
-  **Tabela 25.23 Várias invocações do ndb\_restore usando as opções `--exclude-\*`, e os efeitos que essas opções têm na restauração a partir de um backup de NDB Cluster.**
+  **Tabela 25.23 Várias invocações do ndb_restore usando as opções `--exclude-\*`, e os efeitos que essas opções têm na restauração a partir de um backup de NDB Cluster.**
 
   <table frame="box" rules="all" summary="Propriedades para backup-path"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-path=caminho</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>./</code></td> </tr></tbody></table>
 
@@ -239,11 +239,11 @@ Você pode usar as opções `--include-*` e `--exclude-*` juntas, sujeito às se
 
 + As ações de todas as opções `--include-*` e `--exclude-*` são cumulativas.
 
-+ Todas as opções `--include-*` e `--exclude-*` são avaliadas na ordem passada para ndb\_restore, de direita para esquerda.
++ Todas as opções `--include-*` e `--exclude-*` são avaliadas na ordem passada para ndb_restore, de direita para esquerda.
 
 + Em caso de opções conflitantes, a primeira (mais à direita) tem precedência. Em outras palavras, a primeira opção (da direita para a esquerda) que corresponder a um banco de dados ou tabela específica "gana".
 
-Por exemplo, o seguinte conjunto de opções faz com que **ndb\_restore** restaure todas as tabelas do banco de dados `db1`, exceto `db1.t1`, enquanto não restaura nenhuma outra tabela de nenhum outro banco de dados:
+Por exemplo, o seguinte conjunto de opções faz com que **ndb_restore** restaure todas as tabelas do banco de dados `db1`, exceto `db1.t1`, enquanto não restaura nenhuma outra tabela de nenhum outro banco de dados:
 
 ```
   --include-databases=db1 --exclude-tables=db1.t1
@@ -289,7 +289,7 @@ Cada valor da coluna é encerrado pela string passada para esta opção (indepen
 
   <table frame="box" rules="all" summary="Propriedades para backup-path"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-path=caminho</code></td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor padrão</th> <td><code>./</code></td> </tr></tbody></table>
 
-  Ao usar `--allow-pk-changes`, as colunas que se tornam parte da chave primária de uma tabela não devem ser atualizadas durante a realização do backup; essas colunas devem manter os mesmos valores do momento em que os valores são inseridos nelas até que as linhas que contêm os valores sejam excluídas. Se o **ndb\_restore** encontrar atualizações nessas colunas ao restaurar um backup, a restauração falha. Como alguns aplicativos podem definir valores para todas as colunas ao atualizar uma linha, mesmo quando alguns valores das colunas não são alterados, o backup pode incluir eventos de log que parecem atualizar colunas que, na verdade, não são modificadas. Nesses casos, você pode definir `--ignore-extended-pk-updates` para `1`, forçando o **ndb\_restore** a ignorar tais atualizações.
+  Ao usar `--allow-pk-changes`, as colunas que se tornam parte da chave primária de uma tabela não devem ser atualizadas durante a realização do backup; essas colunas devem manter os mesmos valores do momento em que os valores são inseridos nelas até que as linhas que contêm os valores sejam excluídas. Se o **ndb_restore** encontrar atualizações nessas colunas ao restaurar um backup, a restauração falha. Como alguns aplicativos podem definir valores para todas as colunas ao atualizar uma linha, mesmo quando alguns valores das colunas não são alterados, o backup pode incluir eventos de log que parecem atualizar colunas que, na verdade, não são modificadas. Nesses casos, você pode definir `--ignore-extended-pk-updates` para `1`, forçando o **ndb_restore** a ignorar tais atualizações.
 
   Importante
 
@@ -327,11 +327,11 @@ Cada valor da coluna é encerrado pela string passada para esta opção (indepen
 
   Lista de tabelas para restauração, separadas por vírgulas; cada referência de tabela deve incluir o nome do banco de dados.
 
-Quando `--include-databases` ou `--include-tables` é usado, apenas os bancos de dados ou tabelas nomeados pela opção são restaurados; todos os outros bancos de dados e tabelas são excluídos pelo **ndb\_restore** e não são restaurados.
+Quando `--include-databases` ou `--include-tables` é usado, apenas os bancos de dados ou tabelas nomeados pela opção são restaurados; todos os outros bancos de dados e tabelas são excluídos pelo **ndb_restore** e não são restaurados.
 
-A tabela a seguir mostra várias invocações do **ndb\_restore** usando as opções `--include-*` (outras opções possivelmente necessárias foram omitidas para clareza), e os efeitos que elas têm na restauração a partir de um backup de NDB Cluster:
+A tabela a seguir mostra várias invocações do **ndb_restore** usando as opções `--include-*` (outras opções possivelmente necessárias foram omitidas para clareza), e os efeitos que elas têm na restauração a partir de um backup de NDB Cluster:
 
-**Tabela 25.24 Várias invocações do ndb\_restore usando as opções `--include-\*`, e seus efeitos na restauração a partir de um backup de NDB Cluster.**
+**Tabela 25.24 Várias invocações do ndb_restore usando as opções `--include-\*`, e seus efeitos na restauração a partir de um backup de NDB Cluster.**
 
 <table frame="box" rules="all" summary="Propriedades para backup-password"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
@@ -392,33 +392,33 @@ A tabela a seguir mostra várias invocações do **ndb\_restore** usando as opç
 
 Esta opção é destinada a complementar a opção `--promote-attributes`. O uso de `--lossy-conversions` permite conversões não-perfeitas de valores de coluna (tipos de degradação ou mudanças de sinal) ao restaurar dados a partir de backups. Com algumas exceções, as regras que regem a degradação são as mesmas da replicação do MySQL; consulte a Seção 19.5.1.9.2, “Replicação de Colunas com Tipos de Dados Diferentes”, para obter informações sobre as conversões de tipos específicas atualmente suportadas pela degradação de atributos.
 
-Esta opção também permite restaurar uma coluna `NULL` como `NOT NULL`. A coluna não deve conter nenhuma entrada `NULL`; caso contrário, o **ndb\_restore** pára com um erro.
+Esta opção também permite restaurar uma coluna `NULL` como `NOT NULL`. A coluna não deve conter nenhuma entrada `NULL`; caso contrário, o **ndb_restore** pára com um erro.
 
-O **ndb\_restore** relata qualquer truncação de dados que ele realiza durante as conversões não-perfeitas uma vez por atributo e coluna.
+O **ndb_restore** relata qualquer truncação de dados que ele realiza durante as conversões não-perfeitas uma vez por atributo e coluna.
 
 * `--no-binlog`
 
   <table frame="box" rules="all" summary="Propriedades para senha de backup"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Esta opção impede que quaisquer nós SQL conectados escrevam dados restaurados pelo **ndb\_restore** em seus logs binários.
+  Esta opção impede que quaisquer nós SQL conectados escrevam dados restaurados pelo **ndb_restore** em seus logs binários.
 
 * `--no-restore-disk-objects`, `-d`
 
   <table frame="box" rules="all" summary="Propriedades para senha de backup"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup-password=password</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-Essa opção impede que o **ndb\_restore** recupere objetos de dados de disco do NDB Cluster, como espaços de tabelas e grupos de arquivos de log; consulte a Seção 25.6.11, “Tabelas de Dados de Disco do NDB Cluster”, para obter mais informações sobre essas tabelas.
+Essa opção impede que o **ndb_restore** recupere objetos de dados de disco do NDB Cluster, como espaços de tabelas e grupos de arquivos de log; consulte a Seção 25.6.11, “Tabelas de Dados de Disco do NDB Cluster”, para obter mais informações sobre essas tabelas.
 
 * `--no-upgrade`, `-u`
 
   <table frame="box" rules="all" summary="Propriedades para backup-password-from-stdin"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
-  Ao usar o **ndb\_restore** para restaurar um backup, as colunas `VARCHAR` criadas usando o antigo formato fixo são redimensionadas e recriadas usando o formato de largura variável agora empregado. Esse comportamento pode ser ignorado especificando `--no-upgrade`.
+  Ao usar o **ndb_restore** para restaurar um backup, as colunas `VARCHAR` criadas usando o antigo formato fixo são redimensionadas e recriadas usando o formato de largura variável agora empregado. Esse comportamento pode ser ignorado especificando `--no-upgrade`.
 
 * `--ndb-connectstring`
 
   <table frame="box" rules="all" summary="Propriedades para backup-password-from-stdin"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--backup-password-from-stdin</code></td> </tr></tbody></table>
 
-  Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrescreve entradas no `NDB_CONNECTSTRING` e `my.cnf`.
+  Defina a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrescreve entradas no `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -493,11 +493,11 @@ Ao restaurar um cluster com um número diferente de nós de dados daquele em que
 
   <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>none</code></td> </tr></tbody></table>
 
-  Ao restaurar um backup por fatias, essa opção define o número de fatias em que o backup será dividido. Isso permite que múltiplas instâncias do **ndb\_restore** restauram subconjuntos disjuntos em paralelo, reduzindo potencialmente o tempo necessário para realizar a operação de restauração.
+  Ao restaurar um backup por fatias, essa opção define o número de fatias em que o backup será dividido. Isso permite que múltiplas instâncias do **ndb_restore** restauram subconjuntos disjuntos em paralelo, reduzindo potencialmente o tempo necessário para realizar a operação de restauração.
 
   Uma *fatia* é um subconjunto dos dados em um backup dado; ou seja, é um conjunto de fragmentos com o mesmo ID de fatia, especificado usando a opção `--slice-id`. As duas opções devem ser sempre usadas juntas, e o valor definido por `--slice-id` deve sempre ser menor que o número de fatias.
 
-  O **ndb\_restore** encontra fragmentos e atribui a cada um um contador de fragmento. Ao restaurar por fatias, um ID de fatia é atribuído a cada fragmento; esse ID de fatia está no intervalo de 0 a 1 menos que o número de fatias. Para uma tabela que não é uma tabela `BLOB`, o fatiamento a que um determinado fragmento pertence é determinado usando a fórmula mostrada aqui:
+  O **ndb_restore** encontra fragmentos e atribui a cada um um contador de fragmento. Ao restaurar por fatias, um ID de fatia é atribuído a cada fragmento; esse ID de fatia está no intervalo de 0 a 1 menos que o número de fatias. Para uma tabela que não é uma tabela `BLOB`, o fatiamento a que um determinado fragmento pertence é determinado usando a fórmula mostrada aqui:
 
   ```
   [slice_ID] = [fragment_counter] % [number_of_slices]
@@ -510,17 +510,17 @@ Para uma tabela `BLOB`, um contador de fragmentos não é usado; o número do fr
   ([main_table_ID] + [fragment_ID]) % [number_of_slices]
   ```
 
-  Assim, restaurar por *`N`* cortes significa executar *`N`* instâncias de **ndb\_restore**, todas com `--num-slices=N` (junto com quaisquer outras opções necessárias) e uma cada com `--slice-id=1`, `--slice-id=2`, `--slice-id=3`, e assim por diante até `slice-id=N-1`.
+  Assim, restaurar por *`N`* cortes significa executar *`N`* instâncias de **ndb_restore**, todas com `--num-slices=N` (junto com quaisquer outras opções necessárias) e uma cada com `--slice-id=1`, `--slice-id=2`, `--slice-id=3`, e assim por diante até `slice-id=N-1`.
 
   **Exemplo.** Suponha que você queira restaurar um backup chamado `BACKUP-1`, encontrado no diretório padrão `/var/lib/mysql-cluster/BACKUP/BACKUP-3` no sistema de arquivos do nó em cada nó de dados, para um cluster com quatro nós de dados com os IDs de nó 1, 2, 3 e 4. Para realizar essa operação usando cinco cortes, execute os conjuntos de comandos mostrados na lista a seguir:
 
-  1. Restaure os metadados do cluster usando **ndb\_restore** como mostrado aqui:
+  1. Restaure os metadados do cluster usando **ndb_restore** como mostrado aqui:
 
      ```
      $> ndb_restore -b 1 -n 1 -m --disable-indexes --backup-path=/home/ndbuser/backups
      ```
 
-  2. Restaure os dados do cluster aos nós de dados invocando **ndb\_restore** como mostrado aqui:
+  2. Restaure os dados do cluster aos nós de dados invocando **ndb_restore** como mostrado aqui:
 
      ```
      $> ndb_restore -b 1 -n 1 -r --num-slices=5 --slice-id=0 --backup-path=/var/lib/mysql-cluster/BACKUP/BACKUP-1
@@ -562,9 +562,9 @@ Para uma tabela `BLOB`, um contador de fragmentos não é usado; o número do fr
      $> ndb_restore -b 1 -n 1 --restore-epoch --backup-path=/var/lib/mysql-cluster/BACKUP/BACKUP-1
      ```
 
-Você deve usar o fatiamento para restaurar apenas os dados do cluster; não é necessário usar `--num-slices` ou `--slice-id` ao restaurar os metadados, índices ou informações de época. Se uma ou ambas essas opções forem usadas com as opções **ndb\_restore** controlando a restauração desses, o programa as ignora.
+Você deve usar o fatiamento para restaurar apenas os dados do cluster; não é necessário usar `--num-slices` ou `--slice-id` ao restaurar os metadados, índices ou informações de época. Se uma ou ambas essas opções forem usadas com as opções **ndb_restore** controlando a restauração desses, o programa as ignora.
 
-Os efeitos de usar a opção `--parallelism` na velocidade da restauração são independentes daqueles produzidos pelo fatiamento ou restauração paralela usando múltiplas instâncias de **ndb\_restore** (`--parallelism` especifica o número de transações paralelas executadas por um *único* **ndb\_restore** thread), mas pode ser usado junto com uma ou ambas. Você deve estar ciente de que aumentar `--parallelism` faz com que **ndb\_restore** imponha uma carga maior no cluster; se o sistema puder lidar com isso, a restauração deve ser concluída ainda mais rapidamente.
+Os efeitos de usar a opção `--parallelism` na velocidade da restauração são independentes daqueles produzidos pelo fatiamento ou restauração paralela usando múltiplas instâncias de **ndb_restore** (`--parallelism` especifica o número de transações paralelas executadas por um *único* **ndb_restore** thread), mas pode ser usado junto com uma ou ambas. Você deve estar ciente de que aumentar `--parallelism` faz com que **ndb_restore** imponha uma carga maior no cluster; se o sistema puder lidar com isso, a restauração deve ser concluída ainda mais rapidamente.
 
 O valor de `--num-slices` não depende diretamente de valores relacionados ao hardware, como número de CPUs ou núcleos de CPU, quantidade de RAM, e assim por diante, nem depende do número de LDMs.
 
@@ -574,7 +574,7 @@ O valor de `--num-slices` não depende diretamente de valores relacionados ao ha
 
   <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code>none</code></td> </tr></tbody></table>
 
-O **ndb\_restore** usa transações de uma única linha para aplicar muitas linhas simultaneamente. Este parâmetro determina o número de transações paralelas (linhas concorrentes) que uma instância do **ndb\_restore** tenta usar. Por padrão, este é 128; o mínimo é 1 e o máximo é 1024.
+O **ndb_restore** usa transações de uma única linha para aplicar muitas linhas simultaneamente. Este parâmetro determina o número de transações paralelas (linhas concorrentes) que uma instância do **ndb_restore** tenta usar. Por padrão, este é 128; o mínimo é 1 e o máximo é 1024.
 
 O trabalho de realizar as inserções é paralelizado pelos threads nos nós de dados envolvidos. Esse mecanismo é empregado para restaurar dados em massa a partir do arquivo `.Data`, ou seja, o instantâneo desfocado dos dados; ele não é usado para construir ou reconstruir índices. O log de alterações é aplicado seriamente; as operações de criação e reconstrução de índices são operações DDL e são tratadas separadamente. Não há paralelismo em nível de thread no lado do cliente do restore.
 
@@ -590,17 +590,17 @@ O trabalho de realizar as inserções é paralelizado pelos threads nos nós de 
 
 <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>none</code></td> </tr></tbody></table>
 
-  Faz com que o **ndb\_restore** imprima todos os dados, metadados e logs no `stdout`. É equivalente ao uso das opções `--print-data`, `--print-meta` e `--print-log` juntas.
+  Faz com que o **ndb_restore** imprima todos os dados, metadados e logs no `stdout`. É equivalente ao uso das opções `--print-data`, `--print-meta` e `--print-log` juntas.
 
   Observação
 
-  O uso de `--print` ou de qualquer uma das opções `--print_*` está efetuando uma execução em modo de teste. A inclusão de uma ou mais dessas opções faz com que qualquer saída seja redirecionada para o `stdout`; nesses casos, o **ndb\_restore** não tenta restaurar dados ou metadados em um NDB Cluster.
+  O uso de `--print` ou de qualquer uma das opções `--print_*` está efetuando uma execução em modo de teste. A inclusão de uma ou mais dessas opções faz com que qualquer saída seja redirecionada para o `stdout`; nesses casos, o **ndb_restore** não tenta restaurar dados ou metadados em um NDB Cluster.
 
 * `--print-data`
 
   <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>none</code></td> </tr></tbody></table>
 
-  Faz com que o **ndb\_restore** direcione sua saída para o `stdout`. Frequentemente usado junto com uma ou mais das opções `--tab`, `--fields-enclosed-by`, `--fields-optionally-enclosed-by`, `--fields-terminated-by`, `--hex` e `--append`.
+  Faz com que o **ndb_restore** direcione sua saída para o `stdout`. Frequentemente usado junto com uma ou mais das opções `--tab`, `--fields-enclosed-by`, `--fields-optionally-enclosed-by`, `--fields-terminated-by`, `--hex` e `--append`.
 
   Os valores das colunas `TEXT` e `BLOB` são sempre truncados. Esses valores são truncados para os primeiros 256 bytes na saída. Isso atualmente não pode ser sobrescrito ao usar `--print-data`.
 
@@ -614,7 +614,7 @@ O trabalho de realizar as inserções é paralelizado pelos threads nos nós de 
 
   <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backupid=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>nenhum</code></td> </tr></tbody></table>
 
-  Fazer com que o **ndb\_restore** exiba seu log no `stdout`.
+  Fazer com que o **ndb_restore** exiba seu log no `stdout`.
 
 * `--print-meta`
 
@@ -640,33 +640,33 @@ Esta opção não funciona com tabelas que têm colunas `BLOB`.
 
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
-O **ndb\_restore** suporta a promoção limitada de atributos da mesma forma que é suportado pela replicação do MySQL; ou seja, os dados salvos de uma coluna de um tipo específico geralmente podem ser restaurados para uma coluna usando um tipo "maior e semelhante". Por exemplo, dados de uma coluna `CHAR(20)` podem ser restaurados para uma coluna declarada como `VARCHAR(20)`, `VARCHAR(30)` ou `CHAR(30)`; dados de uma coluna `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") podem ser restaurados para uma coluna do tipo `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). Veja a Seção 19.5.1.9.2, "Replicação de Colunas com Diferentes Tipos de Dados", para uma tabela de conversões de tipos atualmente suportadas pela promoção de atributos.
+O **ndb_restore** suporta a promoção limitada de atributos da mesma forma que é suportado pela replicação do MySQL; ou seja, os dados salvos de uma coluna de um tipo específico geralmente podem ser restaurados para uma coluna usando um tipo "maior e semelhante". Por exemplo, dados de uma coluna `CHAR(20)` podem ser restaurados para uma coluna declarada como `VARCHAR(20)`, `VARCHAR(30)` ou `CHAR(30)`; dados de uma coluna `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") podem ser restaurados para uma coluna do tipo `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). Veja a Seção 19.5.1.9.2, "Replicação de Colunas com Diferentes Tipos de Dados", para uma tabela de conversões de tipos atualmente suportadas pela promoção de atributos.
 
 Esta opção também permite restaurar uma coluna `NOT NULL` como `NULL`.
 
-A promoção de atributos pelo **ndb\_restore** deve ser habilitada explicitamente, conforme segue:
+A promoção de atributos pelo **ndb_restore** deve ser habilitada explicitamente, conforme segue:
 
-1. Prepare a tabela para a qual o backup deve ser restaurado. O **ndb\_restore** não pode ser usado para recriar a tabela com uma definição diferente da original; isso significa que você deve criar a tabela manualmente ou alterar as colunas que deseja promover usando `ALTER TABLE` após restaurar os metadados da tabela, mas antes de restaurar os dados.
+1. Prepare a tabela para a qual o backup deve ser restaurado. O **ndb_restore** não pode ser usado para recriar a tabela com uma definição diferente da original; isso significa que você deve criar a tabela manualmente ou alterar as colunas que deseja promover usando `ALTER TABLE` após restaurar os metadados da tabela, mas antes de restaurar os dados.
 
-2. Inicie o **ndb\_restore** com a opção `--promote-attributes` (forma abreviada `-A`) ao restaurar os dados da tabela. A promoção de atributos não ocorre se essa opção não for usada; em vez disso, a operação de restauração falha com um erro.
+2. Inicie o **ndb_restore** com a opção `--promote-attributes` (forma abreviada `-A`) ao restaurar os dados da tabela. A promoção de atributos não ocorre se essa opção não for usada; em vez disso, a operação de restauração falha com um erro.
 
-Ao converter entre tipos de dados de caracteres e `TEXT` ou `BLOB`, apenas as conversões entre tipos de caracteres (`CHAR` e `VARCHAR`) e tipos binários (`BINARY` e `VARBINARY`) podem ser realizadas ao mesmo tempo. Por exemplo, você não pode promover uma coluna `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") para `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") enquanto promove uma coluna `VARCHAR` para `TEXT` na mesma invocação do **ndb\_restore**.
+Ao converter entre tipos de dados de caracteres e `TEXT` ou `BLOB`, apenas as conversões entre tipos de caracteres (`CHAR` e `VARCHAR`) e tipos binários (`BINARY` e `VARBINARY`) podem ser realizadas ao mesmo tempo. Por exemplo, você não pode promover uma coluna `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") para `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") enquanto promove uma coluna `VARCHAR` para `TEXT` na mesma invocação do **ndb_restore**.
 
 A conversão entre colunas `TEXT` usando diferentes conjuntos de caracteres não é suportada e é expressamente proibida.
 
-Ao realizar conversões de tipos de caracteres ou binários para `TEXT` ou `BLOB` com o **ndb\_restore**, você pode notar que ele cria e usa uma ou mais tabelas de preparação nomeadas `table_name$STnode_id`. Essas tabelas não são necessárias posteriormente e são normalmente excluídas pelo **ndb\_restore** após uma restauração bem-sucedida.
+Ao realizar conversões de tipos de caracteres ou binários para `TEXT` ou `BLOB` com o **ndb_restore**, você pode notar que ele cria e usa uma ou mais tabelas de preparação nomeadas `table_name$STnode_id`. Essas tabelas não são necessárias posteriormente e são normalmente excluídas pelo **ndb_restore** após uma restauração bem-sucedida.
 
 * `--rebuild-indexes`
 
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
-  Ative a reconstrução multisserial de índices ordenados durante a restauração de um backup nativo `NDB`. O número de threads usados para construir índices ordenados pelo **ndb\_restore** com esta opção é controlado pelo parâmetro de configuração do nó de dados `BuildIndexThreads` e pelo número de LDM.
+  Ative a reconstrução multisserial de índices ordenados durante a restauração de um backup nativo `NDB`. O número de threads usados para construir índices ordenados pelo **ndb_restore** com esta opção é controlado pelo parâmetro de configuração do nó de dados `BuildIndexThreads` e pelo número de LDM.
 
-É necessário usar essa opção apenas na primeira execução do **ndb\_restore**; isso faz com que todos os índices ordenados sejam reconstruídos sem usar novamente `--rebuild-indexes` ao restaurar nós subsequentes. Você deve usar essa opção antes de inserir novas linhas no banco de dados; caso contrário, é possível que uma linha seja inserida que, posteriormente, cause uma violação de restrição de unicidade ao tentar reconstruir os índices.
+É necessário usar essa opção apenas na primeira execução do **ndb_restore**; isso faz com que todos os índices ordenados sejam reconstruídos sem usar novamente `--rebuild-indexes` ao restaurar nós subsequentes. Você deve usar essa opção antes de inserir novas linhas no banco de dados; caso contrário, é possível que uma linha seja inserida que, posteriormente, cause uma violação de restrição de unicidade ao tentar reconstruir os índices.
 
-A construção de índices ordenados é paralela ao número de LDMs por padrão. A construção de índices offline realizada durante reinicializações de nós e sistemas pode ser feita mais rapidamente usando o parâmetro de configuração do nó de dados `BuildIndexThreads`; esse parâmetro não tem efeito na remoção e reconstrução de índices pelo **ndb\_restore**, que é realizado online.
+A construção de índices ordenados é paralela ao número de LDMs por padrão. A construção de índices offline realizada durante reinicializações de nós e sistemas pode ser feita mais rapidamente usando o parâmetro de configuração do nó de dados `BuildIndexThreads`; esse parâmetro não tem efeito na remoção e reconstrução de índices pelo **ndb_restore**, que é realizado online.
 
-A reconstrução de índices únicos usa a largura de banda de escrita no disco para registro de redo e checkpointing local. Uma quantidade insuficiente dessa largura de banda pode levar a erros de sobrecarga do buffer de redo ou de log. Nesses casos, você pode executar novamente o **ndb\_restore** `--rebuild-indexes`; o processo é retomado no ponto onde o erro ocorreu. Você também pode fazer isso quando encontrou erros temporários. Você pode repetir a execução do **ndb\_restore** `--rebuild-indexes` indefinidamente; você pode ser capaz de parar esses erros reduzindo o valor de `--parallelism`. Se o problema for espaço insuficiente, você pode aumentar o tamanho do log de redo (`FragmentLogFileSize` parâmetro de configuração do nó) ou pode aumentar a velocidade com que os LCPs são realizados (`MaxDiskWriteSpeed` e parâmetros relacionados), para liberar espaço mais rapidamente.
+A reconstrução de índices únicos usa a largura de banda de escrita no disco para registro de redo e checkpointing local. Uma quantidade insuficiente dessa largura de banda pode levar a erros de sobrecarga do buffer de redo ou de log. Nesses casos, você pode executar novamente o **ndb_restore** `--rebuild-indexes`; o processo é retomado no ponto onde o erro ocorreu. Você também pode fazer isso quando encontrou erros temporários. Você pode repetir a execução do **ndb_restore** `--rebuild-indexes` indefinidamente; você pode ser capaz de parar esses erros reduzindo o valor de `--parallelism`. Se o problema for espaço insuficiente, você pode aumentar o tamanho do log de redo (`FragmentLogFileSize` parâmetro de configuração do nó) ou pode aumentar a velocidade com que os LCPs são realizados (`MaxDiskWriteSpeed` e parâmetros relacionados), para liberar espaço mais rapidamente.
 
 * `--remap-column=db.tbl.col:fn:args`
 
@@ -691,7 +691,7 @@ A reconstrução de índices únicos usa a largura de banda de escrita no disco 
 
     Se a aplicação do valor do deslocamento à coluna causasse um estouro ou underflow, a operação de restauração falhará. Isso poderia acontecer, por exemplo, se a coluna for uma `BIGINT`, e a opção tentar aplicar um valor de deslocamento de 8 em uma linha em que o valor da coluna é 4294967291, pois `4294967291 + 8 = 4294967299 > 4294967295`.
 
-Esta opção pode ser útil quando você deseja mesclar dados armazenados em múltiplas instâncias de origem do NDB Cluster (todas usando o mesmo esquema) em um único NDB Cluster de destino, usando o backup nativo do NDB (consulte a Seção 25.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”) e **ndb\_restore** para mesclar os dados, onde os valores de chave primária e exclusiva estão sobrepostos entre os clusters de origem, e é necessário como parte do processo remapea-los para faixas que não se sobreponham. Também pode ser necessário preservar outras relações entre tabelas. Para atender a esses requisitos, é possível usar a opção várias vezes na mesma invocação de **ndb\_restore** para remapeaar colunas de tabelas diferentes, como mostrado aqui:
+Esta opção pode ser útil quando você deseja mesclar dados armazenados em múltiplas instâncias de origem do NDB Cluster (todas usando o mesmo esquema) em um único NDB Cluster de destino, usando o backup nativo do NDB (consulte a Seção 25.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”) e **ndb_restore** para mesclar os dados, onde os valores de chave primária e exclusiva estão sobrepostos entre os clusters de origem, e é necessário como parte do processo remapea-los para faixas que não se sobreponham. Também pode ser necessário preservar outras relações entre tabelas. Para atender a esses requisitos, é possível usar a opção várias vezes na mesma invocação de **ndb_restore** para remapeaar colunas de tabelas diferentes, como mostrado aqui:
 
 ```
   $> ndb_restore --restore-data --remap-column=hr.employee.id:offset:1000 \
@@ -700,7 +700,7 @@ Esta opção pode ser útil quando você deseja mesclar dados armazenados em mú
 
 Quando os backups de origem contêm tabelas duplicadas que não devem ser mescladas, você pode lidar com isso usando `--exclude-tables`, `--exclude-databases` ou por outros meios em sua aplicação.
 
-Informações sobre a estrutura e outras características das tabelas a serem mescladas podem ser obtidas usando `SHOW CREATE TABLE`; a ferramenta **ndb\_desc**; e `MAX()`, `MIN()`, `LAST_INSERT_ID()` e outras funções MySQL.
+Informações sobre a estrutura e outras características das tabelas a serem mescladas podem ser obtidas usando `SHOW CREATE TABLE`; a ferramenta **ndb_desc**; e `MAX()`, `MIN()`, `LAST_INSERT_ID()` e outras funções MySQL.
 
 A replicação de alterações de tabelas mescladas para tabelas não mescladas, ou de tabelas não mescladas para tabelas mescladas, em instâncias separadas do NDB Cluster não é suportada.
 * `--restore-data`, `-r`
@@ -719,13 +719,13 @@ A replicação de alterações de tabelas mescladas para tabelas não mescladas,
 
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
-  Esta opção faz com que o **ndb\_restore** imprima o metadados da tabela `NDB`.
+  Esta opção faz com que o **ndb_restore** imprima o metadados da tabela `NDB`.
 
-  A primeira vez que você executar o programa de restauração **ndb\_restore**, também é necessário restaurar os metadados. Em outras palavras, você deve recriar as tabelas do banco de dados—isso pode ser feito executando-o com a opção `--restore-meta` (`-m`). A restauração dos metadados deve ser feita apenas em um único nó de dados; isso é suficiente para restaurá-los para todo o cluster.
+  A primeira vez que você executar o programa de restauração **ndb_restore**, também é necessário restaurar os metadados. Em outras palavras, você deve recriar as tabelas do banco de dados—isso pode ser feito executando-o com a opção `--restore-meta` (`-m`). A restauração dos metadados deve ser feita apenas em um único nó de dados; isso é suficiente para restaurá-los para todo o cluster.
 
-**ndb\_restore** usa o número padrão de partições para o clúster de destino, a menos que o número de threads do gerenciador de dados local também seja alterado do que estava para os nós de dados no clúster original.
+**ndb_restore** usa o número padrão de partições para o clúster de destino, a menos que o número de threads do gerenciador de dados local também seja alterado do que estava para os nós de dados no clúster original.
 
-Ao usar essa opção, recomenda-se desabilitar a sincronização automática definindo `ndb_metadata_check=OFF` até que **ndb\_restore** tenha concluído a restauração dos metadados, após o que pode ser ativado novamente para sincronizar objetos recém-criados no dicionário NDB.
+Ao usar essa opção, recomenda-se desabilitar a sincronização automática definindo `ndb_metadata_check=OFF` até que **ndb_restore** tenha concluído a restauração dos metadados, após o que pode ser ativado novamente para sincronizar objetos recém-criados no dicionário NDB.
 
 Nota
 
@@ -742,7 +742,7 @@ O clúster deve ter um banco de dados vazio ao iniciar a restauração de um bac
       --remap-column=hr.employee.hours:offset:-10
   ```
 
-  A opção pode ser usada várias vezes em uma única invocação de **ndb\_restore**. Assim, é possível restaurar simultaneamente de um banco de dados chamado `db1` para um banco de dados chamado `db2` e de um banco de dados chamado `db3` para um nome chamado `db4` usando `--rewrite-database=db1,db2 --rewrite-database=db3,db4`. Outras opções de **ndb\_restore** podem ser usadas entre múltiplas ocorrências de `--rewrite-database`.
+  A opção pode ser usada várias vezes em uma única invocação de **ndb_restore**. Assim, é possível restaurar simultaneamente de um banco de dados chamado `db1` para um banco de dados chamado `db2` e de um banco de dados chamado `db3` para um nome chamado `db4` usando `--rewrite-database=db1,db2 --rewrite-database=db3,db4`. Outras opções de **ndb_restore** podem ser usadas entre múltiplas ocorrências de `--rewrite-database`.
 
 Em caso de conflitos entre múltiplas opções de `--rewrite-database`, a última opção de `--rewrite-database` usada, lendo da esquerda para a direita, é a que tem efeito. Por exemplo, se `--rewrite-database=db1,db2 --rewrite-database=db1,db3` for usada, apenas `--rewrite-database=db1,db3` será atendida, e `--rewrite-database=db1,db2` será ignorada. Também é possível restaurar a partir de múltiplas bases de dados para uma única base de dados, de modo que `--rewrite-database=db1,db3 --rewrite-database=db2,db3` restaura todas as tabelas e dados das bases de dados `db1` e `db2` para a base de dados `db3`.
 
@@ -754,15 +754,15 @@ Ao restaurar a partir de múltiplas bases de dados de backup para uma única bas
 
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
-  Esta opção faz com que o **ndb\_restore** ignore tabelas corrompidas ao ler um backup nativo `NDB`, e continue restaurando quaisquer tabelas restantes (que também não estejam corrompidas). Atualmente, a opção `--skip-broken-objects` funciona apenas no caso de tabelas de partes de blob ausentes.
+  Esta opção faz com que o **ndb_restore** ignore tabelas corrompidas ao ler um backup nativo `NDB`, e continue restaurando quaisquer tabelas restantes (que também não estejam corrompidas). Atualmente, a opção `--skip-broken-objects` funciona apenas no caso de tabelas de partes de blob ausentes.
 
 * `--skip-table-check`, `-s`
 
   <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
-É possível restaurar dados sem restaurar os metadados da tabela. Por padrão, ao fazer isso, o **ndb\_restore** falha com um erro se for encontrado um desajuste entre os dados da tabela e o esquema da tabela; essa opção desativa esse comportamento.
+É possível restaurar dados sem restaurar os metadados da tabela. Por padrão, ao fazer isso, o **ndb_restore** falha com um erro se for encontrado um desajuste entre os dados da tabela e o esquema da tabela; essa opção desativa esse comportamento.
 
-Algumas das restrições sobre desajustes nas definições de colunas ao restaurar dados usando o **ndb\_restore** são relaxadas; quando um desses tipos de desajustes é encontrado, o **ndb\_restore** não pára com um erro como fazia anteriormente, mas sim aceita os dados e os insere na tabela de destino, emitindo um aviso ao usuário de que isso está sendo feito. Esse comportamento ocorre independentemente de uma das opções `--skip-table-check` ou `--promote-attributes` estar em uso. Essas diferenças nas definições de colunas são dos seguintes tipos:
+Algumas das restrições sobre desajustes nas definições de colunas ao restaurar dados usando o **ndb_restore** são relaxadas; quando um desses tipos de desajustes é encontrado, o **ndb_restore** não pára com um erro como fazia anteriormente, mas sim aceita os dados e os insere na tabela de destino, emitindo um aviso ao usuário de que isso está sendo feito. Esse comportamento ocorre independentemente de uma das opções `--skip-table-check` ou `--promote-attributes` estar em uso. Essas diferenças nas definições de colunas são dos seguintes tipos:
 
 + Diferentes configurações de `COLUMN_FORMAT` (`FIXED`, `DYNAMIC`, `DEFAULT`)
 
@@ -859,9 +859,9 @@ Essa opção está habilitada por padrão. Desabilite-a com `--timestamp-printou
 
   Restaure todas as linhas da tabela `ndb_apply_status` do backup (exceto a linha com `server_id = 0`, que é gerada usando `--restore-epoch`). Esta opção exige que a opção `--restore-data` também seja usada.
 
-  Se a tabela `ndb_apply_status` do backup já contiver uma linha com `server_id = 0`, **ndb\_restore** `--with-apply-status` a exclui. Por esse motivo, recomendamos que você use **ndb\_restore** `--restore-epoch` após invocar **ndb\_restore** com a opção `--with-apply-status`. Você também pode usar `--restore-epoch` simultaneamente com a última de qualquer chamada de **ndb\_restore** `--with-apply-status` usada para restaurar o clúster.
+  Se a tabela `ndb_apply_status` do backup já contiver uma linha com `server_id = 0`, **ndb_restore** `--with-apply-status` a exclui. Por esse motivo, recomendamos que você use **ndb_restore** `--restore-epoch` após invocar **ndb_restore** com a opção `--with-apply-status`. Você também pode usar `--restore-epoch` simultaneamente com a última de qualquer chamada de **ndb_restore** `--with-apply-status` usada para restaurar o clúster.
 
-  Para mais informações, consulte a tabela ndb\_apply\_status.
+  Para mais informações, consulte a tabela ndb_apply_status.
 
 As opções típicas para este utilitário são mostradas aqui:
 
@@ -869,16 +869,16 @@ As opções típicas para este utilitário são mostradas aqui:
   $> ndb_restore --rewrite-database=product,inventory
   ```
 
-Normalmente, ao restaurar de um backup do NDB Cluster, **ndb\_restore** requer, no mínimo, as opções `--nodeid` (forma abreviada: `-n`), `--backupid` (forma abreviada: `-b`) e `--backup-path`.
+Normalmente, ao restaurar de um backup do NDB Cluster, **ndb_restore** requer, no mínimo, as opções `--nodeid` (forma abreviada: `-n`), `--backupid` (forma abreviada: `-b`) e `--backup-path`.
 
-A opção `-c` é usada para especificar uma string de conexão que indica ao **ndb_restore** onde localizar o servidor de gerenciamento do cluster (veja a Seção 25.4.3.3, “Strings de Conexão de NDB Cluster”). Se essa opção não for usada, o **ndb\_restore** tentará se conectar a um servidor de gerenciamento em `localhost:1186`. Esse utilitário atua como um nó de API de cluster e, portanto, requer um “slot” de conexão livre para se conectar ao servidor de gerenciamento do cluster. Isso significa que deve haver pelo menos uma seção `[api]` ou `[mysqld]` que possa ser usada por ele no arquivo `config.ini` do cluster. É uma boa ideia manter pelo menos uma seção `[api]` ou `[mysqld]` vazia em `config.ini` que não esteja sendo usada por um servidor MySQL ou outra aplicação por essa razão (veja a Seção 25.4.3.7, “Definindo Nodos SQL e Outros Nodos API em um NDB Cluster”).
+A opção `-c` é usada para especificar uma string de conexão que indica ao **ndb_restore** onde localizar o servidor de gerenciamento do cluster (veja a Seção 25.4.3.3, “Strings de Conexão de NDB Cluster”). Se essa opção não for usada, o **ndb_restore** tentará se conectar a um servidor de gerenciamento em `localhost:1186`. Esse utilitário atua como um nó de API de cluster e, portanto, requer um “slot” de conexão livre para se conectar ao servidor de gerenciamento do cluster. Isso significa que deve haver pelo menos uma seção `[api]` ou `[mysqld]` que possa ser usada por ele no arquivo `config.ini` do cluster. É uma boa ideia manter pelo menos uma seção `[api]` ou `[mysqld]` vazia em `config.ini` que não esteja sendo usada por um servidor MySQL ou outra aplicação por essa razão (veja a Seção 25.4.3.7, “Definindo Nodos SQL e Outros Nodos API em um NDB Cluster”).
 
-O **ndb\_restore** pode descriptografar um backup criptografado usando `--decrypt` e `--backup-password`. Ambas as opções devem ser especificadas para realizar a descriptografia. Consulte a documentação do comando de cliente de gerenciamento **START BACKUP** para obter informações sobre a criação de backups criptografados.
+O **ndb_restore** pode descriptografar um backup criptografado usando `--decrypt` e `--backup-password`. Ambas as opções devem ser especificadas para realizar a descriptografia. Consulte a documentação do comando de cliente de gerenciamento **START BACKUP** para obter informações sobre a criação de backups criptografados.
 
-Você pode verificar se o **ndb\_restore** está conectado ao cluster usando o comando `SHOW` no cliente de gerenciamento **ndb\_mgm**. Você também pode realizar isso a partir de uma shell do sistema, como mostrado aqui:
+Você pode verificar se o **ndb_restore** está conectado ao cluster usando o comando `SHOW` no cliente de gerenciamento **ndb_mgm**. Você também pode realizar isso a partir de uma shell do sistema, como mostrado aqui:
 
-**Relatório de erros.** O **ndb\_restore** relata erros temporários e permanentes. No caso de erros temporários, ele pode ser capaz de recuperá-los e relata “Restauração bem-sucedida, mas encontrou erro temporário, consulte a configuração” nesses casos.
+**Relatório de erros.** O **ndb_restore** relata erros temporários e permanentes. No caso de erros temporários, ele pode ser capaz de recuperá-los e relata “Restauração bem-sucedida, mas encontrou erro temporário, consulte a configuração” nesses casos.
 
 Importante
 
-Após usar o **ndb\_restore** para inicializar um NDB Cluster para uso na replicação circular, os logs binários no nó SQL que atua como replica não são criados automaticamente e você deve criar manualmente. Para fazer com que os logs binários sejam criados, execute uma instrução `SHOW TABLES` nesse nó SQL antes de executar `START REPLICA`. Esse é um problema conhecido no NDB Cluster.
+Após usar o **ndb_restore** para inicializar um NDB Cluster para uso na replicação circular, os logs binários no nó SQL que atua como replica não são criados automaticamente e você deve criar manualmente. Para fazer com que os logs binários sejam criados, execute uma instrução `SHOW TABLES` nesse nó SQL antes de executar `START REPLICA`. Esse é um problema conhecido no NDB Cluster.

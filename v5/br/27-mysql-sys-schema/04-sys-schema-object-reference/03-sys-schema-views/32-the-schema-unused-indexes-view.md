@@ -1,4 +1,4 @@
-#### 26.4.3.32 A visão schema\_unused\_indexes
+#### 26.4.3.32 A visão schema_unused_indexes
 
 Essas visualizações exibem índices para os quais não há eventos, o que indica que eles não estão sendo usados. Por padrão, as linhas são ordenadas por esquema e tabela.
 

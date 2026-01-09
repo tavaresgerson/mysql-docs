@@ -1,4 +1,4 @@
-#### 26.4.3.36 As visualizações statements\_with\_errors\_or\_warnings e x$statements\_with\_errors\_or\_warnings
+#### 26.4.3.36 As visualizações statements_with_errors_or_warnings e x$statements_with_errors_or_warnings
 
 Essas visualizações exibem declarações normalizadas que produziram erros ou avisos. Por padrão, as linhas são ordenadas por contagem descendente de erros e avisos.
 

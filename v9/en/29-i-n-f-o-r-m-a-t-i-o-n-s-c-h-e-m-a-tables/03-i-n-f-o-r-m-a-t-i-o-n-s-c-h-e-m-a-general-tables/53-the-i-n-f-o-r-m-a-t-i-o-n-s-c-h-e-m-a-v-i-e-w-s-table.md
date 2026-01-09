@@ -1,4 +1,4 @@
-### 28.3.53 The INFORMATION\_SCHEMA VIEWS Table
+### 28.3.53 The INFORMATION_SCHEMA VIEWS Table
 
 The `VIEWS` table provides information about views in databases. You must have the `SHOW VIEW` privilege to access this table.
 

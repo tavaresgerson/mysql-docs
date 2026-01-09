@@ -1,4 +1,4 @@
-#### 25.12.3.3 A tabela mutex\_instances
+#### 25.12.3.3 A tabela mutex_instances
 
 A tabela `mutex_instances` lista todos os mutexes vistos pelo Schema de Desempenho enquanto o servidor está em execução. Um mutex é um mecanismo de sincronização usado no código para garantir que apenas um thread, de cada vez, possa ter acesso a um recurso comum. O recurso é dito estar "protegido" pelo mutex.
 

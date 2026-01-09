@@ -1,4 +1,4 @@
-#### 26.4.5.16 A função ps\_thread\_stack()
+#### 26.4.5.16 A função ps_thread_stack()
 
 Retorna uma pilha formatada em JSON de todas as declarações, estágios e eventos dentro do Schema de Desempenho para um ID de thread específico.
 

@@ -1,4 +1,4 @@
-#### 29.12.21.2 The setup\_meters Table
+#### 29.12.21.2 The setup_meters Table
 
 The `setup_meters` table lists the registered meters:
 

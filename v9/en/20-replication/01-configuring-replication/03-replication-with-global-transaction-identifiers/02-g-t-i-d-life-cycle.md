@@ -46,7 +46,7 @@ In the following special cases, a single statement can generate multiple transac
 
 * A `CREATE TABLE ... SELECT` statement is issued when row-based replication is in use (`binlog_format=ROW`). One GTID is generated for the `CREATE TABLE` action and one GTID is generated for the row-insert actions.
 
-##### The gtid\_next System Variable
+##### The gtid_next System Variable
 
 By default, for new transactions committed in user sessions, the server automatically generates and assigns a new GTID. When the transaction is applied on a replica, the GTID from the server of origin is preserved. You can change this behavior by setting the session value of the `gtid_next` system variable:
 
@@ -96,7 +96,7 @@ When you issue `RESET BINARY LOGS AND GTIDS`, the following reset operations are
 
 * The global value (but not the session value) of the `gtid_executed` system variable is set to an empty string.
 
-* The `mysql.gtid_executed` table is cleared (see mysql.gtid\_executed Table).
+* The `mysql.gtid_executed` table is cleared (see mysql.gtid_executed Table).
 
 * If the server has binary logging enabled, the existing binary log files are deleted and the binary log index file is cleared.
 

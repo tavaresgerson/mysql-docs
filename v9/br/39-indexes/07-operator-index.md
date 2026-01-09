@@ -394,7 +394,7 @@ Seção 15.5.1, “Instrução PREPARE”
 
 Seção 13.3.5, “O tipo VECTOR”
 
-### CASE value WHEN compare\_value THEN result END
+### CASE value WHEN compare_value THEN result END
 
 Seção 14.5, “Funções de controle de fluxo”
 
@@ -512,11 +512,11 @@ Seção 14.3, “Conversão de Tipo na Avaliação da Expressão”
 
 Seção 14.4.1, “Prioridade dos Operadores”
 
-### IS boolean\_value
+### IS boolean_value
 
 Seção 14.4.2, “Funções e Operadores de Comparação”
 
-### IS NOT boolean\_value
+### IS NOT boolean_value
 
 Seção 14.4.2, “Funções e Operadores de Comparação”
 
@@ -614,21 +614,21 @@ Seção 11.1.1, “Literais de String”
 
 Seção 7.1.9.5, “Variáveis de Sistema Estruturadas”
 
-Seção 12.8.5, “A Colaboração Binária Comparada às Colaborações \_bin”
+Seção 12.8.5, “A Colaboração Binária Comparada às Colaborações _bin”
 
-Seção 30.4.4.5, “O procedimento ps\_setup\_disable\_consumer()” (Procedimento")
+Seção 30.4.4.5, “O procedimento ps_setup_disable_consumer()” (Procedimento")
 
-Seção 30.4.4.6, “O procedimento ps\_setup\_disable\_instrument()” (Procedimento")
+Seção 30.4.4.6, “O procedimento ps_setup_disable_instrument()” (Procedimento")
 
-Seção 30.4.4.9, “O procedimento ps\_setup\_enable\_consumer()” (Procedimento")
+Seção 30.4.4.9, “O procedimento ps_setup_enable_consumer()” (Procedimento")
 
-Seção 30.4.4.10, “O procedimento ps\_setup\_enable\_instrument()” (Procedimento")
+Seção 30.4.4.10, “O procedimento ps_setup_enable_instrument()” (Procedimento")
 
 Seção 13.3.7, “O tipo SET”
 
 Seção 7.1.9, “Usando variáveis do sistema”
 
-### LIKE '\_A%'
+### LIKE '_A%'
 
 Seção A.11, “Perguntas frequentes do MySQL 9.5: Conjuntos de caracteres chineses, japoneses e coreanos do MySQL”
 

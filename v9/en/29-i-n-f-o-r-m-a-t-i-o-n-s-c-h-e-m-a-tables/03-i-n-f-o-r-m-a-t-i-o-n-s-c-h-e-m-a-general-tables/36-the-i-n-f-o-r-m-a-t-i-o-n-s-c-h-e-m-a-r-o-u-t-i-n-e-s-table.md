@@ -1,4 +1,4 @@
-### 28.3.36 The INFORMATION\_SCHEMA ROUTINES Table
+### 28.3.36 The INFORMATION_SCHEMA ROUTINES Table
 
 The `ROUTINES` table provides information about stored routines (stored procedures and stored functions). The `ROUTINES` table does not include built-in (native) functions or loadable functions.
 

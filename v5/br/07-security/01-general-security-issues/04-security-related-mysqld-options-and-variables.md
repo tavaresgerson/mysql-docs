@@ -4,4 +4,135 @@ A tabela a seguir mostra as opções do **mysqld** e as variáveis do sistema qu
 
 **Tabela 6.1 Resumo das Opções de Segurança e Variáveis**
 
-<table frame="box" rules="all" summary="Opções de linha de comando relacionadas à segurança e variáveis do sistema."><col style="width: 20%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><thead><tr><th>Nome</th> <th>Linha de comando</th> <th>Arquivo de Opções</th> <th>Sistema Var</th> <th>Status Var</th> <th>Var Scope</th> <th>Dinâmico</th> </tr></thead><tbody><tr><th><a class="link" href="server-options.html#option_mysqld_allow-suspicious-udfs">permitir-udfs-suspeito</a></th> <td>Sim</td> <td>Sim</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th><a class="link" href="server-system-variables.html#sysvar_automatic_sp_privileges">automatic_sp_privileges</a></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th><a class="link" href="server-options.html#option_mysqld_chroot">chroot</a></th> <td>Sim</td> <td>Sim</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th><a class="link" href="server-options.html#option_mysqld_des-key-file">des-chave-arquivo</a></th> <td>Sim</td> <td>Sim</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th><a class="link" href="server-system-variables.html#sysvar_local_infile">local_infile</a></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th><a class="link" href="server-system-variables.html#sysvar_old_passwords">senhas antigas</a></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th><a class="link" href="server-options.html#option_mysqld_safe-user-create">safe-user-create</a></th> <td>Sim</td> <td>Sim</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th><a class="link" href="server-system-variables.html#sysvar_secure_auth">secure_auth</a></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th><a class="link" href="server-system-variables.html#sysvar_secure_file_priv">secure_file_priv</a></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th><a class="link" href="server-options.html#option_mysqld_skip-grant-tables">mesas-de-refeição-gratuitas</a></th> <td>Sim</td> <td>Sim</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th><a class="link" href="server-system-variables.html#sysvar_skip_name_resolve">skip_name_resolve</a></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th><a class="link" href="server-system-variables.html#sysvar_skip_networking">skip_networking</a></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th><a class="link" href="server-options.html#option_mysqld_skip-show-database">skip_show_database</a></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de linha de comando relacionadas à segurança e variáveis do sistema.">
+   <thead>
+      <tr>
+         <th>Nome</th>
+         <th>Linha de comando</th>
+         <th>Arquivo de Opções</th>
+         <th>Sistema Var</th>
+         <th>Status Var</th>
+         <th>Var Scope</th>
+         <th>Dinâmico</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th>permitir-udfs-suspeito</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>automatic_sp_privileges</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td>Global</td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>chroot</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>des-chave-arquivo</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>local_infile</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td>Global</td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>senhas antigas</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td>Ambos</td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>safe-user-create</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>secure_auth</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td>Global</td>
+         <td>Sim</td>
+      </tr>
+      <tr>
+         <th>secure_file_priv</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td>Global</td>
+         <td>Não</td>
+      </tr>
+      <tr>
+         <th>mesas-de-refeição-gratuitas</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+      </tr>
+      <tr>
+         <th>skip_name_resolve</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td>Global</td>
+         <td>Não</td>
+      </tr>
+      <tr>
+         <th>skip_networking</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td>Global</td>
+         <td>Não</td>
+      </tr>
+      <tr>
+         <th>skip_show_database</th>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td>Sim</td>
+         <td></td>
+         <td>Global</td>
+         <td>Não</td>
+      </tr>
+   </tbody>
+</table>

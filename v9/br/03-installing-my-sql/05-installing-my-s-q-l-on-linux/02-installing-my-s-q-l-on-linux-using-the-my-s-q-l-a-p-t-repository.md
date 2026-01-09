@@ -86,7 +86,7 @@ Durante a instalação, você será solicitado a fornecer uma senha para o usuá
 
 Importante
 
-Certifique-se de lembrar a senha do root que você definiu. Usuários que desejam definir uma senha mais tarde podem deixar o campo de senha em branco na caixa de diálogo e apenas pressionar Ok; nesse caso, o acesso root ao servidor será autenticado pela Seção 8.4.1.10, “Socket Peer-Credential Pluggable Authentication” para conexões usando um arquivo de socket Unix. Você pode definir a senha do root mais tarde usando o programa **mysql\_secure\_installation**.
+Certifique-se de lembrar a senha do root que você definiu. Usuários que desejam definir uma senha mais tarde podem deixar o campo de senha em branco na caixa de diálogo e apenas pressionar Ok; nesse caso, o acesso root ao servidor será autenticado pela Seção 8.4.1.10, “Socket Peer-Credential Pluggable Authentication” para conexões usando um arquivo de socket Unix. Você pode definir a senha do root mais tarde usando o programa **mysql_secure_installation**.
 
 #### Iniciando e Parando o Servidor MySQL
 

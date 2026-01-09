@@ -22,7 +22,7 @@ The following table shows the plugin and library file names. The file name suffi
 
 **Table 8.26 Plugin and Library Names for WebAuthn Authentication**
 
-<table summary="Names for the plugins and library file used for WebAuthn authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_webauthn</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">authentication_webauthn_client</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">authentication_webauthn.so</code>, <code class="filename">authentication_webauthn_client.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for WebAuthn authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_webauthn</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">authentication_webauthn_client</code></td> </tr><tr> <td>Library file</td> <td><code>authentication_webauthn.so</code>, <code>authentication_webauthn_client.so</code></td> </tr></tbody></table>
 
 Note
 
@@ -324,7 +324,7 @@ An account that uses WebAuthn authentication must perform an initial device regi
 
 1. The server sends a random challenge, user ID, and relying party ID (which uniquely identifies a server) to the client in JSON format. The relying party ID is defined by the `authentication_webauthn_rp_id` system variable. The default value is `mysql.com`.
 
-2. The client receives that information and sends it to the client-side WebAuthn authentication plugin, which in turn provides it to the FIDO/FIDO2 device. Client also sends 1-byte capability, with RESIDENT\_KEYS bit set to `ON` (if it is FIDO2 device) or `OFF`.
+2. The client receives that information and sends it to the client-side WebAuthn authentication plugin, which in turn provides it to the FIDO/FIDO2 device. Client also sends 1-byte capability, with RESIDENT_KEYS bit set to `ON` (if it is FIDO2 device) or `OFF`.
 
 3. After the user has performed the appropriate device action (for example, touching the device or performing a biometric scan) the FIDO/FIDO2 device generates a public/private key pair, a key handle, an X.509 certificate, and a signature, which is returned to the server.
 

@@ -1,4 +1,4 @@
-#### 26.4.3.41 The user\_summary and x$user\_summary Views
+#### 26.4.3.41 The user_summary and x$user_summary Views
 
 These views summarize statement activity, file I/O, and connections, grouped by user. By default, rows are sorted by descending total latency.
 

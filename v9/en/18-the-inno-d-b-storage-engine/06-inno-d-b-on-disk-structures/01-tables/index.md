@@ -10,6 +10,6 @@
 
 17.6.1.5 Converting Tables from MyISAM to InnoDB
 
-17.6.1.6 AUTO\_INCREMENT Handling in InnoDB
+17.6.1.6 AUTO_INCREMENT Handling in InnoDB
 
 This section covers topics related to `InnoDB` tables.

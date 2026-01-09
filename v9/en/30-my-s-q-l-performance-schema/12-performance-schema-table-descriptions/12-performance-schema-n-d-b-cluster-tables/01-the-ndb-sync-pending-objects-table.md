@@ -1,4 +1,4 @@
-#### 29.12.12.1 The ndb\_sync\_pending\_objects Table
+#### 29.12.12.1 The ndb_sync_pending_objects Table
 
 This table provides information about `NDB` database objects for which mismatches have been detected and which are waiting to be synchronized between the `NDB` dictionary and the MySQL data dictionary.
 

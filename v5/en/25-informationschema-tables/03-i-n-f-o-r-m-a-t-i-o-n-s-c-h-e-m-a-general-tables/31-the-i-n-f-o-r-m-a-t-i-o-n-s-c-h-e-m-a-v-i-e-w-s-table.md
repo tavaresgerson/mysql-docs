@@ -1,4 +1,4 @@
-### 24.3.31 The INFORMATION\_SCHEMA VIEWS Table
+### 24.3.31 The INFORMATION_SCHEMA VIEWS Table
 
 The [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table") table provides information about views in databases. You must have the [`SHOW VIEW`](privileges-provided.html#priv_show-view) privilege to access this table.
 

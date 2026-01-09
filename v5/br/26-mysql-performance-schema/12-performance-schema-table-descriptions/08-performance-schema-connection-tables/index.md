@@ -40,7 +40,7 @@ A opção `TRUNCATE TABLE` é permitida para tabelas de conexão. Ela tem esses 
 
 - As tabelas de resumo que dependem da tabela de conexão são implicitamente truncadas, conforme descrito mais adiante nesta seção.
 
-O Schema de Desempenho mantém tabelas resumidas que agregam estatísticas de conexão para vários tipos de eventos por conta, host ou usuário. Essas tabelas têm \_summary\_by\_account, \_summary\_by\_host ou \_summary\_by\_user no nome. Para identificá-las, use esta consulta:
+O Schema de Desempenho mantém tabelas resumidas que agregam estatísticas de conexão para vários tipos de eventos por conta, host ou usuário. Essas tabelas têm _summary_by_account, _summary_by_host ou _summary_by_user no nome. Para identificá-las, use esta consulta:
 
 ```sql
 mysql> SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES

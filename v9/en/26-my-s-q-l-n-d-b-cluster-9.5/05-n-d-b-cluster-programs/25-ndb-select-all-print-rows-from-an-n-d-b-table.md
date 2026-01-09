@@ -1,6 +1,6 @@
-### 25.5.25 ndb\_select\_all — Print Rows from an NDB Table
+### 25.5.25 ndb_select_all — Print Rows from an NDB Table
 
-**ndb\_select\_all** prints all rows from an `NDB` table to `stdout`.
+**ndb_select_all** prints all rows from an `NDB` table to `stdout`.
 
 #### Usage
 
@@ -8,7 +8,7 @@
 ndb_select_all -c connection_string tbl_name -d db_name [> file_name]
 ```
 
-Options that can be used with **ndb\_select\_all** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_select_all** are shown in the following table. Additional descriptions follow the table.
 
 * `--character-sets-dir`
 
@@ -124,7 +124,7 @@ Options that can be used with **ndb\_select\_all** are shown in the following ta
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -227,7 +227,7 @@ mysql> SELECT * FROM ctest1.fish;
 6 rows in set (0.04 sec)
 ```
 
-Output from the equivalent invocation of **ndb\_select\_all**:
+Output from the equivalent invocation of **ndb_select_all**:
 
 ```
 $> ./ndb_select_all -c localhost fish -d ctest1
@@ -241,7 +241,7 @@ id      name
 6 rows returned
 ```
 
-All string values are enclosed by square brackets (`[`...`]`) in the output of **ndb\_select\_all**. For another example, consider the table created and populated as shown here:
+All string values are enclosed by square brackets (`[`...`]`) in the output of **ndb_select_all**. For another example, consider the table created and populated as shown here:
 
 ```
 CREATE TABLE dogs (
@@ -261,7 +261,7 @@ INSERT INTO dogs VALUES
     ('', 'Rosscoe', 'Mutt');
 ```
 
-This demonstrates the use of several additional **ndb\_select\_all** options:
+This demonstrates the use of several additional **ndb_select_all** options:
 
 ```
 $> ./ndb_select_all -d ctest1 dogs -o ix -z --gci --disk

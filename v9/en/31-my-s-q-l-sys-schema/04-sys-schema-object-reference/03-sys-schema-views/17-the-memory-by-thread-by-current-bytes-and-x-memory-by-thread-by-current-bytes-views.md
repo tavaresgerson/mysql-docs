@@ -1,4 +1,4 @@
-#### 30.4.3.17 The memory\_by\_thread\_by\_current\_bytes and x$memory\_by\_thread\_by\_current\_bytes Views
+#### 30.4.3.17 The memory_by_thread_by_current_bytes and x$memory_by_thread_by_current_bytes Views
 
 These views summarize memory use, grouped by thread. By default, rows are sorted by descending amount of memory used.
 

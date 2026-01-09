@@ -1,8 +1,8 @@
-### 24.4.21 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN\_COLS
+### 24.4.21 A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS
 
 A tabela [`INNODB_SYS_FOREIGN_COLS`](https://pt.wikipedia.org/wiki/Tabela_innodb_sys_foreign_cols) fornece informações de status sobre as colunas das chaves estrangeiras do `InnoDB`, equivalentes às informações da tabela `SYS_FOREIGN_COLS` no dicionário de dados do `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
 
 A tabela [`INNODB_SYS_FOREIGN_COLS`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-sys-foreign-cols) possui as seguintes colunas:
 

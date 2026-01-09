@@ -1,4 +1,4 @@
-#### 7.4.2.6 Rule-Based Error Log Filtering (log\_filter\_dragnet)
+#### 7.4.2.6 Rule-Based Error Log Filtering (log_filter_dragnet)
 
 The `log_filter_dragnet` log filter component enables log filtering based on user-defined rules.
 
@@ -58,11 +58,11 @@ UNINSTALL COMPONENT 'file://component_log_filter_dragnet';
 
 The following sections describe aspects of `log_filter_dragnet` operation in more detail:
 
-* Grammar for log\_filter\_dragnet Rule Language
-* Actions for log\_filter\_dragnet Rules
-* Field References in log\_filter\_dragnet Rules
+* Grammar for log_filter_dragnet Rule Language
+* Actions for log_filter_dragnet Rules
+* Field References in log_filter_dragnet Rules
 
-##### Grammar for log\_filter\_dragnet Rule Language
+##### Grammar for log_filter_dragnet Rule Language
 
 The following grammar defines the language for `log_filter_dragnet` filter rules. Each rule is an `IF` statement terminated by a period (`.`) character. The language is not case-sensitive.
 
@@ -210,7 +210,7 @@ For convenience, `log_filter_dragnet` supports symbolic names for comparisons to
 
 Symbolic names can be specified as quoted strings for comparison with string fields, but in such cases the names are strings that have no special meaning and `log_filter_dragnet` does not resolve them to the corresponding numeric value. Also, typos may go undetected, whereas an error occurs immediately on `SET` for attempts to use an unquoted symbol unknown to the server.
 
-##### Actions for log\_filter\_dragnet Rules
+##### Actions for log_filter_dragnet Rules
 
 `log_filter_dragnet` supports these actions in filter rules:
 
@@ -241,7 +241,7 @@ Symbolic names can be specified as quoted strings for comparison with string fie
   IF myfield == 2 THEN unset.
   ```
 
-##### Field References in log\_filter\_dragnet Rules
+##### Field References in log_filter_dragnet Rules
 
 `log_filter_dragnet` rules support references to core, optional, and user-defined fields in error events.
 
@@ -251,7 +251,7 @@ Symbolic names can be specified as quoted strings for comparison with string fie
 
 ###### Core Field References
 
-The `log_filter_dragnet` grammar at Grammar for log\_filter\_dragnet Rule Language names the core fields that filter rules recognize. For general descriptions of these fields, see Section 7.4.2.3, “Error Event Fields”, with which you are assumed to be familiar. The following remarks provide additional information only as it pertains specifically to core field references as used within `log_filter_dragnet` rules.
+The `log_filter_dragnet` grammar at Grammar for log_filter_dragnet Rule Language names the core fields that filter rules recognize. For general descriptions of these fields, see Section 7.4.2.3, “Error Event Fields”, with which you are assumed to be familiar. The following remarks provide additional information only as it pertains specifically to core field references as used within `log_filter_dragnet` rules.
 
 * `prio`
 
@@ -311,7 +311,7 @@ The `log_filter_dragnet` grammar at Grammar for log\_filter\_dragnet Rule Langua
 
 ###### Optional Field References
 
-The `log_filter_dragnet` grammar at Grammar for log\_filter\_dragnet Rule Language names the optional fields that filter rules recognize. For general descriptions of these fields, see Section 7.4.2.3, “Error Event Fields”, with which you are assumed to be familiar. The following remarks provide additional information only as it pertains specifically to optional field references as used within `log_filter_dragnet` rules.
+The `log_filter_dragnet` grammar at Grammar for log_filter_dragnet Rule Language names the optional fields that filter rules recognize. For general descriptions of these fields, see Section 7.4.2.3, “Error Event Fields”, with which you are assumed to be familiar. The following remarks provide additional information only as it pertains specifically to optional field references as used within `log_filter_dragnet` rules.
 
 * `label`
 

@@ -1,6 +1,6 @@
-### 25.5.25 ndb\_select\_all — Imprimir Linhas de uma Tabela NDB
+### 25.5.25 ndb_select_all — Imprimir Linhas de uma Tabela NDB
 
-**ndb\_select\_all** imprime todas as linhas de uma tabela `NDB` no `stdout`.
+**ndb_select_all** imprime todas as linhas de uma tabela `NDB` no `stdout`.
 
 #### Uso
 
@@ -8,7 +8,7 @@
 ndb_select_all -c connection_string tbl_name -d db_name [> file_name]
 ```
 
-As opções que podem ser usadas com **ndb\_select\_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_select_all** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 * `--character-sets-dir`
 
@@ -156,7 +156,7 @@ Leia opções padrão apenas a partir do arquivo especificado.
 </table>
 1
 
-  Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina entradas no `NDB_CONNECTSTRING` e `my.cnf`.
+  Defina a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina entradas no `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -402,7 +402,7 @@ mysql> SELECT * FROM ctest1.fish;
 6 rows in set (0.04 sec)
 ```
 
-Saída da invocação equivalente do **ndb\_select\_all**:
+Saída da invocação equivalente do **ndb_select_all**:
 
 ```
 $> ./ndb_select_all -c localhost fish -d ctest1
@@ -416,7 +416,7 @@ id      name
 6 rows returned
 ```
 
-Todos os valores de string são encerrados por colchetes (`[`...`]`) na saída do **ndb\_select\_all**. Para outro exemplo, considere a tabela criada e preenchida como mostrado aqui:
+Todos os valores de string são encerrados por colchetes (`[`...`]`) na saída do **ndb_select_all**. Para outro exemplo, considere a tabela criada e preenchida como mostrado aqui:
 
 ```
 CREATE TABLE dogs (
@@ -436,7 +436,7 @@ INSERT INTO dogs VALUES
     ('', 'Rosscoe', 'Mutt');
 ```
 
-Isso demonstra o uso de várias opções adicionais do **ndb\_select\_all**:
+Isso demonstra o uso de várias opções adicionais do **ndb_select_all**:
 
 ```
 $> ./ndb_select_all -d ctest1 dogs -o ix -z --gci --disk

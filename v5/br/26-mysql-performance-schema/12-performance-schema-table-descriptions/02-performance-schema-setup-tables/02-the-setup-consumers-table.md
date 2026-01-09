@@ -1,4 +1,4 @@
-#### 25.12.2.2 A tabela setup\_consumers
+#### 25.12.2.2 A tabela setup_consumers
 
 A tabela `setup_consumers` lista os tipos de consumidores para os quais as informações dos eventos podem ser armazenadas e que estão habilitados:
 

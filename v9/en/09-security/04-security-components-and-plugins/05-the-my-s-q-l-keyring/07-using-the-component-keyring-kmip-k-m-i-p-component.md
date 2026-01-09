@@ -1,4 +1,4 @@
-#### 8.4.5.7 Using the component\_keyring\_kmip KMIP Component
+#### 8.4.5.7 Using the component_keyring_kmip KMIP Component
 
 Note
 
@@ -17,8 +17,8 @@ To use `component_keyring_kmip` for keystore management, you must:
 2. Write a configuration file for `component_keyring_kmip`, as described here.
 
 * Configuration Notes
-* Configuring component\_keyring\_kmip for Oracle Key Vault
-* Password-Protecting the component\_keyring\_kmip Key File
+* Configuring component_keyring_kmip for Oracle Key Vault
+* Password-Protecting the component_keyring_kmip Key File
 * Migration from KMIP Plugin
 
 ##### Configuration Notes
@@ -42,7 +42,7 @@ When it initializes, `component_keyring_kmip` reads either a global configuratio
 
     - `CA.pem`
     - `cert.pem`
-    - `key.pem` (if the key is password-protected, see Password-Protecting the component\_keyring\_kmip Key File)
+    - `key.pem` (if the key is password-protected, see Password-Protecting the component_keyring_kmip Key File)
 
     Only the certificates from the `ssl/` sub-directory are used. If the certificates are password-protected, then `password.txt` needs to be present in the `ssl/` sub-directory.
 
@@ -69,7 +69,7 @@ A configuration looks like this:
 }
 ```
 
-##### Configuring component\_keyring\_kmip for Oracle Key Vault
+##### Configuring component_keyring_kmip for Oracle Key Vault
 
 The discussion here assumes that you are familiar with Oracle Key Vault (OKV). Some pertinent information sources:
 
@@ -105,7 +105,7 @@ A sample `component_keyring_kmip.cnf` file looks like the following:
 }
 ```
 
-##### Password-Protecting the component\_keyring\_kmip Key File
+##### Password-Protecting the component_keyring_kmip Key File
 
 You can optionally protect the key file with a password and supply a file containing the password to enable the key file to be decrypted. To so do, change location to the `ssl` directory and perform these steps:
 

@@ -1,6 +1,6 @@
-### 25.5.15 ndb\_move\_data — NDB Data Copy Utility
+### 25.5.15 ndb_move_data — NDB Data Copy Utility
 
-**ndb\_move\_data** copies data from one NDB table to another.
+**ndb_move_data** copies data from one NDB table to another.
 
 #### Usage
 
@@ -10,7 +10,7 @@ The program is invoked with the names of the source and target tables; either or
 ndb_move_data options source target
 ```
 
-Options that can be used with **ndb\_move\_data** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_move_data** are shown in the following table. Additional descriptions follow the table.
 
 * `--abort-on-error`
 
@@ -118,7 +118,7 @@ Options that can be used with **ndb\_move\_data** are shown in the following tab
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 

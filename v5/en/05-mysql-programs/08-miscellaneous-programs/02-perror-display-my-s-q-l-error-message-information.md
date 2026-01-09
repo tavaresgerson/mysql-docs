@@ -31,7 +31,7 @@ OS error code  13:  Permission denied
 OS error code  64:  Machine is not on the network
 ```
 
-To obtain the error message for a MySQL Cluster error code, use the **ndb\_perror** utility.
+To obtain the error message for a MySQL Cluster error code, use the **ndb_perror** utility.
 
 The meaning of system error messages may be dependent on your operating system. A given error code may mean different things on different operating systems.
 
@@ -45,7 +45,7 @@ The meaning of system error messages may be dependent on your operating system. 
 
   Print the error message for an NDB Cluster error code.
 
-  This option is deprecated in NDB 7.6.4 and later, where **perror** prints a warning if it is used, and is removed in NDB Cluster 8.0. Use the **ndb\_perror** utility instead.
+  This option is deprecated in NDB 7.6.4 and later, where **perror** prints a warning if it is used, and is removed in NDB Cluster 8.0. Use the **ndb_perror** utility instead.
 
 * `--silent`, `-s`
 

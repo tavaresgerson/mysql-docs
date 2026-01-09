@@ -103,11 +103,11 @@ Crie este arquivo no diretório de dados.
 
 Com o manifesto em vigor, proceda a configurar o componente keyring. Para fazer isso, consulte as notas do componente keyring escolhido para obter instruções de configuração específicas para esse componente:
 
-* `component_keyring_file`: Seção 8.4.5.4, “Usando o componente\_keyring\_file Component File-Based Keyring”.
+* `component_keyring_file`: Seção 8.4.5.4, “Usando o componente_keyring_file Component File-Based Keyring”.
 
-* `component_keyring_encrypted_file`: Seção 8.4.5.5, “Usando o componente\_keyring\_encrypted\_file Component Encrypted File-Based Keyring”.
+* `component_keyring_encrypted_file`: Seção 8.4.5.5, “Usando o componente_keyring_encrypted_file Component Encrypted File-Based Keyring”.
 
-* `component_keyring_oci`: Seção 8.4.5.12, “Usando o componente\_keyring\_oci Vault Keyring Component da Oracle Cloud Infrastructure”.
+* `component_keyring_oci`: Seção 8.4.5.12, “Usando o componente_keyring_oci Vault Keyring Component da Oracle Cloud Infrastructure”.
 
 Após realizar qualquer configuração específica do componente, inicie o servidor. Verifique a instalação do componente examinando a tabela do Schema de Desempenho `keyring_component_status`:
 

@@ -1,4 +1,4 @@
-#### 25.6.15.38 The ndbinfo hash\_maps Table
+#### 25.6.15.38 The ndbinfo hash_maps Table
 
 * `id`
 

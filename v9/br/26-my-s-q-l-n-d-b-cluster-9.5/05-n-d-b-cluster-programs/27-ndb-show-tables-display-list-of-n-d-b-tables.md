@@ -1,8 +1,8 @@
-### 25.5.27 ndb\_show\_tables — Exibir Lista de Tabelas NDB
+### 25.5.27 ndb_show_tables — Exibir Lista de Tabelas NDB
 
-**ndb\_show\_tables** exibe uma lista de todos os objetos de banco de dados `NDB` no cluster. Por padrão, isso inclui não apenas tabelas criadas pelo usuário e tabelas `NDB` do sistema, mas também índices específicos de `NDB`, gatilhos internos e objetos de dados do disco do NDB Cluster.
+**ndb_show_tables** exibe uma lista de todos os objetos de banco de dados `NDB` no cluster. Por padrão, isso inclui não apenas tabelas criadas pelo usuário e tabelas `NDB` do sistema, mas também índices específicos de `NDB`, gatilhos internos e objetos de dados do disco do NDB Cluster.
 
-As opções que podem ser usadas com **ndb\_show\_tables** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_show_tables** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 #### Uso
 
@@ -56,7 +56,7 @@ Escrever o arquivo de código fonte em caso de erro; usado em depuração.
 
 Especifica o nome do banco de dados em que a tabela desejada é encontrada. Se esta opção for fornecida, o nome de uma tabela deve seguir o nome do banco de dados.
 
-Se esta opção não tiver sido especificada e nenhuma tabela for encontrada no banco de dados `TEST_DB`, o **ndb\_show\_tables** emite uma mensagem de aviso.
+Se esta opção não tiver sido especificada e nenhuma tabela for encontrada no banco de dados `TEST_DB`, o **ndb_show_tables** emite uma mensagem de aviso.
 
 * `--defaults-extra-file`
 
@@ -96,7 +96,7 @@ Leia o caminho de login fornecido a partir do arquivo de login.
 
 * `--ndb-connectstring`
 
-Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina as entradas em `NDB_CONNECTSTRING` e `my.cnf`.
+Defina a string de conexão para se conectar ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina as entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -204,4 +204,4 @@ Exibir informações da versão e sair.
 
 Observação
 
-Apenas as tabelas do NDB Cluster criadas pelo usuário podem ser acessadas a partir do MySQL; as tabelas do sistema, como `SYSTAB_0`, não são visíveis para o **mysqld**. No entanto, você pode examinar o conteúdo das tabelas do sistema usando aplicativos da API **ndb**, como **ndb\_select\_all** (consulte a Seção 25.5.25, “ndb\_select\_all — Imprimir Linhas de uma Tabela NDB”).
+Apenas as tabelas do NDB Cluster criadas pelo usuário podem ser acessadas a partir do MySQL; as tabelas do sistema, como `SYSTAB_0`, não são visíveis para o **mysqld**. No entanto, você pode examinar o conteúdo das tabelas do sistema usando aplicativos da API **ndb**, como **ndb_select_all** (consulte a Seção 25.5.25, “ndb_select_all — Imprimir Linhas de uma Tabela NDB”).

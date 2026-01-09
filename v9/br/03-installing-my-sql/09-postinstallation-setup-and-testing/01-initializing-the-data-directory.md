@@ -154,7 +154,7 @@ Ao inicializar o diretório de dados, você não deve especificar nenhuma opçã
 
 Nota
 
-A sequência de inicialização do diretório de dados realizada pelo servidor não substitui as ações realizadas pelo **mysql\_secure\_installation**.
+A sequência de inicialização do diretório de dados realizada pelo servidor não substitui as ações realizadas pelo **mysql_secure_installation**.
 
 Quando invocado com a opção `--initialize` ou `--initialize-insecure`, o **mysqld** executa as seguintes ações durante a sequência de inicialização do diretório de dados:
 

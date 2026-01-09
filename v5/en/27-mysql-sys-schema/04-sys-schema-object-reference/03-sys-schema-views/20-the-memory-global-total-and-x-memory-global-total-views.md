@@ -1,4 +1,4 @@
-#### 26.4.3.20 The memory\_global\_total and x$memory\_global\_total Views
+#### 26.4.3.20 The memory_global_total and x$memory_global_total Views
 
 These views summarize total memory use within the server.
 

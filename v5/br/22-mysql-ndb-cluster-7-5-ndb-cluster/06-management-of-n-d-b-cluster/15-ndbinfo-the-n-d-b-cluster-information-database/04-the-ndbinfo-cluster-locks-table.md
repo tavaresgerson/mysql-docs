@@ -1,4 +1,4 @@
-#### 21.6.15.4 A tabela ndbinfo cluster\_locks
+#### 21.6.15.4 A tabela ndbinfo cluster_locks
 
 A tabela `cluster_locks` fornece informações sobre os pedidos de bloqueio atuais que estão mantendo e aguardando por bloqueios em tabelas `NDB` em um NDB Cluster, e é destinada como uma tabela complementar à `cluster_operations`. As informações obtidas da tabela `cluster_locks` podem ser úteis para investigar travamentos e bloqueios.
 
@@ -58,7 +58,7 @@ A tabela `cluster_locks` contém as seguintes colunas:
 
 ##### Notas
 
-O ID da tabela (`tableid` coluna) é atribuído internamente e é o mesmo usado em outras tabelas `ndbinfo`. Ele também é exibido na saída de **ndb\_show\_tables**.
+O ID da tabela (`tableid` coluna) é atribuído internamente e é o mesmo usado em outras tabelas `ndbinfo`. Ele também é exibido na saída de **ndb_show_tables**.
 
 O ID da transação (`transid` coluna) é o identificador gerado pela API NDB para a transação que solicita ou mantém o bloqueio atual.
 

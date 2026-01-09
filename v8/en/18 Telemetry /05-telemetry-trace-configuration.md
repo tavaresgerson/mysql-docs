@@ -22,17 +22,17 @@ The following are the server trace telemetry configuration variables:
   Controls whether the SQL query text is included in the trace
 *  `telemetry.otel_log_level`
 
-  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_log_level</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ERROR</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>DEBUG</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_log_level</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ERROR</code></td> </tr><tr><th>Valid Values</th> <td><p><code>SILENT</code></p><p><code>INFO</code></p><p><code>ERROR</code></p><p><code>WARNING</code></p><p><code>DEBUG</code></p></td> </tr></tbody></table>
 
   Controls which OpenTelemetry logs are printed in the server logs
 *  `telemetry.otel_resource_attributes`
 
   <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_resource_attributes</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>empty</code></td> </tr></tbody></table>
 
-  See corresponding OpenTelemetry variable OTEL\_RESOURCE\_ATTRIBUTES.
+  See corresponding OpenTelemetry variable OTEL_RESOURCE_ATTRIBUTES.
 *  `telemetry.otel_exporter_otlp_traces_protocol`
 
-  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_protocol</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>http/protobuf</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_protocol</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>http/protobuf</code></td> </tr><tr><th>Valid Values</th> <td><p><code>http/protobuf</code></p><p><code>http/json</code></p></td> </tr></tbody></table>
 
   OTLP transport protocol
 *  `telemetry.otel_exporter_otlp_traces_endpoint`
@@ -59,10 +59,10 @@ The following are the server trace telemetry configuration variables:
 
   <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_headers</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>empty</code></td> </tr></tbody></table>
 
-  See corresponding OpenTelemetry variable OTEL\_EXPORTER\_TRACES\_HEADERS.
+  See corresponding OpenTelemetry variable OTEL_EXPORTER_TRACES_HEADERS.
 *  `telemetry.otel_exporter_otlp_traces_compression`
 
-  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_compression</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>none (no compression)</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>none (no compression)</code></p><p class="valid-value"><code>gzip</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_compression</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>none (no compression)</code></td> </tr><tr><th>Valid Values</th> <td><p><code>none (no compression)</code></p><p><code>gzip</code></p></td> </tr></tbody></table>
 
   Compression used by exporter
 *  `telemetry.otel_exporter_otlp_traces_timeout`
@@ -87,10 +87,10 @@ The following are the server trace telemetry configuration variables:
   Maximum batch size
 *  `telemetry.otel_exporter_otlp_traces_min_tls`
 
-  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_min_tls</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>[none]</code></p><p class="valid-value"><code>1.2</code></p><p class="valid-value"><code>1.3</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_min_tls</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>[none]</code></p><p><code>1.2</code></p><p><code>1.3</code></p></td> </tr></tbody></table>
 *  `telemetry.otel_exporter_otlp_traces_max_tls`
 
-  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_max_tls</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>[none]</code></p><p class="valid-value"><code>1.2</code></p><p class="valid-value"><code>1.3</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_max_tls</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>[none]</code></p><p><code>1.2</code></p><p><code>1.3</code></p></td> </tr></tbody></table>
 *  `telemetry.otel_exporter_otlp_traces_cipher`
 
   <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_traces_cipher</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
@@ -115,20 +115,20 @@ The MySQL client reads telemetry configuration from the `[telemetry_client]` sec
 
   <table><tbody><tr><th>Command-Line Format</th> <td><code>--otel-help</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  When enabled, prints help about telemetry\_client options .
+  When enabled, prints help about telemetry_client options .
 *  `otel_log_level`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--otel_log_level</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ERROR</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>ERROR</code></p><p class="valid-value"><code>SILENT</code></p><p class="valid-value"><code>WARNING</code></p><p class="valid-value"><code>INFO</code></p><p class="valid-value"><code>DEBUG</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--otel_log_level</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ERROR</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ERROR</code></p><p><code>SILENT</code></p><p><code>WARNING</code></p><p><code>INFO</code></p><p><code>DEBUG</code></p></td> </tr></tbody></table>
 
   Controls which OpenTelemetry logs are printed in the server logs
 *  `otel_resource_attributes`
 
   <table><tbody><tr><th>Command-Line Format</th> <td><code>--otel_resource_attributes</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  See corresponding OpenTelemetry variable OTEL\_RESOURCE\_ATTRIBUTES.
+  See corresponding OpenTelemetry variable OTEL_RESOURCE_ATTRIBUTES.
 *  `otel_exporter_otlp_traces_protocol`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--otel_exporter_otlp_traces_protocol</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>http/protobuf</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--otel_exporter_otlp_traces_protocol</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>http/protobuf</code></td> </tr><tr><th>Valid Values</th> <td><p><code>http/protobuf</code></p><p><code>http/json</code></p></td> </tr></tbody></table>
 
   OTLP transport protocol
 *  `otel_exporter_otlp_traces_endpoint`
@@ -155,10 +155,10 @@ The MySQL client reads telemetry configuration from the `[telemetry_client]` sec
 
   <table><tbody><tr><th>Command-Line Format</th> <td><code>--otel_exporter_otlp_traces_headers</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  See corresponding OpenTelemetry variable OTEL\_EXPORTER\_TRACES\_HEADERS.
+  See corresponding OpenTelemetry variable OTEL_EXPORTER_TRACES_HEADERS.
 *  `otel_exporter_otlp_traces_compression`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--otel_exporter_otlp_traces_compression</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>none</code></p><p class="valid-value"><code>gzip</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--otel_exporter_otlp_traces_compression</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Valid Values</th> <td><p><code>none</code></p><p><code>gzip</code></p></td> </tr></tbody></table>
 
   Compression used by exporter
 *  `otel_exporter_otlp_traces_timeout`

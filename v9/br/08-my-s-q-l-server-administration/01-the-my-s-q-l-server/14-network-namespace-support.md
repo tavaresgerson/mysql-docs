@@ -293,7 +293,7 @@ O exemplo a seguir configura um servidor MySQL que escuta conexões nos namespac
 
 Para fins de monitoramento de replicação, essas fontes de informações têm uma coluna que exibe o namespace de rede aplicável para conexões:
 
-* A tabela `replication_connection_configuration` do Schema de desempenho. Veja a Seção 29.12.11.12, “A tabela replication\_connection\_configuration”.
+* A tabela `replication_connection_configuration` do Schema de desempenho. Veja a Seção 29.12.11.12, “A tabela replication_connection_configuration”.
 
 * O repositório de metadados de conexão do servidor de replicação. Veja a Seção 19.2.4.2, “Repositórios de Metadados de Replicação”.
 

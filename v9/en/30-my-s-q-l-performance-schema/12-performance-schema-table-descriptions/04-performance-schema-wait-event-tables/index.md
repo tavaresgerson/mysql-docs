@@ -1,10 +1,10 @@
 ### 29.12.4 Performance Schema Wait Event Tables
 
-29.12.4.1 The events\_waits\_current Table
+29.12.4.1 The events_waits_current Table
 
-29.12.4.2 The events\_waits\_history Table
+29.12.4.2 The events_waits_history Table
 
-29.12.4.3 The events\_waits\_history\_long Table
+29.12.4.3 The events_waits_history_long Table
 
 The Performance Schema instruments waits, which are events that take time. Within the event hierarchy, wait events nest within stage events, which nest within statement events, which nest within transaction events.
 

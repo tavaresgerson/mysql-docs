@@ -58,7 +58,7 @@ A tabela `cluster_locks` contém as seguintes colunas:
 
 ##### Notas
 
-O ID da tabela (`tableid` coluna) é atribuído internamente e é o mesmo usado em outras tabelas `ndbinfo`. Também é exibido na saída do **ndb\_show\_tables**.
+O ID da tabela (`tableid` coluna) é atribuído internamente e é o mesmo usado em outras tabelas `ndbinfo`. Também é exibido na saída do **ndb_show_tables**.
 
 O ID da transação (`transid` coluna) é o identificador gerado pela API NDB para a transação solicitando ou segurando o bloqueio atual.
 

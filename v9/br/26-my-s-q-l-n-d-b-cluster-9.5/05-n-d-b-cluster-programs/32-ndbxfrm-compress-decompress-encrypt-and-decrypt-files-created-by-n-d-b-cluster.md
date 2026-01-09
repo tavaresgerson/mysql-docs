@@ -305,7 +305,7 @@ Não leia as opções padrão de qualquer arquivo de opção, exceto o arquivo d
 
   Imprime informações sobre a versão.
 
-O **ndbxfrm** pode criptografar backups criados por qualquer versão do NDB Cluster. Os arquivos `.Data`, `.ctl` e `.log` que compõem o backup devem ser criptografados separadamente, e esses arquivos devem ser criptografados separadamente para cada nó de dados. Uma vez criptografados, tais backups só podem ser descriptografados pelo **ndbxfrm**, **ndb\_restore** ou **ndb\_print\_backup**.
+O **ndbxfrm** pode criptografar backups criados por qualquer versão do NDB Cluster. Os arquivos `.Data`, `.ctl` e `.log` que compõem o backup devem ser criptografados separadamente, e esses arquivos devem ser criptografados separadamente para cada nó de dados. Uma vez criptografados, tais backups só podem ser descriptografados pelo **ndbxfrm**, **ndb_restore** ou **ndb_print_backup**.
 
 Um arquivo criptografado pode ser re-criptografado com uma nova senha usando as opções `--encrypt-password` e `--decrypt-password` juntas, assim:
 

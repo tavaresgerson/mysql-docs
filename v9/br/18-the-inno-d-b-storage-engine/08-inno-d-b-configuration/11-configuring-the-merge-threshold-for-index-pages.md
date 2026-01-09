@@ -6,7 +6,7 @@ Quando a porcentagem de "página cheia" para uma página de índice cair abaixo 
 
 O `MERGE_THRESHOLD` para páginas de índice pode ser definido para uma tabela ou para índices individuais. Um valor `MERGE_THRESHOLD` definido para um índice individual tem prioridade sobre um valor `MERGE_THRESHOLD` definido para a tabela. Se não definido, o valor `MERGE_THRESHOLD` tem o valor padrão de 50.
 
-#### Definindo MERGE\_THRESHOLD para uma Tabela
+#### Definindo MERGE_THRESHOLD para uma Tabela
 
 Você pode definir o valor `MERGE_THRESHOLD` para uma tabela usando a cláusula `COMMENT` *`table_option`* da instrução `CREATE TABLE`. Por exemplo:
 
@@ -28,11 +28,11 @@ CREATE TABLE t1 (
 ALTER TABLE t1 COMMENT='MERGE_THRESHOLD=40';
 ```
 
-#### Definindo o MERGE\_THRESHOLD para Índices Individuais
+#### Definindo o MERGE_THRESHOLD para Índices Individuais
 
-Para definir o valor `MERGE\_THRESHOLD` para um índice individual, você pode usar a cláusula `COMMENT` do *`index_option`* com `CREATE TABLE`, `ALTER TABLE` ou `CREATE INDEX`, conforme mostrado nos exemplos a seguir:
+Para definir o valor `MERGE_THRESHOLD` para um índice individual, você pode usar a cláusula `COMMENT` do *`index_option`* com `CREATE TABLE`, `ALTER TABLE` ou `CREATE INDEX`, conforme mostrado nos exemplos a seguir:
 
-* Definindo `MERGE\_THRESHOLD` para um índice individual usando `CREATE TABLE`:
+* Definindo `MERGE_THRESHOLD` para um índice individual usando `CREATE TABLE`:
 
   ```
   CREATE TABLE t1 (
@@ -41,7 +41,7 @@ Para definir o valor `MERGE\_THRESHOLD` para um índice individual, você pode u
   );
   ```
 
-* Definindo `MERGE\_THRESHOLD` para um índice individual usando `ALTER TABLE`:
+* Definindo `MERGE_THRESHOLD` para um índice individual usando `ALTER TABLE`:
 
   ```
   CREATE TABLE t1 (
@@ -53,7 +53,7 @@ Para definir o valor `MERGE\_THRESHOLD` para um índice individual, você pode u
   ALTER TABLE t1 ADD KEY id_index (id) COMMENT 'MERGE_THRESHOLD=40';
   ```
 
-* Definindo `MERGE\_THRESHOLD` para um índice individual usando `CREATE INDEX`:
+* Definindo `MERGE_THRESHOLD` para um índice individual usando `CREATE INDEX`:
 
   ```
   CREATE TABLE t1 (id INT);
@@ -62,11 +62,11 @@ Para definir o valor `MERGE\_THRESHOLD` para um índice individual, você pode u
 
 Observação
 
-Você não pode modificar o valor `MERGE\_THRESHOLD` no nível do índice para `GEN_CLUST_INDEX`, que é o índice agrupado criado pelo `InnoDB` quando uma tabela `InnoDB` é criada sem um índice de chave primária ou chave única. Você só pode modificar o valor `MERGE\_THRESHOLD` para `GEN_CLUST_INDEX` definindo `MERGE\_THRESHOLD` para a tabela.
+Você não pode modificar o valor `MERGE_THRESHOLD` no nível do índice para `GEN_CLUST_INDEX`, que é o índice agrupado criado pelo `InnoDB` quando uma tabela `InnoDB` é criada sem um índice de chave primária ou chave única. Você só pode modificar o valor `MERGE_THRESHOLD` para `GEN_CLUST_INDEX` definindo `MERGE_THRESHOLD` para a tabela.
 
-#### Consultando o Valor MERGE\_THRESHOLD para um Índice
+#### Consultando o Valor MERGE_THRESHOLD para um Índice
 
-O valor atual de `MERGE\_THRESHOLD` para um índice pode ser obtido consultando a tabela `INNODB_INDEXES`. Por exemplo:
+O valor atual de `MERGE_THRESHOLD` para um índice pode ser obtido consultando a tabela `INNODB_INDEXES`. Por exemplo:
 
 ```
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_INDEXES WHERE NAME='id_index' \G
@@ -81,7 +81,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_INDEXES WHERE NAME='id_index' \G
 MERGE_THRESHOLD: 40
 ```
 
-Você pode usar `SHOW CREATE TABLE` para visualizar o valor `MERGE\_THRESHOLD` para uma tabela, se explicitamente definido usando a cláusula `COMMENT` do *`table_option`*:
+Você pode usar `SHOW CREATE TABLE` para visualizar o valor `MERGE_THRESHOLD` para uma tabela, se explicitamente definido usando a cláusula `COMMENT` do *`table_option`*:
 
 ```
 mysql> SHOW CREATE TABLE t2 \G
@@ -95,9 +95,9 @@ Create Table: CREATE TABLE `t2` (
 
 Observação
 
-Um valor `MERGE\_THRESHOLD` definido no nível do índice tem prioridade sobre um valor `MERGE\_THRESHOLD` definido para a tabela. Se não definido, `MERGE\_THRESHOLD` tem o valor padrão de 50% (`MERGE\_THRESHOLD=50`, que é o valor previamente codificado.
+Um valor `MERGE_THRESHOLD` definido no nível do índice tem prioridade sobre um valor `MERGE_THRESHOLD` definido para a tabela. Se não definido, `MERGE_THRESHOLD` tem o valor padrão de 50% (`MERGE_THRESHOLD=50`, que é o valor previamente codificado.
 
-Da mesma forma, você pode usar `SHOW INDEX` para visualizar o valor `MERGE\_THRESHOLD` para um índice, se explicitamente definido usando a cláusula `COMMENT` do *`index_option`*:
+Da mesma forma, você pode usar `SHOW INDEX` para visualizar o valor `MERGE_THRESHOLD` para um índice, se explicitamente definido usando a cláusula `COMMENT` do *`index_option`*:
 
 ```
 mysql> SHOW INDEX FROM t2 \G
@@ -117,7 +117,7 @@ mysql> SHOW INDEX FROM t2 \G
 Index_comment: MERGE_THRESHOLD=40
 ```
 
-#### Medindo o Efeito das Definições de MERGE\_THRESHOLD
+#### Medindo o Efeito das Definições de MERGE_THRESHOLD
 
 A tabela `INNODB_METRICS` fornece dois contadores que podem ser usados para medir o efeito de um ajuste de `MERGE_THRESHOLD` em fusões de páginas de índice.
 

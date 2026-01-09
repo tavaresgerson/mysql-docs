@@ -1,8 +1,8 @@
-#### 26.4.3.28 As vistas schema\_table\_lock\_waits e x$schema\_table\_lock\_waits
+#### 26.4.3.28 As vistas schema_table_lock_waits e x$schema_table_lock_waits
 
 Essas visualizações mostram quais sessões estão bloqueadas aguardando bloqueios de metadados e o que as está bloqueando.
 
-As descrições das colunas aqui são breves. Para obter informações adicionais, consulte a descrição da tabela `metadata_locks` do Schema de Desempenho na Seção 25.12.12.1, “A Tabela metadata\_locks”.
+As descrições das colunas aqui são breves. Para obter informações adicionais, consulte a descrição da tabela `metadata_locks` do Schema de Desempenho na Seção 25.12.12.1, “A Tabela metadata_locks”.
 
 As vistas `schema_table_lock_waits` e `x$schema_table_lock_waits` possuem as seguintes colunas:
 

@@ -311,7 +311,7 @@ Esta seção fornece uma visão geral de como o MySQL e o WebAuthn trabalham jun
 Uma conta que usa a autenticação WebAuthn deve realizar uma etapa de registro inicial do dispositivo antes de poder se conectar ao servidor. Após o registro do dispositivo, a autenticação pode prosseguir. O processo de registro do dispositivo WebAuthn é o seguinte:
 
 1. O servidor envia um desafio aleatório, ID do usuário e ID da parte de confiança (que identifica de forma única um servidor) ao cliente no formato JSON. O ID da parte de confiança é definido pela variável de sistema `authentication_webauthn_rp_id`. O valor padrão é `mysql.com`.
-2. O cliente recebe essa informação e a envia ao plugin de autenticação WebAuthn do lado do cliente, que, por sua vez, a fornece ao dispositivo FIDO/FIDO2. O cliente também envia uma capacidade de 1 byte, com o bit RESIDENT\_KEYS definido como `ON` (se for um dispositivo FIDO2) ou `OFF`.
+2. O cliente recebe essa informação e a envia ao plugin de autenticação WebAuthn do lado do cliente, que, por sua vez, a fornece ao dispositivo FIDO/FIDO2. O cliente também envia uma capacidade de 1 byte, com o bit RESIDENT_KEYS definido como `ON` (se for um dispositivo FIDO2) ou `OFF`.
 3. Após o usuário ter realizado a ação apropriada do dispositivo (por exemplo, tocar no dispositivo ou realizar uma varredura biométrica), o dispositivo FIDO/FIDO2 gera um par de chaves pública/privada, um handle de chave, um certificado X.509 e uma assinatura, que é devolvido ao servidor.
 4. O plugin de autenticação WebAuthn do lado do servidor verifica a assinatura. Com a verificação bem-sucedida, o servidor armazena o ID da credencial (apenas para dispositivos FIDO) e a chave pública na tabela de sistema `mysql.user`.
 

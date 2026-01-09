@@ -1,4 +1,4 @@
-#### 26.4.3.19 As visualizações memory\_global\_by\_current\_bytes e x$memory\_global\_by\_current\_bytes
+#### 26.4.3.19 As visualizações memory_global_by_current_bytes e x$memory_global_by_current_bytes
 
 Esses pontos resumem o uso da memória, agrupados por tipo de alocação (ou seja, por evento). Por padrão, as linhas são ordenadas em ordem decrescente de quantidade de memória usada.
 

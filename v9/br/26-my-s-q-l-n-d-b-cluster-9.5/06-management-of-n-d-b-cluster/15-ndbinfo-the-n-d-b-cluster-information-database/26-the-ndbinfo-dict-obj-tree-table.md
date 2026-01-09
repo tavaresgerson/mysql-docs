@@ -1,4 +1,4 @@
-#### 25.6.15.26 Tabela `dict_obj_tree` do ndbinfo dict\_obj
+#### 25.6.15.26 Tabela `dict_obj_tree` do ndbinfo dict_obj
 
 A tabela `dict_obj_tree` fornece uma visualização baseada em árvore das informações da tabela a partir da tabela `dict_obj_info`. Isso é destinado principalmente para uso em testes, mas pode ser útil na visualização de hierarquias de objetos do banco de dados `NDB`.
 

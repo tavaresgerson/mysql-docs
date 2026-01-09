@@ -1,4 +1,4 @@
-### 24.4.26 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL
+### 24.4.26 A tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL
 
 A tabela `INNODB_SYS_VIRTUAL` fornece metadados sobre as colunas `virtual geradas` do InnoDB e sobre as colunas nas quais essas colunas virtualizadas são baseadas, equivalentes às informações na tabela `SYS_VIRTUAL` do dicionário de dados do InnoDB.
 
@@ -59,7 +59,7 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_VIRTUAL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   ```
 
-  No entanto, os metadados para essa coluna aparecem na tabela \`[INNODB\_SYS\_COLUMNS](https://pt.wikipedia.org/wiki/Tabela_INNODB_SYS_COLUMNS) do esquema de informações.
+  No entanto, os metadados para essa coluna aparecem na tabela \`[INNODB_SYS_COLUMNS](https://pt.wikipedia.org/wiki/Tabela_INNODB_SYS_COLUMNS) do esquema de informações.
 
 - Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
 

@@ -1,4 +1,4 @@
-#### 21.6.15.33 Tabela ndbinfo server\_locks
+#### 21.6.15.33 Tabela ndbinfo server_locks
 
 A tabela `server_locks` tem uma estrutura semelhante à tabela `cluster_locks`, e fornece um subconjunto das informações encontradas na última tabela, mas que é específico ao nó SQL (servidor MySQL) onde reside. (A tabela `cluster_locks` fornece informações sobre todos os bloqueios no clúster.) Mais precisamente, `server_locks` contém informações sobre os bloqueios solicitados por threads pertencentes à instância atual do **mysqld**, e serve como uma tabela complementar à `server_operations`. Isso pode ser útil para correlacionar padrões de bloqueio com sessões de usuários específicos do MySQL, consultas ou casos de uso.
 
@@ -66,7 +66,7 @@ A coluna `mysql_connection_id` mostra o ID da conexão ou do thread do MySQL, co
 
 `block_instance` refere-se a uma instância de um bloco de kernel. Juntamente com o nome do bloco, esse número pode ser usado para procurar uma instância específica na tabela `threadblocks`.
 
-O `tableid` é atribuído à tabela pelo `NDB`; o mesmo ID é usado para essa tabela em outras tabelas `ndbinfo`, bem como na saída do **ndb\_show\_tables**.
+O `tableid` é atribuído à tabela pelo `NDB`; o mesmo ID é usado para essa tabela em outras tabelas `ndbinfo`, bem como na saída do **ndb_show_tables**.
 
 O ID da transação exibido na coluna `transid` é o identificador gerado pela API NDB para a transação que solicita ou mantém o bloqueio atual.
 

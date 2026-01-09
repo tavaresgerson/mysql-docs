@@ -14,7 +14,7 @@ Nota
 
 Se você estiver atualizando uma instalação originalmente produzida instalando vários pacotes RPM, atualize todos os pacotes, não apenas alguns. Por exemplo, se você instalou anteriormente os RPM do servidor e do cliente, não atualize apenas o RPM do servidor.
 
-Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, **mysqld\_safe** não é instalado. Nesses casos, use o systemd para o início e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Consulte a Seção 2.5.9, “Gerenciamento do Servidor MySQL com o systemd”.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, **mysqld_safe** não é instalado. Nesses casos, use o systemd para o início e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Consulte a Seção 2.5.9, “Gerenciamento do Servidor MySQL com o systemd”.
 
 Para atualizações de instalações do MySQL Cluster, consulte também a Atualização do MySQL Cluster.
 
@@ -71,7 +71,7 @@ Uma atualização lógica envolve exportar o SQL da antiga instância do MySQL u
 
 Observação
 
-Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld\_safe** não é instalado. Nesses casos, use o systemd para o início e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Consulte a Seção 2.5.9, “Gerenciando o servidor MySQL com o systemd”.
+Para algumas plataformas Linux, a instalação do MySQL a partir de pacotes RPM ou Debian inclui suporte do systemd para gerenciar o início e o desligamento do servidor MySQL. Nessas plataformas, o **mysqld_safe** não é instalado. Nesses casos, use o systemd para o início e o desligamento do servidor em vez dos métodos usados nas instruções a seguir. Consulte a Seção 2.5.9, “Gerenciando o servidor MySQL com o systemd”.
 
 Aviso
 

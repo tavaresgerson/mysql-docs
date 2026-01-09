@@ -1,4 +1,4 @@
-#### 26.4.3.2 As visualizações host\_summary\_by\_file\_io e x$host\_summary\_by\_file\_io
+#### 26.4.3.2 As visualizações host_summary_by_file_io e x$host_summary_by_file_io
 
 Esses pontos resumem o acesso e gravação de arquivos, agrupados por host. Por padrão, as linhas são ordenadas em ordem decrescente de latência total de acesso e gravação de arquivos.
 

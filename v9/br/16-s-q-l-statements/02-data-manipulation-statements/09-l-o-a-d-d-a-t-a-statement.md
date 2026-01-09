@@ -290,7 +290,7 @@ The ""BIG"" boss    -> The ""BIG"" boss
 
 * Para entrada, se o caractere `FIELDS ESCAPED BY` não estiver vazio, as ocorrências desse caractere são removidas e o caractere seguinte é lido literalmente como parte do valor de um campo. Algumas sequências de dois caracteres que são exceções, onde o primeiro caractere é o caractere de escape. Essas sequências estão mostradas na tabela a seguir (usando `\` para o caractere de escape). As regras para o tratamento de `NULL` são descritas mais adiante nesta seção.
 
-<table summary="Sequências de dois caracteres para as quais o primeiro caractere (`) é o caractere de escape."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Caractere</th> <th>Sequência de Escape</th> </tr></thead><tbody><tr> <td><code>\0</code><a class="indexterm" name="id257260"></a><a class="indexterm" name="id257262"></a></td> <td>Um caractere ASCII NUL (<code>X'00'</code>)</td> </tr><tr> <td><code>\b</code><a class="indexterm" name="id257269"></a><a class="indexterm" name="id257271"></a></td> <td>Um caractere de recuo</td> </tr><tr> <td><code>\n</code><a class="indexterm" name="id257277"></a><a class="indexterm" name="id257279"></a><a class="indexterm" name="id257281"></a><a class="indexterm" name="id257283"></a></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td><code>\r</code><a class="indexterm" name="id257289"></a><a class="indexterm" name="id257291"></a><a class="indexterm" name="id257293"></a></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code><a class="indexterm" name="id257299"></a><a class="indexterm" name="id257301"></a></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\Z</code><a class="indexterm" name="id257307"></a><a class="indexterm" name="id257309"></a></td> <td>ASCII 26 (Control+Z)</td> </tr><tr> <td><code>\N</code><a class="indexterm" name="id257315"></a></td> <td>NULL</td> </tr></tbody></table>
+<table summary="Sequências de dois caracteres para as quais o primeiro caractere (`) é o caractere de escape."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Caractere</th> <th>Sequência de Escape</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>Um caractere ASCII NUL (<code>X'00'</code>)</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de recuo</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Control+Z)</td> </tr><tr> <td><code>\N</code></td> <td>NULL</td> </tr></tbody></table>
 
   Para mais informações sobre a sintaxe de escape `\`-escape, consulte a Seção 11.1.1, “Letras de String”.
 
@@ -507,7 +507,7 @@ As advertências ocorrem nas mesmas circunstâncias que quando os valores são i
 
 Você pode usar `SHOW WARNINGS` para obter uma lista das primeiras `max_error_count` avisos como informações sobre o que deu errado. Veja a Seção 15.7.7.43, “Instrução SHOW WARNINGS”.
 
-Se você estiver usando a API C, pode obter informações sobre a instrução chamando a função `mysql_info()`. Veja mysql\_info().
+Se você estiver usando a API C, pode obter informações sobre a instrução chamando a função `mysql_info()`. Veja mysql_info().
 
 #### Considerações sobre a Replicação
 

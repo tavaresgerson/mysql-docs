@@ -128,7 +128,7 @@ INSERT INTO tbl_name (a,b,c)
     VALUES ROW(1,2,3), ROW(4,5,6), ROW(7,8,9);
 ```
 
-O valor `affected-rows` para uma `INSERT` pode ser obtido usando a função `ROW_COUNT()` do SQL ou a função `mysql_affected_rows()` da API C. Veja a Seção 14.15, “Funções de Informação”, e mysql\_affected\_rows().
+O valor `affected-rows` para uma `INSERT` pode ser obtido usando a função `ROW_COUNT()` do SQL ou a função `mysql_affected_rows()` da API C. Veja a Seção 14.15, “Funções de Informação”, e mysql_affected_rows().
 
 Se você usar `INSERT ... VALUES` ou `INSERT ... VALUES ROW()` com múltiplas listas de valores, ou `INSERT ... SELECT` ou `INSERT ... TABLE`, a instrução retorna uma string de informações neste formato:
 
@@ -136,7 +136,7 @@ Se você usar `INSERT ... VALUES` ou `INSERT ... VALUES ROW()` com múltiplas li
 Records: N1 Duplicates: N2 Warnings: N3
 ```
 
-Se você estiver usando a API C, a string de informações pode ser obtida invocando a função `mysql_info()`. Veja mysql\_info().
+Se você estiver usando a API C, a string de informações pode ser obtida invocando a função `mysql_info()`. Veja mysql_info().
 
 `Records` indica o número de linhas processadas pela instrução. (Isso não é necessariamente o número de linhas realmente inseridas porque `Duplicates` pode ser diferente de zero.) `Duplicates` indica o número de linhas que não puderam ser inseridas porque duplicariam algum valor de índice único existente. `Warnings` indica o número de tentativas de inserir valores de coluna que foram problemáticos de alguma forma. As avisos podem ocorrer sob qualquer uma das seguintes condições:
 
@@ -150,13 +150,13 @@ Se você estiver usando a API C, a string de informações pode ser obtida invoc
 
 * Inserir um valor em uma coluna de data ou hora que é ilegal para o tipo de dados. A coluna é definida pelo valor apropriado de zero para o tipo.
 
-* Para exemplos de `INSERT` que envolvem valores de colunas `AUTO_INCREMENT`, consulte a Seção 5.6.9, “Usando AUTO\_INCREMENT”.
+* Para exemplos de `INSERT` que envolvem valores de colunas `AUTO_INCREMENT`, consulte a Seção 5.6.9, “Usando AUTO_INCREMENT”.
 
   Se o `INSERT` insere uma linha em uma tabela que tem uma coluna `AUTO_INCREMENT`, você pode encontrar o valor usado para essa coluna usando a função SQL `LAST_INSERT_ID()` ou a função C API `mysql_insert_id()`.
 
   Nota
 
-Essas duas funções nem sempre se comportam da mesma maneira. O comportamento das instruções `INSERT` em relação às colunas `AUTO_INCREMENT` é discutido mais detalhadamente na Seção 14.15, “Funções de Informação”, e no mysql\_insert\_id().
+Essas duas funções nem sempre se comportam da mesma maneira. O comportamento das instruções `INSERT` em relação às colunas `AUTO_INCREMENT` é discutido mais detalhadamente na Seção 14.15, “Funções de Informação”, e no mysql_insert_id().
 
 A instrução `INSERT` suporta os seguintes modificadores:
 

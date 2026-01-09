@@ -109,7 +109,7 @@ PARTITION BY RANGE ( YEAR(separated) ) (
 
 Nesse esquema, para todos os funcionários que saíram antes de 1991, as linhas são armazenadas na partição `p0`; para aqueles que saíram nos anos de 1991 a 1995, na `p1`; para aqueles que saíram nos anos de 1996 a 2000, na `p2`; e para quaisquer trabalhadores que saíram após o ano de 2000, na `p3`.
 
-Também é possível particionar uma tabela por `RANGE`, com base no valor de uma coluna de tipo `[TIMESTAMP]` (datetime.html), usando a função `[UNIX_TIMESTAMP()` (date-and-time-functions.html#function\_unix-timestamp), como mostrado neste exemplo:
+Também é possível particionar uma tabela por `RANGE`, com base no valor de uma coluna de tipo `[TIMESTAMP]` (datetime.html), usando a função `[UNIX_TIMESTAMP()` (date-and-time-functions.html#function_unix-timestamp), como mostrado neste exemplo:
 
 ```sql
 CREATE TABLE quarterly_report_status (
@@ -164,7 +164,7 @@ Uma variante deste tipo de particionamento é o particionamento por `RANGE COLUM
    );
    ```
 
-   No MySQL 5.7, também é possível particionar uma tabela por `RANGE` com base no valor de uma coluna de tipo `[TIMESTAMP]` (datetime.html), usando a função `[UNIX_TIMESTAMP()` (date-and-time-functions.html#function\_unix-timestamp), como mostrado neste exemplo:
+   No MySQL 5.7, também é possível particionar uma tabela por `RANGE` com base no valor de uma coluna de tipo `[TIMESTAMP]` (datetime.html), usando a função `[UNIX_TIMESTAMP()` (date-and-time-functions.html#function_unix-timestamp), como mostrado neste exemplo:
 
    ```sql
    CREATE TABLE quarterly_report_status (

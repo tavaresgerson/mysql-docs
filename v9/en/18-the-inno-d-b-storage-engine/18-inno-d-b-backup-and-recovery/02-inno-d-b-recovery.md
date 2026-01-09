@@ -35,7 +35,7 @@ To recover from an unexpected MySQL server exit, the only requirement is to rest
 
   + The current maximum auto-increment counter value is written to the redo log each time the value changes, which makes it crash-safe. During recovery, `InnoDB` scans the redo log to collect counter value changes and applies the changes to the in-memory table object.
 
-    For more information about how `InnoDB` handles auto-increment values, see Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”, and InnoDB AUTO\_INCREMENT Counter Initialization.
+    For more information about how `InnoDB` handles auto-increment values, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”, and InnoDB AUTO_INCREMENT Counter Initialization.
 
   + When encountering index tree corruption, `InnoDB` writes a corruption flag to the redo log, which makes the corruption flag crash-safe. `InnoDB` also writes in-memory corruption flag data to an engine-private system table on each checkpoint. During recovery, `InnoDB` reads corruption flags from both locations and merges results before marking in-memory table and index objects as corrupt.
 

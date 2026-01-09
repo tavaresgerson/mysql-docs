@@ -1,6 +1,6 @@
-### 28.3.8 A Tabela INFORMATION\_SCHEMA COLUMNS
+### 28.3.8 A Tabela INFORMATION_SCHEMA COLUMNS
 
-A tabela `COLUMNS` fornece informações sobre as colunas das tabelas. A tabela relacionada `ST_GEOMETRY_COLUMNS` fornece informações sobre as colunas das tabelas que armazenam dados espaciais. Veja a Seção 28.3.41, “A Tabela INFORMATION\_SCHEMA ST\_GEOMETRY\_COLUMNS”.
+A tabela `COLUMNS` fornece informações sobre as colunas das tabelas. A tabela relacionada `ST_GEOMETRY_COLUMNS` fornece informações sobre as colunas das tabelas que armazenam dados espaciais. Veja a Seção 28.3.41, “A Tabela INFORMATION_SCHEMA ST_GEOMETRY_COLUMNS”.
 
 A tabela `COLUMNS` tem as seguintes colunas:
 

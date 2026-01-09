@@ -1,4 +1,4 @@
-#### 6.4.4.4 Usando o plugin KMIP keyring\_okv
+#### 6.4.4.4 Usando o plugin KMIP keyring_okv
 
 Nota
 
@@ -29,13 +29,13 @@ Para informações sobre as características dos valores-chave permitidos pelo `
 
 Para instalar o `keyring_okv`, use as instruções gerais encontradas em Seção 6.4.4.1, “Instalação do Plugin de Keychain”, juntamente com as informações de configuração específicas para o `keyring_okv` encontradas aqui.
 
-- Configuração do chaveiro geral \_okv
-- Configurando o keyring\_okv para o Oracle Key Vault (keyring-okv-plugin.html#keyring-okv-oracle-key-vault)
-- Configurando o keyring\_okv para a Gemalto SafeNet KeySecure Appliance
-- Configurando keyring\_okv para o Townsend Alliance Key Manager
-- Protegendo a senha do arquivo de chave do keygen\_okv
+- Configuração do chaveiro geral _okv
+- Configurando o keyring_okv para o Oracle Key Vault (keyring-okv-plugin.html#keyring-okv-oracle-key-vault)
+- Configurando o keyring_okv para a Gemalto SafeNet KeySecure Appliance
+- Configurando keyring_okv para o Townsend Alliance Key Manager
+- Protegendo a senha do arquivo de chave do keygen_okv
 
-##### Chaveiro geral \_okv Configuração
+##### Chaveiro geral _okv Configuração
 
 Independentemente do backend do KMIP que o plugin `keyring_okv` usa para armazenamento de chaveiros, a variável de sistema `keyring_okv_conf_dir` configura a localização do diretório usado pelo `keyring_okv` para seus arquivos de suporte. O valor padrão é vazio, então você deve definir a variável para nomear um diretório configurado corretamente antes que o plugin possa se comunicar com o backend do KMIP. Caso contrário, o `keyring_okv` escreverá uma mensagem no log de erro durante a inicialização do servidor que ele não consegue se comunicar:
 
@@ -63,7 +63,7 @@ chown mysql mysql-keyring-okv
 chgrp mysql mysql-keyring-okv
 ```
 
-Para ser utilizado durante o processo de inicialização do servidor, o `keyring_okv` deve ser carregado usando a opção `--early-plugin-load` (server-options.html#option\_mysqld\_early-plugin-load). Além disso, defina a variável de sistema `keyring_okv_conf_dir` (keyring-system-variables.html#sysvar\_keyring\_okv\_conf\_dir) para indicar ao `keyring_okv` onde encontrar seu diretório de configuração. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e a localização do diretório conforme necessário para sua plataforma:
+Para ser utilizado durante o processo de inicialização do servidor, o `keyring_okv` deve ser carregado usando a opção `--early-plugin-load` (server-options.html#option_mysqld_early-plugin-load). Além disso, defina a variável de sistema `keyring_okv_conf_dir` (keyring-system-variables.html#sysvar_keyring_okv_conf_dir) para indicar ao `keyring_okv` onde encontrar seu diretório de configuração. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e a localização do diretório conforme necessário para sua plataforma:
 
 ```sql
 [mysqld]
@@ -73,7 +73,7 @@ keyring_okv_conf_dir=/usr/local/mysql/mysql-keyring-okv
 
 Para obter informações adicionais sobre `keyring_okv_conf_dir`, consulte Seção 6.4.4.12, “Variáveis do Sistema de Carteira de Chaves”.
 
-##### Configurando o keyring\_okv para o Oracle Key Vault
+##### Configurando o keyring_okv para o Oracle Key Vault
 
 A discussão aqui pressupõe que você está familiarizado com o Oracle Key Vault. Algumas fontes de informações pertinentes:
 
@@ -95,7 +95,7 @@ O procedimento a seguir resume brevemente o processo de configuração do `keyri
 
 Use o procedimento a seguir para configurar o `keyring_okv` e o Oracle Key Vault para trabalhar juntos. Esta descrição resume apenas como interagir com o Oracle Key Vault. Para obter detalhes, visite o site Oracle Key Vault e consulte o *Guia do Administrador do Oracle Key Vault*.
 
-1. Crie o diretório de configuração que contém os arquivos de suporte do Oracle Key Vault e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida para o nome desse diretório (para detalhes, consulte Configuração geral do keyring\_okv).
+1. Crie o diretório de configuração que contém os arquivos de suporte do Oracle Key Vault e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida para o nome desse diretório (para detalhes, consulte Configuração geral do keyring_okv).
 
 2. Faça login no console de gerenciamento do Oracle Key Vault como um usuário que tenha o papel de Administrador do sistema.
 
@@ -172,17 +172,17 @@ Use o procedimento a seguir para configurar o `keyring_okv` e o Oracle Key Vault
 
 10. Copie os arquivos de suporte do Oracle Key Vault (o arquivo `okvclient.ora` e o diretório `ssl`) para o diretório de configuração.
 
-11. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções em Proteger a senha do arquivo de chave keyring\_okv.
+11. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções em Proteger a senha do arquivo de chave keyring_okv.
 
 Após concluir o procedimento anterior, reinicie o servidor MySQL. Ele carrega o plugin `keyring_okv` e o `keyring_okv` usa os arquivos em seu diretório de configuração para se comunicar com o Oracle Key Vault.
 
-##### Configurando o keyring\_okv para a Unidade Gemalto SafeNet KeySecure
+##### Configurando o keyring_okv para a Unidade Gemalto SafeNet KeySecure
 
 O dispositivo Gemalto SafeNet KeySecure utiliza o protocolo KMIP (versão 1.1 ou 1.2). A partir do MySQL 5.7.18, o plugin `keyring_okv` (que suporta o KMIP 1.1) pode usar o KeySecure como seu backend KMIP para armazenamento de chaves.
 
 Use o procedimento a seguir para configurar o `keyring_okv` e o KeySecure para trabalhar juntos. A descrição resume apenas como interagir com o KeySecure. Para detalhes, consulte a seção intitulada "Adicionar um servidor KMIP" no [Guia do Usuário do KeySecure](https://www2.gemalto.com/aws-marketplace/usage/vks/uploadedFiles/Support_and_Downloads/AWS/007-012362-001-keysecure-appliance-user-guide-v7.1.0.pdf).
 
-1. Crie o diretório de configuração que contém os arquivos de suporte do KeySecure e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida para o nome desse diretório (para detalhes, consulte Configuração geral do keyring\_okv).
+1. Crie o diretório de configuração que contém os arquivos de suporte do KeySecure e certifique-se de que a variável de sistema `keyring_okv_conf_dir` esteja definida para o nome desse diretório (para detalhes, consulte Configuração geral do keyring_okv).
 
 2. No diretório de configuração, crie um subdiretório chamado `ssl` para armazenar os arquivos de certificado e chave SSL necessários.
 
@@ -232,15 +232,15 @@ Use o procedimento a seguir para configurar o `keyring_okv` e o KeySecure para t
 
 14. Copie o certificado assinado para a área de transferência e, em seguida, armazene o conteúdo da área de transferência como um arquivo chamado `cert.pem` no diretório `ssl`.
 
-15. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções em Proteger a senha do arquivo de chave keyring\_okv.
+15. (Opcional) Se você deseja proteger o arquivo de chave com senha, use as instruções em Proteger a senha do arquivo de chave keyring_okv.
 
 Após concluir o procedimento anterior, reinicie o servidor MySQL. Ele carrega o plugin `keyring_okv` e o `keyring_okv` usa os arquivos em seu diretório de configuração para se comunicar com o KeySecure.
 
-##### Configurando o keyring\_okv para o Townsend Alliance Key Manager
+##### Configurando o keyring_okv para o Townsend Alliance Key Manager
 
 O Townsend Alliance Key Manager utiliza o protocolo KMIP. O plugin `keyring_okv` pode usar o Alliance Key Manager como seu backend KMIP para armazenamento de chaves. Para obter informações adicionais, consulte [Alliance Key Manager para MySQL](https://www.townsendsecurity.com/product/encryption-key-management-mysql).
 
-##### Protegendo a senha do arquivo de chave do porta-chaves\_okv
+##### Protegendo a senha do arquivo de chave do porta-chaves_okv
 
 A partir do MySQL 5.7.20, você pode, opcionalmente, proteger o arquivo de chave com uma senha e fornecer um arquivo contendo a senha para permitir que o arquivo de chave seja descriptografado. Para fazer isso, mude para o diretório `ssl` e execute os seguintes passos:
 

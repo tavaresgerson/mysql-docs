@@ -6,7 +6,7 @@ The Group Replication Flow Control Statistics component (`component_group_replic
 
 * URN: `file://component_group_replication_flow_control_stats`
 
-Prior to installing the Group Replication Flow Control Statistics component, the Group Replication plugin must be installed using `INSTALL PLUGIN` or `--plugin-load-add` (see Section 20.2.1.2, “Configuring an Instance for Group Replication”); otherwise, the `INSTALL COMPONENT` statement is rejected with the error Cannot satisfy dependency for service 'group\_replication\_flow\_control\_metrics\_service' required by component 'mysql:group\_replication\_flow\_control\_stats'. If you attempt to uninstall the Group Replication plugin when the Group Replication Flow Control Statistics component is installed, `UNINSTALL PLUGIN` fails with the error Plugin 'group\_replication' cannot be uninstalled now. Please uninstall the component 'component\_group\_replication\_flow\_control\_stats' and then UNINSTALL PLUGIN group\_replication.
+Prior to installing the Group Replication Flow Control Statistics component, the Group Replication plugin must be installed using `INSTALL PLUGIN` or `--plugin-load-add` (see Section 20.2.1.2, “Configuring an Instance for Group Replication”); otherwise, the `INSTALL COMPONENT` statement is rejected with the error Cannot satisfy dependency for service 'group_replication_flow_control_metrics_service' required by component 'mysql:group_replication_flow_control_stats'. If you attempt to uninstall the Group Replication plugin when the Group Replication Flow Control Statistics component is installed, `UNINSTALL PLUGIN` fails with the error Plugin 'group_replication' cannot be uninstalled now. Please uninstall the component 'component_group_replication_flow_control_stats' and then UNINSTALL PLUGIN group_replication.
 
 Provided that these conditions are met, The Group Replication Flow Control Statistics component can be installed and uninstalled using `INSTALL COMPONENT` and `UNINSTALL COMPONENT`, respectively. See the descriptions of these statements, as well as Section 7.5.1, “Installing and Uninstalling Components”, for more information.
 
@@ -41,7 +41,7 @@ mysql> SELECT * FROM performance_schema.global_status
 You can also observe these values in the output of `SHOW GLOBAL STATUS`, like this:
 
 ```
-mysql> SHOW GLOBAL STATUS LIKE 'Gr\_flow\_control%';
+mysql> SHOW GLOBAL STATUS LIKE 'Gr_flow_control%';
 +--------------------------------------------------+---------------------+
 | Variable_Name	                                  | Value               |
 +--------------------------------------------------+---------------------+

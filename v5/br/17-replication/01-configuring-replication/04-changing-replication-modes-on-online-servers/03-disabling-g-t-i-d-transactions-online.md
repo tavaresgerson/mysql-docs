@@ -31,7 +31,7 @@ Antes de começar, certifique-se de que os servidores atendam às seguintes cond
    SET @@GLOBAL.GTID_MODE = OFF_PERMISSIVE;
    ```
 
-4. Em cada servidor, aguarde até que a variável @@GLOBAL.GTID\_OWNED seja igual à string vazia. Isso pode ser verificado usando:
+4. Em cada servidor, aguarde até que a variável @@GLOBAL.GTID_OWNED seja igual à string vazia. Isso pode ser verificado usando:
 
    ```sql
    SELECT @@GLOBAL.GTID_OWNED;

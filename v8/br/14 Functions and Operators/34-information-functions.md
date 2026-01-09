@@ -148,7 +148,7 @@ Retorna o conjunto de caracteres da string argumento, ou `NULL` se o argumento f
   +  `ALTER VIEW`
   +  `SET PASSWORD`
 
-  Para informações sobre as implicações dessa expansão do `CURRENT_USER()` para a replicação, consulte a Seção 19.5.1.8, “Replicação do `CURRENT\_USER()`”).
+  Para informações sobre as implicações dessa expansão do `CURRENT_USER()` para a replicação, consulte a Seção 19.5.1.8, “Replicação do `CURRENT_USER()`”).
 
   Essa função pode ser usada para o valor padrão de uma coluna `VARCHAR` ou `TEXT`, conforme mostrado na seguinte instrução `CREATE TABLE`:
 

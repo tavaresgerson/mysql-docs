@@ -2,7 +2,7 @@
 
 O MySQL permite que os administradores de banco de dados expiram manualmente as senhas das contas e estabeleçam uma política para a expiração automática das senhas. A política de expiração pode ser estabelecida globalmente, e as contas individuais podem ser configuradas para adiar a aplicação da política global ou ignorar a política global com comportamentos específicos por conta.
 
-- Armazenamento de credenciais internas versus externas \[password-management.html#internal-versus-external-credentials]
+- Armazenamento de credenciais internas versus externas
 - Política de Expiração da Senha
 
 #### Armazenamento de credenciais internas versus externas
@@ -67,7 +67,7 @@ Exemplos:
   SET GLOBAL default_password_lifetime = 0;
   ```
 
-A política global de expiração de senhas aplica-se a todas as contas que não tenham sido configuradas para ignorá-la. Para definir a política para contas individuais, use as opções `PASSWORD EXPIRE` das instruções `[CREATE USER]` e `[ALTER USER]` (\[create-user.html] e \[alter-user.html], respectivamente). Consulte Seção 13.7.1.2, “Instrução CREATE USER” e Seção 13.7.1.1, “Instrução ALTER USER”.
+A política global de expiração de senhas aplica-se a todas as contas que não tenham sido configuradas para ignorá-la. Para definir a política para contas individuais, use as opções `PASSWORD EXPIRE` das instruções `[CREATE USER]` e `[ALTER USER]` ([create-user.html] e [alter-user.html], respectivamente). Consulte Seção 13.7.1.2, “Instrução CREATE USER” e Seção 13.7.1.1, “Instrução ALTER USER”.
 
 Exemplos de declarações específicas para contas:
 
@@ -125,6 +125,6 @@ Este modo de operação restrito permite as instruções `SET`, o que é útil a
 
 Depois que o cliente redefini a senha, o servidor restaura o acesso normal para a sessão, bem como para as conexões subsequentes que utilizam a conta. Também é possível que um usuário administrativo redefina a senha da conta, mas quaisquer sessões restritas existentes para essa conta permanecem restritas. Um cliente que utiliza a conta deve se desconectar e se reconectar antes que as declarações possam ser executadas com sucesso.
 
-Nota
-
+::: info Nota
 Embora seja possível "redefinir" uma senha expirada, definindo-a para seu valor atual, é preferível, por questão de boa política, escolher uma senha diferente.
+:::

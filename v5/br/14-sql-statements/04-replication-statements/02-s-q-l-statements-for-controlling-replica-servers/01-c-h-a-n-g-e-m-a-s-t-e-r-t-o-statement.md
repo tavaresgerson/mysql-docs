@@ -107,7 +107,7 @@ A partir do MySQL 5.7, uma instrução `CHANGE MASTER TO` que utiliza a opção 
 
 `MASTER_BIND` é para uso em réplicas com múltiplas interfaces de rede e determina qual das interfaces de rede da réplica será escolhida para se conectar à fonte.
 
-O endereço configurado com esta opção, se houver, pode ser visto na coluna `Master_Bind` do resultado da consulta `SHOW SLAVE STATUS` (show-slave-status.html). Se você estiver usando uma tabela para o repositório de metadados da fonte (o servidor foi iniciado com `master_info_repository=TABLE` (replication-options-replica.html#sysvar\_master\_info)), o valor também pode ser visto na coluna `Master_bind` da tabela `mysql.slave_master_info`.
+O endereço configurado com esta opção, se houver, pode ser visto na coluna `Master_Bind` do resultado da consulta `SHOW SLAVE STATUS` (show-slave-status.html). Se você estiver usando uma tabela para o repositório de metadados da fonte (o servidor foi iniciado com `master_info_repository=TABLE` (replication-options-replica.html#sysvar_master_info)), o valor também pode ser visto na coluna `Master_bind` da tabela `mysql.slave_master_info`.
 
 A capacidade de vincular uma replica a uma interface de rede específica também é suportada pelo NDB Cluster.
 

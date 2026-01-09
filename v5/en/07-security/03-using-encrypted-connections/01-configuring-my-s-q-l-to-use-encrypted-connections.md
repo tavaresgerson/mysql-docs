@@ -57,7 +57,7 @@ The server performs certificate and key file autodiscovery. If no explicit encry
 
 * If the server does not find valid certificate and key files in the data directory, it continues executing but without support for encrypted connections.
 
-If the server automatically enables encrypted connection support, it writes a note to the error log. If the server discovers that the CA certificate is self-signed, it writes a warning to the error log. (The certificate is self-signed if created automatically by the server or manually using [**mysql\_ssl\_rsa\_setup**](mysql-ssl-rsa-setup.html "4.4.5 mysql_ssl_rsa_setup — Create SSL/RSA Files").)
+If the server automatically enables encrypted connection support, it writes a note to the error log. If the server discovers that the CA certificate is self-signed, it writes a warning to the error log. (The certificate is self-signed if created automatically by the server or manually using [**mysql_ssl_rsa_setup**](mysql-ssl-rsa-setup.html "4.4.5 mysql_ssl_rsa_setup — Create SSL/RSA Files").)
 
 MySQL also provides these system variables for server-side encrypted-connection control:
 
@@ -103,7 +103,7 @@ For additional security relative to that provided by the default encryption, cli
 
 Note
 
-Host name identity verification with `VERIFY_IDENTITY` does not work with self-signed certificates that are created automatically by the server or manually using [**mysql\_ssl\_rsa\_setup**](mysql-ssl-rsa-setup.html "4.4.5 mysql_ssl_rsa_setup — Create SSL/RSA Files") (see [Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "6.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL")). Such self-signed certificates do not contain the server name as the Common Name value.
+Host name identity verification with `VERIFY_IDENTITY` does not work with self-signed certificates that are created automatically by the server or manually using [**mysql_ssl_rsa_setup**](mysql-ssl-rsa-setup.html "4.4.5 mysql_ssl_rsa_setup — Create SSL/RSA Files") (see [Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "6.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL")). Such self-signed certificates do not contain the server name as the Common Name value.
 
 Prior to MySQL 5.7.23, host name identity verification also does not work with certificates that specify the Common Name using wildcards because that name is compared verbatim to the server name.
 

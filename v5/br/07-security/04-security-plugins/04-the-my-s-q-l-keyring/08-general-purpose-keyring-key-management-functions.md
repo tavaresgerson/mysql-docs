@@ -209,7 +209,7 @@ Como indicado anteriormente, um usuário deve ter o privilégio global `EXECUTE`
 
 Essa técnica permite que as chaves sejam compartilhadas entre os usuários e oferece aos administradores de banco de dados um controle mais detalhado sobre quem pode fazer o que com as chaves, sem precisar conceder privilégios globais.
 
-O exemplo a seguir mostra como configurar uma chave compartilhada chamada `SharedKey`, que pertence ao DBA, e uma função armazenada `get_shared_key()`, que fornece acesso ao valor atual da chave. O valor pode ser recuperado por qualquer usuário com o privilégio `EXECUTE` (privilegios-fornecidos.html#priv\_execute) para essa função, que é criada no esquema `key_schema`.
+O exemplo a seguir mostra como configurar uma chave compartilhada chamada `SharedKey`, que pertence ao DBA, e uma função armazenada `get_shared_key()`, que fornece acesso ao valor atual da chave. O valor pode ser recuperado por qualquer usuário com o privilégio `EXECUTE` (privilegios-fornecidos.html#priv_execute) para essa função, que é criada no esquema `key_schema`.
 
 A partir de uma conta administrativa do MySQL (no exemplo, `'root'@'localhost'`), crie o esquema administrativo e a função armazenada para acessar a chave:
 
@@ -240,7 +240,7 @@ mysql> CREATE USER 'key_user'@'localhost'
        IDENTIFIED BY 'key_user_pwd';
 ```
 
-A partir da conta `key_user`, verifique se, sem o privilégio adequado `EXECUTE` (privilegios-fornecidos.html#priv\_execute), a nova conta não pode acessar a chave compartilhada:
+A partir da conta `key_user`, verifique se, sem o privilégio adequado `EXECUTE` (privilegios-fornecidos.html#priv_execute), a nova conta não pode acessar a chave compartilhada:
 
 ```sql
 mysql> SELECT HEX(key_schema.get_shared_key());
@@ -383,7 +383,7 @@ Para cada função do bloco de chaves de propósito geral, esta seção descreve
   +-------------------------------+
   ```
 
-- \`keyring\_key\_store(key\_id, key\_type, key)
+- \`keyring_key_store(key_id, key_type, key)
 
   Esconde e armazena uma chave no conjunto de chaves.
 

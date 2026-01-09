@@ -1,4 +1,4 @@
-#### 26.4.4.19 The ps\_setup\_show\_enabled\_consumers() Procedure
+#### 26.4.4.19 The ps_setup_show_enabled_consumers() Procedure
 
 Displays all currently enabled Performance Schema consumers.
 

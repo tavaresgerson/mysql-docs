@@ -1,4 +1,4 @@
-#### 8.4.5.4 Using the component\_keyring\_file File-Based Keyring Component
+#### 8.4.5.4 Using the component_keyring_file File-Based Keyring Component
 
 The `component_keyring_file` keyring component stores keyring data in a file local to the server host.
 

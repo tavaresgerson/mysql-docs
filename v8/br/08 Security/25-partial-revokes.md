@@ -59,7 +59,7 @@ As operações de revogação parcial estão sujeitas a estas condições:
 
 * É possível usar revogações parciais para impor restrições em esquemas inexistentes, mas apenas se o privilégio revogado for concedido globalmente. Se um privilégio não for concedido globalmente, revogá-lo para um esquema inexistente produz um erro.
 * As revogações parciais aplicam-se apenas ao nível do esquema. Não é possível usar revogações parciais para privilégios que se aplicam apenas globalmente (como `FILE` ou `BINLOG_ADMIN`), ou para privilégios de tabela, coluna ou rotina.
-* Nas atribuições de privilégios, habilitar `partial_revokes` faz com que o MySQL interprete ocorrências de caracteres curinga `_` e `%` SQL não escapados em nomes de esquemas como caracteres literais, assim como se tivessem sido escapados como `\_` e `\%`. Como isso altera a forma como o MySQL interpreta os privilégios, pode ser aconselhável evitar caracteres curinga não escapados em atribuições de privilégios para instalações onde `partial_revokes` pode estar habilitado.
+* Nas atribuições de privilégios, habilitar `partial_revokes` faz com que o MySQL interprete ocorrências de caracteres curinga `_` e `%` SQL não escapados em nomes de esquemas como caracteres literais, assim como se tivessem sido escapados como `_` e `\%`. Como isso altera a forma como o MySQL interpreta os privilégios, pode ser aconselhável evitar caracteres curinga não escapados em atribuições de privilégios para instalações onde `partial_revokes` pode estar habilitado.
 
 Como mencionado anteriormente, as revogações parciais de privilégios de nível de esquema aparecem na saída `SHOW GRANTS` como declarações `REVOKE`. Isso difere da forma como `SHOW GRANTS` representa privilégios de nível de esquema "simples":
 

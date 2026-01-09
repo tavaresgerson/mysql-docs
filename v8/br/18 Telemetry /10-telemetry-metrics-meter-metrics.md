@@ -25,7 +25,7 @@ O número máximo de instrumentos de métricas que podem ser criados é definido
 
 #### Métricas `mysql.stats.com`
 
-As métricas `mysql.stats.com` correspondem às variáveis de contador de declarações `Com_xxx`. Consulte a Seção 7.1.10, “Variáveis de Status do Servidor” e Com\_xxxpara obter mais informações.
+As métricas `mysql.stats.com` correspondem às variáveis de contador de declarações `Com_xxx`. Consulte a Seção 7.1.10, “Variáveis de Status do Servidor” e Com_xxxpara obter mais informações.
 
 As métricas `mysql.stats.com` são nomeadas com base nessas variáveis, sem o prefixo `Com_`. Por exemplo, a métrica `select` corresponde à variável de contador de declaração `Com_select`.
 

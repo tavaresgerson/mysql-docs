@@ -1,4 +1,4 @@
-### 28.3.6 The INFORMATION\_SCHEMA COLLATIONS Table
+### 28.3.6 The INFORMATION_SCHEMA COLLATIONS Table
 
 The `COLLATIONS` table provides information about collations for each character set.
 

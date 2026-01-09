@@ -1,4 +1,4 @@
-### 24.3.26 A tabela INFORMATION\_SCHEMA TABLESPACES
+### 24.3.26 A tabela INFORMATION_SCHEMA TABLESPACES
 
 Esta tabela não está sendo usada. Outras tabelas do `INFORMATION_SCHEMA` podem fornecer informações relacionadas:
 

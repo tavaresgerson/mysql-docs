@@ -2,7 +2,7 @@
 
 **Table 14.13 String Comparison Functions and Operators**
 
-<table frame="box" rules="all" summary="A reference that lists string comparison functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="string-comparison-functions.html#operator_like"><code class="literal">LIKE</code></a></td> <td> Simple pattern matching </td> </tr><tr><td><a class="link" href="string-comparison-functions.html#operator_not-like"><code class="literal">NOT LIKE</code></a></td> <td> Negation of simple pattern matching </td> </tr><tr><td><a class="link" href="string-comparison-functions.html#function_strcmp"><code class="literal">STRCMP()</code></a></td> <td> Compare two strings </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists string comparison functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code class="literal">LIKE</code></td> <td> Simple pattern matching </td> </tr><tr><td><code class="literal">NOT LIKE</code></td> <td> Negation of simple pattern matching </td> </tr><tr><td><code class="literal">STRCMP()</code></td> <td> Compare two strings </td> </tr></tbody></table>
 
 If a string function is given a binary string as an argument, the resulting string is also a binary string. A number converted to a string is treated as a binary string. This affects only comparisons.
 
@@ -52,12 +52,12 @@ If a string function is invoked from within the **mysql** client, binary strings
 
   + `\%` matches one `%` character.
 
-  + `\_` matches one `_` character.
+  + `_` matches one `_` character.
 
   ```
-  mysql> SELECT 'David!' LIKE 'David\_';
+  mysql> SELECT 'David!' LIKE 'David_';
           -> 0
-  mysql> SELECT 'David_' LIKE 'David\_';
+  mysql> SELECT 'David_' LIKE 'David_';
           -> 1
   ```
 

@@ -46,7 +46,7 @@ Notes
 
 3. #### Restarting MySQL
 
-   The MySQL server always restarts after an update by Yum. Once the server restarts, run **mysql\_upgrade** to check and possibly resolve any incompatibilities between the old data and the upgraded software. **mysql\_upgrade** also performs other functions; see Section 4.4.7, “mysql\_upgrade — Check and Upgrade MySQL Tables” for details.
+   The MySQL server always restarts after an update by Yum. Once the server restarts, run **mysql_upgrade** to check and possibly resolve any incompatibilities between the old data and the upgraded software. **mysql_upgrade** also performs other functions; see Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables” for details.
 
 You can also update only a specific component. Use the following command to list all the installed packages for the MySQL components (for dnf-enabled systems, replace **yum** in the command with **dnf**):
 

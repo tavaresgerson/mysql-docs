@@ -1,4 +1,4 @@
-#### 26.4.4.16 The ps\_setup\_show\_disabled\_consumers() Procedure
+#### 26.4.4.16 The ps_setup_show_disabled_consumers() Procedure
 
 Displays all currently disabled Performance Schema consumers.
 

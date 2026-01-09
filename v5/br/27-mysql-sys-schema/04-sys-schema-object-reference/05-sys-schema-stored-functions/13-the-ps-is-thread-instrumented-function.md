@@ -1,4 +1,4 @@
-#### 26.4.5.13 A função ps\_is\_thread\_instrumented()
+#### 26.4.5.13 A função ps_is_thread_instrumented()
 
 Retorna `YES` ou `NO` para indicar se a instrumentação do Schema de Desempenho para um ID de conexão específico está habilitada, `UNKNOWN` se o ID for desconhecido ou `NULL` se o ID for `NULL`.
 

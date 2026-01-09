@@ -1,4 +1,4 @@
-#### 30.4.4.15 The ps\_setup\_show\_disabled() Procedure
+#### 30.4.4.15 The ps_setup_show_disabled() Procedure
 
 Displays all currently disabled Performance Schema configuration.
 

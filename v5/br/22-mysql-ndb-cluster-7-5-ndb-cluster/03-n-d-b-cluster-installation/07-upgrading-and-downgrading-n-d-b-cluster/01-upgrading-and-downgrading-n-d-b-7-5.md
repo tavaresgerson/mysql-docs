@@ -23,7 +23,7 @@ A tabela mostrada aqui fornece informações sobre a compatibilidade de atualiza
 
   2. Exclua todos os arquivos `.frm` no diretório `data/ndbinfo`
 
-  3. Execute **mysql\_upgrade**.
+  3. Execute **mysql_upgrade**.
 
   (Bug #81689, Bug #82724, Bug #24521927, Bug #23518923)
 
@@ -32,6 +32,6 @@ A tabela mostrada aqui fornece informações sobre a compatibilidade de atualiza
 
 - No NDB 7.5 (e versões posteriores), a tabela `ndb_binlog_index` utiliza o mecanismo de armazenamento `InnoDB` (innodb-storage-engine.html). O uso do mecanismo de armazenamento `MyISAM` (myisam-storage-engine.html) para esta tabela continua sendo suportado para compatibilidade reversa.
 
-  Ao atualizar uma versão anterior para o NDB 7.5 (ou posterior), você pode usar as opções `--force` e `--upgrade-system-tables` com o **mysql\_upgrade** para que ele execute a alteração `ALTER TABLE ... ENGINE=INNODB` na tabela `ndb_binlog_index`.
+  Ao atualizar uma versão anterior para o NDB 7.5 (ou posterior), você pode usar as opções `--force` e `--upgrade-system-tables` com o **mysql_upgrade** para que ele execute a alteração `ALTER TABLE ... ENGINE=INNODB` na tabela `ndb_binlog_index`.
 
   Para obter mais informações, consulte Seção 21.7.4, “Esquema e tabelas de replicação de cluster NDB”.

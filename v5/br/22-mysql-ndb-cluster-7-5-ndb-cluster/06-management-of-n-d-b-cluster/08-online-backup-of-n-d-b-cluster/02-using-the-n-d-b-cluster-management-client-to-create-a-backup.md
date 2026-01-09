@@ -58,7 +58,7 @@ START BACKUP 4 NOWAIT SNAPSHOTSTART
 
 O procedimento para criar um backup consiste nas seguintes etapas:
 
-1. Inicie o cliente de gerenciamento (**ndb\_mgm**), se ainda não estiver em execução.
+1. Inicie o cliente de gerenciamento (**ndb_mgm**), se ainda não estiver em execução.
 
 2. Execute o comando **`START BACKUP`**. Isso produz várias linhas de saída indicando o progresso do backup, conforme mostrado aqui:
 
@@ -100,7 +100,7 @@ O procedimento para criar um backup consiste nas seguintes etapas:
     Data: 453648 bytes Log: 0 bytes
    ```
 
-Também é possível realizar um backup a partir da shell do sistema invocando **ndb\_mgm** com a opção `-e` ou `--execute`, como mostrado neste exemplo:
+Também é possível realizar um backup a partir da shell do sistema invocando **ndb_mgm** com a opção `-e` ou `--execute`, como mostrado neste exemplo:
 
 ```sql
 $> ndb_mgm -e "START BACKUP 6 WAIT COMPLETED SNAPSHOTSTART"
@@ -147,7 +147,7 @@ Os backups em cluster são criados por padrão no subdiretório `BACKUP` do dire
 
    Não há garantia de que os nós do cluster respondam a um comando `ABORT BACKUP` em qualquer ordem específica.
 
-   As mensagens "O backup backup\_id iniciado a partir do node management\_node\_id foi abortado" significam que o backup foi encerrado e que todos os arquivos relacionados a este backup foram removidos do sistema de arquivos do cluster.
+   As mensagens "O backup backup_id iniciado a partir do node management_node_id foi abortado" significam que o backup foi encerrado e que todos os arquivos relacionados a este backup foram removidos do sistema de arquivos do cluster.
 
 É também possível interromper um backup em andamento a partir de uma janela de sistema usando este comando:
 

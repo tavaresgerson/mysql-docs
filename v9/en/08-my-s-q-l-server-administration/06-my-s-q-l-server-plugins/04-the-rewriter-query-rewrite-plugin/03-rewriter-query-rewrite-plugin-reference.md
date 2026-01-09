@@ -81,13 +81,13 @@ The `Rewriter` query rewrite plugin supports the following system variables. The
 
 * `rewriter_enabled`
 
-  <table frame="box" rules="all" summary="Properties for rewriter_enabled"><tbody><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled">rewriter_enabled</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valid Values</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rewriter_enabled"><tbody><tr><th>System Variable</th> <td><code class="literal">rewriter_enabled</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valid Values</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   Whether the `Rewriter` query rewrite plugin is enabled.
 
 * `rewriter_enabled_for_threads_without_privilege_checks`
 
-  <table frame="box" rules="all" summary="Properties for rewriter_enabled_for_threads_without_privilege_checks"><tbody><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_enabled_for_threads_without_privilege_checks">rewriter_enabled_for_threads_without_privilege_checks</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valid Values</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rewriter_enabled_for_threads_without_privilege_checks"><tbody><tr><th>System Variable</th> <td><code class="literal">rewriter_enabled_for_threads_without_privilege_checks</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">ON</code></td> </tr><tr><th>Valid Values</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   Whether to apply rewrites for replication threads which execute with privilege checks disabled. If set to `OFF`, such rewrites are skipped. Requires the `SYSTEM_VARIABLES_ADMIN` privilege or `SUPER` privilege to set.
 
@@ -95,7 +95,7 @@ The `Rewriter` query rewrite plugin supports the following system variables. The
 
 * `rewriter_verbose`
 
-  <table frame="box" rules="all" summary="Properties for rewriter_verbose"><tbody><tr><th>System Variable</th> <td><code class="literal"><a class="link" href="rewriter-query-rewrite-plugin-reference.html#sysvar_rewriter_verbose">rewriter_verbose</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Variable-Setting Hint Syntax"><code class="literal">SET_VAR</code></a> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for rewriter_verbose"><tbody><tr><th>System Variable</th> <td><code class="literal">rewriter_verbose</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code class="literal">SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr></tbody></table>
 
   For internal use.
 

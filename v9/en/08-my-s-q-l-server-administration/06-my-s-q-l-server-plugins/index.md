@@ -8,7 +8,7 @@
 
 7.6.4 The Rewriter Query Rewrite Plugin
 
-7.6.5 The ddl\_rewriter Plugin
+7.6.5 The ddl_rewriter Plugin
 
 7.6.6 The Clone Plugin
 
@@ -38,7 +38,7 @@ MySQL distributions include several plugins that implement server extensions:
 
 * MySQL Enterprise Edition includes a firewall plugin that implements an application-level firewall to enable database administrators to permit or deny SQL statement execution based on matching against allowlists of accepted statement patterns. See Section 8.4.8, “MySQL Enterprise Firewall”.
 
-* Query rewrite plugins examine statements received by MySQL Server and possibly rewrite them before the server executes them. See Section 7.6.4, “The Rewriter Query Rewrite Plugin”, and Section 7.6.5, “The ddl\_rewriter Plugin”.
+* Query rewrite plugins examine statements received by MySQL Server and possibly rewrite them before the server executes them. See Section 7.6.4, “The Rewriter Query Rewrite Plugin”, and Section 7.6.5, “The ddl_rewriter Plugin”.
 
 * Version Tokens enables creation of and synchronization around server tokens that applications can use to prevent accessing incorrect or out-of-date data. Version Tokens is based on a plugin library that implements a `version_tokens` plugin and a set of loadable functions. See Version Tokens.
 

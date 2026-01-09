@@ -1,4 +1,4 @@
-#### 30.4.3.45 The user\_summary\_by\_statement\_latency and x$user\_summary\_by\_statement\_latency Views
+#### 30.4.3.45 The user_summary_by_statement_latency and x$user_summary_by_statement_latency Views
 
 These views summarize overall statement statistics, grouped by user. By default, rows are sorted by descending total latency.
 

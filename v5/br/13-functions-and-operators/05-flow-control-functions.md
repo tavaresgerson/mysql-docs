@@ -2,7 +2,7 @@
 
 **Tabela 12.7 Operadores de Controle de Fluxo**
 
-<table frame="box" rules="all" summary="Uma referência que lista operadores de controle de fluxo."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="flow-control-functions.html#operator_case">[[<code>CASE</code>]]</a></td> <td>Operador de caso</td> </tr><tr><td><a class="link" href="flow-control-functions.html#function_if">[[<code>IF()</code>]]</a></td> <td>Estrutura if/else</td> </tr><tr><td><a class="link" href="flow-control-functions.html#function_ifnull">[[<code>IFNULL()</code>]]</a></td> <td>Estrutura if/else nula</td> </tr><tr><td><a class="link" href="flow-control-functions.html#function_nullif">[[<code>NULLIF()</code>]]</a></td> <td>Retorne NULL se expr1 = expr2</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista operadores de controle de fluxo."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>CASE</code>]]</td> <td>Operador de caso</td> </tr><tr><td>[[<code>IF()</code>]]</td> <td>Estrutura if/else</td> </tr><tr><td>[[<code>IFNULL()</code>]]</td> <td>Estrutura if/else nula</td> </tr><tr><td>[[<code>NULLIF()</code>]]</td> <td>Retorne NULL se expr1 = expr2</td> </tr></tbody></table>
 
 - `CASE valor WHEN valor_comparativo ENTÃO resultado [WHEN valor_comparativo ENTÃO resultado ...] [ELSE resultado] FIM`
 

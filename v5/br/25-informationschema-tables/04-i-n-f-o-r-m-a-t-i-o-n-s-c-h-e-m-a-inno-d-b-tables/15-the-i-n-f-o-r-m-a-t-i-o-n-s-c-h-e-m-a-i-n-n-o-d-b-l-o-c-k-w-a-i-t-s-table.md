@@ -1,4 +1,4 @@
-### 24.4.15 A tabela INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS
+### 24.4.15 A tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS
 
 A tabela [`INNODB_LOCK_WAITS`](https://pt.wikipedia.org/wiki/Tabela_de_esperas_de_bloqueio_InnoDB) contém uma ou mais linhas para cada transação `InnoDB` bloqueada, indicando o bloqueio que ela solicitou e quaisquer bloqueios que estejam bloqueando essa solicitação.
 

@@ -1,10 +1,10 @@
 ### 29.12.5 Performance Schema Stage Event Tables
 
-29.12.5.1 The events\_stages\_current Table
+29.12.5.1 The events_stages_current Table
 
-29.12.5.2 The events\_stages\_history Table
+29.12.5.2 The events_stages_history Table
 
-29.12.5.3 The events\_stages\_history\_long Table
+29.12.5.3 The events_stages_history_long Table
 
 The Performance Schema instruments stages, which are steps during the statement-execution process, such as parsing a statement, opening a table, or performing a `filesort` operation. Stages correspond to the thread states displayed by `SHOW PROCESSLIST` or that are visible in the Information Schema `PROCESSLIST` table. Stages begin and end when state values change.
 

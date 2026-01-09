@@ -64,7 +64,7 @@ A tabela `setup_threads` tem as seguintes colunas:
 
 * `VOLATILITY`
 
-  A volatilidade do instrumento. Esta coluna tem o mesmo significado que na tabela `setup_instruments`. Veja a Seção 29.12.2.3, “A tabela setup\_instruments”.
+  A volatilidade do instrumento. Esta coluna tem o mesmo significado que na tabela `setup_instruments`. Veja a Seção 29.12.2.3, “A tabela setup_instruments”.
 
 * `DOCUMENTATION`
 

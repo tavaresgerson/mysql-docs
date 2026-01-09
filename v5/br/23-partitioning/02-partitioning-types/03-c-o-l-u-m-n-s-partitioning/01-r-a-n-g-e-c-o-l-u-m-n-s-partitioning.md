@@ -311,7 +311,7 @@ Nota
 
 Como diferentes conjuntos de caracteres e codificações têm ordens de classificação diferentes, os conjuntos de caracteres e codificações em uso podem afetar em qual partição de uma tabela particionada por `COLUNAS DE CAMPO` uma determinada linha é armazenada ao usar colunas de texto como colunas de particionamento. Além disso, alterar o conjunto de caracteres ou a codificação de um banco de dados, tabela ou coluna específico após a criação de uma tabela pode causar alterações na forma como as linhas são distribuídas. Por exemplo, ao usar uma codificação sensível a maiúsculas e minúsculas, `'and'` é classificado antes de `'Andersen'`, mas ao usar uma codificação que é sensível a maiúsculas e minúsculas, o inverso é verdadeiro.
 
-Para obter informações sobre como o MySQL lida com conjuntos de caracteres e colatações, consulte \[Capítulo 10, *Conjunto de caracteres, colatações, Unicode*] (charset.html).
+Para obter informações sobre como o MySQL lida com conjuntos de caracteres e colatações, consulte [Capítulo 10, *Conjunto de caracteres, colatações, Unicode*] (charset.html).
 
 Da mesma forma, você pode fazer com que a tabela `employees` seja particionada de tal forma que cada linha seja armazenada em uma das várias partições com base na década em que o funcionário correspondente foi contratado, usando a instrução `ALTER TABLE` mostrada aqui:
 

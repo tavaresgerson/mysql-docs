@@ -1,4 +1,4 @@
-### 28.3.36 A Tabela ROUTINES da SCHEMA\_INFORMAÇÃO
+### 28.3.36 A Tabela ROUTINES da SCHEMA_INFORMAÇÃO
 
 A tabela `ROUTINES` fornece informações sobre rotinas armazenadas (procedimentos armazenados e funções armazenadas). A tabela `ROUTINES` não inclui funções nativas (integradas) ou funções carregáveis.
 

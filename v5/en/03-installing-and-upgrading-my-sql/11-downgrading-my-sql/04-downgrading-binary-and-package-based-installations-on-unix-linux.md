@@ -15,7 +15,7 @@ In-place downgrade is not supported for MySQL APT, SLES, and Yum repository inst
 
 Note
 
-For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld\_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
+For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
 
 To perform an in-place downgrade:
 
@@ -51,13 +51,13 @@ To perform an in-place downgrade:
    mysqld_safe --user=mysql --datadir=/path/to/existing-datadir
    ```
 
-8. Run **mysql\_upgrade**. For example:
+8. Run **mysql_upgrade**. For example:
 
    ```sql
    mysql_upgrade -u root -p
    ```
 
-   **mysql\_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL, and attempts to repair the tables if problems are found.
+   **mysql_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL, and attempts to repair the tables if problems are found.
 
 9. Shut down and restart the MySQL server to ensure that any changes made to the system tables take effect. For example:
 
@@ -74,7 +74,7 @@ Logical downgrades are supported for downgrades between releases within the same
 
 Note
 
-For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld\_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
+For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
 
 For MySQL APT, SLES, and Yum repository installations, only downgrades to the previous release level are supported. Where the instructions call for initializing an older instance, use the package management utility to remove MySQL 5.7 packages and install MySQL 5.6 packages.
 
@@ -114,13 +114,13 @@ To perform a logical downgrade:
    mysql -u root -p --force < data-for-upgrade.sql
    ```
 
-7. Run **mysql\_upgrade**. For example:
+7. Run **mysql_upgrade**. For example:
 
    ```sql
    mysql_upgrade -u root -p
    ```
 
-   **mysql\_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL, and attempts to repair the tables if problems are found.
+   **mysql_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL, and attempts to repair the tables if problems are found.
 
 8. Shut down and restart the MySQL server to ensure that any changes made to the system tables take effect. For example:
 

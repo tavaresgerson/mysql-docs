@@ -72,7 +72,7 @@ The rounding just described is done explicitly, and a warning is issued by the M
 
 When `CREATE TABLESPACE` is used with `ENGINE [=] NDB`, a tablespace and associated data file are created on each Cluster data node. You can verify that the data files were created and obtain information about them by querying the Information Schema `FILES` table. (See the example later in this section.)
 
-(See Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.)
+(See Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.)
 
 #### Options
 
@@ -126,7 +126,7 @@ When `CREATE TABLESPACE` is used with `ENGINE [=] NDB`, a tablespace and associa
 
   An extent is a unit of disk space allocation. One extent is filled with as much data as that extent can contain before another extent is used. In theory, up to 65,535 (64K) extents may used per data file; however, the recommended maximum is 32,768 (32K). The recommended maximum size for a single data file is 32G—that is, 32K extents × 1 MB per extent. In addition, once an extent is allocated to a given partition, it cannot be used to store data from a different partition; an extent cannot store data from more than one partition. This means, for example that a tablespace having a single datafile whose `INITIAL_SIZE` (described in the following item) is 256 MB and whose `EXTENT_SIZE` is 128M has just two extents, and so can be used to store data from at most two different disk data table partitions.
 
-  You can see how many extents remain free in a given data file by querying the Information Schema `FILES` table, and so derive an estimate for how much space remains free in the file. For further discussion and examples, see Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.
+  You can see how many extents remain free in a given data file by querying the Information Schema `FILES` table, and so derive an estimate for how much space remains free in the file. For further discussion and examples, see Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.
 
 * `INITIAL_SIZE`: This option is specific to `NDB`, and is not supported by `InnoDB`, where it fails with an error.
 
@@ -136,7 +136,7 @@ When `CREATE TABLESPACE` is used with `ENGINE [=] NDB`, a tablespace and associa
 
   On 32-bit systems, the maximum supported value for `INITIAL_SIZE` is 4294967296 (4 GB).
 
-* `AUTOEXTEND_SIZE`: Defines the amount by which `InnoDB` extends the size of the tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND\_SIZE Configuration”.
+* `AUTOEXTEND_SIZE`: Defines the amount by which `InnoDB` extends the size of the tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND_SIZE Configuration”.
 
   Has no effect in any release of MySQL NDB Cluster, regardless of the storage engine used.
 

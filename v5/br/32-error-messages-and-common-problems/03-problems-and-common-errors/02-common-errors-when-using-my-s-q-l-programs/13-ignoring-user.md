@@ -8,7 +8,7 @@ Como resultado, a conta é simplesmente ignorada pelo sistema de permissões.
 
 A lista a seguir indica as possíveis causas e as soluções para esse problema:
 
-- Você pode estar executando uma nova versão do [**mysqld**](mysqld.html) com uma tabela `user` antiga. Verifique se a coluna `Password` dessa tabela tem menos de 16 caracteres. Se sim, corrija essa condição executando [**mysql\_upgrade**](mysql-upgrade.html).
+- Você pode estar executando uma nova versão do [**mysqld**](mysqld.html) com uma tabela `user` antiga. Verifique se a coluna `Password` dessa tabela tem menos de 16 caracteres. Se sim, corrija essa condição executando [**mysql_upgrade**](mysql-upgrade.html).
 
 - A conta tem uma senha antiga (com oito caracteres). Atualize a conta na tabela `user` para ter uma nova senha.
 

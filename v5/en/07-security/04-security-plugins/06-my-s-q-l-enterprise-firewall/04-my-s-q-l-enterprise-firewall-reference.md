@@ -12,7 +12,7 @@ The following sections provide a reference to MySQL Enterprise Firewall elements
 
 MySQL Enterprise Firewall maintains profile information on a per-group and per-account basis, using tables in the firewall database for persistent storage and Information Schema tables to provide views into in-memory cached data. When enabled, the firewall bases operational decisions on the cached data. The firewall database can be the `mysql` system database or a custom schema (see [Installing MySQL Enterprise Firewall](firewall-installation.html#firewall-install "Installing MySQL Enterprise Firewall")).
 
-Tables in the firewall database are covered in this section. For information about MySQL Enterprise Firewall Information Schema tables, see [Section 24.7, “INFORMATION\_SCHEMA MySQL Enterprise Firewall Tables”](firewall-information-schema-tables.html "24.7 INFORMATION_SCHEMA MySQL Enterprise Firewall Tables").
+Tables in the firewall database are covered in this section. For information about MySQL Enterprise Firewall Information Schema tables, see [Section 24.7, “INFORMATION_SCHEMA MySQL Enterprise Firewall Tables”](firewall-information-schema-tables.html "24.7 INFORMATION_SCHEMA MySQL Enterprise Firewall Tables").
 
 Each `mysql` system database table is accessible only by accounts that have the [`SELECT`](privileges-provided.html#priv_select) privilege for it. The `INFORMATION_SCHEMA` tables are accessible by anyone.
 
@@ -178,13 +178,13 @@ MySQL Enterprise Firewall supports the following system variables. Use them to c
 
 * [`mysql_firewall_mode`](firewall-reference.html#sysvar_mysql_firewall_mode)
 
-  <table frame="box" rules="all" summary="Properties for mysql_firewall_mode"><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="firewall-reference.html#sysvar_mysql_firewall_mode">mysql_firewall_mode</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for mysql_firewall_mode"><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-mode[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_mode</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Whether MySQL Enterprise Firewall is enabled (the default) or disabled.
 
 * [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace)
 
-  <table frame="box" rules="all" summary="Properties for mysql_firewall_trace"><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-trace[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="firewall-reference.html#sysvar_mysql_firewall_trace">mysql_firewall_trace</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for mysql_firewall_trace"><tbody><tr><th>Command-Line Format</th> <td><code>--mysql-firewall-trace[={OFF|ON}]</code></td> </tr><tr><th>System Variable</th> <td><code>mysql_firewall_trace</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Whether the MySQL Enterprise Firewall trace is enabled or disabled (the default). When [`mysql_firewall_trace`](firewall-reference.html#sysvar_mysql_firewall_trace) is enabled, for `PROTECTING` mode, the firewall writes rejected statements to the error log.
 

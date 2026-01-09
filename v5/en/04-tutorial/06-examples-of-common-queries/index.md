@@ -16,7 +16,7 @@
 
 [3.6.8 Calculating Visits Per Day](calculating-days.html)
 
-[3.6.9 Using AUTO\_INCREMENT](example-auto-increment.html)
+[3.6.9 Using AUTO_INCREMENT](example-auto-increment.html)
 
 Here are examples of how to solve some common problems with MySQL.
 

@@ -82,7 +82,7 @@ As variáveis do sistema do servidor específicas do plugin de replicação em g
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_advertise_recovery_endpoints">group_replication_advertise_recovery_endpoints</a></code></td>
+    <td><code>group_replication_advertise_recovery_endpoints</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -93,7 +93,7 @@ As variáveis do sistema do servidor específicas do plugin de replicação em g
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th>
+    <th>Hinta de <code>SET_VAR</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -136,7 +136,7 @@ Para obter detalhes sobre como selecionar endereços IP e portas como pontos fin
 
 * `group_replication_auto_increment_increment`
 
-<table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>7</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>7</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></table>
 
 Essa variável de sistema deve ter o mesmo valor em todos os membros do grupo. Você não pode alterar o valor dessa variável de sistema enquanto a Replicação em Grupo estiver em execução. Você deve parar a Replicação em Grupo, alterar o valor da variável de sistema e, em seguida, reiniciar a Replicação em Grupo, em cada um dos membros do grupo. Durante esse processo, o valor da variável de sistema pode diferir entre os membros do grupo, mas algumas transações nos membros do grupo podem ser revertidas.
 
@@ -150,7 +150,7 @@ Quando a Replicação em Grupo é iniciada em uma instância do servidor, o valo
 
 * `group_replication_autorejoin_tries`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_autorejoin_tries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>3</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>2016</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_autorejoin_tries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>3</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>2016</code></td> </tr></tbody></table>
 
 O valor desta variável de sistema pode ser alterado enquanto a Replicação em Grupo estiver em execução, e a alteração entra em vigor imediatamente. O valor atual da variável de sistema é lido quando ocorre um problema que indica que o comportamento é necessário.
 
@@ -167,7 +167,7 @@ Durante e entre as tentativas de reinício automático, um membro permanece no m
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td>
+    <td><code>group_replication_bootstrap_group</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -178,7 +178,7 @@ Durante e entre as tentativas de reinício automático, um membro permanece no m
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -199,10 +199,10 @@ Durante e entre as tentativas de reinício automático, um membro permanece no m
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_clone_threshold">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -224,7 +224,7 @@ A configuração padrão (que é o número de sequência máximo permitido para 
 
 * `group_replication_communication_debug_options`
 
-<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
 
 O valor desta variável do sistema pode ser alterado enquanto o Grupo de Replicação estiver em execução, e a alteração entra em vigor imediatamente.
 
@@ -250,10 +250,10 @@ Definir o nível de depuração para `GCS_DEBUG_NONE` só tem efeito quando forn
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_communication_max_message_size">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-communication-max-message-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_max_message_size">group_replication_communication_max_message_size</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_communication_max_message_size</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10485760</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -271,7 +271,7 @@ Para que os membros de um grupo de replicação usem a fragmentação, a versão
 
 * `group_replication_communication_stack`
 
-<table frame="box" rules="all" summary="Propriedades para grupo_replication_communication_stack"><tbody><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_stack">group_replication_communication_stack</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</a></code> Dicas Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>XCOM</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>XCOM</code></code><p class="valid-value"><code>MYSQL</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para grupo_replication_communication_stack"><tbody><tr><th>Variável do Sistema</th> <td><code>group_replication_communication_stack</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>XCOM</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>XCOM</code></code><p><code>MYSQL</code></td> </tr></tbody></table>
 
   Nota
 
@@ -295,7 +295,7 @@ Isso significa que, embora o valor da variável do sistema possa ser alterado en
 
 * `group_replication_components_stop_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para `group_replication_components_stop_timeout`"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-components-stop-timeout=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_components_stop_timeout">group_replication_components_stop_timeout</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>300</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>2</code></td> </tr><tr><th>Valor Máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>segundos</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para `group_replication_components_stop_timeout`"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-components-stop-timeout=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_components_stop_timeout</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>300</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>2</code></td> </tr><tr><th>Valor Máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>segundos</td> </tr></table>
 
   O valor desta variável do sistema pode ser alterado enquanto a Replicação em Grupo está em execução, mas a alteração só entra em vigor após você parar e reiniciar a Replicação em Grupo no membro do grupo.
 
@@ -309,10 +309,10 @@ O valor padrão é de 300 segundos, para que os componentes da Replicação em G
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_compression_threshold">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-compression-threshold=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_compression_threshold">group_replication_compression_threshold</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_compression_threshold</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>1000000</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -328,7 +328,7 @@ Para mais informações, consulte a Seção 20.7.4, “Compressão de Mensagens�
 
 * `group_replication_consistency`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>7</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>7</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></table>
 
 `group_replication_consistency` é uma variável de sistema do servidor, e não uma variável específica do plugin de Replicação por Grupo, portanto, não é necessário reiniciar a Replicação por Grupo para que a mudança entre em vigor. A alteração do valor da sessão da variável de sistema tem efeito imediatamente, e a alteração do valor global tem efeito para novas sessões que começam após a mudança. O privilégio `GROUP_REPLICATION_ADMIN` é necessário para alterar o ajuste global para essa variável de sistema.
 
@@ -369,7 +369,7 @@ Para mais informações, consulte a Seção 20.5.3, “Garantias de Consistênci
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td>
+    <td><code>group_replication_auto_increment_increment</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -380,7 +380,7 @@ Para mais informações, consulte a Seção 20.5.3, “Garantias de Consistênci
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -411,7 +411,7 @@ Para mais informações, consulte a Seção 20.5.3, “Garantias de Consistênci
   <tr>
     <th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr>
     <tr>
-      <th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td> </tr>
+      <th>Variável do Sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -420,7 +420,7 @@ Para mais informações, consulte a Seção 20.5.3, “Garantias de Consistênci
       <th>Dinâmico</th> <td>Sim</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+      <th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Inteiro</td> </tr>
@@ -456,10 +456,10 @@ Use as funções `group_replication_switch_to_single_primary_mode()` e `group_re
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>7</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -488,10 +488,10 @@ Para obter mais informações sobre o uso dessa opção e a lista completa de si
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>7</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -506,10 +506,10 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hint de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hint de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>7</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -524,7 +524,7 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
   <tr><th>Hint de Configuração de <code>SET_VAR</code></th> <td>Não</td> </tr>
@@ -547,7 +547,7 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td>
+    <td><code>group_replication_auto_increment_increment</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -558,7 +558,7 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -587,10 +587,10 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>7</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -605,10 +605,10 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment">group_replication_auto_increment_increment</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>7</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -623,10 +623,10 @@ A variável `group_replication_flow_control_min_quota` controla a menor quota de
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_autorejoin_tries">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>3</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -643,7 +643,7 @@ O `group_replication_flow_control_min_recovery_quota` controla a menor quota que
   <tr>
     <th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
     <tr>
-      <th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+      <th>Variável do Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -652,7 +652,7 @@ O `group_replication_flow_control_min_recovery_quota` controla a menor quota que
       <th>Dinâmico</th> <td>Sim</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+      <th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Inteiro</td> </tr>
@@ -673,10 +673,10 @@ O `group_replication_flow_control_min_recovery_quota` controla a menor quota que
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_autorejoin_tries">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>3</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -691,10 +691,10 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_autorejoin_tries">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>3</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -709,10 +709,10 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_autorejoin_tries">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>3</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -739,7 +739,7 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
   <tr>
     <th>Formato de linha de comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
     <tr>
-      <th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+      <th>Variável do sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -748,7 +748,7 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
       <th>Dinâmico</th> <td>Sim</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td> <td>Não</td> </tr>
+      <th>Hinta de <code>SET_VAR</th></td> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Inteiro</td> </tr>
@@ -776,10 +776,10 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_autorejoin_tries">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>3</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -808,7 +808,7 @@ Um membro que está se juntando deve se comunicar com o membro inicial usando o 
   <tr>
     <th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
     <tr>
-      <th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+      <th>Variável do Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -817,7 +817,7 @@ Um membro que está se juntando deve se comunicar com o membro inicial usando o 
       <th>Dinâmico</th> <td>Sim</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+      <th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Inteiro</td> </tr>
@@ -848,10 +848,10 @@ Se o grupo tiver um valor definido para essa variável de sistema e um membro qu
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_autorejoin_tries">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>3</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -901,10 +901,10 @@ Nomes de host são inerentemente menos seguros do que endereços IP em um allowl
 
 <table frame="box" rules="all" summary="Propriedades para group_replication_autorejoin_tries">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-autorejoin-tries=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_autorejoin_tries">group_replication_autorejoin_tries</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_autorejoin_tries</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>3</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -938,7 +938,7 @@ Se você estiver usando a pilha de comunicação XCom para estabelecer conexões
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td>
+    <td><code>group_replication_bootstrap_group</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -949,7 +949,7 @@ Se você estiver usando a pilha de comunicação XCom para estabelecer conexões
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -983,7 +983,7 @@ Para obter mais informações sobre o uso da configuração `group_replication_m
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td>
+    <td><code>group_replication_bootstrap_group</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -994,7 +994,7 @@ Para obter mais informações sobre o uso da configuração `group_replication_m
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1013,9 +1013,9 @@ Para obter mais informações sobre o uso da configuração `group_replication_m
 
   Para um grupo com membros configurados da seguinte forma:
 
-  + `member-1`: group\_replication\_member\_weight=30, server\_uuid=aaaa
+  + `member-1`: group_replication_member_weight=30, server_uuid=aaaa
 
-  + `member-2`: group\_replication\_member\_weight=40, server\_uuid=bbbb
+  + `member-2`: group_replication_member_weight=40, server_uuid=bbbb
 
 + `member-3`: group_replication_member_weight=40, server_uuid=cccc
 
@@ -1025,7 +1025,7 @@ Durante a eleição de um novo primário, os membros acima seriam classificados 
 
 * `group_replication_message_cache_size`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Esta variável do sistema deve ter o mesmo valor em todos os membros do grupo. O valor desta variável do sistema pode ser alterado enquanto a Replicação em Grupo estiver em execução. A alteração entra em vigor em cada membro do grupo após você parar e reiniciar a Replicação em Grupo no membro. Durante esse processo, o valor da variável do sistema é permitido diferir entre os membros do grupo, mas os membros podem não conseguir se reconectar em caso de desconexão.
 
@@ -1039,7 +1039,7 @@ O limite de tamanho do cache pode ser aumentado ou reduzido dinamicamente durant
 
 * `group_replication_paxos_single_leader`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Nota
 
@@ -1057,7 +1057,7 @@ A coluna `WRITE_CONSENSUS_SINGLE_LEADER_CAPABLE` da tabela `replication_group_co
 
 * `group_replication_poll_spin_loops`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variável"><code>SET_VAR</code></a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 O valor desta variável do sistema pode ser alterado enquanto a Replicação em Grupo estiver em execução, mas a alteração só terá efeito após você parar e reiniciar a Replicação em Grupo no membro do grupo.
 
@@ -1065,7 +1065,7 @@ O valor desta variável do sistema pode ser alterado enquanto a Replicação em 
 
 * `group_replication_preemptive_garbage_collection`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code></a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Ative a coleta de lixo preemptiva no modo de único primário (apenas), mantendo apenas os conjuntos de escrita para aquelas transações que ainda não foram comprometidas no banco de dados.
 
@@ -1085,7 +1085,7 @@ Um membro do grupo que executa uma versão do MySQL anterior a 8.4.0 não envia 
 
 * `group_replication_preemptive_garbage_collection_rows_threshold`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Quando a coleta de lixo preemptiva no modo de único primário é habilitada (`group_replication_preemptive_garbage_collection` é `ON`), este é o número de linhas de informações de certificação necessárias para desencadear seu uso.
 
@@ -1100,7 +1100,7 @@ Um membro do grupo que executa uma versão do MySQL anterior a 8.4.0 não envia 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td>
+    <td><code>group_replication_bootstrap_group</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1111,7 +1111,7 @@ Um membro do grupo que executa uma versão do MySQL anterior a 8.4.0 não envia 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1132,7 +1132,7 @@ Um membro do grupo que executa uma versão do MySQL anterior a 8.4.0 não envia 
 
 * `group_replication_recovery_get_public_key`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O valor desta variável do sistema pode ser alterado enquanto a Replicação em Grupo estiver em execução, mas a alteração só terá efeito após você parar e reiniciar a Replicação em Grupo no membro do grupo.
 
@@ -1140,7 +1140,7 @@ Um membro do grupo que executa uma versão do MySQL anterior a 8.4.0 não envia 
 
 * `group_replication_recovery_public_key_path`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_bootstrap_group">group_replication_bootstrap_group</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração da Variável"><code>SET_VAR</code></a> Aplicável</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Aplicável</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 O valor desta variável de sistema pode ser alterado enquanto a Replicação em Grupo estiver em execução, mas a alteração só terá efeito após você parar e reiniciar a Replicação em Grupo no membro do grupo.
 
@@ -1150,10 +1150,10 @@ O valor desta variável de sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_clone_threshold">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -1167,10 +1167,10 @@ O valor desta variável de sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_clone_threshold">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -1186,10 +1186,10 @@ O valor desta variável de sistema pode ser alterado enquanto a Replicação em 
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_clone_threshold">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -1207,7 +1207,7 @@ Quando a pilha de comunicação MySQL está em uso para o grupo (`group_replicat
 
 * `group_replication_recovery_ssl_capath`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_clone_threshold"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Unidade</th> <td>transações</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_clone_threshold"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Unidade</th> <td>transações</td> </tr></tbody></table>
 
 O valor desta variável de sistema pode ser alterado enquanto a replicação em grupo estiver em execução, mas a alteração só entrará em vigor após você parar e reiniciar a replicação em grupo no membro do grupo.
 
@@ -1219,10 +1219,10 @@ Quando a pilha de comunicação MySQL estiver em uso para o grupo (`group_replic
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_clone_threshold">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -1240,7 +1240,7 @@ Quando a pilha de comunicação MySQL está em uso para o grupo (`group_replicat
 
 * `group_replication_recovery_ssl_cipher`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_clone_threshold"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Unidade</th> <td>transações</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_clone_threshold"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Unidade</th> <td>transações</td> </tr></tbody></table>
 
 O valor desta variável de sistema pode ser alterado enquanto a Replicação em Grupo estiver em execução, mas a alteração só terá efeito após você parar e reiniciar a Replicação em Grupo no membro do grupo.
 
@@ -1252,10 +1252,10 @@ Quando a pilha de comunicação MySQL estiver em uso para o grupo (`group_replic
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_clone_threshold">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -1271,7 +1271,7 @@ Quando a pilha de comunicação MySQL está em uso para o grupo (`group_replicat
 
 * `group_replication_recovery_ssl_crlpath`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_clone_threshold"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Unidade</th> <td>transações</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_clone_threshold"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Unidade</th> <td>transações</td> </tr></tbody></table>
 
 O valor desta variável do sistema pode ser alterado enquanto a Replicação em Grupo está em execução, mas a alteração só entra em vigor após você parar e reiniciar a Replicação em Grupo no membro do grupo.
 
@@ -1281,7 +1281,7 @@ Quando a pilha de comunicação MySQL está em uso para o grupo (`group_replicat
 
 * `group_replication_recovery_ssl_key`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_clone_threshold"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Unidade</th> <td>transações</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_clone_threshold"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9223372036854775807</code></td> </tr><tr><th>Unidade</th> <td>transações</td> </tr></tbody></table>
 
 O valor desta variável de sistema pode ser alterado enquanto a Replicação em Grupo estiver em execução, mas a alteração só terá efeito após você parar e reiniciar a Replicação em Grupo no membro do grupo.
 
@@ -1295,10 +1295,10 @@ Quando a pilha de comunicação MySQL estiver em uso para o grupo (`group_replic
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_clone_threshold">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-clone-threshold=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_clone_threshold">group_replication_clone_threshold</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_clone_threshold</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>9223372036854775807</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -1314,7 +1314,7 @@ Quando a pilha de comunicação MySQL está em uso para o grupo (`group_replicat
 
 * `group_replication_recovery_tls_ciphersuites`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_communication_debug_options"><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_communication_debug_options"><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></table>
 
 O valor desta variável de sistema pode ser alterado enquanto a Replicação em Grupo estiver em execução, mas a alteração só terá efeito após você parar e reiniciar a Replicação em Grupo no membro do grupo.
 
@@ -1324,7 +1324,7 @@ Quando a pilha de comunicação MySQL estiver em uso para o grupo (`group_replic
 
 * `group_replication_recovery_tls_version`
 
-<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>O valor desta variável do sistema pode ser alterado enquanto o Grupo de Replicação estiver em execução, mas a alteração só terá efeito após você parar e reiniciar o Grupo de Replicação no membro do grupo.
+<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>O valor desta variável do sistema pode ser alterado enquanto o Grupo de Replicação estiver em execução, mas a alteração só terá efeito após você parar e reiniciar o Grupo de Replicação no membro do grupo.
 
 `group_replication_recovery_tls_version` especifica uma lista separada por vírgula de um ou mais protocolos TLS permitidos para criptografia de conexão quando essa instância do servidor é o cliente na conexão de recuperação distribuída, ou seja, o membro que está se juntando. Os membros do grupo envolvidos em cada conexão de recuperação distribuída como cliente (membro que está se juntando) e servidor (doador) negociam a versão do protocolo mais alta que ambos estão configurados para suportar.
 
@@ -1342,7 +1342,7 @@ Consulte a Seção 20.6.2, “Segurando Conexões de Comunicação de Grupo com
 
 * `group_replication_recovery_use_ssl`
 
-<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
 
 O valor desta variável do sistema pode ser alterado enquanto o Grupo de Replicação estiver em execução, mas a alteração só terá efeito após você parar e reiniciar o Grupo de Replicação no membro do grupo.
 
@@ -1352,7 +1352,7 @@ Se este servidor tiver sido configurado para suportar clonagem (consulte a Seç�
 
 * `group_replication_recovery_zstd_compression_level`
 
-<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
 
 O valor desta variável do sistema pode ser alterado enquanto o Grupo de Replicação estiver em execução, mas a alteração só terá efeito após você parar e reiniciar o Grupo de Replicação no membro do grupo.
 
@@ -1360,7 +1360,7 @@ O valor desta variável do sistema pode ser alterado enquanto o Grupo de Replica
 
 Para obter mais informações, consulte a Seção 6.2.8, “Controle de compressão de conexão”.
 
-<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hint de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de hint de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hint de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
 
   Especifica o tempo máximo permitido de atraso para um aplicável em um secundário de Replicação de Grupo. Fornecido pelo componente do Gerenciador de Recursos de Replicação de Grupo.
 
@@ -1372,7 +1372,7 @@ Consulte a Seção 7.5.6.3, “Componente do Gerenciador de Recursos da Replica�
 
 * `group_replication_resource_manager.memory_used_limit`
 
-<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
 
   Especifica o uso máximo permitido de memória em um secundário de Replicação de Grupo, como um percentual da memória do sistema. Fornecido pelo componente Gerenciador de Recursos de Replicação de Grupo.
 
@@ -1384,7 +1384,7 @@ Para mais informações, consulte a Seção 7.5.6.3, “Componente do Gerenciado
 
 * `group_replication_resource_manager.quarantine_time`
 
-<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hint de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de hint de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hint de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
 
 Tempo de espera, em segundos, para impedir a rejeição imediata de um membro que tente se juntar ou voltar a se juntar a um grupo após ter sido expulso. Fornecido pelo componente do Gerenciador de Recursos de Replicação de Grupo.
 
@@ -1394,7 +1394,7 @@ Consulte a Seção 7.5.6.3, “Gerenciador de Recursos de Replicação de Grupo�
 
 * `group_replication_resource_manager.recovery_channel_lag`
 
-  <table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de Group Replication"><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de Group Replication"><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></table>
 
   Especifica o tempo máximo permitido para um atraso de um thread de recuperação em um secundário de Group Replication. Fornecido pelo componente do Gerenciador de Recursos de Group Replication.
 
@@ -1406,7 +1406,7 @@ Para mais informações, consulte a Seção 7.5.6.3, “Compósito do Gerenciado
 
 * `group_replication_single_primary_mode`
 
-<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
 
   Nota
 
@@ -1424,7 +1424,7 @@ Use as funções `group_replication_switch_to_single_primary_mode()` e `group_re
 
 * `group_replication_ssl_mode`
 
-<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_debug_options">group_replication_communication_debug_options</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>GCS_DEBUG_NONE</code></p><p class="valid-value"><code>GCS_DEBUG_BASIC</code></p><p class="valid-value"><code>GCS_DEBUG_TRACE</code></p><p class="valid-value"><code>XCOM_DEBUG_BASIC</code></p><p class="valid-value"><code>XCOM_DEBUG_TRACE</code></p><p class="valid-value"><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para opções de depuração de comunicação de grupo_replication"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-debug-options=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_debug_options</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>GCS_DEBUG_NONE</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>GCS_DEBUG_NONE</code></p><p><code>GCS_DEBUG_BASIC</code></p><p><code>GCS_DEBUG_TRACE</code></p><p><code>XCOM_DEBUG_BASIC</code></p><p><code>XCOM_DEBUG_TRACE</code></p><p><code>GCS_DEBUG_ALL</code></p></td> </tr></tbody></table>
 
   O valor desta variável do sistema pode ser alterado enquanto o Grupo de Replicação estiver em execução, mas a alteração só terá efeito após você parar e reiniciar o Grupo de Replicação no membro do grupo.
 
@@ -1434,9 +1434,9 @@ DESABILITADO:   Estabelecer uma conexão não criptografada (padrão).
 
 REQUERIDO:   Estabelecer uma conexão segura, se o servidor suportar conexões seguras.
 
-VERIFICAR\_CA:   Como `REQUERIDO`, mas, adicionalmente, verificar o certificado TLS do servidor contra os certificados da Autoridade de Certificação (CA) configurados.
+VERIFICAR_CA:   Como `REQUERIDO`, mas, adicionalmente, verificar o certificado TLS do servidor contra os certificados da Autoridade de Certificação (CA) configurados.
 
-VERIFICAR\_IDENTIDADE:   Como `VERIFICAR\_CA`, mas, adicionalmente, verificar se o certificado do servidor corresponde ao hospedeiro ao qual a conexão é realizada.
+VERIFICAR_IDENTIDADE:   Como `VERIFICAR_CA`, mas, adicionalmente, verificar se o certificado do servidor corresponde ao hospedeiro ao qual a conexão é realizada.
 
 Esta variável deve ter o mesmo valor em todos os membros do grupo; caso contrário, novos membros podem não conseguir se juntar.
 
@@ -1446,10 +1446,10 @@ Consulte a Seção 20.6.2, “Segurança das conexões de comunicação de grupo
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_communication_max_message_size">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-communication-max-message-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_max_message_size">group_replication_communication_max_message_size</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_communication_max_message_size</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10485760</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -1465,7 +1465,7 @@ Para iniciar a replicação em grupo automaticamente durante o início do servid
 
 * `group_replication_tls_source`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_communication_max_message_size"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-communication-max-message-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_max_message_size">group_replication_communication_max_message_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>10485760</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_communication_max_message_size"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-communication-max-message-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_communication_max_message_size</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>10485760</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
   O valor desta variável do sistema pode ser alterado enquanto a replicação em grupo estiver em execução, mas a alteração só terá efeito após você parar e reiniciar a replicação em grupo no membro do grupo.
 
@@ -1473,7 +1473,7 @@ Para iniciar a replicação em grupo automaticamente durante o início do servid
 
 * `group_replication_transaction_size_limit`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_communication_max_message_size"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-communication-max-message-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_max_message_size">group_replication_communication_max_message_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>10485760</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_communication_max_message_size"><tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-communication-max-message-size=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>group_replication_communication_max_message_size</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>10485760</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></table>
 
   Esta variável do sistema deve ter o mesmo valor em todos os membros do grupo. O valor desta variável do sistema pode ser alterado enquanto a Replicação em Grupo estiver em execução. A alteração entra em vigor imediatamente no membro do grupo e aplica-se a partir da próxima transação iniciada nesse membro. Durante esse processo, o valor da variável do sistema pode diferir entre os membros do grupo, mas algumas transações podem ser rejeitadas.
 
@@ -1485,10 +1485,10 @@ Quando essa variável de sistema é definida como 0, não há limite para o tama
 
 <table frame="box" rules="all" summary="Propriedades para grupo_replication_communication_max_message_size">
   <tr><th>Formato de Linha de Comando</th> <td><code>--group-replication-communication-max-message-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_max_message_size">group_replication_communication_max_message_size</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>group_replication_communication_max_message_size</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>10485760</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -1510,7 +1510,7 @@ Para obter mais informações sobre o uso desta opção, consulte a Seção 20.7
 
 * `group_replication_view_change_uuid`
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_communication_max_message_size"><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-max-message-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="group-replication-system-variables.html#sysvar_group_replication_communication_max_message_size">group_replication_communication_max_message_size</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>10485760</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para group_replication_communication_max_message_size"><tr><th>Formato de linha de comando</th> <td><code>--group-replication-communication-max-message-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_communication_max_message_size</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>10485760</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></table>
 
   Nota
 

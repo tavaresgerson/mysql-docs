@@ -32,7 +32,7 @@ The functions listed in this section compose JSON values from component elements
 
   This function is typically used to produce a valid JSON string literal for inclusion within a JSON document.
 
-  Certain special characters are escaped with backslashes per the escape sequences shown in Table 14.23, “JSON\_UNQUOTE() Special Character Escape Sequences” Special Character Escape Sequences").
+  Certain special characters are escaped with backslashes per the escape sequences shown in Table 14.23, “JSON_UNQUOTE() Special Character Escape Sequences” Special Character Escape Sequences").
 
   ```
   mysql> SELECT JSON_QUOTE('null'), JSON_QUOTE('"null"');

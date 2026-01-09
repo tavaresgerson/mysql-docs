@@ -99,6 +99,6 @@ Starting the MySQL server with the `--skip-grant-tables` option causes `event_sc
 
 For SQL statements used to create, alter, and drop events, see Section 27.5.3, “Event Syntax”.
 
-MySQL provides an `EVENTS` table in the `INFORMATION_SCHEMA` database. This table can be queried to obtain information about scheduled events which have been defined on the server. See Section 27.5.4, “Event Metadata”, and Section 28.3.14, “The INFORMATION\_SCHEMA EVENTS Table”, for more information.
+MySQL provides an `EVENTS` table in the `INFORMATION_SCHEMA` database. This table can be queried to obtain information about scheduled events which have been defined on the server. See Section 27.5.4, “Event Metadata”, and Section 28.3.14, “The INFORMATION_SCHEMA EVENTS Table”, for more information.
 
 For information regarding event scheduling and the MySQL privilege system, see Section 27.5.6, “The Event Scheduler and MySQL Privileges”.

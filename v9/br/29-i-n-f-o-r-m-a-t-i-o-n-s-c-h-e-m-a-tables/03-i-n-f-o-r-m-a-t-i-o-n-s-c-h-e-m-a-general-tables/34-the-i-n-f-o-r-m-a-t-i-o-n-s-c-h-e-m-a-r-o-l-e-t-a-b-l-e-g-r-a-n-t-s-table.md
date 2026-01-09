@@ -1,4 +1,4 @@
-### 28.3.34 A tabela `ROLE_TABLE_GRANTS` da INFORMATION\_SCHEMA
+### 28.3.34 A tabela `ROLE_TABLE_GRANTS` da INFORMATION_SCHEMA
 
 A tabela `ROLE_TABLE_GRANTS` fornece informações sobre os privilégios da tabela para os papéis que estão disponíveis para ou concedidos pelos papéis atualmente habilitados.
 

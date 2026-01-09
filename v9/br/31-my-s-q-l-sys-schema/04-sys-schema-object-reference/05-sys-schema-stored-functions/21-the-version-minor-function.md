@@ -1,4 +1,4 @@
-#### 30.4.5.21 A função version\_minor()
+#### 30.4.5.21 A função version_minor()
 
 Esta função retorna a versão menor do servidor MySQL.
 

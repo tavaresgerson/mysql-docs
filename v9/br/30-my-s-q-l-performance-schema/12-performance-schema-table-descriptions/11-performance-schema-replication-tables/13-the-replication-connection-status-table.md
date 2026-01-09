@@ -1,4 +1,4 @@
-#### 29.12.11.13 A tabela `replication\_connection\_status`
+#### 29.12.11.13 A tabela `replication_connection_status`
 
 Esta tabela mostra o status atual da thread de I/O que lida com a conexão da réplica com a fonte, informações sobre a última transação enfileirando-se no log de retransmissão e informações sobre a transação atualmente enfileirando-se no log de retransmissão.
 

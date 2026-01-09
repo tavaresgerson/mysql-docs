@@ -8,9 +8,9 @@ As opções de linha de comando e as variáveis de sistema na lista a seguir se 
 
 - `abort-slave-event-count`: Opção usada pelo mysql-test para depuração e teste de replicação.
 
-- `auto_increment_increment`: As colunas AUTO\_INCREMENT são incrementadas por esse valor.
+- `auto_increment_increment`: As colunas AUTO_INCREMENT são incrementadas por esse valor.
 
-- `auto_increment_offset`: Deslocamento adicionado às colunas AUTO\_INCREMENT.
+- `auto_increment_offset`: Deslocamento adicionado às colunas AUTO_INCREMENT.
 
 - `Com_change_master`: Número de declarações de REPLICAÇÃO DE MUDANÇA PARA e MUDAR MASTER PARA.
 
@@ -32,7 +32,7 @@ As opções de linha de comando e as variáveis de sistema na lista a seguir se 
 
 - `gtid_executed`: Global: Todos os GTIDs no log binário (global) ou na transação atual (sessão). Apenas leitura.
 
-- `gtid_executed_compression_period`: Compressar a tabela gtid\_executed a cada vez que ocorrerem tantas transações. 0 significa nunca comprimir essa tabela. Aplica-se apenas quando o registro binário está desativado.
+- `gtid_executed_compression_period`: Compressar a tabela gtid_executed a cada vez que ocorrerem tantas transações. 0 significa nunca comprimir essa tabela. Aplica-se apenas quando o registro binário está desativado.
 
 - `gtid_mode`: Controla se o registro baseado em GTID está habilitado e quais tipos de registros de transações podem conter.
 
@@ -178,7 +178,7 @@ As opções de linha de comando e as variáveis de sistema na lista a seguir se 
 
 - `Slave_open_temp_tables`: Número de tabelas temporárias que o thread de replicação SQL atualmente tem aberto.
 
-- `slave_parallel_type`: Indica ao replica que use informações de data e hora (CLOCK\_LOGICAL) ou particionamento de banco de dados (DATABASE) para paralelizar as transações.
+- `slave_parallel_type`: Indica ao replica que use informações de data e hora (CLOCK_LOGICAL) ou particionamento de banco de dados (DATABASE) para paralelizar as transações.
 
 - `slave_parallel_workers`: Número de threads do aplicador para executar transações de replicação em paralelo; 0 ou 1 desabilita a multitarefa de replica. NDB Cluster: consulte a documentação.
 
@@ -192,13 +192,13 @@ As opções de linha de comando e as variáveis de sistema na lista a seguir se 
 
 - `Slave_rows_last_search_algorithm_used`: Algoritmo de pesquisa mais recentemente utilizado por esta replica para localizar linhas para a replicação baseada em linhas (pesquisa por índice, tabela ou hash).
 
-- `slave_rows_search_algorithms`: Determina os algoritmos de busca usados para agrupar o lote de atualização da replica. Qualquer um dos seguintes 2 ou 3: INDEX\_SEARCH, TABLE\_SCAN, HASH\_SCAN.
+- `slave_rows_search_algorithms`: Determina os algoritmos de busca usados para agrupar o lote de atualização da replica. Qualquer um dos seguintes 2 ou 3: INDEX_SEARCH, TABLE_SCAN, HASH_SCAN.
 
 - `Slave_running`: Estado deste servidor como replica (status da thread de I/O de replicação).
 
 - `slave_transaction_retries`: Número de vezes que o fio de replicação do SQL tenta novamente a transação caso ela falhe devido a um deadlock ou ao tempo limite de espera de bloqueio, antes de desistir e parar.
 
-- `slave_type_conversions`: Controla o modo de conversão de tipo na replica. O valor é uma lista de zero ou mais elementos desta lista: ALL\_LOSSY, ALL\_NON\_LOSSY. Defina como uma string vazia para impedir conversões de tipo entre a fonte e a replica.
+- `slave_type_conversions`: Controla o modo de conversão de tipo na replica. O valor é uma lista de zero ou mais elementos desta lista: ALL_LOSSY, ALL_NON_LOSSY. Defina como uma string vazia para impedir conversões de tipo entre a fonte e a replica.
 
 - `sql_log_bin`: Controla o registro binário para a sessão atual.
 
@@ -242,7 +242,7 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir est
 
 - `binlog_group_commit_sync_delay`: Define o número de microsegundos para aguardar antes de sincronizar as transações com o disco.
 
-- `binlog_group_commit_sync_no_delay_count`: Define o número máximo de transações a serem esperadas antes de abortar o atraso atual especificado por binlog\_group\_commit\_sync\_delay.
+- `binlog_group_commit_sync_no_delay_count`: Define o número máximo de transações a serem esperadas antes de abortar o atraso atual especificado por binlog_group_commit_sync_delay.
 
 - `binlog_gtid_simple_recovery`: Controla como os logs binários são iterados durante a recuperação do GTID.
 

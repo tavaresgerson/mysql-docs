@@ -1,4 +1,4 @@
-### 28.4.17 A Tabela `INFORMATION\_SCHEMA\_INNODB\_FT\_DELETED`
+### 28.4.17 A Tabela `INFORMATION_SCHEMA_INNODB_FT_DELETED`
 
 A tabela `INNODB_FT_DELETED` armazena linhas que são excluídas do índice `FULLTEXT` de uma tabela `InnoDB`. Para evitar a reorganização do índice, que é um processo caro, durante operações DML para um índice `FULLTEXT` `InnoDB`, as informações sobre as palavras recém-excluídas são armazenadas separadamente, filtradas dos resultados de pesquisa quando você faz uma pesquisa de texto e removidas do índice de pesquisa principal apenas quando você emite uma instrução `OPTIMIZE TABLE` para a tabela `InnoDB`. Para obter mais informações, consulte Otimizando índices de texto completo de InnoDB.
 

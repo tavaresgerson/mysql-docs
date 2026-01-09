@@ -10,7 +10,7 @@
 
 [Function Index](dynindex-function.html)
 
-[INFORMATION\_SCHEMA Index](dynindex-is.html)
+[INFORMATION_SCHEMA Index](dynindex-is.html)
 
 [Join Types Index](dynindex-jointype.html)
 

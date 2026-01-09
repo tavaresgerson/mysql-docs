@@ -1,4 +1,4 @@
-#### 26.4.3.9 As visualizações innodb\_lock\_waits e x$innodb\_lock\_waits
+#### 26.4.3.9 As visualizações innodb_lock_waits e x$innodb_lock_waits
 
 Esses pontos de vista resumem as bloquagens do `InnoDB` que as transações estão esperando. Por padrão, as linhas são ordenadas por idade de bloqueio decrescente.
 

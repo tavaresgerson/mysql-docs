@@ -1,4 +1,4 @@
-#### 29.12.22.1 The component\_scheduler\_tasks Table
+#### 29.12.22.1 The component_scheduler_tasks Table
 
 The `component_scheduler_tasks` table contains a row for each scheduled task. Each row contains information about the ongoing progress of a task that applications, components, and plugins can implement, optionally, using the `scheduler` component (see Section 7.5.5, “Scheduler Component”). For example, the `audit_log` server plugin utilizes the `scheduler` component to run a regular, recurring flush of its memory cache:
 

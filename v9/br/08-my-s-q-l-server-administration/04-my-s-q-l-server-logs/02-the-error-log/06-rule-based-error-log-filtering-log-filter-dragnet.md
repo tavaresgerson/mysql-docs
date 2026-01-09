@@ -58,11 +58,11 @@ UNINSTALL COMPONENT 'file://component_log_filter_dragnet';
 
 As seções a seguir descrevem aspectos da operação do `log_filter_dragnet` com mais detalhes:
 
-* Gramática para a Linguagem de Regras do Filtro log\_filter\_dragnet
-* Ações para as Regras do log\_filter\_dragnet
-* Referências de Campo nas Regras do log\_filter\_dragnet
+* Gramática para a Linguagem de Regras do Filtro log_filter_dragnet
+* Ações para as Regras do log_filter_dragnet
+* Referências de Campo nas Regras do log_filter_dragnet
 
-##### Gramática para a Linguagem de Regras do Filtro log\_filter\_dragnet
+##### Gramática para a Linguagem de Regras do Filtro log_filter_dragnet
 
 A seguinte gramática define a linguagem para as regras de filtro `log_filter_dragnet`. Cada regra é uma declaração `IF` terminada por um caractere ponto (`.`). A linguagem não é case-sensitive.
 
@@ -210,7 +210,7 @@ Para conveniência, o `log_filter_dragnet` suporta nomes simbólicos para compar
 
   Nomes simbólicos podem ser especificados como strings citadas para comparação com campos de string, mas, nesse caso, os nomes são strings que não têm significado especial e `log_filter_dragnet` não os resolve para o valor numérico correspondente. Além disso, erros podem passar despercebidos, enquanto um erro ocorre imediatamente na instrução `SET` para tentativas de usar um símbolo não citado desconhecido pelo servidor.
 
-##### Ações para regras de log\_filter\_dragnet
+##### Ações para regras de log_filter_dragnet
 
 `log_filter_dragnet` suporta essas ações em regras de filtro:
 
@@ -241,7 +241,7 @@ No caso especial de que a condição se refere exatamente a um nome de campo, o 
   IF myfield == 2 THEN unset.
   ```
 
-##### Referências de Campo nas regras log\_filter\_dragnet
+##### Referências de Campo nas regras log_filter_dragnet
 
 As regras `log_filter_dragnet` suportam referências a campos principais, opcionais e definidos pelo usuário em eventos de erro.
 
@@ -255,7 +255,7 @@ As regras `log_filter_dragnet` suportam referências a campos principais, opcion
   IF prio == 3 THEN ...
   ```
 
-A gramática `log_filter_dragnet` na Linguagem de Regras para o Idioma de Regras log\_filter\_dragnet nomeia os campos principais que as regras de filtragem reconhecem. Para descrições gerais desses campos, consulte a Seção 7.4.2.3, “Campos de Evento de Erro”, com os quais você deve estar familiarizado. As observações a seguir fornecem informações adicionais apenas no que diz respeito especificamente às referências de campos principais usadas dentro das regras `log_filter\_dragnet`.
+A gramática `log_filter_dragnet` na Linguagem de Regras para o Idioma de Regras log_filter_dragnet nomeia os campos principais que as regras de filtragem reconhecem. Para descrições gerais desses campos, consulte a Seção 7.4.2.3, “Campos de Evento de Erro”, com os quais você deve estar familiarizado. As observações a seguir fornecem informações adicionais apenas no que diz respeito especificamente às referências de campos principais usadas dentro das regras `log_filter_dragnet`.
 
 * `prio`
 

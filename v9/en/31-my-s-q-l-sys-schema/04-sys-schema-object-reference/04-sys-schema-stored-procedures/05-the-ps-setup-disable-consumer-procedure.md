@@ -1,4 +1,4 @@
-#### 30.4.4.5 The ps\_setup\_disable\_consumer() Procedure
+#### 30.4.4.5 The ps_setup_disable_consumer() Procedure
 
 Disables Performance Schema consumers with names that contain the argument. Produces a result set indicating how many consumers were disabled. Already disabled consumers do not count.
 

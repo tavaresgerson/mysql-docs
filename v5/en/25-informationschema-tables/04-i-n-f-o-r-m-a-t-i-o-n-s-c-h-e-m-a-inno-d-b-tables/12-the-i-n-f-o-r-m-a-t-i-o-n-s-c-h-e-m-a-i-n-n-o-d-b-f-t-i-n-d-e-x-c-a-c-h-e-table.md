@@ -1,10 +1,10 @@
-### 24.4.12 The INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE Table
+### 24.4.12 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table
 
 The [`INNODB_FT_INDEX_CACHE`](information-schema-innodb-ft-index-cache-table.html "24.4.12 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table") table provides token information about newly inserted rows in a `FULLTEXT` index. To avoid expensive index reorganization during DML operations, the information about newly indexed words is stored separately, and combined with the main search index only when [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is run, when the server is shut down, or when the cache size exceeds a limit defined by the [`innodb_ft_cache_size`](innodb-parameters.html#sysvar_innodb_ft_cache_size) or [`innodb_ft_total_cache_size`](innodb-parameters.html#sysvar_innodb_ft_total_cache_size) system variable.
 
 This table is empty initially. Before querying it, set the value of the [`innodb_ft_aux_table`](innodb-parameters.html#sysvar_innodb_ft_aux_table) system variable to the name (including the database name) of the table that contains the `FULLTEXT` index; for example `test/articles`.
 
-For related usage information and examples, see [Section 14.16.4, “InnoDB INFORMATION\_SCHEMA FULLTEXT Index Tables”](innodb-information-schema-fulltext_index-tables.html "14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables").
+For related usage information and examples, see [Section 14.16.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”](innodb-information-schema-fulltext_index-tables.html "14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables").
 
 The [`INNODB_FT_INDEX_CACHE`](information-schema-innodb-ft-index-cache-table.html "24.4.12 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table") table has these columns:
 

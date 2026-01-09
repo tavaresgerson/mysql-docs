@@ -58,7 +58,7 @@ For each keyring plugin-specific function, this section describes its purpose, c
 
   `keyring_hashicorp_update_config()` is not provided by the HashiCorp keyring component. For this reason, the function should be considered deprecated and thus subject to removal in a future version of MySQL.
 
-  When invoked, the `keyring_hashicorp_update_config()` function causes `keyring_hashicorp` to perform a runtime reconfiguration, as described in keyring\_hashicorp Configuration.
+  When invoked, the `keyring_hashicorp_update_config()` function causes `keyring_hashicorp` to perform a runtime reconfiguration, as described in keyring_hashicorp Configuration.
 
   This function requires the `SYSTEM_VARIABLES_ADMIN` privilege because it modifies global system variables.
 

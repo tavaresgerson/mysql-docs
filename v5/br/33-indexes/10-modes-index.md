@@ -4,9 +4,9 @@
 
 ### A
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
-### ALLOW\_INVALID\_DATES
+### ALLOW_INVALID_DATES
 
 [Seção 11.2, "Tipos de dados de data e hora"](date-and-time-types.html)
 
@@ -28,9 +28,9 @@
 
 [Seção 13.7.5.13, "Mostrar declaração CREATE VIEW"](show-create-view.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
-### ANSI\_QUOTES
+### ANSI_QUOTES
 
 [Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
 
@@ -50,7 +50,7 @@
 
 ### D
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### DB2
 
@@ -60,9 +60,9 @@
 
 ### E
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
-### ERRO\_PARA\_DIVISÃO\_POR\_ZERO
+### ERRO_PARA_DIVISÃO_POR_ZERO
 
 [Seção 12.21.3, “Tratamento de expressões”](precision-math-expressions.html)
 
@@ -76,9 +76,9 @@
 
 ### H
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
-### HIGH\_NOT\_PRECEDENCE
+### HIGH_NOT_PRECEDENCE
 
 [Seção 9.5, “Expressões”](expressions.html)
 
@@ -88,9 +88,9 @@
 
 ### Eu
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
-### IGNORE\_SPACE
+### IGNORE_SPACE
 
 [Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
 
@@ -102,7 +102,7 @@
 
 ### M
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### MAXDB
 
@@ -134,9 +134,9 @@
 
 ### N
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
-### NO\_AUTO\_CREATE\_USER
+### NO_AUTO_CREATE_USER
 
 [Seção 13.7.1.4, "Declaração GRANT"](grant.html)
 
@@ -146,7 +146,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### NO\_AUTO\_VALUE\_ON\_ZERO
+### NO_AUTO_VALUE_ON_ZERO
 
 [Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
 
@@ -154,9 +154,9 @@
 
 [Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
 
-[Seção 3.6.9, “Usando AUTO\_INCREMENT”](example-auto-increment.html)
+[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
 
-### NO\_BACKSLASH\_ESCAPES
+### NO_BACKSLASH_ESCAPES
 
 [Seção 12.17.4, “Funções que modificam valores JSON”](json-modification-functions.html)
 
@@ -170,7 +170,7 @@
 
 [Seção 11.5, “O tipo de dados JSON”](json.html)
 
-### NO\_DIR\_IN\_CREATE
+### NO_DIR_IN_CREATE
 
 [Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
 
@@ -184,7 +184,7 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### NO\_ENGINE\_SUBSTITUTION
+### NO_ENGINE_SUBSTITUTION
 
 [Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
 
@@ -204,25 +204,25 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### NO\_FIELD\_OPTIONS
+### NO_FIELD_OPTIONS
 
 [Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### NO\_KEY\_OPTIONS
+### NO_KEY_OPTIONS
 
 [Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### NO\_TABLE\_OPTIONS
+### NO_TABLE_OPTIONS
 
 [Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### NO\_UNSIGNED\_SUBTRACTION
+### NO_UNSIGNED_SUBTRACTION
 
 [Seção 12.6.1, "Operadores Aritméticos"](arithmetic-functions.html)
 
@@ -236,7 +236,7 @@
 
 [Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
 
-### NO\_ZERO\_DATE
+### NO_ZERO_DATE
 
 [Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”](timestamp-initialization.html)
 
@@ -262,7 +262,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### NO\_ZERO\_IN\_DATE
+### NO_ZERO_IN_DATE
 
 [Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
 
@@ -280,9 +280,9 @@
 
 ### O
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
-### ONLY\_FULL\_GROUP\_BY
+### ONLY_FULL_GROUP_BY
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -308,9 +308,9 @@
 
 ### P
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
-### PAD\_CHAR\_TO\_FULL\_LENGTH
+### PAD_CHAR_TO_FULL_LENGTH
 
 [Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
 
@@ -318,7 +318,7 @@
 
 [Seção 11.3.2, “Os tipos CHAR e VARCHAR”](char.html)
 
-### PIPES\_AS\_CONCAT
+### PIPES_AS_CONCAT
 
 [Seção 9.5, “Expressões”](expressions.html)
 
@@ -336,9 +336,9 @@
 
 ### R
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
-### REAL\_AS\_FLOAT
+### REAL_AS_FLOAT
 
 [Seção 11.1.1, "Sintaxe do Tipo de Dados Numérico"](numeric-type-syntax.html)
 
@@ -348,9 +348,9 @@
 
 ### S
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
-### STRICT\_ALL\_TABLES
+### STRICT_ALL_TABLES
 
 [Seção 1.6.3.3, “Restrições para Dados Inválidos”](constraint-invalid-data.html)
 
@@ -362,7 +362,7 @@
 
 [Seção 16.4.3, “Atualização de uma topologia de replicação”](replication-upgrade.html)
 
-### STRICT\_TRANS\_TABLES
+### STRICT_TRANS_TABLES
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -380,7 +380,7 @@
 
 ### T
 
-\[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### TRADICIONAL
 

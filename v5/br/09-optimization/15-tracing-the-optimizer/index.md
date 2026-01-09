@@ -14,9 +14,9 @@
 
 8.15.7 Interação com a opção --debug
 
-8.15.8 A variável de sistema optimizer\_trace
+8.15.8 A variável de sistema optimizer_trace
 
-8.15.9 A variável de sistema end\_markers\_in\_json
+8.15.9 A variável de sistema end_markers_in_json
 
 8.15.10 Selecionando recursos do otimizador para rastrear
 

@@ -1,4 +1,4 @@
-#### 21.6.15.32 Tabela ndbinfo restart\_info
+#### 21.6.15.32 Tabela ndbinfo restart_info
 
 A tabela `restart_info` contém informações sobre operações de reinício de nós. Cada entrada na tabela corresponde a um relatório de status de reinício de nó em tempo real de um nó de dados com o ID de nó fornecido. Apenas o relatório mais recente para qualquer nó específico é exibido.
 
@@ -170,7 +170,7 @@ A lista a seguir contém os valores definidos para a coluna `node_restart_status
 
 - `18` (`NODE_GETTING_LCP_WAITED`)
 
-  \[nenhum]
+  [nenhum]
 
 - `19` (`NODE_ACTIVE`)
 
@@ -178,7 +178,7 @@ A lista a seguir contém os valores definidos para a coluna `node_restart_status
 
 - `20` (`NOT_DEFINIDO_NO_CLUSTERO`)
 
-  \[nenhum]
+  [nenhum]
 
 - `21` (`NODE_NOT_RESTARTED_YET`)
 

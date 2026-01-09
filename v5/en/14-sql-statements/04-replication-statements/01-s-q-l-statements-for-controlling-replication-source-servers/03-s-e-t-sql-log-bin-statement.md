@@ -1,4 +1,4 @@
-#### 13.4.1.3 SET sql\_log\_bin Statement
+#### 13.4.1.3 SET sql_log_bin Statement
 
 ```sql
 SET sql_log_bin = {OFF|ON}

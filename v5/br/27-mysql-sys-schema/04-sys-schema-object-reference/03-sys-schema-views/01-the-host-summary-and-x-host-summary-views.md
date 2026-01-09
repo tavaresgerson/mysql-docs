@@ -1,4 +1,4 @@
-#### 26.4.3.1 As visualizações host\_summary e x$host\_summary
+#### 26.4.3.1 As visualizações host_summary e x$host_summary
 
 Essas visualizações resumem a atividade de declarações, o acesso de arquivos e as conexões, agrupadas por host.
 

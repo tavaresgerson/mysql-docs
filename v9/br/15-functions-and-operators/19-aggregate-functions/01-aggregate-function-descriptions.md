@@ -6,24 +6,24 @@ Esta seção descreve as funções agregadas que operam em conjuntos de valores.
 
 <table frame="box" rules="all" summary="Uma referência que lista funções agregadas.">
 <tr><th>Nome</th> <th>Descrição</th> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_avg"><code>AVG()</code></a></td> <td> Retorna o valor médio do argumento </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_bit-and"><code>BIT_AND()</code></a></td> <td> Retorna a operação de E e </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_bit-or"><code>BIT_OR()</code></a></td> <td> Retorna a operação de OU exclusivo </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_bit-xor"><code>BIT_XOR()</code></a></td> <td> Retorna a operação de OU exclusivo </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_count"><code>COUNT()</code></a></td> <td> Retorna o número de linhas retornadas </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_count-distinct"><code>COUNT(DISTINCT)</code></a></td> <td> Retorna o número de valores diferentes </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_group-concat"><code>GROUP_CONCAT()</code></a></td> <td> Retorna uma string concatenada </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_json-arrayagg"><code>JSON_ARRAYAGG()</code></a></td> <td> Retorna o conjunto de resultados como um único array JSON </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_json-objectagg"><code>JSON_OBJECTAGG()</code></a></td> <td> Retorna o conjunto de resultados como um único objeto JSON </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_max"><code>MAX()</code></a></td> <td> Retorna o valor máximo </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_min"><code>MIN()</code></a></td> <td> Retorna o valor mínimo </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_std"><code>STD()</code></a></td> <td> Retorna a desvio padrão populacional </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_stddev"><code>STDDEV()</code></a></td> <td> Retorna a desvio padrão populacional </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_stddev-pop"><code>STDDEV_POP()</code></a></td> <td> Retorna a desvio padrão populacional </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_stddev-samp"><code>STDDEV_SAMP()</code></a></td> <td> Retorna a desvio padrão amostral </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_sum"><code>SUM()</code></a></td> <td> Retorna a soma </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_var-pop"><code>VAR_POP()</code></a></td> <td> Retorna a variância populacional </td> </tr>
-<tr><td><a class="link" href="funções_agregadas.html#função_var-samp"><code>VAR_SAMP()</code></a></td> <td> Retorna a variância amostral </td> </tr>
+<tr><td><code>AVG()</code></td> <td> Retorna o valor médio do argumento </td> </tr>
+<tr><td><code>BIT_AND()</code></td> <td> Retorna a operação de E e </td> </tr>
+<tr><td><code>BIT_OR()</code></td> <td> Retorna a operação de OU exclusivo </td> </tr>
+<tr><td><code>BIT_XOR()</code></td> <td> Retorna a operação de OU exclusivo </td> </tr>
+<tr><td><code>COUNT()</code></td> <td> Retorna o número de linhas retornadas </td> </tr>
+<tr><td><code>COUNT(DISTINCT)</code></td> <td> Retorna o número de valores diferentes </td> </tr>
+<tr><td><code>GROUP_CONCAT()</code></td> <td> Retorna uma string concatenada </td> </tr>
+<tr><td><code>JSON_ARRAYAGG()</code></td> <td> Retorna o conjunto de resultados como um único array JSON </td> </tr>
+<tr><td><code>JSON_OBJECTAGG()</code></td> <td> Retorna o conjunto de resultados como um único objeto JSON </td> </tr>
+<tr><td><code>MAX()</code></td> <td> Retorna o valor máximo </td> </tr>
+<tr><td><code>MIN()</code></td> <td> Retorna o valor mínimo </td> </tr>
+<tr><td><code>STD()</code></td> <td> Retorna a desvio padrão populacional </td> </tr>
+<tr><td><code>STDDEV()</code></td> <td> Retorna a desvio padrão populacional </td> </tr>
+<tr><td><code>STDDEV_POP()</code></td> <td> Retorna a desvio padrão populacional </td> </tr>
+<tr><td><code>STDDEV_SAMP()</code></td> <td> Retorna a desvio padrão amostral </td> </tr>
+<tr><td><code>SUM()</code></td> <td> Retorna a soma </td> </tr>
+<tr><td><code>VAR_POP()</code></td> <td> Retorna a variância populacional </td> </tr>
+<tr><td><code>VAR_SAMP()</code></td> <td> Retorna a variância amostral </td> </tr>
 <tr><td><a class="link" href="funções_agregadas.html#função_variance"><code class="
 
 A menos que especificado de outra forma, as funções agregadas ignoram valores `NULL`.

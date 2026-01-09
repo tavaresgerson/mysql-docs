@@ -1,4 +1,4 @@
-### 24.5.2 A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE
+### 24.5.2 A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATE
 
 A tabela [`TP_THREAD_GROUP_STATE`](https://pt.wikipedia.org/wiki/TP_THREAD_GROUP_STATE) tem uma linha por grupo de threads no pool de threads. Cada linha fornece informações sobre o estado atual de um grupo.
 

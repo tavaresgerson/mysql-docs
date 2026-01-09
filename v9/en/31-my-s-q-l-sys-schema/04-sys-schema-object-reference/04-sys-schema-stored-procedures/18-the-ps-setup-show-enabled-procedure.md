@@ -1,4 +1,4 @@
-#### 30.4.4.18 The ps\_setup\_show\_enabled() Procedure
+#### 30.4.4.18 The ps_setup_show_enabled() Procedure
 
 Displays all currently enabled Performance Schema configuration.
 

@@ -4,27 +4,27 @@
 
 <table frame="box" rules="all" summary="Uma referência que lista funções matemáticas.">
 <tr><th>Nome</th> <th>Descrição</th> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_abs"><code>ABS()</code></a></td> <td> Retorna o valor absoluto </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_acos"><code>ACOS()</code></a></td> <td> Retorna o cosseno </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_asin"><code>ASIN()</code></a></td> <td> Retorna o seno </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_atan"><code>ATAN()</code></a></td> <td> Retorna o tangente </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_atan2"><code>ATAN2()</code>, <code>ATAN()</code></a></td> <td> Retorna o tangente dos dois argumentos </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_ceil"><code>CEIL()</code></a></td> <td> Retorna o menor inteiro não menor que o argumento </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_ceiling"><code>CEILING()</code></a></td> <td> Retorna o menor inteiro não menor que o argumento </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_conv"><code>CONV()</code></a></td> <td> Converte números entre diferentes bases numéricas </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_cos"><code>COS()</code></a></td> <td> Retorna o cosseno </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_cot"><code>COT()</code></a></td> <td> Retorna a cotangente </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_crc32"><code>CRC32()</code></a></td> <td> Calcula um valor de verificação de redundância cíclica </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_degrees"><code>DEGREES()</code></a></td> <td> Converte radianos para graus </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_exp"><code>EXP()</code></a></td> <td> Eleva ao poder </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_floor"><code>FLOOR()</code></a></td> <td> Retorna o maior inteiro não maior que o argumento </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_ln"><code>LN()</code></a></td> <td> Retorna o logaritmo natural do argumento </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_log"><code>LOG()</code></a></td> <td> Retorna o logaritmo natural do primeiro argumento </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_log10"><code>LOG10()</code></a></td> <td> Retorna o logaritmo em base 10 do argumento </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_log2"><code>LOG2()</code></a></td> <td> Retorna o logaritmo em base 2 do argumento </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_mod"><code>MOD()</code></a></td> <td> Retorna o resto </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_pi"><code>PI()</code></a></td> <td> Retorna o valor de pi </td> </tr>
-<tr><td><a class="link" href="funções-matemáticas.html#função_pow"><code>POW()</code></a></td> <td> Retorna o argumento elevado ao poder especificado </td> </tr>
+<tr><td><code>ABS()</code></td> <td> Retorna o valor absoluto </td> </tr>
+<tr><td><code>ACOS()</code></td> <td> Retorna o cosseno </td> </tr>
+<tr><td><code>ASIN()</code></td> <td> Retorna o seno </td> </tr>
+<tr><td><code>ATAN()</code></td> <td> Retorna o tangente </td> </tr>
+<tr><td><code>ATAN2()</code>, <code>ATAN()</code></td> <td> Retorna o tangente dos dois argumentos </td> </tr>
+<tr><td><code>CEIL()</code></td> <td> Retorna o menor inteiro não menor que o argumento </td> </tr>
+<tr><td><code>CEILING()</code></td> <td> Retorna o menor inteiro não menor que o argumento </td> </tr>
+<tr><td><code>CONV()</code></td> <td> Converte números entre diferentes bases numéricas </td> </tr>
+<tr><td><code>COS()</code></td> <td> Retorna o cosseno </td> </tr>
+<tr><td><code>COT()</code></td> <td> Retorna a cotangente </td> </tr>
+<tr><td><code>CRC32()</code></td> <td> Calcula um valor de verificação de redundância cíclica </td> </tr>
+<tr><td><code>DEGREES()</code></td> <td> Converte radianos para graus </td> </tr>
+<tr><td><code>EXP()</code></td> <td> Eleva ao poder </td> </tr>
+<tr><td><code>FLOOR()</code></td> <td> Retorna o maior inteiro não maior que o argumento </td> </tr>
+<tr><td><code>LN()</code></td> <td> Retorna o logaritmo natural do argumento </td> </tr>
+<tr><td><code>LOG()</code></td> <td> Retorna o logaritmo natural do primeiro argumento </td> </tr>
+<tr><td><code>LOG10()</code></td> <td> Retorna o logaritmo em base 10 do argumento </td> </tr>
+<tr><td><code>LOG2()</code></td> <td> Retorna o logaritmo em base 2 do argumento </td> </tr>
+<tr><td><code>MOD()</code></td> <td> Retorna o resto </td> </tr>
+<tr><td><code>PI()</code></td> <td> Retorna o valor de pi </td> </tr>
+<tr><td><code>POW()</code></td> <td> Retorna o argumento elevado ao poder especificado </td> </tr>
 <tr><td><a class="link
 
 Todas as funções matemáticas retornam `NULL` em caso de erro.

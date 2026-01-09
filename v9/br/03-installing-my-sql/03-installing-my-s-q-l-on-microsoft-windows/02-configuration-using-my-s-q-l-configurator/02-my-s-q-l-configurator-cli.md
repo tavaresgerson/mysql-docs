@@ -32,7 +32,7 @@ Cada ação (configurar, reconfigurar, remover e atualizar) tem um conjunto espe
 
 As ações de configurar e reconfigurar permitem que você crie e edite usuários do MySQL conforme a opção `--add-user`:
 
-* `--add-user='nome\_do\_usuario':'senha'`|'caminho\_do\_arquivo'`|'token\_de\_segurança\_do\_Windows`':host:role:autenticação
+* `--add-user='nome_do_usuario':'senha'`|'caminho_do_arquivo'`|'token_de_segurança_do_Windows`':host:role:autenticação
 
   Só válido para a ação de configurar (não reconfigurar).
 
@@ -96,9 +96,9 @@ Existem várias maneiras de passar a senha do usuário root, dependendo das nece
 
 2. Definir senhas no arquivo de configuração do MySQL `my.ini`:
 
-   Ter a entrada "password={senha\_aqui}" diretamente no `my.ini` define a senha do usuário root.
+   Ter a entrada "password={senha_aqui}" diretamente no `my.ini` define a senha do usuário root.
 
-   Ter a entrada "password={senha\_aqui}" no arquivo de configuração extra (de acordo com `--defaults-extra-file`) pode definir a senha do usuário root.
+   Ter a entrada "password={senha_aqui}" no arquivo de configuração extra (de acordo com `--defaults-extra-file`) pode definir a senha do usuário root.
 
 3. Definir senhas usando variáveis de ambiente:
 

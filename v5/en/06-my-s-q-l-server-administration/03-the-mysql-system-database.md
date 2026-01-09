@@ -95,7 +95,7 @@ For more information, see [Section 5.1.13, “MySQL Server Time Zone Support”
 
 The server uses these system tables to support replication:
 
-* `gtid_executed`: Table for storing GTID values. See [mysql.gtid\_executed Table](replication-gtids-concepts.html#replication-gtids-gtid-executed-table "mysql.gtid_executed Table").
+* `gtid_executed`: Table for storing GTID values. See [mysql.gtid_executed Table](replication-gtids-concepts.html#replication-gtids-gtid-executed-table "mysql.gtid_executed Table").
 
   The `gtid_executed` table uses the `InnoDB` storage engine.
 

@@ -98,4 +98,4 @@ Per second averages provided in `InnoDB` Standard Monitor output are based on th
 
 * `not (young-making rate)` is the average hit rate at which page accesses have not resulted in making pages young due to the delay defined by `innodb_old_blocks_time` not being met, or due to page hits in the new sublist that did not result in pages being moved to the head. This rate accounts for all buffer pool page accesses, not just accesses for pages in the old sublist.
 
-Buffer pool server status variables and the `INNODB_BUFFER_POOL_STATS` table provide many of the same buffer pool metrics found in `InnoDB` Standard Monitor output. For more information, see Example 17.10, “Querying the INNODB\_BUFFER\_POOL\_STATS Table”.
+Buffer pool server status variables and the `INNODB_BUFFER_POOL_STATS` table provide many of the same buffer pool metrics found in `InnoDB` Standard Monitor output. For more information, see Example 17.10, “Querying the INNODB_BUFFER_POOL_STATS Table”.

@@ -2,7 +2,7 @@
 
 **Tabela 12.15 Funções e Operadores de Casting**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de referência."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="cast-functions.html#operator_binary">[[<code>BINARY</code>]]</a></td> <td>Converte uma cadeia de caracteres em uma cadeia binária</td> </tr><tr><td><a class="link" href="cast-functions.html#function_cast">[[<code>CAST()</code>]]</a></td> <td>Atribua um valor a um determinado tipo</td> </tr><tr><td><a class="link" href="cast-functions.html#function_convert">[[<code>CONVERT()</code>]]</a></td> <td>Atribua um valor a um determinado tipo</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de referência."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>BINARY</code>]]</td> <td>Converte uma cadeia de caracteres em uma cadeia binária</td> </tr><tr><td>[[<code>CAST()</code>]]</td> <td>Atribua um valor a um determinado tipo</td> </tr><tr><td>[[<code>CONVERT()</code>]]</td> <td>Atribua um valor a um determinado tipo</td> </tr></tbody></table>
 
 As funções e operadores de cast permitem a conversão de valores de um tipo de dado para outro.
 
@@ -15,7 +15,7 @@ As funções e operadores de cast permitem a conversão de valores de um tipo de
 
 - `BINARY` *`expr`*
 
-  O operador `BINARY` converte a expressão em uma string binária (uma string que tem o conjunto de caracteres `binary` e a collation `binary`). Um uso comum do operador `BINARY` é forçar uma comparação de string de caracteres a ser feita caractere por caractere usando valores de byte numéricos em vez de byte por byte. O operador `BINARY` também faz com que os espaços em branco finais nas comparações sejam significativos. Para obter informações sobre as diferenças entre a collation `binary` do conjunto de caracteres `binary` e as collation `_bin` dos conjuntos de caracteres não binários, consulte a Seção 10.8.5, “A collation binária em comparação com as collation \_bin”.
+  O operador `BINARY` converte a expressão em uma string binária (uma string que tem o conjunto de caracteres `binary` e a collation `binary`). Um uso comum do operador `BINARY` é forçar uma comparação de string de caracteres a ser feita caractere por caractere usando valores de byte numéricos em vez de byte por byte. O operador `BINARY` também faz com que os espaços em branco finais nas comparações sejam significativos. Para obter informações sobre as diferenças entre a collation `binary` do conjunto de caracteres `binary` e as collation `_bin` dos conjuntos de caracteres não binários, consulte a Seção 10.8.5, “A collation binária em comparação com as collation _bin”.
 
   ```sql
   mysql> SELECT 'a' = 'A';
@@ -49,7 +49,7 @@ As funções e operadores de cast permitem a conversão de valores de um tipo de
 
   Para obter informações sobre introdutores, consulte a Seção 10.3.8, “Introdutores de Conjunto de Caracteres”.
 
-  O operador `BINARY` em expressões difere em efeito do atributo `BINARY` em definições de colunas de caracteres. Para uma coluna de caracteres definida com o atributo `BINARY`, o MySQL atribui o conjunto de caracteres padrão da tabela e a collation binária (\_bin) desse conjunto de caracteres. Cada conjunto de caracteres não binário tem uma collation \_bin. Por exemplo, se o conjunto de caracteres padrão da tabela for `utf8`, essas duas definições de coluna são equivalentes:
+  O operador `BINARY` em expressões difere em efeito do atributo `BINARY` em definições de colunas de caracteres. Para uma coluna de caracteres definida com o atributo `BINARY`, o MySQL atribui o conjunto de caracteres padrão da tabela e a collation binária (_bin) desse conjunto de caracteres. Cada conjunto de caracteres não binário tem uma collation _bin. Por exemplo, se o conjunto de caracteres padrão da tabela for `utf8`, essas duas definições de coluna são equivalentes:
 
   ```sql
   CHAR(10) BINARY

@@ -1,8 +1,8 @@
-### 25.5.27 ndb\_show\_tables — Display List of NDB Tables
+### 25.5.27 ndb_show_tables — Display List of NDB Tables
 
-**ndb\_show\_tables** displays a list of all `NDB` database objects in the cluster. By default, this includes not only both user-created tables and `NDB` system tables, but `NDB`-specific indexes, internal triggers, and NDB Cluster Disk Data objects as well.
+**ndb_show_tables** displays a list of all `NDB` database objects in the cluster. By default, this includes not only both user-created tables and `NDB` system tables, but `NDB`-specific indexes, internal triggers, and NDB Cluster Disk Data objects as well.
 
-Options that can be used with **ndb\_show\_tables** are shown in the following table. Additional descriptions follow the table.
+Options that can be used with **ndb_show_tables** are shown in the following table. Additional descriptions follow the table.
 
 #### Usage
 
@@ -44,7 +44,7 @@ ndb_show_tables [-c connection_string]
 
   Specifies the name of the database in which the desired table is found. If this option is given, the name of a table must follow the database name.
 
-  If this option has not been specified, and no tables are found in the `TEST_DB` database, **ndb\_show\_tables** issues a warning.
+  If this option has not been specified, and no tables are found in the `TEST_DB` database, **ndb_show_tables** issues a warning.
 
 * `--defaults-extra-file`
 
@@ -90,7 +90,7 @@ ndb_show_tables [-c connection_string]
 
   <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -174,4 +174,4 @@ ndb_show_tables [-c connection_string]
 
 Note
 
-Only user-created NDB Cluster tables may be accessed from MySQL; system tables such as `SYSTAB_0` are not visible to **mysqld**. However, you can examine the contents of system tables using `NDB` API applications such as **ndb\_select\_all** (see Section 25.5.25, “ndb\_select\_all — Print Rows from an NDB Table”).
+Only user-created NDB Cluster tables may be accessed from MySQL; system tables such as `SYSTAB_0` are not visible to **mysqld**. However, you can examine the contents of system tables using `NDB` API applications such as **ndb_select_all** (see Section 25.5.25, “ndb_select_all — Print Rows from an NDB Table”).

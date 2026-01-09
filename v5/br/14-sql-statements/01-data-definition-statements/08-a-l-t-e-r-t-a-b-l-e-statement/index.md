@@ -145,7 +145,7 @@ partition_options:
 
 - Para exemplos de uso, consulte Seção 13.1.8.3, “Exemplos de ALTER TABLE”.
 
-- Com a função `mysql_info()` da API C, você pode descobrir quantos registros foram copiados pelo `ALTER TABLE` (`alter-table.html`). Veja mysql\_info().
+- Com a função `mysql_info()` da API C, você pode descobrir quantos registros foram copiados pelo `ALTER TABLE` (`alter-table.html`). Veja mysql_info().
 
 Há vários aspectos adicionais da instrução `ALTER TABLE`, descritos nos tópicos a seguir nesta seção:
 
@@ -250,7 +250,7 @@ O uso de opções de tabela com `ALTER TABLE` oferece uma maneira conveniente de
       COMMENT = 'NDB_COLUMN=MAX_BLOB_PART_SIZE';
   ```
 
-  Tenha em mente que `ALTER TABLE ... COMMENT ...` descarta qualquer comentário existente para a tabela. Consulte Definir opções de NDB\_TABLE para obter informações e exemplos adicionais.
+  Tenha em mente que `ALTER TABLE ... COMMENT ...` descarta qualquer comentário existente para a tabela. Consulte Definir opções de NDB_TABLE para obter informações e exemplos adicionais.
 
 Para verificar se as opções da tabela foram alteradas conforme o esperado, use `SHOW CREATE TABLE` ou consulte a tabela do Schema de Informações `TABLES`.
 
@@ -286,7 +286,7 @@ Uma operação de `ALTER TABLE` que usa o algoritmo `COPY` impede operações co
 
 Para forçar o uso do algoritmo `COPY` para uma operação de `ALTER TABLE` que, de outra forma, não o usaria, habilite a variável de sistema `old_alter_table` (alter-table.html ou especifique `ALGORITHM=COPY`. Se houver um conflito entre o ajuste `old_alter_table` e uma cláusula `ALGORITHM` com um valor diferente de `DEFAULT`, a cláusula `ALGORITHM` terá precedência.
 
-Para tabelas do `InnoDB`, uma operação de `ALTER TABLE` que usa o algoritmo `COPY` em uma tabela que reside em um espaço de tabelas compartilhado pode aumentar a quantidade de espaço usada pelo espaço de tabelas. Tais operações exigem tanto espaço adicional quanto os dados da tabela mais os índices. Para uma tabela que reside em um espaço de tabelas compartilhado, o espaço adicional usado durante a operação não é liberado de volta ao sistema operacional, como acontece com uma tabela que reside em um espaço de tabelas `file-per-table` (glossary.html#glos\_file\_per\_table).
+Para tabelas do `InnoDB`, uma operação de `ALTER TABLE` que usa o algoritmo `COPY` em uma tabela que reside em um espaço de tabelas compartilhado pode aumentar a quantidade de espaço usada pelo espaço de tabelas. Tais operações exigem tanto espaço adicional quanto os dados da tabela mais os índices. Para uma tabela que reside em um espaço de tabelas compartilhado, o espaço adicional usado durante a operação não é liberado de volta ao sistema operacional, como acontece com uma tabela que reside em um espaço de tabelas `file-per-table` (glossary.html#glos_file_per_table).
 
 Para obter informações sobre os requisitos de espaço para operações DDL online, consulte Seção 14.13.3, “Requisitos de Espaço DDL Online”.
 
@@ -571,4 +571,4 @@ Quando usado em uma tabela particionada, `ALTER TABLE ... ORDER BY` ordena as li
 
 Para obter mais informações sobre as opções de partição, consulte Seção 13.1.18, “Instrução CREATE TABLE” e Seção 13.1.8.1, “Operações de Partição ALTER TABLE”. Para obter informações e exemplos sobre as instruções `ALTER TABLE ... EXCHANGE PARTITION`, consulte Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”.
 
-Antes do MySQL 5.7.6, as tabelas `InnoDB` particionadas usavam o manipulador de particionamento genérico `ha_partition` empregado pelo `MyISAM` e outros motores de armazenamento que não forneciam seus próprios manipuladores de particionamento; no MySQL 5.7.6 e versões posteriores, essas tabelas são criadas usando o próprio manipulador de particionamento (`InnoDB`) (ou "nativo") do motor de armazenamento. A partir do MySQL 5.7.9, você pode atualizar uma tabela `InnoDB` criada no MySQL 5.7.6 ou versões anteriores (ou seja, criada usando `ha_partition`) para o manipulador de particionamento nativo do `InnoDB` usando `ALTER TABLE ... UPGRADE PARTITIONING`. (Bug #76734, Bug #20727344) Essa sintaxe de `ALTER TABLE` não aceita outras opções e só pode ser usada em uma única tabela de cada vez. Você também pode usar **mysql\_upgrade** no MySQL 5.7.9 ou versões posteriores para atualizar tabelas **InnoDB** particionadas mais antigas para o manipulador de particionamento nativo.
+Antes do MySQL 5.7.6, as tabelas `InnoDB` particionadas usavam o manipulador de particionamento genérico `ha_partition` empregado pelo `MyISAM` e outros motores de armazenamento que não forneciam seus próprios manipuladores de particionamento; no MySQL 5.7.6 e versões posteriores, essas tabelas são criadas usando o próprio manipulador de particionamento (`InnoDB`) (ou "nativo") do motor de armazenamento. A partir do MySQL 5.7.9, você pode atualizar uma tabela `InnoDB` criada no MySQL 5.7.6 ou versões anteriores (ou seja, criada usando `ha_partition`) para o manipulador de particionamento nativo do `InnoDB` usando `ALTER TABLE ... UPGRADE PARTITIONING`. (Bug #76734, Bug #20727344) Essa sintaxe de `ALTER TABLE` não aceita outras opções e só pode ser usada em uma única tabela de cada vez. Você também pode usar **mysql_upgrade** no MySQL 5.7.9 ou versões posteriores para atualizar tabelas **InnoDB** particionadas mais antigas para o manipulador de particionamento nativo.

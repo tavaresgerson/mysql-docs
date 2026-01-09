@@ -45,6 +45,6 @@ mysql> SELECT LOGFILE_GROUP_NAME, FILE_NAME, EXTRA
 2 rows in set (0.03 sec)
 ```
 
-Veja Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”.
+Veja Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.
 
 `ALTER TABLESPACE` é útil apenas com o armazenamento de dados em disco para o NDB Cluster. Veja Seção 21.6.11, “Tabelas de Dados em Disco do NDB Cluster”.

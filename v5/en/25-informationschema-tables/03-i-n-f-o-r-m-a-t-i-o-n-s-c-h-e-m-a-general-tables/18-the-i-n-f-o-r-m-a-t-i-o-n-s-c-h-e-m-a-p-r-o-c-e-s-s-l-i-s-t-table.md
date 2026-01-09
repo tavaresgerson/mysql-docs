@@ -1,4 +1,4 @@
-### 24.3.18 The INFORMATION\_SCHEMA PROCESSLIST Table
+### 24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table
 
 The MySQL process list indicates the operations currently being performed by the set of threads executing within the server. The [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table is one source of process information. For a comparison of this table with other sources, see [Sources of Process Information](processlist-access.html#processlist-sources "Sources of Process Information").
 

@@ -16,7 +16,7 @@ O MySQL suporta o uso de registros DNS SRV para se conectar a servidores nesses 
 
 * Vários Conectadores MySQL implementam suporte a DNS SRV; as opções específicas do conector permitem solicitar a busca de registro DNS SRV tanto para conexões com o X Protocol quanto para conexões com o protocolo MySQL clássico. Para informações gerais, consulte Conexões Usando Registros DNS SRV. Para detalhes, consulte a documentação dos Conectadores MySQL individuais.
 
-* A API C fornece uma função `mysql_real_connect_dns_srv()` que é semelhante à `mysql_real_connect()`, exceto que a lista de argumentos não especifica o hospedeiro particular do servidor MySQL a ser conectado. Em vez disso, ela nomeia um registro DNS SRV que especifica um grupo de servidores. Veja mysql\_real\_connect\_dns\_srv().
+* A API C fornece uma função `mysql_real_connect_dns_srv()` que é semelhante à `mysql_real_connect()`, exceto que a lista de argumentos não especifica o hospedeiro particular do servidor MySQL a ser conectado. Em vez disso, ela nomeia um registro DNS SRV que especifica um grupo de servidores. Veja mysql_real_connect_dns_srv().
 
 * O cliente **mysql** tem uma opção `--dns-srv-name` para indicar um registro DNS SRV que especifica um grupo de servidores. Veja Seção 6.5.1, “mysql — O Cliente de Linha de Comando MySQL”.
 

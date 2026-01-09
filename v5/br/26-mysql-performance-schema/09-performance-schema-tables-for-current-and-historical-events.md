@@ -2,7 +2,7 @@
 
 Para eventos de espera, etapa, declaração e transação, o Schema de Desempenho pode monitorar e armazenar eventos atuais. Além disso, quando os eventos terminam, o Schema de Desempenho pode armazená-los em tabelas de histórico. Para cada tipo de evento, o Schema de Desempenho usa três tabelas para armazenar eventos atuais e históricos. As tabelas têm nomes da seguinte forma, onde *`xxx`* indica o tipo de evento (`waits`, `stages`, `statements`, `transactions`):
 
-- `events_xxx_current`: A tabela "eventos\_xxx\_current" armazena o evento monitorado atual para cada thread (uma linha por thread).
+- `events_xxx_current`: A tabela "eventos_xxx_current" armazena o evento monitorado atual para cada thread (uma linha por thread).
 
 - `events_xxx_history`: A tabela "história recente" armazena os eventos mais recentes que terminaram por thread (até um número máximo de linhas por thread).
 
@@ -14,7 +14,7 @@ Para cada tipo de evento, as tabelas `_current`, `_history` e `_history_long` t�
 
 As tabelas `_current` mostram o que está acontecendo atualmente no servidor. Quando um evento atual termina, ele é removido de sua tabela `_current`.
 
-As tabelas \_history e \_history\_long mostram o que aconteceu no passado recente. Quando as tabelas de histórico ficam cheias, os eventos antigos são descartados à medida que novos eventos são adicionados. As linhas expiram das tabelas \_history e \_history\_long de maneiras diferentes porque as tabelas servem a propósitos diferentes:
+As tabelas _history e _history_long mostram o que aconteceu no passado recente. Quando as tabelas de histórico ficam cheias, os eventos antigos são descartados à medida que novos eventos são adicionados. As linhas expiram das tabelas _history e _history_long de maneiras diferentes porque as tabelas servem a propósitos diferentes:
 
 - `_history` é destinado a investigar os threads individuais, independentemente da carga global do servidor.
 
@@ -22,15 +22,15 @@ As tabelas \_history e \_history\_long mostram o que aconteceu no passado recent
 
 A diferença entre os dois tipos de tabelas de histórico está relacionada à política de retenção de dados. Ambas as tabelas contêm os mesmos dados quando um evento é visto pela primeira vez. No entanto, os dados em cada tabela expiram de maneira diferente ao longo do tempo, de modo que os dados podem ser preservados por um período mais longo ou mais curto em cada tabela:
 
-- Para \_history, quando a tabela contém o número máximo de linhas para um determinado fio, a linha mais antiga do fio é descartada quando uma nova linha para esse fio é adicionada.
+- Para _history, quando a tabela contém o número máximo de linhas para um determinado fio, a linha mais antiga do fio é descartada quando uma nova linha para esse fio é adicionada.
 
 - Para `_history_long`, quando a tabela ficar cheia, a linha mais antiga será descartada quando uma nova linha for adicionada, independentemente de qual thread tenha gerado a linha.
 
-Quando um tópico é encerrado, todas as suas linhas são descartadas da tabela \_history, mas não da tabela \_history\_long.
+Quando um tópico é encerrado, todas as suas linhas são descartadas da tabela _history, mas não da tabela _history_long.
 
 O exemplo a seguir ilustra as diferenças na forma como os eventos são adicionados e descartados nas duas tabelas de histórico. Os princípios se aplicam igualmente a todos os tipos de eventos. O exemplo é baseado nesses pressupostos:
 
-- O Schema de Desempenho é configurado para reter 10 linhas por fio na tabela \_history e 10.000 linhas no total na tabela \_history\_long.
+- O Schema de Desempenho é configurado para reter 10 linhas por fio na tabela _history e 10.000 linhas no total na tabela _history_long.
 
 - O fio A gera 1 evento por segundo.
 

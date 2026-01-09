@@ -1,12 +1,12 @@
 ## 6.7 Ferramentas de Desenvolvimento de Programas
 
-6.7.1 mysql\_config — Exibir Opções para Compilar Clientes
+6.7.1 mysql_config — Exibir Opções para Compilar Clientes
 
-6.7.2 my\_print\_defaults — Exibir Opções a partir de Arquivos de Opções
+6.7.2 my_print_defaults — Exibir Opções a partir de Arquivos de Opções
 
 Esta seção descreve algumas ferramentas que você pode achar úteis ao desenvolver programas MySQL.
 
-Em scripts de shell, você pode usar o programa **my\_print\_defaults** para analisar arquivos de opções e ver quais opções seriam usadas por um determinado programa. O exemplo a seguir mostra a saída que **my\_print\_defaults** pode produzir quando solicitado a mostrar as opções encontradas nos grupos `[client]` e `[mysql]`:
+Em scripts de shell, você pode usar o programa **my_print_defaults** para analisar arquivos de opções e ver quais opções seriam usadas por um determinado programa. O exemplo a seguir mostra a saída que **my_print_defaults** pode produzir quando solicitado a mostrar as opções encontradas nos grupos `[client]` e `[mysql]`:
 
 ```
 $> my_print_defaults client mysql

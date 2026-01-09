@@ -1,4 +1,4 @@
-### 14.16.3 InnoDB INFORMATION\_SCHEMA System Tables
+### 14.16.3 InnoDB INFORMATION_SCHEMA System Tables
 
 You can extract metadata about schema objects managed by `InnoDB` using `InnoDB` `INFORMATION_SCHEMA` system tables. This information comes from the `InnoDB` internal system tables (also referred to as the `InnoDB` data dictionary), which cannot be queried directly like regular `InnoDB` tables. Traditionally, you would get this type of information using the techniques from Section 14.18, “InnoDB Monitors”, setting up `InnoDB` monitors and parsing the output from the `SHOW ENGINE INNODB STATUS` statement. The `InnoDB` `INFORMATION_SCHEMA` table interface allows you to query this data using SQL.
 
@@ -45,9 +45,9 @@ The table names are indicative of the type of data provided:
 
 `InnoDB` `INFORMATION_SCHEMA` system tables can be joined together through fields such as `TABLE_ID`, `INDEX_ID`, and `SPACE`, allowing you to easily retrieve all available data for an object you want to study or monitor.
 
-Refer to the `InnoDB` INFORMATION\_SCHEMA documentation for information about the columns of each table.
+Refer to the `InnoDB` INFORMATION_SCHEMA documentation for information about the columns of each table.
 
-**Example 14.2 InnoDB INFORMATION\_SCHEMA System Tables**
+**Example 14.2 InnoDB INFORMATION_SCHEMA System Tables**
 
 This example uses a simple table (`t1`) with a single index (`i1`) to demonstrate the type of metadata found in the `InnoDB` `INFORMATION_SCHEMA` system tables.
 
@@ -202,7 +202,7 @@ This example uses a simple table (`t1`) with a single index (`i1`) to demonstrat
 
    The `STATS_INITIALIZED` field indicates whether or not statistics have been collected for the table. `NUM_ROWS` is the current estimated number of rows in the table. The `CLUST_INDEX_SIZE` and `OTHER_INDEX_SIZE` fields report the number of pages on disk that store clustered and secondary indexes for the table, respectively. The `MODIFIED_COUNTER` value shows the number of rows modified by DML operations and cascade operations from foreign keys. The `AUTOINC` value is the next number to be issued for any autoincrement-based operation. There are no autoincrement columns defined on table `t1`, so the value is 0. The `REF_COUNT` value is a counter. When the counter reaches 0, it signifies that the table metadata can be evicted from the table cache.
 
-**Example 14.3 Foreign Key INFORMATION\_SCHEMA System Tables**
+**Example 14.3 Foreign Key INFORMATION_SCHEMA System Tables**
 
 The `INNODB_SYS_FOREIGN` and `INNODB_SYS_FOREIGN_COLS` tables provide data about foreign key relationships. This example uses a parent table and child table with a foreign key relationship to demonstrate the data found in the `INNODB_SYS_FOREIGN` and `INNODB_SYS_FOREIGN_COLS` tables.
 
@@ -250,7 +250,7 @@ The `INNODB_SYS_FOREIGN` and `INNODB_SYS_FOREIGN_COLS` tables provide data about
 
    `FOR_COL_NAME` is the name of the foreign key column in the child table, and `REF_COL_NAME` is the name of the referenced column in the parent table. The `POS` value is the ordinal position of the key field within the foreign key index, starting at zero.
 
-**Example 14.4 Joining InnoDB INFORMATION\_SCHEMA System Tables**
+**Example 14.4 Joining InnoDB INFORMATION_SCHEMA System Tables**
 
 This example demonstrates joining three `InnoDB` `INFORMATION_SCHEMA` system tables (`INNODB_SYS_TABLES`, `INNODB_SYS_TABLESPACES`, and `INNODB_SYS_TABLESTATS`) to gather file format, row format, page size, and index size information about tables in the employees sample database.
 

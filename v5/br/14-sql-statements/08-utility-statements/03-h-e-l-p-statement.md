@@ -26,7 +26,7 @@ O comando HELP entende vários tipos de strings de pesquisa:
   HELP 'data types'
   ```
 
-- Para obter ajuda sobre um tópico específico, como a função `ASCII()` (string-functions.html#function\_ascii) ou a instrução `CREATE TABLE` (create-table.html), use a(s) palavra(s)-chave(s) associada(s):
+- Para obter ajuda sobre um tópico específico, como a função `ASCII()` (string-functions.html#function_ascii) ou a instrução `CREATE TABLE` (create-table.html), use a(s) palavra(s)-chave(s) associada(s):
 
   ```sql
   HELP 'ascii'

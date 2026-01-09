@@ -1,10 +1,10 @@
-### 28.4.15 A Tabela `INFORMATION\_SCHEMA\_INNODB\_FT\_CONFIG`
+### 28.4.15 A Tabela `INFORMATION_SCHEMA_INNODB_FT_CONFIG`
 
 A tabela `INNODB_FT_CONFIG` fornece metadados sobre o índice `FULLTEXT` e o processamento associado a uma tabela `InnoDB`.
 
 Esta tabela está vazia inicialmente. Antes de fazer uma consulta, defina o valor da variável de sistema `innodb_ft_aux_table` para o nome (incluindo o nome do banco de dados) da tabela que contém o índice `FULLTEXT` (por exemplo, `test/articles`).
 
-Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.4, “Tabelas de índice FULLTEXT do INFORMATION\_SCHEMA de InnoDB”.
+Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.4, “Tabelas de índice FULLTEXT do INFORMATION_SCHEMA de InnoDB”.
 
 A tabela `INNODB_FT_CONFIG` tem as seguintes colunas:
 

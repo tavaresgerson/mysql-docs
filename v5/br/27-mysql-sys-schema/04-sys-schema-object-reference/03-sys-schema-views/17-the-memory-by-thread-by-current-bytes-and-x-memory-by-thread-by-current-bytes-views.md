@@ -1,4 +1,4 @@
-#### 26.4.3.17 As visualizações memory\_by\_thread\_by\_current\_bytes e x$memory\_by\_thread\_by\_current\_bytes
+#### 26.4.3.17 As visualizações memory_by_thread_by_current_bytes e x$memory_by_thread_by_current_bytes
 
 Esses pontos resumem o uso da memória, agrupados por thread. Por padrão, as linhas são ordenadas por quantidade de memória usada em ordem decrescente.
 

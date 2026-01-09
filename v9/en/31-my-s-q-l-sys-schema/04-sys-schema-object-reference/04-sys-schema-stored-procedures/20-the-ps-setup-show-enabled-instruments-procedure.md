@@ -1,4 +1,4 @@
-#### 30.4.4.20 The ps\_setup\_show\_enabled\_instruments() Procedure
+#### 30.4.4.20 The ps_setup_show_enabled_instruments() Procedure
 
 Displays all currently enabled Performance Schema instruments. This might be a long list.
 

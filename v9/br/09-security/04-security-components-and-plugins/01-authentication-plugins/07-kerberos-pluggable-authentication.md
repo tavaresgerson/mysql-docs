@@ -18,7 +18,7 @@ A tabela a seguir mostra os nomes dos arquivos do plugin e da biblioteca. O sufi
 
 **Tabela 8.22 Nomes de Plugin e Biblioteca para Autenticação Kerberos**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação Kerberos."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>authentication_kerberos</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code>authentication_kerberos_client</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">authentication_kerberos.so</code>, <code class="filename">authentication_kerberos_client.so</code></td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação Kerberos."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>authentication_kerberos</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code>authentication_kerberos_client</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code>authentication_kerberos.so</code>, <code>authentication_kerberos_client.so</code></td> </tr></tbody></table>
 
 O plugin de autenticação Kerberos do lado do servidor está incluído apenas na Edição Empresarial do MySQL. Ele não está incluído nas distribuições comunitárias do MySQL. O plugin do lado do cliente está incluído em todas as distribuições, incluindo as distribuições comunitárias. Isso permite que clientes de qualquer distribuição se conectem a um servidor que tenha o plugin do lado do servidor carregado.
 
@@ -534,7 +534,7 @@ Observação
 
 Apesar de `CLIENT` no nome `AUTHENTICATION_KERBEROS_CLIENT_LOG`, a mesma variável de ambiente se aplica ao plugin do lado do servidor e ao plugin do lado do cliente.
 
-No lado do servidor, os valores permitidos são 0 (desativado) e 1 (ativado). As mensagens de log são escritas no log de erro do servidor, sujeito ao nível de granularidade de registro de erro do servidor. Por exemplo, se você estiver usando a filtragem de log com base na prioridade, a variável de sistema `log_error_verbosity` controla a granularidade, conforme descrito na Seção 7.4.2.5, “Filtragem de log de erro com base na prioridade (log\_filter\_internal”)”).
+No lado do servidor, os valores permitidos são 0 (desativado) e 1 (ativado). As mensagens de log são escritas no log de erro do servidor, sujeito ao nível de granularidade de registro de erro do servidor. Por exemplo, se você estiver usando a filtragem de log com base na prioridade, a variável de sistema `log_error_verbosity` controla a granularidade, conforme descrito na Seção 7.4.2.5, “Filtragem de log de erro com base na prioridade (log_filter_internal”)”).
 
 No lado do cliente, os valores permitidos são de 1 a 5 e são escritos na saída padrão de erro. A tabela a seguir mostra o significado de cada valor de nível de log.
 

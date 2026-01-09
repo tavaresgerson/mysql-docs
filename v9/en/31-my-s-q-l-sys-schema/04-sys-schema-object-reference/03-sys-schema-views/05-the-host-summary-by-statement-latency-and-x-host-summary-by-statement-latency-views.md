@@ -1,4 +1,4 @@
-#### 30.4.3.5 The host\_summary\_by\_statement\_latency and x$host\_summary\_by\_statement\_latency Views
+#### 30.4.3.5 The host_summary_by_statement_latency and x$host_summary_by_statement_latency Views
 
 These views summarize overall statement statistics, grouped by host. By default, rows are sorted by descending total latency.
 

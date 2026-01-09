@@ -90,7 +90,7 @@ The following system variables, status variables, and options have been removed 
 
 * `group_replication_allow_local_lower_version_join`: Allow current server to join group even if it has lower plugin version than group. Removed in MySQL 9.5.0.
 
-* `replica_parallel_type`: Tells replica to use timestamp information (LOGICAL\_CLOCK) or database partitioning (DATABASE) to parallelize transactions. Removed in MySQL 9.5.0.
+* `replica_parallel_type`: Tells replica to use timestamp information (LOGICAL_CLOCK) or database partitioning (DATABASE) to parallelize transactions. Removed in MySQL 9.5.0.
 
 * `rpl_semi_sync_master_enabled`: Whether semisynchronous replication is enabled on source. Removed in MySQL 9.5.0.
 
@@ -106,4 +106,4 @@ The following system variables, status variables, and options have been removed 
 
 * `rpl_semi_sync_slave_trace_level`: Semisynchronous replication debug trace level on replica. Removed in MySQL 9.5.0.
 
-* `slave_parallel_type`: Tells replica to use timestamp information (LOGICAL\_CLOCK) or database partioning (DATABASE) to parallelize transactions. Removed in MySQL 9.5.0.
+* `slave_parallel_type`: Tells replica to use timestamp information (LOGICAL_CLOCK) or database partioning (DATABASE) to parallelize transactions. Removed in MySQL 9.5.0.

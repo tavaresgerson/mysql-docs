@@ -10,7 +10,7 @@
 
 16.4 Cache de Objetos do Dicionário
 
-16.5 INFORMAÇÃO\_SCHEMA e Integração com o Dicionário de Dados
+16.5 INFORMAÇÃO_SCHEMA e Integração com o Dicionário de Dados
 
 16.6 Informações Serializadas do Dicionário (SDI)
 
@@ -32,6 +32,6 @@ Os benefícios do dicionário de dados do MySQL incluem:
 
 * Caching uniforme e centralizado para objetos do dicionário. Veja a Seção 16.4, “Cache de Objetos do Dicionário”.
 
-* Uma implementação mais simples e aprimorada para algumas tabelas do `INFORMATION_SCHEMA`. Veja a Seção 16.5, “Integração do INFORMAÇÃO\_SCHEMA e do Dicionário de Dados”.
+* Uma implementação mais simples e aprimorada para algumas tabelas do `INFORMATION_SCHEMA`. Veja a Seção 16.5, “Integração do INFORMAÇÃO_SCHEMA e do Dicionário de Dados”.
 
 * DDL atômico. Veja a Seção 15.1.1, “Suporte para Declaração de Definição de Dados Atômica”.

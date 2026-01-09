@@ -18,7 +18,7 @@ A tabela a seguir mostra os nomes dos arquivos do plugin e da biblioteca. O sufi
 
 **Tabela 8.17 Nomes de Plugin e Biblioteca para Autenticação PAM**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha PAM."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>authentication_pam</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">authentication_pam.so</code></td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha PAM."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code>authentication_pam</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code>mysql_clear_password</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code>authentication_pam.so</code></td> </tr></tbody></table>
 
 O plugin de texto claro do lado do cliente `mysql_clear_password` que se comunica com o plugin PAM do lado do servidor está embutido na biblioteca de cliente `libmysqlclient` e está incluído em todas as distribuições, incluindo as distribuições comunitárias. A inclusão do plugin de texto claro do lado do cliente em todas as distribuições MySQL permite que clientes de qualquer distribuição se conectem a um servidor que tenha o plugin PAM do lado do servidor carregado.
 
@@ -443,14 +443,14 @@ Em alguns sistemas, a autenticação Unix usa um armazenamento de senha como `/e
      ```
 
 4. Reinicie o servidor MySQL.
-* Se você estiver usando o módulo `pam_unix` e o utilitário **unix\_chkpwd**, habilite o acesso ao armazenamento de senhas da seguinte forma:
+* Se você estiver usando o módulo `pam_unix` e o utilitário **unix_chkpwd**, habilite o acesso ao armazenamento de senhas da seguinte forma:
 
 ```
   chmod u-s /usr/sbin/unix_chkpwd
   setcap cap_dac_read_search+ep /usr/sbin/unix_chkpwd
   ```
 
-Ajuste o caminho para **unix\_chkpwd** conforme necessário para sua plataforma.
+Ajuste o caminho para **unix_chkpwd** conforme necessário para sua plataforma.
 
 ##### Depuração da Autenticação PAM
 

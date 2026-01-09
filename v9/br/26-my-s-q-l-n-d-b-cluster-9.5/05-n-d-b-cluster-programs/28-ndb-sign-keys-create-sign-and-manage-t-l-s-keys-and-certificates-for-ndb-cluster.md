@@ -50,7 +50,7 @@ Crie um certificado vinculado a uma lista de endereços de host de tipos de nó 
   <tr><th>Formato de Linha de Comando</th> <td><code>--CA-ordinal=nome</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>[nenhum]</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>Primeiro</code></p><p><code>Segundo</code></p></td> </tr>
   </table>
 
   Defina o nome ordinal da CA; o valor padrão é `Primeiro` para `--create-CA` e `Segundo` para `--rotate-CA`. O Nome Comum no certificado da CA é “Certificado do MySQL NDB Cluster *`ordinal`*”, onde *`ordinal`* é o nome ordinal passado para esta opção.
@@ -100,7 +100,7 @@ Forneça o caminho para o arquivo de configuração do cluster (geralmente `conf
     </tbody>
   </table>
 
-  Defina o número de vezes que o **ndb\_sign\_keys** tenta se conectar ao cluster. Se você usar `-1`, o programa continua tentando se conectar até conseguir ou ser forçado a parar.
+  Defina o número de vezes que o **ndb_sign_keys** tenta se conectar ao cluster. Se você usar `-1`, o programa continua tentando se conectar até conseguir ou ser forçado a parar.
 
 * `--connect-retry-delay`
 
@@ -113,7 +113,7 @@ Forneça o caminho para o arquivo de configuração do cluster (geralmente `conf
     </tbody>
   </table>
 
-  Defina o número de segundos após uma tentativa de conexão falhada que o **ndb\_sign\_keys** aguarda antes de tentar novamente, até o número de vezes determinado por `--connect-retries`.
+  Defina o número de segundos após uma tentativa de conexão falhada que o **ndb_sign_keys** aguarda antes de tentar novamente, até o número de vezes determinado por `--connect-retries`.
 
 * `--create-CA`
 
@@ -194,13 +194,13 @@ Ler este caminho a partir do arquivo de login.
 
 <table frame="box" rules="all" summary="Propriedades para CA-cert"><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></table>
 
-Defina a cadeia de conexão a ser usada para se conectar ao **ndb\_mgmd**, usando a sintaxe `[nodeid=id;][host=]hostname[:port]`. Se esta opção for definida, ela substitui o valor definido para `NDB_CONNECTSTRING` (se houver), bem como qualquer valor definido em um arquivo `my.cnf`.
+Defina a cadeia de conexão a ser usada para se conectar ao **ndb_mgmd**, usando a sintaxe `[nodeid=id;][host=]hostname[:port]`. Se esta opção for definida, ela substitui o valor definido para `NDB_CONNECTSTRING` (se houver), bem como qualquer valor definido em um arquivo `my.cnf`.
 
 * `--ndb-mgm-tls`
 
   <table frame="box" rules="all" summary="Propriedades para CA-cert"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-cert=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NDB-Cluster-cert</code></td> </tr></tbody></table>
 
-  Define o nível de suporte TLS necessário para o cliente **ndb\_mgm**, um de `relaxado` ou `estricto`. `relaxado` (o padrão) significa que uma conexão TLS é tentada, mas o sucesso não é necessário; `estricto` significa que TLS é necessário para se conectar.
+  Define o nível de suporte TLS necessário para o cliente **ndb_mgm**, um de `relaxado` ou `estricto`. `relaxado` (o padrão) significa que uma conexão TLS é tentada, mas o sucesso não é necessário; `estricto` significa que TLS é necessário para se conectar.
 
 * `--ndb-tls-search-path`
 
@@ -348,7 +348,7 @@ Use o OpenSSL para assinar chaves no host CA remoto especificado com `--remote-C
 
   <table frame="box" rules="all" summary="Propriedades para CA-key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-key=nome</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>chave_privada_do_cluster_NDB</code></td> </tr></tbody></table>
 
-  Substitua um CA mais antigo por um mais novo. O novo CA pode ser criado usando o OpenSSL, ou você pode permitir que o **ndb\_sign\_keys** crie o novo, caso em que o novo CA é criado com um certificado de CA intermediário, assinado pelo CA antigo.
+  Substitua um CA mais antigo por um mais novo. O novo CA pode ser criado usando o OpenSSL, ou você pode permitir que o **ndb_sign_keys** crie o novo, caso em que o novo CA é criado com um certificado de CA intermediário, assinado pelo CA antigo.
 
 * `--schedule`
 
@@ -388,13 +388,13 @@ Crie certificados assinados; habilitados por padrão. Use `--skip-sign` para cri
 
 * `--skip-sign`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>Primeiro</code></p><p><code>Segundo</code></p></td> </tr></tbody></table>
 
   Crie solicitações de assinatura de certificados em vez de certificados assinados.
 
 * `--stdio`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>Primeiro</code></p><p><code>Segundo</code></p></td> </tr></tbody></table>
 
   Crie solicitações de assinatura de certificados em vez de certificados assinados.
 
@@ -404,13 +404,13 @@ Leia solicitações de assinatura de certificados a partir do `stdin` e escreva 
 
 * `--to-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>Primeiro</code></p><p><code>Segundo</code></p></td> </tr></tbody></table>
 
   Especifique o diretório de saída para os arquivos criados. Para arquivos de chave privada, isso pode ser sobrescrito usando `--keys-to-dir`.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para CA-ordinal"><tbody><tr><th>Formato de linha de comando</th> <td><code>--CA-ordinal=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[nenhum]</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>Primeiro</code></p><p><code>Segundo</code></p></td> </tr></tbody></table>
 
   Imprima o texto de ajuda e, em seguida, saia (alias para `--help`).
 
@@ -431,7 +431,7 @@ Leia solicitações de assinatura de certificados a partir do `stdin` e escreva 
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>Primeiro</code></p><p class="valid-value"><code>Segundo</code></p></td>
+    <td><p><code>Primeiro</code></p><p><code>Segundo</code></p></td>
   </tr>
 </table>
 5. Imprima as informações da versão, e então saia.

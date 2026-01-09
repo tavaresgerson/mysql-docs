@@ -1,4 +1,4 @@
-#### 26.4.5.17 The ps\_thread\_trx\_info() Function
+#### 26.4.5.17 The ps_thread_trx_info() Function
 
 Returns a JSON object containing information about a given thread. The information includes the current transaction, and the statements it has already executed, derived from the Performance Schema `events_transactions_current` and `events_statements_history` tables. (The consumers for those tables must be enabled to obtain full data in the JSON object.)
 
@@ -16,7 +16,7 @@ Similar error objects are returned for other warnings and exceptions raised duri
 
 ##### Configuration Options
 
-`ps_thread_trx_info()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys\_config Table”):
+`ps_thread_trx_info()` Function") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys_config Table”):
 
 * `ps_thread_trx_info.max_length`, `@sys.ps_thread_trx_info.max_length`
 

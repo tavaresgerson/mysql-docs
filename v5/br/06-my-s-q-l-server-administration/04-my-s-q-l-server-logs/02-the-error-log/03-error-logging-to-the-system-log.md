@@ -16,10 +16,10 @@ Nota
 
 Para registrar erros no log do sistema, pode ser necessário configurar o sistema adicionalmente. Consulte a documentação do log do sistema para sua plataforma.
 
-Em sistemas Unix e similares, o controle de saída para o `syslog` também está disponível usando **mysqld\_safe**, que pode capturar a saída de erros do servidor e passá-la para o `syslog`.
+Em sistemas Unix e similares, o controle de saída para o `syslog` também está disponível usando **mysqld_safe**, que pode capturar a saída de erros do servidor e passá-la para o `syslog`.
 
 Nota
 
-O uso de **mysqld\_safe** para registro de erros do `syslog` está desatualizado; você deve usar as variáveis do sistema do servidor.
+O uso de **mysqld_safe** para registro de erros do `syslog` está desatualizado; você deve usar as variáveis do sistema do servidor.
 
-**mysqld\_safe** tem três opções de registro de erros, `--syslog`, `--skip-syslog` e `--log-error`. O padrão sem opções de registro ou com `--skip-syslog` é usar o arquivo de log padrão. Para especificar explicitamente o uso de um arquivo de log de erro, especifique `--log-error=file_name` para **mysqld\_safe**, que então organiza para **mysqld** escrever mensagens em um arquivo de log. Para usar `syslog`, especifique a opção `--syslog`. Para a saída `syslog`, uma tag pode ser especificada com `--syslog-tag=tag_val`; isso é anexado ao identificador do servidor `mysqld` com um hífen antes.
+**mysqld_safe** tem três opções de registro de erros, `--syslog`, `--skip-syslog` e `--log-error`. O padrão sem opções de registro ou com `--skip-syslog` é usar o arquivo de log padrão. Para especificar explicitamente o uso de um arquivo de log de erro, especifique `--log-error=file_name` para **mysqld_safe**, que então organiza para **mysqld** escrever mensagens em um arquivo de log. Para usar `syslog`, especifique a opção `--syslog`. Para a saída `syslog`, uma tag pode ser especificada com `--syslog-tag=tag_val`; isso é anexado ao identificador do servidor `mysqld` com um hífen antes.

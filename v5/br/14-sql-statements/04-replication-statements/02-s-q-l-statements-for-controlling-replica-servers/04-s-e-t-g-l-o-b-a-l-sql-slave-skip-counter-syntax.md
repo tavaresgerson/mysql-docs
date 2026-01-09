@@ -1,4 +1,4 @@
-#### 13.4.2.4 Sintaxe do parâmetro global sql\_slave\_skip\_counter
+#### 13.4.2.4 Sintaxe do parâmetro global sql_slave_skip_counter
 
 ```sql
 SET GLOBAL sql_slave_skip_counter = N

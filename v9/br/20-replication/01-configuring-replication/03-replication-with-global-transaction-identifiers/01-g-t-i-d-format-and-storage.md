@@ -127,7 +127,7 @@ Se o registro binário estiver ativado (`log_bin` estiver em `ON`), apenas para 
 
 Se a tabela `mysql.gtid_executed` não puder ser acessada para gravações e o arquivo de log binário for rotado por qualquer motivo que não seja o alcance do tamanho máximo do arquivo (`max_binlog_size`), o arquivo de log binário atual continua sendo usado. Uma mensagem de erro é retornada ao cliente que solicitou a rotação, e uma mensagem de aviso é registrada no servidor. Se a tabela `mysql.gtid_executed` não puder ser acessada para gravações e `max_binlog_size` for alcançado, o servidor responde de acordo com a configuração de `binlog_error_action`. Se `IGNORE_ERROR` for definido, um erro é registrado no servidor e o registro binário é interrompido, ou se `ABORT_SERVER` for definido, o servidor é desligado.
 
-##### Compressão da Tabela `mysql.gtid\_executed`
+##### Compressão da Tabela `mysql.gtid_executed`
 
 Com o passar do tempo, a tabela `mysql.gtid_executed` pode ficar cheia de muitas linhas que se referem a GTIDs individuais que são gerados no mesmo servidor, têm a mesma tag de GTID (se houver) e cujos IDs de transação formam um intervalo, semelhante ao que é mostrado aqui:
 

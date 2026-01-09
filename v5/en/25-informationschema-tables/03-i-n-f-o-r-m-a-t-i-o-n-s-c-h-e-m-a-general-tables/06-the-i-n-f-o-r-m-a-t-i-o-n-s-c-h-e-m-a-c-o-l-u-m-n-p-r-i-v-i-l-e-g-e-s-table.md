@@ -1,4 +1,4 @@
-### 24.3.6 The INFORMATION\_SCHEMA COLUMN\_PRIVILEGES Table
+### 24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table
 
 The [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table") table provides information about column privileges. It takes its values from the `mysql.columns_priv` system table.
 

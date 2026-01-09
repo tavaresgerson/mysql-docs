@@ -1,7 +1,7 @@
 #### 15.1.24.12 Configurando Opções de Comentário NDB
 
-* Opções NDB\_COLUMN
-* Opções NDB\_TABLE
+* Opções NDB_COLUMN
+* Opções NDB_TABLE
 
 É possível definir várias opções específicas para o NDB Cluster no comentário da tabela ou nos comentários das colunas de uma tabela `NDB`. Opções de nível de tabela para controlar a leitura de qualquer replica e o equilíbrio de partições podem ser incorporadas em um comentário de tabela usando `NDB_TABLE`.
 
@@ -9,7 +9,7 @@
 
 `NDB_TABLE` pode ser usado em um comentário de tabela para definir opções relacionadas ao equilíbrio de partições e se a tabela é totalmente replicada, entre outras. O restante desta seção descreve essas opções e seu uso.
 
-##### Opções NDB\_COLUMN
+##### Opções NDB_COLUMN
 
 No NDB Cluster, um comentário de coluna em uma declaração `CREATE TABLE` ou `ALTER TABLE` também pode ser usado para especificar uma opção `NDB_COLUMN`. O `NDB` suporta duas opções de comentário de coluna `BLOB_INLINE_SIZE` e `MAX_BLOB_PART_SIZE`. A sintaxe para essas opções é mostrada aqui:
 
@@ -58,7 +58,7 @@ mysql> SELECT
 2 rows in set (0.01 sec)
 ```
 
-Você também pode verificar a saída da utilidade **ndb\_desc**, como mostrado aqui, com as linhas relevantes exibidas em texto destacado:
+Você também pode verificar a saída da utilidade **ndb_desc**, como mostrado aqui, com as linhas relevantes exibidas em texto destacado:
 
 ```
 $> ndb_desc -d test t1
@@ -111,7 +111,7 @@ mysql> CREATE TABLE test.t2 (
 Query OK, 0 rows affected (0.32 sec)
 ```
 
-Do shell do sistema, execute o utilitário **ndb\_desc** para obter informações sobre a tabela recém-criada, como mostrado neste exemplo:
+Do shell do sistema, execute o utilitário **ndb_desc** para obter informações sobre a tabela recém-criada, como mostrado neste exemplo:
 
 ```
 $> ndb_desc -d test t2
@@ -188,7 +188,7 @@ mysql> EXIT
 Bye
 ```
 
-A saída do **ndb\_desc** mostra que os tamanhos das partes do blob das colunas foram alterados conforme esperado:
+A saída do **ndb_desc** mostra que os tamanhos das partes do blob das colunas foram alterados conforme esperado:
 
 ```
 $> ndb_desc -d test t2
@@ -267,7 +267,7 @@ mysql> SELECT
 2 rows in set (0.00 sec)
 ```
 
-Você também pode verificar que a instrução funcionou verificando a saída do **ndb\_desc**.
+Você também pode verificar que a instrução funcionou verificando a saída do **ndb_desc**.
 
 Alterar o tamanho da parte do blob de uma coluna deve ser feito usando uma cópia de `ALTER TABLE`; essa operação não pode ser realizada online (veja a Seção 25.6.12, “Operações Online com ALTER TABLE no NDB Cluster”).
 
@@ -422,4 +422,4 @@ mysql> SELECT TABLE_NAME, TABLE_SCHEMA, TABLE_COMMENT
 2 rows in set (0.01 sec)
 ```
 
-Você também pode ver o valor da opção `PARTITION_BALANCE` na saída do **ndb\_desc**. **ndb\_desc** também mostra se as opções `READ_BACKUP` e `FULLY_REPLICATED` estão definidas para a tabela. Veja a descrição deste programa para mais informações.
+Você também pode ver o valor da opção `PARTITION_BALANCE` na saída do **ndb_desc**. **ndb_desc** também mostra se as opções `READ_BACKUP` e `FULLY_REPLICATED` estão definidas para a tabela. Veja a descrição deste programa para mais informações.

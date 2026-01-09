@@ -39,7 +39,7 @@ These variables are unavailable unless the appropriate server-side plugin is ins
   There can be service principal names that differ only by realm name.
 *  `authentication_ldap_sasl_auth_method_name`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>SCRAM-SHA-1</code></p><p class="valid-value"><code>SCRAM-SHA-256</code></p><p class="valid-value"><code>GSSAPI</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valid Values</th> <td><p><code>SCRAM-SHA-1</code></p><p><code>SCRAM-SHA-256</code></p><p><code>GSSAPI</code></p></td> </tr></tbody></table>
 
   For SASL LDAP authentication, the authentication method name. Communication between the authentication plugin and the LDAP server occurs according to this authentication method to ensure password security.
 
@@ -165,7 +165,7 @@ These variables are unavailable unless the appropriate server-side plugin is ins
 
   For SASL LDAP authentication, the logging level for messages written to the error log. The following table shows the permitted level values and their meanings.
 
-  **Table 8.29 Log Levels for authentication\_ldap\_sasl\_log\_status**
+  **Table 8.29 Log Levels for authentication_ldap_sasl_log_status**
 
   <table><thead><tr> <th>Option Value</th> <th>Types of Messages Logged</th> </tr></thead><tbody><tr> <td><code>1</code></td> <td>No messages</td> </tr><tr> <td><code>2</code></td> <td>Error messages</td> </tr><tr> <td><code>3</code></td> <td>Error and warning messages</td> </tr><tr> <td><code>4</code></td> <td>Error, warning, and information messages</td> </tr><tr> <td><code>5</code></td> <td>Same as previous level plus debugging messages from MySQL</td> </tr><tr> <td><code>6</code></td> <td>Same as previous level plus debugging messages from LDAP library</td> </tr></tbody></table>
 
@@ -221,7 +221,7 @@ These variables are unavailable unless the appropriate server-side plugin is ins
   For SASL LDAP authentication, the name of the attribute that specifies user names in LDAP directory entries. If a user distinguished name is not provided, the authentication plugin searches for the name using this attribute. For example, if the `authentication_ldap_sasl_user_search_attr` value is `uid`, a search for the user name `user1` finds entries with a `uid` value of `user1`.
 *  `authentication_ldap_simple_auth_method_name`
 
-  <table><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-ldap-simple-auth-method-name=value</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_ldap_simple_auth_method_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>SIMPLE</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>SIMPLE</code></p><p class="valid-value"><code>AD-FOREST</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Command-Line Format</th> <td><code>--authentication-ldap-simple-auth-method-name=value</code></td> </tr><tr><th>System Variable</th> <td><code>authentication_ldap_simple_auth_method_name</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>SIMPLE</code></td> </tr><tr><th>Valid Values</th> <td><p><code>SIMPLE</code></p><p><code>AD-FOREST</code></p></td> </tr></tbody></table>
 
   For simple LDAP authentication, the authentication method name. Communication between the authentication plugin and the LDAP server occurs according to this authentication method.
 
@@ -341,7 +341,7 @@ These variables are unavailable unless the appropriate server-side plugin is ins
 
   For simple LDAP authentication, the logging level for messages written to the error log. The following table shows the permitted level values and their meanings.
 
-  **Table 8.30 Log Levels for authentication\_ldap\_simple\_log\_status**
+  **Table 8.30 Log Levels for authentication_ldap_simple_log_status**
 
   <table><thead><tr> <th>Option Value</th> <th>Types of Messages Logged</th> </tr></thead><tbody><tr> <td><code>1</code></td> <td>No messages</td> </tr><tr> <td><code>2</code></td> <td>Error messages</td> </tr><tr> <td><code>3</code></td> <td>Error and warning messages</td> </tr><tr> <td><code>4</code></td> <td>Error, warning, and information messages</td> </tr><tr> <td><code>5</code></td> <td>Same as previous level plus debugging messages from MySQL</td> </tr><tr> <td><code>6</code></td> <td>Same as previous level plus debugging messages from LDAP library</td> </tr></tbody></table>
 *  `authentication_ldap_simple_max_pool_size`

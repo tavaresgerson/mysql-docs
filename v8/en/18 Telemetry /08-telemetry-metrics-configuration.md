@@ -9,7 +9,7 @@
   Controls whether telemetry metrics are collected or not.
 *  `telemetry.otel_exporter_otlp_metrics_protocol`
 
-  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_metrics_protocol</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>http/protobuf</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>http/protobuf</code></p><p class="valid-value"><code>http/json</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_metrics_protocol</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>http/protobuf</code></td> </tr><tr><th>Valid Values</th> <td><p><code>http/protobuf</code></p><p><code>http/json</code></p></td> </tr></tbody></table>
 
   The OLTP transport protocol.
 
@@ -41,12 +41,12 @@
   Client certificate/chain trust for clients private key in PEM format.
 *  `telemetry.otel_exporter_otlp_metrics_min_tls`
 
-  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_metrics_min_tls</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>[none]</code></p><p class="valid-value"><code>1.2</code></p><p class="valid-value"><code>1.3</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_metrics_min_tls</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>[none]</code></p><p><code>1.2</code></p><p><code>1.3</code></p></td> </tr></tbody></table>
 
   Minimum TLS version to use for metrics.
 *  `telemetry.otel_exporter_otlp_metrics_max_tls`
 
-  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_metrics_max_tls</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>[none]</code></p><p class="valid-value"><code>1.2</code></p><p class="valid-value"><code>1.3</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_metrics_max_tls</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr><tr><th>Valid Values</th> <td><p><code>[none]</code></p><p><code>1.2</code></p><p><code>1.3</code></p></td> </tr></tbody></table>
 
   Maximum TLS version to use for metrics.
 *  `telemetry.otel_exporter_otlp_metrics_cipher`
@@ -66,7 +66,7 @@
   Key-value pairs to be used as headers associated with HTTP requests.
 *  `telemetry.otel_exporter_otlp_metrics_compression`
 
-  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_metrics_compression</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>none (no compression)</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>none (no compression)</code></p><p class="valid-value"><code>gzip</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>System Variable</th> <td><code>telemetry.otel_exporter_otlp_metrics_compression</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th><code>SET_VAR</code> Hint Applies</th> <td>No</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>none (no compression)</code></td> </tr><tr><th>Valid Values</th> <td><p><code>none (no compression)</code></p><p><code>gzip</code></p></td> </tr></tbody></table>
 
   Compression used by exporter
 *  `telemetry.otel_exporter_otlp_metrics_timeout`

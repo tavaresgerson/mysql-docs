@@ -1,4 +1,4 @@
-### 28.3.51 The INFORMATION\_SCHEMA USER\_ATTRIBUTES Table
+### 28.3.51 The INFORMATION_SCHEMA USER_ATTRIBUTES Table
 
 The `USER_ATTRIBUTES` table provides information about user comments and user attributes. It takes its values from the `mysql.user` system table.
 

@@ -1,4 +1,4 @@
-### 24.3.9 A tabela INFORMATION\_SCHEMA FILES
+### 24.3.9 A tabela INFORMATION_SCHEMA FILES
 
 A tabela `FILES` fornece informações sobre os arquivos nos quais os dados do espaço de tabela do MySQL são armazenados.
 
@@ -84,7 +84,7 @@ A tabela `FILES` tem essas colunas:
 
 - `EXTENT_SIZE`
 
-  Para `InnoDB`: o tamanho do intervalo é de 1048576 (1 MB) para arquivos com tamanho de página de 4 KB, 8 KB ou 16 KB. O tamanho do intervalo é de 2097152 bytes (2 MB) para arquivos com tamanho de página de 32 KB e 4194304 (4 MB) para arquivos com tamanho de página de 64 KB. A tabela `[FILES]` (information-schema-files-table.html) não reporta o tamanho da página do `InnoDB`. O tamanho da página é definido pela variável de sistema `[innodb_page_size]` (innodb-parameters.html#sysvar\_innodb\_page\_size). As informações sobre o tamanho do intervalo também podem ser recuperadas da tabela `[INNODB_SYS_TABLESPACES]` (information-schema-innodb-sys-tablespaces-table.html), onde `FILES.FILE_ID = INNODB_SYS_TABLESPACES.SPACE`.
+  Para `InnoDB`: o tamanho do intervalo é de 1048576 (1 MB) para arquivos com tamanho de página de 4 KB, 8 KB ou 16 KB. O tamanho do intervalo é de 2097152 bytes (2 MB) para arquivos com tamanho de página de 32 KB e 4194304 (4 MB) para arquivos com tamanho de página de 64 KB. A tabela `[FILES]` (information-schema-files-table.html) não reporta o tamanho da página do `InnoDB`. O tamanho da página é definido pela variável de sistema `[innodb_page_size]` (innodb-parameters.html#sysvar_innodb_page_size). As informações sobre o tamanho do intervalo também podem ser recuperadas da tabela `[INNODB_SYS_TABLESPACES]` (information-schema-innodb-sys-tablespaces-table.html), onde `FILES.FILE_ID = INNODB_SYS_TABLESPACES.SPACE`.
 
   Para `NDB`: O tamanho de uma extensão do arquivo em bytes.
 
@@ -240,7 +240,7 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
 
 #### Notas do BNDES
 
-- A tabela `FILES` fornece informações apenas sobre os arquivos de dados do disco; você não pode usá-la para determinar a alocação ou disponibilidade de espaço em disco para tabelas individuais de `NDB`. No entanto, é possível ver quanto espaço é alocado para cada tabela de `NDB` (mysql-cluster.html), com dados armazenados no disco, bem como quanto espaço ainda está disponível para o armazenamento de dados no disco para essa tabela, usando **ndb\_desc**.
+- A tabela `FILES` fornece informações apenas sobre os arquivos de dados do disco; você não pode usá-la para determinar a alocação ou disponibilidade de espaço em disco para tabelas individuais de `NDB`. No entanto, é possível ver quanto espaço é alocado para cada tabela de `NDB` (mysql-cluster.html), com dados armazenados no disco, bem como quanto espaço ainda está disponível para o armazenamento de dados no disco para essa tabela, usando **ndb_desc**.
 
 - Os valores `CREATION_TIME`, `LAST_UPDATE_TIME` e `LAST_ACCESSED` são fornecidos pelo sistema operacional e não pelo mecanismo de armazenamento `NDB`. Quando nenhum valor é fornecido pelo sistema operacional, essas colunas exibem `NULL`.
 

@@ -1,48 +1,48 @@
 ### 21.6.15 ndbinfo: The NDB Cluster Information Database
 
-[21.6.15.1 The ndbinfo arbitrator\_validity\_detail Table](mysql-cluster-ndbinfo-arbitrator-validity-detail.html)
+[21.6.15.1 The ndbinfo arbitrator_validity_detail Table](mysql-cluster-ndbinfo-arbitrator-validity-detail.html)
 
-[21.6.15.2 The ndbinfo arbitrator\_validity\_summary Table](mysql-cluster-ndbinfo-arbitrator-validity-summary.html)
+[21.6.15.2 The ndbinfo arbitrator_validity_summary Table](mysql-cluster-ndbinfo-arbitrator-validity-summary.html)
 
 [21.6.15.3 The ndbinfo blocks Table](mysql-cluster-ndbinfo-blocks.html)
 
-[21.6.15.4 The ndbinfo cluster\_locks Table](mysql-cluster-ndbinfo-cluster-locks.html)
+[21.6.15.4 The ndbinfo cluster_locks Table](mysql-cluster-ndbinfo-cluster-locks.html)
 
-[21.6.15.5 The ndbinfo cluster\_operations Table](mysql-cluster-ndbinfo-cluster-operations.html)
+[21.6.15.5 The ndbinfo cluster_operations Table](mysql-cluster-ndbinfo-cluster-operations.html)
 
-[21.6.15.6 The ndbinfo cluster\_transactions Table](mysql-cluster-ndbinfo-cluster-transactions.html)
+[21.6.15.6 The ndbinfo cluster_transactions Table](mysql-cluster-ndbinfo-cluster-transactions.html)
 
-[21.6.15.7 The ndbinfo config\_nodes Table](mysql-cluster-ndbinfo-config-nodes.html)
+[21.6.15.7 The ndbinfo config_nodes Table](mysql-cluster-ndbinfo-config-nodes.html)
 
-[21.6.15.8 The ndbinfo config\_params Table](mysql-cluster-ndbinfo-config-params.html)
+[21.6.15.8 The ndbinfo config_params Table](mysql-cluster-ndbinfo-config-params.html)
 
-[21.6.15.9 The ndbinfo config\_values Table](mysql-cluster-ndbinfo-config-values.html)
+[21.6.15.9 The ndbinfo config_values Table](mysql-cluster-ndbinfo-config-values.html)
 
 [21.6.15.10 The ndbinfo counters Table](mysql-cluster-ndbinfo-counters.html)
 
 [21.6.15.11 The ndbinfo cpustat Table](mysql-cluster-ndbinfo-cpustat.html)
 
-[21.6.15.12 The ndbinfo cpustat\_50ms Table](mysql-cluster-ndbinfo-cpustat-50ms.html)
+[21.6.15.12 The ndbinfo cpustat_50ms Table](mysql-cluster-ndbinfo-cpustat-50ms.html)
 
-[21.6.15.13 The ndbinfo cpustat\_1sec Table](mysql-cluster-ndbinfo-cpustat-1sec.html)
+[21.6.15.13 The ndbinfo cpustat_1sec Table](mysql-cluster-ndbinfo-cpustat-1sec.html)
 
-[21.6.15.14 The ndbinfo cpustat\_20sec Table](mysql-cluster-ndbinfo-cpustat-20sec.html)
+[21.6.15.14 The ndbinfo cpustat_20sec Table](mysql-cluster-ndbinfo-cpustat-20sec.html)
 
-[21.6.15.15 The ndbinfo dict\_obj\_info Table](mysql-cluster-ndbinfo-dict-obj-info.html)
+[21.6.15.15 The ndbinfo dict_obj_info Table](mysql-cluster-ndbinfo-dict-obj-info.html)
 
-[21.6.15.16 The ndbinfo dict\_obj\_types Table](mysql-cluster-ndbinfo-dict-obj-types.html)
+[21.6.15.16 The ndbinfo dict_obj_types Table](mysql-cluster-ndbinfo-dict-obj-types.html)
 
-[21.6.15.17 The ndbinfo disk\_write\_speed\_base Table](mysql-cluster-ndbinfo-disk-write-speed-base.html)
+[21.6.15.17 The ndbinfo disk_write_speed_base Table](mysql-cluster-ndbinfo-disk-write-speed-base.html)
 
-[21.6.15.18 The ndbinfo disk\_write\_speed\_aggregate Table](mysql-cluster-ndbinfo-disk-write-speed-aggregate.html)
+[21.6.15.18 The ndbinfo disk_write_speed_aggregate Table](mysql-cluster-ndbinfo-disk-write-speed-aggregate.html)
 
-[21.6.15.19 The ndbinfo disk\_write\_speed\_aggregate\_node Table](mysql-cluster-ndbinfo-disk-write-speed-aggregate-node.html)
+[21.6.15.19 The ndbinfo disk_write_speed_aggregate_node Table](mysql-cluster-ndbinfo-disk-write-speed-aggregate-node.html)
 
 [21.6.15.20 The ndbinfo diskpagebuffer Table](mysql-cluster-ndbinfo-diskpagebuffer.html)
 
-[21.6.15.21 The ndbinfo error\_messages Table](mysql-cluster-ndbinfo-error-messages.html)
+[21.6.15.21 The ndbinfo error_messages Table](mysql-cluster-ndbinfo-error-messages.html)
 
-[21.6.15.22 The ndbinfo locks\_per\_fragment Table](mysql-cluster-ndbinfo-locks-per-fragment.html)
+[21.6.15.22 The ndbinfo locks_per_fragment Table](mysql-cluster-ndbinfo-locks-per-fragment.html)
 
 [21.6.15.23 The ndbinfo logbuffers Table](mysql-cluster-ndbinfo-logbuffers.html)
 
@@ -52,33 +52,33 @@
 
 [21.6.15.26 The ndbinfo memoryusage Table](mysql-cluster-ndbinfo-memoryusage.html)
 
-[21.6.15.27 The ndbinfo memory\_per\_fragment Table](mysql-cluster-ndbinfo-memory-per-fragment.html)
+[21.6.15.27 The ndbinfo memory_per_fragment Table](mysql-cluster-ndbinfo-memory-per-fragment.html)
 
 [21.6.15.28 The ndbinfo nodes Table](mysql-cluster-ndbinfo-nodes.html)
 
-[21.6.15.29 The ndbinfo operations\_per\_fragment Table](mysql-cluster-ndbinfo-operations-per-fragment.html)
+[21.6.15.29 The ndbinfo operations_per_fragment Table](mysql-cluster-ndbinfo-operations-per-fragment.html)
 
 [21.6.15.30 The ndbinfo processes Table](mysql-cluster-ndbinfo-processes.html)
 
 [21.6.15.31 The ndbinfo resources Table](mysql-cluster-ndbinfo-resources.html)
 
-[21.6.15.32 The ndbinfo restart\_info Table](mysql-cluster-ndbinfo-restart-info.html)
+[21.6.15.32 The ndbinfo restart_info Table](mysql-cluster-ndbinfo-restart-info.html)
 
-[21.6.15.33 The ndbinfo server\_locks Table](mysql-cluster-ndbinfo-server-locks.html)
+[21.6.15.33 The ndbinfo server_locks Table](mysql-cluster-ndbinfo-server-locks.html)
 
-[21.6.15.34 The ndbinfo server\_operations Table](mysql-cluster-ndbinfo-server-operations.html)
+[21.6.15.34 The ndbinfo server_operations Table](mysql-cluster-ndbinfo-server-operations.html)
 
-[21.6.15.35 The ndbinfo server\_transactions Table](mysql-cluster-ndbinfo-server-transactions.html)
+[21.6.15.35 The ndbinfo server_transactions Table](mysql-cluster-ndbinfo-server-transactions.html)
 
-[21.6.15.36 The ndbinfo table\_distribution\_status Table](mysql-cluster-ndbinfo-table-distribution-status.html)
+[21.6.15.36 The ndbinfo table_distribution_status Table](mysql-cluster-ndbinfo-table-distribution-status.html)
 
-[21.6.15.37 The ndbinfo table\_fragments Table](mysql-cluster-ndbinfo-table-fragments.html)
+[21.6.15.37 The ndbinfo table_fragments Table](mysql-cluster-ndbinfo-table-fragments.html)
 
-[21.6.15.38 The ndbinfo table\_info Table](mysql-cluster-ndbinfo-table-info.html)
+[21.6.15.38 The ndbinfo table_info Table](mysql-cluster-ndbinfo-table-info.html)
 
-[21.6.15.39 The ndbinfo table\_replicas Table](mysql-cluster-ndbinfo-table-replicas.html)
+[21.6.15.39 The ndbinfo table_replicas Table](mysql-cluster-ndbinfo-table-replicas.html)
 
-[21.6.15.40 The ndbinfo tc\_time\_track\_stats Table](mysql-cluster-ndbinfo-tc-time-track-stats.html)
+[21.6.15.40 The ndbinfo tc_time_track_stats Table](mysql-cluster-ndbinfo-tc-time-track-stats.html)
 
 [21.6.15.41 The ndbinfo threadblocks Table](mysql-cluster-ndbinfo-threadblocks.html)
 
@@ -383,4 +383,4 @@ ERROR 1146 (42S02): Table 'ndbinfo.Nodes' doesn't exist
 
 [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") ignores the `ndbinfo` database entirely, and excludes it from any output. This is true even when using the [`--databases`](mysqldump.html#option_mysqldump_databases) or [`--all-databases`](mysqldump.html#option_mysqldump_all-databases) option.
 
-NDB Cluster also maintains tables in the `INFORMATION_SCHEMA` information database, including the [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table which contains information about files used for NDB Cluster Disk Data storage, and the [`ndb_transid_mysql_connection_map`](information-schema-ndb-transid-mysql-connection-map-table.html "24.3.13 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table") table, which shows the relationships between transactions, transaction coordinators, and NDB Cluster API nodes. For more information, see the descriptions of the tables or [Section 21.6.16, “INFORMATION\_SCHEMA Tables for NDB Cluster”](mysql-cluster-information-schema-tables.html "21.6.16 INFORMATION_SCHEMA Tables for NDB Cluster").
+NDB Cluster also maintains tables in the `INFORMATION_SCHEMA` information database, including the [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table which contains information about files used for NDB Cluster Disk Data storage, and the [`ndb_transid_mysql_connection_map`](information-schema-ndb-transid-mysql-connection-map-table.html "24.3.13 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table") table, which shows the relationships between transactions, transaction coordinators, and NDB Cluster API nodes. For more information, see the descriptions of the tables or [Section 21.6.16, “INFORMATION_SCHEMA Tables for NDB Cluster”](mysql-cluster-information-schema-tables.html "21.6.16 INFORMATION_SCHEMA Tables for NDB Cluster").

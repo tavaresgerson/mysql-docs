@@ -63,9 +63,9 @@ For descriptions of the tracker-related system variables, see SectionÂ 7.1.8, â€
 
 To enable client applications to extract state-change information from OK packets returned by the server, the MySQL C API provides a pair of functions:
 
-* `mysql_session_track_get_first()` fetches the first part of the state-change information received from the server. See mysql\_session\_track\_get\_first().
+* `mysql_session_track_get_first()` fetches the first part of the state-change information received from the server. See mysql_session_track_get_first().
 
-* `mysql_session_track_get_next()` fetches any remaining state-change information received from the server. Following a successful call to `mysql_session_track_get_first()`, call this function repeatedly as long as it returns success. See mysql\_session\_track\_get\_next().
+* `mysql_session_track_get_next()` fetches any remaining state-change information received from the server. Following a successful call to `mysql_session_track_get_first()`, call this function repeatedly as long as it returns success. See mysql_session_track_get_next().
 
 #### Test Suite Session State Tracker Support
 
@@ -90,7 +90,7 @@ INSERT INTO test.t1 () VALUES(1, RAND());
 COMMIT;
 ```
 
-Run the script as follows to see the information provided by the enabled trackers. For a description of the `Tracker:` information displayed by **mysqltest** for the various trackers, see mysql\_session\_track\_get\_first().
+Run the script as follows to see the information provided by the enabled trackers. For a description of the `Tracker:` information displayed by **mysqltest** for the various trackers, see mysql_session_track_get_first().
 
 ```
 $> mysqltest < testscript

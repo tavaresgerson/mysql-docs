@@ -109,7 +109,7 @@ Command: Query
 4 rows in set (0.00 sec)
 ```
 
-As informações de bloqueio de metadados também são exibidas na tabela do Schema de Desempenho `metadata_locks`, que fornece informações sobre as dependências de bloqueio de metadados entre as sessões, o bloqueio de metadados que uma sessão está aguardando e a sessão que atualmente detém o bloqueio de metadados. Para mais informações, consulte a Seção 25.12.12.1, “A Tabela metadata\_locks”.
+As informações de bloqueio de metadados também são exibidas na tabela do Schema de Desempenho `metadata_locks`, que fornece informações sobre as dependências de bloqueio de metadados entre as sessões, o bloqueio de metadados que uma sessão está aguardando e a sessão que atualmente detém o bloqueio de metadados. Para mais informações, consulte a Seção 25.12.12.1, “A Tabela metadata_locks”.
 
 #### Desempenho de DDL online
 

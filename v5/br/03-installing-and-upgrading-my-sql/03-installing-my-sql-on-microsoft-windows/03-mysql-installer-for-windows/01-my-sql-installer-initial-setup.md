@@ -13,7 +13,7 @@ Quando você baixa o Instalador do MySQL pela primeira vez, um assistente de ins
 
 O Instalador do MySQL extrai os arquivos de configuração (descritos mais adiante) no disco rígido do host durante a configuração inicial. Embora o Instalador do MySQL seja um aplicativo de 32 bits, ele pode instalar tanto binários de 32 bits quanto de 64 bits.
 
-A configuração inicial adiciona um link ao menu Iniciar sob o grupo de pastas MySQL. Clique em Iniciar, MySQL e Instalador MySQL - \[Comunidade | Comercial] para abrir a versão comunitária ou comercial da ferramenta gráfica.
+A configuração inicial adiciona um link ao menu Iniciar sob o grupo de pastas MySQL. Clique em Iniciar, MySQL e Instalador MySQL - [Comunidade | Comercial] para abrir a versão comunitária ou comercial da ferramenta gráfica.
 
 ##### Escolher um tipo de configuração
 

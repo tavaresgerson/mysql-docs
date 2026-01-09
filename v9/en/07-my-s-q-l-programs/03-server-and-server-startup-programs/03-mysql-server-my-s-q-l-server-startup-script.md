@@ -1,12 +1,12 @@
 ### 6.3.3 mysql.server — MySQL Server Startup Script
 
-MySQL distributions on Unix and Unix-like system include a script named **mysql.server**, which starts the MySQL server using **mysqld\_safe**. It can be used on systems such as Linux and Solaris that use System V-style run directories to start and stop system services. It is also used by the macOS Startup Item for MySQL.
+MySQL distributions on Unix and Unix-like system include a script named **mysql.server**, which starts the MySQL server using **mysqld_safe**. It can be used on systems such as Linux and Solaris that use System V-style run directories to start and stop system services. It is also used by the macOS Startup Item for MySQL.
 
 **mysql.server** is the script name as used within the MySQL source tree. The installed name might be different (for example, **mysqld** or **mysql**). In the following discussion, adjust the name **mysql.server** as appropriate for your system.
 
 Note
 
-For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysql.server** and **mysqld\_safe** are not installed because they are unnecessary. For more information, see Section 2.5.9, “Managing MySQL Server with systemd”.
+For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysql.server** and **mysqld_safe** are not installed because they are unnecessary. For more information, see Section 2.5.9, “Managing MySQL Server with systemd”.
 
 To start or stop the server manually using the **mysql.server** script, invoke it from the command line with `start` or `stop` arguments:
 
@@ -15,7 +15,7 @@ mysql.server start
 mysql.server stop
 ```
 
-**mysql.server** changes location to the MySQL installation directory, then invokes **mysqld\_safe**. To run the server as some specific user, add an appropriate `user` option to the `[mysqld]` group of the global `/etc/my.cnf` option file, as shown later in this section. (It is possible that you must edit **mysql.server** if you've installed a binary distribution of MySQL in a nonstandard location. Modify it to change location into the proper directory before it runs **mysqld\_safe**. If you do this, your modified version of **mysql.server** may be overwritten if you upgrade MySQL in the future; make a copy of your edited version that you can reinstall.)
+**mysql.server** changes location to the MySQL installation directory, then invokes **mysqld_safe**. To run the server as some specific user, add an appropriate `user` option to the `[mysqld]` group of the global `/etc/my.cnf` option file, as shown later in this section. (It is possible that you must edit **mysql.server** if you've installed a binary distribution of MySQL in a nonstandard location. Modify it to change location into the proper directory before it runs **mysqld_safe**. If you do this, your modified version of **mysql.server** may be overwritten if you upgrade MySQL in the future; make a copy of your edited version that you can reinstall.)
 
 **mysql.server stop** stops the server by sending a signal to it. You can also stop the server manually by executing **mysqladmin shutdown**.
 
@@ -71,7 +71,7 @@ The **mysql.server** script supports the options shown in the following table. I
 
 **Table 6.8 mysql.server Option-File Options**
 
-<table frame="box" rules="all" summary="Option-file options available for mysql.server."><col align="left" style="width: 20%"/><col align="left" style="width: 70%"/><col align="left" style="width: 10%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Type</th> </tr></thead><tbody><tr><th><a class="link" href="mysql-server.html#option_mysql_server_basedir"><code class="literal">basedir</code></a></th> <td>Path to MySQL installation directory</td> <td>Directory name</td> </tr><tr><th><a class="link" href="mysql-server.html#option_mysql_server_datadir"><code class="literal">datadir</code></a></th> <td>Path to MySQL data directory</td> <td>Directory name</td> </tr><tr><th><a class="link" href="mysql-server.html#option_mysql_server_pid-file"><code class="literal">pid-file</code></a></th> <td>File in which server should write its process ID</td> <td>File name</td> </tr><tr><th><a class="link" href="mysql-server.html#option_mysql_server_service-startup-timeout"><code class="literal">service-startup-timeout</code></a></th> <td>How long to wait for server startup</td> <td>Integer</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Option-file options available for mysql.server."><col align="left" style="width: 20%"/><col align="left" style="width: 70%"/><col align="left" style="width: 10%"/><thead><tr><th>Option Name</th> <th>Description</th> <th>Type</th> </tr></thead><tbody><tr><th><code class="literal">basedir</code></th> <td>Path to MySQL installation directory</td> <td>Directory name</td> </tr><tr><th><code class="literal">datadir</code></th> <td>Path to MySQL data directory</td> <td>Directory name</td> </tr><tr><th><code class="literal">pid-file</code></th> <td>File in which server should write its process ID</td> <td>File name</td> </tr><tr><th><code class="literal">service-startup-timeout</code></th> <td>How long to wait for server startup</td> <td>Integer</td> </tr></tbody></table>
 
 * `basedir=dir_name`
 
@@ -85,7 +85,7 @@ The **mysql.server** script supports the options shown in the following table. I
 
   The path name of the file in which the server should write its process ID. The server creates the file in the data directory unless an absolute path name is given to specify a different directory.
 
-  If this option is not given, **mysql.server** uses a default value of `host_name.pid`. The PID file value passed to **mysqld\_safe** overrides any value specified in the `[mysqld_safe]` option file group. Because **mysql.server** reads the `[mysqld]` option file group but not the `[mysqld_safe]` group, you can ensure that **mysqld\_safe** gets the same value when invoked from **mysql.server** as when invoked manually by putting the same `pid-file` setting in both the `[mysqld_safe]` and `[mysqld]` groups.
+  If this option is not given, **mysql.server** uses a default value of `host_name.pid`. The PID file value passed to **mysqld_safe** overrides any value specified in the `[mysqld_safe]` option file group. Because **mysql.server** reads the `[mysqld]` option file group but not the `[mysqld_safe]` group, you can ensure that **mysqld_safe** gets the same value when invoked from **mysql.server** as when invoked manually by putting the same `pid-file` setting in both the `[mysqld_safe]` and `[mysqld]` groups.
 
 * `service-startup-timeout=seconds`
 

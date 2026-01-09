@@ -60,7 +60,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
 * `activate_all_roles_on_login`
 
-  <table frame="box" rules="all" summary="Propriedades para activate_all_roles_on_login"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--activate-all-roles-on-login[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_activate_all_roles_on_login">activate_all_roles_on_login</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para activate_all_roles_on_login"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--activate-all-roles-on-login[={OFF|ON}]</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>activate_all_roles_on_login</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
 Se ativar ou não a ativação automática de todos os papéis concedidos quando os usuários fazem login no servidor:
 
@@ -74,7 +74,7 @@ Os papéis concedidos incluem aqueles concedidos explicitamente ao usuário e aq
 
 * `admin_address`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 O endereço IP para ouvir conexões TCP/IP na interface de rede administrativa (consulte a Seção 7.1.12.1, “Interfaces de Conexão”). Não há um valor padrão para `admin_address`. Se essa variável não for especificada no início, o servidor não mantém nenhuma interface administrativa. O servidor também tem uma variável de sistema `bind_address` para configurar conexões TCP/IP de clientes regulares (não administrativas). Consulte a Seção 7.1.12.1, “Interfaces de Conexão”.
 
@@ -121,10 +121,10 @@ A variável de sistema `admin_address` é semelhante à variável de sistema `bi
 
 <table frame="box" rules="all" summary="Propriedades para admin_port">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -144,7 +144,7 @@ A variável de sistema `admin_address` é semelhante à variável de sistema `bi
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -155,7 +155,7 @@ A variável de sistema `admin_address` é semelhante à variável de sistema `bi
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -179,7 +179,7 @@ A variável do sistema `admin_ssl_ca` é semelhante à `ssl_ca`, exceto que se a
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td>
+    <td><code>admin_ssl_capath</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -190,7 +190,7 @@ A variável do sistema `admin_ssl_ca` é semelhante à `ssl_ca`, exceto que se a
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -214,7 +214,7 @@ A variável do sistema `admin_ssl_capath` é semelhante à `ssl_capath`, exceto 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cert">admin_ssl_cert</a></code></td>
+    <td><code>admin_ssl_cert</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -225,7 +225,7 @@ A variável do sistema `admin_ssl_capath` é semelhante à `ssl_capath`, exceto 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -249,7 +249,7 @@ A variável do sistema `admin_ssl_cert` é semelhante à `ssl_cert`, exceto que 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td>
+    <td><code>admin_ssl_cipher</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -260,7 +260,7 @@ A variável do sistema `admin_ssl_cert` é semelhante à `ssl_cert`, exceto que 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -302,7 +302,7 @@ A variável do sistema `admin_ssl_cert` é semelhante à `ssl_cert`, exceto que 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td>
+    <td><code>admin_ssl_crl</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -313,7 +313,7 @@ A variável do sistema `admin_ssl_cert` é semelhante à `ssl_cert`, exceto que 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -337,7 +337,7 @@ A variável do sistema `admin_ssl_crl` é semelhante à `ssl_crl`, exceto que se
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td>
+    <td><code>admin_ssl_crlpath</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -348,7 +348,7 @@ A variável do sistema `admin_ssl_crl` é semelhante à `ssl_crl`, exceto que se
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -372,7 +372,7 @@ A variável do sistema `admin_ssl_crlpath` é semelhante à `ssl_crlpath`, excet
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td>
+    <td><code>admin_ssl_key</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -383,7 +383,7 @@ A variável do sistema `admin_ssl_crlpath` é semelhante à `ssl_crlpath`, excet
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -407,7 +407,7 @@ A variável do sistema `admin_ssl_key` é semelhante à `ssl_key`, exceto que el
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -418,7 +418,7 @@ A variável do sistema `admin_ssl_key` é semelhante à `ssl_key`, exceto que el
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -447,7 +447,7 @@ A variável do sistema `admin_ssl_key` é semelhante à `ssl_key`, exceto que el
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -458,7 +458,7 @@ A variável do sistema `admin_ssl_key` é semelhante à `ssl_key`, exceto que el
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -486,7 +486,7 @@ Importante
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></td>
+    <td>admin_address</td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -497,7 +497,7 @@ Importante
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></a> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</th></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -551,23 +551,23 @@ Se `authentication_policy` não especificar um plugin padrão para o primeiro fa
 
 A tabela a seguir mostra alguns valores possíveis para `authentication_policy` e a política que cada um estabelece para criar ou alterar contas.
 
-**Tabela 7.4 Valores de exemplo de authentication\_policy**
+**Tabela 7.4 Valores de exemplo de authentication_policy**
 
-<table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 * `authentication_windows_log_level`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Esta variável está disponível apenas se o plugin de autenticação Windows `authentication_windows_log_level` estiver habilitado e o código de depuração estiver habilitado. Veja a Seção 8.4.1.5, “Autenticação Plugável do Windows”.
 
 Esta variável define o nível de registro para o plugin de autenticação Windows. A tabela a seguir mostra os valores permitidos.
 
-<table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 * `authentication_windows_use_principal_name`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Esta variável está disponível apenas se o plugin de autenticação de Windows `authentication_windows_use_principal_name` estiver habilitado. Veja a Seção 8.4.1.5, “Autenticação Windows Pluggable”.
 
@@ -579,7 +579,7 @@ Se o servidor não conseguir obter seu UPN (o que acontece principalmente em amb
 
 * `autocommit`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
 O modo de autocommit. Se definido como 1, todas as alterações em uma tabela entram em vigor imediatamente. Se definido como 0, você deve usar `COMMIT` para aceitar uma transação ou `ROLLBACK` para cancelá-la. Se `autocommit` é 0 e você o altera para 1, o MySQL realiza um `COMMIT` automático de qualquer transação aberta. Outra maneira de iniciar uma transação é usar uma declaração `START TRANSACTION` ou `BEGIN`. Veja a Seção 15.3.1, “Declarações START TRANSACTION, COMMIT e ROLLBACK”.
 
@@ -592,7 +592,7 @@ Por padrão, as conexões do cliente começam com `autocommit` definido como 1. 
 
 * `automatic_sp_privileges`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Quando essa variável tiver o valor 1 (padrão), o servidor concederá automaticamente os privilégios `EXECUTE` e `ALTER ROUTINE` ao criador de uma rotina armazenada, caso o usuário não possa executar e alterar ou descartar a rotina. (O privilégio `ALTER ROUTINE` é necessário para descartar a rotina.) O servidor também descartará automaticamente esses privilégios do criador quando a rotina for descartada. Se `automatic_sp_privileges` for 0, o servidor não adicionará ou descartará automaticamente esses privilégios.
 
@@ -606,7 +606,7 @@ Veja também a Seção 27.2.2, “Rotinas Armazenadas e Privilégios do MySQL”
 
 * `auto_generate_certs`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para Configuração de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de Sintaxe para Configuração de Variáveis" target="_blank">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para Configuração de SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Esta variável controla se o servidor autogera arquivos de chave e certificado SSL no diretório de dados, se eles ainda não existirem.
 
@@ -618,7 +618,7 @@ As variáveis de sistema `sha256_password_auto_generate_rsa_keys` e `caching_sha
 
 * `back_log`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Observação
 
@@ -644,10 +644,10 @@ Se você definir `max_connections` para um valor maior que 10000, recomenda-se d
 
 <table frame="box" rules="all" summary="Propriedades para admin_port">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -663,7 +663,7 @@ Se você definir `max_connections` para um valor maior que 10000, recomenda-se d
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td>
+    <td><code>admin_port</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -674,7 +674,7 @@ Se você definir `max_connections` para um valor maior que 10000, recomenda-se d
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -702,7 +702,7 @@ O valor padrão para novas conexões é `OFF` (usar tabelas temporárias em mem�
 
 * `bind_address`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 O servidor MySQL escuta em um ou mais sockets de rede para conexões TCP/IP. Cada soquete está vinculado a um endereço, mas é possível que um endereço seja mapeado para múltiplas interfaces de rede. Para especificar como o servidor deve ouvir conexões TCP/IP, defina a variável de sistema `bind_address` no início do servidor. O servidor também possui uma variável de sistema `admin_address` que permite conexões administrativas em uma interface dedicada. Veja a Seção 7.1.12.1, “Interfaces de Conexão”.
 
@@ -779,7 +779,7 @@ Se você pretende vincular o servidor a um endereço específico, certifique-se 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td>
+    <td><code>admin_port</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -790,7 +790,7 @@ Se você pretende vincular o servidor a um endereço específico, certifique-se 
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -825,7 +825,7 @@ Se você pretende vincular o servidor a um endereço específico, certifique-se 
 
 * `build_id`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de Configuração de Variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Este é um ID de compilação de 160 bits `SHA1` que é gerado pelo encadeador ao compilar o servidor em sistemas Linux com `-DWITH_BUILD_ID=ON` (ativado por padrão), e convertido em uma string hexadecimal. Este valor de leitura somente serve como um ID de compilação único e é escrito no log do servidor ao iniciar.
 
@@ -833,7 +833,7 @@ Este é um ID de compilação de 160 bits `SHA1` que é gerado pelo encadeador a
 
 * `bulk_insert_buffer_size`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe de Definição de Variável <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe de Definição de Variável <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   O `MyISAM` usa uma cache especial semelhante a uma árvore para tornar as inserções em massa mais rápidas para `INSERT ... SELECT`, `INSERT ... VALUES (...), (...), ...` e `LOAD DATA` ao adicionar dados a tabelas não vazias. Esta variável limita o tamanho da árvore de cache em bytes por thread. Definir o valor para 0 desativa esta otimização. O valor padrão é 8MB.
 
@@ -841,7 +841,7 @@ Este é um ID de compilação de 160 bits `SHA1` que é gerado pelo encadeador a
 
 * `caching_sha2_password_digest_rounds`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 O número de rodadas de hashing usadas pelo plugin de autenticação `caching_sha2_password` para armazenamento de senhas.
 
@@ -860,7 +860,7 @@ O aumento do número de rodadas de hashing acima do valor padrão causa uma pena
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td>
+    <td><code>admin_port</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -871,7 +871,7 @@ O aumento do número de rodadas de hashing acima do valor padrão causa uma pena
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -902,7 +902,7 @@ A variável de sistema `auto_generate_certs` está relacionada, mas controla a a
 
 * `caching_sha2_password_private_key_path`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável de sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável de sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Esta variável especifica o nome do caminho do arquivo de chave privada RSA para o plugin de autenticação `caching_sha2_password`. Se o arquivo estiver nomeado como um caminho relativo, ele será interpretado em relação ao diretório de dados do servidor. O arquivo deve estar no formato PEM.
 
@@ -921,7 +921,7 @@ A variável de sistema `auto_generate_certs` está relacionada, mas controla a a
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -932,7 +932,7 @@ A variável de sistema `auto_generate_certs` está relacionada, mas controla a a
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Habilidade de Aplicação da Sugestão de Sintaxe <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de definição de variáveis"><code>SET_VAR</a></th></td>
+    <th>Habilidade de Aplicação da Sugestão de Sintaxe <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -958,7 +958,7 @@ A variável de sistema `auto_generate_certs` está relacionada, mas controla a a
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -969,7 +969,7 @@ A variável de sistema `auto_generate_certs` está relacionada, mas controla a a
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -990,10 +990,10 @@ A variável de sistema `auto_generate_certs` está relacionada, mas controla a a
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de SET_VAR Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -1008,7 +1008,7 @@ O conjunto de caracteres usado para literais especificados sem um introduzir de 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1019,7 +1019,7 @@ O conjunto de caracteres usado para literais especificados sem um introduzir de 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1043,7 +1043,7 @@ O conjunto de caracteres usado para literais especificados sem um introduzir de 
 
 * `character_set_filesystem`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para definição de variável <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de definição de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Dica de sintaxe para definição de variável <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Conjunto de caracteres do sistema de arquivos. Esta variável é usada para interpretar literais de string que se referem a nomes de arquivos, como nas instruções `LOAD DATA` e `SELECT ... INTO OUTFILE` e na função `LOAD_FILE()`. Esses nomes de arquivos são convertidos de `character_set_client` para `character_set_filesystem` antes que a tentativa de abertura do arquivo ocorra. O valor padrão é `binary`, o que significa que nenhuma conversão ocorre. Para sistemas em que nomes de arquivos multibyte são permitidos, um valor diferente pode ser mais apropriado. Por exemplo, se o sistema representar nomes de arquivos usando UTF-8, defina `character_set_filesystem` para `'utf8mb4'`.
 
@@ -1059,7 +1059,7 @@ Conjunto de caracteres padrão dos servidores. Consulte a Seção 12.15, “Conf
 
 * `character_set_system`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></table>
 
   O conjunto de caracteres usado pelo servidor para armazenar identificadores. O valor é sempre `utf8mb3`.
 
@@ -1067,10 +1067,10 @@ Conjunto de caracteres padrão dos servidores. Consulte a Seção 12.15, “Conf
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=nome_arquivo</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -1082,10 +1082,10 @@ Conjunto de caracteres padrão dos servidores. Consulte a Seção 12.15, “Conf
 
   <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath">
     <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-capath=nome_diretorio</code></td> </tr>
-    <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td> </tr>
+    <tr><th>Variável do Sistema</th> <td><code>admin_ssl_capath</code></td> </tr>
     <tr><th>Alcance</th> <td>Global</td> </tr>
     <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+    <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
     <tr><th>Tipo</th> <td>Nome do diretório</td> </tr>
     <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
   </table>
@@ -1098,7 +1098,7 @@ Para obter informações sobre o mapeamento de usuários, consulte a Seção 8.2
 
 * `collation_connection`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-capath=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-capath=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_ssl_capath</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 A combinação do conjunto de caracteres de conexão. `collation_connection` é importante para comparações de strings literais. Para comparações de strings com valores de colunas, `collation_connection` não importa porque as colunas têm sua própria collation, que tem precedência de collation mais alta (veja a Seção 12.8.4, “Collation Coercibility in Expressions”).
 
@@ -1106,7 +1106,7 @@ Usar o nome de uma collation definida pelo usuário para essa variável gera uma
 
 * `collation_database`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-capath=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-capath=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_capath</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   A collation usada pelo banco de dados padrão. O servidor define essa variável sempre que o banco de dados padrão muda. Se não houver banco de dados padrão, a variável terá o mesmo valor que `collation_server`.
 
@@ -1118,7 +1118,7 @@ Usar o nome de uma collation definida pelo usuário para `collation_database` ge
 
 * `collation_server`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-capath=dir_name</code></td> </tr><tr><th>Variável de sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-capath=dir_name</code></td> </tr><tr><th>Variável de sistema</th> <td><code>admin_ssl_capath</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   A collation padrão do servidor. Veja a Seção 12.15, “Configuração de Conjunto de Caracteres”.
 
@@ -1128,10 +1128,10 @@ Usar o nome de uma collation definida pelo usuário para `collation_database` ge
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-capath=nome_pasta</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_capath</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome da pasta</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -1142,7 +1142,7 @@ Usar o nome de uma collation definida pelo usuário para `collation_database` ge
   <tr>
     <th>Formato de Linha de Comando</th> <td><code>--admin-ssl-capath=nome_pasta</code></td> </tr>
     <tr>
-      <th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td> </tr>
+      <th>Variável do Sistema</th> <td><code>admin_ssl_capath</code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -1151,7 +1151,7 @@ Usar o nome de uma collation definida pelo usuário para `collation_database` ge
       <th>Dinâmico</th> <td>Sim</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+      <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Nome da pasta</td> </tr>
@@ -1167,10 +1167,10 @@ Usar o nome de uma collation definida pelo usuário para `collation_database` ge
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-capath=nome_pasta</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_capath</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de SET_VAR Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome da pasta</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -1188,7 +1188,7 @@ Veja a Seção 8.4.2, “O Componente de Controle de Conexão”.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td>
+    <td><code>admin_ssl_capath</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1199,7 +1199,7 @@ Veja a Seção 8.4.2, “O Componente de Controle de Conexão”.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1221,10 +1221,10 @@ Veja a Seção 8.4.2, “O Componente de Controle de Conexão”.
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_capath">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-capath=nome_pasta</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_capath</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome da pasta</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -1242,7 +1242,7 @@ Consulte a Seção 8.4.2, “O Componente de Controle de Conexão”, para obter
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_capath">admin_ssl_capath</a></code></td>
+    <td><code>admin_ssl_capath</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -1253,7 +1253,7 @@ Consulte a Seção 8.4.2, “O Componente de Controle de Conexão”, para obter
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1279,7 +1279,7 @@ Veja a Seção 8.4.2, “O Componente de Controle de Conexão”.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cert">admin_ssl_cert</a></code></td>
+    <td><code>admin_ssl_cert</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1290,7 +1290,7 @@ Veja a Seção 8.4.2, “O Componente de Controle de Conexão”.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -1320,7 +1320,7 @@ Veja a Seção 8.4.2, “O Componente de Controle de Conexão”.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cert">admin_ssl_cert</a></code></td>
+    <td><code>admin_ssl_cert</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1331,7 +1331,7 @@ Veja a Seção 8.4.2, “O Componente de Controle de Conexão”.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1355,7 +1355,7 @@ Veja a Seção 8.4.2, “O Componente de Controle de Conexão”.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cert">admin_ssl_cert</a></code></td>
+    <td><code>admin_ssl_cert</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1366,7 +1366,7 @@ Veja a Seção 8.4.2, “O Componente de Controle de Conexão”.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1393,7 +1393,7 @@ Aumentar o valor de `connect_timeout` pode ajudar se os clientes frequentemente 
 
 * `connection_memory_chunk_size`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_cert"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-cert=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cert">admin_ssl_cert</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_cert"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-cert=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_cert</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Defina o tamanho de agrupamento para atualizações no contador de uso de memória global `Global_connection_memory`. A variável de status é atualizada apenas quando o consumo total de memória por todas as conexões do usuário muda em mais que essa quantidade. Desative as atualizações definindo `connection_memory_chunk_size = 0`.
 
@@ -1410,7 +1410,7 @@ Você deve ter o privilégio `SYSTEM_VARIABLES_ADMIN` ou `SUPER` para definir es
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cert">admin_ssl_cert</a></code></td>
+    <td><code>admin_ssl_cert</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1421,7 +1421,7 @@ Você deve ter o privilégio `SYSTEM_VARIABLES_ADMIN` ou `SUPER` para definir es
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1442,7 +1442,7 @@ Você deve ter o privilégio `SYSTEM_VARIABLES_ADMIN` ou `SUPER` para definir es
 
 * `connection_memory_status_limit`
 
-<table frame="box" rules="all" summary="Propriedades para admin_ssl_cert"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-cert=nome_do_arquivo</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cert">admin_ssl_cert</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para admin_ssl_cert"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-cert=nome_do_arquivo</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_cert</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></table>
 
 Este é o valor máximo de memória que pode ser consumido por qualquer conexão de usuário antes que o `Count_hit_query_past_connection_memory_status_limit` seja incrementado.
 
@@ -1452,7 +1452,7 @@ Se deve escrever um arquivo de núcleo caso o servidor saia inesperadamente. Ess
 
 * `create_admin_listener_thread`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_cert"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-cert=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cert">admin_ssl_cert</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_cert"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-cert=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_cert</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Se deve usar um thread de escuta dedicado para conexões de clientes na interface de rede administrativa (consulte a Seção 7.1.12.1, “Interfaces de Conexão”). O padrão é `OFF`; ou seja, o thread do gerente para conexões comuns na interface principal também lida com conexões para a interface administrativa.
 
@@ -1469,7 +1469,7 @@ Se deve escrever um arquivo de núcleo caso o servidor saia inesperadamente. Ess
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cert">admin_ssl_cert</a></code></td>
+    <td><code>admin_ssl_cert</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -1480,7 +1480,7 @@ Se deve escrever um arquivo de núcleo caso o servidor saia inesperadamente. Ess
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de hint de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1504,7 +1504,7 @@ A profundidade máxima de recursão da expressão de tabela comum (CTE). O servi
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td>
+    <td><code>admin_ssl_cipher</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -1515,7 +1515,7 @@ A profundidade máxima de recursão da expressão de tabela comum (CTE). O servi
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1539,7 +1539,7 @@ A profundidade máxima de recursão da expressão de tabela comum (CTE). O servi
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td>
+    <td><code>admin_ssl_cipher</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1550,7 +1550,7 @@ A profundidade máxima de recursão da expressão de tabela comum (CTE). O servi
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Dica de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Dica de Sintaxe para SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1606,7 +1606,7 @@ Para mais informações, consulte a Seção 7.9.4, “O Pacote DBUG”.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td>
+    <td><code>admin_ssl_cipher</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1617,7 +1617,7 @@ Para mais informações, consulte a Seção 7.9.4, “O Pacote DBUG”.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1642,7 +1642,7 @@ Para uma descrição da facilidade de sincronização de depuração e de como u
 
 * `default_collation_for_utf8mb4`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_cipher"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-cipher=nome</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_cipher"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-cipher=nome</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_ssl_cipher</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Importante
 
@@ -1671,7 +1671,7 @@ Veja também a Seção 12.9, “Suporte a Unicode”.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td>
+    <td><code>admin_ssl_cipher</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1682,7 +1682,7 @@ Veja também a Seção 12.9, “Suporte a Unicode”.
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de Ajuda <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Ajuda para Definir Variáveis">SET_VAR</a> Aplica</th>
+    <th>Hinta de Ajuda SET_VAR Aplica</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1709,7 +1709,7 @@ A política global de expiração da senha pode ser substituída conforme deseja
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td>
+    <td><code>admin_ssl_cipher</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1720,7 +1720,7 @@ A política global de expiração da senha pode ser substituída conforme deseja
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1748,7 +1748,7 @@ A política global de expiração da senha pode ser substituída conforme deseja
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td>
+    <td><code>admin_ssl_cipher</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1759,7 +1759,7 @@ A política global de expiração da senha pode ser substituída conforme deseja
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1788,10 +1788,10 @@ A política global de expiração da senha pode ser substituída conforme deseja
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_cipher">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-cipher=nome</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_cipher</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -1806,13 +1806,13 @@ O valor do modo padrão a ser usado para a função `WEEK()`. Veja a Seção 14.
 
 * `delay_key_write`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_cipher"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-cipher=nome</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_cipher">admin_ssl_cipher</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Sugestão de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Sugestão de Definição de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_cipher"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-cipher=nome</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_cipher</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Sugestão de Sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Esta variável especifica como usar escritas de chave atrasadas. Ela se aplica apenas a tabelas `MyISAM`. A escrita de chave atrasada faz com que os buffers de chave não sejam descarregados entre as escritas. Veja também a Seção 18.2.1, “Opções de inicialização do MyISAM”.
 
 Esta variável pode ter um dos seguintes valores para afetar o tratamento da opção de tabela `DELAY_KEY_WRITE` que pode ser usada em instruções `CREATE TABLE`.
 
-<table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_crl</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Nota
 
@@ -1828,7 +1828,7 @@ Se você habilitar o bloqueio externo com `--external-locking`, não há proteç
 
 * `delayed_insert_limit`
 
-<table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_ssl_crl</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Esta variável de sistema está desatualizada (porque as inserções `DELAYED` não são suportadas) e você deve esperar que ela seja removida em uma futura versão.
 
@@ -1841,7 +1841,7 @@ Esta variável de sistema está desatualizada (porque as inserções `DELAYED` n
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td>
+    <td><code>admin_ssl_crl</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1852,7 +1852,7 @@ Esta variável de sistema está desatualizada (porque as inserções `DELAYED` n
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -1875,7 +1875,7 @@ Esta variável de sistema está desatualizada (porque as inserções `DELAYED` n
 
 * `disabled_storage_engines`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável de sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável de sistema</th> <td><code>admin_ssl_crl</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Esta variável indica quais motores de armazenamento não podem ser usados para criar tabelas ou espaços de tabelas. Por exemplo, para impedir que novas tabelas `MyISAM` ou `FEDERATED` sejam criadas, inicie o servidor com essas linhas no arquivo de opção do servidor:
 
@@ -1894,7 +1894,7 @@ Esta variável de sistema está desatualizada (porque as inserções `DELAYED` n
 
 * `disconnect_on_expired_password`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável de sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável de sistema</th> <td><code>admin_ssl_crl</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Esta variável controla como o servidor lida com clientes com senhas expiradas:
 
@@ -1910,7 +1910,7 @@ Para obter mais informações sobre a interação entre as configurações do cl
 
 * `div_precision_increment`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_crl</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Essa variável indica o número de dígitos com os quais a escala do resultado das operações de divisão realizadas com o operador `/` será aumentada. O valor padrão é 4. Os valores mínimo e máximo são 0 e 30, respectivamente. O exemplo a seguir ilustra o efeito de aumentar o valor padrão.
 
@@ -1932,7 +1932,7 @@ Essa variável indica o número de dígitos com os quais a escala do resultado d
 
 * `dragnet.log_error_filter_rules`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variáveis"><code>SET_VAR</a></code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crl"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crl=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_crl</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   As regras de filtro que controlam o componente de filtro de log de erro `log_filter_dragnet`. Se `log_filter_dragnet` não estiver instalado, `dragnet.log_error_filter_rules` estará indisponível. Se `log_filter_dragnet` estiver instalado, mas não habilitado, as alterações em `dragnet.log_error_filter_rules` não terão efeito.
 
@@ -1949,7 +1949,7 @@ Essa variável indica o número de dígitos com os quais a escala do resultado d
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td>
+    <td><code>admin_ssl_crl</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1960,7 +1960,7 @@ Essa variável indica o número de dígitos com os quais a escala do resultado d
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -1984,7 +1984,7 @@ Essa variável indica o número de dígitos com os quais a escala do resultado d
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crl">admin_ssl_crl</a></code></td>
+    <td><code>admin_ssl_crl</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -1995,7 +1995,7 @@ Essa variável indica o número de dígitos com os quais a escala do resultado d
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -2016,21 +2016,21 @@ Essa variável indica o número de dígitos com os quais a escala do resultado d
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=nome_pasta</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_crlpath</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de SET_VAR Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome da pasta</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
 
 Esta variável controla se os dados criptografados e assinaturas produzidas pelo componente MySQL Enterprise Encryption usando as funções antigas da biblioteca compartilhada `openssl_udf` podem ser descriptografados ou verificados pelo componente MySQL Enterprise Encryption (`component_enterprise_encryption`). A variável está disponível apenas se o componente MySQL Enterprise Encryption estiver instalado.
 
-Para que as funções do componente possam suportar a descriptografia e a verificação de conteúdo produzido pelas antigas funções da biblioteca compartilhada `openssl_udf`, você deve definir a variável de sistema padding para `ON`. Quando `ON` é definido, se as funções do componente não conseguirem descriptografar ou verificar o conteúdo assumindo que ele usa o esquema RSAES-OAEP ou RSASSA-PSS (como usado pelas funções da biblioteca compartilhada `openssl_udf`), elas fazem outra tentativa assumindo que ele usa o esquema RSAES-PKCS1-v1\_5 ou RSASSA-PKCS1-v1\_5 (como usado pelas funções da biblioteca compartilhada `openssl_udf`). Quando `OFF` é definido, se as funções do componente não conseguirem descriptografar ou verificar o conteúdo usando seus esquemas normais, elas retornam um resultado nulo. Consulte a Seção 8.6.2, “Configurando a Criptografia da MySQL Enterprise” para obter mais informações.
+Para que as funções do componente possam suportar a descriptografia e a verificação de conteúdo produzido pelas antigas funções da biblioteca compartilhada `openssl_udf`, você deve definir a variável de sistema padding para `ON`. Quando `ON` é definido, se as funções do componente não conseguirem descriptografar ou verificar o conteúdo assumindo que ele usa o esquema RSAES-OAEP ou RSASSA-PSS (como usado pelas funções da biblioteca compartilhada `openssl_udf`), elas fazem outra tentativa assumindo que ele usa o esquema RSAES-PKCS1-v1_5 ou RSASSA-PKCS1-v1_5 (como usado pelas funções da biblioteca compartilhada `openssl_udf`). Quando `OFF` é definido, se as funções do componente não conseguirem descriptografar ou verificar o conteúdo usando seus esquemas normais, elas retornam um resultado nulo. Consulte a Seção 8.6.2, “Configurando a Criptografia da MySQL Enterprise” para obter mais informações.
 
 * `end_markers_in_json`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_ssl_crlpath</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Se a saída do JSON do otimizador deve adicionar marcadores de fim. Consulte a Seção 10.15.9, “A variável de sistema end_markers_in_json”.
 
@@ -2043,7 +2043,7 @@ Para que as funções do componente possam suportar a descriptografia e a verifi
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td>
+    <td><code>admin_ssl_crlpath</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2054,7 +2054,7 @@ Para que as funções do componente possam suportar a descriptografia e a verifi
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -2086,7 +2086,7 @@ Para atualizar as estatísticas do índice da tabela para as melhores estimativa
 
 * `event_scheduler`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_crlpath</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Essa variável habilita ou desabilita, e inicia ou para, o Agendamento de Eventos. Os possíveis valores de status são `ON`, `OFF` e `DISABLED`. Desativar o Agendamento de Eventos não é o mesmo que desabilitar o Agendamento de Eventos, o que requer definir o status para `DISABLED`. Essa variável e seus efeitos na operação do Agendamento de Eventos são discutidos em maior detalhe na Seção 27.5.2, “Configuração do Agendamento de Eventos”
 
@@ -2099,7 +2099,7 @@ Para atualizar as estatísticas do índice da tabela para as melhores estimativa
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td>
+    <td><code>admin_ssl_crlpath</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2110,7 +2110,7 @@ Para atualizar as estatísticas do índice da tabela para as melhores estimativa
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -2147,7 +2147,7 @@ Para mais informações e exemplos, consulte Obter Informações do Plano de Exe
 
 * `explain_json_format_version`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Sistema de Variáveis</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Sistema de Variáveis</th> <td><code>admin_ssl_crlpath</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Determina a versão do formato de saída JSON usado pelas instruções `EXPLAIN FORMAT=JSON`. Definir essa variável para `1` faz com que o servidor use a Versão 1, que é o formato linear usado para a saída de tais instruções em versões mais antigas do MySQL. Definir `explain_json_format_version` para `2` faz com que o formato da Versão 2 seja usado; esse formato de saída JSON é baseado em caminhos de acesso e é destinado a fornecer melhor compatibilidade com futuras versões do Otimizador do MySQL. Ele também inclui o número da versão do formato JSON em sua saída.
 
@@ -2155,7 +2155,7 @@ Para um exemplo de uso, consulte Obtenção de Informações do Plano de Execuç
 
 * `explicit_defaults_for_timestamp`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração da Variável"><code>SET_VAR</code></a> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_crlpath</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Esta variável do sistema determina se o servidor habilita certos comportamentos não padrão para valores padrão e manipulação de valores `NULL` em colunas `TIMESTAMP`. Por padrão, `explicit_defaults_for_timestamp` está habilitado, o que desabilita os comportamentos não padrão. Desabilitar `explicit_defaults_for_timestamp` resulta em um aviso.
 
@@ -2203,13 +2203,13 @@ Para obter informações adicionais, consulte a Seção 13.2.5, “Inicializaç�
 
 * `external_user`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=dir_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_ssl_crlpath</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 O nome de usuário externo usado durante o processo de autenticação, conforme definido pelo plugin usado para autenticar o cliente. Com a autenticação nativa (incorporada) do MySQL ou se o plugin não definir o valor, essa variável é `NULL`. Veja a Seção 8.2.19, “Usuários de Proxy”.
 
 * `flush`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=nome_pasta</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome da pasta</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_crlpath"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-crlpath=nome_pasta</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_crlpath</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome da pasta</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Aplica-se apenas ao MyISAM.
 
@@ -2228,7 +2228,7 @@ O nome de usuário externo usado durante o processo de autenticação, conforme 
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_crlpath">admin_ssl_crlpath</a></code></td>
+    <td><code>admin_ssl_crlpath</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2239,7 +2239,7 @@ O nome de usuário externo usado durante o processo de autenticação, conforme 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -2267,7 +2267,7 @@ O nome de usuário externo usado durante o processo de autenticação, conforme 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td>
+    <td><code>admin_ssl_key</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2278,7 +2278,7 @@ O nome de usuário externo usado durante o processo de autenticação, conforme 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -2309,10 +2309,10 @@ A exclusão de um índice exigido por uma restrição de chave estrangeira não 
     
     <tbody>
       <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-key=file_name</code></td> </tr>
-      <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td> </tr>
+      <tr><th>Variável do Sistema</th> <td><code>admin_ssl_key</code></td> </tr>
       <tr><th>Alcance</th> <td>Global</td> </tr>
       <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-      <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de definição de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+      <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
       <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
       <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
     </tbody>
@@ -2334,7 +2334,7 @@ O valor padrão da variável é `'+ -><()~*:""&|'`. As regras para alterar o val
 
 * `ft_max_word_len`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_key"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-key=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_key"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-key=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_key</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O comprimento máximo da palavra a ser incluída em um índice `FULLTEXT` de `MyISAM`.
 
@@ -2351,7 +2351,7 @@ O valor padrão da variável é `'+ -><()~*:""&|'`. As regras para alterar o val
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td>
+    <td><code>admin_ssl_key</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -2362,7 +2362,7 @@ O valor padrão da variável é `'+ -><()~*:""&|'`. As regras para alterar o val
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -2386,10 +2386,10 @@ Os índices `FULLTEXT` em tabelas `MyISAM` devem ser reconstruídos após a alte
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_key">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-key=file_name</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_key</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -2400,10 +2400,10 @@ Os índices `FULLTEXT` em tabelas `MyISAM` devem ser reconstruídos após a alte
 
   <table frame="box" rules="all" summary="Propriedades para admin_ssl_key">
     <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-key=file_name</code></td> </tr>
-    <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td> </tr>
+    <tr><th>Variável do Sistema</th> <td><code>admin_ssl_key</code></td> </tr>
     <tr><th>Alcance</th> <td>Global</td> </tr>
     <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+    <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
     <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
     <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
   </table>
@@ -2417,13 +2417,13 @@ Os índices `FULLTEXT` em tabelas `MyISAM` devem ser reconstruídos após a alte
 
 * `general_log`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_key"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-key=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_key"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-key=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_key</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Se o log de consultas gerais está habilitado. O valor pode ser 0 (ou `OFF`) para desabilitar o log ou 1 (ou `ON`) para habilitar o log. O destino da saída do log é controlado pela variável de sistema `log_output`; se esse valor for `NONE`, nenhuma entrada de log é escrita, mesmo que o log esteja habilitado.
 
 * `arquivo_log_geral`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-key=nome_do_arquivo</code></td> </tr><tr><th>Variável de sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_key"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-key=nome_do_arquivo</code></td> </tr><tr><th>Variável de sistema</th> <td><code>admin_ssl_key</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O nome do arquivo de log de consulta geral. O valor padrão é `nome_do_host.log`, mas o valor inicial pode ser alterado com a opção `--general_log_file`.
 
@@ -2434,7 +2434,7 @@ Os índices `FULLTEXT` em tabelas `MyISAM` devem ser reconstruídos após a alte
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td>
+    <td><code>admin_ssl_key</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2445,7 +2445,7 @@ Os índices `FULLTEXT` em tabelas `MyISAM` devem ser reconstruídos após a alte
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -2469,7 +2469,7 @@ O número máximo de caracteres permitido em senhas aleatórias geradas para as 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_key">admin_ssl_key</a></code></td>
+    <td><code>admin_ssl_key</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2480,7 +2480,7 @@ O número máximo de caracteres permitido em senhas aleatórias geradas para as 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -2510,7 +2510,7 @@ Você deve ter o privilégio `SYSTEM_VARIABLES_ADMIN` ou `SUPER` para definir es
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2521,7 +2521,7 @@ Você deve ter o privilégio `SYSTEM_VARIABLES_ADMIN` ou `SUPER` para definir es
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -2540,7 +2540,7 @@ Você deve ter o privilégio `SYSTEM_VARIABLES_ADMIN` ou `SUPER` para definir es
 
 * `group_concat_max_len`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de hint para configuração de variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O comprimento máximo permitido do resultado em bytes para a função `GROUP_CONCAT()`. O padrão é 1024.
 
@@ -2570,7 +2570,7 @@ Esta variável está desatualizada; você deve esperar que ela seja removida em 
 
 * `have_statement_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Se a funcionalidade de limite de tempo de execução da instrução estiver disponível (veja Dicas de otimização de tempo de execução da execução de instruções). O valor pode ser `NÃO` se o thread de fundo usado por essa funcionalidade não puder ser inicializado.
 
@@ -2586,7 +2586,7 @@ O suporte a links simbólicos, juntamente com a opção `--symbolic-links` que o
 
 * `histogram_generation_max_mem_size`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável de sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável de sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   A quantidade máxima de memória disponível para gerar estatísticas de histogramas. Veja a Seção 10.9.6, “Estatísticas do otimizador”, e a Seção 15.7.3.1, “Instrução ANALYZE TABLE”.
 
@@ -2601,7 +2601,7 @@ O suporte a links simbólicos, juntamente com a opção `--symbolic-links` que o
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2612,7 +2612,7 @@ O suporte a links simbólicos, juntamente com a opção `--symbolic-links` que o
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -2640,7 +2640,7 @@ O suporte a links simbólicos, juntamente com a opção `--symbolic-links` que o
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></td>
+    <td>admin_address</td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2651,7 +2651,7 @@ O suporte a links simbólicos, juntamente com a opção `--symbolic-links` que o
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></a> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</th></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -2685,7 +2685,7 @@ O servidor descarta quaisquer conjuntos de resultados produzidos por instruçõe
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2696,7 +2696,7 @@ O servidor descarta quaisquer conjuntos de resultados produzidos por instruçõe
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -2743,7 +2743,7 @@ O cache de estatísticas pode ser atualizado durante uma transação com múltip
 
 `information_schema_stats_expiry` é uma variável de sessão, e cada sessão de cliente pode definir seu próprio valor de expiração. As estatísticas recuperadas do motor de armazenamento e armazenadas em cache por uma sessão estão disponíveis para outras sessões.
 
-Para informações relacionadas, consulte a Seção 10.2.3, “Otimizando Consultas do INFORMATION\_SCHEMA”.
+Para informações relacionadas, consulte a Seção 10.2.3, “Otimizando Consultas do INFORMATION_SCHEMA”.
 
 * `init_file`
 
@@ -2754,7 +2754,7 @@ Para informações relacionadas, consulte a Seção 10.2.3, “Otimizando Consul
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2765,7 +2765,7 @@ Para informações relacionadas, consulte a Seção 10.2.3, “Otimizando Consul
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -2808,7 +2808,7 @@ O valor a ser usado pela seguinte instrução `INSERT` ou `ALTER TABLE` ao inser
 
 * `interactive_timeout`
 
-<table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 O número de segundos que o servidor espera por atividade em uma conexão interativa antes de fechá-la. Um cliente interativo é definido como um cliente que usa a opção `CLIENT_INTERACTIVE` em `mysql_real_connect()`. Veja também `wait_timeout`.
 
@@ -2822,7 +2822,7 @@ Configurar uma configuração de sessão para `internal_tmp_mem_storage_engine` 
 
 * `join_buffer_size`
 
-<table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 O tamanho mínimo do buffer que é usado para varreduras de índice simples, varreduras de índice de intervalo e junções que não usam índices e, portanto, realizam varreduras completas da tabela. Esta variável também controla a quantidade de memória usada para junções hash. Normalmente, a melhor maneira de obter junções rápidas é adicionar índices. Aumente o valor de `join_buffer_size` para obter uma junção completa mais rápida quando não for possível adicionar índices. Um buffer de junção é alocado para cada junção completa entre duas tabelas. Para uma junção complexa entre várias tabelas para as quais não são usados índices, pode ser necessário múltiplos buffers de junção.
 
@@ -2838,7 +2838,7 @@ Para informações adicionais sobre o buffer de junção, consulte a Seção 10.
 
 * `keep_files_on_create`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Se uma tabela `MyISAM` for criada sem a opção `DATA DIRECTORY`, o arquivo `.MYD` será criado no diretório do banco de dados. Por padrão, se `MyISAM` encontrar um arquivo `.MYD` existente nesse caso, ele o sobrescreverá. O mesmo se aplica aos arquivos `.MYI` para tabelas criadas sem a opção `INDEX DIRECTORY`. Para suprimir esse comportamento, defina a variável `keep_files_on_create` para `ON` (1), caso contrário, `MyISAM` não sobrescreverá arquivos existentes e retornará um erro. O valor padrão é `OFF` (0).
 
@@ -2846,7 +2846,7 @@ Se uma tabela `MyISAM` for criada com a opção `DATA DIRECTORY` ou `INDEX DIREC
 
 * `key_buffer_size`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Os blocos de índice para tabelas `MyISAM` são bufferados e compartilhados por todos os threads. `key_buffer_size` é o tamanho do buffer usado para blocos de índice. O buffer de chave também é conhecido como cache de chave.
 
@@ -2874,7 +2874,7 @@ Esse valor é uma aproximação, pois um espaço interno é alocado para estrutu
 
 * `key_cache_age_threshold`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Este valor controla a degradação dos buffers da sublista quente de um cache de chave para a sublista fria. Valores menores causam a degradação mais rapidamente. O valor mínimo é 100. O valor padrão é 300. Veja a Seção 10.10.2, “O Cache de Chave MyISAM”.
 
@@ -2888,7 +2888,7 @@ O ponto de divisão entre as sublistas quentes e frias do cache de chaves da lis
 
 * `large_files_support`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variáveis"><code>SET_VAR</code></a></code> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code></code> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Se o **mysqld** foi compilado com opções para suporte a arquivos grandes.
 
@@ -2901,7 +2901,7 @@ O ponto de divisão entre as sublistas quentes e frias do cache de chaves da lis
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2912,7 +2912,7 @@ O ponto de divisão entre as sublistas quentes e frias do cache de chaves da lis
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></a> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</th></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -2931,7 +2931,7 @@ O ponto de divisão entre as sublistas quentes e frias do cache de chaves da lis
     </tr>
     <tr>
       <th>Variável do sistema</th>
-      <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+      <td><code>admin_address</code></td>
     </tr>
     <tr>
       <th>Alcance</th>
@@ -2942,7 +2942,7 @@ O ponto de divisão entre as sublistas quentes e frias do cache de chaves da lis
       <td>Não</td>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></a> Aplica-se</th>
+      <th>Hinta de <code>SET_VAR</th></a> Aplica-se</th>
       <td>Não</td>
     </tr>
     <tr>
@@ -2960,7 +2960,7 @@ Se o suporte a páginas grandes estiver habilitado, isso mostrará o tamanho das
 
 * `lc_messages`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O idioma a ser usado para mensagens de erro. O padrão é `en_US`. O servidor converte o argumento em um nome de idioma e o combina com o valor de `lc_messages_dir` para produzir a localização do arquivo de mensagem de erro. Veja a Seção 12.12, “Configurar o Idioma da Mensagem de Erro”.
 
@@ -2973,7 +2973,7 @@ Se o suporte a páginas grandes estiver habilitado, isso mostrará o tamanho das
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -2984,7 +2984,7 @@ Se o suporte a páginas grandes estiver habilitado, isso mostrará o tamanho das
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -3002,7 +3002,7 @@ Esta variável especifica o local que controla a linguagem usada para exibir os 
 
 * `license`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O tipo de licença que o servidor possui.
 
@@ -3015,7 +3015,7 @@ Esta variável especifica o local que controla a linguagem usada para exibir os 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3026,7 +3026,7 @@ Esta variável especifica o local que controla a linguagem usada para exibir os 
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -3048,7 +3048,7 @@ Esta variável especifica o local que controla a linguagem usada para exibir os 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3059,7 +3059,7 @@ Esta variável especifica o local que controla a linguagem usada para exibir os 
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -3080,19 +3080,19 @@ Esta variável especifica o local que controla a linguagem usada para exibir os 
 
 * `locked_in_memory`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Se o **mysqld** foi bloqueado na memória com `--memlock`.
 
 * `log_error`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 O destino padrão do log de erros. Se o destino for o console, o valor é `stderr`. Caso contrário, o destino é um arquivo e o valor `log_error` é o nome do arquivo. Veja a Seção 7.4.2, “O Log de Erros”.
 
 * `log_error_services`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a></code> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code></code> Dicas Aplicadas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   Os componentes para habilitar o registro de erros. A variável pode conter uma lista com 0, 1 ou muitos elementos. No último caso, os elementos podem ser delimitados por vírgulas ou pontos e vírgulas, opcionalmente seguidos por espaço. Um determinado ajuste não pode usar tanto o separador ponto e vírgula quanto o ponto e vírgula. A ordem dos componentes é significativa porque o servidor executa os componentes na ordem listada.
 
@@ -3107,7 +3107,7 @@ O destino padrão do log de erros. Se o destino for o console, o valor é `stder
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3118,7 +3118,7 @@ O destino padrão do log de erros. Se o destino for o console, o valor é `stder
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -3131,11 +3131,11 @@ O destino padrão do log de erros. Se o destino for o console, o valor é `stder
 
 Os valores simbólicos são preferíveis aos valores numéricos para melhorar a legibilidade e a portabilidade. Para obter informações sobre os símbolos e números de erro permitidos, consulte o Referência de Mensagens de Erro do MySQL 9.5.
 
-O efeito de `log_error_suppression_list` se combina com o de `log_error_verbosity`. Para obter informações adicionais, consulte a Seção 7.4.2.5, “Filtragem do Log de Erros Baseada em Prioridade (log\_filter\_internal”)”).
+O efeito de `log_error_suppression_list` se combina com o de `log_error_verbosity`. Para obter informações adicionais, consulte a Seção 7.4.2.5, “Filtragem do Log de Erros Baseada em Prioridade (log_filter_internal”)”).
 
 * `log_error_verbosity`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 A variável de sistema `log_error_verbosity` especifica a verbosidade para o tratamento de eventos destinados ao log de erros. Esta variável afeta o filtro realizado pelo componente de filtro de log de erro `log_filter_internal`, que está habilitado por padrão (consulte a Seção 7.5.3, “Componentes do Log de Erros”). Se `log_filter_internal` estiver desabilitado, `log_error_verbosity` não tem efeito.
 
@@ -3148,7 +3148,7 @@ Os eventos destinados ao log de erros têm uma prioridade de `ERROR`, `WARNING` 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3159,7 +3159,7 @@ Os eventos destinados ao log de erros têm uma prioridade de `ERROR`, `WARNING` 
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -3172,7 +3172,7 @@ Os eventos destinados ao log de erros têm uma prioridade de `ERROR`, `WARNING` 
 
 Há também uma prioridade de `SYSTEM`. Mensagens de sistema sobre situações não de erro são impressas no log de erro, independentemente do valor de `log_error_verbosity`. Essas mensagens incluem mensagens de inicialização e desligamento e algumas mudanças significativas nas configurações.
 
-O efeito de `log_error_verbosity` se combina com o de `log_error_suppression_list`. Para informações adicionais, consulte a Seção 7.4.2.5, “Filtragem de Log de Erro Baseada em Prioridade (log\_filter\_internal”)”).
+O efeito de `log_error_verbosity` se combina com o de `log_error_suppression_list`. Para informações adicionais, consulte a Seção 7.4.2.5, “Filtragem de Log de Erro Baseada em Prioridade (log_filter_internal”)”).
 
 * `log_output`
 
@@ -3183,7 +3183,7 @@ O efeito de `log_error_verbosity` se combina com o de `log_error_suppression_lis
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3194,7 +3194,7 @@ O efeito de `log_error_verbosity` se combina com o de `log_error_suppression_lis
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -3216,7 +3216,7 @@ O efeito de `log_error_verbosity` se combina com o de `log_error_suppression_lis
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3227,7 +3227,7 @@ O efeito de `log_error_verbosity` se combina com o de `log_error_suppression_lis
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -3247,7 +3247,7 @@ O efeito de `log_error_verbosity` se combina com o de `log_error_suppression_lis
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3258,7 +3258,7 @@ O efeito de `log_error_verbosity` se combina com o de `log_error_suppression_lis
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -3275,7 +3275,7 @@ Inclua declarações administrativas lentas nas declarações escritas para o lo
 
 * `log_slow_extra`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code></a> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code></a> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></table>
 
   Se o log de consultas lentas estiver habilitado e o destino de saída incluir `FILE`, o servidor escreve campos adicionais nas linhas do arquivo de log que fornecem informações sobre declarações lentas. Veja a Seção 7.4.5, “O Log de Consultas Lentas”. A saída `TABLE` não é afetada.
 
@@ -3288,7 +3288,7 @@ Inclua declarações administrativas lentas nas declarações escritas para o lo
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3325,7 +3325,7 @@ Os timestamps são escritos no formato ISO 8601 / RFC 3339: `YYYY-MM-DDThh:mm:ss
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3336,7 +3336,7 @@ Os timestamps são escritos no formato ISO 8601 / RFC 3339: `YYYY-MM-DDThh:mm:ss
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -3365,7 +3365,7 @@ O **mysqldump** realiza uma varredura completa da tabela, o que significa que su
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></td>
+    <td>admin_address</td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3376,7 +3376,7 @@ O **mysqldump** realiza uma varredura completa da tabela, o que significa que su
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -3398,7 +3398,7 @@ O **mysqldump** realiza uma varredura completa da tabela, o que significa que su
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></td>
+    <td>admin_address</td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3409,7 +3409,7 @@ O **mysqldump** realiza uma varredura completa da tabela, o que significa que su
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -3453,7 +3453,7 @@ Portanto, é necessário configurar `lower_case_table_names` para o valor deseja
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3464,7 +3464,7 @@ Portanto, é necessário configurar `lower_case_table_names` para o valor deseja
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -3510,7 +3510,7 @@ Papéis que não existem quando atribuídos a `mandatory_roles` mas são criados
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></td>
+    <td>admin_address</td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3521,7 +3521,7 @@ Papéis que não existem quando atribuídos a `mandatory_roles` mas são criados
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -3545,7 +3545,7 @@ Ativa funções obrigatórias.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3556,7 +3556,7 @@ Ativa funções obrigatórias.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -3578,13 +3578,13 @@ O valor da sessão desta variável é somente leitura. O cliente pode receber at
 
 * `max_connect_errors`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Após `max_connect_errors` solicitações de conexão consecutivas de um host serem interrompidas sem uma conexão bem-sucedida, o servidor bloqueia esse host de futuras conexões. Se uma conexão de um host for estabelecida com sucesso em menos de `max_connect_errors` tentativas após uma conexão anterior ter sido interrompida, o contador de erros para o host é zerado. Para desbloquear hosts bloqueados, limpe o cache do host; veja Limpar o Cache do Host.
 
 * `max_connections`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O número máximo de conexões de clientes simultâneas permitidas. O valor máximo efetivo é o menor entre o valor efetivo de `open_files_limit` `- 810` e o valor realmente definido para `max_connections`.
 
@@ -3599,7 +3599,7 @@ Após `max_connect_errors` solicitações de conexão consecutivas de um host se
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3610,7 +3610,7 @@ Após `max_connect_errors` solicitações de conexão consecutivas de um host se
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis">SET_VAR</a> Aplica</th>
+    <th>Hinta de SET_VAR Aplica</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -3634,7 +3634,7 @@ Definir o valor da sessão desta variável do sistema é uma operação restrita
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_address">admin_address</a></code></td>
+    <td><code>admin_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3645,7 +3645,7 @@ Definir o valor da sessão desta variável do sistema é uma operação restrita
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis">SET_VAR</a> Aplica-se</th>
+    <th>Hinta de SET_VAR Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -3710,7 +3710,7 @@ Definir o valor da sessão desta variável do sistema é uma operação restrita
     ```S6K4EUub8a
 * `skip_networking`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Esta variável controla se o servidor permite conexões TCP/IP. Por padrão, ela está desabilitada (permitir conexões TCP). Se habilitada, o servidor permite apenas conexões locais (não TCP/IP) e toda interação com **mysqld** deve ser feita usando pipes nomeados ou memória compartilhada (no Windows) ou arquivos de socket Unix (no Unix). Esta opção é altamente recomendada para sistemas onde apenas clientes locais são permitidos. Veja a Seção 7.1.12.3, “Consultas DNS e Cache de Hospedeiros”.
 
@@ -3718,7 +3718,7 @@ Como iniciar o servidor com `--skip-grant-tables` desativa as verificações de 
 
 * `skip_show_database`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Isso impede que as pessoas usem a instrução `SHOW DATABASES` se não tiverem o privilégio `SHOW DATABASES`. Isso pode melhorar a segurança se você tiver preocupações sobre usuários poderem ver bancos de dados pertencentes a outros usuários. Seu efeito depende do privilégio `SHOW DATABASES`: Se o valor da variável for `ON`, a instrução `SHOW DATABASES` é permitida apenas para usuários que têm o privilégio `SHOW DATABASES`, e a instrução exibe todos os nomes de banco de dados. Se o valor for `OFF`, `SHOW DATABASES` é permitido a todos os usuários, mas exibe os nomes apenas dos bancos de dados para os quais o usuário tem o privilégio `SHOW DATABASES` ou outro privilégio.
 
@@ -3728,13 +3728,13 @@ Como qualquer privilégio global estático é considerado um privilégio para to
 
 * `slow_launch_time`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td><code>SET_VAR</a></code></td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Sintaxe de Definição de Variável</th> <td><code>SET_VAR</a></code></td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Se a criação de um tópico demorar mais que esse número de segundos, o servidor incrementa a variável de status `Slow_launch_threads`.
 
 * `slow_query_log`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Se o log de consultas lentas estiver habilitado. O valor pode ser 0 (ou `OFF`) para desabilitar o log ou 1 (ou `ON`) para habilitar o log. O destino da saída do log é controlado pela variável `log_output`; se esse valor for `NONE`, nenhuma entrada de log é escrita, mesmo que o log esteja habilitado.
 
@@ -3744,10 +3744,10 @@ Como qualquer privilégio global estático é considerado um privilégio para to
 
 <table frame="box" rules="all" summary="Propriedades para admin_port">
   <tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr>
-  <tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr>
+  <tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr>
   <tr><th>Âmbito</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor padrão</th> <td><code>33062</code></td> </tr>
   <tr><th>Valor mínimo</th> <td><code>0</code></td> </tr>
@@ -3756,7 +3756,7 @@ Como qualquer privilégio global estático é considerado um privilégio para to
 
 * `socket`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Em plataformas Unix, essa variável é o nome do arquivo de soquete que é usado para conexões de clientes locais. O padrão é `/tmp/mysql.sock`. (Para alguns formatos de distribuição, o diretório pode ser diferente, como `/var/lib/mysql` para RPMs.)
 
@@ -3764,9 +3764,9 @@ Como qualquer privilégio global estático é considerado um privilégio para to
 
 * `sort_buffer_size`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
-Cada sessão que deve realizar uma ordenação aloca um buffer desse tamanho. `sort_buffer_size` não é específico de nenhum motor de armazenamento e se aplica de maneira geral para otimização. No mínimo, o valor de `sort_buffer_size` deve ser grande o suficiente para acomodar quinze tuplas no buffer de ordenação. Além disso, aumentar o valor de `max_sort_length` pode exigir aumentar o valor de `sort_buffer_size`. Para mais informações, consulte a Seção 10.2.1.16, “Otimização de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a>”
+Cada sessão que deve realizar uma ordenação aloca um buffer desse tamanho. `sort_buffer_size` não é específico de nenhum motor de armazenamento e se aplica de maneira geral para otimização. No mínimo, o valor de `sort_buffer_size` deve ser grande o suficiente para acomodar quinze tuplas no buffer de ordenação. Além disso, aumentar o valor de `max_sort_length` pode exigir aumentar o valor de `sort_buffer_size`. Para mais informações, consulte a Seção 10.2.1.16, “Otimização de <code>SET_VAR”
 
 O otimizador tenta descobrir quanto espaço é necessário, mas pode alocar mais, até o limite. Definir um valor maior que o necessário globalmente desacelera a maioria das consultas que realizam ordenamentos. É melhor aumentá-lo como um ajuste de sessão e apenas para as sessões que precisam de um tamanho maior. No Linux, existem limiares de 256KB e 2MB, onde valores maiores podem desacelerar significativamente a alocação de memória, então você deve considerar ficar abaixo de um desses valores. Experimente para encontrar o melhor valor para sua carga de trabalho. Veja a Seção B.3.3.5, “Onde o MySQL Armazena Arquivos Temporários”.
 
@@ -3774,7 +3774,7 @@ O ajuste máximo permitido para `sort_buffer_size` é 4GB−1. Valores maiores s
 
 * `sql_auto_is_null`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Se essa variável estiver habilitada, após uma instrução que insere com sucesso um valor `AUTO_INCREMENT` gerado automaticamente, você poderá encontrar esse valor executando uma instrução do seguinte formato:
 
@@ -3791,7 +3791,7 @@ O valor padrão de `sql_auto_is_null` é `OFF`.
 
 * `sql_big_selects`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Se definido como `OFF`, o MySQL interrompe as instruções `SELECT` que provavelmente levarão muito tempo para serem executadas (ou seja, instruções para as quais o otimizador estima que o número de linhas examinadas exceda o valor de `max_join_size`). Isso é útil quando uma instrução `WHERE` desaconselhável foi emitida. O valor padrão para uma nova conexão é `ON`, que permite todas as instruções `SELECT`.
 
@@ -3799,13 +3799,13 @@ Se você definir a variável de sistema `max_join_size` para um valor diferente 
 
 * `sql_buffer_result`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Se habilitado, `sql_buffer_result` obriga os resultados das instruções `SELECT` a serem colocados em tabelas temporárias. Isso ajuda o MySQL a liberar os bloqueios da tabela mais cedo e pode ser benéfico em casos em que leva muito tempo enviar os resultados ao cliente. O valor padrão é `OFF`.
 
 * `sql_generate_invisible_primary_key`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Se este servidor adiciona uma chave primária primária gerada invisível a qualquer tabela `InnoDB` que seja criada sem uma.
 
@@ -3815,7 +3815,7 @@ Se você definir a variável de sistema `max_join_size` para um valor diferente 
 
 * `sql_log_off`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Esta variável controla se o registro no log de consultas gerais está desativado para a sessão atual (assumindo que o próprio log de consultas gerais esteja habilitado). O valor padrão é `OFF` (ou seja, habilite o registro). Para desabilitar ou habilitar o registro de consultas gerais para a sessão atual, defina a variável de sessão `sql_log_off` para `ON` ou `OFF`.
 
@@ -3830,7 +3830,7 @@ Definir o valor de sessão desta variável do sistema é uma operação restrita
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td>
+    <td><code>admin_port</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3841,7 +3841,7 @@ Definir o valor de sessão desta variável do sistema é uma operação restrita
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -3876,13 +3876,13 @@ Definir o valor de sessão desta variável do sistema é uma operação restrita
   <tr>
     <th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr>
   <tr>
-    <th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr>
+    <th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr>
   <tr>
     <th>Alcance</th> <td>Global</td> </tr>
   <tr>
     <th>Dinâmica</th> <td>Não</td> </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr>
+    <th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
   <tr>
     <th>Tipo</th> <td>Inteiro</td> </tr>
   <tr>
@@ -3906,7 +3906,7 @@ Se habilitada (o padrão), os diagnósticos de nível `Note` incrementam `warnin
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td>
+    <td><code>admin_port</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -3917,7 +3917,7 @@ Se habilitada (o padrão), os diagnósticos de nível `Note` incrementam `warnin
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -3942,7 +3942,7 @@ Se habilitado (o padrão), o servidor cita identificadores para as instruções 
 
 * `sql_require_primary_key`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de Configuração de Variáveis">SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 As instruções que criam novas tabelas ou alteram a estrutura de tabelas existentes exigem que as tabelas tenham uma chave primária.
 
@@ -3964,7 +3964,7 @@ Quando habilitado, `sql_require_primary_key` tem esses efeitos:
 
 A opção `REQUIRE_TABLE_PRIMARY_KEY_CHECK` da instrução `CHANGE REPLICATION SOURCE TO` permite que uma replica selecione sua própria política para verificações de chave primária. Quando a opção é definida como `ON` para um canal de replicação, a replica sempre usa o valor `ON` para a variável de sistema `sql_require_primary_key` em operações de replicação que exigem uma chave primária. Quando a opção é definida como `OFF`, a replica sempre usa o valor `OFF` para a variável de sistema `sql_require_primary_key` em operações de replicação, de modo que uma chave primária nunca seja necessária, mesmo que a fonte a exija. Quando a opção `REQUIRE_TABLE_PRIMARY_KEY_CHECK` é definida como `STREAM`, que é o padrão, a replica usa o valor que é replicado da fonte para cada transação. Com o ajuste `STREAM` para a opção `REQUIRE_TABLE_PRIMARY_KEY_CHECK`, se as verificações de privilégio estiverem em uso para o canal de replicação, a conta `PRIVILEGE_CHECKS_USER` precisa de privilégios suficientes para definir variáveis de sessão restritas, para que possa definir o valor de sessão para a variável de sistema `sql_require_primary_key`. Com as configurações `ON` ou `OFF`, a conta não precisa desses privilégios. Para mais informações, consulte a Seção 19.3.3, “Verificações de Privilégios de Replicação”.
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Se essa variável estiver habilitada, as instruções `UPDATE` e `DELETE` que não utilizam uma chave na cláusula `WHERE` ou uma cláusula `LIMIT` produzem um erro. Isso permite capturar instruções `UPDATE` e `DELETE` onde as chaves não são usadas corretamente e que provavelmente alterariam ou excluiriam um grande número de linhas. O valor padrão é `OFF`.
 
@@ -3972,7 +3972,7 @@ Para o cliente **mysql**, `sql_safe_updates` pode ser habilitado usando a opçã
 
 * `sql_select_limit`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 O número máximo de linhas a serem retornadas por instruções `SELECT`. Para mais informações, consulte "Usando o Modo de Atualizações Seguras (--safe-updates)").
 
@@ -3986,13 +3986,13 @@ Se uma instrução `SELECT` tiver uma cláusula `LIMIT`, a cláusula `LIMIT` tem
   <tr>
     <th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr>
   <tr>
-    <th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr>
+    <th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr>
   <tr>
     <th>Alcance</th> <td>Global</td> </tr>
   <tr>
     <th>Dinâmica</th> <td>Não</td> </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr>
     <th>Tipo</th> <td>Inteiro</td> </tr>
   <tr>
@@ -4007,7 +4007,7 @@ Se uma instrução `SELECT` tiver uma cláusula `LIMIT`, a cláusula `LIMIT` tem
 
 * `ssl_ca`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 O nome do caminho do arquivo de certificado da Autoridade de Certificação (CA) no formato PEM. O arquivo contém uma lista de Autoridades de Certificados SSL confiáveis.
 
@@ -4015,7 +4015,7 @@ Esta variável pode ser modificada em tempo de execução para afetar o contexto
 
 * `ssl_capath`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   O nome do caminho do diretório que contém os arquivos de certificado da Autoridade de Certificação SSL (CA) confiável no formato PEM. Você deve executar o `rehash` do OpenSSL no diretório especificado por esta opção antes de usá-lo. Em sistemas Linux, você pode invocar o `rehash` da seguinte maneira:
 
@@ -4035,7 +4035,7 @@ Esta variável pode ser modificada em tempo de execução para afetar o contexto
 
 * `ssl_cert`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   O nome do caminho do arquivo de certificado público SSL do servidor no formato PEM.
 
@@ -4045,7 +4045,7 @@ Esta variável pode ser modificada em tempo de execução para afetar o contexto
 
 * `ssl_cipher`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 A lista de cifra de criptografia permitida para conexões que usam TLSv1.2. Se nenhuma cifra na lista for suportada, as conexões criptografadas que usam este protocolo TLS não funcionam.
 
@@ -4081,7 +4081,7 @@ Esta variável pode ser modificada em tempo de execução para afetar o contexto
 
 * `ssl_crl`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></table>
 
 O nome do caminho do arquivo que contém listas de revogação de certificados no formato PEM.
 
@@ -4089,7 +4089,7 @@ Esta variável pode ser modificada em tempo de execução para afetar o contexto
 
 * `ssl_crlpath`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   O caminho do diretório que contém arquivos de lista de revogação de certificados no formato PEM.
 
@@ -4097,7 +4097,7 @@ Esta variável pode ser modificada em tempo de execução para afetar o contexto
 
 * `ssl_fips_mode`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Controla se o modo FIPS deve ser habilitado no lado do servidor. A variável do sistema `ssl_fips_mode` difere de outras variáveis do sistema `ssl_xxx` porque não é usada para controlar se o servidor permite conexões criptografadas, mas sim para afetar quais operações criptográficas são permitidas. Veja a Seção 8.8, “Suporte FIPS”.
 
@@ -4115,7 +4115,7 @@ Esta opção é desatualizada e torna-se somente leitura. Espere que ela seja re
 
 * `ssl_key`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 O nome do caminho do arquivo de chave privada SSL do servidor no formato PEM. Para maior segurança, use um certificado com um tamanho de chave RSA de pelo menos 2048 bits.
 
@@ -4132,7 +4132,7 @@ Esta variável pode ser modificada em tempo de execução para afetar o contexto
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td>
+    <td><code>admin_port</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -4143,7 +4143,7 @@ Esta variável pode ser modificada em tempo de execução para afetar o contexto
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -4179,7 +4179,7 @@ O valor atual em vigor para `ssl_session_cache_mode` pode ser observado com a va
 
 * `ssl_session_cache_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Define um período de tempo durante o qual a reutilização de sessões anteriores é permitida ao estabelecer uma nova conexão criptografada com o servidor, desde que a variável `ssl_session_cache_mode` esteja habilitada e os dados da sessão anterior estejam disponíveis. Se o tempo de espera da sessão expirar, uma sessão não poderá ser reutilizada.
 
@@ -4187,7 +4187,7 @@ O valor padrão é de 300 segundos e o valor máximo é de 84600 (ou um dia em s
 
 * `statement_id`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Cada instrução executada na sessão atual é atribuída um número de sequência. Isso pode ser usado juntamente com a variável de sistema `session_track_system_variables` para identificar essa instrução nas tabelas do Performance Schema, como a tabela `events_statements_history`.
 
@@ -4197,13 +4197,13 @@ O valor padrão é de 300 segundos e o valor máximo é de 84600 (ou um dia em s
   <tr>
     <th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr>
   <tr>
-    <th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr>
+    <th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr>
   <tr>
     <th>Alcance</th> <td>Global</td> </tr>
   <tr>
     <th>Dinâmica</th> <td>Não</td> </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr>
     <th>Tipo</th> <td>Inteiro</td> </tr>
   <tr>
@@ -4242,7 +4242,7 @@ Para informações relacionadas, consulte a Seção 16.4, “Cache do objeto de 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td>
+    <td><code>admin_port</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -4253,7 +4253,7 @@ Para informações relacionadas, consulte a Seção 16.4, “Cache do objeto de 
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -4284,7 +4284,7 @@ As alterações em `super_read_only` em um servidor de origem de replicação n�
 
 * `syseventlog.facility`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 A facilidade para a saída do log de erro escrita no `syslog` (que tipo de programa está enviando a mensagem). Esta variável não está disponível a menos que o componente de log de erro `log_sink_syseventlog` esteja instalado. Consulte a Seção 7.4.2.8, “Log de Erros no Log do Sistema”.
 
@@ -4301,7 +4301,7 @@ Esta variável não existe no Windows.
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td>
+    <td><code>admin_port</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -4312,7 +4312,7 @@ Esta variável não existe no Windows.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -4341,7 +4341,7 @@ Esta variável não existe no Windows.
 
 * `syseventlog.tag`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   A tag a ser adicionada ao identificador do servidor na saída do log de erro escrito no `syslog` ou no Log de Eventos do Windows. Essa variável não está disponível, a menos que o componente de log de erro `log_sink_syseventlog` esteja instalado. Veja a Seção 7.4.2.8, “Log de Erros no Log do Sistema”.
 
@@ -4351,9 +4351,9 @@ Esta variável não existe no Windows.
 
 * `system_time_zone`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de Configuração de Variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O fuso horário do sistema do servidor. Quando o servidor começa a executar, ele herda um ajuste do fuso horário da máquina, possivelmente modificado pelo ambiente da conta usada para executar o servidor ou pelo script de inicialização. O valor é usado para definir `system_time_zone`. Para especificar explicitamente o fuso horário do sistema, defina a variável de ambiente `TZ` ou use a opção `--timezone` do script **mysqld\_safe**.
+  O fuso horário do sistema do servidor. Quando o servidor começa a executar, ele herda um ajuste do fuso horário da máquina, possivelmente modificado pelo ambiente da conta usada para executar o servidor ou pelo script de inicialização. O valor é usado para definir `system_time_zone`. Para especificar explicitamente o fuso horário do sistema, defina a variável de ambiente `TZ` ou use a opção `--timezone` do script **mysqld_safe**.
 
   Além da inicialização do tempo de inicialização, se o fuso horário do host do servidor mudar (por exemplo, devido ao horário de verão), `system_time_zone` refletirá essa mudança, o que tem essas implicações para as aplicações:
 
@@ -4365,7 +4365,7 @@ A variável `system_time_zone` difere da variável `time_zone`. Embora possam te
 
 * `table_definition_cache`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 O número de definições de tabela que podem ser armazenadas no cache de definições de tabela. Se você usar um grande número de tabelas, pode criar um cache de definições de tabela grande para acelerar a abertura das tabelas. O cache de definições de tabela ocupa menos espaço e não usa descritores de arquivo, ao contrário do cache normal de tabela. O valor mínimo é 400. O valor padrão é baseado na seguinte fórmula, limitada a um limite de 2000:
 
@@ -4384,7 +4384,7 @@ O cache de definição de tabela existe em paralelo com a partição de cache de
 
 * `table_encryption_privilege_check`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</code></a></code> Dicas de sintaxe de configuração de variável Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code></code> Dicas de sintaxe de configuração de variável Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Controla a verificação de privilégio `TABLE_ENCRYPTION_ADMIN` que ocorre ao criar ou alterar um esquema ou espaço de tabela geral com criptografia diferente do ajuste `default_table_encryption`, ou ao criar ou alterar uma tabela com um ajuste de criptografia diferente da criptografia padrão do esquema. A verificação é desabilitada por padrão.
 
@@ -4396,7 +4396,7 @@ Para mais informações, consulte Definindo um padrão de criptografia para esqu
 
 * `table_open_cache`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</code></a></code> Dicas de sintaxe de definição de variável aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code></code> Dicas de sintaxe de definição de variável aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 O número de tabelas abertas para todos os threads. Aumentar esse valor aumenta o número de descritores de arquivo que o **mysqld** requer. O valor efetivo dessa variável é o maior entre o valor efetivo de `open_files_limit` `- 10 -` o valor efetivo de `max_connections` / 2, e 400; ou seja
 
@@ -4414,7 +4414,7 @@ Um valor de 8 ou 16 é recomendado em sistemas que usam rotineiramente 16 ou mai
 
 * `table_open_cache_triggers`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 O número máximo total de tabelas abertas em cache com gatilhos totalmente carregados. Isso inclui tanto tabelas usadas quanto tabelas não usadas com gatilhos totalmente carregados.
 
@@ -4424,7 +4424,7 @@ O número máximo de tabelas em cache com gatilhos, por instância de cache, é 
 
 * `tablespace_definition_cache`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Define um limite para o número de objetos de definição de tabelaspace, tanto usados quanto não usados, que podem ser mantidos no cache do objeto de dicionário.
 
@@ -4436,7 +4436,7 @@ O número máximo de tabelas em cache com gatilhos, por instância de cache, é 
 
 * `telemetry.resource_provider`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Nome do componente a ser invocado que fornece uma implementação do serviço de provedor de recursos. A invocação do serviço de provedor de recursos permite obter os detalhes sobre o recurso opentelemetry usado, que depende da implementação.
 
@@ -4446,13 +4446,13 @@ Nome do componente a ser invocado que fornece uma implementação do serviço de
   <tr>
     <th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr>
   <tr>
-    <th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr>
+    <th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr>
   <tr>
     <th>Alcance</th> <td>Global</td> </tr>
   <tr>
     <th>Dinâmica</th> <td>Não</td> </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr>
     <th>Tipo</th> <td>Inteiro</td> </tr>
   <tr>
@@ -4470,13 +4470,13 @@ Nome do componente a ser invocado que fornece uma implementação do serviço de
   + `telemetry.otel_exporter_otlp_logs_secret_headers`
 * `temptable_max_mmap`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Define a quantidade máxima de memória (em bytes) que o motor de armazenamento TempTable é permitido alocar a partir de arquivos temporários mapeados em memória antes de começar a armazenar dados em tabelas temporárias internas `InnoDB` no disco. Um ajuste de 0 (padrão) desativa a alocação de memória a partir de arquivos temporários mapeados em memória. Para mais informações, consulte a Seção 10.4.4, “Uso de Tabelas Temporárias Internas no MySQL”.
 
   Antes do MySQL 8.4, essa opção era definida para 1 GiB em vez de 0.
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Define a quantidade máxima de memória que pode ser ocupada pelo motor de armazenamento `TempTable` antes de começar a armazenar dados no disco. O valor padrão é 3% da memória total disponível no servidor, com um intervalo padrão mínimo e máximo de 1-4 GiB. Para mais informações, consulte a Seção 10.4.4, “Uso de Tabelas Temporárias Internas no MySQL”.
 
@@ -4493,7 +4493,7 @@ Nome do componente a ser invocado que fornece uma implementação do serviço de
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td>
+    <td><code>admin_port</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -4504,7 +4504,7 @@ Nome do componente a ser invocado que fornece uma implementação do serviço de
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -4538,13 +4538,13 @@ O valor padrão é baseado na seguinte fórmula, limitada a um limite de 100:
 
 * `thread_handling`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dica de Configuração de Variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 O modelo de manipulação de threads usado pelo servidor para threads de conexão. Os valores permitidos são `no-threads` (o servidor usa um único thread para lidar com uma conexão), `one-thread-per-connection` (o servidor usa um thread para cada conexão de cliente) e `loaded-dynamically` (definido pelo plugin de pool de threads ao ser inicializado). `no-threads` é útil para depuração no Linux; veja a Seção 7.9, “Depuração do MySQL”.
 
 * `thread_pool_algorithm`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de Configuração de Variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de Sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor Máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Esta variável controla qual algoritmo o plugin de pool de threads usa:
 
@@ -4556,7 +4556,7 @@ Esta variável está disponível apenas se o plugin de pool de threads estiver h
 
 * `thread_pool_dedicated_listeners`
 
-<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_port">admin_port</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_port"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-port=port_num</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_port</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>33062</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
 Dedica um fio de escuta em cada grupo de fios para ouvir declarações recebidas de conexões atribuídas ao grupo.
 
@@ -4577,7 +4577,7 @@ Esta variável está disponível apenas com a Edição Empresarial do MySQL e n�
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -4614,7 +4614,7 @@ Esta variável está disponível apenas se o plugin de pool de threads estiver h
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -4625,7 +4625,7 @@ Esta variável está disponível apenas se o plugin de pool de threads estiver h
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -4652,7 +4652,7 @@ Esta variável está disponível apenas se o plugin de pool de threads estiver h
 
 * `thread_pool_max_active_query_threads`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de sintaxe de definição de variável</th> <td><code>SET_VAR</code></a></td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de sintaxe de definição de variável</th> <td><code>SET_VAR</code></a></td> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O número máximo permitido de threads de consulta ativos (em execução) por grupo. Se o valor for 0, o plugin de pool de threads usa até tantos threads quanto estiverem disponíveis.
 
@@ -4664,10 +4664,10 @@ Esta variável está disponível apenas se o plugin de pool de threads estiver h
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -4684,7 +4684,7 @@ Esta variável está disponível apenas na Edição Empresarial do MySQL e não 
 
 * `thread_pool_max_unused_threads`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O número máximo permitido de threads não utilizadas no pool de threads. Esta variável permite limitar a quantidade de memória usada por threads em espera.
 
@@ -4696,7 +4696,7 @@ Esta variável está disponível apenas se o plugin do pool de threads estiver h
 
 * `thread_pool_prio_kickup_timer`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Esta variável afeta as declarações que estão aguardando execução na fila de baixa prioridade. O valor é o número de milissegundos antes que uma declaração em espera seja movida para a fila de alta prioridade. O valor padrão é 1000 (1 segundo).
 
@@ -4704,7 +4704,7 @@ Esta variável está disponível apenas se o plugin de pool de threads estiver h
 
 * `thread_pool_query_threads_per_group`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</a></code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O número máximo de threads de consulta permitidos em um grupo de threads. O valor máximo é 4096, mas se `thread_pool_max_transactions_limit` estiver definido, `thread_pool_query_threads_per_group` não deve exceder esse valor.
 
@@ -4718,7 +4718,7 @@ Esta variável está disponível apenas com a Edição Empresarial do MySQL e n�
 
 * `thread_pool_size`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração da variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O número de grupos de threads no pool de threads. Este é o parâmetro mais importante que controla o desempenho do pool de threads. Isso afeta quantos comandos podem ser executados simultaneamente. Se um valor fora do intervalo de valores permitidos for especificado, o plugin do pool de threads não é carregado e o servidor escreve uma mensagem no log de erro.
 
@@ -4732,7 +4732,7 @@ Esta variável está disponível apenas se o plugin do Pool de Threads estiver h
 
 * `thread_pool_stall_limit`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Esta variável afeta a execução de instruções. O valor é o tempo que uma instrução tem para terminar após começar a ser executada antes de ser definida como parada, momento em que o pool de threads permite que o grupo de threads comece a executar outra instrução. O valor é medido em unidades de 10 milissegundos, então o valor padrão de 6 significa 60ms. Valores de espera curtos permitem que os threads comecem mais rapidamente. Valores curtos também são melhores para evitar situações de deadlock. Valores de espera longos são úteis para cargas de trabalho que incluem instruções de longa duração, para evitar iniciar muitas novas instruções enquanto as atuais executam.
 
@@ -4740,7 +4740,7 @@ Esta variável está disponível apenas se o plugin de pool de threads estiver h
 
 * `thread_pool_transaction_delay`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O período de atraso antes de executar uma nova transação, em milissegundos. O valor máximo é 300000 (5 minutos).
 
@@ -4754,7 +4754,7 @@ O privilégio `CONNECTION_ADMIN` é necessário para configurar `thread_pool_tra
 
 * `thread_stack`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></table>
 
   O tamanho da pilha para cada thread. O padrão é grande o suficiente para o funcionamento normal. Se o tamanho da pilha de thread for muito pequeno, isso limita a complexidade das instruções SQL que o servidor pode processar, a profundidade de recursão de procedimentos armazenados e outras ações que consomem memória.
 
@@ -4767,7 +4767,7 @@ O privilégio `CONNECTION_ADMIN` é necessário para configurar `thread_pool_tra
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -4778,7 +4778,7 @@ O privilégio `CONNECTION_ADMIN` é necessário para configurar `thread_pool_tra
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -4806,7 +4806,7 @@ O privilégio `CONNECTION_ADMIN` é necessário para configurar `thread_pool_tra
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -4817,7 +4817,7 @@ O privilégio `CONNECTION_ADMIN` é necessário para configurar `thread_pool_tra
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de configuração de variáveis"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -4840,7 +4840,7 @@ Definir `timestamp` para um valor constante faz com que ele retorne esse valor a
 
 * `tls_certificates_enforced_validation`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas Aplicam-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Durante a inicialização, o servidor garante que a localização de cada arquivo de certificado SSL necessário esteja presente no diretório de dados padrão, se as localizações dos arquivos não forem fornecidas na linha de comando. No entanto, o servidor não valida os arquivos de certificado e, como resultado, é capaz de iniciar com um certificado inválido. A variável de sistema `tls_certificates_enforced_validation` controla se a validação de certificados é aplicada na inicialização. O descobrimento de um certificado inválido interrompe a execução da inicialização quando a aplicação da validação é habilitada. Por padrão, a aplicação da validação de certificados é desabilitada (`OFF`).
 
@@ -4848,7 +4848,7 @@ A execução da validação pode ser habilitada especificando a opção `--tls-c
 
 * `tls_ciphersuites`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Quais ciphersuites o servidor permite para conexões criptografadas que usam TLSv1.3. O valor é uma lista de zero ou mais nomes de ciphersuites separados por vírgula, entre os listados aqui:
 
@@ -4863,7 +4863,7 @@ As suítes de cifra que podem ser nomeadas para essa variável dependem da bibli
 
 * `tls_version`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Quais protocolos o servidor permite para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula, que não são case-sensitive. Os protocolos que podem ser nomeados para essa variável dependem da biblioteca SSL usada para compilar o MySQL. Os protocolos permitidos devem ser escolhidos de forma a não deixar “buracos” na lista. Para detalhes, consulte a Seção 8.3.2, “Protocolos e Suítes de Cifra de Conexão Encriptada”.
 
@@ -4879,7 +4879,7 @@ Definir essa variável para uma string vazia desativa as conexões encriptadas.
 
 * `tmp_table_size`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração da Variável"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 Define o tamanho máximo de tabelas temporárias internas de memória criadas pelos motores de armazenamento `MEMORY` e `TempTable`. Se uma tabela temporária interna de memória exceder esse tamanho, ela é automaticamente convertida em uma tabela temporária interna em disco.
 
@@ -4899,10 +4899,10 @@ Veja também a Seção 10.4.4, “Uso de Tabelas Temporárias Internas no MySQL�
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -4915,7 +4915,7 @@ Para mais informações sobre o local de armazenamento dos arquivos temporários
 
 * `transaction_alloc_block_size`
 
-<table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 A quantidade em bytes pela qual aumentar um pool de memória por transação que precisa de memória. Veja a descrição de `transaction_prealloc_size`.
 
@@ -4928,7 +4928,7 @@ A quantidade em bytes pela qual aumentar um pool de memória por transação que
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -4939,7 +4939,7 @@ A quantidade em bytes pela qual aumentar um pool de memória por transação que
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></th>
+    <th>Hinta de <code>SET_VAR</th></th>
     <td>Não</td>
   </tr>
   <tr>
@@ -5016,10 +5016,10 @@ Para mais informações sobre `SET TRANSACTION` e sua relação com a variável 
 
 <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca">
   <tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmica</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Nome do arquivo</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr>
 </table>
@@ -5039,7 +5039,7 @@ Há um pool de memória por transação a partir do qual várias alocações rel
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -5050,7 +5050,7 @@ Há um pool de memória por transação a partir do qual várias alocações rel
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -5126,7 +5126,7 @@ Para mais informações sobre `SET TRANSACTION` e sua relação com a variável 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -5137,7 +5137,7 @@ Para mais informações sobre `SET TRANSACTION` e sua relação com a variável 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -5163,7 +5163,7 @@ Para mais informações sobre `SET TRANSACTION` e sua relação com a variável 
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -5174,7 +5174,7 @@ Para mais informações sobre `SET TRANSACTION` e sua relação com a variável 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></td>
+    <th>Hinta de <code>SET_VAR</th></td>
     <td>Não</td>
   </tr>
   <tr>
@@ -5209,31 +5209,31 @@ O número da versão do servidor. O valor também pode incluir um sufixo que ind
 
 * `version_comment`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=nome_arquivo</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=nome_arquivo</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 O programa de configuração **CMake** tem uma opção `COMPILATION_COMMENT_SERVER` que permite especificar um comentário ao compilar o MySQL. Essa variável contém o valor desse comentário.
 
 * `version_compile_machine`
 
-<table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O tipo do binário do servidor.
 
 * `version_compile_os`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de definição de variável"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O tipo do sistema operacional em que o MySQL foi compilado.
 
 * `version_compile_zlib`
 
-<table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Sugestão de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Sugestão de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></table>
 
   A versão da biblioteca `zlib` integrada.
 
 * `wait_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Sugestão de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tr><th>Formato de linha de comando</th> <td><code>--admin-ssl-ca=nome_do_arquivo</code></td> </tr><tr><th>Variável do sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Sugestão de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></table>
 
   O número de segundos que o servidor espera por atividade em uma conexão não interativa antes de fechá-la.
 
@@ -5245,7 +5245,7 @@ Ao iniciar o thread, o valor da sessão `wait_timeout` é inicializado a partir 
 
 * `windowing_use_high_precision`
 
-  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para admin_ssl_ca"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--admin-ssl-ca=file_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>admin_ssl_ca</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Se os cálculos das operações de janela devem ser realizados sem perda de precisão. Veja a Seção 10.2.1.21, “Otimização da Função de Janela”.
 
@@ -5258,7 +5258,7 @@ Ao iniciar o thread, o valor da sessão `wait_timeout` é inicializado a partir 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_admin_ssl_ca">admin_ssl_ca</a></code></td>
+    <td><code>admin_ssl_ca</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -5269,7 +5269,7 @@ Ao iniciar o thread, o valor da sessão `wait_timeout` é inicializado a partir 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>

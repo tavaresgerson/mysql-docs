@@ -1,4 +1,4 @@
-#### 21.6.15.13 Tabela ndbinfo cpustat\_1sec
+#### 21.6.15.13 Tabela ndbinfo cpustat_1sec
 
 A tabela `cpustat-1sec` fornece dados brutos de CPU por fio obtidos a cada segundo para cada fio que está rodando no kernel `NDB`.
 

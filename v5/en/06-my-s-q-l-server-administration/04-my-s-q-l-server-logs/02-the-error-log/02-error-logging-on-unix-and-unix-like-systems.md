@@ -8,7 +8,7 @@ On Unix and Unix-like systems, [**mysqld**](mysqld.html "4.3.1 mysqld — The M
 
 * If [`--log-error`](server-options.html#option_mysqld_log-error) is given to name a file, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes the error log to that file (with an `.err` suffix added if the name has no suffix). The file location is under the data directory unless an absolute path name is given to specify a different location.
 
-* If [`--log-error`](server-options.html#option_mysqld_log-error) is given in an option file in a `[mysqld]`, `[server]`, or `[mysqld_safe]` section, on systems that use [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") to start the server, [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") finds and uses the option, and passes it to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
+* If [`--log-error`](server-options.html#option_mysqld_log-error) is given in an option file in a `[mysqld]`, `[server]`, or `[mysqld_safe]` section, on systems that use [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") to start the server, [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") finds and uses the option, and passes it to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
 Note
 

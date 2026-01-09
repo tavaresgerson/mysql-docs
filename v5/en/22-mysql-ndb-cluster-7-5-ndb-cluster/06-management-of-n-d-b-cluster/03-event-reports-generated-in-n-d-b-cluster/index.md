@@ -30,7 +30,7 @@ Each reportable event can be distinguished according to three different criteria
 
 * *Severity Level*: This can be any one of the following values: `ALERT`, `CRITICAL`, `ERROR`, `WARNING`, `INFO`, or `DEBUG`.
 
-The cluster log can be filtered on these properties using the NDB management client [`CLUSTERLOG`](mysql-cluster-logging-management-commands.html "21.6.3.1 NDB Cluster Logging Management Commands") command. This command affects the cluster log only, and has no effect on the node logs; debug logging in one or more node logs can be turned on and off using the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") [`NODELOG DEBUG`](mysql-cluster-mgm-client-commands.html#ndbclient-nodelog-debug) command.
+The cluster log can be filtered on these properties using the NDB management client [`CLUSTERLOG`](mysql-cluster-logging-management-commands.html "21.6.3.1 NDB Cluster Logging Management Commands") command. This command affects the cluster log only, and has no effect on the node logs; debug logging in one or more node logs can be turned on and off using the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") [`NODELOG DEBUG`](mysql-cluster-mgm-client-commands.html#ndbclient-nodelog-debug) command.
 
 The format used in the cluster log is as shown here:
 

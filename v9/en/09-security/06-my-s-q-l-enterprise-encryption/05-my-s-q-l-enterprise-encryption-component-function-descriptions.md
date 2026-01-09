@@ -18,7 +18,7 @@ For additional examples and discussion, see Section 8.6.3, “MySQL Enterprise 
 
   For the legacy version of this function in use before MySQL 8.0.29, see MySQL Enterprise Encryption Legacy Function Descriptions.
 
-  By default, the `component_enterprise_encryption` function assumes that encrypted text uses the RSAES-OAEP padding scheme. The function supports decryption for content encrypted by the old `openssl_udf` shared library functions if the system variable `enterprise_encryption.rsa_support_legacy_padding` is set to `ON` (the default is `OFF`). When this is `ON`, the function also supports the RSAES-PKCS1-v1\_5 padding scheme, as used by the old `openssl_udf` shared library functions. When the variable is set to `OFF`, content encrypted by the legacy functions cannot be decrypted, and the function returns null output for such content.
+  By default, the `component_enterprise_encryption` function assumes that encrypted text uses the RSAES-OAEP padding scheme. The function supports decryption for content encrypted by the old `openssl_udf` shared library functions if the system variable `enterprise_encryption.rsa_support_legacy_padding` is set to `ON` (the default is `OFF`). When this is `ON`, the function also supports the RSAES-PKCS1-v1_5 padding scheme, as used by the old `openssl_udf` shared library functions. When the variable is set to `OFF`, content encrypted by the legacy functions cannot be decrypted, and the function returns null output for such content.
 
   *`algorithm`* is the encryption algorithm used to create the key. The supported algorithm value is `'RSA'`.
 
@@ -86,7 +86,7 @@ For additional examples and discussion, see Section 8.6.3, “MySQL Enterprise 
 
   Verifies whether the signature string matches the digest string, and returns 1 or 0 to indicate whether verification succeeded or failed. If verification fails, the result is `NULL`.
 
-  By default, the `component_enterprise_encryption` function assumes that signatures use the RSASSA-PSS signature scheme. The function supports verification for signatures produced by the old `openssl_udf` shared library functions if the system variable `enterprise_encryption.rsa_support_legacy_padding` is set to `ON` (the default is `OFF`). When this is `ON`, the function also supports the RSASSA-PKCS1-v1\_5 signature scheme, as used by the old `openssl_udf` shared library functions; when it is `OFF`, signatures produced by the legacy functions cannot be verified, and the function returns null output for such content.
+  By default, the `component_enterprise_encryption` function assumes that signatures use the RSASSA-PSS signature scheme. The function supports verification for signatures produced by the old `openssl_udf` shared library functions if the system variable `enterprise_encryption.rsa_support_legacy_padding` is set to `ON` (the default is `OFF`). When this is `ON`, the function also supports the RSASSA-PKCS1-v1_5 signature scheme, as used by the old `openssl_udf` shared library functions; when it is `OFF`, signatures produced by the legacy functions cannot be verified, and the function returns null output for such content.
 
   *`algorithm`* is the encryption algorithm used to create the key. The supported algorithm value is `'RSA'`.
 

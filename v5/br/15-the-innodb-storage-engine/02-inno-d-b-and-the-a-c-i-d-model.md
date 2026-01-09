@@ -33,7 +33,7 @@ O aspecto de **isolamento** do modelo ACID envolve principalmente as transaçõe
 
 - Níveis de isolamento de transações e a instrução `SET TRANSACTION`. Consulte a Seção 14.7.2.1, “Níveis de Isolamento de Transações”.
 
-- Os detalhes de nível baixo do bloqueio do `InnoDB`. Os detalhes podem ser visualizados nas tabelas do `INFORMATION_SCHEMA`. Veja a Seção 14.16.2, “Informações de Transação e Bloqueio do INFORMATION\_SCHEMA do InnoDB”.
+- Os detalhes de nível baixo do bloqueio do `InnoDB`. Os detalhes podem ser visualizados nas tabelas do `INFORMATION_SCHEMA`. Veja a Seção 14.16.2, “Informações de Transação e Bloqueio do INFORMATION_SCHEMA do InnoDB”.
 
 ### Durabilidade
 

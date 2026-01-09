@@ -1,4 +1,4 @@
-#### 26.4.3.8 As visualizações innodb\_buffer\_stats\_by\_table e x$innodb\_buffer\_stats\_by\_table
+#### 26.4.3.8 As visualizações innodb_buffer_stats_by_table e x$innodb_buffer_stats_by_table
 
 Esses pontos resumem as informações na tabela `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE`, agrupadas por esquema e tabela. Por padrão, as linhas são ordenadas em ordem decrescente de tamanho do buffer.
 

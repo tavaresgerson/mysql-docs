@@ -66,7 +66,7 @@ A coluna `mysql_connection_id` mostra o ID de conexão ou o ID de thread MySQL c
 
 `block_instance` refere-se a uma instância de um bloco do kernel. Juntamente com o nome do bloco, este número pode ser usado para procurar uma instância específica na tabela `threadblocks`.
 
-O `tableid` é atribuído à tabela pelo NDB; o mesmo ID é usado para esta tabela em outras tabelas `ndbinfo`, bem como na saída do **ndb\_show\_tables**.
+O `tableid` é atribuído à tabela pelo NDB; o mesmo ID é usado para esta tabela em outras tabelas `ndbinfo`, bem como na saída do **ndb_show_tables**.
 
 O ID da transação exibido na coluna `transid` é o identificador gerado pela API NDB para a transação que solicita ou mantém o bloqueio atual.
 

@@ -1,8 +1,8 @@
 ### 14.16.1 Tabelas do esquema de informações InnoDB sobre compressão
 
-14.16.1.1 INNODB\_CMP e INNODB\_CMP\_RESET
+14.16.1.1 INNODB_CMP e INNODB_CMP_RESET
 
-14.16.1.2 INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET
+14.16.1.2 INNODB_CMPMEM e INNODB_CMPMEM_RESET
 
 14.16.1.3 Usar as tabelas do esquema de informações de compressão
 

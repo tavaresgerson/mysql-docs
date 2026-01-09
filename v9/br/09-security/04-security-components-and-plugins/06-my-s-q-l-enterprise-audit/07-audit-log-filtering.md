@@ -107,7 +107,7 @@ Quando uma conexão chega, o plugin do log de auditoria determina qual filtro us
 
 * Caso contrário, o log de auditoria não seleciona eventos de auditoria da sessão para processamento.
 
-Se uma operação de mudança de usuário ocorrer durante uma sessão (veja mysql\_change\_user()), a atribuição de filtro para a sessão é atualizada usando as mesmas regras, mas para o novo usuário.
+Se uma operação de mudança de usuário ocorrer durante uma sessão (veja mysql_change_user()), a atribuição de filtro para a sessão é atualizada usando as mesmas regras, mas para o novo usuário.
 
 Por padrão, nenhuma conta tem um filtro atribuído, então nenhum processamento de eventos audíveis ocorre para nenhuma conta.
 

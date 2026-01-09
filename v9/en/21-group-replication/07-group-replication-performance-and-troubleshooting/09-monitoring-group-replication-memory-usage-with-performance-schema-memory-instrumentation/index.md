@@ -44,7 +44,7 @@ The `memory/group_rpl/` Performance Schema instrumentation contains the followin
 
 * `certification_data`: Memory allocated for certification of incoming transactions.
 
-* `certification_data_gc`: Memory allocated for the GTID\_EXECUTED sent by each member for garbage collection.
+* `certification_data_gc`: Memory allocated for the GTID_EXECUTED sent by each member for garbage collection.
 
 * `certification_info`: Memory allocated for storage of certification information allocated to resolve conflicts between concurrent transactions.
 

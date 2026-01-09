@@ -102,7 +102,7 @@ A tabela `error_log` tem esses índices:
 
 O `TRUNCATE TABLE` não é permitido para a tabela `error_log`.
 
-##### Implementação e Configuração da tabela error\_log
+##### Implementação e Configuração da tabela error_log
 
 A tabela `error_log` do Schema de Desempenho é preenchida por componentes de canal de registro de erro que escrevem na tabela, além de escrever eventos de erro formatados no log de erro. O suporte do Schema de Desempenho por canais de registro tem duas partes:
 
@@ -130,4 +130,4 @@ Qualquer configuração que afete a saída escrita no log de erro afeta o conte�
 
 A tabela `error_log` é uma visualização de um buffer de anel de memória de tamanho fixo, com eventos antigos descartados automaticamente conforme necessário para dar lugar a novos. Como mostrado na tabela a seguir, várias variáveis de status fornecem informações sobre a operação em andamento da tabela `error_log`.
 
-<table summary="variáveis de status da tabela `error_log`."><col style="width: 35%"/><col style="width: 35%"/><thead><tr> <th>Variável de Status</th> <th>Significado</th> </tr></thead><tbody><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_buffered_bytes"><code>Error_log_buffered_bytes</code></a></td> <td>Bytes usados na tabela</td> </tr><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_buffered_events"><code>Error_log_buffered_events</code></a></td> <td>Eventos presentes na tabela</td> </tr><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_expired_events"><code>Error_log_expired_events</code></a></td> <td>Eventos descartados da tabela</td> </tr><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_latest_write"><code>Error_log_latest_write</code></a></td> <td>Tempo da última escrita na tabela</td> </tr></tbody></table>
+<table summary="variáveis de status da tabela `error_log`."><col style="width: 35%"/><col style="width: 35%"/><thead><tr> <th>Variável de Status</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>Error_log_buffered_bytes</code></td> <td>Bytes usados na tabela</td> </tr><tr> <td><code>Error_log_buffered_events</code></td> <td>Eventos presentes na tabela</td> </tr><tr> <td><code>Error_log_expired_events</code></td> <td>Eventos descartados da tabela</td> </tr><tr> <td><code>Error_log_latest_write</code></td> <td>Tempo da última escrita na tabela</td> </tr></tbody></table>

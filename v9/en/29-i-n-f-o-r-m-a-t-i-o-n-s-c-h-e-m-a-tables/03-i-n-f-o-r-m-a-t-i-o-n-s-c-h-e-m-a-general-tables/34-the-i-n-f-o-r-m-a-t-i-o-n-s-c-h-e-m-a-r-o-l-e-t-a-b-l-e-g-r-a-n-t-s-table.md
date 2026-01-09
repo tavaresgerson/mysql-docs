@@ -1,4 +1,4 @@
-### 28.3.34 The INFORMATION\_SCHEMA ROLE\_TABLE\_GRANTS Table
+### 28.3.34 The INFORMATION_SCHEMA ROLE_TABLE_GRANTS Table
 
 The `ROLE_TABLE_GRANTS` table provides information about the table privileges for roles that are available to or granted by the currently enabled roles.
 

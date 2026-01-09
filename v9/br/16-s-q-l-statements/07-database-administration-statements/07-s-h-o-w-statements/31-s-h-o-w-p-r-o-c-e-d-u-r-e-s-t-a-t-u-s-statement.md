@@ -43,4 +43,4 @@ collation_connection: utf8mb4_0900_ai_ci
 
 `character_set_client` é o valor de sessão da variável de sistema `character_set_client` quando a rotina foi criada. `collation_connection` é o valor de sessão da variável de sistema `collation_connection` quando a rotina foi criada. `Database Collation` é a collation da base de dados com a qual a rotina está associada.
 
-As informações sobre rotinas armazenadas também estão disponíveis nas tabelas `PARAMETERS` e `ROUTINES` do `INFORMATION_SCHEMA`. Consulte a Seção 28.3.25, “A Tabela INFORMATION\_SCHEMA PARAMETERS”, e a Seção 28.3.36, “A Tabela INFORMATION\_SCHEMA ROUTINES”.
+As informações sobre rotinas armazenadas também estão disponíveis nas tabelas `PARAMETERS` e `ROUTINES` do `INFORMATION_SCHEMA`. Consulte a Seção 28.3.25, “A Tabela INFORMATION_SCHEMA PARAMETERS”, e a Seção 28.3.36, “A Tabela INFORMATION_SCHEMA ROUTINES”.

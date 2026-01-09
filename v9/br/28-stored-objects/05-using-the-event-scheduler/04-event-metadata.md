@@ -2,7 +2,7 @@
 
 Para obter metadados sobre os eventos:
 
-* Faça uma consulta à tabela `EVENTS` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 28.3.14, “A Tabela INFORMATION\_SCHEMA EVENTS”.
+* Faça uma consulta à tabela `EVENTS` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 28.3.14, “A Tabela INFORMATION_SCHEMA EVENTS”.
 
 * Use a instrução `SHOW CREATE EVENT`. Veja a Seção 15.7.7.8, “Instrução SHOW CREATE EVENT”.
 
@@ -18,4 +18,4 @@ Para a representação das informações dos eventos no dicionário de dados, os
 
 Os tempos dos eventos podem ser obtidos selecionando a tabela `EVENTS` do Schema de Informações ou a partir de `SHOW EVENTS`, mas são relatados como valores ETZ ou STZ. A tabela a seguir resume a representação dos tempos dos eventos.
 
-<table summary="Resumo da representação do tempo do evento (como valores em UTC, EZT ou STZ) da Tabela INFORMATION_SCHEMA.EVENTS e da Declaração SHOW EVENTS".><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Valor</th> <th><a class="link" href="information-schema-events-table.html" title="28.3.14 A Tabela Tabela INFORMATION_SCHEMA EVENTS"><code>EVENTS</code></a></th> <th><a class="link" href="show-events.html" title="15.7.7.20 Declaração SHOW EVENTS"><code>SHOW EVENTS</code></a></th> </tr></thead><tbody><tr> <th>Executado em</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Começa</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Termina</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Última execução</th> <td>ETZ</td> <td>n/a</td> </tr><tr> <th>Criado</th> <td>STZ</td> <td>n/a</td> </tr><tr> <th>Última alteração</th> <td>STZ</td> <td>n/a</td> </tr></tbody></table>
+<table summary="Resumo da representação do tempo do evento (como valores em UTC, EZT ou STZ) da Tabela INFORMATION_SCHEMA.EVENTS e da Declaração SHOW EVENTS".><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Valor</th> <th><code>EVENTS</code></th> <th><code>SHOW EVENTS</code></th> </tr></thead><tbody><tr> <th>Executado em</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Começa</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Termina</th> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Última execução</th> <td>ETZ</td> <td>n/a</td> </tr><tr> <th>Criado</th> <td>STZ</td> <td>n/a</td> </tr><tr> <th>Última alteração</th> <td>STZ</td> <td>n/a</td> </tr></tbody></table>

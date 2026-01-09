@@ -18,7 +18,7 @@ As seguintes diretrizes gerais se aplicam à solução de problemas do `InnoDB`:
 
 * Se o problema estiver relacionado ao dicionário de dados do `InnoDB`, consulte a Seção 17.20.4, “Solução de Problemas com Operações do Dicionário de Dados do InnoDB”.
 
-* Ao solucionar problemas, geralmente é melhor executar o servidor MySQL a partir do prompt de comando, em vez de através do **mysqld\_safe** ou como um serviço do Windows. Você pode então ver o que o **mysqld** imprime na console e, assim, ter uma melhor compreensão do que está acontecendo. No Windows, inicie o **mysqld** com a opção `--console` para direcionar a saída para a janela da console.
+* Ao solucionar problemas, geralmente é melhor executar o servidor MySQL a partir do prompt de comando, em vez de através do **mysqld_safe** ou como um serviço do Windows. Você pode então ver o que o **mysqld** imprime na console e, assim, ter uma melhor compreensão do que está acontecendo. No Windows, inicie o **mysqld** com a opção `--console` para direcionar a saída para a janela da console.
 
 * Ative os monitores do `InnoDB` para obter informações sobre um problema (consulte a Seção 17.17, “Monitores do `InnoDB`”). Se o problema estiver relacionado ao desempenho ou se o servidor parecer bloqueado, você deve ativar o monitor padrão para imprimir informações sobre o estado interno do `InnoDB`. Se o problema estiver relacionado a bloqueios, ative o monitor de bloqueios. Se o problema estiver relacionado à criação de tabelas, aos espaços de tabelas ou às operações do dicionário de dados, consulte as tabelas do esquema de informações do `InnoDB` para examinar o conteúdo do dicionário de dados interno do `InnoDB`.
 

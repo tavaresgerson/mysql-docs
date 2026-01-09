@@ -75,4 +75,4 @@ collation_connection: utf8mb4_0900_ai_ci
 
   The collation of the database with which the trigger is associated.
 
-Trigger information is also available from the `INFORMATION_SCHEMA` `TRIGGERS` table. See Section 28.3.50, “The INFORMATION\_SCHEMA TRIGGERS Table”.
+Trigger information is also available from the `INFORMATION_SCHEMA` `TRIGGERS` table. See Section 28.3.50, “The INFORMATION_SCHEMA TRIGGERS Table”.

@@ -10,7 +10,7 @@ A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O sufixo 
 
 **Tabela 6.17 Nomes de plugins e bibliotecas para autenticação sem login**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha sem login."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>mysql_no_login</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>Nenhum</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">mysql_no_login.so</code>]]</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha sem login."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>mysql_no_login</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>Nenhum</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code>mysql_no_login.so</code>]]</td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para a autenticação plugável sem login:
 
@@ -30,7 +30,7 @@ O nome de base do arquivo da biblioteca de plugins é `mysql_no_login`. O sufixo
 
 Para carregar o plugin no início do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que o contém. Com esse método de carregamento de plugins, a opção deve ser fornecida toda vez que o servidor for iniciado. Por exemplo, coloque essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
-```sql
+```
 [mysqld]
 plugin-load-add=mysql_no_login.so
 ```
@@ -43,7 +43,7 @@ Como alternativa, para carregar o plugin em tempo de execução, use esta declar
 INSTALL PLUGIN mysql_no_login SONAME 'mysql_no_login.so';
 ```
 
-`INSTALE O PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
+`INSTALL PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
 
 Para verificar a instalação do plugin, examine a tabela Schema de Informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte Seção 5.5.2, “Obtendo Informações de Plugins do Servidor”). Por exemplo:
 

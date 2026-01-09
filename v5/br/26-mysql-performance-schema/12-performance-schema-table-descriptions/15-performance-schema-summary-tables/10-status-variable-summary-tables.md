@@ -22,7 +22,7 @@ O significado de "conta" nessas tabelas é semelhante ao seu significado nas tab
 
 O status da conta é coletado quando as sessões terminam. Os contadores de status de sessão são adicionados aos contadores globais de status e aos contadores de status da conta correspondentes. Se as estatísticas da conta não forem coletadas, o status da sessão é adicionado ao status do host e do usuário, se o status do host e do usuário forem coletados.
 
-As estatísticas da conta, do host e do usuário não são coletadas se as variáveis de sistema `performance_schema_accounts_size`, \[`performance_schema_hosts_size`]\(performance-schema-system-variables.html#sysvar\_performance\_schema\_hosts\_size] e `performance_schema_users_size`, respectivamente, forem definidas como 0.
+As estatísticas da conta, do host e do usuário não são coletadas se as variáveis de sistema `performance_schema_accounts_size`, [`performance_schema_hosts_size`]\(performance-schema-system-variables.html#sysvar_performance_schema_hosts_size] e `performance_schema_users_size`, respectivamente, forem definidas como 0.
 
 O Schema de Desempenho suporta a opção `TRUNCATE TABLE` para tabelas de resumo de variáveis de status da seguinte forma; em todos os casos, o status das sessões ativas não é afetado:
 

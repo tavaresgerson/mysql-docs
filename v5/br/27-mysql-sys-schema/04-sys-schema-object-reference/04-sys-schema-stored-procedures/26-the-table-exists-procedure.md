@@ -1,4 +1,4 @@
-#### 26.4.4.26 Procedimento table\_exists()
+#### 26.4.4.26 Procedimento table_exists()
 
 Verifica se uma tabela específica existe como uma tabela regular, uma tabela `TEMPORARY` ou uma visualização. O procedimento retorna o tipo de tabela em um parâmetro `OUT`. Se existir uma tabela temporária e uma permanente com o nome especificado, `TEMPORARY` é retornado.
 

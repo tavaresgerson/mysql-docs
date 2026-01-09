@@ -16,7 +16,7 @@ MySQL supports use of DNS SRV records to connect to servers in these contexts:
 
 * Several MySQL Connectors implement DNS SRV support; connector-specific options enable requesting DNS SRV record lookup both for X Protocol connections and for classic MySQL protocol connections. For general information, see Connections Using DNS SRV Records. For details, see the documentation for individual MySQL Connectors.
 
-* The C API provides a `mysql_real_connect_dns_srv()` function that is similar to `mysql_real_connect()`, except that the argument list does not specify the particular host of the MySQL server to connect to. Instead, it names a DNS SRV record that specifies a group of servers. See mysql\_real\_connect\_dns\_srv().
+* The C API provides a `mysql_real_connect_dns_srv()` function that is similar to `mysql_real_connect()`, except that the argument list does not specify the particular host of the MySQL server to connect to. Instead, it names a DNS SRV record that specifies a group of servers. See mysql_real_connect_dns_srv().
 
 * The **mysql** client has a `--dns-srv-name` option to indicate a DNS SRV record that specifies a group of servers. See Section 6.5.1, “mysql — The MySQL Command-Line Client”.
 

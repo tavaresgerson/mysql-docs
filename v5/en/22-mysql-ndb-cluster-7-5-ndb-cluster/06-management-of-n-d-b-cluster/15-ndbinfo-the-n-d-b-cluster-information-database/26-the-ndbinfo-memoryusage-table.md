@@ -1,6 +1,6 @@
 #### 21.6.15.26 The ndbinfo memoryusage Table
 
-Querying this table provides information similar to that provided by the [`ALL REPORT MemoryUsage`](mysql-cluster-mgm-client-commands.html#ndbclient-report) command in the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client, or logged by [`ALL DUMP 1000`](/doc/ndb-internals/en/dump-command-1000.html).
+Querying this table provides information similar to that provided by the [`ALL REPORT MemoryUsage`](mysql-cluster-mgm-client-commands.html#ndbclient-report) command in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client, or logged by [`ALL DUMP 1000`](/doc/ndb-internals/en/dump-command-1000.html).
 
 The `memoryusage` table contains the following columns:
 

@@ -21,7 +21,7 @@ O nome do banco de dados pode ser omitido da primeira sintaxe, caso em que a dec
 
 #### Conjunto de caracteres e opções de cotação
 
-A cláusula `CHARACTER SET` altera o conjunto de caracteres padrão do banco de dados. A cláusula `COLLATE` altera a concordância padrão do banco de dados. Para obter informações sobre os nomes dos conjuntos de caracteres e concordâncias, consulte \[Capítulo 10, *Caracteres, Concordâncias, Unicode*] (charset.html).
+A cláusula `CHARACTER SET` altera o conjunto de caracteres padrão do banco de dados. A cláusula `COLLATE` altera a concordância padrão do banco de dados. Para obter informações sobre os nomes dos conjuntos de caracteres e concordâncias, consulte [Capítulo 10, *Caracteres, Concordâncias, Unicode*] (charset.html).
 
 Para ver os conjuntos de caracteres e as codificações disponíveis, use as instruções `SHOW CHARACTER SET` e `SHOW COLLATION`, respectivamente. Veja Seção 13.7.5.3, “Instrução SHOW CHARACTER SET” e Seção 13.7.5.4, “Instrução SHOW COLLATION”.
 
@@ -35,7 +35,7 @@ A sintaxe que inclui a cláusula `UPGRADE DATA DIRECTORY NAME` atualiza o nome d
 
 - O objetivo é atualizar o nome do diretório do banco de dados para o formato de codificação atual, se o nome contiver caracteres especiais que precisam de codificação.
 
-- A declaração é usada pelo **mysqlcheck** (como invocado pelo **mysql\_upgrade**).
+- A declaração é usada pelo **mysqlcheck** (como invocado pelo **mysql_upgrade**).
 
 Por exemplo, se um banco de dados no MySQL 5.0 tiver o nome `a-b-c`, o nome contém instâncias do caractere `-` (barra). No MySQL 5.0, o diretório do banco de dados também é chamado `a-b-c`, o que não é necessariamente seguro para todos os sistemas de arquivos. No MySQL 5.1 e versões posteriores, o mesmo nome do banco de dados é codificado como `a@002db@002dc` para produzir um nome de diretório neutro em relação ao sistema de arquivos.
 

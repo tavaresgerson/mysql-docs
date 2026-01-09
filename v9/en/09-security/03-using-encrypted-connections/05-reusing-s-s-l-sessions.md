@@ -21,7 +21,7 @@ To create the initial TLS context, the server uses the values that the context-r
 
 **Table 8.13 System and Status Variables for Session Reuse**
 
-<table summary="The system variables that define caching for session reuse and the corresponding status variables that expose active session-cache values."><col style="width: 45%"/><col style="width: 55%"/><thead><tr> <th>System Variable Name</th> <th>Corresponding Status Variable Name</th> </tr></thead><tbody><tr> <td><a class="link" href="server-system-variables.html#sysvar_ssl_session_cache_mode"><code class="literal">ssl_session_cache_mode</code></a></td> <td><a class="link" href="server-status-variables.html#statvar_Ssl_session_cache_mode"><code class="literal">Ssl_session_cache_mode</code></a></td> </tr><tr> <td><a class="link" href="server-system-variables.html#sysvar_ssl_session_cache_timeout"><code class="literal">ssl_session_cache_timeout</code></a></td> <td><a class="link" href="server-status-variables.html#statvar_Ssl_session_cache_timeout"><code class="literal">Ssl_session_cache_timeout</code></a></td> </tr></tbody></table>
+<table summary="The system variables that define caching for session reuse and the corresponding status variables that expose active session-cache values."><col style="width: 45%"/><col style="width: 55%"/><thead><tr> <th>System Variable Name</th> <th>Corresponding Status Variable Name</th> </tr></thead><tbody><tr> <td><code class="literal">ssl_session_cache_mode</code></td> <td><code class="literal">Ssl_session_cache_mode</code></td> </tr><tr> <td><code class="literal">ssl_session_cache_timeout</code></td> <td><code class="literal">Ssl_session_cache_timeout</code></td> </tr></tbody></table>
 
 Note
 
@@ -92,7 +92,7 @@ To store and reuse SSL session data, use this procedure:
 
 1. Invoke **mysql** to establish an encrypted connection to a server running MySQL 9.5.
 
-2. Use the **ssl\_session\_data\_print** command to specify the path to a file where you can store the currently active session data securely. For example:
+2. Use the **ssl_session_data_print** command to specify the path to a file where you can store the currently active session data securely. For example:
 
    ```
    mysql> ssl_session_data_print ~/private-dir/session.txt
@@ -128,7 +128,7 @@ To store and reuse SSL session data, use this procedure:
 
    To confirm whether **mysql** reused a session, see the output from the `status` command. If the currently active **mysql** connection did resume the session, the status information includes `SSL session reused: true`.
 
-In addition to **mysql** and **mysqlshow**, SSL session reuse applies to **mysqladmin**, **mysqlbinlog**, **mysqlcheck**, **mysqldump**, **mysqlimport**, **mysqlslap**, **mysqltest**, **mysql\_migrate\_keyring**, and **mysql\_secure\_installation**.
+In addition to **mysql** and **mysqlshow**, SSL session reuse applies to **mysqladmin**, **mysqlbinlog**, **mysqlcheck**, **mysqldump**, **mysqlimport**, **mysqlslap**, **mysqltest**, **mysql_migrate_keyring**, and **mysql_secure_installation**.
 
 Several conditions may prevent the successful retrieval of session data. For instance, if the session is not fully connected, it is not an SSL session, the server has not yet sent the session data, or the SSL session is simply not reusable. Even with properly stored session data, the server's session cache can time out. Regardless of the cause, an error is returned by default if you specify `--ssl-session-data` but the session cannot be reused. For example:
 

@@ -1,4 +1,4 @@
-#### 26.4.3.37 The statements\_with\_full\_table\_scans and x$statements\_with\_full\_table\_scans Views
+#### 26.4.3.37 The statements_with_full_table_scans and x$statements_with_full_table_scans Views
 
 These views display normalized statements that have done full table scans. By default, rows are sorted by descending percentage of time a full scan was done and descending total latency.
 

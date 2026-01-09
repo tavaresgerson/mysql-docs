@@ -72,7 +72,7 @@ MySQL error code MY-001231 (ER_WRONG_VALUE_FOR_VAR): Variable '%-.64s'
 can't be set to the value of '%-.200s'
 ```
 
-Para erros do MySQL NDB Cluster, use **ndb\_perror**. Consulte a Seção 25.5.16, “ndb\_perror — Obter Informações de Mensagem de Erro NDB”.
+Para erros do MySQL NDB Cluster, use **ndb_perror**. Consulte a Seção 25.5.16, “ndb_perror — Obter Informações de Mensagem de Erro NDB”.
 
 ```
 $> ndb_perror 323

@@ -2,7 +2,7 @@
 
 Ao iniciar o servidor **mysqld**, você pode especificar opções de programa usando qualquer um dos métodos descritos na Seção 4.2.2, “Especificação de Opções de Programa”. Os métodos mais comuns são fornecer opções em um arquivo de opções ou na linha de comando. No entanto, na maioria dos casos, é desejável garantir que o servidor use as mesmas opções cada vez que for executado. A melhor maneira de garantir isso é listá-las em um arquivo de opções. Veja Seção 4.2.2.2, “Uso de Arquivos de Opções”. Essa seção também descreve o formato e a sintaxe do arquivo de opções.
 
-**mysqld** lê opções dos grupos `[mysqld]` e `[server]`. **mysqld\_safe** lê opções dos grupos `[mysqld]`, `[server]`, `[mysqld_safe]` e `[safe_mysqld]`. **mysql.server** lê opções dos grupos `[mysqld]` e `[mysql.server]`.
+**mysqld** lê opções dos grupos `[mysqld]` e `[server]`. **mysqld_safe** lê opções dos grupos `[mysqld]`, `[server]`, `[mysqld_safe]` e `[safe_mysqld]`. **mysql.server** lê opções dos grupos `[mysqld]` e `[mysql.server]`.
 
 Um servidor MySQL embutido geralmente lê as opções dos grupos `[server]`, `[embedded]` e `[xxxxx_SERVER]`, onde *`xxxxx`* é o nome do aplicativo no qual o servidor está embutido.
 
@@ -70,7 +70,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--basedir=dir_name`, `-b dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   O caminho para o diretório de instalação do MySQL. Esta opção define a variável de sistema `basedir`.
 
@@ -78,11 +78,11 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
   <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
-  Essa opção é usada pelo programa **mysql\_install\_db** para criar as tabelas de privilégios do MySQL sem precisar iniciar um servidor MySQL completo.
+  Essa opção é usada pelo programa **mysql_install_db** para criar as tabelas de privilégios do MySQL sem precisar iniciar um servidor MySQL completo.
 
   Nota
 
-  **mysql\_install\_db** está desatualizado porque sua funcionalidade foi integrada ao **mysqld**, o servidor MySQL. Consequentemente, a opção de servidor `--bootstrap` que **mysql\_install\_db** passa para **mysqld** também está desatualizada. Para inicializar uma instalação do MySQL, inicie o **mysqld** com a opção `--initialize` ou `--initialize-insecure`. Para obter mais informações, consulte Seção 2.9.1, “Inicializando o diretório de dados”. Espere que **mysql\_install\_db** e a opção de servidor `--bootstrap` sejam removidos em uma futura versão do MySQL.
+  **mysql_install_db** está desatualizado porque sua funcionalidade foi integrada ao **mysqld**, o servidor MySQL. Consequentemente, a opção de servidor `--bootstrap` que **mysql_install_db** passa para **mysqld** também está desatualizada. Para inicializar uma instalação do MySQL, inicie o **mysqld** com a opção `--initialize` ou `--initialize-insecure`. Para obter mais informações, consulte Seção 2.9.1, “Inicializando o diretório de dados”. Espere que **mysql_install_db** e a opção de servidor `--bootstrap` sejam removidos em uma futura versão do MySQL.
 
   `--bootstrap` é mutuamente exclusiva de `--daemonize`, `--initialize` e `--initialize-insecure`.
 
@@ -116,7 +116,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
   Quando esta opção for usada, escreva um arquivo de núcleo se o **mysqld** falhar; não são necessários (ou aceitos) argumentos. O nome e a localização do arquivo de núcleo dependem do sistema. No Linux, um arquivo de núcleo chamado `core.pid` é escrito no diretório de trabalho atual do processo, que, para o **mysqld**, é o diretório de dados. *`pid`* representa o ID do processo do processo do servidor. No macOS, um arquivo de núcleo chamado `core.pid` é escrito no diretório `/cores`. No Solaris, use o comando **coreadm** para especificar onde escrever o arquivo de núcleo e como nomeá-lo.
 
-  Para alguns sistemas, para obter um arquivo de núcleo, você também deve especificar a opção `--core-file-size` para **mysqld\_safe**. Veja Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”. Em alguns sistemas, como o Solaris, você não obtém um arquivo de núcleo se estiver usando também a opção `--user`. Pode haver restrições ou limitações adicionais. Por exemplo, pode ser necessário executar **ulimit -c unlimited** antes de iniciar o servidor. Consulte a documentação do seu sistema.
+  Para alguns sistemas, para obter um arquivo de núcleo, você também deve especificar a opção `--core-file-size` para **mysqld_safe**. Veja Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”. Em alguns sistemas, como o Solaris, você não obtém um arquivo de núcleo se estiver usando também a opção `--user`. Pode haver restrições ou limitações adicionais. Por exemplo, pode ser necessário executar **ulimit -c unlimited** antes de iniciar o servidor. Consulte a documentação do seu sistema.
 
 - `--daemonize`
 
@@ -214,9 +214,9 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
   <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
 
-  Essa opção indica ao servidor quais plugins devem ser carregados antes de carregar os plugins embutidos obrigatórios e antes da inicialização do mecanismo de armazenamento. O carregamento antecipado é suportado apenas para plugins compilados com `PLUGIN_OPT_ALLOW_EARLY`. Se forem fornecidas várias opções de `--early-plugin-load` (server-options.html#option\_mysqld\_early-plugin-load), apenas a última opção será aplicada.
+  Essa opção indica ao servidor quais plugins devem ser carregados antes de carregar os plugins embutidos obrigatórios e antes da inicialização do mecanismo de armazenamento. O carregamento antecipado é suportado apenas para plugins compilados com `PLUGIN_OPT_ALLOW_EARLY`. Se forem fornecidas várias opções de `--early-plugin-load` (server-options.html#option_mysqld_early-plugin-load), apenas a última opção será aplicada.
 
-  O valor da opção é uma lista separada por ponto e vírgula de valores de *`plugin_library`* e *`name`*=`*`plugin\_library\*`. Cada *`plugin\_library`* é o nome de um arquivo de biblioteca que contém o código do plugin, e cada *`name`* é o nome de um plugin a ser carregado. Se uma biblioteca de plugin tiver o nome sem nenhum nome de plugin anterior, o servidor carrega todos os plugins da biblioteca. Com um nome de plugin anterior, o servidor carrega apenas o plugin nomeado da biblioteca. O servidor procura por arquivos de biblioteca de plugin no diretório nomeado pela variável de sistema [`plugin\_dir\`]\(server-system-variables.html#sysvar\_plugin\_dir).
+  O valor da opção é uma lista separada por ponto e vírgula de valores de *`plugin_library`* e *`name`*=`*`plugin_library\*`. Cada *`plugin_library`* é o nome de um arquivo de biblioteca que contém o código do plugin, e cada *`name`* é o nome de um plugin a ser carregado. Se uma biblioteca de plugin tiver o nome sem nenhum nome de plugin anterior, o servidor carrega todos os plugins da biblioteca. Com um nome de plugin anterior, o servidor carrega apenas o plugin nomeado da biblioteca. O servidor procura por arquivos de biblioteca de plugin no diretório nomeado pela variável de sistema [`plugin_dir\`]\(server-system-variables.html#sysvar_plugin_dir).
 
   Por exemplo, se os plugins chamados `myplug1` e `myplug2` estiverem contidos nos arquivos de biblioteca de plugins `myplug1.so` e `myplug2.so`, use esta opção para realizar um carregamento antecipado do plugin:
 
@@ -344,7 +344,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
   A linguagem a ser usada para mensagens de erro. *`lang_name`* pode ser fornecido como o nome da linguagem ou como o nome completo do caminho para o diretório onde os arquivos de linguagem estão instalados. Veja Seção 10.12, “Definindo a Linguagem da Mensagem de Erro”.
 
-  `--lc-messages-dir` (server-options.html#option\_mysqld\_lc-messages) e `--lc-messages` (server-options.html#option\_mysqld\_lc-messages) devem ser usados em vez de `--language` (server-options.html#option\_mysqld\_language), que está desatualizado (e tratado como sinônimo de `--lc-messages-dir` (server-options.html#option\_mysqld\_lc-messages)). Você deve esperar que a opção `--language` (server-options.html#option\_mysqld\_language) seja removida em uma futura versão do MySQL.
+  `--lc-messages-dir` (server-options.html#option_mysqld_lc-messages) e `--lc-messages` (server-options.html#option_mysqld_lc-messages) devem ser usados em vez de `--language` (server-options.html#option_mysqld_language), que está desatualizado (e tratado como sinônimo de `--lc-messages-dir` (server-options.html#option_mysqld_lc-messages)). Você deve esperar que a opção `--language` (server-options.html#option_mysqld_language) seja removida em uma futura versão do MySQL.
 
 - `--large-pages`
 
@@ -352,7 +352,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
   Algumas arquiteturas de hardware/sistema operacional suportam páginas de memória maiores que o padrão (geralmente 4 KB). A implementação real deste suporte depende do hardware e do sistema operacional subjacentes. Aplicações que realizam muitos acessos à memória podem obter melhorias de desempenho ao usar páginas grandes devido à redução de erros no Buffer de Busca de Tradução (TLB).
 
-  O MySQL suporta a implementação do Linux do suporte a páginas grandes (que é chamado de HugeTLB no Linux). Veja Seção 8.12.4.3, “Habilitar Suporte a Páginas Grandes”. Para suporte a páginas grandes no Solaris, consulte a descrição da opção `--super-large-pages` (server-options.html#option\_mysqld\_super-large-pages).
+  O MySQL suporta a implementação do Linux do suporte a páginas grandes (que é chamado de HugeTLB no Linux). Veja Seção 8.12.4.3, “Habilitar Suporte a Páginas Grandes”. Para suporte a páginas grandes no Solaris, consulte a descrição da opção `--super-large-pages` (server-options.html#option_mysqld_super-large-pages).
 
   `--large-pages` está desativado por padrão.
 
@@ -370,13 +370,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--local-service`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   (Apenas para Windows) A opção `--local-service` após o nome do serviço faz com que o servidor seja executado usando a conta `LocalService` do Windows, que tem privilégios de sistema limitados. Se `--defaults-file` e `--local-service` forem fornecidos após o nome do serviço, eles podem ser usados em qualquer ordem. Veja Seção 2.3.4.8, “Iniciando o MySQL como um Serviço do Windows”.
 
 - `--log-error[=nome_do_arquivo]`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Escreva o log de erros e as mensagens de inicialização neste arquivo. Consulte Seção 5.4.2, “O Log de Erros”.
 
@@ -388,13 +388,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--log-isam[=nome_do_arquivo]`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Registre todas as alterações do `MyISAM` neste arquivo (usado apenas durante a depuração do `MyISAM`).
 
 - `--log-raw`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   As senhas em certas declarações escritas no log de consulta geral, no log de consultas lentas e no log binário são reescritas pelo servidor para não ocorrerem literalmente em texto simples. A reescrita de senhas pode ser suprimida para o log de consulta geral iniciando o servidor com a opção `--log-raw`. Esta opção pode ser útil para fins de diagnóstico, para ver o texto exato das declarações recebidas pelo servidor, mas, por razões de segurança, não é recomendada para uso em produção.
 
@@ -408,25 +408,25 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--log-short-format`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Registre menos informações no registro de consultas lentas, se ele tiver sido ativado.
 
 - `--log-tc=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   O nome do arquivo de log do coordenador de transação mapeado à memória (para transações XA que afetam múltiplos mecanismos de armazenamento quando o log binário está desativado). O nome padrão é `tc.log`. O arquivo é criado no diretório de dados, se não for fornecido como um nome de caminho completo. Esta opção não é usada.
 
 - `--log-tc-size=tamanho`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   O tamanho, em bytes, do log do coordenador de transações mapeado à memória. Os valores padrão e mínimos são 6 vezes o tamanho da página, e o valor deve ser um múltiplo do tamanho da página. (Antes do MySQL 5.7.21, o tamanho padrão é de 24 KB.)
 
 - `--log-warnings[=nível]`, `-W [nível]`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Nota
 
@@ -436,7 +436,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--memlock`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   Bloquear o processo **mysqld** na memória. Esta opção pode ajudar se você tiver um problema em que o sistema operacional está fazendo com que o **mysqld** troque para o disco.
 
@@ -462,7 +462,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--myisam-block-size=N`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
 
   O tamanho do bloco a ser usado para as páginas de índice do `MyISAM`.
 
@@ -494,9 +494,9 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
   <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
-  Essa opção indica ao servidor que carregue os plugins nomeados ao iniciar. Se forem fornecidas várias opções de `--plugin-load` (server-options.html#option\_mysqld\_plugin-load), apenas a última se aplica. Plugins adicionais para carregar podem ser especificados usando as opções `--plugin-load-add` (server-options.html#option\_mysqld\_plugin-load-add).
+  Essa opção indica ao servidor que carregue os plugins nomeados ao iniciar. Se forem fornecidas várias opções de `--plugin-load` (server-options.html#option_mysqld_plugin-load), apenas a última se aplica. Plugins adicionais para carregar podem ser especificados usando as opções `--plugin-load-add` (server-options.html#option_mysqld_plugin-load-add).
 
-  O valor da opção é uma lista separada por ponto e vírgula de valores de *`plugin_library`* e *`name`*=`*`plugin\_library\*`. Cada *`plugin\_library`* é o nome de um arquivo de biblioteca que contém o código do plugin, e cada *`name`* é o nome de um plugin a ser carregado. Se uma biblioteca de plugin tiver o nome sem nenhum nome de plugin anterior, o servidor carrega todos os plugins da biblioteca. Com um nome de plugin anterior, o servidor carrega apenas o plugin nomeado da biblioteca. O servidor procura por arquivos de biblioteca de plugin no diretório nomeado pela variável de sistema [`plugin\_dir\`]\(server-system-variables.html#sysvar\_plugin\_dir).
+  O valor da opção é uma lista separada por ponto e vírgula de valores de *`plugin_library`* e *`name`*=`*`plugin_library\*`. Cada *`plugin_library`* é o nome de um arquivo de biblioteca que contém o código do plugin, e cada *`name`* é o nome de um plugin a ser carregado. Se uma biblioteca de plugin tiver o nome sem nenhum nome de plugin anterior, o servidor carrega todos os plugins da biblioteca. Com um nome de plugin anterior, o servidor carrega apenas o plugin nomeado da biblioteca. O servidor procura por arquivos de biblioteca de plugin no diretório nomeado pela variável de sistema [`plugin_dir\`]\(server-system-variables.html#sysvar_plugin_dir).
 
   Por exemplo, se os plugins chamados `myplug1` e `myplug2` estiverem contidos nos arquivos de biblioteca de plugins `myplug1.so` e `myplug2.so`, use esta opção para realizar um carregamento antecipado do plugin:
 
@@ -606,7 +606,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
     - Execute o comando **mysqladmin flush-privileges** ou **mysqladmin reload** a partir da linha de comando.
 
-    O esvaziamento de privilégios também pode ocorrer implicitamente como resultado de outras ações realizadas após a inicialização, fazendo com que o servidor comece a usar as tabelas de concessão. Por exemplo, o **mysql\_upgrade** esvazia os privilégios durante o procedimento de atualização.
+    O esvaziamento de privilégios também pode ocorrer implicitamente como resultado de outras ações realizadas após a inicialização, fazendo com que o servidor comece a usar as tabelas de concessão. Por exemplo, o **mysql_upgrade** esvazia os privilégios durante o procedimento de atualização.
 
   - `--skip-grant-tables` faz com que o servidor não carregue certos outros objetos registrados no banco de dados do sistema `mysql`:
 
@@ -634,7 +634,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--skip-innodb`
 
-  Desative o mecanismo de armazenamento `InnoDB`. Neste caso, como o mecanismo de armazenamento padrão é `InnoDB` (innodb-storage-engine.html), o servidor não pode ser iniciado a menos que você também use `--default-storage-engine` (server-system-variables.html#sysvar\_default\_storage\_engine) e `--default-tmp-storage-engine` (server-system-variables.html#sysvar\_default\_tmp\_storage\_engine) para definir o padrão para outros mecanismos tanto para tabelas permanentes quanto `TEMPORARY`.
+  Desative o mecanismo de armazenamento `InnoDB`. Neste caso, como o mecanismo de armazenamento padrão é `InnoDB` (innodb-storage-engine.html), o servidor não pode ser iniciado a menos que você também use `--default-storage-engine` (server-system-variables.html#sysvar_default_storage_engine) e `--default-tmp-storage-engine` (server-system-variables.html#sysvar_default_tmp_storage_engine) para definir o padrão para outros mecanismos tanto para tabelas permanentes quanto `TEMPORARY`.
 
   O mecanismo de armazenamento `InnoDB` não pode ser desativado, e a opção `--skip-innodb` está desatualizada e não tem efeito. Seu uso resulta em um aviso. Espere que essa opção seja removida em uma futura versão do MySQL.
 
@@ -786,7 +786,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
   Esta opção é **obrigatória** ao iniciar o **mysqld** como `root`. O servidor altera seu ID de usuário durante a sequência de inicialização, fazendo com que ele execute como esse usuário específico em vez de como `root`. Veja Seção 6.1.1, “Diretrizes de Segurança”.
 
-  Para evitar uma possível falha de segurança onde um usuário adiciona uma opção `--user=root` a um arquivo `my.cnf` (causando assim o servidor a rodar como `root`), o **mysqld** usa apenas a primeira opção `--user` especificada e emite uma mensagem de aviso se houver várias opções `--user` (server-options.html#option\_mysqld\_user). As opções em `/etc/my.cnf` e `$MYSQL_HOME/my.cnf` são processadas antes das opções de linha de comando, portanto, recomenda-se que você coloque uma opção `--user` em `/etc/my.cnf` e especifique um valor diferente de `root`. A opção em `/etc/my.cnf` é encontrada antes de qualquer outra opção `--user` (server-options.html#option\_mysqld\_user), o que garante que o servidor execute como um usuário diferente de `root` e que uma mensagem de aviso seja emitida se qualquer outra opção `--user` for encontrada.
+  Para evitar uma possível falha de segurança onde um usuário adiciona uma opção `--user=root` a um arquivo `my.cnf` (causando assim o servidor a rodar como `root`), o **mysqld** usa apenas a primeira opção `--user` especificada e emite uma mensagem de aviso se houver várias opções `--user` (server-options.html#option_mysqld_user). As opções em `/etc/my.cnf` e `$MYSQL_HOME/my.cnf` são processadas antes das opções de linha de comando, portanto, recomenda-se que você coloque uma opção `--user` em `/etc/my.cnf` e especifique um valor diferente de `root`. A opção em `/etc/my.cnf` é encontrada antes de qualquer outra opção `--user` (server-options.html#option_mysqld_user), o que garante que o servidor execute como um usuário diferente de `root` e que uma mensagem de aviso seja emitida se qualquer outra opção `--user` for encontrada.
 
 - `--validate-user-plugins[={OFF|ON}]`
 

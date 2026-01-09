@@ -1,4 +1,4 @@
-### 24.3.31 A tabela INFORMATION\_SCHEMA VIEWS
+### 24.3.31 A tabela INFORMATION_SCHEMA VIEWS
 
 A tabela `VIEWS` fornece informações sobre as visualizações nos bancos de dados. Você deve ter o privilégio `SHOW VIEW` para acessar essa tabela.
 

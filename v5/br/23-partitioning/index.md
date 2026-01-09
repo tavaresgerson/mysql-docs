@@ -110,7 +110,7 @@ mysql> SELECT
 
 Em qualquer caso, se você não vir o plugin `partition` listado com o valor `ACTIVE` na coluna `Status` no resultado (mostrado em texto em negrito em cada um dos exemplos dados), então sua versão do MySQL não foi construída com suporte a partição.
 
-Os binários da Comunidade do MySQL 5.7 fornecidos pela Oracle incluem suporte para particionamento. Para obter informações sobre o suporte para particionamento oferecido nos binários da MySQL Enterprise Edition, consulte \[Capítulo 28, *MySQL Enterprise Edition*] (mysql-enterprise.html).
+Os binários da Comunidade do MySQL 5.7 fornecidos pela Oracle incluem suporte para particionamento. Para obter informações sobre o suporte para particionamento oferecido nos binários da MySQL Enterprise Edition, consulte [Capítulo 28, *MySQL Enterprise Edition*] (mysql-enterprise.html).
 
 Para habilitar a partição ao compilar o MySQL 5.7 a partir da fonte, a compilação deve ser configurada com a opção `-DWITH_PARTITION_STORAGE_ENGINE`. Para mais informações, consulte Seção 2.8, “Instalando o MySQL a partir da fonte”.
 
@@ -126,7 +126,7 @@ A seção 22.3, “Gestão de Partições” (partitioning-management.html), abo
 
 Seção 22.3.4, “Manutenção de Partições”, discute comandos de manutenção de tabelas para uso com tabelas particionadas.
 
-A tabela `PARTITIONS` no banco de dados `INFORMATION_SCHEMA` fornece informações sobre partições e tabelas particionadas. Consulte Seção 24.3.16, “A tabela INFORMATION\_SCHEMA PARTITIONS” para obter mais informações; para alguns exemplos de consultas contra esta tabela, consulte Seção 22.2.7, “Como o MySQL lida com NULLs na partição”.
+A tabela `PARTITIONS` no banco de dados `INFORMATION_SCHEMA` fornece informações sobre partições e tabelas particionadas. Consulte Seção 24.3.16, “A tabela INFORMATION_SCHEMA PARTITIONS” para obter mais informações; para alguns exemplos de consultas contra esta tabela, consulte Seção 22.2.7, “Como o MySQL lida com NULLs na partição”.
 
 Para problemas conhecidos com a partição no MySQL 5.7, consulte Seção 22.6, “Restrições e Limitações na Partição”.
 

@@ -1,4 +1,4 @@
-#### 26.4.2.1 A Tabela sys\_config
+#### 26.4.2.1 A Tabela sys_config
 
 Esta tabela contém opções de configuração do esquema `sys`, uma linha por opção. As alterações de configuração feitas ao atualizar esta tabela persistem em todas as sessões do cliente e reinicializações do servidor.
 

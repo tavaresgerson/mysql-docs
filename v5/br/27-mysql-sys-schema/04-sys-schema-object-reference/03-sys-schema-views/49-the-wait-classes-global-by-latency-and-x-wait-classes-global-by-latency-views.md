@@ -1,4 +1,4 @@
-#### 26.4.3.49 As visualizações wait\_classes\_global\_by\_latency e x$wait\_classes\_global\_by\_latency
+#### 26.4.3.49 As visualizações wait_classes_global_by_latency e x$wait_classes_global_by_latency
 
 Esses gráficos resumem as latências totais da classe de espera, agrupadas por classe de evento. Por padrão, as linhas são ordenadas em ordem decrescente de latência total. Os eventos em espera são ignorados.
 

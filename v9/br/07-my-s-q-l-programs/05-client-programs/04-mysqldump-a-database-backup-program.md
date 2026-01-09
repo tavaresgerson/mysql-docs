@@ -100,7 +100,7 @@ O **mysqldump** suporta as seguintes opções, que podem ser especificadas na li
 
 **Tabela 6.13 Opções do mysqldump**
 
-qldump_output-directory">--output-directory</a></td> <td>Directory where dump files are written</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_output-format">--output-format</a></td> <td>Format of output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_password">--password</a></td> <td>Password for MySQL server</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_prompt">--prompt</a></td> <td>Prompt to enter password or username</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_query-file">--query-file</a></td> <td>Read SQL statements from a file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_query-file-name">--query-file-name</a></td> <td>Name of the SQL file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_query-file-path">--query-file-path</a></td> <td>Path to the SQL file</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_query-file-type">--query-file-type</a></td> <td>Type of SQL file (e.g., plain text, binary)</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_random-order">--random-order</a></td> <td>Randomize the order of rows in output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_set-charset">--set-charset</a></td> <td>Character set to use for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_set-charset-name">--set-charset-name</a></td> <td>Character set name to use for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_set-charset-encoding">--set-charset-encoding</a></td> <td>Character set encoding to use for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-set-charset">--skip-set-charset</a></td> <td>Do not set character set for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-set-names">--skip-set-names</a></td> <td>Do not set character set for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-set-tablespaces">--skip-set-tablespaces</a></td> <td>Do not set character set for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-set-user">--skip-set-user</a></td> <td>Do not set character set for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-set-privileges">--skip-set-privileges</a></td> <td>Do not set character set for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-set-user-host">--skip-set-user-host</a></td> <td>Do not set character set for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-set-user-host-port">--skip-set-user-host-port</a></td> <td>Do not set character set for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-set-user-host-user">--skip-set-user-host-user</a></td> <td>Do not set character set for output files</td> </tr><tr><td><a class="link" href="mysqldump.html#option_mysqldump_skip-set-user-host-user-host">--skip-set-user-host-user-host</a>
+qldump_output-directory">--output-directory</a></td> <td>Directory where dump files are written</td> </tr><tr><td>--output-format</td> <td>Format of output files</td> </tr><tr><td>--password</td> <td>Password for MySQL server</td> </tr><tr><td>--prompt</td> <td>Prompt to enter password or username</td> </tr><tr><td>--query-file</td> <td>Read SQL statements from a file</td> </tr><tr><td>--query-file-name</td> <td>Name of the SQL file</td> </tr><tr><td>--query-file-path</td> <td>Path to the SQL file</td> </tr><tr><td>--query-file-type</td> <td>Type of SQL file (e.g., plain text, binary)</td> </tr><tr><td>--random-order</td> <td>Randomize the order of rows in output files</td> </tr><tr><td>--set-charset</td> <td>Character set to use for output files</td> </tr><tr><td>--set-charset-name</td> <td>Character set name to use for output files</td> </tr><tr><td>--set-charset-encoding</td> <td>Character set encoding to use for output files</td> </tr><tr><td>--skip-set-charset</td> <td>Do not set character set for output files</td> </tr><tr><td>--skip-set-names</td> <td>Do not set character set for output files</td> </tr><tr><td>--skip-set-tablespaces</td> <td>Do not set character set for output files</td> </tr><tr><td>--skip-set-user</td> <td>Do not set character set for output files</td> </tr><tr><td>--skip-set-privileges</td> <td>Do not set character set for output files</td> </tr><tr><td>--skip-set-user-host</td> <td>Do not set character set for output files</td> </tr><tr><td>--skip-set-user-host-port</td> <td>Do not set character set for output files</td> </tr><tr><td>--skip-set-user-host-user</td> <td>Do not set character set for output files</td> </tr><tr><td>--skip-set-user-host-user-host
 
 #### Opções de Conexão
 
@@ -137,7 +137,7 @@ O comando **mysqldump** faz login em um servidor MySQL para extrair informaçõe
   </tr>
   <tr>
     <th>Valores válidos</th>
-    <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não comprimido</code></p></td>
+    <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não comprimido</code></p></td>
   </tr>
   </tbody>
 </table>
@@ -210,7 +210,7 @@ Ative o plugin de autenticação de texto claro `mysql_clear_password`. (Veja a 
   </tbody>
 </table>
 
-Leia opções de arquivos de caminho de login nomeados no arquivo de caminho de login `.mylogin.cnf`. Um "caminho de login" é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+Leia opções de arquivos de caminho de login nomeados no arquivo de caminho de login `.mylogin.cnf`. Um "caminho de login" é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para informações adicionais sobre isso e outras opções de arquivos de opções, veja a Seção 6.2.2.3, “Opções de Linha de Comando que Afetam o Tratamento de Arquivos de Opções”.
 
@@ -448,7 +448,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
   Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, `--no-defaults` pode ser usado para evitar que sejam lidas.
 
-A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 6.6.7, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
 Para obter informações adicionais sobre isso e outras opções de arquivo, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o manuseio de arquivos de opção”.
 
@@ -499,25 +499,25 @@ Escreva uma declaração `DROP TABLE` antes de cada declaração `CREATE TABLE`.
 
 * `--add-drop-trigger`
 
-  <table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não compactado</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não compactado</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não compactado</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não compactado</code></p></td> </tr></tbody></table>
 
   Escreva uma declaração `DROP TRIGGER` antes de cada declaração `CREATE TRIGGER`.
 
 * `--all-tablespaces`, `-Y`
 
-  <table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não compactado</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não compactado</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não compactado</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não compactado</code></p></td> </tr></tbody></table>
 
   Aumenta um dump de tabela com todas as instruções SQL necessárias para criar quaisquer tablespaces usados por uma tabela `NDB`. Essas informações não são incluídas de outra forma na saída do **mysqldump**. Esta opção atualmente é relevante apenas para tabelas do NDB Cluster.
 
 * `--no-create-db`, `-n`
 
-<table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não compactado</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não compactado</code></p></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não compactado</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não compactado</code></p></td> </tr></table>
 
 Ignorar as instruções `CREATE DATABASE` que estão incluídas no resultado, se a opção `--databases` ou `--all-databases` for fornecida.
 
 * `--no-create-info`, `-t`
 
-<table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não compactado</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não compactado</code></p></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não compactado</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não compactado</code></p></td> </tr></table>
 
 Não escrever instruções `CREATE TABLE` que criam cada tabela descarregada.
 
@@ -527,13 +527,13 @@ Esta opção *não* exclui instruções que criam grupos de arquivos de log ou e
 
 * `--no-tablespaces`, `-y`
 
-<table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não comprimido</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não comprimido</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não comprimido</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não comprimido</code></p></td> </tr></tbody></table>
 
   Esta opção suprime todas as instruções `CREATE LOGFILE GROUP` e `CREATE TABLESPACE` na saída do **mysqldump**.
 
 * `--replace`
 
-<table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não comprimido</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não comprimido</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para algoritmos de compressão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--compression-algorithms=valor</code></td> </tr><tr><th>Tipo</th> <td>Definido</td> </tr><tr><th>Valor padrão</th> <td><code>não comprimido</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não comprimido</code></p></td> </tr></tbody></table>
 
   Escreva instruções `REPLACE` em vez de instruções `INSERT`.
 
@@ -558,7 +558,7 @@ As seguintes opções imprimem informações de depuração, codificam informaç
   </tr>
   <tr>
     <th>Valores válidos</th>
-    <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não compactado</code></p></td>
+    <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não compactado</code></p></td>
   </tr>
   </table>
 7
@@ -582,7 +582,7 @@ Permite a criação de nomes de colunas que são palavras-chave. Isso funciona p
   </tr>
   <tr>
     <th>Valores válidos</th>
-    <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não compactado</code></p></td>
+    <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não compactado</code></p></td>
   </tr>
 </table>
 8
@@ -595,7 +595,7 @@ Escreva informações adicionais no arquivo de dump, como a versão do programa,
   <tr><th>Formato de Linha de Comando</th> <td><code>--compression-algorithms=valor</code></td> </tr>
   <tr><th>Tipo</th> <td>Conjunto</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>não comprimido</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>zlib</code></p><p class="valid-value"><code>zstd</code></p><p class="valid-value"><code>não comprimido</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>zlib</code></p><p><code>zstd</code></p><p><code>não comprimido</code></p></td> </tr>
 </table>
 
   Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O valor padrão é `d:t:o,/tmp/mysqldump.trace`.

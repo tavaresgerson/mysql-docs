@@ -1,4 +1,4 @@
-#### 21.6.15.14 Tabela ndbinfo cpustat\_20sec
+#### 21.6.15.14 Tabela ndbinfo cpustat_20sec
 
 A tabela `cpustat_20sec` fornece dados brutos de CPU por fio obtidos a cada 20 segundos, para cada fio que está rodando no kernel `NDB`.
 

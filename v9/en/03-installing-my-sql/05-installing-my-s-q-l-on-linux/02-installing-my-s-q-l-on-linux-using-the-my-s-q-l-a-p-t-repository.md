@@ -86,7 +86,7 @@ During the installation, you are asked to supply a password for the root user fo
 
 Important
 
-Make sure you remember the root password you set. Users who want to set a password later can leave the password field blank in the dialogue box and just press Ok; in that case, root access to the server will be authenticated by Section 8.4.1.10, “Socket Peer-Credential Pluggable Authentication” for connections using a Unix socket file. You can set the root password later using the program **mysql\_secure\_installation**.
+Make sure you remember the root password you set. Users who want to set a password later can leave the password field blank in the dialogue box and just press Ok; in that case, root access to the server will be authenticated by Section 8.4.1.10, “Socket Peer-Credential Pluggable Authentication” for connections using a Unix socket file. You can set the root password later using the program **mysql_secure_installation**.
 
 #### Starting and Stopping the MySQL Server
 

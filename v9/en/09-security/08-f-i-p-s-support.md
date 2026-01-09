@@ -22,7 +22,7 @@ For general information about FIPS and its implementation in OpenSSL, these refe
 
 * [OpenSSL FIPS 140-2 Security Policy](https://csrc.nist.gov/csrc/media/projects/cryptographic-module-validation-program/documents/security-policies/140sp1747.pdf)
 
-* [fips\_module manual page](https://www.openssl.org/docs/man3.0/man7/fips_module.html)
+* [fips_module manual page](https://www.openssl.org/docs/man3.0/man7/fips_module.html)
 
 Important
 

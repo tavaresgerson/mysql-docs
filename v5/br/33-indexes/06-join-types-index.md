@@ -4,7 +4,7 @@
 
 ### A
 
-\[[index superior](dynindex-jointype.html#jointype-index-superior)]
+[[index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### TODOS
 
@@ -18,7 +18,7 @@
 
 ### C
 
-\[[index superior](dynindex-jointype.html#jointype-index-superior)]
+[[index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### const
 
@@ -36,9 +36,9 @@
 
 ### E
 
-\[[index superior](dynindex-jointype.html#jointype-index-superior)]
+[[index superior](dynindex-jointype.html#jointype-index-superior)]
 
-### eq\_ref
+### eq_ref
 
 [Seção 8.2.1.11, "Conjuntos de junção de laço aninhado e acesso a chave em lote"](bnl-bka-optimization.html)
 
@@ -52,11 +52,11 @@
 
 [Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
 
-[Seção 25.12.4.1, "A tabela events\_waits\_current"](performance-schema-events-waits-current-table.html)
+[Seção 25.12.4.1, "A tabela events_waits_current"](performance-schema-events-waits-current-table.html)
 
 ### F
 
-\[[index superior](dynindex-jointype.html#jointype-index-superior)]
+[[index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### fulltext
 
@@ -64,7 +64,7 @@
 
 ### Eu
 
-\[[index superior](dynindex-jointype.html#jointype-index-superior)]
+[[index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### índice
 
@@ -74,13 +74,13 @@
 
 [Seção 8.2.1.6, “Algoritmos de Conexão de Loop Aninhado”](nested-loop-joins.html)
 
-### índice\_merge
+### índice_merge
 
 [Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
 
 [Seção 8.2.1.3, “Otimização da Fusão de Índices”](index-merge-optimization.html)
 
-### índice\_subquery
+### índice_subquery
 
 [Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
 
@@ -90,7 +90,7 @@
 
 ### R
 
-\[[index superior](dynindex-jointype.html#jointype-index-superior)]
+[[index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### alcance
 
@@ -128,7 +128,7 @@
 
 [Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
 
-### ref\_or\_null
+### ref_or_null
 
 [Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
 
@@ -140,7 +140,7 @@
 
 ### S
 
-\[[index superior](dynindex-jointype.html#jointype-index-superior)]
+[[index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### sistema
 
@@ -154,9 +154,9 @@
 
 ### U
 
-\[[index superior](dynindex-jointype.html#jointype-index-superior)]
+[[index superior](dynindex-jointype.html#jointype-index-superior)]
 
-### subconsulta\_única
+### subconsulta_única
 
 [Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
 

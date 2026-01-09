@@ -28,7 +28,7 @@ Unless otherwise specified, functions in this section handle their geometry argu
 
 Some functions in this section permit a unit argument that specifies the length unit for the return value. Unless otherwise specified, functions handle their unit argument as follows:
 
-* A unit is supported if it is found in the `INFORMATION_SCHEMA` `ST_UNITS_OF_MEASURE` table. See Section 28.3.43, “The INFORMATION\_SCHEMA ST\_UNITS\_OF\_MEASURE Table”.
+* A unit is supported if it is found in the `INFORMATION_SCHEMA` `ST_UNITS_OF_MEASURE` table. See Section 28.3.43, “The INFORMATION_SCHEMA ST_UNITS_OF_MEASURE Table”.
 
 * If a unit is specified but not supported by MySQL, an `ER_UNIT_NOT_FOUND` error occurs.
 

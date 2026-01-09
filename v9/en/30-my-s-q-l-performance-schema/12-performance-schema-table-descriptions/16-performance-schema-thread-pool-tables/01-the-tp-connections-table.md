@@ -1,4 +1,4 @@
-#### 29.12.16.1 The tp\_connections Table
+#### 29.12.16.1 The tp_connections Table
 
 The `tp_connections` table contains one row per connection managed by the Thread Pool plugin. Each row provides information about the current state of a thread pool connection.
 

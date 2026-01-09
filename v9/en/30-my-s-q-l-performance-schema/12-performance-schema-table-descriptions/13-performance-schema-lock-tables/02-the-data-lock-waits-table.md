@@ -1,4 +1,4 @@
-#### 29.12.13.2 The data\_lock\_waits Table
+#### 29.12.13.2 The data_lock_waits Table
 
 The `data_lock_waits` table implements a many-to-many relationship showing which data lock requests in the `data_locks` table are blocked by which held data locks in the `data_locks` table. Held locks in `data_locks` appear in `data_lock_waits` only if they block some lock request.
 
@@ -24,9 +24,9 @@ REQUESTING_OBJECT_INSTANCE_BEGIN: 140211086465800
 
 Unlike most Performance Schema data collection, there are no instruments for controlling whether data lock information is collected or system variables for controlling data lock table sizes. The Performance Schema collects information that is already available in the server, so there is no memory or CPU overhead to generate this information or need for parameters that control its collection.
 
-Use the `data_lock_waits` table to help diagnose performance problems that occur during times of heavy concurrent load. For `InnoDB`, see the discussion of this topic at Section 17.15.2, “InnoDB INFORMATION\_SCHEMA Transaction and Locking Information”.
+Use the `data_lock_waits` table to help diagnose performance problems that occur during times of heavy concurrent load. For `InnoDB`, see the discussion of this topic at Section 17.15.2, “InnoDB INFORMATION_SCHEMA Transaction and Locking Information”.
 
-Because the columns in the `data_lock_waits` table are similar to those in the `data_locks` table, the column descriptions here are abbreviated. For more detailed column descriptions, see Section 29.12.13.1, “The data\_locks Table”.
+Because the columns in the `data_lock_waits` table are similar to those in the `data_locks` table, the column descriptions here are abbreviated. For more detailed column descriptions, see Section 29.12.13.1, “The data_locks Table”.
 
 The `data_lock_waits` table has these columns:
 

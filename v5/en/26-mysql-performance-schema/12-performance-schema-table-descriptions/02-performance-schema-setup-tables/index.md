@@ -1,14 +1,14 @@
 ### 25.12.2 Performance Schema Setup Tables
 
-[25.12.2.1 The setup\_actors Table](performance-schema-setup-actors-table.html)
+[25.12.2.1 The setup_actors Table](performance-schema-setup-actors-table.html)
 
-[25.12.2.2 The setup\_consumers Table](performance-schema-setup-consumers-table.html)
+[25.12.2.2 The setup_consumers Table](performance-schema-setup-consumers-table.html)
 
-[25.12.2.3 The setup\_instruments Table](performance-schema-setup-instruments-table.html)
+[25.12.2.3 The setup_instruments Table](performance-schema-setup-instruments-table.html)
 
-[25.12.2.4 The setup\_objects Table](performance-schema-setup-objects-table.html)
+[25.12.2.4 The setup_objects Table](performance-schema-setup-objects-table.html)
 
-[25.12.2.5 The setup\_timers Table](performance-schema-setup-timers-table.html)
+[25.12.2.5 The setup_timers Table](performance-schema-setup-timers-table.html)
 
 The setup tables provide information about the current instrumentation and enable the monitoring configuration to be changed. For this reason, some columns in these tables can be changed if you have the [`UPDATE`](privileges-provided.html#priv_update) privilege.
 

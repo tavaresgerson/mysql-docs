@@ -1,4 +1,4 @@
-#### 30.4.4.18 O procedimento ps\_setup\_show\_enabled()
+#### 30.4.4.18 O procedimento ps_setup_show_enabled()
 
 Exibe todas as configurações da Schema de Desempenho atualmente habilitadas.
 

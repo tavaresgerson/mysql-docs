@@ -91,7 +91,7 @@ Os tipos de dados podem diferir do que você espera deles com base em uma instru
 
   Qualquer comentário incluído na definição da coluna. Esse valor é exibido apenas se você usar a palavra-chave `FULL`.
 
-As informações das colunas da tabela também estão disponíveis na tabela `INFORMATION_SCHEMA [`COLUMNS\`]\(information-schema-columns-table.html). Veja Seção 24.3.5, “A Tabela INFORMATION\_SCHEMA COLUMNS”.
+As informações das colunas da tabela também estão disponíveis na tabela `INFORMATION_SCHEMA [`COLUMNS\`]\(information-schema-columns-table.html). Veja Seção 24.3.5, “A Tabela INFORMATION_SCHEMA COLUMNS”.
 
 Você pode listar as colunas de uma tabela com o comando **mysqlshow *`db_name`* *`tbl_name`***.
 

@@ -75,11 +75,11 @@ Quando `innodb_stats_include_delete_marked` está habilitado, o comando `ANALYZE
 
 O recurso de estatísticas persistentes depende das tabelas gerenciadas internamente no banco de dados `mysql`, chamadas `innodb_table_stats` e `innodb_index_stats`. Essas tabelas são configuradas automaticamente em todos os procedimentos de instalação, atualização e construção a partir da fonte.
 
-**Tabela 14.4 Colunas de innodb\_table\_stats**
+**Tabela 14.4 Colunas de innodb_table_stats**
 
 <table summary="Colunas da tabela mysql.innodb_table_stats."><thead><tr> <th>Nome da coluna</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>[[<code>database_name</code>]]</td> <td>Nome do banco de dados</td> </tr><tr> <td>[[<code>table_name</code>]]</td> <td>Nome da tabela, nome da partição ou nome da subpartição</td> </tr><tr> <td>[[<code>last_update</code>]]</td> <td>Um marcador de tempo que indica a última vez que a linha foi atualizada</td> </tr><tr> <td>[[<code>n_rows</code>]]</td> <td>O número de linhas na tabela</td> </tr><tr> <td>[[<code>clustered_index_size</code>]]</td> <td>O tamanho do índice principal, em páginas</td> </tr><tr> <td>[[<code>sum_of_other_index_sizes</code>]]</td> <td>O tamanho total de outros índices (não primários), em páginas</td> </tr></tbody></table>
 
-**Tabela 14.5 Colunas de innodb\_index\_stats**
+**Tabela 14.5 Colunas de innodb_index_stats**
 
 <table summary="Colunas da tabela mysql.innodb_index_stats."><thead><tr> <th>Nome da coluna</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>stat_value</code>]</td> <td>Nome do banco de dados</td> </tr><tr> <td>[[PH_HTML_CODE_<code>stat_value</code>]</td> <td>Nome da tabela, nome da partição ou nome da subpartição</td> </tr><tr> <td>[[PH_HTML_CODE_<code>stat_name</code>]</td> <td>Nome do índice</td> </tr><tr> <td>[[<code>last_update</code>]]</td> <td>Um marcador de tempo que indica a última vez que [[<code>InnoDB</code>]] atualizou esta linha</td> </tr><tr> <td>[[<code>stat_name</code>]]</td> <td>O nome da estatística, cujo valor é reportado na coluna [[<code>stat_value</code>]]</td> </tr><tr> <td>[[<code>stat_value</code>]]</td> <td>O valor da estatística que está nomeada na coluna [[<code>stat_name</code>]]</td> </tr><tr> <td>[[<code>sample_size</code>]]</td> <td>O número de páginas amostradas para a estimativa fornecida na coluna [[<code>stat_value</code>]]</td> </tr><tr> <td>[[<code>table_name</code><code>stat_value</code>]</td> <td>Descrição da estatística que é nomeada na coluna [[<code>stat_name</code>]]</td> </tr></tbody></table>
 
@@ -269,7 +269,7 @@ Para o índice único (`i2uniq`), há duas linhas de `n_diff%`.
 
 - Se `index_name`=`i2uniq` e `stat_name`=`n_diff_pfx02`, o `stat_value` é `5`, o que indica que há cinco valores distintos nas duas colunas do índice (`e,f`). O número de valores distintos nas colunas `e` e `f` é confirmado ao visualizar os dados nas colunas `e` e `f` na tabela `t1`, na qual há cinco valores distintos: (`100,101`), (`200,102`), (`100,103`), (`200,104`) e (`100,105`). As colunas contadas (`e,f`) são mostradas na coluna `stat_description` do conjunto de resultados.
 
-##### 14.8.11.1.7 Recuperando o tamanho do índice usando a tabela innodb\_index\_stats
+##### 14.8.11.1.7 Recuperando o tamanho do índice usando a tabela innodb_index_stats
 
 Você pode recuperar o tamanho do índice para tabelas, partições ou subpartições usando a tabela `innodb_index_stats`. No exemplo a seguir, os tamanhos dos índices são recuperados para a tabela `t1`. Para uma definição da tabela `t1` e das estatísticas de índice correspondentes, consulte a Seção 14.8.11.1.6, “Exemplo de Tabelas de Estatísticas Persistentes do InnoDB”.
 

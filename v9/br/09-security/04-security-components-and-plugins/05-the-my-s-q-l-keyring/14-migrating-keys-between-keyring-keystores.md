@@ -14,7 +14,7 @@ O armazenamento de chaves gerencia os armazenamentos de chaves usando componente
 
 * Migração de um plugin de armazenamento de chaves para um componente de armazenamento de chaves: O servidor MySQL tem um modo operacional que fornece essa capacidade.
 
-* Migração de um componente de armazenamento de chaves para outro: O utilitário **mysql\_migrate\_keyring** fornece essa capacidade.
+* Migração de um componente de armazenamento de chaves para outro: O utilitário **mysql_migrate_keyring** fornece essa capacidade.
 
 * Migração de um componente de armazenamento de chaves para um plugin de armazenamento de chaves: O servidor MySQL tem um modo operacional que fornece essa capacidade.
 
@@ -22,7 +22,7 @@ As seções a seguir discutem as características das migrações de chaves offl
 
 * Migração de Chaves Offline e Online
 * Migração de Chaves Usando um Servidor de Migração
-* Migração de Chaves Usando o Utilitário mysql\_migrate\_keyring
+* Migração de Chaves Usando o Utilitário mysql_migrate_keyring
 * Migração de Chaves que Envolvem Vários Servidores em Execução
 
 * Migração offline: Para uso quando você tem certeza de que nenhum servidor em execução no host local está usando o keystore de origem ou destino. Neste caso, a operação de migração pode copiar chaves do keystore de origem para o destino sem a possibilidade de um servidor em execução modificar o conteúdo do keystore durante a operação.
@@ -61,7 +61,7 @@ Um servidor de migração suporta esses tipos de migração:
 * Migração de um plugin de keyring para um componente de keyring.
 * Migração de um componente de keyring para um plugin de keyring.
 
-Um servidor de migração não suporta a migração de um componente de chave para outro. Para esse tipo de migração, consulte a Migração de Chaves Usando o Ferramenta mysql\_migrate\_keyring.
+Um servidor de migração não suporta a migração de um componente de chave para outro. Para esse tipo de migração, consulte a Migração de Chaves Usando o Ferramenta mysql_migrate_keyring.
 
 Para realizar uma operação de migração de chave usando um servidor de migração, determine as opções de migração de chave necessárias para especificar quais plugins ou componentes de chave estão envolvidos e se a migração é offline ou online:
 
@@ -206,11 +206,11 @@ Após uma operação de migração de chaves online bem-sucedida, o servidor em 
 
 * Se o servidor em execução estava usando o keystore de origem antes da migração, mas deve usar o keystore de destino após a migração, ele deve ser reconfigurado para usar o keystore de destino e reiniciado. Nesse caso, esteja ciente de que, embora o servidor em execução esteja pausado para modificar o keystore de origem durante a migração em si, ele não está pausado durante o intervalo entre a migração e o reinício subsequente. Deve-se ter cuidado para que o servidor não modifique o keystore de origem durante esse intervalo, pois quaisquer alterações não serão refletidas no keystore de destino.
 
-##### Migração de Chaves Usando o Ferramenta mysql\_migrate\_keyring
+##### Migração de Chaves Usando o Ferramenta mysql_migrate_keyring
 
-A ferramenta **mysql\_migrate\_keyring** migra chaves de um componente de keyring para outro. Ela não suporta migrações que envolvam plugins de keyring. Para esse tipo de migração, use um servidor MySQL operando no modo de migração de chave; veja Migração de Chaves Usando um Servidor de Migração.
+A ferramenta **mysql_migrate_keyring** migra chaves de um componente de keyring para outro. Ela não suporta migrações que envolvam plugins de keyring. Para esse tipo de migração, use um servidor MySQL operando no modo de migração de chave; veja Migração de Chaves Usando um Servidor de Migração.
 
-Para realizar uma operação de migração de chave usando **mysql\_migrate\_keyring**, determine as opções de migração de chave necessárias para especificar quais componentes de keyring estão envolvidos e se a migração é offline ou online:
+Para realizar uma operação de migração de chave usando **mysql_migrate_keyring**, determine as opções de migração de chave necessárias para especificar quais componentes de keyring estão envolvidos e se a migração é offline ou online:
 
 * Para indicar os componentes de keyring de origem e destino e sua localização, especifique essas opções:
 
@@ -220,15 +220,15 @@ Para realizar uma operação de migração de chave usando **mysql\_migrate\_key
 
   + `--component-dir`: O diretório contendo arquivos de biblioteca de componentes de keyring. Esse é tipicamente o valor da variável de sistema `plugin_dir` do servidor MySQL local.
 
-Todas as três opções são obrigatórias. Cada nome de componente do chaveiro é o nome de um arquivo de biblioteca de componentes especificado sem qualquer extensão específica da plataforma, como `.so` ou `.dll`. Por exemplo, para usar o componente para o qual o arquivo de biblioteca é `component_keyring_file.so`, especifique a opção como `--source-keyring=component_keyring_file`. A fonte e o destino devem ser diferentes, e **mysql\_migrate\_keyring** deve suportar ambos.
+Todas as três opções são obrigatórias. Cada nome de componente do chaveiro é o nome de um arquivo de biblioteca de componentes especificado sem qualquer extensão específica da plataforma, como `.so` ou `.dll`. Por exemplo, para usar o componente para o qual o arquivo de biblioteca é `component_keyring_file.so`, especifique a opção como `--source-keyring=component_keyring_file`. A fonte e o destino devem ser diferentes, e **mysql_migrate_keyring** deve suportar ambos.
 
 * Para uma migração offline, não são necessárias opções adicionais.
 
-* Para uma migração online, alguns servidores em execução estão atualmente usando o keystore de origem ou destino. Neste caso, especifique a opção `--online-migration` para indicar uma migração online. Além disso, especifique opções de conexão indicando como se conectar ao servidor em execução, para que **mysql\_migrate\_keyring** possa se conectar a ele e dizer-lhe para pausar o uso do chaveiro durante a operação de migração.
+* Para uma migração online, alguns servidores em execução estão atualmente usando o keystore de origem ou destino. Neste caso, especifique a opção `--online-migration` para indicar uma migração online. Além disso, especifique opções de conexão indicando como se conectar ao servidor em execução, para que **mysql_migrate_keyring** possa se conectar a ele e dizer-lhe para pausar o uso do chaveiro durante a operação de migração.
 
 A opção `--online-migration` é comumente usada em conjunto com opções de conexão como estas:
 
-+ `--host`: O host onde o servidor em execução está localizado. Este é sempre o host local porque **mysql\_migrate\_keyring** pode migrar chaves apenas entre keystores gerenciados por componentes locais.
++ `--host`: O host onde o servidor em execução está localizado. Este é sempre o host local porque **mysql_migrate_keyring** pode migrar chaves apenas entre keystores gerenciados por componentes locais.
 
 + `--user`, `--password`: As credenciais de conta a serem usadas para se conectar ao servidor em execução.
 
@@ -236,21 +236,21 @@ A opção `--online-migration` é comumente usada em conjunto com opções de co
 
 + `--socket`: Para conexões de arquivo de socket Unix ou tubos nomeados do Windows, o arquivo de socket ou tubo nomeado para se conectar no servidor em execução.
 
-Para descrições de todas as opções disponíveis, consulte a Seção 6.6.8, “mysql\_migrate\_keyring — Ferramenta de Migração de Chaves do Chaveiro”.
+Para descrições de todas as opções disponíveis, consulte a Seção 6.6.8, “mysql_migrate_keyring — Ferramenta de Migração de Chaves do Chaveiro”.
 
-Inicie o **mysql\_migrate\_keyring** com opções que indiquem os keystores de origem e destino e se a migração é offline ou online, possivelmente com outras opções. Tenha em mente as seguintes considerações:
+Inicie o **mysql_migrate_keyring** com opções que indiquem os keystores de origem e destino e se a migração é offline ou online, possivelmente com outras opções. Tenha em mente as seguintes considerações:
 
-* O usuário que invoca **mysql\_migrate\_keyring** não deve ser o usuário do sistema `root`.
+* O usuário que invoca **mysql_migrate_keyring** não deve ser o usuário do sistema `root`.
 
-* O usuário que invoca **mysql\_migrate\_keyring** deve ter permissão para ler e escrever quaisquer arquivos de keystore local, como o arquivo de dados de um plugin baseado em arquivos.
+* O usuário que invoca **mysql_migrate_keyring** deve ter permissão para ler e escrever quaisquer arquivos de keystore local, como o arquivo de dados de um plugin baseado em arquivos.
 
-Se você invocar **mysql\_migrate\_keyring** a partir de uma conta de sistema diferente da normalmente usada para executar o MySQL, isso pode criar diretórios ou arquivos de keystore inacessíveis ao servidor durante o funcionamento normal. Suponha que **mysqld** normalmente execute como o usuário do sistema `mysql`, mas você invoque **mysql\_migrate\_keyring** enquanto estiver logado como `isabel`. Quaisquer novos diretórios ou arquivos criados por **mysql\_migrate\_keyring** são de propriedade de `isabel`. O início subsequente falha quando um servidor executado como o usuário do sistema `mysql` tenta acessar objetos do sistema de arquivos de propriedade de `isabel`.
+Se você invocar **mysql_migrate_keyring** a partir de uma conta de sistema diferente da normalmente usada para executar o MySQL, isso pode criar diretórios ou arquivos de keystore inacessíveis ao servidor durante o funcionamento normal. Suponha que **mysqld** normalmente execute como o usuário do sistema `mysql`, mas você invoque **mysql_migrate_keyring** enquanto estiver logado como `isabel`. Quaisquer novos diretórios ou arquivos criados por **mysql_migrate_keyring** são de propriedade de `isabel`. O início subsequente falha quando um servidor executado como o usuário do sistema `mysql` tenta acessar objetos do sistema de arquivos de propriedade de `isabel`.
 
-Para evitar esse problema, invocar **mysql\_migrate\_keyring** como o usuário do sistema `mysql`. Alternativamente, após a migração, examine os objetos do sistema de arquivos relacionados ao keystore e mude sua propriedade e permissões, se necessário, usando **chown**, **chmod** ou comandos semelhantes, para que os objetos sejam acessíveis ao servidor em execução.
+Para evitar esse problema, invocar **mysql_migrate_keyring** como o usuário do sistema `mysql`. Alternativamente, após a migração, examine os objetos do sistema de arquivos relacionados ao keystore e mude sua propriedade e permissões, se necessário, usando **chown**, **chmod** ou comandos semelhantes, para que os objetos sejam acessíveis ao servidor em execução.
 
 Suponha que você queira migrar chaves de `component_keyring_file` para `component_keyring_encrypted_file`, e que o servidor local armazene seus arquivos de biblioteca de componentes de keystore em `/usr/local/mysql/lib/plugin`.
 
-Se nenhum servidor em execução estiver usando o keystore, uma migração offline é permitida. Inicie **mysql\_migrate\_keyring** da seguinte forma (entre com o comando em uma única linha):
+Se nenhum servidor em execução estiver usando o keystore, uma migração offline é permitida. Inicie **mysql_migrate_keyring** da seguinte forma (entre com o comando em uma única linha):
 
 ```
 mysql_migrate_keyring
@@ -271,7 +271,7 @@ mysql_migrate_keyring
   --online-migration --host=127.0.0.1 --user=admin --password
 ```
 
-**mysql\_migrate\_keyring** realiza uma operação de migração da seguinte forma:
+**mysql_migrate_keyring** realiza uma operação de migração da seguinte forma:
 
 1. (Migração online apenas) Conecte-se ao servidor em execução usando as opções de conexão.
 
@@ -303,7 +303,7 @@ A migração online de chaves permite a pausa das operações do keyring em um �
 
 1. Conecte-se a cada servidor em execução manualmente e defina `keyring_operations=OFF`. Isso garante que nenhum servidor em execução esteja usando o keystore de origem ou de destino e atende à condição necessária para a migração offline.
 
-2. Use um servidor de migração ou **mysql\_migrate\_keyring** para realizar uma migração de chave offline para cada servidor parado.
+2. Use um servidor de migração ou **mysql_migrate_keyring** para realizar uma migração de chave offline para cada servidor parado.
 
 3. Conecte-se a cada servidor em execução manualmente e defina `keyring_operations=ON`.
 

@@ -6,7 +6,7 @@ Se ocorrerem problemas de conexão, como erros de comunicação ou conexões int
 * O log de consultas gerais. Consulte a Seção 7.4.3, “O Log de Consultas Gerais”.
 * As variáveis de status `Aborted_xxx` e `Connection_errors_xxx`. Consulte a Seção 7.1.10, “Variáveis de Status do Servidor”.
 
-* O cache do host, que é acessível usando a tabela do Schema de Desempenho `host_cache`. Consulte a Seção 7.1.12.3, “Consultas DNS e o Cache do Host”, e a Seção 29.12.22.4, “A Tabela host\_cache”.
+* O cache do host, que é acessível usando a tabela do Schema de Desempenho `host_cache`. Consulte a Seção 7.1.12.3, “Consultas DNS e o Cache do Host”, e a Seção 29.12.22.4, “A Tabela host_cache”.
 
 Se a variável de sistema `log_error_verbosity` estiver definida para 3, você pode encontrar mensagens como esta no seu log de erros:
 

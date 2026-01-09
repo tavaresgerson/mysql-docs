@@ -1,4 +1,4 @@
-#### 30.4.4.9 O procedimento ps\_setup\_enable\_consumer()
+#### 30.4.4.9 O procedimento ps_setup_enable_consumer()
 
 Habilita consumidores do Schema de Desempenho com nomes que contenham o argumento. Produz um conjunto de resultados indicando quantos consumidores foram habilitados. Os consumidores já habilitados não são contados.
 

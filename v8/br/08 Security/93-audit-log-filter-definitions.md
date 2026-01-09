@@ -444,15 +444,15 @@ Exemplo:
 
 Cada variável predefinida corresponde a uma variável do sistema. Ao escrever um filtro que testa uma variável predefinida, você pode modificar a operação do filtro definindo a variável do sistema correspondente, sem precisar redefinir o filtro. Por exemplo, ao escrever um filtro que testa o valor da variável predefinida `audit_log_connection_policy_value`, você pode modificar a operação do filtro alterando o valor da variável do sistema `audit_log_connection_policy`.
 
-As variáveis do sistema `audit_log\_xxx\_policy` são usadas para o modo legado obsoleto do log de auditoria (consulte a Seção 8.4.5.10, “Filtragem do Log de Auditoria no Modo Legado”). Com a filtragem do log de auditoria baseada em regras, essas variáveis permanecem visíveis (por exemplo, usando `SHOW VARIABLES`), mas as alterações nelas não têm efeito, a menos que você escreva filtros que contenham construções que as refiram.
+As variáveis do sistema `audit_log_xxx_policy` são usadas para o modo legado obsoleto do log de auditoria (consulte a Seção 8.4.5.10, “Filtragem do Log de Auditoria no Modo Legado”). Com a filtragem do log de auditoria baseada em regras, essas variáveis permanecem visíveis (por exemplo, usando `SHOW VARIABLES`), mas as alterações nelas não têm efeito, a menos que você escreva filtros que contenham construções que as refiram.
 
 A lista a seguir descreve as variáveis predefinidas permitidas para os itens `variable`:
 
 * `audit_log_connection_policy_value`
 
-  Esta variável corresponde ao valor da variável do sistema `audit_log_connection_policy`. O valor é um inteiro não assinado. A Tabela 8.39, “Valores de audit\_log\_connection\_policy\_value”, mostra os valores permitidos e os valores correspondentes de `audit_log_connection_policy`.
+  Esta variável corresponde ao valor da variável do sistema `audit_log_connection_policy`. O valor é um inteiro não assinado. A Tabela 8.39, “Valores de audit_log_connection_policy_value”, mostra os valores permitidos e os valores correspondentes de `audit_log_connection_policy`.
 
-  **Tabela 8.39 Valores de audit\_log\_connection\_policy\_value**
+  **Tabela 8.39 Valores de audit_log_connection_policy_value**
 
   <table><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Valor</th> <th>Valor correspondente de audit_log_connection_policy</th> </tr></thead><tbody><tr> <td><code>0</code> ou <code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code> ou <code>"::errors"</code></td> <td><code>ERRORS</code></td> </tr><tr> <td><code>2</code> ou <code>"::all"</code></td> <td><code>ALL</code></td> </tr></tbody></table>
 

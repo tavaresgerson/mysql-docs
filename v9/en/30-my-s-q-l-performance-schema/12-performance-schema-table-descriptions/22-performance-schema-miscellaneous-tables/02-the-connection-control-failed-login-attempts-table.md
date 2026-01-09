@@ -1,4 +1,4 @@
-#### 29.12.22.2 The connection\_control\_failed\_login\_attempts Table
+#### 29.12.22.2 The connection_control_failed_login_attempts Table
 
 This table provides information about the current number of consecutive failed connection attempts per account.
 

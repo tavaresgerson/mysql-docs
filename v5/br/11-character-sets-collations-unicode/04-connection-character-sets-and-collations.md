@@ -62,8 +62,8 @@ WHERE VARIABLE_NAME IN (
 As seguintes declarações mais simples também exibem as variáveis de conexão, mas incluem outras variáveis relacionadas também. Elas podem ser úteis para ver *todas* as variáveis do conjunto de caracteres e do sistema de ordenação:
 
 ```sql
-SHOW SESSION VARIABLES LIKE 'character\_set\_%';
-SHOW SESSION VARIABLES LIKE 'collation\_%';
+SHOW SESSION VARIABLES LIKE 'character_set_%';
+SHOW SESSION VARIABLES LIKE 'collation_%';
 ```
 
 Os clientes podem ajustar as configurações dessas variáveis ou depender dos padrões (neste caso, você pode pular o restante desta seção). Se você não usar os padrões, você deve alterar as configurações de caracteres *para cada conexão com o servidor.*
@@ -213,7 +213,7 @@ ERROR 2019 (HY000): Can't initialize character set bogus
 Se você especificar um conjunto de caracteres que o cliente reconhece, mas o servidor não, o servidor retorna ao seu conjunto de caracteres e ordenação padrão. Suponha que o servidor esteja configurado para usar `latin1` e `latin1_swedish_ci` como seus padrões, e que ele não reconheça `gb18030` como um conjunto de caracteres válido. Um cliente que especifica `--default-character-set=gb18030` consegue se conectar ao servidor, mas o conjunto de caracteres resultante não é o que o cliente deseja:
 
 ```sql
-mysql> SHOW SESSION VARIABLES LIKE 'character\_set\_%';
+mysql> SHOW SESSION VARIABLES LIKE 'character_set_%';
 +--------------------------+--------+
 | Variable_name            | Value  |
 +--------------------------+--------+
@@ -238,7 +238,7 @@ Nesse caso, o cliente não pode usar o conjunto de caracteres que deseja, porque
 O mesmo problema ocorre em um contexto mais sutil: quando o cliente instrui o servidor a usar um conjunto de caracteres que o servidor reconhece, mas a collation padrão para esse conjunto de caracteres no lado do cliente não é conhecida no lado do servidor. Isso ocorre, por exemplo, quando um cliente MySQL 8.0 deseja se conectar a um servidor MySQL 5.7 usando `utf8mb4` como o conjunto de caracteres do cliente. Um cliente que especifica `--default-character-set=utf8mb4` consegue se conectar ao servidor. No entanto, como no exemplo anterior, o servidor retorna ao seu conjunto de caracteres e collation padrão, e não ao solicitado pelo cliente:
 
 ```sql
-mysql> SHOW SESSION VARIABLES LIKE 'character\_set\_%';
+mysql> SHOW SESSION VARIABLES LIKE 'character_set_%';
 +--------------------------+--------+
 | Variable_name            | Value  |
 +--------------------------+--------+

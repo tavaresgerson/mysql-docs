@@ -1,4 +1,4 @@
-### 28.3.55 The INFORMATION\_SCHEMA VIEW\_TABLE\_USAGE Table
+### 28.3.55 The INFORMATION_SCHEMA VIEW_TABLE_USAGE Table
 
 The `VIEW_TABLE_USAGE` table provides access to information about tables and views used in view definitions.
 

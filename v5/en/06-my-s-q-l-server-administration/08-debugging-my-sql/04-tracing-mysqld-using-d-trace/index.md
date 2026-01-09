@@ -16,7 +16,7 @@ Global information is provided in the arguments to the DTrace probes at various 
 
 MySQL includes support for DTrace probes on these platforms:
 
-* Solaris 10 Update 5 (Solaris 5/08) on SPARC, x86 and x86\_64 platforms
+* Solaris 10 Update 5 (Solaris 5/08) on SPARC, x86 and x86_64 platforms
 
 * OS X / macOS 10.4 and higher
 * Oracle Linux 6 and higher with UEK kernel (as of MySQL 5.7.5)

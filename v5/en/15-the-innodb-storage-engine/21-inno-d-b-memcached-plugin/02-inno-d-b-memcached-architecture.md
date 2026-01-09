@@ -26,6 +26,6 @@ Features of the `daemon_memcached` plugin:
 
 * The ability to specify **memcached** options through the `daemon_memcached_option` configuration parameter. For example, you can change the port that **memcached** listens on, reduce the maximum number of simultaneous connections, change the maximum memory size for a key-value pair, or enable debugging messages for the error log.
 
-* The `innodb_api_trx_level` configuration option controls the transaction isolation level on queries processed by **memcached**. Although **memcached** has no concept of transactions, you can use this option to control how soon **memcached** sees changes caused by SQL statements issued on the table used by the **daemon\_memcached** plugin. By default, `innodb_api_trx_level` is set to `READ UNCOMMITTED`.
+* The `innodb_api_trx_level` configuration option controls the transaction isolation level on queries processed by **memcached**. Although **memcached** has no concept of transactions, you can use this option to control how soon **memcached** sees changes caused by SQL statements issued on the table used by the **daemon_memcached** plugin. By default, `innodb_api_trx_level` is set to `READ UNCOMMITTED`.
 
 * The `innodb_api_enable_mdl` option can be used to lock the table at the MySQL level, so that the mapped table cannot be dropped or altered by DDL through the SQL interface. Without the lock, the table can be dropped from the MySQL layer, but kept in `InnoDB` storage until **memcached** or some other user stops using it. “MDL” stands for “metadata locking”.

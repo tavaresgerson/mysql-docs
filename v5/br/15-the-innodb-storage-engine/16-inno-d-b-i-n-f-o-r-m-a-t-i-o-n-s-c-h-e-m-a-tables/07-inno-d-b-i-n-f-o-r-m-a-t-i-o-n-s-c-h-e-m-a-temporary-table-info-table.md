@@ -11,9 +11,9 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_TEMP%';
 +---------------------------------------------+
 ```
 
-Para a definição da tabela, consulte a Seção 24.4.27, “A tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO”.
+Para a definição da tabela, consulte a Seção 24.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”.
 
-**Exemplo 14.12 INNODB\_TEMP\_TABLE\_INFO**
+**Exemplo 14.12 INNODB_TEMP_TABLE_INFO**
 
 Este exemplo demonstra as características da tabela `INNODB_TEMP_TABLE_INFO`.
 

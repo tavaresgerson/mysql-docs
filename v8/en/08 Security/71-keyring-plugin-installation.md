@@ -37,8 +37,8 @@ early-plugin-load=keyring_okv.so
 
 Before starting the server, check the notes for your chosen keyring plugin for configuration instructions specific to that plugin:
 
-* `keyring_okv`: Section 8.4.4.6, “Using the keyring\_okv KMIP Plugin”.
-* `keyring_aws`: Section 8.4.4.7, “Using the keyring\_aws Amazon Web Services Keyring Plugin”
+* `keyring_okv`: Section 8.4.4.6, “Using the keyring_okv KMIP Plugin”.
+* `keyring_aws`: Section 8.4.4.7, “Using the keyring_aws Amazon Web Services Keyring Plugin”
 * `keyring_hashicorp`: Section 8.4.4.8, “Using the HashiCorp Vault Keyring Plugin”
 
 After performing any plugin-specific configuration, start the server. Verify plugin installation by examining the Information Schema  `PLUGINS` table or use the `SHOW PLUGINS` statement (see Section 7.6.2, “Obtaining Server Plugin Information”). For example:

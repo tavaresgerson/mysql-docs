@@ -8,7 +8,7 @@ O nome de base do arquivo da biblioteca de plugins é `connection_control`. O su
 
 Para carregar os plugins na inicialização do servidor, use a opção `--plugin-load-add` para nomear o arquivo da biblioteca que os contém. Com esse método de carregamento de plugins, a opção deve ser fornecida toda vez que o servidor for iniciado. Por exemplo, coloque essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` para sua plataforma conforme necessário:
 
-```sql
+```
 [mysqld]
 plugin-load-add=connection_control.so
 ```
@@ -24,7 +24,7 @@ INSTALL PLUGIN CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS
   SONAME 'connection_control.so';
 ```
 
-`INSTALE O PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
+`INSTALL PLUGIN` carrega o plugin imediatamente e também o registra na tabela `mysql.plugins` do sistema para que o servidor o carregue em cada inicialização normal subsequente, sem a necessidade de `--plugin-load-add`.
 
 Para verificar a instalação do plugin, examine a tabela Schema de Informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte Seção 5.5.2, “Obtendo Informações de Plugins do Servidor”). Por exemplo:
 
@@ -44,7 +44,7 @@ Se um plugin não conseguir se inicializar, verifique o log de erros do servidor
 
 Se os plugins tiverem sido registrados anteriormente com `INSTALL PLUGIN` ou forem carregados com `--plugin-load-add`, você pode usar as opções `--connection-control` e `--connection-control-failed-login-attempts` no início do servidor para controlar a ativação dos plugins. Por exemplo, para carregar os plugins no início e impedir que sejam removidos durante a execução, use essas opções:
 
-```sql
+```
 [mysqld]
 plugin-load-add=connection_control.so
 connection-control=FORCE_PLUS_PERMANENT
@@ -73,7 +73,7 @@ Para permitir a configuração de sua operação, o plugin `CONNECTION_CONTROL` 
 
 Se `connection_control_failed_connections_threshold` for diferente de zero, o contagem de conexões falhas está habilitada e tem as seguintes propriedades:
 
-- O atraso é de zero até as tentativas de conexão falhas consecutivas até o limite de `[`connection\_control\_failed\_connections\_threshold\`]\(connection-control-plugin-variables.html#sysvar\_connection\_control\_failed\_connections\_threshold).
+- O atraso é de zero até as tentativas de conexão falhas consecutivas até o limite de `connection_control_failed_connections_threshold`.
 
 - Em seguida, o servidor adiciona um atraso crescente para tentativas consecutivas subsequentes, até que uma conexão bem-sucedida ocorra. Os atrasos iniciais não ajustados começam em 1000 milissegundos (1 segundo) e aumentam em 1000 milissegundos por tentativa. Ou seja, uma vez que o atraso foi ativado para uma conta, os atrasos não ajustados para tentativas subsequentes não bem-sucedidas são de 1000 milissegundos, 2000 milissegundos, 3000 milissegundos e assim por diante.
 
@@ -83,15 +83,15 @@ Se `connection_control_failed_connections_threshold` for diferente de zero, o co
 
 Por exemplo, com o valor padrão de `connection_control_failed_connections_threshold` de 3, não há atraso para as três primeiras tentativas consecutivas de conexão falhadas por uma conta. Os atrasos ajustados reais experimentados pela conta para as quatro conexões falhas subsequentes dependem dos valores de `connection_control_min_connection_delay` e `connection_control_max_connection_delay`:
 
-- Se `connection_control_min_connection_delay` e \[`connection_control_max_connection_delay`]\(connection-control-plugin-variables.html#sysvar\_connection\_control\_max\_connection\_delay] forem 1000 e 20000, os atrasos ajustados serão os mesmos dos atrasos não ajustados, até um máximo de 20000 milissegundos. As quatro e subsequentes conexões falhas serão atrasadas por 1000 milissegundos, 2000 milissegundos, 3000 milissegundos e assim por diante.
+- Se `connection_control_min_connection_delay` e [`connection_control_max_connection_delay`]\(connection-control-plugin-variables.html#sysvar_connection_control_max_connection_delay] forem 1000 e 20000, os atrasos ajustados serão os mesmos dos atrasos não ajustados, até um máximo de 20000 milissegundos. As quatro e subsequentes conexões falhas serão atrasadas por 1000 milissegundos, 2000 milissegundos, 3000 milissegundos e assim por diante.
 
 - Se `connection_control_min_connection_delay` e `connection_control_max_connection_delay` forem 1500 e 20000, os atrasos ajustados para as quatro e subsequentes conexões falhas serão de 1500 milissegundos, 2000 milissegundos, 3000 milissegundos e assim por diante, até um máximo de 20000 milissegundos.
 
-- Se `connection_control_min_connection_delay` e \[`connection_control_max_connection_delay`]\(connection-control-plugin-variables.html#sysvar\_connection\_control\_max\_connection\_delay] forem 2000 e 3000, os atrasos ajustados para a quarta e conexões subsequentes falhas serão de 2000 milissegundos, 2000 milissegundos e 3000 milissegundos, com todas as conexões subsequentes falhas também atrasadas por 3000 milissegundos.
+- Se `connection_control_min_connection_delay` e [`connection_control_max_connection_delay`]\(connection-control-plugin-variables.html#sysvar_connection_control_max_connection_delay] forem 2000 e 3000, os atrasos ajustados para a quarta e conexões subsequentes falhas serão de 2000 milissegundos, 2000 milissegundos e 3000 milissegundos, com todas as conexões subsequentes falhas também atrasadas por 3000 milissegundos.
 
 Você pode definir as variáveis de sistema `CONNECTION_CONTROL` no início ou durante o funcionamento do servidor. Suponha que você queira permitir quatro tentativas consecutivas de conexão falhas antes que o servidor comece a atrasar suas respostas, com um atraso mínimo de 2000 milissegundos. Para definir as variáveis relevantes no início do servidor, coloque essas linhas no arquivo `my.cnf` do servidor:
 
-```sql
+```
 [mysqld]
 plugin-load-add=connection_control.so
 connection-control-failed-connections-threshold=4
@@ -133,7 +133,7 @@ Nota
 
 O servidor mantém informações sobre quais hosts do cliente podem se conectar ao servidor (essencialmente a união dos valores de host das entradas `mysql.user`). Se um cliente tentar se conectar de qualquer outro host, o servidor rejeita a tentativa em uma fase inicial da configuração da conexão:
 
-```sql
+```
 ERROR 1130 (HY000): Host 'host_name' is not
 allowed to connect to this MySQL server
 ```
@@ -154,4 +154,4 @@ Atribuir um valor a `connection_control_failed_connections_threshold` em tempo d
 
 - A variável de status `Connection_control_delay_generated` é zerada.
 
-- A tabela [`CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS`](https://pt.wikipedia.org/wiki/Informa%C3%A7%C3%A3o-schema-connection-control-failed-login-attempts-table.html) fica vazia.
+- A tabela `CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS` fica vazia.

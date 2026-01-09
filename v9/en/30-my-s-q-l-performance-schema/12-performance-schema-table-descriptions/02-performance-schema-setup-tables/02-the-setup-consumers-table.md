@@ -1,4 +1,4 @@
-#### 29.12.2.2 The setup\_consumers Table
+#### 29.12.2.2 The setup_consumers Table
 
 The `setup_consumers` table lists the types of consumers for which event information can be stored and which are enabled:
 

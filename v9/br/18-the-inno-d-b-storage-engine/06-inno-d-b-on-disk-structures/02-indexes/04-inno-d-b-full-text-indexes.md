@@ -11,7 +11,7 @@ Os índices de texto completo de `InnoDB` são descritos nos seguintes tópicos 
 * Projeto de Índices de Texto Completo de InnoDB
 * Tabelas de Índices de Texto Completo de InnoDB
 * Cache de Índices de Texto Completo de InnoDB
-* Coluna `DOC\_ID` e `FTS\_DOC\_ID` de Índices de Texto Completo de InnoDB
+* Coluna `DOC_ID` e `FTS_DOC_ID` de Índices de Texto Completo de InnoDB
 * Gerenciamento de Deleção de Índices de Texto Completo de InnoDB
 * Gerenciamento de Transações de Índices de Texto Completo de InnoDB
 * Monitoramento de Índices de Texto Completo de InnoDB
@@ -53,7 +53,7 @@ mysql> SELECT table_id, name, space from INFORMATION_SCHEMA.INNODB_TABLES
 +----------+----------------------------------------------------+-------+
 ```
 
-As seis primeiras tabelas de índice compreendem o índice invertido e são referenciadas como tabelas de índice auxiliares. Quando documentos recebidos são tokenizados, as palavras individuais (também referidas como “tokens”) são inseridas nas tabelas de índice junto com informações de posição e um `DOC\_ID` associado. As palavras são totalmente ordenadas e particionadas entre as seis tabelas de índice com base no peso de classificação do primeiro caractere da palavra.
+As seis primeiras tabelas de índice compreendem o índice invertido e são referenciadas como tabelas de índice auxiliares. Quando documentos recebidos são tokenizados, as palavras individuais (também referidas como “tokens”) são inseridas nas tabelas de índice junto com informações de posição e um `DOC_ID` associado. As palavras são totalmente ordenadas e particionadas entre as seis tabelas de índice com base no peso de classificação do primeiro caractere da palavra.
 
 O índice invertido é dividido em seis tabelas de índice auxiliares para suportar a criação de índices de texto paralelos. Por padrão, dois threads tokenizam, classificam e inserem palavras e dados associados nas tabelas de índice. O número de threads que realizam esse trabalho é configurável usando a variável `innodb_ft_sort_pll_degree`. Considere aumentar o número de threads ao criar índices de texto completo em tabelas grandes.
 
@@ -79,11 +79,11 @@ As tabelas de índice comuns são mantidas mesmo se os índices de texto complet
 
 * `fts_*_deleted` e `fts_*_deleted_cache`
 
-  Contêm os IDs de documentos (DOC\_ID) para documentos que são excluídos, mas cujos dados ainda não foram removidos do índice de texto completo. O `fts_*_deleted_cache` é a versão de memória da tabela `fts_*_deleted`.
+  Contêm os IDs de documentos (DOC_ID) para documentos que são excluídos, mas cujos dados ainda não foram removidos do índice de texto completo. O `fts_*_deleted_cache` é a versão de memória da tabela `fts_*_deleted`.
 
 * `fts_*_being_deleted` e `fts_*_being_deleted_cache`
 
-  Contêm os IDs de documentos (DOC\_ID) para documentos que são excluídos e cujos dados estão atualmente no processo de remoção do índice de texto completo. A tabela `fts_*_being_deleted_cache` é a versão de memória da tabela `fts_*_being_deleted`.
+  Contêm os IDs de documentos (DOC_ID) para documentos que são excluídos e cujos dados estão atualmente no processo de remoção do índice de texto completo. A tabela `fts_*_being_deleted_cache` é a versão de memória da tabela `fts_*_being_deleted`.
 
 * `fts_*_config`
 
@@ -99,7 +99,7 @@ A variável `innodb_ft_cache_size` é usada para configurar o tamanho do cache d
 
 O cache de índice de texto completo armazena as mesmas informações que as tabelas de índice auxiliares. No entanto, o cache de índice de texto completo armazena apenas dados tokenizados para linhas inseridas recentemente. Os dados que já foram descarregados no disco (para as tabelas de índice auxiliares) não são reintroduzidos no cache de índice de texto completo quando consultados. Os dados nas tabelas de índice auxiliares são consultados diretamente, e os resultados das tabelas de índice auxiliares são mesclados com os resultados do cache de índice de texto completo antes de serem retornados.
 
-##### Índice de Texto Completo InnoDB DOC\_ID e FTS\_DOC\_ID Coluna
+##### Índice de Texto Completo InnoDB DOC_ID e FTS_DOC_ID Coluna
 
 O `InnoDB` usa um identificador de documento único, denominado `DOC_ID`, para mapear palavras no índice de texto completo a registros de documento onde a palavra aparece. A mapeo requer uma coluna `FTS_DOC_ID` na tabela indexada. Se uma coluna `FTS_DOC_ID` não for definida, o `InnoDB` adiciona automaticamente uma coluna oculta `FTS_DOC_ID` quando o índice de texto completo é criado. O exemplo a seguir demonstra esse comportamento.
 

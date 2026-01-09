@@ -1,4 +1,4 @@
-#### 30.4.4.24 O procedimento ps\_truncate\_all\_tables()
+#### 30.4.4.24 O procedimento ps_truncate_all_tables()
 
 Trunca todas as tabelas de resumo do Gerenciador de Desempenho, redefinindo toda a instrumentação agregada como um instantâneo. Produz um conjunto de resultados indicando quantos tabelas foram truncadas.
 

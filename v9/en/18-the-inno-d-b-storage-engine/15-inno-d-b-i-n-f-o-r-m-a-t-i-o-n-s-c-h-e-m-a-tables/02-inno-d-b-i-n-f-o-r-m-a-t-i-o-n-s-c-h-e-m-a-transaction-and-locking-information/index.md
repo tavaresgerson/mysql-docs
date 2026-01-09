@@ -1,4 +1,4 @@
-### 17.15.2 InnoDB INFORMATION\_SCHEMA Transaction and Locking Information
+### 17.15.2 InnoDB INFORMATION_SCHEMA Transaction and Locking Information
 
 17.15.2.1 Using InnoDB Transaction and Locking Information
 
@@ -20,4 +20,4 @@ One `INFORMATION_SCHEMA` table and two Performance Schema tables enable you to m
 
 * `data_lock_waits`: This Performance Schema table indicates which transactions are waiting for a given lock, or for which lock a given transaction is waiting. This table contains one or more rows for each blocked transaction, indicating the lock it has requested and any locks that are blocking that request. The `REQUESTING_ENGINE_LOCK_ID` value refers to the lock requested by a transaction, and the `BLOCKING_ENGINE_LOCK_ID` value refers to the lock (held by another transaction) that prevents the first transaction from proceeding. For any given blocked transaction, all rows in `data_lock_waits` have the same value for `REQUESTING_ENGINE_LOCK_ID` and different values for `BLOCKING_ENGINE_LOCK_ID`.
 
-For more information about the preceding tables, see Section 28.4.28, “The INFORMATION\_SCHEMA INNODB\_TRX Table”, Section 29.12.13.1, “The data\_locks Table”, and Section 29.12.13.2, “The data\_lock\_waits Table”.
+For more information about the preceding tables, see Section 28.4.28, “The INFORMATION_SCHEMA INNODB_TRX Table”, Section 29.12.13.1, “The data_locks Table”, and Section 29.12.13.2, “The data_lock_waits Table”.

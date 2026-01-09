@@ -1,4 +1,4 @@
-#### 17.6.3.9 Tablespace AUTOEXTEND\_SIZE Configuration
+#### 17.6.3.9 Tablespace AUTOEXTEND_SIZE Configuration
 
 By default, when a file-per-table or general tablespace requires additional space, the tablespace is extended incrementally according to the following rules:
 

@@ -1,4 +1,4 @@
-#### 25.6.15.15 The ndbinfo cpudata\_1sec Table
+#### 25.6.15.15 The ndbinfo cpudata_1sec Table
 
 The `cpudata_1sec` table provides data about CPU usage per second over the last 20 seconds.
 

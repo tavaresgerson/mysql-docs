@@ -31,7 +31,7 @@ Before you start, ensure that the servers meet the following pre-conditions:
    SET @@GLOBAL.GTID_MODE = OFF_PERMISSIVE;
    ```
 
-4. On each server, wait until the variable @@GLOBAL.GTID\_OWNED is equal to the empty string. This can be checked using:
+4. On each server, wait until the variable @@GLOBAL.GTID_OWNED is equal to the empty string. This can be checked using:
 
    ```sql
    SELECT @@GLOBAL.GTID_OWNED;

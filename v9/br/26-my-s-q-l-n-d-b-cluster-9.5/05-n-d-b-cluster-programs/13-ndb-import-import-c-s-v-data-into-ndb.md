@@ -14,7 +14,7 @@ O **ndb_import** rejeita quaisquer linhas vazias que lê do arquivo CSV, exceto 
 
 O **ndb_import** deve ser capaz de se conectar a um servidor de gerenciamento do NDB Cluster; por essa razão, deve haver um slot `[api]` não utilizado no arquivo `config.ini` do cluster.
 
-Para duplicar uma tabela existente que usa um motor de armazenamento diferente, como `InnoDB`, como uma tabela `NDB`, use o cliente **mysql** para executar uma declaração `SELECT INTO OUTFILE` para exportar a tabela existente para um arquivo CSV, depois execute uma declaração `CREATE TABLE LIKE` para criar uma nova tabela com a mesma estrutura da tabela existente, depois execute `ALTER TABLE ... ENGINE=NDB` na nova tabela; depois disso, do shell do sistema, invoque **ndb\_import** para carregar os dados na nova tabela `NDB`. Por exemplo, uma tabela `InnoDB` existente chamada `myinnodb_table` em um banco de dados chamado `myinnodb` pode ser exportada para uma tabela `NDB` chamada `myndb_table` em um banco de dados chamado `myndb`, como mostrado aqui, assumindo que você já está logado como um usuário MySQL com os privilégios apropriados:
+Para duplicar uma tabela existente que usa um motor de armazenamento diferente, como `InnoDB`, como uma tabela `NDB`, use o cliente **mysql** para executar uma declaração `SELECT INTO OUTFILE` para exportar a tabela existente para um arquivo CSV, depois execute uma declaração `CREATE TABLE LIKE` para criar uma nova tabela com a mesma estrutura da tabela existente, depois execute `ALTER TABLE ... ENGINE=NDB` na nova tabela; depois disso, do shell do sistema, invoque **ndb_import** para carregar os dados na nova tabela `NDB`. Por exemplo, uma tabela `InnoDB` existente chamada `myinnodb_table` em um banco de dados chamado `myinnodb` pode ser exportada para uma tabela `NDB` chamada `myndb_table` em um banco de dados chamado `myndb`, como mostrado aqui, assumindo que você já está logado como um usuário MySQL com os privilégios apropriados:
 
 1. No cliente **mysql**:
 
@@ -62,7 +62,7 @@ Para duplicar uma tabela existente que usa um motor de armazenamento diferente, 
    $>
    ```
 
-Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+Todas as opções que podem ser usadas com **ndb_import** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 * `--abort-on-error`
 
@@ -294,7 +294,7 @@ Isso funciona da mesma maneira que a opção `FIELDS TERMINATED BY` para a instr
 
   <table frame="box" rules="all" summary="Propriedades para ai-offset"><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></table>
 
-  Fazer com que o ndb\_import ignore as primeiras linhas `#` do arquivo de entrada. Isso pode ser usado para ignorar o cabeçalho de um arquivo que não contém nenhum dado.
+  Fazer com que o ndb_import ignore as primeiras linhas `#` do arquivo de entrada. Isso pode ser usado para ignorar o cabeçalho de um arquivo que não contém nenhum dado.
 
 * `--input-type`=*`nome`*
 
@@ -312,7 +312,7 @@ Defina o tipo de tipo de entrada. O padrão é `csv`; `random` é destinado apen
 
   <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Por padrão, o ndb\_import remove todos os arquivos de estado (exceto arquivos `*.rej` não vazios) quando conclui um trabalho. Especifique esta opção (não é necessário argumento) para forçar o programa a reter todos os arquivos de estado.
+  Por padrão, o ndb_import remove todos os arquivos de estado (exceto arquivos `*.rej` não vazios) quando conclui um trabalho. Especifique esta opção (não é necessário argumento) para forçar o programa a reter todos os arquivos de estado.
 
 * `--lines-terminated-by=*``nome`*
 
@@ -437,7 +437,7 @@ Leia o caminho dado a partir do arquivo de login.
 </table>
 7
 
-  Defina a string de conexão para conectar-se ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina entradas no `NDB_CONNECTSTRING` e `my.cnf`.
+  Defina a string de conexão para conectar-se ao **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina entradas no `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 
@@ -645,7 +645,7 @@ Onde escrever os arquivos de estado (`tbl_name.map`, `tbl_name.rej`, `tbl_name.r
   <tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr>
 </table>
 
-Por padrão, o **ndb\_import** tenta importar dados para uma tabela cujo nome é o nome base do arquivo CSV a partir do qual os dados estão sendo lidos. Você pode substituir a escolha do nome da tabela especificando-o com a opção `--table` (forma abreviada `-t`).
+Por padrão, o **ndb_import** tenta importar dados para uma tabela cujo nome é o nome base do arquivo CSV a partir do qual os dados estão sendo lidos. Você pode substituir a escolha do nome da tabela especificando-o com a opção `--table` (forma abreviada `-t`).
 
 * `--tempdelay=*`
 

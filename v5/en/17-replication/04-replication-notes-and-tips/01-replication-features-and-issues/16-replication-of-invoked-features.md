@@ -25,7 +25,7 @@ Replication of invoked features such as loadable functions and stored programs (
 
   + The status of the event is set to `SLAVESIDE_DISABLED` on the replica regardless of the state specified (this does not apply to [`DROP EVENT`](drop-event.html "13.1.23 DROP EVENT Statement")).
 
-  + The source on which the event was created is identified on the replica by its server ID. The `ORIGINATOR` column in the Information Schema [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table and the `originator` column in `mysql.event` store this information. See [Section 24.3.8, “The INFORMATION\_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table"), and [Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement"), for more information.
+  + The source on which the event was created is identified on the replica by its server ID. The `ORIGINATOR` column in the Information Schema [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table and the `originator` column in `mysql.event` store this information. See [Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table"), and [Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement"), for more information.
 
 * The feature implementation resides on the replica in a renewable state so that if the source fails, the replica can be used as the source without loss of event processing.
 

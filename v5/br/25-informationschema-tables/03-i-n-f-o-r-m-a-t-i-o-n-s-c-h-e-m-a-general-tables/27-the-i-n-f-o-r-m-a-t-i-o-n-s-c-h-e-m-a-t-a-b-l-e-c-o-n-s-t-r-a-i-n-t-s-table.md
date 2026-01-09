@@ -1,4 +1,4 @@
-### 24.3.27 A tabela INFORMATION\_SCHEMA TABLE\_CONSTRAINTS
+### 24.3.27 A tabela INFORMATION_SCHEMA TABLE_CONSTRAINTS
 
 A tabela [`TABLE_CONSTRAINTS`](https://pt.wikipedia.org/wiki/Informa%C3%A7%C3%A3o-schema-table-constraints-table.html) descreve quais tabelas possuem restrições.
 

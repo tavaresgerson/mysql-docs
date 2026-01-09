@@ -18,7 +18,7 @@ The following table shows the plugin and library file names. The file name suffi
 
 **Table 8.22 Plugin and Library Names for Kerberos Authentication**
 
-<table summary="Names for the plugins and library file used for Kerberos authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_kerberos</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">authentication_kerberos_client</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">authentication_kerberos.so</code>, <code class="filename">authentication_kerberos_client.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for Kerberos authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_kerberos</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">authentication_kerberos_client</code></td> </tr><tr> <td>Library file</td> <td><code>authentication_kerberos.so</code>, <code>authentication_kerberos_client.so</code></td> </tr></tbody></table>
 
 The server-side Kerberos authentication plugin is included only in MySQL Enterprise Edition. It is not included in MySQL community distributions. The client-side plugin is included in all distributions, including community distributions. This enables clients from any distribution to connect to a server that has the server-side plugin loaded.
 
@@ -534,7 +534,7 @@ Note
 
 Despite `CLIENT` in the name `AUTHENTICATION_KERBEROS_CLIENT_LOG`, the same environment variable applies to the server-side plugin as well as the client-side plugin.
 
-On the server side, the permitted values are 0 (off) and 1 (on). Log messages are written to the server error log, subject to the server error-logging verbosity level. For example, if you are using priority-based log filtering, the `log_error_verbosity` system variable controls verbosity, as described in Section 7.4.2.5, “Priority-Based Error Log Filtering (log\_filter\_internal)”").
+On the server side, the permitted values are 0 (off) and 1 (on). Log messages are written to the server error log, subject to the server error-logging verbosity level. For example, if you are using priority-based log filtering, the `log_error_verbosity` system variable controls verbosity, as described in Section 7.4.2.5, “Priority-Based Error Log Filtering (log_filter_internal)”").
 
 On the client side, the permitted values are from 1 to 5 and are written to the standard error output. The following table shows the meaning of each log-level value.
 

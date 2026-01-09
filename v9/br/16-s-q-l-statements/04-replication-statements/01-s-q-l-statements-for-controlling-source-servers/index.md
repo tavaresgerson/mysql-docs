@@ -4,7 +4,7 @@
 
 15.4.1.2 Instrução RESET BINARY LOGS AND GTIDS
 
-15.4.1.3 Instrução SET sql\_log\_bin
+15.4.1.3 Instrução SET sql_log_bin
 
 Esta seção discute instruções para gerenciar servidores de origem de replicação. A seção 15.4.2, “Instruções SQL para o Controle de Servidores de Replicação”, discute instruções para gerenciar servidores de replicação.
 

@@ -20,4 +20,4 @@ Enquanto um membro está se juntando ou se reiniciando em um grupo de replicaç�
 
 `IRRECONHECÍVEL` :   O detector de falha local suspeita que o membro não pode ser contatado, porque as mensagens do grupo estão expirando. Isso pode acontecer se um membro for desconectado involuntariamente, por exemplo. Se você vir este status para outros servidores, também pode significar que o membro onde você consulta esta tabela faz parte de uma partição, onde um subconjunto dos servidores do grupo pode se comunicar entre si, mas não pode se comunicar com os outros servidores do grupo. Para mais informações, consulte a Seção 20.7.8, “Tratamento de uma Partição de Rede e Perda de Quórum”.
 
-Consulte a Seção 20.4.3, “A tabela replication\_group\_members” para um exemplo do conteúdo da tabela do Schema de Desempenho.
+Consulte a Seção 20.4.3, “A tabela replication_group_members” para um exemplo do conteúdo da tabela do Schema de Desempenho.

@@ -1,4 +1,4 @@
-### 8.15.9 A variável de sistema end\_markers\_in\_json
+### 8.15.9 A variável de sistema end_markers_in_json
 
 Ao ler um documento JSON muito grande, pode ser difícil alinhar os colchetes de fechamento e de abertura; definir `end_markers_in_json=ON` repete a chave da estrutura, se houver, perto do colchete de fechamento. Essa variável afeta tanto as traças do otimizador quanto a saída do `EXPLAIN FORMAT=JSON`.
 

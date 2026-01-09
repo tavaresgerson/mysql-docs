@@ -1,4 +1,4 @@
-#### 26.4.3.10 As visualizações io\_by\_thread\_by\_latency e x$io\_by\_thread\_by\_latency
+#### 26.4.3.10 As visualizações io_by_thread_by_latency e x$io_by_thread_by_latency
 
 Esses pontos de vista resumem os consumidores de E/S para exibir o tempo de espera por E/S, agrupados por thread. Por padrão, as linhas são ordenadas em ordem decrescente de latência total de E/S.
 

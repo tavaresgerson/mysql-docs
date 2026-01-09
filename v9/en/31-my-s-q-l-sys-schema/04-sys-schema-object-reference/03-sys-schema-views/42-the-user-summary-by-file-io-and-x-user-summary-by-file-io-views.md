@@ -1,4 +1,4 @@
-#### 30.4.3.42 The user\_summary\_by\_file\_io and x$user\_summary\_by\_file\_io Views
+#### 30.4.3.42 The user_summary_by_file_io and x$user_summary_by_file_io Views
 
 These views summarize file I/O, grouped by user. By default, rows are sorted by descending total file I/O latency.
 

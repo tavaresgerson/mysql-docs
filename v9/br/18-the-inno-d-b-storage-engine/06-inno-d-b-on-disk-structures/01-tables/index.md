@@ -10,6 +10,6 @@
 
 17.6.1.5 Convertendo Tabelas de MyISAM para InnoDB
 
-17.6.1.6 Gerenciamento de AUTO\_INCREMENT em InnoDB
+17.6.1.6 Gerenciamento de AUTO_INCREMENT em InnoDB
 
 Esta seção abrange tópicos relacionados às tabelas `InnoDB`.

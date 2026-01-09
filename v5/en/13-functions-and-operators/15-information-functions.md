@@ -2,7 +2,7 @@
 
 **Table 12.20 Information Functions**
 
-<table frame="box" rules="all" summary="A reference that lists information functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="information-functions.html#function_benchmark"><code>BENCHMARK()</code></a></td> <td> Repeatedly execute an expression </td> </tr><tr><td><a class="link" href="information-functions.html#function_charset"><code>CHARSET()</code></a></td> <td> Return the character set of the argument </td> </tr><tr><td><a class="link" href="information-functions.html#function_coercibility"><code>COERCIBILITY()</code></a></td> <td> Return the collation coercibility value of the string argument </td> </tr><tr><td><a class="link" href="information-functions.html#function_collation"><code>COLLATION()</code></a></td> <td> Return the collation of the string argument </td> </tr><tr><td><a class="link" href="information-functions.html#function_connection-id"><code>CONNECTION_ID()</code></a></td> <td> Return the connection ID (thread ID) for the connection </td> </tr><tr><td><a class="link" href="information-functions.html#function_current-user"><code>CURRENT_USER()</code>, <code>CURRENT_USER</code></a></td> <td> The authenticated user name and host name </td> </tr><tr><td><a class="link" href="information-functions.html#function_database"><code>DATABASE()</code></a></td> <td> Return the default (current) database name </td> </tr><tr><td><a class="link" href="information-functions.html#function_found-rows"><code>FOUND_ROWS()</code></a></td> <td> For a SELECT with a LIMIT clause, the number of rows that would be returned were there no LIMIT clause </td> </tr><tr><td><a class="link" href="information-functions.html#function_last-insert-id"><code>LAST_INSERT_ID()</code></a></td> <td> Value of the AUTOINCREMENT column for the last INSERT </td> </tr><tr><td><a class="link" href="information-functions.html#function_row-count"><code>ROW_COUNT()</code></a></td> <td> The number of rows updated </td> </tr><tr><td><a class="link" href="information-functions.html#function_schema"><code>SCHEMA()</code></a></td> <td> Synonym for DATABASE() </td> </tr><tr><td><a class="link" href="information-functions.html#function_session-user"><code>SESSION_USER()</code></a></td> <td> Synonym for USER() </td> </tr><tr><td><a class="link" href="information-functions.html#function_system-user"><code>SYSTEM_USER()</code></a></td> <td> Synonym for USER() </td> </tr><tr><td><a class="link" href="information-functions.html#function_user"><code>USER()</code></a></td> <td> The user name and host name provided by the client </td> </tr><tr><td><a class="link" href="information-functions.html#function_version"><code>VERSION()</code></a></td> <td> Return a string that indicates the MySQL server version </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists information functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>BENCHMARK()</code></td> <td> Repeatedly execute an expression </td> </tr><tr><td><code>CHARSET()</code></td> <td> Return the character set of the argument </td> </tr><tr><td><code>COERCIBILITY()</code></td> <td> Return the collation coercibility value of the string argument </td> </tr><tr><td><code>COLLATION()</code></td> <td> Return the collation of the string argument </td> </tr><tr><td><code>CONNECTION_ID()</code></td> <td> Return the connection ID (thread ID) for the connection </td> </tr><tr><td><code>CURRENT_USER()</code>, <code>CURRENT_USER</code></td> <td> The authenticated user name and host name </td> </tr><tr><td><code>DATABASE()</code></td> <td> Return the default (current) database name </td> </tr><tr><td><code>FOUND_ROWS()</code></td> <td> For a SELECT with a LIMIT clause, the number of rows that would be returned were there no LIMIT clause </td> </tr><tr><td><code>LAST_INSERT_ID()</code></td> <td> Value of the AUTOINCREMENT column for the last INSERT </td> </tr><tr><td><code>ROW_COUNT()</code></td> <td> The number of rows updated </td> </tr><tr><td><code>SCHEMA()</code></td> <td> Synonym for DATABASE() </td> </tr><tr><td><code>SESSION_USER()</code></td> <td> Synonym for USER() </td> </tr><tr><td><code>SYSTEM_USER()</code></td> <td> Synonym for USER() </td> </tr><tr><td><code>USER()</code></td> <td> The user name and host name provided by the client </td> </tr><tr><td><code>VERSION()</code></td> <td> Return a string that indicates the MySQL server version </td> </tr></tbody></table>
 
 * `BENCHMARK(count,expr)`
 
@@ -58,7 +58,7 @@
 
   The return values have the meanings shown in the following table. Lower values have higher precedence.
 
-  <table summary="Collation coercibility return values, the meaning of each value, and an example of each."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 70%"/><thead><tr> <th>Coercibility</th> <th>Meaning</th> <th>Example</th> </tr></thead><tbody><tr> <th><code>0</code></th> <td>Explicit collation</td> <td>Value with <code>COLLATE</code> clause</td> </tr><tr> <th><code>1</code></th> <td>No collation</td> <td>Concatenation of strings with different collations</td> </tr><tr> <th><code>2</code></th> <td>Implicit collation</td> <td>Column value, stored routine parameter or local variable</td> </tr><tr> <th><code>3</code></th> <td>System constant</td> <td><a class="link" href="information-functions.html#function_user"><code>USER()</code></a> return value</td> </tr><tr> <th><code>4</code></th> <td>Coercible</td> <td>Literal string</td> </tr><tr> <th><code>5</code></th> <td>Numeric</td> <td>Numeric or temporal value</td> </tr><tr> <th><code>6</code></th> <td>Ignorable</td> <td><code>NULL</code> or an expression derived from <code>NULL</code></td> </tr></tbody></table>
+  <table summary="Collation coercibility return values, the meaning of each value, and an example of each."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 70%"/><thead><tr> <th>Coercibility</th> <th>Meaning</th> <th>Example</th> </tr></thead><tbody><tr> <th><code>0</code></th> <td>Explicit collation</td> <td>Value with <code>COLLATE</code> clause</td> </tr><tr> <th><code>1</code></th> <td>No collation</td> <td>Concatenation of strings with different collations</td> </tr><tr> <th><code>2</code></th> <td>Implicit collation</td> <td>Column value, stored routine parameter or local variable</td> </tr><tr> <th><code>3</code></th> <td>System constant</td> <td><code>USER()</code> return value</td> </tr><tr> <th><code>4</code></th> <td>Coercible</td> <td>Literal string</td> </tr><tr> <th><code>5</code></th> <td>Numeric</td> <td>Numeric or temporal value</td> </tr><tr> <th><code>6</code></th> <td>Ignorable</td> <td><code>NULL</code> or an expression derived from <code>NULL</code></td> </tr></tbody></table>
 
   For more information, see Section 10.8.4, “Collation Coercibility in Expressions”.
 
@@ -125,7 +125,7 @@
   + `ALTER VIEW`
   + `SET PASSWORD`
 
-  For information about the implications that this expansion of `CURRENT_USER()` has for replication, see Section 16.4.1.8, “Replication of CURRENT\_USER()”").
+  For information about the implications that this expansion of `CURRENT_USER()` has for replication, see Section 16.4.1.8, “Replication of CURRENT_USER()”").
 
 * `DATABASE()`
 
@@ -334,7 +334,7 @@
   +------------------+
   ```
 
-  For more information, see Section 14.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+  For more information, see Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
   If *`expr`* is given as an argument to `LAST_INSERT_ID()`, the value of the argument is returned by the function and is remembered as the next value to be returned by `LAST_INSERT_ID()`. This can be used to simulate sequences:
 
@@ -352,7 +352,7 @@
      mysql> SELECT LAST_INSERT_ID();
      ```
 
-     The `UPDATE` statement increments the sequence counter and causes the next call to `LAST_INSERT_ID()` to return the updated value. The `SELECT` statement retrieves that value. The `mysql_insert_id()` C API function can also be used to get the value. See mysql\_insert\_id().
+     The `UPDATE` statement increments the sequence counter and causes the next call to `LAST_INSERT_ID()` to return the updated value. The `SELECT` statement retrieves that value. The `mysql_insert_id()` C API function can also be used to get the value. See mysql_insert_id().
 
   You can generate sequences without calling `LAST_INSERT_ID()`, but the utility of using the function this way is that the ID value is maintained in the server as the last automatically generated value. It is multi-user safe because multiple clients can issue the `UPDATE` statement and get their own sequence value with the `SELECT` statement (or `mysql_insert_id()`), without affecting or being affected by other clients that generate their own sequence values.
 

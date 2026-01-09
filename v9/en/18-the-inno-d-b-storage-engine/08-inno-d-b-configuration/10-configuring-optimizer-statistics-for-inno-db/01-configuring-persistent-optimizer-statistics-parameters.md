@@ -75,11 +75,11 @@ When `innodb_stats_include_delete_marked` is enabled, `ANALYZE TABLE` considers 
 
 The persistent statistics feature relies on the internally managed tables in the `mysql` database, named `innodb_table_stats` and `innodb_index_stats`. These tables are set up automatically in all install, upgrade, and build-from-source procedures.
 
-**Table 17.6 Columns of innodb\_table\_stats**
+**Table 17.6 Columns of innodb_table_stats**
 
 <table summary="Columns of the mysql.innodb_table_stats table."><thead><tr> <th>Column name</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Database name</td> </tr><tr> <td><code>table_name</code></td> <td>Table name, partition name, or subpartition name</td> </tr><tr> <td><code>last_update</code></td> <td>A timestamp indicating the last time that <code>InnoDB</code> updated this row</td> </tr><tr> <td><code>n_rows</code></td> <td>The number of rows in the table</td> </tr><tr> <td><code>clustered_index_size</code></td> <td>The size of the primary index, in pages</td> </tr><tr> <td><code>sum_of_other_index_sizes</code></td> <td>The total size of other (non-primary) indexes, in pages</td> </tr></tbody></table>
 
-**Table 17.7 Columns of innodb\_index\_stats**
+**Table 17.7 Columns of innodb_index_stats**
 
 <table summary="Columns of the mysql.innodb_index_stats table."><thead><tr> <th>Column name</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>database_name</code></td> <td>Database name</td> </tr><tr> <td><code>table_name</code></td> <td>Table name, partition name, or subpartition name</td> </tr><tr> <td><code>index_name</code></td> <td>Index name</td> </tr><tr> <td><code>last_update</code></td> <td>A timestamp indicating the last time the row was updated</td> </tr><tr> <td><code>stat_name</code></td> <td>The name of the statistic, whose value is reported in the <code>stat_value</code> column</td> </tr><tr> <td><code>stat_value</code></td> <td>The value of the statistic that is named in <code>stat_name</code> column</td> </tr><tr> <td><code>sample_size</code></td> <td>The number of pages sampled for the estimate provided in the <code>stat_value</code> column</td> </tr><tr> <td><code>stat_description</code></td> <td>Description of the statistic that is named in the <code>stat_name</code> column</td> </tr></tbody></table>
 
@@ -269,7 +269,7 @@ For the unique index (`i2uniq`), there are two `n_diff%` rows.
 
 * Where `index_name`=`i2uniq` and `stat_name`=`n_diff_pfx02`, the `stat_value` is `5`, which indicates that there are five distinct values in the two columns of the index (`e,f`). The number of distinct values in columns `e` and `f` is confirmed by viewing the data in columns `e` and `f` in table `t1`, in which there are five distinct values: (`100,101`), (`200,102`), (`100,103`), (`200,104`), and (`100,105`). The counted columns (`e,f`) are shown in the `stat_description` column of the result set.
 
-##### 17.8.10.1.7 Retrieving Index Size Using the innodb\_index\_stats Table
+##### 17.8.10.1.7 Retrieving Index Size Using the innodb_index_stats Table
 
 You can retrieve the index size for tables, partitions, or subpartitions can using the `innodb_index_stats` table. In the following example, index sizes are retrieved for table `t1`. For a definition of table `t1` and corresponding index statistics, see Section 17.8.10.1.6, “InnoDB Persistent Statistics Tables Example”.
 

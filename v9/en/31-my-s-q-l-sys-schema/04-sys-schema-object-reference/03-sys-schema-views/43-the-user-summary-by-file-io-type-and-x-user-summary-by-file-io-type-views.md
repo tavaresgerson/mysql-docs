@@ -1,4 +1,4 @@
-#### 30.4.3.43 The user\_summary\_by\_file\_io\_type and x$user\_summary\_by\_file\_io\_type Views
+#### 30.4.3.43 The user_summary_by_file_io_type and x$user_summary_by_file_io_type Views
 
 These views summarize file I/O, grouped by user and event type. By default, rows are sorted by user and descending total latency.
 

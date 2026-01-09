@@ -1,4 +1,4 @@
-### 24.4.26 The INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL Table
+### 24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table
 
 The [`INNODB_SYS_VIRTUAL`](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table") table provides metadata about `InnoDB` [virtual generated columns](glossary.html#glos_virtual_generated_column "virtual generated column") and columns upon which virtual generated columns are based, equivalent to information in the `SYS_VIRTUAL` table in the `InnoDB` data dictionary.
 

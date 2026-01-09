@@ -4,7 +4,7 @@ This section describes how to use the **openssl** command to set up the RSA key 
 
 Note
 
-There are easier alternatives to generating the files required for RSA than the procedure described here: Let the server autogenerate them or use the [**mysql\_ssl\_rsa\_setup**](mysql-ssl-rsa-setup.html "4.4.5 mysql_ssl_rsa_setup — Create SSL/RSA Files") program. See [Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "6.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL").
+There are easier alternatives to generating the files required for RSA than the procedure described here: Let the server autogenerate them or use the [**mysql_ssl_rsa_setup**](mysql-ssl-rsa-setup.html "4.4.5 mysql_ssl_rsa_setup — Create SSL/RSA Files") program. See [Section 6.3.3.1, “Creating SSL and RSA Certificates and Keys using MySQL”](creating-ssl-rsa-files-using-mysql.html "6.3.3.1 Creating SSL and RSA Certificates and Keys using MySQL").
 
 To create the RSA private and public key-pair files, run these commands while logged into the system account used to run the MySQL server so the files are owned by that account:
 

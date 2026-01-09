@@ -4,7 +4,7 @@
 
 10.13.2 Usando Seus Próprios Benchmarking
 
-10.13.3 Medindo o Desempenho com o performance\_schema
+10.13.3 Medindo o Desempenho com o performance_schema
 
 Para medir o desempenho, considere os seguintes fatores:
 

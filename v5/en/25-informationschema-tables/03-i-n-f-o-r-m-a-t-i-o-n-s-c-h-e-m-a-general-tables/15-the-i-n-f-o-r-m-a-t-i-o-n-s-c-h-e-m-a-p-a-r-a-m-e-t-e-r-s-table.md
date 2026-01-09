@@ -1,4 +1,4 @@
-### 24.3.15 The INFORMATION\_SCHEMA PARAMETERS Table
+### 24.3.15 The INFORMATION_SCHEMA PARAMETERS Table
 
 The [`PARAMETERS`](information-schema-parameters-table.html "24.3.15 The INFORMATION_SCHEMA PARAMETERS Table") table provides information about parameters for stored routines (stored procedures and stored functions), and about return values for stored functions. The [`PARAMETERS`](information-schema-parameters-table.html "24.3.15 The INFORMATION_SCHEMA PARAMETERS Table") table does not include built-in (native) functions or loadable functions. Parameter information is similar to the contents of the `param_list` column in the `mysql.proc` table.
 

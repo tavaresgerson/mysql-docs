@@ -1,4 +1,4 @@
-#### 25.12.2.4 A tabela setup\_objects
+#### 25.12.2.4 A tabela setup_objects
 
 A tabela `setup_objects` controla se o Schema de Desempenho monitora objetos específicos. Essa tabela tem um tamanho máximo de 100 linhas por padrão. Para alterar o tamanho da tabela, modifique a variável de sistema `performance_schema_setup_objects_size` na inicialização do servidor.
 

@@ -2,32 +2,31 @@
 
 Esta seção descreve como usar o comando **openssl** para configurar arquivos de certificado e chave SSL para uso por servidores e clientes MySQL. O primeiro exemplo mostra um procedimento simplificado, como você pode usar a partir da linha de comando. O segundo exemplo mostra um script que contém mais detalhes. Os dois primeiros exemplos são destinados ao uso em Unix e ambos usam o comando **openssl** que faz parte do OpenSSL. O terceiro exemplo descreve como configurar arquivos SSL no Windows.
 
-Nota
+::: info Nota
+Existem alternativas mais fáceis para gerar os arquivos necessários para o SSL do que o procedimento descrito aqui: deixe o servidor gerar automaticamente ou use o programa **mysql_ssl_rsa_setup**. Veja Seção 6.3.3.1, “Criando Certificados e Chaves SSL e RSA usando o MySQL”.
 
-Existem alternativas mais fáceis para gerar os arquivos necessários para o SSL do que o procedimento descrito aqui: deixe o servidor gerar automaticamente ou use o programa **mysql\_ssl\_rsa\_setup**. Veja Seção 6.3.3.1, “Criando Certificados e Chaves SSL e RSA usando o MySQL”.
-
-Importante
-
+::: warning Importante
 Independentemente do método que você usar para gerar os arquivos de certificado e chave, o valor do Nome Comum usado para os certificados/chaves do servidor e do cliente deve ser diferente do valor do Nome Comum usado para o certificado da CA. Caso contrário, os arquivos de certificado e chave não funcionarão para servidores compilados com o OpenSSL. Um erro típico nesse caso é:
 
 ```sql
 ERROR 2026 (HY000): SSL connection error:
 error:00000001:lib(0):func(0):reason(1)
 ```
+:::
 
-Importante
-
+::: warning Importante
 Se um cliente que se conecta a uma instância do servidor MySQL usar um certificado SSL com a extensão `extendedKeyUsage` (uma extensão X.509 v3), o uso de chave estendido deve incluir a autenticação do cliente (`clientAuth`). Se o certificado SSL for especificado apenas para autenticação do servidor (`serverAuth`) e para outros fins que não sejam de certificado do cliente, a verificação do certificado falha e a conexão do cliente com a instância do servidor MySQL falha. Não há extensão `extendedKeyUsage` em certificados SSL criados usando o comando **openssl** seguindo as instruções neste tópico. Se você usar seu próprio certificado do cliente criado de outra maneira, certifique-se de que qualquer extensão `extendedKeyUsage` inclua a autenticação do cliente.
 
 - Exemplo 1: Criação de arquivos SSL a partir da linha de comando no Unix
 - Exemplo 2: Criação de arquivos SSL usando um script no Unix
 - Exemplo 3: Criação de arquivos SSL no Windows
+:::
 
 ##### Exemplo 1: Criação de arquivos SSL a partir da linha de comando no Unix
 
 O exemplo a seguir mostra um conjunto de comandos para criar arquivos de certificado e chave do servidor e do cliente do MySQL. Você deve responder a várias solicitações pelos comandos **openssl**. Para gerar arquivos de teste, você pode pressionar Enter para todas as solicitações. Para gerar arquivos para uso em produção, você deve fornecer respostas não vazias.
 
-```sql
+```sh
 # Create clean environment
 rm -rf newcerts
 mkdir newcerts && cd newcerts
@@ -56,20 +55,20 @@ openssl x509 -req -in client-req.pem -days 3600 \
 
 Após gerar os certificados, verifique-os:
 
-```sql
+```sh
 openssl verify -CAfile ca.pem server-cert.pem client-cert.pem
 ```
 
 Você deve ver uma resposta como esta:
 
-```sql
+```sh
 server-cert.pem: OK
 client-cert.pem: OK
 ```
 
 Para ver o conteúdo de um certificado (por exemplo, para verificar a faixa de datas em que o certificado é válido), invoque o **openssl** da seguinte forma:
 
-```sql
+```sh
 openssl x509 -text -in ca.pem
 openssl x509 -text -in server-cert.pem
 openssl x509 -text -in client-cert.pem
@@ -79,7 +78,7 @@ Agora você tem um conjunto de arquivos que podem ser usados da seguinte forma:
 
 - `ca.pem`: Use isso para definir a variável de sistema `ssl_ca` no lado do servidor e a opção `--ssl-ca` no lado do cliente. (O certificado CA, se usado, deve ser o mesmo em ambos os lados.)
 
-- `server-cert.pem`, `server-key.pem`: Use-os para definir as variáveis de sistema `ssl_cert` (server-system-variables.html#sysvar\_ssl\_cert) e `ssl_key` (server-system-variables.html#sysvar\_ssl\_key) no lado do servidor.
+- `server-cert.pem`, `server-key.pem`: Use-os para definir as variáveis de sistema `ssl_cert` (server-system-variables.html#sysvar_ssl_cert) e `ssl_key` (server-system-variables.html#sysvar_ssl_key) no lado do servidor.
 
 - `client-cert.pem`, `client-key.pem`: Use esses como argumentos nas opções `--ssl-cert` e `--ssl-key` no lado do cliente.
 
@@ -89,7 +88,7 @@ Para obter instruções adicionais de uso, consulte Seção 6.3.1, “Configuran
 
 Aqui está um exemplo de script que mostra como configurar arquivos de certificado SSL e chave para o MySQL. Após executar o script, use os arquivos para conexões SSL conforme descrito em Seção 6.3.1, “Configurando o MySQL para usar conexões criptografadas”.
 
-```sql
+```sh
 DIR=`pwd`/openssl
 PRIV=$DIR/private
 
@@ -288,7 +287,7 @@ EOF
 
 Baixe o OpenSSL para Windows se ele não estiver instalado no seu sistema. Uma visão geral dos pacotes disponíveis pode ser vista aqui:
 
-```sql
+```
 http://www.slproweb.com/products/Win32OpenSSL.html
 ```
 
@@ -298,13 +297,13 @@ Se uma mensagem ocorrer durante a instalação, indicando `'...componente críti
 
 - Visual C++ 2008 Redistribuíveis (x86), disponível em:
 
-  ```sql
+  ```
   http://www.microsoft.com/downloads/details.aspx?familyid=9B2DA534-3E03-4391-8A4D-074B9F2BC1BF
   ```
 
 - Visual C++ 2008 Redistribuíveis (x64), disponível em:
 
-  ```sql
+  ```
   http://www.microsoft.com/downloads/details.aspx?familyid=bd2a6171-e2d6-4230-b809-9a8d7548c1b6
   ```
 
@@ -326,7 +325,7 @@ Quando a instalação estiver concluída, adicione `C:\OpenSSL-Win32\bin` à var
 
 6. Verifique se o OpenSSL foi corretamente integrado à variável Path abrindo um novo console de comando (**Início>Executar>cmd.exe**) e verificando se o OpenSSL está disponível:
 
-   ```sql
+   ```sh
    Microsoft Windows [Version ...]
    Copyright (c) 2006 Microsoft Corporation. All rights reserved.
 
@@ -342,7 +341,7 @@ Depois que o OpenSSL for instalado, use instruções semelhantes às do Exemplo 
 
 - Altere os seguintes comandos Unix:
 
-  ```sql
+  ```sh
   # Create clean environment
   rm -rf newcerts
   mkdir newcerts && cd newcerts
@@ -350,7 +349,7 @@ Depois que o OpenSSL for instalado, use instruções semelhantes às do Exemplo 
 
   No Windows, use esses comandos:
 
-  ```sql
+  ```sh
   # Create clean environment
   md c:\newcerts
   cd c:\newcerts

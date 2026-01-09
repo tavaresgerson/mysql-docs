@@ -51,7 +51,7 @@ Pode ocorrer incompatibilidade porque o formato de armazenamento de um tipo de d
 
 - O método de armazenamento do novo tipo de dados `DECIMAL` mudou entre o MySQL 5.0.3 e 5.0.5.
 
-- Se a sua tabela foi criada por uma versão diferente do servidor MySQL daquela que você está executando atualmente, `FOR UPGRADE` indica que a tabela tem um arquivo `.frm` com uma versão incompatível. Nesse caso, o conjunto de resultados retornado pelo `CHECK TABLE` contém uma linha com um valor `Msg_type` de `error` e um valor `Msg_text` de `Upgrade da tabela necessário. Por favor, faça "REPAIR TABLE `tbl\_name\`" para corrigir isso!
+- Se a sua tabela foi criada por uma versão diferente do servidor MySQL daquela que você está executando atualmente, `FOR UPGRADE` indica que a tabela tem um arquivo `.frm` com uma versão incompatível. Nesse caso, o conjunto de resultados retornado pelo `CHECK TABLE` contém uma linha com um valor `Msg_type` de `error` e um valor `Msg_text` de `Upgrade da tabela necessário. Por favor, faça "REPAIR TABLE `tbl_name\`" para corrigir isso!
 
 - Às vezes, são feitas alterações nos conjuntos de caracteres ou nas ordenações que exigem a reconstrução dos índices da tabela. Para obter detalhes sobre essas alterações, consulte Seção 2.10.3, “Alterações no MySQL 5.7”. Para obter informações sobre a reconstrução de tabelas, consulte Seção 2.10.12, “Reconstrução ou reparo de tabelas ou índices”.
 
@@ -69,7 +69,7 @@ Pode ocorrer incompatibilidade porque o formato de armazenamento de um tipo de d
 
   Para verificar tabelas que contêm colunas temporais e precisam ser reconstruídas, desative `avoid_temporal_upgrade` antes de executar `CHECK TABLE ... FOR UPGRADE`.
 
-- As advertências são emitidas para tabelas que utilizam particionamento não nativo, pois o particionamento não nativo é desaconselhável no MySQL 5.7 e será removido no MySQL 8.0. Consulte \[Capítulo 22, *Particionamento*] (partitioning.html).
+- As advertências são emitidas para tabelas que utilizam particionamento não nativo, pois o particionamento não nativo é desaconselhável no MySQL 5.7 e será removido no MySQL 8.0. Consulte [Capítulo 22, *Particionamento*] (partitioning.html).
 
 ##### Verificar a Consistência dos Dados
 
@@ -101,7 +101,7 @@ O uso de `CHECK TABLE ... EXTENDED` pode influenciar os planos de execução ger
 
 Alguns problemas relatados por `CHECK TABLE` não podem ser corrigidos automaticamente:
 
-- "Encontrou uma linha onde a coluna auto\_increment tem o valor 0".
+- "Encontrou uma linha onde a coluna auto_increment tem o valor 0".
 
   Isso significa que você tem uma linha na tabela onde a coluna do índice `AUTO_INCREMENT` contém o valor 0. (É possível criar uma linha onde a coluna `AUTO_INCREMENT` é 0, definindo explicitamente a coluna para 0 com uma instrução `[UPDATE]` (update.html).)
 
@@ -123,7 +123,7 @@ As seguintes notas se aplicam às tabelas de `InnoDB`:
 
 - `CHECK TABLE` examina a estrutura da página de índice, depois examina cada entrada de chave. Ele não valida o ponteiro de chave para um registro agrupado ou segue o caminho para os ponteiros de `BLOB`.
 
-- Quando uma tabela `InnoDB` é armazenada em seu próprio arquivo `.ibd` (glossary.html#glos\_ibd\_file), as primeiras 3 páginas do arquivo `.ibd` contêm informações de cabeçalho em vez de dados de tabela ou índice. A instrução `CHECK TABLE` não detecta inconsistências que afetam apenas os dados de cabeçalho. Para verificar todo o conteúdo de um arquivo `.ibd` `InnoDB`, use o comando **innochecksum**.
+- Quando uma tabela `InnoDB` é armazenada em seu próprio arquivo `.ibd` (glossary.html#glos_ibd_file), as primeiras 3 páginas do arquivo `.ibd` contêm informações de cabeçalho em vez de dados de tabela ou índice. A instrução `CHECK TABLE` não detecta inconsistências que afetam apenas os dados de cabeçalho. Para verificar todo o conteúdo de um arquivo `.ibd` `InnoDB`, use o comando **innochecksum**.
 
 - Ao executar `CHECK TABLE` em tabelas grandes do `InnoDB`, outros threads podem ser bloqueados durante a execução de `CHECK TABLE`. Para evitar tempos de espera, o limiar de espera do semaforo (600 segundos) é estendido por 2 horas (7200 segundos) para as operações de `CHECK TABLE`. Se o `InnoDB` detectar espera de semaforo de 240 segundos ou mais, ele começa a imprimir a saída do monitor do `InnoDB` no log de erro. Se uma solicitação de bloqueio exceder o limiar de espera do semaforo, o `InnoDB` interrompe o processo. Para evitar completamente a possibilidade de um tempo de espera de espera do semaforo, execute `CHECK TABLE QUICK` em vez de `CHECK TABLE`.
 

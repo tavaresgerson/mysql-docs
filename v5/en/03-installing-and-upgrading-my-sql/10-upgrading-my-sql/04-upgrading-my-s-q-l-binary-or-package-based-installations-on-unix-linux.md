@@ -17,7 +17,7 @@ Note
 
 If you upgrade an installation originally produced by installing multiple RPM packages, upgrade all the packages, not just some. For example, if you previously installed the server and client RPMs, do not upgrade just the server RPM.
 
-For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld\_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
+For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
 
 To perform an in-place upgrade:
 
@@ -45,17 +45,17 @@ To perform an in-place upgrade:
    mysqld_safe --user=mysql --datadir=/path/to/existing-datadir &
    ```
 
-6. Run **mysql\_upgrade**. For example:
+6. Run **mysql_upgrade**. For example:
 
    ```sql
    mysql_upgrade -u root -p
    ```
 
-   **mysql\_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL. **mysql\_upgrade** also upgrades the `mysql` system database so that you can take advantage of new privileges or capabilities.
+   **mysql_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL. **mysql_upgrade** also upgrades the `mysql` system database so that you can take advantage of new privileges or capabilities.
 
    Note
 
-   **mysql\_upgrade** does not upgrade the contents of the time zone tables or help tables. For upgrade instructions, see Section 5.1.13, “MySQL Server Time Zone Support”, and Section 5.1.14, “Server-Side Help Support”.
+   **mysql_upgrade** does not upgrade the contents of the time zone tables or help tables. For upgrade instructions, see Section 5.1.13, “MySQL Server Time Zone Support”, and Section 5.1.14, “Server-Side Help Support”.
 
 7. Shut down and restart the MySQL server to ensure that any changes made to the system tables take effect. For example:
 
@@ -70,7 +70,7 @@ A logical upgrade involves exporting SQL from the old MySQL instance using a bac
 
 Note
 
-For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld\_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
+For some Linux platforms, MySQL installation from RPM or Debian packages includes systemd support for managing MySQL server startup and shutdown. On these platforms, **mysqld_safe** is not installed. In such cases, use systemd for server startup and shutdown instead of the methods used in the following instructions. See Section 2.5.10, “Managing MySQL Server with systemd”.
 
 To perform a logical upgrade:
 
@@ -135,17 +135,17 @@ To perform a logical upgrade:
 
    It is not recommended to load a dump file when GTIDs are enabled on the server (`gtid_mode=ON`), if your dump file includes system tables. **mysqldump** issues DML instructions for the system tables which use the non-transactional MyISAM storage engine, and this combination is not permitted when GTIDs are enabled. Also be aware that loading a dump file from a server with GTIDs enabled, into another server with GTIDs enabled, causes different transaction identifiers to be generated.
 
-9. Run **mysql\_upgrade**. For example:
+9. Run **mysql_upgrade**. For example:
 
    ```sql
    mysql_upgrade -u root -p
    ```
 
-   **mysql\_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL. **mysql\_upgrade** also upgrades the `mysql` system database so that you can take advantage of new privileges or capabilities.
+   **mysql_upgrade** examines all tables in all databases for incompatibilities with the current version of MySQL. **mysql_upgrade** also upgrades the `mysql` system database so that you can take advantage of new privileges or capabilities.
 
    Note
 
-   **mysql\_upgrade** does not upgrade the contents of the time zone tables or help tables. For upgrade instructions, see Section 5.1.13, “MySQL Server Time Zone Support”, and Section 5.1.14, “Server-Side Help Support”.
+   **mysql_upgrade** does not upgrade the contents of the time zone tables or help tables. For upgrade instructions, see Section 5.1.13, “MySQL Server Time Zone Support”, and Section 5.1.14, “Server-Side Help Support”.
 
 10. Shut down and restart the MySQL server to ensure that any changes made to the system tables take effect. For example:
 

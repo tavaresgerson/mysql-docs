@@ -32,7 +32,7 @@ This section discusses several SQL statements that can prove useful in managing 
   +---------+
   ```
 
-  See [Section 24.3.7, “The INFORMATION\_SCHEMA ENGINES Table”](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table"), for more information.
+  See [Section 24.3.7, “The INFORMATION_SCHEMA ENGINES Table”](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table"), for more information.
 
 * `SHOW VARIABLES LIKE 'NDB%'`
 
@@ -218,7 +218,7 @@ This section discusses several SQL statements that can prove useful in managing 
   +----------------+
   ```
 
-  See [Section 24.3.11, “The INFORMATION\_SCHEMA GLOBAL\_VARIABLES and SESSION\_VARIABLES Tables”](information-schema-variables-table.html "24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables"), and [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables"), for more information. See also [Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”](performance-schema-variable-table-migration.html "25.20 Migrating to Performance Schema System and Status Variable Tables").
+  See [Section 24.3.11, “The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables”](information-schema-variables-table.html "24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables"), and [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables"), for more information. See also [Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”](performance-schema-variable-table-migration.html "25.20 Migrating to Performance Schema System and Status Variable Tables").
 
 * `SELECT * FROM performance_schema.global_variables WHERE VARIABLE_NAME LIKE 'NDB%'`
 
@@ -465,7 +465,7 @@ This section discusses several SQL statements that can prove useful in managing 
 
   This statement, although deprecated in NDB 7.5 and NDB 7.6, can be used if [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) is enabled to obtain similar output to the [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") statement discussed in the previous item; the preferred method is to query the [`performance_schema.global_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables") table (see next item). Unlike the case with [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is possible using the [`SELECT`](select.html "13.2.9 SELECT Statement") to extract values in SQL for use in scripts for monitoring and automation purposes.
 
-  See [Section 24.3.10, “The INFORMATION\_SCHEMA GLOBAL\_STATUS and SESSION\_STATUS Tables”](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables"), as well as [Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”](performance-schema-variable-table-migration.html "25.20 Migrating to Performance Schema System and Status Variable Tables"), for more information.
+  See [Section 24.3.10, “The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables”](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables"), as well as [Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”](performance-schema-variable-table-migration.html "25.20 Migrating to Performance Schema System and Status Variable Tables"), for more information.
 
 * `SELECT * FROM performance_schema.global_status WHERE VARIABLE_NAME LIKE 'NDB%'`
 

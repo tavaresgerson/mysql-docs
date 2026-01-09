@@ -1,4 +1,4 @@
-#### 29.12.11.3 A tabela replication\_applier\_filters
+#### 29.12.11.3 A tabela replication_applier_filters
 
 Esta tabela mostra os filtros específicos do canal de replicação configurados nesta replica. Cada linha fornece informações sobre o tipo de filtro configurado para um canal de replicação. A tabela `replication_applier_filters` tem as seguintes colunas:
 

@@ -6,7 +6,7 @@ When the “page-full” percentage for an index page falls below 50%, which is 
 
 The `MERGE_THRESHOLD` for index pages can be defined for a table or for individual indexes. A `MERGE_THRESHOLD` value defined for an individual index takes priority over a `MERGE_THRESHOLD` value defined for the table. If undefined, the `MERGE_THRESHOLD` value defaults to 50.
 
-#### Setting MERGE\_THRESHOLD for a Table
+#### Setting MERGE_THRESHOLD for a Table
 
 You can set the `MERGE_THRESHOLD` value for a table using the *`table_option`* `COMMENT` clause of the `CREATE TABLE` statement. For example:
 
@@ -28,7 +28,7 @@ CREATE TABLE t1 (
 ALTER TABLE t1 COMMENT='MERGE_THRESHOLD=40';
 ```
 
-#### Setting MERGE\_THRESHOLD for Individual Indexes
+#### Setting MERGE_THRESHOLD for Individual Indexes
 
 To set the `MERGE_THRESHOLD` value for an individual index, you can use the *`index_option`* `COMMENT` clause with `CREATE TABLE`, `ALTER TABLE`, or `CREATE INDEX`, as shown in the following examples:
 
@@ -64,7 +64,7 @@ Note
 
 You cannot modify the `MERGE_THRESHOLD` value at the index level for `GEN_CLUST_INDEX`, which is the clustered index created by `InnoDB` when an `InnoDB` table is created without a primary key or unique key index. You can only modify the `MERGE_THRESHOLD` value for `GEN_CLUST_INDEX` by setting `MERGE_THRESHOLD` for the table.
 
-#### Querying the MERGE\_THRESHOLD Value for an Index
+#### Querying the MERGE_THRESHOLD Value for an Index
 
 The current `MERGE_THRESHOLD` value for an index can be obtained by querying the `INNODB_SYS_INDEXES` table. For example:
 
@@ -117,7 +117,7 @@ mysql> SHOW INDEX FROM t2 \G
 Index_comment: MERGE_THRESHOLD=40
 ```
 
-#### Measuring the Effect of MERGE\_THRESHOLD Settings
+#### Measuring the Effect of MERGE_THRESHOLD Settings
 
 The `INNODB_METRICS` table provides two counters that can be used to measure the effect of a `MERGE_THRESHOLD` setting on index page merges.
 
@@ -140,4 +140,4 @@ When lowering the `MERGE_THRESHOLD` value, the objectives are:
 
 A `MERGE_THRESHOLD` setting that is too small could result in large data files due to an excessive amount of empty page space.
 
-For information about using `INNODB_METRICS` counters, see Section 14.16.6, “InnoDB INFORMATION\_SCHEMA Metrics Table”.
+For information about using `INNODB_METRICS` counters, see Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.

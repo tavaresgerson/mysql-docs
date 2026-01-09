@@ -1,4 +1,4 @@
-#### 21.6.15.8 The ndbinfo config\_params Table
+#### 21.6.15.8 The ndbinfo config_params Table
 
 The `config_params` table is a static table which provides the names and internal ID numbers of and other information about NDB Cluster configuration parameters.
 

@@ -64,7 +64,7 @@ A arredondagem descrita acima é feita explicitamente, e o MySQL Server emite um
 
 Quando o comando `CREATE TABLESPACE` é usado com `ENGINE [=] NDB`, um espaço de tabelas e o arquivo de dados associado são criados em cada nó de dados do cluster. Você pode verificar se os arquivos de dados foram criados e obter informações sobre eles consultando a tabela do esquema de informações `FILES`. (Veja o exemplo mais adiante nesta seção.)
 
-(Veja Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”.)
+(Veja Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.)
 
 #### Opções
 
@@ -100,7 +100,7 @@ Quando o comando `CREATE TABLESPACE` é usado com `ENGINE [=] NDB`, um espaço d
 
   - Se cada nó de dados tiver seu próprio diretório de dados, também é possível criar um arquivo de dados fora do diretório de dados do nó usando um caminho relativo, desde que esse caminho resolva para um local único no sistema de arquivos do host para cada nó de dados que esteja em execução nesse host.
 
-- `FILE_BLOCK_SIZE`: Esta opção, que é específica do `InnoDB` e é ignorada pelo `NDB`, define o tamanho do bloco para o arquivo de dados do espaço de tabelas. Os valores podem ser especificados em bytes ou kilobytes. Por exemplo, um tamanho de bloco de arquivo de 8 kilobytes pode ser especificado como 8192 ou 8K. Se você não especificar esta opção, `FILE_BLOCK_SIZE` terá o valor padrão da variável `[innodb_page_size]` (innodb-parameters.html#sysvar\_innodb\_page\_size). `FILE_BLOCK_SIZE` é necessário quando você pretende usar o espaço de tabelas para armazenar tabelas `InnoDB` compactadas (`ROW_FORMAT=COMPRESSED`). Nesse caso, você deve definir o `FILE_BLOCK_SIZE` do espaço de tabelas ao criar o espaço de tabelas.
+- `FILE_BLOCK_SIZE`: Esta opção, que é específica do `InnoDB` e é ignorada pelo `NDB`, define o tamanho do bloco para o arquivo de dados do espaço de tabelas. Os valores podem ser especificados em bytes ou kilobytes. Por exemplo, um tamanho de bloco de arquivo de 8 kilobytes pode ser especificado como 8192 ou 8K. Se você não especificar esta opção, `FILE_BLOCK_SIZE` terá o valor padrão da variável `[innodb_page_size]` (innodb-parameters.html#sysvar_innodb_page_size). `FILE_BLOCK_SIZE` é necessário quando você pretende usar o espaço de tabelas para armazenar tabelas `InnoDB` compactadas (`ROW_FORMAT=COMPRESSED`). Nesse caso, você deve definir o `FILE_BLOCK_SIZE` do espaço de tabelas ao criar o espaço de tabelas.
 
   Se `FILE_BLOCK_SIZE` for igual ao valor de `innodb_page_size`, o espaço de tabelas pode conter apenas tabelas com um formato de linha não compactado (`COMPACT`, `REDUNDANT` e `DYNAMIC`). As tabelas com um formato de linha `COMPRESSED` têm um tamanho de página físico diferente dos tabelas não compactadas. Portanto, as tabelas compactadas não podem coexistir no mesmo espaço de tabelas que as tabelas não compactadas.
 
@@ -112,7 +112,7 @@ Quando o comando `CREATE TABLESPACE` é usado com `ENGINE [=] NDB`, um espaço d
 
   Uma extensão é uma unidade de alocação de espaço em disco. Uma extensão é preenchida com tantos dados quanto essa extensão pode conter antes que outra extensão seja usada. Teoricamente, até 65.535 (64K) extensões podem ser usadas por arquivo de dados; no entanto, o tamanho máximo recomendado é de 32.768 (32K). O tamanho máximo recomendado para um único arquivo de dados é de 32G — ou seja, 32K extensões × 1 MB por extensão. Além disso, uma vez que uma extensão é alocada a uma partição específica, ela não pode ser usada para armazenar dados de uma partição diferente; uma extensão não pode armazenar dados de mais de uma partição. Isso significa, por exemplo, que um espaço de tabelas que tem um único arquivo de dados cujo `INITIAL_SIZE` (descrito no item seguinte) é de 256 MB e cujo `EXTENT_SIZE` é de 128M tem apenas duas extensões, e, portanto, pode ser usado para armazenar dados de, no máximo, duas partições diferentes da tabela de dados do disco.
 
-  Você pode ver quantos extenções permanecem livres em um arquivo de dados específico consultando a tabela do esquema de informações `FILES` e, assim, obter uma estimativa de quanto espaço ainda está livre no arquivo. Para mais discussões e exemplos, consulte Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”.
+  Você pode ver quantos extenções permanecem livres em um arquivo de dados específico consultando a tabela do esquema de informações `FILES` e, assim, obter uma estimativa de quanto espaço ainda está livre no arquivo. Para mais discussões e exemplos, consulte Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.
 
 - `INITIAL_SIZE`: Esta opção é específica para `NDB` e não é suportada por `InnoDB`, onde ela falha com um erro.
 

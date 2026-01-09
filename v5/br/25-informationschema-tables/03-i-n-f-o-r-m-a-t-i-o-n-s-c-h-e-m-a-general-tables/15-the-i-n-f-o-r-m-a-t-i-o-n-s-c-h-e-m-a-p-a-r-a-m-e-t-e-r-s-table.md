@@ -1,4 +1,4 @@
-### 24.3.15 A tabela INFORMATION\_SCHEMA PARAMETERS
+### 24.3.15 A tabela INFORMATION_SCHEMA PARAMETERS
 
 A tabela `PARAMETERS` fornece informações sobre os parâmetros para rotinas armazenadas (procedimentos armazenados e funções armazenadas) e sobre os valores de retorno para funções armazenadas. A tabela `PARAMETERS` não inclui funções integradas (nativas) ou funções carregáveis. As informações dos parâmetros são semelhantes ao conteúdo da coluna `param_list` na tabela `mysql.proc`.
 

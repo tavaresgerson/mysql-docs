@@ -22,7 +22,7 @@ Some SQL statements relating to certain MySQL features produce errors when used 
 
   + **BIT columns.** A [`BIT`](bit-type.html "11.1.5 Bit-Value Type - BIT") column cannot be a primary key, unique key, or index, nor can it be part of a composite primary key, unique key, or index.
 
-  + **AUTO\_INCREMENT columns.** Like other MySQL storage engines, the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine can handle a maximum of one `AUTO_INCREMENT` column per table, and this column must be indexed. However, in the case of an NDB table with no explicit primary key, an `AUTO_INCREMENT` column is automatically defined and used as a “hidden” primary key. For this reason, you cannot create an `NDB` table having an `AUTO_INCREMENT` column and no explicit primary key.
+  + **AUTO_INCREMENT columns.** Like other MySQL storage engines, the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine can handle a maximum of one `AUTO_INCREMENT` column per table, and this column must be indexed. However, in the case of an NDB table with no explicit primary key, an `AUTO_INCREMENT` column is automatically defined and used as a “hidden” primary key. For this reason, you cannot create an `NDB` table having an `AUTO_INCREMENT` column and no explicit primary key.
 
     The following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statements do not work, as shown here:
 

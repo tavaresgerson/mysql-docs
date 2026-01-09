@@ -18,7 +18,7 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 Seção 15.7.7.23, “Instrução SHOW GRANTS”
 
-### ALLOW\_NONEXISTENT\_DEFINER
+### ALLOW_NONEXISTENT_DEFINER
 
 Seção 15.1.13, “Instrução ALTER VIEW”
 
@@ -78,7 +78,7 @@ Seção 27.2.2, “Rotinas Armazenadas e Privilegios MySQL”
 
 Seção 28.3.36, “A Tabela de ROTINAS do INFORMATION_SCHEMA”
 
-### ADMINISTRAÇÃO\_DE\_SENHA\_APLICATIVO
+### ADMINISTRAÇÃO_DE_SENHA_APLICATIVO
 
 Seção 15.7.1.1, “Instrução ALTER USER”
 
@@ -90,7 +90,7 @@ Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
 Seção 15.7.1.10, “Instrução SET PASSWORD”
 
-### AUDIT\_ABORT\_EXEMPT
+### AUDIT_ABORT_EXEMPT
 
 Seção 8.2.11, “Categorias de Conta”
 
@@ -104,7 +104,7 @@ Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
 Seção 8.4.6.8, “Escrevendo Definições de Filtros de Log de Auditoria”
 
-### AUDIT\_ADMIN
+### AUDIT_ADMIN
 
 Seção 8.4.6.7, “Filtragem do Log de Auditoria”
 
@@ -120,7 +120,7 @@ Seção 15.7.1.6, “Instrução GRANT”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-### AUTHENTICATION\_POLICY\_ADMIN
+### AUTHENTICATION_POLICY_ADMIN
 
 Seção 15.7.1.1, “Instrução ALTER USER”
 
@@ -138,7 +138,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 [index top]
 
-### BACKUP\_ADMIN
+### BACKUP_ADMIN
 
 Seção 7.6.6.2, “Clonagem de Dados Localmente”
 
@@ -158,7 +158,7 @@ Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
 Seção 20.2.1.3, “Credenciais de Usuário para Recuperação Distribuída”
 
-### BINLOG\_ADMIN
+### BINLOG_ADMIN
 
 Seção 15.7.8.1, “Instrução BINLOG”
 
@@ -172,7 +172,7 @@ Seção 8.2.2, “Privilégios fornecidos pelo MySQL”
 
 Seção 15.4.1.1, “Instrução PURGE BINARY LOGS”
 
-### BINLOG\_ENCRYPTION\_ADMIN
+### BINLOG_ENCRYPTION_ADMIN
 
 Seção 15.1.5, “Instrução ALTER INSTANCE”
 
@@ -188,7 +188,7 @@ Seção 8.2.2, “Privilégios fornecidos pelo MySQL”
 
 [index top]
 
-### CLONE\_ADMIN
+### CLONE_ADMIN
 
 Seção 7.6.6.13, “Clonagem de variáveis do sistema”
 
@@ -200,7 +200,7 @@ Seção 20.5.4.2.1, “Pré-requisitos para clonagem”
 
 Seção 8.2.2, “Privilégios fornecidos pelo MySQL”
 
-### CONNECTION\_ADMIN
+### CONNECTION_ADMIN
 
 Seção 8.2.11, “Categorias de contas”
 
@@ -292,7 +292,7 @@ Seção 15.7.1.2, “Instrução CREATE ROLE”
 
 Seção 15.7.1.6, “Instrução GRANT”
 
-Seção 19.3.3.1, “Privilegios para a conta de privilégios de replicação PRIVILEGES\_CHECKS\_USER”
+Seção 19.3.3.1, “Privilegios para a conta de privilégios de replicação PRIVILEGES_CHECKS_USER”
 
 Seção 8.2.2, “Privilegios fornecidos pelo MySQL”
 
@@ -322,7 +322,7 @@ Seção 27.9, “Registro binário de programas armazenados”
 
 Seção 27.2.2, “Rotinas Armazenadas e Privilégios do MySQL”
 
-Seção 28.3.36, “A Tabela ROUTINES do INFORMATION\_SCHEMA”
+Seção 28.3.36, “A Tabela ROUTINES do INFORMATION_SCHEMA”
 
 ### CRIAR TABLESPACE
 
@@ -366,7 +366,7 @@ Seção 15.7.1.6, “Instrução GRANT”
 
 Seção 8.2.15, “Gestão de Senhas”
 
-Seção 19.3.3.1, “Privilégios para a Conta PRIVILEGE\_CHECKS\_USER”
+Seção 19.3.3.1, “Privilégios para a Conta PRIVILEGE_CHECKS_USER”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
@@ -378,7 +378,7 @@ Seção 15.7.1.9, “Instrução SET DEFAULT ROLE”
 
 Seção 15.7.1.10, “Instrução SET PASSWORD”
 
-Seção 28.3.51, “A Tabela USER\_ATTRIBUTES do INFORMATION\_SCHEMA”
+Seção 28.3.51, “A Tabela USER_ATTRIBUTES do INFORMATION_SCHEMA”
 
 Seção 8.2.10, “Uso de Rotulos”
 
@@ -430,7 +430,7 @@ Seção 25.6.19.2, “Nível de Grupo NDB e Privilegios MySQL”
 
 Seção 8.2.12, “Restrição de Privilegios Usando Revocações Parciais”
 
-Seção 19.3.3.1, “Privilegios para a Conta PRIVILEGE\_CHECKS\_USER de Replicação”
+Seção 19.3.3.1, “Privilegios para a Conta PRIVILEGE_CHECKS_USER de Replicação”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -438,7 +438,7 @@ Seção 15.2.12, “Declaração REPLACE”
 
 Seção 18.7, “O Motor de Armazenamento MERGE”
 
-Seção 29.12.2.4, “A tabela setup\_objects”
+Seção 29.12.2.4, “A tabela setup_objects”
 
 Seção 15.7.4.5, “Declaração UNINSTALL COMPONENT”
 
@@ -478,7 +478,7 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 Seção 15.1.41, “Instrução RENAME TABLE”
 
-Seção 29.12.22.4, “A Tabela host\_cache”
+Seção 29.12.22.4, “A Tabela host_cache”
 
 Seção 15.1.42, “Instrução TRUNCATE TABLE”
 
@@ -488,7 +488,7 @@ Seção 15.7.1.4, “Instrução DROP ROLE”
 
 Seção 15.7.1.6, “Instrução GRANT”
 
-Seção 19.3.3.1, “Privilegios para a Conta de PRIVILEGES\_CHECKS\_USER de Replicação”
+Seção 19.3.3.1, “Privilegios para a Conta de PRIVILEGES_CHECKS_USER de Replicação”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -498,7 +498,7 @@ Seção 8.2.10, “Uso de Roles”
 
 [índice superior]
 
-### CHAVE\_DE\_ENCRIPTAÇÃO\_ADMIN
+### CHAVE_DE_ENCRIPTAÇÃO_ADMIN
 
 Seção 15.1.5, “Instrução ALTER INSTANCE”
 
@@ -566,13 +566,13 @@ Seção 27.8, “Controle de Acesso a Objetos Armazenados”
 
 Seção 27.2.2, “Rotinas Armazenadas e Privilégios MySQL”
 
-Seção 28.3.36, “A Tabela ROUTINES do INFORMATION\_SCHEMA”
+Seção 28.3.36, “A Tabela ROUTINES do INFORMATION_SCHEMA”
 
 Seção 8.4.8.2.3, “Usando o Componente do Firewall Empresarial MySQL”
 
 Seção 8.4.8.1.3, “Usando o Plugin do Firewall Empresarial MySQL”
 
-### EXPORT\_QUERY\_RESULTS
+### EXPORT_QUERY_RESULTS
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
@@ -604,7 +604,7 @@ Seção 6.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”
 
 Seção 8.2.12, “Restrição de Privilégios Usando Revoques Parciais”
 
-Seção 19.3.3.1, “Privilégios para a Conta de Usuário CHECKS\_USER de Replicação”
+Seção 19.3.3.1, “Privilégios para a Conta de Usuário CHECKS_USER de Replicação”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
@@ -622,7 +622,7 @@ Seção 8.2.22, “Resolvendo Problemas de Conexão ao MySQL”
 
 Seção 27.3.9, “Usando Bibliotecas WebAssembly”
 
-### ADMINISTRAÇÃO\_DO\_FIREWALL
+### ADMINISTRAÇÃO_DO_FIREWALL
 
 Seção 8.4.8.2.1, “Elementos do Firewall Empresarial MySQL (Componente)”")
 
@@ -716,7 +716,7 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 Seção 15.7.1.6, “Instrução GRANT”
 
-Seção 19.3.3.1, “Privilegios para a Conta PRIVILEGE\_CHECKS\_USER de Replicação”
+Seção 19.3.3.1, “Privilegios para a Conta PRIVILEGE_CHECKS_USER de Replicação”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -724,13 +724,13 @@ Seção 15.7.1.8, “Instrução REVOKE”
 
 Seção 15.7.7.23, “Instrução SHOW GRANTS”
 
-Seção 28.3.10, “A Tabela INFORMATION\_SCHEMA COLUMN\_PRIVILEGES”
+Seção 28.3.10, “A Tabela INFORMATION_SCHEMA COLUMN_PRIVILEGES”
 
-Seção 28.3.39, “A Tabela INFORMATION\_SCHEMA SCHEMA\_PRIVILEGES”
+Seção 28.3.39, “A Tabela INFORMATION_SCHEMA SCHEMA_PRIVILEGES”
 
-Seção 28.3.49, “A Tabela INFORMATION\_SCHEMA TABLE\_PRIVILEGES”
+Seção 28.3.49, “A Tabela INFORMATION_SCHEMA TABLE_PRIVILEGES”
 
-Seção 28.3.52, “A Tabela INFORMATION\_SCHEMA USER\_PRIVILEGES”
+Seção 28.3.52, “A Tabela INFORMATION_SCHEMA USER_PRIVILEGES”
 
 ### ADMINISTRAÇÃO DE REPLICAÇÃO EM GRUPO
 
@@ -750,9 +750,9 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 Seção 20.5.1.4, “Definindo a Versão do Protocolo de Comunicação de um Grupo”
 
-Seção 15.4.3.1, “Instrução START GROUP\_REPLICATION”
+Seção 15.4.3.1, “Instrução START GROUP_REPLICATION”
 
-Seção 15.4.3.2, “Instrução STOP GROUP\_REPLICATION”
+Seção 15.4.3.2, “Instrução STOP GROUP_REPLICATION”
 
 Seção 20.5.1.3, “Usando o Consenso de Escrita de Grupo de Replicação em Grupo”
 
@@ -770,7 +770,7 @@ Seção 20.2.1.3, “Credenciais de Usuário para Recuperação Distribuída”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
-### INNODB\_REDO\_LOG\_ARCHIVE
+### INNODB_REDO_LOG_ARCHIVE
 
 Seção 15.7.1.6, “Instrução GRANT”
 
@@ -778,7 +778,7 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 Seção 17.6.5, “Registro de Revisão”
 
-### INNODB\_REDO\_LOG\_ENABLE
+### INNODB_REDO_LOG_ENABLE
 
 Seção 15.7.1.6, “Instrução GRANT”
 
@@ -826,7 +826,7 @@ Seção 30.1, “Pré-requisitos para o Uso do Esquema sys”
 
 Seção 8.2.12, “Restrição de Privilégios Usando Revocatórias Parciais”
 
-Seção 19.3.3.1, “Privilégios para a Conta de Verificação de PRIVILEGES\_CHECKS\_USER”
+Seção 19.3.3.1, “Privilégios para a Conta de Verificação de PRIVILEGES_CHECKS_USER”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -844,7 +844,7 @@ Seção 27.8, “Controle de Acesso a Objetos Armazenados”
 
 Seção 27.5.6, “O Agendador de Eventos e Permissões do MySQL”
 
-Seção 29.12.2.4, “A Tabela setup\_objects”
+Seção 29.12.2.4, “A Tabela setup_objects”
 
 Seção 8.2.10, “Usando Papéis”
 
@@ -870,7 +870,7 @@ Seção 8.2.2, “Permissões Fornecidas pelo MySQL”
 
 [index top]
 
-### MASKING\_DICTIONARIES\_ADMIN
+### MASKING_DICTIONARIES_ADMIN
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
@@ -884,7 +884,7 @@ Seção 8.2.2, “Permissões Fornecidas pelo MySQL”
 
 [index top]
 
-### NDB\_STORED\_USER
+### NDB_STORED_USER
 
 Seção 15.7.1.6, “Instrução GRANT”
 
@@ -892,7 +892,7 @@ Seção A.10, “Perguntas Frequentes do MySQL 9.5: NDB Cluster”
 
 Seção 25.6.19.2, “NDB Cluster e Permissões do MySQL”
 
-Seção 25.6.13, “Sincronização de Permissões e NDB\_STORED\_USER”
+Seção 25.6.13, “Sincronização de Permissões e NDB_STORED_USER”
 
 Seção 8.2.2, “Permissões Fornecidas pelo MySQL”
 
@@ -900,7 +900,7 @@ Seção 8.2.2, “Permissões Fornecidas pelo MySQL”
 
 [index top]
 
-### OPTIMIZE\_LOCAL\_TABLE
+### OPTIMIZE_LOCAL_TABLE
 
 Seção 15.7.1.6, “Instrução GRANT”
 
@@ -908,7 +908,7 @@ Seção 15.7.3.4, “Instrução OPTIMIZE TABLE”
 
 Seção 8.2.2, “Permissões Fornecidas pelo MySQL”
 
-### OPTION\_TRACKER\_OBSERVER
+### OPTION_TRACKER_OBSERVER
 
 Seção 7.5.8.5, “Funções do Rastreador de Opções”
 
@@ -916,7 +916,7 @@ Seção 7.5.8.1, “Tabelas do Rastreador de Opções”
 
 Seção 8.2.2, “Permissões Fornecidas pelo MySQL”
 
-### OPTION\_TRACKER\_UPDATER
+### OPTION_TRACKER_UPDATER
 
 Seção 7.5.8.5, “Funções do Rastreador de Opções”
 
@@ -928,7 +928,7 @@ Seção 8.2.2, “Permissões Fornecidas pelo MySQL”
 
 [index top]
 
-### PASSWORDLESS\_USER\_ADMIN
+### PASSWORDLESS_USER_ADMIN
 
 Seção 15.7.1.1, “Instrução ALTER USER”
 
@@ -942,7 +942,7 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 Seção 8.4.1.11, “Autenticação Pluggable WebAuthn”
 
-### PERSIST\_RO\_VARIABLES\_ADMIN
+### PERSIST_RO_VARIABLES_ADMIN
 
 Seção 15.7.1.6, “Instrução GRANT”
 
@@ -1002,49 +1002,49 @@ Seção 28.4.8, “As tabelas INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET
 
 Seção 28.4.7, “As tabelas INNODB_CMPMEM e INNODB_CMPMEM_RESET do INFORMATION_SCHEMA
 
-Seção 28.4.9, “A tabela INFORMATION\_SCHEMA INNODB\_COLUMNS”
+Seção 28.4.9, “A tabela INFORMATION_SCHEMA INNODB_COLUMNS”
 
-Seção 28.4.10, “A tabela INFORMATION\_SCHEMA INNODB\_DATAFILES”
+Seção 28.4.10, “A tabela INFORMATION_SCHEMA INNODB_DATAFILES”
 
-Seção 28.4.11, “A tabela INFORMATION\_SCHEMA INNODB\_FIELDS”
+Seção 28.4.11, “A tabela INFORMATION_SCHEMA INNODB_FIELDS”
 
-Seção 28.4.12, “A tabela INFORMATION\_SCHEMA INNODB\_FOREIGN”
+Seção 28.4.12, “A tabela INFORMATION_SCHEMA INNODB_FOREIGN”
 
-Seção 28.4.13, “A tabela INFORMATION\_SCHEMA INNODB\_FOREIGN\_COLS”
+Seção 28.4.13, “A tabela INFORMATION_SCHEMA INNODB_FOREIGN_COLS”
 
-Seção 28.4.14, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED”
+Seção 28.4.14, “A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED”
 
-Seção 28.4.15, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG”
+Seção 28.4.15, “A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG”
 
-Seção 28.4.16, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD”
+Seção 28.4.16, “A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD”
 
-Seção 28.4.17, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED”
+Seção 28.4.17, “A tabela INFORMATION_SCHEMA INNODB_FT_DELETED”
 
-Seção 28.4.18, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE”
+Seção 28.4.18, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”
 
-Seção 28.4.19, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE”
+Seção 28.4.19, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”
 
-Seção 28.4.20, “A tabela INFORMATION\_SCHEMA INNODB\_INDEXES”
+Seção 28.4.20, “A tabela INFORMATION_SCHEMA INNODB_INDEXES”
 
-Seção 28.4.21, “A tabela INFORMATION\_SCHEMA INNODB\_METRICS”
+Seção 28.4.21, “A tabela INFORMATION_SCHEMA INNODB_METRICS”
 
-Seção 28.4.22, “A tabela INFORMATION\_SCHEMA INNODB\_SESSION\_TEMP\_TABLESPACES”
+Seção 28.4.22, “A tabela INFORMATION_SCHEMA INNODB_SESSION_TEMP_TABLESPACES”
 
-Seção 28.4.23, “A tabela INFORMATION\_SCHEMA INNODB\_TABLES”
+Seção 28.4.23, “A tabela INFORMATION_SCHEMA INNODB_TABLES”
 
-Seção 28.4.24, “A tabela INFORMATION\_SCHEMA INNODB\_TABLESPACES”
+Seção 28.4.24, “A tabela INFORMATION_SCHEMA INNODB_TABLESPACES”
 
-Seção 28.4.25, “A tabela INFORMATION\_SCHEMA INNODB\_TABLESPACES\_BRIEF”
+Seção 28.4.25, “A tabela INFORMATION_SCHEMA INNODB_TABLESPACES_BRIEF”
 
-Seção 28.4.26, “A visualização TABLESTATS da INFORMATION\_SCHEMA INNODB”
+Seção 28.4.26, “A visualização TABLESTATS da INFORMATION_SCHEMA INNODB”
 
-Seção 28.4.27, “A tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO”
+Seção 28.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”
 
-Seção 28.4.28, “A tabela INFORMATION\_SCHEMA INNODB\_TRX”
+Seção 28.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”
 
-Seção 28.4.29, “A tabela INFORMATION\_SCHEMA INNODB\_VIRTUAL”
+Seção 28.4.29, “A tabela INFORMATION_SCHEMA INNODB_VIRTUAL”
 
-Seção 28.3.28, “A tabela INFORMATION\_SCHEMA PROCESSLIST”
+Seção 28.3.28, “A tabela INFORMATION_SCHEMA PROCESSLIST”
 
 Seção 29.12.22.9, “A tabela processlist”
 
@@ -1058,7 +1058,7 @@ Seção 8.2.19, “Usuários de Proxy”
 
 Seção 2.9.4, “Segurança da Conta Inicial do MySQL”
 
-Seção 29.12.22.4, “A Tabela host\_cache”
+Seção 29.12.22.4, “A Tabela host_cache”
 
 Seção 8.4.1.5, “Autenticação Conectada (Pluggable Authentication) no Windows”
 
@@ -1142,7 +1142,7 @@ Seção 15.7.7.37, “Instrução SHOW REPLICAS”
 
 Seção 20.2.1.3, “Credenciais de Usuário para Recuperação Distribuída”
 
-### REPLICATION\_APPLIER
+### REPLICATION_APPLIER
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -1156,7 +1156,7 @@ Seção 15.7.1.6, “Instrução GRANT”
 
 Seção 6.6.9, “mysqlbinlog — Ferramenta para Processar Arquivos de Registro Binário”
 
-Seção 19.3.3.1, “Privilegios para a Conta de VERIFICAÇÃO\_DE\_PRIVILEGIOS\_USER de Replicação”
+Seção 19.3.3.1, “Privilegios para a Conta de VERIFICAÇÃO_DE_PRIVILEGIOS_USER de Replicação”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -1166,7 +1166,7 @@ Seção 19.1.6.2, “Opções e Variáveis de Fonte de Replicação”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### REPLICATION\_SLAVE\_ADMIN
+### REPLICATION_SLAVE_ADMIN
 
 Seção 15.4.2.1, “Instrução CHANGE REPLICATION FILTER”
 
@@ -1182,7 +1182,7 @@ Seção 15.4.2.4, “Instrução START REPLICA”
 
 Seção 15.4.2.5, “Instrução STOP REPLICA”
 
-### RESOURCE\_GROUP\_ADMIN
+### RESOURCE_GROUP_ADMIN
 
 Seção 15.7.2.1, “Instrução ALTER RESOURCE GROUP”
 
@@ -1208,7 +1208,7 @@ Seção 7.1.16, “Grupos de recursos”
 
 Seção 15.7.2.4, “Instrução SET RESOURCE GROUP”
 
-### ROLE\_ADMIN
+### ROLE_ADMIN
 
 Seção 15.7.1.6, “Instrução GRANT”
 
@@ -1304,15 +1304,15 @@ Seção 27.8, “Controle de acesso a objetos armazenados”
 
 Seção 27.2.2, “Rotinas armazenadas e privilégios do MySQL”
 
-Seção 29.12.22.3, “A tabela `error\_log`”
+Seção 29.12.22.3, “A tabela `error_log`”
 
 Seção 27.5.6, “O Agendamento de Eventos e os privilégios do MySQL”
 
-Seção 28.3.18, “A tabela `INFORMATION SCHEMA JSON\_DUALITY\_VIEWS`”
+Seção 28.3.18, “A tabela `INFORMATION SCHEMA JSON_DUALITY_VIEWS`”
 
-Seção 28.3.36, “A tabela `INFORMATION\_SCHEMA ROUTINES`”
+Seção 28.3.36, “A tabela `INFORMATION_SCHEMA ROUTINES`”
 
-Seção 28.3.51, “A tabela `INFORMATION\_SCHEMA USER\_ATTRIBUTES`”
+Seção 28.3.51, “A tabela `INFORMATION_SCHEMA USER_ATTRIBUTES`”
 
 Seção 18.7, “O mecanismo de armazenamento MERGE”
 
@@ -1322,7 +1322,7 @@ Seção 27.4.1, “Sintaxe e exemplos de gatilho”
 
 Seção 15.2.17, “Declaração UPDATE”
 
-### SENSITIVE\_VARIABLES\_OBSERVER
+### SENSITIVE_VARIABLES_OBSERVER
 
 Seção 29.12.14.2, “Tabela de variáveis persistentes do Schema de Desempenho”
 
@@ -1334,7 +1334,7 @@ Seção 8.2.2, “Privilégios fornecidos pelo MySQL”
 
 Seção 7.1.18, “Rastreamento do estado da sessão do cliente pelo servidor”
 
-### SERVICE\_CONNECTION\_ADMIN
+### SERVICE_CONNECTION_ADMIN
 
 Seção 7.1.12.2, “Gestão de conexões administrativas”
 
@@ -1342,7 +1342,7 @@ Seção 8.2.2, “Privilégios fornecidos pelo MySQL”
 
 Seção 20.5.4.1.1, “Selecionando endereços para pontos finais de recuperação distribuídos”
 
-### SESSION\_VARIABLES\_ADMIN
+### SESSION_VARIABLES_ADMIN
 
 Seção 19.1.6.5, “Variáveis do sistema de ID de transação global”
 
@@ -1350,7 +1350,7 @@ Seção 15.7.1.6, “Declaração GRANT”
 
 Seção 10.4.4, “Uso de tabelas temporárias internas no MySQL”
 
-Seção 19.3.3.1, “Privilegios para a Conta PRIVILEGE\_CHECKS\_USER de Replicação”
+Seção 19.3.3.1, “Privilegios para a Conta PRIVILEGE_CHECKS_USER de Replicação”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -1358,7 +1358,7 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 7.1.9.1, “Privilegios de Variáveis do Sistema”
 
-### SET\_ANY\_DEFINER
+### SET_ANY_DEFINER
 
 Seção 15.1.13, “Instrução ALTER VIEW”
 
@@ -1398,11 +1398,11 @@ Seção 27.11, “Restrições sobre Visualizações”
 
 Seção 15.7.7.15, “Instrução SHOW CREATE VIEW”
 
-Seção 28.3.18, “A Tabela JSON\_DUALITY\_VIEWS do SCHEMA DE INFORMAÇÃO”
+Seção 28.3.18, “A Tabela JSON_DUALITY_VIEWS do SCHEMA DE INFORMAÇÃO”
 
 Seção 28.3.53, “A Tabela VIEWS do SCHEMA DE INFORMAÇÃO”
 
-### SHOW\_ROUTINE
+### SHOW_ROUTINE
 
 Seção 15.7.1.6, “Instrução GRANT”
 
@@ -1430,7 +1430,7 @@ Seção 15.7.1.6, “Instrução GRANT”
 
 Seção 8.2.3, “Conceder Tabelas”
 
-Seção 6.3.4, “mysqld\_multi — Gerenciar Múltiplos Servidores MySQL”
+Seção 6.3.4, “mysqld_multi — Gerenciar Múltiplos Servidores MySQL”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -1444,7 +1444,7 @@ Seção 7.1.19, “O Processo de Fechamento do Servidor”
 
 Seção 6.10, “Tratamento de Sinais Unix no MySQL”
 
-### SKIP\_QUERY\_REWRITE
+### SKIP_QUERY_REWRITE
 
 Seção 15.7.1.6, “Instrução GRANT”
 
@@ -1642,9 +1642,9 @@ Seção 15.7.7.32, “Instrução SHOW PROCESSLIST”
 
 Seção 27.8, “Controle de acesso a objetos armazenados”
 
-Seção 28.3.28, “A tabela INFORMATION\_SCHEMA PROCESSLIST”
+Seção 28.3.28, “A tabela INFORMATION_SCHEMA PROCESSLIST”
 
-Seção 28.3.51, “A tabela INFORMATION\_SCHEMA USER\_ATTRIBUTES”
+Seção 28.3.51, “A tabela INFORMATION_SCHEMA USER_ATTRIBUTES”
 
 Seção 29.12.22.9, “A tabela processlist”
 
@@ -1652,7 +1652,7 @@ Seção 8.2.10, “Usando papéis”
 
 Seção 8.4.6.8, “Escrevendo definições de filtros de log de auditoria”
 
-### SYSTEM\_VARIABLES\_ADMIN
+### SYSTEM_VARIABLES_ADMIN
 
 Seção 8.4.6.11, “Referência do log de auditoria”
 
@@ -1698,23 +1698,23 @@ Seção 15.1.41, “Instrução RENAME TABLE”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### TELEMETRY\_LOG\_ADMIN
+### TELEMETRY_LOG_ADMIN
 
 Seção 15.7.1.6, “Instrução GRANT”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
-### TP\_CONNECTION\_ADMIN
+### TP_CONNECTION_ADMIN
 
 Seção 15.7.1.6, “Instrução GRANT”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
-Seção 29.12.16.1, “A tabela tp\_connections”
+Seção 29.12.16.1, “A tabela tp_connections”
 
 Seção 7.6.3.3, “Operação do Pool de Threads”
 
-### TRANSACTION\_GTID\_TAG
+### TRANSACTION_GTID_TAG
 
 Seção 19.1.6.5, “Variáveis do Sistema de ID de Transação Global”
 
@@ -1774,7 +1774,7 @@ Seção 30.1, “Pré-requisitos para o Uso do Schema sys”
 
 Seção 8.2.12, “Restrição de Privilégios Usando Revocações Parciais”
 
-Seção 19.3.3.1, “Privilégios para a Conta PRIVILEGES\_CHECKS\_USER da Replicação”
+Seção 19.3.3.1, “Privilégios para a Conta PRIVILEGES_CHECKS_USER da Replicação”
 
 Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
@@ -1790,11 +1790,11 @@ Seção 15.7.1.10, “Instrução SET PASSWORD”
 
 Seção 27.8, “Controle de Acesso a Objetos Armazenados”
 
-Seção 28.3.51, “A Tabela INFORMATION\_SCHEMA USER\_ATTRIBUTES”
+Seção 28.3.51, “A Tabela INFORMATION_SCHEMA USER_ATTRIBUTES”
 
 Seção 18.7, “O Motor de Armazenamento MERGE”
 
-Seção 29.12.2.4, “A Tabela setup\_objects”
+Seção 29.12.2.4, “A Tabela setup_objects”
 
 Seção 27.4.1, “Sintaxe e Exemplos de Triggers”
 
@@ -1812,7 +1812,7 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 [índice superior]
 
-### TOKEN\_VERSÃO\_ADMIN
+### TOKEN_VERSÃO_ADMIN
 
 Seção 15.7.1.6, “Instrução GRANT”
 
@@ -1822,7 +1822,7 @@ Seção 8.2.2, “Privilegios Fornecidos pelo MySQL”
 
 [índice superior]
 
-### XA\_RECOVER\_ADMIN
+### XA_RECOVER_ADMIN
 
 Seção 15.7.1.6, “Instrução GRANT”
 

@@ -111,7 +111,7 @@ UNION
 
 O uso de uma coluna adicional também permite determinar de qual `SELECT` cada linha vem. Colunas extras podem fornecer outras informações de identificação, como uma string que indica o nome de uma tabela.
 
-Consultas de `UNION` com uma função agregada em uma cláusula `ORDER BY` são rejeitadas com um erro `ER_AGGREGATE_ORDER_FOR_UNION` (/doc/mysql-errors/5.7/en/server-error-reference.html#error\_er\_aggregate\_order\_for\_union). Exemplo:
+Consultas de `UNION` com uma função agregada em uma cláusula `ORDER BY` são rejeitadas com um erro `ER_AGGREGATE_ORDER_FOR_UNION` (/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_aggregate_order_for_union). Exemplo:
 
 ```sql
 SELECT 1 AS foo UNION SELECT 2 ORDER BY MAX(1);

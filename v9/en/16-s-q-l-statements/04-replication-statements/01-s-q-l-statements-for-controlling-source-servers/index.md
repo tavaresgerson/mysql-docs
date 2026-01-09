@@ -4,7 +4,7 @@
 
 15.4.1.2 RESET BINARY LOGS AND GTIDS Statement
 
-15.4.1.3 SET sql\_log\_bin Statement
+15.4.1.3 SET sql_log_bin Statement
 
 This section discusses statements for managing replication source servers. Section 15.4.2, “SQL Statements for Controlling Replica Servers”, discusses statements for managing replica servers.
 

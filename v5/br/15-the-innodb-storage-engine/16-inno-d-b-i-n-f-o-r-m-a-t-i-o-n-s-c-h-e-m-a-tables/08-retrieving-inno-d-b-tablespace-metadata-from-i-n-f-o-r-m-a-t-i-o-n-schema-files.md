@@ -1,8 +1,8 @@
-### 14.16.8 Recuperação dos metadados do espaço de tabela InnoDB a partir do INFORMATION\_SCHEMA.FILES
+### 14.16.8 Recuperação dos metadados do espaço de tabela InnoDB a partir do INFORMATION_SCHEMA.FILES
 
 A tabela do esquema de informações `FILES` fornece metadados sobre todos os tipos de espaço de tabela `InnoDB`, incluindo espaços de tabela por arquivo, espaços de tabela gerais, o espaço de tabela do sistema, espaços de tabela de tabela temporária e espaços de tabela de desfazer (se presentes).
 
-Esta seção fornece exemplos de uso específicos do InnoDB. Para mais informações, consulte a Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”.
+Esta seção fornece exemplos de uso específicos do InnoDB. Para mais informações, consulte a Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.
 
 Nota
 

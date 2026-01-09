@@ -15,7 +15,7 @@ MySQL Server maintains several time zone settings:
 
 * The server system time zone. When the server starts, it attempts to determine the time zone of the host machine and uses it to set the [`system_time_zone`](server-system-variables.html#sysvar_system_time_zone) system variable. The value does not change thereafter.
 
-  To explicitly specify the system time zone for MySQL Server at startup, set the `TZ` environment variable before you start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). If you start the server using [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), its [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) option provides another way to set the system time zone. The permissible values for `TZ` and [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) are system dependent. Consult your operating system documentation to see what values are acceptable.
+  To explicitly specify the system time zone for MySQL Server at startup, set the `TZ` environment variable before you start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). If you start the server using [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"), its [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) option provides another way to set the system time zone. The permissible values for `TZ` and [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) are system dependent. Consult your operating system documentation to see what values are acceptable.
 
 * The server current time zone. The global [`time_zone`](server-system-variables.html#sysvar_time_zone) system variable indicates the time zone the server currently is operating in. The initial [`time_zone`](server-system-variables.html#sysvar_time_zone) value is `'SYSTEM'`, which indicates that the server time zone is the same as the system time zone.
 
@@ -78,9 +78,9 @@ Note
 
 Loading the time zone information is not necessarily a one-time operation because the information changes occasionally. When such changes occur, applications that use the old rules become out of date and you may find it necessary to reload the time zone tables to keep the information used by your MySQL server current. See [Staying Current with Time Zone Changes](time-zone-support.html#time-zone-upgrades "Staying Current with Time Zone Changes").
 
-If your system has its own zoneinfo database (the set of files describing time zones), use the [**mysql\_tzinfo\_to\_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") program to load the time zone tables. Examples of such systems are Linux, macOS, FreeBSD, and Solaris. One likely location for these files is the `/usr/share/zoneinfo` directory. If your system has no zoneinfo database, you can use a downloadable package, as described later in this section.
+If your system has its own zoneinfo database (the set of files describing time zones), use the [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") program to load the time zone tables. Examples of such systems are Linux, macOS, FreeBSD, and Solaris. One likely location for these files is the `/usr/share/zoneinfo` directory. If your system has no zoneinfo database, you can use a downloadable package, as described later in this section.
 
-To load the time zone tables from the command line, pass the zoneinfo directory path name to [**mysql\_tzinfo\_to\_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") and send the output into the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") program. For example:
+To load the time zone tables from the command line, pass the zoneinfo directory path name to [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") and send the output into the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") program. For example:
 
 ```sql
 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
@@ -88,11 +88,11 @@ mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -u root -p mysql
 
 The [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") command shown here assumes that you connect to the server using an account such as `root` that has privileges for modifying tables in the `mysql` system database. Adjust the connection parameters as required.
 
-[**mysql\_tzinfo\_to\_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") reads your system's time zone files and generates SQL statements from them. [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") processes those statements to load the time zone tables.
+[**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") reads your system's time zone files and generates SQL statements from them. [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") processes those statements to load the time zone tables.
 
-[**mysql\_tzinfo\_to\_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") also can be used to load a single time zone file or generate leap second information:
+[**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") also can be used to load a single time zone file or generate leap second information:
 
-* To load a single time zone file *`tz_file`* that corresponds to a time zone name *`tz_name`*, invoke [**mysql\_tzinfo\_to\_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") like this:
+* To load a single time zone file *`tz_file`* that corresponds to a time zone name *`tz_name`*, invoke [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") like this:
 
   ```sql
   mysql_tzinfo_to_sql tz_file tz_name | mysql -u root -p mysql
@@ -106,7 +106,7 @@ The [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") com
   mysql_tzinfo_to_sql --leap tz_file | mysql -u root -p mysql
   ```
 
-After running [**mysql\_tzinfo\_to\_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables"), restart the server so that it does not continue to use any previously cached time zone data.
+After running [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables"), restart the server so that it does not continue to use any previously cached time zone data.
 
 If your system has no zoneinfo database (for example, Windows), you can use a package containing SQL statements that is available for download at the MySQL Developer Zone:
 
@@ -116,7 +116,7 @@ https://dev.mysql.com/downloads/timezones.html
 
 Warning
 
-Do *not* use a downloadable time zone package if your system has a zoneinfo database. Use the [**mysql\_tzinfo\_to\_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") utility instead. Otherwise, you may cause a difference in datetime handling between MySQL and other applications on your system.
+Do *not* use a downloadable time zone package if your system has a zoneinfo database. Use the [**mysql_tzinfo_to_sql**](mysql-tzinfo-to-sql.html "4.4.6 mysql_tzinfo_to_sql — Load the Time Zone Tables") utility instead. Otherwise, you may cause a difference in datetime handling between MySQL and other applications on your system.
 
 To use an SQL-statement time zone package that you have downloaded, unpack it, then load the unpacked file contents into the time zone tables:
 

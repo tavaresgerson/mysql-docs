@@ -1,4 +1,4 @@
-#### 29.12.5.1 The events\_stages\_current Table
+#### 29.12.5.1 The events_stages_current Table
 
 The `events_stages_current` table contains current stage events. The table stores one row per thread showing the current status of the thread's most recent monitored stage event, so there is no system variable for configuring the table size.
 

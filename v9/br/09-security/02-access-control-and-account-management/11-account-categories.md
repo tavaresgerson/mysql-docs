@@ -25,7 +25,7 @@ Se um usuário tiver os privilégios apropriados para realizar uma operação es
 
 A distinção entre contas de sistema e contas regulares permite um melhor controle sobre certas questões de administração de contas, protegendo contas que possuem o privilégio `SYSTEM_USER` de contas que não possuem o privilégio. Por exemplo, o privilégio `CREATE USER` permite não apenas a criação de novas contas, mas também a modificação e remoção de contas existentes. Sem o conceito de usuário de sistema, um usuário que possui o privilégio `CREATE USER` pode modificar ou excluir qualquer conta existente, incluindo a conta `root`. O conceito de usuário de sistema permite restringir as modificações à conta `root` (que é uma conta de sistema) para que elas possam ser feitas apenas por usuários de sistema. Usuários regulares com o privilégio `CREATE USER` ainda podem modificar ou excluir contas existentes, mas apenas contas regulares.
 
-#### Operações Afetadas pelo Privilégio SYSTEM\_USER
+#### Operações Afetadas pelo Privilégio SYSTEM_USER
 
 O privilégio `SYSTEM_USER` afeta essas operações:
 

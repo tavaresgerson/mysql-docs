@@ -5,7 +5,7 @@ Existem várias técnicas para usar a replicação do MySQL com Identificadores 
 - Replicação simples
 - Copiar dados e transações para a replica
 - Injetar transações vazias
-- Excluindo transações com gtid\_purged
+- Excluindo transações com gtid_purged
 - Restauração de réplicas no modo GTID
 
 Identificadores de transações globais foram adicionados ao MySQL Replication com o objetivo de simplificar o gerenciamento geral do fluxo de dados de replicação e, em particular, as atividades de failover. Cada identificador identifica de forma única um conjunto de eventos de log binário que, juntos, compõem uma transação. Os GTIDs desempenham um papel fundamental na aplicação de alterações no banco de dados: o servidor ignora automaticamente qualquer transação que tenha um identificador que o servidor reconheça como uma que ele já processou anteriormente. Esse comportamento é crucial para o posicionamento automático da replicação e para o failover correto.
@@ -70,7 +70,7 @@ Você deve fazer isso para evitar que esse servidor inunda o fluxo de replicaç�
 
 Esse método cria um servidor que é essencialmente um instantâneo, mas que, com o tempo, pode se tornar uma fonte, à medida que seu histórico de log binário converge com o da corrente de replicação (ou seja, à medida que ele alcança a fonte ou as fontes). Esse resultado é semelhante em efeito ao obtido usando o método de provisionamento restante, que discutimos nos próximos parágrafos.
 
-**Excluindo transações com gtid\_purged.** A variável global da fonte `gtid_purged` do fonte contém o conjunto de todas as transações que foram apagadas do log binário da fonte. Como no método discutido anteriormente (veja Injetando transações vazias), você pode registrar o valor de `gtid_executed` no servidor a partir do qual o instantâneo foi feito (em vez de copiar os logs binários para o novo servidor). Ao contrário do método anterior, não é necessário compromentar transações vazias (ou emitir `PURGE BINARY LOGS`); em vez disso, você pode definir `gtid_purged` na replica diretamente, com base no valor de `gtid_executed` no servidor a partir do qual o backup ou instantâneo foi feito.
+**Excluindo transações com gtid_purged.** A variável global da fonte `gtid_purged` do fonte contém o conjunto de todas as transações que foram apagadas do log binário da fonte. Como no método discutido anteriormente (veja Injetando transações vazias), você pode registrar o valor de `gtid_executed` no servidor a partir do qual o instantâneo foi feito (em vez de copiar os logs binários para o novo servidor). Ao contrário do método anterior, não é necessário compromentar transações vazias (ou emitir `PURGE BINARY LOGS`); em vez disso, você pode definir `gtid_purged` na replica diretamente, com base no valor de `gtid_executed` no servidor a partir do qual o backup ou instantâneo foi feito.
 
 Assim como o método que utiliza transações vazias, este método cria um servidor que, funcionalmente, é um instantâneo, mas que, com o tempo, pode se tornar uma fonte, à medida que o histórico do log binário converge com o do servidor fonte de replicação ou do grupo.
 

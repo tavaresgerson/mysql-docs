@@ -14,7 +14,7 @@ Para a Replicação em Grupo, os dados devem ser armazenados no mecanismo de arm
 disabled_storage_engines="MyISAM,BLACKHOLE,FEDERATED,ARCHIVE,MEMORY"
 ```
 
-Observe que, com o mecanismo de armazenamento `MyISAM` desativado, quando você está atualizando uma instância do MySQL para uma versão onde o **mysql\_upgrade** ainda é usado (antes do MySQL 8.0.16), o **mysql\_upgrade** pode falhar com um erro. Para lidar com isso, você pode reativar esse mecanismo de armazenamento enquanto executa o **mysql\_upgrade**, e depois desativá-lo novamente ao reiniciar o servidor. Para mais informações, consulte Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”.
+Observe que, com o mecanismo de armazenamento `MyISAM` desativado, quando você está atualizando uma instância do MySQL para uma versão onde o **mysql_upgrade** ainda é usado (antes do MySQL 8.0.16), o **mysql_upgrade** pode falhar com um erro. Para lidar com isso, você pode reativar esse mecanismo de armazenamento enquanto executa o **mysql_upgrade**, e depois desativá-lo novamente ao reiniciar o servidor. Para mais informações, consulte Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”.
 
 ##### Framework de replicação
 

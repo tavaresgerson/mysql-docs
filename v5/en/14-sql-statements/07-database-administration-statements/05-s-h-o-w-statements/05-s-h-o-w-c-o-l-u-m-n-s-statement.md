@@ -91,7 +91,7 @@ The data types may differ from what you expect them to be based on a [`CREATE TA
 
   Any comment included in the column definition. This value is displayed only if you use the `FULL` keyword.
 
-Table column information is also available from the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table. See [Section 24.3.5, “The INFORMATION\_SCHEMA COLUMNS Table”](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table").
+Table column information is also available from the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table. See [Section 24.3.5, “The INFORMATION_SCHEMA COLUMNS Table”](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table").
 
 You can list a table's columns with the [**mysqlshow *`db_name`* *`tbl_name`***](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information") command.
 

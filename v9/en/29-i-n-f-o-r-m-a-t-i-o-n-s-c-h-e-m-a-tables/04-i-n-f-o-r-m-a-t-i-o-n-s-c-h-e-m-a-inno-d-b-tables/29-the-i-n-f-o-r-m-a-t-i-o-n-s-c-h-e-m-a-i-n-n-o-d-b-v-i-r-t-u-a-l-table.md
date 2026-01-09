@@ -1,4 +1,4 @@
-### 28.4.29 The INFORMATION\_SCHEMA INNODB\_VIRTUAL Table
+### 28.4.29 The INFORMATION_SCHEMA INNODB_VIRTUAL Table
 
 The `INNODB_VIRTUAL` table provides metadata about `InnoDB` virtual generated columns and columns upon which virtual generated columns are based.
 

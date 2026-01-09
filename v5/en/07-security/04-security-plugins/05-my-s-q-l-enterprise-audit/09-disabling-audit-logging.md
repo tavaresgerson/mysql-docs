@@ -8,6 +8,6 @@ SET GLOBAL audit_log_disable = true;
 
 Setting [`audit_log_disable`](audit-log-reference.html#sysvar_audit_log_disable) to true disables the audit log plugin. The plugin is re-enabled when [`audit_log_disable`](audit-log-reference.html#sysvar_audit_log_disable) is set back to `false`, which is the default setting.
 
-Starting the audit log plugin with [`audit_log_disable = true`](audit-log-reference.html#sysvar_audit_log_disable) generates a warning (`ER_WARN_AUDIT_LOG_DISABLED`) with the following message: Audit Log is disabled. Enable it with audit\_log\_disable = false. Setting [`audit_log_disable`](audit-log-reference.html#sysvar_audit_log_disable) to false also generates warning. When [`audit_log_disable`](audit-log-reference.html#sysvar_audit_log_disable) is set to true, audit log function calls and variable changes generate a session warning.
+Starting the audit log plugin with [`audit_log_disable = true`](audit-log-reference.html#sysvar_audit_log_disable) generates a warning (`ER_WARN_AUDIT_LOG_DISABLED`) with the following message: Audit Log is disabled. Enable it with audit_log_disable = false. Setting [`audit_log_disable`](audit-log-reference.html#sysvar_audit_log_disable) to false also generates warning. When [`audit_log_disable`](audit-log-reference.html#sysvar_audit_log_disable) is set to true, audit log function calls and variable changes generate a session warning.
 
 Setting the runtime value of [`audit_log_disable`](audit-log-reference.html#sysvar_audit_log_disable) requires the [`SUPER`](privileges-provided.html#priv_super) privilege.

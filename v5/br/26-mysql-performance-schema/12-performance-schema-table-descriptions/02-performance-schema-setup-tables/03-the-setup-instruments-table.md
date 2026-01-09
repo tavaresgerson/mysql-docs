@@ -1,4 +1,4 @@
-#### 25.12.2.3 A tabela setup\_instruments
+#### 25.12.2.3 A tabela setup_instruments
 
 A tabela `setup_instruments` lista as classes de objetos instrumentados para os quais eventos podem ser coletados:
 

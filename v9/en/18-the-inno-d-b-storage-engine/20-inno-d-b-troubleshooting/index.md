@@ -18,7 +18,7 @@ The following general guidelines apply to troubleshooting `InnoDB` problems:
 
 * If the issue is related to the `InnoDB` data dictionary, see Section 17.20.4, “Troubleshooting InnoDB Data Dictionary Operations”.
 
-* When troubleshooting, it is usually best to run the MySQL server from the command prompt, rather than through **mysqld\_safe** or as a Windows service. You can then see what **mysqld** prints to the console, and so have a better grasp of what is going on. On Windows, start **mysqld** with the `--console` option to direct the output to the console window.
+* When troubleshooting, it is usually best to run the MySQL server from the command prompt, rather than through **mysqld_safe** or as a Windows service. You can then see what **mysqld** prints to the console, and so have a better grasp of what is going on. On Windows, start **mysqld** with the `--console` option to direct the output to the console window.
 
 * Enable the `InnoDB` Monitors to obtain information about a problem (see Section 17.17, “InnoDB Monitors”). If the problem is performance-related, or your server appears to be hung, you should enable the standard Monitor to print information about the internal state of `InnoDB`. If the problem is with locks, enable the Lock Monitor. If the problem is with table creation, tablespaces, or data dictionary operations, refer to the InnoDB Information Schema system tables to examine contents of the `InnoDB` internal data dictionary.
 

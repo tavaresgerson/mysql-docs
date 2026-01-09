@@ -8,7 +8,7 @@ The `NDB` kernel employs a unified send buffer whose memory is allocated dynamic
 
   **Table 21.21 Transporter types with maximum send buffer sizes**
 
-  <table><thead><tr> <th>Transporter</th> <th>Maximum Send Buffer Size (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td><a class="link" href="mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory"><code>SendBufferMemory</code></a> (default = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
+  <table><thead><tr> <th>Transporter</th> <th>Maximum Send Buffer Size (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td><code>SendBufferMemory</code> (default = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
 
   This enables existing configurations to function in close to the same way as they did with NDB Cluster 6.3 and earlier, with the same amount of memory and send buffer space available to each transporter. However, memory that is unused by one transporter is not available to other transporters.
 
@@ -18,7 +18,7 @@ The `NDB` kernel employs a unified send buffer whose memory is allocated dynamic
 
 * **ReservedSendBufferMemory.** Removed prior to NDB 7.5 GA.
 
-  <table frame="box" rules="all" summary="ReservedSendBufferMemory data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>bytes</td> </tr><tr> <th>Default</th> <td>256K</td> </tr><tr> <th>Range</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Removed</th> <td>NDB 7.5.2</td> </tr><tr> <th>Restart Type</th> <td><p> <span class="bold"><strong>Node Restart: </strong></span>Requires a <a class="link" href="mysql-cluster-rolling-restart.html" title="21.6.5 Performing a Rolling Restart of an NDB Cluster">rolling restart</a> of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ReservedSendBufferMemory data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>bytes</td> </tr><tr> <th>Default</th> <td>256K</td> </tr><tr> <th>Range</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Removed</th> <td>NDB 7.5.2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
   Previously, this data node parameter was present, but not actually used (Bug #77404, Bug #21280428).
 

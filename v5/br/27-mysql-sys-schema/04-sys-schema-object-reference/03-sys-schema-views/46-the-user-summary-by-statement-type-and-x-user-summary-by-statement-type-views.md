@@ -1,4 +1,4 @@
-#### 26.4.3.46 As visualizações user\_summary\_by\_statement\_type e x$user\_summary\_by\_statement\_type
+#### 26.4.3.46 As visualizações user_summary_by_statement_type e x$user_summary_by_statement_type
 
 Essas visualizações resumem informações sobre declarações executadas, agrupadas por usuário e tipo de declaração. Por padrão, as linhas são ordenadas por usuário e latência total decrescente.
 

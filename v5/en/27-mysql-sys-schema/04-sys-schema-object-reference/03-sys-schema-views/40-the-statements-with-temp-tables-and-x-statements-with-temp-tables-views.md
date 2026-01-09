@@ -1,4 +1,4 @@
-#### 26.4.3.40 The statements\_with\_temp\_tables and x$statements\_with\_temp\_tables Views
+#### 26.4.3.40 The statements_with_temp_tables and x$statements_with_temp_tables Views
 
 These views list normalized statements that have used temporary tables. By default, rows are sorted by descending number of on-disk temporary tables used and descending number of in-memory temporary tables used.
 

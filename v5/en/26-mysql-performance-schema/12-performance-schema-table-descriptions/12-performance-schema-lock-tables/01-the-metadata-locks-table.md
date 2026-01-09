@@ -1,4 +1,4 @@
-#### 25.12.12.1 The metadata\_locks Table
+#### 25.12.12.1 The metadata_locks Table
 
 MySQL uses metadata locking to manage concurrent access to database objects and to ensure data consistency; see [Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking"). Metadata locking applies not just to tables, but also to schemas, stored programs (procedures, functions, triggers, scheduled events), tablespaces, user locks acquired with the [`GET_LOCK()`](locking-functions.html#function_get-lock) function (see [Section 12.14, “Locking Functions”](locking-functions.html "12.14 Locking Functions")), and locks acquired with the locking service described in [Section 5.5.6.1, “The Locking Service”](locking-service.html "5.5.6.1 The Locking Service").
 

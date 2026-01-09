@@ -1,4 +1,4 @@
-#### 26.4.3.34 A visualização session\_ssl\_status
+#### 26.4.3.34 A visualização session_ssl_status
 
 Para cada conexão, essa visualização exibe a versão SSL, o cifrador e o número de sessões SSL reutilizadas.
 

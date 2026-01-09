@@ -75,7 +75,7 @@ Um alias para `train()"), e idêntico a ele em todos os aspectos, exceto pelo no
 
 Este método prevê rótulos, atuando como um wrapper para `sys.ML_PREDICT_ROW`.
 
-Preve o rótulo para uma única amostra de dados e retorna o rótulo. Consulte ML\_PREDICT\_ROW, para mais informações.
+Preve o rótulo para uma única amostra de dados e retorna o rótulo. Consulte ML_PREDICT_ROW, para mais informações.
 
 **Assinatura**
 

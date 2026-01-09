@@ -10,7 +10,7 @@ This section summarizes what has been added to, deprecated in, changed, and remo
 
 The following features have been added to MySQL 9.5:
 
-* **innodb\_log\_writer\_threads default behavior change.** The default value for `innodb_log_writer_threads` is now determined in part by whether binary logging is enabled on the server, as shown here:
+* **innodb_log_writer_threads default behavior change.** The default value for `innodb_log_writer_threads` is now determined in part by whether binary logging is enabled on the server, as shown here:
 
   ```
   if (log_bin = OFF)
@@ -42,7 +42,7 @@ The following features have been added to MySQL 9.5:
 
   For further information, see the description of `innodb_log_writer_threads` in the documentation, as well as Section 10.5.4, “Optimizing InnoDB Redo Logging”.
 
-* **Increased binlog\_transaction\_dependency\_history\_size.** The default value for the `binlog_transaction_dependency_history_size` server system variable was increased in MySQL 9.5.0 from 25000 to 1000000 (one million). In addition, this variable's maximum value has been increased from 1000000 to 10000000 (ten million).
+* **Increased binlog_transaction_dependency_history_size.** The default value for the `binlog_transaction_dependency_history_size` server system variable was increased in MySQL 9.5.0 from 25000 to 1000000 (one million). In addition, this variable's maximum value has been increased from 1000000 to 10000000 (ten million).
 
   This change does not affect any value currently set for this variable, and thus should not have any effect on existing setups.
 

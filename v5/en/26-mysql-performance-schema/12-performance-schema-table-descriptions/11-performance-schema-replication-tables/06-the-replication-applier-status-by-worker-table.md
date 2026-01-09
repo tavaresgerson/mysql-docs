@@ -1,4 +1,4 @@
-#### 25.12.11.6 The replication\_applier\_status\_by\_worker Table
+#### 25.12.11.6 The replication_applier_status_by_worker Table
 
 If the replica is not multithreaded, this table shows the status of the applier thread. Otherwise, the replica uses multiple worker threads and a coordinator thread to manage them, and this table shows the status of the worker threads. For a multithreaded replica, the [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table") table shows the status of the coordinator thread.
 

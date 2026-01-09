@@ -169,7 +169,7 @@ mysql> SELECT JSON_MERGE_PRESERVE('["a", 1]', '{"key": "value"}');
 
 Para informações sobre as regras de mesclagem, consulte Normalização, Mesclagem e Autoenrolado de Valores JSON.
 
-(O MySQL também suporta `JSON_MERGE_PATCH()`, que tem um comportamento um pouco diferente. Veja JSON\_MERGE\_PATCH() comparado com JSON\_MERGE\_PRESERVE() comparado com JSON_MERGE_PRESERVE()"), para informações sobre as diferenças entre essas duas funções.)
+(O MySQL também suporta `JSON_MERGE_PATCH()`, que tem um comportamento um pouco diferente. Veja JSON_MERGE_PATCH() comparado com JSON_MERGE_PRESERVE() comparado com JSON_MERGE_PRESERVE()"), para informações sobre as diferenças entre essas duas funções.)
 
 Valores JSON podem ser atribuídos a variáveis definidas pelo usuário:
 
@@ -840,8 +840,8 @@ A tabela a seguir fornece um resumo das regras que o MySQL segue ao converter en
 </tr>
 <tr>
 <th>Tipos de geometria</th>
-<td>O valor de geometria é convertido em um documento JSON chamando <a class="link" href="spatial-geojson-functions.html#function_st-asgeojson"><code>ST_AsGeoJSON()</code></a>.</td>
-<td>Operação ilegal. Solução: passe o resultado de <a class="link" href="cast-functions.html#function_cast"><code>CAST(<em class="replaceable"><code>json_val</code></em> AS CHAR)</code></a> para <a class="link" href="spatial-geojson-functions.html#function_st-geomfromgeojson"><code>ST_GeomFromGeoJSON()</code></a>.</td>
+<td>O valor de geometria é convertido em um documento JSON chamando <code>ST_AsGeoJSON()</code>.</td>
+<td>Operação ilegal. Solução: passe o resultado de <code>CAST(<em class="replaceable"><code>json_val</code></em> AS CHAR)</code> para <code>ST_GeomFromGeoJSON()</code>.</td>
 </tr>
 <tr>
 <th>Todos os outros tipos</th>

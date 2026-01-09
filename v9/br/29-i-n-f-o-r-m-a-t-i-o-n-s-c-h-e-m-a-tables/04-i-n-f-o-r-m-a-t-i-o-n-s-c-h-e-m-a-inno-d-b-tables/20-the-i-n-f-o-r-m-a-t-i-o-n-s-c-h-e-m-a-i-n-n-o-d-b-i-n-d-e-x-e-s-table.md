@@ -1,8 +1,8 @@
-### 28.4.20 A Tabela `INFORMATION\_SCHEMA\_INNODB\_INDEXES`
+### 28.4.20 A Tabela `INFORMATION_SCHEMA_INNODB_INDEXES`
 
 A tabela `INNODB_INDEXES` fornece metadados sobre os índices `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.3, “Objetos de esquema `INFORMATION\_SCHEMA` da tabela `InnoDB`”.
+Para informações de uso relacionadas e exemplos, consulte a Seção 17.15.3, “Objetos de esquema `INFORMATION_SCHEMA` da tabela `InnoDB`”.
 
 A tabela `INNODB_INDEXES` tem as seguintes colunas:
 

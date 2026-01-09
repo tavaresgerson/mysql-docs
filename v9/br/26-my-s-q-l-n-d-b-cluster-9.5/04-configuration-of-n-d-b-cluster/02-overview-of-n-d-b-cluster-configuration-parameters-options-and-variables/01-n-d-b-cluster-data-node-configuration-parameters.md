@@ -230,9 +230,9 @@ Esses parâmetros também se aplicam a **ndbmtd")**, a versão multithread do **
 
 * `Numa`: (Apenas Linux; requer libnuma) Controla o suporte NUMA. Definir para 0 permite que o sistema determine o uso de interleaving pelo processo do nó de dados; 1 significa que é determinado pelo nó de dados.
 
-* `ODirect`: Usar leituras e escritas de arquivos O\_DIRECT quando possível.
+* `ODirect`: Usar leituras e escritas de arquivos O_DIRECT quando possível.
 
-* `ODirectSyncFlag`: As escritas O\_DIRECT são tratadas como escritas sincronizadas; ignoradas quando o ODirect não está habilitado, o InitFragmentLogFiles está definido como SPARSE ou ambos.
+* `ODirectSyncFlag`: As escritas O_DIRECT são tratadas como escritas sincronizadas; ignoradas quando o ODirect não está habilitado, o InitFragmentLogFiles está definido como SPARSE ou ambos.
 
 * `RealtimeScheduler`: Quando verdadeiro, os threads dos nós de dados são agendados como threads em tempo real. O padrão é falso.
 
@@ -296,7 +296,7 @@ Esses parâmetros também se aplicam a **ndbmtd")**, a versão multithread do **
 
 * `StringMemory`: Tamanho padrão da memória de string (0 a 100 = % do máximo, 101+ = bytes reais).
 
-* `TcpBind_INADDR_ANY`: Vincule IP\_ADDR\_ANY para que conexões possam ser feitas de qualquer lugar (para conexões geradas automaticamente).
+* `TcpBind_INADDR_ANY`: Vincule IP_ADDR_ANY para que conexões possam ser feitas de qualquer lugar (para conexões geradas automaticamente).
 
 * `TimeBetweenEpochs`: Tempo entre épocas (sincronização usada para replicação).
 

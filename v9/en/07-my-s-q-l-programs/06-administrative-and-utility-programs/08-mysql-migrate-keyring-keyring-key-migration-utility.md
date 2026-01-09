@@ -1,8 +1,8 @@
-### 6.6.8 mysql\_migrate\_keyring — Keyring Key Migration Utility
+### 6.6.8 mysql_migrate_keyring — Keyring Key Migration Utility
 
-The **mysql\_migrate\_keyring** utility migrates keys between one keyring component and another. It supports offline and online migrations.
+The **mysql_migrate_keyring** utility migrates keys between one keyring component and another. It supports offline and online migrations.
 
-Invoke **mysql\_migrate\_keyring** like this (enter the command on a single line):
+Invoke **mysql_migrate_keyring** like this (enter the command on a single line):
 
 ```
 mysql_migrate_keyring
@@ -12,13 +12,13 @@ mysql_migrate_keyring
   [other options]
 ```
 
-For information about key migrations and instructions describing how to perform them using **mysql\_migrate\_keyring** and other methods, see Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”.
+For information about key migrations and instructions describing how to perform them using **mysql_migrate_keyring** and other methods, see Section 8.4.5.14, “Migrating Keys Between Keyring Keystores”.
 
-**mysql\_migrate\_keyring** supports the following options, which can be specified on the command line or in the `[mysql_migrate_keyring]` group of an option file. For information about option files used by MySQL programs, see Section 6.2.2.2, “Using Option Files”.
+**mysql_migrate_keyring** supports the following options, which can be specified on the command line or in the `[mysql_migrate_keyring]` group of an option file. For information about option files used by MySQL programs, see Section 6.2.2.2, “Using Option Files”.
 
-**Table 6.20 mysql\_migrate\_keyring Options**
+**Table 6.20 mysql_migrate_keyring Options**
 
-<table frame="box" rules="all" summary="Command-line options available for mysql_migrate_keyring."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_component-dir">--component-dir</a></td> <td>Directory for keyring components</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_defaults-extra-file">--defaults-extra-file</a></td> <td>Read named option file in addition to usual option files</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_defaults-file">--defaults-file</a></td> <td>Read only named option file</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_defaults-group-suffix">--defaults-group-suffix</a></td> <td>Option group suffix value</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_destination-keyring">--destination-keyring</a></td> <td>Destination keyring component name</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_destination-keyring-configuration-dir">--destination-keyring-configuration-dir</a></td> <td>Destination keyring component configuration directory</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_get-server-public-key">--get-server-public-key</a></td> <td>Request RSA public key from server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_help">--help</a></td> <td>Display help message and exit</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_host">--host</a></td> <td>Host on which MySQL server is located</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_login-path">--login-path</a></td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_no-defaults">--no-defaults</a></td> <td>Read no option files</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_no-login-paths">--no-login-paths</a></td> <td>Do not read login paths from the login path file</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_online-migration">--online-migration</a></td> <td>Migration source is an active server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_password">--password</a></td> <td>Password to use when connecting to server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_port">--port</a></td> <td>TCP/IP port number for connection</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_print-defaults">--print-defaults</a></td> <td>Print default options</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_server-public-key-path">--server-public-key-path</a></td> <td>Path name to file containing RSA public key</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_socket">--socket</a></td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_source-keyring">--source-keyring</a></td> <td>Source keyring component name</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_source-keyring-configuration-dir">--source-keyring-configuration-dir</a></td> <td>Source keyring component configuration directory</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-ca</a></td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-capath</a></td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-cert</a></td> <td>File that contains X.509 certificate</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-cipher</a></td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-crl</a></td> <td>File that contains certificate revocation lists</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-crlpath</a></td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl-fips-mode">--ssl-fips-mode</a></td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-key</a></td> <td>File that contains X.509 key</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-mode</a></td> <td>Desired security state of connection to server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-session-data</a></td> <td>File that contains SSL session data</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_ssl">--ssl-session-data-continue-on-failed-reuse</a></td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_tls-ciphersuites">--tls-ciphersuites</a></td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_tls-sni-servername">--tls-sni-servername</a></td> <td>Server name supplied by the client</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_tls-version">--tls-version</a></td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_user">--user</a></td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_verbose">--verbose</a></td> <td>Verbose mode</td> </tr><tr><td><a class="link" href="mysql-migrate-keyring.html#option_mysql_migrate_keyring_version">--version</a></td> <td>Display version information and exit</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Command-line options available for mysql_migrate_keyring."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Option Name</th> <th>Description</th> </tr></thead><tbody><tr><td>--component-dir</td> <td>Directory for keyring components</td> </tr><tr><td>--defaults-extra-file</td> <td>Read named option file in addition to usual option files</td> </tr><tr><td>--defaults-file</td> <td>Read only named option file</td> </tr><tr><td>--defaults-group-suffix</td> <td>Option group suffix value</td> </tr><tr><td>--destination-keyring</td> <td>Destination keyring component name</td> </tr><tr><td>--destination-keyring-configuration-dir</td> <td>Destination keyring component configuration directory</td> </tr><tr><td>--get-server-public-key</td> <td>Request RSA public key from server</td> </tr><tr><td>--help</td> <td>Display help message and exit</td> </tr><tr><td>--host</td> <td>Host on which MySQL server is located</td> </tr><tr><td>--login-path</td> <td>Read login path options from .mylogin.cnf</td> </tr><tr><td>--no-defaults</td> <td>Read no option files</td> </tr><tr><td>--no-login-paths</td> <td>Do not read login paths from the login path file</td> </tr><tr><td>--online-migration</td> <td>Migration source is an active server</td> </tr><tr><td>--password</td> <td>Password to use when connecting to server</td> </tr><tr><td>--port</td> <td>TCP/IP port number for connection</td> </tr><tr><td>--print-defaults</td> <td>Print default options</td> </tr><tr><td>--server-public-key-path</td> <td>Path name to file containing RSA public key</td> </tr><tr><td>--socket</td> <td>Unix socket file or Windows named pipe to use</td> </tr><tr><td>--source-keyring</td> <td>Source keyring component name</td> </tr><tr><td>--source-keyring-configuration-dir</td> <td>Source keyring component configuration directory</td> </tr><tr><td>--ssl-ca</td> <td>File that contains list of trusted SSL Certificate Authorities</td> </tr><tr><td>--ssl-capath</td> <td>Directory that contains trusted SSL Certificate Authority certificate files</td> </tr><tr><td>--ssl-cert</td> <td>File that contains X.509 certificate</td> </tr><tr><td>--ssl-cipher</td> <td>Permissible ciphers for connection encryption</td> </tr><tr><td>--ssl-crl</td> <td>File that contains certificate revocation lists</td> </tr><tr><td>--ssl-crlpath</td> <td>Directory that contains certificate revocation-list files</td> </tr><tr><td>--ssl-fips-mode</td> <td>Whether to enable FIPS mode on client side</td> </tr><tr><td>--ssl-key</td> <td>File that contains X.509 key</td> </tr><tr><td>--ssl-mode</td> <td>Desired security state of connection to server</td> </tr><tr><td>--ssl-session-data</td> <td>File that contains SSL session data</td> </tr><tr><td>--ssl-session-data-continue-on-failed-reuse</td> <td>Whether to establish connections if session reuse fails</td> </tr><tr><td>--tls-ciphersuites</td> <td>Permissible TLSv1.3 ciphersuites for encrypted connections</td> </tr><tr><td>--tls-sni-servername</td> <td>Server name supplied by the client</td> </tr><tr><td>--tls-version</td> <td>Permissible TLS protocols for encrypted connections</td> </tr><tr><td>--user</td> <td>MySQL user name to use when connecting to server</td> </tr><tr><td>--verbose</td> <td>Verbose mode</td> </tr><tr><td>--version</td> <td>Display version information and exit</td> </tr></tbody></table>
 
 * `--help`, `-h`
 
@@ -34,7 +34,7 @@ For information about key migrations and instructions describing how to perform 
 
   Note
 
-  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql\_migrate\_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql\_migrate\_keyring** can load and use them.
+  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql_migrate_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql_migrate_keyring** can load and use them.
 
 * `--defaults-extra-file=file_name`
 
@@ -58,7 +58,7 @@ For information about key migrations and instructions describing how to perform 
 
   <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--defaults-group-suffix=str</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql\_migrate\_keyring** normally reads the `[mysql_migrate_keyring]` group. If this option is given as `--defaults-group-suffix=_other`, **mysql\_migrate\_keyring** also reads the `[mysql_migrate_keyring_other]` group.
+  Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql_migrate_keyring** normally reads the `[mysql_migrate_keyring]` group. If this option is given as `--defaults-group-suffix=_other`, **mysql_migrate_keyring** also reads the `[mysql_migrate_keyring_other]` group.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
@@ -70,7 +70,7 @@ For information about key migrations and instructions describing how to perform 
 
   Note
 
-  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql\_migrate\_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql\_migrate\_keyring** can load and use them.
+  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql_migrate_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql_migrate_keyring** can load and use them.
 
 * `--destination-keyring-configuration-dir=dir_name`
 
@@ -98,7 +98,7 @@ For information about key migrations and instructions describing how to perform 
 
   <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
-  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
@@ -118,7 +118,7 @@ For information about key migrations and instructions describing how to perform 
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
-  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
+  The exception is that the `.mylogin.cnf` file is read in all cases, if it exists. This permits passwords to be specified in a safer way than on the command line even when `--no-defaults` is used. To create `.mylogin.cnf`, use the **mysql_config_editor** utility. See Section 6.6.7, “mysql_config_editor — MySQL Configuration Utility”.
 
   For additional information about this and other option-file options, see Section 6.2.2.3, “Command-Line Options that Affect Option-File Handling”.
 
@@ -126,21 +126,21 @@ For information about key migrations and instructions describing how to perform 
 
   <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
-  This option is mandatory when a running server is using the keyring. It tells **mysql\_migrate\_keyring** to perform an online key migration. The option has these effects:
+  This option is mandatory when a running server is using the keyring. It tells **mysql_migrate_keyring** to perform an online key migration. The option has these effects:
 
-  + **mysql\_migrate\_keyring** connects to the server using any connection options specified; these options are otherwise ignored.
+  + **mysql_migrate_keyring** connects to the server using any connection options specified; these options are otherwise ignored.
 
-  + After **mysql\_migrate\_keyring** connects to the server, it tells the server to pause keyring operations. When key copying is complete, **mysql\_migrate\_keyring** tells the server it can resume keyring operations before disconnecting.
+  + After **mysql_migrate_keyring** connects to the server, it tells the server to pause keyring operations. When key copying is complete, **mysql_migrate_keyring** tells the server it can resume keyring operations before disconnecting.
 
 * `--password[=password]`, `-p[password]`
 
   <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
-  The password of the MySQL account used for connecting to the running server that is currently using one of the key migration keystores. The password value is optional. If not given, **mysql\_migrate\_keyring** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
+  The password of the MySQL account used for connecting to the running server that is currently using one of the key migration keystores. The password value is optional. If not given, **mysql_migrate_keyring** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
   Specifying a password on the command line should be considered insecure. To avoid giving the password on the command line, use an option file. See Section 8.1.2.1, “End-User Guidelines for Password Security”.
 
-  To explicitly specify that there is no password and that **mysql\_migrate\_keyring** should not prompt for one, use the `--skip-password` option.
+  To explicitly specify that there is no password and that **mysql_migrate_keyring** should not prompt for one, use the `--skip-password` option.
 
 * `--port=port_num`, `-P port_num`
 
@@ -184,7 +184,7 @@ For information about key migrations and instructions describing how to perform 
 
   Note
 
-  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql\_migrate\_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql\_migrate\_keyring** can load and use them.
+  `--component-dir`, `--source-keyring`, and `--destination-keyring` are mandatory for all keyring migration operations performed by **mysql_migrate_keyring**. In addition, the source and destination components must differ, and both components must be properly configured so that **mysql_migrate_keyring** can load and use them.
 
 * `--source-keyring-configuration-dir=dir_name`
 

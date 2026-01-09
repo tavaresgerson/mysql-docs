@@ -26,7 +26,7 @@ Os administradores e aplicativos podem configurar se permitir o carregamento de 
 
   - Por padrão, a biblioteca do cliente nas distribuições binárias do MySQL é compilada com `ENABLED_LOCAL_INFILE` habilitada. Se você compilar o MySQL a partir da fonte, configure-o com `ENABLED_LOCAL_INFILE` desabilitada ou habilitada, dependendo se os clientes que não fazem arranjos explícitos devem ter a capacidade `LOCAL` desabilitada ou habilitada.
 
-  - Para programas cliente que utilizam a API C, a capacidade de carregar dados localmente é determinada pelo padrão compilado na biblioteca de cliente MySQL. Para a habilitar ou desabilitar explicitamente, invocando a função da API C `mysql_options()`, você pode desabilitar ou habilitar a opção `MYSQL_OPT_LOCAL_INFILE`. Consulte mysql\_options().
+  - Para programas cliente que utilizam a API C, a capacidade de carregar dados localmente é determinada pelo padrão compilado na biblioteca de cliente MySQL. Para a habilitar ou desabilitar explicitamente, invocando a função da API C `mysql_options()`, você pode desabilitar ou habilitar a opção `MYSQL_OPT_LOCAL_INFILE`. Consulte mysql_options().
 
   - Para o cliente **mysql**, a capacidade de carregar dados localmente é determinada pelo padrão compilado na biblioteca do cliente MySQL. Para desabilitar ou habilitar explicitamente, use a opção `--local-infile=0` ou `--local-infile[=1]`.
 
@@ -34,14 +34,14 @@ Os administradores e aplicativos podem configurar se permitir o carregamento de 
 
   - Se você usar `LOAD DATA LOCAL` em scripts Perl ou outros programas que leem o grupo `[client]` de arquivos de opções, você pode adicionar uma opção `local-infile` para esse grupo. Para evitar problemas com programas que não entendem essa opção, especifique-a usando o prefixo `loose-`:
 
-    ```sql
+    ```
     [client]
     loose-local-infile=0
     ```
 
     ou:
 
-    ```sql
+    ```
     [client]
     loose-local-infile=1
     ```
@@ -50,7 +50,7 @@ Os administradores e aplicativos podem configurar se permitir o carregamento de 
 
 Se a capacidade `LOCAL` estiver desativada, seja no lado do servidor ou do cliente, um cliente que tente emitir uma instrução `[LOAD DATA LOCAL`]\(load-data.html) receberá a seguinte mensagem de erro:
 
-```sql
+```
 ERROR 1148: The used command is not allowed with this MySQL version
 ```
 

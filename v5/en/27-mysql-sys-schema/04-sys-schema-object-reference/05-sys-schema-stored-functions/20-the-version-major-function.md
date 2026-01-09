@@ -1,4 +1,4 @@
-#### 26.4.5.20 The version\_major() Function
+#### 26.4.5.20 The version_major() Function
 
 This function returns the major version of the MySQL server.
 

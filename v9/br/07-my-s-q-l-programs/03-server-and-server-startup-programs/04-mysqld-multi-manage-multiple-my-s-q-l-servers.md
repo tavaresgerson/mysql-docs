@@ -14,7 +14,7 @@ Para invocar o **mysqld_multi**, use a seguinte sintaxe:
 mysqld_multi [options] {start|stop|reload|report} [GNR[,GNR] ...]
 ```
 
-`start`, `stop`, `reload` (parar e reiniciar) e `report` indicam qual operação realizar. Você pode realizar a operação designada para um único servidor ou para vários servidores, dependendo da lista *`GNR`* que segue o nome da opção. Se não houver lista, o **mysqld\_multi** realiza a operação para todos os servidores no arquivo de opção.
+`start`, `stop`, `reload` (parar e reiniciar) e `report` indicam qual operação realizar. Você pode realizar a operação designada para um único servidor ou para vários servidores, dependendo da lista *`GNR`* que segue o nome da opção. Se não houver lista, o **mysqld_multi** realiza a operação para todos os servidores no arquivo de opção.
 
 Cada valor *`GNR`* representa um número de grupo de opções ou uma faixa de números de grupo. O valor deve ser o número no final do nome do grupo no arquivo de opção. Por exemplo, o *`GNR`* para um grupo chamado `[mysqld17]` é `17`. Para especificar uma faixa de números, separe os primeiros e últimos números com um hífen. O valor *`GNR`* `10-13` representa os grupos `[mysqld10]` a `[mysqld13]`. Vários grupos ou faixas de grupos podem ser especificados na linha de comando, separados por vírgulas. Não deve haver caracteres de espaço em branco (espaços ou tabulações) na lista *`GNR`*; qualquer coisa após um caractere de espaço em branco é ignorada.
 
@@ -36,7 +36,7 @@ Para um exemplo de como você pode configurar um arquivo de opção, use este co
 mysqld_multi --example
 ```
 
-O **mysqld\_multi** busca arquivos de opção da seguinte forma:
+O **mysqld_multi** busca arquivos de opção da seguinte forma:
 
 * Com `--no-defaults`, nenhum arquivo de opção é lido.
 
@@ -80,11 +80,11 @@ O **mysqld\_multi** busca arquivos de opção da seguinte forma:
 
 Para obter informações adicionais sobre essas e outras opções de arquivos de opções, consulte a Seção 6.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivos de opções”.
 
-Os grupos de opções de arquivos lidos são pesquisados pelos grupos de opções `[mysqld_multi]` e `[mysqldN]`. O grupo `[mysqld_multi]` pode ser usado para opções do **mysqld\_multi** em si. Os grupos `[mysqldN]` podem ser usados para opções passadas a instâncias específicas do **mysqld**.
+Os grupos de opções de arquivos lidos são pesquisados pelos grupos de opções `[mysqld_multi]` e `[mysqldN]`. O grupo `[mysqld_multi]` pode ser usado para opções do **mysqld_multi** em si. Os grupos `[mysqldN]` podem ser usados para opções passadas a instâncias específicas do **mysqld**.
 
-Os grupos `[mysqld]` ou `[mysqld_safe]` podem ser usados para opções comuns lidas por todas as instâncias do **mysqld** ou **mysqld\_safe**. Você pode especificar uma opção `--defaults-file=nome_do_arquivo` para usar um arquivo de configuração diferente para essa instância, caso em que os grupos `[mysqld]` ou `[mysqld_safe]` desse arquivo são usados para essa instância.
+Os grupos `[mysqld]` ou `[mysqld_safe]` podem ser usados para opções comuns lidas por todas as instâncias do **mysqld** ou **mysqld_safe**. Você pode especificar uma opção `--defaults-file=nome_do_arquivo` para usar um arquivo de configuração diferente para essa instância, caso em que os grupos `[mysqld]` ou `[mysqld_safe]` desse arquivo são usados para essa instância.
 
-O **mysqld\_multi** suporta as seguintes opções.
+O **mysqld_multi** suporta as seguintes opções.
 
 * `--help`
 
@@ -239,9 +239,9 @@ A senha da conta MySQL a ser usada ao invocar o **mysqladmin**. Note que o valor
 
   Exibir informações da versão e sair.
 
-Algumas notas sobre **mysqld\_multi**:
+Algumas notas sobre **mysqld_multi**:
 
-* **Mais importante**: Antes de usar **mysqld\_multi**, certifique-se de entender o significado das opções passadas aos servidores **mysqld** e *por que* você gostaria de ter processos **mysqld** separados. Tenha cuidado com os perigos de usar múltiplos servidores **mysqld** com o mesmo diretório de dados. Use diretórios de dados separados, a menos que você *saiba* o que está fazendo. Iniciar múltiplos servidores com o mesmo diretório de dados *não* lhe dá desempenho extra em um sistema com múltiplos threads. Veja a Seção 7.8, “Executando múltiplas instâncias do MySQL em uma única máquina”.
+* **Mais importante**: Antes de usar **mysqld_multi**, certifique-se de entender o significado das opções passadas aos servidores **mysqld** e *por que* você gostaria de ter processos **mysqld** separados. Tenha cuidado com os perigos de usar múltiplos servidores **mysqld** com o mesmo diretório de dados. Use diretórios de dados separados, a menos que você *saiba* o que está fazendo. Iniciar múltiplos servidores com o mesmo diretório de dados *não* lhe dá desempenho extra em um sistema com múltiplos threads. Veja a Seção 7.8, “Executando múltiplas instâncias do MySQL em uma única máquina”.
 
   Importante
 
@@ -256,11 +256,11 @@ Algumas notas sobre **mysqld\_multi**:
   mysql> GRANT SHUTDOWN ON *.* TO 'multi_admin'@'localhost';
   ```
 
-  Veja a Seção 8.2, “Controle de Acesso e Gerenciamento de Contas”. Você precisa fazer isso para cada servidor **mysqld**. Altere os parâmetros de conexão conforme necessário ao se conectar a cada um. Observe que a parte do nome da conta que contém o nome do host deve permitir que você se conecte como `multi_admin` a partir do host onde você deseja executar o **mysqld\_multi**.
+  Veja a Seção 8.2, “Controle de Acesso e Gerenciamento de Contas”. Você precisa fazer isso para cada servidor **mysqld**. Altere os parâmetros de conexão conforme necessário ao se conectar a cada um. Observe que a parte do nome da conta que contém o nome do host deve permitir que você se conecte como `multi_admin` a partir do host onde você deseja executar o **mysqld_multi**.
 
 * O arquivo de socket Unix e o número da porta TCP/IP devem ser diferentes para cada **mysqld**. (Alternativamente, se o host tiver múltiplos endereços de rede, você pode definir a variável de sistema `bind_address` para fazer com que diferentes servidores ouçam interfaces diferentes.)
 
-* A opção `--pid-file` é muito importante se você estiver usando **mysqld\_safe** para iniciar o **mysqld** (por exemplo, `--mysqld=mysqld_safe`) Cada **mysqld** deve ter seu próprio arquivo de ID de processo. A vantagem de usar **mysqld\_safe** em vez de **mysqld** é que **mysqld\_safe** monitora seu processo **mysqld** e o reinicia se o processo terminar devido a um sinal enviado usando `kill -9` ou por outros motivos, como uma falha de segmentação.
+* A opção `--pid-file` é muito importante se você estiver usando **mysqld_safe** para iniciar o **mysqld** (por exemplo, `--mysqld=mysqld_safe`) Cada **mysqld** deve ter seu próprio arquivo de ID de processo. A vantagem de usar **mysqld_safe** em vez de **mysqld** é que **mysqld_safe** monitora seu processo **mysqld** e o reinicia se o processo terminar devido a um sinal enviado usando `kill -9` ou por outros motivos, como uma falha de segmentação.
 
 * Você pode querer usar a opção `--user` para o **mysqld**, mas para isso, você precisa executar o script **mysqld_multi** como o superusuário do Unix (`root`). Ter a opção no arquivo de opções não importa; você apenas recebe um aviso se você não for o superusuário e os processos do **mysqld** forem iniciados na sua própria conta do Unix.
 

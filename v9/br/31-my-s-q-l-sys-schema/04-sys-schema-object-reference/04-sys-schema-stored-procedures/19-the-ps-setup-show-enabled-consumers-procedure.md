@@ -1,4 +1,4 @@
-#### 30.4.4.19 O procedimento ps\_setup\_show\_enabled\_consumers()
+#### 30.4.4.19 O procedimento ps_setup_show_enabled_consumers()
 
 Exibe todos os consumidores do Schema de Desempenho atualmente habilitados.
 

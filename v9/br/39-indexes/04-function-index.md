@@ -92,13 +92,13 @@ Seção 8.6.5, “Descrição das Funções do Componente de Assinatura da MySQ
 
 Seção 8.6.5, “Descrição das Funções do Componente de Criptografia Empresarial do MySQL”
 
-### asynchronous\_connection\_failover\_add\_managed
+### asynchronous_connection_failover_add_managed
 
 Seção 19.4.9.1, “Falha de Conexão Assíncrona para Fontes”
 
 Seção 29.12.11.10, “A tabela de falha de conexão de replicação assíncrona”
 
-### asynchronous\_connection\_failover\_add\_managed()
+### asynchronous_connection_failover_add_managed()
 
 Seção 19.4.9.2, “Falha de Conexão Assíncrona para Replicas”
 
@@ -106,13 +106,13 @@ Seção 14.18.3, “Funções de Falha de Canal de Replicação Assíncrona”
 
 Seção 15.4.2.2, “Instrução CHANGE REPLICATION SOURCE TO”
 
-### asynchronous\_connection\_failover\_add\_source
+### asynchronous_connection_failover_add_source
 
 Seção 19.4.9.1, “Falha de Conexão Assíncrona para Fontes”
 
 Seção 29.12.11.10, “A tabela de falha de conexão de replicação assíncrona”
 
-### asynchronous\_connection\_failover\_add\_source()
+### asynchronous_connection_failover_add_source()
 
 Seção 19.4.9.2, “Falha de Conexão Assíncrona para Replicas”
 
@@ -120,13 +120,13 @@ Seção 14.18.3, “Funções de Falha de Canal de Replicação Assíncrona”
 
 Seção 15.4.2.2, “Instrução CHANGE REPLICATION SOURCE TO”
 
-### asynchronous\_connection\_failover\_delete\_managed
+### asynchronous_connection_failover_delete_managed
 
 Seção 19.4.9.1, “Falha de Conexão Assíncrona para Fontes”
 
 Seção 29.12.11.10, “A tabela de falha de conexão de replicação assíncrona”
 
-### asynchronous\_connection\_failover\_delete\_managed()
+### asynchronous_connection_failover_delete_managed()
 
 Seção 19.4.9.2, “Falha de Conexão Assíncrona para Replicas”
 
@@ -134,13 +134,13 @@ Seção 14.18.3, “Funções de Falha de Canal de Replicação Assíncrona”
 
 Seção 15.4.2.2, “Instrução CHANGE REPLICATION SOURCE TO”
 
-### asynchronous\_connection\_failover\_delete\_source
+### asynchronous_connection_failover_delete_source
 
 Seção 19.4.9.1, “Falha de Conexão Assíncrona para Fontes”
 
 Seção 29.12.11.10, “A tabela de falha de conexão de replicação assíncrona”
 
-### asynchronous\_connection\_failover\_delete\_source()
+### asynchronous_connection_failover_delete_source()
 
 Seção 19.4.9.2, “Falha de Conexão Assíncrona para Replicas”
 
@@ -148,7 +148,7 @@ Seção 14.18.3, “Funções de Failover do Canal de Replicação Assíncrona�
 
 Seção 15.4.2.2, “Declaração de Mudança da Fonte de Replicação”
 
-### asynchronous\_connection\_failover\_reset()
+### asynchronous_connection_failover_reset()
 
 Seção 14.18.3, “Funções de Failover do Canal de Replicação Assíncrona”
 
@@ -160,43 +160,43 @@ Seção 14.6.2, “Funções Matemáticas”
 
 Seção 14.6.2, “Funções Matemáticas”
 
-### audit\_api\_message\_emit\_udf()
+### audit_api_message_emit_udf()
 
 Seção 8.4.7, “O Componente de Mensagem de Auditoria”
 
 Seção 8.4.6.8, “Escrevendo Definições de Filtros de Log de Auditoria”
 
-### audit\_log\_encryption\_password\_get()
+### audit_log_encryption_password_get()
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-### audit\_log\_encryption\_password\_set()
+### audit_log_encryption_password_set()
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-### audit\_log\_filter\_flush()
+### audit_log_filter_flush()
 
 Seção 8.4.6.7, “Filtragem do Log de Auditoria”
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
-### audit\_log\_filter\_remove\_filter()
+### audit_log_filter_remove_filter()
 
 Seção 8.4.6.7, “Filtragem do Log de Auditoria”
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
-### audit\_log\_filter\_remove\_user()
+### audit_log_filter_remove_user()
 
 Seção 8.4.6.7, “Filtragem do Log de Auditoria”
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
-### audit\_log\_filter\_set\_filter()
+### audit_log_filter_set_filter()
 
 Seção 8.4.6.4, “Formatos de Arquivo de Log de Auditoria”
 
@@ -206,13 +206,13 @@ Seção 8.4.6.11, “Referência do Log de Auditoria”
 
 Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
-### audit\_log\_filter\_set\_user()
+### audit_log_filter_set_user()
 
 Seção 8.4.6.7, “Filtragem do Log de Auditoria”
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
-### audit\_log\_read()
+### audit_log_read()
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
@@ -220,13 +220,13 @@ Seção 8.4.6.5, “Configurando Características de Registro de Auditoria”
 
 Seção 8.4.6.6, “Leitura de Arquivos de Log de Auditoria”
 
-### audit\_log\_read\_bookmark()
+### audit_log_read_bookmark()
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
 Seção 8.4.6.6, “Leitura de Arquivos de Log de Auditoria”
 
-### audit\_log\_rotate()
+### audit_log_rotate()
 
 Seção 8.4.6.11, “Referência do Log de Auditoria”
 
@@ -268,13 +268,13 @@ Seção 11.1.5, “Literal de Valor de Bit”
 
 Seção 14.8, “Funções e Operadores de String”
 
-### BIN\_TO\_UUID()
+### BIN_TO_UUID()
 
 Seção 14.8.3, “Conjunto de Caracteres e Cotação dos Resultados das Funções”
 
 Seção 14.24, “Funções Diversas”
 
-### BIT\_AND()
+### BIT_AND()
 
 Seção 14.19.1, “Descrição das Funções de Agrupamento”
 
@@ -282,19 +282,19 @@ Seção 14.12, “Funções e Operadores de Bit”
 
 Seção 1.7.1, “Extensões MySQL para SQL Padrão”
 
-### BIT\_COUNT()
+### BIT_COUNT()
 
 Seção 14.12, “Funções e Operadores de Bit”
 
 Seção 1.7.1, “Extensões MySQL para SQL Padrão”
 
-### BIT\_LENGTH()
+### BIT_LENGTH()
 
 Seção 14.8, “Funções e Operadores de String”
 
 Seção 13.3.5, “O Tipo VECTOR”
 
-### BIT\_OR()
+### BIT_OR()
 
 Seção 14.19.1, “Descrição das Funções de Agrupamento”
 
@@ -302,7 +302,7 @@ Seção 14.12, “Funções e Operadores de Bit”
 
 Seção 1.7.1, “Extensões MySQL para SQL Padrão”
 
-### BIT\_XOR()
+### BIT_XOR()
 
 Seção 14.19.1, “Descrição das Funções de Agrupamento”
 
@@ -314,23 +314,23 @@ Seção 1.7.1, “Extensões MySQL para SQL Padrão”
 
 [index top]
 
-### CAN\_ACCESS\_COLUMN()
+### CAN_ACCESS_COLUMN()
 
 Seção 14.23, “Funções Internas”
 
-### CAN\_ACCESS\_DATABASE()
+### CAN_ACCESS_DATABASE()
 
 Seção 14.23, “Funções Internas”
 
-### CAN\_ACCESS\_TABLE()
+### CAN_ACCESS_TABLE()
 
 Seção 14.23, “Funções Internas”
 
-### CAN\_ACCESS\_USER()
+### CAN_ACCESS_USER()
 
 Seção 14.23, “Funções Internas”
 
-### CAN\_ACCESS\_VIEW()
+### CAN_ACCESS_VIEW()
 
 Seção 14.23, “Funções Internas”
 
@@ -446,19 +446,19 @@ Seção 15.7.7.15, “Instrução SHOW CREATE VIEW”
 
 Seção 14.8, “Funções e Operadores de Cadeia”
 
-Seção 28.3.53, “A Tabela de VISTAS do INFORMATION\_SCHEMA”
+Seção 28.3.53, “A Tabela de VISTAS do INFORMATION_SCHEMA”
 
 Seção 14.3, “Conversão de Tipo na Avaliação da Expressão”
 
 Seção 14.11, “Funções XML”
 
-### CONCAT\_WS()
+### CONCAT_WS()
 
 Seção 14.19.1, “Descrição das Funções de Agregação”
 
 Seção 14.8, “Funções e Operadores de Cadeia”
 
-### CONEXÃO\_ID()
+### CONEXÃO_ID()
 
 Seção 8.4.6.4, “Formatos de Arquivo de Registro de Auditoria”
 
@@ -480,15 +480,15 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 15.7.7.32, “Declaração SHOW PROCESSLIST”
 
-Seção 29.12.22.3, “A Tabela error\_log”
+Seção 29.12.22.3, “A Tabela error_log”
 
-Seção 28.3.28, “A Tabela INFORMATION\_SCHEMA PROCESSLIST”
+Seção 28.3.28, “A Tabela INFORMATION_SCHEMA PROCESSLIST”
 
 Seção 29.12.22.9, “A Tabela processlist”
 
 Seção 29.12.22.10, “A Tabela threads”
 
-Seção 29.12.16.1, “A Tabela tp\_connections”
+Seção 29.12.16.1, “A Tabela tp_connections”
 
 ### CONV()
 
@@ -516,7 +516,7 @@ Seção 8.5.2.2, “Usando Componentes de Máscara de Dados do MySQL Enterprise
 
 Seção 8.5.3.2, “Usando o Plugin de Máscara de Dados do MySQL Enterprise”
 
-### CONVERT\_TZ()
+### CONVERT_TZ()
 
 Seção 14.7, “Funções de Data e Hora”
 
@@ -700,7 +700,7 @@ Seção 8.2.19, “Usuários Proxy”
 
 Seção 19.5.1.14, “Funções de Replicação e Funções do Sistema”
 
-Seção 19.5.1.8, “Replicação de CURRENT\_USER()”)
+Seção 19.5.1.8, “Replicação de CURRENT_USER()”)
 
 Seção 15.7.1.10, “Instrução SET PASSWORD”
 
@@ -736,7 +736,7 @@ Seção 12.2.2, “UTF-8 para Metadados”
 
 Seção 14.7, “Funções de Data e Hora”
 
-### DATE\_ADD()
+### DATE_ADD()
 
 Seção 14.6.1, “Operadores Aritméticos”
 
@@ -750,7 +750,7 @@ Seção 11.5, “Expressões”
 
 Seção 14.20.3, “Especificação do Quadro da Função Janela”
 
-### DATE\_FORMAT()
+### DATE_FORMAT()
 
 Seção 14.10, “Funções e Operadores de Casting”
 
@@ -760,7 +760,7 @@ Seção 12.16, “Suporte ao Local do Servidor MySQL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### DATE\_SUB()
+### DATE_SUB()
 
 Seção 13.2, “Tipos de Dados de Data e Hora”
 
@@ -924,7 +924,7 @@ Seção 26.6.3, “Limitações de Partição Relacionadas a Funções”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### flush\_rewrite\_rules()
+### flush_rewrite_rules()
 
 Seção 7.6.4.3.2, “Procedimentos e Funções do Plugin de Reescrita de Consultas do Reescritor”
 
@@ -942,19 +942,19 @@ Seção 12.16, “Suporte ao Local do Servidor MySQL”
 
 Seção 14.8, “Funções de Caracteres e Operadores de Cadeia”
 
-### FORMAT\_BYTES()
+### FORMAT_BYTES()
 
 Seção 14.22, “Funções do Schema de Desempenho”
 
-Seção 30.4.5.3, “A função format\_bytes()”
+Seção 30.4.5.3, “A função format_bytes()”
 
-### FORMAT\_PICO\_TIME()
+### FORMAT_PICO_TIME()
 
 Seção 14.22, “Funções do Schema de Desempenho”
 
-Seção 30.4.5.6, “A função format\_time()”
+Seção 30.4.5.6, “A função format_time()”
 
-### FOUND\_ROWS()
+### FOUND_ROWS()
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Instruções e Baseada em Linhas”
 
@@ -968,17 +968,17 @@ Seção 19.5.1.14, “Funções de Replicação e Funções do Sistema”
 
 Seção 15.2.13, “Instrução SELECT”
 
-### FROM\_BASE64()
+### FROM_BASE64()
 
 Seção 14.8, “Funções de Cadeia e Operadores”
 
-### FROM\_DAYS()
+### FROM_DAYS()
 
 Seção 14.7, “Funções de Data e Hora”
 
 Seção 1.7.1, “Extensões MySQL para SQL Padrão”
 
-### FROM\_UNIXTIME()
+### FROM_UNIXTIME()
 
 Seção 14.7, “Funções de Data e Hora”
 
@@ -988,11 +988,11 @@ Seção 19.5.1.34, “Replicação e Fuso Horário”
 
 ### G [Índice superior]
 
-### gen\_blacklist()
+### gen_blacklist()
 
 Seção 8.5.3.4, “Descrição das Funções do Plugin de Máscara de Dados da MySQL Enterprise”
 
-### gen\_blocklist()
+### gen_blocklist()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados da MySQL Enterprise”
 
@@ -1002,7 +1002,7 @@ Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterprise
 
 Seção 8.5.3.2, “Uso do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### gen\_dictionary()
+### gen_dictionary()
 
 Seção 8.5.2.4, “Funções de Descrição dos Componentes de Máscara de Dados do MySQL Enterprise”
 
@@ -1012,17 +1012,17 @@ Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterprise
 
 Seção 8.5.3.2, “Uso do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### gen\_dictionary\_drop()
+### gen_dictionary_drop()
 
 Seção 8.5.3.4, “Funções de Descrição do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### gen\_dictionary\_load()
+### gen_dictionary_load()
 
 Seção 8.5.3.4, “Funções de Descrição do Plugin de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.5.3.2, “Uso do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### gen\_range()
+### gen_range()
 
 Seção 8.5.2.4, “Funções de Descrição dos Componentes de Máscara de Dados do MySQL Enterprise”
 
@@ -1032,13 +1032,13 @@ Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterprise
 
 Seção 8.5.3.2, “Uso do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### gen\_rnd\_canada\_sin()
+### gen_rnd_canada_sin()
 
 Seção 8.5.2.4, “Funções de Descrição dos Componentes de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterprise”
 
-### gen\_rnd\_email()
+### gen_rnd_email()
 
 Seção 8.5.1, “Componentes de Máscara de Dados versus o Plugin de Máscara de Dados”
 
@@ -1050,13 +1050,13 @@ Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterprise
 
 Seção 8.5.3.2, “Uso do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### gen\_rnd\_iban()
+### gen_rnd_iban()
 
 Seção 8.5.2.4, “Funções de Descrição dos Componentes de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterprise”
 
-### gen\_rnd\_pan()
+### gen_rnd_pan()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
@@ -1066,7 +1066,7 @@ Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterpris
 
 Seção 8.5.3.2, “Uso do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### gen\_rnd\_ssn()
+### gen_rnd_ssn()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
@@ -1076,13 +1076,13 @@ Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterpris
 
 Seção 8.5.3.2, “Uso do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### gen\_rnd\_uk\_nin()
+### gen_rnd_uk_nin()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterprise”
 
-### gen\_rnd\_us\_phone()
+### gen_rnd_us_phone()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
@@ -1092,7 +1092,7 @@ Seção 8.5.2.2, “Uso dos Componentes de Máscara de Dados do MySQL Enterpris
 
 Seção 8.5.3.2, “Uso do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### gen\_rnd\_uuid()
+### gen_rnd_uuid()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
@@ -1108,25 +1108,25 @@ Seção 14.16.6, “Funções de Conversão de Formatos de Geometria”
 
 Seção 14.16.5, “Funções Específicas do MySQL que Criam Valores de Geometria”
 
-### GET\_DD\_COLUMN\_PRIVILEGES()
+### GET_DD_COLUMN_PRIVILEGES()
 
 Seção 14.23, “Funções Internas”
 
-### GET\_DD\_CREATE\_OPTIONS()
+### GET_DD_CREATE_OPTIONS()
 
 Seção 14.23, “Funções Internas”
 
-### GET\_DD\_INDEX\_SUB\_PART\_LENGTH()
+### GET_DD_INDEX_SUB_PART_LENGTH()
 
 Seção 14.23, “Funções Internas”
 
-### GET\_FORMAT()
+### GET_FORMAT()
 
 Seção 14.7, “Funções de Data e Hora”
 
 Seção 12.16, “Suporte ao Local do Servidor MySQL”
 
-### GET\_LOCK()
+### GET_LOCK()
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Instruções e Baseada em Linhas”
 
@@ -1158,9 +1158,9 @@ Seção 7.6.8.1, “O Serviço de Bloqueio”
 
 Seção 7.6.8.1.2, “A Interface de Função do Serviço de Bloqueio”
 
-Seção 29.12.13.3, “A Tabela metadata\_locks”
+Seção 29.12.13.3, “A Tabela metadata_locks”
 
-Seção 30.4.4.14, “O procedimento ps\_setup\_save()” (Procedimento)
+Seção 30.4.4.14, “O procedimento ps_setup_save()” (Procedimento)
 
 ### getrusage()
 
@@ -1250,21 +1250,21 @@ Seção 14.18.1.3, “Funções para Inspecionar e Configurar as Instâncias Má
 
 Seção 20.5.1.3, “Usando o Consenso de Escrita do Grupo de Replicação”
 
-### grupo\_replication\_reset\_member\_actions
+### grupo_replication_reset_member_actions
 
 Seção 20.5.1.5, “Configurando Ações de Membros da Replicação em Grupo”
 
 Seção 14.18.1.5, “Funções para Definir e Redefinir Ações de Membros da Replicação em Grupo”
 
-### grupo\_replication\_reset\_member\_actions()
+### grupo_replication_reset_member_actions()
 
 Seção 14.18.1.5, “Funções para Definir e Redefinir Ações de Membros da Replicação em Grupo”
 
-Seção 29.12.11.15, “A tabela replication\_group\_configuration\_version”
+Seção 29.12.11.15, “A tabela replication_group_configuration_version”
 
-Seção 29.12.11.16, “A tabela replication\_group\_member\_actions”
+Seção 29.12.11.16, “A tabela replication_group_member_actions”
 
-### grupo\_replication\_set\_as\_primary()
+### grupo_replication_set_as_primary()
 
 Seção 20.5.1.1, “Mudando o Primário”
 
@@ -1278,7 +1278,7 @@ Seção 20.1.3.1, “Modo de Primário Único”
 
 Seção 20.5.3.1, “Entendendo as Garantias de Consistência das Transações”
 
-### grupo\_replication\_set\_communication\_protocol()
+### grupo_replication_set_communication_protocol()
 
 Seção 14.18.1.4, “Funções para Inspecionar e Definir a Versão do Protocolo de Comunicação da Replicação em Grupo”
 
@@ -1294,7 +1294,7 @@ Seção 20.5.1.4, “Definindo a Versão do Protocolo de Comunicação de um Gr
 
 Seção 20.7.3, “Líder de Consenso Único”
 
-### grupo\_replication\_set\_write\_concurrency()
+### grupo_replication_set_write_concurrency()
 
 Seção 14.18.1.3, “Funções para Inspecionar e Configurar as Instâncias de Consenso de Escrita Máximas de um Grupo”
 
@@ -1388,7 +1388,7 @@ Seção 26.6.3, “Limitações de Partição Relacionadas a Funções”
 
 [index top]
 
-### ICU\_VERSION()
+### ICU_VERSION()
 
 Seção 14.15, “Funções de Informação”
 
@@ -1404,7 +1404,7 @@ Seção 14.5, “Funções de Controle de Fluxo”
 
 Seção 15.6.5.2, “Instrução IF”
 
-Seção 17.15.3, “Tabelas de Objetos do Schema InnoDB INFORMATION\_SCHEMA”
+Seção 17.15.3, “Tabelas de Objetos do Schema InnoDB INFORMATION_SCHEMA”
 
 Seção B.3.7, “Problemas Conhecidos no MySQL”
 
@@ -1424,25 +1424,25 @@ Seção B.3.4.3, “Problemas com Valores NULL”
 
 Seção 13.3.5, “O Tipo VECTOR”
 
-### INET6\_ATON()
+### INET6_ATON()
 
 Seção 7.1.13, “Suporte IPv6”
 
 Seção 14.24, “Funções Diversas”
 
-### INET6\_NTOA()
+### INET6_NTOA()
 
 Seção 7.1.13, “Suporte IPv6”
 
 Seção 14.24, “Funções Diversas”
 
-### INET\_ATON()
+### INET_ATON()
 
 Seção 7.1.13, “Suporte IPv6”
 
 Seção 14.24, “Funções Diversas”
 
-### INET\_NTOA()
+### INET_NTOA()
 
 Seção 7.1.13, “Suporte IPv6”
 
@@ -1458,83 +1458,83 @@ Seção 14.8.3, “Conjunto de Caracteres e Cotação dos Resultados das Funç�
 
 Seção 14.8, “Funções e Operadores de String”
 
-### INTERNAL\_AUTO\_INCREMENT()
+### INTERNAL_AUTO_INCREMENT()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_AVG\_ROW\_LENGTH()
+### INTERNAL_AVG_ROW_LENGTH()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_CHECK\_TIME()
+### INTERNAL_CHECK_TIME()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_CHECKSUM()
+### INTERNAL_CHECKSUM()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_DATA\_FREE()
+### INTERNAL_DATA_FREE()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_DATA\_LENGTH()
+### INTERNAL_DATA_LENGTH()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_DD\_CHAR\_LENGTH()
+### INTERNAL_DD_CHAR_LENGTH()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_GET\_COMMENT\_OR\_ERROR()
+### INTERNAL_GET_COMMENT_OR_ERROR()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_GET\_ENABLED\_ROLE\_JSON()
+### INTERNAL_GET_ENABLED_ROLE_JSON()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_GET\_HOSTNAME()
+### INTERNAL_GET_HOSTNAME()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_GET\_USERNAME()
+### INTERNAL_GET_USERNAME()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_GET\_VIEW\_WARNING\_OR\_ERROR()
+### INTERNAL_GET_VIEW_WARNING_OR_ERROR()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_INDEX\_COLUMN\_CARDINALITY()
+### INTERNAL_INDEX_COLUMN_CARDINALITY()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_INDEX\_LENGTH()
+### INTERNAL_INDEX_LENGTH()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_IS\_ENABLED\_ROLE()
+### INTERNAL_IS_ENABLED_ROLE()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_IS\_MANDATORY\_ROLE()
+### INTERNAL_IS_MANDATORY_ROLE()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_KEYS\_DISABLED()
+### INTERNAL_KEYS_DISABLED()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_MAX\_DATA\_LENGTH()
+### INTERNAL_MAX_DATA_LENGTH()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_TABLE\_ROWS()
+### INTERNAL_TABLE_ROWS()
 
 Seção 14.23, “Funções Internas”
 
-### INTERNAL\_UPDATE\_TIME()
+### INTERNAL_UPDATE_TIME()
 
 Seção 14.23, “Funções Internas”
 
@@ -1542,7 +1542,7 @@ Seção 14.23, “Funções Internas”
 
 Seção 14.4.2, “Funções de Comparação e Operadores”
 
-### IS\_FREE\_LOCK()
+### IS_FREE_LOCK()
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linhas”
 
@@ -1552,23 +1552,23 @@ Seção 14.14, “Funções de Bloqueio”
 
 Seção 19.5.1.14, “Replicação e Funções do Sistema”
 
-### IS\_IPV4()
+### IS_IPV4()
 
 Seção 14.24, “Funções Diversas”
 
-### IS\_IPV4\_COMPAT()
+### IS_IPV4_COMPAT()
 
 Seção 14.24, “Funções Diversas”
 
-### IS\_IPV4\_MAPPED()
+### IS_IPV4_MAPPED()
 
 Seção 14.24, “Funções Diversas”
 
-### IS\_IPV6()
+### IS_IPV6()
 
 Seção 14.24, “Funções Diversas”
 
-### IS\_USED\_LOCK()
+### IS_USED_LOCK()
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linhas”
 
@@ -1578,13 +1578,13 @@ Seção 14.14, “Funções de Bloqueio”
 
 Seção 19.5.1.14, “Replicação e Funções do Sistema”
 
-### IS\_UUID()
+### IS_UUID()
 
 Seção 14.24, “Funções Diversas”
 
 Seção 27.3.6.12, “Funções MySQL”
 
-### IS\_VISIBLE\_DD\_OBJECT()
+### IS_VISIBLE_DD_OBJECT()
 
 Seção 14.23, “Funções Internas”
 
@@ -1596,7 +1596,7 @@ Seção 14.4.2, “Funções de Comparação e Operadores”
 
 [índice superior]
 
-### JSON\_ARRAY()
+### JSON_ARRAY()
 
 Seção 14.17.2, “Funções que Criam Valores JSON”
 
@@ -1604,15 +1604,15 @@ Seção 14.17.3, “Funções que Pescam Valores JSON”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### JSON\_ARRAY\_APPEND()
+### JSON_ARRAY_APPEND()
 
 Seção 14.17.4, “Funções que Modificam Valores JSON”
 
-### JSON\_ARRAY\_INSERT()
+### JSON_ARRAY_INSERT()
 
 Seção 14.17.4, “Funções que Modificam Valores JSON”
 
-### JSON\_ARRAYAGG()
+### JSON_ARRAYAGG()
 
 Seção 14.19.1, “Descrição das Funções de Agregação”
 
@@ -1622,23 +1622,23 @@ Seção 14.17.2, “Funções que Criam Valores JSON”
 
 Seção 14.17.1, “Referência de Função JSON”
 
-### JSON\_CONTAINS()
+### JSON_CONTAINS()
 
 Seção 15.1.18, “Declaração de Criação de Índice”
 
 Seção 14.17.3, “Funções que Pescam Valores JSON”
 
-### JSON\_CONTAINS\_PATH()
+### JSON_CONTAINS_PATH()
 
 Seção 14.17.3, “Funções que Pescam Valores JSON”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### JSON\_DEPTH()
+### JSON_DEPTH()
 
 Seção 14.17.5, “Funções que Retornam Atributos de Valores JSON”
 
-### JSON\_DUALITY\_OBJECT()
+### JSON_DUALITY_OBJECT()
 
 Seção 15.1.6, “Declaração de Alteração de Visualização de Dualidade JSON”
 
@@ -1646,7 +1646,7 @@ Seção 15.1.17, “Declaração de Visualização de Dualidade JSON”
 
 Seção 14.17.2, “Funções que Criam Valores JSON”
 
-### JSON\_EXTRACT()
+### JSON_EXTRACT()
 
 Seção 15.8.2, “Declaração EXPLAIN”
 
@@ -1658,27 +1658,27 @@ Seção 15.1.24.9, “Índices Secundários e Colunas Geradas”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### JSON\_INSERT()
+### JSON_INSERT()
 
 Seção 14.17.4, “Funções que Modificam Valores JSON”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### JSON\_KEYS()
+### JSON_KEYS()
 
 Seção 14.17.3, “Funções que Buscam Valores JSON”
 
 Seção 8.2.3, “Tabelas de Permissão”
 
-### JSON\_LENGTH()
+### JSON_LENGTH()
 
 Seção 14.17.5, “Funções que Retornam Atributos de Valores JSON”
 
-### JSON\_MERGE()
+### JSON_MERGE()
 
 Seção 14.17.4, “Funções que Modificam Valores JSON”
 
-### JSON\_MERGE\_PATCH()
+### JSON_MERGE_PATCH()
 
 Seção 15.7.1.1, “Instrução ALTER USER”
 
@@ -1686,13 +1686,13 @@ Seção 14.17.4, “Funções que Modificam Valores JSON”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### JSON\_MERGE\_PRESERVE()
+### JSON_MERGE_PRESERVE()
 
 Seção 14.17.4, “Funções que Modificam Valores JSON”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### JSON\_OBJECT()
+### JSON_OBJECT()
 
 Seção 14.17.2, “Funções que Criam Valores JSON”
 
@@ -1700,7 +1700,7 @@ Seção 14.17.3, “Funções que Buscam Valores JSON”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### JSON\_OBJECTAGG()
+### JSON_OBJECTAGG()
 
 Seção 14.19.1, “Descrição das Funções de Agregação”
 
@@ -1708,13 +1708,13 @@ Seção 14.17.2, “Funções que Criam Valores JSON”
 
 Seção 14.17.1, “Referência de Funções JSON”
 
-### JSON\_OVERLAPS()
+### JSON_OVERLAPS()
 
 Seção 15.1.18, “Instrução CREATE INDEX”
 
 Seção 14.17.3, “Funções que Buscam Valores JSON”
 
-### JSON\_PRETTY()
+### JSON_PRETTY()
 
 Seção 14.17.1, “Referência de Função JSON”
 
@@ -1722,13 +1722,13 @@ Seção 14.17.7, “Funções de Validação de Esquemas JSON”
 
 Seção 14.17.8, “Funções Utilitárias JSON”
 
-### JSON\_QUOTE()
+### JSON_QUOTE()
 
 Seção 14.17.2, “Funções que Criam Valores JSON”
 
 Seção 14.17.8, “Funções Utilitárias JSON”
 
-### JSON\_REMOVE()
+### JSON_REMOVE()
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -1738,7 +1738,7 @@ Seção 14.17.8, “Funções Utilitárias JSON”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### JSON\_REPLACE()
+### JSON_REPLACE()
 
 Seção 19.1.6.4, “Opções e Variáveis de Registro Binário”
 
@@ -1836,45 +1836,45 @@ Seção 15.1.24.9, “Índices Secundários e Colunas Geradas”
 
 [index top]
 
-### keyring\_aws\_rotate\_cmk()
+### keyring_aws_rotate_cmk()
 
 Seção 8.4.5.16, “Funções de Gerenciamento de Chave do Criptomoeda do Amazon Web Services”
 
-Seção 8.4.5.8, “Uso do Plugin de Criptomoeda do Amazon Web Services do keyring\_aws”
+Seção 8.4.5.8, “Uso do Plugin de Criptomoeda do Amazon Web Services do keyring_aws”
 
-### keyring\_aws\_rotate\_keys()
+### keyring_aws_rotate_keys()
 
 Seção 8.4.5.16, “Funções de Gerenciamento de Chave do Criptomoeda do Amazon Web Services”
 
-Seção 8.4.5.8, “Uso do Plugin de Criptomoeda do Amazon Web Services do keyring\_aws”
+Seção 8.4.5.8, “Uso do Plugin de Criptomoeda do Amazon Web Services do keyring_aws”
 
-### keyring\_hashicorp\_update\_config()
+### keyring_hashicorp_update_config()
 
 Seção 8.4.5.16, “Funções de Gerenciamento de Chave do Criptomoeda do Amazon Web Services”
 
 Seção 8.4.5.10, “Uso do Plugin de Criptomoeda do Vault da HashiCorp”
 
-### keyring\_key\_fetch()
+### keyring_key_fetch()
 
 Seção 8.4.5.15, “Funções de Gerenciamento de Chave do Criptomoeda de Uso Geral”
 
-### keyring\_key\_generate()
+### keyring_key_generate()
 
 Seção 8.4.5.15, “Funções de Gerenciamento de Chave do Criptomoeda de Uso Geral”
 
-### keyring\_key\_length\_fetch()
+### keyring_key_length_fetch()
 
 Seção 8.4.5.15, “Funções de Gerenciamento de Chave do Criptomoeda de Uso Geral”
 
-### keyring\_key\_remove()
+### keyring_key_remove()
 
 Seção 8.4.5.15, “Funções de Gerenciamento de Chave do Criptomoeda de Uso Geral”
 
-### keyring\_key\_store()
+### keyring_key_store()
 
 Seção 8.4.5.15, “Funções de Gerenciamento de Chave do Criptomoeda de Uso Geral”
 
-### keyring\_key\_type\_fetch()
+### keyring_key_type_fetch()
 
 Seção 8.4.5.15, “Funções de Gerenciamento de Chave do Criptomoeda de Uso Geral”
 
@@ -1886,11 +1886,11 @@ Seção 8.4.5.15, “Funções de Gerenciamento de Chave do Criptomoeda de Uso 
 
 Seção 14.20.1, “Descrição das Funções de Janela”
 
-### LAST\_DAY()
+### LAST_DAY()
 
 Seção 14.7, “Funções de Data e Hora”
 
-### LAST\_INSERT\_ID()
+### LAST_INSERT_ID()
 
 Seção 14.4.2, “Funções de Comparação e Operadores”
 
@@ -1908,9 +1908,9 @@ Seção 15.3.6, “Instruções LOCK TABLES e UNLOCK TABLES”
 
 Seção 1.7.1, “Extensões MySQL para SQL Padrão”
 
-Seção 25.5.23, “ndb\_restore — Restaurar um Backup de NDB Cluster”
+Seção 25.5.23, “ndb_restore — Restaurar um Backup de NDB Cluster”
 
-Seção 19.5.1.1, “Replicação e AUTO\_INCREMENT”
+Seção 19.5.1.1, “Replicação e AUTO_INCREMENT”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
@@ -1918,16 +1918,16 @@ Seção 19.1.7.3.2.1, “Ignorar Transações com `SET GLOBAL sql_replica_skip_c
 
 Seção 27.3.6.3, “Objeto SqlResult”
 
-Seção 27.2.4, “Procedimentos Armazenados, Funções, Gatilros e LAST\_INSERT\_ID()”")
+Seção 27.2.4, “Procedimentos Armazenados, Funções, Gatilros e LAST_INSERT_ID()”")
 
 Seção 19.5.4, “Depuração da Replicação”
 
 Seção 27.6.3, “Visões Atualizáveis e Inseríveis”
 
-Seção 5.6.9, “Usar AUTO\_INCREMENT”
+Seção 5.6.9, “Usar AUTO_INCREMENT”
 
 
-### LAST\_VALUE()
+### LAST_VALUE()
 
 Seção 14.20.1, “Descrição das Funções Janela”
 
@@ -1986,7 +1986,7 @@ Seção 14.16.5, “Funções Específicas do MySQL que Criam Valores de Geometr
 Seção 14.6.2, “Funções Matemáticas”
 
 
-### LOAD\_FILE()
+### LOAD_FILE()
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Instruções e Baseada em Linhas”
 
@@ -2008,7 +2008,7 @@ Seção 14.8, “Funções e Operadores de Strings”
 
 Seção 27.3.9, “Uso de Bibliotecas WebAssembly”
 
-### load\_rewrite\_rules()
+### load_rewrite_rules()
 
 Seção 7.6.4.3.2, “Procedimentos e Funções do Plugin de Rewriting de Consultas”
 
@@ -2090,7 +2090,7 @@ Seção 14.8, “Funções e Operadores de Caracteres”
 
 [index top]
 
-### MAKE\_SET()
+### MAKE_SET()
 
 Seção 14.8, “Funções e Operadores de Caracteres”
 
@@ -2102,23 +2102,23 @@ Seção 14.7, “Funções de Data e Hora”
 
 Seção 14.7, “Funções de Data e Hora”
 
-### mask\_canada\_sin()
+### mask_canada_sin()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.5.2.2, “Uso dos Componentes do Plugin de Máscara de Dados”
 
-### mask\_iban()
+### mask_iban()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.5.2.2, “Uso dos Componentes do Plugin de Máscara de Dados”
 
-### mask\_inner
+### mask_inner
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
-### mask\_inner()
+### mask_inner()
 
 Seção 8.5.1, “Componentes de Máscara de Dados versus o Plugin de Máscara de Dados”
 
@@ -2130,11 +2130,11 @@ Seção 8.5.2.2, “Uso dos Componentes do MySQL Enterprise Data Masking”
 
 Seção 8.5.3.2, “Uso do Plugin de Máscara de Dados do MySQL Enterprise”
 
-### mask\_outer
+### mask_outer
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
-### mask\_outer()
+### mask_outer()
 
 Seção 8.5.1, “Componentes de Máscara de Dados versus o Plugin de Máscara de Dados”
 
@@ -2146,7 +2146,7 @@ Seção 8.5.2.2, “Uso dos Componentes do MySQL Enterprise Data Masking”
 
 Seção 8.5.3.2, “Usando o Plugin de Máscara de Dados do MySQL Enterprise”
 
-### mask\_pan()
+### mask_pan()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
@@ -2156,7 +2156,7 @@ Seção 8.5.2.2, “Usando os Componentes de Máscara de Dados do MySQL Enterpri
 
 Seção 8.5.3.2, “Usando o Plugin de Máscara de Dados do MySQL Enterprise”
 
-### mask\_pan\_relaxed()
+### mask_pan_relaxed()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
@@ -2166,7 +2166,7 @@ Seção 8.5.2.2, “Usando os Componentes de Máscara de Dados do MySQL Enterpri
 
 Seção 8.5.3.2, “Usando o Plugin de Máscara de Dados do MySQL Enterprise”
 
-### mask\_ssn()
+### mask_ssn()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
@@ -2176,41 +2176,41 @@ Seção 8.5.2.2, “Usando os Componentes de Máscara de Dados do MySQL Enterpri
 
 Seção 8.5.3.2, “Usando o Plugin de Máscara de Dados do MySQL Enterprise”
 
-### mask\_uk\_nin()
+### mask_uk_nin()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.5.2.2, “Usando os Componentes de Máscara de Dados do MySQL Enterprise”
 
-### mask\_uuid()
+### mask_uuid()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.5.2.2, “Usando os Componentes de Máscara de Dados do MySQL Enterprise”
 
-### masking\_dictionaries\_flush()
+### masking_dictionaries_flush()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
-### masking\_dictionary\_remove()
+### masking_dictionary_remove()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-### masking\_dictionary\_term\_add()
+### masking_dictionary_term_add()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Máscara de Dados do MySQL Enterprise”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-### masking\_dictionary\_term\_remove()
+### masking_dictionary_term_remove()
 
 Seção 8.5.2.4, “Descrição das Funções do Componente de Mascagem de Dados do MySQL Enterprise”
 
 Seção 8.2.2, “Privilégios Fornecidos pelo MySQL”
 
-### MASTER\_POS\_WAIT()
+### MASTER_POS_WAIT()
 
 Seção A.14, “Perguntas Frequentes do MySQL 9.5: Replicação”
 
@@ -2260,7 +2260,7 @@ Seção 10.3.1, “Como o MySQL Usa Índices”
 
 Seção B.3.7, “Problemas Conhecidos no MySQL”
 
-Seção 25.5.23, “ndb\_restore — Restaurar um Backup de um NDB Cluster”
+Seção 25.5.23, “ndb_restore — Restaurar um Backup de um NDB Cluster”
 
 Seção 13.1.1, “Sintaxe do Tipo de Dados Numérico”
 
@@ -2274,13 +2274,13 @@ Seção 13.5, “O Tipo de Dados JSON”
 
 Seção 1.2.2, “As Principais Características do MySQL”
 
-Seção 29.12.16.2, “A Tabela tp\_thread\_group\_state”
+Seção 29.12.16.2, “A Tabela tp_thread_group_state”
 
 Seção 27.6.3, “Visualizações Atualizáveis e Inseríveis”
 
 Seção 10.3.10, “Uso de Extensões de Índices”
 
-Seção 5.6.9, “Uso de AUTO\_INCREMENT”
+Seção 5.6.9, “Uso de AUTO_INCREMENT”
 
 Seção 10.2.1.21, “Otimização de Funções Janela”
 
@@ -2366,7 +2366,7 @@ Seção 10.3.1, “Como o MySQL Usa Índices”
 
 Seção B.3.7, “Problemas Conhecidos no MySQL”
 
-Seção 25.5.23, “ndb\_restore — Restaurar um Backup de um Clúster NDB”
+Seção 25.5.23, “ndb_restore — Restaurar um Backup de um Clúster NDB”
 
 Seção 13.1.1, “Sintaxe do Tipo de Dados Numérico”
 
@@ -2394,7 +2394,7 @@ Seção 14.7, “Funções de Data e Hora”
 
 Seção 26.6.3, “Limitações de Partição Relativas a Funções”
 
-### mle\_session\_reset()
+### mle_session_reset()
 
 Seção 27.3.4, “Tipos de Dados de Programa Armazenado JavaScript e Manipulação de Argumentos”
 
@@ -2410,7 +2410,7 @@ Seção 35.4.3, “Metrônomos do Servidor”
 
 Seção 27.3.6.1, “Objeto de Sessão”
 
-### mle\_session\_state()
+### mle_session_state()
 
 Seção 27.3.5, “Programas Armazenados JavaScript—Informações e Opções de Sessão”
 
@@ -2418,7 +2418,7 @@ Seção 7.5.7.2, “Status do Componente MLE e Informações de Sessão”
 
 Seção 27.3.2, “Obtenção de Informações Sobre Programas Armazenados JavaScript”
 
-### mle\_set\_session\_state()
+### mle_set_session_state()
 
 Seção 27.3.4, “Tipos de Dados de Programa Armazenado JavaScript e Manipulação de Argumentos”
 
@@ -2466,15 +2466,15 @@ Seção 14.16.5, “Funções Específicas do MySQL que Criam Valores de Geomet
 
 Seção 14.16.5, “Funções Específicas do MySQL que Criam Valores de Geometria”
 
-### my\_open()
+### my_open()
 
 Seção 7.1.10, “Variáveis de Status do Servidor”
 
-### mysql\_firewall\_flush\_status()
+### mysql_firewall_flush_status()
 
 Seção 8.4.8.2.4, “Referência do Componente do Firewall Empresarial do MySQL”
 
-### mysql\_query\_attribute\_string()
+### mysql_query_attribute_string()
 
 Seção 7.5.4, “Componentes de Atributos de Consulta”
 
@@ -2484,7 +2484,7 @@ Seção 11.6, “Atributos de Consulta”
 
 [índice superior]
 
-### NAME\_CONST()
+### NAME_CONST()
 
 Seção 14.24, “Funções Diversas”
 
@@ -2522,11 +2522,11 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 30.4.3.21, “A Visualização de Métricas”
 
-Seção 30.4.4.26, “O procedimento statement\_performance\_analyzer()”
+Seção 30.4.4.26, “O procedimento statement_performance_analyzer()”
 
 Seção 13.2.4, “O Tipo YEAR”
 
-### NTH\_VALUE()
+### NTH_VALUE()
 
 Seção 14.20.1, “Descrição das Funções de Janela”
 
@@ -2554,23 +2554,23 @@ Seção 13.3.5, “O Tipo VECTOR”
 
 Seção 14.8, “Funções e Operadores de String”
 
-### OCTET\_LENGTH()
+### OCTET_LENGTH()
 
 Seção 14.8, “Funções e Operadores de String”
 
-### option\_tracker\_option\_register()
+### option_tracker_option_register()
 
 Seção 7.5.8.5, “Funções Option Tracker”
 
-### option\_tracker\_option\_unregister()
+### option_tracker_option_unregister()
 
 Seção 7.5.8.5, “Funções Option Tracker”
 
-### option\_tracker\_usage\_get()
+### option_tracker_usage_get()
 
 Seção 7.5.8.5, “Funções Option Tracker”
 
-### option\_tracker\_usage\_set()
+### option_tracker_usage_set()
 
 Seção 7.5.8.5, “Funções Option Tracker”
 
@@ -2582,17 +2582,17 @@ Seção 14.8, “Funções e Operadores de String”
 
 [index top]
 
-### PERCENT\_RANK()
+### PERCENT_RANK()
 
 Seção 14.20.1, “Descrição das Funções de Janela”
 
-### PERIOD\_ADD()
+### PERIOD_ADD()
 
 Seção 14.7, “Funções de Data e Hora”
 
 Seção 1.7.1, “Extensões MySQL para SQL Padrão”
 
-### PERIOD\_DIFF()
+### PERIOD_DIFF()
 
 Seção 14.7, “Funções de Data e Hora”
 
@@ -2632,17 +2632,17 @@ Seção 26.2.4.1, “Partição HASH LINEAR”
 
 Seção 14.6.2, “Funções Matemáticas”
 
-### PS\_CURRENT\_THREAD\_ID()
+### PS_CURRENT_THREAD_ID()
 
 Seção 14.22, “Funções do Schema de Desempenho”
 
-Seção 30.4.5.15, “A função ps\_thread\_id()” Function")
+Seção 30.4.5.15, “A função ps_thread_id()” Function")
 
-### PS\_THREAD\_ID()
+### PS_THREAD_ID()
 
 Seção 14.22, “Funções do Schema de Desempenho”
 
-Seção 30.4.5.15, “A função ps\_thread\_id()” Function")
+Seção 30.4.5.15, “A função ps_thread_id()” Function")
 
 ### Q
 
@@ -2690,23 +2690,23 @@ Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 10.9.2, “Otimizações Alternativas”
 
-### RANDOM\_BYTES()
+### RANDOM_BYTES()
 
 Seção 14.13, “Funções de Criptografia e Compressão”
 
-### read\_firewall\_group\_allowlist()
+### read_firewall_group_allowlist()
 
 Seção 8.4.8.2.4, “Referência do componente do firewall do MySQL Enterprise”
 
-### read\_firewall\_groups()
+### read_firewall_groups()
 
 Seção 8.4.8.2.4, “Referência do componente do firewall do MySQL Enterprise”
 
-### REGEXP\_INSTR()
+### REGEXP_INSTR()
 
 Seção 14.8.2, “Expressões regulares”
 
-### REGEXP\_LIKE()
+### REGEXP_LIKE()
 
 Seção 5.3.4.7, “Contagem de padrões”
 
@@ -2714,19 +2714,19 @@ Seção 14.8.2, “Expressões regulares”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### REGEXP\_REPLACE()
+### REGEXP_REPLACE()
 
 Seção 14.8.2, “Expressões regulares”
 
-### REGEXP\_SUBSTR()
+### REGEXP_SUBSTR()
 
 Seção 14.8.2, “Expressões regulares”
 
-### RELEASE\_ALL\_LOCKS()
+### RELEASE_ALL_LOCKS()
 
 Seção 14.14, “Funções de bloqueio”
 
-### RELEASE\_LOCK()
+### RELEASE_LOCK()
 
 Seção 19.2.1.1, “Vantagens e desvantagens da replicação baseada em instruções e baseada em linhas”
 
@@ -2766,7 +2766,7 @@ Seção 14.8.3, “Conjunto de caracteres e classificação dos resultados das 
 
 Seção 14.8, “Funções e operadores de string”
 
-### ROLES\_GRAPHML()
+### ROLES_GRAPHML()
 
 Seção 14.15, “Funções de informação”
 
@@ -2908,7 +2908,7 @@ Seção 14.24, “Funções Diversas”
 
 Seção 27.3.6.12, “Funções MySQL”
 
-Seção 29.12.16.3, “A Tabela tp\_thread\_group\_stats”
+Seção 29.12.16.3, “A Tabela tp_thread_group_stats”
 
 ### SOUNDEX()
 
@@ -2916,7 +2916,7 @@ Seção 14.8.3, “Conjunto de Caracteres e Cotação dos Resultados das Funçõ
 
 Seção 14.8, “Funções e Operadores de String”
 
-### SOURCE\_POS\_WAIT()
+### SOURCE_POS_WAIT()
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Instruções e Baseada em Linhas”
 
@@ -2936,173 +2936,173 @@ Seção 14.16.7, “Funções de Propriedade de Geometria”
 
 Seção 14.16.7.4, “Funções de Propriedade de Poligono e MultiPoligono”
 
-### ST\_AsBinary()
+### ST_AsBinary()
 
 Seção 13.4.8, “Recuperação de Dados Espaciais”
 
 Seção 14.16.6, “Funções de Conversão de Formatos de Geometria”
 
-### ST\_AsGeoJSON()
+### ST_AsGeoJSON()
 
 Seção 14.16.11, “Funções GeoJSON Espaciais”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### ST\_AsText()
+### ST_AsText()
 
 Seção 13.4.8, “Recuperação de Dados Espaciais”
 
 Seção 14.16.6, “Funções de Conversão de Formatos de Geometria”
 
-### ST\_AsWKB()
+### ST_AsWKB()
 
 Seção 14.16.6, “Funções de Conversão de Formatos de Geometria”
 
-### ST\_AsWKT()
+### ST_AsWKT()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
 Seção 14.16.6, “Funções de Conversão de Formatos de Geometria”
 
-### ST\_Buffer()
+### ST_Buffer()
 
 Seção 14.16.8, “Funções Operadoras Espaciais”
 
-### ST\_Buffer\_Strategy()
+### ST_Buffer_Strategy()
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
 Seção 14.16.8, “Funções Operadoras Espaciais”
 
-### ST\_Centroid()
+### ST_Centroid()
 
 Seção 14.16.7.4, “Funções de Propriedade de Poligono e MultiPoligono”
 
-### ST\_Collect(
+### ST_Collect(
 
 Seção 14.16.12, “Funções de Agregação Espacial”
 
-### ST\_Collect()
+### ST_Collect()
 
 Seção 14.16.12, “Funções de Agregação Espacial”
 
-### ST\_Contains()
+### ST_Contains()
 
 Seção 14.16.9.2, “Funções de Relação Espacial que Usam Rectângulos de Limite Mínimos”
 
 Seção 14.16.9.1, “Funções de Relação Espacial que Usam Formas de Objetos”
 
-### ST\_ConvexHull()
+### ST_ConvexHull()
 
 Seção 14.16.8, “Funções Operadoras Espaciais”
 
-### ST\_Crosses()
+### ST_Crosses()
 
 Seção 14.16.9.1, “Funções de Relação Espacial que Usam Formas de Objetos”
 
-### ST\_Difference()
+### ST_Difference()
 
 Seção 14.16.8, “Funções Operadoras Espaciais”
 
-### ST\_Dimension()
+### ST_Dimension()
 
 Seção 14.16.7.1, “Funções Gerais de Propriedade de Geometria”
 
-### ST\_Disjoint()
+### ST_Disjoint()
 
 Seção 14.16.9.2, “Funções de Relação Espacial que Usam Rectângulos de Limite Mínimos”
 
 Seção 14.16.9.1, “Funções de Relação Espacial que Usam Formas de Objetos”
 
-### ST\_Distance()
+### ST_Distance()
 
 Seção 14.16.13, “Funções de Conveniência Espacial”
 
 Seção 14.16.9.1, “Funções de Relação Espacial que Usam Formas de Objetos”
 
-Seção 28.3.43, “A Tabela INFORMATION\_SCHEMA ST\_UNITS\_OF\_MEASURE”
+Seção 28.3.43, “A Tabela INFORMATION_SCHEMA ST_UNITS_OF_MEASURE”
 
-### ST\_Distance\_Sphere()
+### ST_Distance_Sphere()
 
 Seção 14.16.13, “Funções de Conveniência Espacial”
 
 Seção 14.16.9.1, “Funções de Relação Espacial que Usam Formas de Objetos”
 
-### ST\_EndPoint()
+### ST_EndPoint()
 
 Seção 14.16.7.3, “Funções de Propriedade de LineString e MultiLineString”
 
 Seção 14.16.8, “Funções de Operador Espacial”
 
-### ST\_Envelope()
+### ST_Envelope()
 
 Seção 14.16.7.1, “Funções de Propriedade de Geometria Geral”
 
 Seção 14.16.8, “Funções de Operador Espacial”
 
-### ST\_Equals()
+### ST_Equals()
 
 Seção 14.16.9.1, “Funções de Relação Espacial que Usam Formas de Objetos”
 
-### ST\_ExteriorRing()
+### ST_ExteriorRing()
 
 Seção 14.16.7.4, “Funções de Propriedade de Poligono e MultiPoligono”
 
 Seção 14.16.8, “Funções de Operador Espacial”
 
-### ST\_FrechetDistance()
+### ST_FrechetDistance()
 
 Seção 14.16.9.1, “Funções de Relação Espacial que Usam Formas de Objetos”
 
-### ST\_GeoHash()
+### ST_GeoHash()
 
 Seção 14.16.10, “Funções de Geohash Espacial”
 
-### ST\_GeomCollFromText()
+### ST_GeomCollFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
-### ST\_GeomCollFromTxt()
+### ST_GeomCollFromTxt()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
-### ST\_GeomCollFromWKB()
+### ST_GeomCollFromWKB()
 
 Seção 14.16.4, “Funções que Criam Valores de Geometria a partir de Valores WKB”
 
-### ST\_GeometryCollectionFromText()
+### ST_GeometryCollectionFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
-### ST\_GeometryCollectionFromWKB()
+### ST_GeometryCollectionFromWKB()
 
 Seção 14.16.4, “Funções que Criam Valores de Geometria a partir de Valores WKB”
 
-### ST\_GeometryFromText()
+### ST_GeometryFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
-### ST\_GeometryFromWKB()
+### ST_GeometryFromWKB()
 
 Seção 14.16.4, “Funções que Criam Valores de Geometria a partir de Valores WKB”
 
-### ST\_GeometryN()
+### ST_GeometryN()
 
 Seção 14.16.7.5, “Funções de Propriedade de GeometryCollection”
 
 Seção 14.16.8, “Funções de Operadores Espaciais”
 
-### ST\_GeometryType()
+### ST_GeometryType()
 
 Seção 14.16.7.1, “Funções Gerais de Propriedade de Geometria”
 
-### ST\_GeomFromGeoJSON()
+### ST_GeomFromGeoJSON()
 
 Seção 14.16.11, “Funções GeoJSON Espaciais”
 
 Seção 13.5, “O Tipo de Dados JSON”
 
-### ST\_GeomFromText()
+### ST_GeomFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
@@ -3114,57 +3114,57 @@ Seção 13.4.7, “População de Colunas Espaciais”
 
 Seção 13.4.3, “Formatos de Dados Espaciais Compatíveis”
 
-### ST\_GeomFromWKB()
+### ST_GeomFromWKB()
 
 Seção 14.16.4, “Funções que Criam Valores de Geometria a partir de Valores WKB”
 
-### ST\_HausdorffDistance()
+### ST_HausdorffDistance()
 
 Seção 14.16.9.1, “Funções de Relação Espacial que Usam Formas de Objetos”
 
-### ST\_InteriorRingN()
+### ST_InteriorRingN()
 
 Seção 14.16.7.4, “Funções de Propriedade de Poligonais e MultiPoligonais”
 
 Seção 14.16.8, “Funções de Operadores Espaciais”
 
-### ST\_Intersection()
+### ST_Intersection()
 
 Seção 14.16.8, “Funções de Operadores Espaciais”
 
-### ST\_Intersects()
+### ST_Intersects()
 
 Seção 14.16.9.2, “Funções de Relação Espacial que Usam Rectângulos de Limite Mínimos”
 
 Seção 14.16.9.1, “Funções de Relação Espacial que Usam Formas de Objetos”
 
-### ST\_IsClosed()
+### ST_IsClosed()
 
 Seção 14.16.7.3, “Funções de Propriedade de LineString e MultiLineString”
 
-### ST\_IsEmpty()
+### ST_IsEmpty()
 
 Seção 14.16.7.1, “Funções Gerais de Propriedade de Geometria”
 
-### ST\_IsSimple()
+### ST_IsSimple()
 
 Seção 14.16.7.1, “Funções Gerais de Propriedade de Geometria”
 
-### ST\_IsValid()
+### ST_IsValid()
 
 Seção 13.4.4, “Formação e Validade da Geometria”
 
 Seção 14.16.13, “Funções de Conveniência Espacial”
 
-### ST\_LatFromGeoHash()
+### ST_LatFromGeoHash()
 
 Seção 14.16.10, “Funções GeoHash Espaciais”
 
-### ST\_Latitude()
+### ST_Latitude()
 
 Seção 14.16.7.2, “Funções de Propriedade de Ponto”
 
-### ST\_Length()
+### ST_Length()
 
 Seção 14.16.7.3, “Funções de Propriedade LineString e MultiLineString”
 
@@ -3172,219 +3172,219 @@ Seção 14.16.8, “Funções de Operadores Espaciais”
 
 Seção 14.8, “Funções e Operadores de String”
 
-### ST\_LineFromText()
+### ST_LineFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
-### ST\_LineFromWKB()
+### ST_LineFromWKB()
 
 Seção 14.16.4, “Funções que Criam Valores de Geometria a partir de Valores WKB”
 
-### ST\_LineInterpolatePoint()
+### ST_LineInterpolatePoint()
 
 Seção 14.16.8, “Funções de Operadores Espaciais”
 
-### ST\_LineInterpolatePoints()
+### ST_LineInterpolatePoints()
 
 Seção 14.16.8, “Funções de Operadores Espaciais”
 
-### ST\_LineStringFromText()
+### ST_LineStringFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
-### ST\_LineStringFromWKB()
+### ST_LineStringFromWKB()
 
 Seção 14.16.4, “Funções que Criam Valores de Geometria a partir de Valores WKB”
 
-### ST\_LongFromGeoHash()
+### ST_LongFromGeoHash()
 
 Seção 14.16.10, “Funções de Geohash Espaciais”
 
-### ST\_Longitude()
+### ST_Longitude()
 
 Seção 14.16.7.2, “Funções de Propriedade Ponto”
 
-### ST\_MakeEnvelope()
+### ST_MakeEnvelope()
 
 Seção 14.16.13, “Funções de Conveniência Espacial”
 
-### ST\_MLineFromText()
+### ST_MLineFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
-### ST\_MLineFromWKB()
+### ST_MLineFromWKB()
 
 Seção 14.16.4, “Funções que Criam Valores de Geometria a partir de Valores WKB”
 
-### ST\_MPointFromText()
+### ST_MPointFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
 Seção 13.4.3, “Formatos de Dados Espaciais Compatíveis”
 
-### ST\_MPointFromWKB()
+### ST_MPointFromWKB()
 
 Seção 14.16.4, “Funções que Criam Valores de Geometria a partir de Valores WKB”
 
-### ST\_MPolyFromText()
+### ST_MPolyFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
-### ST\_MPolyFromWKB()
+### ST_MPolyFromWKB()
 
 Seção 14.16.4, “Funções que Criam Valores de Geometria a partir de Valores WKB”
 
-### ST\_MultiLineStringFromText()
+### ST_MultiLineStringFromText()
 
 Seção 14.16.3, “Funções que Criam Valores de Geometria a partir de Valores WKT”
 
-### ST\_MultiLineStringFromWKB()
+### ST_MultiLineStringFromWKB()
 
 Seção 14.16.4, “Funções que criam valores de geometria a partir de valores WKB”
 
-### ST\_MultiPointFromText()
+### ST_MultiPointFromText()
 
 Seção 14.16.3, “Funções que criam valores de geometria a partir de valores WKT”
 
-### ST\_MultiPointFromWKB()
+### ST_MultiPointFromWKB()
 
 Seção 14.16.4, “Funções que criam valores de geometria a partir de valores WKB”
 
-### ST\_MultiPolygonFromText()
+### ST_MultiPolygonFromText()
 
 Seção 14.16.3, “Funções que criam valores de geometria a partir de valores WKT”
 
-### ST\_MultiPolygonFromWKB()
+### ST_MultiPolygonFromWKB()
 
 Seção 14.16.4, “Funções que criam valores de geometria a partir de valores WKB”
 
-### ST\_NumGeometries()
+### ST_NumGeometries()
 
 Seção 14.16.7.5, “Funções de propriedade de GeometryCollection”
 
-### ST\_NumInteriorRing()
+### ST_NumInteriorRing()
 
 Seção 14.16.7.4, “Funções de propriedade de Polygon e MultiPolygon”
 
-### ST\_NumInteriorRings()
+### ST_NumInteriorRings()
 
 Seção 14.16.7.4, “Funções de propriedade de Polygon e MultiPolygon”
 
-### ST\_NuminteriorRings()
+### ST_NuminteriorRings()
 
 Seção 14.16.7.4, “Funções de propriedade de Polygon e MultiPolygon”
 
-### ST\_NumPoints()
+### ST_NumPoints()
 
 Seção 14.16.7.3, “Funções de propriedade de LineString e MultiLineString”
 
-### ST\_Overlaps()
+### ST_Overlaps()
 
 Seção 14.16.9.1, “Funções de relação espacial que usam formas de objetos”
 
-### ST\_PointAtDistance()
+### ST_PointAtDistance()
 
 Seção 14.16.8, “Funções de operador espacial”
 
-### ST\_PointFromGeoHash()
+### ST_PointFromGeoHash()
 
 Seção 14.16.10, “Funções de geohash espacial”
 
-### ST\_PointFromText()
+### ST_PointFromText()
 
 Seção 14.16.3, “Funções que criam valores de geometria a partir de valores WKT”
 
-### ST\_PointFromWKB()
+### ST_PointFromWKB()
 
 Seção 14.16.4, “Funções que criam valores de geometria a partir de valores WKB”
 
-### ST\_PointN()
+### ST_PointN()
 
 Seção 14.16.7.3, “Funções de propriedade de LineString e MultiLineString”
 
 Seção 14.16.8, “Funções de operador espacial”
 
-### ST\_PolyFromText()
+### ST_PolyFromText()
 
 Seção 14.16.3, “Funções que criam valores de geometria a partir de valores WKT”
 
-### ST\_PolyFromWKB()
+### ST_PolyFromWKB()
 
 Seção 14.16.4, “Funções que criam valores de geometria a partir de valores WKB”
 
-### ST\_PolygonFromText
+### ST_PolygonFromText
 
 Seção 14.16.3, “Funções que criam valores de geometria a partir de valores WKT”
 
-### ST\_PolygonFromWKB()
+### ST_PolygonFromWKB()
 
 Seção 14.16.4, “Funções que criam valores de geometria a partir de valores WKB”
 
-### ST\_Simplify()
+### ST_Simplify()
 
 Seção 14.16.13, “Funções de conveniência espacial”
 
-### ST\_SRID()
+### ST_SRID()
 
 Seção 14.16.7.1, “Funções de propriedade de geometria geral”
 
 Seção 14.16.8, “Funções de operadores espaciais”
 
-### ST\_StartPoint()
+### ST_StartPoint()
 
 Seção 14.16.7.3, “Funções de propriedade de LineString e MultiLineString”
 
 Seção 14.16.8, “Funções de operadores espaciais”
 
-### ST\_SwapXY()
+### ST_SwapXY()
 
 Seção 14.16.6, “Funções de conversão de formato de geometria”
 
-### ST\_SymDifference()
+### ST_SymDifference()
 
 Seção 14.16.8, “Funções de operador espacial”
 
-### ST\_Touches()
+### ST_Touches()
 
 Seção 14.16.9.1, “Funções de relação espacial que usam formas de objetos”
 
-### ST\_Transform()
+### ST_Transform()
 
 Seção 14.16.7.1, “Funções de propriedade de geometria geral”
 
 Seção 14.16.8, “Funções de operadores espaciais”
 
-### ST\_Union()
+### ST_Union()
 
 Seção 14.16.8, “Funções de operador espacial”
 
-### ST\_Validate()
+### ST_Validate()
 
 Seção 14.16.13, “Funções de conveniência espacial”
 
-### ST\_Within()
+### ST_Within()
 
 Seção 14.16.9.2, “Funções de relação espacial que usam retângulos de limite mínimos”
 
 Seção 14.16.9.1, “Funções de relação espacial que usam formas de objetos”
 
-### ST\_X()
+### ST_X()
 
 Seção 14.16.7.2, “Funções de propriedade de ponto”
 
 Seção 13.4.3, “Formatos de dados espaciais suportados”
 
-### ST\_Y()
+### ST_Y()
 
 Seção 14.16.7.2, “Funções de propriedade de ponto”
 
-### STATEMENT\_DIGEST()
+### STATEMENT_DIGEST()
 
 Seção 14.13, “Funções de criptografia e compactação”
 
 Seção 29.10, “Digestas e amostragem do esquema de desempenho da declaração”
 
-### STATEMENT\_DIGEST\_TEXT()
+### STATEMENT_DIGEST_TEXT()
 
 Seção 14.13, “Funções de criptografia e compactação”
 
@@ -3512,7 +3512,7 @@ Seção 7.1.7, “Opções de comando do servidor”
 
 Seção 7.1.8, “Variáveis do sistema do servidor”
 
-### SYSTEM\_USER()
+### SYSTEM_USER()
 
 Seção 19.2.1.3, “Determinação de declarações seguras e inseguras na logon binária”
 
@@ -3532,13 +3532,13 @@ Seção 14.6.2, “Funções matemáticas”
 
 Seção 14.7, “Funções de data e hora”
 
-### TIME\_FORMAT()
+### TIME_FORMAT()
 
 Seção 14.10, “Funções de conversão e operadores”
 
 Seção 14.7, “Funções de data e hora”
 
-### TIME\_TO\_SEC()
+### TIME_TO_SEC()
 
 Seção 14.7, “Funções de data e hora”
 
@@ -3562,13 +3562,13 @@ Seção 14.7, “Funções de data e hora”
 
 Seção 5.3.4.5, “Cálculos de data”
 
-### TO\_BASE64()
+### TO_BASE64()
 
 Seção 14.8, “Funções e operadores de string”
 
 Seção 13.3.5, “O tipo VECTOR”
 
-### TO\_DAYS()
+### TO_DAYS()
 
 Seção 14.7, “Funções de data e hora”
 
@@ -3582,7 +3582,7 @@ Seção 26.6.3, “Limitações de Partição Relativas a Funções”
 
 Seção 26.2, “Tipos de Partição”
 
-### TO\_SECONDS()
+### TO_SECONDS()
 
 Seção 14.7, “Funções de Data e Hora”
 
@@ -3624,7 +3624,7 @@ Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### UNCOMPRESSED\_LENGTH()
+### UNCOMPRESSED_LENGTH()
 
 Seção 14.13, “Funções de Criptografia e Compressão”
 
@@ -3636,7 +3636,7 @@ Seção 6.5.1.1, “Opções do Cliente do mysql”
 
 Seção 14.8, “Funções e Operadores de String”
 
-### UNIX\_TIMESTAMP()
+### UNIX_TIMESTAMP()
 
 Seção 14.7, “Funções de Data e Hora”
 
@@ -3758,7 +3758,7 @@ Seção 19.5.1.14, “Replicação e Funções do Sistema”
 
 Seção 27.9, “Registro Binário de Programas Armazenados”
 
-### UUID\_SHORT()
+### UUID_SHORT()
 
 Seção 19.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linhas”
 
@@ -3766,7 +3766,7 @@ Seção 19.2.1.3, “Determinação de Declarações Seguras e Inseguras no Regi
 
 Seção 14.24, “Funções Diversas”
 
-### UUID\_TO\_BIN()
+### UUID_TO_BIN()
 
 Seção 14.12, “Funções e Operadores de Bits”
 
@@ -3776,7 +3776,7 @@ Seção 14.24, “Funções Diversas”
 
 [index top]
 
-### VALIDATE\_PASSWORD\_STRENGTH()
+### VALIDATE_PASSWORD_STRENGTH()
 
 Seção 14.13, “Funções de Criptografia e Compressão”
 
@@ -3792,13 +3792,13 @@ Seção 14.24, “Funções Diversas”
 
 Seção 15.2.19, “Declaração VALUES”
 
-### VAR\_POP()
+### VAR_POP()
 
 Seção 14.19.1, “Descrição de Funções Agregadas”
 
 Seção 10.2.1.21, “Otimização de Funções Janela”
 
-### VAR\_SAMP()
+### VAR_SAMP()
 
 Seção 14.19.1, “Descrição de Funções Agregadas”
 
@@ -3808,17 +3808,17 @@ Seção 10.2.1.21, “Otimização de Funções Janela”
 
 Seção 14.19.1, “Descrição de Funções Agregadas”
 
-### VECTOR\_DIM()
+### VECTOR_DIM()
 
 Seção 14.21, “Funções Vetoriais”
 
-### VECTOR\_DISTANCE()
+### VECTOR_DISTANCE()
 
 Seção 7.5.8.3, “Variáveis de Status do Rastreador de Opções”
 
 Seção 7.5.8.2, “Componentes Compatíveis com Rastreador de Opções”
 
-### VECTOR\_TO\_STRING()
+### VECTOR_TO_STRING()
 
 Seção 14.21, “Funções Vetoriais”
 
@@ -3844,7 +3844,7 @@ Seção 12.2.2, “UTF-8 para Metadados”
 
 [index top]
 
-### WAIT\_FOR\_EXECUTED\_GTID\_SET()
+### WAIT_FOR_EXECUTED_GTID_SET()
 
 Seção 14.18.2, “Funções Usadas com Identificadores de Transação Global (GTIDs”)")
 
@@ -3858,7 +3858,7 @@ Seção 14.7, “Funções de Data e Hora”
 
 Seção 7.1.8, “Variáveis do Sistema do Servidor”
 
-### SEGUNDA\_DA\_SEMANA()
+### SEGUNDA_DA_SEMANA()
 
 Seção 14.7, “Funções de Data e Hora”
 
@@ -3868,11 +3868,11 @@ Seção 26.6.3, “Limitações de Partição Relativas a Funções”
 
 Seção 26.2, “Tipos de Partição”
 
-### SEMANA\_DO\_ANO()
+### SEMANA_DO_ANO()
 
 Seção 14.7, “Funções de Data e Hora”
 
-### PESO\_STRING()
+### PESO_STRING()
 
 Seção 12.14, “Adicionando uma Cotação a um Conjunto de Caracteres”
 

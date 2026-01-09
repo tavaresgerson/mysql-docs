@@ -1,4 +1,4 @@
-#### 6.4.1.3 Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql\_old\_password
+#### 6.4.1.3 Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql_old_password
 
 O servidor MySQL autentica as tentativas de conexão para cada conta listada na tabela de sistema `mysql.user` usando o plugin de autenticação nomeado na coluna `plugin`. Se a coluna `plugin` estiver vazia, o servidor autentica a conta da seguinte forma:
 
@@ -20,11 +20,64 @@ Como uma variante dessas instruções, os administradores de banco de dados pode
 
 A tabela a seguir lista os tipos de contas `mysql.user` considerados nesta discussão.
 
-<table summary="Características das contas do MySQL e o que deve ser feito para atualizá-las."><col style="width: 30%"/><col style="width: 20%"/><col style="width: 30%"/><col style="width: 20%"/><thead><tr> <th>[[PH_HTML_CODE_<code>mysql_old_password</code>] Coluna</th> <th>[[PH_HTML_CODE_<code>mysql_old_password</code>] Coluna</th> <th>Resultado de autenticação</th> <th>Ação de atualização</th> </tr></thead><tbody><tr> <th>Vazio</th> <td>Vazio</td> <td>Usa implicitamente [[PH_HTML_CODE_<code>mysql_old_password</code>]</td> <td>Atribuir plugin</td> </tr><tr> <th>Vazio</th> <td>4.1 hash</td> <td>Usa implicitamente [[<code>mysql_native_password</code>]]</td> <td>Atribuir plugin</td> </tr><tr> <th>Vazio</th> <td>Hash pré-4.1</td> <td>Usa implicitamente [[<code>mysql_old_password</code>]]</td> <td>Atribuir plugin, refazer senha</td> </tr><tr> <th>[[<code>mysql_native_password</code>]]</th> <td>Vazio</td> <td>Usa explicitamente [[<code>mysql_native_password</code>]]</td> <td>Nenhum</td> </tr><tr> <th>[[<code>mysql_native_password</code>]]</th> <td>4.1 hash</td> <td>Usa explicitamente [[<code>mysql_native_password</code>]]</td> <td>Nenhum</td> </tr><tr> <th>[[<code>mysql_old_password</code>]]</th> <td>Vazio</td> <td>Usa explicitamente [[<code>mysql_old_password</code>]]</td> <td>Atualize o plugin</td> </tr><tr> <th>[[<code>Password</code><code>mysql_old_password</code>]</th> <td>Hash pré-4.1</td> <td>Usa explicitamente [[<code>mysql_old_password</code>]]</td> <td>Atualize o plugin, refaça a senha</td> </tr></tbody></table>
+<table summary="Características das contas do MySQL e o que deve ser feito para atualizá-las.">
+  <thead>
+    <tr>
+      <th>Coluna <code>plugin</code></th>
+      <th>Coluna <code>password</code></th>
+      <th>Resultado da Autenticação</th>
+      <th>Ação de Atualização</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Vazio</th>
+      <td>Vazio</td>
+      <td>Utiliza implicitamente <code>mysql_native_password</code></td>
+      <td>Atribuir plugin</td>
+    </tr>
+    <tr>
+      <th>Vazio</th>
+      <td>4.1 hash</td>
+      <td>Utiliza implicitamente <code>mysql_native_password</code></td>
+      <td>Atribuir plugin</td>
+    </tr>
+    <tr>
+      <th>Vazio</th>
+      <td>Pre-4.1 hash</td>
+      <td>Usa implicitamente <code>mysql_old_password</code></td>
+      <td>Atribuir plugin, recalcular senha</td>
+    </tr>
+    <tr>
+      <th><code>mysql_native_password</code></th>
+      <td>Vazio</td>
+      <td>Usa explicitamente <code>mysql_native_password</code></td>
+      <td>Nenhum</td>
+    </tr>
+    <tr>
+      <th><code>mysql_native_password</code></th>
+      <td>4.1 hash</td>
+      <td>Usa explicitamente <code>mysql_native_password</code></td>
+      <td>Nenhum</td>
+    </tr>
+    <tr>
+      <th><code>mysql_old_password</code></th>
+      <td>Vazio</td>
+      <td>Usa explicitamente <code>mysql_old_password</code></td>
+      <td>Atualizar plugin</td>
+    </tr>
+    <tr>
+      <th><code>mysql_old_password</code></th>
+      <td>Pre-4.1 hash</td>
+      <td>Usa explicitamente <code>mysql_old_password</code></td>
+      <td>Atualizar plugin, recalcular senha</td>
+    </tr>
+  </tbody>
+</table>
 
 As contas correspondentes às linhas do plugin `mysql_native_password` não requerem nenhuma ação de atualização (porque não é necessário alterar o plugin ou o formato do hash). Para contas correspondentes a linhas nas quais a senha está vazia, considere pedir aos proprietários das contas que escolham uma senha (ou exija-a usando `ALTER USER` para expirar senhas de contas vazias).
 
-##### Atualizar contas de implicitas para explícitas usando mysql\_native\_password Use
+##### Atualizar contas de implicitas para explícitas usando mysql_native_password Use
 
 Contas que têm um plugin vazio e um hash de senha 4.1 usam implicitamente `mysql_native_password`. Para atualizar essas contas para usar `mysql_native_password` explicitamente, execute essas instruções:
 
@@ -34,15 +87,14 @@ WHERE plugin = '' AND (Password = '' OR LENGTH(Password) = 41);
 FLUSH PRIVILEGES;
 ```
 
-Antes do MySQL 5.7, você pode executar essas instruções para atualizar as contas de forma proativa. A partir do MySQL 5.7, você pode executar **mysql\_upgrade**, que realiza a mesma operação entre suas ações de atualização.
+Antes do MySQL 5.7, você pode executar essas instruções para atualizar as contas de forma proativa. A partir do MySQL 5.7, você pode executar **mysql_upgrade**, que realiza a mesma operação entre suas ações de atualização.
 
-Notas:
-
+::: info Notas:
 - A operação de atualização descrita acima é segura para ser executada a qualquer momento, pois torna o plugin `mysql_native_password` explícito apenas para contas que já o usam implicitamente.
 
 - Essa operação não requer alterações de senha, portanto, pode ser realizada sem afetar os usuários ou exigir seu envolvimento no processo de atualização.
-
-##### Atualizando contas de mysql\_old\_password para mysql\_native\_password
+:::
+##### Atualizando contas de mysql_old_password para mysql_native_password
 
 As contas que usam `mysql_old_password` (implicitamente ou explicitamente) devem ser atualizadas para usar `mysql_native_password` explicitamente. Isso requer a alteração do plugin *e* a alteração da senha do formato de hash anterior a 4.1 para o formato de hash 4.1.
 
@@ -97,9 +149,9 @@ SET PASSWORD = PASSWORD('user-chosen-password');
 
 Nota
 
-A opção `--secure-auth` do lado do cliente (mysql-command-options.html#option\_mysql\_secure-auth) está habilitada por padrão, então lembre os usuários de desabilitá-la; caso contrário, eles não poderão se conectar:
+A opção `--secure-auth` do lado do cliente (mysql-command-options.html#option_mysql_secure-auth) está habilitada por padrão, então lembre os usuários de desabilitá-la; caso contrário, eles não poderão se conectar:
 
-```sql
+```sh
 $> mysql -u user_name -p --secure-auth=0
 ```
 

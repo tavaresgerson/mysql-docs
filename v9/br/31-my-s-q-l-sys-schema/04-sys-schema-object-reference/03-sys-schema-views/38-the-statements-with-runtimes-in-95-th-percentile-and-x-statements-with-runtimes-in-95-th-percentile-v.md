@@ -1,4 +1,4 @@
-#### 30.4.3.38 Declarações\_com\_tempo\_de\_execução\_no\_95º\_percentil e x$declarações\_com\_tempo\_de\_execução\_no\_95º\_percentil Visualizações
+#### 30.4.3.38 Declarações_com_tempo_de_execução_no_95º_percentil e x$declarações_com_tempo_de_execução_no_95º_percentil Visualizações
 
 Esses visualizações listam declarações com tempos de execução no 95º percentil. Por padrão, as linhas são ordenadas por latência média decrescente.
 

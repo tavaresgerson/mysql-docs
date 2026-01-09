@@ -25,7 +25,7 @@ O MySQL suporta conexões criptografadas usando os protocolos TLSv1, TLSv1.1 e T
 
   - Altere a configuração do host em todo o sistema para permitir protocolos TLS adicionais. Consulte a documentação do seu sistema operacional para obter instruções. Por exemplo, seu sistema pode ter um arquivo `/etc/ssl/openssl.cnf` que contém essas linhas para restringir os protocolos TLS a TLSv1.2 ou superior:
 
-    ```sql
+    ```
     [system_default_sect]
     MinProtocol = TLSv1.2
     ```
@@ -40,9 +40,9 @@ O MySQL suporta conexões criptografadas usando os protocolos TLSv1, TLSv1.1 e T
 
   - Quando compilado com o yaSSL, o MySQL suporta os protocolos TLSv1 e TLSv1.1.
 
-  Nota
-
+  ::: info Nota
   É possível compilar o MySQL usando o yaSSL como alternativa ao OpenSSL apenas antes do MySQL 5.7.28. A partir do MySQL 5.7.28, o suporte ao yaSSL é removido e todas as compilações do MySQL usam o OpenSSL.
+  ::: 
 
 #### Configuração do Protocolo TLS de Conexão
 
@@ -59,25 +59,25 @@ mysql> SHOW GLOBAL VARIABLES LIKE 'tls_version';
 
 Para alterar o valor de `tls_version`, defina-o durante o início do servidor. Por exemplo, para permitir conexões que utilizam o protocolo TLSv1.1 ou TLSv1.2, mas proibir conexões que utilizam o protocolo TLSv1 menos seguro, use essas linhas no arquivo `my.cnf` do servidor:
 
-```sql
+```
 [mysqld]
 tls_version=TLSv1.1,TLSv1.2
 ```
 
 Para ser ainda mais restritivo e permitir apenas conexões TLSv1.2, defina `tls_version` da seguinte forma (assumindo que seu servidor foi compilado usando OpenSSL, pois o yaSSL não suporta TLSv1.2):
 
-```sql
+```
 [mysqld]
 tls_version=TLSv1.2
 ```
 
-Nota
-
+::: info Nota
 A partir do MySQL 5.7.35, os protocolos de conexão TLSv1 e TLSv1.1 são desatualizados e o suporte a eles está sujeito à remoção em uma versão futura do MySQL. Consulte Protocolos TLS Desatualizados.
+:::
 
 Do lado do cliente, a opção `--tls-version` especifica quais protocolos TLS um programa cliente permite para conexões com o servidor. O formato do valor da opção é o mesmo da variável de sistema `tls_version` descrita anteriormente (uma lista de uma ou mais versões de protocolos separadas por vírgula).
 
-Para a replicação de origem/replica, a opção `MASTER_TLS_VERSION` da instrução `CHANGE MASTER TO` especifica quais protocolos TLS um servidor replica permite para conexões à origem. O formato do valor da opção é o mesmo que para a variável de sistema `tls_version` (server-system-variables.html#sysvar\_tls\_version) descrita anteriormente. Veja Seção 16.3.8, “Configurando a Replicação para Usar Conexões Encriptadas”.
+Para a replicação de origem/replica, a opção `MASTER_TLS_VERSION` da instrução `CHANGE MASTER TO` especifica quais protocolos TLS um servidor replica permite para conexões à origem. O formato do valor da opção é o mesmo que para a variável de sistema `tls_version` (server-system-variables.html#sysvar_tls_version) descrita anteriormente. Veja Seção 16.3.8, “Configurando a Replicação para Usar Conexões Encriptadas”.
 
 Os protocolos que podem ser especificados para `MASTER_TLS_VERSION` dependem da biblioteca SSL. Esta opção é independente e não afetada pelo valor da variável do servidor `tls_version`. Por exemplo, um servidor que atua como replica pode ser configurado com `tls_version` definido como TLSv1.2 para permitir apenas conexões de entrada que usam TLSv1.2, mas também configurado com `MASTER_TLS_VERSION` definido como TLSv1.1 para permitir apenas TLSv1.1 para conexões de replica saindo para a fonte.
 
@@ -85,7 +85,7 @@ A configuração do protocolo TLS afeta o protocolo utilizado por uma conexão e
 
 Os protocolos permitidos devem ser escolhidos para não deixar "buracos" na lista. Por exemplo, esses valores de configuração do servidor não têm buracos:
 
-```sql
+```
 tls_version=TLSv1,TLSv1.1,TLSv1.2
 tls_version=TLSv1.1,TLSv1.2
 tls_version=TLSv1.2
@@ -93,7 +93,7 @@ tls_version=TLSv1.2
 
 Esse valor tem um buraco e não deve ser usado:
 
-```sql
+```
 tls_version=TLSv1,TLSv1.2       (TLSv1.1 is missing)
 ```
 
@@ -102,9 +102,7 @@ A proibição de buracos também se aplica em outros contextos de configuração
 A menos que você pretenda desativar as conexões criptografadas, a lista de protocolos permitidos não deve estar vazia. Se você definir um parâmetro de versão TLS para a string vazia, as conexões criptografadas não podem ser estabelecidas:
 
 - `tls_version`: O servidor não permite conexões recebidas criptografadas.
-
 - `--tls-version`: O cliente não permite conexões saídas criptografadas para o servidor.
-
 - `MASTER_TLS_VERSION`: A replica não permite conexões saídas criptografadas para a fonte.
 
 #### Protocolos TLS obsoletos
@@ -149,7 +147,7 @@ O MySQL passa uma lista de cifra padrão para a biblioteca SSL.
 
 O MySQL passa essa lista de cifra padrão para o OpenSSL:
 
-```sql
+```
 ECDHE-ECDSA-AES128-GCM-SHA256
 ECDHE-ECDSA-AES256-GCM-SHA384
 ECDHE-RSA-AES128-GCM-SHA256
@@ -223,7 +221,7 @@ DES-CBC3-SHA
 
 O MySQL passa essa lista de cifra padrão para o yaSSL:
 
-```sql
+```
 DHE-RSA-AES256-SHA
 DHE-RSA-AES128-SHA
 AES128-RMD
@@ -245,7 +243,7 @@ A partir do MySQL 5.7.10, essas restrições de cifra estão em vigor:
 
 - Os seguintes cifrados estão permanentemente restritos:
 
-  ```sql
+  ```
   !DHE-DSS-DES-CBC3-SHA
   !DHE-RSA-DES-CBC3-SHA
   !ECDH-RSA-DES-CBC3-SHA
@@ -256,7 +254,7 @@ A partir do MySQL 5.7.10, essas restrições de cifra estão em vigor:
 
 - As seguintes categorias de cifra são permanentemente restritas:
 
-  ```sql
+  ```
   !aNULL
   !eNULL
   !EXPORT
@@ -281,13 +279,13 @@ As tentativas de conexão no MySQL negociam o uso da versão mais alta do protoc
 
 - Se o servidor e o cliente forem compilados com o OpenSSL, o TLSv1.2 será usado, se possível. Se o servidor e o cliente forem compilados com o yaSSL, o TLSv1.1 será usado, se possível. (“Possível” significa que a configuração do servidor e do cliente deve permitir o protocolo indicado e ambos devem permitir também algum algoritmo de criptografia compatível com o protocolo.) Caso contrário, o MySQL continua na lista de protocolos disponíveis, passando de protocolos mais seguros para menos seguros. A ordem de negociação é independente da ordem em que os protocolos são configurados. Por exemplo, a ordem de negociação é a mesma, independentemente de `tls_version` ter um valor de `TLSv1,TLSv1.1,TLSv1.2` ou `TLSv1.2,TLSv1.1,TLSv1`.
 
-  Nota
-
+  ::: info Nota
   Antes do MySQL 5.7.10, o MySQL suporta apenas TLSv1, tanto para OpenSSL quanto para yaSSL, e não há nenhuma variável de sistema ou opção do cliente para especificar quais protocolos TLS devem ser permitidos.
+  :::
 
 - O TLSv1.2 não funciona com todos os criptogramas que têm um tamanho de chave de 512 bits ou menos. Para usar este protocolo com uma chave desse tamanho, defina a variável de sistema `ssl_cipher` no lado do servidor ou use a opção de cliente `--ssl-cipher` para especificar o nome do criptograma explicitamente:
 
-  ```sql
+  ```
   AES128-SHA
   AES128-SHA256
   AES256-SHA

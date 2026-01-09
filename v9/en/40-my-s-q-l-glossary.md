@@ -54,9 +54,9 @@ application programming interface (API) :   A set of functions or procedures. An
 
 apply :   When a backup produced by the **MySQL Enterprise Backup** product does not include the most recent changes that occurred while the backup was underway, the process of updating the backup files to include those changes is known as the **apply** step. It is specified by the `apply-log` option of the `mysqlbackup` command.
 
-    Before the changes are applied, we refer to the files as a **raw backup**. After the changes are applied, we refer to the files as a **prepared backup**. The changes are recorded in the **ibbackup\_logfile** file; once the apply step is finished, this file is no longer necessary.
+    Before the changes are applied, we refer to the files as a **raw backup**. After the changes are applied, we refer to the files as a **prepared backup**. The changes are recorded in the **ibbackup_logfile** file; once the apply step is finished, this file is no longer necessary.
 
-    See Also hot backup, ibbackup\_logfile, MySQL Enterprise Backup, prepared backup, raw backup.
+    See Also hot backup, ibbackup_logfile, MySQL Enterprise Backup, prepared backup, raw backup.
 
 ASP.net :   A framework for developing web-based applications using **.NET** technologies and languages. Such applications can interface with MySQL through the **Connector/NET** component.
 
@@ -92,11 +92,11 @@ auto-increment :   A property of a table column (specified by the `AUTO_INCREMEN
 
     Consecutive lock mode (`innodb_autoinc_lock_mode=1`) is the default setting prior to MySQL 8.0.3. As of MySQL 8.0.3, interleaved lock mode (`innodb_autoinc_lock_mode=2`) is the default, which reflects the change from statement-based to row-based replication as the default replication type.
 
-    See Also auto-increment locking, innodb\_autoinc\_lock\_mode, primary key, row-based replication, statement-based replication.
+    See Also auto-increment locking, innodb_autoinc_lock_mode, primary key, row-based replication, statement-based replication.
 
 auto-increment locking :   The convenience of an **auto-increment** primary key involves some tradeoff with concurrency. In the simplest case, if one transaction is inserting values into the table, any other transactions must wait to do their own inserts into that table, so that rows inserted by the first transaction receive consecutive primary key values. `InnoDB` includes optimizations and the `innodb_autoinc_lock_mode` option so that you can configure and optimal balance between predictable sequences of auto-increment values and maximum **concurrency** for insert operations.
 
-    See Also auto-increment, concurrency, innodb\_autoinc\_lock\_mode.
+    See Also auto-increment, concurrency, innodb_autoinc_lock_mode.
 
 autocommit :   A setting that causes a **commit** operation after each **SQL** statement. This mode is not recommended for working with `InnoDB` tables with **transactions** that span several statements. It can help performance for **read-only transactions** on `InnoDB` tables, where it minimizes overhead from **locking** and generation of **undo** data, especially in MySQL 5.6.4 and up. It is also appropriate for working with `MyISAM` tables, where transactions are not applicable.
 
@@ -408,9 +408,9 @@ constraint :   An automatic test that can block database changes to prevent data
 
     See Also ACID, foreign key, unique constraint.
 
-counter :   A value that is incremented by a particular kind of `InnoDB` operation. Useful for measuring how busy a server is, troubleshooting the sources of performance issues, and testing whether changes (for example, to configuration settings or indexes used by queries) have the desired low-level effects. Different kinds of counters are available through **Performance Schema** tables and **INFORMATION\_SCHEMA** tables, particularly `INFORMATION_SCHEMA.INNODB_METRICS`.
+counter :   A value that is incremented by a particular kind of `InnoDB` operation. Useful for measuring how busy a server is, troubleshooting the sources of performance issues, and testing whether changes (for example, to configuration settings or indexes used by queries) have the desired low-level effects. Different kinds of counters are available through **Performance Schema** tables and **INFORMATION_SCHEMA** tables, particularly `INFORMATION_SCHEMA.INNODB_METRICS`.
 
-    See Also INFORMATION\_SCHEMA, metrics counter, Performance Schema.
+    See Also INFORMATION_SCHEMA, metrics counter, Performance Schema.
 
 covering index :   An **index** that includes all the columns retrieved by a query. Instead of using the index values as pointers to find the full table rows, the query returns values from the index structure, saving disk I/O. `InnoDB` can apply this optimization technique to more indexes than MyISAM can, because `InnoDB` **secondary indexes** also include the **primary key** columns. `InnoDB` cannot apply this technique for queries against tables modified by a transaction, until that transaction ends.
 
@@ -636,7 +636,7 @@ file-per-table :   A general name for the setting controlled by the `innodb_file
 
     The **MySQL Enterprise Backup** product is more flexible for tables that are in their own files. For example, tables can be excluded from a backup, but only if they are in separate files. Thus, this setting is suitable for tables that are backed up less frequently or on a different schedule.
 
-    See Also ibdata file, innodb\_file\_per\_table, MySQL Enterprise Backup, row format.
+    See Also ibdata file, innodb_file_per_table, MySQL Enterprise Backup, row format.
 
 fill factor :   In an `InnoDB` **index**, the proportion of a **page** that is taken up by index data before the page is split. The unused space when index data is first divided between pages allows for rows to be updated with longer string values without requiring expensive index maintenance operations. If the fill factor is too low, the index consumes more space than needed, causing extra I/O overhead when reading the index. If the fill factor is too high, any update that increases the length of column values can cause extra I/O overhead for index maintenance. See Section 17.6.2.2, “The Physical Structure of an InnoDB Index” for more information.
 
@@ -806,7 +806,7 @@ ib-file set :   The set of files managed by `InnoDB` within a MySQL database: th
 
     See Also database, file-per-table, general tablespace, redo log, undo tablespace.
 
-ibbackup\_logfile :   A supplemental backup file created by the **MySQL Enterprise Backup** product during a **hot backup** operation. It contains information about any data changes that occurred while the backup was running. The initial backup files, including `ibbackup_logfile`, are known as a **raw backup**, because the changes that occurred during the backup operation are not yet incorporated. After you perform the **apply** step to the raw backup files, the resulting files do include those final data changes, and are known as a **prepared backup**. At this stage, the `ibbackup_logfile` file is no longer necessary.
+ibbackup_logfile :   A supplemental backup file created by the **MySQL Enterprise Backup** product during a **hot backup** operation. It contains information about any data changes that occurred while the backup was running. The initial backup files, including `ibbackup_logfile`, are known as a **raw backup**, because the changes that occurred during the backup operation are not yet incorporated. After you perform the **apply** step to the raw backup files, the resulting files do include those final data changes, and are known as a **prepared backup**. At this stage, the `ibbackup_logfile` file is no longer necessary.
 
     See Also apply, hot backup, MySQL Enterprise Backup, prepared backup, raw backup.
 
@@ -814,13 +814,13 @@ ibdata file :   A set of files with names such as `ibdata1`, `ibdata2`, and so o
 
     Growth of the `ibdata` files is influenced by the `innodb_autoextend_increment` configuration option.
 
-    See Also change buffer, doublewrite buffer, file-per-table, innodb\_file\_per\_table, undo log.
+    See Also change buffer, doublewrite buffer, file-per-table, innodb_file_per_table, undo log.
 
 ibtmp file :   The `InnoDB` **temporary tablespace** **data file** for non-compressed `InnoDB` **temporary tables** and related objects. The configuration file option, `innodb_temp_data_file_path`, allows users to define a relative path for the temporary tablespace data file. If `innodb_temp_data_file_path` is not specified, the default behavior is to create a single auto-extending 12MB data file named `ibtmp1` in the data directory, alongside `ibdata1`.
 
     See Also data files, temporary table.
 
-ib\_logfile :   A set of files, typically named `ib_logfile0` and `ib_logfile1`, that form the **redo log**. Also sometimes referred to as the **log group**. These files record statements that attempt to change data in `InnoDB` tables. These statements are replayed automatically to correct data written by incomplete transactions, on startup following a crash.
+ib_logfile :   A set of files, typically named `ib_logfile0` and `ib_logfile1`, that form the **redo log**. Also sometimes referred to as the **log group**. These files record statements that attempt to change data in `InnoDB` tables. These statements are replayed automatically to correct data written by incomplete transactions, on startup following a crash.
 
     This data cannot be used for manual recovery; for that type of operation, use the **binary log**.
 
@@ -878,7 +878,7 @@ infimum record :   A **pseudo-record** in an **index**, representing the **gap**
 
     See Also gap, index, pseudo-record, supremum record.
 
-INFORMATION\_SCHEMA :   The name of the **database** that provides a query interface to the MySQL **data dictionary**. (This name is defined by the ANSI SQL standard.) To examine information (metadata) about the database, you can query tables such as `INFORMATION_SCHEMA.TABLES` and `INFORMATION_SCHEMA.COLUMNS`, rather than using `SHOW` commands that produce unstructured output.
+INFORMATION_SCHEMA :   The name of the **database** that provides a query interface to the MySQL **data dictionary**. (This name is defined by the ANSI SQL standard.) To examine information (metadata) about the database, you can query tables such as `INFORMATION_SCHEMA.TABLES` and `INFORMATION_SCHEMA.COLUMNS`, rather than using `SHOW` commands that produce unstructured output.
 
     The `INFORMATION_SCHEMA` database also contains tables specific to **InnoDB** that provide a query interface to the `InnoDB` data dictionary. You use these tables not to see how the database is structured, but to get real-time information about the workings of `InnoDB` tables to help with performance monitoring, tuning, and troubleshooting.
 
@@ -892,13 +892,13 @@ InnoDB :   A MySQL component that combines high performance with **transactional
 
     See Also ACID, hot backup, MySQL Enterprise Backup, storage engine, transaction.
 
-innodb\_autoinc\_lock\_mode :   The `innodb_autoinc_lock_mode` option controls the algorithm used for **auto-increment locking**. When you have an auto-incrementing **primary key**, you can use statement-based replication only with the setting `innodb_autoinc_lock_mode=1`. This setting is known as *consecutive* lock mode, because multi-row inserts within a transaction receive consecutive auto-increment values. If you have `innodb_autoinc_lock_mode=2`, which allows higher concurrency for insert operations, use row-based replication rather than statement-based replication. This setting is known as *interleaved* lock mode, because multiple multi-row insert statements running at the same time can receive **auto-increment** values that are interleaved. The setting `innodb_autoinc_lock_mode=0` should not be used except for compatibility purposes.
+innodb_autoinc_lock_mode :   The `innodb_autoinc_lock_mode` option controls the algorithm used for **auto-increment locking**. When you have an auto-incrementing **primary key**, you can use statement-based replication only with the setting `innodb_autoinc_lock_mode=1`. This setting is known as *consecutive* lock mode, because multi-row inserts within a transaction receive consecutive auto-increment values. If you have `innodb_autoinc_lock_mode=2`, which allows higher concurrency for insert operations, use row-based replication rather than statement-based replication. This setting is known as *interleaved* lock mode, because multiple multi-row insert statements running at the same time can receive **auto-increment** values that are interleaved. The setting `innodb_autoinc_lock_mode=0` should not be used except for compatibility purposes.
 
     Consecutive lock mode (`innodb_autoinc_lock_mode=1`) is the default setting prior to MySQL 8.0.3. As of MySQL 8.0.3, interleaved lock mode (`innodb_autoinc_lock_mode=2`) is the default, which reflects the change from statement-based to row-based replication as the default replication type.
 
     See Also auto-increment, auto-increment locking, mixed-mode insert, primary key.
 
-innodb\_file\_per\_table :   An important configuration option that affects many aspects of `InnoDB` file storage, availability of features, and I/O characteristics. In MySQL 5.6.7 and higher, it is enabled by default. The `innodb_file_per_table` option turns on **file-per-table** mode. With this mode enabled, a newly created `InnoDB` table and associated indexes can be stored in a file-per-table **.ibd file**, outside the **system tablespace**.
+innodb_file_per_table :   An important configuration option that affects many aspects of `InnoDB` file storage, availability of features, and I/O characteristics. In MySQL 5.6.7 and higher, it is enabled by default. The `innodb_file_per_table` option turns on **file-per-table** mode. With this mode enabled, a newly created `InnoDB` table and associated indexes can be stored in a file-per-table **.ibd file**, outside the **system tablespace**.
 
     This option affects the performance and storage considerations for a number of SQL statements, such as `DROP TABLE` and `TRUNCATE TABLE`.
 
@@ -908,11 +908,11 @@ innodb\_file\_per\_table :   An important configuration option that affects many
 
     See Also file-per-table, MySQL Enterprise Backup.
 
-innodb\_lock\_wait\_timeout :   The `innodb_lock_wait_timeout` option sets the balance between **waiting** for shared resources to become available, or giving up and handling the error, retrying, or doing alternative processing in your application. Rolls back any `InnoDB` transaction that waits more than a specified time to acquire a **lock**. Especially useful if **deadlocks** are caused by updates to multiple tables controlled by different storage engines; such deadlocks are not **detected** automatically.
+innodb_lock_wait_timeout :   The `innodb_lock_wait_timeout` option sets the balance between **waiting** for shared resources to become available, or giving up and handling the error, retrying, or doing alternative processing in your application. Rolls back any `InnoDB` transaction that waits more than a specified time to acquire a **lock**. Especially useful if **deadlocks** are caused by updates to multiple tables controlled by different storage engines; such deadlocks are not **detected** automatically.
 
     See Also deadlock, lock, wait.
 
-innodb\_strict\_mode :   The `innodb_strict_mode` option controls whether `InnoDB` operates in **strict mode**, where conditions that are normally treated as warnings, cause errors instead (and the underlying statements fail).
+innodb_strict_mode :   The `innodb_strict_mode` option controls whether `InnoDB` operates in **strict mode**, where conditions that are normally treated as warnings, cause errors instead (and the underlying statements fail).
 
     See Also strict mode.
 
@@ -944,7 +944,7 @@ instance :   A single **mysqld** daemon managing a **data directory** representi
 
 instrumentation :   Modifications at the source code level to collect performance data for tuning and debugging. In MySQL, data collected by instrumentation is exposed through an SQL interface using the `INFORMATION_SCHEMA` and `PERFORMANCE_SCHEMA` databases.
 
-    See Also INFORMATION\_SCHEMA, Performance Schema.
+    See Also INFORMATION_SCHEMA, Performance Schema.
 
 intention exclusive lock :   See intention lock.
 
@@ -1000,7 +1000,7 @@ join :   A **query** that retrieves data from more than one table, by referencin
 
 keystore :   See Also SSL.
 
-KEY\_BLOCK\_SIZE :   An option to specify the size of data pages within an `InnoDB` table that uses **compressed row format**. The default is 8 kilobytes. Lower values risk hitting internal limits that depend on the combination of row size and compression percentage.
+KEY_BLOCK_SIZE :   An option to specify the size of data pages within an `InnoDB` table that uses **compressed row format**. The default is 8 kilobytes. Lower values risk hitting internal limits that depend on the combination of row size and compression percentage.
 
     For `MyISAM` tables, `KEY_BLOCK_SIZE` optionally specifies the size in bytes to use for index key blocks. The value is treated as a hint; a different size could be used if necessary. A `KEY_BLOCK_SIZE` value specified for an individual index definition overrides a table-level `KEY_BLOCK_SIZE` value.
 
@@ -1064,23 +1064,23 @@ locking read :   A `SELECT` statement that also performs a **locking** operation
 
     See Also deadlock, isolation level, locking, non-locking read, read-only transaction.
 
-log :   In the `InnoDB` context, “log” or “log files” typically refers to the **redo log** represented by the **ib\_logfile*`N`*** files. Another type of `InnoDB` log is the **undo log**, which is a storage area that holds copies of data modified by active transactions.
+log :   In the `InnoDB` context, “log” or “log files” typically refers to the **redo log** represented by the **ib_logfile*`N`*** files. Another type of `InnoDB` log is the **undo log**, which is a storage area that holds copies of data modified by active transactions.
 
     Other kinds of logs that are important in MySQL are the **error log** (for diagnosing startup and runtime problems), **binary log** (for working with replication and performing point-in-time restores), the **general query log** (for diagnosing application problems), and the **slow query log** (for diagnosing performance problems).
 
-    See Also binary log, error log, general query log, ib\_logfile, redo log, slow query log, undo log.
+    See Also binary log, error log, general query log, ib_logfile, redo log, slow query log, undo log.
 
 log buffer :   The memory area that holds data to be written to the **log files** that make up the **redo log**. It is controlled by the `innodb_log_buffer_size` configuration option.
 
     See Also log file, redo log.
 
-log file :   One of the **ib\_logfile*`N`*** files that make up the **redo log**. Data is written to these files from the **log buffer** memory area.
+log file :   One of the **ib_logfile*`N`*** files that make up the **redo log**. Data is written to these files from the **log buffer** memory area.
 
-    See Also ib\_logfile, log buffer, redo log.
+    See Also ib_logfile, log buffer, redo log.
 
-log group :   The set of files that make up the **redo log**, typically named `ib_logfile0` and `ib_logfile1`. (For that reason, sometimes referred to collectively as **ib\_logfile**.)
+log group :   The set of files that make up the **redo log**, typically named `ib_logfile0` and `ib_logfile1`. (For that reason, sometimes referred to collectively as **ib_logfile**.)
 
-    See Also ib\_logfile, redo log.
+    See Also ib_logfile, redo log.
 
 logical :   A type of operation that involves high-level, abstract aspects such as tables, queries, indexes, and other SQL concepts. Typically, logical aspects are important to make database administration and application development convenient and usable. Contrast with **physical**.
 
@@ -1090,7 +1090,7 @@ logical backup :   A **backup** that reproduces table structure and data, withou
 
     See Also backup, mysqldump, physical backup, restore.
 
-loose\_ :   A prefix added to `InnoDB` configuration options after server **startup**, so any new configuration options not recognized by the current level of MySQL do not cause a startup failure. MySQL processes configuration options that start with this prefix, but gives a warning rather than a failure if the part after the prefix is not a recognized option.
+loose_ :   A prefix added to `InnoDB` configuration options after server **startup**, so any new configuration options not recognized by the current level of MySQL do not cause a startup failure. MySQL processes configuration options that start with this prefix, but gives a warning rather than a failure if the part after the prefix is not a recognized option.
 
     See Also startup.
 
@@ -1156,9 +1156,9 @@ metadata lock :   A type of **lock** that prevents **DDL** operations on a table
 
     See Also DDL, lock, online, transaction.
 
-metrics counter :   A feature implemented by the `INNODB_METRICS` table in the **INFORMATION\_SCHEMA**, in MySQL 5.6 and higher. You can query **counts** and totals for low-level `InnoDB` operations, and use the results for performance tuning in combination with data from the **Performance Schema**.
+metrics counter :   A feature implemented by the `INNODB_METRICS` table in the **INFORMATION_SCHEMA**, in MySQL 5.6 and higher. You can query **counts** and totals for low-level `InnoDB` operations, and use the results for performance tuning in combination with data from the **Performance Schema**.
 
-    See Also counter, INFORMATION\_SCHEMA, Performance Schema.
+    See Also counter, INFORMATION_SCHEMA, Performance Schema.
 
 midpoint insertion strategy :   The technique of initially bringing **pages** into the `InnoDB` **buffer pool** not at the “newest” end of the list, but instead somewhere in the middle. The exact location of this point can vary, based on the setting of the `innodb_old_blocks_pct` option. The intent is that pages that are only read once, such as during a **full table scan**, can be aged out of the buffer pool sooner than with a strict **LRU** algorithm. For more information, see Section 17.5.1, “Buffer Pool”.
 
@@ -1170,9 +1170,9 @@ mini-transaction :   An internal phase of `InnoDB` processing, when making chang
 
 mixed-mode insert :   An `INSERT` statement where **auto-increment** values are specified for some but not all of the new rows. For example, a multi-value `INSERT` could specify a value for the auto-increment column in some cases and `NULL` in other cases. `InnoDB` generates auto-increment values for the rows where the column value was specified as `NULL`. Another example is an `INSERT ... ON DUPLICATE KEY UPDATE` statement, where auto-increment values might be generated but not used, for any duplicate rows that are processed as `UPDATE` rather than `INSERT` statements.
 
-    Can cause consistency issues between **source** and **replica** servers in a **replication** configuration. Can require adjusting the value of the **innodb\_autoinc\_lock\_mode** configuration option.
+    Can cause consistency issues between **source** and **replica** servers in a **replication** configuration. Can require adjusting the value of the **innodb_autoinc_lock_mode** configuration option.
 
-    See Also auto-increment, innodb\_autoinc\_lock\_mode, replica, replication, source.
+    See Also auto-increment, innodb_autoinc_lock_mode, replica, replication, source.
 
 MM.MySQL :   An older JDBC driver for MySQL that evolved into **Connector/J** when it was integrated with the MySQL product.
 
@@ -1416,7 +1416,7 @@ partial trust :   An execution environment typically used by hosting providers, 
 
 Performance Schema :   The `performance_schema` schema, in MySQL 5.5 and up, presents a set of tables that you can query to get detailed information about the performance characteristics of many internal parts of the MySQL server. See Chapter 29, *MySQL Performance Schema*.
 
-    See Also INFORMATION\_SCHEMA, latch, mutex, rw-lock.
+    See Also INFORMATION_SCHEMA, latch, mutex, rw-lock.
 
 Perl :   A programming language with roots in Unix scripting and report generation. Incorporates high-performance regular expressions and file I/O. Large collection of reusable modules available through repositories such as CPAN.
 
@@ -1562,7 +1562,7 @@ random dive :   A technique for quickly estimating the number of different value
 
 raw backup :   The initial set of backup files produced by the **MySQL Enterprise Backup** product, before the changes reflected in the **binary log** and any **incremental backups** are applied. At this stage, the files are not ready to **restore**. After these changes are applied, the files are known as a **prepared backup**.
 
-    See Also binary log, hot backup, ibbackup\_logfile, incremental backup, MySQL Enterprise Backup, prepared backup, restore.
+    See Also binary log, hot backup, ibbackup_logfile, incremental backup, MySQL Enterprise Backup, prepared backup, restore.
 
 READ COMMITTED :   An **isolation level** that uses a **locking** strategy that relaxes some of the protection between **transactions**, in the interest of performance. Transactions cannot see uncommitted data from other transactions, but they can see data that is committed by another transaction after the current transaction started. Thus, a transaction never sees any bad data, but the data that it does see may depend to some extent on the timing of other transactions.
 
@@ -1606,7 +1606,7 @@ redo log :   A disk-based data structure used during **crash recovery**, to corr
 
     For more information, see Section 17.6.5, “Redo Log”
 
-    See Also crash recovery, data files, ib\_logfile, log buffer, LSN, redo, shutdown, transaction.
+    See Also crash recovery, data files, ib_logfile, log buffer, LSN, redo, shutdown, transaction.
 
 redo log archiving :   An `InnoDB` feature that, when enabled, sequentially writes redo log records to an archive file to avoid potential loss of data than can occur when a backup utility fails to keep pace with redo log generation while a backup operation is in progress. For more information, see Redo Log Archiving.
 
@@ -1692,7 +1692,7 @@ row lock :   A **lock** that prevents a row from being accessed in an incompatib
 
 row-based replication :   A form of **replication** where events are propagated from the **source** specifying how to change individual rows on the **replica**. It is safe to use for all settings of the `innodb_autoinc_lock_mode` option.
 
-    See Also auto-increment locking, innodb\_autoinc\_lock\_mode, replica, replication, source, statement-based replication.
+    See Also auto-increment locking, innodb_autoinc_lock_mode, replica, replication, source, statement-based replication.
 
 row-level locking :   The **locking** mechanism used for **InnoDB** tables, relying on **row locks** rather than **table locks**. Multiple **transactions** can modify the same table concurrently. Only if two transactions try to modify the same row does one of the transactions wait for the other to complete (and release its row locks).
 
@@ -1740,13 +1740,13 @@ scale up :   A technique for increasing **scalability** by increasing the capaci
 
     See Also scalability, scale out.
 
-schema :   Conceptually, a schema is a set of interrelated database objects, such as tables, table columns, data types of the columns, indexes, foreign keys, and so on. These objects are connected through SQL syntax, because the columns make up the tables, the foreign keys refer to tables and columns, and so on. Ideally, they are also connected logically, working together as part of a unified application or flexible framework. For example, the **INFORMATION\_SCHEMA** and **performance\_schema** databases use “schema” in their names to emphasize the close relationships between the tables and columns they contain.
+schema :   Conceptually, a schema is a set of interrelated database objects, such as tables, table columns, data types of the columns, indexes, foreign keys, and so on. These objects are connected through SQL syntax, because the columns make up the tables, the foreign keys refer to tables and columns, and so on. Ideally, they are also connected logically, working together as part of a unified application or flexible framework. For example, the **INFORMATION_SCHEMA** and **performance_schema** databases use “schema” in their names to emphasize the close relationships between the tables and columns they contain.
 
     In MySQL, physically, a **schema** is synonymous with a **database**. You can substitute the keyword `SCHEMA` instead of `DATABASE` in MySQL SQL syntax, for example using `CREATE SCHEMA` instead of `CREATE DATABASE`.
 
     Some other database products draw a distinction. For example, in the Oracle Database product, a **schema** represents only a part of a database: the tables and other objects owned by a single user.
 
-    See Also database, INFORMATION\_SCHEMA, Performance Schema.
+    See Also database, INFORMATION_SCHEMA, Performance Schema.
 
 search index :   In MySQL, **full-text search** queries use a special kind of index, the **FULLTEXT index**. In MySQL 5.6.4 and up, `InnoDB` and `MyISAM` tables both support `FULLTEXT` indexes; formerly, these indexes were only available for `MyISAM` tables.
 
@@ -1874,7 +1874,7 @@ statement interceptor :   A type of **interceptor** for tracing, debugging, or a
 
 statement-based replication :   A form of **replication** where SQL statements are sent from the **source** and replayed on the **replica**. It requires some care with the setting for the `innodb_autoinc_lock_mode` option, to avoid potential timing problems with **auto-increment locking**.
 
-    See Also auto-increment locking, innodb\_autoinc\_lock\_mode, replica, replication, row-based replication, source.
+    See Also auto-increment locking, innodb_autoinc_lock_mode, replica, replication, row-based replication, source.
 
 statistics :   Estimated values relating to each `InnoDB` **table** and **index**, used to construct an efficient **query execution plan**. The main values are the **cardinality** (number of distinct values) and the total number of table rows or index entries. The statistics for the table represent the data in its **primary key** index. The statistics for a **secondary index** represent the rows covered by that index.
 
@@ -1882,9 +1882,9 @@ statistics :   Estimated values relating to each `InnoDB` **table** and **index*
 
     You can control how **NULL** values are treated when calculating statistics through the `innodb_stats_method` configuration option.
 
-    Other types of statistics are available for database objects and database activity through the **INFORMATION\_SCHEMA** and **PERFORMANCE\_SCHEMA** tables.
+    Other types of statistics are available for database objects and database activity through the **INFORMATION_SCHEMA** and **PERFORMANCE_SCHEMA** tables.
 
-    See Also cardinality, index, INFORMATION\_SCHEMA, NULL, Performance Schema, primary key, query execution plan, secondary index, transaction.
+    See Also cardinality, index, INFORMATION_SCHEMA, NULL, Performance Schema, primary key, query execution plan, secondary index, transaction.
 
 stemming :   The ability to search for different variations of a word based on a common root word, such as singular and plural, or past, present, and future verb tense. This feature is currently supported in `MyISAM` **full-text search** feature but not in **FULLTEXT indexes** for `InnoDB` tables.
 
@@ -1910,7 +1910,7 @@ strict mode :   The general name for the setting controlled by the `innodb_stric
 
     MySQL also has something called strict mode. See Section 7.1.11, “Server SQL Modes”.
 
-    See Also innodb\_strict\_mode, row format.
+    See Also innodb_strict_mode, row format.
 
 sublist :   Within the list structure that represents the **buffer pool**, pages that are relatively old and relatively new are represented by different portions of the **list**. A set of parameters control the size of these portions and the dividing point between the new and old pages.
 
@@ -1954,7 +1954,7 @@ tablespace :   A data file that can hold data for one or more `InnoDB` **tables*
 
     MySQL NDB Cluster also groups its tables into tablespaces. See Section 25.6.11.1, “NDB Cluster Disk Data Objects” for details.
 
-    See Also data files, file-per-table, general tablespace, index, innodb\_file\_per\_table.
+    See Also data files, file-per-table, general tablespace, index, innodb_file_per_table.
 
 Tcl :   A programming language originating in the Unix scripting world. Sometimes extended by code written in **C**, **C++**, or **Java**. For the open-source Tcl **API** for MySQL, see Section 31.12, “MySQL Tcl API”.
 
@@ -2084,7 +2084,7 @@ victim :   The **transaction** that is automatically chosen to be **rolled back*
 
     **Deadlock detection** can be disabled using the `innodb_deadlock_detect` configuration option.
 
-    See Also deadlock, innodb\_lock\_wait\_timeout, transaction.
+    See Also deadlock, innodb_lock_wait_timeout, transaction.
 
 view :   A stored query that when invoked produces a result set. A view acts as a virtual table.
 
@@ -2125,6 +2125,6 @@ write combining :   An optimization technique that reduces write operations when
 
 ### Y
 
-young :   A characteristic of a **page** in the `InnoDB` **buffer pool** meaning that it has been accessed recently, and so is moved within the buffer pool data structure, so that it is not **flushed** too soon by the **LRU** algorithm. This term is used in some **INFORMATION\_SCHEMA** column names of tables related to the buffer pool.
+young :   A characteristic of a **page** in the `InnoDB` **buffer pool** meaning that it has been accessed recently, and so is moved within the buffer pool data structure, so that it is not **flushed** too soon by the **LRU** algorithm. This term is used in some **INFORMATION_SCHEMA** column names of tables related to the buffer pool.
 
-    See Also buffer pool, flush, INFORMATION\_SCHEMA, LRU, page.
+    See Also buffer pool, flush, INFORMATION_SCHEMA, LRU, page.

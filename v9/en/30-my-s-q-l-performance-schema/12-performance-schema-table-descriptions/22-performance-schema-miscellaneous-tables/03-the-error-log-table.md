@@ -1,4 +1,4 @@
-#### 29.12.22.3 The error\_log Table
+#### 29.12.22.3 The error_log Table
 
 Of the logs the MySQL server maintains, one is the error log to which it writes diagnostic messages (see Section 7.4.2, “The Error Log”). Typically, the server writes diagnostics to a file on the server host or to a system log service. Depending on error log configuration, the server can also write the most recent error events to the Performance Schema `error_log` table. Granting the `SELECT` privilege for the `error_log` table thus gives clients and applications access to error log contents using SQL queries, enabling DBAs to provide access to the log without the need to permit direct file system access on the server host.
 
@@ -104,7 +104,7 @@ The `error_log` table has these indexes:
 
 `TRUNCATE TABLE` is not permitted for the `error_log` table.
 
-##### Implementation and Configuration of the error\_log Table
+##### Implementation and Configuration of the error_log Table
 
 The Performance Schema `error_log` table is populated by error log sink components that write to the table in addition to writing formatted error events to the error log. Performance Schema support by log sinks has two parts:
 
@@ -132,4 +132,4 @@ Any configuration that affects output written to the error log affects `error_lo
 
 The `error_log` table is a view on a fixed-size, in-memory ring buffer, with old events automatically discarded as necessary to make room for new ones. As shown in the following table, several status variables provide information about ongoing `error_log` operation.
 
-<table summary="error_log table status variables."><col style="width: 35%"/><col style="width: 35%"/><thead><tr> <th>Status Variable</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_buffered_bytes"><code class="literal">Error_log_buffered_bytes</code></a></td> <td>Bytes used in table</td> </tr><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_buffered_events"><code class="literal">Error_log_buffered_events</code></a></td> <td>Events present in table</td> </tr><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_expired_events"><code class="literal">Error_log_expired_events</code></a></td> <td>Events discarded from table</td> </tr><tr> <td><a class="link" href="server-status-variables.html#statvar_Error_log_latest_write"><code class="literal">Error_log_latest_write</code></a></td> <td>Time of last write to table</td> </tr></tbody></table>
+<table summary="error_log table status variables."><col style="width: 35%"/><col style="width: 35%"/><thead><tr> <th>Status Variable</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code class="literal">Error_log_buffered_bytes</code></td> <td>Bytes used in table</td> </tr><tr> <td><code class="literal">Error_log_buffered_events</code></td> <td>Events present in table</td> </tr><tr> <td><code class="literal">Error_log_expired_events</code></td> <td>Events discarded from table</td> </tr><tr> <td><code class="literal">Error_log_latest_write</code></td> <td>Time of last write to table</td> </tr></tbody></table>

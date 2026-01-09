@@ -62,7 +62,7 @@ ndb-connectstring=ndb_mgmd.mysql.com:1186
 
 For additional `NDB` variables that can be set in the `my.cnf` file, see Section 25.4.3.9.2, “NDB Cluster System Variables”.
 
-The NDB Cluster global configuration file is by convention named `config.ini` (but this is not required). If needed, it is read by **ndb\_mgmd** at startup and can be placed in any location that can be read by it. The location and name of the configuration are specified using `--config-file=path_name` with **ndb\_mgmd** on the command line. This option has no default value, and is ignored if **ndb\_mgmd** uses the configuration cache.
+The NDB Cluster global configuration file is by convention named `config.ini` (but this is not required). If needed, it is read by **ndb_mgmd** at startup and can be placed in any location that can be read by it. The location and name of the configuration are specified using `--config-file=path_name` with **ndb_mgmd** on the command line. This option has no default value, and is ignored if **ndb_mgmd** uses the configuration cache.
 
 The global configuration file for NDB Cluster uses INI format, which consists of sections preceded by section headings (surrounded by square brackets), followed by the appropriate parameter names and values. One deviation from the standard INI format is that the parameter name and value can be separated by a colon (`:`) as well as the equal sign (`=`); however, the equal sign is preferred. Another deviation is that sections are not uniquely identified by section name. Instead, unique sections (such as two different nodes of the same type) are identified by a unique ID specified as a parameter within the section.
 

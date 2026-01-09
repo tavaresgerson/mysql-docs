@@ -1,4 +1,4 @@
-### 28.3.15 A Tabela `FILES\_SCHEMA`
+### 28.3.15 A Tabela `FILES_SCHEMA`
 
 A tabela `FILES` fornece informações sobre os arquivos nos quais os dados do espaço de tabela do MySQL são armazenados.
 
@@ -251,7 +251,7 @@ As seguintes notas se aplicam aos arquivos de dados `InnoDB`.
 
 #### Notas do NDB
 
-* A tabela `FILES` fornece informações apenas sobre arquivos de dados de disco; você não pode usá-la para determinar a alocação ou disponibilidade de espaço em disco para tabelas `NDB`. No entanto, é possível ver quanto espaço está alocado para cada tabela `NDB` com dados armazenados em disco — bem como quanto espaço ainda está disponível para armazenamento de dados em disco para essa tabela — usando **ndb\_desc**.
+* A tabela `FILES` fornece informações apenas sobre arquivos de dados de disco; você não pode usá-la para determinar a alocação ou disponibilidade de espaço em disco para tabelas `NDB`. No entanto, é possível ver quanto espaço está alocado para cada tabela `NDB` com dados armazenados em disco — bem como quanto espaço ainda está disponível para armazenamento de dados em disco para essa tabela — usando **ndb_desc**.
 
 * Grande parte das informações contidas na tabela `FILES` também pode ser encontrada na tabela `ndbinfo` `files`.
 
@@ -289,6 +289,6 @@ As seguintes notas se aplicam aos arquivos de dados `InnoDB`.
 
   O tamanho da extensão pode ser definido em uma declaração `CREATE TABLESPACE`. Para mais informações, consulte a Seção 15.1.25, “Declaração CREATE TABLESPACE”.
 
-* Você pode obter informações sobre os espaços de tabelas de dados de disco usando o utilitário **ndb\_desc**. Para mais informações, consulte a Seção 25.6.11.1, “Objetos de Disco de Tabela de Agrupamento NDB”, bem como a descrição de **ndb\_desc**.
+* Você pode obter informações sobre os espaços de tabelas de dados de disco usando o utilitário **ndb_desc**. Para mais informações, consulte a Seção 25.6.11.1, “Objetos de Disco de Tabela de Agrupamento NDB”, bem como a descrição de **ndb_desc**.
 
 * Para obter informações adicionais e exemplos de criação, eliminação e obtenção de informações sobre objetos de dados de disco do NDB Cluster, consulte a Seção 25.6.11, “Tabelas de Dados de Disco do NDB Cluster”.

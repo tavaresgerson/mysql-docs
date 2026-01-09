@@ -15,5 +15,5 @@ For more information, see the following:
 * Disk Data file system parameters.
 * Disk Data latency parameters
 * Section 25.6.15.32, “The ndbinfo diskstat Table”
-* Section 25.6.15.33, “The ndbinfo diskstats\_1sec Table”
-* Section 25.6.15.50, “The ndbinfo pgman\_time\_track\_stats Table”
+* Section 25.6.15.33, “The ndbinfo diskstats_1sec Table”
+* Section 25.6.15.50, “The ndbinfo pgman_time_track_stats Table”

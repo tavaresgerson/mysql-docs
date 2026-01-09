@@ -2,13 +2,13 @@
 
 6.4.4.1 Instalação do Plugin para Carteira de Chave
 
-6.4.4.2 Usando o plugin de cartela de chaves baseado em arquivo keyring\_file
+6.4.4.2 Usando o plugin de cartela de chaves baseado em arquivo keyring_file
 
-6.4.4.3 Usando o plugin de cartela de chaves com arquivo criptografado keyring\_encrypted\_file
+6.4.4.3 Usando o plugin de cartela de chaves com arquivo criptografado keyring_encrypted_file
 
-6.4.4.4 Usando o plugin KMIP keyring\_okv
+6.4.4.4 Usando o plugin KMIP keyring_okv
 
-6.4.4.5 Usando o plugin Amazon Web Services Keyring keyring\_aws
+6.4.4.5 Usando o plugin Amazon Web Services Keyring keyring_aws
 
 6.4.4.6 Tipos e comprimentos de chaves de cartela de identificação suportados
 
@@ -28,13 +28,13 @@ O MySQL Server suporta um conjunto de chaves que permite que os componentes inte
 
 - Plugins de chaveiro que gerenciam um armazenamento de backup ou se comunicam com um backend de armazenamento. Esses plugins de chaveiro estão disponíveis:
 
-  - `keyring_file`: Armazena os dados do bloco de chaves em um arquivo local ao hospedeiro do servidor. Disponível nas distribuições MySQL Community Edition e MySQL Enterprise Edition a partir do MySQL 5.7.11. Consulte Seção 6.4.4.2, “Usando o plugin de bloco de chaves baseado em arquivo keyring\_file”.
+  - `keyring_file`: Armazena os dados do bloco de chaves em um arquivo local ao hospedeiro do servidor. Disponível nas distribuições MySQL Community Edition e MySQL Enterprise Edition a partir do MySQL 5.7.11. Consulte Seção 6.4.4.2, “Usando o plugin de bloco de chaves baseado em arquivo keyring_file”.
 
-  - `keyring_encrypted_file`: Armazena os dados do bloco de chaves em um arquivo criptografado e protegido por senha, localizado no host do servidor. Disponível nas distribuições da MySQL Enterprise Edition a partir do MySQL 5.7.21. Consulte Seção 6.4.4.3, “Uso do plugin de bloco de chaves com arquivo criptografado keyring\_encrypted\_file”.
+  - `keyring_encrypted_file`: Armazena os dados do bloco de chaves em um arquivo criptografado e protegido por senha, localizado no host do servidor. Disponível nas distribuições da MySQL Enterprise Edition a partir do MySQL 5.7.21. Consulte Seção 6.4.4.3, “Uso do plugin de bloco de chaves com arquivo criptografado keyring_encrypted_file”.
 
-  - `keyring_okv`: Um plugin KMIP 1.1 para uso com produtos de armazenamento de chaveiro de backend compatíveis com KMIP, como o Oracle Key Vault e o Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições da MySQL Enterprise Edition a partir do MySQL 5.7.12. Veja Seção 6.4.4.4, “Usando o plugin KMIP keyring\_okv”.
+  - `keyring_okv`: Um plugin KMIP 1.1 para uso com produtos de armazenamento de chaveiro de backend compatíveis com KMIP, como o Oracle Key Vault e o Gemalto SafeNet KeySecure Appliance. Disponível nas distribuições da MySQL Enterprise Edition a partir do MySQL 5.7.12. Veja Seção 6.4.4.4, “Usando o plugin KMIP keyring_okv”.
 
-  - `keyring_aws`: Comunica-se com o Serviço de Gerenciamento de Chaves do Amazon Web Services para a geração de chaves e utiliza um arquivo local para armazenamento de chaves. Disponível nas distribuições da MySQL Enterprise Edition a partir do MySQL 5.7.19. Consulte Seção 6.4.4.5, “Uso do plugin keyring\_aws do Amazon Web Services Keyring”.
+  - `keyring_aws`: Comunica-se com o Serviço de Gerenciamento de Chaves do Amazon Web Services para a geração de chaves e utiliza um arquivo local para armazenamento de chaves. Disponível nas distribuições da MySQL Enterprise Edition a partir do MySQL 5.7.19. Consulte Seção 6.4.4.5, “Uso do plugin keyring_aws do Amazon Web Services Keyring”.
 
 - Uma interface de serviço de chave de chave para gerenciamento de chaves de chave (MySQL 5.7.13 e superior). Este serviço é acessível em dois níveis:
 

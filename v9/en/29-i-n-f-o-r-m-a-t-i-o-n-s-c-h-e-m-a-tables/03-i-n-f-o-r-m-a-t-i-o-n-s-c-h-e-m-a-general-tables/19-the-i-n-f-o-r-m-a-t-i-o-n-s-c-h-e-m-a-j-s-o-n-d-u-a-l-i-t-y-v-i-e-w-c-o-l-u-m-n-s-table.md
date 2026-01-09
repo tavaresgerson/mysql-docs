@@ -1,4 +1,4 @@
-### 28.3.19 The INFORMATION SCHEMA JSON\_DUALITY\_VIEW\_COLUMNS Table
+### 28.3.19 The INFORMATION SCHEMA JSON_DUALITY_VIEW_COLUMNS Table
 
 The `JSON_DUALITY_VIEW_COLUMNS` table shows information about all columns referenced by any JSON duality view which is accessible by the current user. There is one row per table reference.
 

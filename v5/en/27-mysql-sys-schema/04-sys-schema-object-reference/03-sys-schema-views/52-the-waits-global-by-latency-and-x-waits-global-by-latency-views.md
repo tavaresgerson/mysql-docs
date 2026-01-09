@@ -1,4 +1,4 @@
-#### 26.4.3.52 The waits\_global\_by\_latency and x$waits\_global\_by\_latency Views
+#### 26.4.3.52 The waits_global_by_latency and x$waits_global_by_latency Views
 
 These views summarize wait events, grouped by event. By default, rows are sorted by descending total latency. Idle events are ignored.
 

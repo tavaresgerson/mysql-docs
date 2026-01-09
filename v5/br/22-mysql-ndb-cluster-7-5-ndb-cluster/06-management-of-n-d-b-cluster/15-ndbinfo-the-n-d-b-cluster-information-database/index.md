@@ -1,48 +1,48 @@
 ### 21.6.15 ndbinfo: A Base de Dados de Informação do NDB Cluster
 
-21.6.15.1 Tabela ndbinfo arbitrator\_validity\_detail
+21.6.15.1 Tabela ndbinfo arbitrator_validity_detail
 
 21.6.15.2 Tabela de resumo de validade do árbitro ndbinfo
 
 21.6.15.3 Blocos de ndbinfo da tabela
 
-21.6.15.4 A tabela ndbinfo cluster\_locks
+21.6.15.4 A tabela ndbinfo cluster_locks
 
 21.6.15.5 Tabela de operações de cluster ndbinfo
 
-21.6.15.6 Tabela ndbinfo cluster\_transactions
+21.6.15.6 Tabela ndbinfo cluster_transactions
 
-21.6.15.7 A tabela ndbinfo config\_nodes
+21.6.15.7 A tabela ndbinfo config_nodes
 
-21.6.15.8 A tabela ndbinfo config\_params
+21.6.15.8 A tabela ndbinfo config_params
 
-21.6.15.9 A tabela ndbinfo config\_values
+21.6.15.9 A tabela ndbinfo config_values
 
 21.6.15.10 Contadores de ndbinfo da tabela
 
 21.6.15.11 Tabela ndbinfo cpustat
 
-21.6.15.12 Tabela ndbinfo cpustat\_50ms
+21.6.15.12 Tabela ndbinfo cpustat_50ms
 
-21.6.15.13 Tabela ndbinfo cpustat\_1sec
+21.6.15.13 Tabela ndbinfo cpustat_1sec
 
-21.6.15.14 Tabela ndbinfo cpustat\_20sec
+21.6.15.14 Tabela ndbinfo cpustat_20sec
 
-21.6.15.15 Tabela ndbinfo dict\_obj\_info
+21.6.15.15 Tabela ndbinfo dict_obj_info
 
-21.6.15.16 Tabela ndbinfo dict\_obj\_types
+21.6.15.16 Tabela ndbinfo dict_obj_types
 
-21.6.15.17 Tabela ndbinfo disk\_write\_speed\_base
+21.6.15.17 Tabela ndbinfo disk_write_speed_base
 
-21.6.15.18 Tabela ndbinfo disk\_write\_speed\_aggregate
+21.6.15.18 Tabela ndbinfo disk_write_speed_aggregate
 
-21.6.15.19 A tabela ndbinfo disk\_write\_speed\_aggregate\_node
+21.6.15.19 A tabela ndbinfo disk_write_speed_aggregate_node
 
 21.6.15.20 Tabela ndbinfo diskpagebuffer
 
 21.6.15.21 Tabela de mensagens de erro ndbinfo
 
-21.6.15.22 Tabela ndbinfo locks\_per\_fragment
+21.6.15.22 Tabela ndbinfo locks_per_fragment
 
 21.6.15.23 A tabela ndbinfo logbuffers
 
@@ -52,33 +52,33 @@
 
 21.6.15.26 Tabela de uso de memória ndbinfo
 
-21.6.15.27 Tabela ndbinfo memory\_per\_fragment
+21.6.15.27 Tabela ndbinfo memory_per_fragment
 
 21.6.15.28 A tabela de nós ndbinfo
 
-21.6.15.29 A tabela ndbinfo operations\_per\_fragment
+21.6.15.29 A tabela ndbinfo operations_per_fragment
 
 21.6.15.30 Processos da ndbinfo que processam a tabela
 
 21.6.15.31 A tabela de recursos ndbinfo
 
-21.6.15.32 Tabela ndbinfo restart\_info
+21.6.15.32 Tabela ndbinfo restart_info
 
-21.6.15.33 A tabela ndbinfo server\_locks
+21.6.15.33 A tabela ndbinfo server_locks
 
 21.6.15.34 Tabela de operações do servidor ndbinfo
 
-21.6.15.35 A tabela server\_transactions do ndbinfo
+21.6.15.35 A tabela server_transactions do ndbinfo
 
-21.6.15.36 A tabela ndbinfo table\_distribution\_status
+21.6.15.36 A tabela ndbinfo table_distribution_status
 
-21.6.15.37 A tabela ndbinfo table\_fragments
+21.6.15.37 A tabela ndbinfo table_fragments
 
-21.6.15.38 A tabela ndbinfo table\_info
+21.6.15.38 A tabela ndbinfo table_info
 
-21.6.15.39 A tabela ndbinfo table\_replicas
+21.6.15.39 A tabela ndbinfo table_replicas
 
-21.6.15.40 A tabela ndbinfo tc\_time\_track\_stats
+21.6.15.40 A tabela ndbinfo tc_time_track_stats
 
 21.6.15.41 Bloqueios de threads ndbinfo da tabela
 
@@ -383,4 +383,4 @@ ERROR 1146 (42S02): Table 'ndbinfo.Nodes' doesn't exist
 
 **mysqldump** ignora completamente o banco de dados `ndbinfo` e o exclui de qualquer saída. Isso é verdadeiro mesmo quando você usa a opção `--databases` ou `--all-databases`.
 
-O NDB Cluster também mantém tabelas no banco de dados de informações `INFORMATION_SCHEMA`, incluindo a tabela `FILES`, que contém informações sobre os arquivos usados para o armazenamento de dados do NDB Cluster, e a tabela `ndb_transid_mysql_connection_map`, que mostra as relações entre transações, coordenadores de transações e nós da API do NDB Cluster. Para mais informações, consulte as descrições das tabelas ou Seção 21.6.16, “Tabelas INFORMATION\_SCHEMA para NDB Cluster”.
+O NDB Cluster também mantém tabelas no banco de dados de informações `INFORMATION_SCHEMA`, incluindo a tabela `FILES`, que contém informações sobre os arquivos usados para o armazenamento de dados do NDB Cluster, e a tabela `ndb_transid_mysql_connection_map`, que mostra as relações entre transações, coordenadores de transações e nós da API do NDB Cluster. Para mais informações, consulte as descrições das tabelas ou Seção 21.6.16, “Tabelas INFORMATION_SCHEMA para NDB Cluster”.

@@ -18,7 +18,7 @@ Internally, identifiers are converted to and are stored as Unicode (UTF-8). The 
 
 * Permitted characters in unquoted identifiers:
 
-  + ASCII: [0-9,a-z,A-Z$\_] (basic Latin letters, digits 0-9, dollar, underscore)
+  + ASCII: [0-9,a-z,A-Z$_] (basic Latin letters, digits 0-9, dollar, underscore)
 
   + Extended: U+0080 .. U+FFFF
 * Permitted characters in quoted identifiers include the full Unicode Basic Multilingual Plane (BMP), except U+0000:

@@ -1,4 +1,4 @@
-### 24.4.8 A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED
+### 24.4.8 A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED
 
 A tabela `INNODB_FT_BEING_DELETED` fornece um instantâneo da tabela `INNODB_FT_DELETED`; ela é usada apenas durante uma operação de manutenção de `OPTIMIZE TABLE`. Quando a `OPTIMIZE TABLE` é executada, a tabela `INNODB_FT_BEING_DELETED` é esvaziada e os valores de `DOC_ID` são removidos da tabela `INNODB_FT_DELETED`. Como o conteúdo da tabela `INNODB_FT_BEING_DELETED` geralmente tem uma vida útil curta, essa tabela tem utilidade limitada para monitoramento ou depuração. Para obter informações sobre como executar a `OPTIMIZE TABLE` em tabelas com índices `FULLTEXT`, consulte Seção 12.9.6, “Ajuste fino da pesquisa full-text do MySQL”.
 

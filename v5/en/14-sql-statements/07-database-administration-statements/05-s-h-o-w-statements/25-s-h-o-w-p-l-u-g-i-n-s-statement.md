@@ -63,4 +63,4 @@ For plugins installed with [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INS
 
 For information about plugin data structures that form the basis of the information displayed by [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"), see [The MySQL Plugin API](/doc/extending-mysql/5.7/en/plugin-api.html).
 
-Plugin information is also available from the `INFORMATION_SCHEMA` `.PLUGINS` table. See [Section 24.3.17, “The INFORMATION\_SCHEMA PLUGINS Table”](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table").
+Plugin information is also available from the `INFORMATION_SCHEMA` `.PLUGINS` table. See [Section 24.3.17, “The INFORMATION_SCHEMA PLUGINS Table”](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table").

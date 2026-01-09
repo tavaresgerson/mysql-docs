@@ -1,6 +1,6 @@
-### 25.5.26 ndb\_select\_count — Imprimir Contagem de Linhas para Tabelas NDB
+### 25.5.26 ndb_select_count — Imprimir Contagem de Linhas para Tabelas NDB
 
-**ndb\_select\_count** imprime o número de linhas em uma ou mais tabelas `NDB`. Com uma única tabela, o resultado é equivalente ao obtido usando a instrução MySQL `SELECT COUNT(*) FROM tbl_name`.
+**ndb_select_count** imprime o número de linhas em uma ou mais tabelas `NDB`. Com uma única tabela, o resultado é equivalente ao obtido usando a instrução MySQL `SELECT COUNT(*) FROM tbl_name`.
 
 #### Uso
 
@@ -8,7 +8,7 @@
 ndb_select_count [-c connection_string] -ddb_name tbl_name[, tbl_name2[, ...]]
 ```
 
-As opções que podem ser usadas com **ndb\_select\_count** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+As opções que podem ser usadas com **ndb_select_count** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 * `--character-sets-dir`
 

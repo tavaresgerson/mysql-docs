@@ -14,7 +14,7 @@ For more information about GTIDs and how these GTID functions are used in practi
 
 **Table 14.26 GTID Functions**
 
-<table frame="box" rules="all" summary="A reference that lists functions used with global transaction identifiers (GTIDs)."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><a class="link" href="gtid-functions.html#function_wait-for-executed-gtid-set"><code class="literal">WAIT_FOR_EXECUTED_GTID_SET()</code></a></td> <td> Wait until the given GTIDs have executed on the replica. </td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists functions used with global transaction identifiers (GTIDs)."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code class="literal">WAIT_FOR_EXECUTED_GTID_SET()</code></td> <td> Wait until the given GTIDs have executed on the replica. </td> </tr></tbody></table>
 
 * `GTID_SUBSET(set1,set2)`
 
@@ -87,7 +87,7 @@ For more information about GTIDs and how these GTID functions are used in practi
 
 * `WAIT_FOR_EXECUTED_GTID_SET(gtid_set[, timeout])`
 
-  Wait until the server has applied all of the transactions whose global transaction identifiers are contained in *`gtid_set`*; that is, until the condition GTID\_SUBSET(*`gtid_subset`*, `@@GLOBAL.gtid_executed`) holds. See Section 19.1.3.1, “GTID Format and Storage” for a definition of GTID sets.
+  Wait until the server has applied all of the transactions whose global transaction identifiers are contained in *`gtid_set`*; that is, until the condition GTID_SUBSET(*`gtid_subset`*, `@@GLOBAL.gtid_executed`) holds. See Section 19.1.3.1, “GTID Format and Storage” for a definition of GTID sets.
 
   If a timeout is specified, and *`timeout`* seconds elapse before all of the transactions in the GTID set have been applied, the function stops waiting. *`timeout`* is optional, and the default timeout is 0 seconds, in which case the function always waits until all of the transactions in the GTID set have been applied. *`timeout`* must be greater than or equal to 0; when running in strict SQL mode, a negative *`timeout`* value is immediately rejected with an error (`ER_WRONG_ARGUMENTS`); otherwise the function returns `NULL`, and raises a warning.
 

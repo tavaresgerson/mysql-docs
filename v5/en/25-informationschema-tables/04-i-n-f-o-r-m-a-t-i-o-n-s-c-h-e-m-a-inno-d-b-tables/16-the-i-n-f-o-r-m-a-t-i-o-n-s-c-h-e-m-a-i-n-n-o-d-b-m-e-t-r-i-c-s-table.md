@@ -1,4 +1,4 @@
-### 24.4.16 The INFORMATION\_SCHEMA INNODB\_METRICS Table
+### 24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table
 
 The [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table") table provides a wide variety of `InnoDB` performance information, complementing the specific focus areas of the Performance Schema tables for `InnoDB`. With simple queries, you can check the overall health of the system. With more detailed queries, you can diagnose issues such as performance bottlenecks, resource shortages, and application issues.
 
@@ -6,7 +6,7 @@ Each monitor represents a point within the `InnoDB` source code that is instrume
 
 By default, relatively little data is collected. To start, stop, and reset counters, set one of the system variables [`innodb_monitor_enable`](innodb-parameters.html#sysvar_innodb_monitor_enable), [`innodb_monitor_disable`](innodb-parameters.html#sysvar_innodb_monitor_disable), [`innodb_monitor_reset`](innodb-parameters.html#sysvar_innodb_monitor_reset), or [`innodb_monitor_reset_all`](innodb-parameters.html#sysvar_innodb_monitor_reset_all), using the name of the counter, the name of the module, a wildcard match for such a name using the “%” character, or the special keyword `all`.
 
-For usage information, see [Section 14.16.6, “InnoDB INFORMATION\_SCHEMA Metrics Table”](innodb-information-schema-metrics-table.html "14.16.6 InnoDB INFORMATION_SCHEMA Metrics Table").
+For usage information, see [Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”](innodb-information-schema-metrics-table.html "14.16.6 InnoDB INFORMATION_SCHEMA Metrics Table").
 
 The [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table") table has these columns:
 

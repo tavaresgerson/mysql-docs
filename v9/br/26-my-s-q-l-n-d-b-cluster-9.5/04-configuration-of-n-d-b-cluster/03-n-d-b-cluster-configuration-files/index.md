@@ -50,6 +50,6 @@ Nota
 
 É possível reverter para uma configuração anterior ao excluir arquivos de cache de configuração posteriores ou renomeando um arquivo de cache anterior para que tenha um *`seq_id`* maior. No entanto, como os arquivos de cache de configuração são escritos em um formato binário, você não deve tentar editar seu conteúdo manualmente.
 
-Para obter mais informações sobre as opções `--configdir`, `--config-cache`, `--initial` e `--reload` para o servidor de gerenciamento do NDB Cluster, consulte a Seção 25.5.4, “ndb\_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”.
+Para obter mais informações sobre as opções `--configdir`, `--config-cache`, `--initial` e `--reload` para o servidor de gerenciamento do NDB Cluster, consulte a Seção 25.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”.
 
 Estamos constantemente melhorando a configuração do NDB Cluster e tentando simplificar esse processo. Embora nos esforcemos para manter a compatibilidade reversa, pode haver momentos em que introduzimos uma mudança incompatível. Nesses casos, tentamos informar os usuários do NDB Cluster com antecedência se uma mudança não for compatível com versões anteriores. Se você encontrar tal mudança e não a tenhamos documentado, por favor, informe-nos no banco de bugs do MySQL usando as instruções fornecidas na Seção 1.6, “Como relatar bugs ou problemas”.

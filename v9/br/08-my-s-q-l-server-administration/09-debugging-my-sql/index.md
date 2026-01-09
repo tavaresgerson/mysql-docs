@@ -4,7 +4,7 @@
 
 7.9.2 Depuração de um cliente MySQL
 
-7.9.3 A Ferramenta LOCK\_ORDER
+7.9.3 A Ferramenta LOCK_ORDER
 
 7.9.4 O Pacote DBUG
 

@@ -15,7 +15,7 @@ Informações de status variáveis também estão disponíveis nessas fontes:
 
 - Tabelas do Schema de Desempenho. Consulte Seção 25.12.14, “Tabelas de Variáveis de Status do Schema de Desempenho”.
 
-- As tabelas `GLOBAL_STATUS` e `SESSION_STATUS` (information-schema-status-table.html). Veja Seção 24.3.10, “As tabelas INFORMATION\_SCHEMA GLOBAL\_STATUS e SESSION\_STATUS”.
+- As tabelas `GLOBAL_STATUS` e `SESSION_STATUS` (information-schema-status-table.html). Veja Seção 24.3.10, “As tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS”.
 
 - O comando **mysqladmin extended-status**. Veja Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”.
 
@@ -65,7 +65,7 @@ mysql> SHOW STATUS;
 +--------------------------+------------+
 ```
 
-Com uma cláusula `LIKE` (funções de comparação de strings.html#operador\_like), a instrução exibe apenas as linhas para aquelas variáveis com nomes que correspondem ao padrão:
+Com uma cláusula `LIKE` (funções de comparação de strings.html#operador_like), a instrução exibe apenas as linhas para aquelas variáveis com nomes que correspondem ao padrão:
 
 ```sql
 mysql> SHOW STATUS LIKE 'Key%';

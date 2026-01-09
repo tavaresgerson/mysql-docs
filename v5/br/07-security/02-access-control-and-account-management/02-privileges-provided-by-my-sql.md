@@ -26,7 +26,177 @@ A tabela a seguir mostra os nomes de privilégios usados nas declarações `GRAN
 
 **Tabela 6.2 Prerrogativas Permitidas para GRANTE e REVOGAR**
 
-<table><col style="width: 30%"/><col style="width: 33%"/><col style="width: 37%"/><thead><tr> <th>Privilégio</th> <th>Coluna da Tabela de Concessão</th> <th>Contexto</th> </tr></thead><tbody><tr> <th><a class="link" href="privileges-provided.html#priv_all">[[PH_HTML_CODE_<code>Create_tablespace_priv</code>]</a></th> <td>Sinônimo de<span class="quote">“<span class="quote">todos os privilégios</span>”</span></td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_alter">[[PH_HTML_CODE_<code>Create_tablespace_priv</code>]</a></th> <td>[[PH_HTML_CODE_<code>Create_tmp_table_priv</code>]</td> <td>Tabelas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_alter-routine">[[PH_HTML_CODE_<code>CREATE USER</code>]</a></th> <td>[[PH_HTML_CODE_<code>Create_user_priv</code>]</td> <td>Rotinas armazenadas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_create">[[PH_HTML_CODE_<code>CREATE VIEW</code>]</a></th> <td>[[PH_HTML_CODE_<code>Create_view_priv</code>]</td> <td>Bancos de dados, tabelas ou índices</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_create-routine">[[PH_HTML_CODE_<code>DELETE</code>]</a></th> <td>[[PH_HTML_CODE_<code>Delete_priv</code>]</td> <td>Rotinas armazenadas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_create-tablespace">[[PH_HTML_CODE_<code>DROP</code>]</a></th> <td>[[<code>Create_tablespace_priv</code>]]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_create-temporary-tables">[[<code>ALTER</code><code>Create_tablespace_priv</code>]</a></th> <td>[[<code>Create_tmp_table_priv</code>]]</td> <td>Tabelas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_create-user">[[<code>CREATE USER</code>]]</a></th> <td>[[<code>Create_user_priv</code>]]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_create-view">[[<code>CREATE VIEW</code>]]</a></th> <td>[[<code>Create_view_priv</code>]]</td> <td>Visões</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_delete">[[<code>DELETE</code>]]</a></th> <td>[[<code>Delete_priv</code>]]</td> <td>Tabelas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_drop">[[<code>DROP</code>]]</a></th> <td>[[<code>Alter_priv</code><code>Create_tablespace_priv</code>]</td> <td>Bancos de dados, tabelas ou visualizações</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_event">[[<code>Alter_priv</code><code>Create_tablespace_priv</code>]</a></th> <td>[[<code>Alter_priv</code><code>Create_tmp_table_priv</code>]</td> <td>Bancos de dados</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_execute">[[<code>Alter_priv</code><code>CREATE USER</code>]</a></th> <td>[[<code>Alter_priv</code><code>Create_user_priv</code>]</td> <td>Rotinas armazenadas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_file">[[<code>Alter_priv</code><code>CREATE VIEW</code>]</a></th> <td>[[<code>Alter_priv</code><code>Create_view_priv</code>]</td> <td>Acesso a arquivos no host do servidor</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_grant-option">[[<code>Alter_priv</code><code>DELETE</code>]</a></th> <td>[[<code>Alter_priv</code><code>Delete_priv</code>]</td> <td>Bancos de dados, tabelas ou rotinas armazenadas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_index">[[<code>Alter_priv</code><code>DROP</code>]</a></th> <td>[[<code>ALTER ROUTINE</code><code>Create_tablespace_priv</code>]</td> <td>Tabelas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_insert">[[<code>ALTER ROUTINE</code><code>Create_tablespace_priv</code>]</a></th> <td>[[<code>ALTER ROUTINE</code><code>Create_tmp_table_priv</code>]</td> <td>Tabelas ou colunas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_lock-tables">[[<code>ALTER ROUTINE</code><code>CREATE USER</code>]</a></th> <td>[[<code>ALTER ROUTINE</code><code>Create_user_priv</code>]</td> <td>Bancos de dados</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_process">[[<code>ALTER ROUTINE</code><code>CREATE VIEW</code>]</a></th> <td>[[<code>ALTER ROUTINE</code><code>Create_view_priv</code>]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_proxy">[[<code>ALTER ROUTINE</code><code>DELETE</code>]</a></th> <td>Veja a tabela [[<code>ALTER ROUTINE</code><code>Delete_priv</code>]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_references">[[<code>ALTER ROUTINE</code><code>DROP</code>]</a></th> <td>[[<code>Alter_routine_priv</code><code>Create_tablespace_priv</code>]</td> <td>Bancos de dados ou tabelas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_reload">[[<code>Alter_routine_priv</code><code>Create_tablespace_priv</code>]</a></th> <td>[[<code>Alter_routine_priv</code><code>Create_tmp_table_priv</code>]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_replication-client">[[<code>Alter_routine_priv</code><code>CREATE USER</code>]</a></th> <td>[[<code>Alter_routine_priv</code><code>Create_user_priv</code>]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_replication-slave">[[<code>Alter_routine_priv</code><code>CREATE VIEW</code>]</a></th> <td>[[<code>Alter_routine_priv</code><code>Create_view_priv</code>]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_select">[[<code>Alter_routine_priv</code><code>DELETE</code>]</a></th> <td>[[<code>Alter_routine_priv</code><code>Delete_priv</code>]</td> <td>Tabelas ou colunas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_show-databases">[[<code>Alter_routine_priv</code><code>DROP</code>]</a></th> <td>[[<code>CREATE</code><code>Create_tablespace_priv</code>]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_show-view">[[<code>CREATE</code><code>Create_tablespace_priv</code>]</a></th> <td>[[<code>CREATE</code><code>Create_tmp_table_priv</code>]</td> <td>Visões</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_shutdown">[[<code>CREATE</code><code>CREATE USER</code>]</a></th> <td>[[<code>CREATE</code><code>Create_user_priv</code>]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_super">[[<code>CREATE</code><code>CREATE VIEW</code>]</a></th> <td>[[<code>CREATE</code><code>Create_view_priv</code>]</td> <td>Administração de servidores</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_trigger">[[<code>CREATE</code><code>DELETE</code>]</a></th> <td>[[<code>CREATE</code><code>Delete_priv</code>]</td> <td>Tabelas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_update">[[<code>CREATE</code><code>DROP</code>]</a></th> <td>[[<code>Create_priv</code><code>Create_tablespace_priv</code>]</td> <td>Tabelas ou colunas</td> </tr><tr> <th><a class="link" href="privileges-provided.html#priv_usage">[[<code>Create_priv</code><code>Create_tablespace_priv</code>]</a></th> <td>Sinônimo de<span class="quote">“<span class="quote">sem privilégios</span>”</span></td> <td>Administração de servidores</td> </tr></tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th>Privilégio</th>
+      <th>Coluna da tabela de concessão</th>
+      <th>Contexto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><code>ALL [PRIVILEGES]</code></th>
+      <td>Synonym for <span>“<span>all privileges</span>”</span></td>
+      <td>Administração de servidores</td>
+    </tr>
+    <tr>
+      <th><code>ALTER</code></th>
+      <td><code>Alter_priv</code></td>
+      <td>Tabelas</td>
+    </tr>
+    <tr>
+      <th><code>ALTER ROUTINE</code></th>
+      <td><code>Alter_routine_priv</code></td>
+      <td>Rotinas armazenadas</td>
+    </tr>
+    <tr>
+      <th><code>CREATE</code></th>
+      <td><code>Create_priv</code></td>
+      <td>Bancos de dados, tabelas ou índices</td>
+    </tr>
+    <tr>
+      <th><code>CREATE ROUTINE</code></th>
+      <td><code>Create_routine_priv</code></td>
+      <td>Rotinas armazenadas</td>
+    </tr>
+    <tr>
+      <th><code>CREATE TABLESPACE</code></th>
+      <td><code>Create_tablespace_priv</code></td>
+      <td>Administração de servidores</td>
+    </tr>
+    <tr>
+      <th><code>CREATE TEMPORARY TABLES</code></th>
+      <td><code>Create_tmp_table_priv</code></td>
+      <td>Tabelas</td>
+    </tr>
+    <tr>
+      <th><code>CREATE USER</code></th>
+      <td><code>Create_user_priv</code></td>
+      <td>Administração de servidores</td>
+    </tr>
+    <tr>
+      <th><code>CREATE VIEW</code></th>
+      <td><code>Create_view_priv</code></td>
+      <td>Visualizações</td>
+    </tr>
+    <tr>
+      <th><code>DELETE</code></th>
+      <td><code>Delete_priv</code></td>
+      <td>Tabelas</td>
+    </tr>
+    <tr>
+      <th><code>DROP</code></th>
+      <td><code>Drop_priv</code></td>
+      <td>Bancos de dados, tabelas ou visualizações</td>
+    </tr>
+    <tr>
+      <th><code>EVENT</code></th>
+      <td><code>Event_priv</code></td>
+      <td>Bancos de dados</td>
+    </tr>
+    <tr>
+      <th><code>EXECUTE</code></th>
+      <td><code>Execute_priv</code></td>
+      <td>Rotinas armazenadas</td>
+    </tr>
+    <tr>
+      <th><code>FILE</code></th>
+      <td><code>File_priv</code></td>
+      <td>Acesso a arquivos no servidor host</td>
+    </tr>
+    <tr>
+      <th><code>GRANT OPTION</code></th>
+      <td><code>Grant_priv</code></td>
+      <td>Bancos de dados, tabelas ou rotinas armazenadas</td>
+    </tr>
+    <tr>
+      <th><code>INDEX</code></th>
+      <td><code>Index_priv</code></td>
+      <td>Tabelas</td>
+    </tr>
+    <tr>
+      <th><code>INSERT</code></th>
+      <td><code>Insert_priv</code></td>
+      <td>Tabelas ou colunas</td>
+    </tr>
+    <tr>
+      <th><code>LOCK TABLES</code></th>
+      <td><code>Lock_tables_priv</code></td>
+      <td>Bancos de dados</td>
+    </tr>
+    <tr>
+      <th><code>PROCESS</code></th>
+      <td><code>Process_priv</code></td>
+      <td>Administração do servidor</td>
+    </tr>
+    <tr>
+      <th><code>PROXY</code></th>
+      <td>See <code>proxies_priv</code> table</td>
+      <td>Administração do servidor</td>
+    </tr>
+    <tr>
+      <th><code>REFERENCES</code></th>
+      <td><code>References_priv</code></td>
+      <td>Bancos de dados ou tabelas</td>
+    </tr>
+    <tr>
+      <th><code>RELOAD</code></th>
+      <td><code>Reload_priv</code></td>
+      <td>Administração do servidor</td>
+    </tr>
+    <tr>
+      <th><code>REPLICATION CLIENT</code></th>
+      <td><code>Repl_client_priv</code></td>
+      <td>Administração do servidor</td>
+    </tr>
+    <tr>
+      <th><code>REPLICATION SLAVE</code></th>
+      <td><code>Repl_slave_priv</code></td>
+      <td>Administração do servidor</td>
+    </tr>
+    <tr>
+      <th><code>SELECT</code></th>
+      <td><code>Select_priv</code></td>
+      <td>Tabelas ou colunas</td>
+    </tr>
+    <tr>
+      <th><code>SHOW DATABASES</code></th>
+      <td><code>Show_db_priv</code></td>
+      <td>Administração do servidor</td>
+    </tr>
+    <tr>
+      <th><code>SHOW VIEW</code></th>
+      <td><code>Show_view_priv</code></td>
+      <td>Visualizações</td>
+    </tr>
+    <tr>
+      <th><code>SHUTDOWN</code></th>
+      <td><code>Shutdown_priv</code></td>
+      <td>Administração do servidor</td>
+    </tr>
+    <tr>
+      <th><code>SUPER</code></th>
+      <td><code>Super_priv</code></td>
+      <td>Administração do servidor</td>
+    </tr>
+    <tr>
+      <th><code>TRIGGER</code></th>
+      <td><code>Trigger_priv</code></td>
+      <td>Tabelas</td>
+    </tr>
+    <tr>
+      <th><code>UPDATE</code></th>
+      <td><code>Update_priv</code></td>
+      <td>Tabelas ou colunas</td>
+    </tr>
+    <tr>
+      <th><code>USAGE</code></th>
+      <td>Synonym for <span>“<span>no privileges</span>”</span></td>
+      <td>Administração do servidor</td>
+    </tr>
+  </tbody>
+</table>
 
 #### Descrição de privilégios
 
@@ -162,7 +332,7 @@ A lista a seguir fornece descrições gerais de cada privilégio disponível no 
 
 - `SELECT`
 
-  Permite que as linhas sejam selecionadas a partir de tabelas em um banco de dados. As instruções `[SELECT]` (select.html) exigem o privilégio `[SELECT]` (privileges-provided.html#priv\_select) apenas se elas realmente acessarem tabelas. Algumas instruções `[SELECT]` (select.html) não acessam tabelas e podem ser executadas sem permissão para qualquer banco de dados. Por exemplo, você pode usar `[SELECT]` (select.html) como uma calculadora simples para avaliar expressões que não fazem referência a tabelas:
+  Permite que as linhas sejam selecionadas a partir de tabelas em um banco de dados. As instruções `[SELECT]` (select.html) exigem o privilégio `[SELECT]` (privileges-provided.html#priv_select) apenas se elas realmente acessarem tabelas. Algumas instruções `[SELECT]` (select.html) não acessam tabelas e podem ser executadas sem permissão para qualquer banco de dados. Por exemplo, você pode usar `[SELECT]` (select.html) como uma calculadora simples para avaliar expressões que não fazem referência a tabelas:
 
   ```sql
   SELECT 1+1;

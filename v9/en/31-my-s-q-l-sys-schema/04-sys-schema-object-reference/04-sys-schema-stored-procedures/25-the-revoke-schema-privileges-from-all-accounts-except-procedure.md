@@ -1,6 +1,6 @@
-#### 30.4.4.25 The revoke\_schema\_privileges\_from\_all\_accounts\_except() Procedure
+#### 30.4.4.25 The revoke_schema_privileges_from_all_accounts_except() Procedure
 
-Revoke specified privileges for all users except those specified with the exclude\_users argument.
+Revoke specified privileges for all users except those specified with the exclude_users argument.
 
 ##### Parameters
 

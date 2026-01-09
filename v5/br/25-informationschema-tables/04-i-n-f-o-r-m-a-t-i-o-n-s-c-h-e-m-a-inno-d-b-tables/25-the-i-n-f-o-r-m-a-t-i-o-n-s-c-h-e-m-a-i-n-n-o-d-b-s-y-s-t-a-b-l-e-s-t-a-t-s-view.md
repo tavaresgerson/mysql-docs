@@ -1,4 +1,4 @@
-### 24.4.25 A visão INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS
+### 24.4.25 A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS
 
 A tabela [`INNODB_SYS_TABLESTATS`](https://pt.wikipedia.org/wiki/Tabela_innodb_sys_tablestats) fornece uma visão de informações de status de nível baixo sobre as tabelas `InnoDB`. Esses dados são usados pelo otimizador do MySQL para calcular qual índice usar ao consultar uma tabela `InnoDB`. Essas informações são derivadas de estruturas de dados em memória, e não de dados armazenados em disco. Não existe uma tabela interna correspondente do sistema `InnoDB`.
 
@@ -8,7 +8,7 @@ As estatísticas da tabela são atualizadas apenas para operações de `DELETE` 
 
 `ANALYSE TABELA` limpa as estatísticas da tabela e define a coluna `STATS_INITIALIZED` como `Não inicializada`. As estatísticas são coletadas novamente na próxima vez que a tabela for acessada.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
 
 A tabela [`INNODB_SYS_TABLESTATS`](https://docs.oracle.com/en/database/MySQL/8/dev/innodb-sys-tablestats-table.html) possui as seguintes colunas:
 

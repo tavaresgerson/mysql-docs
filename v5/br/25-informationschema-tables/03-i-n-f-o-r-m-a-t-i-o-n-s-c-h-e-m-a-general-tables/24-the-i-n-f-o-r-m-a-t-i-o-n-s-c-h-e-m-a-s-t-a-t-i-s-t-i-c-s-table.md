@@ -1,4 +1,4 @@
-### 24.3.24 A tabela INFORMATION\_SCHEMA STATISTICS
+### 24.3.24 A tabela INFORMATION_SCHEMA STATISTICS
 
 A tabela `STATÍSTICAS` fornece informações sobre índices de tabelas.
 

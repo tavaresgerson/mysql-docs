@@ -1,4 +1,4 @@
-#### 25.6.15.65 Tabela ndbinfo transporter\_details
+#### 25.6.15.65 Tabela ndbinfo transporter_details
 
 Esta tabela contém informações sobre os transportadores NDB individuais, em vez de informações agregadas, como mostra a tabela `transporters`.
 

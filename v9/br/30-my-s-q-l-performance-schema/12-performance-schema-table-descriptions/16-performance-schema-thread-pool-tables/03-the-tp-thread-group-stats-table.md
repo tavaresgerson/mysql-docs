@@ -1,4 +1,4 @@
-#### 29.12.16.3 A tabela `tp\_thread\_group\_stats`
+#### 29.12.16.3 A tabela `tp_thread_group_stats`
 
 A tabela `tp_thread_group_stats` reporta estatísticas por grupo de threads. Há uma linha por grupo.
 

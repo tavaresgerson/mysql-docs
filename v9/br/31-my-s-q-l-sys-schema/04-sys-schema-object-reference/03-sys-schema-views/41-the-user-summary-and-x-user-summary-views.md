@@ -1,4 +1,4 @@
-#### 30.4.3.41 Resumo do usuário e visualizações x$user\_summary
+#### 30.4.3.41 Resumo do usuário e visualizações x$user_summary
 
 Esses visualizações resumem a atividade de declarações, o E/S de arquivos e as conexões, agrupados por usuário. Por padrão, as linhas são ordenadas em ordem decrescente de latência total.
 

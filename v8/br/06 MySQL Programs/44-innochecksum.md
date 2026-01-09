@@ -137,7 +137,7 @@ O `innochecksum` suporta as seguintes opções. Para opções que se referem a n
   ```
 *  `--strict-check`, `-C`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>innodb</code></p><p class="valid-value"><code>crc32</code></p><p class="valid-value"><code>none</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--strict-check=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>innodb</code></p><p><code>crc32</code></p><p><code>none</code></p></td> </tr></tbody></table>
 
   Especificar um algoritmo de verificação de checksum rigoroso. As opções incluem `innodb`, `crc32` e `none`.
 
@@ -185,7 +185,7 @@ O `innochecksum` suporta as seguintes opções. Para opções que se referem a n
   Com `--allow-mismatches` definido para 1, se houver um desalinhamento na página 600 e outro na página 700 em um arquivo com 1000 páginas, o checksum é atualizado para as páginas 0-599 e 601-699. Como `--allow-mismatches` está definido para 1, o checksum tolera o primeiro desalinhamento e termina no segundo desalinhamento, deixando a página 600 e as páginas 700-999 inalteradas.
 *  `--write=nome`, `-w num`
 
-<table><tbody><tr><th>Formato de linha de comando</th> <td><code>--write=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>innodb</code></p><p class="valid-value"><code>crc32</code></p><p class="valid-value"><code>none</code></p></td> </tr></tbody></table>
+<table><tbody><tr><th>Formato de linha de comando</th> <td><code>--write=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>innodb</code></p><p><code>crc32</code></p><p><code>none</code></p></td> </tr></tbody></table>
 
   Reescrever um checksum. Ao reescrever um checksum inválido, a opção `--no-check` deve ser usada juntamente com a opção `--write`. A opção `--no-check` informa ao `innochecksum` para ignorar a verificação do checksum inválido. Você não precisa especificar a opção `--no-check` se o checksum atual for válido.
 

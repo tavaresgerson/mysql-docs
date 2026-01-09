@@ -1,8 +1,8 @@
 ### 25.12.9 Tabelas de atributos de conexão do esquema de desempenho
 
-25.12.9.1 Tabela session\_account\_connect\_attrs
+25.12.9.1 Tabela session_account_connect_attrs
 
-25.12.9.2 Tabela session\_connect\_attrs
+25.12.9.2 Tabela session_connect_attrs
 
 Os atributos de conexão são pares chave-valor que os programas de aplicação podem passar ao servidor no momento da conexão. Para aplicações baseadas na API C implementada pela biblioteca de cliente `libmysqlclient`, as funções `mysql_options()` e `mysql_options4()` definem o conjunto de atributos de conexão. Outros Conectores MySQL podem fornecer seus próprios métodos de definição de atributos.
 
@@ -27,21 +27,21 @@ A biblioteca de clientes `libmysqlclient` define esses atributos:
 
 - `_client_version`: A versão da biblioteca do cliente.
 
-- \_os: O sistema operacional (por exemplo, `Linux`, `Win64`).
+- _os: O sistema operacional (por exemplo, `Linux`, `Win64`).
 
 - `_pid`: O ID do processo do cliente.
 
-- \_platform: A plataforma da máquina (por exemplo, `x86_64`).
+- _platform: A plataforma da máquina (por exemplo, `x86_64`).
 
-- \_thread: O ID do thread do cliente (apenas no Windows).
+- _thread: O ID do thread do cliente (apenas no Windows).
 
 Outros Conectores MySQL podem definir seus próprios atributos de conexão.
 
 O MySQL Connector/J define esses atributos:
 
-- \_client\_license: O tipo de licença do conector.
+- _client_license: O tipo de licença do conector.
 
-- \_runtime\_vendor: O fornecedor do ambiente de execução Java (JRE).
+- _runtime_vendor: O fornecedor do ambiente de execução Java (JRE).
 
 - `_runtime_version`: A versão do ambiente de execução Java (JRE).
 
@@ -49,15 +49,15 @@ O MySQL Connector/NET define esses atributos:
 
 - `_client_version`: A versão da biblioteca do cliente.
 
-- \_os: O sistema operacional (por exemplo, `Linux`, `Win64`).
+- _os: O sistema operacional (por exemplo, `Linux`, `Win64`).
 
 - `_pid`: O ID do processo do cliente.
 
-- \_platform: A plataforma da máquina (por exemplo, `x86_64`).
+- _platform: A plataforma da máquina (por exemplo, `x86_64`).
 
 - `_program_name`: O nome do cliente.
 
-- \_thread: O ID do thread do cliente (apenas no Windows).
+- _thread: O ID do thread do cliente (apenas no Windows).
 
 O PHP define atributos que dependem de como ele foi compilado:
 

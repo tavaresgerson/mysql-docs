@@ -1,12 +1,12 @@
-### 28.3.48 A tabela TABLE\_CONSTRAINTS\_EXTENSIONS da tabela INFORMATION\_SCHEMA
+### 28.3.48 A tabela TABLE_CONSTRAINTS_EXTENSIONS da tabela INFORMATION_SCHEMA
 
-A tabela `TABLE\_CONSTRAINTS\_EXTENSIONS` fornece informações sobre os atributos de restrições de tabela definidos para os motores de armazenamento primário e secundário.
+A tabela `TABLE_CONSTRAINTS_EXTENSIONS` fornece informações sobre os atributos de restrições de tabela definidos para os motores de armazenamento primário e secundário.
 
 Observação
 
-A tabela `TABLE\_CONSTRAINTS\_EXTENSIONS` está reservada para uso futuro.
+A tabela `TABLE_CONSTRAINTS_EXTENSIONS` está reservada para uso futuro.
 
-A tabela `TABLE\_CONSTRAINTS\_EXTENSIONS` possui as seguintes colunas:
+A tabela `TABLE_CONSTRAINTS_EXTENSIONS` possui as seguintes colunas:
 
 * `CONSTRAINT_CATALOG`
 
@@ -28,6 +28,6 @@ A tabela `TABLE\_CONSTRAINTS\_EXTENSIONS` possui as seguintes colunas:
 
   Atributos de restrição definidos para o motor de armazenamento primário. Reservado para uso futuro.
 
-* `SECONDARY\_ENGINE\_ATTRIBUTE`
+* `SECONDARY_ENGINE_ATTRIBUTE`
 
   Atributos de restrição definidos para o motor de armazenamento secundário. Reservado para uso futuro.

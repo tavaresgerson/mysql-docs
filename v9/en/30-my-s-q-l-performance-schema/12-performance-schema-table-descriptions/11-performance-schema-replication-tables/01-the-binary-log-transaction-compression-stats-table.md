@@ -1,4 +1,4 @@
-#### 29.12.11.1 The binary\_log\_transaction\_compression\_stats Table
+#### 29.12.11.1 The binary_log_transaction_compression_stats Table
 
 This table shows statistical information for transaction payloads written to the binary log and relay log, and can be used to calculate the effects of enabling binary log transaction compression. For information on binary log transaction compression, see Section 7.4.4.5, “Binary Log Transaction Compression”.
 

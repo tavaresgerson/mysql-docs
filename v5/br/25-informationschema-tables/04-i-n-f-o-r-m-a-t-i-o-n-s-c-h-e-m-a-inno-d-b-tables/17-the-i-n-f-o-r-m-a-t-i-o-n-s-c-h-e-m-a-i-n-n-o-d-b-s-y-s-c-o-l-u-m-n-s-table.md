@@ -1,8 +1,8 @@
-### 24.4.17 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_COLUMNS
+### 24.4.17 A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS
 
 A tabela `[INNODB_SYS_COLUMNS]` (information-schema-innodb-sys-columns-table.html) fornece metadados sobre as colunas das tabelas `InnoDB`, equivalentes às informações da tabela `SYS_COLUMNS` no dicionário de dados `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
 
 A tabela [`INNODB_SYS_COLUMNS`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-sys-columns) possui as seguintes colunas:
 
@@ -16,7 +16,7 @@ A tabela [`INNODB_SYS_COLUMNS`](https://pt.wikipedia.org/wiki/Tabela_information
 
 - `POS`
 
-  A posição ordinal da coluna na tabela, começando de 0 e incrementando sequencialmente. Quando uma coluna é removida, as colunas restantes são reordenadas para que a sequência não tenha lacunas. O valor `POS` para uma coluna gerada virtualmente codifica o número de sequência da coluna e a posição ordinal da coluna. Para mais informações, consulte a descrição da coluna `POS` em Seção 24.4.26, “A Tabela INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL”.
+  A posição ordinal da coluna na tabela, começando de 0 e incrementando sequencialmente. Quando uma coluna é removida, as colunas restantes são reordenadas para que a sequência não tenha lacunas. O valor `POS` para uma coluna gerada virtualmente codifica o número de sequência da coluna e a posição ordinal da coluna. Para mais informações, consulte a descrição da coluna `POS` em Seção 24.4.26, “A Tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL”.
 
 - `MTYPE`
 

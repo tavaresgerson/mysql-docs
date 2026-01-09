@@ -58,9 +58,9 @@ A definição para colunas de caracteres (por exemplo, `TABLES.TABLE_NAME`) é g
 
 64. O MySQL usa a collation padrão para esse conjunto de caracteres (`utf8mb3_general_ci`) para todas as pesquisas, ordenações, comparações e outras operações de string nessas colunas.
 
-Como alguns objetos do MySQL são representados como arquivos, as pesquisas em colunas de texto do `INFORMATION_SCHEMA` podem ser afetadas pela sensibilidade ao caso do sistema de arquivos. Para mais informações, consulte a Seção 12.8.7, “Usando a Cotação em Pesquisas do INFORMATION\_SCHEMA”.
+Como alguns objetos do MySQL são representados como arquivos, as pesquisas em colunas de texto do `INFORMATION_SCHEMA` podem ser afetadas pela sensibilidade ao caso do sistema de arquivos. Para mais informações, consulte a Seção 12.8.7, “Usando a Cotação em Pesquisas do INFORMATION_SCHEMA”.
 
-### INFORMATION\_SCHEMA como Alternativa aos Estados SHOW
+### INFORMATION_SCHEMA como Alternativa aos Estados SHOW
 
 A instrução `SELECT ... FROM INFORMATION_SCHEMA` é destinada a ser uma maneira mais consistente de fornecer acesso às informações fornecidas pelas várias instruções `SHOW` que o MySQL suporta (`SHOW DATABASES`, `SHOW TABLES`, e assim por diante). Usar `SELECT` tem essas vantagens em comparação com `SHOW`:
 

@@ -26,8 +26,7 @@ Para recarregar um arquivo de dump, você deve ter os privilégios necessários 
 
 A saída do **mysqldump** pode incluir instruções `ALTER DATABASE` que alteram a codificação de caracteres do banco de dados. Essas instruções podem ser usadas ao fazer o backup de programas armazenados para preservar suas codificações de caracteres. Para recarregar um arquivo de backup que contenha essas instruções, é necessário o privilégio `ALTER` para o banco de dados afetado.
 
-Nota
-
+::: info Nota
 Um dump feito usando o PowerShell no Windows com redirecionamento de saída cria um arquivo com codificação UTF-16:
 
 ```sql
@@ -39,6 +38,7 @@ No entanto, o UTF-16 não é permitido como conjunto de caracteres de conexão (
 ```sql
 mysqldump [options] --result-file=dump.sql
 ```
+:::
 
 Não é recomendado carregar um arquivo de dump quando os GTIDs estão habilitados no servidor (`gtid_mode=ON`), se o seu arquivo de dump incluir tabelas do sistema. O **mysqldump** emite instruções DML para as tabelas do sistema que usam o mecanismo de armazenamento não transacional MyISAM, e essa combinação não é permitida quando os GTIDs estão habilitados.
 
@@ -829,7 +829,7 @@ O comando **mysqldump** faz login em um servidor MySQL para extrair informaçõe
 
   <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
+  Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
 
@@ -877,7 +877,7 @@ O comando **mysqldump** faz login em um servidor MySQL para extrair informaçõe
 
   Nota
 
-  Senhas que usam o método de hashing pré-4.1 são menos seguras do que senhas que usam o método de hashing de senha nativo e devem ser evitadas. Senhas pré-4.1 são desaconselhadas e o suporte para elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql\_old\_password”.
+  Senhas que usam o método de hashing pré-4.1 são menos seguras do que senhas que usam o método de hashing de senha nativo e devem ser evitadas. Senhas pré-4.1 são desaconselhadas e o suporte para elas foi removido no MySQL 5.7.5. Para instruções de atualização de conta, consulte a Seção 6.4.1.3, “Migrando para fora do hashing de senha pré-4.1 e do plugin mysql_old_password”.
 
 - `--server-public-key-path=nome_do_arquivo`
 
@@ -963,7 +963,7 @@ Essas opções são usadas para controlar quais arquivos de opção devem ser li
 
   Não leia nenhum arquivo de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas.
 
-  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se ele existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Ferramenta de Configuração do MySQL”.
+  A exceção é que o arquivo `.mylogin.cnf` é lido em todos os casos, se ele existir. Isso permite que as senhas sejam especificadas de uma maneira mais segura do que na linha de comando, mesmo quando o `--no-defaults` é usado. Para criar `.mylogin.cnf`, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Ferramenta de Configuração do MySQL”.
 
   Para obter informações adicionais sobre esta e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivo de opções”.
 
@@ -1015,9 +1015,9 @@ Os cenários de uso do **mysqldump** incluem a configuração de uma nova instâ
 
   Não escreva declarações `CREATE TABLE` que criem cada tabela descarregada.
 
-  Nota
-
+  ::: info Nota
   Essa opção **não** exclui declarações que criam grupos de arquivos de log ou espaços de tabelas do resultado do **mysqldump**. No entanto, você pode usar a opção `--no-tablespaces` para esse propósito.
+  :::
 
 - `--no-tablespaces`, `-y`
 
@@ -1177,9 +1177,10 @@ O comando **mysqldump** é frequentemente usado para criar uma instância vazia 
 
   Esta opção é semelhante à `--master-data`, exceto que é usada para drenar um servidor de réplica para produzir um arquivo de dump que pode ser usado para configurar outro servidor como uma réplica que tenha a mesma fonte que o servidor descarregado. Isso faz com que a saída do dump inclua uma declaração `CHANGE MASTER TO` que indica as coordenadas do log binário (nome do arquivo e posição) da fonte da réplica descarregada. A declaração `CHANGE MASTER TO` lê os valores de `Relay_Master_Log_File` e `Exec_Master_Log_Pos` da saída do `SHOW SLAVE STATUS` e os usa para `MASTER_LOG_FILE` e `MASTER_LOG_POS`, respectivamente. Essas são as coordenadas do servidor fonte do qual a réplica deve começar a replicar.
 
-  Nota
+  ::: info Nota
 
   Inconsistências na sequência das transações do log de retransmissão que foram executadas podem causar o uso da posição errada. Consulte a Seção 16.4.1.32, “Replicação e Inconsistências de Transações”, para obter mais informações.
+  :::
 
   A opção `--dump-slave` faz com que as coordenadas do servidor de origem sejam usadas, em vez das do servidor descarregado, como faz a opção `--master-data`. Além disso, ao especificar essa opção, ela substitui a opção `--master-data`, se estiver presente, e a ignora efetivamente.
 
@@ -1315,9 +1316,9 @@ As seguintes opções especificam como representar todo o arquivo de registro ou
 
   Produza arquivos de dados no formato de texto separados por tabulação. Para cada tabela descarregada, o **mysqldump** cria um arquivo `tbl_name.sql` que contém a instrução `CREATE TABLE` que cria a tabela, e o servidor escreve um arquivo `tbl_name.txt` que contém seus dados. O valor da opção é o diretório onde os arquivos serão escritos.
 
-  Nota
-
+  ::: info Nota
   Esta opção deve ser usada apenas quando o **mysqldump** é executado na mesma máquina que o servidor **mysqld**. Como o servidor cria arquivos `*.txt` no diretório que você especifica, o diretório deve ser legível pelo servidor e a conta MySQL que você usa deve ter o privilégio `FILE`. Como o **mysqldump** cria `*.sql` no mesmo diretório, ele deve ser legível pela conta de login do seu sistema.
+  :::
 
   Por padrão, os arquivos de dados `.txt` são formatados usando caracteres de tabulação entre os valores das colunas e uma nova linha no final de cada linha. O formato pode ser especificado explicitamente usando as opções `--fields-xxx` e `--lines-terminated-by`.
 
@@ -1501,9 +1502,9 @@ O desempenho também é afetado pelas opções transacionais, principalmente par
 
   O tamanho máximo do buffer para a comunicação cliente/servidor. O padrão é de 24 MB, e o máximo é de 1 GB.
 
-  Nota
-
+  ::: info Nota
   O valor dessa opção é específico para o **mysqldump** e não deve ser confundido com a variável de sistema `max_allowed_packet` do servidor MySQL; o valor do servidor não pode ser excedido por um único pacote do **mysqldump**, independentemente de qualquer configuração da opção **mysqldump**, mesmo que esta seja maior.
+  :::
 
 - `--net-buffer-length=valor`
 
@@ -1555,9 +1556,9 @@ As seguintes opções sacrificam o desempenho da operação de exclusão em favo
 
   Como o arquivo de implantação contém uma instrução `FLUSH PRIVILEGES`, a recarga do arquivo requer privilégios suficientes para executar essa instrução.
 
-  Nota
-
+  ::: info Nota
   Para fazer atualizações para o MySQL 5.7 ou versões mais recentes a partir de versões mais antigas, não use `--flush-privileges`. Para obter instruções de atualização neste caso, consulte a Seção 2.10.3, “Alterações no MySQL 5.7”.
+  :::
 
 - `--lock-all-tables`, `-x`
 
@@ -1601,7 +1602,7 @@ As seguintes opções sacrificam o desempenho da operação de exclusão em favo
 
   Essa opção define o modo de isolamento de transação como `REPEATABLE READ` e envia uma instrução SQL `START TRANSACTION` para o servidor antes de drenar os dados. Ela é útil apenas com tabelas transacionais, como `InnoDB`, porque, nesse caso, ela drenará o estado consistente do banco de dados no momento em que a instrução `START TRANSACTION` foi emitida, sem bloquear nenhuma aplicação.
 
-  O privilégio RELOAD ou FLUSH\_TABLES é necessário com `--single-transaction` se estiverem definidos tanto gtid\_mode=ON quanto --set-gtid=purged=ON|AUTO. Essa exigência foi adicionada no MySQL 8.0.32.
+  O privilégio RELOAD ou FLUSH_TABLES é necessário com `--single-transaction` se estiverem definidos tanto gtid_mode=ON quanto --set-gtid=purged=ON|AUTO. Essa exigência foi adicionada no MySQL 8.0.32.
 
   Ao usar essa opção, você deve ter em mente que apenas as tabelas `InnoDB` são descarregadas em um estado consistente. Por exemplo, quaisquer tabelas `MyISAM` ou `MEMORY` descarregadas enquanto estiver usando essa opção ainda podem mudar de estado.
 

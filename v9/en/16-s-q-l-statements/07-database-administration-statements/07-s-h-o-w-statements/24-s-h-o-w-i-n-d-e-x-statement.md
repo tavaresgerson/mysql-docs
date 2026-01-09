@@ -130,7 +130,7 @@ The `WHERE` clause can be given to select rows using more general conditions, as
 
   + For a functional key part, `Column_name` column is `NULL` and `Expression` indicates the expression for the key part.
 
-Information about table indexes is also available from the `INFORMATION_SCHEMA` `STATISTICS` table. See Section 28.3.40, “The INFORMATION\_SCHEMA STATISTICS Table”. The extended information about hidden indexes is available only using `SHOW EXTENDED INDEX`; it cannot be obtained from the `STATISTICS` table.
+Information about table indexes is also available from the `INFORMATION_SCHEMA` `STATISTICS` table. See Section 28.3.40, “The INFORMATION_SCHEMA STATISTICS Table”. The extended information about hidden indexes is available only using `SHOW EXTENDED INDEX`; it cannot be obtained from the `STATISTICS` table.
 
 You can list a table's indexes with the **mysqlshow -k *`db_name`* *`tbl_name`*** command.
 

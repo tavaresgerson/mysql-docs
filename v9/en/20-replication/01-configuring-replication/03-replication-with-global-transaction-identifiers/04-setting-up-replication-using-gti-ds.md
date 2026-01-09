@@ -52,7 +52,7 @@ enforce-gtid-consistency=ON
 
 Start each replica with `--skip-replica-start`. For more information on GTID related options and variables, see Section 19.1.6.5, “Global Transaction ID System Variables”.
 
-It is not mandatory to have binary logging enabled in order to use GTIDs when using the mysql.gtid\_executed Table. Source servers must always have binary logging enabled in order to be able to replicate. However, replica servers can use GTIDs but without binary logging. If you need to disable binary logging on a replica server, you can do this by specifying the `--skip-log-bin` and `--log-replica-updates=OFF` options for the replica.
+It is not mandatory to have binary logging enabled in order to use GTIDs when using the mysql.gtid_executed Table. Source servers must always have binary logging enabled in order to be able to replicate. However, replica servers can use GTIDs but without binary logging. If you need to disable binary logging on a replica server, you can do this by specifying the `--skip-log-bin` and `--log-replica-updates=OFF` options for the replica.
 
 **Step 4: Configure the replica to use GTID-based auto-positioning.** Tell the replica to use the source with GTID based transactions as the replication data source, and to use GTID-based auto-positioning rather than file-based positioning. Issue a `CHANGE REPLICATION SOURCE TO` on the replica, including the `SOURCE_AUTO_POSITION` option in the statement to tell the replica that the source's transactions are identified by GTIDs.
 

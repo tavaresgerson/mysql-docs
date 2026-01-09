@@ -26,7 +26,7 @@ Another approach is to change the place where the server creates the Unix socket
 
   See [Section 4.2.2.2, “Using Option Files”](option-files.html "4.2.2.2 Using Option Files").
 
-* Specify a [`--socket`](connection-options.html#option_general_socket) option on the command line to [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") and when you run client programs.
+* Specify a [`--socket`](connection-options.html#option_general_socket) option on the command line to [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") and when you run client programs.
 
 * Set the `MYSQL_UNIX_PORT` environment variable to the path of the Unix socket file.
 

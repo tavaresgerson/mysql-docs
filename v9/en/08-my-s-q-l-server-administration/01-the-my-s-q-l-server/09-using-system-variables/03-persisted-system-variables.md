@@ -104,9 +104,9 @@ was read from the persisted config file
 
 ##### Obtaining Information About Persisted System Variables
 
-The Performance Schema `persisted_variables` table provides an SQL interface to the `mysqld-auto.cnf` file, enabling its contents to be inspected at runtime using `SELECT` statements. See Section 29.12.14.2, “Performance Schema persisted\_variables Table”.
+The Performance Schema `persisted_variables` table provides an SQL interface to the `mysqld-auto.cnf` file, enabling its contents to be inspected at runtime using `SELECT` statements. See Section 29.12.14.2, “Performance Schema persisted_variables Table”.
 
-The Performance Schema `variables_info` table contains information showing when and by which user each system variable was most recently set. See Section 29.12.14.3, “Performance Schema variables\_info Table”.
+The Performance Schema `variables_info` table contains information showing when and by which user each system variable was most recently set. See Section 29.12.14.3, “Performance Schema variables_info Table”.
 
 `RESET PERSIST` affects the contents of the `persisted_variables` table because the table contents correspond to the contents of the `mysqld-auto.cnf` file. On the other hand, because `RESET PERSIST` does not change variable values, it has no effect on the contents of the `variables_info` table until the server is restarted.
 

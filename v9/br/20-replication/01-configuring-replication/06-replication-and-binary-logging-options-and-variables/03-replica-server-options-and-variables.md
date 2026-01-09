@@ -35,7 +35,7 @@ Esta seção explica as opções de inicialização para controlar servidores de
 
 <table frame="box" rules="all" summary="Propriedades para max_relay_log_size">
   <tr><th>Formato de Linha de Comando</th> <td><code>--max-relay-log-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-replica.html#sysvar_max_relay_log_size">max_relay_log_size</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>max_relay_log_size</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
   <tr><th>Dica de Sintaxe para Configuração de Variável</th> <td><code>SET_VAR</code></td> </tr>
@@ -59,7 +59,7 @@ Esta seção explica as opções de inicialização para controlar servidores de
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="replication-options-replica.html#sysvar_relay_log_purge">relay_log_purge</a></code></td>
+    <td><code>relay_log_purge</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -70,7 +70,7 @@ Esta seção explica as opções de inicialização para controlar servidores de
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -94,7 +94,7 @@ Esta seção explica as opções de inicialização para controlar servidores de
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="replication-options-replica.html#sysvar_relay_log_space_limit">relay_log_space_limit</a></code></td>
+    <td><code>relay_log_space_limit</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -105,7 +105,7 @@ Esta seção explica as opções de inicialização para controlar servidores de
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -330,10 +330,10 @@ Por padrão, o thread de I/O de replicação (receptor) não escreve eventos de 
 
 <table frame="box" rules="all" summary="Propriedades para max_relay_log_size">
   <tr><th>Formato de Linha de Comando</th> <td><code>--max-relay-log-size=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="replication-options-replica.html#sysvar_max_relay_log_size">max_relay_log_size</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>max_relay_log_size</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>0</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -360,11 +360,11 @@ Importante
 
 Os filtros de replicação de nível de tabela são aplicados apenas a tabelas que são explicitamente mencionadas e operadas na consulta. Eles não se aplicam a tabelas que são atualizadas implicitamente pela consulta. Por exemplo, uma instrução `GRANT`, que atualiza a tabela `mysql.user` do sistema, mas não menciona essa tabela, não é afetada por um filtro que especifica `mysql.%` como o padrão de wildcard.
 
-Para incluir caracteres wildcard literais nos padrões de nomes de banco de dados ou tabelas, escape-os com uma barra invertida. Por exemplo, para replicar todas as tabelas de um banco de dados chamado `my_own%db`, mas não replicar tabelas do banco de dados `my1ownAABCdb`, você deve escapar os caracteres `_` e `%` assim: `--replicate-wild-do-table=my\_own\%db`. Se você usar a opção na linha de comando, pode ser necessário duplicar as barras invertidas ou cobrir o valor da opção, dependendo do interpretador de comandos. Por exemplo, com o shell **bash**, você precisaria digitar `--replicate-wild-do-table=my\\_own\\%db`.
+Para incluir caracteres wildcard literais nos padrões de nomes de banco de dados ou tabelas, escape-os com uma barra invertida. Por exemplo, para replicar todas as tabelas de um banco de dados chamado `my_own%db`, mas não replicar tabelas do banco de dados `my1ownAABCdb`, você deve escapar os caracteres `_` e `%` assim: `--replicate-wild-do-table=my_own\%db`. Se você usar a opção na linha de comando, pode ser necessário duplicar as barras invertidas ou cobrir o valor da opção, dependendo do interpretador de comandos. Por exemplo, com o shell **bash**, você precisaria digitar `--replicate-wild-do-table=my\_own\\%db`.
 
 * `--replicate-wild-ignore-table=db_name.tbl_name`
 
-  <table frame="box" rules="all" summary="Propriedades para max_relay_log_size"><tr><th>Formato de linha de comando</th> <td><code>--max-relay-log-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="replication-options-replica.html#sysvar_max_relay_log_size">max_relay_log_size</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Dicas de configuração</a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th><a class="link" href="server-system-variables.html#system-variables-block-size" title="Nota">Tamanho do bloco</a></th> <td><code>4096</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para max_relay_log_size"><tr><th>Formato de linha de comando</th> <td><code>--max-relay-log-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>max_relay_log_size</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Dicas de configuração</a> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1073741824</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr><tr><th>Tamanho do bloco</th> <td><code>4096</code></td> </tr></table>
 
   Cria um filtro de replicação que impede que o thread SQL de replicação replique uma instrução na qual qualquer tabela corresponda ao padrão de wildcard fornecido. Para especificar mais de uma tabela a ser ignorada, use esta opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos de dados. Veja a Seção 19.2.5, “Como os servidores avaliam as regras de filtragem de replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_WILD_IGNORE_TABLE`.
 

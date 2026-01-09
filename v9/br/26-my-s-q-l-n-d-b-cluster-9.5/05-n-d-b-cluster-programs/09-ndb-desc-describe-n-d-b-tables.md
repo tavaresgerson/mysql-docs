@@ -1,6 +1,6 @@
-### 25.5.9 ndb\_desc — Descrever Tabelas NDB
+### 25.5.9 ndb_desc — Descrever Tabelas NDB
 
-O **ndb\_desc** fornece uma descrição detalhada de uma ou mais tabelas `NDB`.
+O **ndb_desc** fornece uma descrição detalhada de uma ou mais tabelas `NDB`.
 
 #### Uso
 
@@ -10,7 +10,7 @@ ndb_desc -c connection_string tbl_name -d db_name [options]
 ndb_desc -c connection_string index_name -d db_name -t tbl_name
 ```
 
-As opções adicionais que podem ser usadas com **ndb\_desc** estão listadas mais adiante nesta seção.
+As opções adicionais que podem ser usadas com **ndb_desc** estão listadas mais adiante nesta seção.
 
 #### Saída de Exemplo
 
@@ -35,7 +35,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-Saída do **ndb\_desc**:
+Saída do **ndb_desc**:
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -78,9 +78,9 @@ Partition       Row count       Commit count    Frag fixed memory       Frag var
 1               4               4               32768                   32768                   0               0
 ```
 
-Informações sobre múltiplas tabelas podem ser obtidas em uma única invocação do **ndb\_desc** usando seus nomes, separados por espaços. Todas as tabelas devem estar no mesmo banco de dados.
+Informações sobre múltiplas tabelas podem ser obtidas em uma única invocação do **ndb_desc** usando seus nomes, separados por espaços. Todas as tabelas devem estar no mesmo banco de dados.
 
-Você pode obter informações adicionais sobre um índice específico usando a opção `--table` (forma abreviada: `-t`) e fornecendo o nome do índice como o primeiro argumento para **ndb\_desc**, como mostrado aqui:
+Você pode obter informações adicionais sobre um índice específico usando a opção `--table` (forma abreviada: `-t`) e fornecendo o nome do índice como o primeiro argumento para **ndb_desc**, como mostrado aqui:
 
 ```
 $> ./ndb_desc uk -d test -t fish
@@ -126,7 +126,7 @@ Quando um índice é especificado dessa maneira, as opções `--extra-partition-
 
 A coluna `Version` na saída contém a versão do objeto de esquema da tabela. Para informações sobre a interpretação desse valor, consulte Objetos de Esquema NDB.
 
-Três das propriedades da tabela que podem ser definidas usando comentários `NDB_TABLE` embutidos em declarações `CREATE TABLE` e `ALTER TABLE` são também visíveis na saída do **ndb\_desc**. O `FRAGMENT_COUNT_TYPE` da tabela é sempre mostrado na coluna `FragmentCountType`. `READ_ONLY` e `FULLY_REPLICATED`, se definidos para 1, são mostrados na coluna `Table options`. Você pode ver isso após executar a seguinte declaração `ALTER TABLE` no cliente **mysql**:
+Três das propriedades da tabela que podem ser definidas usando comentários `NDB_TABLE` embutidos em declarações `CREATE TABLE` e `ALTER TABLE` são também visíveis na saída do **ndb_desc**. O `FRAGMENT_COUNT_TYPE` da tabela é sempre mostrado na coluna `FragmentCountType`. `READ_ONLY` e `FULLY_REPLICATED`, se definidos para 1, são mostrados na coluna `Table options`. Você pode ver isso após executar a seguinte declaração `ALTER TABLE` no cliente **mysql**:
 
 ```
 mysql> ALTER TABLE fish COMMENT='NDB_TABLE=READ_ONLY=1,FULLY_REPLICATED=1';
@@ -159,7 +159,7 @@ COMMENT='NDB_TABLE=READ_BACKUP=1,FULLY_REPLICATED=1'
 1 row in set (0.01 sec)
 ```
 
-Como o `FRAGMENT_COUNT_TYPE` não foi definido explicitamente, seu valor não é exibido no texto do comentário impresso pelo `SHOW CREATE TABLE`. O **ndb\_desc**, no entanto, exibe o valor atualizado para esse atributo. A coluna `Opções da tabela` mostra as propriedades binárias que foram habilitadas. Você pode ver isso na saída mostrada aqui (texto destacado):
+Como o `FRAGMENT_COUNT_TYPE` não foi definido explicitamente, seu valor não é exibido no texto do comentário impresso pelo `SHOW CREATE TABLE`. O **ndb_desc**, no entanto, exibe o valor atualizado para esse atributo. A coluna `Opções da tabela` mostra as propriedades binárias que foram habilitadas. Você pode ver isso na saída mostrada aqui (texto destacado):
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -254,7 +254,7 @@ INSERT INTO fish VALUES
     (NULL, 'grouper', 900, 125000), (NULL ,'puffer', 250, 2500);
 ```
 
-Quando executado contra essa versão da tabela, o **ndb\_desc** exibe a seguinte saída:
+Quando executado contra essa versão da tabela, o **ndb_desc** exibe a seguinte saída:
 
 ```
 $> ./ndb_desc -c localhost fish -d test -p
@@ -303,9 +303,9 @@ Isso significa que 1048576 bytes são alocados do espaço de tabelas para essa t
 
 `ID do espaço de tabelas` e `Espaço de tabela` também são exibidos para tabelas de Dados de Disco.
 
-Para tabelas totalmente replicadas, **ndb\_desc** mostra apenas os nós que contêm réplicas de fragmentos de partição primária; nós com réplicas de fragmentos de cópia (somente) são ignorados. Você pode obter essas informações, usando o cliente **mysql**, a partir das tabelas `table_distribution_status`, `table_fragments`, `table_info` e `table_replicas` no banco de dados `ndbinfo`.
+Para tabelas totalmente replicadas, **ndb_desc** mostra apenas os nós que contêm réplicas de fragmentos de partição primária; nós com réplicas de fragmentos de cópia (somente) são ignorados. Você pode obter essas informações, usando o cliente **mysql**, a partir das tabelas `table_distribution_status`, `table_fragments`, `table_info` e `table_replicas` no banco de dados `ndbinfo`.
 
-Todas as opções que podem ser usadas com **ndb\_desc** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+Todas as opções que podem ser usadas com **ndb_desc** são mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
 
 * `--auto-inc`, `-a`
 
@@ -441,7 +441,7 @@ Ignorar a leitura de opções a partir do arquivo de caminho de login.
   <tr><th>Valor Máximo</th> <td><code>12</code></td> </tr>
 </table>
 
-  Defina a string de conexão para a conexão com o **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina as entradas em `NDB_CONNECTSTRING` e `my.cnf`.
+  Defina a string de conexão para a conexão com o **ndb_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina as entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
 * `--ndb-mgm-tls`
 

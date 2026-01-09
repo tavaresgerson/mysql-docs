@@ -7,7 +7,7 @@ As tabelas `user` e `global_grants` concedem privilégios globais. As linhas nes
 A tabela `db` concede privilégios específicos do banco de dados. Os valores nas colunas de escopo dessa tabela podem assumir as seguintes formas:
 
 * Um valor em branco no campo `Usuário` corresponde ao usuário anônimo. Um valor com texto não em branco corresponde literalmente; não há caracteres especiais nos nomes de usuários.
-* Os caracteres especiais `%` e `_` podem ser usados nas colunas `Host` e `Db`. Eles têm o mesmo significado que as operações de correspondência de padrões realizadas com o operador `LIKE`. Se você quiser usar qualquer caractere literalmente ao conceder privilégios, deve escapar com uma barra invertida. Por exemplo, para incluir o caractere sublinhado (`_`) como parte de um nome de banco de dados, especifique-o como `\_` na declaração `GRANT`.
+* Os caracteres especiais `%` e `_` podem ser usados nas colunas `Host` e `Db`. Eles têm o mesmo significado que as operações de correspondência de padrões realizadas com o operador `LIKE`. Se você quiser usar qualquer caractere literalmente ao conceder privilégios, deve escapar com uma barra invertida. Por exemplo, para incluir o caractere sublinhado (`_`) como parte de um nome de banco de dados, especifique-o como `_` na declaração `GRANT`.
 * Um valor `'%'` ou em branco no campo `Host` significa “qualquer host”.
 * Um valor `'%'` ou em branco no campo `Db` significa “qualquer banco de dados”.
 

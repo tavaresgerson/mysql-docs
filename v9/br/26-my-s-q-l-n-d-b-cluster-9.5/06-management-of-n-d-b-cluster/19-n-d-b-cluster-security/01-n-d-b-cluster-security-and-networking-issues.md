@@ -14,7 +14,7 @@ Você pode exercer algum controle sobre o acesso de nós SQL e API ao cluster qu
 
 Consulte a Seção 25.4.1, “Configuração Rápida do NDB Cluster”, para exemplos de configuração usando `HostName` com nós da API.
 
-* Qualquer cliente **ndb\_mgm**
+* Qualquer cliente **ndb_mgm**
 
   Isso significa que qualquer cliente de gerenciamento de cluster que receber o nome do host (ou endereço IP) do servidor de gerenciamento e a porta (se não for a porta padrão) pode se conectar ao cluster e executar qualquer comando do cliente de gerenciamento. Isso inclui comandos como `ALL STOP` e `SHUTDOWN`.
 
@@ -80,4 +80,4 @@ Nota
 
 Se você deseja administrar um NDB Cluster remotamente (ou seja, de fora da rede local), a maneira recomendada de fazer isso é usar o **ssh** ou outro shell de login seguro para acessar um host de nó SQL. A partir desse host, você pode então executar o cliente de gerenciamento para acessar o servidor de gerenciamento com segurança, dentro da própria rede local do cluster.
 
-Embora seja possível fazer isso em teoria, **não** é recomendado usar o **ndb\_mgm** para gerenciar um Cluster diretamente de fora da rede local em que o Cluster está sendo executado. Como nem a autenticação nem a criptografia ocorrem entre o cliente de gerenciamento e o servidor de gerenciamento, isso representa um meio extremamente inseguro de gerenciar o cluster, e é quase certo que seja comprometido mais cedo ou mais tarde.
+Embora seja possível fazer isso em teoria, **não** é recomendado usar o **ndb_mgm** para gerenciar um Cluster diretamente de fora da rede local em que o Cluster está sendo executado. Como nem a autenticação nem a criptografia ocorrem entre o cliente de gerenciamento e o servidor de gerenciamento, isso representa um meio extremamente inseguro de gerenciar o cluster, e é quase certo que seja comprometido mais cedo ou mais tarde.

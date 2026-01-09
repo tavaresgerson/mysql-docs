@@ -1,4 +1,4 @@
-#### 30.4.3.42 Visitas `user\_summary\_by\_file\_io` e `x$user\_summary\_by\_file\_io`
+#### 30.4.3.42 Visitas `user_summary_by_file_io` e `x$user_summary_by_file_io`
 
 Essas visualizações resumem o I/O de arquivos, agrupados por usuário. Por padrão, as linhas são ordenadas em ordem decrescente de latência total de I/O de arquivos.
 

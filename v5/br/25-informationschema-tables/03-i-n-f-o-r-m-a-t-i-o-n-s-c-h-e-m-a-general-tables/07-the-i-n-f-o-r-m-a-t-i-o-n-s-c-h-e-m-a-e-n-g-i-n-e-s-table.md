@@ -1,4 +1,4 @@
-### 24.3.7 A Tabela INFORMATION\_SCHEMA ENGINES
+### 24.3.7 A Tabela INFORMATION_SCHEMA ENGINES
 
 A tabela `ENGINES` fornece informações sobre os motores de armazenamento. Isso é particularmente útil para verificar se um motor de armazenamento é suportado ou para ver qual é o motor padrão.
 
@@ -18,7 +18,7 @@ A tabela `ENGINES` tem as seguintes colunas:
 
   Um valor de `DESABILITADO` ocorre porque o servidor foi iniciado com uma opção que desabilita o motor ou porque não foram fornecidas todas as opções necessárias para ativá-lo. Neste último caso, o log de erro deve conter uma razão que indique por que a opção está desabilitada. Consulte Seção 5.4.2, “O Log de Erro”.
 
-  Você também pode ver `DESABILITADO` para um motor de armazenamento se o servidor foi compilado para suportar, mas foi iniciado com uma opção `--skip-engine_name`. Para o motor de armazenamento `NDB`, `DESABILITADO` significa que o servidor foi compilado com suporte para NDB Cluster, mas não foi iniciado com a opção `--ndbcluster`]\(mysql-cluster-options-variables.html#option\_mysqld\_ndbcluster).
+  Você também pode ver `DESABILITADO` para um motor de armazenamento se o servidor foi compilado para suportar, mas foi iniciado com uma opção `--skip-engine_name`. Para o motor de armazenamento `NDB`, `DESABILITADO` significa que o servidor foi compilado com suporte para NDB Cluster, mas não foi iniciado com a opção `--ndbcluster`]\(mysql-cluster-options-variables.html#option_mysqld_ndbcluster).
 
   Todos os servidores MySQL suportam tabelas `MyISAM`. Não é possível desabilitar `MyISAM`.
 

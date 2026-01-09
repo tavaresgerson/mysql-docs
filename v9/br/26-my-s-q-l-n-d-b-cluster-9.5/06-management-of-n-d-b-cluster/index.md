@@ -24,7 +24,7 @@
 
 25.6.12 Operações Online com ALTER TABLE no NDB Cluster
 
-25.6.13 Sincronização de Privilegios e NDB\_STORED\_USER
+25.6.13 Sincronização de Privilegios e NDB_STORED_USER
 
 25.6.14 Contadores e Variáveis de Estatísticas da API ndbinfo
 
@@ -38,7 +38,7 @@
 
 25.6.19 Segurança do NDB Cluster
 
-Para obter informações gerais sobre questões de segurança relacionadas à gestão e implantação de um NDB Cluster, consulte a Seção 25.6.19, “Segurança do NDB Cluster”. Para informações sobre sistemas de arquivos criptografados e o `NDB`, consulte a Seção 25.6.19.4, “Criptografia do Sistema de Arquivos para NDB Cluster”. A Seção 25.6.19.5, “Criptografia do Link TLS para NDB Cluster”, fornece informações sobre o suporte para conexões criptografadas entre nós. O NDB Cluster também suporta backups criptografados que podem ser lidos por muitos programas de linha de comando do `NDB`, incluindo **ndb\_restore**, **ndbxfrm**, **ndb\_print\_backup\_file** e **ndb\_mgm**. Consulte a Seção 25.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”, para obter mais informações.
+Para obter informações gerais sobre questões de segurança relacionadas à gestão e implantação de um NDB Cluster, consulte a Seção 25.6.19, “Segurança do NDB Cluster”. Para informações sobre sistemas de arquivos criptografados e o `NDB`, consulte a Seção 25.6.19.4, “Criptografia do Sistema de Arquivos para NDB Cluster”. A Seção 25.6.19.5, “Criptografia do Link TLS para NDB Cluster”, fornece informações sobre o suporte para conexões criptografadas entre nós. O NDB Cluster também suporta backups criptografados que podem ser lidos por muitos programas de linha de comando do `NDB`, incluindo **ndb_restore**, **ndbxfrm**, **ndb_print_backup_file** e **ndb_mgm**. Consulte a Seção 25.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”, para obter mais informações.
 
 Existem essencialmente dois métodos para gerenciar ativamente um NDB Cluster em execução. O primeiro deles é através do uso de comandos inseridos no cliente de gerenciamento, onde o status do cluster pode ser verificado, os níveis de log alterados, os backups iniciados e interrompidos, e os nós parados e iniciados. O segundo método envolve o estudo do conteúdo do log do cluster `ndb_node_id_cluster.log`; este geralmente é encontrado no diretório `DataDir` do servidor de gerenciamento, mas essa localização pode ser sobrescrita usando a opção `LogDestination`. (Lembre-se de que *`node_id`* representa o identificador único do nó cuja atividade está sendo registrada.) O log do cluster contém relatórios de eventos gerados pelo **ndbd**. Também é possível enviar entradas do log do cluster para um log de sistema Unix.
 

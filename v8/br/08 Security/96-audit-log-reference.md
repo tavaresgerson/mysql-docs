@@ -345,7 +345,7 @@ Para configurar a ativação do plugin de log de auditoria, use esta opção:
 
 *  `--audit-log[=valor]`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Esta opção controla como o servidor carrega o plugin `audit_log` no início. Está disponível apenas se o plugin tiver sido registrado anteriormente com `INSTALL PLUGIN` ou tiver sido carregado com `--plugin-load` ou `--plugin-load-add`. Veja a Seção 8.4.5.2, “Instalando ou Desinstalando o MySQL Enterprise Audit”.
 
@@ -369,7 +369,7 @@ Quando o plugin de log de auditoria escreve eventos no log de forma assíncrona,
 O tipo de compressão para o arquivo de registro de auditoria. Os valores permitidos são `NONE` (sem compressão; o padrão) e `GZIP` (compressão GNU Zip). Para mais informações, consulte Compactação de Arquivos de Registro de Auditoria.
 *  `audit_log_connection_policy`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-connection-policy=value</code></td> </tr><tr><th>Descontinuado</th> <td>Sim</td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_connection_policy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ALL</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ALL</code></p><p class="valid-value"><code>ERRORS</code></p><p class="valid-value"><code>NONE</code></p></td> </tr></tbody></table> 
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-connection-policy=value</code></td> </tr><tr><th>Descontinuado</th> <td>Sim</td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_connection_policy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ALL</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ALL</code></p><p><code>ERRORS</code></p><p><code>NONE</code></p></td> </tr></tbody></table> 
   
   ::: info Nota
 
@@ -402,7 +402,7 @@ Especifica qual banco de dados o plugin `audit_log` usa para encontrar suas tabe
 Permite desativar o registro de auditoria para todas as sessões de conexão e conectadas. Além do privilégio `SYSTEM_VARIABLES_ADMIN`, para desativar o registro de auditoria, é necessário o privilégio `AUDIT_ADMIN`. Consulte a Seção 8.4.5.9, “Desativar o Registro de Auditoria”.
 *  `audit_log_encryption`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-encryption=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_encryption</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>NONE</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>NONE</code></p><p class="valid-value"><code>AES</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-encryption=value</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_encryption</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>NONE</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>NONE</code></p><p><code>AES</code></p></td> </tr></tbody></table>
 
   O tipo de criptografia para o arquivo de registro de auditoria. Os valores permitidos são `NONE` (sem criptografia; o padrão) e `AES` (criptografia com cifra AES-256-CBC). Para mais informações, consulte Criptografar Arquivos de Registro de Auditoria.
 *  `audit_log_exclude_accounts`
@@ -484,7 +484,7 @@ mysql> SHOW VARIABLES LIKE 'audit_log%';
   Para persistir esta variável do sistema global no arquivo `mysqld-auto.cnf` sem definir o valor da variável de execução global, antecipe o nome da variável com a palavra-chave `PERSIST_ONLY` ou o qualificador `@@PERSIST_ONLY.`.
 *  `audit_log_format`
 
-<table><tbody><tr><th>Formato do Log de Auditoria</th> <td><code>--audit-log-format=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_format</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>NEW</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>OLD</code></p><p class="valid-value"><code>NEW</code></p><p class="valid-value"><code>JSON</code></p></td> </tr></tbody></table>
+<table><tbody><tr><th>Formato do Log de Auditoria</th> <td><code>--audit-log-format=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_format</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>NEW</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>OLD</code></p><p><code>NEW</code></p><p><code>JSON</code></p></td> </tr></tbody></table>
 
   O formato do arquivo de log de auditoria. Os valores permitidos são `OLD` (XML antigo), `NEW` (XML novo; o padrão) e `JSON`. Para obter detalhes sobre cada formato, consulte a Seção 8.4.5.4, “Formatos de Arquivos de Log de Auditoria”.
 *  `audit_log_format_unix_timestamp`
@@ -561,7 +561,7 @@ Cuidado para não expirar senhas antigas que ainda são necessárias para ler ar
 Definir o valor de tempo de execução de `audit_log_password_history_keep_days` requer o privilégio `AUDIT_ADMIN`, além do privilégio `SYSTEM_VARIABLES_ADMIN` (ou o desatualizado privilégio `SUPER`) normalmente necessário para definir o valor de tempo de execução de uma variável de sistema global.
 *  `audit_log_policy`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--audit-log-policy=value</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável de sistema</th> <td><code>audit_log_policy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Aplicação da dica `SET_VAR`</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ALL</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>ALL</code></p><p class="valid-value"><code>LOGINS</code></p><p class="valid-value"><code>QUERIES</code></p><p class="valid-value"><code>NONE</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--audit-log-policy=value</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Variável de sistema</th> <td><code>audit_log_policy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Aplicação da dica `SET_VAR`</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ALL</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>ALL</code></p><p><code>LOGINS</code></p><p><code>QUERIES</code></p><p><code>NONE</code></p></td> </tr></tbody></table>
 
   ::: info Nota
 
@@ -610,7 +610,7 @@ Se você definir `audit_log_rotate_on_size` para um valor que não seja um múlt
 
 * `audit_log_statement_policy`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-statement-policy=value</code></td> </tr><tr><th>Descontinuado</th> <td>Sim</td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_statement_policy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ALL</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ALL</code></p><p class="valid-value"><code>ERRORS</code></p><p class="valid-value"><code>NONE</code></p></td> </tr></tbody></table> 
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-statement-policy=value</code></td> </tr><tr><th>Descontinuado</th> <td>Sim</td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_statement_policy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Aplicação da Dicas de <code>SET_VAR</code></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ALL</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ALL</code></p><p><code>ERRORS</code></p><p><code>NONE</code></p></td> </tr></tbody></table> 
   
   ::: info Nota
 
@@ -629,7 +629,7 @@ A política que controla como o plugin de log de auditoria escreve eventos de de
   :::
 *  `audit_log_strategy`
 
-  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-strategy=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_strategy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ASYNCHRONOUS</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ASYNCHRONOUS</code></p><p class="valid-value"><code>PERFORMANCE</code></p><p class="valid-value"><code>SEMISYNCHRONOUS</code></p><p class="valid-value"><code>SYNCHRONOUS</code></p></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--audit-log-strategy=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>audit_log_strategy</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ASYNCHRONOUS</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ASYNCHRONOUS</code></p><p><code>PERFORMANCE</code></p><p><code>SEMISYNCHRONOUS</code></p><p><code>SYNCHRONOUS</code></p></td> </tr></tbody></table>
 
   O método de registro usado pelo plugin de log de auditoria. Esses valores de estratégia de registro são permitidos:
 

@@ -8,7 +8,7 @@
 
     10.2.2 Optimizing Subqueries, Derived Tables, View References, and Common Table Expressions
 
-    10.2.3 Optimizing INFORMATION\_SCHEMA Queries
+    10.2.3 Optimizing INFORMATION_SCHEMA Queries
 
     10.2.4 Optimizing Performance Schema Queries
 
@@ -136,7 +136,7 @@
 
     10.13.2 Using Your Own Benchmarks
 
-    10.13.3 Measuring Performance with performance\_schema
+    10.13.3 Measuring Performance with performance_schema
 
 10.14 Examining Server Thread (Process) Information :   10.14.1 Accessing the Process List
 
@@ -170,9 +170,9 @@
 
     10.15.7 Interaction with the --debug Option
 
-    10.15.8 The optimizer\_trace System Variable
+    10.15.8 The optimizer_trace System Variable
 
-    10.15.9 The end\_markers\_in\_json System Variable
+    10.15.9 The end_markers_in_json System Variable
 
     10.15.10 Selecting Optimizer Features to Trace
 

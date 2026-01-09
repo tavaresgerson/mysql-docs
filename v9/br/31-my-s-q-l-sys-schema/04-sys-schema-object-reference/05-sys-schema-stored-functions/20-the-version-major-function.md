@@ -1,4 +1,4 @@
-#### 30.4.5.20 A função version\_major()
+#### 30.4.5.20 A função version_major()
 
 Esta função retorna a versão principal do servidor MySQL.
 

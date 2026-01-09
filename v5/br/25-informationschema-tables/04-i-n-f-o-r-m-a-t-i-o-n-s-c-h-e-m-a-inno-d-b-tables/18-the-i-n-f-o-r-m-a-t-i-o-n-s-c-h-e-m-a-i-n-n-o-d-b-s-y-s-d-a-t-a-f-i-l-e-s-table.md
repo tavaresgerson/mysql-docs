@@ -1,8 +1,8 @@
-### 24.4.18 A tabela INFORMATION\_SCHEMA INNODB\_SYS\_DATAFILES
+### 24.4.18 A tabela INFORMATION_SCHEMA INNODB_SYS_DATAFILES
 
 A tabela [`INNODB_SYS_DATAFILES`](https://pt.wikipedia.org/wiki/Tabela_SYS_DATAFILES) fornece informações sobre o caminho dos arquivos de dados para os espaços de tabela por arquivo `InnoDB` e espaços de tabela gerais, equivalentes às informações na tabela `SYS_DATAFILES` no dicionário de dados `InnoDB`.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”.
+Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
 
 Nota
 

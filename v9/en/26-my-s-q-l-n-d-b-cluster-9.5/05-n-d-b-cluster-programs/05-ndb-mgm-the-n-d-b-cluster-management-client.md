@@ -1,6 +1,6 @@
-### 25.5.5 ndb\_mgm — The NDB Cluster Management Client
+### 25.5.5 ndb_mgm — The NDB Cluster Management Client
 
-The **ndb\_mgm** management client process is actually not needed to run the cluster. Its value lies in providing a set of commands for checking the cluster's status, starting backups, and performing other administrative functions. The management client accesses the management server using a C API. Advanced users can also employ this API for programming dedicated management processes to perform tasks similar to those performed by **ndb\_mgm**.
+The **ndb_mgm** management client process is actually not needed to run the cluster. Its value lies in providing a set of commands for checking the cluster's status, starting backups, and performing other administrative functions. The management client accesses the management server using a C API. Advanced users can also employ this API for programming dedicated management processes to perform tasks similar to those performed by **ndb_mgm**.
 
 To start the management client, it is necessary to supply the host name and port number of the management server:
 
@@ -16,7 +16,7 @@ $> ndb_mgm ndb_mgmd.mysql.com 1186
 
 The default host name and port number are `localhost` and 1186, respectively.
 
-All options that can be used with **ndb\_mgm** are shown in the following table. Additional descriptions follow the table.
+All options that can be used with **ndb_mgm** are shown in the following table. Additional descriptions follow the table.
 
 * `--backup-password-from-stdin[=TRUE|FALSE]`
 
@@ -78,7 +78,7 @@ All options that can be used with **ndb\_mgm** are shown in the following table.
 
   <table frame="box" rules="all" summary="Properties for encrypt-backup"><tbody><tr><th>Command-Line Format</th> <td><code>--encrypt-backup</code></td> </tr></tbody></table>
 
-  When used, this option causes all backups to be encrypted. To make this happen whenever **ndb\_mgm** is run, put the option in the `[ndb_mgm]` section of the `my.cnf` file.
+  When used, this option causes all backups to be encrypted. To make this happen whenever **ndb_mgm** is run, put the option in the `[ndb_mgm]` section of the `my.cnf` file.
 
 * `--execute=command`, `-e command`
 
@@ -120,7 +120,7 @@ All options that can be used with **ndb\_mgm** are shown in the following table.
 
   <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Set connect string for connecting to **ndb\_mgmd**. Syntax: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connect string for connecting to **ndb_mgmd**. Syntax: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-nodeid`
 
@@ -202,4 +202,4 @@ All options that can be used with **ndb\_mgm** are shown in the following table.
 
   Display version information and exit.
 
-Additional information about using **ndb\_mgm** can be found in Section 25.6.1, “Commands in the NDB Cluster Management Client”.
+Additional information about using **ndb_mgm** can be found in Section 25.6.1, “Commands in the NDB Cluster Management Client”.

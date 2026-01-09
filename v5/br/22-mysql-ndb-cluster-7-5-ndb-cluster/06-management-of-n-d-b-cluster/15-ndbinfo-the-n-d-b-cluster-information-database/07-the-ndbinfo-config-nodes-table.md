@@ -1,4 +1,4 @@
-#### 21.6.15.7 Tabela ndbinfo config\_nodes
+#### 21.6.15.7 Tabela ndbinfo config_nodes
 
 A tabela `config_nodes` mostra os nós configurados em um arquivo `config.ini` de um NDB Cluster. Para cada nó, a tabela exibe uma linha contendo o ID do nó, o tipo de nó (nó de gerenciamento, nó de dados ou nó de API) e o nome ou endereço IP do host no qual o nó está configurado para ser executado.
 

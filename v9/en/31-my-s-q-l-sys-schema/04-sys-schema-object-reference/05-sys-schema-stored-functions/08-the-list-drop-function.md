@@ -1,4 +1,4 @@
-#### 30.4.5.8 The list\_drop() Function
+#### 30.4.5.8 The list_drop() Function
 
 Removes a value from a comma-separated list of values and returns the result. For more information, see the description of `list_add()` Function")
 

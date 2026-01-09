@@ -55,7 +55,7 @@ Exclusive metadata locks are taken on tables that reside in a general tablespace
 
 The `CREATE TABLESPACE` privilege is required to rename an `InnoDB` general tablespace.
 
-The `AUTOEXTEND_SIZE` option defines the amount by which `InnoDB` extends the size of a tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND\_SIZE Configuration”.
+The `AUTOEXTEND_SIZE` option defines the amount by which `InnoDB` extends the size of a tablespace when it becomes full. The setting must be a multiple of 4MB. The default setting is 0, which causes the tablespace to be extended according to the implicit default behavior. For more information, see Section 17.6.3.9, “Tablespace AUTOEXTEND_SIZE Configuration”.
 
 The `ENCRYPTION` clause enables or disables page-level data encryption for an `InnoDB` general tablespace or the `mysql` system tablespace.
 

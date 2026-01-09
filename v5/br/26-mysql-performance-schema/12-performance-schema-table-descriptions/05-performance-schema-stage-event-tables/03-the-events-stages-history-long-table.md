@@ -1,10 +1,10 @@
-#### 25.12.5.3 A tabela events\_stages\_history\_long
+#### 25.12.5.3 A tabela events_stages_history_long
 
 A tabela `events_stages_history_long` contém os *`N`* eventos de estágio mais recentes que terminaram globalmente, em todas as threads. Os eventos de estágio não são adicionados à tabela até que tenham terminado. Quando a tabela fica cheia, a linha mais antiga é descartada quando uma nova linha é adicionada, independentemente de qual thread tenha gerado aquela linha.
 
 O Schema de Desempenho autodimensiona o valor de *`N`* durante o início do servidor. Para definir o tamanho da tabela explicitamente, defina a variável de sistema `performance_schema_events_stages_history_long_size` durante o início do servidor.
 
-A tabela `events_stages_history_long` tem as mesmas colunas que a tabela `events_stages_current`. Veja Seção 25.12.5.1, “A tabela events\_stages\_current”.
+A tabela `events_stages_history_long` tem as mesmas colunas que a tabela `events_stages_current`. Veja Seção 25.12.5.1, “A tabela events_stages_current”.
 
 A operação `TRUNCATE TABLE` é permitida para a tabela `events_stages_history_long`. Ela remove as linhas.
 

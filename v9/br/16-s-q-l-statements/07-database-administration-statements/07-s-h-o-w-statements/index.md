@@ -52,7 +52,7 @@
 
 15.7.7.26 Declaração `SHOW OPEN TABLES`
 
-15.7.7.27 Declaração `SHOW PARSE\_TREE`
+15.7.7.27 Declaração `SHOW PARSE_TREE`
 
 15.7.7.28 Declaração `SHOW PLUGINS`
 

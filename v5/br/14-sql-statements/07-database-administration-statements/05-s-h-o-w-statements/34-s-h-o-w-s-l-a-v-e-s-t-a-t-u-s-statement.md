@@ -118,11 +118,11 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
   Se a thread de E/S foi iniciada e se conectou com sucesso à fonte. Internamente, o estado dessa thread é representado por um dos seguintes três valores:
 
-  - **MYSQL\_SLAVE\_NOT\_RUN.** A thread de I/O da replica não está em execução. Para este estado, `Slave_IO_Running` é `No`.
+  - **MYSQL_SLAVE_NOT_RUN.** A thread de I/O da replica não está em execução. Para este estado, `Slave_IO_Running` é `No`.
 
-  - **MYSQL\_SLAVE\_RUN\_NOT\_CONNECT.** A thread de I/O da replica está em execução, mas não está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Conectando`.
+  - **MYSQL_SLAVE_RUN_NOT_CONNECT.** A thread de I/O da replica está em execução, mas não está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Conectando`.
 
-  - **MYSQL\_SLAVE\_RUN\_CONNECT.** A thread de I/O da replica está em execução e está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Sim`.
+  - **MYSQL_SLAVE_RUN_CONNECT.** A thread de I/O da replica está em execução e está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Sim`.
 
   O valor da variável de status do sistema `Slave_running` corresponde a esse valor.
 
@@ -150,7 +150,7 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
 - `Contator de pular`
 
-  O valor atual da variável de sistema [`sql_slave_skip_counter`](https://pt.wikibooks.org/wiki/Replication_options_replica.html#sysvar_sql_slave_skip_counter). Consulte [Seção 13.4.2.4, "Sintaxe de SET GLOBAL sql\_slave\_skip\_counter"](https://pt.wikibooks.org/wiki/Replication_options_replica.html#set-global-sql-slave-skip-counter).
+  O valor atual da variável de sistema [`sql_slave_skip_counter`](https://pt.wikibooks.org/wiki/Replication_options_replica.html#sysvar_sql_slave_skip_counter). Consulte [Seção 13.4.2.4, "Sintaxe de SET GLOBAL sql_slave_skip_counter"](https://pt.wikibooks.org/wiki/Replication_options_replica.html#set-global-sql-slave-skip-counter).
 
 - `Exec_Master_Log_Pos`
 
@@ -282,7 +282,7 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
 - `Master_Retry_Count`
 
-  O número de vezes que a réplica pode tentar se reconectar à fonte em caso de perda de conexão. Esse valor pode ser definido usando a opção `MASTER_RETRY_COUNT` da instrução `CHANGE MASTER TO` (preferível) ou a opção de servidor mais antiga `--master-retry-count` (replicação-options-replica.html#option\_mysqld\_master-retry-count) (ainda suportada para compatibilidade reversa).
+  O número de vezes que a réplica pode tentar se reconectar à fonte em caso de perda de conexão. Esse valor pode ser definido usando a opção `MASTER_RETRY_COUNT` da instrução `CHANGE MASTER TO` (preferível) ou a opção de servidor mais antiga `--master-retry-count` (replicação-options-replica.html#option_mysqld_master-retry-count) (ainda suportada para compatibilidade reversa).
 
 - `Master_Bind`
 

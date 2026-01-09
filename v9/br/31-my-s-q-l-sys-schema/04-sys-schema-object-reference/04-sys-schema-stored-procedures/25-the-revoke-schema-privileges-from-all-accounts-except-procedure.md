@@ -1,6 +1,6 @@
-#### 30.4.4.25 O procedimento revoke\_schema\_privileges\_from\_all\_accounts\_except()
+#### 30.4.4.25 O procedimento revoke_schema_privileges_from_all_accounts_except()
 
-Revocar privilégios especificados para todos os usuários, exceto aqueles especificados com o argumento exclude\_users.
+Revocar privilégios especificados para todos os usuários, exceto aqueles especificados com o argumento exclude_users.
 
 ##### Parâmetros
 

@@ -1,4 +1,4 @@
-### 24.3.2 A tabela INFORMATION\_SCHEMA CHARACTER\_SETS
+### 24.3.2 A tabela INFORMATION_SCHEMA CHARACTER_SETS
 
 A tabela `[CARACTERES_SETS]` (information-schema-character-sets-table.html) fornece informações sobre os conjuntos de caracteres disponíveis.
 

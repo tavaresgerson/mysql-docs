@@ -86,7 +86,7 @@ Com uma exceção, as configurações no arquivo de opção padrão estão comen
 
 #### Opções de comando
 
-O **mysql_install_db** suporta as seguintes opções, que podem ser especificadas na linha de comando ou no grupo **\[mysql_install_db]** de um arquivo de opções. Para obter informações sobre os arquivos de opções usados pelos programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
+O **mysql_install_db** suporta as seguintes opções, que podem ser especificadas na linha de comando ou no grupo **[mysql_install_db]** de um arquivo de opções. Para obter informações sobre os arquivos de opções usados pelos programas do MySQL, consulte a Seção 4.2.2.2, “Usando arquivos de opções”.
 
 **Tabela 4.8 Opções de mysql_install_db**
 

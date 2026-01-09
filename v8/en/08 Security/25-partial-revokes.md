@@ -69,7 +69,7 @@ Partial revoke operations are subject to these conditions:
 
 * It is possible to use partial revokes to place restrictions on nonexistent schemas, but only if the revoked privilege is granted globally. If a privilege is not granted globally, revoking it for a nonexistent schema produces an error.
 * Partial revokes apply at the schema level only. You cannot use partial revokes for privileges that apply only globally (such as  `FILE` or `BINLOG_ADMIN`), or for table, column, or routine privileges.
-* In privilege assignments, enabling `partial_revokes` causes MySQL to interpret occurrences of unescaped `_` and `%` SQL wildcard characters in schema names as literal characters, just as if they had been escaped as `\_` and `\%`. Because this changes how MySQL interprets privileges, it may be advisable to avoid unescaped wildcard characters in privilege assignments for installations where `partial_revokes` may be enabled.
+* In privilege assignments, enabling `partial_revokes` causes MySQL to interpret occurrences of unescaped `_` and `%` SQL wildcard characters in schema names as literal characters, just as if they had been escaped as `_` and `\%`. Because this changes how MySQL interprets privileges, it may be advisable to avoid unescaped wildcard characters in privilege assignments for installations where `partial_revokes` may be enabled.
 
 As mentioned previously, partial revokes of schema-level privileges appear in  `SHOW GRANTS` output as  `REVOKE` statements. This differs from how  `SHOW GRANTS` represents “plain” schema-level privileges:
 

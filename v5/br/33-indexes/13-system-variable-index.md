@@ -4,21 +4,21 @@
 
 ### A
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### buffer\_de\_registro\_de\_auditoria
-
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
-
-[Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
-
-### audit\_log\_compression
+### buffer_de_registro_de_auditoria
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
 
-### política\_de\_conexão\_do\_registro\_de\_auditoria
+### audit_log_compression
+
+[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+
+[Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
+
+### política_de_conexão_do_registro_de_auditoria
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
@@ -26,23 +26,23 @@
 
 [Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
 
-### audit\_log\_sessão\_atual
+### audit_log_sessão_atual
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
-### audit\_log\_disable
+### audit_log_disable
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.9, “Desativando o Registro de Auditoria”](audit-log-disabling.html)
 
-### audit\_log\_encryption
+### audit_log_encryption
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
 
-### audit\_log\_exclude\_accounts
+### audit_log_exclude_accounts
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
@@ -50,7 +50,7 @@
 
 [Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
 
-### arquivo\_de\_registro\_de\_auditoria
+### arquivo_de_registro_de_auditoria
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
@@ -64,7 +64,7 @@
 
 [Seção 6.4.5.6, “Leitura de arquivos de registro de auditoria”](audit-log-file-reading.html)
 
-### audit\_log\_filter\_id
+### audit_log_filter_id
 
 [Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
 
@@ -72,13 +72,13 @@
 
 [Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
 
-### audit\_log\_flush
+### audit_log_flush
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
 
-### audit\_log\_format
+### audit_log_format
 
 [Seção 6.4.5.4, "Formatos de arquivo de registro de auditoria"](audit-log-file-formats.html)
 
@@ -88,7 +88,7 @@
 
 [Seção 6.4.5, "Auditoramento do MySQL Enterprise"](audit-log.html)
 
-### formato\_registro\_de\_auditoria\_timestamp\_unix
+### formato_registro_de_auditoria_timestamp_unix
 
 [Seção 6.4.5.4, "Formatos de arquivo de registro de auditoria"](audit-log-file-formats.html)
 
@@ -96,7 +96,7 @@
 
 [Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
 
-### audit\_log\_include\_accounts
+### audit_log_include_accounts
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
@@ -104,7 +104,7 @@
 
 [Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
 
-### política\_registro\_de\_auditoria
+### política_registro_de_auditoria
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
@@ -114,19 +114,19 @@
 
 [Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
 
-### tamanho\_do\_buffer\_de\_registro\_de\_auditoria
+### tamanho_do_buffer_de_registro_de_auditoria
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.6, “Leitura de arquivos de registro de auditoria”](audit-log-file-reading.html)
 
-### audit\_log\_rotate\_on\_size
+### audit_log_rotate_on_size
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
 
-### política\_de\_declaração\_do\_registro\_de\_auditoria
+### política_de_declaração_do_registro_de_auditoria
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
@@ -134,157 +134,157 @@
 
 [Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
 
-### audit\_log\_strategy
+### audit_log_strategy
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
 [Seção 6.4.5.5, “Configurando as Características do Registro de Auditoria”](audit-log-logging-configuration.html)
 
-### authentication\_ldap\_sasl\_auth\_method\_name
+### authentication_ldap_sasl_auth_method_name
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_bind\_base\_dn
+### authentication_ldap_sasl_bind_base_dn
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_bind\_root\_dn
+### authentication_ldap_sasl_bind_root_dn
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_bind\_root\_pwd
+### authentication_ldap_sasl_bind_root_pwd
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_ca\_path
+### authentication_ldap_sasl_ca_path
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_group\_search\_attr
+### authentication_ldap_sasl_group_search_attr
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_group\_search\_filter
+### authentication_ldap_sasl_group_search_filter
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_init\_pool\_size
+### authentication_ldap_sasl_init_pool_size
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_log\_status
+### authentication_ldap_sasl_log_status
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_max\_pool\_size
+### authentication_ldap_sasl_max_pool_size
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_server\_host
+### authentication_ldap_sasl_server_host
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_server\_port
+### authentication_ldap_sasl_server_port
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### autenticação\_ldap\_sasl\_tls
+### autenticação_ldap_sasl_tls
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_sasl\_user\_search\_attr
+### authentication_ldap_sasl_user_search_attr
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_auth\_method\_name
+### authentication_ldap_simple_auth_method_name
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_bind\_base\_dn
+### authentication_ldap_simple_bind_base_dn
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### autenticação\_ldap\_simple\_bind\_root\_dn
+### autenticação_ldap_simple_bind_root_dn
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### autenticação\_ldap\_simple\_bind\_root\_pwd
+### autenticação_ldap_simple_bind_root_pwd
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_ca\_path
+### authentication_ldap_simple_ca_path
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_group\_search\_attr
+### authentication_ldap_simple_group_search_attr
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_group\_search\_filter
+### authentication_ldap_simple_group_search_filter
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_init\_pool\_size
+### authentication_ldap_simple_init_pool_size
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_log\_status
+### authentication_ldap_simple_log_status
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_max\_pool\_size
+### authentication_ldap_simple_max_pool_size
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_server\_host
+### authentication_ldap_simple_server_host
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_server\_port
+### authentication_ldap_simple_server_port
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### autenticação\_ldap\_simple\_tls
+### autenticação_ldap_simple_tls
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### authentication\_ldap\_simple\_user\_search\_attr
+### authentication_ldap_simple_user_search_attr
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
 [Seção 6.4.1.13, “Variáveis do Sistema de Autenticação Conectable”](pluggable-authentication-system-variables.html)
 
-### nível\_de\_log\_de\_autenticação\_windows
+### nível_de_log_de_autenticação_windows
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
 
-### authentication\_windows\_use\_principal\_name
+### authentication_windows_use_principal_name
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
 
-### auto\_generate\_certs
+### auto_generate_certs
 
 [Seção 6.3.3.1, “Criando Certificados e Chaves SSL e RSA usando MySQL”](creating-ssl-rsa-files-using-mysql.html)
 
@@ -294,29 +294,9 @@
 
 [Seção 6.3, “Usando Conexões Encriptadas”](encrypted-connections.html)
 
-### auto\_increment\_increment
+### auto_increment_increment
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
-
-[Seção 17.8, “Perguntas Frequentes”](group-replication-frequently-asked-questions.html)
-
-[Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
-
-[Seção 5.4.4.3, "Formato de registro binário misto"](binary-log-mixed.html)
-
-[Seção A.1, “Perguntas frequentes do MySQL 5.7: Geral”](faqs-general.html)
-
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
-
-[Seção 16.4.1.37, “Replicação e Variáveis”](replication-features-variables.html)
-
-[Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
-
-[Seção 3.6.9, “Usando AUTO\_INCREMENT”](example-auto-increment.html)
-
-### auto\_increment\_offset
-
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 17.8, “Perguntas Frequentes”](group-replication-frequently-asked-questions.html)
 
@@ -326,13 +306,33 @@
 
 [Seção A.1, “Perguntas frequentes do MySQL 5.7: Geral”](faqs-general.html)
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
 [Seção 16.4.1.37, “Replicação e Variáveis”](replication-features-variables.html)
 
 [Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
 
-[Seção 3.6.9, “Usando AUTO\_INCREMENT”](example-auto-increment.html)
+[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
+
+### auto_increment_offset
+
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+
+[Seção 17.8, “Perguntas Frequentes”](group-replication-frequently-asked-questions.html)
+
+[Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
+
+[Seção 5.4.4.3, "Formato de registro binário misto"](binary-log-mixed.html)
+
+[Seção A.1, “Perguntas frequentes do MySQL 5.7: Geral”](faqs-general.html)
+
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+
+[Seção 16.4.1.37, “Replicação e Variáveis”](replication-features-variables.html)
+
+[Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
+
+[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
 
 ### AUTOCOMMIT
 
@@ -378,13 +378,13 @@
 
 [Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
 
-[Seção 24.4.28, “A tabela INFORMATION\_SCHEMA INNODB\_TRX”](information-schema-innodb-trx-table.html)
+[Seção 24.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”](information-schema-innodb-trx-table.html)
 
 [Seção 5.5.3.3, “Operação do Conjunto de Fios”](thread-pool-operation.html)
 
 [Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
 
-### automatic\_sp\_privileges
+### automatic_sp_privileges
 
 [Seção 13.1.6, "Instrução ALTER PROCEDURE"](alter-procedure.html)
 
@@ -396,7 +396,7 @@
 
 [Seção 23.2.2, “Rotinas Armazenadas e Privilégios do MySQL”](stored-routines-privileges.html)
 
-### evitar\_atualização\_temporal
+### evitar_atualização_temporal
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -408,9 +408,9 @@
 
 ### B
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### back\_log
+### back_log
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -424,13 +424,13 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### big\_tables
+### big_tables
 
 [Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### endereço\_de\_ligação
+### endereço_de_ligação
 
 [Seção B.3.2.2, “Não consigo conectar ao servidor MySQL local”](can-not-connect-to-server.html)
 
@@ -444,7 +444,7 @@
 
 [Seção 5.1.12, “Suporte ao IPv6”](ipv6-support.html)
 
-[Seção 4.3.4, “mysqld\_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
+[Seção 4.3.4, “mysqld_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
 
 [Seção 5.1.12.5, “Obtendo uma Endereço IPv6 de um Broker”](ipv6-brokers.html)
 
@@ -464,7 +464,7 @@
 
 [Seção 17.3.1, “Requisitos de Replicação em Grupo”](group-replication-requirements.html)
 
-### binlog\_cache\_size
+### binlog_cache_size
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -472,7 +472,7 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### binlog\_checksum
+### binlog_checksum
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -482,13 +482,13 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### binlog\_direct\_non\_transactional\_updates
+### binlog_direct_non_transactional_updates
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
 [Seção 16.4.1.33, “Replicação e Transações”](replication-features-transactions.html)
 
-### binlog\_error\_action
+### binlog_error_action
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -498,7 +498,7 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### binlog\_format
+### binlog_format
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -574,31 +574,31 @@
 
 [Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
 
-### binlog\_group\_commit\_sync\_delay
+### binlog_group_commit_sync_delay
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
-### binlog\_group\_commit\_sync\_no\_delay\_count
+### binlog_group_commit_sync_no_delay_count
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
-### binlog\_gtid\_simple\_recovery
+### binlog_gtid_simple_recovery
 
 [Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
 
 [Seção 16.1.3.2, “Ciclo de Vida do GTID”](replication-gtids-lifecycle.html)
 
-### binlog\_max\_flush\_queue\_time
+### binlog_max_flush_queue_time
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### binlog\_order\_commits
+### binlog_order_commits
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
-### binlog\_row\_image
+### binlog_row_image
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
@@ -606,33 +606,33 @@
 
 [Seção 8.5.8, “Otimização do I/O de disco InnoDB”](optimizing-innodb-diskio.html)
 
-### binlog\_rows\_query\_log\_events
+### binlog_rows_query_log_events
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
-### binlog\_stmt\_cache\_size
+### binlog_stmt_cache_size
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-### binlog\_transaction\_dependency\_history\_size
+### binlog_transaction_dependency_history_size
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
-### binlog\_transaction\_dependency\_tracking
+### binlog_transaction_dependency_tracking
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### modo\_de\_criptografia\_bloco
+### modo_de_criptografia_bloco
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### tamanho\_buffer\_de\_inserção\_em\_massa
+### tamanho_buffer_de_inserção_em_massa
 
 [Seção 15.2.1, “Opções de inicialização do MyISAM”](myisam-start.html)
 
@@ -642,13 +642,13 @@
 
 ### C
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### caching\_sha
+### caching_sha
 
 [Seção 6.4.1.4, “Cache de Autenticação Pluggable SHA-2”](caching-sha2-pluggable-authentication.html)
 
-### conjunto\_de\_caracteres\_cliente
+### conjunto_de_caracteres_cliente
 
 [Seção 10.15, “Configuração do Conjunto de Caracteres”](charset-configuration.html)
 
@@ -684,17 +684,17 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-[Seção 24.3.8, “A tabela INFORMATION\_SCHEMA EVENTS”](information-schema-events-table.html)
+[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
 
-[Seção 24.3.21, “A tabela INFORMATION\_SCHEMA ROUTINES”](information-schema-routines-table.html)
+[Seção 24.3.21, “A tabela INFORMATION_SCHEMA ROUTINES”](information-schema-routines-table.html)
 
-[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION\_SCHEMA”](information-schema-triggers-table.html)
+[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION_SCHEMA”](information-schema-triggers-table.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 [Seção 5.5.4.2, “Usando o Plugin de Reescrita de Consultas de Reescritor”](rewriter-query-rewrite-plugin-usage.html)
 
-### conjunto\_de\_caracteres\_de\_conexão
+### conjunto_de_caracteres_de_conexão
 
 [Seção 12.10, "Funções e Operadores de Castagem"](cast-functions.html)
 
@@ -732,7 +732,7 @@
 
 [Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”](type-conversion.html)
 
-### conjunto\_de\_caracteres\_do\_banco\_de\_dados
+### conjunto_de_caracteres_do_banco_de_dados
 
 [Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
 
@@ -754,7 +754,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### conjunto\_de\_caracteres\_do\_sistema\_de\_arquivos
+### conjunto_de_caracteres_do_sistema_de_arquivos
 
 [Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
 
@@ -764,7 +764,7 @@
 
 [Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
 
-### conjunto\_de\_caracteres\_resultados
+### conjunto_de_caracteres_resultados
 
 [Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
 
@@ -780,7 +780,7 @@
 
 [Seção 10.2.2, “UTF-8 para Metadados”](charset-metadata.html)
 
-### conjunto\_de\_caracteres\_servidor
+### conjunto_de_caracteres_servidor
 
 [Seção 10.15, “Configuração do Conjunto de Caracteres”](charset-configuration.html)
 
@@ -800,7 +800,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### conjunto\_de\_caracteres\_do\_sistema
+### conjunto_de_caracteres_do_sistema
 
 [Seção 10.15, “Configuração do Conjunto de Caracteres”](charset-configuration.html)
 
@@ -808,7 +808,7 @@
 
 [Seção 10.2.2, “UTF-8 para Metadados”](charset-metadata.html)
 
-### character\_sets\_dir
+### character_sets_dir
 
 [Seção 10.14.3, “Adicionando uma Colagem Simples a um Conjunto de Caracteres de 8 Bits”](adding-collation-simple-8bit.html)
 
@@ -816,13 +816,13 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### check\_proxy\_users
+### check_proxy_users
 
 [Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### collation\_connection
+### collation_connection
 
 [Seção 12.10, "Funções e Operadores de Castagem"](cast-functions.html)
 
@@ -864,17 +864,17 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-[Seção 24.3.8, “A tabela INFORMATION\_SCHEMA EVENTS”](information-schema-events-table.html)
+[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
 
-[Seção 24.3.21, “A tabela INFORMATION\_SCHEMA ROUTINES”](information-schema-routines-table.html)
+[Seção 24.3.21, “A tabela INFORMATION_SCHEMA ROUTINES”](information-schema-routines-table.html)
 
-[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION\_SCHEMA”](information-schema-triggers-table.html)
+[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION_SCHEMA”](information-schema-triggers-table.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 [Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”](type-conversion.html)
 
-### banco\_de\_coleta
+### banco_de_coleta
 
 [Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
 
@@ -892,7 +892,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### collation\_server
+### collation_server
 
 [Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
 
@@ -910,13 +910,13 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### tipo\_de\_conclusão
+### tipo_de_conclusão
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
 
-### concurrent\_insert
+### concurrent_insert
 
 [Seção 8.11.3, “Inserções Concorrentes”](concurrent-inserts.html)
 
@@ -928,7 +928,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### connect\_timeout
+### connect_timeout
 
 [Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”](communication-errors.html)
 
@@ -944,45 +944,45 @@
 
 [Seção 6.4.2.2, “Sistema de Plugin de Controle de Conexão e Variáveis de Status”](connection-control-plugin-variables.html)
 
-[Seção 24.6.2, “A tabela INFORMATION\_SCHEMA CONNECTION\_CONTROL\_FAILED\_LOGIN\_ATTEMPTS”](information-schema-connection-control-failed-login-attempts-table.html)
+[Seção 24.6.2, “A tabela INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS”](information-schema-connection-control-failed-login-attempts-table.html)
 
-### controle\_conexão\_delay\_maximo\_de\_conexão
-
-[Seção 6.4.2.1, “Instalação do Plugin de Controle de Conexão”](connection-control-plugin-installation.html)
-
-[Seção 6.4.2.2, “Sistema de Plugin de Controle de Conexão e Variáveis de Status”](connection-control-plugin-variables.html)
-
-### controle\_conexão\_delay\_min\_conexão
+### controle_conexão_delay_maximo_de_conexão
 
 [Seção 6.4.2.1, “Instalação do Plugin de Controle de Conexão”](connection-control-plugin-installation.html)
 
 [Seção 6.4.2.2, “Sistema de Plugin de Controle de Conexão e Variáveis de Status”](connection-control-plugin-variables.html)
 
-### core\_file
+### controle_conexão_delay_min_conexão
+
+[Seção 6.4.2.1, “Instalação do Plugin de Controle de Conexão”](connection-control-plugin-installation.html)
+
+[Seção 6.4.2.2, “Sistema de Plugin de Controle de Conexão e Variáveis de Status”](connection-control-plugin-variables.html)
+
+### core_file
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 ### D
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### daemon\_memcached\_enable\_binlog
-
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
-
-### daemon\_memcached\_engine\_lib\_name
+### daemon_memcached_enable_binlog
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-[Seção 14.21.3, “Configurando o Plugin InnoDB memcached”](innodb-memcached-setup.html)
-
-### daemon\_memcached\_engine\_lib\_path
+### daemon_memcached_engine_lib_name
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.21.3, “Configurando o Plugin InnoDB memcached”](innodb-memcached-setup.html)
 
-### daemon\_memcached\_option
+### daemon_memcached_engine_lib_path
+
+[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+
+[Seção 14.21.3, “Configurando o Plugin InnoDB memcached”](innodb-memcached-setup.html)
+
+### daemon_memcached_option
 
 [Seção 14.21.2, “Arquitetura InnoDB memcached”](innodb-memcached-intro.html)
 
@@ -994,7 +994,7 @@
 
 [Seção 14.21.8, “Solução de problemas do plugin InnoDB memcached”](innodb-memcached-troubleshoot.html)
 
-### daemon\_memcached\_r\_batch\_size
+### daemon_memcached_r_batch_size
 
 [Seção 14.21.2, “Arquitetura InnoDB memcached”](innodb-memcached-intro.html)
 
@@ -1008,7 +1008,7 @@
 
 [Seção 14.21.5.3, “Ajuste da performance do plugin InnoDB memcached”](innodb-memcached-tuning.html)
 
-### daemon\_memcached\_w\_batch\_size
+### daemon_memcached_w_batch_size
 
 [Seção 14.21.5.4, “Controle do comportamento transacional do plugin InnoDB memcached”](innodb-memcached-txn.html)
 
@@ -1044,13 +1044,13 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
-### formato\_data
+### formato_data
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### formato\_de\_data\_e\_hora
+### formato_de_data_e_hora
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -1060,7 +1060,7 @@
 
 [Seção 5.8.3, “O pacote DBUG”](dbug-package.html)
 
-### debug\_sync
+### debug_sync
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -1070,7 +1070,7 @@
 
 [Seção 14.1.4, “Testes e Benchmarking com InnoDB”](innodb-benchmarking.html)
 
-### plugin\_de\_autenticação\_padrão
+### plugin_de_autenticação_padrão
 
 [Seção 13.7.1.1, "Instrução ALTER USER"](alter-user.html)
 
@@ -1084,7 +1084,7 @@
 
 [Seção 6.4.1.5, “Autenticação Pluggable SHA-256”](sha256-pluggable-authentication.html)
 
-### vida\_de\_senha\_padrão
+### vida_de_senha_padrão
 
 [Seção 13.7.1.1, "Instrução ALTER USER"](alter-user.html)
 
@@ -1096,7 +1096,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### default\_storage\_engine
+### default_storage_engine
 
 [Seção 13.1.15, "Instrução CREATE LOGFILE GROUP"](create-logfile-group.html)
 
@@ -1120,11 +1120,11 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### criptografia\_padrão\_tabela
+### criptografia_padrão_tabela
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### default\_tmp\_storage\_engine
+### default_tmp_storage_engine
 
 [Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html)
 
@@ -1134,7 +1134,7 @@
 
 [Seção 14.6.3.5, “O Espaço de Memória Temporário”](innodb-temporary-tablespace.html)
 
-### formato\_semana\_padrão
+### formato_semana_padrão
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -1142,7 +1142,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### delay\_key\_write
+### delay_key_write
 
 [Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
 
@@ -1156,19 +1156,19 @@
 
 [Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar”](crashing.html)
 
-### limite\_de\_inserção\_atrasada
+### limite_de_inserção_atrasada
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### timeout\_de\_inserção\_atrasado
+### timeout_de_inserção_atrasado
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### tamanho\_fila\_atrasada
+### tamanho_fila_atrasada
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### dispositivos\_de\_armazenamento\_desativados
+### dispositivos_de_armazenamento_desativados
 
 [Seção 17.2.1.2, “Configurando uma Instância para Replicação em Grupo”](group-replication-configuring-instances.html)
 
@@ -1176,19 +1176,19 @@
 
 [Seção A.2, “Perguntas frequentes sobre o MySQL 5.7: Motores de armazenamento”](faqs-storage-engines.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### desconectar\_em\_senha\_expirante
+### desconectar_em_senha_expirante
 
 [Seção 6.2.12, “Tratamento de Senhas Expirantes pelo Servidor”](expired-password-handling.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### div\_precision\_increment
+### div_precision_increment
 
 [Seção 12.6.1, "Operadores Aritméticos"](arithmetic-functions.html)
 
@@ -1196,9 +1196,9 @@
 
 ### E
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### marcadores\_de\_fim\_em\_json
+### marcadores_de_fim_em_json
 
 [Seção 8.15.13, “Exibição de Rastros em Outras Aplicações”](displaying-traces.html)
 
@@ -1208,9 +1208,9 @@
 
 [Seção 8.15.2, “Variáveis do sistema que controlam o rastreamento”](system-variables-controlling-tracing.html)
 
-[Seção 8.15.9, “A variável de sistema end\_markers\_in\_json”](end-markers-in-json-system-variable.html)
+[Seção 8.15.9, “A variável de sistema end_markers_in_json”](end-markers-in-json-system-variable.html)
 
-### enforce\_gtid\_consistency
+### enforce_gtid_consistency
 
 [Seção 16.1.4.3, “Desativar transações GTID online”](replication-mode-change-online-disable-gtids.html)
 
@@ -1224,7 +1224,7 @@
 
 [Seção 16.1.3.4, “Configurando a replicação usando GTIDs”](replication-gtids-howto.html)
 
-### eq\_range\_index\_dive\_limit
+### eq_range_index_dive_limit
 
 [Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
 
@@ -1246,7 +1246,7 @@
 
 [Seção 14.8.2, “Configurando a InnoDB para operação apenas de leitura”](innodb-read-only-instance.html)
 
-### event\_scheduler
+### event_scheduler
 
 [Seção 23.4.2, “Configuração do Agendador de Eventos”](events-configuration.html)
 
@@ -1256,7 +1256,7 @@
 
 [Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
 
-### expirar\_logs\_dias
+### expirar_logs_dias
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -1264,7 +1264,7 @@
 
 [Seção 5.4.7, “Manutenção do Log do Servidor”](log-file-maintenance.html)
 
-### explicit\_defaults\_for\_timestamp
+### explicit_defaults_for_timestamp
 
 [Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”](timestamp-initialization.html)
 
@@ -1286,19 +1286,19 @@
 
 ### F
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### lavagem
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### flush\_time
+### flush_time
 
 [Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### checks\_de\_chave\_estrangeira
+### checks_de_chave_estrangeira
 
 [Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
 
@@ -1322,7 +1322,7 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### ft\_boolean\_syntax
+### ft_boolean_syntax
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -1330,7 +1330,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### ft\_max\_word\_len
+### ft_max_word_len
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -1342,7 +1342,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### ft\_min\_word\_len
+### ft_min_word_len
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -1358,11 +1358,11 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### limite de expansão de consulta ft\_query\_expansion\_limit
+### limite de expansão de consulta ft_query_expansion_limit
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### ft\_stopword\_file
+### ft_stopword_file
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -1378,7 +1378,7 @@
 
 ### G
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### log geral
 
@@ -1390,7 +1390,7 @@
 
 [Seção 5.4.3, “O Log de Consulta Geral”](query-log.html)
 
-### arquivo\_de\_log\_geral
+### arquivo_de_log_geral
 
 [Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
 
@@ -1398,21 +1398,21 @@
 
 [Seção 5.4.3, “O Log de Consulta Geral”](query-log.html)
 
-### group\_concat\_max\_len
+### group_concat_max_len
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### permitir\_replicação\_por\_grupo\_join\_de\_gtids\_localmente\_disjuntos
+### permitir_replicação_por_grupo_join_de_gtids_localmente_disjuntos
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### permitir\_regra\_de\_grupo\_join\_local\_de\_versão\_inferior
+### permitir_regra_de_grupo_join_local_de_versão_inferior
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_auto\_increment\_increment
+### grupo_replication_auto_increment_increment
 
 [Seção 17.8, “Perguntas Frequentes”](group-replication-frequently-asked-questions.html)
 
@@ -1420,7 +1420,7 @@
 
 [Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
 
-### grupo\_replication\_bootstrap\_grupo
+### grupo_replication_bootstrap_grupo
 
 [Seção 17.2.1.6.1, “Adicionar uma segunda instância”](group-replication-adding-instances.html#group-replication-adding-a-second-instance)
 
@@ -1432,7 +1432,7 @@
 
 [Seção 17.5.4, “Reiniciar um grupo”](group-replication-restarting-group.html)
 
-### componentes\_de\_replicação\_em\_grupo\_pararem\_em\_tempo\_limite
+### componentes_de_replicação_em_grupo_pararem_em_tempo_limite
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
@@ -1444,7 +1444,7 @@
 
 [Seção 17.9.7.2, “Compressão de Mensagens”](group-replication-message-compression.html)
 
-### grupo\_replication\_enforce\_update\_everywhere\_checks
+### grupo_replication_enforce_update_everywhere_checks
 
 [Seção 17.5.1, “Implantação no modo Multi-Primary ou Single-Primary”](group-replication-deploying-in-multi-primary-or-single-primary-mode.html)
 
@@ -1452,59 +1452,59 @@
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### ação\_estado\_de\_saída\_de\_replicação\_por\_grupo
+### ação_estado_de_saída_de_replicação_por_grupo
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_flow\_control\_applier\_threshold
+### grupo_replication_flow_control_applier_threshold
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_flow\_control\_certifier\_threshold
+### grupo_replication_flow_control_certifier_threshold
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### controle\_de\_fluxo\_de\_replicação\_por\_grupo\_percentual\_de\_detenção
+### controle_de_fluxo_de_replicação_por_grupo_percentual_de_detenção
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### controle\_de\_fluxo\_de\_replicação\_por\_grupo\_máxima\_quota
+### controle_de_fluxo_de_replicação_por_grupo_máxima_quota
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_flow\_control\_member\_quota\_percent
+### grupo_replication_flow_control_member_quota_percent
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### controle\_de\_fluxo\_de\_replicação\_por\_grupo\_mínimo\_quota
+### controle_de_fluxo_de_replicação_por_grupo_mínimo_quota
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### controle\_de\_fluxo\_de\_replicação\_por\_grupo\_mínimo\_quota\_de\_recuperação
+### controle_de_fluxo_de_replicação_por_grupo_mínimo_quota_de_recuperação
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### modo\_controle\_de\_fluxo\_de\_replicação\_por\_grupo
+### modo_controle_de_fluxo_de_replicação_por_grupo
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
 ### período de controle de fluxo de replicação em grupo
 
-[Seção 17.4.3, “Tabela replication\_group\_member\_stats”](group-replication-replication-group-member-stats.html)
+[Seção 17.4.3, “Tabela replication_group_member_stats”](group-replication-replication-group-member-stats.html)
 
-### grupo\_replication\_force\_members
+### grupo_replication_force_members
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
 [Seção 17.5.3, “Divisão de Rede”](group-replication-network-partitioning.html)
 
-### grupo\_replication\_grupo\_nome
+### grupo_replication_grupo_nome
 
 [Seção 17.2.1.2, “Configurando uma Instância para Replicação em Grupo”](group-replication-configuring-instances.html)
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_group\_seeds
+### grupo_replication_group_seeds
 
 [Seção 17.2.1.2, “Configurando uma Instância para Replicação em Grupo”](group-replication-configuring-instances.html)
 
@@ -1512,17 +1512,17 @@
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_gtid\_assignment\_block\_size
+### grupo_replication_gtid_assignment_block_size
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_ip\_whitelist
+### grupo_replication_ip_whitelist
 
 [Seção 17.6.1, “Permissão de listagem de endereços IP de replicação de grupo”](group-replication-ip-address-permissions.html)
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_local\_address
+### grupo_replication_local_address
 
 [Seção 17.2.1.2, “Configurando uma Instância para Replicação em Grupo”](group-replication-configuring-instances.html)
 
@@ -1536,85 +1536,85 @@
 
 [Seção 6.7.5.2, “Definindo o contexto da porta TCP para recursos do MySQL”](selinux-context-mysql-feature-ports.html)
 
-[Seção 25.12.11.8, “Tabela replication\_group\_members”](performance-schema-replication-group-members-table.html)
+[Seção 25.12.11.8, “Tabela replication_group_members”](performance-schema-replication-group-members-table.html)
 
-### grupo\_replication\_member\_weight
+### grupo_replication_member_weight
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
 [Seção 17.5.1.1, “Modo de Primariedade Única”](group-replication-single-primary-mode.html)
 
-### grupo\_replication\_poll\_spin\_loops
+### grupo_replication_poll_spin_loops
 
 [Seção 17.9.7.1, “Ajustando o Fundo do Fóruns de Comunicação de Grupo”](group-replication-fine-tuning-the-group-communication-thread.html)
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_recovery\_complete\_at
+### grupo_replication_recovery_complete_at
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### intervalo\_de\_recuperação\_de\_replicação\_por\_grupo
-
-[Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
-
-[Seção 17.5.2, “Recuperação de Ajuste”](group-replication-tuning-recovery.html)
-
-### grupo\_replication\_recovery\_retry\_count
+### intervalo_de_recuperação_de_replicação_por_grupo
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
 [Seção 17.5.2, “Recuperação de Ajuste”](group-replication-tuning-recovery.html)
 
-### grupo\_replication\_recovery\_ssl\_ca
+### grupo_replication_recovery_retry_count
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_recovery\_ssl\_capath
+[Seção 17.5.2, “Recuperação de Ajuste”](group-replication-tuning-recovery.html)
+
+### grupo_replication_recovery_ssl_ca
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_recovery\_ssl\_cert
+### grupo_replication_recovery_ssl_capath
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_recovery\_ssl\_cipher
+### grupo_replication_recovery_ssl_cert
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_recovery\_ssl\_crl
+### grupo_replication_recovery_ssl_cipher
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_recovery\_ssl\_crlpath
+### grupo_replication_recovery_ssl_crl
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_recovery\_ssl\_key
+### grupo_replication_recovery_ssl_crlpath
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_recovery\_ssl\_verify\_server\_cert
+### grupo_replication_recovery_ssl_key
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_recovery\_use\_ssl
+### grupo_replication_recovery_ssl_verify_server_cert
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### modo\_de\_replicação\_por\_grupo\_com\_um\_único\_primário
+### grupo_replication_recovery_use_ssl
+
+[Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
+
+### modo_de_replicação_por_grupo_com_um_único_primário
 
 [Seção 17.3.2, “Limitações da Replicação em Grupo”](group-replication-limitations.html)
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### modo\_replicação\_em\_grupo\_ssl
+### modo_replicação_em_grupo_ssl
 
 [Seção 17.6.2, “Suporte de camada de rede segura SSL (SSL) para replicação em grupo”](group-replication-secure-socket-layer-support-ssl.html)
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_start\_on\_boot
+### grupo_replication_start_on_boot
 
 [Seção 17.2.1.2, “Configurando uma Instância para Replicação em Grupo”](group-replication-configuring-instances.html)
 
@@ -1622,17 +1622,17 @@
 
 [Seção 17.5.4, “Reiniciar um grupo”](group-replication-restarting-group.html)
 
-### limite\_de\_tamanho\_da\_transação\_de\_replicação\_por\_grupo
+### limite_de_tamanho_da_transação_de_replicação_por_grupo
 
 [Seção 17.3.2, “Limitações da Replicação em Grupo”](group-replication-limitations.html)
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### grupo\_replication\_unreachable\_majority\_timeout
+### grupo_replication_unreachable_majority_timeout
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### gtid\_executed
+### gtid_executed
 
 [Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
 
@@ -1668,19 +1668,19 @@
 
 [Seção 17.5.5, “Usando o MySQL Enterprise Backup com a Replicação por Grupo”](group-replication-enterprise-backup.html)
 
-### gtid\_executed\_compression\_period
+### gtid_executed_compression_period
 
 [Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
 
 [Seção 16.1.3.1, "Formato e Armazenamento do GTID"](replication-gtids-concepts.html)
 
-### GTID\_MODE
+### GTID_MODE
 
 [Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
 
 [Seção 16.1.3.3, “Autoposicionamento GTID”](replication-gtids-auto-positioning.html)
 
-### gtid\_mode
+### gtid_mode
 
 [Seção 16.1.5.3, “Adicionar fontes baseadas em GTID a uma réplica de múltiplas fontes”](replication-multi-source-adding-gtid-master.html)
 
@@ -1700,7 +1700,7 @@
 
 [Seção 16.3.2, “Tratamento de um Parada Inesperada de uma Replicação”](replication-solutions-unexpected-replica-halt.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
 
@@ -1724,9 +1724,9 @@
 
 [Seção 16.1.7.3.2, “Saltar Transações sem GTIDs”](replication-administration-skip.html#replication-administration-skip-nogtid)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
-[Seção 25.12.11.6, “A tabela replication\_applier\_status\_by\_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
 
 [Seção 16.4.3, “Atualização de uma topologia de replicação”](replication-upgrade.html)
 
@@ -1734,7 +1734,7 @@
 
 [Seção 16.1.3.5, “Uso de GTIDs para Failover e Scaleout”](replication-gtids-failover.html)
 
-### gtid\_next
+### gtid_next
 
 [Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
 
@@ -1748,17 +1748,17 @@
 
 [Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
-[Seção 25.12.11.6, “A tabela replication\_applier\_status\_by\_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
 
-### gtid\_owned
+### gtid_owned
 
 [Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
 
 [Seção 16.1.3.2, “Ciclo de Vida do GTID”](replication-gtids-lifecycle.html)
 
-### gtid\_purged
+### gtid_purged
 
 [Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
 
@@ -1784,37 +1784,37 @@
 
 ### H
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### have\_compress
+### have_compress
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### have\_crypt
+### have_crypt
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### have\_dynamic\_loading
+### have_dynamic_loading
 
 [Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### tem\_geometria
+### tem_geometria
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### have\_openssl
+### have_openssl
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### tem\_profilagem
+### tem_profilagem
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### have\_query\_cache
+### have_query_cache
 
 [Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
 
@@ -1822,21 +1822,21 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### have\_rtree\_keys
+### have_rtree_keys
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### have\_ssl
+### have_ssl
 
 [Seção 2.8.6, “Configurando Suporte à Biblioteca SSL”](source-ssl-library-configuration.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### have\_statement\_timeout
+### have_statement_timeout
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### have\_symlink
+### have_symlink
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -1844,7 +1844,7 @@
 
 [Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix”](symbolic-links-to-tables.html)
 
-### host\_cache\_size
+### host_cache_size
 
 [Seção 5.1.11.2, "Consultas DNS e Cache de Anfitriões"](host-cache.html)
 
@@ -1852,7 +1852,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 25.12.16.1, “A tabela host\_cache”](performance-schema-host-cache-table.html)
+[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
 
 ### hostname
 
@@ -1862,11 +1862,11 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 25.12.11.8, “Tabela replication\_group\_members”](performance-schema-replication-group-members-table.html)
+[Seção 25.12.11.8, “Tabela replication_group_members”](performance-schema-replication-group-members-table.html)
 
 ### Eu
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### identidade
 
@@ -1876,7 +1876,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### ignore\_db\_dirs
+### ignore_db_dirs
 
 [Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
 
@@ -1884,7 +1884,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### init\_connect
+### init_connect
 
 [Seção 10.5, “Configurando o Conjunto de Caracteres e a Cotação da Aplicação”](charset-applications.html)
 
@@ -1894,9 +1894,9 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 25.12.16.1, “A tabela host\_cache”](performance-schema-host-cache-table.html)
+[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
 
-### init\_file
+### init_file
 
 [Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
 
@@ -1916,7 +1916,7 @@
 
 [Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
 
-### init\_slave
+### init_slave
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
@@ -1926,19 +1926,19 @@
 
 [Seção A.16, “Perguntas frequentes sobre o MySQL 5.7: Buffer de alterações InnoDB”](faqs-innodb-change-buffer.html)
 
-### innodb\_adaptive\_flushing
+### innodb_adaptive_flushing
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_adaptive\_flushing\_lwm
+### innodb_adaptive_flushing_lwm
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_adaptive\_hash\_index
+### innodb_adaptive_hash_index
 
 [Seção 14.5.3, “Índice Hash Adaptativo”](innodb-adaptive-hash.html)
 
@@ -1952,21 +1952,21 @@
 
 [Seção 13.1.34, "Instrução TRUNCATE TABLE"](truncate-table.html)
 
-### innodb\_adaptive\_hash\_index\_parts
+### innodb_adaptive_hash_index_parts
 
 [Seção 14.5.3, “Índice Hash Adaptativo”](innodb-adaptive-hash.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-[Seção 24.4.28, “A tabela INFORMATION\_SCHEMA INNODB\_TRX”](information-schema-innodb-trx-table.html)
+[Seção 24.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”](information-schema-innodb-trx-table.html)
 
-### innodb\_adaptive\_max\_sleep\_delay
+### innodb_adaptive_max_sleep_delay
 
 [Seção 14.8.5, “Configurando Concorrência de Fios para InnoDB”](innodb-performance-thread_concurrency.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_api\_bk\_commit\_interval
+### innodb_api_bk_commit_interval
 
 [Seção 14.21.5.4, “Controle do comportamento transacional do plugin InnoDB memcached”](innodb-memcached-txn.html)
 
@@ -1974,19 +1974,19 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_api\_disable\_rowlock
+### innodb_api_disable_rowlock
 
 [Seção 14.21.5.4, “Controle do comportamento transacional do plugin InnoDB memcached”](innodb-memcached-txn.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_api\_enable\_binlog
+### innodb_api_enable_binlog
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.21.6, “O Plugin InnoDB memcached e Replicação”](innodb-memcached-replication.html)
 
-### innodb\_api\_enable\_mdl
+### innodb_api_enable_mdl
 
 [Seção 14.21.5.4, “Controle do comportamento transacional do plugin InnoDB memcached”](innodb-memcached-txn.html)
 
@@ -1994,7 +1994,7 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_api\_trx\_level
+### innodb_api_trx_level
 
 [Seção 14.21.5.4, “Controle do comportamento transacional do plugin InnoDB memcached”](innodb-memcached-txn.html)
 
@@ -2002,7 +2002,7 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_autoextend\_increment
+### innodb_autoextend_increment
 
 [Seção 14.6.3.2, “Tablespaces por arquivo para tabelas”](innodb-file-per-table-tablespaces.html)
 
@@ -2014,9 +2014,9 @@
 
 [Seção 14.6.3.1, “O Espaço de Tabela do Sistema”](innodb-system-tablespace.html)
 
-### innodb\_autoinc\_lock\_mode
+### innodb_autoinc_lock_mode
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 8.5.5, “Carregamento de Dados em Massa para Tabelas InnoDB”](optimizando-innodb-bulk-data-loading.html)
 
@@ -2030,11 +2030,11 @@
 
 [Glossário do MySQL](glossary.html)
 
-### innodb\_background\_drop\_list\_empty
+### innodb_background_drop_list_empty
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_buffer\_pool\_chunk\_size
+### innodb_buffer_pool_chunk_size
 
 [Seção 14.8.3.1, “Configurando o tamanho do pool de buffers InnoDB”](innodb-buffer-pool-resize.html)
 
@@ -2044,7 +2044,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_buffer\_pool\_dump\_at\_shutdown
+### innodb_buffer_pool_dump_at_shutdown
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -2052,13 +2052,13 @@
 
 [Seção 14.8.3.6, “Salvar e restaurar o estado do pool de buffer”](innodb-preload-buffer-pool.html)
 
-### innodb\_buffer\_pool\_dump\_now
+### innodb_buffer_pool_dump_now
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.8.3.6, “Salvar e restaurar o estado do pool de buffer”](innodb-preload-buffer-pool.html)
 
-### innodb\_buffer\_pool\_dump\_pct
+### innodb_buffer_pool_dump_pct
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -2066,13 +2066,13 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_buffer\_pool\_filename
+### innodb_buffer_pool_filename
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.8.3.6, “Salvar e restaurar o estado do pool de buffer”](innodb-preload-buffer-pool.html)
 
-### innodb\_buffer\_pool\_instances
+### innodb_buffer_pool_instances
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
@@ -2090,13 +2090,13 @@
 
 [Seção 14.21.5.3, “Ajuste da performance do plugin InnoDB memcached”](innodb-memcached-tuning.html)
 
-### innodb\_buffer\_pool\_load\_abort
+### innodb_buffer_pool_load_abort
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-### innodb\_buffer\_pool\_load\_at\_startup
+### innodb_buffer_pool_load_at_startup
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -2106,7 +2106,7 @@
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-### innodb\_buffer\_pool\_load\_now
+### innodb_buffer_pool_load_now
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -2114,7 +2114,7 @@
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-### innodb\_buffer\_pool\_size
+### innodb_buffer_pool_size
 
 [Seção 14.9.1.6, "Compressão para cargas de trabalho OLTP"](innodb-performance-compression-oltp.html)
 
@@ -2142,7 +2142,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_change\_buffer\_max\_size
+### innodb_change_buffer_max_size
 
 [Seção 14.5.2, “Buffer de Mudança”](innodb-change-buffer.html)
 
@@ -2152,7 +2152,7 @@
 
 [Glossário do MySQL](glossary.html)
 
-### innodb\_change\_buffering
+### innodb_change_buffering
 
 [Seção 14.5.2, “Buffer de Mudança”](innodb-change-buffer.html)
 
@@ -2164,11 +2164,11 @@
 
 [Seção 8.5.2, “Otimização da Gestão de Transações InnoDB”](optimizing-innodb-transaction-management.html)
 
-### innodb\_change\_buffering\_debug
+### innodb_change_buffering_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_checksum\_algorithm
+### innodb_checksum_algorithm
 
 [Seção 14.1.1, “Benefícios de usar tabelas InnoDB”](innodb-benefits.html)
 
@@ -2178,29 +2178,29 @@
 
 [Seção 8.5.8, “Otimização do I/O de disco InnoDB”](optimizing-innodb-diskio.html)
 
-### innodb\_checksums
+### innodb_checksums
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_cmp\_per\_index\_enabled
+### innodb_cmp_per_index_enabled
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.9.1.4, “Monitoramento da Compressão de Tabelas InnoDB em Tempo Real”](innodb-compression-tuning-monitoring.html)
 
-[Seção 24.4.7, “As tabelas INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET”](information-schema-innodb-cmp-per-index-table.html)
+[Seção 24.4.7, “As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET”](information-schema-innodb-cmp-per-index-table.html)
 
 [Seção 14.9.1.3, “Ajuste da compressão para tabelas InnoDB”](innodb-compression-tuning.html)
 
-### innodb\_commit\_concurrency
+### innodb_commit_concurrency
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_compress\_debug
+### innodb_compress_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_compression\_failure\_threshold\_pct
+### innodb_compression_failure_threshold_pct
 
 [Seção 14.9.1.6, "Compressão para cargas de trabalho OLTP"](innodb-performance-compression-oltp.html)
 
@@ -2212,7 +2212,7 @@
 
 [Seção 14.9.1.3, “Ajuste da compressão para tabelas InnoDB”](innodb-compression-tuning.html)
 
-### innodb\_compression\_level
+### innodb_compression_level
 
 [Seção 14.9.1.6, "Compressão para cargas de trabalho OLTP"](innodb-performance-compression-oltp.html)
 
@@ -2224,7 +2224,7 @@
 
 [Seção 14.9.1.3, “Ajuste da compressão para tabelas InnoDB”](innodb-compression-tuning.html)
 
-### innodb\_compression\_pad\_pct\_max
+### innodb_compression_pad_pct_max
 
 [Seção 14.9.1.6, "Compressão para cargas de trabalho OLTP"](innodb-performance-compression-oltp.html)
 
@@ -2236,7 +2236,7 @@
 
 [Seção 14.9.1.3, “Ajuste da compressão para tabelas InnoDB”](innodb-compression-tuning.html)
 
-### innodb\_concurrency\_tickets
+### innodb_concurrency_tickets
 
 [Seção 14.8.5, “Configurando Concorrência de Fios para InnoDB”](innodb-performance-thread_concurrency.html)
 
@@ -2244,9 +2244,9 @@
 
 [Seção 8.5.9, “Otimização das variáveis de configuração do InnoDB”](optimizing-innodb-configuration-variables.html)
 
-[Seção 24.4.28, “A tabela INFORMATION\_SCHEMA INNODB\_TRX”](information-schema-innodb-trx-table.html)
+[Seção 24.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”](information-schema-innodb-trx-table.html)
 
-### innodb\_data\_file\_path
+### innodb_data_file_path
 
 [Seção 14.12.2, “Gestão do Espaço de Arquivo”](innodb-file-space.html)
 
@@ -2258,15 +2258,15 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
 [Seção 14.6.3.1, “O Espaço de Tabela do Sistema”](innodb-system-tablespace.html)
 
 [Seção 14.22.1, “Soluções para problemas de E/S do InnoDB”](error-creating-innodb.html)
 
-### innodb\_data\_home\_dir
+### innodb_data_home_dir
 
 [Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
 
@@ -2274,7 +2274,7 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
 [Seção 14.6.3.5, “O Espaço de Memória Temporário”](innodb-temporary-tablespace.html)
 
@@ -2282,7 +2282,7 @@
 
 [Seção 17.5.5, “Usando o MySQL Enterprise Backup com a Replicação por Grupo”](group-replication-enterprise-backup.html)
 
-### innodb\_deadlock\_detect
+### innodb_deadlock_detect
 
 [Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
 
@@ -2296,7 +2296,7 @@
 
 [Glossário do MySQL](glossary.html)
 
-### innodb\_default\_row\_format
+### innodb_default_row_format
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -2316,15 +2316,15 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_disable\_resize\_buffer\_pool\_debug
+### innodb_disable_resize_buffer_pool_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_disable\_sort\_file\_cache
+### innodb_disable_sort_file_cache
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_doublewrite
+### innodb_doublewrite
 
 [Seção 14.6.5, “Buffer de escrita dupla”](innodb-doublewrite-buffer.html)
 
@@ -2338,7 +2338,7 @@
 
 [Seção 14.21.5.3, “Ajuste da performance do plugin InnoDB memcached”](innodb-memcached-tuning.html)
 
-### innodb\_fast\_shutdown
+### innodb_fast_shutdown
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -2358,11 +2358,11 @@
 
 [Seção 2.10.4, “Atualização de Instalações Binárias ou Baseadas em Pacotes do MySQL no Unix/Linux”](upgrade-binary-package.html)
 
-### innodb\_fil\_make\_page\_dirty\_debug
+### innodb_fil_make_page_dirty_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_file\_format
+### innodb_file_format
 
 [Seção 14.10.2.2, “Verificação de compatibilidade ao abrir uma tabela”](innodb-file-format-compatibility-checking-table-access.html)
 
@@ -2394,7 +2394,7 @@
 
 [Seção 14.9.1.7, “Avisos e Erros de Sintaxe de Compressão SQL”](innodb-compression-syntax-warnings.html)
 
-### innodb\_file\_format\_check
+### innodb_file_format_check
 
 [Seção 14.10.2.2, “Verificação de compatibilidade ao abrir uma tabela”](innodb-file-format-compatibility-checking-table-access.html)
 
@@ -2404,7 +2404,7 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_file\_format\_max
+### innodb_file_format_max
 
 [Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
 
@@ -2412,11 +2412,11 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_file\_per
+### innodb_file_per
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_file\_per\_table
+### innodb_file_per_table
 
 [Seção 14.1.2, “Melhores Práticas para Tabelas InnoDB”](innodb-best-practices.html)
 
@@ -2472,7 +2472,7 @@
 
 [Seção 14.22.3, “Soluções de problemas para operações do dicionário de dados InnoDB”](innodb-troubleshooting-datadict.html)
 
-### innodb\_fill\_factor
+### innodb_fill_factor
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -2482,13 +2482,13 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_flush\_log\_at\_timeout
+### innodb_flush_log_at_timeout
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.5.4, "Buffer de registro"](innodb-redo-log-buffer.html)
 
-### innodb\_flush\_log\_at\_trx\_commit
+### innodb_flush_log_at_trx_commit
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -2506,7 +2506,7 @@
 
 [Seção 14.21.5.3, “Ajuste da performance do plugin InnoDB memcached”](innodb-memcached-tuning.html)
 
-### innodb\_flush\_method
+### innodb_flush_method
 
 [Seção 14.6.5, “Buffer de escrita dupla”](innodb-doublewrite-buffer.html)
 
@@ -2526,7 +2526,7 @@
 
 [Seção 14.21.5.3, “Ajuste da performance do plugin InnoDB memcached”](innodb-memcached-tuning.html)
 
-### innodb\_flush\_neighbors
+### innodb_flush_neighbors
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
@@ -2536,23 +2536,23 @@
 
 [Seção 8.5.8, “Otimização do I/O de disco InnoDB”](optimizing-innodb-diskio.html)
 
-### innodb\_flush\_sync
+### innodb_flush_sync
 
 [Seção 14.8.8, “Configurando a Capacidade de E/S do InnoDB”](innodb-configuring-io-capacity.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_flushing\_avg\_loops
+### innodb_flushing_avg_loops
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_force\_load\_corrupted
+### innodb_force_load_corrupted
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_force\_recovery
+### innodb_force_recovery
 
 [Seção 13.1.29, "Instrução DROP TABLE"](drop-table.html)
 
@@ -2568,23 +2568,23 @@
 
 [Seção 2.10.12, “Reestruturação ou reparo de tabelas ou índices”](rebuilding-tables.html)
 
-### innodb\_ft\_aux\_table
+### innodb_ft_aux_table
 
 [Seção 14.16.4, “Tabelas de Índices FULLTEXT do Schema de Informações InnoDB”](innodb-information-schema-fulltext_index-tables.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-[Seção 24.4.8, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
+[Seção 24.4.8, “A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
 
-[Seção 24.4.9, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG”](information-schema-innodb-ft-config-table.html)
+[Seção 24.4.9, “A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG”](information-schema-innodb-ft-config-table.html)
 
-[Seção 24.4.11, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED”](information-schema-innodb-ft-deleted-table.html)
+[Seção 24.4.11, “A tabela INFORMATION_SCHEMA INNODB_FT_DELETED”](information-schema-innodb-ft-deleted-table.html)
 
-[Seção 24.4.12, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE”](information-schema-innodb-ft-index-cache-table.html)
+[Seção 24.4.12, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”](information-schema-innodb-ft-index-cache-table.html)
 
-[Seção 24.4.13, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE”](information-schema-innodb-ft-index-table-table.html)
+[Seção 24.4.13, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”](information-schema-innodb-ft-index-table-table.html)
 
-### innodb\_ft\_cache\_size
+### innodb_ft_cache_size
 
 [Seção 14.6.2.4, “Índices de Texto Completo InnoDB”](innodb-fulltext-index.html)
 
@@ -2594,13 +2594,13 @@
 
 [Glossário do MySQL](glossary.html)
 
-[Seção 24.4.12, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE”](information-schema-innodb-ft-index-cache-table.html)
+[Seção 24.4.12, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”](information-schema-innodb-ft-index-cache-table.html)
 
-### innodb\_ft\_enable\_diag\_print
+### innodb_ft_enable_diag_print
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_ft\_enable\_stopword
+### innodb_ft_enable_stopword
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -2610,7 +2610,7 @@
 
 [Seção 12.9.1, “Pesquisas de Texto Completo em Linguagem Natural”](fulltext-natural-language.html)
 
-### innodb\_ft\_max\_token\_size
+### innodb_ft_max_token_size
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -2622,7 +2622,7 @@
 
 [Seção 12.9.8, “Parser de Texto Completo ngram”](fulltext-search-ngram.html)
 
-### innodb\_ft\_min\_token\_size
+### innodb_ft_min_token_size
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -2638,7 +2638,7 @@
 
 [Seção 12.9.8, “Parser de Texto Completo ngram”](fulltext-search-ngram.html)
 
-### innodb\_ft\_num\_word\_optimize
+### innodb_ft_num_word_optimize
 
 [Seção 12.9.6, “Ajuste fino da pesquisa full-text do MySQL”](fulltext-fine-tuning.html)
 
@@ -2646,11 +2646,11 @@
 
 [Seção 13.7.2.4, "Instrução OPTIMIZE TABLE"](optimize-table.html)
 
-### innodb\_ft\_result\_cache\_limit
+### innodb_ft_result_cache_limit
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_ft\_server\_stopword\_table
+### innodb_ft_server_stopword_table
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -2662,15 +2662,15 @@
 
 [Seção 12.9.1, “Pesquisas de Texto Completo em Linguagem Natural”](fulltext-natural-language.html)
 
-[Seção 24.4.10, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
+[Seção 24.4.10, “A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
 
-### innodb\_ft\_sort\_pll\_degree
+### innodb_ft_sort_pll_degree
 
 [Seção 14.6.2.4, “Índices de Texto Completo InnoDB”](innodb-fulltext-index.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_ft\_total\_cache\_size
+### innodb_ft_total_cache_size
 
 [Seção 14.6.2.4, “Índices de Texto Completo InnoDB”](innodb-fulltext-index.html)
 
@@ -2678,9 +2678,9 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-[Seção 24.4.12, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE”](information-schema-innodb-ft-index-cache-table.html)
+[Seção 24.4.12, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”](information-schema-innodb-ft-index-cache-table.html)
 
-### innodb\_ft\_user\_stopword\_table
+### innodb_ft_user_stopword_table
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -2692,9 +2692,9 @@
 
 [Seção 12.9.1, “Pesquisas de Texto Completo em Linguagem Natural”](fulltext-natural-language.html)
 
-[Seção 24.4.10, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
+[Seção 24.4.10, “A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
 
-### innodb\_io\_capacity
+### innodb_io_capacity
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
@@ -2708,7 +2708,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_io\_capacity\_max
+### innodb_io_capacity_max
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
@@ -2718,7 +2718,7 @@
 
 [Seção 8.5.8, “Otimização do I/O de disco InnoDB”](optimizing-innodb-diskio.html)
 
-### innodb\_large\_prefix
+### innodb_large_prefix
 
 [Seção 8.3.4, “Índices de Colunas”](column-indexes.html)
 
@@ -2738,11 +2738,11 @@
 
 [Glossário do MySQL](glossary.html)
 
-### innodb\_limit\_optimistic\_insert\_debug
+### innodb_limit_optimistic_insert_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_lock\_wait\_timeout
+### innodb_lock_wait_timeout
 
 [Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
 
@@ -2760,7 +2760,7 @@
 
 [Seção 16.4.1.30, "Tentativas de replicação e tempos de espera"](replication-features-timeout.html)
 
-### innodb\_locks\_unsafe\_for\_binlog
+### innodb_locks_unsafe_for_binlog
 
 [Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
 
@@ -2774,7 +2774,7 @@
 
 [Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
 
-### innodb\_log\_buffer\_size
+### innodb_log_buffer_size
 
 [Seção 14.8.1, “Configuração de Inicialização do InnoDB”](innodb-init-startup-configuration.html)
 
@@ -2786,15 +2786,15 @@
 
 [Seção 8.5.4, “Otimização do registro de reinicialização do InnoDB”](optimizing-innodb-logging.html)
 
-### innodb\_log\_checkpoint\_now
+### innodb_log_checkpoint_now
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_log\_checksums
+### innodb_log_checksums
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_log\_compressed\_pages
+### innodb_log_compressed_pages
 
 [Seção 14.9.1.6, "Compressão para cargas de trabalho OLTP"](innodb-performance-compression-oltp.html)
 
@@ -2802,7 +2802,7 @@
 
 [Seção 8.5.8, “Otimização do I/O de disco InnoDB”](optimizing-innodb-diskio.html)
 
-### innodb\_log\_file\_size
+### innodb_log_file_size
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
@@ -2814,7 +2814,7 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
 [Seção 8.5.8, “Otimização do I/O de disco InnoDB”](optimizing-innodb-diskio.html)
 
@@ -2824,7 +2824,7 @@
 
 [Seção 5.1.8, “Usando Variáveis do Sistema”](using-system-variables.html)
 
-### innodb\_log\_files\_in\_group
+### innodb_log_files_in_group
 
 [Seção 14.8.1, “Configuração de Inicialização do InnoDB”](innodb-init-startup-configuration.html)
 
@@ -2834,7 +2834,7 @@
 
 [Seção 14.6.6, "Registro de Refazer"](innodb-redo-log.html)
 
-### innodb\_log\_group\_home\_dir
+### innodb_log_group_home_dir
 
 [Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
 
@@ -2842,25 +2842,25 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
 [Seção 14.6.3.4, “Desfazer Espaços de Tabela”](innodb-undo-tablespaces.html)
 
 [Seção 17.5.5, “Usando o MySQL Enterprise Backup com a Replicação por Grupo”](group-replication-enterprise-backup.html)
 
-### innodb\_log\_write\_ahead\_size
+### innodb_log_write_ahead_size
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 8.5.4, “Otimização do registro de reinicialização do InnoDB”](optimizing-innodb-logging.html)
 
-### innodb\_lru\_scan\_depth
+### innodb_lru_scan_depth
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_max\_dirty\_pages\_pct
+### innodb_max_dirty_pages_pct
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
@@ -2868,13 +2868,13 @@
 
 [Seção 8.5.8, “Otimização do I/O de disco InnoDB”](optimizing-innodb-diskio.html)
 
-### innodb\_max\_dirty\_pages\_pct\_lwm
+### innodb_max_dirty_pages_pct_lwm
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_max\_purge\_lag
+### innodb_max_purge_lag
 
 [Seção 14.3, “Multiversão InnoDB”](innodb-multi-versioning.html)
 
@@ -2884,63 +2884,63 @@
 
 [Seção 14.8.10, “Configuração de Purga”](innodb-purge-configuration.html)
 
-### innodb\_max\_purge\_lag\_delay
+### innodb_max_purge_lag_delay
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.8.10, “Configuração de Purga”](innodb-purge-configuration.html)
 
-### innodb\_max\_undo\_log\_size
+### innodb_max_undo_log_size
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.6.3.4, “Desfazer Espaços de Tabela”](innodb-undo-tablespaces.html)
 
-### innodb\_merge\_threshold\_set\_all\_debug
+### innodb_merge_threshold_set_all_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_monitor\_disable
+### innodb_monitor_disable
 
-[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION\_SCHEMA”](innodb-information-schema-metrics-table.html)
-
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
-
-[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
-
-[Seção 24.4.16, “A tabela INFORMATION\_SCHEMA INNODB\_METRICS”](information-schema-innodb-metrics-table.html)
-
-### innodb\_monitor\_enable
-
-[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION\_SCHEMA”](innodb-information-schema-metrics-table.html)
+[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”](innodb-information-schema-metrics-table.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
 
-[Seção 24.4.16, “A tabela INFORMATION\_SCHEMA INNODB\_METRICS”](information-schema-innodb-metrics-table.html)
+[Seção 24.4.16, “A tabela INFORMATION_SCHEMA INNODB_METRICS”](information-schema-innodb-metrics-table.html)
 
-### innodb\_monitor\_reset
+### innodb_monitor_enable
 
-[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION\_SCHEMA”](innodb-information-schema-metrics-table.html)
-
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
-
-[Seção 24.4.16, “A tabela INFORMATION\_SCHEMA INNODB\_METRICS”](information-schema-innodb-metrics-table.html)
-
-### innodb\_monitor\_reset\_all
-
-[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION\_SCHEMA”](innodb-information-schema-metrics-table.html)
+[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”](innodb-information-schema-metrics-table.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-[Seção 24.4.16, “A tabela INFORMATION\_SCHEMA INNODB\_METRICS”](information-schema-innodb-metrics-table.html)
+[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
 
-### innodb\_numa\_interleave
+[Seção 24.4.16, “A tabela INFORMATION_SCHEMA INNODB_METRICS”](information-schema-innodb-metrics-table.html)
+
+### innodb_monitor_reset
+
+[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”](innodb-information-schema-metrics-table.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_old\_blocks\_pct
+[Seção 24.4.16, “A tabela INFORMATION_SCHEMA INNODB_METRICS”](information-schema-innodb-metrics-table.html)
+
+### innodb_monitor_reset_all
+
+[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”](innodb-information-schema-metrics-table.html)
+
+[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+
+[Seção 24.4.16, “A tabela INFORMATION_SCHEMA INNODB_METRICS”](information-schema-innodb-metrics-table.html)
+
+### innodb_numa_interleave
+
+[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+
+### innodb_old_blocks_pct
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -2948,7 +2948,7 @@
 
 [Glossário do MySQL](glossary.html)
 
-### innodb\_old\_blocks\_time
+### innodb_old_blocks_time
 
 [Seção 14.5.1, "Pool de Buffer"](innodb-buffer-pool.html)
 
@@ -2956,7 +2956,7 @@
 
 [Seção 14.8.3.3, “Tornar a varredura do pool de tampão resistente”](innodb-performance-midpoint_insertion.html)
 
-### innodb\_online\_alter\_log\_max\_size
+### innodb_online_alter_log_max_size
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -2966,13 +2966,13 @@
 
 [Seção 14.13.3, “Requisitos de Espaço DDL Online”](innodb-online-ddl-space-requirements.html)
 
-### innodb\_open\_files
+### innodb_open_files
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### innodb\_optimize\_fulltext\_only
+### innodb_optimize_fulltext_only
 
 [Seção 12.9.6, “Ajuste fino da pesquisa full-text do MySQL”](fulltext-fine-tuning.html)
 
@@ -2984,9 +2984,9 @@
 
 [Seção 13.7.2.4, "Instrução OPTIMIZE TABLE"](optimize-table.html)
 
-[Seção 24.4.13, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE”](information-schema-innodb-ft-index-table-table.html)
+[Seção 24.4.13, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”](information-schema-innodb-ft-index-table-table.html)
 
-### innodb\_page\_cleaners
+### innodb_page_cleaners
 
 [Seção 14.8.3.5, “Configurando o esvaziamento do pool de buffers”](innodb-buffer-pool-flushing.html)
 
@@ -2996,7 +2996,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_page\_size
+### innodb_page_size
 
 [Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
 
@@ -3036,7 +3036,7 @@
 
 [Seção 14.9.1.1, “Visão geral da compressão de tabelas”](innodb-compression-background.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
 [Seção 14.6.2.2, “A Estrutura Física de um Índex InnoDB”](innodb-physical-structure.html)
 
@@ -3046,7 +3046,7 @@
 
 [Seção 14.6.3.4, “Desfazer Espaços de Tabela”](innodb-undo-tablespaces.html)
 
-### innodb\_print\_all\_deadlocks
+### innodb_print_all_deadlocks
 
 [Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
 
@@ -3058,13 +3058,13 @@
 
 [Seção 14.22, "Solução de problemas do InnoDB"](innodb-troubleshooting.html)
 
-### innodb\_purge\_batch\_size
+### innodb_purge_batch_size
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.8.10, “Configuração de Purga”](innodb-purge-configuration.html)
 
-### innodb\_purge\_rseg\_truncate\_frequency
+### innodb_purge_rseg_truncate_frequency
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -3072,7 +3072,7 @@
 
 [Seção 14.6.3.4, “Desfazer Espaços de Tabela”](innodb-undo-tablespaces.html)
 
-### innodb\_purge\_threads
+### innodb_purge_threads
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -3080,7 +3080,7 @@
 
 [Seção 14.8.10, “Configuração de Purga”](innodb-purge-configuration.html)
 
-### innodb\_random\_read\_ahead
+### innodb_random_read_ahead
 
 [Seção 14.8.3.4, “Configurando a pré-visualização do pool de buffers InnoDB (leitura antecipada)](innodb-performance-read_ahead.html)
 
@@ -3088,13 +3088,13 @@
 
 [Glossário do MySQL](glossary.html)
 
-### innodb\_read\_ahead\_threshold
+### innodb_read_ahead_threshold
 
 [Seção 14.8.3.4, “Configurando a pré-visualização do pool de buffers InnoDB (leitura antecipada)](innodb-performance-read_ahead.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_read\_io\_threads
+### innodb_read_io_threads
 
 [Seção 14.8.6, “Configurando o Número de Fios de E/S InnoDB de Fundo”](innodb-performance-multiple_io_threads.html)
 
@@ -3104,19 +3104,19 @@
 
 [Seção 14.8.7, “Uso de E/S Assíncrona no Linux”](innodb-linux-native-aio.html)
 
-### innodb\_read\_only
+### innodb_read_only
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_replication\_delay
+### innodb_replication_delay
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_rollback\_on\_timeout
+### innodb_rollback_on_timeout
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_rollback\_segments
+### innodb_rollback_segments
 
 [Seção 14.8.1, “Configuração de Inicialização do InnoDB”](innodb-init-startup-configuration.html)
 
@@ -3128,11 +3128,11 @@
 
 [Seção 14.6.3.4, “Desfazer Espaços de Tabela”](innodb-undo-tablespaces.html)
 
-### innodb\_saved\_page\_number\_debug
+### innodb_saved_page_number_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_sort\_buffer\_size
+### innodb_sort_buffer_size
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -3140,13 +3140,13 @@
 
 [Seção 14.13.3, “Requisitos de Espaço DDL Online”](innodb-online-ddl-space-requirements.html)
 
-### innodb\_spin\_wait\_delay
+### innodb_spin_wait_delay
 
 [Seção 14.8.9, “Configurando a Pesquisa de Bloqueio de Rotação”](innodb-performance-spin_lock_polling.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_stats\_auto\_recalc
+### innodb_stats_auto_recalc
 
 [Seção 14.8.11.1.1, “Configurando o Cálculo Automático de Estatísticas para Estatísticas de Otimizador Persistente”](innodb-persistent-stats.html#innodb-persistent-stats-auto-recalc)
 
@@ -3160,13 +3160,13 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_stats\_include\_delete\_marked
+### innodb_stats_include_delete_marked
 
 [Seção 14.8.11.1.4, “Inclusão de registros marcados para exclusão em cálculos de estatísticas persistentes”](innodb-persistent-stats.html#innodb-persistent-stats-delete-marked)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_stats\_method
+### innodb_stats_method
 
 [Seção 8.3.7, “Coleta de estatísticas de índices InnoDB e MyISAM”](index-statistics.html)
 
@@ -3174,13 +3174,13 @@
 
 [Glossário do MySQL](glossary.html)
 
-### innodb\_stats\_on\_metadata
+### innodb_stats_on_metadata
 
 [Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistente”](innodb-statistics-estimation.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_stats\_persistent
+### innodb_stats_persistent
 
 [Seção 13.7.2.1, "Declaração de Tabela de Análise"](analyze-table.html)
 
@@ -3202,7 +3202,7 @@
 
 [Seção 8.5.10, “Otimizando o InnoDB para Sistemas com Muitas Tabelas”](optimizando-innodb-many-tables.html)
 
-### innodb\_stats\_persistent\_sample\_pages
+### innodb_stats_persistent_sample_pages
 
 [Seção 13.7.2.1, "Declaração de Tabela de Análise"](analyze-table.html)
 
@@ -3214,11 +3214,11 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_stats\_sample\_pages
+### innodb_stats_sample_pages
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_stats\_transient\_sample\_pages
+### innodb_stats_transient_sample_pages
 
 [Seção 13.7.2.1, "Declaração de Tabela de Análise"](analyze-table.html)
 
@@ -3228,7 +3228,7 @@
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_status\_output
+### innodb_status_output
 
 [Seção 14.18.2, “Habilitar monitores InnoDB”](innodb-abilitando-monitores.html)
 
@@ -3236,7 +3236,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_status\_output\_locks
+### innodb_status_output_locks
 
 [Seção 14.18.2, “Habilitar monitores InnoDB”](innodb-abilitando-monitores.html)
 
@@ -3244,7 +3244,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_strict\_mode
+### innodb_strict_mode
 
 [Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
 
@@ -3260,7 +3260,7 @@
 
 [Seção 14.9.1.7, “Avisos e Erros de Sintaxe de Compressão SQL”](innodb-compression-syntax-warnings.html)
 
-### innodb\_support\_xa
+### innodb_support_xa
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -3274,27 +3274,27 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_sync\_array\_size
+### innodb_sync_array_size
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_sync\_debug
+### innodb_sync_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
 
-### innodb\_sync\_spin\_loops
+### innodb_sync_spin_loops
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_table\_locks
+### innodb_table_locks
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
 [Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
 
-### innodb\_temp\_data\_file\_path
+### innodb_temp_data_file_path
 
 [Seção 14.8.2, “Configurando a InnoDB para operação apenas de leitura”](innodb-read-only-instance.html)
 
@@ -3304,15 +3304,15 @@
 
 [Glossário do MySQL](glossary.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
-[Seção 24.4.27, “A tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO”](information-schema-innodb-temp-table-info-table.html)
+[Seção 24.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”](information-schema-innodb-temp-table-info-table.html)
 
 [Seção 14.6.3.5, “O Espaço de Memória Temporário”](innodb-temporary-tablespace.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_thread\_concurrency
+### innodb_thread_concurrency
 
 [Seção 14.8.5, “Configurando Concorrência de Fios para InnoDB”](innodb-performance-thread_concurrency.html)
 
@@ -3324,13 +3324,13 @@
 
 [Seção 8.5.9, “Otimização das variáveis de configuração do InnoDB”](optimizing-innodb-configuration-variables.html)
 
-### innodb\_thread\_sleep\_delay
+### innodb_thread_sleep_delay
 
 [Seção 14.8.5, “Configurando Concorrência de Fios para InnoDB”](innodb-performance-thread_concurrency.html)
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_tmpdir
+### innodb_tmpdir
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -3338,15 +3338,15 @@
 
 [Seção 14.13.3, “Requisitos de Espaço DDL Online”](innodb-online-ddl-space-requirements.html)
 
-### innodb\_trx\_purge\_view\_update\_only\_debug
+### innodb_trx_purge_view_update_only_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_trx\_rseg\_n\_slots\_debug
+### innodb_trx_rseg_n_slots_debug
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_undo\_directory
+### innodb_undo_directory
 
 [Seção 14.8.2, “Configurando a InnoDB para operação apenas de leitura”](innodb-read-only-instance.html)
 
@@ -3358,7 +3358,7 @@
 
 [Seção 17.5.5, “Usando o MySQL Enterprise Backup com a Replicação por Grupo”](group-replication-enterprise-backup.html)
 
-### innodb\_undo\_log\_truncate
+### innodb_undo_log_truncate
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -3366,11 +3366,11 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### innodb\_undo\_logs
+### innodb_undo_logs
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_undo\_tablespaces
+### innodb_undo_tablespaces
 
 [Seção 14.8.2, “Configurando a InnoDB para operação apenas de leitura”](innodb-read-only-instance.html)
 
@@ -3382,7 +3382,7 @@
 
 [Seção 14.6.3.4, “Desfazer Espaços de Tabela”](innodb-undo-tablespaces.html)
 
-### innodb\_use\_native\_aio
+### innodb_use_native_aio
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
@@ -3392,11 +3392,11 @@
 
 [Seção 14.8.7, “Uso de E/S Assíncrona no Linux”](innodb-linux-native-aio.html)
 
-### innodb\_version
+### innodb_version
 
 [Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
 
-### innodb\_write\_io\_threads
+### innodb_write_io_threads
 
 [Seção 14.8.6, “Configurando o Número de Fios de E/S InnoDB de Fundo”](innodb-performance-multiple_io_threads.html)
 
@@ -3406,13 +3406,13 @@
 
 [Seção 14.8.7, “Uso de E/S Assíncrona no Linux”](innodb-linux-native-aio.html)
 
-### insert\_id
+### insert_id
 
 [Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### interactive\_timeout
+### interactive_timeout
 
 [Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”](communication-errors.html)
 
@@ -3430,9 +3430,9 @@
 
 ### J
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### tamanho\_buffer\_de\_conexão
+### tamanho_buffer_de_conexão
 
 [Seção 8.2.1.11, "Conjuntos de junção de laço aninhado e acesso a chave em lote"](bnl-bka-optimization.html)
 
@@ -3442,13 +3442,13 @@
 
 ### K
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### keep\_files\_on\_create
+### keep_files_on_create
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### tamanho\_buffer\_chave
+### tamanho_buffer_chave
 
 [Seção 8.6.2, “Carregamento de dados em massa para tabelas MyISAM”](optimizando-myisam-carregamento-de-dados-em-massa.html)
 
@@ -3482,7 +3482,7 @@
 
 [Seção 8.10.2, “Cache de Chaves MyISAM”](myisam-key-cache.html)
 
-### limite\_de\_idade\_do\_cache\_chave
+### limite_de_idade_do_cache_chave
 
 [Seção 8.10.2.3, “Estratégia de Inserção no Ponto Médio”](midpoint-insertion.html)
 
@@ -3490,7 +3490,7 @@
 
 [Seção 5.1.8.3, “Variáveis de Sistema Estruturado”](structured-system-variables.html)
 
-### tamanho\_de\_bloco\_de\_cache\_chave
+### tamanho_de_bloco_de_cache_chave
 
 [Seção 8.10.2.5, “Tamanho do Bloco de Cache Principal”](key-cache-block-size.html)
 
@@ -3500,7 +3500,7 @@
 
 [Seção 5.1.8.3, “Variáveis de Sistema Estruturado”](structured-system-variables.html)
 
-### limite\_divisão\_cache\_chave
+### limite_divisão_cache_chave
 
 [Seção 8.10.2.3, “Estratégia de Inserção no Ponto Médio”](midpoint-insertion.html)
 
@@ -3508,35 +3508,35 @@
 
 [Seção 5.1.8.3, “Variáveis de Sistema Estruturado”](structured-system-variables.html)
 
-### chaveiro\_aws\_cmk\_id
+### chaveiro_aws_cmk_id
 
 [Seção 6.4.4.12, “Variáveis do Sistema de Carteira de Chave”](keyring-system-variables.html)
 
 [Seção 6.4.4.9, “Funções de Gerenciamento de Chaves do Carteiro de Plugins”](keyring-functions-plugin-specific.html)
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”](keyring-aws-plugin.html)
+[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
 
-### chave\_aws\_conf\_file
+### chave_aws_conf_file
 
 [Seção 6.4.4.12, “Variáveis do Sistema de Carteira de Chave”](keyring-system-variables.html)
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”](keyring-aws-plugin.html)
+[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
 
-### chaveiro\_aws\_data\_file
+### chaveiro_aws_data_file
 
 [Seção 6.4.4.12, “Variáveis do Sistema de Carteira de Chave”](keyring-system-variables.html)
 
 [Seção 6.4.4.9, “Funções de Gerenciamento de Chaves do Carteiro de Plugins”](keyring-functions-plugin-specific.html)
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”](keyring-aws-plugin.html)
+[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
 
-### chaveiro\_aws\_região
+### chaveiro_aws_região
 
 [Seção 6.4.4.12, “Variáveis do Sistema de Carteira de Chave”](keyring-system-variables.html)
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”](keyring-aws-plugin.html)
+[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
 
-### chave\_de\_colar\_dados\_do\_arquivo\_criptografado
+### chave_de_colar_dados_do_arquivo_criptografado
 
 [Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”](innodb-data-encryption.html)
 
@@ -3544,15 +3544,15 @@
 
 [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
 
-[Seção 6.4.4.3, “Usando o plugin de cartela de chaves criptografada keyring\_encrypted\_file”](keyring-encrypted-file-plugin.html)
+[Seção 6.4.4.3, “Usando o plugin de cartela de chaves criptografada keyring_encrypted_file”](keyring-encrypted-file-plugin.html)
 
 ### senha do arquivo criptografado do chaveiro
 
 [Seção 6.4.4.12, “Variáveis do Sistema de Carteira de Chave”](keyring-system-variables.html)
 
-[Seção 6.4.4.3, “Usando o plugin de cartela de chaves criptografada keyring\_encrypted\_file”](keyring-encrypted-file-plugin.html)
+[Seção 6.4.4.3, “Usando o plugin de cartela de chaves criptografada keyring_encrypted_file”](keyring-encrypted-file-plugin.html)
 
-### chaveiro\_arquivo\_dados
+### chaveiro_arquivo_dados
 
 [Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”](innodb-data-encryption.html)
 
@@ -3562,15 +3562,15 @@
 
 [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
 
-[Seção 6.4.4.2, “Usando o plugin de cartela de chaves baseado em arquivo keyring\_file”](keyring-file-plugin.html)
+[Seção 6.4.4.2, “Usando o plugin de cartela de chaves baseado em arquivo keyring_file”](keyring-file-plugin.html)
 
-### chaveiro\_okv\_conf\_dir
+### chaveiro_okv_conf_dir
 
 [Seção 6.4.4.12, “Variáveis do Sistema de Carteira de Chave”](keyring-system-variables.html)
 
-[Seção 6.4.4.4, “Usando o plugin KMIP keyring\_okv”](keyring-okv-plugin.html)
+[Seção 6.4.4.4, “Usando o plugin KMIP keyring_okv”](keyring-okv-plugin.html)
 
-### chaveiro\_operações
+### chaveiro_operações
 
 [Seção 6.4.4.12, “Variáveis do Sistema de Carteira de Chave”](keyring-system-variables.html)
 
@@ -3578,23 +3578,23 @@
 
 ### L
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### suporte\_para\_arquivos\_grandes
+### suporte_para_arquivos_grandes
 
 [Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### grande\_page\_size
+### grande_page_size
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### grandes\_páginas
+### grandes_páginas
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### last\_insert\_id
+### last_insert_id
 
 [Seção 5.4.4.3, "Formato de registro binário misto"](binary-log-mixed.html)
 
@@ -3602,19 +3602,19 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### lc\_messages
+### lc_messages
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 10.12, “Definindo o idioma da mensagem de erro”](error-message-language.html)
 
-### lc\_messages\_dir
+### lc_messages_dir
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 10.12, “Definindo o idioma da mensagem de erro”](error-message-language.html)
 
-### lc\_time\_names
+### lc_time_names
 
 [Seção 12.7, “Funções de data e hora”](date-and-time-functions.html)
 
@@ -3636,7 +3636,7 @@
 
 [Seção 13.2.7, “Declaração de Carregamento XML”](load-xml.html)
 
-### local\_infile
+### local_infile
 
 [Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
 
@@ -3646,11 +3646,11 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### lock\_wait\_timeout
+### lock_wait_timeout
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### locked\_in\_memory
+### locked_in_memory
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -3668,7 +3668,7 @@
 
 [Seção 14.21.6, “O Plugin InnoDB memcached e Replicação”](innodb-memcached-replication.html)
 
-### log\_bin
+### log_bin
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -3680,15 +3680,15 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### basename\_log\_bin
+### basename_log_bin
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
-### log\_bin\_index
+### log_bin_index
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
-### log\_bin\_trust\_function\_creators
+### log_bin_trust_function_creators
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -3696,7 +3696,7 @@
 
 [Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
 
-### log\_bin\_use\_v
+### log_bin_use_v
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -3704,13 +3704,13 @@
 
 [Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
 
-### log\_builtin\_as\_identified\_by\_password
+### log_builtin_as_identified_by_password
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
 [Seção 13.7.5.12, "Instrução SHOW CREATE USER"](show-create-user.html)
 
-### log\_error
+### log_error
 
 [Seção 5.4.2.2, "Registro de erros em sistemas Unix e Unix-like"](error-log-unix.html)
 
@@ -3722,7 +3722,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### log\_error\_verbosity
+### log_error_verbosity
 
 [Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”](communication-errors.html)
 
@@ -3746,7 +3746,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### log\_output
+### log_output
 
 [Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
 
@@ -3756,17 +3756,17 @@
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
-### log\_queries\_não\_usando\_índice
+### log_queries_não_usando_índice
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
-### log\_replica\_updates
+### log_replica_updates
 
 [Seção 16.1.3.7, “Exemplos de Funções Armazenadas para Manipular GTIDs”](replication-gtids-functions.html)
 
-### log\_slave\_updates
+### log_slave_updates
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -3784,23 +3784,23 @@
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### log\_slow\_admin\_statements
+### log_slow_admin_statements
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
-### log\_slow\_slave\_statements
+### log_slow_slave_statements
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
-### log\_statements\_unsafe\_for\_binlog
+### log_statements_unsafe_for_binlog
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
-### log\_syslog
+### log_syslog
 
 [Seção 5.4.2.1, "Registro de erros no Windows"](error-log-windows.html)
 
@@ -3808,39 +3808,39 @@
 
 [Seção 2.5.10, “Gerenciamento do servidor MySQL com systemd”](using-systemd.html)
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### log\_syslog\_facility
+### log_syslog_facility
 
 [Seção 5.4.2.3, "Registro de Erros no Log do Sistema"](error-log-syslog.html)
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### log\_syslog\_include\_pid
+### log_syslog_include_pid
 
 [Seção 5.4.2.3, "Registro de Erros no Log do Sistema"](error-log-syslog.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### log\_syslog\_tag
+### log_syslog_tag
 
 [Seção 5.4.2.3, "Registro de Erros no Log do Sistema"](error-log-syslog.html)
 
-[Seção 4.3.2, “mysqld\_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
+[Seção 4.3.2, “mysqld_safe — Script de inicialização do servidor MySQL”](mysqld-safe.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### log\_throttle\_queries\_not\_using\_indexes
+### log_throttle_queries_not_using_indexes
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
-### log\_timestamps
+### log_timestamps
 
 [Seção 5.4.2.5, "Formato de Saída do Log de Erros"](error-log-format.html)
 
@@ -3850,7 +3850,7 @@
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
-### log\_warnings
+### log_warnings
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
@@ -3860,7 +3860,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### long\_query\_time
+### long_query_time
 
 [Seção 5.4, "Logs do Servidor MySQL"](server-logs.html)
 
@@ -3890,7 +3890,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### letras minúsculas \_ nomes de tabelas
+### letras minúsculas _ nomes de tabelas
 
 [Seção 2.3.3.3.1.7, “Opções Avançadas”](mysql-installer-workflow.html#server-advanced-options)
 
@@ -3916,17 +3916,17 @@
 
 [Seção 13.7.5.37, "Instrução SHOW TABLES"](show-tables.html)
 
-[Seção 24.4.17, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_COLUMNS”](information-schema-innodb-sys-columns-table.html)
+[Seção 24.4.17, “A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS”](information-schema-innodb-sys-columns-table.html)
 
-[Seção 24.4.23, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
 
-[Seção 10.8.7, “Usando a Colagem em Pesquisas do INFORMATION\_SCHEMA”](charset-collation-information-schema.html)
+[Seção 10.8.7, “Usando a Colagem em Pesquisas do INFORMATION_SCHEMA”](charset-collation-information-schema.html)
 
 ### M
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### repositório\_de\_informações\_do\_mestre
+### repositório_de_informações_do_mestre
 
 [Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
 
@@ -3950,7 +3950,7 @@
 
 [Seção 16.2.2.3, “Opções de inicialização e canais de replicação”](channels-startup-options.html)
 
-### master\_verify\_checksum
+### master_verify_checksum
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -3958,7 +3958,7 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### max\_allowed\_packet
+### max_allowed_packet
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
@@ -3984,7 +3984,7 @@
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-[Seção 16.4.1.19, “Replicação e max\_allowed\_packet”](replication-features-max-allowed-packet.html)
+[Seção 16.4.1.19, “Replicação e max_allowed_packet”](replication-features-max-allowed-packet.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -3998,13 +3998,13 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### max\_binlog\_cache\_size
+### max_binlog_cache_size
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### max\_binlog\_size
+### max_binlog_size
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -4018,19 +4018,19 @@
 
 [Seção 16.2.4.1, "O Log de Retransmissão"](replica-logs-relaylog.html)
 
-### max\_binlog\_stmt\_cache\_size
+### max_binlog_stmt_cache_size
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
-### max\_connect\_errors
+### max_connect_errors
 
 [Seção 5.1.11.2, "Consultas DNS e Cache de Anfitriões"](host-cache.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 25.12.16.1, “A tabela host\_cache”](performance-schema-host-cache-table.html)
+[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
 
-### max\_conexões
+### max_conexões
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -4058,11 +4058,11 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### max\_threads\_at\_delay
+### max_threads_at_delay
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### max\_digest\_length
+### max_digest_length
 
 [Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
 
@@ -4074,7 +4074,7 @@
 
 [Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
 
-### max\_error\_count
+### max_error_count
 
 [Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
 
@@ -4088,7 +4088,7 @@
 
 [Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
 
-### max\_execution\_time
+### max_execution_time
 
 [Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
 
@@ -4096,7 +4096,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### max\_heap\_table\_size
+### max_heap_table_size
 
 [Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
 
@@ -4114,11 +4114,11 @@
 
 [Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
 
-### max\_insert\_delayed\_threads
+### max_insert_delayed_threads
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### max\_join\_size
+### max_join_size
 
 [Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
 
@@ -4128,19 +4128,19 @@
 
 [Seção 13.7.4.1, "Sintaxe SET para Atribuição de Variáveis"](set-variable.html)
 
-### max\_length\_for\_sort\_data
+### max_length_for_sort_data
 
 [Seção 8.2.1.14, “Otimização de ORDEM”](order-by-optimization.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### max\_points\_in\_geometry
+### max_points_in_geometry
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 12.16.8, “Funções de Operadores Espaciais”](spatial-operator-functions.html)
 
-### max\_prepared\_stmt\_count
+### max_prepared_stmt_count
 
 [Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
 
@@ -4154,7 +4154,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### max\_relay\_log\_size
+### max_relay_log_size
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -4162,13 +4162,13 @@
 
 [Seção 16.2.4.1, "O Log de Retransmissão"](replica-logs-relaylog.html)
 
-### max\_busca\_por\_chave
+### max_busca_por_chave
 
 [Seção 13.7.2.1, "Declaração de Tabela de Análise"](analyze-table.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### max\_sort\_length
+### max_sort_length
 
 [Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
 
@@ -4182,17 +4182,17 @@
 
 [Seção 11.5, “O tipo de dados JSON”](json.html)
 
-### max\_sp\_recursion\_depth
+### max_sp_recursion_depth
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
 
-### max\_tmp\_tables
+### max_tmp_tables
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### max\_user\_connections
+### max_user_connections
 
 [Seção 13.7.1.1, "Instrução ALTER USER"](alter-user.html)
 
@@ -4206,7 +4206,7 @@
 
 [Seção 6.2.16, “Definir limites de recursos da conta”](user-resources.html)
 
-### max\_write\_lock\_count
+### max_write_lock_count
 
 [Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
 
@@ -4216,33 +4216,33 @@
 
 [Seção 8.11.2, “Problemas de bloqueio de tabelas”](table-locking.html)
 
-### arquivo\_rc\_mecab
+### arquivo_rc_mecab
 
 [Seção 12.9.9, “Plugin do Analizador de Texto Completo MeCab”](fulltext-search-mecab.html)
 
-### metadata\_locks\_cache\_size
+### metadata_locks_cache_size
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### metadata\_locks\_hash\_instances
+### metadata_locks_hash_instances
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### min\_examinado\_linha\_limite
+### min_examinado_linha_limite
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
-### multi\_range\_count
+### multi_range_count
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### myisam\_data\_pointer\_size
+### myisam_data_pointer_size
 
 [Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
 
@@ -4250,7 +4250,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### myisam\_max\_sort\_file\_size
+### myisam_max_sort_file_size
 
 [Seção 15.2.1, “Opções de inicialização do MyISAM”](myisam-start.html)
 
@@ -4260,7 +4260,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### myisam\_mmap\_size
+### myisam_mmap_size
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -4280,13 +4280,13 @@
 
 [Seção 5.8.1.6, “Usando logs do servidor para encontrar causas de erros no mysqld”](using-log-files.html)
 
-### myisam\_repair\_threads
+### myisam_repair_threads
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### tamanho\_buffer\_de\_sorteio\_myisam
+### tamanho_buffer_de_sorteio_myisam
 
 [Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
 
@@ -4296,61 +4296,61 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### myisam\_stats\_method
+### myisam_stats_method
 
 [Seção 8.3.7, “Coleta de estatísticas de índices InnoDB e MyISAM”](index-statistics.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### myisam\_use\_mmap
+### myisam_use_mmap
 
 [Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### mysql\_firewall\_mode
+### mysql_firewall_mode
 
 [Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
 
 [Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
 
-### mysql\_firewall\_trace
+### mysql_firewall_trace
 
 [Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
 
 [Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
 
-### mysql\_native\_password\_proxy\_users
+### mysql_native_password_proxy_users
 
 [Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### mysqlx\_bind\_address
+### mysqlx_bind_address
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_connect\_timeout
+### mysqlx_connect_timeout
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_idle\_worker\_thread\_timeout
+### mysqlx_idle_worker_thread_timeout
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_max\_allowed\_packet
+### mysqlx_max_allowed_packet
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_max\_connections
+### mysqlx_max_connections
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_min\_worker\_threads
+### mysqlx_min_worker_threads
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_port
+### mysqlx_port
 
 [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
 
@@ -4358,47 +4358,47 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_port\_open\_timeout
+### mysqlx_port_open_timeout
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_socket
+### mysqlx_socket
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_ssl\_ca
+### mysqlx_ssl_ca
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_ssl\_capath
+### mysqlx_ssl_capath
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_ssl\_cert
+### mysqlx_ssl_cert
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_ssl\_cipher
+### mysqlx_ssl_cipher
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_ssl\_crl
+### mysqlx_ssl_crl
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_ssl\_crlpath
+### mysqlx_ssl_crlpath
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### mysqlx\_ssl\_key
+### mysqlx_ssl_key
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
 ### N
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### named\_pipe
+### named_pipe
 
 [Seção B.3.2.2, “Não consigo conectar ao servidor MySQL local”](can-not-connect-to-server.html)
 
@@ -4408,9 +4408,9 @@
 
 [Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
 
-[Seção 4.4.4, “mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL”](mysql-secure-installation.html)
+[Seção 4.4.4, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”](mysql-secure-installation.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
 
@@ -4438,7 +4438,7 @@
 
 [Seção 2.3.3.3.1.1, “Tipo e Rede”](mysql-installer-workflow.html#server-type-network)
 
-### grupo de acesso total a named\_pipe
+### grupo de acesso total a named_pipe
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -4448,9 +4448,9 @@
 
 [Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
 
-[Seção 4.4.4, “mysql\_secure\_installation — Melhorar a Segurança da Instalação do MySQL”](mysql-secure-installation.html)
+[Seção 4.4.4, “mysql_secure_installation — Melhorar a Segurança da Instalação do MySQL”](mysql-secure-installation.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
 
@@ -4472,25 +4472,25 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### ndb\_autoincrement\_prefetch\_sz
+### ndb_autoincrement_prefetch_sz
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
-### ndb\_cache\_check\_time
+### ndb_cache_check_time
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### ndb\_clear\_apply\_status
+### ndb_clear_apply_status
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
 [Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
 
-### ndb\_data\_node\_neighbour
+### ndb_data_node_neighbour
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
@@ -4498,81 +4498,81 @@
 
 [Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
 
-### formato\_coluna\_padrão\_ndb
+### formato_coluna_padrão_ndb
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
 [Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
 
-### ndb\_deferred\_constraints
+### ndb_deferred_constraints
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_distribution
+### ndb_distribution
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_eventbuffer\_free\_percent
+### ndb_eventbuffer_free_percent
 
 [Seção 21.6.2.3, "Relatório do Buffer de Eventos no Log do Clúster"](mysql-cluster-logs-event-buffer.html)
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_eventbuffer\_max\_alloc
+### ndb_eventbuffer_max_alloc
 
 [Seção 21.6.2.3, "Relatório do Buffer de Eventos no Log do Clúster"](mysql-cluster-logs-event-buffer.html)
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_extra\_logging
+### ndb_extra_logging
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_force\_send
+### ndb_force_send
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_fully\_replicated
+### ndb_fully_replicated
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_index\_stat\_enable
+### ndb_index_stat_enable
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### opção\_estatística\_do\_banco\_de\_dados\_db\_index
+### opção_estatística_do_banco_de_dados_db_index
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_join\_pushdown
+### ndb_join_pushdown
 
 [Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_log\_apply\_status
+### ndb_log_apply_status
 
 [Seção 21.7.10, “Replicação em Nuvem do NDB: Replicação Bidirecional e Circular”](mysql-cluster-replication-multi-source.html)
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_log\_bin
+### ndb_log_bin
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_log\_binlog\_index
+### ndb_log_binlog_index
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_log\_empty\_epochs
+### ndb_log_empty_epochs
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_log\_empty\_update
+### ndb_log_empty_update
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_log\_exclusive\_reads
+### ndb_log_exclusive_reads
 
 [Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld)
 
@@ -4580,15 +4580,15 @@
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_log\_orig
+### ndb_log_orig
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### id\_log\_transação\_db
+### id_log_transação_db
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### seleção\_de\_nó\_optimizada\_ndb
+### seleção_de_nó_optimizada_ndb
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
@@ -4596,7 +4596,7 @@
 
 [Seção 21.6.3.3, “Usando estatísticas CLUSTERLOG no cliente de gerenciamento de clusters NDB”](mysql-cluster-log-statistics.html)
 
-### ndb\_read\_backup
+### ndb_read_backup
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
@@ -4604,111 +4604,111 @@
 
 [Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
 
-### limite\_ativação\_de\_thread\_ndb\_recv
+### limite_ativação_de_thread_ndb_recv
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_recv\_thread\_cpu\_mask
+### ndb_recv_thread_cpu_mask
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_report\_thresh\_binlog\_epoch\_slip
+### ndb_report_thresh_binlog_epoch_slip
 
 [Seção 21.6.2.3, "Relatório do Buffer de Eventos no Log do Clúster"](mysql-cluster-logs-event-buffer.html)
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_report\_thresh\_binlog\_mem\_usage
+### ndb_report_thresh_binlog_mem_usage
 
 [Seção 21.6.2.3, "Relatório do Buffer de Eventos no Log do Clúster"](mysql-cluster-logs-event-buffer.html)
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_row\_checksum
+### ndb_row_checksum
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_show\_foreign\_key\_mock\_tables
+### ndb_show_foreign_key_mock_tables
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_slave\_conflict\_role
+### ndb_slave_conflict_role
 
 [Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_table\_no\_logging
+### ndb_table_no_logging
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
 [Seção 13.1.18.9, “Definindo opções de comentário do NDB”](create-table-ndb-comment-options.html)
 
-### ndb\_table\_temporary
+### ndb_table_temporary
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_use\_copying\_alter\_table
+### ndb_use_copying_alter_table
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_use\_exact\_count
+### ndb_use_exact_count
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_use\_transactions
+### ndb_use_transactions
 
 [Seção 21.6.9, “Importando dados no MySQL Cluster”](mysql-cluster-importing-data.html)
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndb\_version
+### ndb_version
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### string\_version\_db
+### string_version_db
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndbinfo\_database
+### ndbinfo_database
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndbinfo\_max\_bytes
+### ndbinfo_max_bytes
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndbinfo\_max\_rows
+### ndbinfo_max_rows
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndbinfo\_offline
+### ndbinfo_offline
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### ndbinfo\_show\_hidden
+### ndbinfo_show_hidden
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
 [Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
 
-[Seção 21.6.15.5, “Tabela ndbinfo cluster\_operations”](mysql-cluster-ndbinfo-cluster-operations.html)
+[Seção 21.6.15.5, “Tabela ndbinfo cluster_operations”](mysql-cluster-ndbinfo-cluster-operations.html)
 
-[Seção 21.6.15.6, “Tabela ndbinfo cluster\_transactions”](mysql-cluster-ndbinfo-cluster-transactions.html)
+[Seção 21.6.15.6, “Tabela ndbinfo cluster_transactions”](mysql-cluster-ndbinfo-cluster-transactions.html)
 
-[Seção 21.6.15.34, “Tabela server\_operations do ndbinfo server”](mysql-cluster-ndbinfo-server-operations.html)
+[Seção 21.6.15.34, “Tabela server_operations do ndbinfo server”](mysql-cluster-ndbinfo-server-operations.html)
 
-[Seção 21.6.15.35, “Tabela server\_transactions do ndbinfo server”](mysql-cluster-ndbinfo-server-transactions.html)
+[Seção 21.6.15.35, “Tabela server_transactions do ndbinfo server”](mysql-cluster-ndbinfo-server-transactions.html)
 
-### ndbinfo\_table\_prefix
-
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
-
-### ndbinfo\_version
+### ndbinfo_table_prefix
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### net\_buffer\_length
+### ndbinfo_version
+
+[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+
+### net_buffer_length
 
 [Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
 
@@ -4718,17 +4718,17 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### net\_read\_timeout
+### net_read_timeout
 
 [Seção B.3.2.3, “Conexão perdida com o servidor MySQL”](error-lost-connection.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### net\_retry\_count
+### net_retry_count
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### net\_write\_timeout
+### net_write_timeout
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -4738,7 +4738,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### ngram\_token\_size
+### ngram_token_size
 
 [Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”](fulltext-boolean.html)
 
@@ -4752,9 +4752,9 @@
 
 ### O
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### modo\_offline
+### modo_offline
 
 [Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
 
@@ -4766,7 +4766,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### antigo\_alter\_table
+### antigo_alter_table
 
 [Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
 
@@ -4798,7 +4798,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### limite\_de\_arquivos\_abertos
+### limite_de_arquivos_abertos
 
 [Seção 5.1.11.1, “Interfaces de Conexão”](connection-interfaces.html)
 
@@ -4816,7 +4816,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### optimizer\_prune\_level
+### optimizer_prune_level
 
 [Seção 8.9.1, “Controle da Avaliação do Plano de Consulta”](controlling-query-plan-evaluation.html)
 
@@ -4826,13 +4826,13 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### optimizer\_search\_depth
+### optimizer_search_depth
 
 [Seção 8.9.1, “Controle da Avaliação do Plano de Consulta”](controlling-query-plan-evaluation.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### optimizador\_switch
+### optimizador_switch
 
 [Seção 8.2.1.11, "Conjuntos de junção de laço aninhado e acesso a chave em lote"](bnl-bka-optimization.html)
 
@@ -4864,7 +4864,7 @@
 
 [Seção 8.9.2, “Otimizações Desconectables”](switchable-optimizations.html)
 
-[Seção 26.4.5.7, “A função list\_add()”](sys-list-add.html)
+[Seção 26.4.5.7, “A função list_add()”](sys-list-add.html)
 
 [Seção 13.2.11, "Declaração de Atualização"](update.html)
 
@@ -4874,17 +4874,17 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### optimizador\_trace
+### optimizador_trace
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 8.15.2, “Variáveis do sistema que controlam o rastreamento”](system-variables-controlling-tracing.html)
 
-[Seção 24.3.14, “Tabela INFORMATION\_SCHEMA OPTIMIZER\_TRACE”](information-schema-optimizer-trace-table.html)
+[Seção 24.3.14, “Tabela INFORMATION_SCHEMA OPTIMIZER_TRACE”](information-schema-optimizer-trace-table.html)
 
 [Seção 8.15.1, “Uso típico”](optimizer-tracing-typical-usage.html)
 
-### optimizador\_trace\_features
+### optimizador_trace_features
 
 [Seção 8.15.10, “Selecionando recursos do otimizador para rastreamento”](optimizer-features-to-trace.html)
 
@@ -4892,7 +4892,7 @@
 
 [Seção 8.15.2, “Variáveis do sistema que controlam o rastreamento”](system-variables-controlling-tracing.html)
 
-### limite\_de\_rastreamento\_do\_optimizador
+### limite_de_rastreamento_do_optimizador
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -4900,17 +4900,17 @@
 
 [Seção 8.15.4, "Limpeza de Rastros de Ajuste"](tuning-trace-purging.html)
 
-### optimizer\_trace\_max\_mem\_size
+### optimizer_trace_max_mem_size
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 8.15.2, “Variáveis do sistema que controlam o rastreamento”](system-variables-controlling-tracing.html)
 
-[Seção 24.3.14, “Tabela INFORMATION\_SCHEMA OPTIMIZER\_TRACE”](information-schema-optimizer-trace-table.html)
+[Seção 24.3.14, “Tabela INFORMATION_SCHEMA OPTIMIZER_TRACE”](information-schema-optimizer-trace-table.html)
 
 [Seção 8.15.5, “Rastreamento do uso da memória”](tracing-memory-usage.html)
 
-### optimizer\_trace\_offset
+### optimizer_trace_offset
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -4920,9 +4920,9 @@
 
 ### P
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### parser\_max\_mem\_size
+### parser_max_mem_size
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -4936,7 +4936,7 @@
 
 [Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
 
-### performance\_schema\_accounts\_size
+### performance_schema_accounts_size
 
 [Seção 25.12.14, "Tabelas de Variáveis de Status do Schema de Desempenho"](performance-schema-status-variable-tables.html)
 
@@ -4946,7 +4946,7 @@
 
 [Seção 25.12.8.1, “Tabela de contas”](performance-schema-accounts-table.html)
 
-### tamanho\_digestos\_do\_schema\_de\_desempenho
+### tamanho_digestos_do_schema_de_desempenho
 
 [Seção 25.10, “Resumo dos registros do esquema de desempenho”](performance-schema-statement-digests.html)
 
@@ -4956,53 +4956,43 @@
 
 [Seção 25.12.15.3, “Tabelas de Resumo de Declarações”](performance-schema-statement-summary-tables.html)
 
-### história\_longa\_do\_esquema\_de\_desempenho\_eventos\_etapas
+### história_longa_do_esquema_de_desempenho_eventos_etapas
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-[Seção 25.12.5.3, “A tabela events\_stages\_history\_long”](performance-schema-events-stages-history-long-table.html)
+[Seção 25.12.5.3, “A tabela events_stages_history_long”](performance-schema-events-stages-history-long-table.html)
 
-### tamanho\_histórico\_de\_etapas\_de\_eventos\_do\_schema\_de\_desempenho
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-[Seção 25.12.5.2, “A tabela events\_stages\_history”](performance-schema-events-stages-history-table.html)
-
-### história\_de\_declarações\_de\_eventos\_do\_schema\_de\_desempenho\_com\_tamanho\_longo
+### tamanho_histórico_de_etapas_de_eventos_do_schema_de_desempenho
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-[Seção 25.12.6.3, “A tabela history\_long\_events\_statements”](performance-schema-events-statements-history-long-table.html)
+[Seção 25.12.5.2, “A tabela events_stages_history”](performance-schema-events-stages-history-table.html)
 
-### história\_de\_declarações\_de\_eventos\_do\_schema\_de\_desempenho
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-[Seção 25.12.6.2, “Tabela events\_statements\_history”](performance-schema-events-statements-history-table.html)
-
-### história de transações do esquema de desempenho\_eventos\_longo\_tamanho
+### história_de_declarações_de_eventos_do_schema_de_desempenho_com_tamanho_longo
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-[Seção 25.12.7.3, “A tabela events\_transactions\_history\_long”](performance-schema-events-transactions-history-long-table.html)
+[Seção 25.12.6.3, “A tabela history_long_events_statements”](performance-schema-events-statements-history-long-table.html)
 
-### história\_de\_transações\_do\_schema\_de\_desempenho\_eventos\_tamanho
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-[Seção 25.12.7.2, “Tabela events\_transactions\_history”](performance-schema-events-transactions-history-table.html)
-
-### história\_de\_esperas\_do\_schema\_de\_desempenho\_longo
+### história_de_declarações_de_eventos_do_schema_de_desempenho
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-[Seção 25.12, "Descrição das tabelas do esquema de desempenho"](performance-schema-table-descriptions.html)
+[Seção 25.12.6.2, “Tabela events_statements_history”](performance-schema-events-statements-history-table.html)
 
-[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
+### história de transações do esquema de desempenho_eventos_longo_tamanho
 
-[Seção 25.12.4.3, “A tabela history\_long\_events\_waits”](performance-schema-events-waits-history-long-table.html)
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### história\_de\_esperas\_do\_schema\_de\_desempenho\_eventos\_tamanho
+[Seção 25.12.7.3, “A tabela events_transactions_history_long”](performance-schema-events-transactions-history-long-table.html)
+
+### história_de_transações_do_schema_de_desempenho_eventos_tamanho
+
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+
+[Seção 25.12.7.2, “Tabela events_transactions_history”](performance-schema-events-transactions-history-table.html)
+
+### história_de_esperas_do_schema_de_desempenho_longo
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
@@ -5010,9 +5000,19 @@
 
 [Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
 
-[Seção 25.12.4.2, “Tabela events\_waits\_history”](performance-schema-events-waits-history-table.html)
+[Seção 25.12.4.3, “A tabela history_long_events_waits”](performance-schema-events-waits-history-long-table.html)
 
-### performance\_schema\_hosts\_size
+### história_de_esperas_do_schema_de_desempenho_eventos_tamanho
+
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+
+[Seção 25.12, "Descrição das tabelas do esquema de desempenho"](performance-schema-table-descriptions.html)
+
+[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
+
+[Seção 25.12.4.2, “Tabela events_waits_history”](performance-schema-events-waits-history-table.html)
+
+### performance_schema_hosts_size
 
 [Seção 25.12.14, "Tabelas de Variáveis de Status do Schema de Desempenho"](performance-schema-status-variable-tables.html)
 
@@ -5022,15 +5022,15 @@
 
 [Seção 25.12.8.2, “A tabela de hosts”](performance-schema-hosts-table.html)
 
-### schema\_de\_desempenho\_max\_classes\_cond
+### schema_de_desempenho_max_classes_cond
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_max\_cond\_instances
+### schema_de_desempenho_max_cond_instances
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_max\_digest\_length
+### schema_de_desempenho_max_digest_length
 
 [Seção 25.10, “Resumo dos registros do esquema de desempenho”](performance-schema-statement-digests.html)
 
@@ -5038,127 +5038,127 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 25.12.6.1, “A tabela events\_statements\_current”](performance-schema-events-statements-current-table.html)
+[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
 
-### schema\_de\_desempenho\_max\_file\_classes
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-### schema\_de\_desempenho\_max\_file\_handles
+### schema_de_desempenho_max_file_classes
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_max\_file\_instances
+### schema_de_desempenho_max_file_handles
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_max\_index\_stat
+### schema_de_desempenho_max_file_instances
+
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+
+### schema_de_desempenho_max_index_stat
 
 [Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_máximo\_memória\_classes
+### schema_de_desempenho_máximo_memória_classes
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_performance\_max\_metadata\_locks
+### schema_performance_max_metadata_locks
 
 [Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-[Seção 25.12.12.1, “A tabela metadata\_locks”](performance-schema-metadata-locks-table.html)
+[Seção 25.12.12.1, “A tabela metadata_locks”](performance-schema-metadata-locks-table.html)
 
-### schema\_de\_desempenho\_max\_mutex\_classes
+### schema_de_desempenho_max_mutex_classes
 
 [Seção 25.7, “Monitoramento do estado do esquema de desempenho”](performance-schema-status-monitoring.html)
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_max\_mutex\_instances
+### schema_de_desempenho_max_mutex_instances
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_max\_statements\_preparados\_instâncias
+### schema_de_desempenho_max_statements_preparados_instâncias
 
 [Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-[Seção 25.12.6.4, “Tabela prepared\_statements\_instances”](performance-schema-prepared-statements-instances-table.html)
+[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
 
-### schema\_de\_desempenho\_max\_program\_instances
+### schema_de_desempenho_max_program_instances
 
 [Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_performance\_max\_rwlock\_classes
+### schema_performance_max_rwlock_classes
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_performance\_max\_rwlock\_instances
+### schema_performance_max_rwlock_instances
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_max\_socket\_classes
+### schema_de_desempenho_max_socket_classes
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_max\_socket\_instances
+### schema_de_desempenho_max_socket_instances
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### schema\_de\_desempenho\_max\_comprimento\_do\_texto\_sql
+### schema_de_desempenho_max_comprimento_do_texto_sql
 
 [Seção 25.10, “Resumo dos registros do esquema de desempenho”](performance-schema-statement-digests.html)
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-[Seção 25.12.6.1, “A tabela events\_statements\_current”](performance-schema-events-statements-current-table.html)
+[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
 
-### performance\_schema\_max\_stage\_classes
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-[Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
-
-### schema\_de\_desempenho\_max\_classes\_de\_instrução
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-### schema\_de\_desempenho\_max\_statement\_stack
-
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-### schema\_de\_desempenho\_max\_table\_handles
-
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-[Seção 25.12.12.2, “Tabela\_handles”](performance-schema-table-handles-table.html)
-
-### schema\_de\_desempenho\_max\_table\_instances
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-### schema\_performance\_max\_table\_lock\_stat
-
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
-
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
-
-### schema\_de\_desempenho\_max\_thread\_classes
+### performance_schema_max_stage_classes
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
 [Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
 
-### schema\_de\_desempenho\_max\_thread\_instances
+### schema_de_desempenho_max_classes_de_instrução
+
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+
+### schema_de_desempenho_max_statement_stack
+
+[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+
+### schema_de_desempenho_max_table_handles
+
+[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+
+[Seção 25.12.12.2, “Tabela_handles”](performance-schema-table-handles-table.html)
+
+### schema_de_desempenho_max_table_instances
+
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+
+### schema_performance_max_table_lock_stat
+
+[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+
+### schema_de_desempenho_max_thread_classes
+
+[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+
+[Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
+
+### schema_de_desempenho_max_thread_instances
 
 [Seção 25.12.14, "Tabelas de Variáveis de Status do Schema de Desempenho"](performance-schema-status-variable-tables.html)
 
@@ -5170,7 +5170,7 @@
 
 [Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
 
-### performance\_schema\_session\_connect\_attrs\_size
+### performance_schema_session_connect_attrs_size
 
 [Seção 25.12.9, “Tabelas de atributos de conexão do esquema de desempenho”](performance-schema-connection-attribute-tables.html)
 
@@ -5178,25 +5178,25 @@
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-### configuração\_do\_esquema\_de\_desempenho\_tamanho\_atores
+### configuração_do_esquema_de_desempenho_tamanho_atores
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-[Seção 25.12.2.1, “A tabela setup\_actors”](performance-schema-setup-actors-table.html)
+[Seção 25.12.2.1, “A tabela setup_actors”](performance-schema-setup-actors-table.html)
 
-### performance\_schema\_setup\_objects\_size
+### performance_schema_setup_objects_size
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
-[Seção 25.12.2.4, “Tabela setup\_objects”](performance-schema-setup-objects-table.html)
+[Seção 25.12.2.4, “Tabela setup_objects”](performance-schema-setup-objects-table.html)
 
-### schema\_de\_desempenho\_mostrar\_lista\_de\_processos
+### schema_de_desempenho_mostrar_lista_de_processos
 
 [Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
 
 [Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
 
-### performance\_schema\_users\_size
+### performance_schema_users_size
 
 [Seção 25.12.14, "Tabelas de Variáveis de Status do Schema de Desempenho"](performance-schema-status-variable-tables.html)
 
@@ -5210,13 +5210,13 @@
 
 [Seção 14.8.2, “Configurando a InnoDB para operação apenas de leitura”](innodb-read-only-instance.html)
 
-### pid\_file
+### pid_file
 
 [Seção 2.4.3, “Instalando um Daemon de Lançamento do MySQL”](macos-installation-launchd.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### plugin\_dir
+### plugin_dir
 
 [Seção 6.1.2.2, “Diretrizes do Administrador para Segurança de Senhas”](password-security-admin.html)
 
@@ -5276,7 +5276,7 @@
 
 [Seção 6.4.1.12, “Teste de Autenticação Pluggable”](test-pluggable-authentication.html)
 
-[Seção 24.3.17, “A Tabela INFORMATION\_SCHEMA PLUGINS”](information-schema-plugins-table.html)
+[Seção 24.3.17, “A Tabela INFORMATION_SCHEMA PLUGINS”](information-schema-plugins-table.html)
 
 [Seção 5.5.6.1.2, “Interface da Função de Serviço de Fechamento”](locking-service.html#locking-service-interface)
 
@@ -5296,11 +5296,11 @@
 
 [Seção 6.7.5.1, “Definindo o contexto da porta TCP para o mysqld”](selinux-context-mysqld-tcp-port.html)
 
-[Seção 25.12.11.8, “Tabela replication\_group\_members”](performance-schema-replication-group-members-table.html)
+[Seção 25.12.11.8, “Tabela replication_group_members”](performance-schema-replication-group-members-table.html)
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### tamanho\_buffer\_précarregado
+### tamanho_buffer_précarregado
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -5310,31 +5310,31 @@
 
 [Seção 13.7.5.30, "Declaração de PROJETO VISUAL"](show-profile.html)
 
-[Seção 24.3.19, “A tabela INFORMATION\_SCHEMA PROFILING”](information-schema-profiling-table.html)
+[Seção 24.3.19, “A tabela INFORMATION_SCHEMA PROFILING”](information-schema-profiling-table.html)
 
-### tamanho\_histórico\_de\_perfil
+### tamanho_histórico_de_perfil
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 13.7.5.30, "Declaração de PROJETO VISUAL"](show-profile.html)
 
-### versão\_do\_protocolo
+### versão_do_protocolo
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### proxy\_user
+### proxy_user
 
 [Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### modo\_escravo\_pseudo
+### modo_escravo_pseudo
 
 [Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### pseudo\_thread\_id
+### pseudo_thread_id
 
 [Seção 12.15, “Funções de Informação”](information-functions.html)
 
@@ -5346,13 +5346,13 @@
 
 ### Q
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### query\_alloc\_block\_size
+### query_alloc_block_size
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### limite\_cache\_de\_consultas
+### limite_cache_de_consultas
 
 [Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
 
@@ -5360,7 +5360,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### query\_cache\_min\_res\_unit
+### query_cache_min_res_unit
 
 [Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
 
@@ -5368,7 +5368,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### tamanho\_cache\_de\_consultas
+### tamanho_cache_de_consultas
 
 [Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
 
@@ -5378,7 +5378,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### tipo\_cache\_de\_consultas
+### tipo_cache_de_consultas
 
 [Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
 
@@ -5392,29 +5392,29 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### query\_cache\_wlock\_invalidate
+### query_cache_wlock_invalidate
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### tamanho\_pré-alocado\_de\_consulta
+### tamanho_pré-alocado_de_consulta
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 ### R
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### rand\_seed
-
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
-
-### tamanho\_bloco\_de\_alocação\_de\_intervalo
+### rand_seed
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### range\_optimizer\_max\_mem\_size
+### tamanho_bloco_de_alocação_de_intervalo
+
+[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+
+### range_optimizer_max_mem_size
 
 [Seção 4.5.1.6, “Dicas do cliente do MySQL”](mysql-tips.html)
 
@@ -5422,11 +5422,11 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### rbr\_exec\_mode
+### rbr_exec_mode
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### tamanho\_buffer\_de\_leitura
+### tamanho_buffer_de_leitura
 
 [Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
 
@@ -5474,7 +5474,7 @@
 
 [Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
 
-### tamanho\_do\_buffer\_de\_leitura\_rnd
+### tamanho_do_buffer_de_leitura_rnd
 
 [Seção 5.1.1, “Configurando o Servidor”](server-configuration.html)
 
@@ -5490,7 +5490,7 @@
 
 [Seção 16.2.2.3, “Opções de inicialização e canais de replicação”](channels-startup-options.html)
 
-### relay\_log
+### relay_log
 
 [Seção 16.1.2.6, “Adicionar réplicas a uma topologia de replicação”](replication-howto-additionalslaves.html)
 
@@ -5504,11 +5504,11 @@
 
 [Seção 16.2.4.1, "O Log de Retransmissão"](replica-logs-relaylog.html)
 
-### relay\_log\_basename
+### relay_log_basename
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### relay\_log\_index
+### relay_log_index
 
 [Seção 16.1.2.6, “Adicionar réplicas a uma topologia de replicação”](replication-howto-additionalslaves.html)
 
@@ -5516,13 +5516,13 @@
 
 [Seção 16.2.4.1, "O Log de Retransmissão"](replica-logs-relaylog.html)
 
-### arquivo\_de\_log\_de\_retransmissão
+### arquivo_de_log_de_retransmissão
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
 [Seção 16.2.4.2, "Repositórios de Metadados de Replicação"](replica-logs-status.html)
 
-### repositório\_de\_informações\_de\_relay
+### repositório_de_informações_de_relay
 
 [Seção 16.1.5.1, “Configurando a Replicação de Múltiplas Fontes”](replication-multi-source-configuration.html)
 
@@ -5542,7 +5542,7 @@
 
 [Seção 16.2.2.3, “Opções de inicialização e canais de replicação”](channels-startup-options.html)
 
-### relay\_log\_purge
+### relay_log_purge
 
 [Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
 
@@ -5550,13 +5550,13 @@
 
 [Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
 
-### relay\_log\_recovery
+### relay_log_recovery
 
 [Seção 16.3.2, “Tratamento de um Parada Inesperada de uma Replicação”](replication-solutions-unexpected-replica-halt.html)
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### limite\_de\_espaço\_do\_log\_de\_retransmissão
+### limite_de_espaço_do_log_de_retransmissão
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
@@ -5564,23 +5564,23 @@
 
 [Seção 16.2.2.3, “Opções de inicialização e canais de replicação”](channels-startup-options.html)
 
-### replica\_sql\_verify\_checksum
+### replica_sql_verify_checksum
 
 [Glossário do MySQL](glossary.html)
 
-### replicação\_optimize\_for\_static\_plugin\_config
+### replicação_optimize_for_static_plugin_config
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
 [Seção 16.3.9.1, “Interface Administrativa de Replicação Semisincronizada”](replication-semisync-interface.html)
 
-### replicação\_expeditor\_observa\_commit\_only
+### replicação_expeditor_observa_commit_only
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
 [Seção 16.3.9.1, “Interface Administrativa de Replicação Semisincronizada”](replication-semisync-interface.html)
 
-### report\_host
+### report_host
 
 [Seção 17.2.2, “Implementar a Replicação em Grupo Localmente”](group-replication-deploying-locally.html)
 
@@ -5588,21 +5588,21 @@
 
 [Seção 17.2.1.3, “Credenciais do Usuário”](group-replication-user-credentials.html)
 
-### report\_password
+### report_password
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### report\_port
+### report_port
 
 [Seção 17.8, “Perguntas Frequentes”](group-replication-frequently-asked-questions.html)
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### reportar\_usuário
+### reportar_usuário
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### requerer\_transporte\_seguro
+### requerer_transporte_seguro
 
 [Seção 6.3.1, “Configurando o MySQL para usar conexões criptografadas”](using-encrypted-connections.html)
 
@@ -5614,17 +5614,17 @@
 
 [Seção 19.4.1, “Usando Conexões Encriptadas com o Plugin X”](x-plugin-encrypted-connections.html)
 
-### reescritor\_habilitado
+### reescritor_habilitado
 
 [Seção 5.5.4.3.3, “Sistema de variáveis de plugins de reescrita de consultas de reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-system-variables)
 
 [Seção 5.5.4.2, “Usando o Plugin de Reescrita de Consultas de Reescritor”](rewriter-query-rewrite-plugin-usage.html)
 
-### rewriter\_verbose
+### rewriter_verbose
 
 [Seção 5.5.4.3.3, “Sistema de variáveis de plugins de reescrita de consultas de reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-system-variables)
 
-### rpl\_semi\_sync\_master\_enabled
+### rpl_semi_sync_master_enabled
 
 [Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
 
@@ -5634,7 +5634,7 @@
 
 [Seção 16.3.9.3, “Monitoramento da Replicação Semisincronizada”](replication-semisync-monitoring.html)
 
-### rpl\_semi\_sync\_master\_timeout
+### rpl_semi_sync_master_timeout
 
 [Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
 
@@ -5642,29 +5642,29 @@
 
 [Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
 
-### rpl\_semi\_sync\_master\_trace\_level
+### rpl_semi_sync_master_trace_level
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
 [Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
 
-### rpl\_semi\_sync\_master\_wait\_for\_slave\_count
+### rpl_semi_sync_master_wait_for_slave_count
 
 [Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
 
 [Seção 16.3.9, “Replicação Semisincronizada”](replication-semisync.html)
 
-### rpl\_semi\_sync\_master\_wait\_no\_slave
+### rpl_semi_sync_master_wait_no_slave
 
 [Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
 
-### rpl\_semi\_sync\_master\_wait\_point
+### rpl_semi_sync_master_wait_point
 
 [Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
 
 [Seção 16.3.9, “Replicação Semisincronizada”](replication-semisync.html)
 
-### rpl\_semi\_sync\_slave\_enabled
+### rpl_semi_sync_slave_enabled
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
@@ -5672,11 +5672,11 @@
 
 [Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
 
-### rpl\_semi\_sync\_slave\_trace\_level
+### rpl_semi_sync_slave_trace_level
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### rpl\_stop\_slave\_timeout
+### rpl_stop_slave_timeout
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
@@ -5686,13 +5686,13 @@
 
 ### S
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### secure\_auth
+### secure_auth
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
-[Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql\_old\_password”](account-upgrades.html)
+[Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql_old_password”](account-upgrades.html)
 
 [Seção 6.1.2.4, “Hashing de Senhas no MySQL”](password-hashing.html)
 
@@ -5700,7 +5700,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### secure\_file\_priv
+### secure_file_priv
 
 [Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
 
@@ -5728,7 +5728,7 @@
 
 [Seção 6.5.3, “Uso do mascaramento e desidentificação de dados do MySQL Enterprise”](data-masking-usage.html)
 
-### server\_id
+### server_id
 
 [Seção 17.2.1.6.1, “Adicionar uma segunda instância”](group-replication-adding-instances.html#group-replication-adding-a-second-instance)
 
@@ -5774,11 +5774,11 @@
 
 [Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
 
-### server\_id\_bits
+### server_id_bits
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### server\_uuid
+### server_uuid
 
 [Seção 16.1.3.1, "Formato e Armazenamento do GTID"](replication-gtids-concepts.html)
 
@@ -5792,13 +5792,13 @@
 
 [Seção 16.1.3.7, “Exemplos de Funções Armazenadas para Manipular GTIDs”](replication-gtids-functions.html)
 
-[Seção 25.12.11.2, “A tabela replication\_connection\_status”](performance-schema-replication-connection-status-table.html)
+[Seção 25.12.11.2, “A tabela replication_connection_status”](performance-schema-replication-connection-status-table.html)
 
-[Seção 17.4.2, “A tabela replication\_group\_members”](group-replication-replication-group-members.html)
+[Seção 17.4.2, “A tabela replication_group_members”](group-replication-replication-group-members.html)
 
 [Seção 17.5.5, “Usando o MySQL Enterprise Backup com a Replicação por Grupo”](group-replication-enterprise-backup.html)
 
-### session\_track\_gtids
+### session_track_gtids
 
 [Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
 
@@ -5808,25 +5808,25 @@
 
 [Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
 
-### esquema\_sessão\_track
+### esquema_sessão_track
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
 
-### session\_track\_state\_change
+### session_track_state_change
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
 
-### sessão\_track\_system\_variables
+### sessão_track_system_variables
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
 
-### session\_track\_transaction\_info
+### session_track_transaction_info
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -5856,7 +5856,7 @@
 
 [Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
 
@@ -5884,13 +5884,13 @@
 
 [Seção 2.3.3.3.1.1, “Tipo e Rede”](mysql-installer-workflow.html#server-type-network)
 
-### shared\_memory\_base\_name
+### shared_memory_base_name
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 5.7.2.1, “Iniciando múltiplas instâncias do MySQL na linha de comando do Windows”](multiple-windows-command-line-servers.html)
 
-### mostrar\_compatibilidade\_
+### mostrar_compatibilidade_
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -5908,33 +5908,33 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-\[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
+[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
 
 [Seção 13.7.5.39, "Declaração SHOW VARIABLES"](show-variables.html)
 
 [Seção 25.12.15.10, “Tabelas de Resumo de Variáveis de Status”](performance-schema-status-variable-summary-tables.html)
 
-[Seção 24.3.10, “Tabelas INFORMATION\_SCHEMA GLOBAL\_STATUS e SESSION\_STATUS”](information-schema-status-table.html)
+[Seção 24.3.10, “Tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS”](information-schema-status-table.html)
 
-[Seção 24.3.11, “Tabelas INFORMATION\_SCHEMA GLOBAL\_VARIABLES e SESSION\_VARIABLES”](information-schema-variables-table.html)
+[Seção 24.3.11, “Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES”](information-schema-variables-table.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### mostrar\_criar\_tabela\_verbosidade
+### mostrar_criar_tabela_verbosidade
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### exibir\_temporais\_antigos
+### exibir_temporais_antigos
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### skip\_external\_locking
+### skip_external_locking
 
 [Seção 8.11.5, “Bloqueio Externo”](external-locking.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### skip\_name\_resolve
+### skip_name_resolve
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -5950,7 +5950,7 @@
 
 [Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
 
-### skip\_networking
+### skip_networking
 
 [Seção B.3.2.2, “Não consigo conectar ao servidor MySQL local”](can-not-connect-to-server.html)
 
@@ -5978,17 +5978,17 @@
 
 [Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
 
-### skip\_replica\_start
+### skip_replica_start
 
-[Seção 13.4.3.1, "Instrução START GROUP\_REPLICATION"](start-group-replication.html)
+[Seção 13.4.3.1, "Instrução START GROUP_REPLICATION"](start-group-replication.html)
 
-### skip\_show\_database
+### skip_show_database
 
 [Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### skip\_slave\_start
+### skip_slave_start
 
 [Seção 16.4.3, “Atualização de uma topologia de replicação”](replication-upgrade.html)
 
@@ -5996,15 +5996,15 @@
 
 [Seção 16.2.2.3, “Opções de inicialização e canais de replicação”](channels-startup-options.html)
 
-### slave\_allow\_batching
+### slave_allow_batching
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
 [Seção 21.7.5, “Preparando o NDB Cluster para Replicação”](mysql-cluster-replication-preparation.html)
 
-\[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
+[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
 
-### grupo\_ponto\_de\_controlo\_escravo
+### grupo_ponto_de_controlo_escravo
 
 [Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
 
@@ -6020,13 +6020,13 @@
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### protocolo\_comprimido\_escravo
+### protocolo_comprimido_escravo
 
 [Seção 4.2.6, “Controle de Compressão de Conexão”](connection-compression-control.html)
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### modo\_execucao\_escravo
+### modo_execucao_escravo
 
 [Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
 
@@ -6036,7 +6036,7 @@
 
 [Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
 
-### slave\_load\_tmpdir
+### slave_load_tmpdir
 
 [Seção 16.3.1.2, "Fazer backup de dados brutos de uma réplica"](replication-solutions-backups-rawdata.html)
 
@@ -6050,15 +6050,15 @@
 
 [Seção B.3.3.5, “Onde o MySQL Armazena Arquivos Temporários”](temporary-files.html)
 
-### slave\_max\_allowed\_packet
+### slave_max_allowed_packet
 
 [Seção 17.3.2, “Limitações da Replicação em Grupo”](group-replication-limitations.html)
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-[Seção 16.4.1.19, “Replicação e max\_allowed\_packet”](replication-features-max-allowed-packet.html)
+[Seção 16.4.1.19, “Replicação e max_allowed_packet”](replication-features-max-allowed-packet.html)
 
-### slave\_net\_timeout
+### slave_net_timeout
 
 [Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
 
@@ -6074,7 +6074,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### slave\_parallel\_type
+### slave_parallel_type
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -6086,7 +6086,7 @@
 
 [Seção 16.4.1.32, "Inconsistências de Replicação e Transação"](replication-features-transaction-inconsistencies.html)
 
-### slave\_parallel\_workers
+### slave_parallel_workers
 
 [Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
 
@@ -6102,7 +6102,7 @@
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-[Seção 16.4.1.19, “Replicação e max\_allowed\_packet”](replication-features-max-allowed-packet.html)
+[Seção 16.4.1.19, “Replicação e max_allowed_packet”](replication-features-max-allowed-packet.html)
 
 [Seção 16.4.1.32, "Inconsistências de Replicação e Transação"](replication-features-transaction-inconsistencies.html)
 
@@ -6116,17 +6116,17 @@
 
 [Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
 
-### tamanho\_maximo\_de\_atividades\_pendentes\_de\_escravo
+### tamanho_maximo_de_atividades_pendentes_de_escravo
 
 [Seção 16.2.3.2, “Monitoramento de Threads do Trabalhador do Aplicativo de Replicação”](replication-threads-monitor-worker.html)
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-[Seção 16.4.1.19, “Replicação e max\_allowed\_packet”](replication-features-max-allowed-packet.html)
+[Seção 16.4.1.19, “Replicação e max_allowed_packet”](replication-features-max-allowed-packet.html)
 
 [Seção 8.14.7, “Estados de Solução de Conflitos do SQL Thread”](replica-sql-thread-states.html)
 
-### slave\_preserve\_commit\_order
+### slave_preserve_commit_order
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -6140,17 +6140,17 @@
 
 [Seção 8.14.6, “Estados de E/S de Fila de Replicação Replica”](replica-io-thread-states.html)
 
-### algoritmos\_de\_pesquisa\_de\_linhas\_de\_escravos
+### algoritmos_de_pesquisa_de_linhas_de_escravos
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-### slave\_skip\_errors
+### slave_skip_errors
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### slave\_sql\_verify\_checksum
+### slave_sql_verify_checksum
 
 [Glossário do MySQL](glossary.html)
 
@@ -6158,7 +6158,7 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### slave\_transaction\_retries
+### slave_transaction_retries
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
@@ -6166,21 +6166,21 @@
 
 [Seção 16.2.2.3, “Opções de inicialização e canais de replicação”](channels-startup-options.html)
 
-[Seção 25.12.11.4, “Tabela replication\_applier\_status”](performance-schema-replication-applier-status-table.html)
+[Seção 25.12.11.4, “Tabela replication_applier_status”](performance-schema-replication-applier-status-table.html)
 
-### slave\_type\_conversions
+### slave_type_conversions
 
 [Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### tempo\_de\_lançamento\_lento
+### tempo_de_lançamento_lento
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### log\_de\_consultas\_lentas
+### log_de_consultas_lentas
 
 [Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
 
@@ -6188,7 +6188,7 @@
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
-### arquivo\_log\_de\_consultas\_lentas
+### arquivo_log_de_consultas_lentas
 
 [Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
 
@@ -6202,7 +6202,7 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### tamanho\_buffer\_de\_sorteio
+### tamanho_buffer_de_sorteio
 
 [Seção 7.6.3, “Como reparar as tabelas MyISAM”](myisam-repair.html)
 
@@ -6216,11 +6216,11 @@
 
 [Seção 13.7.4.1, "Sintaxe SET para Atribuição de Variáveis"](set-variable.html)
 
-### source\_verify\_checksum
+### source_verify_checksum
 
 [Glossário do MySQL](glossary.html)
 
-### sql\_auto\_is\_null
+### sql_auto_is_null
 
 [Seção 12.4.2, "Funções e Operadores de Comparação"](comparison-operators.html)
 
@@ -6234,15 +6234,15 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### sql\_big\_selects
+### sql_big_selects
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### sql\_buffer\_result
+### sql_buffer_result
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### sql\_log\_bin
+### sql_log_bin
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -6254,27 +6254,27 @@
 
 [Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
 
-[Seção 13.4.1.3, "Instrução SET sql\_log\_bin"](set-sql-log-bin.html)
+[Seção 13.4.1.3, "Instrução SET sql_log_bin"](set-sql-log-bin.html)
 
 [Seção 5.1.8.1, “Privilégios de variáveis do sistema”](system-variable-privileges.html)
 
 [Seção 26.4.4.2, "O procedimento diagnostics()"](sys-diagnostics.html)
 
-[Seção 26.4.4.12, “O procedimento ps\_setup\_reload\_saved()”](sys-ps-setup-reload-saved.html)
+[Seção 26.4.4.12, “O procedimento ps_setup_reload_saved()”](sys-ps-setup-reload-saved.html)
 
-[Seção 26.4.4.14, “O procedimento ps\_setup\_save()”](sys-ps-setup-save.html)
+[Seção 26.4.4.14, “O procedimento ps_setup_save()”](sys-ps-setup-save.html)
 
-[Seção 26.4.4.22, “O procedimento ps\_trace\_statement\_digest()”](sys-ps-trace-statement-digest.html)
+[Seção 26.4.4.22, “O procedimento ps_trace_statement_digest()”](sys-ps-trace-statement-digest.html)
 
-[Seção 26.4.4.23, "O procedimento ps\_trace\_thread()"](sys-ps-trace-thread.html)
+[Seção 26.4.4.23, "O procedimento ps_trace_thread()"](sys-ps-trace-thread.html)
 
-[Seção 26.4.4.25, “O procedimento statement\_performance\_analyzer()”](sys-statement-performance-analyzer.html)
+[Seção 26.4.4.25, “O procedimento statement_performance_analyzer()”](sys-statement-performance-analyzer.html)
 
 [Seção 16.4.3, “Atualização de uma topologia de replicação”](replication-upgrade.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### sql\_log\_off
+### sql_log_off
 
 [Glossário do MySQL](glossary.html)
 
@@ -6286,11 +6286,11 @@
 
 [Seção 5.4.3, “O Log de Consulta Geral”](query-log.html)
 
-### SQL\_MODE
+### SQL_MODE
 
 [Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
 
-### sql\_mode
+### sql_mode
 
 [Seção 14.1.2, “Melhores Práticas para Tabelas InnoDB”](innodb-best-practices.html)
 
@@ -6314,7 +6314,7 @@
 
 [Seção 1.6, “Conformidade com os Padrões MySQL”](compatibilidade.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
 [Seção B.3.4.2, “Problemas ao usar colunas DATE”](using-date.html)
 
@@ -6330,9 +6330,9 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
-[Seção 26.4.5.7, “A função list\_add()”](sys-list-add.html)
+[Seção 26.4.5.7, “A função list_add()”](sys-list-add.html)
 
 [Seção 4.2.2.2, “Usando arquivos de opção”](option-files.html)
 
@@ -6340,7 +6340,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### sql\_notes
+### sql_notes
 
 [Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
 
@@ -6350,7 +6350,7 @@
 
 [Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
 
-### sql\_quote\_show\_create
+### sql_quote_show_create
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -6358,7 +6358,7 @@
 
 [Seção 13.7.5.10, "Mostrar declaração CREATE TABLE"](show-create-table.html)
 
-### sql\_safe\_updates
+### sql_safe_updates
 
 [Seção 4.5.1.6, “Dicas do cliente do MySQL”](mysql-tips.html)
 
@@ -6366,13 +6366,13 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### sql\_select\_limit
+### sql_select_limit
 
 [Seção 4.5.1.6, “Dicas do cliente do MySQL”](mysql-tips.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### sql\_slave\_skip\_counter
+### sql_slave_skip_counter
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
@@ -6384,11 +6384,11 @@
 
 [Seção 16.1.7.3.2.1, “Saltar Transações com `SET GLOBAL sql_slave_skip_counter`”](replication-administration-skip.html#set-global-replica-sql-skip-counter)
 
-### sql\_warnings
+### sql_warnings
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### ssl\_ca
+### ssl_ca
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -6406,7 +6406,7 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### ssl\_capath
+### ssl_capath
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -6418,7 +6418,7 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### ssl\_cert
+### ssl_cert
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -6438,7 +6438,7 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### ssl\_cipher
+### ssl_cipher
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -6446,7 +6446,7 @@
 
 [Seção 6.3.2, “Protocolos e cifra de conexão encriptada TLS”](encrypted-connection-protocols-ciphers.html)
 
-[Seção 4.4.5, “mysql\_ssl\_rsa\_setup — Criar arquivos SSL/RSA”](mysql-ssl-rsa-setup.html)
+[Seção 4.4.5, “mysql_ssl_rsa_setup — Criar arquivos SSL/RSA”](mysql-ssl-rsa-setup.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -6454,7 +6454,7 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### ssl\_crl
+### ssl_crl
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -6466,7 +6466,7 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### ssl\_crlpath
+### ssl_crlpath
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -6478,7 +6478,7 @@
 
 [Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
 
-### ssl\_key
+### ssl_key
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -6506,7 +6506,7 @@
 
 [Seção 17.5.1.1, “Modo de Primariedade Única”](group-replication-single-primary-mode.html)
 
-### super\_read\_only
+### super_read_only
 
 [Seção 17.2.1.6.1, “Adicionar uma segunda instância”](group-replication-adding-instances.html#group-replication-adding-a-second-instance)
 
@@ -6518,11 +6518,11 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 13.4.3.1, "Instrução START GROUP\_REPLICATION"](start-group-replication.html)
+[Seção 13.4.3.1, "Instrução START GROUP_REPLICATION"](start-group-replication.html)
 
-[Seção 13.4.3.2, "Instrução STOP GROUP\_REPLICATION"](stop-group-replication.html)
+[Seção 13.4.3.2, "Instrução STOP GROUP_REPLICATION"](stop-group-replication.html)
 
-### sync\_binlog
+### sync_binlog
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -6538,29 +6538,29 @@
 
 [Seção 4.6.7.3, “Usando mysqlbinlog para fazer backup de arquivos de log binário”](mysqlbinlog-backup.html)
 
-### sync\_frm
+### sync_frm
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### sync\_master\_info
+### sync_master_info
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### sync\_relay\_log
+### sync_relay_log
 
 [Seção 16.3.2, “Tratamento de um Parada Inesperada de uma Replicação”](replication-solutions-unexpected-replica-halt.html)
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### sync\_relay\_log\_info
+### sync_relay_log_info
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
 [Seção 16.4.1.26, “Replicação e Parada de Fonte ou Replicação”](replication-features-shutdowns.html)
 
-### fuso\_horário\_do\_sistema
+### fuso_horário_do_sistema
 
 [Seção 5.1.13, “Suporte de Fuso Horário do MySQL Server”](time-zone-support.html)
 
@@ -6572,15 +6572,15 @@
 
 ### T
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### cache\_de\_definição\_de\_tabela
+### cache_de_definição_de_tabela
 
 [Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### cache\_de\_abertura\_da\_tabela
+### cache_de_abertura_da_tabela
 
 [Seção 5.1.1, “Configurando o Servidor”](server-configuration.html)
 
@@ -6598,7 +6598,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### cache\_instances\_de\_tabela
+### cache_instances_de_tabela
 
 [Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
 
@@ -6606,7 +6606,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### thread\_cache\_size
+### thread_cache_size
 
 [Seção 5.1.11.1, “Interfaces de Conexão”](connection-interfaces.html)
 
@@ -6622,59 +6622,59 @@
 
 [Seção 5.5.3.1, “Elementos do Conjunto de Fios”](thread-pool-elements.html)
 
-### thread\_pool\_algorithm
+### thread_pool_algorithm
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 24.5.2, “A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE”](information-schema-tp-thread-group-state-table.html)
+[Seção 24.5.2, “A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATE”](information-schema-tp-thread-group-state-table.html)
 
 [Seção 5.5.3.3, “Operação do Conjunto de Fios”](thread-pool-operation.html)
 
-### thread\_pool\_high\_priority\_connection
-
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
-
-[Seção 5.5.3.3, “Operação do Conjunto de Fios”](thread-pool-operation.html)
-
-### thread\_pool\_max\_unused\_threads
+### thread_pool_high_priority_connection
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 5.5.3.3, “Operação do Conjunto de Fios”](thread-pool-operation.html)
 
-### thread\_pool\_prio\_kickup\_timer
+### thread_pool_max_unused_threads
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
-
-[Seção 24.5.2, “A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE”](information-schema-tp-thread-group-state-table.html)
-
-[Seção 24.5.3, “A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS”](information-schema-tp-thread-group-stats-table.html)
 
 [Seção 5.5.3.3, “Operação do Conjunto de Fios”](thread-pool-operation.html)
 
-[Seção 5.5.3.4, "Ajuste do Pool de Fios"](thread-pool-tuning.html)
-
-### thread\_pool\_size
+### thread_pool_prio_kickup_timer
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+
+[Seção 24.5.2, “A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATE”](information-schema-tp-thread-group-state-table.html)
+
+[Seção 24.5.3, “A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATS”](information-schema-tp-thread-group-stats-table.html)
 
 [Seção 5.5.3.3, “Operação do Conjunto de Fios”](thread-pool-operation.html)
 
 [Seção 5.5.3.4, "Ajuste do Pool de Fios"](thread-pool-tuning.html)
 
-### limite\_do\_pool\_de\_threads
+### thread_pool_size
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
-
-[Seção 24.5.2, “A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATE”](information-schema-tp-thread-group-state-table.html)
-
-[Seção 24.5.3, “A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS”](information-schema-tp-thread-group-stats-table.html)
 
 [Seção 5.5.3.3, “Operação do Conjunto de Fios”](thread-pool-operation.html)
 
 [Seção 5.5.3.4, "Ajuste do Pool de Fios"](thread-pool-tuning.html)
 
-### thread\_stack
+### limite_do_pool_de_threads
+
+[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+
+[Seção 24.5.2, “A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATE”](information-schema-tp-thread-group-state-table.html)
+
+[Seção 24.5.3, “A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATS”](information-schema-tp-thread-group-stats-table.html)
+
+[Seção 5.5.3.3, “Operação do Conjunto de Fios”](thread-pool-operation.html)
+
+[Seção 5.5.3.4, "Ajuste do Pool de Fios"](thread-pool-tuning.html)
+
+### thread_stack
 
 [Seção 5.1.11.1, “Interfaces de Conexão”](connection-interfaces.html)
 
@@ -6684,11 +6684,11 @@
 
 [Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
 
-### formato\_de\_hora
+### formato_de_hora
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### fuso\_horário
+### fuso_horário
 
 [Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
 
@@ -6728,7 +6728,7 @@
 
 [Seção A.9, “Perguntas frequentes sobre o MySQL 5.7: Segurança”](faqs-security.html)
 
-### tls\_version
+### tls_version
 
 [Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
 
@@ -6744,7 +6744,7 @@
 
 [Seção 19.4.1, “Usando Conexões Encriptadas com o Plugin X”](x-plugin-encrypted-connections.html)
 
-### tmp\_table\_size
+### tmp_table_size
 
 [Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
 
@@ -6778,21 +6778,21 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 24.4.27, “A tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO”](information-schema-innodb-temp-table-info-table.html)
+[Seção 24.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”](information-schema-innodb-temp-table-info-table.html)
 
 ### transação
 
 [Seção 17.3.1, “Requisitos de Replicação em Grupo”](group-replication-requirements.html)
 
-### tamanho\_bloco\_de\_transação
+### tamanho_bloco_de_transação
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### transaction\_allow\_batching
+### transaction_allow_batching
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-### transaction\_isolation
+### transaction_isolation
 
 [Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
 
@@ -6804,11 +6804,11 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### tamanho\_pré-alocação\_transação
+### tamanho_pré-alocação_transação
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### transação\_somente\_leitura
+### transação_somente_leitura
 
 [Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
 
@@ -6820,13 +6820,13 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### transaction\_write\_set\_extraction
+### transaction_write_set_extraction
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
 [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
 
-### tx\_isolation
+### tx_isolation
 
 [Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
 
@@ -6836,7 +6836,7 @@
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### tx\_read\_only
+### tx_read_only
 
 [Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
 
@@ -6848,7 +6848,7 @@
 
 ### U
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### checks únicos
 
@@ -6870,23 +6870,9 @@
 
 ### V
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### validar\_senha\_verificar\_nome\_do\_usuário
-
-[Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
-
-[Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
-
-[Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
-
-### validar\_dicionário\_senha\_arquivo
-
-[Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
-
-[Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
-
-### validar\_comprimento\_senha
+### validar_senha_verificar_nome_do_usuário
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
@@ -6894,25 +6880,39 @@
 
 [Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
 
-### validar\_número\_de\_letras\_maiúsculas\_e\_minúsculas\_em\_senha
+### validar_dicionário_senha_arquivo
 
 [Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
 
 [Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
 
-### validar\_número\_de\_tentativas\_de\_senha
+### validar_comprimento_senha
+
+[Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
 [Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
 
 [Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
 
-### política\_de\_validação\_da\_senha
+### validar_número_de_letras_maiúsculas_e_minúsculas_em_senha
 
 [Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
 
 [Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
 
-### validar\_senha\_número\_de\_caracteres\_especiais
+### validar_número_de_tentativas_de_senha
+
+[Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
+
+[Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
+
+### política_de_validação_da_senha
+
+[Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
+
+[Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
+
+### validar_senha_número_de_caracteres_especiais
 
 [Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
 
@@ -6928,35 +6928,35 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### versão\_comentário
+### versão_comentário
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
 [Seção 13.7.5.39, "Declaração SHOW VARIABLES"](show-variables.html)
 
-### versão\_compile\_machine
+### versão_compile_machine
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### versão\_compile\_os
+### versão_compile_os
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### version\_tokens\_session
+### version_tokens_session
 
 [Seção 5.5.5.3, “Uso de Tokens de Versão”](version-tokens-usage.html)
 
 [Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
 
-### version\_tokens\_número\_sessão
+### version_tokens_número_sessão
 
 [Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
 
 ### W
 
-\[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
-### wait\_timeout
+### wait_timeout
 
 [Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”](communication-errors.html)
 
@@ -6964,7 +6964,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### contagem\_de\_aviso
+### contagem_de_aviso
 
 [Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
 

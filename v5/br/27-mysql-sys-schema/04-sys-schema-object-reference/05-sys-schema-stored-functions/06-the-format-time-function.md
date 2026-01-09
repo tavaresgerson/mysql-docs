@@ -1,4 +1,4 @@
-#### 26.4.5.6 A função format\_time()
+#### 26.4.5.6 A função format_time()
 
 Dado uma latência ou tempo de espera do Schema de Desempenho em picosegundos, converte-o para um formato legível por humanos e retorna uma string composta por um valor e um indicador de unidades. Dependendo do tamanho do valor, a parte das unidades é `ps` (picosegundos), `ns` (nanossegundos), `us` (microsegundos), `ms` (milissegundos), `s` (segundos), `m` (minutos), `h` (horas), `d` (dias) ou `w` (semanas).
 

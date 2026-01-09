@@ -245,7 +245,7 @@ Follow these steps to upgrade a Docker installation of MySQL 5.6 to 5.7:
 
 * Wait for the server to finish startup. You can check the status of the server using the **docker ps** command (see Starting a MySQL Server Instance for how to do that).
 
-* Run the mysql\_upgrade utility in the MySQL 5.7 Server container:
+* Run the mysql_upgrade utility in the MySQL 5.7 Server container:
 
   ```sql
   docker exec -it mysql57 mysql_upgrade -uroot -p

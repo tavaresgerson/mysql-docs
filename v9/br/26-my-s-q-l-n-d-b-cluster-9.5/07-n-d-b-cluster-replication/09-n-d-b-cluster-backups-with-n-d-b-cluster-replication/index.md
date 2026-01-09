@@ -52,14 +52,14 @@ Esta seção discute a realização de backups e a restauração a partir deles 
    mysqlR> RESET REPLICA;
    ```
 
-5. Agora você pode iniciar o processo de restauração do cluster na replica usando o comando **ndb\_restore** para cada arquivo de backup, uma a uma. Para o primeiro deles, é necessário incluir a opção `-m` para restaurar os metadados do cluster, como mostrado aqui:
+5. Agora você pode iniciar o processo de restauração do cluster na replica usando o comando **ndb_restore** para cada arquivo de backup, uma a uma. Para o primeiro deles, é necessário incluir a opção `-m` para restaurar os metadados do cluster, como mostrado aqui:
 
    ```
    shellR> ndb_restore -c replica_host:port -n node-id \
            -b backup-id -m -r dir
    ```
 
-   *`dir`* é o caminho para o diretório onde os arquivos de backup foram colocados na replica. Para os comandos **ndb\_restore** correspondentes aos arquivos de backup restantes, a opção `-m` *não* deve ser usada.
+   *`dir`* é o caminho para o diretório onde os arquivos de backup foram colocados na replica. Para os comandos **ndb_restore** correspondentes aos arquivos de backup restantes, a opção `-m` *não* deve ser usada.
 
    Para restaurar de um cluster fonte com quatro nós de dados (como mostrado na figura na Seção 25.7, “Replicação de Clusters NDB”) onde os arquivos de backup foram copiados para o diretório `/var/BACKUPS/BACKUP-1`, a sequência correta de comandos a serem executados na replica pode parecer assim:
 
@@ -76,7 +76,7 @@ Esta seção discute a realização de backups e a restauração a partir deles 
 
    Importante
 
-   A opção `-e` (ou `--restore-epoch`) na invocação final de **ndb\_restore** neste exemplo é necessária para garantir que o epígrafe seja escrito na tabela `mysql.ndb_apply_status` da replica. Sem essa informação, a replica não pode se sincronizar corretamente com a fonte. (Veja a Seção 25.5.23, “ndb\_restore — Restaurar um Backup de Cluster NDB”).
+   A opção `-e` (ou `--restore-epoch`) na invocação final de **ndb_restore** neste exemplo é necessária para garantir que o epígrafe seja escrito na tabela `mysql.ndb_apply_status` da replica. Sem essa informação, a replica não pode se sincronizar corretamente com a fonte. (Veja a Seção 25.5.23, “ndb_restore — Restaurar um Backup de Cluster NDB”).
 
 6. Agora você precisa obter o epígrafe mais recente da tabela `ndb_apply_status` na replica (como discutido na Seção 25.7.8, “Implementando Failover com Replicação de Clusters NDB”):
 

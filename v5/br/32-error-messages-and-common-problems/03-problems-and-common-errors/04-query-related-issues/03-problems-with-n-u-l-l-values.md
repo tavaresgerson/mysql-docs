@@ -9,7 +9,7 @@ mysql> INSERT INTO my_table (phone) VALUES ('');
 
 Ambas as declarações inserem um valor na coluna `phone`, mas a primeira insere um valor `NULL` e a segunda insere uma string vazia. O significado da primeira pode ser considerado como "o número de telefone não é conhecido" e o significado da segunda pode ser considerado como "a pessoa é conhecida por não ter telefone, e, portanto, não ter número de telefone."
 
-Para ajudar com o tratamento de `NULL`, você pode usar os operadores `IS NULL` (operadores de comparação.html#operador\_is-null) e `IS NOT NULL` (operadores de comparação.html#operador\_is-not-null) e a função `IFNULL()` (funções de controle de fluxo.html#função\_ifnull).
+Para ajudar com o tratamento de `NULL`, você pode usar os operadores `IS NULL` (operadores de comparação.html#operador_is-null) e `IS NOT NULL` (operadores de comparação.html#operador_is-not-null) e a função `IFNULL()` (funções de controle de fluxo.html#função_ifnull).
 
 Em SQL, o valor `NULL` nunca é verdadeiro em comparação com qualquer outro valor, mesmo `NULL`. Uma expressão que contém `NULL` sempre produz um valor `NULL`, a menos que haja indicação em contrário na documentação dos operadores e funções envolvidos na expressão. Todas as colunas no exemplo a seguir retornam `NULL`:
 
@@ -23,7 +23,7 @@ Para pesquisar valores de coluna que são `NULL`, você não pode usar um teste 
 mysql> SELECT * FROM my_table WHERE phone = NULL;
 ```
 
-Para procurar por valores `NULL`, você deve usar o teste `[IS NULL]` (operadores de comparação.html#operador\_is-null). As seguintes declarações mostram como encontrar o número de telefone `NULL` e o número de telefone vazio:
+Para procurar por valores `NULL`, você deve usar o teste `[IS NULL]` (operadores de comparação.html#operador_is-null). As seguintes declarações mostram como encontrar o número de telefone `NULL` e o número de telefone vazio:
 
 ```sql
 mysql> SELECT * FROM my_table WHERE phone IS NULL;

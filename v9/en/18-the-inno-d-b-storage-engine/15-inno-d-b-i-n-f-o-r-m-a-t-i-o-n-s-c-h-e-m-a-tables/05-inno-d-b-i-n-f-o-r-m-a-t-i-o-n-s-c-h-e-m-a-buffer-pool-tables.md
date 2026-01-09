@@ -1,4 +1,4 @@
-### 17.15.5 InnoDB INFORMATION\_SCHEMA Buffer Pool Tables
+### 17.15.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables
 
 The `InnoDB` `INFORMATION_SCHEMA` buffer pool tables provide buffer pool status information and metadata about the pages within the `InnoDB` buffer pool.
 
@@ -27,7 +27,7 @@ Warning
 
 Querying the `INNODB_BUFFER_PAGE` or `INNODB_BUFFER_PAGE_LRU` table can affect performance. Do not query these tables on a production system unless you are aware of the performance impact and have determined it to be acceptable. To avoid impacting performance on a production system, reproduce the issue you want to investigate and query buffer pool statistics on a test instance.
 
-**Example 17.6 Querying System Data in the INNODB\_BUFFER\_PAGE Table**
+**Example 17.6 Querying System Data in the INNODB_BUFFER_PAGE Table**
 
 This query provides an approximate count of pages that contain system data by excluding pages where the `TABLE_NAME` value is either `NULL` or includes a slash `/` or period `.` in the table name, which indicates a user-defined table.
 
@@ -80,7 +80,7 @@ mysql> SELECT DISTINCT PAGE_TYPE FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +-------------------+
 ```
 
-**Example 17.7 Querying User Data in the INNODB\_BUFFER\_PAGE Table**
+**Example 17.7 Querying User Data in the INNODB_BUFFER_PAGE Table**
 
 This query provides an approximate count of pages containing user data by counting pages where the `TABLE_NAME` value is `NOT NULL` and `NOT LIKE '%INNODB_TABLES%'`.
 
@@ -129,7 +129,7 @@ mysql> SELECT DISTINCT TABLE_NAME FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
 +-------------------------+
 ```
 
-**Example 17.8 Querying Index Data in the INNODB\_BUFFER\_PAGE Table**
+**Example 17.8 Querying Index Data in the INNODB_BUFFER_PAGE Table**
 
 For information about index pages, query the `INDEX_NAME` column using the name of the index. For example, the following query returns the number of pages and total data size of pages for the `emp_no` index that is defined on the `employees.salaries` table:
 
@@ -163,7 +163,7 @@ mysql> SELECT INDEX_NAME, COUNT(*) AS Pages,
 +------------+-------+-----------------+
 ```
 
-**Example 17.9 Querying LRU\_POSITION Data in the INNODB\_BUFFER\_PAGE\_LRU Table**
+**Example 17.9 Querying LRU_POSITION Data in the INNODB_BUFFER_PAGE_LRU Table**
 
 The `INNODB_BUFFER_PAGE_LRU` table holds information about the pages in the `InnoDB` buffer pool, in particular how they are ordered that determines which pages to evict from the buffer pool when it becomes full. The definition for this page is the same as for `INNODB_BUFFER_PAGE`, except this table has an `LRU_POSITION` column instead of a `BLOCK_ID` column.
 
@@ -179,7 +179,7 @@ mysql> SELECT COUNT(LRU_POSITION) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE_LRU
 +---------------------+
 ```
 
-**Example 17.10 Querying the INNODB\_BUFFER\_POOL\_STATS Table**
+**Example 17.10 Querying the INNODB_BUFFER_POOL_STATS Table**
 
 The `INNODB_BUFFER_POOL_STATS` table provides information similar to `SHOW ENGINE INNODB STATUS` and `InnoDB` buffer pool status variables.
 

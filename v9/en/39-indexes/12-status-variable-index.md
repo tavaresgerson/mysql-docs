@@ -6,7 +6,7 @@ A | B | C | D | E | F | G | H | I | K | L | M | N | O | P | Q | R | S | T | U | 
 
 [index top]
 
-### Aborted\_clients
+### Aborted_clients
 
 Section B.3.2.9, “Communication Errors and Aborted Connections”
 
@@ -14,7 +14,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Aborted\_connects
+### Aborted_connects
 
 Section B.3.2.9, “Communication Errors and Aborted Connections”
 
@@ -22,51 +22,51 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Acl\_cache\_items\_count
+### Acl_cache_items_count
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Audit\_log\_current\_size
+### Audit_log_current_size
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### Audit\_log\_direct\_writes
+### Audit_log_direct_writes
 
 Section 8.4.6.11, “Audit Log Reference”
 
 Section 8.4.6.5, “Configuring Audit Logging Characteristics”
 
-### Audit\_log\_event\_max\_drop\_size
+### Audit_log_event_max_drop_size
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### Audit\_log\_events
+### Audit_log_events
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### Audit\_log\_events\_filtered
+### Audit_log_events_filtered
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### Audit\_log\_events\_lost
+### Audit_log_events_lost
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### Audit\_log\_events\_written
+### Audit_log_events_written
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### Audit\_log\_total\_size
+### Audit_log_total_size
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### Audit\_log\_write\_waits
+### Audit_log_write_waits
 
 Section 8.4.6.11, “Audit Log Reference”
 
-### Authentication\_ldap\_sasl\_supported\_methods
+### Authentication_ldap_sasl_supported_methods
 
 Section 8.4.1.6, “LDAP Pluggable Authentication”
 
@@ -76,7 +76,7 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### Binlog\_cache\_disk\_use
+### Binlog_cache_disk_use
 
 Section 19.1.6.4, “Binary Logging Options and Variables”
 
@@ -86,7 +86,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.4.4, “The Binary Log”
 
-### Binlog\_cache\_use
+### Binlog_cache_use
 
 Section 19.1.6.4, “Binary Logging Options and Variables”
 
@@ -96,7 +96,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.4.4, “The Binary Log”
 
-### Binlog\_stmt\_cache\_disk\_use
+### Binlog_stmt_cache_disk_use
 
 Section 19.1.6.4, “Binary Logging Options and Variables”
 
@@ -104,7 +104,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Binlog\_stmt\_cache\_use
+### Binlog_stmt_cache_use
 
 Section 19.1.6.4, “Binary Logging Options and Variables”
 
@@ -112,7 +112,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Bytes\_received
+### Bytes_received
 
 Section 35.4.3, “Server Metrics”
 
@@ -120,7 +120,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Bytes\_sent
+### Bytes_sent
 
 Section 35.4.3, “Server Metrics”
 
@@ -132,35 +132,35 @@ Section 7.4.5, “The Slow Query Log”
 
 [index top]
 
-### Caching\_sha2\_password\_rsa\_public\_key
+### Caching_sha2_password_rsa_public_key
 
 Section 8.4.1.1, “Caching SHA-2 Pluggable Authentication”
 
 Section 7.1.10, “Server Status Variables”
 
-### Com\_flush
+### Com_flush
 
 Section 7.1.10, “Server Status Variables”
 
-### Com\_restart
+### Com_restart
 
 Section 15.7.8.8, “RESTART Statement”
 
-### Com\_shutdown
+### Com_shutdown
 
 Section 15.7.8.9, “SHUTDOWN Statement”
 
-### Com\_stmt\_reprepare
+### Com_stmt_reprepare
 
 Section 10.10.3, “Caching of Prepared Statements and Stored Programs”
 
-### Component\_connection\_control\_delay\_generated
+### Component_connection_control_delay_generated
 
 Section 8.4.2.2, “Connection Control Component Configuration”
 
 Section 7.1.10, “Server Status Variables”
 
-### Component\_connection\_control\_exempted\_unknown\_users
+### Component_connection_control_exempted_unknown_users
 
 Section 7.1.10, “Server Status Variables”
 
@@ -172,37 +172,37 @@ Section 6.2.8, “Connection Compression Control”
 
 Section 7.1.10, “Server Status Variables”
 
-### Compression\_algorithm
+### Compression_algorithm
 
 Section 6.2.8, “Connection Compression Control”
 
 Section 7.1.10, “Server Status Variables”
 
-### Compression\_level
+### Compression_level
 
 Section 6.2.8, “Connection Compression Control”
 
 Section 7.1.10, “Server Status Variables”
 
-### Connection\_control\_delay\_generated
+### Connection_control_delay_generated
 
 Section 8.4.3.1, “Connection Control Plugin Installation”
 
 Section 8.4.3.2, “Connection Control Plugin System and Status Variables”
 
-### Connection\_errors\_accept
+### Connection_errors_accept
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Connection\_errors\_internal
+### Connection_errors_internal
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Connection\_errors\_max\_connections
+### Connection_errors_max_connections
 
 Section 7.1.12.1, “Connection Interfaces”
 
@@ -210,25 +210,25 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Connection\_errors\_peer\_address
+### Connection_errors_peer_address
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Connection\_errors\_select
+### Connection_errors_select
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Connection\_errors\_tcpwrap
+### Connection_errors_tcpwrap
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Connection\_errors\_xxx
+### Connection_errors_xxx
 
 Section 7.1.12.3, “DNS Lookups and the Host Cache”
 
@@ -242,19 +242,19 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Count\_hit\_query\_past\_connection\_memory\_status\_limit
+### Count_hit_query_past_connection_memory_status_limit
 
 Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Count\_hit\_query\_past\_global\_connection\_memory\_status\_limit
+### Count_hit_query_past_global_connection_memory_status_limit
 
 Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Count\_hit\_tmp\_table\_size
+### Count_hit_tmp_table_size
 
 Section 10.12.3.1, “How MySQL Uses Memory”
 
@@ -264,7 +264,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Created\_tmp\_disk\_tables
+### Created_tmp_disk_tables
 
 Section 10.4.4, “Internal Temporary Table Use in MySQL”
 
@@ -274,17 +274,17 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-Section 29.12.6.1, “The events\_statements\_current Table”
+Section 29.12.6.1, “The events_statements_current Table”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Created\_tmp\_files
+### Created_tmp_files
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Created\_tmp\_tables
+### Created_tmp_tables
 
 Section 10.4.4, “Internal Temporary Table Use in MySQL”
 
@@ -296,59 +296,59 @@ Section 7.1.8, “Server System Variables”
 
 Section 15.7.7.38, “SHOW STATUS Statement”
 
-Section 29.12.6.1, “The events\_statements\_current Table”
+Section 29.12.6.1, “The events_statements_current Table”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Current\_tls\_ca
+### Current_tls_ca
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 Section 7.1.10, “Server Status Variables”
 
-### Current\_tls\_capath
+### Current_tls_capath
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 Section 7.1.10, “Server Status Variables”
 
-### Current\_tls\_cert
+### Current_tls_cert
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 Section 7.1.10, “Server Status Variables”
 
-### Current\_tls\_cipher
+### Current_tls_cipher
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 Section 7.1.10, “Server Status Variables”
 
-### Current\_tls\_ciphersuites
+### Current_tls_ciphersuites
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 Section 7.1.10, “Server Status Variables”
 
-### Current\_tls\_crl
+### Current_tls_crl
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 Section 7.1.10, “Server Status Variables”
 
-### Current\_tls\_crlpath
+### Current_tls_crlpath
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 Section 7.1.10, “Server Status Variables”
 
-### Current\_tls\_key
+### Current_tls_key
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
 Section 7.1.10, “Server Status Variables”
 
-### Current\_tls\_version
+### Current_tls_version
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
@@ -358,29 +358,29 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### Delayed\_errors
+### Delayed_errors
 
 Section 7.1.10, “Server Status Variables”
 
-### Delayed\_insert\_threads
+### Delayed_insert_threads
 
 Section 7.1.10, “Server Status Variables”
 
-### Delayed\_writes
+### Delayed_writes
 
 Section 7.1.10, “Server Status Variables”
 
-### Deprecated\_use\_i\_s\_processlist\_count
+### Deprecated_use_i_s_processlist_count
 
 Section 7.1.10, “Server Status Variables”
 
-Section 28.3.28, “The INFORMATION\_SCHEMA PROCESSLIST Table”
+Section 28.3.28, “The INFORMATION_SCHEMA PROCESSLIST Table”
 
-### Deprecated\_use\_i\_s\_processlist\_last\_timestamp
+### Deprecated_use_i_s_processlist_last_timestamp
 
 Section 7.1.10, “Server Status Variables”
 
-Section 28.3.28, “The INFORMATION\_SCHEMA PROCESSLIST Table”
+Section 28.3.28, “The INFORMATION_SCHEMA PROCESSLIST Table”
 
 ### dragnet.Status
 
@@ -392,77 +392,77 @@ Section 7.1.8, “Server System Variables”
 
 [index top]
 
-### Error\_log\_buffered\_bytes
+### Error_log_buffered_bytes
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 29.12.22.3, “The error\_log Table”
+Section 29.12.22.3, “The error_log Table”
 
-### Error\_log\_buffered\_events
-
-Section 35.4.3, “Server Metrics”
-
-Section 7.1.10, “Server Status Variables”
-
-Section 29.12.22.3, “The error\_log Table”
-
-### Error\_log\_expired\_events
+### Error_log_buffered_events
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 29.12.22.3, “The error\_log Table”
+Section 29.12.22.3, “The error_log Table”
 
-### Error\_log\_latest\_write
+### Error_log_expired_events
+
+Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 29.12.22.3, “The error\_log Table”
+Section 29.12.22.3, “The error_log Table”
+
+### Error_log_latest_write
+
+Section 7.1.10, “Server Status Variables”
+
+Section 29.12.22.3, “The error_log Table”
 
 ### F
 
 [index top]
 
-### Firewall\_access\_denied
+### Firewall_access_denied
 
 Section 8.4.8.1.4, “MySQL Enterprise Firewall Plugin Reference”
 
-### firewall\_access\_denied
+### firewall_access_denied
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
-### Firewall\_access\_granted
+### Firewall_access_granted
 
 Section 8.4.8.1.4, “MySQL Enterprise Firewall Plugin Reference”
 
 Section 8.4.8.1.3, “Using the MySQL Enterprise Firewall Plugin”
 
-### firewall\_access\_granted
+### firewall_access_granted
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
 Section 8.4.8.2.3, “Using the MySQL Enterprise Firewall Component”
 
-### Firewall\_access\_suspicious
+### Firewall_access_suspicious
 
 Section 8.4.8.1.4, “MySQL Enterprise Firewall Plugin Reference”
 
-### firewall\_access\_suspicious
+### firewall_access_suspicious
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
-### Firewall\_cached\_entries
+### Firewall_cached_entries
 
 Section 8.4.8.1.4, “MySQL Enterprise Firewall Plugin Reference”
 
-### firewall\_cached\_entries
+### firewall_cached_entries
 
 Section 8.4.8.2.4, “MySQL Enterprise Firewall Component Reference”
 
-### Flush\_commands
+### Flush_commands
 
 Section 35.4.3, “Server Metrics”
 
@@ -472,7 +472,7 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### Global\_connection\_memory
+### Global_connection_memory
 
 Section 35.4.3, “Server Metrics”
 
@@ -480,147 +480,109 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Gr\_all\_consensus\_proposals\_count
+### Gr_all_consensus_proposals_count
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_all\_consensus\_time\_sum
+### Gr_all_consensus_time_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_certification\_garbage\_collector\_count
+### Gr_certification_garbage_collector_count
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_certification\_garbage\_collector\_time\_sum
+### Gr_certification_garbage_collector_time_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_consensus\_bytes\_received\_sum
+### Gr_consensus_bytes_received_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_consensus\_bytes\_sent\_sum
+### Gr_consensus_bytes_sent_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_control\_messages\_sent\_bytes\_sum
+### Gr_control_messages_sent_bytes_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_control\_messages\_sent\_count
+### Gr_control_messages_sent_count
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_control\_messages\_sent\_roundtrip\_time\_sum
+### Gr_control_messages_sent_roundtrip_time_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_data\_messages\_sent\_bytes\_sum
+### Gr_data_messages_sent_bytes_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_data\_messages\_sent\_count
+### Gr_data_messages_sent_count
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_data\_messages\_sent\_roundtrip\_time\_sum
+### Gr_data_messages_sent_roundtrip_time_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_empty\_consensus\_proposals\_count
+### Gr_empty_consensus_proposals_count
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_extended\_consensus\_count
+### Gr_extended_consensus_count
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_flow\_control\_throttle\_active\_count
+### Gr_flow_control_throttle_active_count
 
 Section 7.5.6.2, “Group Replication Flow Control Statistics Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_flow\_control\_throttle\_count
+### Gr_flow_control_throttle_count
 
 Section 7.5.6.2, “Group Replication Flow Control Statistics Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_flow\_control\_throttle\_last\_throttle\_timestamp
+### Gr_flow_control_throttle_last_throttle_timestamp
 
 Section 7.5.6.2, “Group Replication Flow Control Statistics Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_flow\_control\_throttle\_time\_sum
+### Gr_flow_control_throttle_time_sum
 
 Section 7.5.6.2, “Group Replication Flow Control Statistics Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_last\_consensus\_end\_timestamp
+### Gr_last_consensus_end_timestamp
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_latest\_primary\_election\_by\_most\_uptodate\_member\_timestamp
+### Gr_latest_primary_election_by_most_uptodate_member_timestamp
 
 Section 7.5.6.4, “Group Replication Primary Election Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_latest\_primary\_election\_by\_most\_uptodate\_members\_trx\_delta
+### Gr_latest_primary_election_by_most_uptodate_members_trx_delta
 
 Section 7.5.6.4, “Group Replication Primary Election Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_resource\_manager\_applier\_channel\_eviction\_timestamp
+### Gr_resource_manager_applier_channel_eviction_timestamp
 
 Section 7.5.6.3, “Group Replication Resource Manager Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_resource\_manager\_applier\_channel\_lag
-
-Section 7.5.6.3, “Group Replication Resource Manager Component”
-
-Section 20.9.2, “Group Replication Status Variables”
-
-Section 20.9.1, “Group Replication System Variables”
-
-### Gr\_resource\_manager\_applier\_channel\_threshold\_hits
-
-Section 7.5.6.3, “Group Replication Resource Manager Component”
-
-Section 20.9.2, “Group Replication Status Variables”
-
-### Gr\_resource\_manager\_channel\_lag\_monitoring\_error\_timestamp
-
-Section 7.5.6.3, “Group Replication Resource Manager Component”
-
-Section 20.9.2, “Group Replication Status Variables”
-
-### Gr\_resource\_manager\_memory\_eviction\_timestamp
-
-Section 7.5.6.3, “Group Replication Resource Manager Component”
-
-Section 20.9.2, “Group Replication Status Variables”
-
-### Gr\_resource\_manager\_memory\_monitoring\_error\_timestamp
-
-Section 7.5.6.3, “Group Replication Resource Manager Component”
-
-Section 20.9.2, “Group Replication Status Variables”
-
-### Gr\_resource\_manager\_memory\_threshold\_hits
-
-Section 7.5.6.3, “Group Replication Resource Manager Component”
-
-Section 20.9.2, “Group Replication Status Variables”
-
-### Gr\_resource\_manager\_memory\_used
+### Gr_resource_manager_applier_channel_lag
 
 Section 7.5.6.3, “Group Replication Resource Manager Component”
 
@@ -628,13 +590,37 @@ Section 20.9.2, “Group Replication Status Variables”
 
 Section 20.9.1, “Group Replication System Variables”
 
-### Gr\_resource\_manager\_recovery\_channel\_eviction\_timestamp
+### Gr_resource_manager_applier_channel_threshold_hits
 
 Section 7.5.6.3, “Group Replication Resource Manager Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_resource\_manager\_recovery\_channel\_lag
+### Gr_resource_manager_channel_lag_monitoring_error_timestamp
+
+Section 7.5.6.3, “Group Replication Resource Manager Component”
+
+Section 20.9.2, “Group Replication Status Variables”
+
+### Gr_resource_manager_memory_eviction_timestamp
+
+Section 7.5.6.3, “Group Replication Resource Manager Component”
+
+Section 20.9.2, “Group Replication Status Variables”
+
+### Gr_resource_manager_memory_monitoring_error_timestamp
+
+Section 7.5.6.3, “Group Replication Resource Manager Component”
+
+Section 20.9.2, “Group Replication Status Variables”
+
+### Gr_resource_manager_memory_threshold_hits
+
+Section 7.5.6.3, “Group Replication Resource Manager Component”
+
+Section 20.9.2, “Group Replication Status Variables”
+
+### Gr_resource_manager_memory_used
 
 Section 7.5.6.3, “Group Replication Resource Manager Component”
 
@@ -642,37 +628,51 @@ Section 20.9.2, “Group Replication Status Variables”
 
 Section 20.9.1, “Group Replication System Variables”
 
-### Gr\_resource\_manager\_recovery\_channel\_threshold\_hits
+### Gr_resource_manager_recovery_channel_eviction_timestamp
 
 Section 7.5.6.3, “Group Replication Resource Manager Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_total\_messages\_sent\_count
+### Gr_resource_manager_recovery_channel_lag
+
+Section 7.5.6.3, “Group Replication Resource Manager Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_transactions\_consistency\_after\_sync\_count
+Section 20.9.1, “Group Replication System Variables”
+
+### Gr_resource_manager_recovery_channel_threshold_hits
+
+Section 7.5.6.3, “Group Replication Resource Manager Component”
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_transactions\_consistency\_after\_sync\_time\_sum
+### Gr_total_messages_sent_count
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_transactions\_consistency\_after\_termination\_count
+### Gr_transactions_consistency_after_sync_count
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_transactions\_consistency\_after\_termination\_time\_sum
+### Gr_transactions_consistency_after_sync_time_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_transactions\_consistency\_before\_begin\_count
+### Gr_transactions_consistency_after_termination_count
 
 Section 20.9.2, “Group Replication Status Variables”
 
-### Gr\_transactions\_consistency\_before\_begin\_time\_sum
+### Gr_transactions_consistency_after_termination_time_sum
+
+Section 20.9.2, “Group Replication Status Variables”
+
+### Gr_transactions_consistency_before_begin_count
+
+Section 20.9.2, “Group Replication Status Variables”
+
+### Gr_transactions_consistency_before_begin_time_sum
 
 Section 20.9.2, “Group Replication Status Variables”
 
@@ -680,51 +680,43 @@ Section 20.9.2, “Group Replication Status Variables”
 
 [index top]
 
-### Handler\_commit
+### Handler_commit
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Handler\_delete
+### Handler_delete
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Handler\_discover
+### Handler_discover
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Handler\_external\_lock
+### Handler_external_lock
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Handler\_mrr\_init
+### Handler_mrr_init
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Handler\_prepare
+### Handler_prepare
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Handler\_read\_first
-
-Section 35.4.3, “Server Metrics”
-
-Section 7.1.10, “Server Status Variables”
-
-Section 7.4.5, “The Slow Query Log”
-
-### Handler\_read\_key
+### Handler_read_first
 
 Section 35.4.3, “Server Metrics”
 
@@ -732,7 +724,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Handler\_read\_last
+### Handler_read_key
 
 Section 35.4.3, “Server Metrics”
 
@@ -740,7 +732,15 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Handler\_read\_next
+### Handler_read_last
+
+Section 35.4.3, “Server Metrics”
+
+Section 7.1.10, “Server Status Variables”
+
+Section 7.4.5, “The Slow Query Log”
+
+### Handler_read_next
 
 Section 35.4.3, “Server Metrics”
 
@@ -750,7 +750,7 @@ Section 7.4.5, “The Slow Query Log”
 
 Section 10.3.10, “Use of Index Extensions”
 
-### Handler\_read\_prev
+### Handler_read_prev
 
 Section 35.4.3, “Server Metrics”
 
@@ -758,7 +758,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Handler\_read\_rnd
+### Handler_read_rnd
 
 Section 35.4.3, “Server Metrics”
 
@@ -766,7 +766,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Handler\_read\_rnd\_next
+### Handler_read_rnd_next
 
 Section 35.4.3, “Server Metrics”
 
@@ -774,31 +774,31 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Handler\_rollback
+### Handler_rollback
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Handler\_savepoint
+### Handler_savepoint
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Handler\_savepoint\_rollback
+### Handler_savepoint_rollback
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Handler\_update
+### Handler_update
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Handler\_write
+### Handler_write
 
 Section 35.4.3, “Server Metrics”
 
@@ -808,71 +808,71 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### Innodb\_buffer\_pool\_bytes\_data
+### Innodb_buffer_pool_bytes_data
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_bytes\_dirty
+### Innodb_buffer_pool_bytes_dirty
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_dump\_status
+### Innodb_buffer_pool_dump_status
 
 Section 17.14, “InnoDB Startup Options and System Variables”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_load\_status
+### Innodb_buffer_pool_load_status
 
 Section 17.14, “InnoDB Startup Options and System Variables”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_pages\_data
+### Innodb_buffer_pool_pages_data
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_pages\_dirty
+### Innodb_buffer_pool_pages_dirty
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_pages\_flushed
+### Innodb_buffer_pool_pages_flushed
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_pages\_free
+### Innodb_buffer_pool_pages_free
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_pages\_latched
+### Innodb_buffer_pool_pages_latched
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_pages\_misc
+### Innodb_buffer_pool_pages_misc
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_pages\_total
+### Innodb_buffer_pool_pages_total
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_read\_ahead
+### Innodb_buffer_pool_read_ahead
 
 Section 17.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”")
 
@@ -882,7 +882,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_read\_ahead\_evicted
+### Innodb_buffer_pool_read_ahead_evicted
 
 Section 17.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”")
 
@@ -892,7 +892,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_read\_ahead\_rnd
+### Innodb_buffer_pool_read_ahead_rnd
 
 Section 17.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”")
 
@@ -900,19 +900,19 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_read\_requests
+### Innodb_buffer_pool_read_requests
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_reads
+### Innodb_buffer_pool_reads
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_resize\_status
+### Innodb_buffer_pool_resize_status
 
 Section 17.8.3.1, “Configuring InnoDB Buffer Pool Size”
 
@@ -920,31 +920,31 @@ Section 17.14, “InnoDB Startup Options and System Variables”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_resize\_status\_code
+### Innodb_buffer_pool_resize_status_code
 
 Section 17.8.3.1, “Configuring InnoDB Buffer Pool Size”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_resize\_status\_progress
+### Innodb_buffer_pool_resize_status_progress
 
 Section 17.8.3.1, “Configuring InnoDB Buffer Pool Size”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_wait\_free
+### Innodb_buffer_pool_wait_free
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_buffer\_pool\_write\_requests
+### Innodb_buffer_pool_write_requests
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_data\_fsyncs
+### Innodb_data_fsyncs
 
 Section 17.14, “InnoDB Startup Options and System Variables”
 
@@ -952,107 +952,107 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_data\_pending\_fsyncs
+### Innodb_data_pending_fsyncs
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_data\_pending\_reads
+### Innodb_data_pending_reads
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_data\_pending\_writes
+### Innodb_data_pending_writes
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_data\_read
+### Innodb_data_read
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_data\_reads
+### Innodb_data_reads
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_data\_writes
+### Innodb_data_writes
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_data\_written
+### Innodb_data_written
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_dblwr\_pages\_written
+### Innodb_dblwr_pages_written
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_dblwr\_writes
+### Innodb_dblwr_writes
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_have\_atomic\_builtins
+### Innodb_have_atomic_builtins
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_log\_waits
+### Innodb_log_waits
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_log\_write\_requests
+### Innodb_log_write_requests
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_log\_writes
+### Innodb_log_writes
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_num\_open\_files
+### Innodb_num_open_files
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_os\_log\_fsyncs
+### Innodb_os_log_fsyncs
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_os\_log\_pending\_fsyncs
+### Innodb_os_log_pending_fsyncs
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_os\_log\_pending\_writes
+### Innodb_os_log_pending_writes
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_os\_log\_written
+### Innodb_os_log_written
 
 Section 17.14, “InnoDB Startup Options and System Variables”
 
@@ -1060,31 +1060,31 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_page\_size
+### Innodb_page_size
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_pages\_created
+### Innodb_pages_created
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_pages\_read
+### Innodb_pages_read
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_pages\_written
+### Innodb_pages_written
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_redo\_log\_capacity\_resized
+### Innodb_redo_log_capacity_resized
 
 Section 17.14, “InnoDB Startup Options and System Variables”
 
@@ -1094,39 +1094,31 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_redo\_log\_checkpoint\_lsn
+### Innodb_redo_log_checkpoint_lsn
 
 Section 17.6.5, “Redo Log”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_redo\_log\_current\_lsn
+### Innodb_redo_log_current_lsn
 
 Section 17.6.5, “Redo Log”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_redo\_log\_enabled
+### Innodb_redo_log_enabled
 
 Section 17.6.5, “Redo Log”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_redo\_log\_flushed\_to\_disk\_lsn
+### Innodb_redo_log_flushed_to_disk_lsn
 
 Section 17.6.5, “Redo Log”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_redo\_log\_logical\_size
-
-Section 17.6.5, “Redo Log”
-
-Section 35.4.3, “Server Metrics”
-
-Section 7.1.10, “Server Status Variables”
-
-### Innodb\_redo\_log\_physical\_size
+### Innodb_redo_log_logical_size
 
 Section 17.6.5, “Redo Log”
 
@@ -1134,123 +1126,131 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_redo\_log\_read\_only
+### Innodb_redo_log_physical_size
+
+Section 17.6.5, “Redo Log”
+
+Section 35.4.3, “Server Metrics”
+
+Section 7.1.10, “Server Status Variables”
+
+### Innodb_redo_log_read_only
 
 Section 17.6.5, “Redo Log”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_redo\_log\_resize\_status
+### Innodb_redo_log_resize_status
 
 Section 17.6.5, “Redo Log”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_redo\_log\_uuid
+### Innodb_redo_log_uuid
 
 Section 17.6.5, “Redo Log”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_row\_lock\_current\_waits
+### Innodb_row_lock_current_waits
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_row\_lock\_time
+### Innodb_row_lock_time
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_row\_lock\_time\_avg
+### Innodb_row_lock_time_avg
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_row\_lock\_time\_max
+### Innodb_row_lock_time_max
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_row\_lock\_waits
+### Innodb_row_lock_waits
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_rows\_deleted
+### Innodb_rows_deleted
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_rows\_inserted
+### Innodb_rows_inserted
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_rows\_read
+### Innodb_rows_read
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_rows\_updated
+### Innodb_rows_updated
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_system\_rows\_deleted
+### Innodb_system_rows_deleted
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_system\_rows\_inserted
+### Innodb_system_rows_inserted
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_system\_rows\_read
+### Innodb_system_rows_read
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_system\_rows\_updated
+### Innodb_system_rows_updated
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_truncated\_status\_writes
+### Innodb_truncated_status_writes
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_undo\_tablespaces\_active
+### Innodb_undo_tablespaces_active
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_undo\_tablespaces\_explicit
+### Innodb_undo_tablespaces_explicit
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_undo\_tablespaces\_implicit
+### Innodb_undo_tablespaces_implicit
 
 Section 7.1.10, “Server Status Variables”
 
-### Innodb\_undo\_tablespaces\_total
+### Innodb_undo_tablespaces_total
 
 Section 35.4.3, “Server Metrics”
 
@@ -1260,27 +1260,13 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### Key\_blocks\_not\_flushed
+### Key_blocks_not_flushed
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Key\_blocks\_unused
-
-Section 35.4.3, “Server Metrics”
-
-Section 7.1.10, “Server Status Variables”
-
-Section 7.1.8, “Server System Variables”
-
-### Key\_blocks\_used
-
-Section 35.4.3, “Server Metrics”
-
-Section 7.1.10, “Server Status Variables”
-
-### Key\_read\_requests
+### Key_blocks_unused
 
 Section 35.4.3, “Server Metrics”
 
@@ -1288,7 +1274,13 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Key\_reads
+### Key_blocks_used
+
+Section 35.4.3, “Server Metrics”
+
+Section 7.1.10, “Server Status Variables”
+
+### Key_read_requests
 
 Section 35.4.3, “Server Metrics”
 
@@ -1296,7 +1288,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Key\_write\_requests
+### Key_reads
 
 Section 35.4.3, “Server Metrics”
 
@@ -1304,7 +1296,15 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Key\_writes
+### Key_write_requests
+
+Section 35.4.3, “Server Metrics”
+
+Section 7.1.10, “Server Status Variables”
+
+Section 7.1.8, “Server System Variables”
+
+### Key_writes
 
 Section 35.4.3, “Server Metrics”
 
@@ -1316,15 +1316,15 @@ Section 7.1.8, “Server System Variables”
 
 [index top]
 
-### Last\_query\_cost
+### Last_query_cost
 
 Section 7.1.10, “Server Status Variables”
 
-### Last\_query\_partial\_plans
+### Last_query_partial_plans
 
 Section 7.1.10, “Server Status Variables”
 
-### Locked\_connects
+### Locked_connects
 
 Section 8.2.20, “Account Locking”
 
@@ -1336,25 +1336,25 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### Max\_execution\_time\_exceeded
+### Max_execution_time_exceeded
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Max\_execution\_time\_set
+### Max_execution_time_set
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Max\_execution\_time\_set\_failed
+### Max_execution_time_set_failed
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Max\_used\_connections
+### Max_used_connections
 
 Section 15.7.8.3, “FLUSH Statement”
 
@@ -1364,37 +1364,29 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.6.3.4, “Thread Pool Tuning”
 
-### Max\_used\_connections\_time
+### Max_used_connections_time
 
 Section 7.1.10, “Server Status Variables”
 
-### mecab\_charset
+### mecab_charset
 
 Section 14.9.9, “MeCab Full-Text Parser Plugin”
 
 Section 7.1.10, “Server Status Variables”
 
-### mle\_heap\_status
+### mle_heap_status
 
 Section 7.5.7.3, “MLE Component Memory and Thread Usage”
 
 Section 7.5.7.1, “MLE Component Option and Variable Reference”
 
-### mle\_languages\_supported
+### mle_languages_supported
 
 Section 7.5.7.1, “MLE Component Option and Variable Reference”
 
 Section 7.5.7.2, “MLE Component Status and Session Information”
 
-### mle\_memory\_used
-
-Section 7.5.7.3, “MLE Component Memory and Thread Usage”
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 35.4.3, “Server Metrics”
-
-### mle\_oom\_errors
+### mle_memory_used
 
 Section 7.5.7.3, “MLE Component Memory and Thread Usage”
 
@@ -1402,77 +1394,7 @@ Section 7.5.7.1, “MLE Component Option and Variable Reference”
 
 Section 35.4.3, “Server Metrics”
 
-### mle\_session\_resets
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 7.5.7.2, “MLE Component Status and Session Information”
-
-Section 35.4.3, “Server Metrics”
-
-### mle\_sessions
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 7.5.7.2, “MLE Component Status and Session Information”
-
-Section 35.4.3, “Server Metrics”
-
-### mle\_sessions\_max
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 7.5.7.2, “MLE Component Status and Session Information”
-
-Section 35.4.3, “Server Metrics”
-
-### mle\_status
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 7.5.7.2, “MLE Component Status and Session Information”
-
-### mle\_stored\_functions
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 7.5.7.4, “MLE Component Stored Program Usage”
-
-Section 35.4.3, “Server Metrics”
-
-### mle\_stored\_procedures
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 7.5.7.4, “MLE Component Stored Program Usage”
-
-Section 35.4.3, “Server Metrics”
-
-### mle\_stored\_program\_bytes\_max
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 7.5.7.4, “MLE Component Stored Program Usage”
-
-Section 35.4.3, “Server Metrics”
-
-### mle\_stored\_program\_sql\_max
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 7.5.7.4, “MLE Component Stored Program Usage”
-
-Section 35.4.3, “Server Metrics”
-
-### mle\_stored\_programs
-
-Section 7.5.7.1, “MLE Component Option and Variable Reference”
-
-Section 7.5.7.4, “MLE Component Stored Program Usage”
-
-Section 35.4.3, “Server Metrics”
-
-### mle\_threads
+### mle_oom_errors
 
 Section 7.5.7.3, “MLE Component Memory and Thread Usage”
 
@@ -1480,7 +1402,77 @@ Section 7.5.7.1, “MLE Component Option and Variable Reference”
 
 Section 35.4.3, “Server Metrics”
 
-### mle\_threads\_max
+### mle_session_resets
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 7.5.7.2, “MLE Component Status and Session Information”
+
+Section 35.4.3, “Server Metrics”
+
+### mle_sessions
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 7.5.7.2, “MLE Component Status and Session Information”
+
+Section 35.4.3, “Server Metrics”
+
+### mle_sessions_max
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 7.5.7.2, “MLE Component Status and Session Information”
+
+Section 35.4.3, “Server Metrics”
+
+### mle_status
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 7.5.7.2, “MLE Component Status and Session Information”
+
+### mle_stored_functions
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 7.5.7.4, “MLE Component Stored Program Usage”
+
+Section 35.4.3, “Server Metrics”
+
+### mle_stored_procedures
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 7.5.7.4, “MLE Component Stored Program Usage”
+
+Section 35.4.3, “Server Metrics”
+
+### mle_stored_program_bytes_max
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 7.5.7.4, “MLE Component Stored Program Usage”
+
+Section 35.4.3, “Server Metrics”
+
+### mle_stored_program_sql_max
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 7.5.7.4, “MLE Component Stored Program Usage”
+
+Section 35.4.3, “Server Metrics”
+
+### mle_stored_programs
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 7.5.7.4, “MLE Component Stored Program Usage”
+
+Section 35.4.3, “Server Metrics”
+
+### mle_threads
 
 Section 7.5.7.3, “MLE Component Memory and Thread Usage”
 
@@ -1488,19 +1480,27 @@ Section 7.5.7.1, “MLE Component Option and Variable Reference”
 
 Section 35.4.3, “Server Metrics”
 
-### Mysqlx\_aborted\_clients
+### mle_threads_max
+
+Section 7.5.7.3, “MLE Component Memory and Thread Usage”
+
+Section 7.5.7.1, “MLE Component Option and Variable Reference”
+
+Section 35.4.3, “Server Metrics”
+
+### Mysqlx_aborted_clients
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_address
+### Mysqlx_address
 
 Section 22.5.6.2, “X Plugin Options and System Variables”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_bytes\_received
+### Mysqlx_bytes_received
 
 Section 22.5.5, “Connection Compression with X Plugin”
 
@@ -1508,7 +1508,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_bytes\_received\_compressed\_payload
+### Mysqlx_bytes_received_compressed_payload
 
 Section 22.5.5, “Connection Compression with X Plugin”
 
@@ -1516,7 +1516,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_bytes\_received\_uncompressed\_frame
+### Mysqlx_bytes_received_uncompressed_frame
 
 Section 22.5.5, “Connection Compression with X Plugin”
 
@@ -1524,7 +1524,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_bytes\_sent
+### Mysqlx_bytes_sent
 
 Section 22.5.5, “Connection Compression with X Plugin”
 
@@ -1532,7 +1532,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_bytes\_sent\_compressed\_payload
+### Mysqlx_bytes_sent_compressed_payload
 
 Section 22.5.5, “Connection Compression with X Plugin”
 
@@ -1540,7 +1540,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_bytes\_sent\_uncompressed\_frame
+### Mysqlx_bytes_sent_uncompressed_frame
 
 Section 22.5.5, “Connection Compression with X Plugin”
 
@@ -1548,399 +1548,399 @@ Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_compression\_algorithm
+### Mysqlx_compression_algorithm
 
 Section 22.5.5, “Connection Compression with X Plugin”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_compression\_level
+### Mysqlx_compression_level
 
 Section 22.5.5, “Connection Compression with X Plugin”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_connection\_accept\_errors
+### Mysqlx_connection_accept_errors
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_connection\_errors
+### Mysqlx_connection_errors
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_connections\_accepted
+### Mysqlx_connections_accepted
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_connections\_closed
+### Mysqlx_connections_closed
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_connections\_rejected
+### Mysqlx_connections_rejected
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_crud\_create\_view
+### Mysqlx_crud_create_view
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_crud\_delete
+### Mysqlx_crud_delete
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_crud\_drop\_view
+### Mysqlx_crud_drop_view
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_crud\_find
+### Mysqlx_crud_find
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_crud\_insert
+### Mysqlx_crud_insert
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_crud\_modify\_view
+### Mysqlx_crud_modify_view
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_crud\_update
+### Mysqlx_crud_update
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_cursor\_close
+### Mysqlx_cursor_close
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_cursor\_fetch
+### Mysqlx_cursor_fetch
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_cursor\_open
+### Mysqlx_cursor_open
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_errors\_sent
+### Mysqlx_errors_sent
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_errors\_unknown\_message\_type
+### Mysqlx_errors_unknown_message_type
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_expect\_close
+### Mysqlx_expect_close
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_expect\_open
+### Mysqlx_expect_open
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_init\_error
+### Mysqlx_init_error
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_messages\_sent
+### Mysqlx_messages_sent
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_notice\_global\_sent
+### Mysqlx_notice_global_sent
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_notice\_other\_sent
+### Mysqlx_notice_other_sent
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_notice\_warning\_sent
+### Mysqlx_notice_warning_sent
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_notified\_by\_group\_replication
+### Mysqlx_notified_by_group_replication
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_port
+### Mysqlx_port
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_prep\_deallocate
+### Mysqlx_prep_deallocate
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_prep\_execute
+### Mysqlx_prep_execute
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_prep\_prepare
+### Mysqlx_prep_prepare
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_rows\_sent
+### Mysqlx_rows_sent
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_sessions
+### Mysqlx_sessions
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_sessions\_accepted
+### Mysqlx_sessions_accepted
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_sessions\_closed
+### Mysqlx_sessions_closed
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_sessions\_fatal\_error
+### Mysqlx_sessions_fatal_error
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_sessions\_killed
+### Mysqlx_sessions_killed
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_sessions\_rejected
+### Mysqlx_sessions_rejected
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_socket
+### Mysqlx_socket
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_accept\_renegotiates
+### Mysqlx_ssl_accept_renegotiates
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_accepts
+### Mysqlx_ssl_accepts
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_active
+### Mysqlx_ssl_active
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_cipher
+### Mysqlx_ssl_cipher
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_cipher\_list
+### Mysqlx_ssl_cipher_list
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_ctx\_verify\_depth
+### Mysqlx_ssl_ctx_verify_depth
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_ctx\_verify\_mode
+### Mysqlx_ssl_ctx_verify_mode
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_finished\_accepts
+### Mysqlx_ssl_finished_accepts
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_server\_not\_after
+### Mysqlx_ssl_server_not_after
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_server\_not\_before
+### Mysqlx_ssl_server_not_before
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_verify\_depth
+### Mysqlx_ssl_verify_depth
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_verify\_mode
+### Mysqlx_ssl_verify_mode
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_ssl\_version
+### Mysqlx_ssl_version
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_create\_collection
+### Mysqlx_stmt_create_collection
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_create\_collection\_index
+### Mysqlx_stmt_create_collection_index
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_disable\_notices
+### Mysqlx_stmt_disable_notices
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_drop\_collection
+### Mysqlx_stmt_drop_collection
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_drop\_collection\_index
+### Mysqlx_stmt_drop_collection_index
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_enable\_notices
+### Mysqlx_stmt_enable_notices
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_ensure\_collection
+### Mysqlx_stmt_ensure_collection
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_execute\_mysqlx
+### Mysqlx_stmt_execute_mysqlx
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_execute\_sql
+### Mysqlx_stmt_execute_sql
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_execute\_xplugin
+### Mysqlx_stmt_execute_xplugin
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_get\_collection\_options
+### Mysqlx_stmt_get_collection_options
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_kill\_client
+### Mysqlx_stmt_kill_client
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_list\_clients
+### Mysqlx_stmt_list_clients
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_list\_notices
+### Mysqlx_stmt_list_notices
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_list\_objects
+### Mysqlx_stmt_list_objects
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_modify\_collection\_options
+### Mysqlx_stmt_modify_collection_options
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_stmt\_ping
+### Mysqlx_stmt_ping
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_worker\_threads
+### Mysqlx_worker_threads
 
 Section 35.4.3, “Server Metrics”
 
 Section 22.5.6.3, “X Plugin Status Variables”
 
-### Mysqlx\_worker\_threads\_active
+### Mysqlx_worker_threads_active
 
 Section 35.4.3, “Server Metrics”
 
@@ -1950,777 +1950,777 @@ Section 22.5.6.3, “X Plugin Status Variables”
 
 [index top]
 
-### Ndb\_api\_adaptive\_send\_deferred\_count
+### Ndb_api_adaptive_send_deferred_count
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_adaptive\_send\_deferred\_count\_replica
+### Ndb_api_adaptive_send_deferred_count_replica
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-### Ndb\_api\_adaptive\_send\_deferred\_count\_session
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_adaptive\_send\_deferred\_count\_slave
+### Ndb_api_adaptive_send_deferred_count_session
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_adaptive\_send\_forced\_count
+### Ndb_api_adaptive_send_deferred_count_slave
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_adaptive\_send\_forced\_count\_replica
+### Ndb_api_adaptive_send_forced_count
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_adaptive\_send\_forced\_count\_session
+### Ndb_api_adaptive_send_forced_count_replica
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_adaptive\_send\_forced\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_api_adaptive_send_forced_count_session
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_adaptive\_send\_unforced\_count
+### Ndb_api_adaptive_send_forced_count_slave
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_adaptive\_send\_unforced\_count\_replica
+### Ndb_api_adaptive_send_unforced_count
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_adaptive\_send\_unforced\_count\_session
+### Ndb_api_adaptive_send_unforced_count_replica
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_adaptive\_send\_unforced\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_api_adaptive_send_unforced_count_session
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_bytes\_received\_count
-
-Section 25.6.14, “NDB API Statistics Counters and Variables”
+### Ndb_api_adaptive_send_unforced_count_slave
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_bytes\_received\_count\_replica
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_bytes\_received\_count\_session
+### Ndb_api_bytes_received_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_bytes\_received\_count\_slave
+### Ndb_api_bytes_received_count_replica
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_api_bytes_received_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_bytes\_sent\_count
+### Ndb_api_bytes_received_count_slave
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_bytes\_sent\_count\_replica
+### Ndb_api_bytes_sent_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_bytes\_sent\_count\_session
+### Ndb_api_bytes_sent_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_bytes\_sent\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_event\_bytes\_count
+### Ndb_api_bytes_sent_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_event\_bytes\_count\_injector
+### Ndb_api_bytes_sent_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_event_bytes_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_event\_data\_count
+### Ndb_api_event_bytes_count_injector
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_event\_data\_count\_injector
+### Ndb_api_event_data_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_event\_nondata\_count
+### Ndb_api_event_data_count_injector
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_event\_nondata\_count\_injector
+### Ndb_api_event_nondata_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_pk\_op\_count
+### Ndb_api_event_nondata_count_injector
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_pk\_op\_count\_replica
+### Ndb_api_pk_op_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_pk\_op\_count\_session
+### Ndb_api_pk_op_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_pk\_op\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_pruned\_scan\_count
+### Ndb_api_pk_op_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_pruned\_scan\_count\_replica
+### Ndb_api_pk_op_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_pruned_scan_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_pruned\_scan\_count\_session
+### Ndb_api_pruned_scan_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_pruned\_scan\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_range\_scan\_count
+### Ndb_api_pruned_scan_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_range\_scan\_count\_replica
+### Ndb_api_pruned_scan_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_range_scan_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_range\_scan\_count\_session
+### Ndb_api_range_scan_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_range\_scan\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_read\_row\_count
+### Ndb_api_range_scan_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_read\_row\_count\_replica
+### Ndb_api_range_scan_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_read_row_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_read\_row\_count\_session
+### Ndb_api_read_row_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_read\_row\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_scan\_batch\_count
+### Ndb_api_read_row_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_scan\_batch\_count\_replica
+### Ndb_api_read_row_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_scan_batch_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_scan\_batch\_count\_session
+### Ndb_api_scan_batch_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_scan\_batch\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_table\_scan\_count
+### Ndb_api_scan_batch_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_table\_scan\_count\_replica
+### Ndb_api_scan_batch_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_table_scan_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_table\_scan\_count\_session
+### Ndb_api_table_scan_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_table\_scan\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_trans\_abort\_count
+### Ndb_api_table_scan_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_abort\_count\_replica
+### Ndb_api_table_scan_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_trans_abort_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_trans\_abort\_count\_session
+### Ndb_api_trans_abort_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_abort\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_trans\_close\_count
+### Ndb_api_trans_abort_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_close\_count\_replica
+### Ndb_api_trans_abort_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_trans_close_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_trans\_close\_count\_session
+### Ndb_api_trans_close_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_close\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_trans\_commit\_count
+### Ndb_api_trans_close_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_commit\_count\_replica
+### Ndb_api_trans_close_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_trans_commit_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_trans\_commit\_count\_session
+### Ndb_api_trans_commit_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_commit\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_trans\_local\_read\_row\_count
+### Ndb_api_trans_commit_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_local\_read\_row\_count\_replica
+### Ndb_api_trans_commit_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_trans_local_read_row_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_trans\_local\_read\_row\_count\_session
+### Ndb_api_trans_local_read_row_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_local\_read\_row\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_trans\_start\_count
+### Ndb_api_trans_local_read_row_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_start\_count\_replica
+### Ndb_api_trans_local_read_row_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_trans_start_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_trans\_start\_count\_session
+### Ndb_api_trans_start_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_trans\_start\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_uk\_op\_count
+### Ndb_api_trans_start_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_uk\_op\_count\_replica
+### Ndb_api_trans_start_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_uk_op_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_uk\_op\_count\_session
+### Ndb_api_uk_op_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_uk\_op\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_wait\_exec\_complete\_count
+### Ndb_api_uk_op_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_wait\_exec\_complete\_count\_replica
+### Ndb_api_uk_op_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_wait_exec_complete_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_wait\_exec\_complete\_count\_session
+### Ndb_api_wait_exec_complete_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_wait\_exec\_complete\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_wait\_meta\_request\_count
+### Ndb_api_wait_exec_complete_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_wait\_meta\_request\_count\_replica
+### Ndb_api_wait_exec_complete_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_wait_meta_request_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_wait\_meta\_request\_count\_session
+### Ndb_api_wait_meta_request_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_wait\_meta\_request\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_wait\_nanos\_count
+### Ndb_api_wait_meta_request_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_wait\_nanos\_count\_replica
+### Ndb_api_wait_meta_request_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_wait_nanos_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_wait\_nanos\_count\_session
+### Ndb_api_wait_nanos_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_wait\_nanos\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_api\_wait\_scan\_result\_count
+### Ndb_api_wait_nanos_count_session
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_wait\_scan\_result\_count\_replica
+### Ndb_api_wait_nanos_count_slave
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_api_wait_scan_result_count
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_api\_wait\_scan\_result\_count\_session
+### Ndb_api_wait_scan_result_count_replica
 
 Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_api\_wait\_scan\_result\_count\_slave
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_api_wait_scan_result_count_session
+
+Section 25.6.14, “NDB API Statistics Counters and Variables”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_cluster\_node\_id
+### Ndb_api_wait_scan_result_count_slave
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_config\_from\_host
+### Ndb_cluster_node_id
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_config\_from\_port
+### Ndb_config_from_host
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_config\_generation
+### Ndb_config_from_port
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_conflict\_fn\_epoch
+### Ndb_config_generation
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_conflict_fn_epoch
 
 Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-### Ndb\_conflict\_fn\_epoch2
-
-Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_fn\_epoch2\_trans
+### Ndb_conflict_fn_epoch2
 
 Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-### Ndb\_conflict\_fn\_epoch\_trans
-
-Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_fn\_max
+### Ndb_conflict_fn_epoch2_trans
 
 Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-### Ndb\_conflict\_fn\_max\_del\_win
-
-Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_fn\_max\_del\_win\_ins
+### Ndb_conflict_fn_epoch_trans
 
 Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-### Ndb\_conflict\_fn\_max\_ins
-
-Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_fn\_old
+### Ndb_conflict_fn_max
 
 Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-### Ndb\_conflict\_last\_conflict\_epoch
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_last\_stable\_epoch
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_reflected\_op\_discard\_count
+### Ndb_conflict_fn_max_del_win
 
 Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-### Ndb\_conflict\_reflected\_op\_prepare\_count
-
-Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_refresh\_op\_count
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_trans\_conflict\_commit\_count
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_trans\_detect\_iter\_count
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_trans\_reject\_count
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_trans\_row\_conflict\_count
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_conflict\_trans\_row\_reject\_count
+### Ndb_conflict_fn_max_del_win_ins
 
 Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-### Ndb\_epoch\_delete\_delete\_count
+### Ndb_conflict_fn_max_ins
 
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
-
-### Ndb\_execute\_count
+Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_fetch\_table\_stats
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_fn_old
+
+Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_last\_commit\_epoch\_server
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_last_conflict_epoch
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_last\_commit\_epoch\_session
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_last_stable_epoch
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_metadata\_detected\_count
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_reflected_op_discard_count
+
+Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_metadata\_excluded\_count
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_reflected_op_prepare_count
+
+Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_metadata\_synced\_count
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_refresh_op_count
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_number\_of\_data\_nodes
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_trans_conflict_commit_count
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_pruned\_scan\_count
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_trans_detect_iter_count
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_pushed\_queries\_defined
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_trans_reject_count
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_trans_row_conflict_count
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_conflict_trans_row_reject_count
+
+Section 25.7.12, “NDB Cluster Replication Conflict Resolution”
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_epoch_delete_delete_count
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
+
+### Ndb_execute_count
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_fetch_table_stats
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_last_commit_epoch_server
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_last_commit_epoch_session
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_metadata_detected_count
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_metadata_excluded_count
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_metadata_synced_count
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_number_of_data_nodes
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_pruned_scan_count
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_pushed_queries_defined
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
 Section 25.4.3.9.2, “NDB Cluster System Variables”
 
-### Ndb\_pushed\_queries\_dropped
+### Ndb_pushed_queries_dropped
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
 Section 25.4.3.9.2, “NDB Cluster System Variables”
 
-### Ndb\_pushed\_queries\_executed
+### Ndb_pushed_queries_executed
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
 Section 25.4.3.9.2, “NDB Cluster System Variables”
 
-### Ndb\_pushed\_reads
+### Ndb_pushed_reads
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
 Section 25.4.3.9.2, “NDB Cluster System Variables”
 
-### Ndb\_replica\_max\_replicated\_epoch
+### Ndb_replica_max_replicated_epoch
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-Section 29.12.12.3, “The ndb\_replication\_applier\_status Table”
+Section 29.12.12.3, “The ndb_replication_applier_status Table”
 
-### Ndb\_scan\_count
-
-Section 25.4.3.9.3, “NDB Cluster Status Variables”
-
-### Ndb\_schema\_participant\_count
+### Ndb_scan_count
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_slave\_max\_replicated\_epoch
+### Ndb_schema_participant_count
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_system\_name
+### Ndb_slave_max_replicated_epoch
+
+Section 25.4.3.9.3, “NDB Cluster Status Variables”
+
+### Ndb_system_name
 
 Section 25.4.3.8, “Defining the System”
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Ndb\_trans\_hint\_count\_session
+### Ndb_trans_hint_count_session
 
 Section 25.4.3.9.3, “NDB Cluster Status Variables”
 
-### Not\_flushed\_delayed\_rows
+### Not_flushed_delayed_rows
 
 Section 7.1.10, “Server Status Variables”
 
@@ -2728,7 +2728,7 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### Ongoing\_anonymous\_transaction\_count
+### Ongoing_anonymous_transaction_count
 
 Section 19.1.4.2, “Enabling GTID Transactions Online”
 
@@ -2736,47 +2736,47 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ongoing\_automatic\_gtid\_violating\_transaction\_count
+### Ongoing_automatic_gtid_violating_transaction_count
 
 Section 7.1.10, “Server Status Variables”
 
-### Open\_files
+### Open_files
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Open\_streams
+### Open_streams
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Open\_table\_definitions
+### Open_table_definitions
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Open\_tables
+### Open_tables
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Opened\_files
+### Opened_files
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Opened\_table\_definitions
+### Opened_table_definitions
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Opened\_tables
+### Opened_tables
 
 Section 10.4.3.1, “How MySQL Opens and Closes Tables”
 
@@ -2786,225 +2786,225 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### option\_tracker.gr\_complete\_table\_received
+### option_tracker.gr_complete_table_received
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker.gr\_complete\_table\_sent
+### option_tracker.gr_complete_table_sent
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker.gr\_error\_received
+### option_tracker.gr_error_received
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker.gr\_error\_sent
+### option_tracker.gr_error_sent
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker.gr\_reset\_request\_received
+### option_tracker.gr_reset_request_received
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker.gr\_reset\_request\_sent
+### option_tracker.gr_reset_request_sent
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker.gr\_single\_row\_received
+### option_tracker.gr_single_row_received
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker.gr\_single\_row\_sent
+### option_tracker.gr_single_row_sent
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell
+### option_tracker_usage-MySQL_Shell
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_Copy
+### option_tracker_usage-MySQL_Shell_Copy
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_Dump
+### option_tracker_usage-MySQL_Shell_Dump
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_Dump\_Load
+### option_tracker_usage-MySQL_Shell_Dump_Load
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_for\_VS\_Code
+### option_tracker_usage-MySQL_Shell_for_VS_Code
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_MRS
+### option_tracker_usage-MySQL_Shell_MRS
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_Upgrade\_Checker
+### option_tracker_usage-MySQL_Shell_Upgrade_Checker
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_VSC\_Dump
+### option_tracker_usage-MySQL_Shell_VSC_Dump
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_VSC\_Dump\_Load
+### option_tracker_usage-MySQL_Shell_VSC_Dump_Load
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_VSC\_HeatWave\_Chat
+### option_tracker_usage-MySQL_Shell_VSC_HeatWave_Chat
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_VSC\_Lakehouse\_Navigator
+### option_tracker_usage-MySQL_Shell_VSC_Lakehouse_Navigator
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_VSC\_MRS
+### option_tracker_usage-MySQL_Shell_VSC_MRS
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage-MySQL\_Shell\_VSC\_Natural\_Language\_to\_SQL
+### option_tracker_usage-MySQL_Shell_VSC_Natural_Language_to_SQL
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:AWS keyring plugin
+### option_tracker_usage:AWS keyring plugin
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Binary Log
+### option_tracker_usage:Binary Log
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Connection control component
+### option_tracker_usage:Connection control component
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Connection DoS control
+### option_tracker_usage:Connection DoS control
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Encrypted File keyring
+### option_tracker_usage:Encrypted File keyring
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Enterprise AUDIT
+### option_tracker_usage:Enterprise AUDIT
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Enterprise Data Masking
+### option_tracker_usage:Enterprise Data Masking
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Enterprise Encryption
+### option_tracker_usage:Enterprise Encryption
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Enterprise Firewall
+### option_tracker_usage:Enterprise Firewall
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Enterprise Thread Pool
+### option_tracker_usage:Enterprise Thread Pool
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:File keyring
+### option_tracker_usage:File keyring
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Group Replication
+### option_tracker_usage:Group Replication
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Hashicorp keyring
+### option_tracker_usage:Hashicorp keyring
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Hypergraph Optimizer
+### option_tracker_usage:Hypergraph Optimizer
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:HyperLogLog
+### option_tracker_usage:HyperLogLog
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:JavaScript Library
+### option_tracker_usage:JavaScript Library
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:JavaScript Stored Program
+### option_tracker_usage:JavaScript Stored Program
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:JSON Duality View
+### option_tracker_usage:JSON Duality View
 
 Section 27.7.3, “JSON Duality View Metadata”
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Kerberos authentication
+### option_tracker_usage:Kerberos authentication
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:LDAP Simple authentication
+### option_tracker_usage:LDAP Simple authentication
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:MySQL Server
+### option_tracker_usage:MySQL Server
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:MySQL Telemetry
+### option_tracker_usage:MySQL Telemetry
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:OCI Authentication
+### option_tracker_usage:OCI Authentication
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Oracle Key Vault keyring
+### option_tracker_usage:Oracle Key Vault keyring
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:PAM authentication
+### option_tracker_usage:PAM authentication
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Password validation
+### option_tracker_usage:Password validation
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Replication Replica
+### option_tracker_usage:Replication Replica
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:SASL LDAP Authentication
+### option_tracker_usage:SASL LDAP Authentication
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Scheduler
+### option_tracker_usage:Scheduler
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Traditional MySQL Optimizer
+### option_tracker_usage:Traditional MySQL Optimizer
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Vector
+### option_tracker_usage:Vector
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:WebAssembly Library
+### option_tracker_usage:WebAssembly Library
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:WebauthN authentication
+### option_tracker_usage:WebauthN authentication
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
-### option\_tracker\_usage:Windows authentication
+### option_tracker_usage:Windows authentication
 
 Section 7.5.8.3, “Option Tracker Status Variables”
 
@@ -3012,57 +3012,25 @@ Section 7.5.8.3, “Option Tracker Status Variables”
 
 [index top]
 
-### Performance\_schema\_accounts\_lost
+### Performance_schema_accounts_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_cond\_classes\_lost
+### Performance_schema_cond_classes_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_cond\_instances\_lost
+### Performance_schema_cond_instances_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_digest\_lost
-
-Section 29.16, “Performance Schema Status Variables”
-
-Section 29.15, “Performance Schema System Variables”
-
-Section 35.4.3, “Server Metrics”
-
-### Performance\_schema\_file\_classes\_lost
-
-Section 29.16, “Performance Schema Status Variables”
-
-Section 35.4.3, “Server Metrics”
-
-### Performance\_schema\_file\_handles\_lost
-
-Section 29.16, “Performance Schema Status Variables”
-
-Section 35.4.3, “Server Metrics”
-
-### Performance\_schema\_file\_instances\_lost
-
-Section 29.16, “Performance Schema Status Variables”
-
-Section 35.4.3, “Server Metrics”
-
-### Performance\_schema\_hosts\_lost
-
-Section 29.16, “Performance Schema Status Variables”
-
-Section 35.4.3, “Server Metrics”
-
-### Performance\_schema\_index\_stat\_lost
+### Performance_schema_digest_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
@@ -3070,25 +3038,57 @@ Section 29.15, “Performance Schema System Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_locker\_lost
+### Performance_schema_file_classes_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_logger\_lost
+### Performance_schema_file_handles_lost
+
+Section 29.16, “Performance Schema Status Variables”
+
+Section 35.4.3, “Server Metrics”
+
+### Performance_schema_file_instances_lost
+
+Section 29.16, “Performance Schema Status Variables”
+
+Section 35.4.3, “Server Metrics”
+
+### Performance_schema_hosts_lost
+
+Section 29.16, “Performance Schema Status Variables”
+
+Section 35.4.3, “Server Metrics”
+
+### Performance_schema_index_stat_lost
+
+Section 29.16, “Performance Schema Status Variables”
+
+Section 29.15, “Performance Schema System Variables”
+
+Section 35.4.3, “Server Metrics”
+
+### Performance_schema_locker_lost
+
+Section 29.16, “Performance Schema Status Variables”
+
+Section 35.4.3, “Server Metrics”
+
+### Performance_schema_logger_lost
 
 Section 35.5.1, “Configuring Log Telemetry”
 
 Section 29.16, “Performance Schema Status Variables”
 
-### Performance\_schema\_memory\_classes\_lost
+### Performance_schema_memory_classes_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_metadata\_lock\_lost
+### Performance_schema_metadata_lock_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
@@ -3096,19 +3096,19 @@ Section 29.15, “Performance Schema System Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_meter\_lost
+### Performance_schema_meter_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_metric\_lost
+### Performance_schema_metric_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_mutex\_classes\_lost
+### Performance_schema_mutex_classes_lost
 
 Section 29.7, “Performance Schema Status Monitoring”
 
@@ -3116,7 +3116,7 @@ Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_mutex\_instances\_lost
+### Performance_schema_mutex_instances_lost
 
 Section 29.7, “Performance Schema Status Monitoring”
 
@@ -3124,7 +3124,7 @@ Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_nested\_statement\_lost
+### Performance_schema_nested_statement_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
@@ -3132,7 +3132,7 @@ Section 29.15, “Performance Schema System Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_prepared\_statements\_lost
+### Performance_schema_prepared_statements_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
@@ -3140,9 +3140,9 @@ Section 29.15, “Performance Schema System Variables”
 
 Section 35.4.3, “Server Metrics”
 
-Section 29.12.6.4, “The prepared\_statements\_instances Table”
+Section 29.12.6.4, “The prepared_statements_instances Table”
 
-### Performance\_schema\_program\_lost
+### Performance_schema_program_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
@@ -3150,19 +3150,19 @@ Section 29.15, “Performance Schema System Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_rwlock\_classes\_lost
+### Performance_schema_rwlock_classes_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_rwlock\_instances\_lost
+### Performance_schema_rwlock_instances_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_session\_connect\_attrs\_longest\_seen
+### Performance_schema_session_connect_attrs_longest_seen
 
 Section 29.12.9, “Performance Schema Connection Attribute Tables”
 
@@ -3170,7 +3170,7 @@ Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_session\_connect\_attrs\_lost
+### Performance_schema_session_connect_attrs_lost
 
 Section 29.12.9, “Performance Schema Connection Attribute Tables”
 
@@ -3180,45 +3180,31 @@ Section 29.15, “Performance Schema System Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_socket\_classes\_lost
+### Performance_schema_socket_classes_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_socket\_instances\_lost
+### Performance_schema_socket_instances_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_stage\_classes\_lost
+### Performance_schema_stage_classes_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_statement\_classes\_lost
+### Performance_schema_statement_classes_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_table\_handles\_lost
-
-Section 29.16, “Performance Schema Status Variables”
-
-Section 29.15, “Performance Schema System Variables”
-
-Section 35.4.3, “Server Metrics”
-
-### Performance\_schema\_table\_instances\_lost
-
-Section 29.16, “Performance Schema Status Variables”
-
-Section 35.4.3, “Server Metrics”
-
-### Performance\_schema\_table\_lock\_stat\_lost
+### Performance_schema_table_handles_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
@@ -3226,13 +3212,27 @@ Section 29.15, “Performance Schema System Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_thread\_classes\_lost
+### Performance_schema_table_instances_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_thread\_instances\_lost
+### Performance_schema_table_lock_stat_lost
+
+Section 29.16, “Performance Schema Status Variables”
+
+Section 29.15, “Performance Schema System Variables”
+
+Section 35.4.3, “Server Metrics”
+
+### Performance_schema_thread_classes_lost
+
+Section 29.16, “Performance Schema Status Variables”
+
+Section 35.4.3, “Server Metrics”
+
+### Performance_schema_thread_instances_lost
 
 Section 14.22, “Performance Schema Functions”
 
@@ -3244,13 +3244,13 @@ Section 29.15, “Performance Schema System Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Performance\_schema\_users\_lost
+### Performance_schema_users_lost
 
 Section 29.16, “Performance Schema Status Variables”
 
 Section 35.4.3, “Server Metrics”
 
-### Prepared\_stmt\_count
+### Prepared_stmt_count
 
 Section 35.4.3, “Server Metrics”
 
@@ -3278,7 +3278,7 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### Replica\_open\_temp\_tables
+### Replica_open_temp_tables
 
 Section 15.4.2.2, “CHANGE REPLICATION SOURCE TO Statement”
 
@@ -3290,27 +3290,27 @@ Section 7.1.10, “Server Status Variables”
 
 Section 15.4.2.5, “STOP REPLICA Statement”
 
-### Replica\_rows\_last\_search\_algorithm\_used
+### Replica_rows_last_search_algorithm_used
 
 Section 7.1.10, “Server Status Variables”
 
-### Resource\_group\_supported
+### Resource_group_supported
 
 Section 7.1.10, “Server Status Variables”
 
-### Rewriter\_number\_loaded\_rules
+### Rewriter_number_loaded_rules
 
 Section 7.6.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”
 
-### Rewriter\_number\_reloads
+### Rewriter_number_reloads
 
 Section 7.6.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”
 
-### Rewriter\_number\_rewritten\_queries
+### Rewriter_number_rewritten_queries
 
 Section 7.6.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”
 
-### Rewriter\_reload\_error
+### Rewriter_reload_error
 
 Section 7.6.4.3.2, “Rewriter Query Rewrite Plugin Procedures and Functions”
 
@@ -3320,137 +3320,137 @@ Section 7.6.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”
 
 Section 7.6.4.2, “Using the Rewriter Query Rewrite Plugin”
 
-### Rpl\_semi\_sync\_master\_clients
+### Rpl_semi_sync_master_clients
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_net\_avg\_wait\_time
+### Rpl_semi_sync_master_net_avg_wait_time
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_net\_wait\_time
+### Rpl_semi_sync_master_net_wait_time
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_net\_waits
+### Rpl_semi_sync_master_net_waits
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_no\_times
+### Rpl_semi_sync_master_no_times
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_no\_tx
+### Rpl_semi_sync_master_no_tx
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_status
+### Rpl_semi_sync_master_status
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_timefunc\_failures
+### Rpl_semi_sync_master_timefunc_failures
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_tx\_avg\_wait\_time
+### Rpl_semi_sync_master_tx_avg_wait_time
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_tx\_wait\_time
+### Rpl_semi_sync_master_tx_wait_time
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_tx\_waits
+### Rpl_semi_sync_master_tx_waits
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_wait\_pos\_backtraverse
+### Rpl_semi_sync_master_wait_pos_backtraverse
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_wait\_sessions
+### Rpl_semi_sync_master_wait_sessions
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_master\_yes\_tx
+### Rpl_semi_sync_master_yes_tx
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_replica\_status
+### Rpl_semi_sync_replica_status
 
 Section 19.4.10.3, “Semisynchronous Replication Monitoring”
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_slave\_status
+### Rpl_semi_sync_slave_status
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_clients
+### Rpl_semi_sync_source_clients
 
 Section 19.4.10.3, “Semisynchronous Replication Monitoring”
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_net\_avg\_wait\_time
+### Rpl_semi_sync_source_net_avg_wait_time
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_net\_wait\_time
+### Rpl_semi_sync_source_net_wait_time
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_net\_waits
+### Rpl_semi_sync_source_net_waits
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_no\_times
+### Rpl_semi_sync_source_no_times
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_no\_tx
+### Rpl_semi_sync_source_no_tx
 
 Section 19.4.10.3, “Semisynchronous Replication Monitoring”
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_status
+### Rpl_semi_sync_source_status
 
 Section 19.4.10.3, “Semisynchronous Replication Monitoring”
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_timefunc\_failures
+### Rpl_semi_sync_source_timefunc_failures
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_tx\_avg\_wait\_time
+### Rpl_semi_sync_source_tx_avg_wait_time
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_tx\_wait\_time
+### Rpl_semi_sync_source_tx_wait_time
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_tx\_waits
+### Rpl_semi_sync_source_tx_waits
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_wait\_pos\_backtraverse
+### Rpl_semi_sync_source_wait_pos_backtraverse
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_wait\_sessions
+### Rpl_semi_sync_source_wait_sessions
 
 Section 7.1.10, “Server Status Variables”
 
-### Rpl\_semi\_sync\_source\_yes\_tx
+### Rpl_semi_sync_source_yes_tx
 
 Section 19.4.10.3, “Semisynchronous Replication Monitoring”
 
 Section 7.1.10, “Server Status Variables”
 
-### Rsa\_public\_key
+### Rsa_public_key
 
 Section 7.1.10, “Server Status Variables”
 
@@ -3460,69 +3460,61 @@ Section 8.4.1.2, “SHA-256 Pluggable Authentication”
 
 [index top]
 
-### Secondary\_engine\_execution\_count
+### Secondary_engine_execution_count
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Select\_full\_join
+### Select_full_join
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 29.12.6.1, “The events\_statements\_current Table”
+Section 29.12.6.1, “The events_statements_current Table”
 
-### Select\_full\_range\_join
-
-Section 35.4.3, “Server Metrics”
-
-Section 7.1.10, “Server Status Variables”
-
-Section 29.12.6.1, “The events\_statements\_current Table”
-
-### Select\_range
+### Select_full_range_join
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 29.12.6.1, “The events\_statements\_current Table”
+Section 29.12.6.1, “The events_statements_current Table”
 
-### Select\_range\_check
-
-Section 35.4.3, “Server Metrics”
-
-Section 7.1.10, “Server Status Variables”
-
-Section 29.12.6.1, “The events\_statements\_current Table”
-
-### Select\_scan
+### Select_range
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 29.12.6.1, “The events\_statements\_current Table”
+Section 29.12.6.1, “The events_statements_current Table”
 
-### Slave\_open\_temp\_tables
-
-Section 7.1.10, “Server Status Variables”
-
-### Slave\_rows\_last\_search\_algorithm\_used
-
-Section 7.1.10, “Server Status Variables”
-
-### Slow\_launch\_threads
+### Select_range_check
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 7.1.8, “Server System Variables”
+Section 29.12.6.1, “The events_statements_current Table”
 
-### Slow\_queries
+### Select_scan
+
+Section 35.4.3, “Server Metrics”
+
+Section 7.1.10, “Server Status Variables”
+
+Section 29.12.6.1, “The events_statements_current Table”
+
+### Slave_open_temp_tables
+
+Section 7.1.10, “Server Status Variables”
+
+### Slave_rows_last_search_algorithm_used
+
+Section 7.1.10, “Server Status Variables”
+
+### Slow_launch_threads
 
 Section 35.4.3, “Server Metrics”
 
@@ -3530,7 +3522,15 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Sort\_merge\_passes
+### Slow_queries
+
+Section 35.4.3, “Server Metrics”
+
+Section 7.1.10, “Server Status Variables”
+
+Section 7.1.8, “Server System Variables”
+
+### Sort_merge_passes
 
 Section 10.2.1.16, “ORDER BY Optimization”
 
@@ -3540,59 +3540,59 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-Section 29.12.6.1, “The events\_statements\_current Table”
+Section 29.12.6.1, “The events_statements_current Table”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Sort\_range
+### Sort_range
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 29.12.6.1, “The events\_statements\_current Table”
+Section 29.12.6.1, “The events_statements_current Table”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Sort\_rows
+### Sort_rows
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 29.12.6.1, “The events\_statements\_current Table”
+Section 29.12.6.1, “The events_statements_current Table”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Sort\_scan
+### Sort_scan
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-Section 29.12.6.1, “The events\_statements\_current Table”
+Section 29.12.6.1, “The events_statements_current Table”
 
 Section 7.4.5, “The Slow Query Log”
 
-### Ssl\_accept\_renegotiates
+### Ssl_accept_renegotiates
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_accepts
+### Ssl_accepts
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_callback\_cache\_hits
+### Ssl_callback_cache_hits
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_cipher
+### Ssl_cipher
 
 Section 8.3.1, “Configuring MySQL to Use Encrypted Connections”
 
@@ -3600,69 +3600,69 @@ Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_cipher\_list
+### Ssl_cipher_list
 
 Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_client\_connects
+### Ssl_client_connects
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_connect\_renegotiates
+### Ssl_connect_renegotiates
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_ctx\_verify\_depth
+### Ssl_ctx_verify_depth
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_ctx\_verify\_mode
+### Ssl_ctx_verify_mode
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_default\_timeout
+### Ssl_default_timeout
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_finished\_accepts
+### Ssl_finished_accepts
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_finished\_connects
+### Ssl_finished_connects
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_server\_not\_after
+### Ssl_server_not_after
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_server\_not\_before
+### Ssl_server_not_before
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_session\_cache\_hits
+### Ssl_session_cache_hits
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_session\_cache\_misses
+### Ssl_session_cache_misses
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_session\_cache\_mode
+### Ssl_session_cache_mode
 
 Section 8.3.5, “Reusing SSL Sessions”
 
@@ -3670,19 +3670,19 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Ssl\_session\_cache\_overflows
+### Ssl_session_cache_overflows
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_session\_cache\_size
+### Ssl_session_cache_size
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_session\_cache\_timeout
+### Ssl_session_cache_timeout
 
 Section 8.3.5, “Reusing SSL Sessions”
 
@@ -3690,31 +3690,31 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Ssl\_session\_cache\_timeouts
+### Ssl_session_cache_timeouts
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_sessions\_reused
+### Ssl_sessions_reused
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_used\_session\_cache\_entries
+### Ssl_used_session_cache_entries
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_verify\_depth
+### Ssl_verify_depth
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_verify\_mode
+### Ssl_verify_mode
 
 Section 7.1.10, “Server Status Variables”
 
-### Ssl\_version
+### Ssl_version
 
 Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”
 
@@ -3724,7 +3724,7 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### Table\_locks\_immediate
+### Table_locks_immediate
 
 Section 10.11.1, “Internal Locking Methods”
 
@@ -3732,7 +3732,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Table\_locks\_waited
+### Table_locks_waited
 
 Section 10.11.1, “Internal Locking Methods”
 
@@ -3740,73 +3740,73 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Table\_open\_cache\_hits
+### Table_open_cache_hits
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Table\_open\_cache\_misses
+### Table_open_cache_misses
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Table\_open\_cache\_overflows
+### Table_open_cache_overflows
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Table\_open\_cache\_triggers\_hits
+### Table_open_cache_triggers_hits
 
 Section 7.1.10, “Server Status Variables”
 
-### Table\_open\_cache\_triggers\_misses
+### Table_open_cache_triggers_misses
 
 Section 7.1.10, “Server Status Variables”
 
-### Table\_open\_cache\_triggers\_overflows
+### Table_open_cache_triggers_overflows
 
 Section 7.1.10, “Server Status Variables”
 
-### Tc\_log\_max\_pages\_used
+### Tc_log_max_pages_used
 
 Section 7.1.10, “Server Status Variables”
 
-### Tc\_log\_page\_size
+### Tc_log_page_size
 
 Section 7.1.10, “Server Status Variables”
 
-### Tc\_log\_page\_waits
+### Tc_log_page_waits
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### telemetry.live\_sessions
+### telemetry.live_sessions
 
 Section 7.1.10, “Server Status Variables”
 
-### telemetry.run\_level
+### telemetry.run_level
 
 Section 7.1.10, “Server Status Variables”
 
-### Telemetry\_logs\_supported
+### Telemetry_logs_supported
 
 Section 35.5.1, “Configuring Log Telemetry”
 
 Section 7.1.10, “Server Status Variables”
 
-### Telemetry\_metrics\_supported
+### Telemetry_metrics_supported
 
 Section 7.1.10, “Server Status Variables”
 
-### Telemetry\_traces\_supported
+### Telemetry_traces_supported
 
 Section 7.1.10, “Server Status Variables”
 
-### TempTable\_count\_hit\_max\_ram
+### TempTable_count_hit_max_ram
 
 Section 10.4.4, “Internal Temporary Table Use in MySQL”
 
@@ -3814,7 +3814,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Threads\_cached
+### Threads_cached
 
 Section 7.1.12.1, “Connection Interfaces”
 
@@ -3822,13 +3822,13 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Threads\_connected
+### Threads_connected
 
 Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Threads\_created
+### Threads_created
 
 Section 7.1.12.1, “Connection Interfaces”
 
@@ -3838,7 +3838,7 @@ Section 7.1.10, “Server Status Variables”
 
 Section 7.1.8, “Server System Variables”
 
-### Threads\_running
+### Threads_running
 
 Section A.15, “MySQL 9.5 FAQ: MySQL Enterprise Thread Pool”
 
@@ -3846,19 +3846,19 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Tls\_library\_version
+### Tls_library_version
 
 Section 7.1.10, “Server Status Variables”
 
 Section 8.3, “Using Encrypted Connections”
 
-### Tls\_sni\_server\_name
+### Tls_sni_server_name
 
 Section 6.5.1.1, “mysql Client Options”
 
-Section 6.6.8, “mysql\_migrate\_keyring — Keyring Key Migration Utility”
+Section 6.6.8, “mysql_migrate_keyring — Keyring Key Migration Utility”
 
-Section 6.4.2, “mysql\_secure\_installation — Improve MySQL Installation Security”
+Section 6.4.2, “mysql_secure_installation — Improve MySQL Installation Security”
 
 Section 6.5.2, “mysqladmin — A MySQL Server Administration Program”
 
@@ -3890,7 +3890,7 @@ Section 35.4.3, “Server Metrics”
 
 Section 7.1.10, “Server Status Variables”
 
-### Uptime\_since\_flush\_status
+### Uptime_since_flush_status
 
 Section 7.1.10, “Server Status Variables”
 
@@ -3898,18 +3898,18 @@ Section 7.1.10, “Server Status Variables”
 
 [index top]
 
-### validate\_password.dictionary\_file\_last\_parsed
+### validate_password.dictionary_file_last_parsed
 
 Section 8.4.4.2, “Password Validation Options and Variables”
 
-### validate\_password.dictionary\_file\_words\_count
+### validate_password.dictionary_file_words_count
 
 Section 8.4.4.2, “Password Validation Options and Variables”
 
-### validate\_password\_dictionary\_file\_last\_parsed
+### validate_password_dictionary_file_last_parsed
 
 Section 8.4.4.2, “Password Validation Options and Variables”
 
-### validate\_password\_dictionary\_file\_words\_count
+### validate_password_dictionary_file_words_count
 
 Section 8.4.4.2, “Password Validation Options and Variables”

@@ -10,7 +10,7 @@ As funções desta seção permitem a manipulação de valores geohash, o que fo
 
   Se algum argumento for `NULL`, o valor de retorno será `NULL`. Se algum argumento for inválido, ocorrerá um erro.
 
-  Para a primeira sintaxe, o *`longitude`* deve ser um número no intervalo \[−180, 180], e o *`latitude`* deve ser um número no intervalo \[−90, 90]. Para a segunda sintaxe, é necessário um valor `POINT`, onde as coordenadas X e Y estão nos intervalos válidos para longitude e latitude, respectivamente.
+  Para a primeira sintaxe, o *`longitude`* deve ser um número no intervalo [−180, 180], e o *`latitude`* deve ser um número no intervalo [−90, 90]. Para a segunda sintaxe, é necessário um valor `POINT`, onde as coordenadas X e Y estão nos intervalos válidos para longitude e latitude, respectivamente.
 
   A cadeia resultante não tem mais de *`max_length`* caracteres, que tem um limite máximo de 100. A cadeia pode ser mais curta do que *`max_length`* caracteres porque o algoritmo que cria o valor geohash continua até criar uma cadeia que seja uma representação exata da localização ou *`max_length`* caracteres, o que ocorrer primeiro.
 
@@ -25,7 +25,7 @@ As funções desta seção permitem a manipulação de valores geohash, o que fo
 
 - `ST_LatFromGeoHash(geohash_str)`
 
-  Retorna a latitude de um valor de cadeia geohash, como um valor `DOUBLE` - FLOAT, DOUBLE") no intervalo \[−90, 90].
+  Retorna a latitude de um valor de cadeia geohash, como um valor `DOUBLE` - FLOAT, DOUBLE") no intervalo [−90, 90].
 
   Se o argumento for `NULL`, o valor de retorno será `NULL`. Se o argumento for inválido, ocorrerá um erro.
 
@@ -42,7 +42,7 @@ As funções desta seção permitem a manipulação de valores geohash, o que fo
 
 - `ST_LongFromGeoHash(geohash_str)`
 
-  Retorna a longitude de um valor de cadeia geohash, como um valor `DOUBLE` - FLOAT, DOUBLE") no intervalo \[−180, 180].
+  Retorna a longitude de um valor de cadeia geohash, como um valor `DOUBLE` - FLOAT, DOUBLE") no intervalo [−180, 180].
 
   Se o argumento for `NULL`, o valor de retorno será `NULL`. Se o argumento for inválido, ocorrerá um erro.
 
@@ -61,7 +61,7 @@ As funções desta seção permitem a manipulação de valores geohash, o que fo
 
   Retorna um valor `POINT` contendo o valor geohash decodificado, dado um valor de cadeia geohash.
 
-  As coordenadas X e Y do ponto são a longitude no intervalo \[−180, 180] e a latitude no intervalo \[−90, 90], respectivamente.
+  As coordenadas X e Y do ponto são a longitude no intervalo [−180, 180] e a latitude no intervalo [−90, 90], respectivamente.
 
   Se algum argumento for `NULL`, o valor de retorno será `NULL`. Se algum argumento for inválido, ocorrerá um erro.
 

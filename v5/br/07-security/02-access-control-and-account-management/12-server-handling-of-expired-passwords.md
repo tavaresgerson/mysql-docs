@@ -12,7 +12,7 @@ Para cada conexão que utiliza uma conta com uma senha expirada, o servidor desl
 
 Se o servidor desconectar o cliente, ele retorna um erro `ER_MUST_CHANGE_PASSWORD_LOGIN`:
 
-```sql
+```sh
 $> mysql -u myuser -p
 Password: ******
 ERROR 1862 (HY000): Your password has expired. To log in you must
@@ -23,10 +23,9 @@ Se o servidor restringir o cliente ao modo sandbox, essas operações serão per
 
 - O cliente pode redefinir a senha da conta com `ALTER USER` ou `SET PASSWORD`. Após isso, o servidor restaura o acesso normal para a sessão, bem como para as conexões subsequentes que utilizam a conta.
 
-  Nota
-
+  ::: info Nota
   Embora seja possível "redefinir" uma senha expirada, definindo-a para seu valor atual, é preferível, por questão de boa política, escolher uma senha diferente.
-
+  :::
 - O cliente pode usar a instrução `SET`, que é útil antes do MySQL 5.7.6 se a instrução `SET PASSWORD` precisar ser usada em vez da instrução `ALTER USER` e a conta usar um plugin de autenticação para o qual a variável de sistema `old_passwords` deve ser configurada primeiro com um valor não padrão para realizar a criptografia da senha de uma maneira específica.
 
 Para qualquer operação não permitida durante a sessão, o servidor retorna um erro `ER_MUST_CHANGE_PASSWORD`:
@@ -47,9 +46,9 @@ Para chamadas não interativas do cliente **mysql** (por exemplo, em modo batch)
 
 Como mencionado anteriormente, se o servidor desconecta um cliente com senha expirada ou o restringe ao modo sandbox, depende de uma combinação de configurações do cliente e do servidor. A discussão a seguir descreve as configurações relevantes e como elas interagem.
 
-Nota
-
+::: info Nota
 Esta discussão se aplica apenas para contas com senhas expiradas. Se um cliente se conectar usando uma senha não expirada, o servidor trata o cliente normalmente.
+:::
 
 Do lado do cliente, um cliente específico indica se ele pode lidar com o modo sandbox para senhas expiradas. Para clientes que usam a biblioteca de cliente C, há duas maneiras de fazer isso:
 
@@ -62,7 +61,7 @@ Do lado do cliente, um cliente específico indica se ele pode lidar com o modo s
                 &arg);
   ```
 
-  Essa é a técnica usada no cliente **mysql**, que habilita `MYSQL_OPT_CAN_HANDLE_EXPIRED_PASSWORDS` se invocada interativamente ou com a opção `--connect-expired-password` (mysql-command-options.html#option\_mysql\_connect-expired-password).
+  Essa é a técnica usada no cliente **mysql**, que habilita `MYSQL_OPT_CAN_HANDLE_EXPIRED_PASSWORDS` se invocada interativamente ou com a opção `--connect-expired-password` (mysql-command-options.html#option_mysql_connect-expired-password).
 
 - Passe a bandeira `CLIENT_CAN_HANDLE_EXPIRED_PASSWORDS` para `mysql_real_connect()` no momento da conexão:
 
@@ -85,5 +84,4 @@ No lado do servidor, se um cliente indicar que pode lidar com senhas expiradas, 
 Se um cliente não indicar que pode lidar com senhas expiradas (ou usar uma versão mais antiga da biblioteca do cliente que não possa indicar isso), a ação do servidor depende do valor da variável de sistema `disconnect_on_expired_password`:
 
 - Se `disconnect_on_expired_password` estiver habilitado (o padrão), o servidor desconecta o cliente com um erro `ER_MUST_CHANGE_PASSWORD_LOGIN`.
-
 - Se `disconnect_on_expired_password` estiver desativado, o servidor coloca o cliente no modo sandbox.

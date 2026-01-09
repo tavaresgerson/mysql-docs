@@ -378,7 +378,7 @@
 
 [Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-### CASE value WHEN compare\_value THEN result END
+### CASE value WHEN compare_value THEN result END
 
 [Section 12.5, “Flow Control Functions”](flow-control-functions.html "12.5 Flow Control Functions")
 
@@ -488,11 +488,11 @@
 
 [Section 12.4.1, “Operator Precedence”](operator-precedence.html "12.4.1 Operator Precedence")
 
-### IS boolean\_value
+### IS boolean_value
 
 [Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
 
-### IS NOT boolean\_value
+### IS NOT boolean_value
 
 [Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
 
@@ -602,19 +602,19 @@
 
 [Section 11.3.2, “The CHAR and VARCHAR Types”](char.html "11.3.2 The CHAR and VARCHAR Types")
 
-[Section 26.4.4.5, “The ps\_setup\_disable\_consumer() Procedure”](sys-ps-setup-disable-consumer.html "26.4.4.5 The ps_setup_disable_consumer() Procedure")
+[Section 26.4.4.5, “The ps_setup_disable_consumer() Procedure”](sys-ps-setup-disable-consumer.html "26.4.4.5 The ps_setup_disable_consumer() Procedure")
 
-[Section 26.4.4.6, “The ps\_setup\_disable\_instrument() Procedure”](sys-ps-setup-disable-instrument.html "26.4.4.6 The ps_setup_disable_instrument() Procedure")
+[Section 26.4.4.6, “The ps_setup_disable_instrument() Procedure”](sys-ps-setup-disable-instrument.html "26.4.4.6 The ps_setup_disable_instrument() Procedure")
 
-[Section 26.4.4.9, “The ps\_setup\_enable\_consumer() Procedure”](sys-ps-setup-enable-consumer.html "26.4.4.9 The ps_setup_enable_consumer() Procedure")
+[Section 26.4.4.9, “The ps_setup_enable_consumer() Procedure”](sys-ps-setup-enable-consumer.html "26.4.4.9 The ps_setup_enable_consumer() Procedure")
 
-[Section 26.4.4.10, “The ps\_setup\_enable\_instrument() Procedure”](sys-ps-setup-enable-instrument.html "26.4.4.10 The ps_setup_enable_instrument() Procedure")
+[Section 26.4.4.10, “The ps_setup_enable_instrument() Procedure”](sys-ps-setup-enable-instrument.html "26.4.4.10 The ps_setup_enable_instrument() Procedure")
 
 [Section 11.3.6, “The SET Type”](set.html "11.3.6 The SET Type")
 
 [Section 5.1.8, “Using System Variables”](using-system-variables.html "5.1.8 Using System Variables")
 
-### LIKE '\_A%'
+### LIKE '_A%'
 
 [Section A.11, “MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
 

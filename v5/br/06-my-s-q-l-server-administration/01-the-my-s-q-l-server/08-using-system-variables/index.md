@@ -113,21 +113,21 @@ mysql> SHOW VARIABLES;
 +---------------------------------+-----------------------------------+
 ```
 
-Com uma cláusula `LIKE` (funções de comparação de strings.html#operador\_like), a instrução exibe apenas as variáveis que correspondem ao padrão. Para obter um nome específico de variável, use uma cláusula `LIKE` (funções de comparação de strings.html#operador\_like) conforme mostrado:
+Com uma cláusula `LIKE` (funções de comparação de strings.html#operador_like), a instrução exibe apenas as variáveis que correspondem ao padrão. Para obter um nome específico de variável, use uma cláusula `LIKE` (funções de comparação de strings.html#operador_like) conforme mostrado:
 
 ```sql
 SHOW VARIABLES LIKE 'max_join_size';
 SHOW SESSION VARIABLES LIKE 'max_join_size';
 ```
 
-Para obter uma lista de variáveis cujo nome corresponda a um padrão, use o caractere curinga `%` em uma cláusula `LIKE` (funções de comparação de strings.html#operador\_like):
+Para obter uma lista de variáveis cujo nome corresponda a um padrão, use o caractere curinga `%` em uma cláusula `LIKE` (funções de comparação de strings.html#operador_like):
 
 ```sql
 SHOW VARIABLES LIKE '%size%';
 SHOW GLOBAL VARIABLES LIKE '%size%';
 ```
 
-Os caracteres curinga podem ser usados em qualquer posição dentro do padrão a ser correspondido. De forma estrita, porque `_` é um caractere curinga que corresponde a qualquer único caractere, você deve escapar dele como `\_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.
+Os caracteres curinga podem ser usados em qualquer posição dentro do padrão a ser correspondido. De forma estrita, porque `_` é um caractere curinga que corresponde a qualquer único caractere, você deve escapar dele como `_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.
 
 Para `SHOW VARIABLES`, se você não especificar `GLOBAL` nem `SESSION`, o MySQL retorna os valores de `SESSION`.
 

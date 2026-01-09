@@ -1,4 +1,4 @@
-#### 21.6.15.6 A tabela ndbinfo cluster\_transactions
+#### 21.6.15.6 A tabela ndbinfo cluster_transactions
 
 A tabela `cluster_transactions` mostra informações sobre todas as transações em andamento em um NDB Cluster.
 

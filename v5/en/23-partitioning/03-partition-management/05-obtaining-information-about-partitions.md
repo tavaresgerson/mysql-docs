@@ -32,7 +32,7 @@ PARTITION BY RANGE (YEAR(purchased)) (
 
 The output from [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") for partitioned tables is the same as that for nonpartitioned tables, except that the `Create_options` column contains the string `partitioned`. The `Engine` column contains the name of the storage engine used by all partitions of the table. (See [Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement"), for more information about this statement.)
 
-You can also obtain information about partitions from `INFORMATION_SCHEMA`, which contains a [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table. See [Section 24.3.16, “The INFORMATION\_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").
+You can also obtain information about partitions from `INFORMATION_SCHEMA`, which contains a [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table. See [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").
 
 It is possible to determine which partitions of a partitioned table are involved in a given [`SELECT`](select.html "13.2.9 SELECT Statement") query using [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"). The `partitions` column in the [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") output lists the partitions from which records would be matched by the query.
 

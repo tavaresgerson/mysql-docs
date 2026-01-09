@@ -4,17 +4,17 @@
 
 20.4.2 Group Replication Server States
 
-20.4.3 The replication\_group\_members Table
+20.4.3 The replication_group_members Table
 
-20.4.4 The replication\_group\_member\_stats Table
+20.4.4 The replication_group_member_stats Table
 
 You can use the MySQL Performance Schema to monitor Group Replication. These Performance Schema tables display information specific to Group Replication:
 
-* `replication_group_member_stats`: See Section 20.4.4, “The replication\_group\_member\_stats Table”.
+* `replication_group_member_stats`: See Section 20.4.4, “The replication_group_member_stats Table”.
 
-* `replication_group_members`: See Section 20.4.3, “The replication\_group\_members Table”.
+* `replication_group_members`: See Section 20.4.3, “The replication_group_members Table”.
 
-* `replication_group_communication_information`: See Section 29.12.11.14, “The replication\_group\_communication\_information Table”.
+* `replication_group_communication_information`: See Section 29.12.11.14, “The replication_group_communication_information Table”.
 
 These Performance Schema replication tables also show information relating to Group Replication:
 

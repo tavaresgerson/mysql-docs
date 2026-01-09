@@ -6,13 +6,13 @@ Normalmente, o **mysqldumpslow** agrupa as consultas que são semelhantes, excet
 
 Invoque o **mysqldumpslow** da seguinte forma:
 
-```sql
+```sh
 mysqldumpslow [options] [log_file ...]
 ```
 
 Exemplo de saída sem opções fornecidas:
 
-```sql
+```sh
 Reading mysql slow query log from /usr/local/mysql/data/mysqld57-slow.log
 Count: 1  Time=4.32s (4s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
  insert into t2 select * from t1
@@ -28,7 +28,7 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 **Tabela 4.24 Opções de mysqldumpslow**
 
-<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqldumpslow."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_abstract">-a</a></td> <td>Não abstraia todos os números para N e strings para 'S'</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_abstract-numbers">-n</a></td> <td>Números abstratos com pelo menos os dígitos especificados</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_debug">--debug</a></td> <td>Escreva informações de depuração</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_grep">-g</a></td> <td>Considere apenas as declarações que correspondem ao padrão</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_help">--help</a></td> <td>Exibir mensagem de ajuda e sair</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_host">-h</a></td> <td>Nome do host do servidor no nome do arquivo de log</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_instance">-i</a></td> <td>Nome da instância do servidor</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_lock">-l</a></td> <td>Não subtraia o tempo de bloqueio do tempo total</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_reverse">-r</a></td> <td>Reverter a ordem de classificação</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_sort">-s</a></td> <td>Como classificar a saída</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_top">-t</a></td> <td>Exibir apenas as primeiras n consultas</td> </tr><tr><td><a class="link" href="mysqldumpslow.html#option_mysqldumpslow_verbose">--verbose</a></td> <td>Modo verbosos</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqldumpslow."><col style="width: 35%"/><col style="width: 64%"/><thead><tr><th>Nome da Opção</th> <th>Descrição</th> </tr></thead><tbody><tr><td>-a</td> <td>Não abstraia todos os números para N e strings para 'S'</td> </tr><tr><td>-n</td> <td>Números abstratos com pelo menos os dígitos especificados</td> </tr><tr><td>--debug</td> <td>Escreva informações de depuração</td> </tr><tr><td>-g</td> <td>Considere apenas as declarações que correspondem ao padrão</td> </tr><tr><td>--help</td> <td>Exibir mensagem de ajuda e sair</td> </tr><tr><td>-h</td> <td>Nome do host do servidor no nome do arquivo de log</td> </tr><tr><td>-i</td> <td>Nome da instância do servidor</td> </tr><tr><td>-l</td> <td>Não subtraia o tempo de bloqueio do tempo total</td> </tr><tr><td>-r</td> <td>Reverter a ordem de classificação</td> </tr><tr><td>-s</td> <td>Como classificar a saída</td> </tr><tr><td>-t</td> <td>Exibir apenas as primeiras n consultas</td> </tr><tr><td>--verbose</td> <td>Modo verbosos</td> </tr></tbody></table>
 
 - `--help`
 
@@ -48,19 +48,19 @@ O **mysqldumpslow** suporta as seguintes opções.
 
   Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`. Os binários de lançamento do MySQL fornecidos pela Oracle *não* são compilados com esta opção.
 
-- `-g padrão`
+- `-g pattern`
 
   <table frame="box" rules="all" summary="Propriedades para grep"><tbody><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Considere apenas as consultas que correspondem ao padrão (estilo **grep**).
 
-- `-h nome_do_host`
+- `-h host_name`
 
   <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>*</code>]]</td> </tr></tbody></table>
 
   Nome do host do servidor MySQL para o nome do arquivo `*-slow.log`. O valor pode conter um caractere curinga. O padrão é `*` (concorda com tudo).
 
-- `-i nome`
+- `-i name`
 
   <table frame="box" rules="all" summary="Propriedades, por exemplo"><tbody><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 

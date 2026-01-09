@@ -4,7 +4,7 @@ Para controlar a ativação do X Plugin, use esta opção:
 
 * `--mysqlx[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para mysqlx"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>ON</code></p><p class="valid-value"><code>OFF</code></p><p class="valid-value"><code>FORCE</code></p><p class="valid-value"><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx[=valor]</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Esta opção controla como o servidor carrega o X Plugin ao iniciar. No MySQL 9.5, o X Plugin está habilitado por padrão, mas esta opção pode ser usada para controlar seu estado de ativação.
 
@@ -21,7 +21,7 @@ Se o X Plugin estiver habilitado, ele expõe várias variáveis de sistema que p
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></code></td>
+    <td><code>mysqlx_bind_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -32,7 +32,7 @@ Se o X Plugin estiver habilitado, ele expõe várias variáveis de sistema que p
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -93,13 +93,13 @@ Como o X Plugin não é um plugin obrigatório, ele não impede o início do ser
 
 <table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms">
 <tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr>
-<tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr>
+<tr><th>Variável do Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr>
 <tr><th>Alcance</th> <td>Global</td> </tr>
 <tr><th>Dinâmico</th> <td>Sim</td> </tr>
 <tr><th>Hinta de Definição de Variável</th> <td>Não</td> </tr>
 <tr><th>Tipo</th> <td>Definir</td> </tr>
 <tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr>
-<tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr>
+<tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr>
 </table>
 
 Os algoritmos de compressão permitidos para uso em conexões do X Protocol. Por padrão, os algoritmos Deflate, LZ4 e zstd são permitidos. Para desabilitar qualquer um dos algoritmos, defina `mysqlx_compression_algorithms` para incluir apenas os que você permitir. Os nomes dos algoritmos `deflate_stream`, `lz4_message` e `zstd_stream` podem ser especificados em qualquer combinação, e a ordem e o caso não são importantes. Se você definir a variável de sistema para a string vazia, nenhum algoritmo de compressão é permitido e apenas conexões não comprimidas são usadas. Use as variáveis de sistema específicas do algoritmo para ajustar o nível de compressão padrão e máximo para cada algoritmo permitido. Para mais detalhes e informações sobre como a compressão de conexões para o X Protocol se relaciona com as configurações equivalentes para o MySQL Server, consulte a Seção 22.5.5, “Compressão de Conexão com X Plugin”.
@@ -108,10 +108,10 @@ Os algoritmos de compressão permitidos para uso em conexões do X Protocol. Por
 
 <table frame="box" rules="all" summary="Propriedades para mysqlx_connect_timeout">
   <tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-connect-timeout=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_connect_timeout">mysqlx_connect_timeout</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>mysqlx_connect_timeout</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>30</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -123,7 +123,7 @@ O número de segundos que o X Plugin espera pelo primeiro pacote ser recebido de
 
 * `mysqlx_deflate_default_compression_level`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_deflate_default_compression_level"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx_deflate_default_compression_level=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_deflate_default_compression_level">mysqlx_deflate_default_compression_level</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>3</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_deflate_default_compression_level"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx_deflate_default_compression_level=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_deflate_default_compression_level</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code>3</code></td> </tr><tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor Máximo</th> <td><code>9</code></td> </tr></tbody></table>
 
 O nível de compressão padrão que o servidor usa para o algoritmo Deflate no X Protocol. Especifique o nível como um inteiro de 1 (o menor esforço de compressão) a 9 (o maior esforço). Este nível é usado se o cliente não solicitar um nível de compressão durante a negociação de capacidades. Se você não especificar esta variável do sistema, o servidor usa o nível 3 como padrão. Para mais informações, consulte a Seção 22.5.5, “Compressão de Conexão com X Plugin”.
 
@@ -131,10 +131,10 @@ O nível de compressão padrão que o servidor usa para o algoritmo Deflate no X
 
 <table frame="box" rules="all" summary="Propriedades para mysqlx_deflate_max_client_compression_level">
   <tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx_deflate_max_client_compression_level=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_deflate_max_client_compression_level">mysqlx_deflate_max_client_compression_level</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>mysqlx_deflate_max_client_compression_level</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>5</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -152,7 +152,7 @@ O nível máximo de compressão que o servidor permite para o algoritmo Deflate 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_document_id_unique_prefix">mysqlx_document_id_unique_prefix</a></code></td>
+    <td><code>mysqlx_document_id_unique_prefix</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -163,7 +163,7 @@ O nível máximo de compressão que o servidor permite para o algoritmo Deflate 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -195,7 +195,7 @@ O nível máximo de compressão que o servidor permite para o algoritmo Deflate 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_enable_hello_notice">mysqlx_enable_hello_notice</a></code></td>
+    <td><code>mysqlx_enable_hello_notice</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -206,7 +206,7 @@ O nível máximo de compressão que o servidor permite para o algoritmo Deflate 
     <td>Sim</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -225,10 +225,10 @@ O nível máximo de compressão que o servidor permite para o algoritmo Deflate 
 
 <table frame="box" rules="all" summary="Propriedades para mysqlx_idle_worker_thread_timeout">
   <tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-idle-worker-thread-timeout=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_idle_worker_thread_timeout">mysqlx_idle_worker_thread_timeout</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>mysqlx_idle_worker_thread_timeout</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>60</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>0</code></td> </tr>
@@ -240,10 +240,10 @@ O número de segundos após o qual os threads de trabalhadores ociosos são ence
 
 <table frame="box" rules="all" summary="Propriedades para mysqlx_interactive_timeout">
   <tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-interactive-timeout=#</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_interactive_timeout">mysqlx_interactive_timeout</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>mysqlx_interactive_timeout</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Sim</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>Inteiro</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>28800</code></td> </tr>
   <tr><th>Valor Mínimo</th> <td><code>1</code></td> </tr>
@@ -255,13 +255,13 @@ O valor padrão da variável de sessão `mysqlx_wait_timeout` para clientes inte
 
 * `mysqlx_lz4_default_compression_level`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
 O nível de compressão padrão que o servidor usa para o algoritmo LZ4 nas conexões do X Protocol. Especifique o nível como um inteiro de 0 (o menor esforço de compressão) a 16 (o maior esforço). Este nível é usado se o cliente não solicitar um nível de compressão durante a negociação de capacidades. Se você não especificar esta variável do sistema, o servidor usa o nível 2 como padrão. Para mais informações, consulte a Seção 22.5.5, “Compressão de Conexão com X Plugin”.
 
 * `mysqlx_lz4_max_client_compression_level`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>*</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tbody><tr><th>Formato de linha de comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Variável do sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
 O nível máximo de compressão que o servidor permite para o algoritmo LZ4 em conexões do X Protocol. A faixa é a mesma que para o nível de compressão padrão para este algoritmo. Se o cliente solicitar um nível de compressão mais alto que este, o servidor usa o nível que você definiu aqui. Se você não especificar esta variável do sistema, o servidor define um nível máximo de compressão de 8.
 
@@ -274,7 +274,7 @@ O nível máximo de compressão que o servidor permite para o algoritmo LZ4 em c
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></td>
+    <td>mysqlx_bind_address</td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -285,7 +285,7 @@ O nível máximo de compressão que o servidor permite para o algoritmo LZ4 em c
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></th></a> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</th></a> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -310,7 +310,7 @@ O tamanho máximo dos pacotes de rede que podem ser recebidos pelo X Plugin. Ess
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></td>
+    <td>mysqlx_bind_address</td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -321,7 +321,7 @@ O tamanho máximo dos pacotes de rede que podem ser recebidos pelo X Plugin. Ess
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -343,10 +343,10 @@ Para modificações nesta variável, se o novo valor for menor que o número atu
 
 <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address">
   <tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr>
-  <tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></code></td> </tr>
+  <tr><th>Variável do Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr>
   <tr><th>Alcance</th> <td>Global</td> </tr>
   <tr><th>Dinâmico</th> <td>Não</td> </tr>
-  <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+  <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>*</code></td> </tr>
 </table>
@@ -358,10 +358,10 @@ O número mínimo de threads de trabalhador usado pelo X Plugin para lidar com s
 
   <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address">
     <tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr>
-    <tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></code></td> </tr>
+    <tr><th>Variável do Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr>
     <tr><th>Alcance</th> <td>Global</td> </tr>
     <tr><th>Dinâmico</th> <td>Não</td> </tr>
-    <tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr>
+    <tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr>
     <tr><th>Tipo</th> <td>String</td> </tr>
     <tr><th>Valor Padrão</th> <td><code>*</code></td> </tr>
   </table>
@@ -371,7 +371,7 @@ O porta de rede no qual o X Plugin escuta conexões TCP/IP. Este é o equivalent
 
 * `mysqlx_port_open_timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Definição de Variável</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Definição de Variável</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
 O número de segundos que o X Plugin espera que um porta TCP/IP fique livre.
 
@@ -384,7 +384,7 @@ O número de segundos que o X Plugin espera que um porta TCP/IP fique livre.
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></code></td>
+    <td><code>mysqlx_bind_address</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -395,7 +395,7 @@ O número de segundos que o X Plugin espera que um porta TCP/IP fique livre.
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -409,7 +409,7 @@ O número de segundos que o X Plugin espera que um porta TCP/IP fique livre.
 </table>
 7
 
-O número de segundos que o Plugin X espera para bloquear operações de leitura até que sejam concluídas. Após esse tempo, se a operação de leitura não for bem-sucedida, o Plugin X fecha a conexão e retorna um aviso com o código de erro ER\_IO\_READ\_ERROR para o aplicativo cliente.
+O número de segundos que o Plugin X espera para bloquear operações de leitura até que sejam concluídas. Após esse tempo, se a operação de leitura não for bem-sucedida, o Plugin X fecha a conexão e retorna um aviso com o código de erro ER_IO_READ_ERROR para o aplicativo cliente.
 
 * `mysqlx_socket`
 
@@ -420,7 +420,7 @@ O número de segundos que o Plugin X espera para bloquear operações de leitura
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></td>
+    <td>mysqlx_bind_address</td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -431,7 +431,7 @@ O número de segundos que o Plugin X espera para bloquear operações de leitura
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -461,55 +461,55 @@ A variável de ambiente `MYSQLX_UNIX_PORT` também pode ser usada para definir u
 
 * `mysqlx_ssl_ca`
 
-  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_bind_address">mysqlx_bind_address</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Configuração de Variáveis Dinâmicas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_bind_address"><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-bind-address=addr</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_bind_address</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Hinta de Configuração de Variáveis Dinâmicas</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
 A variável de sistema `mysqlx_ssl_ca` é semelhante à `ssl_ca`, exceto que ela se aplica ao X Plugin em vez da interface principal de conexão do MySQL Server. Para obter informações sobre a configuração do suporte à criptografia para o X Plugin, consulte a Seção 22.5.3, “Usando Conexões Criptografadas com o X Plugin”.
 
 * `mysqlx_ssl_capath`
 
-  <table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável de Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Aplicação de Dicas</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável de Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><code>SET_VAR</code> Aplicação de Dicas</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr></tbody></table>
 
   A variável de sistema `mysqlx_ssl_capath` é semelhante à `ssl_capath`, exceto que ela se aplica ao X Plugin em vez da interface principal de conexão do MySQL Server. Para obter informações sobre a configuração do suporte à criptografia para o X Plugin, consulte a Seção 22.5.3, “Usando Conexões Criptografadas com o X Plugin”.
 
 * `mysqlx_ssl_cert`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr></tbody></table>
 
   A variável de sistema `mysqlx_ssl_cert` é semelhante à `ssl_cert`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte de criptografia para o X Plugin, consulte a Seção 22.5.3, “Usando Conexões Criptografadas com o X Plugin”.
 
 * `mysqlx_ssl_cipher`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr></tbody></table>
 
 A variável de sistema `mysqlx_ssl_cipher` é semelhante à `ssl_cipher`, exceto que se aplica ao X Plugin em vez da interface principal de conexão do MySQL Server. Para obter informações sobre a configuração do suporte de criptografia para o X Plugin, consulte a Seção 22.5.3, “Usando Conexões Criptografadas com o X Plugin”.
 
 * `mysqlx_ssl_crl`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr></tbody></table>
 
 A variável de sistema `mysqlx_ssl_crl` é semelhante à `ssl_crl`, exceto que se aplica ao X Plugin em vez da interface principal de conexão do MySQL Server. Para obter informações sobre a configuração do suporte de criptografia para o X Plugin, consulte a Seção 22.5.3, “Usando Conexões Criptografadas com o X Plugin”.
 
 * `mysqlx_ssl_crlpath`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr></tbody></table>
 
 A variável de sistema `mysqlx_ssl_crlpath` é semelhante à `ssl_crlpath`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte de criptografia para o X Plugin, consulte a Seção 22.5.3, “Usando Conexões Criptografadas com o X Plugin”.
 
 * `mysqlx_ssl_key`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de Definição de Variável</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de Definição de Variável</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr></tbody></table>
 
 A variável de sistema `mysqlx_ssl_key` é semelhante à `ssl_key`, exceto que se aplica ao X Plugin em vez da interface de conexão principal do MySQL Server. Para obter informações sobre a configuração do suporte de criptografia para o X Plugin, consulte a Seção 22.5.3, “Usando Conexões Criptografadas com o X Plugin”.
 
 * `mysqlx_wait_timeout`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr></tbody></table>
 
 O número de segundos que o Plugin X espera por atividade em uma conexão. Após esse tempo, se a operação de leitura não for bem-sucedida, o Plugin X fecha a conexão. Se o cliente não for interativo, o valor inicial da variável de sessão é copiado da variável global `mysqlx_wait_timeout`. Para clientes interativos, o valor inicial é copiado da sessão `mysqlx_interactive_timeout`.
 
 * `mysqlx_write_timeout`
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Definição de Variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr></tbody></table>
 
 O número de segundos que o Plugin X espera para completar operações de escrita bloqueantes. Após esse tempo, se a operação de escrita não for bem-sucedida, o Plugin X fecha a conexão.
 
@@ -517,17 +517,17 @@ O número de segundos que o Plugin X espera para completar operações de escrit
 
 <table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms">
 <tr><th>Formato de Linha de Comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr>
-<tr><th>Variável do Sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr>
+<tr><th>Variável do Sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr>
 <tr><th>Alcance</th> <td>Global</td> </tr>
 <tr><th>Dinâmico</th> <td>Sim</td> </tr>
 <tr><th>Hinta de Definição de Variável</th> <td>Não</td> </tr>
 <tr><th>Tipo</th> <td>Definir</td> </tr>
 <tr><th>Valor Padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr>
-<tr><th>Valores Válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr>
+<tr><th>Valores Válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr>
 </table>
 
 O nível de compressão padrão que o servidor usa para o algoritmo zstd nas conexões do X Protocol. Para versões da biblioteca zstd a partir da 1.4.0, você pode definir valores positivos de 1 a 22 (o maior esforço de compressão) ou valores negativos que representam esforços progressivamente menores. Um valor de 0 é convertido para um valor de 1. Para versões anteriores da biblioteca zstd, você só pode especificar o valor 3. Esse nível é usado se o cliente não solicitar um nível de compressão durante a negociação de capacidades. Se você não especificar essa variável de sistema, o servidor usa o nível 3 como padrão. Para mais informações, consulte a Seção 22.5.5, “Compressão de Conexão com X Plugin”.
 
-<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de linha de comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="x-plugin-options-system-variables.html#sysvar_mysqlx_compression_algorithms">mysqlx_compression_algorithms</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>deflate_stream</code></p><p class="valid-value"><code>lz4_message</code></p><p class="valid-value"><code>zstd_stream</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para mysqlx_compression_algorithms"><tbody><tr><th>Formato de linha de comando</th> <td><code>--mysqlx-compression-algorithms=valor</code></td> </tr><tr><th>Variável do sistema</th> <td><code>mysqlx_compression_algorithms</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Hinta de <code>SET_VAR</code> Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Definir</td> </tr><tr><th>Valor padrão</th> <td><code>deflate_stream,lz4_message,zstd_stream</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>deflate_stream</code></p><p><code>lz4_message</code></p><p><code>zstd_stream</code></p></td> </tr></tbody></table>
 
 O nível máximo de compressão que o servidor permite para o algoritmo zstd nas conexões do Protocolo X. A faixa é a mesma que o nível de compressão padrão para este algoritmo. Se o cliente solicitar um nível de compressão mais alto que este, o servidor usa o nível que você definiu aqui. Se você não especificar esta variável do sistema, o servidor define um nível máximo de compressão de 11.

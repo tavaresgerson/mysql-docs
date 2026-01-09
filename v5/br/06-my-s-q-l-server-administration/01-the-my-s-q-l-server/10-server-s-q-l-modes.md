@@ -58,7 +58,7 @@ Os valores mais importantes de `sql_mode` são provavelmente estes:
 
 - `ANSI`
 
-  Esse modo altera a sintaxe e o comportamento para se adequar mais ao SQL padrão. É um dos modos especiais de combinação \[sql-mode.html#sql-mode-combo] listados no final desta seção.
+  Esse modo altera a sintaxe e o comportamento para se adequar mais ao SQL padrão. É um dos modos especiais de combinação [sql-mode.html#sql-mode-combo] listados no final desta seção.
 
 - `STRICT_TRANS_TABLES`
 
@@ -68,7 +68,7 @@ Os valores mais importantes de `sql_mode` são provavelmente estes:
 
 - `TRADICIONAL`
 
-  Faça o MySQL se comportar como um sistema de banco de dados SQL “tradicional”. Uma descrição simples desse modo é “dar um erro em vez de um aviso” ao inserir um valor incorreto em uma coluna. É um dos modos especiais de combinação \[sql-mode.html#sql-mode-combo] listados no final desta seção.
+  Faça o MySQL se comportar como um sistema de banco de dados SQL “tradicional”. Uma descrição simples desse modo é “dar um erro em vez de um aviso” ao inserir um valor incorreto em uma coluna. É um dos modos especiais de combinação [sql-mode.html#sql-mode-combo] listados no final desta seção.
 
   Nota
 
@@ -108,7 +108,7 @@ A lista a seguir descreve todos os modos de SQL suportados:
 
 - `HIGH_NOT_PRECEDENCE`
 
-  A precedência do operador \[`NOT`]\(operadores lógicos.html#operador\_not) é tal que expressões como `NOT a BETWEEN b AND c` são analisadas como `NOT (a BETWEEN b AND c)`. Em algumas versões mais antigas do MySQL, a expressão era analisada como `(NOT a) BETWEEN b AND c`. O comportamento antigo de precedência mais alta pode ser obtido ao habilitar o modo SQL `HIGH_NOT_PRECEDENCE`.
+  A precedência do operador [`NOT`]\(operadores lógicos.html#operador_not) é tal que expressões como `NOT a BETWEEN b AND c` são analisadas como `NOT (a BETWEEN b AND c)`. Em algumas versões mais antigas do MySQL, a expressão era analisada como `(NOT a) BETWEEN b AND c`. O comportamento antigo de precedência mais alta pode ser obtido ao habilitar o modo SQL `HIGH_NOT_PRECEDENCE`.
 
   ```sql
   mysql> SET sql_mode = '';
@@ -288,7 +288,7 @@ A lista a seguir descreve todos os modos de SQL suportados:
 
 - `PAD_CHAR_TO_FULL_LENGTH`
 
-  Por padrão, os espaços finais são removidos dos valores da coluna `[CHAR]` (char.html) durante a recuperação. Se o `[PAD_CHAR_TO_FULL_LENGTH]` (sql-mode.html#sqlmode\_pad\_char\_to\_full\_length) estiver habilitado, o corte não ocorre e os valores de `[CHAR]` (char.html) recuperados são preenchidos com o comprimento total. Esse modo não se aplica às colunas `[VARCHAR]` (char.html), para as quais os espaços finais são mantidos durante a recuperação.
+  Por padrão, os espaços finais são removidos dos valores da coluna `[CHAR]` (char.html) durante a recuperação. Se o `[PAD_CHAR_TO_FULL_LENGTH]` (sql-mode.html#sqlmode_pad_char_to_full_length) estiver habilitado, o corte não ocorre e os valores de `[CHAR]` (char.html) recuperados são preenchidos com o comprimento total. Esse modo não se aplica às colunas `[VARCHAR]` (char.html), para as quais os espaços finais são mantidos durante a recuperação.
 
   ```sql
   mysql> CREATE TABLE t1 (c1 CHAR(10));
@@ -354,7 +354,7 @@ Os seguintes modos especiais são fornecidos como abreviações para combinaçõ
   SELECT * FROM t1 WHERE t1.a IN (SELECT MAX(t1.b) FROM t2 WHERE ...);
   ```
 
-  Aqui, `MAX(t1.b)` não pode ser agregado na consulta externa porque aparece na cláusula `WHERE` dessa consulta. O SQL padrão exige um erro nessa situação. Se o modo `ANSI` (sql-mode.html#sqlmode\_ansi) não estiver habilitado, o servidor trata `S(outer_ref)` nessas consultas da mesma maneira que interpretaria `S(const)`.
+  Aqui, `MAX(t1.b)` não pode ser agregado na consulta externa porque aparece na cláusula `WHERE` dessa consulta. O SQL padrão exige um erro nessa situação. Se o modo `ANSI` (sql-mode.html#sqlmode_ansi) não estiver habilitado, o servidor trata `S(outer_ref)` nessas consultas da mesma maneira que interpretaria `S(const)`.
 
   Veja Seção 1.6, “Conformidade com Padrões MySQL”.
 
@@ -424,7 +424,7 @@ Os seguintes modos especiais são fornecidos como abreviações para combinaçõ
 
 - `TRADICIONAL`
 
-  Antes do MySQL 5.7.4, e no MySQL 5.7.8 e versões posteriores, `TRADITIONAL` é equivalente a `STRICT_TRANS_TABLES`, `STRICT_ALL_TABLES`, `NO_ZERO_IN_DATE`, `NO_ZERO_DATE`, \[`ERROR_FOR_DIVISION_BY_ZERO`]\(sql-mode.html#sqlmode\_error\_for\_division\_by\_zero], `NO_AUTO_CREATE_USER` e `NO_ENGINE_SUBSTITUTION`.
+  Antes do MySQL 5.7.4, e no MySQL 5.7.8 e versões posteriores, `TRADITIONAL` é equivalente a `STRICT_TRANS_TABLES`, `STRICT_ALL_TABLES`, `NO_ZERO_IN_DATE`, `NO_ZERO_DATE`, [`ERROR_FOR_DIVISION_BY_ZERO`]\(sql-mode.html#sqlmode_error_for_division_by_zero], `NO_AUTO_CREATE_USER` e `NO_ENGINE_SUBSTITUTION`.
 
   A partir do MySQL 5.7.4 até o 5.7.7, `TRADITIONAL` é equivalente a `STRICT_TRANS_TABLES`, `STRICT_ALL_TABLES`, `NO_AUTO_CREATE_USER` e `NO_ENGINE_SUBSTITUTION`. Os modos `NO_ZERO_IN_DATE`, `NO_ZERO_DATE` e `ERROR_FOR_DIVISION_BY_ZERO` não têm nomes porque, nessas versões, seus efeitos estão incluídos nos efeitos do modo SQL rigoroso (`STRICT_ALL_TABLES` ou `STRICT_TRANS_TABLES`). Assim, os efeitos de `TRADITIONAL` são os mesmos em todas as versões do MySQL 5.7 (e os mesmos do MySQL 5.6). Para uma discussão adicional, consulte Mudanças no Modo SQL no MySQL 5.7.
 

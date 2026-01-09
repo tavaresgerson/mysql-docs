@@ -1,4 +1,4 @@
-#### 30.4.4.7 The ps\_setup\_disable\_thread() Procedure
+#### 30.4.4.7 The ps_setup_disable_thread() Procedure
 
 Given a connection ID, disables Performance Schema instrumentation for the thread. Produces a result set indicating how many threads were disabled. Already disabled threads do not count.
 

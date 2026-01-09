@@ -4,7 +4,7 @@
 
 ### A
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### ADICIONAR PARTIÇÃO
 
@@ -52,7 +52,7 @@
 
 [Seção 12.15, “Funções de Informação”](information-functions.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
 
@@ -68,9 +68,9 @@
 
 [Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
 
-[Seção 24.3.8, “A tabela INFORMATION\_SCHEMA EVENTS”](information-schema-events-table.html)
+[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
 
-### ALTERAR evento nome\_do\_evento ENABLE
+### ALTERAR evento nome_do_evento ENABLE
 
 [Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
 
@@ -104,7 +104,7 @@
 
 [Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
 ### ALTER PROCEDURE
 
@@ -144,7 +144,7 @@
 
 [Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
 
@@ -308,9 +308,9 @@
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-[Seção 21.5.10, “ndb\_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
+[Seção 21.5.10, “ndb_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
 [Seção 12.9.8, “Parser de Texto Completo ngram”](fulltext-search-ngram.html)
 
@@ -358,7 +358,7 @@
 
 [Seção 13.1.33, "Instrução RENAME TABLE"](rename-table.html)
 
-[Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”](replication-features-auto-increment.html)
+[Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html)
 
 [Seção 16.4.1.25, “Replicação e Palavras Reservadas”](replication-features-reserved-words.html)
 
@@ -402,11 +402,11 @@
 
 [Seção B.3.6.2, “Problemas com tabelas temporárias”](temporary-table-problems.html)
 
-[Seção 24.4.23, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
 
-[Seção 24.3.16, “A tabela INFORMATION\_SCHEMA PARTITIONS”](information-schema-partitions-table.html)
+[Seção 24.3.16, “A tabela INFORMATION_SCHEMA PARTITIONS”](information-schema-partitions-table.html)
 
-[Seção 24.3.24, “A Tabela INFORMATION\_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
 
 [Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
 
@@ -418,7 +418,7 @@
 
 [Seção 21.2.7.6, “Recursos não suportados ou ausentes no NDB Cluster”](mysql-cluster-limitations-unsupported.html)
 
-[Seção 3.6.9, “Usando AUTO\_INCREMENT”](example-auto-increment.html)
+[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
 
 [Seção 16.3.3, “Usando replicação com diferentes engines de armazenamento de origem e réplica”](replication-solutions-diffengines.html)
 
@@ -524,7 +524,7 @@
 
 [Seção 21.6.13, “Distribuição de privilégios usando tabelas de concessão compartilhadas”](mysql-cluster-privilege-distribution.html)
 
-### ALTER TABLE ... ENGINE motor\_permitido
+### ALTER TABLE ... ENGINE motor_permitido
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -540,7 +540,7 @@
 
 ### ALTER TABLE ... ENGINE=NDB
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
 ### ALTER TABLE ... EXCHANGE PARTITION
 
@@ -624,7 +624,7 @@
 
 ### ALTER TABLE ... UPGRADE PARTITIONING
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
@@ -638,7 +638,7 @@
 
 [Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
 
-### ALTER TABLE mysql.ndb\_apply\_status ENGINE=MyISAM
+### ALTER TABLE mysql.ndb_apply_status ENGINE=MyISAM
 
 [Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
 
@@ -650,39 +650,39 @@
 
 [Seção 5.4.6, “O Log do DDL”](ddl-log.html)
 
-### ALTER TABLE nome\_tabela ENGINE=InnoDB;
+### ALTER TABLE nome_tabela ENGINE=InnoDB;
 
 [Seção 14.1.4, “Testes e Benchmarking com InnoDB”](innodb-benchmarking.html)
 
-### ALTER TABLE nome\_tabela REORGANIZE PARTIÇÃO
+### ALTER TABLE nome_tabela REORGANIZE PARTIÇÃO
 
 [Seção 21.6.7.3, “Adicionar nós de dados do NDB Cluster Online: Exemplo detalhado”](mysql-cluster-online-add-node-example.html)
 
-### ALTER TABLE nome\_tabela UPGRADE PARTITIONING
+### ALTER TABLE nome_tabela UPGRADE PARTITIONING
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
-### ALTER TABLE tbl\_name COMPRESSION='None'
+### ALTER TABLE tbl_name COMPRESSION='None'
 
 [Seção 2.11.3, “Notas de Downgrade”](downgrading-to-previous-series.html)
 
-### ALTER TABLE tbl\_name ENCRYPTION = 'Y'
+### ALTER TABLE tbl_name ENCRYPTION = 'Y'
 
 [Seção A.17, “Perguntas frequentes sobre o MySQL 5.7: Criptografia de dados em repouso do InnoDB”](faqs-tablespace-encryption.html)
 
-### ALTER TABLE tbl\_nome ENGINE=INNODB
+### ALTER TABLE tbl_nome ENGINE=INNODB
 
 [Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
 
 [Seção 14.12.4, “Desfragmentação de uma Tabela”](innodb-file-defragmenting.html)
 
-### ALTER TABLE tbl\_name FORCE
+### ALTER TABLE tbl_name FORCE
 
 [Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
 
 [Seção 14.12.4, “Desfragmentação de uma Tabela”](innodb-file-defragmenting.html)
 
-### ALTER TABLE tbl\_name TABLESPACE tablespace\_name
+### ALTER TABLE tbl_name TABLESPACE tablespace_name
 
 [Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
 
@@ -710,7 +710,7 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
 ### ALTER TABLESPACE ... ADD DATAFILE
 
@@ -728,7 +728,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### ALTER TABLESPACE tablespace\_name ENCRYPTION = 'Y'
+### ALTER TABLESPACE tablespace_name ENCRYPTION = 'Y'
 
 [Seção A.17, “Perguntas frequentes sobre o MySQL 5.7: Criptografia de dados em repouso do InnoDB”](faqs-tablespace-encryption.html)
 
@@ -758,9 +758,9 @@
 
 [Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
 
-[Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql\_old\_password”](account-upgrades.html)
+[Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql_old_password”](account-upgrades.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 6.2.11, “Gestão de Senhas”](password-management.html)
 
@@ -798,7 +798,7 @@
 
 [Seção 12.15, “Funções de Informação”](information-functions.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
 
@@ -870,7 +870,7 @@
 
 [Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
 
-[Seção 21.5.15, “ndb\_index\_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
+[Seção 21.5.15, “ndb_index_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
 
 [Seção 8.6.1, “Otimizando consultas MyISAM”](optimizando-consultas-myisam.html)
 
@@ -892,15 +892,15 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-[Seção 24.4.25, “A visão INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
 
-[Seção 24.3.24, “A Tabela INFORMATION\_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
 ### B
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### COMEÇAR
 
@@ -924,7 +924,7 @@
 
 [Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 ### COMEÇO ... FIM
 
@@ -980,7 +980,7 @@
 
 ### C
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### CACHE INDEX
 
@@ -1008,7 +1008,7 @@
 
 [Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
 
-\[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
 
 [Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
 
@@ -1022,7 +1022,7 @@
 
 [Seção 13.6.7.4, "Declaração RESIGNAL"](resignal.html)
 
-### CALL stored\_procedure()
+### CALL stored_procedure()
 
 [Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
 
@@ -1136,7 +1136,7 @@
 
 [Seção 14.21.6, “O Plugin InnoDB memcached e Replicação”](innodb-memcached-replication.html)
 
-[Seção 25.12.11.3, “Tabela replication\_applier\_configuration”](performance-schema-replication-applier-configuration-table.html)
+[Seção 25.12.11.3, “Tabela replication_applier_configuration”](performance-schema-replication-applier-configuration-table.html)
 
 [Seção 25.12.11.1, “Tabela de configuração de conexão de replicação”](performance-schema-replication-connection-configuration-table.html)
 
@@ -1156,31 +1156,31 @@
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICATE\_DO\_DB
+### ALTERE O FILTRO DE REPLICAÇÃO REPLICATE_DO_DB
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICATE\_DO\_TABLE
+### ALTERE O FILTRO DE REPLICAÇÃO REPLICATE_DO_TABLE
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA\_IGNORE\_DB
+### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_IGNORE_DB
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA\_IGNORE\_TABLE
+### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_IGNORE_TABLE
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA\_REWRITE\_DB
+### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_REWRITE_DB
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA\_WILD\_DO\_TABLE
+### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_WILD_DO_TABLE
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA\_WILD\_IGNORE\_TABLE
+### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_WILD_IGNORE_TABLE
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
@@ -1230,7 +1230,7 @@
 
 [Seção B.3.2.7, “O servidor MySQL desapareceu”](gone-away.html)
 
-[Seção 4.4.7, “mysql\_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
 
 [Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
 
@@ -1346,9 +1346,9 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
-[Seção 24.3.25, “A tabela INFORMATION\_SCHEMA TABLES”](information-schema-tables-table.html)
+[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
 
 [Seção 13.3, "Instruções Transacionais e de Bloqueio"](sql-transactional-statements.html)
 
@@ -1434,7 +1434,7 @@
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
 
@@ -1448,13 +1448,13 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-\[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
 
 [Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
 
 [Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
 
-[Seção 24.3.8, “A tabela INFORMATION\_SCHEMA EVENTS”](information-schema-events-table.html)
+[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
 
 [Seção 5.3, “O banco de dados do sistema mysql”](system-schema.html)
 
@@ -1498,7 +1498,7 @@
 
 [Seção 5.6.2, “Obtendo Informações sobre Funções Carregáveis”](obtaining-loadable-function-information.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
 
@@ -1508,7 +1508,7 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-\[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
 
 [Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
 
@@ -1558,7 +1558,7 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-[Seção 24.3.24, “A Tabela INFORMATION\_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
 
 [Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
 
@@ -1580,7 +1580,7 @@
 
 [Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
 [Seção 21.6.15.31, “Tabela de recursos ndbinfo”](mysql-cluster-ndbinfo-resources.html)
 
@@ -1604,7 +1604,7 @@
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
 
@@ -1612,7 +1612,7 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-\[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
 
 [Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
 
@@ -1658,7 +1658,7 @@
 
 [Capítulo 15, *Motores de Armazenamento Alternativos*](storage-engines.html)
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 7.1, “Tipos de Backup e Recuperação”](backup-types.html)
 
@@ -1762,7 +1762,7 @@
 
 [Seção 14.6.2.4, “Índices de Texto Completo InnoDB”](innodb-fulltext-index.html)
 
-[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”](innodb-information-schema-system-tables.html)
+[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”](innodb-information-schema-system-tables.html)
 
 [Seção 14.9.2, “Compressão de Páginas InnoDB”](innodb-page-compression.html)
 
@@ -1818,7 +1818,7 @@
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
-\[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
 
 [Seção 21.4.3.1, “Configuração do NDB Cluster: Exemplo Básico”](mysql-cluster-config-example.html)
 
@@ -1826,9 +1826,9 @@
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-[Seção 21.5.6, “ndb\_blob\_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”](mysql-cluster-programs-ndb-blob-tool.html)
+[Seção 21.5.6, “ndb_blob_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”](mysql-cluster-programs-ndb-blob-tool.html)
 
-[Seção 21.5.10, “ndb\_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
+[Seção 21.5.10, “ndb_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
 
 [Seção 12.9.8, “Parser de Texto Completo ngram”](fulltext-search-ngram.html)
 
@@ -1866,7 +1866,7 @@
 
 [Seção 13.2.8, “Instrução REPLACE”](replace.html)
 
-[Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”](replication-features-auto-increment.html)
+[Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html)
 
 [Seção 16.4.1.3, “Replicação e Conjuntos de Caracteres”](replication-features-charset.html)
 
@@ -1926,13 +1926,13 @@
 
 [Seção 11.3.5, “O Tipo ENUM”](enum.html)
 
-[Seção 24.4.23, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
 
-[Seção 24.3.16, “A tabela INFORMATION\_SCHEMA PARTITIONS”](information-schema-partitions-table.html)
+[Seção 24.3.16, “A tabela INFORMATION_SCHEMA PARTITIONS”](information-schema-partitions-table.html)
 
-[Seção 24.3.24, “A Tabela INFORMATION\_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
 
-[Seção 24.3.25, “A tabela INFORMATION\_SCHEMA TABLES”](information-schema-tables-table.html)
+[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
 
 [Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
 
@@ -1948,7 +1948,7 @@
 
 [Seção 21.2.7.6, “Recursos não suportados ou ausentes no NDB Cluster”](mysql-cluster-limitations-unsupported.html)
 
-[Seção 3.6.9, “Usando AUTO\_INCREMENT”](example-auto-increment.html)
+[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
 
 [Seção 3.3.4.9, “Usando mais de uma tabela”](multiple-tables.html)
 
@@ -1978,11 +1978,11 @@
 
 [Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
 
-[Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”](replication-features-auto-increment.html)
+[Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html)
 
 [Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
 
-### Crie a tabela ... ROW\_FORMAT=COMPRESSED
+### Crie a tabela ... ROW_FORMAT=COMPRESSED
 
 [Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
 
@@ -2054,15 +2054,15 @@
 
 ### CREATE TABLE LIKE
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
-### Crie a tabela nova\_tabela SELECT ... FROM antiga\_tabela ...
+### Crie a tabela nova_tabela SELECT ... FROM antiga_tabela ...
 
 [Seção 13.1.18.4, "Instrução CREATE TABLE ... SELECT"](create-table-select.html)
 
 [Seção 13.2.9, "Instrução SELECT"](select.html)
 
-### Crie a tabela tbl\_name ... TABLESPACE tablespace\_name
+### Crie a tabela tbl_name ... TABLESPACE tablespace_name
 
 [Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
 
@@ -2104,9 +2104,9 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-[Seção 24.3.9, “A tabela INFORMATION\_SCHEMA FILES”](information-schema-files-table.html)
+[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
 
-[Seção 24.4.23, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
@@ -2150,7 +2150,7 @@
 
 [Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
 
@@ -2160,7 +2160,7 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-\[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
 
 [Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
 
@@ -2286,7 +2286,7 @@
 
 [Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 23.9, “Restrições de visualização”](view-restrictions.html)
 
@@ -2294,9 +2294,9 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-\[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 [Seção 23.5.3, “Visões Atualizáveis e Inseríveis”](view-updatability.html)
 
@@ -2306,7 +2306,7 @@
 
 ### D
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### DESLOCAR PREPARAR
 
@@ -2320,7 +2320,7 @@
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-[Seção 25.12.6.4, “Tabela prepared\_statements\_instances”](performance-schema-prepared-statements-instances-table.html)
+[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
 
 ### DECLARAR
 
@@ -2414,7 +2414,7 @@
 
 [Seção 12.9.5, “Restrições de texto completo”](fulltext-restrictions.html)
 
-\[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Capítulo 12, *Funções e Operadores*] (functions.html)
 
 [Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
 
@@ -2472,7 +2472,7 @@
 
 [Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
 
-[Seção 21.5.9, “ndb\_delete\_all — Deletar todas as linhas de uma tabela NDB”](mysql-cluster-programs-ndb-delete-all.html)
+[Seção 21.5.9, “ndb_delete_all — Deletar todas as linhas de uma tabela NDB”](mysql-cluster-programs-ndb-delete-all.html)
 
 [Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
 
@@ -2544,11 +2544,11 @@
 
 [Seção 15.6, “O Motor de Armazenamento BLACKHOLE”](blackhole-storage-engine.html)
 
-[Seção 24.4.25, “A visão INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
 
-[Seção 24.3.25, “A tabela INFORMATION\_SCHEMA TABLES”](information-schema-tables-table.html)
+[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 [Seção 1.2.2, “Principais características do MySQL”](features.html)
 
@@ -2640,7 +2640,7 @@
 
 [Seção 13.2.10, "Subconsultas"](subqueries.html)
 
-[Seção 24.3.8, “A tabela INFORMATION\_SCHEMA EVENTS”](information-schema-events-table.html)
+[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
 
 [Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
 
@@ -2764,7 +2764,7 @@
 
 ### DROP PREPARE
 
-[Seção 25.12.6.4, “Tabela prepared\_statements\_instances”](performance-schema-prepared-statements-instances-table.html)
+[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
 
 ### DROP PROCEDURE
 
@@ -2856,9 +2856,9 @@
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
-[Seção 21.5.11, “ndb\_drop\_index — Remover índice de uma tabela NDB”](mysql-cluster-programs-ndb-drop-index.html)
+[Seção 21.5.11, “ndb_drop_index — Remover índice de uma tabela NDB”](mysql-cluster-programs-ndb-drop-index.html)
 
-[Seção 21.5.12, “ndb\_drop\_table — Remover uma tabela NDB”](mysql-cluster-programs-ndb-drop-table.html)
+[Seção 21.5.12, “ndb_drop_table — Remover uma tabela NDB”](mysql-cluster-programs-ndb-drop-table.html)
 
 [Seção 8.5.7, “Otimização das operações de DDL do InnoDB”](optimizing-innodb-ddl-operations.html)
 
@@ -2900,7 +2900,7 @@
 
 [Seção 16.4.1.9, “Replicação de declarações DROP ... IF EXISTS”](replication-features-drop-if-exists.html)
 
-### DROP TABLE IF EXISTS mysql.user mysql.db mysql.tables\_priv mysql.columns\_priv mysql.procs\_priv
+### DROP TABLE IF EXISTS mysql.user mysql.db mysql.tables_priv mysql.columns_priv mysql.procs_priv
 
 [Seção 21.6.13, “Distribuição de privilégios usando tabelas de concessão compartilhadas”](mysql-cluster-privilege-distribution.html)
 
@@ -2914,7 +2914,7 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-### DROP TABLESPACE tablespace\_name
+### DROP TABLESPACE tablespace_name
 
 [Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
 
@@ -2960,7 +2960,7 @@
 
 [Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
 
@@ -2988,7 +2988,7 @@
 
 ### E
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### ENCRIPTAÇÃO
 
@@ -3012,7 +3012,7 @@
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-[Seção 25.12.6.4, “Tabela prepared\_statements\_instances”](performance-schema-prepared-statements-instances-table.html)
+[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
 
 ### EXPLIQUE
 
@@ -3088,7 +3088,7 @@
 
 [Seção 8.2.2.4, “Otimização de tabelas derivadas e referências de visualização com fusão ou materialização”](derived-table-optimization.html)
 
-[Seção 8.2.3, “Otimização de consultas do INFORMATION\_SCHEMA”](information-schema-optimization.html)
+[Seção 8.2.3, “Otimização de consultas do INFORMATION_SCHEMA”](information-schema-optimization.html)
 
 [Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
 
@@ -3124,7 +3124,7 @@
 
 [Seção 1.2.2, “Principais características do MySQL”](features.html)
 
-[Seção 26.4.4.22, “O procedimento ps\_trace\_statement\_digest()”](sys-ps-trace-statement-digest.html)
+[Seção 26.4.4.22, “O procedimento ps_trace_statement_digest()”](sys-ps-trace-statement-digest.html)
 
 [Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
 
@@ -3188,13 +3188,13 @@
 
 [Seção 22.2.1, “Divisão de Faixa”](partitioning-range.html)
 
-### EXPLIQUE tbl\_name
+### EXPLIQUE tbl_name
 
 [Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
 
 ### F
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### FETCH
 
@@ -3204,7 +3204,7 @@
 
 [Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
 
-### PESQUISE ... EM var\_list
+### PESQUISE ... EM var_list
 
 [Seção 13.6.4, “Variáveis em Programas Armazenados”](stored-program-variables.html)
 
@@ -3242,7 +3242,7 @@
 
 [Seção 5.4.7, “Manutenção do Log do Servidor”](log-file-maintenance.html)
 
-### LIMPE DES\_KEY\_FILE
+### LIMPE DES_KEY_FILE
 
 [Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
 
@@ -3302,7 +3302,7 @@
 
 [Seção 16.1.3.5, “Uso de GTIDs para Failover e Scaleout”](replication-gtids-failover.html)
 
-### OBRIGUARDO POR USAR O FLUSH OPTIMIZER\_COSTS
+### OBRIGUARDO POR USAR O FLUSH OPTIMIZER_COSTS
 
 [Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
 
@@ -3430,19 +3430,19 @@
 
 [Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
 
-### LIMPE TABELAS tbl\_name...
+### LIMPE TABELAS tbl_name...
 
 [Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
 
-### LIMPE TABELAS tbl\_name ... PARA EXPORTAÇÃO
+### LIMPE TABELAS tbl_name ... PARA EXPORTAÇÃO
 
 [Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
 
-### LIMPE TABELAS tbl\_name ... COM BLOQUEIO DE LEITURA
+### LIMPE TABELAS tbl_name ... COM BLOQUEIO DE LEITURA
 
 [Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
 
-### LIMPE TABELAS tbl\_name COM BLOQUEIO DE LEITURA
+### LIMPE TABELAS tbl_name COM BLOQUEIO DE LEITURA
 
 [Seção 13.2.4, “Declaração do Gestor”](handler.html)
 
@@ -3476,7 +3476,7 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-[Seção 25.12.12.1, “A tabela metadata\_locks”](performance-schema-metadata-locks-table.html)
+[Seção 25.12.12.1, “A tabela metadata_locks”](performance-schema-metadata-locks-table.html)
 
 ### LIMPE OS RECURSOS DO USUÁRIO
 
@@ -3486,7 +3486,7 @@
 
 ### G
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### Obtenha diagnósticos
 
@@ -3582,7 +3582,7 @@
 
 [Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 16.4.1.21, “Replicação do banco de dados do sistema mysql”](replication-features-mysqldb.html)
 
@@ -3628,7 +3628,7 @@
 
 ### H
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### HANDLER
 
@@ -3676,7 +3676,7 @@
 
 ### Eu
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### IF
 
@@ -3714,7 +3714,7 @@
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 14.7.2.2, "autocommit, Commit e Rollback"](innodb-autocommit-commit-rollback.html)
 
@@ -3860,7 +3860,7 @@
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
-\[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
 
 [Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
 
@@ -3918,7 +3918,7 @@
 
 [Seção 16.4.1.27, “Erros de replicação durante a replicação”](replication-features-errors.html)
 
-[Seção 16.4.1.1, “Replicação e AUTO\_INCREMENT”](replication-features-auto-increment.html)
+[Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html)
 
 [Seção 16.4.1.28, "Modo de Replicação e Servidor SQL"](replication-features-sql-mode.html)
 
@@ -3942,7 +3942,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-\[Seção 13.7.5.27, "Declaração de CÓDIGO DO PROCEDIMENTO"] (show-procedure-code.html)
+[Seção 13.7.5.27, "Declaração de CÓDIGO DO PROCEDIMENTO"] (show-procedure-code.html)
 
 [Seção 13.7.5.36, "Declaração de Status da Tabela"](show-table-status.html)
 
@@ -3958,15 +3958,15 @@
 
 [Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
 
-[Seção 10.8.5, “A Colagem Binária Comparada às Colagens \_bin”](charset-binary-collations.html)
+[Seção 10.8.5, “A Colagem Binária Comparada às Colagens _bin”](charset-binary-collations.html)
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
 [Seção 15.6, “O Motor de Armazenamento BLACKHOLE”](blackhole-storage-engine.html)
 
-[Seção 24.3.25, “A tabela INFORMATION\_SCHEMA TABLES”](information-schema-tables-table.html)
+[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 [Seção 1.2.2, “Principais características do MySQL”](features.html)
 
@@ -4012,7 +4012,7 @@
 
 ### INSERT ... ON DUPLICATE KEY UPDATE
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”](replication-rbr-safe-unsafe.html)
 
@@ -4040,7 +4040,7 @@
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 8.11.3, “Inserções Concorrentes”](concurrent-inserts.html)
 
@@ -4130,7 +4130,7 @@
 
 [Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
 
-### INSERT INTO ... SELECT FROM memory\_table
+### INSERT INTO ... SELECT FROM memory_table
 
 [Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA”](replication-features-memory.html)
 
@@ -4172,7 +4172,7 @@
 
 [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
 
-[Seção 4.4.3, “mysql\_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
+[Seção 4.4.3, “mysql_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
 
 [Seção 6.4.1.10, “Autenticação Pluggable sem Login”](no-login-pluggable-authentication.html)
 
@@ -4204,7 +4204,7 @@
 
 [Seção 6.4.1.12, “Teste de Autenticação Pluggable”](test-pluggable-authentication.html)
 
-[Seção 24.3.17, “A Tabela INFORMATION\_SCHEMA PLUGINS”](information-schema-plugins-table.html)
+[Seção 24.3.17, “A Tabela INFORMATION_SCHEMA PLUGINS”](information-schema-plugins-table.html)
 
 [Seção 5.3, “O banco de dados do sistema mysql”](system-schema.html)
 
@@ -4212,7 +4212,7 @@
 
 [Seção 13.7.3.4, "Declaração de DESINSTALAR PLUGIN"](uninstall-plugin.html)
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”](keyring-aws-plugin.html)
+[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
@@ -4232,7 +4232,7 @@
 
 ### K
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### MATAR
 
@@ -4258,9 +4258,9 @@
 
 [Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
 
-[Seção 26.4.3.9, “As vistas innodb\_lock\_waits e x$innodb\_lock\_waits”](sys-innodb-lock-waits.html)
+[Seção 26.4.3.9, “As vistas innodb_lock_waits e x$innodb_lock_waits”](sys-innodb-lock-waits.html)
 
-[Seção 26.4.3.28, “As visualizações schema\_table\_lock\_waits e x$schema\_table\_lock\_waits”](sys-schema-table-lock-waits.html)
+[Seção 26.4.3.28, “As visualizações schema_table_lock_waits e x$schema_table_lock_waits”](sys-schema-table-lock-waits.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
@@ -4284,7 +4284,7 @@
 
 ### L
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### SAÍDA
 
@@ -4308,7 +4308,7 @@
 
 [Seção 6.4.5.12, “Restrições do Log de Auditoria”](audit-log-restrictions.html)
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 16.3.1.2, "Fazer backup de dados brutos de uma réplica"](replication-solutions-backups-rawdata.html)
 
@@ -4358,9 +4358,9 @@
 
 [Seção 4.5.5, “mysqlimport — Um programa de importação de dados”](mysqlimport.html)
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
-[Seção 21.5.27, “ndb\_show\_tables — Exibir Lista de Tabelas NDB”](mysql-cluster-programs-ndb-show-tables.html)
+[Seção 21.5.27, “ndb_show_tables — Exibir Lista de Tabelas NDB”](mysql-cluster-programs-ndb-show-tables.html)
 
 [Seção 9.1.7, “Valores NULOS”](null-values.html)
 
@@ -4590,7 +4590,7 @@
 
 ### O
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO
 
@@ -4680,17 +4680,17 @@
 
 [Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
 
-[Seção 24.4.8, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
+[Seção 24.4.8, “A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
 
-[Seção 24.4.9, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG”](information-schema-innodb-ft-config-table.html)
+[Seção 24.4.9, “A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG”](information-schema-innodb-ft-config-table.html)
 
-[Seção 24.4.11, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED”](information-schema-innodb-ft-deleted-table.html)
+[Seção 24.4.11, “A tabela INFORMATION_SCHEMA INNODB_FT_DELETED”](information-schema-innodb-ft-deleted-table.html)
 
-[Seção 24.4.12, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE”](information-schema-innodb-ft-index-cache-table.html)
+[Seção 24.4.12, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”](information-schema-innodb-ft-index-cache-table.html)
 
-[Seção 24.4.13, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE”](information-schema-innodb-ft-index-table-table.html)
+[Seção 24.4.13, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”](information-schema-innodb-ft-index-table-table.html)
 
-[Seção 21.6.15.27, “Tabela ndbinfo memory\_per\_fragment”](mysql-cluster-ndbinfo-memory-per-fragment.html)
+[Seção 21.6.15.27, “Tabela ndbinfo memory_per_fragment”](mysql-cluster-ndbinfo-memory-per-fragment.html)
 
 [Seção 5.1.16, “O processo de desligamento do servidor”](server-shutdown.html)
 
@@ -4706,7 +4706,7 @@
 
 ### P
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### DIVISÃO POR
 
@@ -4734,7 +4734,7 @@
 
 [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
 
-[Seção 25.12.6.4, “Tabela prepared\_statements\_instances”](performance-schema-prepared-statements-instances-table.html)
+[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
 
 ### LIMPE OS LOGS BINÁRIOS
 
@@ -4760,7 +4760,7 @@
 
 ### R
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### REBUILD PARTIÇÃO
 
@@ -4772,7 +4772,7 @@
 
 [Seção 13.3.4, "Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT"](savepoint.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 ### REMOÇÃO DA PARTIÇÃO
 
@@ -4820,7 +4820,7 @@
 
 [Seção 13.7.1.5, "Declaração de RENOMEAR USUÁRIO"](rename-user.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
@@ -4946,7 +4946,7 @@
 
 [Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 13.1.18.7, “Criar Tabela e Colunas Geradas”](create-table-generated-columns.html)
 
@@ -5002,7 +5002,7 @@
 
 [Seção 1.2.2, “Principais características do MySQL”](features.html)
 
-[Seção 21.6.15.29, “Tabela ndbinfo operations\_per\_fragment”](mysql-cluster-ndbinfo-operations-per-fragment.html)
+[Seção 21.6.15.29, “Tabela ndbinfo operations_per_fragment”](mysql-cluster-ndbinfo-operations-per-fragment.html)
 
 [Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
 
@@ -5012,7 +5012,7 @@
 
 ### REPLACAR ... SELECIONE
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
 
@@ -5058,11 +5058,11 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-[Seção 25.12.11.5, “A tabela replication\_applier\_status\_by\_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
+[Seção 25.12.11.5, “A tabela replication_applier_status_by_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
 
-[Seção 25.12.11.6, “A tabela replication\_applier\_status\_by\_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
 
-[Seção 25.12.11.2, “A tabela replication\_connection\_status”](performance-schema-replication-connection-status-table.html)
+[Seção 25.12.11.2, “A tabela replication_connection_status”](performance-schema-replication-connection-status-table.html)
 
 ### REESTABELECER CACHE DA PESQUISA
 
@@ -5104,11 +5104,11 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-[Seção 25.12.11.5, “A tabela replication\_applier\_status\_by\_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
+[Seção 25.12.11.5, “A tabela replication_applier_status_by_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
 
-[Seção 25.12.11.6, “A tabela replication\_applier\_status\_by\_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
 
-[Seção 25.12.11.2, “A tabela replication\_connection\_status”](performance-schema-replication-connection-status-table.html)
+[Seção 25.12.11.2, “A tabela replication_connection_status”](performance-schema-replication-connection-status-table.html)
 
 ### RESET SLAVE ALL
 
@@ -5198,7 +5198,7 @@
 
 [Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção 16.4.1.21, “Replicação do banco de dados do sistema mysql”](replication-features-mysqldb.html)
 
@@ -5256,7 +5256,7 @@
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 13.3, "Instruções Transacionais e de Bloqueio"](sql-transactional-statements.html)
 
@@ -5268,7 +5268,7 @@
 
 [Seção 13.3.4, "Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT"](savepoint.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 ### REDESCARTE para SAVEPOINT
 
@@ -5276,7 +5276,7 @@
 
 ### S
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### SAVEPOINT
 
@@ -5284,7 +5284,7 @@
 
 [Seção 13.3.4, "Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT"](savepoint.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 ### SELECIONE
 
@@ -5302,7 +5302,7 @@
 
 [Seção 6.4.5.4, "Formatos de arquivo de registro de auditoria"](audit-log-file-formats.html)
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 14.7.2.2, "autocommit, Commit e Rollback"](innodb-autocommit-commit-rollback.html)
 
@@ -5380,7 +5380,7 @@
 
 [Seção 8.2.1.18, "Otimização de Chamadas de Função"](function-optimization.html)
 
-\[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Capítulo 12, *Funções e Operadores*] (functions.html)
 
 [Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
 
@@ -5490,7 +5490,7 @@
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-[Seção 21.5.25, “ndb\_select\_all — Imprimir linhas de uma tabela NDB”](mysql-cluster-programs-ndb-select-all.html)
+[Seção 21.5.25, “ndb_select_all — Imprimir linhas de uma tabela NDB”](mysql-cluster-programs-ndb-select-all.html)
 
 [Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
 
@@ -5602,7 +5602,7 @@
 
 [Seção 13.7.5.17, "Declaração de Mostrar Erros"](show-errors.html)
 
-\[Seção 13.7.5.27, "Declaração de CÓDIGO DO PROCEDIMENTO"] (show-procedure-code.html)
+[Seção 13.7.5.27, "Declaração de CÓDIGO DO PROCEDIMENTO"] (show-procedure-code.html)
 
 [Seção 13.7.5.28, "Declaração de Status do Procedimento"](show-procedure-status.html)
 
@@ -5642,21 +5642,21 @@
 
 [Seção 11.3.5, “O Tipo ENUM”](enum.html)
 
-[Seção 25.12.16.1, “A tabela host\_cache”](performance-schema-host-cache-table.html)
+[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
 
-[Seção 24.3.5, “A tabela INFORMATION\_SCHEMA COLUMNS”](information-schema-columns-table.html)
+[Seção 24.3.5, “A tabela INFORMATION_SCHEMA COLUMNS”](information-schema-columns-table.html)
 
-[Seção 24.3.8, “A tabela INFORMATION\_SCHEMA EVENTS”](information-schema-events-table.html)
+[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
 
-[Seção 24.3.11, “Tabelas INFORMATION\_SCHEMA GLOBAL\_VARIABLES e SESSION\_VARIABLES”](information-schema-variables-table.html)
+[Seção 24.3.11, “Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES”](information-schema-variables-table.html)
 
-[Seção 24.4.28, “A tabela INFORMATION\_SCHEMA INNODB\_TRX”](information-schema-innodb-trx-table.html)
+[Seção 24.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”](information-schema-innodb-trx-table.html)
 
-[Seção 24.3.18, “A tabela INFORMATION\_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
+[Seção 24.3.18, “A tabela INFORMATION_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
 
-[Seção 24.3.21, “A tabela INFORMATION\_SCHEMA ROUTINES”](information-schema-routines-table.html)
+[Seção 24.3.21, “A tabela INFORMATION_SCHEMA ROUTINES”](information-schema-routines-table.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 [Seção 11.5, “O tipo de dados JSON”](json.html)
 
@@ -5726,7 +5726,7 @@
 
 [Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
 
-### SELECT \* INTO OUTFILE 'nome\_arquivo' FROM tbl\_name
+### SELECT \* INTO OUTFILE 'nome_arquivo' FROM tbl_name
 
 [Seção 7.2, “Métodos de backup de banco de dados”](backup-methods.html)
 
@@ -5800,11 +5800,11 @@
 
 [Seção 2.3.7, “Restrições da Plataforma Windows”](windows-restrictions.html)
 
-### SELECT ... INTO OUTFILE 'nome\_arquivo'
+### SELECT ... INTO OUTFILE 'nome_arquivo'
 
 [Seção 13.2.9.1, "Instrução SELECT ... INTO"](select-into.html)
 
-### SELECT ... INTO var\_list
+### SELECT ... INTO var_list
 
 [Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
 
@@ -5834,11 +5834,11 @@
 
 ### SELECT INTO ... OUTFILE
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
 ### SELECT INTO OUTFILE
 
-[Seção 21.5.14, “ndb\_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
 
 ### Selecione SLEEP()
 
@@ -5868,7 +5868,7 @@
 
 [Seção 23.4.2, “Configuração do Agendador de Eventos”](events-configuration.html)
 
-\[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Capítulo 12, *Funções e Operadores*] (functions.html)
 
 [Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
 
@@ -5944,13 +5944,13 @@
 
 [Seção 13.6.4, “Variáveis em Programas Armazenados”](stored-program-variables.html)
 
-### SET @@GLOBAL.gtid\_purged
+### SET @@GLOBAL.gtid_purged
 
 [Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
-### SET @@GLOBAL.ndb\_slave\_conflict\_role = 'NENHUMA'
+### SET @@GLOBAL.ndb_slave_conflict_role = 'NENHUMA'
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
@@ -5974,11 +5974,11 @@
 
 [Seção 10.9, “Suporte a Unicode”](charset-unicode.html)
 
-### DEFINA O SET DE CARACTERES 'charset\_name'
+### DEFINA O SET DE CARACTERES 'charset_name'
 
 [Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
 
-### SET CHARACTER SET charset\_name
+### SET CHARACTER SET charset_name
 
 [Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
 
@@ -6006,15 +6006,15 @@
 
 [Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”](keyring-aws-plugin.html)
+[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
 
-### SET GLOBAL SQL\_LOG\_BIN
+### SET GLOBAL SQL_LOG_BIN
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### SET GLOBAL sql\_slave\_skip\_counter
+### SET GLOBAL sql_slave_skip_counter
 
-[Seção 13.4.2.4, “Sintaxe de SET GLOBAL sql\_slave\_skip\_counter”](set-global-sql-slave-skip-counter.html)
+[Seção 13.4.2.4, “Sintaxe de SET GLOBAL sql_slave_skip_counter”](set-global-sql-slave-skip-counter.html)
 
 ### SET GLOBAL TRANSACTION READ ONLY
 
@@ -6054,7 +6054,7 @@
 
 [Seção 10.2.2, “UTF-8 para Metadados”](charset-metadata.html)
 
-### SET NAMES 'charset\_name'
+### SET NAMES 'charset_name'
 
 [Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
 
@@ -6062,11 +6062,11 @@
 
 [Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
 
-### SET NAMES charset\_name
+### SET NAMES charset_name
 
 [Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
 
-### SET NAMES default\_character\_set
+### SET NAMES default_character_set
 
 [Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
 
@@ -6082,7 +6082,7 @@
 
 [Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
 
-[Seção 4.4.2, “mysql\_install\_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
 
 [Seção 6.1.2.4, “Hashing de Senhas no MySQL”](password-hashing.html)
 
@@ -6094,7 +6094,7 @@
 
 [Seção 16.4.1.37, “Replicação e Variáveis”](replication-features-variables.html)
 
-[Seção 16.4.1.8, “Replicação de CURRENT\_USER()”](replication-features-current-user.html)
+[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
 
 [Seção B.3.3.2.3, “Redefinindo a Senha de Root: Instruções Gerais”](resetting-permissions.html#resetting-permissions-generic)
 
@@ -6112,7 +6112,7 @@
 
 [Seção 6.2.9, “Quando as Alterações de Privilegios Se Tornam Efetivas”](privilege-changes.html)
 
-### DEFINIR SENHA ... = 'auth\_string'
+### DEFINIR SENHA ... = 'auth_string'
 
 [Seção 13.7.1.7, "Declaração de Definir Senha"](set-password.html)
 
@@ -6140,15 +6140,15 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### SET sql\_log\_bin = 0
+### SET sql_log_bin = 0
 
 [Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
 
-### SET sql\_log\_bin=OFF
+### SET sql_log_bin=OFF
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
-### SET sql\_mode='modes'
+### SET sql_mode='modes'
 
 [Seção A.3, “Perguntas frequentes sobre o MySQL 5.7: Modo SQL do servidor”](faqs-sql-modes.html)
 
@@ -6188,7 +6188,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### SET var\_name = valor
+### SET var_name = valor
 
 [Seção 13.7.4, "Declarações SET"](set-statement.html)
 
@@ -6290,7 +6290,7 @@
 
 [Seção 10.3.4, "Conjunto de caracteres da tabela e cotação"](charset-table.html)
 
-[Seção 24.3.2, “A tabela INFORMATION\_SCHEMA CHARACTER\_SETS”](information-schema-character-sets-table.html)
+[Seção 24.3.2, “A tabela INFORMATION_SCHEMA CHARACTER_SETS”](information-schema-character-sets-table.html)
 
 ### EXIBIR COLETÂO
 
@@ -6308,9 +6308,9 @@
 
 [Seção 13.7.5.4, "Declaração de COLAÇÃO"](show-collation.html)
 
-[Seção 24.3.4, “A tabela INFORMATION\_SCHEMA COLLATION\_CHARACTER\_SET\_APPLICABILITY”](information-schema-collation-character-set-applicability-table.html)
+[Seção 24.3.4, “A tabela INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY”](information-schema-collation-character-set-applicability-table.html)
 
-[Seção 24.3.3, “A tabela INFORMATION\_SCHEMA COLLATIONS”](information-schema-collations-table.html)
+[Seção 24.3.3, “A tabela INFORMATION_SCHEMA COLLATIONS”](information-schema-collations-table.html)
 
 ### Mostrar Colunas
 
@@ -6324,65 +6324,65 @@
 
 [Seção 13.7.5.5, "Declaração SHOW COLUMNS"](show-columns.html)
 
-[Seção 24.3.5, “A tabela INFORMATION\_SCHEMA COLUMNS”](information-schema-columns-table.html)
+[Seção 24.3.5, “A tabela INFORMATION_SCHEMA COLUMNS”](information-schema-columns-table.html)
 
-[Seção 24.4.2, “A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE”](information-schema-innodb-buffer-page-table.html)
+[Seção 24.4.2, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE”](information-schema-innodb-buffer-page-table.html)
 
-[Seção 24.4.3, “A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE\_LRU”](information-schema-innodb-buffer-page-lru-table.html)
+[Seção 24.4.3, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU”](information-schema-innodb-buffer-page-lru-table.html)
 
-[Seção 24.4.4, “A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS”](information-schema-innodb-buffer-pool-stats-table.html)
+[Seção 24.4.4, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS”](information-schema-innodb-buffer-pool-stats-table.html)
 
-[Seção 24.4.5, “As tabelas INFORMATION\_SCHEMA INNODB\_CMP e INNODB\_CMP\_RESET”](information-schema-innodb-cmp-table.html)
+[Seção 24.4.5, “As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET”](information-schema-innodb-cmp-table.html)
 
-[Seção 24.4.7, “As tabelas INFORMATION\_SCHEMA INNODB\_CMP\_PER\_INDEX e INNODB\_CMP\_PER\_INDEX\_RESET”](information-schema-innodb-cmp-per-index-table.html)
+[Seção 24.4.7, “As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET”](information-schema-innodb-cmp-per-index-table.html)
 
-[Seção 24.4.6, “Tabelas INFORMATION\_SCHEMA INNODB\_CMPMEM e INNODB\_CMPMEM\_RESET”](information-schema-innodb-cmpmem-table.html)
+[Seção 24.4.6, “Tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET”](information-schema-innodb-cmpmem-table.html)
 
-[Seção 24.4.8, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_BEING\_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
+[Seção 24.4.8, “A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
 
-[Seção 24.4.9, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_CONFIG”](information-schema-innodb-ft-config-table.html)
+[Seção 24.4.9, “A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG”](information-schema-innodb-ft-config-table.html)
 
-[Seção 24.4.10, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DEFAULT\_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
+[Seção 24.4.10, “A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
 
-[Seção 24.4.11, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_DELETED”](information-schema-innodb-ft-deleted-table.html)
+[Seção 24.4.11, “A tabela INFORMATION_SCHEMA INNODB_FT_DELETED”](information-schema-innodb-ft-deleted-table.html)
 
-[Seção 24.4.12, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_CACHE”](information-schema-innodb-ft-index-cache-table.html)
+[Seção 24.4.12, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”](information-schema-innodb-ft-index-cache-table.html)
 
-[Seção 24.4.13, “A tabela INFORMATION\_SCHEMA INNODB\_FT\_INDEX\_TABLE”](information-schema-innodb-ft-index-table-table.html)
+[Seção 24.4.13, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”](information-schema-innodb-ft-index-table-table.html)
 
-[Seção 24.4.15, “A tabela INFORMATION\_SCHEMA INNODB\_LOCK\_WAITS”](information-schema-innodb-lock-waits-table.html)
+[Seção 24.4.15, “A tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS”](information-schema-innodb-lock-waits-table.html)
 
-[Seção 24.4.14, “A tabela INFORMATION\_SCHEMA INNODB\_LOCKS”](information-schema-innodb-locks-table.html)
+[Seção 24.4.14, “A tabela INFORMATION_SCHEMA INNODB_LOCKS”](information-schema-innodb-locks-table.html)
 
-[Seção 24.4.16, “A tabela INFORMATION\_SCHEMA INNODB\_METRICS”](information-schema-innodb-metrics-table.html)
+[Seção 24.4.16, “A tabela INFORMATION_SCHEMA INNODB_METRICS”](information-schema-innodb-metrics-table.html)
 
-[Seção 24.4.17, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_COLUMNS”](information-schema-innodb-sys-columns-table.html)
+[Seção 24.4.17, “A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS”](information-schema-innodb-sys-columns-table.html)
 
-[Seção 24.4.18, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_DATAFILES”](information-schema-innodb-sys-datafiles-table.html)
+[Seção 24.4.18, “A tabela INFORMATION_SCHEMA INNODB_SYS_DATAFILES”](information-schema-innodb-sys-datafiles-table.html)
 
-[Seção 24.4.19, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FIELDS”](information-schema-innodb-sys-fields-table.html)
+[Seção 24.4.19, “A tabela INFORMATION_SCHEMA INNODB_SYS_FIELDS”](information-schema-innodb-sys-fields-table.html)
 
-[Seção 24.4.20, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN”](information-schema-innodb-sys-foreign-table.html)
+[Seção 24.4.20, “A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN”](information-schema-innodb-sys-foreign-table.html)
 
-[Seção 24.4.21, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_FOREIGN\_COLS”](information-schema-innodb-sys-foreign-cols-table.html)
+[Seção 24.4.21, “A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS”](information-schema-innodb-sys-foreign-cols-table.html)
 
-[Seção 24.4.22, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_INDEXES”](information-schema-innodb-sys-indexes-table.html)
+[Seção 24.4.22, “A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES”](information-schema-innodb-sys-indexes-table.html)
 
-[Seção 24.4.23, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
 
-[Seção 24.4.24, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLESPACES”](information-schema-innodb-sys-tablespaces-table.html)
+[Seção 24.4.24, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLESPACES”](information-schema-innodb-sys-tablespaces-table.html)
 
-[Seção 24.4.25, “A visão INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
 
-[Seção 24.4.26, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_VIRTUAL”](information-schema-innodb-sys-virtual-table.html)
+[Seção 24.4.26, “A tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL”](information-schema-innodb-sys-virtual-table.html)
 
-[Seção 24.4.27, “A tabela INFORMATION\_SCHEMA INNODB\_TEMP\_TABLE\_INFO”](information-schema-innodb-temp-table-info-table.html)
+[Seção 24.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”](information-schema-innodb-temp-table-info-table.html)
 
-[Seção 24.4.28, “A tabela INFORMATION\_SCHEMA INNODB\_TRX”](information-schema-innodb-trx-table.html)
+[Seção 24.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”](information-schema-innodb-trx-table.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### MOSTRE COLUNAS DE tbl\_name LIKE 'enum\_col'
+### MOSTRE COLUNAS DE tbl_name LIKE 'enum_col'
 
 [Seção 11.3.5, “O Tipo ENUM”](enum.html)
 
@@ -6472,9 +6472,9 @@
 
 [Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
-[Seção 21.5.10, “ndb\_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
+[Seção 21.5.10, “ndb_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
 [Seção 21.2.7.1, "Desconexão com a sintaxe SQL no NDB Cluster"](mysql-cluster-limitations-syntax.html)
 
@@ -6524,7 +6524,7 @@
 
 [Seção 13.7.5.13, "Mostrar declaração CREATE VIEW"](show-create-view.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 [Seção 23.5.5, “Visualizar metadados”](view-metadata.html)
 
@@ -6560,7 +6560,7 @@
 
 [Seção 13.7.5.14, "Declaração SHOW DATABASES"](show-databases.html)
 
-[Seção 24.3.22, “A tabela INFORMATION\_SCHEMA SCHEMATA”](information-schema-schemata-table.html)
+[Seção 24.3.22, “A tabela INFORMATION_SCHEMA SCHEMATA”](information-schema-schemata-table.html)
 
 ### MOSTRAR MOTOR
 
@@ -6600,9 +6600,9 @@
 
 [Seção 14.16.5, “Tabelas do Banco de Armazenamento de Buffer do Schema de Informações InnoDB”](innodb-information-schema-buffer-pool-tables.html)
 
-[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION\_SCHEMA”](innodb-information-schema-metrics-table.html)
+[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”](innodb-information-schema-metrics-table.html)
 
-[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION\_SCHEMA”](innodb-information-schema-system-tables.html)
+[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”](innodb-information-schema-system-tables.html)
 
 [Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
 
@@ -6622,7 +6622,7 @@
 
 [Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
 
-[Seção 24.4.4, “A tabela INFORMATION\_SCHEMA INNODB\_BUFFER\_POOL\_STATS”](information-schema-innodb-buffer-pool-stats-table.html)
+[Seção 24.4.4, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS”](information-schema-innodb-buffer-pool-stats-table.html)
 
 ### Mostrar o status do motor NDB
 
@@ -6674,7 +6674,7 @@
 
 [Seção 15.6, “O Motor de Armazenamento BLACKHOLE”](blackhole-storage-engine.html)
 
-[Seção 24.3.7, “A Tabela INFORMATION\_SCHEMA ENGINES”](information-schema-engines-table.html)
+[Seção 24.3.7, “A Tabela INFORMATION_SCHEMA ENGINES”](information-schema-engines-table.html)
 
 [Seção 14.1.3, “Verificar se o InnoDB é o motor de armazenamento padrão”](innodb-check-availability.html)
 
@@ -6706,13 +6706,13 @@
 
 [Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
 
-[Seção 24.3.8, “A tabela INFORMATION\_SCHEMA EVENTS”](information-schema-events-table.html)
+[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
 
 ### EXIBIR COLUNAS INTEGRAS
 
 [Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
 
-[Seção 24.3.6, “A tabela INFORMATION\_SCHEMA COLUMN\_PRIVILEGES”](information-schema-column-privileges-table.html)
+[Seção 24.3.6, “A tabela INFORMATION_SCHEMA COLUMN_PRIVILEGES”](information-schema-column-privileges-table.html)
 
 ### MOSTRE A LISTA COMPLETA DO PROCESSO
 
@@ -6728,7 +6728,7 @@
 
 ### Mostre o código da função
 
-\[Seção 13.7.5.27, "Declaração de CÓDIGO DO PROCEDIMENTO"] (show-procedure-code.html)
+[Seção 13.7.5.27, "Declaração de CÓDIGO DO PROCEDIMENTO"] (show-procedure-code.html)
 
 [Seção 23.2.3, “Metadados de Rotinas Armazenados”](stored-routines-metadata.html)
 
@@ -6744,13 +6744,13 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 24.3.10, “Tabelas INFORMATION\_SCHEMA GLOBAL\_STATUS e SESSION\_STATUS”](information-schema-status-table.html)
+[Seção 24.3.10, “Tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS”](information-schema-status-table.html)
 
 ### Mostrar variáveis globais
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 24.3.11, “Tabelas INFORMATION\_SCHEMA GLOBAL\_VARIABLES e SESSION\_VARIABLES”](information-schema-variables-table.html)
+[Seção 24.3.11, “Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES”](information-schema-variables-table.html)
 
 ### MOSTRE GRANTS
 
@@ -6792,7 +6792,7 @@
 
 [Seção 8.3.7, “Coleta de estatísticas de índices InnoDB e MyISAM”](index-statistics.html)
 
-[Seção 21.5.15, “ndb\_index\_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
+[Seção 21.5.15, “ndb_index_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
 
 [Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
 
@@ -6802,9 +6802,9 @@
 
 [Seção 13.7.5.22, "Declaração SHOW INDEX"](show-index.html)
 
-[Seção 24.3.24, “A Tabela INFORMATION\_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
 
-[Seção 24.3.27, “Tabela INFORMATION\_SCHEMA TABLE\_CONSTRAINTS”](information-schema-table-constraints-table.html)
+[Seção 24.3.27, “Tabela INFORMATION_SCHEMA TABLE_CONSTRAINTS”](information-schema-table-constraints-table.html)
 
 [Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
 
@@ -6850,7 +6850,7 @@
 
 [Seção 6.4.5.2, “Instalando ou Desinstalando o Auditoria do MySQL Enterprise”](audit-log-installation.html)
 
-\[Seção 6.4.4.10, “Metadados do cartela de identificação”] (keyring-metadata.html)
+[Seção 6.4.4.10, “Metadados do cartela de identificação”] (keyring-metadata.html)
 
 [Seção 6.4.4.1, “Instalação do Plugin do Carteira de Chaves”](keyring-plugin-installation.html)
 
@@ -6870,7 +6870,7 @@
 
 [Seção 6.4.1.7, “Autenticação Conectada (PAM)](pam-pluggable-authentication.html)
 
-\[Capítulo 22, *Partitioning*] (partitioning.html)
+[Capítulo 22, *Partitioning*] (partitioning.html)
 
 [Seção 6.4.3.1, “Instalação do Plugin de Validação de Senha”](validate-password-installation.html)
 
@@ -6886,9 +6886,9 @@
 
 [Seção 6.4.1.12, “Teste de Autenticação Pluggable”](test-pluggable-authentication.html)
 
-[Seção 24.3.13, “A tabela INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map”](information-schema-ndb-transid-mysql-connection-map-table.html)
+[Seção 24.3.13, “A tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map”](information-schema-ndb-transid-mysql-connection-map-table.html)
 
-[Seção 24.3.17, “A Tabela INFORMATION\_SCHEMA PLUGINS”](information-schema-plugins-table.html)
+[Seção 24.3.17, “A Tabela INFORMATION_SCHEMA PLUGINS”](information-schema-plugins-table.html)
 
 [Seção 5.5.3.2, “Instalação do Pool de Threads”](thread-pool-installation.html)
 
@@ -6976,27 +6976,27 @@
 
 [Seção 16.3.7, “Alteração de fontes durante o failover”](replication-solutions-switch.html)
 
-[Seção 24.3.13, “A tabela INFORMATION\_SCHEMA ndb\_transid\_mysql\_connection\_map”](information-schema-ndb-transid-mysql-connection-map-table.html)
+[Seção 24.3.13, “A tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map”](information-schema-ndb-transid-mysql-connection-map-table.html)
 
-[Seção 24.3.18, “A tabela INFORMATION\_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
+[Seção 24.3.18, “A tabela INFORMATION_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
 
-[Seção 21.6.15.33, “Tabela server\_locks do ndbinfo server”](mysql-cluster-ndbinfo-server-locks.html)
+[Seção 21.6.15.33, “Tabela server_locks do ndbinfo server”](mysql-cluster-ndbinfo-server-locks.html)
 
-[Seção 21.6.15.34, “Tabela server\_operations do ndbinfo server”](mysql-cluster-ndbinfo-server-operations.html)
+[Seção 21.6.15.34, “Tabela server_operations do ndbinfo server”](mysql-cluster-ndbinfo-server-operations.html)
 
-[Seção 21.6.15.35, “Tabela server\_transactions do ndbinfo server”](mysql-cluster-ndbinfo-server-transactions.html)
+[Seção 21.6.15.35, “Tabela server_transactions do ndbinfo server”](mysql-cluster-ndbinfo-server-transactions.html)
 
 [Seção 26.4.3.22, “Processlist e visualizações x$processlist”](sys-processlist.html)
 
 [Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
 
-[Seção 26.4.5.13, “A função ps\_is\_thread\_instrumented()”](sys-ps-is-thread-instrumented.html)
+[Seção 26.4.5.13, “A função ps_is_thread_instrumented()”](sys-ps-is-thread-instrumented.html)
 
-[Seção 26.4.4.7, “O procedimento ps\_setup\_disable\_thread()”](sys-ps-setup-disable-thread.html)
+[Seção 26.4.4.7, “O procedimento ps_setup_disable_thread()”](sys-ps-setup-disable-thread.html)
 
-[Seção 26.4.4.11, “O procedimento ps\_setup\_enable\_thread()”](sys-ps-setup-enable-thread.html)
+[Seção 26.4.4.11, “O procedimento ps_setup_enable_thread()”](sys-ps-setup-enable-thread.html)
 
-[Seção 26.4.5.15, “A função ps\_thread\_id()”](sys-ps-thread-id.html)
+[Seção 26.4.5.15, “A função ps_thread_id()”](sys-ps-thread-id.html)
 
 [Seção 25.12.16.4, “Tabela de threads”](performance-schema-threads-table.html)
 
@@ -7020,7 +7020,7 @@
 
 [Seção 13.7.5.31, "Declaração de PROFILES SHOW"](show-profiles.html)
 
-[Seção 24.3.19, “A tabela INFORMATION\_SCHEMA PROFILING”](information-schema-profiling-table.html)
+[Seção 24.3.19, “A tabela INFORMATION_SCHEMA PROFILING”](information-schema-profiling-table.html)
 
 ### MOSTRE PERFIS
 
@@ -7034,7 +7034,7 @@
 
 [Seção 13.7.5.31, "Declaração de PROFILES SHOW"](show-profiles.html)
 
-[Seção 24.3.19, “A tabela INFORMATION\_SCHEMA PROFILING”](information-schema-profiling-table.html)
+[Seção 24.3.19, “A tabela INFORMATION_SCHEMA PROFILING”](information-schema-profiling-table.html)
 
 ### MOSTRE EVENTOS RELAYLOG
 
@@ -7066,11 +7066,11 @@
 
 [Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
 
-[Seção 24.3.10, “Tabelas INFORMATION\_SCHEMA GLOBAL\_STATUS e SESSION\_STATUS”](information-schema-status-table.html)
+[Seção 24.3.10, “Tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS”](information-schema-status-table.html)
 
 ### EXIBIR VARIÁVEIS DE SESSÃO
 
-[Seção 24.3.11, “Tabelas INFORMATION\_SCHEMA GLOBAL\_VARIABLES e SESSION\_VARIABLES”](information-schema-variables-table.html)
+[Seção 24.3.11, “Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES”](information-schema-variables-table.html)
 
 ### MOSTRE ANfitriões de escravos
 
@@ -7150,17 +7150,17 @@
 
 [Seção 16.1.5.5, “Iniciando Replicas de Múltiplos Fontes”](replication-multi-source-start-replica.html)
 
-[Seção 25.12.11.3, “Tabela replication\_applier\_configuration”](performance-schema-replication-applier-configuration-table.html)
+[Seção 25.12.11.3, “Tabela replication_applier_configuration”](performance-schema-replication-applier-configuration-table.html)
 
-[Seção 25.12.11.4, “Tabela replication\_applier\_status”](performance-schema-replication-applier-status-table.html)
+[Seção 25.12.11.4, “Tabela replication_applier_status”](performance-schema-replication-applier-status-table.html)
 
-[Seção 25.12.11.5, “A tabela replication\_applier\_status\_by\_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
+[Seção 25.12.11.5, “A tabela replication_applier_status_by_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
 
-[Seção 25.12.11.6, “A tabela replication\_applier\_status\_by\_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
 
 [Seção 25.12.11.1, “Tabela de configuração de conexão de replicação”](performance-schema-replication-connection-configuration-table.html)
 
-[Seção 25.12.11.2, “A tabela replication\_connection\_status”](performance-schema-replication-connection-status-table.html)
+[Seção 25.12.11.2, “A tabela replication_connection_status”](performance-schema-replication-connection-status-table.html)
 
 [Seção 16.4.4, “Solução de problemas de replicação”](replication-problems.html)
 
@@ -7180,7 +7180,7 @@
 
 [Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld)
 
-\[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
 
 [Seção 21.7, “Replicação de aglomerado do NDB”](mysql-cluster-replication.html)
 
@@ -7204,7 +7204,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-\[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
+[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
 
 [Seção 8.3.9, “Uso de Extensões de Índice”](index-extensions.html)
 
@@ -7218,7 +7218,7 @@
 
 [Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistente”](innodb-statistics-estimation.html)
 
@@ -7248,7 +7248,7 @@
 
 [Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
 
-[Seção 24.3.25, “A tabela INFORMATION\_SCHEMA TABLES”](information-schema-tables-table.html)
+[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
 
 ### Mostrar Tabelas
 
@@ -7268,7 +7268,7 @@
 
 [Seção 21.7.10, “Replicação em Nuvem do NDB: Replicação Bidirecional e Circular”](mysql-cluster-replication-multi-source.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
 [Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
 
@@ -7278,15 +7278,15 @@
 
 [Seção 13.7.5.37, "Instrução SHOW TABLES"](show-tables.html)
 
-[Seção B.3.2.14, “A tabela ‘tbl\_name’ não existe”](não-consegue-encontrar-tabela.html)
+[Seção B.3.2.14, “A tabela ‘tbl_name’ não existe”](não-consegue-encontrar-tabela.html)
 
 [Seção B.3.6.2, “Problemas com tabelas temporárias”](temporary-table-problems.html)
 
-[Seção 24.3.25, “A tabela INFORMATION\_SCHEMA TABLES”](information-schema-tables-table.html)
+[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
 
 [Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
 
-### MOSTRE TABELAS DE algum\_ndb\_database
+### MOSTRE TABELAS DE algum_ndb_database
 
 [Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
 
@@ -7296,7 +7296,7 @@
 
 [Seção 13.7.5.38, "Declaração de TRIGGERS SHOW"](show-triggers.html)
 
-[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION\_SCHEMA”](information-schema-triggers-table.html)
+[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION_SCHEMA”](information-schema-triggers-table.html)
 
 [Seção 23.3.2, “Metadados do gatilho”](trigger-metadata.html)
 
@@ -7338,7 +7338,7 @@
 
 [Seção 13.7.5.39, "Declaração SHOW VARIABLES"](show-variables.html)
 
-\[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
+[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
 
 [Seção 5.1.8, “Usando Variáveis do Sistema”](using-system-variables.html)
 
@@ -7440,7 +7440,7 @@
 
 [Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
 
-### SQL\_AFTER\_MTS\_GAPS
+### SQL_AFTER_MTS_GAPS
 
 [Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
 
@@ -7488,7 +7488,7 @@
 
 [Seção 21.7.10, “Replicação em Nuvem do NDB: Replicação Bidirecional e Circular”](mysql-cluster-replication-multi-source.html)
 
-[Seção 21.5.24, “ndb\_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
 
 [Seção 6.1.2.3, “Senhas e Registro de Ações”](password-logging.html)
 
@@ -7522,7 +7522,7 @@
 
 [Seção 16.1.5.5, “Iniciando Replicas de Múltiplos Fontes”](replication-multi-source-start-replica.html)
 
-\[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
+[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
@@ -7536,7 +7536,7 @@
 
 [Seção 21.7.7, “Usando dois canais de replicação para replicação de clusters NDB”](mysql-cluster-replication-two-channels.html)
 
-### COMEÇAR SLAVE SQL\_THREAD
+### COMEÇAR SLAVE SQL_THREAD
 
 [Seção 13.4.2.2, “Declaração de Filtro de Replicação de Mudança”](change-replication-filter.html)
 
@@ -7544,7 +7544,7 @@
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-### COMEÇAR ESCRAVO ATÉ SQL\_AFTER\_MTS\_GAPS
+### COMEÇAR ESCRAVO ATÉ SQL_AFTER_MTS_GAPS
 
 [Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
 
@@ -7592,7 +7592,7 @@
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 13.3, "Instruções Transacionais e de Bloqueio"](sql-transactional-statements.html)
 
@@ -7610,11 +7610,11 @@
 
 [Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
 
-### STATS\_PERSISTENT=0
+### STATS_PERSISTENT=0
 
 [Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistente”](innodb-statistics-estimation.html)
 
-### STATS\_PERSISTENT=1
+### STATS_PERSISTENT=1
 
 [Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas do Optimizer Persistente”](innodb-persistent-stats.html)
 
@@ -7634,7 +7634,7 @@
 
 [Seção 17.5.4, “Reiniciar um grupo”](group-replication-restarting-group.html)
 
-[Seção 13.4.3.2, "Instrução STOP GROUP\_REPLICATION"](stop-group-replication.html)
+[Seção 13.4.3.2, "Instrução STOP GROUP_REPLICATION"](stop-group-replication.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
@@ -7684,13 +7684,13 @@
 
 [Seção 16.3.7, “Alteração de fontes durante o failover”](replication-solutions-switch.html)
 
-[Seção 25.12.11.6, “A tabela replication\_applier\_status\_by\_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
 
 [Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
 
 [Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
 
-### PARE SLAVE SQL\_THREAD
+### PARE SLAVE SQL_THREAD
 
 [Seção 13.4.2.2, “Declaração de Filtro de Replicação de Mudança”](change-replication-filter.html)
 
@@ -7698,13 +7698,13 @@
 
 ### T
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### TABELA
 
 [Seção 22.2.2, “Divisão de Lista”](partitioning-list.html)
 
-[Seção 21.6.15.27, “Tabela ndbinfo memory\_per\_fragment”](mysql-cluster-ndbinfo-memory-per-fragment.html)
+[Seção 21.6.15.27, “Tabela ndbinfo memory_per_fragment”](mysql-cluster-ndbinfo-memory-per-fragment.html)
 
 ### TRUNCAR PARTIÇÃO
 
@@ -7764,7 +7764,7 @@
 
 [Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
 
-[Seção 21.5.9, “ndb\_delete\_all — Deletar todas as linhas de uma tabela NDB”](mysql-cluster-programs-ndb-delete-all.html)
+[Seção 21.5.9, “ndb_delete_all — Deletar todas as linhas de uma tabela NDB”](mysql-cluster-programs-ndb-delete-all.html)
 
 [Seção 25.12.15.5, “Resumo da Tabela de Objetos em Espera”](performance-schema-objects-summary-global-by-type-table.html)
 
@@ -7808,99 +7808,99 @@
 
 [Seção 25.12.8.1, “Tabela de contas”](performance-schema-accounts-table.html)
 
-[Seção 25.12.3.1, “A tabela cond\_instances”](performance-schema-cond-instances-table.html)
+[Seção 25.12.3.1, “A tabela cond_instances”](performance-schema-cond-instances-table.html)
 
-[Seção 25.12.5.1, “A tabela events\_stages\_current”](performance-schema-events-stages-current-table.html)
+[Seção 25.12.5.1, “A tabela events_stages_current”](performance-schema-events-stages-current-table.html)
 
-[Seção 25.12.5.2, “A tabela events\_stages\_history”](performance-schema-events-stages-history-table.html)
+[Seção 25.12.5.2, “A tabela events_stages_history”](performance-schema-events-stages-history-table.html)
 
-[Seção 25.12.5.3, “A tabela events\_stages\_history\_long”](performance-schema-events-stages-history-long-table.html)
+[Seção 25.12.5.3, “A tabela events_stages_history_long”](performance-schema-events-stages-history-long-table.html)
 
-[Seção 25.12.6.1, “A tabela events\_statements\_current”](performance-schema-events-statements-current-table.html)
+[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
 
-[Seção 25.12.6.2, “Tabela events\_statements\_history”](performance-schema-events-statements-history-table.html)
+[Seção 25.12.6.2, “Tabela events_statements_history”](performance-schema-events-statements-history-table.html)
 
-[Seção 25.12.6.3, “A tabela history\_long\_events\_statements”](performance-schema-events-statements-history-long-table.html)
+[Seção 25.12.6.3, “A tabela history_long_events_statements”](performance-schema-events-statements-history-long-table.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
-[Seção 25.12.7.2, “Tabela events\_transactions\_history”](performance-schema-events-transactions-history-table.html)
+[Seção 25.12.7.2, “Tabela events_transactions_history”](performance-schema-events-transactions-history-table.html)
 
-[Seção 25.12.7.3, “A tabela events\_transactions\_history\_long”](performance-schema-events-transactions-history-long-table.html)
+[Seção 25.12.7.3, “A tabela events_transactions_history_long”](performance-schema-events-transactions-history-long-table.html)
 
-[Seção 25.12.4.1, "A tabela events\_waits\_current"](performance-schema-events-waits-current-table.html)
+[Seção 25.12.4.1, "A tabela events_waits_current"](performance-schema-events-waits-current-table.html)
 
-[Seção 25.12.4.2, “Tabela events\_waits\_history”](performance-schema-events-waits-history-table.html)
+[Seção 25.12.4.2, “Tabela events_waits_history”](performance-schema-events-waits-history-table.html)
 
-[Seção 25.12.4.3, “A tabela history\_long\_events\_waits”](performance-schema-events-waits-history-long-table.html)
+[Seção 25.12.4.3, “A tabela history_long_events_waits”](performance-schema-events-waits-history-long-table.html)
 
-[Seção 25.12.3.2, “A tabela file\_instances”](performance-schema-file-instances-table.html)
+[Seção 25.12.3.2, “A tabela file_instances”](performance-schema-file-instances-table.html)
 
-[Seção 25.12.16.1, “A tabela host\_cache”](performance-schema-host-cache-table.html)
+[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
 
 [Seção 25.12.8.2, “A tabela de hosts”](performance-schema-hosts-table.html)
 
-[Seção 24.4.22, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_INDEXES”](information-schema-innodb-sys-indexes-table.html)
+[Seção 24.4.22, “A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES”](information-schema-innodb-sys-indexes-table.html)
 
-[Seção 24.4.23, “A tabela INFORMATION\_SCHEMA INNODB\_SYS\_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
 
 [Seção 14.21.6, “O Plugin InnoDB memcached e Replicação”](innodb-memcached-replication.html)
 
 [Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
 
-[Seção 25.12.12.1, “A tabela metadata\_locks”](performance-schema-metadata-locks-table.html)
+[Seção 25.12.12.1, “A tabela metadata_locks”](performance-schema-metadata-locks-table.html)
 
-[Seção 25.12.3.3, “A tabela mutex\_instances”](performance-schema-mutex-instances-table.html)
+[Seção 25.12.3.3, “A tabela mutex_instances”](performance-schema-mutex-instances-table.html)
 
-[Seção 25.12.16.2, “A tabela performance\_timers”](performance-schema-performance-timers-table.html)
+[Seção 25.12.16.2, “A tabela performance_timers”](performance-schema-performance-timers-table.html)
 
-[Seção 25.12.6.4, “Tabela prepared\_statements\_instances”](performance-schema-prepared-statements-instances-table.html)
+[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
 
 [Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
 
-[Seção 26.4.4.24, “O procedimento ps\_truncate\_all\_tables()”](sys-ps-truncate-all-tables.html)
+[Seção 26.4.4.24, “O procedimento ps_truncate_all_tables()”](sys-ps-truncate-all-tables.html)
 
-[Seção 25.12.11.3, “Tabela replication\_applier\_configuration”](performance-schema-replication-applier-configuration-table.html)
+[Seção 25.12.11.3, “Tabela replication_applier_configuration”](performance-schema-replication-applier-configuration-table.html)
 
-[Seção 25.12.11.4, “Tabela replication\_applier\_status”](performance-schema-replication-applier-status-table.html)
+[Seção 25.12.11.4, “Tabela replication_applier_status”](performance-schema-replication-applier-status-table.html)
 
-[Seção 25.12.11.5, “A tabela replication\_applier\_status\_by\_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
+[Seção 25.12.11.5, “A tabela replication_applier_status_by_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
 
-[Seção 25.12.11.6, “A tabela replication\_applier\_status\_by\_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
 
 [Seção 25.12.11.1, “Tabela de configuração de conexão de replicação”](performance-schema-replication-connection-configuration-table.html)
 
-[Seção 25.12.11.2, “A tabela replication\_connection\_status”](performance-schema-replication-connection-status-table.html)
+[Seção 25.12.11.2, “A tabela replication_connection_status”](performance-schema-replication-connection-status-table.html)
 
-[Seção 25.12.11.7, “Tabela replication\_group\_member\_stats”](performance-schema-replication-group-member-stats-table.html)
+[Seção 25.12.11.7, “Tabela replication_group_member_stats”](performance-schema-replication-group-member-stats-table.html)
 
-[Seção 25.12.11.8, “Tabela replication\_group\_members”](performance-schema-replication-group-members-table.html)
+[Seção 25.12.11.8, “Tabela replication_group_members”](performance-schema-replication-group-members-table.html)
 
-[Seção 25.12.3.4, “A tabela rwlock\_instances”](performance-schema-rwlock-instances-table.html)
+[Seção 25.12.3.4, “A tabela rwlock_instances”](performance-schema-rwlock-instances-table.html)
 
-[Seção 25.12.9.1, “Tabela session\_account\_connect\_attrs”](performance-schema-session-account-connect-attrs-table.html)
+[Seção 25.12.9.1, “Tabela session_account_connect_attrs”](performance-schema-session-account-connect-attrs-table.html)
 
-[Seção 25.12.9.2, “Tabela session\_connect\_attrs”](performance-schema-session-connect-attrs-table.html)
+[Seção 25.12.9.2, “Tabela session_connect_attrs”](performance-schema-session-connect-attrs-table.html)
 
-[Seção 25.12.2.1, “A tabela setup\_actors”](performance-schema-setup-actors-table.html)
+[Seção 25.12.2.1, “A tabela setup_actors”](performance-schema-setup-actors-table.html)
 
-[Seção 25.12.2.2, “A tabela setup\_consumers”](performance-schema-setup-consumers-table.html)
+[Seção 25.12.2.2, “A tabela setup_consumers”](performance-schema-setup-consumers-table.html)
 
-[Seção 25.12.2.3, “Tabela setup\_instruments”](performance-schema-setup-instruments-table.html)
+[Seção 25.12.2.3, “Tabela setup_instruments”](performance-schema-setup-instruments-table.html)
 
-[Seção 25.12.2.4, “Tabela setup\_objects”](performance-schema-setup-objects-table.html)
+[Seção 25.12.2.4, “Tabela setup_objects”](performance-schema-setup-objects-table.html)
 
-[Seção 25.12.2.5, “Tabela setup\_timers”](performance-schema-setup-timers-table.html)
+[Seção 25.12.2.5, “Tabela setup_timers”](performance-schema-setup-timers-table.html)
 
-[Seção 25.12.3.5, “A tabela socket\_instances”](performance-schema-socket-instances-table.html)
+[Seção 25.12.3.5, “A tabela socket_instances”](performance-schema-socket-instances-table.html)
 
-[Seção 25.12.12.2, “Tabela\_handles”](performance-schema-table-handles-table.html)
+[Seção 25.12.12.2, “Tabela_handles”](performance-schema-table-handles-table.html)
 
-[Seção 25.12.15.7.2, “A tabela \_io\_waits\_summary\_by\_index\_usage”](performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-index-usage-table)
+[Seção 25.12.15.7.2, “A tabela _io_waits_summary_by_index_usage”](performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-index-usage-table)
 
-[Seção 25.12.15.7.1, “A tabela table\_io\_waits\_summary\_by\_table”](performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-table-table)
+[Seção 25.12.15.7.1, “A tabela table_io_waits_summary_by_table”](performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-table-table)
 
-[Seção 25.12.15.7.3, “A tabela\_lock\_waits\_summary\_by\_table”](performance-schema-table-wait-summary-tables.html#performance-schema-table-lock-waits-summary-by-table)
+[Seção 25.12.15.7.3, “A tabela_lock_waits_summary_by_table”](performance-schema-table-wait-summary-tables.html#performance-schema-table-lock-waits-summary-by-table)
 
 [Seção 25.12.16.4, “Tabela de threads”](performance-schema-threads-table.html)
 
@@ -7916,13 +7916,13 @@
 
 [Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
 
-### TRUNCATE TABLE performance\_schema.host\_cache
+### TRUNCATE TABLE performance_schema.host_cache
 
 [Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
 
 ### U
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### DESINSTALE O PLUGIN
 
@@ -7946,7 +7946,7 @@
 
 [Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
 
-[Seção 4.4.3, “mysql\_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
+[Seção 4.4.3, “mysql_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
 
 [Seção 6.4.1.10, “Autenticação Pluggable sem Login”](no-login-pluggable-authentication.html)
 
@@ -7964,11 +7964,11 @@
 
 [Seção 6.4.1.12, “Teste de Autenticação Pluggable”](test-pluggable-authentication.html)
 
-[Seção 24.3.17, “A Tabela INFORMATION\_SCHEMA PLUGINS”](information-schema-plugins-table.html)
+[Seção 24.3.17, “A Tabela INFORMATION_SCHEMA PLUGINS”](information-schema-plugins-table.html)
 
 [Seção 13.7.3.4, "Declaração de DESINSTALAR PLUGIN"](uninstall-plugin.html)
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring\_aws”](keyring-aws-plugin.html)
+[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
 
 [Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
 
@@ -8082,7 +8082,7 @@
 
 [Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
 
-[Seção 14.6.1.6, “Tratamento de AUTO\_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
 
 [Seção 14.1.2, “Melhores Práticas para Tabelas InnoDB”](innodb-best-practices.html)
 
@@ -8150,7 +8150,7 @@
 
 [Seção 8.2.1.18, "Otimização de Chamadas de Função"](function-optimization.html)
 
-\[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Capítulo 12, *Funções e Operadores*] (functions.html)
 
 [Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
 
@@ -8296,17 +8296,17 @@
 
 [Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
 
-[Seção 10.8.5, “A Colagem Binária Comparada às Colagens \_bin”](charset-binary-collations.html)
+[Seção 10.8.5, “A Colagem Binária Comparada às Colagens _bin”](charset-binary-collations.html)
 
 [Seção 5.4.4, “O Log Binário”](binary-log.html)
 
 [Seção 15.6, “O Motor de Armazenamento BLACKHOLE”](blackhole-storage-engine.html)
 
-[Seção 24.4.25, “A visão INFORMATION\_SCHEMA INNODB\_SYS\_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
 
-[Seção 24.3.25, “A tabela INFORMATION\_SCHEMA TABLES”](information-schema-tables-table.html)
+[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
 
-[Seção 24.3.31, “A Tabela INFORMATION\_SCHEMA VIEWS”](information-schema-views-table.html)
+[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
 
 [Seção 1.2.2, “Principais características do MySQL”](features.html)
 
@@ -8316,7 +8316,7 @@
 
 [Seção 5.1.16, “O processo de desligamento do servidor”](server-shutdown.html)
 
-[Seção 26.4.2.3, “O gatilho sys\_config\_update\_set\_user”](sys-sys-config-update-set-user.html)
+[Seção 26.4.2.3, “O gatilho sys_config_update_set_user”](sys-sys-config-update-set-user.html)
 
 [Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
 
@@ -8408,7 +8408,7 @@
 
 [Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
 
-### USE db\_name
+### USE db_name
 
 [Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
 
@@ -8418,7 +8418,7 @@
 
 ### W
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### QUANDO
 
@@ -8438,7 +8438,7 @@
 
 ### X
 
-\[[index topo](dynindex-statement.html#stmt-index-topo)]
+[[index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### XA COMEÇAR
 
@@ -8452,7 +8452,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 2.10.4, “Atualização de Instalações Binárias ou Baseadas em Pacotes do MySQL no Unix/Linux”](upgrade-binary-package.html)
 
@@ -8462,7 +8462,7 @@
 
 [Seção 13.3.7.3, “Restrições às Transações XA”](xa-restrições.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 13.3.7.1, "Instruções SQL de Transação XA"](xa-statements.html)
 
@@ -8472,7 +8472,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 13.3.7.2, “Estados de Transação XA”](xa-states.html)
 
@@ -8482,7 +8482,7 @@
 
 [Seção 13.3.7.3, “Restrições às Transações XA”](xa-restrições.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 2.10.4, “Atualização de Instalações Binárias ou Baseadas em Pacotes do MySQL no Unix/Linux”](upgrade-binary-package.html)
 
@@ -8498,7 +8498,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 2.10.4, “Atualização de Instalações Binárias ou Baseadas em Pacotes do MySQL no Unix/Linux”](upgrade-binary-package.html)
 
@@ -8512,7 +8512,7 @@
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 25.12.7.1, “A tabela events\_transactions\_current”](performance-schema-events-transactions-current-table.html)
+[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
 
 [Seção 13.3.7.1, "Instruções SQL de Transação XA"](xa-statements.html)
 

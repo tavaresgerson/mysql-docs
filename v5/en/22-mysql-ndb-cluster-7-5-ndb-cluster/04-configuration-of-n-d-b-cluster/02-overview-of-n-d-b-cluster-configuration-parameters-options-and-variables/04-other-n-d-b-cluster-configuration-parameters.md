@@ -38,11 +38,11 @@ The following parameters apply to the `config.ini` file's `[tcp]` section:
 
 * `SendSignalId`: Sends ID in each signal. Used in trace files. Defaults to true in debug builds.
 
-* `TCP_MAXSEG_SIZE`: Value used for TCP\_MAXSEG.
+* `TCP_MAXSEG_SIZE`: Value used for TCP_MAXSEG.
 
-* `TCP_RCV_BUF_SIZE`: Value used for SO\_RCVBUF.
+* `TCP_RCV_BUF_SIZE`: Value used for SO_RCVBUF.
 
-* `TCP_SND_BUF_SIZE`: Value used for SO\_SNDBUF.
+* `TCP_SND_BUF_SIZE`: Value used for SO_SNDBUF.
 
 * `TcpBind_INADDR_ANY`: Bind InAddrAny instead of host name for server part of connection.
 

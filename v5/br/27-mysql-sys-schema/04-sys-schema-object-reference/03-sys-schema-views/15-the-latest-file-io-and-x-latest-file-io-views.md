@@ -1,4 +1,4 @@
-#### 26.4.3.15 As vistas latest\_file\_io e x$latest\_file\_io
+#### 26.4.3.15 As vistas latest_file_io e x$latest_file_io
 
 Esses pontos de vista resumem a atividade de E/S de arquivos, agrupados por arquivo e thread. Por padrão, as linhas são ordenadas com a I/O mais recente em primeiro lugar.
 

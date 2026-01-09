@@ -166,7 +166,7 @@ Create Table: CREATE TABLE `ti` (
 1 row in set (0.00 sec)
 ```
 
-Você pode ver usando **ndb\_desc** que as colunas indexadas (texto em negrito) agora usam armazenamento em memória em vez de armazenamento em disco:
+Você pode ver usando **ndb_desc** que as colunas indexadas (texto em negrito) agora usam armazenamento em memória em vez de armazenamento em disco:
 
 ```sql
 $> ./ndb_desc -d test t1
@@ -243,4 +243,4 @@ mysql> DROP LOGFILE GROUP lg_1
 
 Essas declarações devem ser executadas na ordem mostrada, exceto que as duas declarações `ALTER TABLESPACE ... DROP DATAFILE` podem ser executadas em qualquer ordem.
 
-Você pode obter informações sobre os arquivos de dados usados pelas tabelas de Disk Data consultando a tabela `FILES` no banco de dados `INFORMATION_SCHEMA`. Uma linha extra “`NULL`” fornece informações adicionais sobre os arquivos do log de desfazer. Para mais informações e exemplos, consulte Seção 24.3.9, “A Tabela INFORMATION\_SCHEMA FILES”.
+Você pode obter informações sobre os arquivos de dados usados pelas tabelas de Disk Data consultando a tabela `FILES` no banco de dados `INFORMATION_SCHEMA`. Uma linha extra “`NULL`” fornece informações adicionais sobre os arquivos do log de desfazer. Para mais informações e exemplos, consulte Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.

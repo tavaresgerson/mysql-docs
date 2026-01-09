@@ -64,7 +64,7 @@ Suponha que um dos membros (`s3` no exemplo a seguir) esteja irremediavelmente c
       s3> rm -rf /var/lib/mysql/*
       ```
 
-      Se as variáveis de sistema `innodb_data_home_dir`, `innodb_log_group_home_dir` e \[`innodb_undo_directory`]\(innodb-parameters.html#sysvar\_innodb\_undo\_directory] apontarem para diretórios diferentes do diretório de dados, eles também devem ser limpos; caso contrário, a operação de restauração falhará.
+      Se as variáveis de sistema `innodb_data_home_dir`, `innodb_log_group_home_dir` e [`innodb_undo_directory`]\(innodb-parameters.html#sysvar_innodb_undo_directory] apontarem para diretórios diferentes do diretório de dados, eles também devem ser limpos; caso contrário, a operação de restauração falhará.
 
    4. Restaure o backup do `s2` no host para `s3`:
 
@@ -89,7 +89,7 @@ Suponha que um dos membros (`s3` no exemplo a seguir) esteja irremediavelmente c
 
       Ser capaz de restaurar o log binário e o log de retransmissão para os caminhos de arquivo corretos facilita o processo de restauração; se isso for impossível por algum motivo, consulte Reestruturar o membro falhado para se reiniciar como um novo membro.
 
-3. *Restaure o arquivo `auto.cnf` para s3.* Para voltar a se juntar ao grupo de replicação, o membro restaurado *deve* ter o mesmo `[server_uuid]` (replication-options.html#sysvar\_server\_uuid) que ele usou para se juntar ao grupo antes. Forneça o antigo UUID do servidor copiando o arquivo `auto.cnf` preservado no passo 2 acima para o diretório de dados do membro restaurado.
+3. *Restaure o arquivo `auto.cnf` para s3.* Para voltar a se juntar ao grupo de replicação, o membro restaurado *deve* ter o mesmo `[server_uuid]` (replication-options.html#sysvar_server_uuid) que ele usou para se juntar ao grupo antes. Forneça o antigo UUID do servidor copiando o arquivo `auto.cnf` preservado no passo 2 acima para o diretório de dados do membro restaurado.
 
    Nota
 
@@ -111,7 +111,7 @@ Suponha que um dos membros (`s3` no exemplo a seguir) esteja irremediavelmente c
    mysql> START GROUP_REPLICATION;
    ```
 
-   Antes que a instância restaurada possa se tornar um membro online do grupo, ela precisa aplicar quaisquer transações que tenham ocorrido no grupo após a cópia de segurança ter sido feita; isso é feito usando o mecanismo de recuperação distribuída da Replicação de Grupo, e o processo começa após a declaração START GROUP\_REPLICATION ter sido emitida. Para verificar o status do membro da instância restaurada, execute:
+   Antes que a instância restaurada possa se tornar um membro online do grupo, ela precisa aplicar quaisquer transações que tenham ocorrido no grupo após a cópia de segurança ter sido feita; isso é feito usando o mecanismo de recuperação distribuída da Replicação de Grupo, e o processo começa após a declaração START GROUP_REPLICATION ter sido emitida. Para verificar o status do membro da instância restaurada, execute:
 
    ```sql
    mysql> SELECT member_host, member_port, member_state FROM performance_schema.replication_group_members;
@@ -167,7 +167,7 @@ O membro foi agora totalmente restaurado a partir do backup e funciona como um m
       s3> rm -rf /var/lib/mysql/*
       ```
 
-      Se as variáveis de sistema `innodb_data_home_dir`, `innodb_log_group_home_dir` e \[`innodb_undo_directory`]\(innodb-parameters.html#sysvar\_innodb\_undo\_directory] apontarem para diretórios diferentes do diretório de dados, eles também devem ser limpos; caso contrário, a operação de restauração falhará.
+      Se as variáveis de sistema `innodb_data_home_dir`, `innodb_log_group_home_dir` e [`innodb_undo_directory`]\(innodb-parameters.html#sysvar_innodb_undo_directory] apontarem para diretórios diferentes do diretório de dados, eles também devem ser limpos; caso contrário, a operação de restauração falhará.
 
    3. Restaure o backup de `s2` no host de `s3`. Com essa abordagem, estamos reconstruindo `s3` como um novo membro, para o qual não precisamos nem queremos usar os logs binários e de retransmissão antigos no backup; portanto, se esses logs tiverem sido incluídos no seu backup, exclua-os usando as opções `--skip-binlog` e `--skip-relaylog`:
 
@@ -227,7 +227,7 @@ O membro foi agora totalmente restaurado a partir do backup e funciona como um m
    mysql> START GROUP_REPLICATION;
    ```
 
-   Antes que a instância restaurada possa se tornar um membro online do grupo, ela precisa aplicar quaisquer transações que tenham ocorrido no grupo após a cópia de segurança ter sido feita; isso é feito usando o mecanismo de recuperação distribuída da Replicação de Grupo, e o processo começa após a declaração START GROUP\_REPLICATION ter sido emitida. Para verificar o status do membro da instância restaurada, execute:
+   Antes que a instância restaurada possa se tornar um membro online do grupo, ela precisa aplicar quaisquer transações que tenham ocorrido no grupo após a cópia de segurança ter sido feita; isso é feito usando o mecanismo de recuperação distribuída da Replicação de Grupo, e o processo começa após a declaração START GROUP_REPLICATION ter sido emitida. Para verificar o status do membro da instância restaurada, execute:
 
    ```sql
    mysql> SELECT member_host, member_port, member_state FROM performance_schema.replication_group_members;

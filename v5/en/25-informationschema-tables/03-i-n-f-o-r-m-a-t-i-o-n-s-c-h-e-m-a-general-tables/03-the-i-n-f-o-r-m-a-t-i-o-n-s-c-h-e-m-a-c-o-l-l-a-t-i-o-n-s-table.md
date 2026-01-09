@@ -1,4 +1,4 @@
-### 24.3.3 The INFORMATION\_SCHEMA COLLATIONS Table
+### 24.3.3 The INFORMATION_SCHEMA COLLATIONS Table
 
 The [`COLLATIONS`](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table") table provides information about collations for each character set.
 

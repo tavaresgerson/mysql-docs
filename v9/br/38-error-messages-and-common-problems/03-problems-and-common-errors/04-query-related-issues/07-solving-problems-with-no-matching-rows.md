@@ -12,7 +12,7 @@ Se você tiver uma consulta complicada que usa muitas tabelas, mas que não reto
 
 5. Se você está comparando colunas `FLOAT` - `FLOAT`, `DOUBLE") ou `DOUBLE` - `FLOAT, DOUBLE") com números que têm decimais, você não pode usar comparações de igualdade (`=`). Esse problema é comum na maioria das linguagens de programação porque nem todos os valores de ponto flutuante podem ser armazenados com precisão exata. Em alguns casos, alterar `FLOAT` - `FLOAT, DOUBLE") para `DOUBLE` - `FLOAT, DOUBLE") resolve esse problema. Veja a Seção B.3.4.8, “Problemas com Valores de Ponto Flutuante”.
 
-6. Se você ainda não conseguir descobrir o que está errado, crie um teste mínimo que possa ser executado com `mysql test < query.sql` que mostre seus problemas. Você pode criar um arquivo de teste drenando as tabelas com **mysqldump --quick db\_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**. Abra o arquivo em um editor, remova algumas linhas de inserção (se houver mais do que o necessário para demonstrar o problema) e adicione sua instrução `SELECT` no final do arquivo.
+6. Se você ainda não conseguir descobrir o que está errado, crie um teste mínimo que possa ser executado com `mysql test < query.sql` que mostre seus problemas. Você pode criar um arquivo de teste drenando as tabelas com **mysqldump --quick db_name *`tbl_name_1`* ... *`tbl_name_n`* > query.sql**. Abra o arquivo em um editor, remova algumas linhas de inserção (se houver mais do que o necessário para demonstrar o problema) e adicione sua instrução `SELECT` no final do arquivo.
 
 Verifique se o arquivo de teste demonstra o problema executando esses comandos:
 

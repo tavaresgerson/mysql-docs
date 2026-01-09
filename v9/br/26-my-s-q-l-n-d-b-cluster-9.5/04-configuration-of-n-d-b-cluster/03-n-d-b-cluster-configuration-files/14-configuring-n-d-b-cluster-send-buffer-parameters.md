@@ -8,7 +8,7 @@ Para ser compatível com configurações existentes, este parâmetro assume como
 
 **Tabela 25.22 Tipos de transportadores com tamanhos máximos de buffers de envio**
 
-<table><thead><tr> <th>Transportador</th> <th>Tamanho Máximo do Buffer de Envio (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td><a class="link" href="mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory"><code>SendBufferMemory</code></a> (padrão = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
+<table><thead><tr> <th>Transportador</th> <th>Tamanho Máximo do Buffer de Envio (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td><code>SendBufferMemory</code> (padrão = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
 
 Isso permite que as configurações existentes funcionem de maneira quase idêntica àquelas do NDB Cluster 6.3 e versões anteriores, com a mesma quantidade de memória e espaço de buffer de envio disponível para cada transportador. No entanto, a memória que não é usada por um transportador não está disponível para outros transportadores.
 

@@ -14,22 +14,22 @@ Muitas das opções para o **mysqld_safe** são as mesmas das opções para o **
 
 Opções desconhecidas para o **mysqld_safe** são passadas para o **mysqld** se forem especificadas na linha de comando, mas ignoradas se forem especificadas no grupo `[mysqld_safe]` de um arquivo de opções. Consulte a Seção 6.2.2.2, “Uso de arquivos de opções”.
 
-**mysqld\_safe** lê todas as opções dos seções `[mysqld]`, `[server]` e `[mysqld_safe]` nos arquivos de opções. Por exemplo, se você especificar uma seção `[mysqld]` assim:
+**mysqld_safe** lê todas as opções dos seções `[mysqld]`, `[server]` e `[mysqld_safe]` nos arquivos de opções. Por exemplo, se você especificar uma seção `[mysqld]` assim:
 
 ```
 [mysqld]
 log-error=error.log
 ```
 
-Para compatibilidade com versões anteriores, **mysqld\_safe** também lê seções `[safe_mysqld]`, mas para ser atual, você deve renomear essas seções para `[mysqld_safe]`.
+Para compatibilidade com versões anteriores, **mysqld_safe** também lê seções `[safe_mysqld]`, mas para ser atual, você deve renomear essas seções para `[mysqld_safe]`.
 
-**mysqld\_safe** aceita opções na linha de comando e nos arquivos de opções, conforme descrito na tabela a seguir. Para informações sobre os arquivos de opções usados pelos programas MySQL, consulte a Seção 6.2.2.2, “Usando arquivos de opções”.
+**mysqld_safe** aceita opções na linha de comando e nos arquivos de opções, conforme descrito na tabela a seguir. Para informações sobre os arquivos de opções usados pelos programas MySQL, consulte a Seção 6.2.2.2, “Usando arquivos de opções”.
 
-**Tabela 6.7 Opções mysqld\_safe**
+**Tabela 6.7 Opções mysqld_safe**
 
 <table frame="box" rules="all" summary="Opções de linha de comando disponíveis para mysqld_safe.">
 <col style="width: 35%"/><col style="width: 64%"/>
-<thead><tr><th>Nome da Opção</th> <th>Descrição</th> </tr></thead><tbody><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_basedir">--basedir</a></td> <td>Caminho para o diretório de instalação do MySQL</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_core-file-size">--core-file-size</a></td> <td>Tamanho do arquivo de núcleo que o mysqld deve ser capaz de criar</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_datadir">--datadir</a></td> <td>Caminho para o diretório de dados</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_defaults-extra-file">--defaults-extra-file</a></td> <td>Ler o arquivo de opção nomeado além dos arquivos de opção usuais</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_defaults-file">--defaults-file</a></td> <td>Ler apenas o arquivo de opção nomeado</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_help">--help</a></td> <td>Exibir a mensagem de ajuda e sair</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_ledir">--ledir</a></td> <td>Caminho para o diretório onde o servidor está localizado</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_log-error">--log-error</a></td> <td>Escrever o log de erro em um arquivo nomeado</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_malloc-lib">--malloc-lib</a></td> <td>Biblioteca alternativa de alocação de memória para o mysqld</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_mysqld">--mysqld</a></td> <td>Nome do programa do servidor a ser iniciado (no diretório ledir)</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_mysqld-safe-log-timestamps">--mysqld-safe-log-timestamps</a></td> <td>Formato de data e hora para o log de registro</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_mysqld-version">--mysqld-version</a></td> <td>Sufix para o nome do programa do servidor</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_nice">--nice</a></td> <td>Usar o programa nice para definir a prioridade de agendamento do servidor</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_no-defaults">--no-defaults</a></td> <td>Ler nenhum arquivo de opção</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_open-files-limit">--open-files-limit</a></td> <td>Número de arquivos que o mysqld deve ser capaz de abrir</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_pid-file">--pid-file</a></td> <td>Nome do arquivo de ID do processo do servidor</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_plugin-dir">--plugin-dir</a></td> <td>Diretório onde os plugins são instalados</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_port">--port</a></td> <td>Número de porta no qual ouvir conexões TCP/IP</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_skip-kill-mys
+<thead><tr><th>Nome da Opção</th> <th>Descrição</th> </tr></thead><tbody><tr><td>--basedir</td> <td>Caminho para o diretório de instalação do MySQL</td> </tr><tr><td>--core-file-size</td> <td>Tamanho do arquivo de núcleo que o mysqld deve ser capaz de criar</td> </tr><tr><td>--datadir</td> <td>Caminho para o diretório de dados</td> </tr><tr><td>--defaults-extra-file</td> <td>Ler o arquivo de opção nomeado além dos arquivos de opção usuais</td> </tr><tr><td>--defaults-file</td> <td>Ler apenas o arquivo de opção nomeado</td> </tr><tr><td>--help</td> <td>Exibir a mensagem de ajuda e sair</td> </tr><tr><td>--ledir</td> <td>Caminho para o diretório onde o servidor está localizado</td> </tr><tr><td>--log-error</td> <td>Escrever o log de erro em um arquivo nomeado</td> </tr><tr><td>--malloc-lib</td> <td>Biblioteca alternativa de alocação de memória para o mysqld</td> </tr><tr><td>--mysqld</td> <td>Nome do programa do servidor a ser iniciado (no diretório ledir)</td> </tr><tr><td>--mysqld-safe-log-timestamps</td> <td>Formato de data e hora para o log de registro</td> </tr><tr><td>--mysqld-version</td> <td>Sufix para o nome do programa do servidor</td> </tr><tr><td>--nice</td> <td>Usar o programa nice para definir a prioridade de agendamento do servidor</td> </tr><tr><td>--no-defaults</td> <td>Ler nenhum arquivo de opção</td> </tr><tr><td>--open-files-limit</td> <td>Número de arquivos que o mysqld deve ser capaz de abrir</td> </tr><tr><td>--pid-file</td> <td>Nome do arquivo de ID do processo do servidor</td> </tr><tr><td>--plugin-dir</td> <td>Diretório onde os plugins são instalados</td> </tr><tr><td>--port</td> <td>Número de porta no qual ouvir conexões TCP/IP</td> </tr><tr><td><a class="link" href="mysqld-safe.html#option_mysqld_safe_skip-kill-mys
 
 * `--help`
 
@@ -146,12 +146,12 @@ Escreva o log de erro no arquivo especificado. Veja a Seção 7.4.2, “O Log de
     </tr>
     <tr>
       <th>Valores válidos</th>
-      <td><p class="valid-value"><code>system</code></p><p class="valid-value"><code>hyphen</code></p><p class="valid-value"><code>legacy</code></p></td>
+      <td><p><code>system</code></p><p><code>hyphen</code></p><p><code>legacy</code></p></td>
     </tr>
   </tbody>
   </table>
 
-Esta opção controla o formato dos timestamps na saída de log gerada pelo **mysqld\_safe**. A lista a seguir descreve os valores permitidos. Para qualquer outro valor, o **mysqld\_safe** registra uma mensagem de aviso e usa o formato `UTC`.
+Esta opção controla o formato dos timestamps na saída de log gerada pelo **mysqld_safe**. A lista a seguir descreve os valores permitidos. Para qualquer outro valor, o **mysqld_safe** registra uma mensagem de aviso e usa o formato `UTC`.
 
   + `UTC`, `utc`
 
@@ -163,11 +163,11 @@ Esta opção controla o formato dos timestamps na saída de log gerada pelo **my
 
   + `HYPHEN`, `hyphen`
 
-    Formato `YY-MM-DD h:mm:ss`, como no **mysqld\_safe** para o MySQL 5.6.
+    Formato `YY-MM-DD h:mm:ss`, como no **mysqld_safe** para o MySQL 5.6.
 
   + `LEGACY`, `legacy`
 
-    Formato `YYMMDD hh:mm:ss`, como no **mysqld\_safe** antes do MySQL 5.6.
+    Formato `YYMMDD hh:mm:ss`, como no **mysqld_safe** antes do MySQL 5.6.
 
 * `--malloc-lib=[lib_name]`
 
@@ -179,7 +179,7 @@ Esta opção controla o formato dos timestamps na saída de log gerada pelo **my
 
   + Se a opção não for fornecida ou for fornecida sem um valor (`--malloc-lib=`), o `LD_PRELOAD` não é modificado e não há tentativa de usar o `tcmalloc`.
 
-  + Antes do MySQL 8.0.21, se a opção for fornecida como `--malloc-lib=tcmalloc`, o **mysqld\_safe** procura por uma biblioteca `tcmalloc` em `/usr/lib`. Se `tmalloc` for encontrado, o nome do caminho é adicionado ao início do valor do `LD_PRELOAD` para o **mysqld**. Se `tcmalloc` não for encontrado, o **mysqld\_safe** aborta com um erro.
+  + Antes do MySQL 8.0.21, se a opção for fornecida como `--malloc-lib=tcmalloc`, o **mysqld_safe** procura por uma biblioteca `tcmalloc` em `/usr/lib`. Se `tmalloc` for encontrado, o nome do caminho é adicionado ao início do valor do `LD_PRELOAD` para o **mysqld**. Se `tcmalloc` não for encontrado, o **mysqld_safe** aborta com um erro.
 
 A partir do MySQL 8.0.21, `tcmalloc` não é um valor permitido para a opção `--malloc-lib`.
 
@@ -217,7 +217,7 @@ A partir do MySQL 8.0.21, `tcmalloc` não é um valor permitido para a opção `
 
   <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
-  Esta opção é semelhante à opção `--mysqld`, mas você especifica apenas o sufixo para o nome do programa do servidor. O nome base é assumido como **mysqld**. Por exemplo, se você usar `--mysqld-version=debug`, **mysqld\_safe** inicia o programa **mysqld-debug** no diretório `ledir`. Se o argumento para `--mysqld-version` estiver vazio, **mysqld\_safe** usa **mysqld** no diretório `ledir`.
+  Esta opção é semelhante à opção `--mysqld`, mas você especifica apenas o sufixo para o nome do programa do servidor. O nome base é assumido como **mysqld**. Por exemplo, se você usar `--mysqld-version=debug`, **mysqld_safe** inicia o programa **mysqld-debug** no diretório `ledir`. Se o argumento para `--mysqld-version` estiver vazio, **mysqld_safe** usa **mysqld** no diretório `ledir`.
 
   Esta opção é aceita apenas na linha de comando, não em arquivos de opção. Em plataformas que usam systemd, o valor pode ser especificado no valor de `MYSQLD_OPTS`. Veja a Seção 2.5.9, “Gerenciamento do Servidor MySQL com systemd”.
 
@@ -243,7 +243,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
   Nota
 
-  Você deve iniciar o **mysqld\_safe** como `root` para que isso funcione corretamente.
+  Você deve iniciar o **mysqld_safe** como `root` para que isso funcione corretamente.
 
 * `--pid-file=file_name`
 
@@ -306,7 +306,7 @@ O uso dessas opções para controlar o registro do **mysqld** está desatualizad
 
   <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
-  Para registrar em `syslog`, as mensagens do **mysqld\_safe** e do **mysqld** são escritas com identificadores de `mysqld_safe` e `mysqld`, respectivamente. Para especificar um sufixo para os identificadores, use `--syslog-tag=tag`, que modifica os identificadores para `mysqld_safe-tag` e `mysqld-tag`.
+  Para registrar em `syslog`, as mensagens do **mysqld_safe** e do **mysqld** são escritas com identificadores de `mysqld_safe` e `mysqld`, respectivamente. Para especificar um sufixo para os identificadores, use `--syslog-tag=tag`, que modifica os identificadores para `mysqld_safe-tag` e `mysqld-tag`.
 
   O uso desta opção para controlar o registro do **mysqld** está desatualizado. Use a variável de sistema `log_syslog_tag` do servidor. Consulte a documentação do seu sistema operacional para os formatos de especificação de fuso horário legais.
 
@@ -322,7 +322,7 @@ O uso dessas opções para controlar o registro do **mysqld** está desatualizad
 
 Execute o servidor **mysqld** como o usuário com o nome *`user_name`* ou o ID de usuário numérico *`user_id`*. (“Usuário” neste contexto se refere a uma conta de login do sistema, não a um usuário MySQL listado nas tabelas de concessão.)
 
-Se você executar **mysqld\_safe** com a opção `--defaults-file` ou `--defaults-extra-file` para nomear um arquivo de opções, a opção deve ser a primeira dada na linha de comando ou o arquivo de opções não será usado. Por exemplo, este comando não usa o arquivo de opção nomeado:
+Se você executar **mysqld_safe** com a opção `--defaults-file` ou `--defaults-extra-file` para nomear um arquivo de opções, a opção deve ser a primeira dada na linha de comando ou o arquivo de opções não será usado. Por exemplo, este comando não usa o arquivo de opção nomeado:
 
 ```
 mysql> mysqld_safe --port=port_num --defaults-file=file_name
@@ -334,26 +334,26 @@ Em vez disso, use o seguinte comando:
 mysql> mysqld_safe --defaults-file=file_name --port=port_num
 ```
 
-O script **mysqld\_safe** é escrito de forma que ele normalmente possa iniciar um servidor que foi instalado a partir de uma distribuição de fonte ou binária do MySQL, mesmo que esses tipos de distribuições normalmente instalem o servidor em locais ligeiramente diferentes. (Veja a Seção 2.1.5, “Layouts de Instalação”.) **mysqld\_safe** espera que uma das seguintes condições seja verdadeira:
+O script **mysqld_safe** é escrito de forma que ele normalmente possa iniciar um servidor que foi instalado a partir de uma distribuição de fonte ou binária do MySQL, mesmo que esses tipos de distribuições normalmente instalem o servidor em locais ligeiramente diferentes. (Veja a Seção 2.1.5, “Layouts de Instalação”.) **mysqld_safe** espera que uma das seguintes condições seja verdadeira:
 
-* O servidor e os bancos de dados podem ser encontrados em relação ao diretório de trabalho (o diretório a partir do qual o **mysqld\_safe** é invocado). Para distribuições binárias, **mysqld\_safe** procura por diretórios `bin` e `data` em seu diretório de trabalho. Para distribuições de fonte, ele procura por diretórios `libexec` e `var`. Esta condição deve ser atendida se você executar **mysqld\_safe** a partir do diretório de instalação do MySQL (por exemplo, `/usr/local/mysql` para uma distribuição binária).
+* O servidor e os bancos de dados podem ser encontrados em relação ao diretório de trabalho (o diretório a partir do qual o **mysqld_safe** é invocado). Para distribuições binárias, **mysqld_safe** procura por diretórios `bin` e `data` em seu diretório de trabalho. Para distribuições de fonte, ele procura por diretórios `libexec` e `var`. Esta condição deve ser atendida se você executar **mysqld_safe** a partir do diretório de instalação do MySQL (por exemplo, `/usr/local/mysql` para uma distribuição binária).
 
-* Se o servidor e os bancos de dados não puderem ser encontrados em relação ao diretório de trabalho, o **mysqld\_safe** tenta localizá-los por nomes de caminho absolutos. Os locais típicos são `/usr/local/libexec` e `/usr/local/var`. Os locais reais são determinados pelos valores configurados na distribuição no momento em que ela foi construída. Eles devem estar corretos se o MySQL estiver instalado no local especificado na hora da configuração.
+* Se o servidor e os bancos de dados não puderem ser encontrados em relação ao diretório de trabalho, o **mysqld_safe** tenta localizá-los por nomes de caminho absolutos. Os locais típicos são `/usr/local/libexec` e `/usr/local/var`. Os locais reais são determinados pelos valores configurados na distribuição no momento em que ela foi construída. Eles devem estar corretos se o MySQL estiver instalado no local especificado na hora da configuração.
 
-Como o **mysqld\_safe** tenta encontrar o servidor e os bancos de dados em relação ao seu próprio diretório de trabalho, você pode instalar uma distribuição binária do MySQL em qualquer lugar, desde que execute o **mysqld\_safe** a partir do diretório de instalação do MySQL:
+Como o **mysqld_safe** tenta encontrar o servidor e os bancos de dados em relação ao seu próprio diretório de trabalho, você pode instalar uma distribuição binária do MySQL em qualquer lugar, desde que execute o **mysqld_safe** a partir do diretório de instalação do MySQL:
 
 ```
 cd mysql_installation_directory
 bin/mysqld_safe &
 ```
 
-Se o **mysqld\_safe** falhar, mesmo quando invocado a partir do diretório de instalação do MySQL, especifique as opções `--ledir` e `--datadir` para indicar os diretórios nos quais o servidor e os bancos de dados estão localizados no seu sistema.
+Se o **mysqld_safe** falhar, mesmo quando invocado a partir do diretório de instalação do MySQL, especifique as opções `--ledir` e `--datadir` para indicar os diretórios nos quais o servidor e os bancos de dados estão localizados no seu sistema.
 
-O **mysqld\_safe** tenta usar as utilidades de sistema **sleep** e **date** para determinar quantas vezes por segundo ele tentou iniciar. Se essas utilidades estiverem presentes e as tentativas de início por segundo forem maiores que 5, o **mysqld\_safe** aguarda 1 segundo completo antes de iniciar novamente. Isso é feito para evitar o uso excessivo da CPU em caso de falhas repetidas. (Bug #11761530, Bug #54035)
+O **mysqld_safe** tenta usar as utilidades de sistema **sleep** e **date** para determinar quantas vezes por segundo ele tentou iniciar. Se essas utilidades estiverem presentes e as tentativas de início por segundo forem maiores que 5, o **mysqld_safe** aguarda 1 segundo completo antes de iniciar novamente. Isso é feito para evitar o uso excessivo da CPU em caso de falhas repetidas. (Bug #11761530, Bug #54035)
 
-Quando você usa o **mysqld\_safe** para iniciar o **mysqld**, o **mysqld\_safe** garante que os mensagens de erro (e de aviso) do próprio **mysqld** e do **mysqld** sejam direcionadas para o mesmo destino.
+Quando você usa o **mysqld_safe** para iniciar o **mysqld**, o **mysqld_safe** garante que os mensagens de erro (e de aviso) do próprio **mysqld** e do **mysqld** sejam direcionadas para o mesmo destino.
 
-Existem várias opções do **mysqld\_safe** para controlar o destino dessas mensagens:
+Existem várias opções do **mysqld_safe** para controlar o destino dessas mensagens:
 
 * `--log-error=nome_do_arquivo`: Escreva mensagens de erro para o arquivo de erro nomeado.
 
@@ -363,8 +363,8 @@ Existem várias opções do **mysqld\_safe** para controlar o destino dessas men
 
 Se nenhuma dessas opções for fornecida, o padrão é `--skip-syslog`.
 
-Quando o **mysqld\_safe** escreve uma mensagem, as notificações são enviadas para o destino de registro (`syslog` ou o arquivo de log de erro) e `stdout`. Erros são enviados para o destino de registro e `stderr`.
+Quando o **mysqld_safe** escreve uma mensagem, as notificações são enviadas para o destino de registro (`syslog` ou o arquivo de log de erro) e `stdout`. Erros são enviados para o destino de registro e `stderr`.
 
 Observação
 
-O controle do registro do **mysqld** a partir do **mysqld\_safe** está desatualizado. Use o suporte nativo de `syslog` do servidor. Para mais informações, consulte a Seção 7.4.2.8, “Registro de Erros no Log do Sistema”.
+O controle do registro do **mysqld** a partir do **mysqld_safe** está desatualizado. Use o suporte nativo de `syslog` do servidor. Para mais informações, consulte a Seção 7.4.2.8, “Registro de Erros no Log do Sistema”.

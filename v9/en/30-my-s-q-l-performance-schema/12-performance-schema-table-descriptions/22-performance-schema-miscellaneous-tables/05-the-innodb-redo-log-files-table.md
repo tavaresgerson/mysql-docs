@@ -1,4 +1,4 @@
-#### 29.12.22.5 The innodb\_redo\_log\_files Table
+#### 29.12.22.5 The innodb_redo_log_files Table
 
 The `innodb_redo_log_files` table contains a row for each active `InnoDB` redo log file.
 

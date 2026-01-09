@@ -44,13 +44,13 @@ Verifique se você pode desligar o servidor (inclua a opção `-p` se a conta `r
 $> bin/mysqladmin -u root shutdown
 ```
 
-Verifique se você pode reiniciar o servidor novamente. Faça isso usando **mysqld\_safe** ou invocando diretamente **mysqld**. Por exemplo:
+Verifique se você pode reiniciar o servidor novamente. Faça isso usando **mysqld_safe** ou invocando diretamente **mysqld**. Por exemplo:
 
 ```
 $> bin/mysqld_safe --user=mysql &
 ```
 
-Se **mysqld\_safe** falhar, veja a Seção 2.9.2.1, “Resolvendo Problemas ao Iniciar o Servidor MySQL”.
+Se **mysqld_safe** falhar, veja a Seção 2.9.2.1, “Resolvendo Problemas ao Iniciar o Servidor MySQL”.
 
 Realize alguns testes simples para verificar se você pode recuperar informações do servidor. A saída deve ser semelhante à mostrada aqui.
 

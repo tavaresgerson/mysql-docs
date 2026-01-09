@@ -10,7 +10,7 @@ Command Index
 
 Function Index
 
-INFORMATION\_SCHEMA Index
+INFORMATION_SCHEMA Index
 
 Join Types Index
 

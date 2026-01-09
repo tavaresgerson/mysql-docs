@@ -1,4 +1,4 @@
-### 28.3.54 The INFORMATION\_SCHEMA VIEW\_ROUTINE\_USAGE Table
+### 28.3.54 The INFORMATION_SCHEMA VIEW_ROUTINE_USAGE Table
 
 The `VIEW_ROUTINE_USAGE` table provides access to information about stored functions used in view definitions. The table does not list information about built-in (native) functions or loadable functions used in the definitions.
 

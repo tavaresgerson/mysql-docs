@@ -114,6 +114,6 @@ For more information about `REPLICA_SIDE_DISABLED` and the `Originator` column, 
 
 Times displayed by `SHOW EVENTS` are given in the event time zone, as discussed in Section 27.5.4, “Event Metadata”.
 
-Event information is also available from the `INFORMATION_SCHEMA` `EVENTS` table. See Section 28.3.14, “The INFORMATION\_SCHEMA EVENTS Table”.
+Event information is also available from the `INFORMATION_SCHEMA` `EVENTS` table. See Section 28.3.14, “The INFORMATION_SCHEMA EVENTS Table”.
 
 The event action statement is not shown in the output of `SHOW EVENTS`. Use `SHOW CREATE EVENT` or the `INFORMATION_SCHEMA` `EVENTS` table.

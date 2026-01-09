@@ -1,4 +1,4 @@
-### 24.3.17 A tabela INFORMATION\_SCHEMA PLUGINS
+### 24.3.17 A tabela INFORMATION_SCHEMA PLUGINS
 
 A tabela `PLUGINS` fornece informações sobre os plugins do servidor.
 

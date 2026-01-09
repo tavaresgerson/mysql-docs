@@ -60,6 +60,6 @@ O Schema de Desempenho suporta `TRUNCATE TABLE` para tabelas de variáveis de st
 
 - `status_by_thread`: Agrupa o status de todos os threads para o status global e o status da conta, e depois redefini o status do thread. Se as estatísticas da conta não forem coletadas, o status da sessão é adicionado ao status do host e do usuário, se o status do host e do usuário forem coletados.
 
-  As estatísticas da conta, do host e do usuário não são coletadas se as variáveis de sistema `performance_schema_accounts_size`, \[`performance_schema_hosts_size`]\(performance-schema-system-variables.html#sysvar\_performance\_schema\_hosts\_size] e `performance_schema_users_size`, respectivamente, forem definidas como 0.
+  As estatísticas da conta, do host e do usuário não são coletadas se as variáveis de sistema `performance_schema_accounts_size`, [`performance_schema_hosts_size`]\(performance-schema-system-variables.html#sysvar_performance_schema_hosts_size] e `performance_schema_users_size`, respectivamente, forem definidas como 0.
 
 `FLUSH STATUS` adiciona o status da sessão de todas as sessões ativas às variáveis de status globais, redefini o status de todas as sessões ativas e redefini os valores de status de conta, host e usuário agregados de sessões desconectadas.

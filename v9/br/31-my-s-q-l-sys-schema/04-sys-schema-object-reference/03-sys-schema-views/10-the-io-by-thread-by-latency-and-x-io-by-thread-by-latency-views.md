@@ -1,4 +1,4 @@
-#### 30.4.3.10 As visualizações io\_by\_thread\_by\_latency e x$io\_by\_thread\_by\_latency
+#### 30.4.3.10 As visualizações io_by_thread_by_latency e x$io_by_thread_by_latency
 
 Essas visualizações resumem os consumidores de I/O para exibir o tempo de espera por I/O, agrupados por thread. Por padrão, as linhas são ordenadas em ordem decrescente do tempo total de latência de I/O.
 

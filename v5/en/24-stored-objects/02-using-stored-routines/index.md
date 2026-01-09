@@ -6,11 +6,11 @@
 
 23.2.3 Stored Routine Metadata
 
-23.2.4 Stored Procedures, Functions, Triggers, and LAST\_INSERT\_ID()
+23.2.4 Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()
 
 MySQL supports stored routines (procedures and functions). A stored routine is a set of SQL statements that can be stored in the server. Once this has been done, clients don't need to keep reissuing the individual statements but can refer to the stored routine instead.
 
-Stored routines require the `proc` table in the `mysql` database. This table is created during the MySQL installation procedure. If you are upgrading to MySQL 5.7 from an earlier version, be sure to update your grant tables to make sure that the `proc` table exists. See Section 4.4.7, “mysql\_upgrade — Check and Upgrade MySQL Tables”.
+Stored routines require the `proc` table in the `mysql` database. This table is created during the MySQL installation procedure. If you are upgrading to MySQL 5.7 from an earlier version, be sure to update your grant tables to make sure that the `proc` table exists. See Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”.
 
 Stored routines can be particularly useful in certain situations:
 

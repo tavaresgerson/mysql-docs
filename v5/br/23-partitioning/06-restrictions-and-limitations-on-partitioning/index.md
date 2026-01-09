@@ -207,7 +207,7 @@ Tabelas temporárias. As tabelas temporárias não podem ser particionadas. (Bug
 
 Existem duas exceções a essa restrição:
 
-1. Ao particionar por \[`LINEAR` `KEY`], é possível usar colunas de qualquer tipo de dado MySQL válido, exceto `TEXT` ou `BLOB` como chaves de particionamento, porque as funções internas de hashing de chaves do MySQL produzem o tipo de dado correto a partir desses tipos. Por exemplo, as seguintes duas instruções de `CREATE TABLE` são válidas:
+1. Ao particionar por [`LINEAR` `KEY`], é possível usar colunas de qualquer tipo de dado MySQL válido, exceto `TEXT` ou `BLOB` como chaves de particionamento, porque as funções internas de hashing de chaves do MySQL produzem o tipo de dado correto a partir desses tipos. Por exemplo, as seguintes duas instruções de `CREATE TABLE` são válidas:
 
    ```sql
    CREATE TABLE tkc (c1 CHAR)

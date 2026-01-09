@@ -1,4 +1,4 @@
-#### 25.6.15.27 The ndbinfo dict\_obj\_types Table
+#### 25.6.15.27 The ndbinfo dict_obj_types Table
 
 The `dict_obj_types` table is a static table listing possible dictionary object types used in the NDB kernel. These are the same types defined by `Object::Type` in the NDB API.
 

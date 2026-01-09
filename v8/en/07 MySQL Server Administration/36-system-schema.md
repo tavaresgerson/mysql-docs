@@ -120,7 +120,7 @@ These system tables contain information about components, loadable functions, an
 
   ::: info Note
 
-  Like the `mysql.func` system table, the Performance Schema `user_defined_functions` table lists loadable functions installed using `CREATE FUNCTION`. Unlike the `mysql.func` table, the `user_defined_functions` table also lists functions installed automatically by server components or plugins. This difference makes `user_defined_functions` preferable to `mysql.func` for checking which functions are installed. See Section 29.12.22.10, “The user\_defined\_functions Table”.
+  Like the `mysql.func` system table, the Performance Schema `user_defined_functions` table lists loadable functions installed using `CREATE FUNCTION`. Unlike the `mysql.func` table, the `user_defined_functions` table also lists functions installed automatically by server components or plugins. This difference makes `user_defined_functions` preferable to `mysql.func` for checking which functions are installed. See Section 29.12.22.10, “The user_defined_functions Table”.
 
   :::
 
@@ -163,7 +163,7 @@ For more information, see  Section 7.1.15, “MySQL Server Time Zone Support”
 
 The server uses these system tables to support replication:
 
-* `gtid_executed`: Table for storing GTID values. See mysql.gtid\_executed Table.
+* `gtid_executed`: Table for storing GTID values. See mysql.gtid_executed Table.
 * `ndb_binlog_index`: Binary log information for NDB Cluster replication. This table is created only if the server is built with `NDBCLUSTER` support. See Section 25.7.4, “NDB Cluster Replication Schema and Tables”.
 * `slave_master_info`, `slave_relay_log_info`, `slave_worker_info`: Used to store replication information on replica servers. See Section 19.2.4, “Relay Log and Replication Metadata Repositories”.
 

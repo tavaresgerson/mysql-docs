@@ -44,7 +44,7 @@ CREATE TABLE t5 (id INT AUTO_INCREMENT, b CHAR (20), PRIMARY KEY (id));
 CREATE TABLE t6 (id INT AUTO_INCREMENT, a INT, b CHAR (20), PRIMARY KEY (id,a));
 ```
 
-For more information about auto-increment columns, see Section 17.6.1.6, “AUTO\_INCREMENT Handling in InnoDB”.
+For more information about auto-increment columns, see Section 17.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
 Although a table works correctly without defining a primary key, the primary key is involved with many aspects of performance and is a crucial design aspect for any large or frequently used table. It is recommended that you always specify a primary key in the `CREATE TABLE` statement. If you create the table, load data, and then run `ALTER TABLE` to add a primary key later, that operation is much slower than defining the primary key when creating the table. For more information about primary keys, see Section 17.6.2.1, “Clustered and Secondary Indexes”.
 
@@ -93,4 +93,4 @@ ZIP_PAGE_SIZE: 0
  INSTANT_COLS: 0
 ```
 
-For more information, see Section 17.15.3, “InnoDB INFORMATION\_SCHEMA Schema Object Tables”.
+For more information, see Section 17.15.3, “InnoDB INFORMATION_SCHEMA Schema Object Tables”.

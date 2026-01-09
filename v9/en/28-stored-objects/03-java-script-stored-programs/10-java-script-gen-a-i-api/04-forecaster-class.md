@@ -104,7 +104,7 @@ Predicts labels, saving them in the output table specified by the user.
   (`Object`)
   (*optional*): Set of options in JSON
   format. For more information, see
-  ML\_PREDICT\_TABLE.
+  ML_PREDICT_TABLE.
 
 **Return type**
 
@@ -113,7 +113,7 @@ Predicts labels, saving them in the output table specified by the user.
 ###### Version 2
 
 Predicts a label for a single sample of data, and returns it.
-See ML\_PREDICT\_ROW, for more
+See ML_PREDICT_ROW, for more
 information about type and format of the value returned.
 
 **Signature**
@@ -161,7 +161,7 @@ Returns the score for the test data in the indicated table and column, using the
   (`Object`)
   (*optional*): A set of options in JSON
   key-value format. For more information, see
-  ML\_SCORE.
+  ML_SCORE.
 
 **Return type**
 

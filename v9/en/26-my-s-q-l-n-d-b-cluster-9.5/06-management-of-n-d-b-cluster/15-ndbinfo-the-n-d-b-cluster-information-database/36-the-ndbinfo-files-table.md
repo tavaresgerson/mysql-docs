@@ -50,4 +50,4 @@ For log file groups and tablespaces, `parent` is always `0`, and the `parent_nam
 
 The `files` table is empty if no disk data objects have been created in `NDB`. See Section 25.6.11.1, “NDB Cluster Disk Data Objects”, for more information.
 
-See also Section 28.3.15, “The INFORMATION\_SCHEMA FILES Table”.
+See also Section 28.3.15, “The INFORMATION_SCHEMA FILES Table”.

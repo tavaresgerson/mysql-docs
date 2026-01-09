@@ -1,4 +1,4 @@
-#### 30.4.3.50 The waits\_by\_host\_by\_latency and x$waits\_by\_host\_by\_latency Views
+#### 30.4.3.50 The waits_by_host_by_latency and x$waits_by_host_by_latency Views
 
 These views summarize wait events, grouped by host and event. By default, rows are sorted by host and descending total latency. Idle events are ignored.
 

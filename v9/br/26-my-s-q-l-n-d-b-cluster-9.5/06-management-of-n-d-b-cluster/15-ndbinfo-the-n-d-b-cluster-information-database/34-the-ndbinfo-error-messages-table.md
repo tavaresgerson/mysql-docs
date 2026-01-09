@@ -22,7 +22,7 @@ A tabela `error_messages` contém as seguintes colunas:
 
 ##### Notas
 
-`error_code` é um código de erro NDB numérico. Este é o mesmo código de erro que pode ser fornecido ao **ndb\_perror**.
+`error_code` é um código de erro NDB numérico. Este é o mesmo código de erro que pode ser fornecido ao **ndb_perror**.
 
 `error_description` fornece uma descrição básica da condição que causa o erro.
 

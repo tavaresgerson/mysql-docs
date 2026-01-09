@@ -34,7 +34,7 @@ O Oracle fornece pacotes do Debian para instalar o MySQL em sistemas Linux semel
 
   + Importante
 
-    Certifique-se de lembrar a senha do root que você definiu. Usuários que desejam definir uma senha mais tarde podem deixar o campo de senha em branco na caixa de diálogo e apenas pressionar OK; nesse caso, o acesso de root ao servidor é autenticado usando o Plugin de Autenticação de Credenciais Peer do Socket MySQL para conexões que utilizam um arquivo de socket Unix. Você pode definir a senha do root mais tarde usando **mysql\_secure\_installation**.
+    Certifique-se de lembrar a senha do root que você definiu. Usuários que desejam definir uma senha mais tarde podem deixar o campo de senha em branco na caixa de diálogo e apenas pressionar OK; nesse caso, o acesso de root ao servidor é autenticado usando o Plugin de Autenticação de Credenciais Peer do Socket MySQL para conexões que utilizam um arquivo de socket Unix. Você pode definir a senha do root mais tarde usando **mysql_secure_installation**.
 
   + Para uma instalação básica do servidor MySQL, instale o pacote de arquivos comuns do banco de dados, o pacote cliente, o metapacote cliente, o pacote servidor e o metapacote servidor (naquela ordem); você pode fazer isso com um único comando:
 

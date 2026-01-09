@@ -56,7 +56,7 @@ Connections to API and management nodes which are configured but not currently c
 
 The `remote_address` is the host name or address for the node whose ID is shown in the `remote_node_id` column. The `bytes_sent` from this node and `bytes_received` by this node are the numbers, respectively, of bytes sent and received by the node using this connection since it was established. For nodes whose status is `CONNECTING` or `DISCONNECTED`, these columns always display `0`.
 
-Assume you have a 5-node cluster consisting of 2 data nodes, 2 SQL nodes, and 1 management node, as shown in the output of the [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) command in the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client:
+Assume you have a 5-node cluster consisting of 2 data nodes, 2 SQL nodes, and 1 management node, as shown in the output of the [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) command in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client:
 
 ```sql
 ndb_mgm> SHOW
@@ -97,7 +97,7 @@ mysql> SELECT node_id, remote_node_id, status
 10 rows in set (0.04 sec)
 ```
 
-If you shut down one of the data nodes in this cluster using the command `2 STOP` in the [**ndb\_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client, then repeat the previous query (again using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client), this table now shows only 5 rows—1 row for each connection from the remaining management node to another node, including both itself and the data node that is currently offline—and displays `CONNECTING` for the status of each remaining connection to the data node that is currently offline, as shown here:
+If you shut down one of the data nodes in this cluster using the command `2 STOP` in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client, then repeat the previous query (again using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client), this table now shows only 5 rows—1 row for each connection from the remaining management node to another node, including both itself and the data node that is currently offline—and displays `CONNECTING` for the status of each remaining connection to the data node that is currently offline, as shown here:
 
 ```sql
 mysql> SELECT node_id, remote_node_id, status

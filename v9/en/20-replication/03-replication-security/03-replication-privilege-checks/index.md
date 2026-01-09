@@ -1,6 +1,6 @@
 ### 19.3.3 Replication Privilege Checks
 
-19.3.3.1 Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account
+19.3.3.1 Privileges For The Replication PRIVILEGE_CHECKS_USER Account
 
 19.3.3.2 Privilege Checks For Group Replication Channels
 
@@ -31,13 +31,13 @@ mysql> GRANT REPLICATION_APPLIER ON *.* TO 'priv_repl'@'%.example.com';
 mysql> SET sql_log_bin = 1;
 ```
 
-The `SET sql_log_bin` statements are used so that the account management statements are not added to the binary log and sent to the replication channels (see Section 15.4.1.3, “SET sql\_log\_bin Statement”).
+The `SET sql_log_bin` statements are used so that the account management statements are not added to the binary log and sent to the replication channels (see Section 15.4.1.3, “SET sql_log_bin Statement”).
 
 Important
 
 The `caching_sha2_password` authentication plugin is the default for new users (for details, see Section 8.4.1.1, “Caching SHA-2 Pluggable Authentication”). To connect to a server using a user account that authenticates with this plugin, you must either set up an encrypted connection as described in Section 19.3.1, “Setting Up Replication to Use Encrypted Connections”, or enable the unencrypted connection to support password exchange using an RSA key pair.
 
-After setting up the user account, use the `GRANT` statement to grant additional privileges to enable the user account to make the database changes that you expect the applier thread to carry out, such as updating specific tables held on the server. These same privileges enable an administrator to use the account if they need to execute any of those transactions manually on the replication channel. If an unexpected operation is attempted for which you did not grant the appropriate privileges, the operation is disallowed and the replication applier thread stops with an error. Section 19.3.3.1, “Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account” explains what additional privileges the account needs. For example, to grant the `priv_repl` user account the `INSERT` privilege to add rows to the `cust` table in `db1`, issue the following statement:
+After setting up the user account, use the `GRANT` statement to grant additional privileges to enable the user account to make the database changes that you expect the applier thread to carry out, such as updating specific tables held on the server. These same privileges enable an administrator to use the account if they need to execute any of those transactions manually on the replication channel. If an unexpected operation is attempted for which you did not grant the appropriate privileges, the operation is disallowed and the replication applier thread stops with an error. Section 19.3.3.1, “Privileges For The Replication PRIVILEGE_CHECKS_USER Account” explains what additional privileges the account needs. For example, to grant the `priv_repl` user account the `INSERT` privilege to add rows to the `cust` table in `db1`, issue the following statement:
 
 ```
 mysql> GRANT INSERT ON db1.cust TO 'priv_repl'@'%.example.com';

@@ -6,7 +6,7 @@
 
 13.4.2.3 Declaração de RESET SLAVE
 
-13.4.2.4 SINAL GLOBAL sql\_slave\_skip\_counter Sintaxe
+13.4.2.4 SINAL GLOBAL sql_slave_skip_counter Sintaxe
 
 13.4.2.5 Declaração de início do escravo
 

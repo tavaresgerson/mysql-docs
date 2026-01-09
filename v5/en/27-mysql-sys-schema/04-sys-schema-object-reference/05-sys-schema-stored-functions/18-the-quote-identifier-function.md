@@ -1,4 +1,4 @@
-#### 26.4.5.18 The quote\_identifier() Function
+#### 26.4.5.18 The quote_identifier() Function
 
 Given a string argument, this function produces a quoted identifier suitable for inclusion in SQL statements. This is useful when a value to be used as an identifier is a reserved word or contains backtick (`` ` ``) characters. It was added in MySQL 5.7.14.
 

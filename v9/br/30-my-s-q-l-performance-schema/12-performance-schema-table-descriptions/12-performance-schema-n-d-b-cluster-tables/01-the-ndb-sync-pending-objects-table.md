@@ -1,4 +1,4 @@
-#### 29.12.12.1 A tabela ndb\_sync\_pending\_objects
+#### 29.12.12.1 A tabela ndb_sync_pending_objects
 
 Esta tabela fornece informações sobre os objetos do banco de dados `NDB` para os quais foram detectados desvios e que estão aguardando a sincronização entre o dicionário `NDB` e o dicionário de dados MySQL.
 

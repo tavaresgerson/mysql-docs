@@ -1,4 +1,4 @@
-#### 30.4.4.1 O procedimento create\_synonym\_db()
+#### 30.4.4.1 O procedimento create_synonym_db()
 
 Dado o nome de um esquema, este procedimento cria um esquema sinônimo contendo visualizações que referenciam todas as tabelas e visualizações no esquema original. Isso pode ser usado, por exemplo, para criar um nome mais curto pelo qual se pode referenciar um esquema com um nome longo (como `info` em vez de `INFORMATION_SCHEMA`).
 

@@ -1,4 +1,4 @@
-#### 29.12.11.9 The replication\_applier\_status\_by\_worker Table
+#### 29.12.11.9 The replication_applier_status_by_worker Table
 
 This table provides details of the transactions handled by applier threads on a replica or Group Replication group member. For a single-threaded replica, data is shown for the replica's single applier thread. For a multithreaded replica, data is shown individually for each applier thread. The applier threads on a multithreaded replica are sometimes called workers. The number of applier threads on a replica or Group Replication group member is set by the `replica_parallel_workers` system variable. A multithreaded replica also has a coordinator thread to manage the applier threads, and the status of this thread is shown in the `replication_applier_status_by_coordinator` table.
 

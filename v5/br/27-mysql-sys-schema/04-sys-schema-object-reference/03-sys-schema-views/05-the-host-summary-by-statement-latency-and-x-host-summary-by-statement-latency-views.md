@@ -1,4 +1,4 @@
-#### 26.4.3.5 As visualizações host\_summary\_by\_statement\_latency e x$host\_summary\_by\_statement\_latency
+#### 26.4.3.5 As visualizações host_summary_by_statement_latency e x$host_summary_by_statement_latency
 
 Essas visualizações resumem as estatísticas gerais da declaração, agrupadas por host. Por padrão, as linhas são ordenadas por latência total decrescente.
 

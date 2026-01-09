@@ -10,7 +10,7 @@ No Unix (ou Linux para instalações realizadas com pacotes `tar` ou `tar.gz`), 
 
 2. Altere os diretórios e arquivos do banco de dados para que o *`user_name`* tenha privilégios de leitura e escrita nos mesmos (você pode precisar fazer isso como o usuário `root` do Unix):
 
-   ```sql
+   ```sh
    $> chown -R user_name /path/to/mysql/datadir
    ```
 
@@ -22,9 +22,9 @@ No Unix (ou Linux para instalações realizadas com pacotes `tar` ou `tar.gz`), 
 
 4. Para iniciar o servidor como o usuário especificado automaticamente ao iniciar o sistema, especifique o nome do usuário adicionando uma opção `user` ao grupo `[mysqld]` do arquivo de opções `/etc/my.cnf` ou do arquivo de opções `my.cnf` no diretório de dados do servidor. Por exemplo:
 
-   ```sql
+   ```
    [mysqld]
    user=user_name
    ```
 
-Se a própria máquina Unix não estiver segura, você deve atribuir senhas à conta `root` do MySQL nas tabelas de concessão. Caso contrário, qualquer usuário com uma conta de login naquela máquina pode executar o cliente **mysql** com a opção `--user=root` (mysql-command-options.html#option\_mysql\_user) e realizar qualquer operação. (É uma boa ideia atribuir senhas às contas do MySQL, em qualquer caso, mas especialmente quando existem outras contas de login no host do servidor.) Veja Seção 2.9.4, “Segurança da Conta Inicial do MySQL”.
+Se a própria máquina Unix não estiver segura, você deve atribuir senhas à conta `root` do MySQL nas tabelas de concessão. Caso contrário, qualquer usuário com uma conta de login naquela máquina pode executar o cliente **mysql** com a opção `--user=root` (mysql-command-options.html#option_mysql_user) e realizar qualquer operação. (É uma boa ideia atribuir senhas às contas do MySQL, em qualquer caso, mas especialmente quando existem outras contas de login no host do servidor.) Veja Seção 2.9.4, “Segurança da Conta Inicial do MySQL”.

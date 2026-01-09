@@ -108,6 +108,6 @@ O MySQL Server (**mysqld**) é o programa principal que realiza a maior parte do
 
 Para obter informações adicionais sobre tópicos administrativos, consulte também:
 
-- \[Capítulo 6, *Segurança*] (security.html)
-- \[Capítulo 7, *Backup e Recuperação*] (backup-e-recuperacao.html)
-- \[Capítulo 16, *Replicação*] (replication.html)
+- [Capítulo 6, *Segurança*] (security.html)
+- [Capítulo 7, *Backup e Recuperação*] (backup-e-recuperacao.html)
+- [Capítulo 16, *Replicação*] (replication.html)

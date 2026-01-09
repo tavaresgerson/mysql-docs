@@ -106,4 +106,4 @@ Todos os servidores MySQL suportam tabelas `MyISAM`. Não é possível desabilit
 
   Se o motor de armazenamento suporta savepoints.
 
-As informações do motor de armazenamento também estão disponíveis na tabela `INFORMATION_SCHEMA` `ENGINES`. Veja a Seção 28.3.13, “A Tabela INFORMATION\_SCHEMA ENGINES”.
+As informações do motor de armazenamento também estão disponíveis na tabela `INFORMATION_SCHEMA` `ENGINES`. Veja a Seção 28.3.13, “A Tabela INFORMATION_SCHEMA ENGINES”.

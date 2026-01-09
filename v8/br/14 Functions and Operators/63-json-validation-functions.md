@@ -221,7 +221,7 @@ O terceiro valor de coordenada definido acima também é inválido, pois está f
   ```
 *  `JSON_SCHEMA_VALIDATION_REPORT(schema,document)`
 
-  Valida um *`document`* JSON contra um *`schema`* JSON. Ambos *`schema`* e *`document`* são obrigatórios. Como com JSON\_VALID\_SCHEMA(), o esquema deve ser um objeto JSON válido, e o documento deve ser um documento JSON válido. Desde que essas condições sejam atendidas, a função retorna um relatório, como um documento JSON, sobre o resultado da validação. Se o documento JSON for considerado válido de acordo com o JSON Schema, a função retorna um objeto JSON com uma propriedade `valid` com o valor "true". Se o documento JSON falhar na validação, a função retorna um objeto JSON que inclui as propriedades listadas aqui:
+  Valida um *`document`* JSON contra um *`schema`* JSON. Ambos *`schema`* e *`document`* são obrigatórios. Como com JSON_VALID_SCHEMA(), o esquema deve ser um objeto JSON válido, e o documento deve ser um documento JSON válido. Desde que essas condições sejam atendidas, a função retorna um relatório, como um documento JSON, sobre o resultado da validação. Se o documento JSON for considerado válido de acordo com o JSON Schema, a função retorna um objeto JSON com uma propriedade `valid` com o valor "true". Se o documento JSON falhar na validação, a função retorna um objeto JSON que inclui as propriedades listadas aqui:
 
   + `valid`: Sempre "false" para uma validação de esquema falha
   + `reason`: Uma string legível por humanos contendo a razão para o falha

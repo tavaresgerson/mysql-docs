@@ -1,6 +1,6 @@
-#### 21.6.15.15 Tabela ndbinfo dict\_obj\_info
+#### 21.6.15.15 Tabela ndbinfo dict_obj_info
 
-A tabela `dict_obj_info` fornece informações sobre objetos do dicionário de dados `NDB` (`DICT`), como tabelas e índices. (A tabela `dict_obj_types` (\[mysql-cluster-ndbinfo-dict-obj-types.html]) pode ser consultada para obter uma lista de todos os tipos.) Essas informações incluem o tipo do objeto, o estado, o objeto pai (se houver) e o nome totalmente qualificado.
+A tabela `dict_obj_info` fornece informações sobre objetos do dicionário de dados `NDB` (`DICT`), como tabelas e índices. (A tabela `dict_obj_types` ([mysql-cluster-ndbinfo-dict-obj-types.html]) pode ser consultada para obter uma lista de todos os tipos.) Essas informações incluem o tipo do objeto, o estado, o objeto pai (se houver) e o nome totalmente qualificado.
 
 A tabela `dict_obj_info` contém as seguintes colunas:
 

@@ -1,4 +1,4 @@
-### 24.3.5 A tabela INFORMATION\_SCHEMA COLUMNS
+### 24.3.5 A tabela INFORMATION_SCHEMA COLUMNS
 
 A tabela `COLUMNS` fornece informações sobre as colunas das tabelas.
 

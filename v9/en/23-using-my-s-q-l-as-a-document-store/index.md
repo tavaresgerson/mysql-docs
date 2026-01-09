@@ -8,7 +8,7 @@
 
 22.3 JavaScript Quick-Start Guide: MySQL Shell for Document Store :   22.3.1 MySQL Shell
 
-    22.3.2 Download and Import world\_x Database
+    22.3.2 Download and Import world_x Database
 
     22.3.3 Documents and Collections
 
@@ -18,7 +18,7 @@
 
 22.4 Python Quick-Start Guide: MySQL Shell for Document Store :   22.4.1 MySQL Shell
 
-    22.4.2 Download and Import world\_x Database
+    22.4.2 Download and Import world_x Database
 
     22.4.3 Documents and Collections
 

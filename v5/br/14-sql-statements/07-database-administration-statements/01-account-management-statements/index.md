@@ -14,7 +14,7 @@
 
 13.7.1.7 Declaração de definir senha
 
-As informações da conta do MySQL são armazenadas nas tabelas do banco de dados do sistema `mysql`. Este banco de dados e o sistema de controle de acesso são discutidos extensivamente no \[Capítulo 5, *Administração do Servidor MySQL*] (server-administration.html), que você deve consultar para obter detalhes adicionais.
+As informações da conta do MySQL são armazenadas nas tabelas do banco de dados do sistema `mysql`. Este banco de dados e o sistema de controle de acesso são discutidos extensivamente no [Capítulo 5, *Administração do Servidor MySQL*] (server-administration.html), que você deve consultar para obter detalhes adicionais.
 
 Importante
 

@@ -60,6 +60,6 @@ For a full description of all command options, system variables, and status vari
 
 More detailed monitoring information is available from the Performance Schema; see Chapter 29, *MySQL Performance Schema*. In addition, the MySQL `sys` schema is a set of objects that provides convenient access to data collected by the Performance Schema; see Chapter 30, *MySQL sys Schema*.
 
-If you specify an option on the command line for **mysqld** or **mysqld\_safe**, it remains in effect only for that invocation of the server. To use the option every time the server runs, put it in an option file. See Section 6.2.2.2, “Using Option Files”.
+If you specify an option on the command line for **mysqld** or **mysqld_safe**, it remains in effect only for that invocation of the server. To use the option every time the server runs, put it in an option file. See Section 6.2.2.2, “Using Option Files”.
 
 Windows users may execute Section 2.3.2, “Configuration: Using MySQL Configurator” to help configure a MySQL server installation. This includes tasks such as configuring MySQL users, log files, the Windows service name, and sample databases.

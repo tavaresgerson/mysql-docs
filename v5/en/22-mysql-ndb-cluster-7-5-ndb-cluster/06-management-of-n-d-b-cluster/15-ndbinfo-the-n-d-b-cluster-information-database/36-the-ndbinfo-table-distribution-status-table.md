@@ -1,4 +1,4 @@
-#### 21.6.15.36 The ndbinfo table\_distribution\_status Table
+#### 21.6.15.36 The ndbinfo table_distribution_status Table
 
 The `table_distribution_status` table provides information about the progress of table distribution for `NDB` tables.
 

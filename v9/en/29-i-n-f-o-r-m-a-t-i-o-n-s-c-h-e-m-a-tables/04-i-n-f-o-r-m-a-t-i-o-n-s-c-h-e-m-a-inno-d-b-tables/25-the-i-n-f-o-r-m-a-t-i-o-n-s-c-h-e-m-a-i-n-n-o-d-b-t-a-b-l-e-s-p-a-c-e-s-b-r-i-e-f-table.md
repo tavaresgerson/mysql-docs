@@ -1,4 +1,4 @@
-### 28.4.25 The INFORMATION\_SCHEMA INNODB\_TABLESPACES\_BRIEF Table
+### 28.4.25 The INFORMATION_SCHEMA INNODB_TABLESPACES_BRIEF Table
 
 The `INNODB_TABLESPACES_BRIEF` table provides space ID, name, path, flag, and space type metadata for file-per-table, general, undo, and system tablespaces.
 

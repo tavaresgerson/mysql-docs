@@ -1,4 +1,4 @@
-### 12.8.5 The binary Collation Compared to \_bin Collations
+### 12.8.5 The binary Collation Compared to _bin Collations
 
 This section describes how the `binary` collation for binary strings compares to `_bin` collations for nonbinary strings.
 

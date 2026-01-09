@@ -20,23 +20,23 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `ndb-connectstring`: Endereço do servidor de gerenciamento NDB que distribui informações de configuração para este cluster.
 
-* `ndb-default-column-format`: Use este valor (FIXED ou DYNAMIC) como padrão para as opções COLUMN\_FORMAT e ROW\_FORMAT ao criar ou adicionar colunas de tabela.
+* `ndb-default-column-format`: Use este valor (FIXED ou DYNAMIC) como padrão para as opções COLUMN_FORMAT e ROW_FORMAT ao criar ou adicionar colunas de tabela.
 
 * `ndb-deferred-constraints`: Especifica que os verificações de restrições em índices únicos (onde esses são suportados) devem ser adiadas até o momento do commit. Normalmente não é necessário ou usado; apenas para fins de teste.
 
 * `ndb-distribution`: Distribuição padrão para novas tabelas no NDBCLUSTER (KEYHASH ou LINHASH, padrão é KEYHASH).
 
-* `ndb-log-apply-status`: Faça com que o servidor MySQL que atua como replica registre as atualizações de `mysql.ndb\_apply\_status` recebidas de sua fonte imediata em seu próprio log binário, usando seu próprio ID de servidor. Efetivo apenas se o servidor for iniciado com a opção `--ndbcluster`.
+* `ndb-log-apply-status`: Faça com que o servidor MySQL que atua como replica registre as atualizações de `mysql.ndb_apply_status` recebidas de sua fonte imediata em seu próprio log binário, usando seu próprio ID de servidor. Efetivo apenas se o servidor for iniciado com a opção `--ndbcluster`.
 
-* `ndb-log-empty-epochs`: Quando ativado, faz com que as épocas em que não houve alterações sejam escritas nas tabelas `ndb\_apply\_status` e `ndb\_binlog\_index`, mesmo quando `--log-slave-updates` está ativado.
+* `ndb-log-empty-epochs`: Quando ativado, faz com que as épocas em que não houve alterações sejam escritas nas tabelas `ndb_apply_status` e `ndb_binlog_index`, mesmo quando `--log-slave-updates` está ativado.
 
-* `ndb-log-empty-update`: Quando ativado, faz com que as atualizações que não produziram alterações sejam escritas nas tabelas `ndb\_apply\_status` e `ndb\_binlog\_index`, mesmo quando `--log-slave-updates` está ativado.
+* `ndb-log-empty-update`: Quando ativado, faz com que as atualizações que não produziram alterações sejam escritas nas tabelas `ndb_apply_status` e `ndb_binlog_index`, mesmo quando `--log-slave-updates` está ativado.
 
 * `ndb-log-exclusive-reads`: Registre leituras de chave primária com bloqueios exclusivos; permita a resolução de conflitos com base em conflitos de leitura.
 
 * `ndb-log-fail-terminate`: Terminate o processo mysqld se não for possível registrar completamente todos os eventos de linha encontrados.
 
-* `ndb-log-orig`: Registre o ID do servidor de origem e a época na tabela `mysql.ndb\_binlog\_index`.
+* `ndb-log-orig`: Registre o ID do servidor de origem e a época na tabela `mysql.ndb_binlog_index`.
 
 * `ndb-log-row-slice-count`: Número de fatias a serem calculadas por este servidor ao se inscrever em fluxos de eventos de alteração de tabela NDB usados para gravação de logs binários.
 
@@ -250,7 +250,7 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `ndb_autoincrement_prefetch_sz`: Tamanho de pré-carga de incremento automático de NDB.
 
-* `ndb_clear_apply_status`: Faz com que RESET SLAVE/RESET REPLICA limpem todas as linhas da tabela ndb\_apply\_status; ativado por padrão.
+* `ndb_clear_apply_status`: Faz com que RESET SLAVE/RESET REPLICA limpem todas as linhas da tabela ndb_apply_status; ativado por padrão.
 
 * `Ndb_cluster_node_id`: ID do nó deste servidor quando atuando como nó SQL do NDB Cluster.
 
@@ -264,17 +264,17 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_conflict_fn_epoch2`: Número de linhas que foram encontradas em conflito pela função de detecção de conflitos de replicação NDB NDB$EPOCH2() (NDB$EPOCH2() ).
 
-* `Ndb_conflict_fn_epoch2_trans`: Número de linhas que foram encontradas em conflito pela função de detecção de conflitos de replicação NDB NDB$EPOCH2\_TRANS() (NDB$EPOCH2\_TRANS() ).
+* `Ndb_conflict_fn_epoch2_trans`: Número de linhas que foram encontradas em conflito pela função de detecção de conflitos de replicação NDB NDB$EPOCH2_TRANS() (NDB$EPOCH2_TRANS() ).
 
-* `Ndb_conflict_fn_epoch_trans`: Número de linhas que foram encontradas em conflito pela função de detecção de conflitos de replicação NDB$EPOCH\_TRANS() (NDB$EPOCH\_TRANS() ).
+* `Ndb_conflict_fn_epoch_trans`: Número de linhas que foram encontradas em conflito pela função de detecção de conflitos de replicação NDB$EPOCH_TRANS() (NDB$EPOCH_TRANS() ).
 
 * `Ndb_conflict_fn_max`: Número de vezes que a resolução de conflitos de replicação NDB foi aplicada com base no "maior timestamp vence" para operações de atualização e exclusão.
 
-* `Ndb_conflict_fn_max_del_win`: Número de vezes que a resolução de conflitos de replicação NDB foi aplicada com base no resultado de NDB$MAX\_DELETE\_WIN() para operações de atualização e exclusão.
+* `Ndb_conflict_fn_max_del_win`: Número de vezes que a resolução de conflitos de replicação NDB foi aplicada com base no resultado de NDB$MAX_DELETE_WIN() para operações de atualização e exclusão.
 
 * `Ndb_conflict_fn_max_ins`: Número de vezes que a resolução de conflitos de replicação NDB foi aplicada com base no "maior timestamp vence" para operações de inserção.
 
-* `Ndb_conflict_fn_max_del_win_ins`: Número de vezes que a resolução de conflitos de replicação NDB foi aplicada com base no resultado de NDB$MAX\_DEL\_WIN\_INS() para operações de inserção.
+* `Ndb_conflict_fn_max_del_win_ins`: Número de vezes que a resolução de conflitos de replicação NDB foi aplicada com base no resultado de NDB$MAX_DEL_WIN_INS() para operações de inserção.
 
 * `Ndb_conflict_fn_old`: Número de vezes que a resolução de conflitos de replicação "maior timestamp vence" foi aplicada.
 
@@ -386,17 +386,17 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `Ndb_pushed_reads`: Número de leituras executadas nos nós de dados por junções empurradas para baixo.
 
-* `ndb_read_backup`: Habilitar a leitura de qualquer replica para todas as tabelas NDB; use NDB\_TABLE=READ\_BACKUP={0|1} com CREATE TABLE ou ALTER TABLE para habilitar ou desabilitar para tabelas NDB individuais.
+* `ndb_read_backup`: Habilitar a leitura de qualquer replica para todas as tabelas NDB; use NDB_TABLE=READ_BACKUP={0|1} com CREATE TABLE ou ALTER TABLE para habilitar ou desabilitar para tabelas NDB individuais.
 
 * `ndb_recv_thread_activation_threshold`: Limiar de ativação quando o thread de recebimento assume a coleta de conexões do cluster (medido em threads ativos simultaneamente).
 
 * `ndb_recv_thread_cpu_mask`: Máscara de CPU para bloquear threads de recebimento em CPUs específicas; especificada como hexadecimal. Consulte a documentação para detalhes.
 
-* `Ndb_replica_max_replicated_epoch`: Epoch NDB mais recentemente comprometido nesta replica. Quando esse valor for maior ou igual a Ndb\_conflict\_last\_conflict\_epoch, nenhum conflito foi detectado ainda.
+* `Ndb_replica_max_replicated_epoch`: Epoch NDB mais recentemente comprometido nesta replica. Quando esse valor for maior ou igual a Ndb_conflict_last_conflict_epoch, nenhum conflito foi detectado ainda.
 
 * `ndb_replica_batch_size`: Tamanho do lote em bytes para o aplicador de replica.
 
-* `ndb_report_thresh_binlog_epoch_slip`: NDB 7.5 e versões posteriores: Limiar para o número de épocas completamente buffereadas, mas ainda não consumidas pelo thread de injetor de binlog, que, quando excedido, gera a mensagem de status de buffer de evento BUFFERED\_EPOCHS\_OVER\_THRESHOLD; antes de NDB 7.5: Limiar para o número de épocas para ficar para trás antes de relatar o status do log binário.
+* `ndb_report_thresh_binlog_epoch_slip`: NDB 7.5 e versões posteriores: Limiar para o número de épocas completamente buffereadas, mas ainda não consumidas pelo thread de injetor de binlog, que, quando excedido, gera a mensagem de status de buffer de evento BUFFERED_EPOCHS_OVER_THRESHOLD; antes de NDB 7.5: Limiar para o número de épocas para ficar para trás antes de relatar o status do log binário.
 
 * `ndb_report_thresh_binlog_mem_usage`: Limiar para a porcentagem de memória livre restante antes de relatar o status do log binário.
 
@@ -456,7 +456,7 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 * `replica_allow_batching`: Ativa ou desativa a batching de atualizações para a replica.
 
-* `server_id_bits`: Número de bits menos significativos no `server\_id` realmente usados para identificar o servidor, permitindo que aplicativos da API NDB armazenem dados de aplicativos nos bits mais significativos. `server\_id` deve ser menor que 2 elevado a esse valor.
+* `server_id_bits`: Número de bits menos significativos no `server_id` realmente usados para identificar o servidor, permitindo que aplicativos da API NDB armazenem dados de aplicativos nos bits mais significativos. `server_id` deve ser menor que 2 elevado a esse valor.
 
 * `skip-ndbcluster`: Desative o motor de armazenamento NDB Cluster.
 

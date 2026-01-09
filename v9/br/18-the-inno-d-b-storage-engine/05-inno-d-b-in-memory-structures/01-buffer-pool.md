@@ -97,4 +97,4 @@ As médias por segundo fornecidas na saída do Monitor Padrão do `InnoDB` são 
 
 * `taxa de não tornar páginas jovens` é a taxa média de acertos em que os acessos à página não resultaram em tornar as páginas jovens devido ao atraso definido por `innodb_old_blocks_time` não ser atendido, ou devido a acessos à página na nova sublista que não resultaram em páginas serem movidas para a cabeça. Essa taxa contabiliza todos os acessos à página do pool de buffers, e não apenas os acessos às páginas na sublista antiga.
 
-As variáveis de status do servidor do pool de buffers e a tabela `INNODB_BUFFER_POOL_STATS` fornecem muitas das mesmas métricas do pool de buffers encontradas na saída do Monitor Padrão do `InnoDB`. Para mais informações, consulte o Exemplo 17.10, “Consultando a Tabela INNODB\_BUFFER\_POOL\_STATS”.
+As variáveis de status do servidor do pool de buffers e a tabela `INNODB_BUFFER_POOL_STATS` fornecem muitas das mesmas métricas do pool de buffers encontradas na saída do Monitor Padrão do `InnoDB`. Para mais informações, consulte o Exemplo 17.10, “Consultando a Tabela INNODB_BUFFER_POOL_STATS”.

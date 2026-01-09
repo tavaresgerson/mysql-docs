@@ -1,4 +1,4 @@
-### 24.5.3 A tabela INFORMATION\_SCHEMA TP\_THREAD\_GROUP\_STATS
+### 24.5.3 A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATS
 
 A tabela [`TP_THREAD_GROUP_STATS`](https://docs.oracle.com/en/database/oracle12/SQL/sqlserver.12012.html#sql.server.dbms.sql.schema.tp-thread-group-stats) relata estatísticas por grupo de threads. Há uma linha por grupo.
 

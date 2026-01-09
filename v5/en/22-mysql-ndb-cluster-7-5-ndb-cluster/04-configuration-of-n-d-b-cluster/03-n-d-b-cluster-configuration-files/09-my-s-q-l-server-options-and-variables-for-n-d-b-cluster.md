@@ -87,7 +87,7 @@ For information about command-line options used with other NDB Cluster processes
 
 * `--ndb-default-column-format=[FIXED|DYNAMIC]`
 
-  <table frame="box" rules="all" summary="Properties for ndb-default-column-format"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr><tr><th>Introduced</th> <td>5.7.11-ndb-7.5.1</td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_default_column_format">ndb_default_column_format</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value (≥ 5.7.16-ndb-7.5.4)</th> <td><code>FIXED</code></td> </tr><tr><th>Default Value (≥ 5.7.11-ndb-7.5.1, ≤ 5.7.13-ndb-7.5.3)</th> <td><code>DYNAMIC</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code>FIXED</code></p><p class="valid-value"><code>DYNAMIC</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-default-column-format"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr><tr><th>Introduced</th> <td>5.7.11-ndb-7.5.1</td> </tr><tr><th>System Variable</th> <td><code>ndb_default_column_format</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value (≥ 5.7.16-ndb-7.5.4)</th> <td><code>FIXED</code></td> </tr><tr><th>Default Value (≥ 5.7.11-ndb-7.5.1, ≤ 5.7.13-ndb-7.5.3)</th> <td><code>DYNAMIC</code></td> </tr><tr><th>Valid Values</th> <td><p><code>FIXED</code></p><p><code>DYNAMIC</code></p></td> </tr></tbody></table>
 
   In NDB 7.5.1 and later, sets the default `COLUMN_FORMAT` and `ROW_FORMAT` for new tables (see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")).
 
@@ -95,7 +95,7 @@ For information about command-line options used with other NDB Cluster processes
 
 * `--ndb-deferred-constraints=[0|1]`
 
-  <table frame="box" rules="all" summary="Properties for ndb-deferred-constraints"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-deferred-constraints</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="mysql-cluster-options-variables.html#sysvar_ndb_deferred_constraints">ndb_deferred_constraints</a></code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-deferred-constraints"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-deferred-constraints</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_deferred_constraints</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
 
   Controls whether or not constraint checks on unique indexes are deferred until commit time, where such checks are supported. `0` is the default.
 
@@ -169,7 +169,7 @@ For information about command-line options used with other NDB Cluster processes
 
   Causes a replica [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to write the NDB transaction ID in each row of the binary log. Such logging requires the use of the Version 2 event format for the binary log; thus, the [`log_bin_use_v1_row_events`](replication-options-binary-log.html#sysvar_log_bin_use_v1_row_events) system variable must be disabled to use this option.
 
-  `--ndb-log-transaction-id` is required to enable NDB Cluster Replication conflict detection and resolution using the `NDB$EPOCH_TRANS()` function (see [NDB$EPOCH\_TRANS()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch-trans "NDB$EPOCH_TRANS()")).
+  `--ndb-log-transaction-id` is required to enable NDB Cluster Replication conflict detection and resolution using the `NDB$EPOCH_TRANS()` function (see [NDB$EPOCH_TRANS()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch-trans "NDB$EPOCH_TRANS()")).
 
   For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
@@ -185,7 +185,7 @@ For information about command-line options used with other NDB Cluster processes
 
     `DELETE`: Logged as a `DELETE_ROW` event with all columns logged in the before image; the after image is not logged.
 
-  This option can be used for NDB Replication conflict resolution in combination with the other two NDB logging options mentioned previously; see [ndb\_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information.
+  This option can be used for NDB Replication conflict resolution in combination with the other two NDB logging options mentioned previously; see [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information.
 
 * `--ndb-log-updated-only`
 
@@ -199,7 +199,7 @@ For information about command-line options used with other NDB Cluster processes
 
   + `DELETE`: Logged as a `DELETE_ROW` event with primary key columns incuded in the before image; the after image is not logged.
 
-  This option can be used for NDB Replication conflict resolution in combination with the other two NDB logging options mentioned previously; see [ndb\_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information about how these options interact with one another.
+  This option can be used for NDB Replication conflict resolution in combination with the other two NDB logging options mentioned previously; see [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information about how these options interact with one another.
 
 * `--ndb-log-update-minimal`
 
@@ -213,7 +213,7 @@ For information about command-line options used with other NDB Cluster processes
 
   + `DELETE`: Logged as a `DELETE_ROW` event with all columns in the before image; the after image is not logged.
 
-  This option can be used for NDB Replication conflict resolution in combination with the other two NDB logging options mentioned previously; see [ndb\_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information.
+  This option can be used for NDB Replication conflict resolution in combination with the other two NDB logging options mentioned previously; see [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information.
 
 * `--ndb-mgmd-host=host[:port]`
 
@@ -349,7 +349,7 @@ This section provides detailed information about MySQL server system variables t
 
   <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Sets the percentage of the maximum memory allocated to the event buffer (ndb\_eventbuffer\_max\_alloc) that should be available in event buffer after reaching the maximum, before starting to buffer again.
+  Sets the percentage of the maximum memory allocated to the event buffer (ndb_eventbuffer_max_alloc) that should be available in event buffer after reaching the maximum, before starting to buffer again.
 
 * [`ndb_eventbuffer_max_alloc`](mysql-cluster-options-variables.html#sysvar_ndb_eventbuffer_max_alloc)
 
@@ -397,7 +397,7 @@ This section provides detailed information about MySQL server system variables t
 
   The names of the options that can be set using this variable are shown in the table that follows. The table also provides brief descriptions of the options, their default values, and (where applicable) their minimum and maximum values.
 
-  **Table 21.18 ndb\_index\_stat\_option options and values**
+  **Table 21.18 ndb_index_stat_option options and values**
 
   <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
@@ -649,7 +649,7 @@ This section provides detailed information about MySQL server system variables t
 
   When this variable is set to `ON` or `1`, it causes all tables created or altered using `ENGINE NDB` to be nonlogging; that is, no data changes for this table are written to the redo log or checkpointed to disk, just as if the table had been created or altered using the `NOLOGGING` option for [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-  For more information about nonlogging `NDB` tables, see [NDB\_TABLE Options](create-table-ndb-comment-options.html#create-table-ndb-comment-table-options "NDB_TABLE Options").
+  For more information about nonlogging `NDB` tables, see [NDB_TABLE Options](create-table-ndb-comment-options.html#create-table-ndb-comment-table-options "NDB_TABLE Options").
 
   [`ndb_table_no_logging`](mysql-cluster-options-variables.html#sysvar_ndb_table_no_logging) has no effect on the creation of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table schema files; to suppress these, use [`ndb_table_temporary`](mysql-cluster-options-variables.html#sysvar_ndb_table_temporary) instead.
 
@@ -1363,7 +1363,7 @@ This section provides detailed information about MySQL server status variables t
 
   Used in NDB Cluster Replication conflict resolution, this variable shows the number of rows found to be in conflict using `NDB$EPOCH_TRANS2()` conflict resolution on a given [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") since the last time it was restarted.
 
-  For more information, see [NDB$EPOCH2\_TRANS()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch2-trans "NDB$EPOCH2_TRANS()").
+  For more information, see [NDB$EPOCH2_TRANS()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch2-trans "NDB$EPOCH2_TRANS()").
 
 * [`Ndb_conflict_fn_max`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_max)
 
@@ -1417,7 +1417,7 @@ This section provides detailed information about MySQL server status variables t
 
   Used in NDB Cluster Replication conflict resolution, this status variable shows the number of rows found to be directly in-conflict by a transactional conflict function on a given [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") since the last time it was restarted.
 
-  Currently, the only transactional conflict detection function supported by NDB Cluster is NDB$EPOCH\_TRANS(), so this status variable is effectively the same as [`Ndb_conflict_fn_epoch_trans`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch_trans).
+  Currently, the only transactional conflict detection function supported by NDB Cluster is NDB$EPOCH_TRANS(), so this status variable is effectively the same as [`Ndb_conflict_fn_epoch_trans`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch_trans).
 
   For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 

@@ -1,4 +1,4 @@
-### 24.3.26 The INFORMATION\_SCHEMA TABLESPACES Table
+### 24.3.26 The INFORMATION_SCHEMA TABLESPACES Table
 
 This table is unused. Other `INFORMATION_SCHEMA` tables may provide related information:
 

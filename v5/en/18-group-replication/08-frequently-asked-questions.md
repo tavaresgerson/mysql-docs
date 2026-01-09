@@ -10,7 +10,7 @@ A group can consist of maximum 9 servers. Attempting to add another server to a 
 
 Servers in a group connect to the other servers in the group by opening a peer-to-peer TCP connection. These connections are only used for internal communication and message passing between servers in the group. This address is configured by the [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address) variable.
 
-### What is the group\_replication\_bootstrap\_group option used for?
+### What is the group_replication_bootstrap_group option used for?
 
 The bootstrap flag instructs a member to *create* a group and act as the initial seed server. The second member joining the group needs to ask the member that bootstrapped the group to dynamically change the configuration in order for it to be added to the group.
 

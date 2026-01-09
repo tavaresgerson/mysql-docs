@@ -16,7 +16,7 @@ mysql    10512  0.2  2.5  58528 26636 pts/3    Sl   11:53   0:00 \
 jon      10579  0.0  0.0   2736   688 pts/0    S+   11:54   0:00 grep mysql
 ```
 
-If the **mysqld** process is running as any other user than `mysql`, you should immediately shut it down and restart it as the `mysql` user. If this user does not exist on the system, the `mysql` user account should be created, and this user should be part of the `mysql` user group; in this case, you should also make sure that the MySQL data directory on this system (as set using the `--datadir` option for **mysqld**) is owned by the `mysql` user, and that the SQL node's `my.cnf` file includes `user=mysql` in the `[mysqld]` section. Alternatively, you can start the MySQL server process with `--user=mysql` on the command line, but it is preferable to use the `my.cnf` option, since you might forget to use the command-line option and so have **mysqld** running as another user unintentionally. The **mysqld\_safe** startup script forces MySQL to run as the `mysql` user.
+If the **mysqld** process is running as any other user than `mysql`, you should immediately shut it down and restart it as the `mysql` user. If this user does not exist on the system, the `mysql` user account should be created, and this user should be part of the `mysql` user group; in this case, you should also make sure that the MySQL data directory on this system (as set using the `--datadir` option for **mysqld**) is owned by the `mysql` user, and that the SQL node's `my.cnf` file includes `user=mysql` in the `[mysqld]` section. Alternatively, you can start the MySQL server process with `--user=mysql` on the command line, but it is preferable to use the `my.cnf` option, since you might forget to use the command-line option and so have **mysqld** running as another user unintentionally. The **mysqld_safe** startup script forces MySQL to run as the `mysql` user.
 
 Important
 
@@ -41,6 +41,6 @@ Be very careful when executing the `DELETE` statement not to omit the `WHERE` cl
 
 Note
 
-Many of the NDB Cluster utilities such as **ndb\_show\_tables**, **ndb\_desc**, and **ndb\_select\_all** also work without authentication and can reveal table names, schemas, and data. By default these are installed on Unix-style systems with the permissions `wxr-xr-x` (755), which means they can be executed by any user that can access the `mysql/bin` directory.
+Many of the NDB Cluster utilities such as **ndb_show_tables**, **ndb_desc**, and **ndb_select_all** also work without authentication and can reveal table names, schemas, and data. By default these are installed on Unix-style systems with the permissions `wxr-xr-x` (755), which means they can be executed by any user that can access the `mysql/bin` directory.
 
 See Section 25.5, “NDB Cluster Programs”, for more information about these utilities.

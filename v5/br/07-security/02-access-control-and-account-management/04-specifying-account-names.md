@@ -8,7 +8,7 @@ Os nomes das contas aparecem em declarações SQL, como `CREATE USER`, `GRANT` e
 
 - A parte `@host_name` é opcional. Um nome de conta composto apenas por um nome de usuário é equivalente a `'user_name'@'%'. Por exemplo, `'me'`é equivalente a`'me'@'%'.
 
-- O nome do usuário e o nome do host não precisam ser entre aspas se forem identificadores legais sem aspas. As aspas devem ser usadas se uma string `*`user\_name`* contiver caracteres especiais (como espaço ou `-`) ou se uma string `*`host_name`* contiver caracteres especiais ou caracteres curinga (como `.` ou `%`). Por exemplo, no nome da conta `'test-user'@'%.com'`, tanto a parte do nome do usuário quanto a do host precisam de aspas.
+- O nome do usuário e o nome do host não precisam ser entre aspas se forem identificadores legais sem aspas. As aspas devem ser usadas se uma string `*`user_name`* contiver caracteres especiais (como espaço ou `-`) ou se uma string `*`host_name`* contiver caracteres especiais ou caracteres curinga (como `.` ou `%`). Por exemplo, no nome da conta `'test-user'@'%.com'`, tanto a parte do nome do usuário quanto a do host precisam de aspas.
 
 - Cite nomes de usuários e nomes de hosts como identificadores ou como strings, usando aspas duplas (\`\`\`), aspas simples (`'`) ou aspas duplas (`"`). Para diretrizes de citação de strings e identificadores, consulte Seção 9.1.1, “Letras de String” e Seção 9.2, “Nomes de Objetos de Esquema”.
 
@@ -48,13 +48,13 @@ A parte do nome do host de um nome de conta pode assumir várias formas, e os ca
 
   Isso permite que `david` se conecte a qualquer host cliente que tenha um endereço IP *`client_ip`* para o qual a seguinte condição seja verdadeira:
 
-  ```sql
+  ```sh
   client_ip & netmask = host_ip
   ```
 
   Ou seja, para a declaração `CREATE USER` que acabou de ser mostrada:
 
-  ```sql
+  ```sh
   client_ip & 255.255.255.0 = 198.51.100.0
   ```
 

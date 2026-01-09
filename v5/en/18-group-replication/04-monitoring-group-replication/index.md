@@ -2,15 +2,15 @@
 
 [17.4.1 Group Replication Server States](group-replication-server-states.html)
 
-[17.4.2 The replication\_group\_members Table](group-replication-replication-group-members.html)
+[17.4.2 The replication_group_members Table](group-replication-replication-group-members.html)
 
-[17.4.3 The replication\_group\_member\_stats Table](group-replication-replication-group-member-stats.html)
+[17.4.3 The replication_group_member_stats Table](group-replication-replication-group-member-stats.html)
 
 You can use the MySQL [Performance Schema](performance-schema.html "Chapter 25 MySQL Performance Schema") to monitor Group Replication. These Performance Schema tables display information specific to Group Replication:
 
-* [`replication_group_member_stats`](performance-schema-replication-group-member-stats-table.html "25.12.11.7 The replication_group_member_stats Table"): See [Section 17.4.3, “The replication\_group\_member\_stats Table”](group-replication-replication-group-member-stats.html "17.4.3 The replication_group_member_stats Table").
+* [`replication_group_member_stats`](performance-schema-replication-group-member-stats-table.html "25.12.11.7 The replication_group_member_stats Table"): See [Section 17.4.3, “The replication_group_member_stats Table”](group-replication-replication-group-member-stats.html "17.4.3 The replication_group_member_stats Table").
 
-* [`replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table"): See [Section 17.4.2, “The replication\_group\_members Table”](group-replication-replication-group-members.html "17.4.2 The replication_group_members Table").
+* [`replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table"): See [Section 17.4.2, “The replication_group_members Table”](group-replication-replication-group-members.html "17.4.2 The replication_group_members Table").
 
 These Performance Schema replication tables also show information relating to Group Replication:
 

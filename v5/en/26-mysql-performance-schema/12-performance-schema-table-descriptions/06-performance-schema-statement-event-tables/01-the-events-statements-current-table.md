@@ -1,4 +1,4 @@
-#### 25.12.6.1 The events\_statements\_current Table
+#### 25.12.6.1 The events_statements_current Table
 
 The [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") table contains current statement events. The table stores one row per thread showing the current status of the thread's most recent monitored statement event, so there is no system variable for configuring the table size.
 
@@ -92,7 +92,7 @@ The [`events_statements_current`](performance-schema-events-statements-current-t
 
 * `ROWS_AFFECTED`
 
-  The number of rows affected by the statement. For a description of the meaning of “affected,” see [mysql\_affected\_rows()](/doc/c-api/5.7/en/mysql-affected-rows.html).
+  The number of rows affected by the statement. For a description of the meaning of “affected,” see [mysql_affected_rows()](/doc/c-api/5.7/en/mysql-affected-rows.html).
 
 * `ROWS_SENT`
 

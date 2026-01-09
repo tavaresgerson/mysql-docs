@@ -26,7 +26,7 @@ Adminstrators and applications can configure whether to permit local data loadin
 
   + By default, the client library in MySQL binary distributions is compiled with [`ENABLED_LOCAL_INFILE`](source-configuration-options.html#option_cmake_enabled_local_infile) enabled. If you compile MySQL from source, configure it with [`ENABLED_LOCAL_INFILE`](source-configuration-options.html#option_cmake_enabled_local_infile) disabled or enabled based on whether clients that make no explicit arrangements should have `LOCAL` capability disabled or enabled.
 
-  + For client programs that use the C API, local data loading capability is determined by the default compiled into the MySQL client library. To enable or disable it explicitly, invoke the [`mysql_options()`](/doc/c-api/5.7/en/mysql-options.html) C API function to disable or enable the `MYSQL_OPT_LOCAL_INFILE` option. See [mysql\_options()](/doc/c-api/5.7/en/mysql-options.html).
+  + For client programs that use the C API, local data loading capability is determined by the default compiled into the MySQL client library. To enable or disable it explicitly, invoke the [`mysql_options()`](/doc/c-api/5.7/en/mysql-options.html) C API function to disable or enable the `MYSQL_OPT_LOCAL_INFILE` option. See [mysql_options()](/doc/c-api/5.7/en/mysql-options.html).
 
   + For the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, local data loading capability is determined by the default compiled into the MySQL client library. To disable or enable it explicitly, use the [`--local-infile=0`](mysql-command-options.html#option_mysql_local-infile) or [`--local-infile[=1]`](mysql-command-options.html#option_mysql_local-infile) option.
 

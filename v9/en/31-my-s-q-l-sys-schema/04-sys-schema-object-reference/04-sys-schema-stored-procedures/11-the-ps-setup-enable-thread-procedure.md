@@ -1,4 +1,4 @@
-#### 30.4.4.11 The ps\_setup\_enable\_thread() Procedure
+#### 30.4.4.11 The ps_setup_enable_thread() Procedure
 
 Given a connection ID, enables Performance Schema instrumentation for the thread. Produces a result set indicating how many threads were enabled. Already enabled threads do not count.
 

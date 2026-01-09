@@ -4,7 +4,7 @@ Se você encontrar problemas ao tentar se conectar ao servidor MySQL, os seguint
 
 - Certifique-se de que o servidor está em execução. Se não estiver, os clientes não poderão se conectar a ele. Por exemplo, se uma tentativa de conexão com o servidor falhar com uma mensagem como uma das seguintes, uma das causas pode ser que o servidor não está em execução:
 
-  ```sql
+  ```sh
   $> mysql
   ERROR 2003: Can't connect to MySQL server on 'host_name' (111)
   $> mysql
@@ -14,7 +14,7 @@ Se você encontrar problemas ao tentar se conectar ao servidor MySQL, os seguint
 
 - Pode ser que o servidor esteja em execução, mas você esteja tentando se conectar usando uma porta TCP/IP, um canal de comunicação ou um arquivo de soquete Unix diferente do que o servidor está ouvindo. Para corrigir isso ao invocar um programa cliente, especifique uma opção `--port` para indicar o número de porta correto ou uma opção `--socket` para indicar o arquivo de soquete ou canal de comunicação Unix correto. Para descobrir onde está o arquivo de soquete, você pode usar este comando:
 
-  ```sql
+  ```sh
   $> netstat -ln | grep mysql
   ```
 
@@ -28,14 +28,14 @@ Se você encontrar problemas ao tentar se conectar ao servidor MySQL, os seguint
 
 - Após uma instalação recente, se você tentar fazer login no servidor como `root` sem usar uma senha, você pode receber a seguinte mensagem de erro.
 
-  ```sql
+  ```sh
   $> mysql -u root
   ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)
   ```
 
   Isso significa que uma senha de raiz já foi atribuída durante a instalação e ela precisa ser fornecida. Veja Seção 2.9.4, “Segurança da Conta Inicial do MySQL” sobre as diferentes maneiras pelas quais a senha poderia ter sido atribuída e, em alguns casos, como encontrá-la. Se você precisar redefinir a senha de raiz, consulte as instruções na Seção B.3.3.2, “Como Redefinir a Senha de Raiz”. Após encontrar ou redefinir sua senha, faça login novamente como `root` usando a opção `--password` (ou `-p`):
 
-  ```sql
+  ```sh
   $> mysql -u root -p
   Enter password:
   ```
@@ -46,19 +46,19 @@ Se você encontrar problemas ao tentar se conectar ao servidor MySQL, os seguint
 
 - Se um programa cliente receber a seguinte mensagem de erro ao tentar se conectar, isso significa que o servidor espera senhas em um formato mais recente do que o cliente é capaz de gerar:
 
-  ```sql
+  ```sh
   $> mysql
   Client does not support authentication protocol requested
   by server; consider upgrading MySQL client
   ```
 
-  Para obter informações sobre como lidar com isso, consulte Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql\_old\_password”.
+  Para obter informações sobre como lidar com isso, consulte Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql_old_password”.
 
 - Lembre-se de que os programas de cliente usam parâmetros de conexão especificados em arquivos de opção ou variáveis de ambiente. Se um programa de cliente parecer estar enviando parâmetros de conexão padrão incorretos, mesmo que você não os tenha especificado na linha de comando, verifique quaisquer arquivos de opção aplicáveis e seu ambiente. Por exemplo, se você receber `Acesso negado` ao executar um cliente sem nenhuma opção, certifique-se de que você não tenha especificado uma senha antiga em nenhum de seus arquivos de opção!
 
   Você pode suprimir o uso de arquivos de opções por um programa cliente ao invocá-lo com a opção `--no-defaults`. Por exemplo:
 
-  ```sql
+  ```sh
   $> mysqladmin --no-defaults -u root version
   ```
 
@@ -66,7 +66,7 @@ Se você encontrar problemas ao tentar se conectar ao servidor MySQL, os seguint
 
 - Se você receber o seguinte erro, isso significa que está usando uma senha de `root` incorreta:
 
-  ```sql
+  ```sh
   $> mysqladmin -u root -pxxxx ver
   Access denied for user 'root'@'localhost' (using password: YES)
   ```
@@ -93,7 +93,7 @@ Se você encontrar problemas ao tentar se conectar ao servidor MySQL, os seguint
 
 - Se o seguinte erro ocorrer quando você tentar se conectar a um host diferente do que contém o servidor MySQL, isso significa que não há uma linha na tabela `user` com um valor `Host` que corresponda ao host do cliente:
 
-  ```sql
+  ```sh
   Host ... is not allowed to connect to this MySQL server
   ```
 
@@ -105,14 +105,14 @@ Se você encontrar problemas ao tentar se conectar ao servidor MySQL, os seguint
 
 - Se você especificar um nome de host ao tentar se conectar, mas receber uma mensagem de erro onde o nome de host não é exibido ou é um endereço IP, isso significa que o servidor MySQL teve um erro ao tentar resolver o endereço IP do host do cliente em um nome:
 
-  ```sql
+  ```sh
   $> mysqladmin -u root -pxxxx -h some_hostname ver
   Access denied for user 'root'@'' (using password: YES)
   ```
 
   Se você tentar se conectar como `root` e receber o seguinte erro, isso significa que você não tem uma linha na tabela `user` com um valor na coluna `User` de `'root'` e que o **mysqld** não consegue resolver o nome do host do seu cliente:
 
-  ```sql
+  ```sh
   Access denied for user ''@'unknown'
   ```
 
@@ -121,17 +121,11 @@ Se você encontrar problemas ao tentar se conectar ao servidor MySQL, os seguint
   Algumas soluções permanentes são:
 
   - Determine o que está errado com o seu servidor DNS e corrija-o.
-
   - Especifique endereços IP em vez de nomes de host nas tabelas de concessão do MySQL.
-
   - Adicione uma entrada para o nome da máquina do cliente em `/etc/hosts` no Unix ou em `\windows\hosts` no Windows.
-
-  - Inicie o **mysqld** com a variável de sistema \`**skip\_name\_resolve** habilitada.
-
+  - Inicie o **mysqld** com a variável de sistema `**skip_name_resolve** habilitada.
   - Inicie o **mysqld** com a opção `--skip-host-cache` (opção `server-options.html#option_mysqld_skip-host-cache`).
-
   - No Unix, se você estiver executando o servidor e o cliente na mesma máquina, conecte-se a `localhost`. Para conexões a `localhost`, os programas MySQL tentam se conectar ao servidor local usando um arquivo de socket Unix, a menos que haja parâmetros de conexão especificados para garantir que o cliente faça uma conexão TCP/IP. Para mais informações, consulte Seção 4.2.4, “Conectando-se ao Servidor MySQL Usando Opções de Comando”.
-
   - No Windows, se você estiver executando o servidor e o cliente na mesma máquina e o servidor suportar conexões de canal nomeado, conecte-se ao nome do host `.` (ponto). As conexões a `.` usam um canal nomeado em vez de TCP/IP.
 
 - Se `mysql -u root` funcionar, mas `mysql -h seu_nome_do_servidor -u root` resultar em `Acesso negado` (onde *`seu_nome_do_servidor`* é o nome real do servidor local), você pode não ter o nome correto do seu servidor na tabela `user`. Um problema comum aqui é que o valor `Host` na linha da tabela `user` especifica um nome de host não qualificado, mas as rotinas de resolução de nomes do seu sistema retornam um nome de domínio totalmente qualificado (ou vice-versa). Por exemplo, se você tiver uma linha com o host `'pluto'` na tabela `user`, mas seu DNS informar ao MySQL que o nome do seu servidor é `'pluto.example.com'`, a linha não funcionará. Tente adicionar uma linha à tabela `user` que contenha o endereço IP do seu servidor como o valor da coluna `Host`. (Alternativamente, você poderia adicionar uma linha à tabela `user` com um valor `Host` que contenha um caractere curinga (por exemplo, `'pluto.%'`). No entanto, o uso de valores `Host` que terminam com `%` é *inseguro* e *não* é recomendado!)
@@ -148,7 +142,7 @@ Se você encontrar problemas ao tentar se conectar ao servidor MySQL, os seguint
 
 - Se seus privilégios parecerem ter mudado no meio de uma sessão, pode ser que um administrador do MySQL os tenha alterado. Recarregar as tabelas de concessão afeta as novas conexões do cliente, mas também afeta as conexões existentes, conforme indicado em Seção 6.2.9, “Quando as Alterações de Privilégio Se Tornam Efetivas”.
 
-- Se você tiver problemas de acesso com um programa Perl, PHP, Python ou ODBC, tente se conectar ao servidor com `mysql -u nome_usuario nome_banco` ou `mysql -u nome_usuario -ppassword nome_banco`. Se você conseguir se conectar usando o cliente **mysql**, o problema está no seu programa, não nos privilégios de acesso. (Não há espaço entre `-p` e a senha; você também pode usar a sintaxe `--password=senha` para especificar a senha. Se você usar a opção `-p` ou `--password` (connection-options.html#option\_general\_password) sem valor de senha, o MySQL solicitará a senha.)
+- Se você tiver problemas de acesso com um programa Perl, PHP, Python ou ODBC, tente se conectar ao servidor com `mysql -u nome_usuario nome_banco` ou `mysql -u nome_usuario -ppassword nome_banco`. Se você conseguir se conectar usando o cliente **mysql**, o problema está no seu programa, não nos privilégios de acesso. (Não há espaço entre `-p` e a senha; você também pode usar a sintaxe `--password=senha` para especificar a senha. Se você usar a opção `-p` ou `--password` (connection-options.html#option_general_password) sem valor de senha, o MySQL solicitará a senha.)
 
 - Para fins de teste, inicie o servidor **mysqld** com a opção `--skip-grant-tables`. Em seguida, você pode alterar as tabelas de concessão do MySQL e usar a instrução `SHOW GRANTS` para verificar se suas modificações tiveram o efeito desejado. Quando estiver satisfeito com suas alterações, execute **mysqladmin flush-privileges** para informar ao servidor **mysqld** para recarregar os privilégios. Isso permite que você comece a usar o novo conteúdo da nova tabela de concessão sem parar e reiniciar o servidor.
 

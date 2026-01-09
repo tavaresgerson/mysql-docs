@@ -101,7 +101,7 @@ Description:
 
 Note
 
-Configuration block (or arguments\_block) values that contain a colon character (`:`) must be wrapped in quotation marks. For example, `install_dir="C:\MySQL\MySQL Server 8.0"`.
+Configuration block (or arguments_block) values that contain a colon character (`:`) must be wrapped in quotation marks. For example, `install_dir="C:\MySQL\MySQL Server 8.0"`.
 
 * `[--]configure [product1]:[configuration_argument]=[value], [product2]:[configuration_argument]=[value], [...]`
 

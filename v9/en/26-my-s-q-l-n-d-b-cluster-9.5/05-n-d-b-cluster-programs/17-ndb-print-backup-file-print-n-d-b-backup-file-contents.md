@@ -1,6 +1,6 @@
-### 25.5.17 ndb\_print\_backup\_file — Print NDB Backup File Contents
+### 25.5.17 ndb_print_backup_file — Print NDB Backup File Contents
 
-**ndb\_print\_backup\_file** obtains diagnostic information from a cluster backup file.
+**ndb_print_backup_file** obtains diagnostic information from a cluster backup file.
 
 #### Usage
 
@@ -10,13 +10,13 @@ ndb_print_backup_file [-P password] file_name
 
 *`file_name`* is the name of a cluster backup file. This can be any of the files (`.Data`, `.ctl`, or `.log` file) found in a cluster backup directory. These files are found in the data node's backup directory under the subdirectory `BACKUP-#`, where *`#`* is the sequence number for the backup. For more information about cluster backup files and their contents, see Section 25.6.8.1, “NDB Cluster Backup Concepts”.
 
-Like **ndb\_print\_schema\_file** and **ndb\_print\_sys\_file** (and unlike most of the other `NDB` utilities that are intended to be run on a management server host or to connect to a management server) **ndb\_print\_backup\_file** must be run on a cluster data node, since it accesses the data node file system directly. Because it does not make use of the management server, this utility can be used when the management server is not running, and even when the cluster has been completely shut down.
+Like **ndb_print_schema_file** and **ndb_print_sys_file** (and unlike most of the other `NDB` utilities that are intended to be run on a management server host or to connect to a management server) **ndb_print_backup_file** must be run on a cluster data node, since it accesses the data node file system directly. Because it does not make use of the management server, this utility can be used when the management server is not running, and even when the cluster has been completely shut down.
 
 This program can also be used to read undo log files.
 
 #### Options
 
-**ndb\_print\_backup\_file** supports the options described in the following list.
+**ndb_print_backup_file** supports the options described in the following list.
 
 * `--backup-key`, `-K`
 
@@ -74,7 +74,7 @@ This program can also be used to read undo log files.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><p class="valid-value"><code>--help</code></p><p class="valid-value"><code>--usage</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><p><code>--help</code></p><p><code>--usage</code></p></td> </tr></tbody></table>
 
   Print program usage information.
 

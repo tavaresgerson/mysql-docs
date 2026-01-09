@@ -1,18 +1,18 @@
-### 4.4.1 comp\_err — Compile MySQL Error Message File
+### 4.4.1 comp_err — Compile MySQL Error Message File
 
-**comp\_err** creates the `errmsg.sys` file that is used by **mysqld** to determine the error messages to display for different error codes. **comp\_err** normally is run automatically when MySQL is built. It compiles the `errmsg.sys` file from the text-format error information file located at `sql/share/errmsg-utf8.txt` in MySQL source distributions.
+**comp_err** creates the `errmsg.sys` file that is used by **mysqld** to determine the error messages to display for different error codes. **comp_err** normally is run automatically when MySQL is built. It compiles the `errmsg.sys` file from the text-format error information file located at `sql/share/errmsg-utf8.txt` in MySQL source distributions.
 
-**comp\_err** also generates the `mysqld_error.h`, `mysqld_ername.h`, and `sql_state.h` header files.
+**comp_err** also generates the `mysqld_error.h`, `mysqld_ername.h`, and `sql_state.h` header files.
 
 For more information about how error messages are defined, see the MySQL Internals Manual.
 
-Invoke **comp\_err** like this:
+Invoke **comp_err** like this:
 
 ```sql
 comp_err [options]
 ```
 
-**comp\_err** supports the following options.
+**comp_err** supports the following options.
 
 * `--help`, `-?`
 

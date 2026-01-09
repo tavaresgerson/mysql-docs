@@ -1,10 +1,10 @@
-#### 30.4.3.29 As vistas `schema\_table\_statistics` e `x$schema\_table\_statistics`
+#### 30.4.3.29 As vistas `schema_table_statistics` e `x$schema_table_statistics`
 
 Essas vistas resumem as estatísticas das tabelas. Por padrão, as linhas são ordenadas em ordem decrescente de tempo de espera total (as tabelas com mais concorrência primeiro).
 
 Essas vistas utilizam uma vista auxiliar, `x$ps_schema_table_statistics_io`.
 
-As vistas `schema\_table\_statistics` e `x$schema\_table\_statistics` têm as seguintes colunas:
+As vistas `schema_table_statistics` e `x$schema_table_statistics` têm as seguintes colunas:
 
 * `table_schema`
 

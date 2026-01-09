@@ -60,7 +60,7 @@ As conexões aos nós de API e gerenciamento que estão configurados, mas atualm
 
 O `remote_address` é o nome do host ou endereço do nó cujo ID é exibido na coluna `remote_node_id`. Os `bytes_sent` desse nó e `bytes_received` por esse nó são os números, respectivamente, de bytes enviados e recebidos pelo nó usando essa conexão desde que foi estabelecida. Para nós cujo status é `CONNECTING` ou `DISCONNECTED`, essas colunas sempre exibem `0`.
 
-Suponha que você tenha um clúster de 5 nós, composto por 2 nós de dados, 2 nós SQL e 1 nó de gerenciamento, conforme mostrado na saída do comando `SHOW` no cliente **ndb\_mgm**:
+Suponha que você tenha um clúster de 5 nós, composto por 2 nós de dados, 2 nós SQL e 1 nó de gerenciamento, conforme mostrado na saída do comando `SHOW` no cliente **ndb_mgm**:
 
 ```
 ndb_mgm> SHOW
@@ -116,7 +116,7 @@ mysql> SELECT node_id, remote_node_id, status
 10 rows in set (0.04 sec)
 ```
 
-Se você desligar um dos nós de dados neste clúster usando o comando `2 STOP` no cliente **ndb\_mgm**, então repita a consulta anterior (novamente usando o cliente **mysql**), esta tabela agora mostra apenas 5 linhas—1 linha para cada conexão do nó de gerenciamento restante para outro nó, incluindo tanto ele quanto o nó de dados que está atualmente offline—e exibe `CONNECTING` para o status de cada conexão restante ao nó de dados que está atualmente offline, conforme mostrado aqui:
+Se você desligar um dos nós de dados neste clúster usando o comando `2 STOP` no cliente **ndb_mgm**, então repita a consulta anterior (novamente usando o cliente **mysql**), esta tabela agora mostra apenas 5 linhas—1 linha para cada conexão do nó de gerenciamento restante para outro nó, incluindo tanto ele quanto o nó de dados que está atualmente offline—e exibe `CONNECTING` para o status de cada conexão restante ao nó de dados que está atualmente offline, conforme mostrado aqui:
 
 ```
 mysql> SELECT node_id, remote_node_id, status

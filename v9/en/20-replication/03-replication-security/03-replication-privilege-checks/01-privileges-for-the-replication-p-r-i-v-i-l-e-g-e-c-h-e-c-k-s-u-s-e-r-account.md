@@ -1,4 +1,4 @@
-#### 19.3.3.1 Privileges For The Replication PRIVILEGE\_CHECKS\_USER Account
+#### 19.3.3.1 Privileges For The Replication PRIVILEGE_CHECKS_USER Account
 
 The user account that is specified using the `CHANGE REPLICATION SOURCE TO` statement as the `PRIVILEGE_CHECKS_USER` account for a replication channel must have the `REPLICATION_APPLIER` privilege, otherwise the replication applier thread does not start. As explained in Section 19.3.3, “Replication Privilege Checks”, the account requires further privileges that are sufficient to apply all the expected transactions expected on the replication channel. These privileges are checked only when relevant transactions are executed.
 

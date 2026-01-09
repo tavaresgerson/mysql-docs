@@ -1,4 +1,4 @@
-### 28.4.21 A Tabela `INFORMATION\_SCHEMA INNODB\_METRICS`
+### 28.4.21 A Tabela `INFORMATION_SCHEMA INNODB_METRICS`
 
 A tabela `INNODB_METRICS` fornece uma ampla variedade de informações de desempenho do `InnoDB`, complementando as áreas focadas especificamente das tabelas do Schema de Desempenho para `InnoDB`. Com consultas simples, você pode verificar a saúde geral do sistema. Com consultas mais detalhadas, você pode diagnosticar problemas como gargalos de desempenho, escassez de recursos e problemas de aplicação.
 
@@ -6,7 +6,7 @@ Cada monitor representa um ponto dentro do código-fonte do `InnoDB` que é inst
 
 Por padrão, relativamente pouco dados são coletados. Para iniciar, parar e redefinir contadores, defina uma das variáveis de sistema `innodb_monitor_enable`, `innodb_monitor_disable`, `innodb_monitor_reset` ou `innodb_monitor_reset_all`, usando o nome do contador, o nome do módulo, uma correspondência de wildcard para tal nome usando o caractere “%” ou a palavra-chave especial `all`.
 
-Para informações de uso, consulte a Seção 17.15.6, “Tabela de Metricas do Schema de Informação `INFORMATION\_SCHEMA INNODB`”.
+Para informações de uso, consulte a Seção 17.15.6, “Tabela de Metricas do Schema de Informação `INFORMATION_SCHEMA INNODB`”.
 
 A tabela `INNODB_METRICS` tem essas colunas:
 

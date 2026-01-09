@@ -36,4 +36,4 @@ Online DDL operations may use temporary log files for recording concurrent DML, 
 
 `InnoDB` non-compressed, user-created temporary tables and on-disk internal temporary tables are created in a temporary tablespace file named `ibtmp1` in the MySQL data directory. For more information, see [Section 14.6.3.5, “The Temporary Tablespace”](innodb-temporary-tablespace.html "14.6.3.5 The Temporary Tablespace").
 
-See also [Section 14.16.7, “InnoDB INFORMATION\_SCHEMA Temporary Table Info Table”](innodb-information-schema-temp-table-info.html "14.16.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table"). [Orphan Temporary Tables](innodb-troubleshooting-datadict.html#innodb-orphan-temporary-tables "Orphan Temporary Tables").
+See also [Section 14.16.7, “InnoDB INFORMATION_SCHEMA Temporary Table Info Table”](innodb-information-schema-temp-table-info.html "14.16.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table"). [Orphan Temporary Tables](innodb-troubleshooting-datadict.html#innodb-orphan-temporary-tables "Orphan Temporary Tables").

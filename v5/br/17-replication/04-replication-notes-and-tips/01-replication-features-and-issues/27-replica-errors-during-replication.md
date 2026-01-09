@@ -8,7 +8,7 @@ Nota
 
 Se um erro temporário for registrado no log de erros da replica, você não precisa necessariamente tomar nenhuma ação sugerida na mensagem de erro citada. Erros temporários devem ser tratados quando o cliente tenta novamente a transação. Por exemplo, se o fio de SQL de replicação registrar um erro temporário relacionado a um deadlock, você não precisa reiniciar a transação manualmente na replica, a menos que o fio de SQL de replicação termine posteriormente com uma mensagem de erro não temporária.
 
-Se esse comportamento de validação de código de erro não for desejado, alguns ou todos os erros podem ser ocultados (ignorados) com a opção \[`--slave-skip-errors`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(programação)>, Replication Options Replica).
+Se esse comportamento de validação de código de erro não for desejado, alguns ou todos os erros podem ser ocultados (ignorados) com a opção [`--slave-skip-errors`]\(<https://pt.wikipedia.org/wiki/Op%C3%A9rnia_(programação)>, Replication Options Replica).
 
 Para motores de armazenamento não transacionais, como `MyISAM`, é possível ter uma instrução que atualiza apenas parcialmente uma tabela e retorna um código de erro. Isso pode acontecer, por exemplo, em uma inserção de múltiplas linhas que tem uma linha que viola uma restrição de chave, ou se uma instrução de atualização longa for cancelada após a atualização de algumas das linhas. Se isso acontecer na fonte, a replica espera que a execução da instrução resulte no mesmo código de erro. Se não, o fio de SQL de replicação para.
 

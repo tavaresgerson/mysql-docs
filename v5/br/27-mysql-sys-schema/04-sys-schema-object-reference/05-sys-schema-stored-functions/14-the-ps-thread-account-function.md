@@ -1,4 +1,4 @@
-#### 26.4.5.14 A função ps\_thread\_account()
+#### 26.4.5.14 A função ps_thread_account()
 
 Dada uma ID de thread do Schema de Desempenho, retorna a conta `user_name@host_name` associada à thread.
 

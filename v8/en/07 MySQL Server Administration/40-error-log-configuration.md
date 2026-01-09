@@ -42,7 +42,7 @@ That value indicates that log events first pass through the `log_filter_internal
 The combination of `log_filter_internal` and `log_sink_internal` implements the default error log filtering and output behavior. The action of these components is affected by other server options and system variables:
 
 * The output destination is determined by the `--log-error` option (and, on Windows,  `--pid-file` and `--console`). These determine whether to write error messages to the console or a file and, if to a file, the error log file name. See Section 7.4.2.2, “Default Error Log Destination Configuration”.
-* The  `log_error_verbosity` and `log_error_suppression_list` system variables affect which types of log events `log_filter_internal` permits or suppresses. See Section 7.4.2.5, “Priority-Based Error Log Filtering (log\_filter\_internal)”").
+* The  `log_error_verbosity` and `log_error_suppression_list` system variables affect which types of log events `log_filter_internal` permits or suppresses. See Section 7.4.2.5, “Priority-Based Error Log Filtering (log_filter_internal)”").
 
 When configuring `log_error_services`, be aware of the following characteristics:
 
@@ -214,7 +214,7 @@ If you need to revert from an implicit configuration to an explicit configuratio
 
 ##### Troubleshooting Configuration Issues
 
-Log components listed in the `log_error_services` value at startup are loaded implicitly early in the MySQL Server startup sequence. If the log component was loaded previously using  `INSTALL COMPONENT`, the server attempts to load the component again later in the startup sequence, which produces the warning Cannot load component from specified URN: 'file://component\_`component_name`'.
+Log components listed in the `log_error_services` value at startup are loaded implicitly early in the MySQL Server startup sequence. If the log component was loaded previously using  `INSTALL COMPONENT`, the server attempts to load the component again later in the startup sequence, which produces the warning Cannot load component from specified URN: 'file://component_`component_name`'.
 
 You can check for this warning in the error log or by querying the Performance Schema `error_log` table using the following query:
 

@@ -22,7 +22,7 @@ These platforms provide the necessary monitoring support for the `RESTART` state
 
 * Windows, when **mysqld** is started as a Windows service or standalone. (**mysqld** forks, and one process acts as a monitor to the other, which acts as the server.)
 
-* Unix and Unix-like systems that use systemd or **mysqld\_safe** to manage **mysqld**.
+* Unix and Unix-like systems that use systemd or **mysqld_safe** to manage **mysqld**.
 
 To configure a monitoring environment such that **mysqld** enables the `RESTART` statement:
 

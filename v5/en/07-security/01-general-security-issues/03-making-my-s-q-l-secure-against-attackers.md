@@ -21,7 +21,7 @@ To make a MySQL system secure, you should strongly consider the following sugges
   user=mysql
   ```
 
-  This causes the server to start as the designated user whether you start it manually or by using [**mysqld\_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") or [**mysql.server**](mysql-server.html "4.3.3 mysql.server — MySQL Server Startup Script"). For more details, see [Section 6.1.5, “How to Run MySQL as a Normal User”](changing-mysql-user.html "6.1.5 How to Run MySQL as a Normal User").
+  This causes the server to start as the designated user whether you start it manually or by using [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") or [**mysql.server**](mysql-server.html "4.3.3 mysql.server — MySQL Server Startup Script"). For more details, see [Section 6.1.5, “How to Run MySQL as a Normal User”](changing-mysql-user.html "6.1.5 How to Run MySQL as a Normal User").
 
   Running [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") as a Unix user other than `root` does not mean that you need to change the `root` user name in the `user` table. *User names for MySQL accounts have nothing to do with user names for Unix accounts*.
 

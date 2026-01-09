@@ -78,7 +78,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code>basedir</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -89,7 +89,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -112,7 +112,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
   <tr><th>Formato de Linha de Comando</th> <td><code>--check-table-functions=valor</code></td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ABORT</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr>
 </table>
 
   Ao realizar uma atualização do servidor, fazemos uma varredura do dicionário de dados para funções usadas em restrições de tabela e outras expressões, incluindo expressões `DEFAULT`, expressões de particionamento e colunas virtuais. É possível que uma mudança no comportamento da função cause um erro na nova versão do servidor, onde nenhum erro ocorreu antes, caso em que a tabela não pode ser aberta. Esta opção oferece uma escolha sobre como lidar com tais problemas, de acordo com o qual dos dois valores mostrados aqui é usado:
@@ -169,7 +169,7 @@ A Seção 7.1.8, “Variáveis do Sistema do Servidor”, fornece uma descriçã
 
 Quando esta opção é usada, escreva um arquivo de núcleo se o **mysqld** morrer; não são necessários (ou aceitos) argumentos. O nome e a localização do arquivo de núcleo dependem do sistema. No Linux, um arquivo de núcleo chamado `core.pid` é escrito no diretório de trabalho atual do processo, que, para o **mysqld**, é o diretório de dados. *`pid`* representa o ID de processo do processo do servidor. No macOS, um arquivo de núcleo chamado `core.pid` é escrito no diretório `/cores`. No Solaris, use o comando **coreadm** para especificar onde escrever o arquivo de núcleo e como nomeá-lo.
 
-Para alguns sistemas, para obter um arquivo de núcleo, você também deve especificar a opção `--core-file-size` para **mysqld\_safe**. Consulte a Seção 6.3.2, “mysqld\_safe — Script de Inicialização do Servidor MySQL”. Em alguns sistemas, como o Solaris, você não obtém um arquivo de núcleo se também estiver usando a opção `--user`. Pode haver restrições ou limitações adicionais. Por exemplo, pode ser necessário executar **ulimit -c unlimited** antes de iniciar o servidor. Consulte a documentação do seu sistema.
+Para alguns sistemas, para obter um arquivo de núcleo, você também deve especificar a opção `--core-file-size` para **mysqld_safe**. Consulte a Seção 6.3.2, “mysqld_safe — Script de Inicialização do Servidor MySQL”. Em alguns sistemas, como o Solaris, você não obtém um arquivo de núcleo se também estiver usando a opção `--user`. Pode haver restrições ou limitações adicionais. Por exemplo, pode ser necessário executar **ulimit -c unlimited** antes de iniciar o servidor. Consulte a documentação do seu sistema.
 
 A variável `innodb_buffer_pool_in_core_file` pode ser usada para reduzir o tamanho dos arquivos de núcleo em sistemas operacionais que a suportam. Para mais informações, consulte a Seção 17.8.3.7, “Excluindo ou Incluindo Páginas do Buffer Pool em Arquivos de Núcleo”.
 
@@ -187,7 +187,7 @@ Se o servidor for iniciado usando a opção `--daemonize` e não estiver conecta
 
 * `--datadir=dir_name`, `-h dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para datadir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_datadir">datadir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para datadir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>datadir</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O caminho para o diretório de dados do servidor MySQL. Esta opção define a variável de sistema `datadir`. Veja a descrição dessa variável.
 
@@ -457,7 +457,7 @@ No Windows, `--console` tem precedência sobre `--log-error` se ambos forem forn
 
 * `--log-raw`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></table>
 
 As senhas em determinadas declarações escritas no log de consulta geral, no log de consultas lentas e no log binário são reescritas pelo servidor para não ocorrerem literalmente em texto simples. A reescrita de senhas pode ser suprimida para o log de consulta geral iniciando o servidor com a opção `--log-raw`. Esta opção pode ser útil para fins de diagnóstico, para ver o texto exato das declarações recebidas pelo servidor, mas, por razões de segurança, não é recomendada para uso em produção.
 
@@ -471,7 +471,7 @@ Para mais informações, consulte a Seção 8.1.2.3, “Senhas e Registro”.
 
 * `--log-short-format`
 
-<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>basedir</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
 
 Registre menos informações no log de consultas lentas, se ele tiver sido ativado.
 
@@ -484,7 +484,7 @@ Registre menos informações no log de consultas lentas, se ele tiver sido ativa
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code>basedir</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -495,7 +495,7 @@ Registre menos informações no log de consultas lentas, se ele tiver sido ativa
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -520,7 +520,7 @@ O nome do arquivo de log do coordenador de transações mapeado à memória (par
   </tr>
   <tr>
     <th>Variável do sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code>basedir</code></td>
   </tr>
   <tr>
     <th>Âmbito</th>
@@ -531,7 +531,7 @@ O nome do arquivo de log do coordenador de transações mapeado à memória (par
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -547,7 +547,7 @@ O nome do arquivo de log do coordenador de transações mapeado à memória (par
 
 * `--memlock`
 
-<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dica de sintaxe para <code>SET_VAR</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
 
   Bloquear o processo **mysqld** na memória. Esta opção pode ajudar se você tiver um problema em que o sistema operacional está fazendo o **mysqld** trocar para o disco.
 
@@ -573,7 +573,7 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
 
 * `--myisam-block-size=N`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Configuração de Variáveis"><code>SET_VAR</code></a> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tr><th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do Sistema</th> <td><code>basedir</code></td> </tr><tr><th>Alcance</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th><code>SET_VAR</code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome de diretório</td> </tr><tr><th>Valor Padrão</th> <td><code>parent of mysqld installation directory</code></td> </tr></tbody></table>
 
   O tamanho de bloco a ser usado para páginas de índice `MyISAM`.
 
@@ -592,7 +592,7 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code>basedir</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -603,7 +603,7 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -630,7 +630,7 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code>basedir</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -641,7 +641,7 @@ Você não deve usar essa opção em um sistema que não suporte a chamada de si
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hinta de Configuração de Variáveis"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -680,7 +680,7 @@ Para informações adicionais sobre o carregamento de plugins, consulte a Seçã
   <tr>
     <th>Formato de Linha de Comando</th> <td><code>--basedir=dir_name</code></td> </tr>
     <tr>
-      <th>Variável do Sistema</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr>
+      <th>Variável do Sistema</th> <td><code>basedir</code></td> </tr>
     </tr>
     <tr>
       <th>Alcance</th> <td>Global</td> </tr>
@@ -689,7 +689,7 @@ Para informações adicionais sobre o carregamento de plugins, consulte a Seçã
       <th>Dinâmico</th> <td>Não</td> </tr>
     </tr>
     <tr>
-      <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variáveis"><code>SET_VAR</a></th> <td>Não</td> </tr>
+      <th>Hinta de <code>SET_VAR</th> <td>Não</td> </tr>
     </tr>
     <tr>
       <th>Tipo</th> <td>Nome do diretório</td> </tr>
@@ -745,7 +745,7 @@ A razão para o prefixo `--plugin` é que ele permite que as opções do plugin 
   </tr>
   <tr>
     <th>Variável do Sistema</th>
-    <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td>
+    <td><code>basedir</code></td>
   </tr>
   <tr>
     <th>Alcance</th>
@@ -756,7 +756,7 @@ A razão para o prefixo `--plugin` é que ele permite que as opções do plugin 
     <td>Não</td>
   </tr>
   <tr>
-    <th>Hinta de <a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de dica de configuração de variável"><code>SET_VAR</a></code> Aplica-se</th>
+    <th>Hinta de <code>SET_VAR</code> Aplica-se</th>
     <td>Não</td>
   </tr>
   <tr>
@@ -788,7 +788,7 @@ A razão para o prefixo `--plugin` é que ele permite que as opções do plugin 
     </tr>
     <tr>
       <th>Valores Válidos</th>
-      <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td>
+      <td><p><code>WARN</code></p><p><code>ABORT</code></p></td>
     </tr>
   </table>
 
@@ -802,13 +802,13 @@ Em alguns sistemas, quando o servidor é parado, a porta TCP/IP pode não ficar 
 
 * `--remove [nome_do_serviço]`
 
-  <table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr></tbody></table>
 
   (Apenas no Windows) Remova um serviço MySQL no Windows. O nome do serviço padrão é `MySQL` se nenhum valor de *`service_name`* for fornecido. Para mais informações, consulte a Seção 2.3.3.8, “Iniciar o MySQL como um serviço do Windows”.
 
 * `--safe-user-create`
 
-<table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></table>
+<table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr></table>
 
   Se esta opção estiver habilitada, um usuário não poderá criar novos usuários do MySQL usando a instrução `GRANT`, a menos que o usuário tenha o privilégio `INSERT` para a tabela de sistema `mysql.user` ou qualquer coluna na tabela. Se você quiser que um usuário tenha a capacidade de criar novos usuários que tenham esses privilégios, o usuário deve conceder o seguinte privilégio:
 
@@ -820,7 +820,7 @@ Em alguns sistemas, quando o servidor é parado, a porta TCP/IP pode não ficar 
 
 * `--skip-grant-tables`
 
-  <table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></table>
+  <table frame="box" rules="all" summary="Propriedades para funções de tabela de verificação"><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=valor</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr></table>
 
   Esta opção afeta a sequência de inicialização do servidor:
 
@@ -854,7 +854,7 @@ Para fazer com que os plugins sejam carregados mesmo quando usando `--skip-grant
 
 * `--skip-new`
 
-<table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=value</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas"><tbody><tr><th>Formato de linha de comando</th> <td><code>--check-table-functions=value</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr></tbody></table>
 
 Esta opção desabilita (o que costumava ser considerado) novos comportamentos, possivelmente inseguros. Isso resulta nestas configurações: `delay_key_write=OFF`, `concurrent_insert=NEVER`, `automatic_sp_privileges=OFF`. Também faz com que `OPTIMIZE TABLE` seja mapeado para `ALTER TABLE` para motores de armazenamento para os quais `OPTIMIZE TABLE` não é suportado.
 
@@ -877,7 +877,7 @@ Esta opção é desatualizada e está sujeita à remoção em uma futura versão
   </tr>
   <tr>
     <th>Valores Válidos</th>
-    <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td>
+    <td><p><code>WARN</code></p><p><code>ABORT</code></p></td>
   </tr>
 </table>
 
@@ -900,7 +900,7 @@ Esta opção é desatualizada e está sujeita à remoção em uma futura versão
     </tr>
     <tr>
       <th>Valores Válidos</th>
-      <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td>
+      <td><p><code>WARN</code></p><p><code>ABORT</code></p></td>
     </tr>
   </table>
 
@@ -912,14 +912,14 @@ Esta opção é desatualizada e está sujeita à remoção em uma futura versão
   <tr><th>Formato de Linha de Comando</th> <td><code>--check-table-functions=valor</code></td> </tr>
   <tr><th>Tipo</th> <td>Enumeração</td> </tr>
   <tr><th>Valor Padrão</th> <td><code>ABORT</code></td> </tr>
-  <tr><th>Valores Válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr>
+  <tr><th>Valores Válidos</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr>
 </table>
 
 No Unix, essa opção especifica o arquivo de socket Unix a ser usado ao ouvir conexões locais. O valor padrão é `/tmp/mysql.sock`. Se essa opção for fornecida, o servidor cria o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar um diretório diferente. No Windows, a opção especifica o nome de pipe a ser usado ao ouvir conexões locais que usam um pipe nomeado. O valor padrão é `MySQL` (não case-sensitive).
 
 [`--sql-mode=value[,value[,value...]]`](server-options.html#option_mysqld_sql-mode)
 
-  <table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--check-table-functions=value</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores Válidos</th> <td><p class="valid-value"><code>WARN</code></p><p class="valid-value"><code>ABORT</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para funções de verificação de tabelas"><tbody><tr><th>Formato de Linha de Comando</th> <td><code>--check-table-functions=value</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor Padrão</th> <td><code>ABORT</code></td> </tr><tr><th>Valores Válidos</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr></tbody></table>
 
   Defina o modo SQL. Veja a Seção 7.1.11, “Modos SQL do Servidor”.
 

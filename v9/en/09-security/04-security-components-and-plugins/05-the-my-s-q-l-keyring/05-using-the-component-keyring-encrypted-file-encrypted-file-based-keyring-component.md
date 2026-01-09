@@ -1,4 +1,4 @@
-#### 8.4.5.5 Using the component\_keyring\_encrypted\_file Encrypted File-Based Keyring Component
+#### 8.4.5.5 Using the component_keyring_encrypted_file Encrypted File-Based Keyring Component
 
 Note
 

@@ -176,7 +176,7 @@ All of these options also apply to the multithreaded version of this program (**
 
   Important
 
-  Do not confuse this option with the `--nowait-nodes` option for **ndb\_mgmd**, which can be used to enable a cluster configured with multiple management servers to be started without all management servers being online.
+  Do not confuse this option with the `--nowait-nodes` option for **ndb_mgmd**, which can be used to enable a cluster configured with multiple management servers to be started without all management servers being online.
 
 * `--install[=name]`
 
@@ -210,7 +210,7 @@ All of these options also apply to the multithreaded version of this program (**
 
   <table frame="box" rules="all" summary="Properties for connect-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-delay=#</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>3600</code></td> </tr></tbody></table>
 
-  Set connection string for connecting to **ndb\_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
+  Set connection string for connecting to **ndb_mgmd**. Syntax: `[nodeid=id;][host=]hostname[:port]`. Overrides entries in `NDB_CONNECTSTRING` and `my.cnf`.
 
 * `--ndb-log-timestamps`
 

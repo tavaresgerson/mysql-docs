@@ -4,7 +4,7 @@
 
 [13.4.1.2 RESET MASTER Statement](reset-master.html)
 
-[13.4.1.3 SET sql\_log\_bin Statement](set-sql-log-bin.html)
+[13.4.1.3 SET sql_log_bin Statement](set-sql-log-bin.html)
 
 This section discusses statements for managing replication source servers. [Section 13.4.2, “SQL Statements for Controlling Replica Servers”](replication-statements-replica.html "13.4.2 SQL Statements for Controlling Replica Servers"), discusses statements for managing replica servers.
 

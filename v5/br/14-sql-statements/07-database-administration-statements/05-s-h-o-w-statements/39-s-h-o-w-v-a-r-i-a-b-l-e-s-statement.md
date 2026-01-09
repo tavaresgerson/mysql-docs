@@ -15,11 +15,11 @@ As informações das variáveis do sistema também estão disponíveis nessas fo
 
 - Tabelas do Schema de Desempenho. Consulte Seção 25.12.13, "Tabelas de Variáveis de Sistema do Schema de Desempenho".
 
-- As tabelas `[GLOBAL_VARIABLES](https://pt.wikipedia.org/wiki/Tabela_de_vari%C3%A1veis_do_schema_de_informa%C3%A7%C3%A3o)` e `[SESSION_VARIABLES](https://pt.wikipedia.org/wiki/Tabela_de_vari%C3%A1veis_do_schema_de_informa%C3%A7%C3%A3o)`. Veja [Seção 24.3.11, “As tabelas GLOBAL\_VARIABLES e SESSION\_VARIABLES do schema de informações](https://pt.wikipedia.org/wiki/Tabela_de_vari%C3%A1veis_do_schema_de_informa%C3%A7%C3%A3o).
+- As tabelas `[GLOBAL_VARIABLES](https://pt.wikipedia.org/wiki/Tabela_de_vari%C3%A1veis_do_schema_de_informa%C3%A7%C3%A3o)` e `[SESSION_VARIABLES](https://pt.wikipedia.org/wiki/Tabela_de_vari%C3%A1veis_do_schema_de_informa%C3%A7%C3%A3o)`. Veja [Seção 24.3.11, “As tabelas GLOBAL_VARIABLES e SESSION_VARIABLES do schema de informações](https://pt.wikipedia.org/wiki/Tabela_de_vari%C3%A1veis_do_schema_de_informa%C3%A7%C3%A3o).
 
 - O comando **variáveis mysqladmin**. Veja Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”.
 
-Para `SHOW VARIABLES`, uma cláusula `LIKE` (funções de comparação de strings.html#operador\_like), se presente, indica quais nomes de variáveis devem ser correspondidos. Uma cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Declarações SHOW”.
+Para `SHOW VARIABLES`, uma cláusula `LIKE` (funções de comparação de strings.html#operador_like), se presente, indica quais nomes de variáveis devem ser correspondidos. Uma cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Declarações SHOW”.
 
 O `SHOW VARIABLES` aceita um modificador opcional de escopo de variável `GLOBAL` ou `SESSION`:
 
@@ -96,18 +96,18 @@ mysql> SHOW VARIABLES;
 +-----------------------------------------+---------------------------+
 ```
 
-Com uma cláusula `LIKE` (funções de comparação de strings.html#operador\_like), a instrução exibe apenas as linhas para aquelas variáveis com nomes que correspondem ao padrão. Para obter a linha de uma variável específica, use uma cláusula `LIKE` (funções de comparação de strings.html#operador\_like) conforme mostrado:
+Com uma cláusula `LIKE` (funções de comparação de strings.html#operador_like), a instrução exibe apenas as linhas para aquelas variáveis com nomes que correspondem ao padrão. Para obter a linha de uma variável específica, use uma cláusula `LIKE` (funções de comparação de strings.html#operador_like) conforme mostrado:
 
 ```sql
 SHOW VARIABLES LIKE 'max_join_size';
 SHOW SESSION VARIABLES LIKE 'max_join_size';
 ```
 
-Para obter uma lista de variáveis cujo nome corresponda a um padrão, use o caractere curinga `%` em uma cláusula `LIKE` (funções de comparação de strings.html#operador\_like):
+Para obter uma lista de variáveis cujo nome corresponda a um padrão, use o caractere curinga `%` em uma cláusula `LIKE` (funções de comparação de strings.html#operador_like):
 
 ```sql
 SHOW VARIABLES LIKE '%size%';
 SHOW GLOBAL VARIABLES LIKE '%size%';
 ```
 
-Os caracteres curinga podem ser usados em qualquer posição dentro do padrão a ser correspondido. De forma estrita, porque `_` é um caractere curinga que corresponde a qualquer único caractere, você deve escapar dele como `\_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.
+Os caracteres curinga podem ser usados em qualquer posição dentro do padrão a ser correspondido. De forma estrita, porque `_` é um caractere curinga que corresponde a qualquer único caractere, você deve escapar dele como `_` para correspondê-lo literalmente. Na prática, isso raramente é necessário.

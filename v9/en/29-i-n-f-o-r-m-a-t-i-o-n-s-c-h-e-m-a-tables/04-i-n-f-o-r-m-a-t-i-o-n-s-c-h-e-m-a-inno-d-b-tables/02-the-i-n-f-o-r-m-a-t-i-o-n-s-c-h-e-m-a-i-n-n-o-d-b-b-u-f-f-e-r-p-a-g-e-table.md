@@ -1,8 +1,8 @@
-### 28.4.2 The INFORMATION\_SCHEMA INNODB\_BUFFER\_PAGE Table
+### 28.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table
 
 The `INNODB_BUFFER_PAGE` table provides information about each page in the `InnoDB` buffer pool.
 
-For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION\_SCHEMA Buffer Pool Tables”.
+For related usage information and examples, see Section 17.15.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
 Warning
 
@@ -30,7 +30,7 @@ The `INNODB_BUFFER_PAGE` table has these columns:
 
   The page type. The following table shows the permitted values.
 
-  **Table 28.4 INNODB\_BUFFER\_PAGE.PAGE\_TYPE Values**
+  **Table 28.4 INNODB_BUFFER_PAGE.PAGE_TYPE Values**
 
   <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_TYPE values."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Type</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>ALLOCATED</code></td> <td>Freshly allocated page</td> </tr><tr> <td><code>BLOB</code></td> <td>Uncompressed BLOB page</td> </tr><tr> <td><code>COMPRESSED_BLOB2</code></td> <td>Subsequent comp BLOB page</td> </tr><tr> <td><code>COMPRESSED_BLOB</code></td> <td>First compressed BLOB page</td> </tr><tr> <td><code>ENCRYPTED_RTREE</code></td> <td>Encrypted R-tree</td> </tr><tr> <td><code>EXTENT_DESCRIPTOR</code></td> <td>Extent descriptor page</td> </tr><tr> <td><code>FILE_SPACE_HEADER</code></td> <td>File space header</td> </tr><tr> <td><code>FIL_PAGE_TYPE_UNUSED</code></td> <td>Unused</td> </tr><tr> <td><code>IBUF_BITMAP</code></td> <td>Insert buffer bitmap</td> </tr><tr> <td><code class="literal">IBUF_FREE_LIST</code></td> <td>Insert buffer free list</td> </tr><tr> <td><code class="literal">IBUF_INDEX</code></td> <td>Insert buffer index</td> </tr><tr> <td><code class="literal">INDEX</code></td> <td>B-tree node</td> </tr><tr> <td><code class="literal">INODE</code></td> <td>Index node</td> </tr><tr> <td><code class="literal">LOB_DATA</code></td> <td>Uncompressed LOB data</td> </tr><tr> <td><code class="literal">LOB_FIRST</code></td> <td>First page of uncompressed LOB</td> </tr><tr> <td><code class="literal">LOB_INDEX</code></td> <td>Uncompressed LOB index</td> </tr><tr> <td><code class="literal">PAGE_IO_COMPRESSED</code></td> <td>Compressed page</td> </tr><tr> <td><code class="literal">PAGE_IO_COMPRESSED_ENCRYPTED</code></td> <td>Compressed and encrypted page</td> </tr><tr> <td><code class="literal">PAGE_IO_ENCRYPTED</code></td> <td>Encrypted page</td> </tr><tr> <td><code class="literal">RSEG_ARRAY</code></td> <td>Rollback segment array</td> </tr><tr> <td><code class="literal">RTREE_INDEX</code></td> <td>R-tree index</td> </tr><tr> <td><code class="literal">SDI_BLOB</code></td> <td>Uncompressed SDI BLOB</td> </tr><tr> <td><code class="literal">SDI_COMPRESSED_BLOB</code></td> <td>Compressed SDI BLOB</td> </tr><tr> <td><code class="literal">SDI_INDEX</code></td> <td>SDI index</td> </tr><tr> <td><code class="literal">SYSTEM</code></td> <td>System page</td> </tr><tr> <td><code class="literal">TRX_SYSTEM</code></td> <td>Transaction system data</td> </tr><tr> <td><code class="literal">UNDO_LOG</code></td> <td>Undo log page</td> </tr><tr> <td><code class="literal">UNKNOWN</code></td> <td>Unknown</td> </tr><tr> <td><code class="literal">ZLOB_DATA</code></td> <td>Compressed LOB data</td> </tr><tr> <td><code class="literal">ZLOB_FIRST</code></td> <td>First page of compressed LOB</td> </tr><tr> <td><code class="literal">ZLOB_FRAG</code></td> <td>Compressed LOB fragment</td> </tr><tr> <td><code class="literal">ZLOB_FRAG_ENTRY</code></td> <td>Compressed LOB fragment index</td> </tr><tr> <td><code class="literal">ZLOB_INDEX</code></td> <td>Compressed LOB index</td> </tr></tbody></table>
 
@@ -82,7 +82,7 @@ The `INNODB_BUFFER_PAGE` table has these columns:
 
   The page state. The following table shows the permitted values.
 
-  **Table 28.5 INNODB\_BUFFER\_PAGE.PAGE\_STATE Values**
+  **Table 28.5 INNODB_BUFFER_PAGE.PAGE_STATE Values**
 
   <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_STATE values."><thead><tr> <th>Page State</th> <th>Description</th> </tr></thead><tbody><tr> <td><code class="literal">FILE_PAGE</code></td> <td>A buffered file page</td> </tr><tr> <td><code class="literal">MEMORY</code></td> <td>Contains a main memory object</td> </tr><tr> <td><code class="literal">NOT_USED</code></td> <td>In the free list</td> </tr><tr> <td><code class="literal">NULL</code></td> <td>Clean compressed pages, compressed pages in the flush list, pages used as buffer pool watch sentinels</td> </tr><tr> <td><code class="literal">READY_FOR_USE</code></td> <td>A free page</td> </tr><tr> <td><code class="literal">REMOVE_HASH</code></td> <td>Hash index should be removed before placing in the free list</td> </tr></tbody></table>
 

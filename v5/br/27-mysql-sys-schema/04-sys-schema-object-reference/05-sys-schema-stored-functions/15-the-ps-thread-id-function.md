@@ -1,4 +1,4 @@
-#### 26.4.5.15 A função ps\_thread\_id()
+#### 26.4.5.15 A função ps_thread_id()
 
 Retorna o ID de thread do Schema de Desempenho atribuído a um ID de conexão dado, ou o ID de thread para a conexão atual, se o ID de conexão for `NULL`.
 
