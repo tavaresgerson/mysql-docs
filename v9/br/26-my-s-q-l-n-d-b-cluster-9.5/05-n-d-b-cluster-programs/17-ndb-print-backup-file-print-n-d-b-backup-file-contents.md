@@ -20,7 +20,7 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
 
 * `--backup-key`, `-K`
 
-  <table frame="box" rules="all" summary="Propriedades para chave de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key=key</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chave de backup"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key=key</code></td> </tr></tbody></table>
 
   Especifique a chave necessária para descriptografar um backup criptografado.
 
@@ -86,25 +86,25 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
 
   Ler o arquivo dado após os arquivos globais serem lidos.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
 
   Ler as opções padrão do arquivo dado apenas.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
 
   Ler também os grupos com concatenação(grupo, sufixo).
 
 * `--fragment-id`
 
-  <table frame="box" rules="all" summary="Propriedades para fragment-id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--fragment-id=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para fragment-id"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--fragment-id=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">0</code></td> </tr></tbody></table>
 
   ID do fragmento. Usado junto com `--print-restored-rows`.
 
@@ -118,25 +118,25 @@ Este programa também pode ser usado para ler arquivos de log de desfazer.
 
 * `--caminho_de_login`
 
-  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>0
 
   Leia o caminho fornecido a partir do arquivo de login.
 
 * `--sem_caminhos_de_login`
 
-  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>1
 
   Ignora a leitura de opções a partir do arquivo de caminho de login.
 
 * `--sem_configurações_padrão`
 
-  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>2
 
   Não leia opções padrão a partir de qualquer arquivo de opções, exceto o arquivo de login.
 
 * `--sem_exibir_linhas`
 
-  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para backup-key-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-key-from-stdin</code></td> </tr></tbody></table>3
 
   Não inclua linhas na saída.
 

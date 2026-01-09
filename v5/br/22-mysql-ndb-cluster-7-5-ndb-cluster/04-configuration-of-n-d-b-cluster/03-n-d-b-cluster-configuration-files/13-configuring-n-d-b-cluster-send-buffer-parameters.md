@@ -8,7 +8,7 @@ O kernel `NDB` utiliza um buffer de envio unificado cuja memória é alocada din
 
   **Tabela 21.21 Tipos de transportadores com tamanhos máximos de buffer de envio**
 
-  <table><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Transportador</th> <th>Tamanho máximo do buffer de envio (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td><a class="link" href="mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory">[[<code class="literal">SendBufferMemory</code>]]</a>(padrão = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
+  <table><thead><tr> <th>Transportador</th> <th>Tamanho máximo do buffer de envio (bytes)</th> </tr></thead><tbody><tr> <td>TCP</td> <td><a class="link" href="mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory">[[<code class="literal">SendBufferMemory</code>]]</a>(padrão = 2M)</td> </tr><tr> <td>SHM</td> <td>20K</td> </tr></tbody></table>
 
   Isso permite que as configurações existentes funcionem de maneira muito semelhante àquelas do NDB Cluster 6.3 e versões anteriores, com a mesma quantidade de memória e espaço de buffer de envio disponíveis para cada transportador. No entanto, a memória que não é usada por um transportador não está disponível para outros transportadores.
 

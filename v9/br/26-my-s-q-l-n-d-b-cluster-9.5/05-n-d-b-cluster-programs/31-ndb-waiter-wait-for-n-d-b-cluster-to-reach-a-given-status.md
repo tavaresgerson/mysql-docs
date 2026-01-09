@@ -28,7 +28,7 @@ ndb_waiter [-c connection_string]
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Diretório contendo conjuntos de caracteres.
 
@@ -79,7 +79,7 @@ ndb_waiter [-c connection_string]
 
 * `--arquivo-extra-de-configurações`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo-extra-de-configurações"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para arquivo-extra-de-configurações">
   <tr>
     <th>Formato de linha de comando</th>
     <td><code class="literal">--arquivo-extra-de-configurações=caminho</code></td>
@@ -98,7 +98,7 @@ ndb_waiter [-c connection_string]
 
 * `--arquivo-de-configurações`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo-de-configurações"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para arquivo-de-configurações">
   <tr>
     <th>Formato de linha de comando</th>
     <td><code class="literal">--arquivo-de-configurações=caminho</code></td>
@@ -117,7 +117,7 @@ ndb_waiter [-c connection_string]
 
 * `--suffix-grupo-de-configurações`
 
-  <table frame="box" rules="all" summary="Propriedades para suffix-grupo-de-configurações"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para suffix-grupo-de-configurações">
   <tr>
     <th>Formato de linha de comando</th>
     <td><code class="literal">--suffix-grupo-de-configurações=string</code></td>
@@ -140,19 +140,19 @@ Leia o caminho de login do arquivo de login.
 
 * `--no-caminhos-de-login`
 
-  <table frame="box" rules="all" summary="Propriedades para no-caminhos-de-login"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para no-caminhos-de-login"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>
 
   Ignora a leitura das opções do arquivo de caminhos de login.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas-de-conexão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para tentativas-de-conexão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>0
 
   Exibir texto de ajuda e sair.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas-de-conexão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para tentativas-de-conexão"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>1
 
 Defina a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: `[nodeid=id;][host=]hostname[:port]`. Sobrina as entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
@@ -216,7 +216,7 @@ Em vez de esperar pelo estado `STARTED`, o **ndb\_waiter** continua rodando até
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>8
 
   Imprima a lista de argumentos do programa e saia.
 

@@ -4,25 +4,25 @@ O **myisamchk** suporta as seguintes opções para operações de reparo de tabe
 
 * `--backup`, `-B`
 
-  <table frame="box" rules="all" summary="Propriedades para backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup</code></td> </tr></tbody></table>
 
   Faça um backup do arquivo `.MYD` como `nome_do_arquivo-hora.BAK`
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Veja a Seção 12.15, “Configuração de Conjunto de Caracteres”.
 
 * `--correct-checksum`
 
-  <table frame="box" rules="all" summary="Propriedades para correct-checksum"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--correct-checksum</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para correct-checksum"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--correct-checksum</code></td> </tr></tbody></table>
 
   Corrija as informações de verificação de checksum da tabela.
 
 * `--data-file-length=len`, `-D len`
 
-  <table frame="box" rules="all" summary="Propriedades para data-file-length"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--data-file-length=len</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para data-file-length"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--data-file-length=len</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
   O comprimento máximo do arquivo de dados (ao recriar o arquivo de dados quando ele estiver "cheio").
 
@@ -85,7 +85,7 @@ O **myisamchk** suporta as seguintes opções para operações de reparo de tabe
 
 * `--safe-recover`, `-o`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>0
 
   Faça uma reparação usando um método de recuperação antigo que lê todas as linhas em ordem e atualiza todas as árvores de índice com base nas linhas encontradas. Esse método de recuperação é uma ordem de magnitude mais lento que `--recover`, mas pode lidar com alguns casos muito improváveis que `--recover` não pode. Esse método de recuperação também usa muito menos espaço em disco que `--recover`. Normalmente, você deve reparar primeiro usando `--recover`, e depois com `--safe-recover` apenas se `--recover` falhar.
 
@@ -93,7 +93,7 @@ O **myisamchk** suporta as seguintes opções para operações de reparo de tabe
 
 * `--set-collation=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>1
 
   Especifique a collation a ser usada para ordenar índices de tabelas. O nome do conjunto de caracteres é implícito pela primeira parte do nome da collation.
 

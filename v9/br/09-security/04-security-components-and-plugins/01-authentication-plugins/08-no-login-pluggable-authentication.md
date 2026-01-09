@@ -10,7 +10,7 @@ A tabela a seguir mostra os nomes dos arquivos do plugin e da biblioteca. O sufi
 
 **Tabela 8.23 Nomes do Plugin e da Biblioteca para Autenticação de Pluggable sem Login**
 
-<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação de senha de pluggable sem login."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code class="literal">mysql_no_login</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td>Nenhum</td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">mysql_no_login.so</code></td> </tr></tbody></table>
+<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação de senha de pluggable sem login."><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code class="literal">mysql_no_login</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td>Nenhum</td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">mysql_no_login.so</code></td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para a autenticação de pluggable sem login:
 

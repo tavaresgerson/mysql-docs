@@ -22,7 +22,7 @@ The following table shows the plugin and library file names. The file name suffi
 
 **Table 8.26 Plugin and Library Names for WebAuthn Authentication**
 
-<table summary="Names for the plugins and library file used for WebAuthn authentication."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_webauthn</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">authentication_webauthn_client</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">authentication_webauthn.so</code>, <code class="filename">authentication_webauthn_client.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for WebAuthn authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_webauthn</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">authentication_webauthn_client</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">authentication_webauthn.so</code>, <code class="filename">authentication_webauthn_client.so</code></td> </tr></tbody></table>
 
 Note
 

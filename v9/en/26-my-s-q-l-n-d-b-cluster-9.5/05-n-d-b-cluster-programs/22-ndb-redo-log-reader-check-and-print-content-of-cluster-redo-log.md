@@ -20,67 +20,67 @@ The name of the file to be read may be followed by one or more of the options li
 
 * `-dump`
 
-  <table frame="box" rules="all" summary="Properties for dump"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-dump</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for dump"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-dump</code></td> </tr></tbody></table>
 
   Print dump info.
 
 * `--file-key`, `-K`
 
-  <table frame="box" rules="all" summary="Properties for file-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for file-key"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>
 
   Supply file decryption key using `stdin`, `tty`, or a `my.cnf` file.
 
 * `--file-key-from-stdin`
 
-  <table frame="box" rules="all" summary="Properties for file-key-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key-from-stdin</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for file-key-from-stdin"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key-from-stdin</code></td> </tr></tbody></table>
 
   Supply file decryption key using `stdin`.
 
-* <table frame="box" rules="all" summary="Properties for filedescriptors"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-filedescriptors</code></td> </tr></tbody></table>
+* <table frame="box" rules="all" summary="Properties for filedescriptors"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-filedescriptors</code></td> </tr></tbody></table>
 
   `-filedescriptors`: Print file descriptors only.
 
-* <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+* <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
   `--help`: Print usage information.
 
 * `-lap`
 
-  <table frame="box" rules="all" summary="Properties for lap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-lap</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for lap"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-lap</code></td> </tr></tbody></table>
 
   Provide lap info, with max GCI started and completed.
 
-* <table frame="box" rules="all" summary="Properties for mbyte"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-mbyte #</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">15</code></td> </tr></tbody></table>
+* <table frame="box" rules="all" summary="Properties for mbyte"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-mbyte #</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Minimum Value</th> <td><code class="literal">0</code></td> </tr><tr><th>Maximum Value</th> <td><code class="literal">15</code></td> </tr></tbody></table>
 
   [`-mbyte
   #`](mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_mbyte): Starting megabyte.
 
   *`#`* is an integer in the range 0 to 15, inclusive.
 
-* <table frame="box" rules="all" summary="Properties for mbyteheaders"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-mbyteheaders</code></td> </tr></tbody></table>
+* <table frame="box" rules="all" summary="Properties for mbyteheaders"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-mbyteheaders</code></td> </tr></tbody></table>
 
   `-mbyteheaders`: Show only the first page header of every megabyte in the file.
 
-* <table frame="box" rules="all" summary="Properties for noprint"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-noprint</code></td> </tr></tbody></table>
+* <table frame="box" rules="all" summary="Properties for noprint"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-noprint</code></td> </tr></tbody></table>
 
   `-noprint`: Do not print the contents of the log file.
 
-* <table frame="box" rules="all" summary="Properties for nocheck"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-nocheck</code></td> </tr></tbody></table>
+* <table frame="box" rules="all" summary="Properties for nocheck"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">-nocheck</code></td> </tr></tbody></table>
 
   `-nocheck`: Do not check the log file for errors.
 
-* <table frame="box" rules="all" summary="Properties for file-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>0
+* <table frame="box" rules="all" summary="Properties for file-key"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>0
 
   [`-page
   #`](mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_page): Start at this page.
 
   *`#`* is an integer in the range 0 to 31, inclusive.
 
-* <table frame="box" rules="all" summary="Properties for file-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>1
+* <table frame="box" rules="all" summary="Properties for file-key"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>1
 
   `-pageheaders`: Show page headers only.
 
-* <table frame="box" rules="all" summary="Properties for file-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>2
+* <table frame="box" rules="all" summary="Properties for file-key"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>2
 
   [`-pageindex
   #`](mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex): Start at this page index.
@@ -89,7 +89,7 @@ The name of the file to be read may be followed by one or more of the options li
 
 * `-twiddle`
 
-  <table frame="box" rules="all" summary="Properties for file-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for file-key"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>3
 
   Bit-shifted dump.
 

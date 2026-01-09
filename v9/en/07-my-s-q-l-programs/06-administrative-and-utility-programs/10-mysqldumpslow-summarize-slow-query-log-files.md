@@ -32,7 +32,7 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
@@ -42,7 +42,7 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `--debug`, `-d`
 
-  <table frame="box" rules="all" summary="Properties for debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for debug"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--debug</code></td> </tr></tbody></table>
 
   Run in debug mode.
 
@@ -50,19 +50,19 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `-g pattern`
 
-  <table frame="box" rules="all" summary="Properties for grep"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for grep"><tbody><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Consider only queries that match the (**grep**-style) pattern.
 
 * `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">*</code></td> </tr></tbody></table>
 
   Host name of MySQL server for `*-slow.log` file name. The value can contain a wildcard. The default is `*` (match all).
 
 * `-i name`
 
-  <table frame="box" rules="all" summary="Properties for instance"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for instance"><tbody><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Name of server instance (if using **mysql.server** startup script).
 
@@ -72,7 +72,7 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `-n N`
 
-  <table frame="box" rules="all" summary="Properties for abstract-numbers"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for abstract-numbers"><tbody><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
   Abstract numbers with at least *`N`* digits within names.
 
@@ -82,7 +82,7 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `-s sort_type`
 
-  <table frame="box" rules="all" summary="Properties for sort"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">at</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for sort"><tbody><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">at</code></td> </tr></tbody></table>
 
   How to sort the output. The value of *`sort_type`* should be chosen from the following list:
 
@@ -98,12 +98,12 @@ Count: 3  Time=2.13s (6s)  Lock=0.00s (0s)  Rows=0.0 (0), root[root]@localhost
 
 * `-t N`
 
-  <table frame="box" rules="all" summary="Properties for top"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for top"><tbody><tr><th>Type</th> <td>Numeric</td> </tr></tbody></table>
 
   Display only the first *`N`* queries in the output.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
 
   Verbose mode. Print more information about what the program does.

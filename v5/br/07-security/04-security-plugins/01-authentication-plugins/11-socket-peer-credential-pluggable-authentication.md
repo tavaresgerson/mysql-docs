@@ -8,7 +8,7 @@ A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O arquivo
 
 **Tabela 6.18 Nomes de plugins e bibliotecas para autenticação de credenciais de pares de socket**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha de credencial de peer de socket."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code class="literal">auth_socket</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>Nenhum, veja a discussão</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">auth_socket.so</code>]]</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha de credencial de peer de socket."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code class="literal">auth_socket</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>Nenhum, veja a discussão</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>[[<code class="filename">auth_socket.so</code>]]</td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para a autenticação de plugue de soquete:
 

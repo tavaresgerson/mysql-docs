@@ -252,7 +252,7 @@ Esta opção não tem efeito sobre as instruções `BEGIN`, `COMMIT` ou `ROLLBAC
 
 * `--replicate-do-table=db_name.tbl_name`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-do-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-do-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-do-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Cria um filtro de replicação, informando ao thread de SQL de replicação para restringir a replicação a uma tabela específica. Para especificar mais de uma tabela, use esta opção várias vezes, uma vez para cada tabela. Isso funciona tanto para atualizações cruzadas de bancos de dados quanto para atualizações padrão de bancos de dados, em contraste com `--replicate-do-db`. Veja a Seção 19.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma instrução `CHANGE REPLICATION FILTER REPLICATE_DO_TABLE`.
 
@@ -266,7 +266,7 @@ Esta opção afeta apenas declarações que se aplicam a tabelas. Não afeta dec
 
 * `--replicate-ignore-table=db_name.tbl_name`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Cria um filtro de replicação dizendo ao thread SQL de replicação para não replicar nenhuma declaração que atualize a tabela especificada, mesmo que outras tabelas possam ser atualizadas pela mesma declaração. Para especificar mais de uma tabela a ser ignorada, use esta opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos, em contraste com `--replicate-ignore-db`. Veja a Seção 19.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_IGNORE_TABLE`.
 
@@ -318,7 +318,7 @@ Os filtros de replicação global não podem ser usados em uma instância do ser
 
 * `--replicate-same-server-id`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-same-server-id"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-same-server-id[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para replicate-same-server-id"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-same-server-id[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   Esta opção é para uso em réplicas. O valor padrão é 0 (`FALSE`). Com esta opção definida para 1 (`TRUE`), a replica não pula eventos que têm seu próprio ID de servidor. Esta configuração normalmente é útil apenas em configurações raras.
 
@@ -390,13 +390,13 @@ Por exemplo, se `--replicate-ignore-db=nonreplicated` estiver configurado no ser
   ```4qb9AGdMTz
 * `slave_sql_verify_checksum`
 
-<table frame="box" rules="all" summary="Propriedades para replicate-do-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-do-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-do-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
 
 Alias desatualizado para `replica_sql_verify_checksum`.
 
 * `slave_transaction_retries`
 
-<table frame="box" rules="all" summary="Propriedades para replicate-do-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-do-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-do-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
 
 Alias desatualizado para `replica_transaction_retries`.
 
@@ -444,19 +444,19 @@ Se ignorar o número de eventos especificados ao definir essa variável causaria
 
 * `sql_slave_skip_counter`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
 
   Alias desatualizado para `sql_replica_skip_counter`.
 
 * `sync_master_info`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
 
   Alias desatualizado para `sync_source_info`.
 
 * `sync_relay_log`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
 
   Se o valor dessa variável for maior que 0, o servidor MySQL sincroniza seu log de retransmissão no disco (usando `fdatasync()`) após cada evento `sync_relay_log` ser escrito no log de retransmissão. Definir essa variável tem efeito imediatamente em todos os canais de replicação, incluindo os canais em execução.
 
@@ -466,7 +466,7 @@ Um valor de 1 é a escolha mais segura, pois, em caso de uma parada inesperada, 
 
 * `sync_relay_log_info`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
 
   O número de transações após as quais a replica atualiza o repositório de metadados do aplicável. Quando o repositório de metadados do aplicável é armazenado como uma tabela `InnoDB`, que é o padrão, ela é atualizada após cada transação e essa variável do sistema é ignorada. Se o repositório de metadados do aplicável for armazenado como um arquivo (desatualizado), a replica sincroniza seu arquivo `relay-log.info` no disco (usando `fdatasync()`) após esse número de transações. `0` (zero) significa que o conteúdo do arquivo é limpo pelo sistema operacional apenas. A definição dessa variável entra em vigor para todos os canais de replicação imediatamente, incluindo canais em execução.
 
@@ -474,13 +474,13 @@ Como o armazenamento de metadados do aplicador como um arquivo foi descontinuado
 
 * `sync_source_info`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
 
   `sync_source_info` especifica o número de eventos após os quais a replica atualiza o repositório de metadados de conexão. Quando o repositório de metadados de conexão é armazenado como uma tabela `InnoDB` (o padrão, ela é atualizada após esse número de eventos. Se o repositório de metadados de conexão for armazenado como um arquivo (descontinuado), a replica sincroniza seu arquivo `master.info` no disco (usando `fdatasync()`) após esse número de eventos. O valor padrão é 10000, e um valor zero significa que o repositório nunca é atualizado. Definir essa variável tem efeito imediatamente para todos os canais de replicação, incluindo canais em execução.
 
 * `terminology_use_previous`
 
-  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para replicate-ignore-table"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--replicate-ignore-table=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
 
 Alterações incompatíveis foram feitas no MySQL 8.0 para os nomes de instrumentação que contêm os termos `master`, `slave` e `mts` (para “Multi-Threaded Slave”), que foram alterados, respectivamente, para `source`, `replica` e `mta` (para “Multi-Threaded Applier”). Se essas alterações incompatíveis afetarem suas aplicações, defina `terminology_use_previous` para `BEFORE_8_0_26` para fazer o servidor MySQL usar as versões antigas dos nomes para os objetos especificados na lista anterior. Isso permite que as ferramentas de monitoramento que dependem dos nomes antigos continuem funcionando até que possam ser atualizadas para usar os novos nomes.
 

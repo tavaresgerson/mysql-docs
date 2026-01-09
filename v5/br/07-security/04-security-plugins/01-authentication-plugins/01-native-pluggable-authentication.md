@@ -6,7 +6,7 @@ A tabela a seguir mostra os nomes dos plugins no lado do servidor e no lado do c
 
 **Tabela 6.8 Nomes de plugins e bibliotecas para autenticação de senha nativa**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha nativa."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code class="literal">mysql_native_password</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code class="literal">mysql_native_password</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>Nenhum (os plugins são integrados)</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha nativa."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code class="literal">mysql_native_password</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code class="literal">mysql_native_password</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>Nenhum (os plugins são integrados)</td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para autenticação plugável nativa:
 

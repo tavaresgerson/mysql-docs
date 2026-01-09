@@ -10,7 +10,7 @@ Todas as opções que podem ser usadas com **ndb\_config** são mostradas na tab
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Diretório contendo conjuntos de caracteres.
 
@@ -161,7 +161,7 @@ Ao comparar a saída com o arquivo de configuração, você pode ver que todas a
 
 * `--config-file=caminho-para-arquivo`
 
-<table frame="box" rules="all" summary="Propriedades para config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>
 
 Fornece o caminho para o arquivo de configuração do clúster (`config.ini`). Este pode ser um caminho relativo ou absoluto. Se o servidor de gerenciamento e o binário **ndb\_config** usados estiverem em hosts diferentes, você deve usar um caminho absoluto.
 
@@ -173,7 +173,7 @@ Se o nó que possui este ID não for um nó de dados, o **ndb_config** falha com
 
 * `--connect-retries`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">12</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">12</code></td> </tr></tbody></table>
 
 Número de vezes para tentar a conexão novamente antes de desistir.
 
@@ -249,13 +249,13 @@ Esta opção é mutuamente exclusiva com `--nodes` e `--system`; apenas uma dess
 
 * `--diff-default`
 
-<table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>3
 
   Imprima apenas os parâmetros de configuração que têm valores não padrão.
 
 * `--fields=separador`, `-f` *`separador`*
 
-  <table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>4
 
   Especifica uma string *`separador`* usada para separar os campos no resultado. O padrão é `,` (o caractere vírgula).
 
@@ -265,13 +265,13 @@ Esta opção é mutuamente exclusiva com `--nodes` e `--system`; apenas uma dess
 
 * `--ajuda`
 
-  <table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>5
 
   Exibir texto de ajuda e sair.
 
 * `--host=hostname`
 
-<table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>6
 
   Especifica o nome do host do nó para o qual as informações de configuração devem ser obtidas.
 
@@ -281,7 +281,7 @@ Esta opção é mutuamente exclusiva com `--nodes` e `--system`; apenas uma dess
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>7
 
   Leia o caminho dado do arquivo de login.
 
@@ -305,25 +305,25 @@ Define o nível de suporte TLS necessário para se conectar ao servidor de geren
 
 * `--ndb-mgmd-host`
 
-<table frame="box" rules="all" summary="Propriedades para config-binary-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para config-binary-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>1
 
   O mesmo que `--ndb-connectstring`.
 
 * `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>2
 
   Defina o ID do nó para este nó, substituindo qualquer ID definido por `--ndb-connectstring`.
 
 * `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>3
 
   Ative otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
 * `--ndb-tls-search-path`
 
-<table frame="box" rules="all" summary="Propriedades para config-binary-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para config-binary-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>4
 
   Especifique uma lista de diretórios para procurar um arquivo CA. Em plataformas Unix, os nomes dos diretórios são separados por colchetes (`:`); em sistemas Windows, o caractere ponto e vírgula (`;`) é usado como separador. Uma referência de diretório pode ser relativa ou absoluta; pode conter uma ou mais variáveis de ambiente, cada uma denotada por um sinal de dólar prefixado (`$`), e expandida antes de ser usada.
 
@@ -337,19 +337,19 @@ Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de 
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>6
 
   Ignora a leitura de opções do arquivo de caminho de login.
 
 * `--nodeid=node_id`
 
-  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>7
 
   Especifique o ID do nó do nó para o qual as informações de configuração devem ser obtidas.
 
 * `--nodes`
 
-  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para config-binary-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-binary-file=caminho/para/arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>8
 
   Diz ao **ndb_config** para imprimir informações relacionadas apenas aos parâmetros definidos em uma seção `[ndbd]` ou `[ndbd default]` do arquivo de configuração do cluster (veja a Seção 25.4.3.6, “Definindo NDB Cluster Data Nodes”).
 
@@ -401,13 +401,13 @@ Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de 
 
 * `--query-all`, `-a`
 
-<table frame="box" rules="all" summary="Propriedades para config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>1
 
   Retorna uma lista separada por vírgula de todas as opções de consulta (atributos do nó; observe que essa lista é uma única string.
 
 * `--rows=separador`, `-r` *`separador`*
 
-  <table frame="box" rules="all" summary="Propriedades para config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>2
 
   Especifica uma string *`separador`* usada para separar as linhas no resultado. O padrão é um caractere de espaço.
 
@@ -417,7 +417,7 @@ Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de 
 
 * `--system`
 
-  <table frame="box" rules="all" summary="Propriedades para config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=nome_do_arquivo</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>3
 
 Diz ao **ndb\_config** para imprimir apenas as informações do `SISTEMA`. Isso consiste em variáveis do sistema que não podem ser alteradas no tempo de execução; portanto, não há uma seção correspondente do arquivo de configuração do cluster para elas. Elas podem ser vistas (prefixadas com `****** SISTEMA ******`) na saída do **ndb\_config** `--configinfo`.
 
@@ -425,25 +425,25 @@ Esta opção é mutuamente exclusiva com `--nodes` e `--connections`; apenas uma
 
 * `--type=node_type`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de configuração"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>4
 
   Filtra os resultados para que apenas os valores de configuração que se aplicam a nós do *`node_type`* especificado (`ndbd`, `mysqld` ou `ndb_mgmd`) sejam retornados.
 
 * `--usage`, `--help` ou `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de configuração"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>5
 
   Faz com que o **ndb\_config** imprima uma lista de opções disponíveis e, em seguida, saia.
 
 * `--version`, `-V`
 
-<table frame="box" rules="all" summary="Propriedades para config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>6
 
   Faz com que **ndb\_config** imprima uma string de informações de versão e, em seguida, saia.
 
 * `--configinfo` `--xml`
 
-  <table frame="box" rules="all" summary="Propriedades para config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal"></code></td> </tr></tbody></table>7
 
   Faz com que **ndb\_config** `--configinfo` forneça a saída como XML adicionando esta opção. Uma parte dessa saída é mostrada neste exemplo:
 

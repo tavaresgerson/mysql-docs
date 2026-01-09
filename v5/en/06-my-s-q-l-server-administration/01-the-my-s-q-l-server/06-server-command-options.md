@@ -51,31 +51,31 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--help`](server-options.html#option_mysqld_help), `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Display a short help message and exit. Use both the [`--verbose`](server-options.html#option_mysqld_verbose) and [`--help`](server-options.html#option_mysqld_help) options to see the full message.
 
 * [`--allow-suspicious-udfs`](server-options.html#option_mysqld_allow-suspicious-udfs)
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   This option controls whether loadable functions that have only an `xxx` symbol for the main function can be loaded. By default, the option is off and only loadable functions that have at least one auxiliary symbol can be loaded; this prevents attempts at loading functions from shared object files other than those containing legitimate functions. See [Loadable Function Security Precautions](/doc/extending-mysql/5.7/en/adding-loadable-function.html#loadable-function-security).
 
 * [`--ansi`](server-options.html#option_mysqld_ansi)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Use standard (ANSI) SQL syntax instead of MySQL syntax. For more precise control over the server SQL mode, use the [`--sql-mode`](server-options.html#option_mysqld_sql-mode) option instead. See [Section 1.6, “MySQL Standards Compliance”](compatibility.html "1.6 MySQL Standards Compliance"), and [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
 
 * [`--basedir=dir_name`](server-system-variables.html#sysvar_basedir), [`-b dir_name`](server-system-variables.html#sysvar_basedir)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   The path to the MySQL installation directory. This option sets the [`basedir`](server-system-variables.html#sysvar_basedir) system variable.
 
 * [`--bootstrap`](server-options.html#option_mysqld_bootstrap)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>
 
   This option is used by the [**mysql\_install\_db**](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory") program to create the MySQL privilege tables without having to start a full MySQL server.
 
@@ -92,19 +92,19 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--character-set-client-handshake`](server-options.html#option_mysqld_character-set-client-handshake)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Do not ignore character set information sent by the client. To ignore client information and use the default server character set, use [`--skip-character-set-client-handshake`](server-options.html#option_mysqld_character-set-client-handshake); this makes MySQL behave like MySQL 4.0.
 
 * [`--chroot=dir_name`](server-options.html#option_mysqld_chroot), `-r dir_name`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   Put the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server in a closed environment during startup by using the `chroot()` system call. This is a recommended security measure. Use of this option somewhat limits [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") and [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement").
 
 * [`--console`](server-options.html#option_mysqld_console)
 
-  <table frame="box" rules="all" summary="Properties for console"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--console</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for console"><tbody><tr><th>Command-Line Format</th> <td><code>--console</code></td> </tr><tr><th>Platform Specific</th> <td>Windows</td> </tr></tbody></table>
 
   (Windows only.) Write the error log to `stderr` and `stdout` (the console). [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") does not close the console window if this option is used.
 
@@ -112,7 +112,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--core-file`](server-options.html#option_mysqld_core-file)
 
-  <table frame="box" rules="all" summary="Properties for core-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   When this option is used, write a core file if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") dies; no arguments are needed (or accepted). The name and location of the core file is system dependent. On Linux, a core file named `core.pid` is written to the current working directory of the process, which for [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is the data directory. *`pid`* represents the process ID of the server process. On macOS, a core file named `core.pid` is written to the `/cores` directory. On Solaris, use the **coreadm** command to specify where to write the core file and how to name it.
 
@@ -120,7 +120,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--daemonize`](server-options.html#option_mysqld_daemonize)
 
-  <table frame="box" rules="all" summary="Properties for daemonize"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--daemonize[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for daemonize"><tbody><tr><th>Command-Line Format</th> <td><code>--daemonize[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   This option causes the server to run as a traditional, forking daemon, permitting it to work with operating systems that use systemd for process control. For more information, see [Section 2.5.10, “Managing MySQL Server with systemd”](using-systemd.html "2.5.10 Managing MySQL Server with systemd").
 
@@ -128,13 +128,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--datadir=dir_name`](server-system-variables.html#sysvar_datadir), `-h dir_name`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>0
 
   The path to the MySQL server data directory. This option sets the [`datadir`](server-system-variables.html#sysvar_datadir) system variable. See the description of that variable.
 
 * [`--debug[=debug_options]`](server-options.html#option_mysqld_debug), `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>1
 
   If MySQL is configured with the [`-DWITH_DEBUG=1`](source-configuration-options.html#option_cmake_with_debug) **CMake** option, you can use this option to get a trace file of what [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is doing. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:i:o,/tmp/mysqld.trace` on Unix and `d:t:i:O,\mysqld.trace` on Windows.
 
@@ -146,7 +146,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--debug-sync-timeout[=N]`](server-options.html#option_mysqld_debug-sync-timeout)
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>2
 
   Controls whether the Debug Sync facility for testing and debugging is enabled. Use of Debug Sync requires that MySQL be configured with the [`-DWITH_DEBUG=ON`](source-configuration-options.html#option_cmake_with_debug) **CMake** option (see [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")). If Debug Sync is not compiled in, this option is not available. The option value is a timeout in seconds. The default value is 0, which disables Debug Sync. To enable it, specify a value greater than 0; this value also becomes the default timeout for individual synchronization points. If the option is given without a value, the timeout is set to 300 seconds.
 
@@ -154,7 +154,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--default-time-zone=timezone`](server-options.html#option_mysqld_default-time-zone)
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>3
 
   Set the default server time zone. This option sets the global [`time_zone`](server-system-variables.html#sysvar_time_zone) system variable. If this option is not given, the default time zone is the same as the system time zone (given by the value of the [`system_time_zone`](server-system-variables.html#sysvar_system_time_zone) system variable.
 
@@ -184,7 +184,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--des-key-file=file_name`](server-options.html#option_mysqld_des-key-file)
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>4
 
   Read the default DES keys from this file. These keys are used by the [`DES_ENCRYPT()`](encryption-functions.html#function_des-encrypt) and [`DES_DECRYPT()`](encryption-functions.html#function_des-decrypt) functions.
 
@@ -194,7 +194,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--disable-partition-engine-check`](server-options.html#option_mysqld_disable-partition-engine-check)
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>5
 
   Whether to disable the startup check for tables with nonnative partitioning.
 
@@ -212,7 +212,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--early-plugin-load=plugin_list`](server-options.html#option_mysqld_early-plugin-load)
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>6
 
   This option tells the server which plugins to load before loading mandatory built-in plugins and before storage engine initialization. Early loading is supported only for plugins compiled with `PLUGIN_OPT_ALLOW_EARLY`. If multiple [`--early-plugin-load`](server-options.html#option_mysqld_early-plugin-load) options are given, only the last one applies.
 
@@ -244,13 +244,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--exit-info[=flags]`](server-options.html#option_mysqld_exit-info), `-T [flags]`
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>7
 
   This is a bitmask of different flags that you can use for debugging the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server. Do not use this option unless you know *exactly* what it does!
 
 * [`--external-locking`](server-options.html#option_mysqld_external-locking)
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>8
 
   Enable external locking (system locking), which is disabled by default. If you use this option on a system on which `lockd` does not fully work (such as Linux), it is easy for [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to deadlock.
 
@@ -260,7 +260,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--flush`](server-options.html#option_mysqld_flush)
 
-  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for allow-suspicious-udfs"><tbody><tr><th>Command-Line Format</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>9
 
   Flush (synchronize) all changes to disk after each SQL statement. Normally, MySQL does a write of all changes to disk only after each SQL statement and lets the operating system handle the synchronizing to disk. See [Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing").
 
@@ -270,13 +270,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--gdb`](server-options.html#option_mysqld_gdb)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>0
 
   Install an interrupt handler for `SIGINT` (needed to stop [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with `^C` to set breakpoints) and disable stack tracing and core file handling. See [Section 5.8.1.4, “Debugging mysqld under gdb”](using-gdb-on-mysqld.html "5.8.1.4 Debugging mysqld under gdb").
 
 * [`--ignore-db-dir=dir_name`](server-options.html#option_mysqld_ignore-db-dir)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>1
 
   This option tells the server to ignore the given directory name for purposes of the [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") statement or `INFORMATION_SCHEMA` tables. For example, if a MySQL configuration locates the data directory at the root of a file system on Unix, the system might create a `lost+found` directory there that the server should ignore. Starting the server with [`--ignore-db-dir=lost+found`](server-options.html#option_mysqld_ignore-db-dir) causes that name not to be listed as a database.
 
@@ -288,7 +288,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--initialize`](server-options.html#option_mysqld_initialize)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>2
 
   This option is used to initialize a MySQL installation by creating the data directory and populating the tables in the `mysql` system database. For more information, see [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory").
 
@@ -306,7 +306,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>3
 
   This option is used to initialize a MySQL installation by creating the data directory and populating the tables in the `mysql` system database. This option implies [`--initialize`](server-options.html#option_mysqld_initialize), and the same restrictions and limitations apply; for more information, see the description of that option, and [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory").
 
@@ -320,7 +320,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--install [service_name]`](server-options.html#option_mysqld_install)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>4
 
   (Windows only) Install the server as a Windows service that starts automatically during Windows startup. The default service name is `MySQL` if no *`service_name`* value is given. For more information, see [Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service").
 
@@ -330,7 +330,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--install-manual [service_name]`](server-options.html#option_mysqld_install-manual)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>5
 
   (Windows only) Install the server as a Windows service that must be started manually. It does not start automatically during Windows startup. The default service name is `MySQL` if no *`service_name`* value is given. For more information, see [Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service").
 
@@ -340,7 +340,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--language=lang_name, -L lang_name`](server-options.html#option_mysqld_language)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>6
 
   The language to use for error messages. *`lang_name`* can be given as the language name or as the full path name to the directory where the language files are installed. See [Section 10.12, “Setting the Error Message Language”](error-message-language.html "10.12 Setting the Error Message Language").
 
@@ -348,7 +348,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--large-pages`](server-options.html#option_mysqld_large-pages)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>7
 
   Some hardware/operating system architectures support memory pages greater than the default (usually 4KB). The actual implementation of this support depends on the underlying hardware and operating system. Applications that perform a lot of memory accesses may obtain performance improvements by using large pages due to reduced Translation Lookaside Buffer (TLB) misses.
 
@@ -358,25 +358,25 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--lc-messages=locale_name`](server-options.html#option_mysqld_lc-messages)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>8
 
   The locale to use for error messages. The default is `en_US`. The server converts the argument to a language name and combines it with the value of [`--lc-messages-dir`](server-options.html#option_mysqld_lc-messages-dir) to produce the location for the error message file. See [Section 10.12, “Setting the Error Message Language”](error-message-language.html "10.12 Setting the Error Message Language").
 
 * [`--lc-messages-dir=dir_name`](server-options.html#option_mysqld_lc-messages-dir)
 
-  <table frame="box" rules="all" summary="Properties for ansi"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for ansi"><tbody><tr><th>Command-Line Format</th> <td><code>--ansi</code></td> </tr></tbody></table>9
 
   The directory where error messages are located. The server uses the value together with the value of [`--lc-messages`](server-options.html#option_mysqld_lc-messages) to produce the location for the error message file. See [Section 10.12, “Setting the Error Message Language”](error-message-language.html "10.12 Setting the Error Message Language").
 
 * [`--local-service`](server-options.html#option_mysqld_local-service)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>0
 
   (Windows only) A `--local-service` option following the service name causes the server to run using the `LocalService` Windows account that has limited system privileges. If both [`--defaults-file`](option-file-options.html#option_general_defaults-file) and `--local-service` are given following the service name, they can be in any order. See [Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service").
 
 * [`--log-error[=file_name]`](server-options.html#option_mysqld_log-error)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>1
 
   Write the error log and startup messages to this file. See [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log").
 
@@ -388,13 +388,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--log-isam[=file_name]`](server-options.html#option_mysqld_log-isam)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>2
 
   Log all `MyISAM` changes to this file (used only when debugging `MyISAM`).
 
 * [`--log-raw`](server-options.html#option_mysqld_log-raw)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>3
 
   Passwords in certain statements written to the general query log, slow query log, and binary log are rewritten by the server not to occur literally in plain text. Password rewriting can be suppressed for the general query log by starting the server with the [`--log-raw`](server-options.html#option_mysqld_log-raw) option. This option may be useful for diagnostic purposes, to see the exact text of statements as received by the server, but for security reasons is not recommended for production use.
 
@@ -408,25 +408,25 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--log-short-format`](server-options.html#option_mysqld_log-short-format)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>4
 
   Log less information to the slow query log, if it has been activated.
 
 * [`--log-tc=file_name`](server-options.html#option_mysqld_log-tc)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>5
 
   The name of the memory-mapped transaction coordinator log file (for XA transactions that affect multiple storage engines when the binary log is disabled). The default name is `tc.log`. The file is created under the data directory if not given as a full path name. This option is unused.
 
 * [`--log-tc-size=size`](server-options.html#option_mysqld_log-tc-size)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>6
 
   The size in bytes of the memory-mapped transaction coordinator log. The default and minimum values are 6 times the page size, and the value must be a multiple of the page size. (Before MySQL 5.7.21, the default size is 24KB.)
 
 * [`--log-warnings[=level]`](server-options.html#option_mysqld_log-warnings), `-W [level]`
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>7
 
   Note
 
@@ -436,7 +436,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--memlock`](server-options.html#option_mysqld_memlock)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>8
 
   Lock the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process in memory. This option might help if you have a problem where the operating system is causing [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to swap to disk.
 
@@ -462,7 +462,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--myisam-block-size=N`](server-options.html#option_mysqld_myisam-block-size)
 
-  <table frame="box" rules="all" summary="Properties for basedir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for basedir"><tbody><tr><th>Command-Line Format</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>System Variable</th> <td><code><a class="link" href="server-system-variables.html#sysvar_basedir">basedir</a></code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Directory name</td> </tr><tr><th>Default Value</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>9
 
   The block size to be used for `MyISAM` index pages.
 
@@ -474,13 +474,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--old-style-user-limits`](server-options.html#option_mysqld_old-style-user-limits)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>0
 
   Enable old-style user limits. (Before MySQL 5.0.3, account resource limits were counted separately for each host from which a user connected rather than per account row in the `user` table.) See [Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits").
 
 * [`--partition[=value]`](server-options.html#option_mysqld_partition)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>1
 
   Enables or disables user-defined partitioning support in the MySQL Server.
 
@@ -492,7 +492,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--plugin-load=plugin_list`](server-options.html#option_mysqld_plugin-load)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>2
 
   This option tells the server to load the named plugins at startup. If multiple [`--plugin-load`](server-options.html#option_mysqld_plugin-load) options are given, only the last one applies. Additional plugins to load may be specified using [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) options.
 
@@ -516,7 +516,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--plugin-load-add=plugin_list`](server-options.html#option_mysqld_plugin-load-add)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>3
 
   This option complements the [`--plugin-load`](server-options.html#option_mysqld_plugin-load) option. [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) adds a plugin or plugins to the set of plugins to be loaded at startup. The argument format is the same as for [`--plugin-load`](server-options.html#option_mysqld_plugin-load). [`--plugin-load-add`](server-options.html#option_mysqld_plugin-load-add) can be used to avoid specifying a large set of plugins as a single long unwieldy [`--plugin-load`](server-options.html#option_mysqld_plugin-load) argument.
 
@@ -558,13 +558,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--port=port_num`](server-options.html#option_mysqld_port), `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>4
 
   The port number to use when listening for TCP/IP connections. On Unix and Unix-like systems, the port number must be 1024 or higher unless the server is started by the `root` operating system user. Setting this option to 0 causes the default value to be used.
 
 * [`--port-open-timeout=num`](server-options.html#option_mysqld_port-open-timeout)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>5
 
   On some systems, when the server is stopped, the TCP/IP port might not become available immediately. If the server is restarted quickly afterward, its attempt to reopen the port can fail. This option indicates how many seconds the server should wait for the TCP/IP port to become free if it cannot be opened. The default is not to wait.
 
@@ -576,13 +576,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--remove [service_name]`](server-options.html#option_mysqld_remove)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>6
 
   (Windows only) Remove a MySQL Windows service. The default service name is `MySQL` if no *`service_name`* value is given. For more information, see [Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service").
 
 * [`--safe-user-create`](server-options.html#option_mysqld_safe-user-create)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>7
 
   If this option is enabled, a user cannot create new MySQL users by using the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement unless the user has the [`INSERT`](privileges-provided.html#priv_insert) privilege for the `mysql.user` system table or any column in the table. If you want a user to have the ability to create new users that have those privileges that the user has the right to grant, you should grant the user the following privilege:
 
@@ -594,7 +594,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>8
 
   This option affects the server startup sequence:
 
@@ -622,7 +622,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--skip-host-cache`](server-options.html#option_mysqld_skip-host-cache)
 
-  <table frame="box" rules="all" summary="Properties for bootstrap"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for bootstrap"><tbody><tr><th>Command-Line Format</th> <td><code>--bootstrap</code></td> </tr><tr><th>Deprecated</th> <td>Yes</td> </tr></tbody></table>9
 
   Disable use of the internal host cache for faster name-to-IP resolution. With the cache disabled, the server performs a DNS lookup every time a client connects.
 
@@ -640,13 +640,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--skip-new`](server-options.html#option_mysqld_skip-new)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>0
 
   This option disables (what used to be considered) new, possibly unsafe behaviors. It results in these settings: [`delay_key_write=OFF`](server-system-variables.html#sysvar_delay_key_write), [`concurrent_insert=NEVER`](server-system-variables.html#sysvar_concurrent_insert), [`automatic_sp_privileges=OFF`](server-system-variables.html#sysvar_automatic_sp_privileges). It also causes [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") to be mapped to [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") for storage engines for which [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is not supported.
 
 * [`--skip-partition`](server-options.html#option_mysqld_skip-partition)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>1
 
   Disables user-defined partitioning. Partitioned tables can be seen using [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") or by querying the Information Schema [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") table, but cannot be created or modified, nor can data in such tables be accessed. All partition-specific columns in the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table display `NULL`.
 
@@ -660,31 +660,31 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--skip-show-database`](server-options.html#option_mysqld_skip-show-database)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>2
 
   This option sets the [`skip_show_database`](server-system-variables.html#sysvar_skip_show_database) system variable that controls who is permitted to use the [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") statement. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
 * [`--skip-stack-trace`](server-options.html#option_mysqld_skip-stack-trace)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>3
 
   Do not write stack traces. This option is useful when you are running [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") under a debugger. On some systems, you also must use this option to get a core file. See [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
 
 * [`--slow-start-timeout=timeout`](server-options.html#option_mysqld_slow-start-timeout)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>4
 
   This option controls the Windows service control manager's service start timeout. The value is the maximum number of milliseconds that the service control manager waits before trying to kill the windows service during startup. The default value is 15000 (15 seconds). If the MySQL service takes too long to start, you may need to increase this value. A value of 0 means there is no timeout.
 
 * [`--socket=path`](server-options.html#option_mysqld_socket)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>5
 
   On Unix, this option specifies the Unix socket file to use when listening for local connections. The default value is `/tmp/mysql.sock`. If this option is given, the server creates the file in the data directory unless an absolute path name is given to specify a different directory. On Windows, the option specifies the pipe name to use when listening for local connections that use a named pipe. The default value is `MySQL` (not case-sensitive).
 
 * [`--sql-mode=value[,value[,value...]]`](server-options.html#option_mysqld_sql-mode)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>6
 
   Set the SQL mode. See [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
 
@@ -694,7 +694,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--ssl`](server-options.html#option_mysqld_ssl), [`--skip-ssl`](server-options.html#option_mysqld_ssl)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>7
 
   The [`--ssl`](server-options.html#option_mysqld_ssl) option specifies that the server permits but does not require encrypted connections. This option is enabled by default.
 
@@ -704,19 +704,19 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--standalone`](server-options.html#option_mysqld_standalone)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>8
 
   Available on Windows only; instructs the MySQL server not to run as a service.
 
 * [`--super-large-pages`](server-options.html#option_mysqld_super-large-pages)
 
-  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>9
 
   Standard use of large pages in MySQL attempts to use the largest size supported, up to 4MB. Under Solaris, a “super large pages” feature enables uses of pages up to 256MB. This feature is available for recent SPARC platforms. It can be enabled or disabled by using the [`--super-large-pages`](server-options.html#option_mysqld_super-large-pages) or [`--skip-super-large-pages`](server-options.html#option_mysqld_super-large-pages) option.
 
 * [`--symbolic-links`](server-options.html#option_mysqld_symbolic-links), [`--skip-symbolic-links`](server-options.html#option_mysqld_symbolic-links)
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>0
 
   Enable or disable symbolic link support. On Unix, enabling symbolic links means that you can link a `MyISAM` index file or data file to another directory with the `INDEX DIRECTORY` or `DATA DIRECTORY` option of the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement. If you delete or rename the table, the files that its symbolic links point to also are deleted or renamed. See [Section 8.12.3.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "8.12.3.2 Using Symbolic Links for MyISAM Tables on Unix").
 
@@ -724,13 +724,13 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--sysdate-is-now`](server-options.html#option_mysqld_sysdate-is-now)
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>1
 
   [`SYSDATE()`](date-and-time-functions.html#function_sysdate) by default returns the time at which it executes, not the time at which the statement in which it occurs begins executing. This differs from the behavior of [`NOW()`](date-and-time-functions.html#function_now). This option causes [`SYSDATE()`](date-and-time-functions.html#function_sysdate) to be a synonym for [`NOW()`](date-and-time-functions.html#function_now). For information about the implications for binary logging and replication, see the description for [`SYSDATE()`](date-and-time-functions.html#function_sysdate) in [Section 12.7, “Date and Time Functions”](date-and-time-functions.html "12.7 Date and Time Functions") and for `SET TIMESTAMP` in [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
 * [`--tc-heuristic-recover={COMMIT|ROLLBACK}`](server-options.html#option_mysqld_tc-heuristic-recover)
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>2
 
   The decision to use in a manual heuristic recovery.
 
@@ -746,7 +746,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--temp-pool`](server-options.html#option_mysqld_temp-pool)
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>3
 
   This option is ignored except on Linux. On Linux, it causes most temporary files created by the server to use a small set of names, rather than a unique name for each new file. This works around a problem in the Linux kernel dealing with creating many new files with different names. With the old behavior, Linux seems to “leak” memory, because it is being allocated to the directory entry cache rather than to the disk cache.
 
@@ -754,7 +754,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--transaction-isolation=level`](server-options.html#option_mysqld_transaction-isolation)
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>4
 
   Sets the default transaction isolation level. The `level` value can be [`READ-UNCOMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-uncommitted), [`READ-COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed), [`REPEATABLE-READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read), or [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable). See [Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement").
 
@@ -762,7 +762,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--transaction-read-only`](server-options.html#option_mysqld_transaction-read-only)
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>5
 
   Sets the default transaction access mode. By default, read-only mode is disabled, so the mode is read/write.
 
@@ -770,7 +770,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--tmpdir=dir_name`](server-options.html#option_mysqld_tmpdir), `-t dir_name`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>6
 
   The path of the directory to use for creating temporary files. It might be useful if your default `/tmp` directory resides on a partition that is too small to hold temporary tables. This option accepts several paths that are used in round-robin fashion. Paths should be separated by colon characters (`:`) on Unix and semicolon characters (`;`) on Windows.
 
@@ -780,7 +780,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--user={user_name|user_id}`](server-options.html#option_mysqld_user), `-u {user_name|user_id}`
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>7
 
   Run the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server as the user having the name *`user_name`* or the numeric user ID *`user_id`*. (“User” in this context refers to a system login account, not a MySQL user listed in the grant tables.)
 
@@ -790,7 +790,7 @@ You can change the values of most system variables at runtime with the [`SET`](s
 
 * [`--validate-user-plugins[={OFF|ON}]`](server-options.html#option_mysqld_validate-user-plugins)
 
-  <table frame="box" rules="all" summary="Properties for chroot"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for chroot"><tbody><tr><th>Command-Line Format</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>8
 
   If this option is enabled (the default), the server checks each user account and produces a warning if conditions are found that would make the account unusable:
 

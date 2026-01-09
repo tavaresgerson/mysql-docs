@@ -12,7 +12,7 @@ The following table shows the plugin and library file names. The file name suffi
 
 **Table 8.27 Plugin and Library Names for Test Authentication**
 
-<table summary="Names for the plugins and library file used for test password authentication."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">test_plugin_server</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">auth_test_plugin</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">auth_test_plugin.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for test password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">test_plugin_server</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">auth_test_plugin</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">auth_test_plugin.so</code></td> </tr></tbody></table>
 
 The following sections provide installation and usage information specific to test pluggable authentication:
 

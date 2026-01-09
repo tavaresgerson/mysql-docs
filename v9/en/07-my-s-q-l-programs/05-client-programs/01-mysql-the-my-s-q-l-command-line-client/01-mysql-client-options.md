@@ -8,25 +8,25 @@
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--authentication-oci-client-config-profile`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Specify the name of the OCI configuration profile to use. If not set, the default profile is used.
 
 * `--authentication-openid-connect-client-id-token-file`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
 
   For OpenID Connect, this sets the required Identity token to authenticate with a mapped MySQL user. It's a full filepath to the Identity token file used when connecting to the MySQL server. For additional information, see Section 8.4.1.9, “OpenID Connect Pluggable Authentication”.
 
 * `--auto-rehash`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>
 
   Enable automatic rehashing. This option is on by default, which enables database, table, and column name completion. Use `--disable-auto-rehash` to disable rehashing. That causes **mysql** to start faster, but you must issue the `rehash` command or its `\#` shortcut if you want to use name completion.
 
@@ -38,13 +38,13 @@
 
 * `--auto-vertical-output`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>
 
   Cause result sets to be displayed vertically if they are too wide for the current window, and using normal tabular format otherwise. (This applies to statements terminated by `;` or `\G`.)
 
 * `--batch`, `-B`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>
 
   Print results using tab as the column separator, with each row on a new line. With this option, **mysql** does not use the history file.
 
@@ -52,7 +52,7 @@
 
 * `--binary-as-hex`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>
 
   When this option is given, **mysql** displays binary data using hexadecimal notation (`0xvalue`). This occurs whether the overall output display format is tabular, vertical, HTML, or XML.
 
@@ -114,7 +114,7 @@
 
 * `--binary-mode`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>
 
   This option helps when processing **mysqlbinlog** output that may contain `BLOB` values. By default, **mysql** translates `\r\n` in statement strings to `\n` and interprets `\0` as the statement terminator. `--binary-mode` disables both features. It also disables all **mysql** commands except `charset` and `delimiter` in noninteractive mode (for input piped to **mysql** or loaded using the `source` command).
 
@@ -122,31 +122,31 @@
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
 
   On a computer having multiple network interfaces, use this option to select which interface to use for connecting to the MySQL server.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--column-names`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
 
   Write column names in results.
 
 * `--column-type-info`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
 
   Display result set metadata. This information corresponds to the contents of C API `MYSQL_FIELD` data structures. See C API Basic Data Structures.
 
 * `--commands`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
 
   Whether to enable or disable processing of local **mysql** client commands. Setting this option to `FALSE` disables such processing, and has the effects listed here:
 
@@ -189,7 +189,7 @@
 
 * `--comments`, `-c`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
 
   Whether to preserve or strip comments in statements sent to the server. The default is to preserve them; to strip them, start **mysql** with `--skip-comments`.
 
@@ -201,7 +201,7 @@
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -209,7 +209,7 @@
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>6
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -217,25 +217,25 @@
 
 * `--connect-expired-password`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
 
   Indicate to the server that the client can handle sandbox mode if the account used to connect has an expired password. This can be useful for noninteractive invocations of **mysql** because normally the server disconnects noninteractive clients that attempt to connect using an account with an expired password. (See Section 8.2.16, “Server Handling of Expired Passwords”.)
 
 * `--connect-timeout=value`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>8
 
   The number of seconds before connection timeout. (Default value is `0`.)
 
 * `--database=db_name`, `-D db_name`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>9
 
   The database to use. This is useful primarily in an option file.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>0
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysql.trace`.
 
@@ -243,7 +243,7 @@
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>1
 
   Print some debugging information when the program exits.
 
@@ -251,7 +251,7 @@
 
 * `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>2
 
   Print debugging information and memory and CPU usage statistics when the program exits.
 
@@ -259,13 +259,13 @@
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>3
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>4
 
   Use *`charset_name`* as the default character set for the client and connection.
 
@@ -275,7 +275,7 @@
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>5
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -283,7 +283,7 @@
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>6
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -293,7 +293,7 @@
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>7
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql** normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql** also reads the `[client_other]` and `[mysql_other]` groups.
 
@@ -301,7 +301,7 @@
 
 * `--delimiter=str`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>8
 
   Set the statement delimiter. The default is the semicolon character (`;`).
 
@@ -311,7 +311,7 @@
 
 * `--dns-srv-name=name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>9
 
   Specifies the name of a DNS SRV record that determines the candidate hosts to use for establishing a connection to a MySQL server. For information about DNS SRV support in MySQL, see Section 6.2.6, “Connecting to the Server Using DNS SRV Records”.
 
@@ -339,25 +339,25 @@
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>0
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--execute=statement`, `-e statement`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>1
 
   Execute the statement and quit. The default output format is like that produced with `--batch`. See Section 6.2.2.1, “Using Options on the Command Line”, for some examples. With this option, **mysql** does not use the history file.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>2
 
   Continue even if an SQL error occurs.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>3
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -367,13 +367,13 @@
 
 * `--histignore`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>4
 
   A list of one or more colon-separated patterns specifying statements to ignore for logging purposes. These patterns are added to the default pattern list (`"*IDENTIFIED*:*PASSWORD*"`). The value specified for this option affects logging of statements written to the history file, and to `syslog` if the `--syslog` option is given. For more information, see Section 6.5.1.3, “mysql Client Logging”.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>5
 
   Connect to the MySQL server on the given host.
 
@@ -381,37 +381,37 @@
 
 * `--html`, `-H`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>6
 
   Produce HTML output.
 
 * `--ignore-spaces`, `-i`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>7
 
   Ignore spaces after function names. The effect of this is described in the discussion for the `IGNORE_SPACE` SQL mode (see Section 7.1.11, “Server SQL Modes”).
 
 * `--init-command=str`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>8
 
   Single SQL statement to execute after connecting to the server. If auto-reconnect is enabled, the statement is executed again after reconnection occurs. The definition resets existing statements defined by it or `init-command-add`.
 
 * `--init-command-add=str`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>9
 
   Add an additional SQL statement to execute after connecting or reconnecting to the MySQL server. It's usable without `--init-command` but has no effect if used before it because `init-command` resets the list of commands to call.
 
 * `--line-numbers`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>0
 
   Write line numbers for errors. Disable this with `--skip-line-numbers`.
 
 * `--load-data-local-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>1
 
   This option affects the client-side `LOCAL` capability for `LOAD DATA` operations. It specifies the directory in which files named in `LOAD DATA LOCAL` statements must be located. The effect of `--load-data-local-dir` depends on whether `LOCAL` data loading is enabled or disabled:
 
@@ -433,7 +433,7 @@
 
 * `--local-infile[={0|1}]`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>2
 
   By default, `LOCAL` capability for `LOAD DATA` is determined by the default compiled into the MySQL client library. To enable or disable `LOCAL` data loading explicitly, use the `--local-infile` option. When given with no value, the option enables `LOCAL` data loading. When given as `--local-infile=0` or `--local-infile=1`, the option disables or enables `LOCAL` data loading.
 
@@ -443,7 +443,7 @@
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>3
 
   Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
 
@@ -451,7 +451,7 @@
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>4
 
   Skips reading options from the login path file.
 
@@ -461,31 +461,31 @@
 
 * `--max-allowed-packet=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>5
 
   The maximum size of the buffer for client/server communication. The default is 16MB, the maximum is 1GB.
 
 * `--max-join-size=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>6
 
   The automatic limit for rows in a join when using `--safe-updates`. (Default value is 1,000,000.)
 
 * `--named-commands`, `-G`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>7
 
   Enable named **mysql** commands. Long-format commands are permitted, not just short-format commands. For example, `quit` and `\q` both are recognized. Use `--skip-named-commands` to disable named commands. See Section 6.5.1.2, “mysql Client Commands”.
 
 * `--net-buffer-length=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>8
 
   The buffer size for TCP/IP and socket communication. (Default value is 16KB.)
 
 * `--network-namespace=name`
 
-  <table frame="box" rules="all" summary="Properties for auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for auto-rehash"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Disabled by</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>9
 
   The network namespace to use for TCP/IP connections. If omitted, the connection uses the default (global) namespace. For information about network namespaces, see Section 7.1.14, “Network Namespace Support”.
 
@@ -493,19 +493,19 @@
 
 * `--no-auto-rehash`, `-A`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>0
 
   This has the same effect as `--skip-auto-rehash`. See the description for `--auto-rehash`.
 
 * `--no-beep`, `-b`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>1
 
   Do not beep when errors occur.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>2
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
@@ -515,13 +515,13 @@
 
 * `--oci-config-file=PATH`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>3
 
   Alternate path to the Oracle Cloud Infrastructure CLI configuration file. Specify the location of the configuration file. If your existing default profile is the correct one, you do not need to specify this option. However, if you have an existing configuration file, with multiple profiles or a different default from the tenancy of the user you want to connect with, specify this option.
 
 * `--one-database`, `-o`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>4
 
   Ignore statements except those that occur while the default database is the one named on the command line. This option is rudimentary and should be used with care. Statement filtering is based only on `USE` statements.
 
@@ -549,13 +549,13 @@
 
 * `--pager[=command]`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>5
 
   Use the given command for paging query output. If the command is omitted, the default pager is the value of your `PAGER` environment variable. Valid pagers are **less**, **more**, **cat [> filename]**, and so forth. This option works only on Unix and only in interactive mode. To disable paging, use `--skip-pager`. Section 6.5.1.2, “mysql Client Commands”, discusses output paging further.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>6
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysql** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -583,13 +583,13 @@
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>7
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-authentication-kerberos-client-mode=value`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>8
 
   On Windows, the `authentication_kerberos_client` authentication plugin supports this plugin option. It provides two possible values that the client user can set at runtime: `SSPI` and `GSSAPI`.
 
@@ -599,7 +599,7 @@
 
 * `--plugin-authentication-webauthn-client-preserve-privacy={OFF|ON}`
 
-  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for auto-vertical-output"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>9
 
   Determines how assertions are sent to server in case there is more than one discoverable credential stored for a given RP ID (a unique name given to the relying-party server, which is the MySQL server). If the FIDO2 device contains multiple resident keys for a given RP ID, this option allows the user to choose a key to be used for assertion. It provides two possible values that the client user can set. The default value is `OFF`. If set to `OFF`, the challenge is signed by all credentials available for a given RP ID and all signatures are sent to server. If set to `ON`, the user is prompted to choose the credential to be used for signature.
 
@@ -611,7 +611,7 @@
 
 * `--plugin-authentication-webauthn-device=#`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>0
 
   Determiens which device to use for `libfido` authentication. The default is the first device (`0`).
 
@@ -623,19 +623,19 @@
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>1
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysql** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>2
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>3
 
   Print the program name and all options that it gets from option files.
 
@@ -643,19 +643,19 @@
 
 * `--prompt=format_str`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>4
 
   Set the prompt to the specified format. The default is `mysql>`. The special sequences that the prompt can contain are described in Section 6.5.1.2, “mysql Client Commands”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>5
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>6
 
   Do not cache each query result, print each row as it is received. This may slow down the server if the output is suspended. With this option, **mysql** does not use the history file.
 
@@ -685,7 +685,7 @@
 
 * `--raw`, `-r`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>7
 
   For tabular output, the “boxing” around columns enables one column value to be distinguished from another. For nontabular output (such as is produced in batch mode or when the `--batch` or `--silent` option is given), special characters are escaped in the output so they can be identified easily. Newline, tab, `NUL`, and backslash are written as `\n`, `\t`, `\0`, and `\\`. The `--raw` option disables this character escaping.
 
@@ -713,13 +713,13 @@
 
 * `--reconnect`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>8
 
   If the connection to the server is lost, automatically try to reconnect. A single reconnect attempt is made each time the connection is lost. To suppress reconnection behavior, use `--skip-reconnect`.
 
 * `--register-factor=value`
 
-  <table frame="box" rules="all" summary="Properties for batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for batch"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>9
 
   The factor or factors for which FIDO/FIDO2 device registration must be performed before WebAuthn device-based authentication can be used. This option value must be a single value, or two values separated by commas. Each value must be 2 or 3, so the permitted option values are `'2'`, `'3'`, `'2,3'` and `'3,2'`.
 
@@ -761,19 +761,19 @@
 
 * `--safe-updates`, `--i-am-a-dummy`, `-U`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>0
 
   If this option is enabled, `UPDATE` and `DELETE` statements that do not use a key in the `WHERE` clause or a `LIMIT` clause produce an error. In addition, restrictions are placed on `SELECT` statements that produce (or are estimated to produce) very large result sets. If you have set this option in an option file, you can use `--skip-safe-updates` on the command line to override it. For more information about this option, see Using Safe-Updates Mode (--safe-updates)").
 
 * `--select-limit=value`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>1
 
   The automatic limit for `SELECT` statements when using `--safe-updates`. (Default value is 1,000.)
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>2
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -785,7 +785,7 @@
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>3
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -793,13 +793,13 @@
 
 * `--show-warnings`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>4
 
   Cause warnings to be shown after each statement if there are any. This option applies to interactive and batch mode.
 
 * `--sigint-ignore`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>5
 
   Ignore `SIGINT` signals (typically the result of typing **Control+C**).
 
@@ -807,7 +807,7 @@
 
 * `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>6
 
   Silent mode. Produce less output. This option can be given multiple times to produce less and less output.
 
@@ -815,7 +815,7 @@
 
 * `--skip-column-names`, `-N`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>7
 
   Do not write column names in results. Use of this option causes the output to be right-aligned, as shown here:
 
@@ -836,19 +836,19 @@
 
 * `--skip-line-numbers`, `-L`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>8
 
   Do not write line numbers for errors. Useful when you want to compare result files that include error messages.
 
 * `--skip-system-command`
 
-  <table frame="box" rules="all" summary="Properties for binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for binary-as-hex"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">FALSE in noninteractive mode</code></td> </tr></tbody></table>9
 
   Disables the `system` (`\!`) command. Equivalent to `--system-command=OFF`.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>0
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -860,7 +860,7 @@
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>1
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -878,7 +878,7 @@
 
 * `--syslog`, `-j`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>2
 
   This option causes **mysql** to send interactive statements to the system logging facility. On Unix, this is `syslog`; on Windows, it is the Windows Event Log. The destination where logged messages appear is system dependent. On Linux, the destination is often the `/var/log/messages` file.
 
@@ -897,7 +897,7 @@
 
 * `--system-command[={ON|OFF}]`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>3
 
   Enable or disable the `system` (`\!`) command. This option is disabled by default, which means the `system` command is rejected with an error. To enable it, use `--system-command=ON`.
 
@@ -905,25 +905,25 @@
 
 * `--table`, `-t`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>4
 
   Display output in table format. This is the default for interactive use, but can be used to produce table output in batch mode.
 
 * `--tee=file_name`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>5
 
   Append a copy of output to the given file. This option works only in interactive mode. Section 6.5.1.2, “mysql Client Commands”, discusses tee files further.
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>6
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>7
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -931,49 +931,49 @@
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>8
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--unbuffered`, `-n`
 
-  <table frame="box" rules="all" summary="Properties for binary-mode"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for binary-mode"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>9
 
   Flush the buffer after each query.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>0
 
   The user name of the MySQL account to use for connecting to the server.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>1
 
   Verbose mode. Produce more output about what the program does. This option can be given multiple times to produce more and more output. (For example, `-v -v -v` produces table output format even in batch mode.)
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>2
 
   Display version information and exit.
 
 * `--vertical`, `-E`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>3
 
   Print query output rows vertically (one line per column value). Without this option, you can specify vertical output for individual statements by terminating them with `\G`.
 
 * `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
 
   If the connection cannot be established, wait and retry instead of aborting.
 
 * `--xml`, `-X`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
 
   Produce XML output.
 
@@ -1014,7 +1014,7 @@
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 
@@ -1022,7 +1022,7 @@
 
 * `telemetry_client`
 
-  <table frame="box" rules="all" summary="Properties for bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
 
   Enables the telemetry client plugin (Linux only).
 

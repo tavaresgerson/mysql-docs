@@ -32,7 +32,7 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
   Exibir uma mensagem de ajuda e sair.
 
@@ -42,7 +42,7 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 * `--debug`, `-d`
 
-  <table frame="box" rules="all" summary="Propriedades para debug"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--debug</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para debug"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--debug</code></td> </tr></tbody></table>
 
   Executar no modo de depuração.
 
@@ -50,19 +50,19 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 * `-g pattern`
 
-  <table frame="box" rules="all" summary="Propriedades para grep"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para grep"><tbody><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Considerar apenas consultas que correspondem ao padrão (estilo **grep**).
 
 * `-h nome_do_host`
 
-  <table frame="box" rules="all" summary="Propriedades para host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">*</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para host"><tbody><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">*</code></td> </tr></tbody></table>
 
   Nome do host do servidor MySQL para o nome do arquivo `*-slow.log`. O valor pode conter um caractere curinga. O padrão é `*` (concordar com tudo).
 
 * `-i nome`
 
-  <table frame="box" rules="all" summary="Propriedades para instância"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para instância"><tbody><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Nome da instância do servidor (se estiver usando o script de inicialização **mysql.server**).
 
@@ -72,7 +72,7 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 * `-n N`
 
-<table frame="box" rules="all" summary="Propriedades para números abstratos"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para números abstratos"><tbody><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
 Números abstratos com pelo menos *`N`* dígitos nos nomes.
 
@@ -82,7 +82,7 @@ Números abstratos com pelo menos *`N`* dígitos nos nomes.
 
 * `-s sort_type`
 
-  <table frame="box" rules="all" summary="Propriedades para classificação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">at</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para classificação"><tbody><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">at</code></td> </tr></tbody></table>
 
   Como classificar a saída. O valor de *`sort_type`* deve ser escolhido da seguinte lista:
 
@@ -98,12 +98,12 @@ Números abstratos com pelo menos *`N`* dígitos nos nomes.
 
 * `-t N`
 
-  <table frame="box" rules="all" summary="Propriedades para top"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para top"><tbody><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
   Exibir apenas as primeiras *`N`* consultas na saída.
 
 * `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--verbose</code></td> </tr></tbody></table>
 
   Modo verbose. Imprimir mais informações sobre o que o programa faz.

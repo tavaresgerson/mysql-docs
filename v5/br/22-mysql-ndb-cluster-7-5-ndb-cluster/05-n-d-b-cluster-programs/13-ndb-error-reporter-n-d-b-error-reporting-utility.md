@@ -20,19 +20,19 @@ Este utilitário é destinado ao uso em um nó de gerenciamento e requer o camin
 
 - `--connection-timeout=timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para o timeout de conexão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connection-timeout=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o timeout de conexão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connection-timeout=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr></tbody></table>
 
   Aguarde esses segundos ao tentar se conectar aos nós antes de expirar o tempo.
 
 - `--dry-scp`
 
-  <table frame="box" rules="all" summary="Propriedades para dry-scp"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--dry-scp</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para dry-scp"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--dry-scp</code>]]</td> </tr></tbody></table>
 
   Execute **ndb\_error\_reporter** sem usar scp de hosts remotos. Usado apenas para testes.
 
 - `--fs`
 
-  <table frame="box" rules="all" summary="Propriedades para fs"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--fs</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para fs"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--fs</code>]]</td> </tr></tbody></table>
 
   Copie os sistemas de arquivos do nó de dados para o host de gerenciamento e inclua-os no arquivo.
 
@@ -40,12 +40,12 @@ Este utilitário é destinado ao uso em um nó de gerenciamento e requer o camin
 
 - `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>
 
   Exibir texto de ajuda e sair.
 
 - `--skip-nodegroup=nodegroup_id`
 
-  <table frame="box" rules="all" summary="Propriedades para o timeout de conexão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connection-timeout=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o timeout de conexão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connection-timeout=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr></tbody></table>
 
   Pule todos os nós que pertencem ao grupo de nós com o ID de grupo de nós fornecido.

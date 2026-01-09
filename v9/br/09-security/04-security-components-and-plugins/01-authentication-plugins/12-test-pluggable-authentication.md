@@ -12,7 +12,7 @@ A tabela a seguir mostra os nomes dos arquivos do plugin e da biblioteca. O sufi
 
 **Tabela 8.27 Nomes do Plugin e da Biblioteca para Autenticação de Teste**
 
-<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação de senha de teste."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code class="literal">test_plugin_server</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code class="literal">auth_test_plugin</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">auth_test_plugin.so</code></td> </tr></tbody></table>
+<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação de senha de teste."><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code class="literal">test_plugin_server</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code class="literal">auth_test_plugin</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">auth_test_plugin.so</code></td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para a autenticação conectada testável:
 

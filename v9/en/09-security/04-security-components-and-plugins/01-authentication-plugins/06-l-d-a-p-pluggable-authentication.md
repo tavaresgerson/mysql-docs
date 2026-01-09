@@ -20,11 +20,11 @@ The following tables show the plugin and library file names for simple and SASL-
 
 **Table 8.19 Plugin and Library Names for Simple LDAP Authentication**
 
-<table summary="Names for the plugins and library file used for simple LDAP password authentication."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code class="literal">authentication_ldap_simple</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code class="literal">mysql_clear_password</code></td> </tr><tr> <td>Library file name</td> <td><code class="filename">authentication_ldap_simple.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for simple LDAP password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code class="literal">authentication_ldap_simple</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code class="literal">mysql_clear_password</code></td> </tr><tr> <td>Library file name</td> <td><code class="filename">authentication_ldap_simple.so</code></td> </tr></tbody></table>
 
 **Table 8.20 Plugin and Library Names for SASL-Based LDAP Authentication**
 
-<table summary="Names for the plugins and library file used for SASL-based LDAP password authentication."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code class="literal">authentication_ldap_sasl</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code class="literal">authentication_ldap_sasl_client</code></td> </tr><tr> <td>Library file names</td> <td><code class="filename">authentication_ldap_sasl.so</code>, <code class="filename">authentication_ldap_sasl_client.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for SASL-based LDAP password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin name</td> <td><code class="literal">authentication_ldap_sasl</code></td> </tr><tr> <td>Client-side plugin name</td> <td><code class="literal">authentication_ldap_sasl_client</code></td> </tr><tr> <td>Library file names</td> <td><code class="filename">authentication_ldap_sasl.so</code>, <code class="filename">authentication_ldap_sasl_client.so</code></td> </tr></tbody></table>
 
 The library files include only the `authentication_ldap_XXX` authentication plugins. The client-side `mysql_clear_password` plugin is built into the `libmysqlclient` client library.
 

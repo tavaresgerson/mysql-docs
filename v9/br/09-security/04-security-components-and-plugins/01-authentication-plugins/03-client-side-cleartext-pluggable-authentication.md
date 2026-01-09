@@ -6,7 +6,7 @@ A tabela a seguir mostra o nome do plugin.
 
 **Tabela 8.16 Nomes de Plugins e Bibliotecas para Autenticação de Texto Claro**
 
-<table summary="Nomes dos plugins e arquivos da biblioteca usados para autenticação de senhas em texto claro."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>Nenhum, veja a discussão</td> </tr><tr> <td>Plugin no lado do cliente</td> <td><code class="literal">mysql_clear_password</code></td> </tr><tr> <td>Arquivo da biblioteca</td> <td>Nenhum (o plugin é embutido)</td> </tr></tbody></table>
+<table summary="Nomes dos plugins e arquivos da biblioteca usados para autenticação de senhas em texto claro."><thead><tr> <th>Plugin ou Arquivo</th> <th>Nome do Plugin ou Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>Nenhum, veja a discussão</td> </tr><tr> <td>Plugin no lado do cliente</td> <td><code class="literal">mysql_clear_password</code></td> </tr><tr> <td>Arquivo da biblioteca</td> <td>Nenhum (o plugin é embutido)</td> </tr></tbody></table>
 
 Muitos plugins de autenticação no lado do cliente realizam hashing ou criptografia de uma senha antes que o cliente a envie para o servidor. Isso permite que os clientes evitem enviar senhas como texto claro.
 

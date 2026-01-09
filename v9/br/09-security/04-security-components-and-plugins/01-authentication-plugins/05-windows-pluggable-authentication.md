@@ -18,7 +18,7 @@ A tabela a seguir mostra os nomes dos arquivos de plugin e biblioteca. O arquivo
 
 **Tabela 8.18 Nomes de Plugin e Biblioteca para Autenticação Windows**
 
-<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação de senha do Windows."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code class="literal">authentication_windows</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code class="literal">authentication_windows_client</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">authentication_windows.dll</code></td> </tr></tbody></table>
+<table summary="Nomes dos plugins e arquivos de biblioteca usados para autenticação de senha do Windows."><thead><tr> <th>Plugin ou Arquivo</th> <th>Plugin ou Nome do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin do lado do servidor</td> <td><code class="literal">authentication_windows</code></td> </tr><tr> <td>Plugin do lado do cliente</td> <td><code class="literal">authentication_windows_client</code></td> </tr><tr> <td>Arquivo de biblioteca</td> <td><code class="filename">authentication_windows.dll</code></td> </tr></tbody></table>
 
 O arquivo de biblioteca inclui apenas o plugin do lado do servidor. O plugin do lado do cliente está embutido na biblioteca de cliente `libmysqlclient`.
 

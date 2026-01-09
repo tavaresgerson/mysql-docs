@@ -68,19 +68,19 @@ Leia opções padrão de um arquivo específico.
 
 * `--defaults-file=caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Leia opções padrão apenas do arquivo especificado.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Leia também grupos com `CONCAT(grupo, sufixo)`.
 
 * `--detailed-info`
 
-  <table frame="box" rules="all" summary="Propriedades para detailed-info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--encrypt-block-size=#</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para detailed-info"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--encrypt-block-size=#</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">FALSE</code></td> </tr></tbody></table>
 
   Imprima informações do arquivo como `--info`, mas inclua o cabeçalho e o trailer do arquivo.
 
@@ -256,7 +256,7 @@ Você também pode ver o cabeçalho e o trailer do arquivo usando a opção `--i
 
 * `--caminho-de-login`
 
-<table frame="box" rules="all" summary="Propriedades para decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tr>
+<table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr>
   <th>Formato de linha de comando</th>
   <td><code class="literal">--decrypt-key=chave</code></td>
 </tr></table>8
@@ -265,7 +265,7 @@ Leia o caminho fornecido a partir do arquivo de login.
 
 * `--sem-caminhos-de-login`
 
-<table frame="box" rules="all" summary="Propriedades para decrypt-key"><col style="width: 30%"/><col style="width: 70%"/><tr>
+<table frame="box" rules="all" summary="Propriedades para decrypt-key"><tr>
   <th>Formato de linha de comando</th>
   <td><code class="literal">--decrypt-key=chave</code></td>
 </tr></table>9
@@ -274,7 +274,7 @@ Ignora a leitura das opções do caminho de login.
 
 * `--sem-padrões`
 
-<table frame="box" rules="all" summary="Propriedades para decrypt-key-de-stdin"><col style="width: 30%"/><col style="width: 70%"/><tr>
+<table frame="box" rules="all" summary="Propriedades para decrypt-key-de-stdin"><tr>
   <th>Formato de linha de comando</th>
   <td><code class="literal">--decrypt-key-de-stdin</code></td>
 </tr></table>0

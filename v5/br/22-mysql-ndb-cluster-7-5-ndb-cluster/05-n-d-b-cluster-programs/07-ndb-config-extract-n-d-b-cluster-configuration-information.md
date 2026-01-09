@@ -14,7 +14,7 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>
 
   Diretório contendo conjuntos de caracteres.
 
@@ -68,13 +68,13 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--config-file=caminho-para-arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>
 
   Fornece o caminho para o arquivo de configuração do servidor de gerenciamento (`config.ini`). Este pode ser um caminho relativo ou absoluto. Se o nó de gerenciamento estiver em um host diferente daquele em que o **ndb\_config** é invocado, então um caminho absoluto deve ser usado.
 
 - `--config_from_node=#`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>
 
   Obtenha os dados de configuração do cluster a partir do nó de dados que possui esse ID.
 
@@ -82,7 +82,7 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--conexões`
 
-  <table frame="box" rules="all" summary="Propriedades para conexões"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connections</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connections</code>]]</td> </tr></tbody></table>
 
   Informe ao **ndb\_config** que ele imprima apenas as informações de `CONNECTIONS`, ou seja, as informações sobre os parâmetros encontrados nas seções `[tcp]`, `[tcp default]`, `[shm]` ou `[shm default]` do arquivo de configuração do cluster (consulte Seção 21.4.3.10, “Conexões TCP/IP do NDB Cluster” e Seção 21.4.3.12, “Conexões de Memória Compartilhada do NDB Cluster”, para mais informações).
 
@@ -90,55 +90,55 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--connect-retries`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retries=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">12</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">12</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retries=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">12</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">12</code>]]</td> </tr></tbody></table>
 
   Número de vezes para tentar a conexão novamente antes de desistir.
 
 - `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retry-delay=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">5</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">5</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retry-delay=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">5</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">5</code>]]</td> </tr></tbody></table>
 
   Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
 
 - `--connect-string`
 
-  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-string=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-string=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   O mesmo que `--ndb-connectstring`.
 
 - `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--core-file</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--core-file</code>]]</td> </tr></tbody></table>
 
   Escreva o arquivo de núcleo em erro; usado no depuração.
 
 - `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 - `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>0
 
   Leia as opções padrão do arquivo fornecido.
 
 - `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>1
 
   Leia também grupos com concatenação (grupo, sufixo).
 
 - `--diff-default`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>2
 
   Imprima apenas os parâmetros de configuração que têm valores não padrão.
 
 - `--fields=delimiter`, `-f` *`delimiter`*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>3
 
   Especifica uma cadeia de caracteres `delimitador` usada para separar os campos no resultado. O padrão é `,` (o caractere vírgula).
 
@@ -148,13 +148,13 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>4
 
   Exibir texto de ajuda e sair.
 
 - `--host=hostname`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>5
 
   Especifica o nome do host do nó para o qual as informações de configuração devem ser obtidas.
 
@@ -164,55 +164,55 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>6
 
   Leia o caminho fornecido a partir do arquivo de login.
 
 - `--mycnf`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>7
 
   Leia os dados de configuração do arquivo `my.cnf`.
 
 - `--ndb-connectstring=connection_string`, `-c connection_string`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>8
 
   Especifica a cadeia de conexão a ser usada para se conectar ao servidor de gerenciamento. O formato da cadeia de conexão é o mesmo descrito na Seção 21.4.3.3, "Cadeias de conexão de cluster NDB", e o padrão é `localhost:1186`.
 
 - `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>9
 
   O mesmo que `--ndb-connectstring`.
 
 - `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>0
 
   Defina o ID do nó para este nó, substituindo qualquer ID definida por `--ndb-connectstring`.
 
 - `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>1
 
   Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>2
 
   Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
 
 - `--nodeid=node_id`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>3
 
   Especifique o ID do nó para o qual as informações de configuração devem ser obtidas. Anteriormente, `--id` poderia ser usado como sinônimo dessa opção; no NDB 7.5 e versões posteriores, a única forma aceita é `--nodeid`.
 
 - `--nodes`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>4
 
   Informe **ndb\_config** para imprimir informações relacionadas apenas aos parâmetros definidos em uma seção `[ndbd]` ou `[ndbd default]` do arquivo de configuração do cluster (consulte Seção 21.4.3.6, “Definindo NDB Cluster Data Nodes”).
 
@@ -220,7 +220,7 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--query=query-options`, `-q` *`query-options`*
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>5
 
   Esta é uma lista delimitada por vírgula de opções de consulta, ou seja, uma lista de um ou mais atributos de nó a serem retornados. Estes incluem `nodeid` (ID do nó), tipo (tipo de nó — ou seja, `ndbd`, `mysqld` ou `ndb_mgmd`) e quaisquer parâmetros de configuração cujos valores devem ser obtidos.
 
@@ -234,7 +234,7 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--query-all`, `-a`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>6
 
   Retorna uma lista separada por vírgula de todas as opções de consulta (atributos do nó; observe que essa lista é uma única string.
 
@@ -242,13 +242,13 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>7
 
   Imprima a lista de argumentos do programa e saia.
 
 - `--rows=separator`, `-r` *`separator`*
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>8
 
   Especifica uma string de *separador* usada para separar as linhas no resultado. O padrão é um caractere de espaço.
 
@@ -258,7 +258,7 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--system`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-file=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal"></code>]]</td> </tr></tbody></table>9
 
   Informe ao **ndb\_config** para imprimir apenas as informações do `SISTEMA`. Isso inclui variáveis do sistema que não podem ser alteradas em tempo de execução; portanto, não há uma seção correspondente do arquivo de configuração do clúster para elas. Elas podem ser vistas (com o prefixo `****** SISTEMA ******`) na saída do **ndb\_config** `--configinfo`.
 
@@ -266,25 +266,25 @@ As opções que podem ser usadas com **ndb\_config** estão mostradas na tabela 
 
 - `--type=node_type`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>0
 
   Filtra os resultados para que apenas os valores de configuração que se aplicam aos nós do tipo especificado *`node_type`* (`ndbd`, `mysqld` ou `ndb_mgmd`) sejam retornados.
 
 - `--usage`, `--help` ou `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>1
 
   Faz com que **ndb\_config** imprima uma lista de opções disponíveis e, em seguida, saia. Sinônimo de `--help`.
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>2
 
   Faz com que **ndb\_config** imprima uma string de informações da versão e, em seguida, saia.
 
 - `--configinfo` `--xml`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--config-from-node=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">48</code>]]</td> </tr></tbody></table>3
 
   Para fornecer a saída como XML, adicione a opção `--configinfo` ao arquivo **ndb\_config**. Uma parte dessa saída é mostrada neste exemplo:
 

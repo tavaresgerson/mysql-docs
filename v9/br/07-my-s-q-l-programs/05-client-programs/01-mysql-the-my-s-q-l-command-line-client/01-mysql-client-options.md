@@ -38,13 +38,13 @@ Esta funcionalidade requer um cliente MySQL compilado com a biblioteca **readlin
 
 * `--auto-vertical-output`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-vertical-output"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>
 
   Exiba os conjuntos de resultados verticalmente se eles forem muito largos para a janela atual e use o formato tabular normal caso contrário. (Isso se aplica a instruções terminadas por `;` ou `\G`.)
 
 * `--batch`, `-B`
 
-  <table frame="box" rules="all" summary="Propriedades para batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>
 
   Imprima os resultados usando tab como separador de colunas, com cada linha em uma nova linha. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
@@ -174,13 +174,13 @@ O modo batch resulta em um formato de saída não tabular e na escapamento de ca
 
 * `--column-type-info`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
 
   Exibir metadados do conjunto de resultados. Essas informações correspondem ao conteúdo das estruturas de dados C API `MYSQL_FIELD`. Veja Estruturas de Dados Básicas da API C.
 
 * `--commands`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
 
   Se habilitar ou desabilitar o processamento de comandos do cliente **mysql** local. Definir essa opção para `FALSE` desabilita esse processamento e tem os efeitos listados aqui:
 
@@ -293,7 +293,7 @@ O modo batch resulta em um formato de saída não tabular e na escapamento de ca
 
 * `--debug[=opções_de_depuração], `-# [opções_de_depuração]`
 
-<table frame="box" rules="all" summary="Propriedades de autenticação-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/>
+<table frame="box" rules="all" summary="Propriedades de autenticação-oci-client-config-profile">
   <tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=nome_do_perfil</code></td> </tr>
   <tr><th>Tipo</th> <td>String</td> </tr>
 </table>0
@@ -304,7 +304,7 @@ Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`.
 
 * `--debug-check`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para authentication-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>1
 
   Imprima algumas informações de depuração quando o programa sair.
 
@@ -312,7 +312,7 @@ Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`.
 
 * `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para authentication-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>2
 
   Imprima informações de depuração e estatísticas de uso de memória e CPU quando o programa sair.
 
@@ -320,13 +320,13 @@ Esta opção está disponível apenas se o MySQL foi compilado com `WITH_DEBUG`.
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para authentication-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>3
 
 Uma dica sobre qual plugin de autenticação do lado do cliente usar. Veja a Seção 8.2.17, “Autenticação Personalizável”.
 
 * `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Propriedades para o perfil de configuração de autenticação-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para o perfil de configuração de autenticação-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>4
 
   Use *`charset_name`* como o conjunto de caracteres padrão para o cliente e a conexão.
 
@@ -336,7 +336,7 @@ Uma dica sobre qual plugin de autenticação do lado do cliente usar. Veja a Se�
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para o perfil de configuração de autenticação-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para o perfil de configuração de autenticação-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>5
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -344,7 +344,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--defaults-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--autenticação-oci-client-config-profile=nome_do_perfil</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para autenticação-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--autenticação-oci-client-config-profile=nome_do_perfil</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>6
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`nome_do_arquivo`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -354,7 +354,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--autenticação-oci-client-config-profile=nome_do_perfil</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para autenticação-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--autenticação-oci-client-config-profile=nome_do_perfil</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>7
 
   Leia não apenas os grupos de opção usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysql** normalmente lê os grupos `[client]` e `[mysql]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysql** também lê os grupos `[client_other]` e `[mysql_other]`.
 
@@ -362,7 +362,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--delimiter=str`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para autenticação-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>8
 
   Defina o delimitador da declaração. O padrão é o caractere ponto-e-vírgula (`;`).
 
@@ -372,7 +372,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--dns-srv-name=name`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para autenticação-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>9
 
   Especifica o nome de um registro DNS SRV que determina os hosts candidatos a serem usados para estabelecer uma conexão com um servidor MySQL. Para obter informações sobre o suporte a DNS SRV no MySQL, consulte a Seção 6.2.6, “Conectando ao servidor usando registros DNS SRV”.
 
@@ -400,25 +400,25 @@ A opção `--dns-srv-name` tem precedência sobre a opção `--host` se ambas fo
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para autenticação-openid-connect-client-id-token-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>0
 
   Ative o plugin de autenticação de texto claro `mysql_clear_password`. (Veja a Seção 8.4.1.3, “Autenticação Pluggable de Texto Claro do Lado do Cliente”.)
 
 * `--execute=statement`, `-e statement`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para autenticação-openid-connect-client-id-token-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>1
 
 Execute a declaração e saia. O formato de saída padrão é o mesmo produzido com `--batch`. Veja a Seção 6.2.2.1, “Usando Opções na Linha de Comando”, para alguns exemplos. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
 * `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para authentication-openid-connect-client-id-token-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>2
 
   Continue mesmo que ocorra um erro SQL.
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para authentication-openid-connect-client-id-token-file"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>3
 
   Solicitar ao servidor a chave pública necessária para a troca de senha com par de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `caching_sha2_password`. Para esse plugin, o servidor não envia a chave pública a menos que seja solicitado. Esta opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de senha com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -428,13 +428,13 @@ Execute a declaração e saia. O formato de saída padrão é o mesmo produzido 
 
 * `--histignore`
 
-<table frame="box" rules="all" summary="Propriedades para o arquivo de token de cliente de autenticação-openid-connect"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>4
+<table frame="box" rules="all" summary="Propriedades para o arquivo de token de cliente de autenticação-openid-connect"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>4
 
   Uma lista de um ou mais padrões separados por vírgula que especificam as instruções a serem ignoradas para fins de registro. Esses padrões são adicionados à lista de padrão padrão (`"*IDENTIFIED*:*PASSWORD*"`). O valor especificado para essa opção afeta o registro de instruções escritas no arquivo de histórico e no `syslog` se a opção `--syslog` for fornecida. Para mais informações, consulte a Seção 6.5.1.3, “Registro de cliente do MySQL”.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Propriedades para o arquivo de token de cliente de autenticação-openid-connect"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para o arquivo de token de cliente de autenticação-openid-connect"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>5
 
   Conecte-se ao servidor MySQL no host fornecido.
 
@@ -458,13 +458,13 @@ Adicione uma declaração SQL adicional para ser executada após a conexão ou r
 
 * `--line-numbers`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>0
 
   Escreva os números de linha para erros. Desabilite essa opção com `--skip-line-numbers`.
 
 * `--load-data-local-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>1
 
   Esta opção afeta a capacidade `LOCAL` do lado do cliente para operações `LOAD DATA`. Especifica o diretório onde os arquivos mencionados nas instruções `LOAD DATA LOCAL` devem estar localizados. O efeito da opção `--load-data-local-dir` depende se a carga de dados `LOCAL` está habilitada ou desabilitada:
 
@@ -486,7 +486,7 @@ O uso bem-sucedido das operações de carregamento `LOCAL` dentro de **mysql** t
 
 * `--local-infile[={0|1}]`
 
-<table frame="box" rules="all" summary="Propriedades para auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>2
 
 Por padrão, a capacidade `LOCAL` para `LOAD DATA` é determinada pelo padrão compilado na biblioteca do cliente MySQL. Para habilitar ou desabilitar explicitamente o carregamento de dados `LOCAL`, use a opção `--local-infile`. Quando fornecido sem valor, a opção habilita o carregamento de dados `LOCAL`. Quando fornecido como `--local-infile=0` ou `--local-infile=1`, a opção desabilita ou habilita o carregamento de dados `LOCAL`.
 
@@ -496,7 +496,7 @@ O uso bem-sucedido das operações de carregamento `LOCAL` dentro do **mysql** t
 
 * `--login-path=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>3
 
   Leia opções de entrada do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL se conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de configuração MySQL”.
 
@@ -504,7 +504,7 @@ O uso bem-sucedido das operações de carregamento `LOCAL` dentro do **mysql** t
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>4
 
   Ignora a leitura de opções do arquivo de caminho de login.
 
@@ -514,31 +514,31 @@ O uso bem-sucedido das operações de carregamento `LOCAL` dentro do **mysql** t
 
 * `--max-allowed-packet=valor`
 
-<table frame="box" rules="all" summary="Propriedades para auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>5
 
   O tamanho máximo do buffer para a comunicação cliente/servidor. O valor padrão é de 16 MB, o máximo é de 1 GB.
 
 * `--max-join-size=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>6
 
   O limite automático para linhas em uma junção ao usar `--safe-updates`. (O valor padrão é de 1.000.000.)
 
 * `--named-commands`, `-G`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para auto-rehash"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>7
 
   Ative comandos **mysql** nomeados. São permitidos comandos de formato longo, não apenas comandos de formato curto. Por exemplo, `quit` e `\q` são ambos reconhecidos. Use `--skip-named-commands` para desativar comandos nomeados. Veja a Seção 6.5.1.2, “Comandos do cliente mysql”.
 
 * `--net-buffer-length=valor`
 
-<table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>8
+<table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>8
 
   O tamanho do buffer para comunicação TCP/IP e socket. (O valor padrão é 16KB.)
 
 * `--network-namespace=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-rehash</code></td> </tr><tr><th>Desativado por</th> <td><code class="literal">skip-auto-rehash</code></td> </tr></tbody></table>9
 
   O namespace de rede a ser usado para conexões TCP/IP. Se omitido, a conexão usa o namespace padrão (global). Para informações sobre namespaces de rede, consulte a Seção 7.1.14, “Suporte a Namespace de Rede”.
 
@@ -546,19 +546,19 @@ O uso bem-sucedido das operações de carregamento `LOCAL` dentro do **mysql** t
 
 * `--no-auto-rehash`, `-A`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>0
 
   Tem o mesmo efeito que `--skip-auto-rehash`. Consulte a descrição para `--auto-rehash`.
 
 * `--no-beep`, `-b`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>1
 
   Não emita um sinal sonoro quando ocorrerem erros.
 
 * `--no-defaults`
 
-<table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>2
 
   Não leia arquivos de opções. Se o início do programa falhar ao ler opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para evitar que sejam lidas.
 
@@ -568,7 +568,7 @@ O uso bem-sucedido das operações de carregamento `LOCAL` dentro do **mysql** t
 
 * `--oci-config-file=PATH`
 
-<table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>3
 
   Caminho alternativo para o arquivo de configuração da Oracle Cloud Infrastructure CLI. Especifique a localização do arquivo de configuração. Se o seu perfil padrão existente for o correto, você não precisa especificar essa opção. No entanto, se você tiver um arquivo de configuração existente, com múltiplos perfis ou um padrão diferente do da entidade do usuário com quem deseja se conectar, especifique essa opção.
 
@@ -642,13 +642,13 @@ Para especificar explicitamente que não há senha e que o **mysql** não deve s
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>7
 
 Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-authentication-kerberos-client-mode=value`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>8
 
   Em Windows, o plugin de autenticação `authentication_kerberos_client` suporta esta opção de plugin. Ele fornece dois valores possíveis que o usuário do cliente pode definir em tempo de execução: `SSPI` e `GSSAPI`.
 
@@ -658,7 +658,7 @@ Em Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se a
 
 * `--plugin-authentication-webauthn-client-preserve-privacy={OFF|ON}`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--auto-vertical-output</code></td> </tr></tbody></table>9
 
 Determina como as asserções são enviadas ao servidor caso haja mais de uma credencial detectável armazenada para um ID de RP específico (um nome único dado ao servidor da parte de confiança, que é o servidor MySQL). Se o dispositivo FIDO2 contiver várias chaves residentes para um ID de RP específico, essa opção permite que o usuário escolha uma chave a ser usada para a asserção. Ela fornece dois valores possíveis que o usuário do cliente pode definir. O valor padrão é `OFF`. Se definido como `OFF`, o desafio é assinado por todas as credenciais disponíveis para um ID de RP específico e todas as assinaturas são enviadas ao servidor. Se definido como `ON`, o usuário é solicitado a escolher a credencial a ser usada para a assinatura.
 
@@ -670,7 +670,7 @@ Para mais informações, consulte a Seção 8.4.1.11, “Autenticação Plugáve
 
 * `--plugin-authentication-webauthn-device=#`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>0
 
   Determina qual dispositivo usar para a autenticação `libfido`. O padrão é o primeiro dispositivo (`0`).
 
@@ -686,13 +686,13 @@ O diretório onde procurar por plugins. Especifique esta opção se a opção `-
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>2
 
   O número de porta a ser usado para conexões TCP/IP.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>3
 
   Imprima o nome do programa e todas as opções que ele obtém de arquivos de opção.
 
@@ -700,13 +700,13 @@ O diretório onde procurar por plugins. Especifique esta opção se a opção `-
 
 * `--prompt=format_str`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>4
 
   Defina o prompt para o formato especificado. O padrão é `mysql>`. As sequências especiais que o prompt pode conter são descritas na Seção 6.5.1.2, “Comandos do Cliente mysql”.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>5
 
 O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para obter detalhes sobre os valores permitidos, consulte a Seção 6.2.7, “Protocolos de Transporte de Conexão”.
 
@@ -741,7 +741,7 @@ Por padrão, o **mysql** recupera todas as linhas de resultado antes de produzir
   ```
 * `--raw`, `-r`
 
-  <table frame="box" rules="all" summary="Propriedades para batch"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para batch"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--batch</code></td> </tr></tbody></table>7
 
 Para saída tabular, o "alinhamento" das colunas permite que um valor de coluna seja distinguido de outro. Para saída não tabular (como a produzida em modo batch ou quando a opção `--batch` ou `--silent` é fornecida), caracteres especiais são escapados na saída para que possam ser identificados facilmente. Novo linha, tabulação, `NUL` e barra invertida são escritos como `\n`, `\t`, `\0` e `\\`. A opção `--raw` desabilita esse escapagem de caracteres.
 
@@ -829,13 +829,13 @@ Esta opção só se aplica se o servidor foi iniciado com a variável de sistema
 
 * `--show-warnings`
 
-  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">FALSE no modo não interativo</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">FALSE no modo não interativo</code></td> </tr></tbody></table>4
 
   Exibir avisos após cada instrução se houver algum. Esta opção se aplica ao modo interativo e ao modo lote.
 
 * `--sigint-ignore`
 
-  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">FALSE no modo não interativo</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para binary-as-hex"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binary-as-hex</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">FALSE no modo não interativo</code></td> </tr></tbody></table>5
 
   Ignorar sinais `SIGINT` (tipicamente o resultado de digitar **Control+C**).
 
@@ -929,7 +929,7 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
 
 * `--syslog`, `-j`
 
-  <table frame="box" rules="all" summary="Propriedades para o modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para o modo binário"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>2
 
   Esta opção faz com que o **mysql** envie instruções interativas para a facilidade de registro do sistema. No Unix, isso é `syslog`; no Windows, é o Registro de Eventos do Windows. O destino onde as mensagens registradas aparecem depende do sistema. No Linux, o destino é frequentemente o arquivo `/var/log/messages`.
 
@@ -1004,7 +1004,7 @@ As sequências de cifra permitidas para conexões criptografadas que utilizam TL
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>7
 
   Quando especificado, o nome é passado para a biblioteca de API C `libmysqlclient` usando a opção `MYSQL_OPT_TLS_SNI_SERVERNAME` de `mysql_options()`. O nome do servidor não é case-sensitive. Para mostrar qual nome do servidor o cliente especificou para a sessão atual, se houver, verifique a variável `Tls_sni_server_name`.
 
@@ -1012,7 +1012,7 @@ As sequências de cifra permitidas para conexões criptografadas que utilizam TL
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--binary-mode</code></td> </tr></tbody></table>8
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e cifra TLS de Conexão Criptografada”.
 
@@ -1048,13 +1048,13 @@ Imprima as linhas de saída da consulta verticalmente (uma linha por valor da co
 
 * `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>4
 
   Se a conexão não puder ser estabelecida, aguarde e tente novamente em vez de abortar.
 
 * `--xml`, `-X`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>5
 
   Produza saída em formato XML.
 
@@ -1077,7 +1077,7 @@ Imprima as linhas de saída da consulta verticalmente (uma linha por valor da co
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>6
 
   O nível de compressão a ser usado para conexões ao servidor que utilizam o algoritmo de compressão `zstd`. Os níveis permitidos são de 1 a 22, com valores maiores indicando níveis de compressão crescentes. O nível de compressão padrão é 3. O ajuste do nível de compressão não tem efeito em conexões que não utilizam compressão `zstd`.
 
@@ -1085,7 +1085,7 @@ Imprima as linhas de saída da consulta verticalmente (uma linha por valor da co
 
 * `telemetry_client`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>7
 
   Habilita o plugin do cliente de telemetria (apenas Linux).
 

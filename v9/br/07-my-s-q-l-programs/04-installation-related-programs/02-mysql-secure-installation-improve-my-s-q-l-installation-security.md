@@ -76,7 +76,7 @@ O **mysql\_secure\_installation** suporta as seguintes opções, que podem ser e
 
 * `--defaults-group-suffix=str`
 
-<table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=str</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-group-suffix=str</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Leia não apenas os grupos de opções habituais, mas também grupos com os nomes habituais e um sufixo de *`str`*. Por exemplo, **mysql\_secure\_installation** normalmente lê os grupos `[client]` e `[mysql_secure_installation]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysql\_secure\_installation** também lê os grupos `[client_other]` e `[mysql_secure_installation_other]`.
 
@@ -84,13 +84,13 @@ O **mysql\_secure\_installation** suporta as seguintes opções, que podem ser e
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Propriedades para host"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para host"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--host</code></td> </tr></tbody></table>
 
   Conecte-se ao servidor MySQL no host fornecido.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para no-defaults"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-defaults</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para no-defaults"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-defaults</code></td> </tr></tbody></table>
 
   Não leia nenhum ficheiro de opções. Se o arranque do programa falhar devido à leitura de opções desconhecidas de um ficheiro de opções, `--no-defaults` pode ser usado para evitar que sejam lidas.
 
@@ -120,13 +120,13 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para detalhes sobre os valores permitidos, consulte a Seção 6.2.7, “Protocolos de transporte de conexão”.
 
 * `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
 
   Para conexões com `localhost`, o arquivo de socket Unix a ser usado, ou, no Windows, o nome do pipe nomeado a ser usado.
 
@@ -209,6 +209,6 @@ Para obter informações adicionais sobre isso e outras opções de arquivos de 
 
 * `--user=nome_do_usuário`, `-u nome_do_usuário`
 
-<table frame="box" rules="all" summary="Propriedades de ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
+<table frame="box" rules="all" summary="Propriedades de ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>7
 
   O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.

@@ -52,91 +52,91 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--auto-generate-sql`, `-a`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Gerar instruções SQL automaticamente quando elas não são fornecidas em arquivos ou usando opções de comando.
 
 - `--auto-generate-sql-add-autoincrement`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Adicione uma coluna `AUTO_INCREMENT` às tabelas geradas automaticamente.
 
 - `--auto-generate-sql-execute-number=N`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>
 
   Especifique quantos pedidos devem ser gerados automaticamente.
 
 - `--auto-generate-sql-guid-primary`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Adicione uma chave primária baseada em GUID às tabelas geradas automaticamente.
 
 - `--auto-generate-sql-load-type=tipo`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-load-type"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-load-type=type</code>]]</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>mixed</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>read</code>]]</p><p class="valid-value">[[<code>write</code>]]</p><p class="valid-value">[[<code>key</code>]]</p><p class="valid-value">[[<code>update</code>]]</p><p class="valid-value">[[<code>mixed</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-load-type"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-load-type=type</code>]]</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>mixed</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>read</code>]]</p><p class="valid-value">[[<code>write</code>]]</p><p class="valid-value">[[<code>key</code>]]</p><p class="valid-value">[[<code>update</code>]]</p><p class="valid-value">[[<code>mixed</code>]]</p></td> </tr></tbody></table>
 
   Especifique o tipo de carga de teste. Os valores permitidos são `read` (escanear tabelas), `write` (inserir em tabelas), `key` (ler chaves primárias), `update` (atualizar chaves primárias) ou `mixed` (metade de inserções, metade de seleções de varredura). O padrão é `mixed`.
 
 - `--auto-generate-sql-secondary-indexes=N`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-secondary-indexes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-secondary-indexes=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-secondary-indexes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-secondary-indexes=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
 
   Especifique quantos índices secundários serão adicionados às tabelas geradas automaticamente. Por padrão, nenhum é adicionado.
 
 - `--auto-generate-sql-unique-query-number=N`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-número-de-consulta-único"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-unique-query-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>10</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-número-de-consulta-único"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-unique-query-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>10</code>]]</td> </tr></tbody></table>
 
   Quantas consultas diferentes você deseja gerar para testes automáticos. Por exemplo, se você executar um teste `chave` que realiza 1000 seleções, você pode usar essa opção com um valor de 1000 para executar 1000 consultas únicas, ou com um valor de 50 para realizar 50 seleções diferentes. O valor padrão é 10.
 
 - `--auto-generate-sql-unique-write-number=N`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-número-único-de-escrita"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-unique-write-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>10</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-número-único-de-escrita"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-unique-write-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>10</code>]]</td> </tr></tbody></table>
 
   Quantas consultas diferentes devem ser geradas para `--auto-generate-sql-write-number`. O padrão é 10.
 
 - `--auto-generate-sql-write-number=N`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>0
 
   Quantas inserções de linha devem ser realizadas. O padrão é 100.
 
 - `--commit=N`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>1
 
   Quantas declarações executar antes de comprometer. O padrão é 0 (nenhuma comissão é feita).
 
 - `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>2
 
   Compressa todas as informações enviadas entre o cliente e o servidor, se possível. Consulte a Seção 4.2.6, “Controle de Compressão de Conexão”.
 
 - `--concurrency=N`, `-c N`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>3
 
   O número de clientes paralelos a serem simulados.
 
 - `--create=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>4
 
   O arquivo ou a cadeia de caracteres que contém a declaração a ser usada para criar a tabela.
 
 - `--create-schema=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>5
 
   O esquema no qual os testes serão executados.
 
@@ -146,13 +146,13 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--csv[=nome_do_arquivo]`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>6
 
   Gerar a saída no formato de valores separados por vírgula. A saída vai para o arquivo nomeado ou para a saída padrão se nenhum arquivo for fornecido.
 
 - `--debug[=opções_de_depuração]`, `-# [opções_de_depuração]`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>7
 
   Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O padrão é `d:t:o,/tmp/mysqlslap.trace`.
 
@@ -160,7 +160,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--debug-check`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>8
 
   Imprima algumas informações de depuração quando o programa sair.
 
@@ -168,7 +168,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>9
 
   Imprima informações de depuração, estatísticas de uso de memória e CPU quando o programa sair.
 
@@ -176,13 +176,13 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>0
 
   Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--defaults-extra-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>1
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -190,7 +190,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--defaults-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>2
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -200,7 +200,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>3
 
   Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlslap** normalmente lê os grupos `[client]` e `[mysqlslap]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysqlslap** também lê os grupos `[client_other]` e `[mysqlslap_other]`.
 
@@ -208,31 +208,31 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--delimiter=str`, `-F str`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>4
 
   O delimitador a ser usado em declarações SQL fornecidas em arquivos ou usando opções de comando.
 
 - `--detach=N`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>5
 
   Desconecte (feche e reabra) cada conexão após cada declaração *`N`*. O padrão é 0 (as conexões não são desconectadas).
 
 - `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>6
 
   Ative o plugin de autenticação de texto claro `mysql_clear_password`. (Consulte a Seção 6.4.1.6, “Autenticação Pluggable de Texto Claro no Cliente”.)
 
 - `--engine=engine_name`, `-e engine_name`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>7
 
   O mecanismo de armazenamento a ser usado para criar tabelas.
 
 - `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>8
 
   Peça à rede o par de chaves RSA que ela usa para a troca de senhas baseada em pares de chaves. Esta opção se aplica a clientes que se conectam à rede usando uma conta que autentica com o plugin de autenticação `caching_sha2_password`. Para conexões por contas desse tipo, a rede não envia a chave pública ao cliente, a menos que seja solicitado. A opção é ignorada para contas que não autenticam com esse plugin. Também é ignorada se a troca de senha baseada em RSA não for necessária, como é o caso quando o cliente se conecta à rede usando uma conexão segura.
 
@@ -244,19 +244,19 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>9
 
   Conecte-se ao servidor MySQL no host fornecido.
 
 - `--iterations=N`, `-i N`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>0
 
   O número de vezes que os testes devem ser executados.
 
 - `--login-path=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>1
 
   Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
@@ -264,13 +264,13 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--no-drop`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>2
 
   Impedir que o **mysqlslap** elimine qualquer esquema criado durante a execução do teste.
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>3
 
   Não leia nenhum arquivo de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas.
 
@@ -280,19 +280,19 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--number-char-cols=N`, `-x N`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>4
 
   O número de colunas `VARCHAR` a serem usadas se `--auto-generate-sql` for especificado.
 
 - `--number-int-cols=N`, `-y N`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>5
 
   O número de colunas `INT` (INTEIRO), INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") a serem usadas se `--auto-generate-sql` for especificado.
 
 - `--número-de-consultas=N`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>6
 
   Limite cada cliente a aproximadamente esse número de consultas. O contagem de consultas leva em consideração o delimitador da declaração. Por exemplo, se você invocar **mysqlslap** da seguinte forma, o delimitador `;` é reconhecido para que cada instância da string de consulta seja contada como duas consultas. Como resultado, 5 linhas (e não 10) são inseridas.
 
@@ -303,13 +303,13 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--only-print`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>7
 
   Não conecte-se aos bancos de dados. O **mysqlslap** apenas imprime o que teria feito.
 
 - `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>8
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlslap** solicitará uma senha. Se for fornecida, não deve haver **espaço** entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar a senha.
 
@@ -319,49 +319,49 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-add-autoincrement"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-add-autoincrement</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>9
 
   No Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 - `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>0
 
   O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysqlslap** não encontrá-lo. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>1
 
   Para conexões TCP/IP, o número de porta a ser usado.
 
 - `--post-query=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>2
 
   O arquivo ou a cadeia de caracteres que contém a instrução a ser executada após a conclusão dos testes. Essa execução não é contabilizada para fins de cronometragem.
 
 - `--post-system=str`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>3
 
   A cadeia de caracteres a ser executada usando `system()` após a conclusão dos testes. Essa execução não é contabilizada para fins de cronometragem.
 
 - `--pre-query=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>4
 
   O arquivo ou a cadeia de caracteres que contém a instrução a ser executada antes de executar os testes. Essa execução não é contabilizada para fins de cronometragem.
 
 - `--pre-system=str`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>5
 
   A cadeia de caracteres a ser executada usando `system()` antes de executar os testes. Essa execução não é contabilizada para fins de cronometragem.
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>6
 
   Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
@@ -369,19 +369,19 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>7
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para obter detalhes sobre os valores permitidos, consulte a Seção 4.2.5, “Protocolos de Transporte de Conexão”.
 
 - `--query=valor`, `-q valor`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>8
 
   O arquivo ou a cadeia de caracteres que contém a instrução `SELECT` a ser usada para recuperar dados.
 
 - `--secure-auth`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-execute-número"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-execute-number=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr></tbody></table>9
 
   Não envie senhas para o servidor no formato antigo (pré-4.1). Isso impede conexões, exceto para servidores que usam o formato de senha mais recente.
 
@@ -393,7 +393,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--server-public-key-path=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>0
 
   O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas com par de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de senha com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -407,7 +407,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--shared-memory-base-name=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>1
 
   Em Windows, o nome de memória compartilhada a ser usado para conexões feitas usando memória compartilhada com um servidor local. O valor padrão é `MYSQL`. O nome de memória compartilhada é case-sensitive.
 
@@ -415,13 +415,13 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>2
 
   Modo silencioso. Sem saída.
 
 - `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>3
 
   Para conexões ao `localhost`, o arquivo de socket Unix a ser usado ou, no Windows, o nome do tubo nomeado a ser usado.
 
@@ -429,7 +429,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--sql-mode=mode`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>4
 
   Defina o modo SQL para a sessão do cliente.
 
@@ -439,7 +439,7 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--tls-version=lista_protocolos`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>5
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para obter detalhes, consulte a Seção 6.3.2, “Protocolos e cifra TLS de conexão criptografada”.
 
@@ -447,18 +447,18 @@ O **mysqlslap** suporta as seguintes opções, que podem ser especificadas na li
 
 - `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>6
 
   O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>7
 
   Modo verbose. Imprima mais informações sobre o que o programa faz. Esta opção pode ser usada várias vezes para aumentar a quantidade de informações.
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para auto-gerar-sql-guid-primary"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-generate-sql-guid-primary</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>8
 
   Exibir informações da versão e sair.

@@ -40,7 +40,7 @@ The following table shows the plugin name on the client side.
 
 **Table 6.10 Plugin and Library Names for SHA-2 Authentication**
 
-<table summary="Names for the plugin and library file used for SHA-2 password authentication."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Client-side plugin</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Library file</td> <td>None (plugin is built in)</td> </tr></tbody></table>
+<table summary="Names for the plugin and library file used for SHA-2 password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Client-side plugin</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Library file</td> <td>None (plugin is built in)</td> </tr></tbody></table>
 
 The following sections provide installation and usage information specific to caching SHA-2 pluggable authentication:
 

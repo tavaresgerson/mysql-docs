@@ -44,79 +44,79 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--color`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Mostre gráficos ASCII coloridos; use `--skip-colors` para desativá-los.
 
 - `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 - `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de falhas"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para arquivo de falhas"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   Leia as opções padrão do arquivo fornecido.
 
 - `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-group-suffix=string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-group-suffix=string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   Leia também grupos com concatenação (grupo, sufixo).
 
 - `--graph`, `-g`
 
-  <table frame="box" rules="all" summary="Propriedades para gráfico"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--graph</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gráfico"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--graph</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Exibir dados usando gráficos; use `--skip-graphs` para desabilitar. Esta opção ou `--text` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Mostrar informações de uso do programa.
 
 - `--host[`=*`nome]`*, `-h`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--host=string</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--host=string</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost</code>]]</td> </tr></tbody></table>
 
   Nome do host ou endereço IP do servidor MySQL para se conectar.
 
 - `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--login-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--login-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   Leia o caminho fornecido a partir do arquivo de login.
 
 - `--measured-load`, `-m`
 
-  <table frame="box" rules="all" summary="Propriedades para carga medida"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--measured-load</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para carga medida"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--measured-load</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Mostre a carga medida por fio. Esta opção ou `--os-load` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>0
 
   Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
 
 - `--node-id[`=*`#`]*`, `-n\`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>1
 
   Acompanhe o nó de dados que tem esse ID de nó.
 
 - `--os-load`, `-o`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>2
 
   Mostrar a carga medida pelo sistema operacional. Esta opção ou `--measured-load` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
 - `--passwd[`=*`senha]`*, `-p`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>3
 
   Conecte-se a um servidor MySQL usando essa senha e o usuário MySQL especificado por `--user`. Sinônimo de `--password`.
 
@@ -124,7 +124,7 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--password[`=*`senha]`*, `-p`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>4
 
   Conecte-se a um servidor MySQL usando essa senha e o usuário MySQL especificado por `--user`.
 
@@ -132,7 +132,7 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--port[`=*`#]`*, `-P`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>5
 
   Número de porta a ser usado ao se conectar ao servidor MySQL.
 
@@ -140,31 +140,31 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>6
 
   Imprima a lista de argumentos do programa e saia.
 
 - `--sleep-time[`=*`segundos]`*, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>7
 
   Tempo de espera entre atualizações da tela, em segundos.
 
 - `--socket=caminho/para/arquivo`, *`-S`*
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>8
 
   Use o arquivo de soquete especificado para a conexão.
 
 - `--sort`, `-r`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>9
 
   Classifique os tópicos por uso; use `--skip-sort` para desativá-lo.
 
 - `--text`, `-t`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>0
 
   Exibir dados usando texto. Esta opção ou `--graph` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
@@ -172,13 +172,13 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>1
 
   Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 - `--user[`=*`nome]`*, `-u`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>2
 
   Conecte-se como este usuário MySQL. Normalmente requer uma senha fornecida pela opção `--password`.
 

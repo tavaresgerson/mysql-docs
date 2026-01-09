@@ -10,7 +10,7 @@ The following table shows the plugin and library file names. The file name suffi
 
 **Table 8.24 Plugin and Library Names for OpenID Connect Authentication**
 
-<table summary="Names for the plugins and library file used for OpenID Connect authentication."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_openid_connect</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">authentication_openid_connect_client</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">authentication_openid_connect.so</code>, <code class="filename">authentication_openid_connect_client.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for OpenID Connect authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code class="literal">authentication_openid_connect</code></td> </tr><tr> <td>Client-side plugin</td> <td><code class="literal">authentication_openid_connect_client</code></td> </tr><tr> <td>Library file</td> <td><code class="filename">authentication_openid_connect.so</code>, <code class="filename">authentication_openid_connect_client.so</code></td> </tr></tbody></table>
 
 The server-side OpenID Connect authentication plugin is included in MySQL Enterprise Edition. It is not included in MySQL community distributions. The client-side plugin is included in all distributions, including community distributions. This enables clients from any distribution to connect to a server that has the server-side plugin loaded.
 

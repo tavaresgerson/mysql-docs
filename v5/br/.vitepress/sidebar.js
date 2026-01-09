@@ -590,7 +590,7 @@ export default [
 							}
 						]
 					},
-				]	
+				]
 			},
 			{
 				text: 'Obtendo Informações sobre Bancos de Dados e Tabelas',
@@ -762,6 +762,22 @@ export default [
           {
             text: 'mysql_install_db — Inicializar o diretório de dados do MySQL',
             link: '/05-mysql-programs/04-installation-related-programs/02-mysql-install-db-initialize-my-s-q-l-data-directory.md'
+          },
+          {
+            text: 'mysql_plugin — Configurar plugins do servidor MySQL',
+            link: '/05-mysql-programs/04-installation-related-programs/03-mysql-plugin-configure-my-s-q-l-server-plugins.md'
+          },
+          {
+            text: 'mysql_ssl_rsa_setup — Criar arquivos SSL/RSA',
+            link: '/05-mysql-programs/04-installation-related-programs/05-mysql-ssl-rsa-setup-create-s-s-l-r-s-a-files.md'
+          },
+          {
+            text: 'mysql_tzinfo_to_sql — Carregar as tabelas de fuso horário',
+            link: '/05-mysql-programs/04-installation-related-programs/06-mysql-tzinfo-to-sql-load-the-time-zone-tables.md'
+          },
+          {
+            text: 'mysql_upgrade — Verificar e atualizar tabelas do MySQL',
+            link: '/05-mysql-programs/04-installation-related-programs/07-mysql-upgrade-check-and-upgrade-my-s-q-l-tables.md'
           }
         ]
       },

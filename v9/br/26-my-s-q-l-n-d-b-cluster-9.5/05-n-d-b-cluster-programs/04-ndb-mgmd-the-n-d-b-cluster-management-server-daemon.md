@@ -6,25 +6,25 @@ Todas as opções que podem ser usadas com **ndb\_mgmd** estão mostradas na tab
 
 * `--bind-address=host`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--bind-address=host</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
   Faz com que o servidor de gerenciamento se ligue a uma interface de rede específica (nome de host ou endereço IP). Esta opção não tem valor padrão.
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Diretório que contém conjuntos de caracteres.
 
 * `cluster-config-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cluster-config-suffix"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--cluster-config-suffix=nome</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>
 
 Suprar o sufixo padrão do grupo de grupos de configuração quando ler seções de configuração de clusters no `my.cnf`; usado em testes.
 
 * `--config-cache`
 
-  <table frame="box" rules="all" summary="Propriedades para config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para config-cache"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>
 
   Esta opção, cujo valor padrão é `1` (ou `TRUE`, ou `ON`), pode ser usada para desativar o cache de configuração do servidor de gerenciamento, para que ele leia sua configuração do `config.ini` toda vez que for iniciado (veja a Seção 25.4.3, “Arquivos de configuração de clusters NDB”). Você pode fazer isso iniciando o processo **ndb\_mgmd** com qualquer uma das seguintes opções:
 
@@ -117,31 +117,31 @@ Quando `--reload` é usado, o servidor de gerenciamento deve ser capaz de se com
 
 * `--remove[=name]`
 
-<table frame="box" rules="all" summary="Propriedades para config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>6
+<table frame="box" rules="all" summary="Propriedades para config-cache"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>6
 
   Remova um processo do servidor de gerenciamento que foi instalado como um serviço do Windows, especificando opcionalmente o nome do serviço a ser removido. Aplica-se apenas a plataformas Windows.
 
 * `--skip-config-file`
 
-  <table frame="box" rules="all" summary="Propriedades para config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para config-cache"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>7
 
   Não leia o arquivo de configuração do cluster; ignore as opções `--initial` e `--reload` se especificadas.
 
 * `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para config-cache"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>8
 
   Exibir texto de ajuda e sair; o mesmo que --help.
 
 * `--verbose`, `-v`
 
-<table frame="box" rules="all" summary="Propriedades para config-cache"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Propriedades para config-cache"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-cache[=TRUE|FALSE]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>9
 
   Remova um processo do servidor de gerenciamento que foi instalado como um serviço do Windows, especificando opcionalmente o nome do serviço a ser removido. Aplica-se apenas a plataformas Windows.
 
 * `--version`
 
-  <table frame="box" rules="all" summary="Propriedades para config-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=file</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-config-file</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para config-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--config-file=file</code></td> </tr><tr><th>Desabilitado por</th> <td><code class="literal">skip-config-file</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[none]</code></td> </tr></tbody></table>0
 
   Exiba informações de versão e saia.
 

@@ -8,13 +8,13 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--auto-rehash`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>
 
   Ative a rehash automática. Esta opção está ativada por padrão, o que permite a conclusão de nomes de banco de dados, tabelas e colunas. Use `--disable-auto-rehash` para desativar a rehash. Isso faz com que o **mysql** comece mais rápido, mas você deve emitir o comando `rehash` ou seu atalho `\#` se quiser usar a conclusão de nomes.
 
@@ -26,13 +26,13 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--auto-vertical-output`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>
 
   Faça com que os conjuntos de resultados sejam exibidos verticalmente se forem muito largos para a janela atual, e use o formato tabular normal caso contrário. (Isso se aplica a declarações terminadas por `;` ou `\G`.)
 
 - `--batch`, `-B`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>
 
   Imprima os resultados usando a tecla Tab como separador de colunas, com cada linha em uma nova linha. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
@@ -40,7 +40,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--binary-as-hex`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
 
   Quando essa opção é ativada, o **mysql** exibe dados binários usando a notação hexadecimal (`0xvalue`). Isso ocorre independentemente do formato de exibição de saída geral ser tabular, vertical, HTML ou XML.
 
@@ -96,7 +96,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--binary-mode`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>
 
   Esta opção ajuda no processamento de saída do **mysqlbinlog** que pode conter valores `BLOB`. Por padrão, o **mysql** traduz `\r\n` em strings de instruções para `\n` e interpreta `\0` como o final da instrução. A opção `--binary-mode` desativa ambos os recursos. Também desativa todos os comandos do **mysql**, exceto `charset` e `delimiter` no modo não interativo (para entrada canalizada para o **mysql** ou carregada usando o comando `source`).
 
@@ -104,31 +104,31 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>
 
   Em um computador com várias interfaces de rede, use esta opção para selecionar qual interface usar para se conectar ao servidor MySQL.
 
 - `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Consulte a Seção 10.15, “Configuração de Conjunto de Caracteres”.
 
 - `--column-names`
 
-  <table frame="box" rules="all" summary="Propriedades para nomes de colunas"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--column-names</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para nomes de colunas"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--column-names</code>]]</td> </tr></tbody></table>
 
   Escreva os nomes das colunas nos resultados.
 
 - `--column-type-info`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>0
 
   Exibir metadados do conjunto de resultados. Essas informações correspondem ao conteúdo das estruturas de dados C API `MYSQL_FIELD`. Veja Estruturas de Dados Básicas da API C.
 
 - `--commands`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>1
 
   Se deve habilitar ou desabilitar o processamento de comandos do cliente **mysql** local. Definir essa opção como `FALSE` desabilita esse processamento e tem os efeitos listados aqui:
 
@@ -196,7 +196,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--comments`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>2
 
   Se os comentários devem ser removidos ou preservados nas declarações enviadas ao servidor. O padrão é `--skip-comments` (remover comentários), habilite com `--comments` (preservar comentários).
 
@@ -208,31 +208,31 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>3
 
   Compressa todas as informações enviadas entre o cliente e o servidor, se possível. Consulte a Seção 4.2.6, “Controle de Compressão de Conexão”.
 
 - `--connect-expired-password`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>4
 
   Indique ao servidor que o cliente pode lidar com o modo sandbox se a conta usada para a conexão tiver uma senha expirada. Isso pode ser útil para chamadas não interativas do **mysql**, pois, normalmente, o servidor desconecta clientes não interativos que tentam se conectar usando uma conta com senha expirada. (Veja a Seção 6.2.12, “Tratamento do Servidor de Senhas Expirantes”).
 
 - `--connect-timeout=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>5
 
   O número de segundos antes do tempo limite de conexão. (O valor padrão é `0`.
 
 - `--database=db_name`, `-D db_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>6
 
   O banco de dados a ser usado. Isso é útil principalmente em um arquivo de opção.
 
 - `--debug[=opções_de_depuração]`, `-# [opções_de_depuração]`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>7
 
   Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O padrão é `d:t:o,/tmp/mysql.trace`.
 
@@ -240,7 +240,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--debug-check`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>8
 
   Imprima algumas informações de depuração quando o programa sair.
 
@@ -248,7 +248,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--debug-info`, `-T`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>9
 
   Imprima informações de depuração, estatísticas de uso de memória e CPU quando o programa sair.
 
@@ -256,13 +256,13 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>0
 
   Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--default-character-set=charset_name`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>1
 
   Use *`charset_name`* como o conjunto de caracteres padrão para o cliente e a conexão.
 
@@ -272,7 +272,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--defaults-extra-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>2
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -280,7 +280,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--defaults-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>3
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -290,7 +290,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>4
 
   Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysql** normalmente lê os grupos `[client]` e `[mysql]`. Se esta opção for fornecida como `--defaults-group-suffix=_other`, **mysql** também lê os grupos `[client_other]` e `[mysql_other]`.
 
@@ -298,7 +298,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--delimiter=str`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>5
 
   Defina o delimitador de declaração. O padrão é o caractere ponto e vírgula (`;`).
 
@@ -308,25 +308,25 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>6
 
   Ative o plugin de autenticação de texto claro `mysql_clear_password`. (Consulte a Seção 6.4.1.6, “Autenticação Pluggable de Texto Claro no Cliente”.)
 
 - `--execute=statement`, `-e statement`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>7
 
   Execute a declaração e saia. O formato de saída padrão é semelhante ao produzido com `--batch`. Veja a Seção 4.2.2.1, “Usando Opções na Linha de Comando”, para alguns exemplos. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
 - `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>8
 
   Continue mesmo que ocorra um erro SQL.
 
 - `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Propriedades para rehash automático"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para rehash automático"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-rehash</code>]]</td> </tr><tr><th>Incapaz de</th> <td>[[<code>skip-auto-rehash</code>]]</td> </tr></tbody></table>9
 
   Peça à rede o par de chaves públicas necessário para a troca de senhas com base em pares de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `caching_sha2_password`. Para esse plugin, o servidor não envia a chave pública a menos que seja solicitado. Esta opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de senha com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -338,43 +338,43 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--histignore`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>0
 
   Uma lista de um ou mais padrões separados por vírgula, especificando as declarações a serem ignoradas para fins de registro. Esses padrões são adicionados à lista de padrões padrão (`"*IDENTIFIED*:*PASSWORD*"`). O valor especificado para essa opção afeta o registro de declarações escritas no arquivo de histórico e no `syslog` se a opção `--syslog` for fornecida. Para mais informações, consulte a Seção 4.5.1.3, “Registro do Cliente do MySQL”.
 
 - `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>1
 
   Conecte-se ao servidor MySQL no host fornecido.
 
 - `--html`, `-H`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>2
 
   Produza a saída HTML.
 
 - `--ignore-spaces`, `-i`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>3
 
   Ignore espaços após os nomes das funções. O efeito disso é descrito na discussão sobre o modo SQL `IGNORE_SPACE` (veja a Seção 5.1.10, “Modos SQL do servidor”).
 
 - `--init-command=str`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>4
 
   Instrução SQL para executar após a conexão com o servidor. Se o recurso de reconexão automática estiver habilitado, a instrução será executada novamente após a reconexão.
 
 - `--line-numbers`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>5
 
   Escreva os números de linha para os erros. Desative isso com `--skip-line-numbers`.
 
 - `--local-infile[={0|1}]`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>6
 
   Por padrão, a capacidade `LOCAL` para `LOAD DATA` é determinada pelo padrão compilado na biblioteca do cliente MySQL. Para habilitar ou desabilitar explicitamente o carregamento de dados `LOCAL`, use a opção `--local-infile`. Quando não é fornecido valor, a opção habilita o carregamento de dados `LOCAL`. Quando fornecida como `--local-infile=0` ou `--local-infile=1`, a opção desabilita ou habilita o carregamento de dados `LOCAL`.
 
@@ -382,7 +382,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--login-path=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>7
 
   Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 4.6.6, “mysql\_config\_editor — Utilitário de Configuração MySQL”.
 
@@ -390,43 +390,43 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--max-allowed-packet=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>8
 
   O tamanho máximo do buffer para a comunicação cliente/servidor. O padrão é de 16 MB, e o máximo é de 1 GB.
 
 - `--max-join-size=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para saída vertical automática"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-vertical-output</code>]]</td> </tr></tbody></table>9
 
   O limite automático para linhas em uma junção ao usar `--safe-updates`. (O valor padrão é 1.000.000.)
 
 - `--named-commands`, `-G`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>0
 
   Ative os comandos **mysql** nomeados. Os comandos de formato longo são permitidos, não apenas comandos de formato curto. Por exemplo, `quit` e `\q` são ambos reconhecidos. Use `--skip-named-commands` para desabilitar os comandos nomeados. Consulte a Seção 4.5.1.2, “Comandos do Cliente MySQL”.
 
 - `--net-buffer-length=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>1
 
   O tamanho do buffer para a comunicação TCP/IP e socket. (O valor padrão é 16 KB.)
 
 - `--no-auto-rehash`, `-A`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>2
 
   Isso tem o mesmo efeito que `--skip-auto-rehash`. Veja a descrição de `--auto-rehash`.
 
 - `--no-beep`, `-b`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>3
 
   Não emita um sinal sonoro quando ocorrerem erros.
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>4
 
   Não leia nenhum arquivo de opções. Se a inicialização do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas.
 
@@ -436,7 +436,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--one-database`, `-o`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>5
 
   Ignore declarações, exceto aquelas que ocorrem enquanto o banco de dados padrão é o nomeado na linha de comando. Esta opção é rudimentar e deve ser usada com cuidado. O filtro de declarações é baseado apenas em declarações `USE`.
 
@@ -464,13 +464,13 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--pager[=comando]`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>6
 
   Use o comando fornecido para a saída da consulta de paginação. Se o comando for omitido, o gerenciador padrão é o valor da variável de ambiente `PAGER`. Os gerenciadores válidos são **less**, **more**, **cat \[> nome\_do\_arquivo]** e assim por diante. Esta opção funciona apenas no Unix e apenas no modo interativo. Para desabilitar a paginação, use `--skip-pager`. A seção 4.5.1.2, “Comandos do cliente do MySQL”, discute a paginação de saída mais detalhadamente.
 
 - `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>7
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysql** solicitará uma senha. Se for fornecida, não deve haver **espaço** entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar nenhuma senha.
 
@@ -480,25 +480,25 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>8
 
   No Windows, conecte-se ao servidor usando um tubo nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por tubo nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 - `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para lote"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para lote"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--batch</code>]]</td> </tr></tbody></table>9
 
   O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysql** não encontrá-lo. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>0
 
   Para conexões TCP/IP, o número de porta a ser usado.
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>1
 
   Imprima o nome do programa e todas as opções que ele obtém a partir de arquivos de opção.
 
@@ -506,19 +506,19 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--prompt=format_str`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>2
 
   Defina o prompt no formato especificado. O padrão é `mysql>`. As sequências especiais que o prompt pode conter estão descritas na Seção 4.5.1.2, “Comandos do Cliente MySQL”.
 
 - `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>3
 
   O protocolo de transporte a ser usado para se conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para obter detalhes sobre os valores permitidos, consulte a Seção 4.2.5, “Protocolos de Transporte de Conexão”.
 
 - `--quick`, `-q`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>4
 
   Não cache cada resultado da consulta, imprima cada linha conforme ela é recebida. Isso pode desacelerar o servidor se a saída for suspensa. Com esta opção, o **mysql** não usa o arquivo de histórico.
 
@@ -548,7 +548,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--raw`, `-r`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>5
 
   Para saída tabular, o "alinhamento" das colunas permite que um valor de uma coluna seja distinguido de outro. Para saída não tabular (como a produzida em modo batch ou quando a opção `--batch` ou `--silent` é fornecida), caracteres especiais são escapados na saída para que possam ser identificados facilmente. Novo linha, tabulação, `NUL` e barra invertida são escritos como `\n`, `\t`, `\0` e `\\`. A opção `--raw` desabilita essa escavação de caracteres.
 
@@ -576,19 +576,19 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--reconnect`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>6
 
   Se a conexão com o servidor for perdida, tente reconectar automaticamente. Uma única tentativa de reconexão é feita toda vez que a conexão for perdida. Para suprimir o comportamento de reconexão, use `--skip-reconnect`.
 
 - `--safe-updates`, `--i-am-a-dummy`, `-U`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>7
 
   Se essa opção estiver habilitada, as instruções `UPDATE` e `DELETE` que não utilizam uma chave na cláusula `WHERE` ou na cláusula `LIMIT` produzem um erro. Além disso, restrições são aplicadas às instruções `SELECT` que produzem (ou são estimadas para produzir) conjuntos de resultados muito grandes. Se você configurou essa opção em um arquivo de opções, pode usar `--skip-safe-updates` na linha de comando para sobrescrevê-la. Para obter mais informações sobre essa opção, consulte "Usando o modo Safe-Updates (--safe-updates)").
 
 - `--secure-auth`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>8
 
   Não envie senhas para o servidor no formato antigo (pré-4.1). Isso impede conexões, exceto para servidores que usam o formato de senha mais recente.
 
@@ -600,13 +600,13 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--select-limit=valor`
 
-  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para binário como hexadecimal"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-as-hex</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>9
 
   O limite automático para as instruções `SELECT` ao usar `--safe-updates`. (O valor padrão é 1.000.)
 
 - `--server-public-key-path=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>0
 
   O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas com par de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de senha com base em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -618,7 +618,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--shared-memory-base-name=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>1
 
   Em Windows, o nome de memória compartilhada a ser usado para conexões feitas usando memória compartilhada com um servidor local. O valor padrão é `MYSQL`. O nome de memória compartilhada é case-sensitive.
 
@@ -626,13 +626,13 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--show-warnings`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>2
 
   Se houver alguma advertência, ela será exibida após cada declaração. Esta opção se aplica ao modo interativo e ao modo lote.
 
 - `--sigint-ignore`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>3
 
   Ignore os sinais `SIGINT` (geralmente o resultado de digitar **Control+C**).
 
@@ -640,7 +640,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>4
 
   Modo silencioso. Produza menos saída. Esta opção pode ser dada várias vezes para produzir cada vez menos saída.
 
@@ -648,7 +648,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--skip-column-names`, `-N`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>5
 
   Não escreva os nomes das colunas nos resultados. O uso desta opção faz com que a saída seja alinhada à direita, como mostrado aqui:
 
@@ -669,13 +669,13 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--skip-line-numbers`, `-L`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>6
 
   Não escreva números de linha para erros. Útil quando você deseja comparar arquivos de resultado que incluem mensagens de erro.
 
 - `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>7
 
   Para conexões ao `localhost`, o arquivo de socket Unix a ser usado ou, no Windows, o nome do tubo nomeado a ser usado.
 
@@ -687,7 +687,7 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--syslog`, `-j`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>8
 
   Essa opção faz com que o **mysql** envie declarações interativas para a ferramenta de registro do sistema. No Unix, isso é o `syslog`; no Windows, é o Registro de Eventos do Windows. O destino onde as mensagens registradas aparecem depende do sistema. No Linux, o destino é frequentemente o arquivo `/var/log/messages`.
 
@@ -706,19 +706,19 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--table`, `-t`
 
-  <table frame="box" rules="all" summary="Propriedades para modo binário"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para modo binário"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binary-mode</code>]]</td> </tr></tbody></table>9
 
   Exiba a saída em formato de tabela. Isso é o padrão para uso interativo, mas pode ser usado para produzir a saída em tabela em modo de lote.
 
 - `--tee=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>0
 
   Adicione uma cópia do resultado ao arquivo fornecido. Esta opção só funciona no modo interativo. A seção 4.5.1.2, “Comandos do cliente do MySQL”, discute mais sobre os arquivos tee.
 
 - `--tls-version=lista_protocolos`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>1
 
   Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para obter detalhes, consulte a Seção 6.3.2, “Protocolos e cifra TLS de conexão criptografada”.
 
@@ -726,43 +726,43 @@ O **mysql** suporta as seguintes opções, que podem ser especificadas na linha 
 
 - `--unbuffered`, `-n`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>2
 
   Esvazie o buffer após cada consulta.
 
 - `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>3
 
   O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>4
 
   Modo verbose. Produza mais informações sobre o que o programa faz. Esta opção pode ser dada várias vezes para produzir mais e mais informações. (Por exemplo, `-v -v -v` produz o formato de saída da tabela mesmo no modo em lote.)
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>5
 
   Exibir informações da versão e sair.
 
 - `--vertical`, `-E`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>6
 
   Imprima as linhas de saída da consulta verticalmente (uma linha por valor da coluna). Sem essa opção, você pode especificar a saída vertical para declarações individuais terminando-as com `\G`.
 
 - `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>7
 
   Se a conexão não puder ser estabelecida, aguarde e tente novamente, em vez de abortar.
 
 - `--xml`, `-X`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bind-address=ip_address</code>]]</td> </tr></tbody></table>8
 
   Produza a saída XML.
 

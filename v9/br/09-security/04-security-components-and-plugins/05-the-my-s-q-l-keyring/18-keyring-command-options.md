@@ -4,7 +4,7 @@ O MySQL suporta as seguintes opções de linha de comando relacionadas ao cartel
 
 * `--keyring-migration-destination=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring-migration-destination"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td><code class="literal">--keyring-migration-destination=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-destination"><tbody><tr><th>Formato da linha de comando</th> <td><code class="literal">--keyring-migration-destination=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O plugin ou componente do cartela de chave de destino para migração de chaves. Veja a Seção 8.4.5.14, “Migrar chaves entre cartelas de chave de armazenamento”. A interpretação do valor da opção depende de se `--keyring-migration-to-component` ou `--keyring-migration-from-component` é especificado:
 
@@ -18,7 +18,7 @@ O MySQL suporta as seguintes opções de linha de comando relacionadas ao cartel
 
 * `--keyring-migration-from-component`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring-migration-from-component"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da linha de comando</th> <td><code class="literal">--keyring-migration-from-component[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-from-component"><tbody><tr><th>Formato da linha de comando</th> <td><code class="literal">--keyring-migration-from-component[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
 Indica que uma migração importante é de um componente de chaveiro para um plugin de chaveiro. Esta opção permite migrar chaves de um componente de chaveiro para um plugin de chaveiro.
 
@@ -49,19 +49,19 @@ Especificar uma senha na linha de comando deve ser considerado inseguro. Veja a 
 
 * `--keyring-migration-port=port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring-migration-port"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--keyring-migration-port=port_num</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">3306</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-port"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--keyring-migration-port=port_num</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">3306</code></td> </tr></tbody></table>
 
   Para conexões TCP/IP, o número de porta para se conectar ao servidor em execução que está atualmente usando um dos keystores de migração de chaves. Veja a Seção 8.4.5.14, “Migrar Chaves Entre Keystores de Keychain”.
 
 * `--keyring-migration-socket=caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring-migration-socket"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--keyring-migration-socket={file_name|pipe_name}</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-socket"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--keyring-migration-socket={file_name|pipe_name}</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
 Para conexões de arquivo de soquete Unix ou tubo nomeado do Windows, o arquivo de soquete ou o tubo nomeado para conectar ao servidor em execução que está atualmente usando um dos keystores de chave chave. Veja a Seção 8.4.5.14, “Migrando Chaves Entre Keystores de Keychain”.
 
 * `--keyring-migration-source=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring-migration-source"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--keyring-migration-source=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring-migration-source"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--keyring-migration-source=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O plugin de keychain de origem para migração de chaves. Veja a Seção 8.4.5.14, “Migrando Chaves Entre Keystores de Keychain”.
 

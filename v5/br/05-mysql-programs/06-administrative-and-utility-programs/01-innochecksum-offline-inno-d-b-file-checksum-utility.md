@@ -18,7 +18,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   Exibe a ajuda da linha de comando. Exemplo de uso:
 
@@ -28,7 +28,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--info`, `-I`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   Sinônimo de `--help`. Exibe a ajuda da linha de comando. Exemplo de uso:
 
@@ -38,7 +38,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para a versão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a versão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   Exibe informações sobre a versão. Exemplo de uso:
 
@@ -48,7 +48,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--verbose</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--verbose</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   Modo verbose; imprime um indicador de progresso no arquivo de log a cada cinco segundos. Para que o indicador de progresso seja impresso, o arquivo de log deve ser especificado usando a opção `--log`. Para ativar o modo `verbose`, execute:
 
@@ -93,7 +93,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--count`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para contagem"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--count</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome da base</td> </tr><tr><th>Valor padrão</th> <td>[[<code>true</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para contagem"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--count</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome da base</td> </tr><tr><th>Valor padrão</th> <td>[[<code>true</code>]]</td> </tr></tbody></table>
 
   Imprima um contador do número de páginas no arquivo e saia. Uso exemplo:
 
@@ -103,7 +103,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--start-page=num`, `-s num`
 
-  <table frame="box" rules="all" summary="Propriedades para a página inicial"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--start-page=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a página inicial"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--start-page=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
 
   Comece a partir deste número de página. Exemplo de uso:
 
@@ -119,7 +119,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--end-page=num`, `-e num`
 
-  <table frame="box" rules="all" summary="Propriedades para a página final"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--end-page=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>18446744073709551615</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a página final"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--end-page=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>18446744073709551615</code>]]</td> </tr></tbody></table>
 
   Finalize nesta página. Exemplo de uso:
 
@@ -135,7 +135,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--page=num`, `-p num`
 
-  <table frame="box" rules="all" summary="Propriedades para a página"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--page=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a página"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--page=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
 
   Verifique apenas este número da página. Exemplo de uso:
 
@@ -145,7 +145,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--strict-check`, `-C`
 
-  <table frame="box" rules="all" summary="Propriedades para verificação rigorosa"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--strict-check=algorithm</code>]]</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>crc32</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>innodb</code>]]</p><p class="valid-value">[[<code>crc32</code>]]</p><p class="valid-value">[[<code>none</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verificação rigorosa"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--strict-check=algorithm</code>]]</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>crc32</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value">[[<code>innodb</code>]]</p><p class="valid-value">[[<code>crc32</code>]]</p><p class="valid-value">[[<code>none</code>]]</p></td> </tr></tbody></table>
 
   Especifique um algoritmo de verificação de checksum rigoroso. As opções incluem `innodb`, `crc32` e `none`.
 
@@ -173,7 +173,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--no-check`, `-n`
 
-  <table frame="box" rules="all" summary="Propriedades sem verificação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--no-check</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades sem verificação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--no-check</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
 
   Ignore a verificação de checksum ao reescrever um checksum. Esta opção só pode ser usada com a opção **innochecksum** `--write`. Se a opção `--write` não for especificada, o **innochecksum** termina.
 
@@ -185,7 +185,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--allow-mismatches`, `-a`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>0
 
   O número máximo de desalinhamentos de verificação de checksums permitidos antes de o **innochecksum** terminar. O valor padrão é 0. Se `--allow-mismatches=`*`N`*, onde `N>=0`, *`N`* desalinhamentos são permitidos e o **innochecksum** termina em `N+1`. Quando `--allow-mismatches` é definido como 0, o **innochecksum** termina no primeiro desalinhamento de verificação de checksums.
 
@@ -199,7 +199,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--write=nome`, `-w num`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>1
 
   Reescreva um checksum. Ao reescrever um checksum inválido, a opção `--no-check` deve ser usada juntamente com a opção `--write`. A opção `--no-check` informa ao **innochecksum** para ignorar a verificação do checksum inválido. Você não precisa especificar a opção `--no-check` se o checksum atual for válido.
 
@@ -229,7 +229,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--page-type-summary`, `-S`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>2
 
   Exiba um contagem de cada tipo de página em um tablespace. Exemplo de uso:
 
@@ -265,7 +265,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--page-type-dump`, `-D`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>3
 
   Descarte as informações do tipo de página para cada página em um tablespace para `stderr` ou `stdout`. Exemplo de uso:
 
@@ -275,7 +275,7 @@ O **innochecksum** suporta as seguintes opções. Para as opções que se refere
 
 - `--log`, `-l`
 
-  <table frame="box" rules="all" summary="Propriedades para informações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para informações"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--info</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>4
 
   Saída de log da ferramenta **innochecksum**. Um nome de arquivo de log deve ser fornecido. A saída de log contém valores de verificação de integridade para cada página do espaço de tabelas. Para tabelas não compactadas, os valores LSN também são fornecidos. A opção `--log` substitui a opção `--debug`, que estava disponível em versões anteriores. Exemplo de uso:
 

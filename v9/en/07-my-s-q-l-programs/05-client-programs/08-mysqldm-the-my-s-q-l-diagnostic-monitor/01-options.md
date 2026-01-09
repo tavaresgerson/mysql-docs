@@ -10,19 +10,19 @@
 
 * `--delay=numberOfSeconds`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>
 
   A length of delay between diagnostic iterations, in seconds.
 
 * `--iterations=numberOfIterations`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>
 
   The number of diagnostic iterations.
 
 * `--output-dir=path`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>
 
   The path where the diagnostics archive is generated. A temporary directory containing the generated files is also created at this location, then deleted when the diagnostics are complete and the archive generated.
 
@@ -32,31 +32,31 @@ This section lists the common server options used by **mysqldm**.
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
   Display a help message and exit.
 
 * `--authentication-oci-client-config-profile`
 
-  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for authentication-oci-client-config-profile"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
   Specify the name of the OCI configuration profile to use. If not set, the default profile is used.
 
 * `--authentication-openid-connect-client-id-token-file`
 
-  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for authentication-openid-connect-client-id-token-file"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
 
   For OpenID Connect, this sets the required Identity token to authenticate with a mapped MySQL user. It's a full filepath to the Identity token file used when connecting to the MySQL server. For additional information, see Section 8.4.1.9, “OpenID Connect Pluggable Authentication”.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Type</th> <td>Directory name</td> </tr></tbody></table>
 
   The directory where character sets are installed. See Section 12.15, “Character Set Configuration”.
 
 * `--compress`, `-C`
 
-  <table frame="box" rules="all" summary="Properties for compress"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compress"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compress[={OFF|ON}]</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   Compress all information sent between the client and the server if possible. See Section 6.2.8, “Connection Compression Control”.
 
@@ -64,7 +64,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--compression-algorithms=value`
 
-  <table frame="box" rules="all" summary="Properties for compression-algorithms"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for compression-algorithms"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--compression-algorithms=value</code></td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code class="literal">uncompressed</code></td> </tr><tr><th>Valid Values</th> <td><p class="valid-value"><code class="literal">zlib</code></p><p class="valid-value"><code class="literal">zstd</code></p><p class="valid-value"><code class="literal">uncompressed</code></p></td> </tr></tbody></table>
 
   The permitted compression algorithms for connections to the server. The available algorithms are the same as for the `protocol_compression_algorithms` system variable. The default value is `uncompressed`.
 
@@ -72,7 +72,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--debug[=debug_options]`, `-# [debug_options]`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>0
 
   Write a debugging log. A typical *`debug_options`* string is `d:t:o,file_name`. The default is `d:t:o,/tmp/mysql.trace`.
 
@@ -80,13 +80,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>1
 
   A hint about which client-side authentication plugin to use. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--defaults-extra-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>2
 
   Read this option file after the global option file but (on Unix) before the user option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -94,7 +94,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>3
 
   Use only the given option file. If the file does not exist or is otherwise inaccessible, an error occurs. If *`file_name`* is not an absolute path name, it is interpreted relative to the current directory.
 
@@ -104,7 +104,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>4
 
   Read not only the usual option groups, but also groups with the usual names and a suffix of *`str`*. For example, **mysql** normally reads the `[client]` and `[mysql]` groups. If this option is given as `--defaults-group-suffix=_other`, **mysql** also reads the `[client_other]` and `[mysql_other]` groups.
 
@@ -112,13 +112,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>5
 
   Enable the `mysql_clear_password` cleartext authentication plugin. (See Section 8.4.1.3, “Client-Side Cleartext Pluggable Authentication”.)
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>6
 
   Request from the server the public key required for RSA key pair-based password exchange. This option applies to clients that authenticate with the `caching_sha2_password` authentication plugin. For that plugin, the server does not send the public key unless requested. This option is ignored for accounts that do not authenticate with that plugin. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -128,13 +128,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--host=host_name`, `-h host_name`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>7
 
   Connect to the MySQL server on the given host.
 
 * `--login-path=name`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>8
 
   Read options from the named login path in the `.mylogin.cnf` login path file. A “login path” is an option group containing options that specify which MySQL server to connect to and which account to authenticate as. To create or modify a login path file, use the **mysql\_config\_editor** utility. See Section 6.6.7, “mysql\_config\_editor — MySQL Configuration Utility”.
 
@@ -142,7 +142,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Properties for delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for delay"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">30</code></td> </tr></tbody></table>9
 
   Skips reading options from the login path file.
 
@@ -152,7 +152,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>0
 
   Do not read any option files. If program startup fails due to reading unknown options from an option file, `--no-defaults` can be used to prevent them from being read.
 
@@ -162,13 +162,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--oci-config-file=PATH`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>1
 
   Alternate path to the Oracle Cloud Infrastructure CLI configuration file. Specify the location of the configuration file. If your existing default profile is the correct one, you do not need to specify this option. However, if you have an existing configuration file, with multiple profiles or a different default from the tenancy of the user you want to connect with, specify this option.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>2
 
   The password of the MySQL account used for connecting to the server. The password value is optional. If not given, **mysqldm** prompts for one. If given, there must be *no space* between `--password=` or `-p` and the password following it. If no password option is specified, the default is to send no password.
 
@@ -192,13 +192,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>3
 
   On Windows, connect to the server using a named pipe. This option applies only if the server was started with the `named_pipe` system variable enabled to support named-pipe connections. In addition, the user making the connection must be a member of the Windows group specified by the `named_pipe_full_access_group` system variable.
 
 * `--plugin-authentication-kerberos-client-mode=value`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>4
 
   On Windows, the `authentication_kerberos_client` authentication plugin supports this plugin option. It provides two possible values that the client user can set at runtime: `SSPI` and `GSSAPI`.
 
@@ -208,7 +208,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--plugin-authentication-webauthn-client-preserve-privacy={OFF|ON}`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>5
 
   Determines how assertions are sent to server in case there is more than one discoverable credential stored for a given RP ID (a unique name given to the relying-party server, which is the MySQL server). If the FIDO2 device contains multiple resident keys for a given RP ID, this option allows the user to choose a key to be used for assertion. It provides two possible values that the client user can set. The default value is `OFF`. If set to `OFF`, the challenge is signed by all credentials available for a given RP ID and all signatures are sent to server. If set to `ON`, the user is prompted to choose the credential to be used for signature.
 
@@ -220,7 +220,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--plugin-authentication-webauthn-device=#`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>6
 
   Determiens which device to use for `libfido` authentication. The default is the first device (`0`).
 
@@ -232,19 +232,19 @@ This section lists the common server options used by **mysqldm**.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>7
 
   The directory in which to look for plugins. Specify this option if the `--default-auth` option is used to specify an authentication plugin but **mysqldm** does not find it. See Section 8.2.17, “Pluggable Authentication”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>8
 
   For TCP/IP connections, the port number to use.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Properties for iterations"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for iterations"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code class="literal">10</code></td> </tr></tbody></table>9
 
   Print the program name and all options that it gets from option files.
 
@@ -252,13 +252,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>0
 
   The transport protocol to use for connecting to the server. It is useful when the other connection parameters normally result in use of a protocol other than the one you want. For details on the permissible values, see Section 6.2.7, “Connection Transport Protocols”.
 
 * `--server-public-key-path=file_name`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>1
 
   The path name to a file in PEM format containing a client-side copy of the public key required by the server for RSA key pair-based password exchange. This option applies to clients that authenticate with the `sha256_password` or `caching_sha2_password` authentication plugin. This option is ignored for accounts that do not authenticate with one of those plugins. It is also ignored if RSA-based password exchange is not used, as is the case when the client connects to the server using a secure connection.
 
@@ -270,7 +270,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>2
 
   On Windows, the shared-memory name to use for connections made using shared memory to a local server. The default value is `MYSQL`. The shared-memory name is case-sensitive.
 
@@ -278,7 +278,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--socket=path`, `-S path`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>3
 
   For connections to `localhost`, the Unix socket file to use, or, on Windows, the name of the named pipe to use.
 
@@ -290,7 +290,7 @@ This section lists the common server options used by **mysqldm**.
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>4
 
   Controls whether to enable FIPS mode on the client side. The `--ssl-fips-mode` option differs from other `--ssl-xxx` options in that it is not used to establish encrypted connections, but rather to affect which cryptographic operations to permit. See Section 8.8, “FIPS Support”.
 
@@ -308,13 +308,13 @@ This section lists the common server options used by **mysqldm**.
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>5
 
   The permissible ciphersuites for encrypted connections that use TLSv1.3. The value is a list of one or more colon-separated ciphersuite names. The ciphersuites that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>6
 
   When specified, the name is passed to the `libmysqlclient` C API library using the `MYSQL_OPT_TLS_SNI_SERVERNAME` option of `mysql_options()`. The server name is not case-sensitive. To show which server name the client specified for the current session, if any, check the `Tls_sni_server_name` status variable.
 
@@ -322,25 +322,25 @@ This section lists the common server options used by **mysqldm**.
 
 * `--tls-version=protocol_list`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>7
 
   The permissible TLS protocols for encrypted connections. The value is a list of one or more comma-separated protocol names. The protocols that can be named for this option depend on the SSL library used to compile MySQL. For details, see Section 8.3.2, “Encrypted Connection TLS Protocols and Ciphers”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>8
 
   The user name of the MySQL account to use for connecting to the server.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Properties for output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Properties for output-dir"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code class="literal">.</code></td> </tr></tbody></table>9
 
   Display version information and exit.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Properties for help"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
 
   The compression level to use for connections to the server that use the `zstd` compression algorithm. The permitted levels are from 1 to 22, with larger values indicating increasing levels of compression. The default `zstd` compression level is 3. The compression level setting has no effect on connections that do not use `zstd` compression.
 

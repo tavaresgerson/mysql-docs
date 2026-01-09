@@ -18,13 +18,13 @@ O **comp\_err** suporta as seguintes opções.
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
 
   Exibir uma mensagem de ajuda e sair.
 
 * `--charset=dir_name`, `-C dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para charset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--charset</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">../share/charsets</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para charset"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--charset</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">../share/charsets</code></td> </tr></tbody></table>
 
   O diretório do conjunto de caracteres. O padrão é `../sql/share/charsets`.
 

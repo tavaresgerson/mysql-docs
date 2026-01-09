@@ -30,19 +30,19 @@ O **mysqldm** aceita as opções padrão de conexão do MySQL e várias opções
 
 * `--delay=númeroDeSegundos`
 
-  <table frame="box" rules="all" summary="Propriedades para delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para delay"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>
 
   O tempo de atraso entre as iterações de diagnóstico, em segundos.
 
 * `--iterations=númeroDeIterações`
 
-  <table frame="box" rules="all" summary="Propriedades para iterações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para iterações"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>
 
   O número de iterações de diagnóstico.
 
 * `--output-dir=caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>
 
   O caminho onde o arquivo de diagnóstico é gerado. Um diretório temporário contendo os arquivos gerados é criado nesse local e, em seguida, excluído quando os diagnósticos estiverem completos e o arquivo gerado.
 
@@ -52,25 +52,25 @@ Esta seção lista as opções comuns do servidor usadas pelo **mysqldm**.
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>
 
 Exibir uma mensagem de ajuda e sair.
 
 * `--authentication-oci-client-config-profile`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication-oci-client-config-profile"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication-oci-client-config-profile"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-oci-client-config-profile=profileName</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Especifique o nome do perfil de configuração OCI a ser usado. Se não for definido, o perfil padrão é usado.
 
 * `--authentication-openid-connect-client-id-token-file`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication-openid-connect-client-id-token-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication-openid-connect-client-id-token-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--authentication-openid-connect-client-id-token-file</code></td> </tr></tbody></table>
 
   Para OpenID Connect, isso define o token de identidade necessário para autenticar com um usuário mapeado no MySQL. É o caminho completo do arquivo do token de identidade usado ao se conectar ao servidor MySQL. Para informações adicionais, consulte a Seção 8.4.1.9, “Autenticação Plugável OpenID Connect”.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Consulte a Seção 12.15, “Configuração de Conjunto de Caracteres”.
 
@@ -167,13 +167,13 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de c
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para atraso"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para atraso"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>5
 
   Ative o plugin de autenticação de texto claro `mysql_clear_password`. (Consulte a Seção 8.4.1.3, “Autenticação Pluggable de Texto Claro do Cliente”).
 
 * `--get-server-public-key`
 
-  <table frame="box" rules="all" summary="Propriedades para atraso"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para atraso"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>6
 
   Peça à servidor a chave pública necessária para a troca de senha baseada em par de chaves RSA. Esta opção aplica-se a clientes que se autenticam com o plugin de autenticação `caching_sha2_password`. Para esse plugin, o servidor não envia a chave pública a menos que seja solicitado. Esta opção é ignorada para contas que não se autenticam com esse plugin. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -187,7 +187,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
 * `--login-path=nome`
 
-  <table frame="box" rules="all" summary="Propriedades para atraso"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para atraso"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>8
 
   Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. Um "caminho de login" é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql\_config\_editor**. Veja a Seção 6.6.7, “mysql\_config\_editor — Ferramenta de configuração do MySQL”.
 
@@ -195,7 +195,7 @@ Conecte-se ao servidor MySQL no host fornecido.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Propriedades para atraso"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para atraso"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">30</code></td> </tr></tbody></table>9
 
   Ignora a leitura de opções do arquivo de caminho de login.
 
@@ -205,7 +205,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para iterações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para iterações"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>0
 
   Não leia nenhum arquivo de opções. Se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para impedir que sejam lidas.
 
@@ -215,13 +215,13 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--oci-config-file=PATH`
 
-  <table frame="box" rules="all" summary="Propriedades para iterações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para iterações"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>1
 
 Caminho alternativo para o arquivo de configuração da Oracle Cloud Infrastructure CLI. Especifique a localização do arquivo de configuração. Se o perfil padrão existente for o correto, não é necessário especificar essa opção. No entanto, se houver um arquivo de configuração existente, com múltiplos perfis ou um valor padrão diferente do da entidade do usuário com quem deseja se conectar, especifique essa opção.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para iterações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para iterações"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>2
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqldm** solicitará uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar a senha.
 
@@ -245,7 +245,7 @@ Especificar uma senha na linha de comando deve ser considerado inseguro. Para ev
 
 * `--pipe`, `-W`
 
-  <table frame="box" rules="all" summary="Propriedades para iterações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato da Linha de Comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para iterações"><tbody><tr><th>Formato da Linha de Comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>3
 
   No Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
@@ -281,7 +281,7 @@ Para mais informações, consulte a Seção 8.4.1.11, “Autenticação Personal
 
 * `--plugin-authentication-webauthn-device=#`
 
-  <table frame="box" rules="all" summary="Propriedades para iterações"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para iterações"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--iterations=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">10</code></td> </tr></tbody></table>6
 
   Determina qual dispositivo usar para a autenticação `libfido`. O padrão é o primeiro dispositivo (`0`).
 
@@ -352,13 +352,13 @@ Para mais informações, consulte a Seção 8.4.1.11, “Autenticação Personal
 
 * `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-<table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>0
 
   O protocolo de transporte a ser usado para conectar ao servidor. É útil quando os outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Para detalhes sobre os valores permitidos, consulte a Seção 6.2.7, “Protocolos de transporte de conexão”.
 
 * `--server-public-key-path=nome_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>1
 
   O nome do caminho de um arquivo em formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas baseada em pares de chaves RSA. Esta opção se aplica a clientes que se autenticam com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não se autenticam com um desses plugins. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -370,7 +370,7 @@ Para obter informações sobre os módulos `sha256_password` e `caching_sha2_pas
 
 * `--shared-memory-base-name=name`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>2
 
   Em Windows, o nome da memória compartilhada a ser usado para conexões feitas usando memória compartilhada para um servidor local. O valor padrão é `MYSQL`. O nome da memória compartilhada é sensível a maiúsculas e minúsculas.
 
@@ -378,7 +378,7 @@ Para obter informações sobre os módulos `sha256_password` e `caching_sha2_pas
 
 * `--socket=caminho`, `-S caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>3
 
   Para conexões com `localhost`, o arquivo de socket Unix a ser usado, ou, em Windows, o nome do pipe nomeado a ser usado.
 
@@ -390,7 +390,7 @@ As opções que começam com `--ssl` especificam se conectar ao servidor usando 
 
 * `--ssl-fips-mode={OFF|ON|STRICT}`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>4
 
   Controla se o modo FIPS deve ser habilitado no lado do cliente. A opção `--ssl-fips-mode` difere de outras opções `--ssl-xxx` porque não é usada para estabelecer conexões criptografadas, mas sim para afetar quais operações criptográficas devem ser permitidas. Veja Seção 8.8, “Suporte FIPS”.
 
@@ -408,13 +408,13 @@ As opções que começam com `--ssl` especificam se conectar ao servidor usando 
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>5
 
 As suíte de cifra permitidas para conexões criptografadas que utilizam TLSv1.3. O valor é uma lista de um ou mais nomes de suíte de cifra separados por vírgula. As suíte de cifra que podem ser nomeadas para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e cifra TLS de Conexão Encriptada”.
 
 * `--tls-sni-servername=server_name`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>6
 
   Quando especificada, o nome é passado para a biblioteca de API C `libmysqlclient` usando a opção `MYSQL_OPT_TLS_SNI_SERVERNAME` de `mysql_options()`. O nome do servidor não é case-sensitive. Para mostrar qual nome do servidor o cliente especificou para a sessão atual, se houver, verifique a variável `Tls_sni_server_name`.
 
@@ -422,25 +422,25 @@ As suíte de cifra permitidas para conexões criptografadas que utilizam TLSv1.3
 
 * `--tls-version=lista_protocolos`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--output-dir=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>7
 
 Os protocolos TLS permitidos para conexões criptografadas. O valor é uma lista de um ou mais nomes de protocolos separados por vírgula. Os protocolos que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e cifra TLS de Conexão Encriptada”.
 
 * `--user=user_name`, `-u user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>8
 
   O nome de usuário da conta MySQL a ser usado para se conectar ao servidor.
 
 * `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para output-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para output-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--output-dir=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">.</code></td> </tr></tbody></table>9
 
   Exibir informações de versão e sair.
 
 * `--zstd-compression-level=level`
 
-  <table frame="box" rules="all" summary="Propriedades de ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades de ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
 
   O nível de compressão a ser usado para conexões ao servidor que utilizam o algoritmo de compressão `zstd`. Os níveis permitidos são de 1 a 22, com valores maiores indicando níveis de compressão crescentes. O nível de compressão padrão `zstd` é 3. A configuração do nível de compressão não tem efeito em conexões que não utilizam compressão `zstd`.
 

@@ -4,19 +4,19 @@ O **myisamchk** suporta as seguintes opções para operações de verificação 
 
 * `--check`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para verificação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verificação"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check</code></td> </tr></tbody></table>
 
   Verifique a tabela em busca de erros. Esta é a operação padrão se você especificar nenhuma opção que selecione explicitamente um tipo de operação.
 
 * `--check-only-changed`, `-C`
 
-  <table frame="box" rules="all" summary="Propriedades para verificação-only-changed"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check-only-changed</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verificação-only-changed"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check-only-changed</code></td> </tr></tbody></table>
 
   Verifique apenas tabelas que tenham sido alteradas desde a última verificação.
 
 * `--extend-check`, `-e`
 
-  <table frame="box" rules="all" summary="Propriedades para extend-check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--extend-check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para extend-check"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--extend-check</code></td> </tr></tbody></table>
 
   Verifique a tabela de forma muito detalhada. Isso é bastante lento se a tabela tiver muitos índices. Esta opção deve ser usada apenas em casos extremos. Normalmente, **myisamchk** ou **myisamchk --medium-check** devem ser capazes de determinar se há algum erro na tabela.
 
@@ -69,6 +69,6 @@ Não marque a tabela como verificada. Isso é útil se você usar **myisamchk** 
 
 * `--update-state`, `-U`
 
-  <table frame="box" rules="all" summary="Propriedades para update-state"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--update-state</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para update-state"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--update-state</code></td> </tr></tbody></table>
 
   Armazene informações no arquivo `.MYI` para indicar quando a tabela foi verificada e se a tabela falhou. Isso deve ser usado para obter o máximo benefício da opção `--check-only-changed`, mas você não deve usar essa opção se o servidor **mysqld** estiver usando a tabela e você estiver executando-o com o bloqueio externo desativado.

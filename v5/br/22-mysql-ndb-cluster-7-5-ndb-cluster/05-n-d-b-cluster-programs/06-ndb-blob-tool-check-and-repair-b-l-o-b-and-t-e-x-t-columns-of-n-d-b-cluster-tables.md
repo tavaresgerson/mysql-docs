@@ -22,151 +22,151 @@ As opções que podem ser usadas com **ndb\_blob\_tool** estão mostradas na tab
 
 - `--add-missing`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>
 
   Para cada parte em linha nas tabelas do NDB Cluster que não tenha uma parte BLOB correspondente, escreva uma parte BLOB fictícia do comprimento necessário, composta por espaços.
 
 - `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>
 
   Diretório contendo conjuntos de caracteres.
 
 - `--check-missing`
 
-  <table frame="box" rules="all" summary="Propriedades para falta de verificação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--check-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para falta de verificação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--check-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>
 
   Verifique se há partes em linha nas tabelas do NDB Cluster que não têm partes BLOB correspondentes.
 
 - `--check-orphans`
 
-  <table frame="box" rules="all" summary="Propriedades para órfãos de verificação"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--check-orphans</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para órfãos de verificação"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--check-orphans</code>]]</td> </tr></tbody></table>
 
   Verifique se há partes BLOB nas tabelas do NDB Cluster que não têm partes correspondentes em linha.
 
 - `--connect-retries`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retries=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">12</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">12</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retries=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">12</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">12</code>]]</td> </tr></tbody></table>
 
   Número de vezes para tentar a conexão novamente antes de desistir.
 
 - `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retry-delay=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">5</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">5</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retry-delay=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">5</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">5</code>]]</td> </tr></tbody></table>
 
   Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
 
 - `--connect-string`
 
-  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-string=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-string=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   O mesmo que `--ndb-connectstring`.
 
 - `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--core-file</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--core-file</code>]]</td> </tr></tbody></table>
 
   Escreva o arquivo de núcleo em erro; usado no depuração.
 
 - `--database=db_name`, `-d`
 
-  <table frame="box" rules="all" summary="Propriedades para banco de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--database=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para banco de dados"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--database=name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   Especifique o banco de dados para encontrar a tabela.
 
 - `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>0
 
   Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 - `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>1
 
   Leia as opções padrão do arquivo fornecido.
 
 - `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>2
 
   Leia também grupos com concatenação (grupo, sufixo).
 
 - `--delete-orphans`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>3
 
   Remova partes BLOB das tabelas do NDB Cluster que não tenham partes inline correspondentes.
 
 - `--dump-file=arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>4
 
   Escreve uma lista das partes de coluna BLOB órfãs em *`file`*. As informações escritas no arquivo incluem a chave da tabela e o número da parte BLOB para cada parte BLOB órfã.
 
 - `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>5
 
   Exibir texto de ajuda e sair.
 
 - `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>6
 
   Leia o caminho fornecido a partir do arquivo de login.
 
 - `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>7
 
   Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "\[nodeid=id;]\[host=]hostname\[:port]". Oculte entradas no NDB\_CONNECTSTRING e no my.cnf.
 
 - `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>8
 
   O mesmo que `--ndb-connectstring`.
 
 - `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para adicionar ausentes"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--add-missing</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr></tbody></table>9
 
   Defina o ID do nó para este nó, substituindo qualquer ID definida por `--ndb-connectstring`.
 
 - `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>0
 
   Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>1
 
   Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>2
 
   Imprima a lista de argumentos do programa e saia.
 
 - `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>3
 
   Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 - `--verbose`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>4
 
   Forneça informações adicionais na saída da ferramenta sobre seu progresso.
 
 - `--version`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>5
 
   Exibir informações da versão e sair.
 

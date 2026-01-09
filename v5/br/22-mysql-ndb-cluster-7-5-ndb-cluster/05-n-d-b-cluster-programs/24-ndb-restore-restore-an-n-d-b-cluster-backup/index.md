@@ -34,7 +34,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--allow-pk-changes`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>
 
   Quando essa opção é definida como `1`, o **ndb\_restore** permite que as chaves primárias em uma definição de tabela diferem da mesma tabela no backup. Isso pode ser desejável ao fazer backup e restaurar entre diferentes versões do esquema com alterações nas chaves primárias em uma ou mais tabelas, e parece que realizar a operação de restauração usando ndb\_restore é mais simples ou mais eficiente do que emitir muitas instruções de `ALTER TABLE` após restaurar os esquemas e dados das tabelas.
 
@@ -70,13 +70,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--append`
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>
 
   Quando usado com as opções `--tab` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_tab) e `--print-data` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_print-data), isso faz com que os dados sejam anexados a quaisquer arquivos existentes com nomes iguais.
 
 - `--backup-path=*`dir\_name\`\*
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>
 
   O caminho para o diretório de backup é necessário; ele é fornecido para **ndb\_restore** usando a opção `--backup-path`, e deve incluir o subdiretório correspondente ao ID do backup do backup a ser restaurado. Por exemplo, se o `DataDir` do nó de dados for `/var/lib/mysql-cluster`, então o diretório de backup é `/var/lib/mysql-cluster/BACKUP`, e os arquivos de backup do backup com o ID 3 podem ser encontrados em `/var/lib/mysql-cluster/BACKUP/BACKUP-3`. O caminho pode ser absoluto ou relativo ao diretório em que o executável **ndb\_restore** está localizado, e pode ser precedido opcionalmente por `backup-path=`.
 
@@ -92,7 +92,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--backupid`=*`#`*, `-b`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>
 
   Esta opção é usada para especificar o ID ou o número de sequência do backup e é o mesmo número exibido pelo cliente de gerenciamento na mensagem `Backup backup_id completed` exibida após a conclusão de um backup. (Veja Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”).
 
@@ -104,61 +104,61 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>
 
   Diretório contendo conjuntos de caracteres.
 
 - `--connect`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>
 
   Alias para `--ndb-connectstring`.
 
 - `--connect-retries`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retries=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">12</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">12</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retries=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">12</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">12</code>]]</td> </tr></tbody></table>
 
   Número de vezes para tentar a conexão novamente antes de desistir.
 
 - `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retry-delay=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">5</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">5</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retry-delay=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">5</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">5</code>]]</td> </tr></tbody></table>
 
   Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
 
 - `--connect-string`
 
-  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-string=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-string=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">[none]</code>]]</td> </tr></tbody></table>
 
   O mesmo que `--ndb-connectstring`.
 
 - `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>0
 
   Escreva o arquivo de núcleo em erro; usado no depuração.
 
 - `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>1
 
   Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 - `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>2
 
   Leia as opções padrão do arquivo fornecido.
 
 - `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>3
 
   Leia também grupos com concatenação (grupo, sufixo).
 
 - `--disable-indexes`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>4
 
   Desative a restauração de índices durante a restauração dos dados de um backup nativo do `NDB`. Em seguida, você pode restaurar os índices para todas as tabelas de uma vez com a construção de índices em múltiplos threads usando `--rebuild-indexes`, o que deve ser mais rápido do que reconstruir índices simultaneamente para tabelas muito grandes.
 
@@ -166,13 +166,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--dont-ignore-systab-0`, `-f`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>5
 
   Normalmente, ao restaurar dados de tabela e metadados, **ndb\_restore** ignora a cópia da tabela do sistema `NDB` presente no backup. `--dont-ignore-systab-0` faz com que a tabela do sistema seja restaurada. *Esta opção é destinada apenas para uso experimental e de desenvolvimento e não é recomendada em um ambiente de produção*.
 
 - `--exclude-databases=*`db-list\`\*
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>6
 
   Lista delimitada por vírgula de uma ou mais bases de dados que não devem ser restauradas.
 
@@ -180,25 +180,25 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--exclude-intermediate-sql-tables[`=*`TRUE|FALSE]`*
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>7
 
   Ao realizar operações de cópia de `ALTER TABLE` (alter-table.html), o **mysqld** cria tabelas intermediárias (cujos nomes são prefixados com `#sql-`). Quando `TRUE`, a opção `--exclude-intermediate-sql-tables` impede que o **ndb\_restore** restaure essas tabelas que possam ter sido deixadas para trás dessas operações. Esta opção está ativada por padrão.
 
 - `--exclude-missing-columns`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>8
 
   É possível restaurar apenas as colunas selecionadas da tabela usando essa opção, o que faz com que o **ndb\_restore** ignore quaisquer colunas ausentes das tabelas que estão sendo restauradas em comparação com as versões dessas tabelas encontradas no backup. Essa opção se aplica a todas as tabelas que estão sendo restauradas. Se você deseja aplicar essa opção apenas a tabelas ou bancos de dados selecionados, pode usá-la em combinação com uma ou mais das opções `--include-*` ou `--exclude-*` descritas em outra parte desta seção para fazer isso, e depois restaurar os dados para as tabelas restantes usando um conjunto complementar dessas opções.
 
 - `--exclude-missing-tables`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para permitir alterações de pk"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--allow-pk-changes[=0|<code class="literal">0</code></code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.29-ndb-7.6.14</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">1</code>]]</td> </tr></tbody></table>9
 
   É possível restaurar apenas as tabelas selecionadas usando essa opção, o que faz com que o **ndb\_restore** ignore quaisquer tabelas do backup que não sejam encontradas no banco de dados de destino.
 
 - `--exclude-tables=*``lista-de-tabelas`\*
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>0
 
   Lista de uma ou mais tabelas a serem excluídas; cada referência de tabela deve incluir o nome do banco de dados. Frequentemente usada em conjunto com `--exclude-databases`.
 
@@ -208,7 +208,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
   **Tabela 21.39: Várias invocatórias do ndb\_restore usando as opções --exclude-* e os efeitos dessas opções na restauração a partir de um backup do NDB Cluster.*\*
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>1
 
   Você pode usar essas duas opções juntas. Por exemplo, o seguinte comando restaura todas as tabelas em todos os bancos de dados *exceto* os bancos de dados `db1` e `db2`, e as tabelas `t1` e `t2` no banco de dados `db3`:
 
@@ -240,37 +240,37 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--fields-enclosed-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>2
 
   Cada valor da coluna é delimitado pela string passada para esta opção (independentemente do tipo de dados; veja a descrição de `--fields-optionally-enclosed-by`).
 
 - `--fields-optionally-enclosed-by`
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>3
 
   A cadeia passada para esta opção é usada para envolver os valores das colunas que contêm dados de caracteres (como `CHAR`, `VARCHAR`, `BINARY`, `TEXT` ou `ENUM`).
 
 - `--fields-terminated-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>4
 
   A string passada para esta opção é usada para separar os valores das colunas. O valor padrão é um caractere de tabulação (`\t`).
 
 - `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>5
 
   Exibir texto de ajuda e sair.
 
 - `--hex`
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>6
 
   Se esta opção for usada, todos os valores binários serão exibidos no formato hexadecimal.
 
 - `--ignore-extended-pk-updates`
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>7
 
   Ao usar a opção `--allow-pk-changes` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_allow-pk-changes), as colunas que se tornam parte da chave primária de uma tabela não devem ser atualizadas durante a criação do backup; essas colunas devem manter os mesmos valores do momento em que os valores são inseridos nelas até que as linhas que contêm os valores sejam excluídas. Se o **ndb\_restore** encontrar atualizações nessas colunas ao restaurar um backup, o processo de restauração falha. Como alguns aplicativos podem definir valores para todas as colunas ao atualizar uma linha, mesmo quando alguns valores das colunas não são alterados, o backup pode incluir eventos de log que parecem atualizar colunas que, na verdade, não são modificadas. Nesses casos, você pode definir `--ignore-extended-pk-updates` para `1`, forçando o **ndb\_restore** a ignorar tais atualizações.
 
@@ -282,13 +282,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--include-databases=*`db-list\*
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>8
 
   Lista de vírgula separada de uma ou mais bases de dados a serem restauradas. Muitas vezes usada em conjunto com `--include-tables`; consulte a descrição dessa opção para obter mais informações e exemplos.
 
 - `--include-tables=*``lista-de-tabelas`\*
 
-  <table frame="box" rules="all" summary="Propriedades para anexar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para anexar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--append</code>]]</td> </tr></tbody></table>9
 
   Lista de tabelas separadas por vírgula para restaurar; cada referência de tabela deve incluir o nome do banco de dados.
 
@@ -298,7 +298,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
   **Tabela 21.40: Várias invocatórias do ndb\_restore usando as opções --include-* e seus efeitos na restauração a partir de um backup do NDB Cluster.*\*
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>0
 
   Você também pode usar essas duas opções juntas. Por exemplo, o seguinte comando restaura todas as tabelas nos bancos de dados `db1` e `db2`, juntamente com as tabelas `t1` e `t2` no banco de dados `db3` (e nenhuma outra base de dados ou tabela):
 
@@ -321,19 +321,19 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--lines-terminated-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>1
 
   Especifica a string usada para encerrar cada linha de saída. O padrão é um caractere de nova linha (`\n`).
 
 - `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>2
 
   Leia o caminho fornecido a partir do arquivo de login.
 
 - `--lossy-conversions`, `-L`
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>3
 
   Esta opção é destinada a complementar a opção `--promote-attributes`. O uso de `--lossy-conversions` permite conversões não-perfeitas de valores de coluna (reduções de tipo ou alterações no sinal) ao restaurar dados de backup. Com algumas exceções, as regras que regem a redução são as mesmas da replicação do MySQL; consulte Seção 16.4.1.10.2, “Replicação de Colunas com Diferentes Tipos de Dados” para obter informações sobre as conversões de tipo específicas atualmente suportadas pela redução de atributos.
 
@@ -343,61 +343,61 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>4
 
   Defina a string de conexão para se conectar ao ndb\_mgmd. Sintaxe: "\[nodeid=id;]\[host=]hostname\[:port]". Oculte entradas no NDB\_CONNECTSTRING e no my.cnf.
 
 - `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>5
 
   O mesmo que `--ndb-connectstring`.
 
 - `--ndb-nodegroup-map=*`map`*, `-z\`
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>6
 
   Destinado a restaurar um backup feito de um grupo de nós para um grupo de nós diferente, mas nunca completamente implementado; não é suportado.
 
 - `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>7
 
   Defina o ID do nó para este nó, substituindo qualquer ID definida por `--ndb-connectstring`.
 
 - `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>8
 
   Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
 - `--no-binlog`
 
-  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para caminho de backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backup-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">./</code>]]</td> </tr></tbody></table>9
 
   Essa opção impede que quaisquer nós SQL conectados escrevam dados restaurados por **ndb\_restore** em seus logs binários.
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>0
 
   Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
 
 - `--no-restore-disk-objects`, `-d`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>1
 
   Essa opção impede que o **ndb\_restore** restaure quaisquer objetos de dados de disco do NDB Cluster, como espaços de tabela e grupos de arquivos de log; consulte Seção 21.6.11, “Tabelas de Dados de Disco do NDB Cluster” para obter mais informações sobre esses objetos.
 
 - `--no-upgrade`, `-u`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>2
 
   Ao usar **ndb\_restore** para restaurar um backup, as colunas `VARCHAR` criadas usando o antigo formato fixo são redimensionadas e recriadas usando o formato de largura variável agora empregado. Esse comportamento pode ser ignorado especificando `--no-upgrade`.
 
 - `--nodeid`=*`#`*, `-n`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>3
 
   Especifique o ID do nó do nó de dados em que o backup foi feito.
 
@@ -407,7 +407,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--num-slices=*`#\`\*
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>4
 
   Ao restaurar um backup por fatias, essa opção define o número de fatias em que o backup será dividido. Isso permite que múltiplas instâncias do **ndb\_restore** restauram subconjuntos disjuntos em paralelo, reduzindo potencialmente o tempo necessário para realizar a operação de restauração.
 
@@ -430,7 +430,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--parallelism=*#`, `-p`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>5
 
   **ndb\_restore** utiliza transações de uma única linha para aplicar muitas linhas simultaneamente. Este parâmetro determina o número de transações paralelas (linhas concorrentes) que uma instância de **ndb\_restore** tenta usar. Por padrão, este é 128; o mínimo é 1 e o máximo é 1024.
 
@@ -438,7 +438,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--preserve-trailing-spaces`, `-P`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>6
 
   Mantenha os espaços finais preservados ao promover um tipo de dados de caracteres de largura fixa para o equivalente de largura variável — ou seja, ao promover um valor da coluna `CHAR` para `VARCHAR` ou um valor de coluna `BINARY` para `VARBINARY`. Caso contrário, quaisquer espaços finais são eliminados desses valores de coluna quando eles são inseridos nas novas colunas.
 
@@ -448,7 +448,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--print`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>7
 
   Faz com que **ndb\_restore** imprima todos os dados, metadados e logs no `stdout`. É equivalente ao uso das opções `--print-data`, `--print-meta` e `--print-log` juntas.
 
@@ -458,7 +458,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--print-data`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>8
 
   Faça com que **ndb\_restore** direcione sua saída para `stdout`. Muitas vezes usado em conjunto com uma ou mais das opções `--tab` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_tab), `--fields-enclosed-by` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_fields-enclosed-by), `--fields-optionally-enclosed-by` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_fields-optionally-enclosed-by), `--fields-terminated-by` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_fields-terminated-by), `--hex` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_hex) e `--append` (mysql-cluster-programs-ndb-restore.html#option\_ndb\_restore\_append).
 
@@ -466,25 +466,25 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para backupid"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para backupid"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--backupid=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">none</code>]]</td> </tr></tbody></table>9
 
   Imprima a lista de argumentos do programa e saia.
 
 - `--print-log`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>0
 
   Faça com que **ndb\_restore** exiba seu log no `stdout`.
 
 - `--print-meta`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>1
 
   Imprima todos os metadados no `stdout`.
 
 - `print-sql-log`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>2
 
   Registre as instruções SQL no `stdout`. Use a opção para habilitar; normalmente, esse comportamento está desativado. A opção verifica se todas as tabelas sendo restauradas têm chaves primárias explicitamente definidas antes de tentar registrar; consultas em uma tabela que tenha apenas a chave primária oculta implementada pelo `NDB` não podem ser convertidas em SQL válido.
 
@@ -494,13 +494,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--progress-frequency=*`N\`\*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>3
 
   Imprima um relatório de status a cada *`N`* segundos enquanto o backup estiver em andamento. 0 (o padrão) não imprime relatórios de status. O máximo é 65535.
 
 - `--promote-attributes`, `-A`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>4
 
   O **ndb\_restore** suporta a promoção limitada de atributos da mesma maneira que é suportada pela replicação do MySQL; ou seja, os dados respaldados a partir de uma coluna de um tipo específico geralmente podem ser restaurados para uma coluna usando um tipo “maior e semelhante”. Por exemplo, os dados de uma coluna `CHAR(20)` podem ser restaurados para uma coluna declarada como `VARCHAR(20)`, `VARCHAR(30)` ou `CHAR(30)`; os dados de uma coluna `MEDIUMINT` podem ser restaurados para uma coluna do tipo `INT` ou `BIGINT`. Consulte Seção 16.4.1.10.2, “Replicação de Colunas com Diferentes Tipos de Dados” para uma tabela de conversões de tipos atualmente suportada pela promoção de atributos.
 
@@ -520,7 +520,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--rebuild-indexes`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>5
 
   Ative a reconstrução multisserial dos índices ordenados durante a restauração de um backup nativo do `NDB`. O número de threads usados para a construção de índices ordenados pelo **ndb\_restore** com esta opção é controlado pelo parâmetro de configuração do nó de dados `BuildIndexThreads` e pelo número de LDMs.
 
@@ -532,7 +532,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--remap-column=db.tbl.col:fn:args`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>6
 
   Quando usado juntamente com `--restore-data`, esta opção aplica uma função ao valor da coluna indicada. Os valores na string de argumento estão listados aqui:
 
@@ -572,19 +572,19 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--restore-data`, `-r`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>7
 
   Exiba os dados e os logs da tabela `[`NDB\`]\(mysql-cluster.html).
 
 - `--restore-epoch`, `-e`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>8
 
   Adicione (ou restaure) informações de época à tabela de status da replicação do clúster. Isso é útil para iniciar a replicação em um clúster de replica NDB. Quando essa opção é usada, a linha no `mysql.ndb_apply_status` que tem `0` na coluna `id` é atualizada se ela já existir; uma nova linha é inserida se ela ainda não existir. (Veja Seção 21.7.9, “Backup de Clúster NDB com Replicação de Clúster NDB”).
 
 - `--restore-meta`, `-m`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--character-sets-dir=path</code>]]</td> </tr></tbody></table>9
 
   Essa opção faz com que **ndb\_restore** imprima os metadados da tabela `**NDB**`.
 
@@ -598,7 +598,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--restore-privilege-tables`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>0
 
   **ndb\_restore** não restaura, por padrão, as tabelas de privilégios distribuídas do MySQL. Esta opção faz com que **ndb\_restore** restaure as tabelas de privilégios.
 
@@ -606,7 +606,7 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--rewrite-database=*`olddb,newdb\`\*
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>1
 
   Essa opção permite restaurar um banco de dados com um nome diferente do usado no backup. Por exemplo, se um backup for feito de um banco de dados chamado `produtos`, você pode restaurar os dados que ele contém para um banco de dados chamado `inventário`, usando essa opção conforme mostrado aqui (omitiendo quaisquer outras opções que possam ser necessárias):
 
@@ -624,13 +624,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--skip-broken-objects`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>2
 
   Essa opção faz com que **ndb\_restore** ignore tabelas corrompidas ao ler um backup nativo do `NDB` e continue restaurando quaisquer tabelas restantes (que não estejam também corrompidas). Atualmente, a opção `--skip-broken-objects` funciona apenas no caso de tabelas de partes de blob ausentes.
 
 - `--skip-table-check`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>3
 
   É possível restaurar dados sem restaurar os metadados da tabela. Por padrão, ao fazer isso, o **ndb\_restore** falha com um erro se uma incompatibilidade for encontrada entre os dados da tabela e o esquema da tabela; essa opção substitui esse comportamento.
 
@@ -646,13 +646,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--skip-unknown-objects`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>4
 
   Essa opção faz com que **ndb\_restore** ignore quaisquer objetos de esquema que não reconheça ao ler um backup nativo do `NDB`. Isso pode ser usado para restaurar um backup feito de um cluster que está rodando, por exemplo, NDB 7.6, para um cluster que está rodando o NDB Cluster 7.5.
 
 - `--slice-id`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>5
 
   Ao restaurar por fatias, este é o ID da fatia a ser restaurada. Esta opção é sempre usada juntamente com `--num-slices`, e seu valor deve ser sempre menor que o de `--num-slices`.
 
@@ -660,13 +660,13 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--tab=*`nome\_pasta\`\`, `-T` *`nome_pasta`*
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>6
 
   A opção `--print-data` cria arquivos de dump, um por tabela, cada um com o nome `tbl_name.txt`. Ela requer como argumento o caminho para o diretório onde os arquivos devem ser salvos; use `.` para o diretório atual.
 
 - `--timestamp-printouts`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>7
 
   As mensagens de informações, erros e logs de depuração são prefixadas com timestamps.
 
@@ -674,19 +674,19 @@ As opções que podem ser usadas com **ndb\_restore** estão mostradas na tabela
 
 - `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>8
 
   Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 - `--verbose=*`#\*
 
-  <table frame="box" rules="all" summary="Propriedades para conectar"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para conectar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect=connection_string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">localhost:1186</code>]]</td> </tr></tbody></table>9
 
   Define o nível de detalhamento da saída. O valor mínimo é 0; o máximo é 255. O valor padrão é 1.
 
 - `--version`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retries=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">12</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">12</code>]]</td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--connect-retries=#</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">12</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">12</code>]]</td> </tr></tbody></table>0
 
   Exibir informações da versão e sair.
 

@@ -12,7 +12,7 @@ A lista a seguir descreve as opções de inicialização para controlar os servi
 
 * `--show-replica-auth-info`
 
-  <table frame="box" rules="all" summary="Propriedades para show-replica-auth-info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--show-replica-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para show-replica-auth-info"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--show-replica-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">OFF</code></td> </tr></tbody></table>
 
   Use `--show-replica-auth-info`, que exibe os nomes e senhas dos usuários de replicação na saída do `SHOW REPLICAS` no servidor de origem para replicas iniciadas com as opções `--report-user` e `--report-password`.
 
@@ -45,7 +45,7 @@ As seguintes variáveis de sistema são usadas para ou por servidores de fonte d
 
 * `auto_increment_increment`
 
-  <table frame="box" rules="all" summary="Propriedades para auto_increment_increment"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para auto_increment_increment">
   <tbody>
     <tr>
       <th>Formato de Linha de Comando</th>
@@ -234,7 +234,7 @@ O valor padrão de `auto_increment_increment` é
 
 * `auto_increment_offset`
 
-<table frame="box" rules="all" summary="Propriedades para auto_increment_offset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-increment-offset=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_auto_increment_offset">auto_increment_offset</a></code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variáveis"><code class="literal">SET_VAR</a></code> Dicas Aplicam-se</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">65535</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para auto_increment_offset"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--auto-increment-offset=#</code></td> </tr><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_auto_increment_offset">auto_increment_offset</a></code></td> </tr><tr><th>Alcance</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variáveis"><code class="literal">SET_VAR</a></code> Dicas Aplicam-se</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">65535</code></td> </tr></tbody></table>
 
 Esta variável tem um valor padrão de 1. Se for deixada com seu valor padrão e a Replicação em Grupo for iniciada no servidor no modo multi-primário, ela é alterada para o ID do servidor. Para mais informações, consulte a descrição para `auto_increment_increment`.
 
@@ -244,7 +244,7 @@ Nota
 
 * `immediate_server_version`
 
-  <table frame="box" rules="all" summary="Propriedades para immediate_server_version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_immediate_server_version">immediate_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">999999</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para immediate_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_immediate_server_version">immediate_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Hint de Configuração de Variável"><code class="literal">SET_VAR</a></code> Hint Aplica</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">999999</code></td> </tr></tbody></table>
 
   Para uso interno pela replicação. Esta variável do sistema de sessão contém o número de versão do MySQL Server do servidor que é a fonte imediata em uma topologia de replicação (por exemplo, `90500` para uma instância de servidor MySQL 9.5.0). Se este servidor imediato estiver em uma versão que não suporte a variável do sistema de sessão, o valor da variável é definido como 0 (`UNKNOWN_SERVER_VERSION`).
 
@@ -254,7 +254,7 @@ Definir o valor da sessão desta variável do sistema é uma operação restrita
 
 * `original_server_version`
 
-<table frame="box" rules="all" summary="Propriedades para original_server_version"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_original_server_version">original_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variável"><code class="literal">SET_VAR</a></code> Dicas Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">999999</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para original_server_version"><tbody><tr><th>Variável do Sistema</th> <td><code class="literal"><a class="link" href="replication-options-source.html#sysvar_original_server_version">original_server_version</a></code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmica</th> <td>Sim</td> </tr><tr><th><a class="link" href="optimizer-hints.html#optimizer-hints-set-var" title="Sintaxe de Dicas de Definição de Variável"><code class="literal">SET_VAR</a></code> Dicas Aplica-se</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">999999</code></td> </tr><tr><th>Valor Mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">999999</code></td> </tr></tbody></table>
 
   Para uso interno pela replicação. Esta variável de sistema de sessão contém o número de versão do servidor MySQL do servidor onde uma transação foi originalmente comprometida (por exemplo, `90500` para uma instância de servidor MySQL 9.5.0). Se este servidor original estiver em uma versão que não suporte a variável de sistema de sessão, o valor da variável é definido como 0 (`UNKNOWN_SERVER_VERSION`). Note que, quando um número de versão é definido pelo servidor original, o valor da variável é redefinido para 0 se o servidor imediato ou qualquer outro servidor intermediário na topologia de replicação não suportar a variável de sistema de sessão, e, portanto, não replica seu valor.
 

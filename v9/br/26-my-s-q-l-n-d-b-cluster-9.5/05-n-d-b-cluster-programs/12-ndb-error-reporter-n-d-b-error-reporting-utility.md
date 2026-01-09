@@ -16,7 +16,7 @@ O **ndb\_error\_reporter** também aceita as opções listadas aqui:
 
 * `--connection-timeout=timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para connection-timeout"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connection-timeout=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para connection-timeout"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--connection-timeout=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">0</code></td> </tr></tbody></table>
 
   Aguarde esses segundos ao tentar se conectar aos nós antes de expirar o tempo de conexão.
 

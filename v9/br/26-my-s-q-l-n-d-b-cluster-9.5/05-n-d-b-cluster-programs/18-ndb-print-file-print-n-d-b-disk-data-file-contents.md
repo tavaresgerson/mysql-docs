@@ -18,13 +18,13 @@ Assim como **ndb\_print\_schema\_file** e **ndb\_print\_sys\_file** (e ao contr�
 
 * `--file-key`, `-K`
 
-  <table frame="box" rules="all" summary="Propriedades para file-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--file-key=hex_data</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--file-key=hex_data</code></td> </tr></tbody></table>
 
   Forneça a chave de criptografia ou descriptografia do sistema de arquivos a partir de `stdin`, `tty` ou um arquivo `my.cnf`.
 
 * `--file-key-from-stdin`
 
-  <table frame="box" rules="all" summary="Propriedades para file-key-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--file-key-from-stdin</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">FALSE</code></td> </tr><tr><th>Valores Válidos</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para file-key-from-stdin"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--file-key-from-stdin</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">FALSE</code></td> </tr><tr><th>Valores Válidos</th> <td><code class="literal">TRUE</code></td> </tr></tbody></table>
 
   Forneça a chave de criptografia ou descriptografia do sistema de arquivos a partir de `stdin`.
 

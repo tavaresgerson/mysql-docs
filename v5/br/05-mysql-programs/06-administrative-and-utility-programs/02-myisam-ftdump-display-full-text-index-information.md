@@ -52,36 +52,36 @@ O **myisam\_ftdump** suporta as seguintes opções:
 
 - `--help`, `-h`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--count`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para contagem"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--count</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para contagem"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--count</code>]]</td> </tr></tbody></table>
 
   Calcule estatísticas por palavra (contagem e pesos globais).
 
 - `--dump`, `-d`
 
-  <table frame="box" rules="all" summary="Propriedades para aterro"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--dump</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--dump</code>]]</td> </tr></tbody></table>
 
   Descarte o índice, incluindo os deslocamentos de dados e os pesos das palavras.
 
 - `--length`, `-l`
 
-  <table frame="box" rules="all" summary="Propriedades para comprimento"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--length</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para comprimento"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--length</code>]]</td> </tr></tbody></table>
 
   Relacione a distribuição do comprimento.
 
 - `--stats`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para estatísticas"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--stats</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para estatísticas"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--stats</code>]]</td> </tr></tbody></table>
 
   Relatório estatísticas do índice global. Esta é a operação padrão se nenhuma outra operação for especificada.
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para verbose"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--verbose</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--verbose</code>]]</td> </tr></tbody></table>
 
   Modo verbose. Imprima mais informações sobre o que o programa faz.

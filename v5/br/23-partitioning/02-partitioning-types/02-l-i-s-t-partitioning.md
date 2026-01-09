@@ -28,7 +28,7 @@ CREATE TABLE employees (
 
 Suponha que haja 20 lojas de vídeo distribuídas entre 4 franquias, conforme mostrado na tabela a seguir.
 
-<table summary="Um exemplo de 20 lojas de vídeo distribuídas entre 4 franquias regionais, conforme descrito no texto anterior."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Região</th> <th>Números de identificação da loja</th> </tr></thead><tbody><tr> <td>Norte</td> <td>3, 5, 6, 9, 17</td> </tr><tr> <td>Leste</td> <td>1, 2, 10, 11, 19, 20</td> </tr><tr> <td>O Oeste</td> <td>4, 12, 13, 14, 18</td> </tr><tr> <td>Central</td> <td>7, 8, 15, 16</td> </tr></tbody></table>
+<table summary="Um exemplo de 20 lojas de vídeo distribuídas entre 4 franquias regionais, conforme descrito no texto anterior."><thead><tr> <th>Região</th> <th>Números de identificação da loja</th> </tr></thead><tbody><tr> <td>Norte</td> <td>3, 5, 6, 9, 17</td> </tr><tr> <td>Leste</td> <td>1, 2, 10, 11, 19, 20</td> </tr><tr> <td>O Oeste</td> <td>4, 12, 13, 14, 18</td> </tr><tr> <td>Central</td> <td>7, 8, 15, 16</td> </tr></tbody></table>
 
 Para particionar essa tabela de forma que as linhas de lojas pertencentes à mesma região sejam armazenadas na mesma partição, você pode usar a instrução `CREATE TABLE` mostrada aqui:
 

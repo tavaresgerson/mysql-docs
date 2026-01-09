@@ -28,7 +28,7 @@ CREATE TABLE employees (
 
 Suppose that there are 20 video stores distributed among 4 franchises as shown in the following table.
 
-<table summary="An example of 20 video stores distributed among 4 regional franchises, as described in the preceding text."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Region</th> <th>Store ID Numbers</th> </tr></thead><tbody><tr> <td>North</td> <td>3, 5, 6, 9, 17</td> </tr><tr> <td>East</td> <td>1, 2, 10, 11, 19, 20</td> </tr><tr> <td>West</td> <td>4, 12, 13, 14, 18</td> </tr><tr> <td>Central</td> <td>7, 8, 15, 16</td> </tr></tbody></table>
+<table summary="An example of 20 video stores distributed among 4 regional franchises, as described in the preceding text."><thead><tr> <th>Region</th> <th>Store ID Numbers</th> </tr></thead><tbody><tr> <td>North</td> <td>3, 5, 6, 9, 17</td> </tr><tr> <td>East</td> <td>1, 2, 10, 11, 19, 20</td> </tr><tr> <td>West</td> <td>4, 12, 13, 14, 18</td> </tr><tr> <td>Central</td> <td>7, 8, 15, 16</td> </tr></tbody></table>
 
 To partition this table in such a way that rows for stores belonging to the same region are stored in the same partition, you could use the `CREATE TABLE` statement shown here:
 

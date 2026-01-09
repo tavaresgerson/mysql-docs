@@ -66,19 +66,19 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 
 * `--abort-on-error`
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--abort-on-error</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--abort-on-error</code></td> </tr></tbody></table>
 
   Arrume o núcleo em qualquer erro fatal; usado apenas para depuração.
 
 * `--ai-increment=*``#`*
 
-<table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
 
   Para uma tabela com uma chave primária oculta, especifique o incremento de autoincremento, como a variável de sistema `auto_increment_increment` faz no MySQL Server.
 
 * `--ai-offset=*``#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>
 
   Para uma tabela com chave primária oculta, especifique o deslocamento de autoincremento. Semelhante à variável de sistema `auto_increment_offset`.
 
@@ -175,7 +175,7 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 
 * `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para ai-increment">
   <tbody>
     <tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
@@ -189,7 +189,7 @@ Todas as opções que podem ser usadas com **ndb\_import** são mostradas na tab
 
 * `--csvopt=*``string`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para ai-increment">
   <tbody>
     <tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr>
     <tr><th>Tipo</th> <td>Inteiro</td> </tr>
@@ -216,13 +216,13 @@ Esta opção é destinada ao uso em testes em condições nas quais é difícil 
 
 * `--db-workers=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>2
 
   Número de threads, por nó de dados, executando operações de banco de dados.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Mínima</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor Máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
 
   Leia opções padrão do arquivo fornecido apenas.
 
@@ -232,55 +232,55 @@ Leia o arquivo dado após a leitura dos arquivos globais.
 
 * `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>5
 
   Leia também os grupos com concatenação(grupo, sufixo).
 
 * `--errins-type=*``nome`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>6
 
   Tipo de inserção de erro; use `list` como o valor de *`nome`* para obter todos os valores possíveis. Esta opção é usada apenas para fins de teste.
 
 * `--errins-delay`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>7
 
   Atraso de inserção de erro em milissegundos; uma variação aleatória é adicionada. Esta opção é usada apenas para fins de teste.
 
 * `--fields-enclosed-by`=*`char`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>8
 
   Funciona da mesma maneira que a opção `FIELDS ENCLOSED BY` para a instrução `LOAD DATA`, especificando um caractere a ser interpretado como cotação de valores de campos. Para entrada CSV, isso é o mesmo que `--fields-optionally-enclosed-by`.
 
 * `--fields-escaped-by`=*`name`*
 
-<table frame="box" rules="all" summary="Propriedades para ai-increment"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>9
+<table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-increment=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>9
 
 Especifique um caractere de escape da mesma maneira que a opção `FIELDS ESCAPED BY` faz para a instrução `LOAD DATA` do SQL.
 
 * `--fields-optionally-enclosed-by=*`char*
 
-<table frame="box" rules="all" summary="Propriedades para ai-offset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>0
+<table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>0
 
 Isso funciona da mesma maneira que a opção `FIELDS OPTIONALLY ENCLOSED BY` faz para a instrução `LOAD DATA`, especificando um caractere para ser interpretado como opcionalmente cotizando os valores dos campos. Para entrada CSV, isso é o mesmo que `--fields-enclosed-by`.
 
 * `--fields-terminated-by=*`char*
 
-<table frame="box" rules="all" summary="Propriedades para ai-offset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>1
 
 Isso funciona da mesma maneira que a opção `FIELDS TERMINATED BY` para a instrução `LOAD DATA`, especificando um caractere a ser interpretado como o separador de campos.
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>2
 
   Exibir texto de ajuda e sair.
 
 * `--idlesleep=*`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
 
   Número de milissegundos para dormir esperando que mais trabalho seja realizado.
 
@@ -304,13 +304,13 @@ Defina o tipo de tipo de entrada. O padrão é `csv`; `random` é destinado apen
 
 * `--input-workers=*`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>7
 
   Defina o número de threads que processam a entrada.
 
 * `--keep-state`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-offset=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>8
 
   Por padrão, o ndb\_import remove todos os arquivos de estado (exceto arquivos `*.rej` não vazios) quando conclui um trabalho. Especifique esta opção (não é necessário argumento) para forçar o programa a reter todos os arquivos de estado.
 
@@ -346,13 +346,13 @@ Leia o caminho dado a partir do arquivo de login.
 
 * `--no-caminhos-de-login`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>1
 
   Ignora a leitura de opções do arquivo de caminho de login.
 
 * `--max-linhas=*`
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--ai-prefetch-sz=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>3
 
   Importa apenas esse número de linhas de dados de entrada; o valor padrão é 0, o que importa todas as linhas.
 
@@ -487,7 +487,7 @@ Ative otimizações para a seleção de nós para transações. Ativado por padr
 
 * `--ndb-tls-search-path`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>1
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>1
 
   Especifique uma lista de diretórios para procurar um arquivo CA. Em plataformas Unix, os nomes dos diretórios são separados por colchetes (`:`); em sistemas Windows, o caractere ponto-e-vírgula (`;`) é usado como separador. Uma referência de diretório pode ser relativa ou absoluta; pode conter uma ou mais variáveis de ambiente, cada uma denotada por um sinal de dólar prefixado (`$`), e expandida antes de ser usada.
 
@@ -497,7 +497,7 @@ Ative otimizações para a seleção de nós para transações. Ativado por padr
 
 * `--no-asynch`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>2
 
   Execute operações de banco de dados em lotes, em transações únicas.
 
@@ -533,19 +533,19 @@ Ative otimizações para a seleção de nós para transações. Ativado por padr
 
 * `--output-workers`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>8
 
   Defina o número de threads que processam a saída ou redirecionam operações de banco de dados.
 
 * `--pagesize`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>9
 
   Alinhe os buffers de entrada/saída ao tamanho especificado.
 
 * `--pagecnt`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para conexões"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>0
 
   Defina o tamanho dos buffers de entrada/saída como múltiplo do tamanho da página. O trabalhador de entrada de CSV aloca um buffer dobrado em tamanho.
 
@@ -589,13 +589,13 @@ O limite imposto por esta opção é eficaz durante a execução atual. Uma exec
 
 * `--resume`
 
-  <table frame="box" rules="all" summary="Propriedades para conexões"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>4
 
   Se um trabalho for abortado (devido a um erro temporário no banco de dados ou quando interrompido pelo usuário), reinicie com quaisquer linhas ainda não processadas.
 
 * `--rowbatch`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para conexões"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connections=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">1</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>5
 
   Defina um limite para o número de linhas por fila de linhas. Use 0 para sem limite.
 

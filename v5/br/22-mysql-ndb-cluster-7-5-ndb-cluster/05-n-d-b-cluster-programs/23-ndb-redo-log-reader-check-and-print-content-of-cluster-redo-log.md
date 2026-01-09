@@ -30,53 +30,53 @@ O nome do arquivo a ser lido pode ser seguido por uma ou mais das opções lista
 
 - `-dump`
 
-  <table frame="box" rules="all" summary="Propriedades para aterro"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-dump</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-dump</code>]]</td> </tr></tbody></table>
 
   Imprima as informações do dump de impressão.
 
-- <table frame="box" rules="all" summary="Propriedades para filedescriptors"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-filedescriptors</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para filedescriptors"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-filedescriptors</code>]]</td> </tr></tbody></table>
 
   `-filedescriptors`: Imprima apenas os descritores de arquivo.
 
-- <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">--help</code>]]</td> </tr></tbody></table>
 
   `--help`: Imprima informações de uso.
 
 - `-lap`
 
-  <table frame="box" rules="all" summary="Propriedades para volta"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-lap</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para volta"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-lap</code>]]</td> </tr></tbody></table>
 
   Forneça informações sobre a volta, incluindo o GCI máximo iniciado e concluído.
 
-- <table frame="box" rules="all" summary="Propriedades para mbyte"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-mbyte #</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">15</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para mbyte"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-mbyte #</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">15</code>]]</td> </tr></tbody></table>
 
   `-mbyte #`: Início em megabytes.
 
   *`#`* é um número inteiro no intervalo de 0 a 15, inclusive.
 
-- <table frame="box" rules="all" summary="Propriedades para mbyteheaders"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-mbyteheaders</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para mbyteheaders"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-mbyteheaders</code>]]</td> </tr></tbody></table>
 
   `-mbyteheaders`: Mostrar apenas o cabeçalho da primeira página de cada megabyte no arquivo.
 
-- <table frame="box" rules="all" summary="Propriedades para noprint"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-noprint</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para noprint"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-noprint</code>]]</td> </tr></tbody></table>
 
   `-noprint`: Não imprima o conteúdo do arquivo de log.
 
-- <table frame="box" rules="all" summary="Propriedades para nocheck"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-nocheck</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para nocheck"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-nocheck</code>]]</td> </tr></tbody></table>
 
   `-nocheck`: Não verifique o arquivo de log em busca de erros.
 
-- <table frame="box" rules="all" summary="Propriedades para a página"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-page #</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">31</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para a página"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-page #</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code class="literal">0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code class="literal">31</code>]]</td> </tr></tbody></table>
 
   `-página #`: Comece nesta página.
 
   *`#`* é um número inteiro no intervalo de 0 a 31, inclusive.
 
-- <table frame="box" rules="all" summary="Propriedades para aterro"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-dump</code>]]</td> </tr></tbody></table>0
+- <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-dump</code>]]</td> </tr></tbody></table>0
 
   `-pageheaders`: Mostrar apenas os cabeçalhos das páginas.
 
-- <table frame="box" rules="all" summary="Propriedades para aterro"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-dump</code>]]</td> </tr></tbody></table>1
+- <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-dump</code>]]</td> </tr></tbody></table>1
 
   `-pageindex #`: Comece nesta página de índice.
 
@@ -84,7 +84,7 @@ O nome do arquivo a ser lido pode ser seguido por uma ou mais das opções lista
 
 - `-twiddle`
 
-  <table frame="box" rules="all" summary="Propriedades para aterro"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-dump</code>]]</td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code class="literal">-dump</code>]]</td> </tr></tbody></table>2
 
   Dump com deslocamento de bits.
 

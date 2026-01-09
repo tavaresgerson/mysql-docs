@@ -1,0 +1,3 @@
+#### B.3.4.6 Excluindo Linhas de Tabelas Relacionadas
+
+Se o comprimento total da instrução [`DELETE`](delete.html) para `related_table` for maior que 1 MB (o valor padrão da variável de sistema [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet), você deve dividi-la em partes menores e executar várias instruções [`DELETE`](delete.html). Você provavelmente obterá a instrução [`DELETE`](delete.html) mais rápida ao especificar apenas 100 a 1.000 valores de `related_column` por instrução, se o `related_column` estiver indexado. Se o `related_column` não estiver indexado, a velocidade é independente do número de argumentos na cláusula `IN`.

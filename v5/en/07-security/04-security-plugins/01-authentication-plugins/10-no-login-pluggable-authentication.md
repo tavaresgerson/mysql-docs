@@ -10,7 +10,7 @@ The following table shows the plugin and library file names. The file name suffi
 
 **Table 6.17 Plugin and Library Names for No-Login Authentication**
 
-<table summary="Names for the plugins and library file used for no-login password authentication."><col style="width: 30%"/><col style="width: 70%"/><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>mysql_no_login</code></td> </tr><tr> <td>Client-side plugin</td> <td>None</td> </tr><tr> <td>Library file</td> <td><code class="filename">mysql_no_login.so</code></td> </tr></tbody></table>
+<table summary="Names for the plugins and library file used for no-login password authentication."><thead><tr> <th>Plugin or File</th> <th>Plugin or File Name</th> </tr></thead><tbody><tr> <td>Server-side plugin</td> <td><code>mysql_no_login</code></td> </tr><tr> <td>Client-side plugin</td> <td>None</td> </tr><tr> <td>Library file</td> <td><code class="filename">mysql_no_login.so</code></td> </tr></tbody></table>
 
 The following sections provide installation and usage information specific to no-login pluggable authentication:
 

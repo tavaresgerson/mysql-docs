@@ -98,19 +98,19 @@ Se uma tabela verificada estiver corrompida, corrija-a automaticamente. Quaisque
 
 * `--bind-address=ip_address`
 
-  <table frame="box" rules="all" summary="Propriedades para bind-address"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bind-address"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--bind-address=ip_address</code></td> </tr></tbody></table>
 
   Em um computador com múltiplas interfaces de rede, use esta opção para selecionar qual interface usar para se conectar ao servidor MySQL.
 
 * `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Veja a Seção 12.15, “Configuração de Conjunto de Caracteres”.
 
 * `--check`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para check"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para check"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--check</code></td> </tr></tbody></table>
 
   Verifique as tabelas em busca de erros. Esta é a operação padrão.
 
@@ -408,7 +408,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivo de o
 
 * `--defaults-file=file_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>0
 
   Use apenas o arquivo de opções fornecido. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -418,7 +418,7 @@ Para obter informações adicionais sobre isso e outras opções de arquivo de o
 
 * `--defaults-group-suffix=str`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>1
 
   Leia não apenas os grupos de opções usuais, mas também grupos com os nomes usuais e um sufixo de *`str`*. Por exemplo, **mysqlcheck** normalmente lê os grupos `[client]` e `[mysqlcheck]`. Se esta opção for dada como `--defaults-group-suffix=_other`, **mysqlcheck** também lê os grupos `[client_other]` e `[mysqlcheck_other]`.
 
@@ -426,7 +426,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--extended`, `-e`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>2
 
   Se você estiver usando esta opção para verificar tabelas, ela garante que elas sejam 100% consistentes, mas leva muito tempo.
 
@@ -434,19 +434,19 @@ Para obter informações adicionais sobre esta e outras opções de arquivo de o
 
 * `--default-auth=plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>3
 
   Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. Consulte a Seção 8.2.17, “Autenticação Pluggable do Lado do Cliente”.
 
 * `--enable-cleartext-plugin`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>4
 
   Ative o plugin de autenticação `mysql_clear_password` de texto claro. (Consulte a Seção 8.4.1.3, “Autenticação Pluggable do Lado do Cliente de Texto Claro”.)
 
 * `--fast`, `-F`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--help</code></td> </tr></tbody></table>5
 
   Verifique apenas tabelas que não foram fechadas corretamente.
 
@@ -534,7 +534,7 @@ Realiza uma verificação mais rápida do que uma operação `--extended`. Isso 
 
 * `--no-defaults`
 
-<table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>2
 
   Não leia arquivos de opções. Se o início do programa falhar ao ler opções desconhecidas de um arquivo de opções, o `--no-defaults` pode ser usado para evitar que sejam lidas.
 
@@ -544,13 +544,13 @@ Realiza uma verificação mais rápida do que uma operação `--extended`. Isso 
 
 * `--optimize`, `-o`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>3
 
   Otimizar as tabelas.
 
 * `--password[=password]`, `-p[password]`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>4
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o **mysqlcheck** solicitará uma senha. Se fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar senha.
 
@@ -578,25 +578,25 @@ Para especificar explicitamente que não há senha e que o **mysqlcheck** não d
 
 * `--pipe`, `-W`
 
-<table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>5
+<table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>5
 
   No Windows, conecte-se ao servidor usando um pipe nomeado. Esta opção só se aplica se o servidor foi iniciado com a variável de sistema `named_pipe` habilitada para suportar conexões por pipe nomeado. Além disso, o usuário que faz a conexão deve ser membro do grupo do Windows especificado pela variável de sistema `named_pipe_full_access_group`.
 
 * `--plugin-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>6
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>6
 
   O diretório onde procurar por plugins. Especifique esta opção se a opção `--default-auth` for usada para especificar um plugin de autenticação, mas o **mysqlcheck** não o encontrar. Veja a Seção 8.2.17, “Autenticação Extensível”.
 
 * `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>7
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>7
 
   Para conexões TCP/IP, o número de porta a ser usado.
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para todas as bases de dados"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-databases</code></td> </tr></tbody></table>8
 
   Imprima o nome do programa e todas as opções que ele obtém de arquivos de opções.
 
@@ -624,7 +624,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo, con
 
 * `--server-public-key-path=file_name`
 
-<table frame="box" rules="all" summary="Propriedades para all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>2
+<table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>2
 
   O nome do caminho de um arquivo no formato PEM que contém uma cópia do lado do cliente da chave pública necessária pelo servidor para a troca de senhas baseada em pares de chaves RSA. Esta opção aplica-se a clientes que autenticam-se com o plugin de autenticação `sha256_password` ou `caching_sha2_password`. Esta opção é ignorada para contas que não autenticam-se com um desses plugins. Também é ignorada se a troca de senha baseada em RSA não for usada, como é o caso quando o cliente se conecta ao servidor usando uma conexão segura.
 
@@ -636,7 +636,7 @@ Para obter informações adicionais sobre esta e outras opções de arquivo, con
 
 * `--shared-memory-base-name=name`
 
-<table frame="box" rules="all" summary="Propriedades para all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>3
+<table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>3
 
   Em Windows, o nome do compartilhamento de memória a ser usado para conexões feitas usando compartilhamento de memória para um servidor local. O valor padrão é `MYSQL`. O nome do compartilhamento de memória é case-sensitive.
 
@@ -684,13 +684,13 @@ Esta opção está desatualizada. Espere que ela seja removida em uma versão fu
 
 * `--tables`
 
-  <table frame="box" rules="all" summary="Propriedades para all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>8
+  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>8
 
   Sobrepor a opção `--databases` ou `-B`. Todos os argumentos de nome que seguem a opção são considerados nomes de tabelas.
 
 * `--tls-ciphersuites=ciphersuite_list`
 
-  <table frame="box" rules="all" summary="Propriedades para all-in-1"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>9
+  <table frame="box" rules="all" summary="Propriedades para all-in-1"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--all-in-1</code></td> </tr></tbody></table>9
 
   Os ciphersuites permitidos para conexões criptografadas que usam TLSv1.3. O valor é uma lista de um ou mais nomes de ciphersuites separados por vírgula. Os ciphersuites que podem ser nomeados para esta opção dependem da biblioteca SSL usada para compilar o MySQL. Para detalhes, consulte a Seção 8.3.2, “Protocolos e Criptografadores TLS de Conexão Criptografada”.
 

@@ -18,7 +18,7 @@ O **innochecksum** suporta as seguintes opções. Para opções que se referem a
 
 * `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de Linha de Comando</th> <td><code class="literal">--help</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor Padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
 
   Exibe a ajuda da linha de comando. Exemplo de uso:
 
@@ -133,7 +133,7 @@ As informações do indicador de progresso no arquivo de log aparecem semelhante
 * `--count`, `-c`
 
   <table frame="box" rules="all" summary="Propriedades para contagem">
-    <col style="width: 30%"/><col style="width: 70%"/>
+    
     <tbody>
       <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--count</code></td> </tr>
       <tr><th>Tipo</th> <td>Nome base</td> </tr>
@@ -150,7 +150,7 @@ As informações do indicador de progresso no arquivo de log aparecem semelhante
 * `--start-page=num`, `-s num`
 
   <table frame="box" rules="all" summary="Propriedades para start-page">
-    <col style="width: 30%"/><col style="width: 70%"/>
+    
     <tbody>
       <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--start-page=#</code></td> </tr>
       <tr><th>Tipo</th> <td>Numérico</td> </tr>
@@ -173,7 +173,7 @@ As informações do indicador de progresso no arquivo de log aparecem semelhante
 * `--end-page=num`, `-e num`
 
   <table frame="box" rules="all" summary="Propriedades para end-page">
-    <col style="width: 30%"/><col style="width: 70%"/>
+    
     <tbody>
       <tr><th>Formato de Linha de Comando</th> <td><code class="literal">--end-page=#</code></td> </tr>
       <tr><th>Tipo</th> <td>Numérico</td> </tr>
@@ -197,7 +197,7 @@ As informações do indicador de progresso no arquivo de log aparecem semelhante
 
 * `--page=num`, `-p num`
 
-<table frame="box" rules="all" summary="Propriedades para a verificação de página"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--page=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">0</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para a verificação de página"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--page=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">0</code></td> </tr></tbody></table>
 
   Verifique apenas este número de página. Exemplo de uso:
 
@@ -207,7 +207,7 @@ As informações do indicador de progresso no arquivo de log aparecem semelhante
 
 * `--strict-check`, `-C`
 
-  <table frame="box" rules="all" summary="Propriedades para a verificação rigorosa"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--strict-check=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">innodb</code></p><p class="valid-value"><code class="literal">crc32</code></p><p class="valid-value"><code class="literal">none</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para a verificação rigorosa"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--strict-check=algorithm</code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">crc32</code></td> </tr><tr><th>Valores válidos</th> <td><p class="valid-value"><code class="literal">innodb</code></p><p class="valid-value"><code class="literal">crc32</code></p><p class="valid-value"><code class="literal">none</code></p></td> </tr></tbody></table>
 
   Especifique um algoritmo de verificação de checksum rigoroso. As opções incluem `innodb`, `crc32` e `none`.
 
@@ -235,7 +235,7 @@ As seguintes condições se aplicam:
 
 * `--no-check`, `-n`
 
-<table frame="box" rules="all" summary="Propriedades para não verificação de checksums"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-check</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Propriedades para não verificação de checksums"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-check</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>
 
   Ignorar a verificação de checksums ao reescrever um checksum. Esta opção só pode ser usada com a opção **innochecksum** `--write`. Se a opção `--write` não for especificada, o **innochecksum** termina.
 
@@ -247,7 +247,7 @@ As seguintes condições se aplicam:
 
 * `--allow-mismatches`, `-a`
 
-  <table frame="box" rules="all" summary="Propriedades para info"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--info</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para info"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--info</code></td> </tr><tr><th>Tipo</th> <td>Booleano</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">false</code></td> </tr></tbody></table>0
 
   O número máximo de desalinhamentos de checksums permitidos antes de o **innochecksum** terminar. O valor padrão é 0. Se `--allow-mismatches=`*`N`*, onde `N>=0`, *`N`* desalinhamentos são permitidos e o **innochecksum** termina em `N+1`. Quando `--allow-mismatches` é definido como 0, o **innochecksum** termina no primeiro desalinhamento de checksums.
 

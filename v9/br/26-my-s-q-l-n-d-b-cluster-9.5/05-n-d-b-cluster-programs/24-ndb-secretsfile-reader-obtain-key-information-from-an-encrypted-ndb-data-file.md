@@ -20,13 +20,13 @@ Essas e outras opções que podem ser usadas com **ndb\_secretsfile\_reader** es
 
 * `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-extra-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
 
   Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 * `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-file"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-file"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>
 
   Leia as opções padrão do arquivo fornecido.
 
@@ -51,7 +51,7 @@ Essas e outras opções que podem ser usadas com **ndb\_secretsfile\_reader** es
 
 * `--filesystem-password`
 
-  <table frame="box" rules="all" summary="Propriedades para filesystem-password"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para filesystem-password">
   <tbody>
     <tr>
       <th>Formato de linha de comando</th>
@@ -63,7 +63,7 @@ Essas e outras opções que podem ser usadas com **ndb\_secretsfile\_reader** es
 
 * `--filesystem-password-from-stdin`
 
-  <table frame="box" rules="all" summary="Propriedades para filesystem-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para filesystem-password-from-stdin">
   <tbody>
     <tr>
       <th>Formato de linha de comando</th>
@@ -75,7 +75,7 @@ Essas e outras opções que podem ser usadas com **ndb\_secretsfile\_reader** es
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para help"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para help">
   <tbody>
     <tr>
       <th>Formato de linha de comando</th>
@@ -91,25 +91,25 @@ Leia o caminho de login fornecido no arquivo de login.
 
 * `--no-caminhos-de-login`
 
-  <table frame="box" rules="all" summary="Propriedades para no-caminhos-de-login"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para no-caminhos-de-login"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-login-paths</code></td> </tr></tbody></table>
 
   Ignora a leitura das opções do arquivo de caminho de login.
 
 * `--no-padrões`
 
-  <table frame="box" rules="all" summary="Propriedades para no-padrões"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-defaults</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para no-padrões"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--no-defaults</code></td> </tr></tbody></table>
 
   Não leia opções padrão de nenhum arquivo de opções, exceto o arquivo de login.
 
 * `--imprimir-padrões`
 
-  <table frame="box" rules="all" summary="Propriedades para imprimir-padrões"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--print-defaults</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para imprimir-padrões"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--print-defaults</code></td> </tr></tbody></table>
 
   Imprima a lista de argumentos do programa e saia.
 
 * `--ajuda`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivos-de-padrões"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>0
+  <table frame="box" rules="all" summary="Propriedades para arquivos-de-padrões"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--defaults-file=caminho</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">[nenhum]</code></td> </tr></tbody></table>0
 
   Exiba texto de ajuda e saia; o mesmo que `--help`.
 

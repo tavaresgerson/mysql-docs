@@ -85,13 +85,13 @@ Este é o texto traduzido para o português brasileiro, mantendo a estrutura e o
 
   `-mbyteheaders`: Mostrar apenas o cabeçalho da primeira página de cada megabyte no arquivo.
 
-* <table frame="box" rules="all" summary="Propriedades para noprint"><col style="width: 30%"/><col style="width: 70%"/>
+* <table frame="box" rules="all" summary="Propriedades para noprint">
   <tr><th>Formato de Linha de Comando</th> <td><code class="literal">-noprint</code></td> </tr>
   </tbody></table>
 
   `-noprint`: Não imprimir o conteúdo do arquivo de log.
 
-* <table frame="box" rules="all" summary="Propriedades para nocheck"><col style="width: 30%"/><col style="width: 70%"/>
+* <table frame="box" rules="all" summary="Propriedades para nocheck">
   <tr><th>Formato de Linha de Comando</th> <td><code class="literal">-nocheck</code></td> </tr>
   </tbody></table>
 
@@ -106,11 +106,11 @@ Este é o texto traduzido para o português brasileiro, mantendo a estrutura e o
 
   *`#`* é um número inteiro no intervalo de 0 a 31, inclusive.
 
-* <table frame="box" rules="all" summary="Propriedades para file-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>1
+* <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>1
 
   `-pageheaders`: Mostrar apenas os cabeçalhos da página.
 
-* <table frame="box" rules="all" summary="Propriedades para file-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>2
+* <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>2
 
   [`-pageindex
   #`](mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex): Comece neste índice de página.
@@ -119,7 +119,7 @@ Este é o texto traduzido para o português brasileiro, mantendo a estrutura e o
 
 * `-twiddle`
 
-  <table frame="box" rules="all" summary="Propriedades para file-key"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para file-key"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--file-key=key</code></td> </tr></tbody></table>3
 
   Dump deslocado para a esquerda.
 

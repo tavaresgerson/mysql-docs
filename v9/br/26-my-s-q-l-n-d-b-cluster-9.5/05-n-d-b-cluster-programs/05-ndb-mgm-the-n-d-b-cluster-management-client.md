@@ -20,13 +20,13 @@ Todas as opções que podem ser usadas com **ndb\_mgm** estão mostradas na tabe
 
 * `--backup-password-from-stdin[=TRUE|FALSE]`
 
-  <table frame="box" rules="all" summary="Propriedades para backup-password-from-stdin"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para backup-password-from-stdin"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--backup-password-from-stdin</code></td> </tr></tbody></table>
 
   Esta opção permite a entrada da senha de backup a partir da shell do sistema (`stdin`) ao usar `--execute "START BACKUP"` ou similar para criar um backup. O uso desta opção requer o uso de `--execute`.
 
 * `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>
 
   Diretório contendo conjuntos de caracteres.
 
@@ -129,7 +129,7 @@ Todas as opções que podem ser usadas com **ndb\_mgm** estão mostradas na tabe
 
 * `--encrypt-backup`
 
-  <table frame="box" rules="all" summary="Propriedades para encrypt-backup"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para encrypt-backup">
   <tbody>
     <tr>
       <th>Formato de Linha de Comando</th>
@@ -141,7 +141,7 @@ Todas as opções que podem ser usadas com **ndb\_mgm** estão mostradas na tabe
 
 * `--execute=command`, `-e command`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir">
   <tbody>
     <tr>
       <th>Formato de Linha de Comando</th>
@@ -165,25 +165,25 @@ Se o comando do cliente de gerenciamento a ser passado usando essa opção conti
 
 * `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>1
 
   Exibir texto de ajuda e sair.
 
 * `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>2
 
   Ler o caminho fornecido a partir do arquivo de login.
 
 * `--no-login-paths`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>3
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>3
 
   Ignora a leitura de opções a partir do arquivo de caminho de login.
 
 * `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>4
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--character-sets-dir=caminho</code></td> </tr></tbody></table>4
 
   Definir a string de conexão para se conectar ao **ndb\_mgmd**. Sintaxe: [`nodeid=id;`][`host=`]`hostname`[`:port`]. Sobrescreve entradas em `NDB_CONNECTSTRING` e `my.cnf`.
 
@@ -195,19 +195,19 @@ Se o comando do cliente de gerenciamento a ser passado usando essa opção conti
 
 * `--ndb-mgm-tls`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--character-sets-dir=caminho</code></td></tr></table>6
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--character-sets-dir=caminho</code></td></tr></table>6
 
   Define o nível de suporte TLS necessário para se conectar ao servidor de gerenciamento; um dos valores `relaxado` ou `estricto`. `relaxado` (o padrão) significa que uma conexão TLS é tentada, mas o sucesso não é necessário; `estricto` significa que o TLS é necessário para se conectar.
 
 * `--ndb-mgm-host`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--character-sets-dir=caminho</code></td></tr></table>7
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--character-sets-dir=caminho</code></td></tr></table>7
 
   O mesmo que `--ndb-connectstring`.
 
 * `--ndb-optimized-node-selection`
 
-<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><col style="width: 30%"/><col style="width: 70%"/><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--character-sets-dir=caminho</code></td></tr></table>8
+<table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tr><th style="width: 30%">Formato de linha de comando</th><td><code class="literal">--character-sets-dir=caminho</code></td></tr></table>8
 
   Ative otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
 
@@ -233,13 +233,13 @@ Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de 
 
 * `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">3</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>1
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">3</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>1
 
   Imprima a lista de argumentos do programa e saia.
 
 * `--test-tls`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retries"><col style="width: 30%"/><col style="width: 70%"/><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">3</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>2
+  <table frame="box" rules="all" summary="Propriedades para connect-retries"><tbody><tr><th>Formato de linha de comando</th> <td><code class="literal">--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code class="literal">3</code></td> </tr><tr><th>Valor mínimo</th> <td><code class="literal">0</code></td> </tr><tr><th>Valor máximo</th> <td><code class="literal">4294967295</code></td> </tr></tbody></table>2
 
   Conecte-se usando TLS e, em seguida, saia. A saída, se bem-sucedida, é semelhante à mostrada aqui:
 
