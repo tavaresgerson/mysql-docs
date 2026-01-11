@@ -6,7 +6,7 @@ Se você invocar o **mysqldump** com a opção `--tab=dir_name`, ele usa *`dir_n
 
 O comando a seguir descarrega o conteúdo do banco de dados `db1` para arquivos no banco de dados `/tmp`:
 
-```sql
+```sh
 $> mysqldump --tab=/tmp db1
 ```
 
@@ -42,19 +42,19 @@ Para permitir que arquivos de dados sejam escritos usando um formato diferente, 
 
 Dependendo do valor que você especificar para qualquer uma dessas opções, pode ser necessário, na linha de comando, cobrir ou escapar o valor de forma apropriada para o interpretador de comandos. Alternativamente, especifique o valor usando notação hexadecimal. Suponha que você queira que o **mysqldump** cobrira os valores das colunas entre aspas duplas. Para fazer isso, especifique aspas duplas como o valor para a opção `--fields-enclosed-by`. Mas esse caractere é frequentemente especial para os interpretadores de comandos e deve ser tratado de forma especial. Por exemplo, no Unix, você pode cobrir as aspas duplas assim:
 
-```sql
+```sh
 --fields-enclosed-by='"'
 ```
 
 Em qualquer plataforma, você pode especificar o valor em hexadecimal:
 
-```sql
+```sh
 --fields-enclosed-by=0x22
 ```
 
 É comum usar várias das opções de formatação de dados juntas. Por exemplo, para descartar tabelas no formato de valores separados por vírgula com linhas terminadas por pares de retorno de carro/nova linha (`\r\n`), use este comando (insira-o em uma única linha):
 
-```sql
+```sh
 $> mysqldump --tab=/tmp --fields-terminated-by=,
          --fields-enclosed-by='"' --lines-terminated-by=0x0d0a db1
 ```

@@ -1,11 +1,5 @@
 ## 7.3 Estratégia de backup e recuperação de exemplo
 
-7.3.1 Estabelecimento de uma Política de Backup
-
-7.3.2 Uso de backups para recuperação
-
-7.3.3 Resumo da Estratégia de Backup
-
 Esta seção discute um procedimento para realizar backups que permite recuperar dados após vários tipos de falhas:
 
 - Quebra do sistema operacional
@@ -19,7 +13,7 @@ Suponha que os dados estejam armazenados no mecanismo de armazenamento `InnoDB`,
 
 Para casos de falhas no sistema operacional ou falhas de energia, podemos assumir que os dados do disco do MySQL estão disponíveis após um reinício. Os arquivos de dados do `InnoDB` podem não conter dados consistentes devido à falha, mas o `InnoDB` lê seus logs e encontra neles a lista de transações pendentes confirmadas e não confirmadas que não foram descarregadas para os arquivos de dados. O `InnoDB` desfaz automaticamente essas transações que não foram confirmadas e descarrega para seus arquivos de dados aquelas que foram confirmadas. As informações sobre esse processo de recuperação são transmitidas ao usuário através do log de erro do MySQL. O seguinte é um trecho de log de exemplo:
 
-```sql
+```sh
 InnoDB: Database was not shut down normally.
 InnoDB: Starting recovery from log files...
 InnoDB: Starting log scan based on checkpoint at

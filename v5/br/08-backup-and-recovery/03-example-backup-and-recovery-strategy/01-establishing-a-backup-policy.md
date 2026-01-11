@@ -4,7 +4,7 @@ Para serem úteis, os backups devem ser agendados regularmente. Um backup comple
 
 Suponha que façamos um backup completo de todas as nossas tabelas `InnoDB` em todos os bancos de dados usando o seguinte comando no domingo, às 13h, quando a carga estiver baixa:
 
-```sql
+```sh
 $> mysqldump --all-databases --master-data --single-transaction > backup_sunday_1_PM.sql
 ```
 
@@ -18,7 +18,7 @@ Os backups completos são necessários, mas nem sempre é conveniente criá-los.
 
 Para fazer backups incrementais, precisamos salvar as alterações incrementais. No MySQL, essas alterações são representadas no log binário, então o servidor MySQL deve ser sempre iniciado com a opção `--log-bin` para habilitar esse log. Com o registro binário habilitado, o servidor escreve cada alteração de dados em um arquivo enquanto atualiza os dados. Olhando para o diretório de dados de um servidor MySQL que foi iniciado com a opção `--log-bin` e que tem estado em execução por alguns dias, encontramos esses arquivos de log binário do MySQL:
 
-```sql
+```sh
 -rw-rw---- 1 guilhem  guilhem   1277324 Nov 10 23:59 gbichot2-bin.000001
 -rw-rw---- 1 guilhem  guilhem         4 Nov 10 23:59 gbichot2-bin.000002
 -rw-rw---- 1 guilhem  guilhem        79 Nov 11 11:06 gbichot2-bin.000003
@@ -32,14 +32,14 @@ Cada vez que ele é reiniciado, o servidor MySQL cria um novo arquivo de log bin
 
 Os logs binários do MySQL são importantes para a recuperação, pois formam o conjunto de backups incrementais. Se você garantir que os logs sejam limpos quando fizer seu backup completo, os arquivos de log binário criados posteriormente conterão todas as alterações de dados feitas desde o backup. Vamos modificar o comando anterior do **mysqldump** um pouco para que ele limpe os logs binários do MySQL no momento do backup completo e para que o arquivo de dump contenha o nome do novo log binário atual:
 
-```sql
+```sh
 $> mysqldump --single-transaction --flush-logs --master-data=2 \
          --all-databases > backup_sunday_1_PM.sql
 ```
 
 Após executar este comando, o diretório de dados contém um novo arquivo de log binário, `gbichot2-bin.000007`, porque a opção `--flush-logs` faz o servidor esvaziar seus logs. A opção `--master-data` faz com que o **mysqldump** escreva informações de log binário em sua saída, então o arquivo de dump `.sql` resultante inclui essas linhas:
 
-```sql
+```sh
 -- Position to start replication or point-in-time recovery from
 -- CHANGE MASTER TO MASTER_LOG_FILE='gbichot2-bin.000007',MASTER_LOG_POS=4;
 ```
@@ -54,7 +54,7 @@ Na segunda-feira, às 13h, podemos criar um backup incremental, descarregando os
 
 Os logs binários do MySQL ocupam espaço no disco. Para liberar espaço, elimine-os de tempos em tempos. Uma maneira de fazer isso é excluindo os logs binários que não são mais necessários, como quando fazemos um backup completo:
 
-```sql
+```sh
 $> mysqldump --single-transaction --flush-logs --master-data=2 \
          --all-databases --delete-master-logs > backup_sunday_1_PM.sql
 ```

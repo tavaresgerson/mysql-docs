@@ -4,13 +4,13 @@ A opção `--no-data` informa ao **mysqldump** para não dumper os dados da tabe
 
 Por exemplo, para descartar as definições e os dados da tabela separadamente para o banco de dados `test`, use esses comandos:
 
-```sql
+```sh
 $> mysqldump --no-data test > dump-defs.sql
 $> mysqldump --no-create-info test > dump-data.sql
 ```
 
 Para um dump que contenha apenas definições, adicione as opções `--routines` e `--events` para incluir também as definições de rotinas e eventos armazenados:
 
-```sql
+```sh
 $> mysqldump --no-data --routines --events test > dump-defs.sql
 ```

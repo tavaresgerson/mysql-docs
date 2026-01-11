@@ -18,7 +18,7 @@ Os sintomas de tabelas corrompidas incluem consultas que são interrompidas ines
 
 Para obter mais informações sobre o erro, execute **perror** *`nnn`*, onde *`nnn`* é o número do erro. O exemplo a seguir mostra como usar **perror** para encontrar os significados para os números de erro mais comuns que indicam um problema com uma tabela:
 
-```sql
+```sh
 $> perror 126 127 132 134 135 136 141 144 145
 MySQL error code 126 = Index file is crashed
 MySQL error code 127 = Record-file is crashed
@@ -45,13 +45,13 @@ O processo de reparo envolve até quatro etapas, descritas aqui. Antes de começ
 
 Esta seção é para os casos em que uma verificação de tabela falha (como os descritos na Seção 7.6.2, “Como verificar as tabelas MyISAM em busca de erros”), ou se você deseja usar os recursos avançados que o **myisamchk** oferece.
 
-As opções **myisamchk** usadas para a manutenção de tabelas estão descritas na Seção 4.6.3, “myisamchk — Ferramenta de Manutenção de Tabelas MyISAM”. O **myisamchk** também tem variáveis que você pode definir para controlar a alocação de memória, o que pode melhorar o desempenho. Veja a Seção 4.6.3.6, “Uso de Memória do \*\*myisamchk”].
+As opções **myisamchk** usadas para a manutenção de tabelas estão descritas na Seção 4.6.3, “myisamchk — Ferramenta de Manutenção de Tabelas MyISAM”. O **myisamchk** também tem variáveis que você pode definir para controlar a alocação de memória, o que pode melhorar o desempenho. Veja a Seção 4.6.3.6, “Uso de Memória do **myisamchk**.
 
 Se você estiver reparando uma tabela a partir da linha de comando, primeiro você deve parar o servidor **mysqld**. Observe que, quando você executa **mysqladmin shutdown** em um servidor remoto, o servidor **mysqld** ainda está disponível por um tempo após o **mysqladmin** retornar, até que todo o processamento de instruções seja interrompido e todas as alterações de índice sejam descarregadas no disco.
 
 **Fase 1: Verificação das suas tabelas**
 
-Execute \**myisamchk *.MYI** ou \**myisamchk -e *.MYI** se você tiver mais tempo. Use a opção `-s` (silenciosa) para suprimir informações desnecessárias.
+Execute **myisamchk *.MYI** ou **myisamchk -e *.MYI** se você tiver mais tempo. Use a opção `-s` (silenciosa) para suprimir informações desnecessárias.
 
 Se o servidor **mysqld** estiver parado, você deve usar a opção `--update-state` para informar ao **myisamchk** que a tabela deve ser marcada como "verificada".
 
@@ -83,7 +83,7 @@ Você deve chegar a essa etapa apenas se o primeiro bloco de 16 KB no arquivo de
 
 2. Use o arquivo de descrição da tabela para criar novos (vazi) arquivos de dados e de índice:
 
-   ```sql
+   ```sh
    $> mysql db_name
    ```
 

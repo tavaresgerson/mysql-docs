@@ -6,13 +6,13 @@ Como exemplo, suponha que, por volta das 13:00:00 de 27 de maio de 2020, uma ins
 
 1. Restaure a última cópia de segurança completa criada antes do ponto de interesse (chame-a de `tp`, que é 13:00:00 em 27 de maio de 2020, no nosso exemplo). Quando terminar, anote a posição do log binário até a qual você restaurou o servidor para uso posterior e reinicie o servidor.
 
-   Nota
+  Nota
 
-   Embora a última posição do log binário recuperada também seja exibida pelo InnoDB após a restauração e o reinício do servidor, essa não é uma maneira confiável de obter a posição final do log da restauração, pois podem ocorrer eventos de DDL e alterações não relacionadas ao InnoDB após o tempo refletido pela posição exibida. Sua ferramenta de backup e restauração deve fornecer a última posição do log binário para sua recuperação: por exemplo, se você estiver usando o **mysqlbinlog** para a tarefa, verifique a posição de parada da reprodução do log binário; se estiver usando o MySQL Enterprise Backup, a última posição do log binário foi salva em seu backup. Veja a Recuperação em Ponto no Tempo.
+  Embora a última posição do log binário recuperada também seja exibida pelo InnoDB após a restauração e o reinício do servidor, essa não é uma maneira confiável de obter a posição final do log da restauração, pois podem ocorrer eventos de DDL e alterações não relacionadas ao InnoDB após o tempo refletido pela posição exibida. Sua ferramenta de backup e restauração deve fornecer a última posição do log binário para sua recuperação: por exemplo, se você estiver usando o **mysqlbinlog** para a tarefa, verifique a posição de parada da reprodução do log binário; se estiver usando o MySQL Enterprise Backup, a última posição do log binário foi salva em seu backup. Veja a Recuperação em Ponto no Tempo.
 
 2. Encontre a posição exata do evento de log binário correspondente ao momento até o qual deseja restaurar seu banco de dados. No nosso exemplo, dado que sabemos o horário aproximado em que a exclusão da tabela ocorreu (`tp`), podemos encontrar a posição do log verificando o conteúdo do log por volta desse tempo usando o utilitário **mysqlbinlog**. Use as opções `--start-datetime` e `--stop-datetime` para especificar um curto período de tempo em torno de `tp`, e então procure o evento na saída. Por exemplo:
 
-   ```sql
+   ```sh
    $> mysqlbinlog   --start-datetime="2020-05-27 12:59:00" --stop-datetime="2020-05-27 13:06:00" \
      --verbose /var/lib/mysql/bin.123456 | grep -C 12 "DROP TABLE"
    # at 1868
@@ -44,13 +44,13 @@ Como exemplo, suponha que, por volta das 13:00:00 de 27 de maio de 2020, uma ins
 
    No resultado do **mysqlbinlog**, a instrução `DROP TABLE `pets`.`cats`pode ser encontrada no segmento do log binário entre a linha`# em 1868`e`# em 1985`, o que significa que a instrução ocorre *após* a posição do log 1868, e o log está na posição 1985 após a instrução `DROP TABLE\`.
 
-   Nota
+  Nota
 
-   Use apenas as opções `--start-datetime` e `--stop-datetime` para ajudá-lo a encontrar as posições reais dos eventos de interesse. Não é recomendado usar as duas opções para especificar o intervalo de segmento de log binário a ser aplicado, pois há um risco maior de perder eventos de log binário ao usar essas opções. Use `--start-position` e `--stop-position` em vez disso.
+  Use apenas as opções `--start-datetime` e `--stop-datetime` para ajudá-lo a encontrar as posições reais dos eventos de interesse. Não é recomendado usar as duas opções para especificar o intervalo de segmento de log binário a ser aplicado, pois há um risco maior de perder eventos de log binário ao usar essas opções. Use `--start-position` e `--stop-position` em vez disso.
 
 3. Aplique os eventos no arquivo de log binário no servidor, começando com a posição do log que você encontrou no passo 1 (assumindo que é 1006) e terminando na posição que você encontrou no passo 2, que é *antes* do seu ponto de interesse (que é 1868):
 
-   ```sql
+   ```sh
    $> mysqlbinlog --start-position=1006 --stop-position=1868 /var/lib/mysql/bin.123456 \
             | mysql -u root -p
    ```
@@ -61,7 +61,7 @@ Como exemplo, suponha que, por volta das 13:00:00 de 27 de maio de 2020, uma ins
 
 4. Além da recuperação no ponto no tempo que foi concluída, se você também quiser reexecutar todas as declarações *após* o seu ponto no tempo de interesse, use **mysqlbinlog** novamente para aplicar todos os eventos após `tp` ao servidor. Observamos no passo 2 que, após a declaração que queríamos pular, o log está na posição 1985; podemos usá-lo para a opção `--start-position`, para que quaisquer declarações após a posição sejam incluídas:
 
-   ```sql
+   ```sh
    $> mysqlbinlog --start-position=1985 /var/lib/mysql/bin.123456 \
             | mysql -u root -p
    ```

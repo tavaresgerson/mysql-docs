@@ -8,7 +8,7 @@ Também é uma boa ideia habilitar a verificação automática das tabelas `MyIS
 
 Você também deve verificar suas tabelas regularmente durante o funcionamento normal do sistema. Por exemplo, você pode executar um **cron** para verificar tabelas importantes uma vez por semana, usando uma linha como esta em um arquivo `crontab`:
 
-```sql
+```sh
 35 0 * * 0 /path/to/myisamchk --fast --silent /path/to/datadir/*/*.MYI
 ```
 
@@ -18,6 +18,6 @@ Para começar, execute **myisamchk -s** todas as noites em todas as tabelas que 
 
 Normalmente, as tabelas do MySQL precisam de pouca manutenção. Se você estiver realizando muitas atualizações em tabelas `MyISAM` com linhas de tamanho dinâmico (tabelas com colunas `VARCHAR`, `BLOB` ou `TEXT`) ou tiver tabelas com muitas linhas excluídas, você pode querer desfragmentar/reclamar espaço das tabelas de tempos em tempos. Você pode fazer isso usando `OPTIMIZE TABLE` nas tabelas em questão. Alternativamente, se você puder interromper o servidor **mysqld** por um tempo, mude para o diretório de dados e use este comando enquanto o servidor estiver parado:
 
-```sql
+```sh
 $> myisamchk -r -s --sort-index --myisam_sort_buffer_size=16M */*.MYI
 ```

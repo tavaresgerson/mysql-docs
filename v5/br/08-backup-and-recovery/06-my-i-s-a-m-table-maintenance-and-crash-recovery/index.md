@@ -1,15 +1,5 @@
 ## 7.6 Manutenção de tabelas MyISAM e recuperação após falhas
 
-7.6.1 Usar o myisamchk para recuperação de falhas
-
-7.6.2 Como verificar as tabelas MyISAM em busca de erros
-
-7.6.3 Como reparar as tabelas MyISAM
-
-7.6.4 Otimização de Tabelas MyISAM
-
-7.6.5 Configurando um cronograma de manutenção de tabela MyISAM
-
 Esta seção discute como usar o **myisamchk** para verificar ou reparar as tabelas **MyISAM** (tabelas que possuem arquivos `.MYD` e `.MYI` para armazenar dados e índices). Para informações gerais sobre o **myisamchk**, consulte a Seção 4.6.3, “myisamchk — Ferramenta de Manutenção de Tabelas MyISAM”. Outras informações sobre reparo de tabelas podem ser encontradas na Seção 2.10.12, “Reestruturação ou reparo de tabelas ou índices”.
 
 Você pode usar **myisamchk** para verificar, reparar ou otimizar as tabelas do banco de dados. As seções a seguir descrevem como realizar essas operações e como configurar um cronograma de manutenção de tabelas. Para obter informações sobre como usar **myisamchk** para obter informações sobre suas tabelas, consulte a Seção 4.6.3.5, “Obtendo Informações sobre as Tabelas com o myisamchk”.

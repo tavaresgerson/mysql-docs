@@ -1,6 +1,6 @@
 #### 7.4.5.1 Fazer uma cópia de um banco de dados
 
-```sql
+```sh
 $> mysqldump db1 > dump.sql
 $> mysqladmin create db2
 $> mysql db2 < dump.sql

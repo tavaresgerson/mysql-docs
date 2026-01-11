@@ -4,13 +4,13 @@ Ao considerar uma atualização do MySQL, é prudente instalar a versão mais re
 
 No servidor de produção:
 
-```sql
+```sh
 $> mysqldump --all-databases --no-data --routines --events > dump-defs.sql
 ```
 
 No servidor atualizado:
 
-```sql
+```sh
 $> mysql < dump-defs.sql
 ```
 
@@ -20,13 +20,13 @@ Depois de verificar que as definições estão sendo tratadas corretamente, desc
 
 No servidor de produção:
 
-```sql
+```sh
 $> mysqldump --all-databases --no-create-info > dump-data.sql
 ```
 
 No servidor atualizado:
 
-```sql
+```sh
 $> mysql < dump-data.sql
 ```
 

@@ -2,7 +2,7 @@
 
 No servidor 1:
 
-```sql
+```sh
 $> mysqldump --databases db1 > dump.sql
 ```
 
@@ -10,7 +10,7 @@ Copie o arquivo de dump do Servidor 1 para o Servidor 2.
 
 No servidor 2:
 
-```sql
+```sh
 $> mysql < dump.sql
 ```
 
@@ -20,13 +20,13 @@ Alternativamente, você pode omitir `--databases` do comando **mysqldump**. Ness
 
 No servidor 1:
 
-```sql
+```sh
 $> mysqldump db1 > dump.sql
 ```
 
 No servidor 2:
 
-```sql
+```sh
 $> mysqladmin create db1
 $> mysql db1 < dump.sql
 ```

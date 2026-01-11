@@ -2,7 +2,7 @@
 
 Para coalescer linhas fragmentadas e eliminar o espaço desperdiçado que resulta da exclusão ou atualização de linhas, execute o **myisamchk** no modo de recuperação:
 
-```sql
+```sh
 $> myisamchk -r tbl_name
 ```
 

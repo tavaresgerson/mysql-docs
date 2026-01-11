@@ -4,19 +4,19 @@ Esta seção descreve como usar o **mysqldump** para criar arquivos de backup no
 
 Por padrão, o **mysqldump** escreve informações como instruções SQL no saída padrão. Você pode salvar a saída em um arquivo:
 
-```sql
+```sh
 $> mysqldump [arguments] > file_name
 ```
 
 Para descartar todas as bases de dados, invoque o **mysqldump** com a opção `--all-databases`:
 
-```sql
+```sh
 $> mysqldump --all-databases > dump.sql
 ```
 
 Para descartar apenas bancos de dados específicos, nomeie-os na linha de comando e use a opção `--databases`:
 
-```sql
+```sh
 $> mysqldump --databases db1 db2 db3 > dump.sql
 ```
 
@@ -26,13 +26,13 @@ Com `--all-databases` ou `--databases`, o **mysqldump** escreve as instruções 
 
 Para descartar um único banco de dados, nomeie-o na linha de comando:
 
-```sql
+```sh
 $> mysqldump --databases test > dump.sql
 ```
 
 No caso de uma única base de dados, é permitido omitir a opção `--databases`:
 
-```sql
+```sh
 $> mysqldump test > dump.sql
 ```
 
@@ -48,6 +48,6 @@ A diferença entre os dois comandos anteriores é que, sem a opção `--database
 
 Para descartar apenas tabelas específicas de um banco de dados, nomeie-as na linha de comando após o nome do banco de dados:
 
-```sql
+```sh
 $> mysqldump test t1 t3 t7 > dump.sql
 ```
