@@ -22,7 +22,7 @@ A tabela `mysql.firewall_users` lista os nomes e os modos operacionais dos perfi
 
   O nome do perfil da conta. Cada nome de conta tem o formato `user_name@host_name`.
 
-- `MODO`
+- `MODE`
 
   O modo operacional atual para o perfil. Os valores permitidos para o modo são `OFF`, `DETECTING`, `PROTECTING`, `RECORDING` e `RESET`. Para obter detalhes sobre seus significados, consulte Conceitos de Firewall.
 
@@ -32,7 +32,7 @@ A tabela `mysql.firewall_whitelist` lista as regras de lista de permissão dos p
 
   O nome do perfil da conta. Cada nome de conta tem o formato `user_name@host_name`.
 
-- REGRA
+- `RULE`
 
   Uma declaração normalizada que indica um padrão de declaração aceitável para o perfil. Um allowlist de perfil é a união de suas regras.
 
@@ -109,7 +109,7 @@ As funções administrativas do MySQL Enterprise Firewall fornecem uma API para 
 
 Essas funções realizam operações de gerenciamento em perfis de contas de firewall:
 
-- \`read_firewall_users(user, mode)
+- `read_firewall_users(user, mode)`
 
   Essa função agregada atualiza o cache do perfil da conta do firewall por meio de uma instrução `SELECT` na tabela `mysql.firewall_users`. Ela requer o privilégio `SUPER`.
 
@@ -120,7 +120,7 @@ Essas funções realizam operações de gerenciamento em perfis de contas de fir
   FROM mysql.firewall_users;
   ```
 
-- \`read_firewall_whitelist(usuário, regra)
+- `read_firewall_whitelist(user, rule)`
 
   Essa função agregada atualiza o cache de declarações registradas para o perfil de conta nomeado por meio de uma instrução `SELECT` na tabela `mysql.firewall_whitelist`. Ela requer o privilégio `SUPER`.
 
@@ -132,7 +132,7 @@ Essas funções realizam operações de gerenciamento em perfis de contas de fir
   WHERE USERHOST = 'fwuser@localhost';
   ```
 
-- `set_firewall_mode(usuário, modo)`
+- `set_firewall_mode(user, mode)`
 
   Essa função gerencia o cache do perfil da conta e estabelece o modo operacional do perfil. Ela requer o privilégio `SUPER`.
 

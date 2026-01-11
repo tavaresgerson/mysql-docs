@@ -841,7 +841,7 @@ A tabela a seguir fornece um resumo das regras que o MySQL segue ao converter en
 <tr>
 <th>Tipos de geometria</th>
 <td>O valor de geometria é convertido em um documento JSON chamando <code>ST_AsGeoJSON()</code>.</td>
-<td>Operação ilegal. Solução: passe o resultado de <code>CAST(<em class="replaceable"><code>json_val</code></em> AS CHAR)</code> para <code>ST_GeomFromGeoJSON()</code>.</td>
+<td>Operação ilegal. Solução: passe o resultado de <code>CAST(<em><code>json_val</code></em> AS CHAR)</code> para <code>ST_GeomFromGeoJSON()</code>.</td>
 </tr>
 <tr>
 <th>Todos os outros tipos</th>

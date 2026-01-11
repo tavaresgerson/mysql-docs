@@ -12,7 +12,7 @@ Se você usar o **myisamchk** para reparar ou otimizar tabelas, *deve* sempre ga
 
 Ao realizar a recuperação de falhas, é importante entender que cada tabela `MyISAM` *`tbl_name`* em um banco de dados corresponde aos três arquivos no diretório do banco de dados mostrados na tabela a seguir.
 
-<table summary="Os dois arquivos no diretório do banco de dados que correspondem a cada tabela MyISAM."><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>Arquivo</th> <th>Propósito</th> </tr></thead><tbody><tr> <td><code><em class="replaceable"><code>tbl_name</code></em>.MYD</code></td> <td>Arquivo de dados</td> </tr><tr> <td><code><em class="replaceable"><code>tbl_name</code></em>.MYI</code></td> <td>Arquivo de índice</td> </tr></tbody></table>
+<table summary="Os dois arquivos no diretório do banco de dados que correspondem a cada tabela MyISAM."><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>Arquivo</th> <th>Propósito</th> </tr></thead><tbody><tr> <td><code><em><code>tbl_name</code></em>.MYD</code></td> <td>Arquivo de dados</td> </tr><tr> <td><code><em><code>tbl_name</code></em>.MYI</code></td> <td>Arquivo de índice</td> </tr></tbody></table>
 
 Cada um desses três tipos de arquivos está sujeito à corrupção de várias maneiras, mas os problemas ocorrem com mais frequência nos arquivos de dados e nos arquivos de índice.
 

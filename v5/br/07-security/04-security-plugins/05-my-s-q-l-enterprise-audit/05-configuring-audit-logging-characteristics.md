@@ -106,17 +106,17 @@ Os arquivos de registro de auditoria podem ser descompactados e descriptografado
 
 Para essa discussão, vamos assumir que `audit_log_file` está definido como `audit.log`. Nesse caso, um arquivo de registro de auditoria arquivado tem um dos nomes mostrados na tabela a seguir.
 
-<table summary="O arquivo de registro de auditoria arquivou os nomes dos arquivos para várias combinações das características de compressão e criptografia."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Recursos habilitados</th> <th>Nome do arquivo arquivado</th> </tr></thead><tbody><tr> <td>Sem compressão ou criptografia</td> <td>[[<code>audit.<em class="replaceable"><code>timestamp</code>]]</em>.log</code></td> </tr><tr> <td>Compressão</td> <td>[[<code>audit.<em class="replaceable"><code>timestamp</code>]]</em>.log.gz</code></td> </tr><tr> <td>Criptografia</td> <td>[[<code>audit.<em class="replaceable"><code>timestamp</code>]]</em>.log.enc</code></td> </tr><tr> <td>Compressão, criptografia</td> <td>[[<code>audit.<em class="replaceable"><code>timestamp</code>]]</em>.log.gz.enc</code></td> </tr></tbody></table>
+<table summary="O arquivo de registro de auditoria arquivou os nomes dos arquivos para várias combinações das características de compressão e criptografia."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Recursos habilitados</th> <th>Nome do arquivo arquivado</th> </tr></thead><tbody><tr> <td>Sem compressão ou criptografia</td> <td>[[<code>audit.<em><code>timestamp</code>]]</em>.log</code></td> </tr><tr> <td>Compressão</td> <td>[[<code>audit.<em><code>timestamp</code>]]</em>.log.gz</code></td> </tr><tr> <td>Criptografia</td> <td>[[<code>audit.<em><code>timestamp</code>]]</em>.log.enc</code></td> </tr><tr> <td>Compressão, criptografia</td> <td>[[<code>audit.<em><code>timestamp</code>]]</em>.log.gz.enc</code></td> </tr></tbody></table>
 
 Para descomprimir um arquivo de log compactado manualmente, use **gunzip**, **gzip -d** ou um comando equivalente. Por exemplo:
 
-```sql
+```sh
 gunzip -c audit.timestamp.log.gz > audit.timestamp.log
 ```
 
 Para descriptografar um arquivo de registro criptografado manualmente, use o comando **openssl**. Por exemplo:
 
-```sql
+```sh
 openssl enc -d -aes-256-cbc -pass pass:password -md sha256
     -in audit.timestamp.log.enc
     -out audit.timestamp.log
@@ -124,7 +124,7 @@ openssl enc -d -aes-256-cbc -pass pass:password -md sha256
 
 Se a compressão e a criptografia estiverem habilitadas para o registro de auditoria, a compressão ocorrerá antes da criptografia. Nesse caso, o nome do arquivo terá os sufixos `.gz` e `.enc` adicionados, correspondendo à ordem em que essas operações ocorrem. Para recuperar o arquivo original manualmente, realize as operações em ordem inversa. Ou seja, primeiro decifre o arquivo e, em seguida, descomprima-o:
 
-```sql
+```sh
 openssl enc -d -aes-256-cbc -pass pass:password -md sha256
     -in audit.timestamp.log.gz.enc
     -out audit.timestamp.log.gz

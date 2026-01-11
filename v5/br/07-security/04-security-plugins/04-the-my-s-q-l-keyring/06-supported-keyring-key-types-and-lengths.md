@@ -18,4 +18,58 @@ A Tabela 6.23, “Limites Gerais de Comprimento de Chaves do Keyring” (keyrin
 
 **Tabela 6.24 Tipos e comprimentos de chaves do plug-in do cartela**
 
-<table summary="Tipos e comprimentos principais suportados pelos plugins de chaveiro."><col style="width: 30%"/><col style="width: 25%"/><col style="width: 45%"/><thead><tr> <th>Nome do Plugin</th> <th>Tipo de chave permitido</th> <th>Restrições de comprimento específicas de plugins</th> </tr></thead><tbody><tr> <th valign="top">[[PH_HTML_CODE_<code>keyring_okv</code>]</th> <td><p> [[PH_HTML_CODE_<code>keyring_okv</code>] </p></td> <td><p>16, 24 ou 32 bytes</p></td> </tr><tr> <th valign="top">[[<code>keyring_encrypted_file</code>]]</th> <td><p> [[<code>AES</code>]] </p><p> [[<code>DSA</code>]] </p><p> [[<code>RSA</code>]] </p></td> <td><p>Nenhum</p><p>Nenhum</p><p>Nenhum</p></td> </tr><tr> <th valign="top">[[<code>keyring_file</code>]]</th> <td><p> [[<code>AES</code>]] </p><p> [[<code>DSA</code>]] </p><p> [[<code>RSA</code>]] </p></td> <td><p>Nenhum</p><p>Nenhum</p><p>Nenhum</p></td> </tr><tr> <th valign="top">[[<code>keyring_okv</code>]]</th> <td><p> [[<code>AES</code><code>keyring_okv</code>] </p></td> <td><p>16, 24 ou 32 bytes</p></td> </tr></tbody></table>
+<table summary="Tipos e comprimentos principais suportados pelos plugins de chaveiro.">
+  <thead>
+    <tr>
+      <th>Nome do plug-in</th>
+      <th>Tipo de chave permitido</th>
+      <th>Restrições de comprimento específicas do plug-in</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th valign="top"><code>keyring_aws</code></th>
+      <td>
+        <p> <code>AES</code> </p>
+      </td>
+      <td>
+        <p> 16, 24, or 32 bytes </p>
+      </td>
+    </tr>
+    <tr>
+      <th valign="top"><code>keyring_encrypted_file</code></th>
+      <td>
+        <p> <code>AES</code> </p>
+        <p> <code>DSA</code> </p>
+        <p> <code>RSA</code> </p>
+      </td>
+      <td>
+        <p> None </p>
+        <p> None </p>
+        <p> None </p>
+      </td>
+    </tr>
+    <tr>
+      <th valign="top"><code>keyring_file</code></th>
+      <td>
+        <p> <code>AES</code> </p>
+        <p> <code>DSA</code> </p>
+        <p> <code>RSA</code> </p>
+      </td>
+      <td>
+        <p> None </p>
+        <p> None </p>
+        <p> None </p>
+      </td>
+    </tr>
+    <tr>
+      <th valign="top"><code>keyring_okv</code></th>
+      <td>
+        <p> <code>AES</code> </p>
+      </td>
+      <td>
+        <p> 16, 24, or 32 bytes </p>
+      </td>
+    </tr>
+  </tbody>
+</table>

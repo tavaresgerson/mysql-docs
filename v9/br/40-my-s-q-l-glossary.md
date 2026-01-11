@@ -1696,7 +1696,7 @@ Os tipos de `rw-lock` incluem `s-locks` (blocos compartilhados), `x-locks` (bloc
 
 A seguinte matriz resume a compatibilidade dos tipos de `rw-lock`.
 
-<table summary="Matriz de compatibilidade para tipos de rw-lock. Cada célula da matriz é marcada como Compatível ou Conflitos."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th></th> <th><em class="replaceable"><code>S</code></em></th> <th><em class="replaceable"><code>SX</code></em></th> <th><em class="replaceable"><code>X</code></em></th> </tr></thead><tbody><tr> <th><em class="replaceable"><code>S</code></em></th> <td>Compatível</td> <td>Compatível</td> <td>Conflitos</td> </tr><tr> <th><em class="replaceable"><code>SX</code></em></th> <td>Compatível</td> <td>Conflitos</td> <td>Conflitos</td> </tr><tr> <th><em class="replaceable"><code>X</code></em></th> <td>Conflitos</td> <td>Conflitos</td> <td>Conflitos</td> </tr></tbody></table>
+<table summary="Matriz de compatibilidade para tipos de rw-lock. Cada célula da matriz é marcada como Compatível ou Conflitos."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th></th> <th><em><code>S</code></em></th> <th><em><code>SX</code></em></th> <th><em><code>X</code></em></th> </tr></thead><tbody><tr> <th><em><code>S</code></em></th> <td>Compatível</td> <td>Compatível</td> <td>Conflitos</td> </tr><tr> <th><em><code>SX</code></em></th> <td>Compatível</td> <td>Conflitos</td> <td>Conflitos</td> </tr><tr> <th><em><code>X</code></em></th> <td>Conflitos</td> <td>Conflitos</td> <td>Conflitos</td> </tr></tbody></table>
 
     Veja também latch, lock, mutex, Schema de desempenho.
 

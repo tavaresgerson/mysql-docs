@@ -26,7 +26,7 @@ As seções a seguir descrevem os formatos de registro de auditoria disponíveis
 
 Aqui está um arquivo de registro de exemplo no formato XML de novo estilo (`audit_log_format=NEW`), reformatado ligeiramente para melhor legibilidade:
 
-```sql
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <AUDIT>
  <AUDIT_RECORD>
@@ -144,7 +144,7 @@ Os seguintes elementos são obrigatórios em todo o elemento `<AUDIT_RECORD>`:
 
   Exemplo:
 
-  ```sql
+  ```xml
   <NAME>Query</NAME>
   ```
 
@@ -161,7 +161,7 @@ Os seguintes elementos são obrigatórios em todo o elemento `<AUDIT_RECORD>`:
   NoAudit  Auditing has been turned off
   ```
 
-  Os possíveis valores são `Audit`, `Binlog Dump`, `Alterar usuário`, `Fechar stmt`, `Conectar Saída`, `Conectar`, `Criar DB`, `Daemon`, `Depuração`, `Inserção atrasada`, `Remover DB`, `Executar`, `Buscar`, `Lista de campos`, `Inicializar DB`, `Desligar`, `Dados longos`, `Sem auditoria`, `Ping`, `Preparar`, `Processlist`, `Consulta`, `Sair`, `Atualizar`, `Registrar escravo`, `Reiniciar stmt`, `Definir opção`, `Desligar`, `Dormir`, `Estatísticas`, `Dump de tabela`, `Deletar tabela`, `Inserir tabela`, `Ler tabela`, `Atualizar tabela`, `Tempo`.
+  Os possíveis valores são `Audit`, `Binlog Dump`, `Change user`, `Close stmt`, `Connect Out`, `Connect`, `Create DB`, `Daemon`, `Debug`, `Delayed insert`, `Drop DB`, `Execute`, `Fetch`, `Field List`, `Init DB`, `Kill`, `Long Data`, `NoAudit`, `Ping`, `Prepare`, `Processlist`, `Query`, `Quit`, `Refresh`, `Register Slave`, `Reset stmt`, `Set option`, `Shutdown`, `Sleep`, `Statistics`, `Table Dump`, `TableDelete`, `TableInsert`, `TableRead`, `TableUpdate`, `Time`.
 
   Muitos desses valores correspondem aos valores do comando `COM_xxx` listados no arquivo de cabeçalho `my_command.h`. Por exemplo, `Create DB` e `Change user` correspondem a `COM_CREATE_DB` e `COM_CHANGE_USER`, respectivamente.
 
@@ -173,7 +173,7 @@ Os seguintes elementos são obrigatórios em todo o elemento `<AUDIT_RECORD>`:
 
   Cada evento `TableXXX` contém elementos `<TABLE>` e `<DB>` para identificar a tabela a qual o evento se refere e o banco de dados que contém a tabela.
 
-- `<ID_REGISTRO>`
+- `<RECORD_ID>`
 
   Um identificador único para o registro de auditoria. O valor é composto por um número de sequência e um timestamp, no formato `SEQ_TIMESTAMP`. Quando o plugin de log de auditoria abre o arquivo de log de auditoria, ele inicializa o número de sequência para o tamanho do arquivo de log de auditoria, e depois incrementa o número de sequência em 1 para cada registro registrado. O timestamp é um valor UTC no formato `YYYY-MM-DDThh:mm:ss`, indicando a data e a hora em que o plugin de log de auditoria abriu o arquivo.
 
@@ -183,7 +183,7 @@ Os seguintes elementos são obrigatórios em todo o elemento `<AUDIT_RECORD>`:
   <RECORD_ID>12_2019-10-03T14:06:33</RECORD_ID>
   ```
 
-- `<DATA E HORA>`
+- `<TIMESTAMP>`
 
   Uma cadeia que representa um valor UTC no formato `YYYY-MM-DDThh:mm:ss UTC`, indicando a data e a hora em que o evento de auditoria foi gerado. Por exemplo, o evento correspondente à execução de uma instrução SQL recebida de um cliente tem um valor `<TIMESTAMP>` após a instrução terminar, e não quando ela foi recebida.
 
@@ -214,7 +214,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
   ORDER BY name;
   ```
 
-- `<ID_CONEXÃO>`
+- `<CONNECTION_ID>`
 
   Um inteiro não assinado que representa o identificador de conexão do cliente. Isso é o mesmo valor retornado pela função `CONNECTION_ID()` dentro da sessão.
 
@@ -224,7 +224,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
   <CONNECTION_ID>127</CONNECTION_ID>
   ```
 
-- `<TIPO_CONEXÃO>`
+- `<CONNECTION_TYPE>`
 
   O estado de segurança da conexão com o servidor. Os valores permitidos são `TCP/IP` (conexão TCP/IP estabelecida sem criptografia), `SSL/TLS` (conexão TCP/IP estabelecida com criptografia), `Socket` (conexão de arquivo de soquete Unix), `Named Pipe` (conexão de named pipe do Windows) e `Shared Memory` (conexão de memória compartilhada do Windows).
 
@@ -316,7 +316,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
   <PROXY_USER>developer</PROXY_USER>
   ```
 
-- `<ID_SERVIDOR>`
+- `<SERVER_ID>`
 
   Um inteiro não assinado que representa o ID do servidor. Isso é o mesmo que o valor da variável de sistema `server_id`.
 
@@ -336,7 +336,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
   <SQLTEXT>DELETE FROM t1</SQLTEXT>
   ```
 
-- `<OPÇÕES_DE_INÍCIO>`
+- `<STARTUP_OPTIONS>`
 
   Uma cadeia que representa as opções fornecidas na linha de comando ou em arquivos de opção quando o servidor MySQL foi iniciado. A primeira opção é o caminho para o executável do servidor.
 
@@ -361,7 +361,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
   <STATUS>1051</STATUS>
   ```
 
-- `<CÓDIGO_STATUS>`
+- `<STATUS_CODE>`
 
   Um número inteiro não assinado que representa o status do comando: 0 para sucesso, 1 se ocorrer um erro.
 
@@ -373,7 +373,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
   <STATUS_CODE>0</STATUS_CODE>
   ```
 
-- <TABLE>
+- `<TABLE>`
 
   Uma cadeia que representa o nome de uma tabela.
 
@@ -383,7 +383,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
   <TABLE>t3</TABLE>
   ```
 
-- `<USUÁRIO>`
+- `<USER>`
 
   Uma cadeia que representa o nome do usuário enviado pelo cliente. Isso pode diferir do valor `<PRIV_USER>`.
 
@@ -393,7 +393,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
   <USER>root[root] @ localhost [127.0.0.1]</USER>
   ```
 
-- `<VERSÃO>`
+- `<VERSION>`
 
   Um número inteiro não assinado que representa a versão do formato do arquivo de log de auditoria.
 
@@ -407,7 +407,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
 
 Aqui está um arquivo de registro de exemplo no formato XML antigo (`audit_log_format=OLD`), reformatado levemente para melhor legibilidade:
 
-```sql
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <AUDIT>
   <AUDIT_RECORD
@@ -495,15 +495,15 @@ Os atributos dos elementos `<AUDIT_RECORD>` têm essas características:
 
 Os seguintes atributos são obrigatórios em todo o elemento `<AUDIT_RECORD>`:
 
-- `NOME`
+- `NAME`
 
   Uma cadeia que representa o tipo de instrução que gerou o evento de auditoria, como um comando que o servidor recebeu de um cliente.
 
-  Exemplo: `NOME="Consulta"`
+  Exemplo: `NAME="Query"`
 
-  Alguns valores comuns de `NOME`:
+  Alguns valores comuns de `NAME`:
 
-  ```sql
+  ```
   Audit    When auditing starts, which may be server startup time
   Connect  When a client connects, also known as logging in
   Query    An SQL statement (executed directly)
@@ -514,7 +514,7 @@ Os seguintes atributos são obrigatórios em todo o elemento `<AUDIT_RECORD>`:
   NoAudit  Auditing has been turned off
   ```
 
-  Os possíveis valores são `Audit`, `Binlog Dump`, `Alterar usuário`, `Fechar stmt`, `Conectar Saída`, `Conectar`, `Criar DB`, `Daemon`, `Depuração`, `Inserção atrasada`, `Remover DB`, `Executar`, `Buscar`, `Lista de campos`, `Inicializar DB`, `Desligar`, `Dados longos`, `Sem auditoria`, `Ping`, `Preparar`, `Processlist`, `Consulta`, `Sair`, `Atualizar`, `Registrar escravo`, `Reiniciar stmt`, `Definir opção`, `Desligar`, `Dormir`, `Estatísticas`, `Dump de tabela`, `Deletar tabela`, `Inserir tabela`, `Ler tabela`, `Atualizar tabela`, `Tempo`.
+  Os possíveis valores são `Audit`, `Binlog Dump`, `Change user`, `Close stmt`, `Connect Out`, `Connect`, `Create DB`, `Daemon`, `Debug`, `Delayed insert`, `Drop DB`, `Execute`, `Fetch`, `Field List`, `Init DB`, `Kill`, `Long Data`, `NoAudit`, `Ping`, `Prepare`, `Processlist`, `Query`, `Quit`, `Refresh`, `Register Slave`, `Reset stmt`, `Set option`, `Shutdown`, `Sleep`, `Statistics`, `Table Dump`, `TableDelete`, `TableInsert`, `TableRead`, `TableUpdate`, `Time`.
 
   Muitos desses valores correspondem aos valores do comando `COM_xxx` listados no arquivo de cabeçalho `my_command.h`. Por exemplo, `"Create DB"` e `"Change user"` correspondem a `COM_CREATE_DB` e `COM_CHANGE_USER`, respectivamente.
 
@@ -555,13 +555,13 @@ Os seguintes atributos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
   ORDER BY name;
   ```
 
-- `ID_CONEXÃO`
+- `CONNECTION_ID`
 
   Um inteiro não assinado que representa o identificador de conexão do cliente. Isso é o mesmo valor retornado pela função `CONNECTION_ID()` dentro da sessão.
 
   Exemplo: `CONNECTION_ID="127"`
 
-- `TIPO_CONEXÃO`
+- `CONNECTION_TYPE`
 
   O estado de segurança da conexão com o servidor. Os valores permitidos são `TCP/IP` (conexão TCP/IP estabelecida sem criptografia), `SSL/TLS` (conexão TCP/IP estabelecida com criptografia), `Socket` (conexão de arquivo de soquete Unix), `Named Pipe` (conexão de named pipe do Windows) e `Shared Memory` (conexão de memória compartilhada do Windows).
 
@@ -645,7 +645,7 @@ Os seguintes atributos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
 
   Exemplo: `STATUS="1051"`
 
-- `CÓDIGO_STATUS`
+- `STATUS_CODE`
 
   Um número inteiro não assinado que representa o status do comando: 0 para sucesso, 1 se ocorrer um erro.
 
@@ -653,27 +653,27 @@ Os seguintes atributos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
 
   Exemplo: `STATUS_CODE="0"`
 
-- `TABELA`
+- `TABLE`
 
   Uma cadeia que representa o nome de uma tabela.
 
   Exemplo: `TABLE="t3"`
 
-- `USUARIO`
+- `USER`
 
   Uma cadeia que representa o nome do usuário enviado pelo cliente. Isso pode diferir do valor `PRIV_USER`.
 
-- `VERSÃO`
+- `VERSION`
 
   Um número inteiro não assinado que representa a versão do formato do arquivo de log de auditoria.
 
-  Exemplo: `VERSÃO="1"`
+  Exemplo: `VERSION="1"`
 
 ##### Formato de arquivo de registro de auditoria JSON
 
 Para o registro de auditoria no formato JSON (`audit_log_format=JSON`), o conteúdo do arquivo de log forma um array de JSON (`JSON`) com cada elemento do array representando um evento auditado como um hash de pares chave-valor em JSON (`JSON`). Exemplos de registros completos de eventos aparecem mais adiante nesta seção. O seguinte é um trecho de eventos parciais:
 
-```sql
+```json
 [
   {
     "timestamp": "2019-10-03 13:50:01",
@@ -717,7 +717,7 @@ Os exemplos a seguir mostram os formatos dos objetos JSON para diferentes tipos 
 
 Evento de lançamento de startup de auditoria:
 
-```sql
+```json
 { "timestamp": "2019-10-03 14:21:56",
   "id": 0,
   "class": "audit",
@@ -750,7 +750,7 @@ Quando o plugin do log de auditoria é desinstalado como resultado do desligamen
 
 Evento de conexão ou alteração de usuário:
 
-```sql
+```json
 { "timestamp": "2019-10-03 14:23:18",
   "id": 1,
   "class": "connection",
@@ -765,7 +765,7 @@ Evento de conexão ou alteração de usuário:
 
 Desconexão de evento:
 
-```sql
+```json
 { "timestamp": "2019-10-03 14:24:45",
   "id": 3,
   "class": "connection",
@@ -778,7 +778,7 @@ Desconexão de evento:
 
 Pergunta sobre o evento:
 
-```sql
+```json
 { "timestamp": "2019-10-03 14:23:35",
   "id": 2,
   "class": "general",
@@ -794,7 +794,7 @@ Pergunta sobre o evento:
 
 Evento de acesso à tabela (leitura, exclusão, inserção, atualização):
 
-```sql
+```json
 { "timestamp": "2019-10-03 14:23:41",
   "id": 0,
   "class": "table_access",
@@ -816,7 +816,7 @@ Os itens da lista a seguir aparecem no nível superior dos registros de auditori
 
   Exemplo:
 
-  ```sql
+  ```json
   "account": { "user": "root", "host": "localhost" }
   ```
 
@@ -826,7 +826,7 @@ Os itens da lista a seguir aparecem no nível superior dos registros de auditori
 
   Exemplo:
 
-  ```sql
+  ```json
   "class": "connection"
   ```
 
@@ -834,9 +834,34 @@ Os itens da lista a seguir aparecem no nível superior dos registros de auditori
 
   **Tabela 6.25 Combinações de Classe e Evento do Registro de Auditoria**
 
-  <table summary="Combinações permitidas de classe de registro de auditoria e valores de evento."><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Valor da Classe</th> <th>Valores permitidos para eventos</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>read</code>]</td> <td>[[PH_HTML_CODE_<code>read</code>], [[PH_HTML_CODE_<code>insert</code>]</td> </tr><tr> <td>[[PH_HTML_CODE_<code>update</code>]</td> <td>[[<code>connect</code>]], [[<code>change_user</code>]], [[<code>disconnect</code>]]</td> </tr><tr> <td>[[<code>general</code>]]</td> <td>[[<code>status</code>]]</td> </tr><tr> <td>[[<code>table_access_data</code>]]</td> <td>[[PH_HTML_CÓDIGO_1<code>read</code>], [[PH_HTML_CÓDIGO_1<code>read</code>], [[PH_HTML_CÓDIGO_1<code>insert</code>], [[PH_HTML_CÓDIGO_1<code>update</code>]</td> </tr></tbody></table>
+  <table summary="Combinações permitidas de classe de registro de auditoria e valores de evento.">
+    <thead>
+      <tr>
+        <th>Valor da classe</th>
+        <th>Valores de eventos permitidos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>audit</code></td>
+        <td><code>startup</code>, <code>shutdown</code></td>
+      </tr>
+      <tr>
+        <td><code>connection</code></td>
+        <td><code>connect</code>, <code>change_user</code>, <code>disconnect</code></td>
+      </tr>
+      <tr>
+        <td><code>general</code></td>
+        <td><code>status</code></td>
+      </tr>
+      <tr>
+        <td><code>table_access_data</code></td>
+        <td><code>read</code>, <code>delete</code>, <code>insert</code>, <code>update</code></td>
+      </tr>
+    </tbody>
+  </table>
 
-- `dados_de_conexão`
+- `connection_data`
 
   Informações sobre uma conexão de cliente. O valor é um hash contendo os seguintes itens: `connection_type`, `status`, `db`. Este item ocorre apenas para registros de auditoria com um valor de `class` de `connection`.
 
@@ -848,7 +873,7 @@ Os itens da lista a seguir aparecem no nível superior dos registros de auditori
                        "db": "test" }
   ```
 
-- `id_conexão`
+- `connection_id`
 
   Um inteiro não assinado que representa o identificador de conexão do cliente. Isso é o mesmo valor retornado pela função `CONNECTION_ID()` dentro da sessão.
 
@@ -858,17 +883,17 @@ Os itens da lista a seguir aparecem no nível superior dos registros de auditori
   "connection_id": 5
   ```
 
-- `evento`
+- `event`
 
   Uma cadeia que representa a subclasse da classe de evento. A subclasse define o tipo de evento, quando combinada com o item `class` que especifica a classe de evento. Para mais informações, consulte a descrição do item `class`.
 
   Exemplo:
 
-  ```sql
+  ```
   "event": "connect"
   ```
 
-- `dados_gerais`
+- `general_data`
 
   Informações sobre uma declaração ou comando executado. O valor é um hash contendo os seguintes itens: `command`, `sql_command`, `query`, `status`. Este item ocorre apenas para registros de auditoria com um valor de `class` de `general`.
 
@@ -930,7 +955,7 @@ Os itens da lista a seguir aparecem no nível superior dos registros de auditori
                              "--port=3306" ] }
   ```
 
-- `dados_de_acesso_à_tabela`
+- `table_access_data`
 
   Informações sobre o acesso a uma tabela. O valor é um hash contendo os seguintes itens: `db`, `table`, `query`, `sql_command`. Este item ocorre apenas para registros de auditoria com um valor de `class` de `table_access`.
 
@@ -943,7 +968,7 @@ Os itens da lista a seguir aparecem no nível superior dos registros de auditori
                          "sql_command": "insert" }
   ```
 
-- `tempo`
+- `time`
 
   Esse campo é semelhante ao do campo `timestamp`, mas o valor é um número inteiro e representa o valor do timestamp do UNIX que indica a data e a hora em que o evento de auditoria foi gerado.
 
@@ -983,7 +1008,7 @@ Esses itens aparecem dentro de valores hash associados a itens de nível superio
            "--port=3306" ]
   ```
 
-- `comando`
+- `command`
 
   Uma cadeia que representa o tipo de instrução que gerou o evento de auditoria, como um comando que o servidor recebeu de um cliente.
 
@@ -993,7 +1018,7 @@ Esses itens aparecem dentro de valores hash associados a itens de nível superio
   "command": "Query"
   ```
 
-- `tipo_conexão`
+- `connection_type`
 
   O estado de segurança da conexão com o servidor. Os valores permitidos são `tcp/ip` (conexão TCP/IP estabelecida sem criptografia), `ssl` (conexão TCP/IP estabelecida com criptografia), `socket` (conexão de arquivo de soquete Unix), `named_pipe` (conexão de named pipe do Windows) e `shared_memory` (conexão de memória compartilhada do Windows).
 
@@ -1073,7 +1098,7 @@ Esses itens aparecem dentro de valores hash associados a itens de nível superio
   "proxy": "developer"
   ```
 
-- `consulta`
+- `query`
 
   Uma cadeia que representa o texto de uma instrução SQL. O valor pode ser vazio. Valores longos podem ser truncados. A cadeia, assim como o próprio arquivo de log de auditoria, é escrita usando UTF-8 (até 4 bytes por caractere), então o valor pode ser o resultado de uma conversão. Por exemplo, a instrução original pode ter sido recebida do cliente como uma cadeia SJIS.
 
@@ -1126,7 +1151,7 @@ Esses itens aparecem dentro de valores hash associados a itens de nível superio
   "status": 1051
   ```
 
-- `mesa`
+- `table`
 
   Uma cadeia que representa o nome de uma tabela.
 
@@ -1136,7 +1161,7 @@ Esses itens aparecem dentro de valores hash associados a itens de nível superio
   "table": "t1"
   ```
 
-- `usuário`
+- `user`
 
   Uma cadeia que representa um nome de usuário. O significado difere dependendo do item no qual `user` ocorre:
 

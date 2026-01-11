@@ -15,7 +15,7 @@ The value for each affected variable is determined and applied by `--innodb-dedi
 
   **Table 17.8 Automatically Configured Buffer Pool Size**
 
-  <table summary="The first column           shows the amount of server memory detected. The second column shows           the buffer pool size which is automatically determined."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Detected Server Memory</th> <th>Buffer Pool Size</th> </tr></thead><tbody><tr> <td>Less than 1GB</td> <td>128MB (the default value)</td> </tr><tr> <td>1GB to 4GB</td> <td><em class="replaceable"><code>detected server memory</code></em> * 0.5</td> </tr><tr> <td>Greater than 4GB</td> <td><em class="replaceable"><code>detected server memory</code></em> * 0.75</td> </tr></tbody></table>
+  <table summary="The first column           shows the amount of server memory detected. The second column shows           the buffer pool size which is automatically determined."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Detected Server Memory</th> <th>Buffer Pool Size</th> </tr></thead><tbody><tr> <td>Less than 1GB</td> <td>128MB (the default value)</td> </tr><tr> <td>1GB to 4GB</td> <td><em><code>detected server memory</code></em> * 0.5</td> </tr><tr> <td>Greater than 4GB</td> <td><em><code>detected server memory</code></em> * 0.75</td> </tr></tbody></table>
 
 * `innodb_redo_log_capacity`
 

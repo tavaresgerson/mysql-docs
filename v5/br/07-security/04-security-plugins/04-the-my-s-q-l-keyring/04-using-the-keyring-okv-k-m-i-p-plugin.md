@@ -30,7 +30,7 @@ Para informações sobre as características dos valores-chave permitidos pelo `
 Para instalar o `keyring_okv`, use as instruções gerais encontradas em Seção 6.4.4.1, “Instalação do Plugin de Keychain”, juntamente com as informações de configuração específicas para o `keyring_okv` encontradas aqui.
 
 - Configuração do chaveiro geral _okv
-- Configurando o keyring_okv para o Oracle Key Vault (keyring-okv-plugin.html#keyring-okv-oracle-key-vault)
+- Configurando o keyring_okv para o Oracle Key Vault
 - Configurando o keyring_okv para a Gemalto SafeNet KeySecure Appliance
 - Configurando keyring_okv para o Townsend Alliance Key Manager
 - Protegendo a senha do arquivo de chave do keygen_okv
@@ -39,7 +39,7 @@ Para instalar o `keyring_okv`, use as instruções gerais encontradas em Seção
 
 Independentemente do backend do KMIP que o plugin `keyring_okv` usa para armazenamento de chaveiros, a variável de sistema `keyring_okv_conf_dir` configura a localização do diretório usado pelo `keyring_okv` para seus arquivos de suporte. O valor padrão é vazio, então você deve definir a variável para nomear um diretório configurado corretamente antes que o plugin possa se comunicar com o backend do KMIP. Caso contrário, o `keyring_okv` escreverá uma mensagem no log de erro durante a inicialização do servidor que ele não consegue se comunicar:
 
-```sql
+```
 [Warning] Plugin keyring_okv reported: 'For keyring_okv to be
 initialized, please point the keyring_okv_conf_dir variable to a directory
 containing Oracle Key Vault configuration file and ssl materials'
@@ -55,7 +55,7 @@ Tanto o arquivo `okvclient.ora` quanto o diretório `ssl` com os arquivos de cer
 
 O diretório de configuração usado pelo `keyring_okv` como local para seus arquivos de suporte deve ter um modo restrito e ser acessível apenas à conta usada para executar o servidor MySQL. Por exemplo, em sistemas Unix e Unix-like, para usar o diretório `/usr/local/mysql/mysql-keyring-okv`, os seguintes comandos (executados como `root`) criam o diretório e definem seu modo e propriedade:
 
-```sql
+```sh
 cd /usr/local/mysql
 mkdir mysql-keyring-okv
 chmod 750 mysql-keyring-okv
@@ -65,7 +65,7 @@ chgrp mysql mysql-keyring-okv
 
 Para ser utilizado durante o processo de inicialização do servidor, o `keyring_okv` deve ser carregado usando a opção `--early-plugin-load` (server-options.html#option_mysqld_early-plugin-load). Além disso, defina a variável de sistema `keyring_okv_conf_dir` (keyring-system-variables.html#sysvar_keyring_okv_conf_dir) para indicar ao `keyring_okv` onde encontrar seu diretório de configuração. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e a localização do diretório conforme necessário para sua plataforma:
 
-```sql
+```
 [mysqld]
 early-plugin-load=keyring_okv.so
 keyring_okv_conf_dir=/usr/local/mysql/mysql-keyring-okv
@@ -109,7 +109,7 @@ Use o procedimento a seguir para configurar o `keyring_okv` e o Oracle Key Vault
 
 7. Instale o arquivo `okvclient.jar` usando o comando a seguir (você deve ter o JDK 1.4 ou superior):
 
-   ```sql
+   ```sh
    java -jar okvclient.jar -d dir_name [-v]
    ```
 
@@ -119,13 +119,13 @@ Use o procedimento a seguir para configurar o `keyring_okv` e o Oracle Key Vault
 
    O comando anterior produz um arquivo `okvclient.ora`, que deve estar neste local, sob o diretório nomeado pela opção `-d` no comando **java -jar** anterior:
 
-   ```sql
+   ```sh
    install_dir/conf/okvclient.ora
    ```
 
    O conteúdo esperado do arquivo inclui linhas que parecem assim:
 
-   ```sql
+   ```sh
    SERVER=host_ip:port_num
    STANDBY_SERVER=host_ip:port_num
    ```
@@ -146,13 +146,13 @@ Use o procedimento a seguir para configurar o `keyring_okv` e o Oracle Key Vault
 
 8. Vá para o diretório do instalador do Oracle Key Vault e teste a configuração executando este comando:
 
-   ```sql
+   ```sh
    okvutil/bin/okvutil list
    ```
 
    A saída deve parecer algo assim:
 
-   ```sql
+   ```sh
    Unique ID                               Type            Identifier
    255AB8DE-C97F-482C-E053-0100007F28B9	Symmetric Key	-
    264BF6E0-A20E-7C42-E053-0100007FB29C	Symmetric Key	-
@@ -160,13 +160,13 @@ Use o procedimento a seguir para configurar o `keyring_okv` e o Oracle Key Vault
 
    Para um servidor do Oracle Key Vault novo (um servidor sem nenhuma chave nele), a saída parece assim, para indicar que não há chaves no cofre:
 
-   ```sql
+   ```sh
    no objects found
    ```
 
 9. Use este comando para extrair o diretório `ssl`, que contém os materiais SSL, do arquivo `okvclient.jar`:
 
-   ```sql
+   ```sh
    jar xf okvclient.jar ssl
    ```
 
@@ -195,7 +195,7 @@ Use o procedimento a seguir para configurar o `keyring_okv` e o KeySecure para t
 
    Por exemplo, se o KeySecure estiver rodando no host 198.51.100.20 e ouvindo na porta 9002, o arquivo `okvclient.ora` ficaria assim:
 
-   ```sql
+   ```sh
    SERVER=198.51.100.20:9002
    STANDBY_SERVER=198.51.100.20:9002
    ```
@@ -212,7 +212,7 @@ Use o procedimento a seguir para configurar o `keyring_okv` e o KeySecure para t
 
 9. Extraia os arquivos PEM do arquivo baixado. Por exemplo, se o nome do arquivo for `csr_w_pk_pkcs8.gz`, descomprima e descompacte-o usando este comando:
 
-   ```sql
+   ```sh
    tar zxvf csr_w_pk_pkcs8.gz
    ```
 
@@ -220,7 +220,7 @@ Use o procedimento a seguir para configurar o `keyring_okv` e o KeySecure para t
 
 10. Use este comando **openssl** para descriptografar a chave privada e criar um arquivo chamado `key.pem`:
 
-    ```sql
+    ```sh
     openssl pkcs8 -in private_key_pkcs8.pem -out key.pem
     ```
 
@@ -246,7 +246,7 @@ A partir do MySQL 5.7.20, você pode, opcionalmente, proteger o arquivo de chave
 
 1. Criptografar o arquivo de chave `key.pem`. Por exemplo, use um comando como este e insira a senha de criptografia nas solicitações:
 
-   ```sql
+   ```sh
    $> openssl rsa -des3 -in key.pem -out key.pem.new
    Enter PEM pass phrase:
    Verifying - Enter PEM pass phrase:
@@ -256,7 +256,7 @@ A partir do MySQL 5.7.20, você pode, opcionalmente, proteger o arquivo de chave
 
 3. Verifique se o arquivo de chave criptografado pode ser descriptografado usando o seguinte comando. O arquivo descriptografado deve ser exibido no console:
 
-   ```sql
+   ```sh
    $> openssl rsa -in key.pem.new -passin file:password.txt
    ```
 

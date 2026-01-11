@@ -15,7 +15,7 @@ O valor para cada variável afetada é determinado e aplicado pelo `--innodb-ded
 
   **Tabela 17.8 Tamanho Automatizado do Buffer Pool**
 
-  <table summary="A primeira coluna mostra a quantidade de memória do servidor detectada. A segunda coluna mostra o tamanho do buffer pool, que é determinado automaticamente."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Memória do Servidor Detectada</th> <th>Tamanho do Buffer Pool</th> </tr></thead><tbody><tr> <td>Menos de 1GB</td> <td>128MB (o valor padrão)</td> </tr><tr> <td>1GB a 4GB</td> <td><em class="replaceable"><code>memória do servidor detectada</code></em> * 0,5</td> </tr><tr> <td>Maior que 4GB</td> <td><em class="replaceable"><code>memória do servidor detectada</code></em> * 0,75</td> </tr></tbody></table>
+  <table summary="A primeira coluna mostra a quantidade de memória do servidor detectada. A segunda coluna mostra o tamanho do buffer pool, que é determinado automaticamente."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Memória do Servidor Detectada</th> <th>Tamanho do Buffer Pool</th> </tr></thead><tbody><tr> <td>Menos de 1GB</td> <td>128MB (o valor padrão)</td> </tr><tr> <td>1GB a 4GB</td> <td><em><code>memória do servidor detectada</code></em> * 0,5</td> </tr><tr> <td>Maior que 4GB</td> <td><em><code>memória do servidor detectada</code></em> * 0,75</td> </tr></tbody></table>
 
 * `innodb_redo_log_capacity`
 

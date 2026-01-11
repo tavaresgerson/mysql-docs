@@ -1,29 +1,5 @@
 ### 6.4.5 Auditoria do MySQL Enterprise
 
-6.4.5.1 Elementos do registro de auditoria do MySQL Enterprise
-
-6.4.5.2 Instalação ou Desinstalação do MySQL Enterprise Audit
-
-6.4.5.3 Considerações de segurança de auditoria do MySQL Enterprise
-
-Formatos de arquivos de registro de auditoria
-
-6.4.5.5 Configurando características de registro de auditoria
-
-6.4.5.6 Leitura de arquivos de registro de auditoria
-
-6.4.5.7 Filtragem do Log de Auditoria
-
-6.4.5.8 Definições de filtro de registro de auditoria de escrita
-
-6.4.5.9 Desativando o Registro de Auditoria
-
-Filtragem do Log de Auditoria no Modo Legado
-
-Referência do Log de Auditoria
-
-Restrições do Log de Auditoria
-
 Nota
 
 O MySQL Enterprise Audit é uma extensão incluída na Edição Empresarial do MySQL, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.

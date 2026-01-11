@@ -10,7 +10,7 @@ O Oracle fornece pacotes do Debian para instalar o MySQL em sistemas Linux semel
 
     **Tabela 2.14 Identificadores de Pacotes de Instalação do MySQL Debian e Ubuntu CPU**
 
-<table><thead><tr> <th><em class="replaceable"><code>CPU</code></em> Value</th> <th>Tipo ou Família de Processador Proposto</th> </tr></thead><tbody><tr> <td><code>i386</code></td> <td>Processador Pentium ou superior, 32 bits</td> </tr><tr> <td><code>amd64</code></td> <td>Processador x86 de 64 bits</td> </tr></tbody></table>
+<table><thead><tr> <th><em><code>CPU</code></em> Value</th> <th>Tipo ou Família de Processador Proposto</th> </tr></thead><tbody><tr> <td><code>i386</code></td> <td>Processador Pentium ou superior, 32 bits</td> </tr><tr> <td><code>amd64</code></td> <td>Processador x86 de 64 bits</td> </tr></tbody></table>
 
   + Após baixar o arquivo tar, descompacte-o com o seguinte comando:
 

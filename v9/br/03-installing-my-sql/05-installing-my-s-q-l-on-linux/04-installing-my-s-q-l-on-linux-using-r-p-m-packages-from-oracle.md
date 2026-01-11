@@ -34,7 +34,7 @@ Os valores de *`distribution`* e *`arch`* indicam a distribuição Linux e o tip
 
 **Tabela 2.12 Identificadores de Distribuição de Pacotes RPM de MySQL Linux**
 
-<table><thead><tr> <th>Valor da Distribuição</th> <th>Uso Pretendido</th> </tr></thead><tbody><tr> <td>el<em class="replaceable"><code>{version}</code></em> onde <em class="replaceable"><code>{version}</code></em> é a versão principal da Enterprise Linux, como <code>el8</code></td> <td>Plataformas baseadas em EL6 (8.0), EL7, EL8, EL9 e EL10 (por exemplo, as versões correspondentes do Oracle Linux, Red Hat Enterprise Linux e CentOS)</td> </tr><tr> <td>fc<em class="replaceable"><code>{version}</code></em> onde <em class="replaceable"><code>{version}</code></em> é a versão principal do Fedora, como <code>fc37</code></td> <td>Fedora 41 e 42</td> </tr><tr> <td><code>sl5</code></td> <td>SUSE Linux Enterprise Server 15</td> </tr></tbody></table>
+<table><thead><tr> <th>Valor da Distribuição</th> <th>Uso Pretendido</th> </tr></thead><tbody><tr> <td>el<em><code>{version}</code></em> onde <em><code>{version}</code></em> é a versão principal da Enterprise Linux, como <code>el8</code></td> <td>Plataformas baseadas em EL6 (8.0), EL7, EL8, EL9 e EL10 (por exemplo, as versões correspondentes do Oracle Linux, Red Hat Enterprise Linux e CentOS)</td> </tr><tr> <td>fc<em><code>{version}</code></em> onde <em><code>{version}</code></em> é a versão principal do Fedora, como <code>fc37</code></td> <td>Fedora 41 e 42</td> </tr><tr> <td><code>sl5</code></td> <td>SUSE Linux Enterprise Server 15</td> </tr></tbody></table>
 
 Para ver todos os arquivos de um pacote RPM (por exemplo, `mysql-community-server`), use o seguinte comando:
 

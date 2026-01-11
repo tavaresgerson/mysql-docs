@@ -4,7 +4,7 @@ O plugin de registro de auditoria suporta funções que fornecem uma interface S
 
 Quando o plugin de registro de auditoria é inicializado e configurado para registro JSON, ele usa o diretório que contém o arquivo de registro de auditoria atual como local para procurar arquivos de registro de auditoria legíveis. O plugin determina a localização do arquivo, o nome base e o sufixo a partir do valor da variável de sistema `audit_log_file`, e então procura por arquivos com nomes que correspondem ao seguinte padrão, onde `[...]` indica partes opcionais do nome do arquivo:
 
-```sql
+```sh
 basename[.timestamp].suffix[.gz][.enc]
 ```
 
@@ -50,7 +50,7 @@ Para usar as funções para ler o log de auditoria, siga esses princípios:
 
   Cada elemento de array que não seja `null` é um evento representado como um hash em formato `JSON` (json.html). Por exemplo:
 
-  ```sql
+  ```json
   [
     {
       "timestamp": "2020-05-18 13:39:33", "id": 0,

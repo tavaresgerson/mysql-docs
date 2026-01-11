@@ -2527,7 +2527,7 @@ rw-lock: O objeto de nível baixo que o `InnoDB` usa para representar e impor **
 
 The following matrix summarizes rw-lock type compatibility.
 
-<table summary="Compatibility matrix for rw-lock types. Each cell in the matrix is marked as either Compatible or Conflict."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th></th> <th><em class="replaceable"><code>S</code></em></th> <th><em class="replaceable"><code>SX</code></em></th> <th><em class="replaceable"><code>X</code></em></th> </tr></thead><tbody><tr> <th><em class="replaceable"><code>S</code></em></th> <td>Compatible</td> <td>Compatible</td> <td>Conflict</td> </tr><tr> <th><em class="replaceable"><code>SX</code></em></th> <td>Compatible</td> <td>Conflict</td> <td>Conflict</td> </tr><tr> <th><em class="replaceable"><code>X</code></em></th> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> </tr></tbody></table>
+<table summary="Compatibility matrix for rw-lock types. Each cell in the matrix is marked as either Compatible or Conflict."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 20%"/><thead><tr> <th></th> <th><em><code>S</code></em></th> <th><em><code>SX</code></em></th> <th><em><code>X</code></em></th> </tr></thead><tbody><tr> <th><em><code>S</code></em></th> <td>Compatible</td> <td>Compatible</td> <td>Conflict</td> </tr><tr> <th><em><code>SX</code></em></th> <td>Compatible</td> <td>Conflict</td> <td>Conflict</td> </tr><tr> <th><em><code>X</code></em></th> <td>Conflict</td> <td>Conflict</td> <td>Conflict</td> </tr></tbody></table>
 
 See Also latch, lock, mutex, Performance Schema.
 ```

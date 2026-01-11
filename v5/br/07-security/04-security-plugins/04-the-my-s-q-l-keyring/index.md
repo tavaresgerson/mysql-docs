@@ -1,29 +1,5 @@
 ### 6.4.4 O Keyring do MySQL
 
-6.4.4.1 Instalação do Plugin para Carteira de Chave
-
-6.4.4.2 Usando o plugin de cartela de chaves baseado em arquivo keyring_file
-
-6.4.4.3 Usando o plugin de cartela de chaves com arquivo criptografado keyring_encrypted_file
-
-6.4.4.4 Usando o plugin KMIP keyring_okv
-
-6.4.4.5 Usando o plugin Amazon Web Services Keyring keyring_aws
-
-6.4.4.6 Tipos e comprimentos de chaves de cartela de identificação suportados
-
-6.4.4.7 Migração de Chaves entre Keystores do Keyring
-
-6.4.4.8 Funções de gerenciamento de chaves do porta-chaves de uso geral
-
-Funções de Gerenciamento de Chaves do Carteira de Plugins Específicas
-
-6.4.4.10 Metadados do cartela de identificação
-
-Opções de comando do cartela de identificação
-
-6.4.4.12 Variáveis do Sistema de Carteira de Chave
-
 O MySQL Server suporta um conjunto de chaves que permite que os componentes internos do servidor e os plugins armazem informações sensíveis de forma segura para recuperação posterior. A implementação inclui esses elementos:
 
 - Plugins de chaveiro que gerenciam um armazenamento de backup ou se comunicam com um backend de armazenamento. Esses plugins de chaveiro estão disponíveis:

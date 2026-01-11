@@ -62,7 +62,7 @@ As funções do chaveiro estão sujeitas a essas restrições:
 
 - Para usar qualquer função do bloco de chaves, o plugin `keyring_udf` deve estar habilitado. Caso contrário, ocorrerá um erro:
 
-  ```sql
+  ```
   ERROR 1123 (HY000): Can't initialize function 'keyring_key_generate';
   This function requires keyring_udf plugin which is not installed.
   Please install
@@ -72,7 +72,7 @@ As funções do chaveiro estão sujeitas a essas restrições:
 
 - As funções do chaveiro acionam as funções do serviço do chaveiro (consulte Seção 5.5.6.2, “O Serviço do Chaveiro”). As funções do serviço, por sua vez, usam o plugin do chaveiro instalado (por exemplo, `keyring_file` ou `keyring_okv`). Portanto, para usar qualquer função do chaveiro, algum plugin do chaveiro subjacente deve estar habilitado. Caso contrário, ocorrerá um erro:
 
-  ```sql
+  ```
   ERROR 3188 (HY000): Function 'keyring_key_generate' failed because
   underlying keyring service returned an error. Please check if a
   keyring plugin is installed and that provided arguments are valid
@@ -83,7 +83,7 @@ As funções do chaveiro estão sujeitas a essas restrições:
 
 - Um usuário deve possuir o privilégio global `EXECUTE` para usar qualquer função de chave. Caso contrário, ocorrerá um erro:
 
-  ```sql
+  ```
   ERROR 1123 (HY000): Can't initialize function 'keyring_key_generate';
   The user is not privileged to execute this function. User needs to
   have EXECUTE

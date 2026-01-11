@@ -1,8 +1,8 @@
 #### 6.4.5.7 Filtragem do Log de Auditoria
 
-Nota
-
+::: info Nota
 A partir do MySQL 5.7.13, para que o filtro do log de auditoria funcione conforme descrito aqui, o plugin de log de auditoria *e as tabelas e funções de auditoria que o acompanham* devem ser instalados. Se o plugin for instalado sem as tabelas e funções de auditoria que acompanham, necessárias para o filtro baseado em regras, o plugin opera no modo de filtro legado, descrito em Seção 6.4.5.10, “Filtro de Log de Auditoria em Modo Legado”. O modo legado é o comportamento de filtro como era antes do MySQL 5.7.13; ou seja, antes da introdução do filtro baseado em regras.
+:::
 
 - Propriedades da Filtragem do Registro de Auditoria
 - Restrições para as funções de filtragem do log de auditoria

@@ -30,7 +30,7 @@ Para instalar o MySQL Enterprise Audit, procure no diretório `share` da sua ins
 
 Execute o script da seguinte forma. O exemplo abaixo usa o script de instalação do Linux. Faça a substituição apropriada para o seu sistema.
 
-```sql
+```sh
 $> mysql -u root -p < audit_log_filter_linux_install.sql
 Enter password: (enter root password here)
 ```
@@ -90,7 +90,7 @@ Se o plugin não conseguir se inicializar, verifique o log de erro do servidor p
 
 Após a instalação do MySQL Enterprise Audit, você pode usar a opção `--audit-log` (referência do log de auditoria.html#option_mysqld_audit-log) nas próximas inicializações do servidor para controlar a ativação do plugin `audit_log`. Por exemplo, para impedir que o plugin seja removido durante a execução, use esta opção:
 
-```sql
+```
 [mysqld]
 audit-log=FORCE_PLUS_PERMANENT
 ```

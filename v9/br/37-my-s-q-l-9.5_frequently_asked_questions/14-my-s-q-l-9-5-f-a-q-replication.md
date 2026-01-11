@@ -38,7 +38,7 @@ A.14.14. A replicação funciona em arquiteturas de hardware mistas (por exemplo
       <h2>Perguntas Frequentes sobre Replicação</h2>
       <ul>
         <li><strong>A.14.1</strong>: Como configurar a replicação para que o MySQL 8.0.26:
-          <pre class="programlisting copytoclipboard language-sql one-line"><code class="language-sql">mysql&gt; SELECT SOURCE_POS_WAIT('<em class="replaceable">log_name</em>>', '<em class="replaceable">log_pos</em>)';</code></pre><p> A declaração <code>SELECT</code> bloqueia a replica até que a replica atinja o arquivo de log especificado e a posição. Nesse ponto, a replica está em sincronia com a fonte e a declaração retorna. </p></li>
+          <pre class="programlisting copytoclipboard language-sql one-line"><code class="language-sql">mysql&gt; SELECT SOURCE_POS_WAIT('<em>log_name</em>>', '<em>log_pos</em>)';</code></pre><p> A declaração <code>SELECT</code> bloqueia a replica até que a replica atinja o arquivo de log especificado e a posição. Nesse ponto, a replica está em sincronia com a fonte e a declaração retorna. </p></li>
         <li><strong>A.14.2</strong>: Como habilitar a fonte para começar a processar atualizações novamente:
           <pre class="programlisting copytoclipboard language-sql one-line"><code class="language-sql">mysql&gt; UNLOCK TABLES;</code></pre></li>
         <li><strong>A.14.5</strong>: Quais problemas devo estar ciente ao configurar a replicação bidirecional?

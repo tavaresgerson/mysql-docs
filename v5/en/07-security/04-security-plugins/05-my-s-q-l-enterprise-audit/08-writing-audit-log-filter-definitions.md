@@ -147,7 +147,60 @@ As of MySQL 5.7.20, the `event` item can also indicate whether to block qualifyi
 
 **Table 6.26 Event Class and Subclass Combinations**
 
-<table summary="Permitted combiniations of event class and subclass values."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 60%"/><thead><tr> <th>Event Class</th> <th>Event Subclass</th> <th>Description</th> </tr></thead><tbody><tr> <th><code>connection</code></th> <td><code>connect</code></td> <td>Connection initiation (successful or unsuccessful)</td> </tr><tr> <th><code>connection</code></th> <td><code>change_user</code></td> <td>User re-authentication with different user/password during session</td> </tr><tr> <th><code>connection</code></th> <td><code>disconnect</code></td> <td>Connection termination</td> </tr><tr> <th><code>general</code></th> <td><code>status</code></td> <td>General operation information</td> </tr><tr> <th><code>table_access</code></th> <td><code>read</code></td> <td>Table read statements, such as <code>SELECT</code> or <code>INSERT INTO ... SELECT</code></td> </tr><tr> <th><code>table_access</code></th> <td><code>delete</code></td> <td>Table delete statements, such as <code>DELETE</code> or <code>TRUNCATE TABLE</code></td> </tr><tr> <th><code>table_access</code></th> <td><code>insert</code></td> <td>Table insert statements, such as <code>INSERT</code> or <code>REPLACE</code></td> </tr><tr> <th><code>table_access</code></th> <td><code>update</code></td> <td>Table update statements, such as <code>UPDATE</code></td> </tr></tbody></table>
+<table summary="Permitted combiniations of event class and subclass values.">
+  <col style="width: 20%"/>
+  <col style="width: 20%"/>
+  <col style="width: 60%"/>
+  <thead>
+    <tr>
+      <th>Event Class</th>
+      <th>Event Subclass</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><code>connection</code></th>
+      <td><code>connect</code></td>
+      <td>Connection initiation (successful or unsuccessful)</td>
+    </tr>
+    <tr>
+      <th><code>connection</code></th>
+      <td><code>change_user</code></td>
+      <td>User re-authentication with different user/password during session</td>
+    </tr>
+    <tr>
+      <th><code>connection</code></th>
+      <td><code>disconnect</code></td>
+      <td>Connection termination</td>
+    </tr>
+    <tr>
+      <th><code>general</code></th>
+      <td><code>status</code></td>
+      <td>General operation information</td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>read</code></td>
+      <td>Table read statements, such as <code>SELECT</code> or <code>INSERT INTO ... SELECT</code></td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>delete</code></td>
+      <td>Table delete statements, such as <code>DELETE</code> or <code>TRUNCATE TABLE</code></td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>insert</code></td>
+      <td>Table insert statements, such as <code>INSERT</code> or <code>REPLACE</code></td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>update</code></td>
+      <td>Table update statements, such as <code>UPDATE</code></td>
+    </tr>
+  </tbody>
+</table>
 
 [Table 6.27, “Log and Abort Characteristics Per Event Class and Subclass Combination”](audit-log-filter-definitions.html#audit-log-event-subclass-log-abort "Table 6.27 Log and Abort Characteristics Per Event Class and Subclass Combination") describes for each event subclass whether it can be logged or aborted.
 
@@ -450,7 +503,7 @@ The following list describes the permitted predefined variables for `variable` i
 
   **Table 6.31 audit_log_connection_policy_value Values**
 
-  <table summary="Permitted audit_log_connection_policy_value values and the corresponding audit_log_connection_policy values."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Value</th> <th>Corresponding audit_log_connection_policy Value</th> </tr></thead><tbody><tr> <td><code>0</code> or <code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code> or <code>"::errors"</code></td> <td><code>ERRORS</code></td> </tr><tr> <td><code>2</code> or <code>"::all"</code></td> <td><code>ALL</code></td> </tr></tbody></table>
+  <table summary="Permitted audit_log_connection_policy_value values and the corresponding audit_log_connection_policy values."><thead><tr> <th>Value</th> <th>Corresponding audit_log_connection_policy Value</th> </tr></thead><tbody><tr> <td><code>0</code> or <code>"::none"</code></td> <td><code>NONE</code></td> </tr><tr> <td><code>1</code> or <code>"::errors"</code></td> <td><code>ERRORS</code></td> </tr><tr> <td><code>2</code> or <code>"::all"</code></td> <td><code>ALL</code></td> </tr></tbody></table>
 
   The `"::xxx"` values are symbolic pseudo-constants that may be given instead of the literal numeric values. They must be quoted as strings and are case-sensitive.
 

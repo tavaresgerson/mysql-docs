@@ -1,13 +1,5 @@
 ### 6.4.6 Firewall Empresarial MySQL
 
-6.4.6.1 Elementos do Firewall Empresarial MySQL
-
-6.4.6.2 Instalação ou Desinstalação do Firewall do MySQL Enterprise
-
-6.4.6.3 Uso do Firewall da MySQL Enterprise
-
-Referência do Firewall Empresarial MySQL Enterprise
-
 Nota
 
 O MySQL Enterprise Firewall é uma extensão incluída na MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.

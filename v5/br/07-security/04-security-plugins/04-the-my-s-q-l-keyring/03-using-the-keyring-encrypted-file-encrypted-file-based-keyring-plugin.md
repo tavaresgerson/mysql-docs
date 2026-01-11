@@ -14,7 +14,7 @@ Para instalar o `keyring_encrypted_file`, use as instruções gerais encontradas
 
 Para ser utilizado durante o processo de inicialização do servidor, o `keyring_encrypted_file` deve ser carregado usando a opção `--early-plugin-load` (opções do servidor.html#opção_mysqld_early-plugin-load). Para especificar a senha para criptografar o arquivo de dados do keyring, defina a variável de sistema `keyring_encrypted_file_password` (variáveis de sistema do keyring.html#sysvar_keyring_encrypted_file_password). (A senha é obrigatória; se não for especificada durante a inicialização do servidor, a inicialização do `keyring_encrypted_file` falha.) A variável de sistema `keyring_encrypted_file_data` (variáveis de sistema do keyring.html#sysvar_keyring_encrypted_file_data) configura opcionalmente a localização do arquivo usado pelo plugin `keyring_encrypted_file` para armazenamento de dados. O valor padrão é específico da plataforma. Para configurar a localização do arquivo explicitamente, defina o valor da variável durante a inicialização. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e a localização do arquivo para sua plataforma conforme necessário e substituindo sua senha escolhida:
 
-```sql
+```
 [mysqld]
 early-plugin-load=keyring_encrypted_file.so
 keyring_encrypted_file_data=/usr/local/mysql/mysql-keyring/keyring-encrypted

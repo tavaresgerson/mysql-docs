@@ -12,7 +12,7 @@ If you use **myisamchk** to repair or optimize tables, you *must* always ensure 
 
 When performing crash recovery, it is important to understand that each `MyISAM` table *`tbl_name`* in a database corresponds to the three files in the database directory shown in the following table.
 
-<table summary="The two files in the database directory that correspond to each MyISAM table."><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>File</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code><em class="replaceable"><code>tbl_name</code></em>.MYD</code></td> <td>Data file</td> </tr><tr> <td><code><em class="replaceable"><code>tbl_name</code></em>.MYI</code></td> <td>Index file</td> </tr></tbody></table>
+<table summary="The two files in the database directory that correspond to each MyISAM table."><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>File</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code><em><code>tbl_name</code></em>.MYD</code></td> <td>Data file</td> </tr><tr> <td><code><em><code>tbl_name</code></em>.MYI</code></td> <td>Index file</td> </tr></tbody></table>
 
 Each of these three file types is subject to corruption in various ways, but problems occur most often in data files and index files.
 

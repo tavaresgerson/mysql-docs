@@ -4,7 +4,7 @@ As definições de filtro são valores de `JSON`. Para obter informações sobre
 
 As definições de filtro têm essa forma, onde *`ações`* indica como o filtro é realizado:
 
-```sql
+```json
 { "filter": actions }
 ```
 
@@ -25,7 +25,7 @@ A discussão a seguir descreve as construções permitidas nas definições de f
 
 Para habilitar ou desabilitar explicitamente o registro de todos os eventos, use um item `log` no filtro:
 
-```sql
+```json
 {
   "filter": { "log": true }
 }
@@ -35,7 +35,7 @@ O valor `log` pode ser `true` ou `false`.
 
 O filtro anterior permite o registro de todos os eventos. É equivalente a:
 
-```sql
+```json
 {
   "filter": { }
 }
@@ -51,7 +51,7 @@ O comportamento de registro depende do valor `log` e se os itens `class` ou `eve
 
 Para registrar eventos de uma classe específica, use um item `class` no filtro, com seu campo `name` indicando o nome da classe a ser registrada:
 
-```sql
+```json
 {
   "filter": {
     "class": { "name": "connection" }
@@ -63,7 +63,7 @@ O valor `name` pode ser `connection`, `general` ou `table_access` para registrar
 
 O filtro anterior permite o registro de eventos na classe `connection`. É equivalente ao seguinte filtro com os itens `log` explicitamente definidos:
 
-```sql
+```json
 {
   "filter": {
     "log": false,
@@ -75,7 +75,7 @@ O filtro anterior permite o registro de eventos na classe `connection`. É equiv
 
 Para habilitar o registro de múltiplas classes, defina o valor `class` como um elemento de array de JSON que nomeia as classes:
 
-```sql
+```json
 {
   "filter": {
     "class": [
@@ -91,7 +91,7 @@ Nota
 
 Quando várias instâncias de um item específico aparecem no mesmo nível dentro de uma definição de filtro, os valores do item podem ser combinados em uma única instância desse item dentro de um valor de matriz. A definição anterior pode ser escrita da seguinte forma:
 
-```sql
+```json
 {
   "filter": {
     "class": [
@@ -105,7 +105,7 @@ Quando várias instâncias de um item específico aparecem no mesmo nível dentr
 
 Para selecionar subcategorias de eventos específicas, use um item `event` contendo um item `name` que nomeia as subcategorias. A ação padrão para eventos selecionados por um item `event` é registrar-los. Por exemplo, este filtro habilita o registro para as subcategorias de eventos nomeadas:
 
-```sql
+```json
 {
   "filter": {
     "class": [
@@ -132,7 +132,7 @@ Para selecionar subcategorias de eventos específicas, use um item `event` conte
 
 O item `event` também pode conter itens `log` explícitos para indicar se os eventos qualificadores devem ser registrados. Este item `event` seleciona vários eventos e indica explicitamente o comportamento de registro para eles:
 
-```sql
+```json
 "event": [
   { "name": "read", "log": false },
   { "name": "insert", "log": true },
@@ -147,13 +147,125 @@ A Tabela 6.26, “Combinações de Classe e Subclasse de Eventos” (audit-log-f
 
 **Tabela 6.26 Combinações de Classe e Subclasse de Eventos**
 
-<table summary="Combinações permitidas de valores de classe e subclasse de evento."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 60%"/><thead><tr> <th>Classe de evento</th> <th>Subclasse de evento</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>[[PH_HTML_CODE_<code>SELECT</code>]</th> <td>[[PH_HTML_CODE_<code>SELECT</code>]</td> <td>Início da conexão (sucesso ou falha)</td> </tr><tr> <th>[[PH_HTML_CODE_<code>table_access</code>]</th> <td>[[PH_HTML_CODE_<code>delete</code>]</td> <td>Reauthenticação do usuário com diferentes usuário/senha durante a sessão</td> </tr><tr> <th>[[PH_HTML_CODE_<code>DELETE</code>]</th> <td>[[PH_HTML_CODE_<code>TRUNCATE TABLE</code>]</td> <td>Termina��o da conex�o</td> </tr><tr> <th>[[PH_HTML_CODE_<code>table_access</code>]</th> <td>[[PH_HTML_CODE_<code>insert</code>]</td> <td>Informações gerais sobre o funcionamento</td> </tr><tr> <th>[[PH_HTML_CODE_<code>INSERT</code>]</th> <td>[[PH_HTML_CODE_<code>REPLACE</code>]</td> <td>Declarações de leitura de tabela, como[[<code>SELECT</code>]]ou[[<code>connect</code><code>SELECT</code>]</td> </tr><tr> <th>[[<code>table_access</code>]]</th> <td>[[<code>delete</code>]]</td> <td>Declarações de exclusão de tabela, como[[<code>DELETE</code>]]oudelete</code>]">[[<code>TRUNCATE TABLE</code>]]</td> </tr><tr> <th>[[<code>table_access</code>]]</th> <td>[[<code>insert</code>]]</td> <td>As declarações de inserção de tabela, como[[<code>INSERT</code>]]ou[[<code>REPLACE</code>]]</td> </tr><tr> <th>[[<code>connection</code><code>SELECT</code>]</th> <td>[[<code>connection</code><code>SELECT</code>]</td> <td>Declarações de atualização de tabela, como[[<code>connection</code><code>table_access</code>]</td> </tr></tbody></table>
+<table summary="Combinações permitidas de valores de classe e subclasse de evento.">
+  <col style="width: 20%"/>
+  <col style="width: 20%"/>
+  <col style="width: 60%"/>
+  <thead>
+    <tr>
+      <th>Classe de Evento</th>
+      <th>Subclasse de Evento</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><code>connection</code></th>
+      <td><code>connect</code></td>
+      <td>Iniciação da conexão (bem-sucedida ou malsucedida)</td>
+    </tr>
+    <tr>
+      <th><code>connection</code></th>
+      <td><code>change_user</code></td>
+      <td>Reautenticação de usuário com usuário/senha diferente durante a sessão</td>
+    </tr>
+    <tr>
+      <th><code>connection</code></th>
+      <td><code>disconnect</code></td>
+      <td>Término da conexão</td>
+    </tr>
+    <tr>
+      <th><code>general</code></th>
+      <td><code>status</code></td>
+      <td>Informações gerais de operação</td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>read</code></td>
+      <td>Instruções de leitura de tabela, como <code>SELECT</code> ou <code>INSERT INTO ... SELECT</code></td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>delete</code></td>
+      <td>Instruções de exclusão de tabela, como <code>DELETE</code> ou <code>TRUNCATE TABLE</code></td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>insert</code></td>
+      <td>Instruções de inserção de tabela, como <code>INSERT</code> ou <code>REPLACE</code></td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>update</code></td>
+      <td>Instruções de atualização de tabela, como <code>UPDATE</code></td>
+    </tr>
+  </tbody>
+</table>
 
 Tabela 6.27, “Características de registro e interrupção por combinação de classe e subclasse de evento” descreve, para cada subclasse de evento, se ela pode ser registrada ou interrompida.
 
 **Tabela 6.27 Características de registro e interrupção por classe de evento e combinação de subclasses**
 
-<table summary="Características de registro e interrupção para combinações de classe e subclasse de eventos."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Classe de evento</th> <th>Subclasse de evento</th> <th>Pode ser registrado</th> <th>Pode ser interrompido</th> </tr></thead><tbody><tr> <th>[[PH_HTML_CODE_<code>table_access</code>]</th> <td>[[PH_HTML_CODE_<code>table_access</code>]</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>[[PH_HTML_CODE_<code>table_access</code>]</th> <td>[[PH_HTML_CODE_<code>insert</code>]</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>[[PH_HTML_CODE_<code>table_access</code>]</th> <td>[[PH_HTML_CODE_<code>update</code>]</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>[[<code>general</code>]]</th> <td>[[<code>status</code>]]</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>[[<code>table_access</code>]]</th> <td>[[<code>read</code>]]</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>[[<code>table_access</code>]]</th> <td>[[<code>connect</code><code>table_access</code>]</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>[[<code>table_access</code>]]</th> <td>[[<code>insert</code>]]</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>[[<code>table_access</code>]]</th> <td>[[<code>update</code>]]</td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
+<table summary="Características de registro e interrupção para combinações de classe e subclasse de eventos.">
+  <thead>
+    <tr>
+      <th>Classe de Evento</th>
+      <th>Subclasse de Evento</th>
+      <th>Pode ser registrado</th>
+      <th>Pode ser abortado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><code>connection</code></th>
+      <td><code>connect</code></td>
+      <td>Sim</td>
+      <td>Não</td>
+    </tr>
+    <tr>
+      <th><code>connection</code></th>
+      <td><code>change_user</code></td>
+      <td>Sim</td>
+      <td>Não</td>
+    </tr>
+    <tr>
+      <th><code>connection</code></th>
+      <td><code>disconnect</code></td>
+      <td>Sim</td>
+      <td>Não</td>
+    </tr>
+    <tr>
+      <th><code>general</code></th>
+      <td><code>status</code></td>
+      <td>Sim</td>
+      <td>Não</td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>read</code></td>
+      <td>Sim</td>
+      <td>Sim</td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>delete</code></td>
+      <td>Sim</td>
+      <td>Sim</td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>insert</code></td>
+      <td>Sim</td>
+      <td>Sim</td>
+    </tr>
+    <tr>
+      <th><code>table_access</code></th>
+      <td><code>update</code></td>
+      <td>Sim</td>
+      <td>Sim</td>
+    </tr>
+  </tbody>
+</table>
 
 ##### Registros inclusivos e exclusivos
 
@@ -164,7 +276,7 @@ Um filtro pode ser definido no modo inclusivo ou exclusivo:
 
 Para realizar o registro inclusivo, desative o registro globalmente e habilite o registro para classes específicas. Esse filtro registra os eventos `connect` e `disconnect` na classe `connection` e eventos na classe `general`:
 
-```sql
+```json
 {
   "filter": {
     "log": false,
@@ -184,7 +296,7 @@ Para realizar o registro inclusivo, desative o registro globalmente e habilite o
 
 Para realizar o registro exclusivo, habilite o registro globalmente e desative o registro para classes específicas. Esse filtro registra tudo, exceto eventos na classe `general`:
 
-```sql
+```json
 {
   "filter": {
     "log": true,
@@ -196,7 +308,7 @@ Para realizar o registro exclusivo, habilite o registro globalmente e desative o
 
 Este filtro registra eventos `change_user` na classe `connection` e eventos `table_access`, em virtude de não registrar tudo o mais:
 
-```sql
+```json
 {
   "filter": {
     "log": true,
@@ -218,7 +330,7 @@ Este filtro registra eventos `change_user` na classe `connection` e eventos `tab
 
 Para habilitar o registro com base em valores específicos de campos de evento, especifique um item `campo` dentro do item `log` que indique o nome do campo e seu valor esperado:
 
-```sql
+```json
 {
   "filter": {
     "class": {
@@ -240,7 +352,114 @@ Um evento na classe `connection` indica quando uma atividade relacionada à cone
 
 **Tabela 6.28 Campos de Eventos de Conexão**
 
-<table summary="Campos permitidos para eventos de conexão."><col style="width: 35%"/><col style="width: 20%"/><col style="width: 45%"/><thead><tr> <th>Nome do campo</th> <th>Tipo de campo</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>[[PH_HTML_CODE_<code>host.str</code>]</th> <td>inteiro</td> <td><p>Status do evento:</p><p>0: OK</p><p>Caso contrário: Falha</p></td> </tr><tr> <th>[[PH_HTML_CODE_<code>host.str</code>]</th> <td>inteiro não assinado</td> <td>ID de conexão</td> </tr><tr> <th>[[PH_HTML_CODE_<code>ip.str</code>]</th> <td>string</td> <td>Nome do usuário especificado durante a autenticação</td> </tr><tr> <th>[[PH_HTML_CODE_<code>ip.length</code>]</th> <td>inteiro não assinado</td> <td>Comprimento do nome do usuário</td> </tr><tr> <th>[[PH_HTML_CODE_<code>database.str</code>]</th> <td>string</td> <td>Nome de usuário autenticado (nome do usuário da conta)</td> </tr><tr> <th>[[PH_HTML_CODE_<code>database.length</code>]</th> <td>inteiro não assinado</td> <td>Nome de usuário autenticado com comprimento</td> </tr><tr> <th>[[PH_HTML_CODE_<code>connection_type</code>]</th> <td>string</td> <td>Nome do usuário externo (fornecido pelo plugin de autenticação de terceiros)</td> </tr><tr> <th>[[PH_HTML_CODE_<code>"::undefined"</code>]</th> <td>inteiro não assinado</td> <td>Nome do usuário externo de comprimento</td> </tr><tr> <th>[[PH_HTML_CODE_<code>"::tcp/ip"</code>]</th> <td>string</td> <td>Nome de usuário do proxy</td> </tr><tr> <th>[[PH_HTML_CODE_<code>"::socket"</code>]</th> <td>inteiro não assinado</td> <td>Nome de usuário do proxy comprimento</td> </tr><tr> <th>[[<code>host.str</code>]]</th> <td>string</td> <td>Hospedeiro de usuário conectado</td> </tr><tr> <th>[[<code>connection_id</code><code>host.str</code>]</th> <td>inteiro não assinado</td> <td>Comprimento do host do usuário conectado</td> </tr><tr> <th>[[<code>ip.str</code>]]</th> <td>string</td> <td>Endereço IP do usuário conectado</td> </tr><tr> <th>[[<code>ip.length</code>]]</th> <td>inteiro não assinado</td> <td>Tamanho do endereço IP do usuário conectado</td> </tr><tr> <th>[[<code>database.str</code>]]</th> <td>string</td> <td>Nome do banco de dados especificado no momento da conexão</td> </tr><tr> <th>[[<code>database.length</code>]]</th> <td>inteiro não assinado</td> <td>Nome do banco de dados</td> </tr><tr> <th>[[<code>connection_type</code>]]</th> <td>inteiro</td> <td><p>Tipo de conexão:</p><p>0 ou [[<code>"::undefined"</code>]]: Indefinido</p><p>1 ou [[<code>"::tcp/ip"</code>]]: TCP/IP</p><p>2 ou [[<code>"::socket"</code>]]: Soquete</p><p>3 ou [[<code>user.str</code><code>host.str</code>]: Pipe nomeado</p><p>4 ou [[<code>user.str</code><code>host.str</code>]: TCP/IP com criptografia</p><p>5 ou [[<code>user.str</code><code>ip.str</code>]: Memória compartilhada</p></td> </tr></tbody></table>
+<table summary="Campos permitidos para eventos de conexão.">
+  <thead>
+    <tr>
+      <th>Nome do campo</th>
+      <th>Tipo de campo</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><code>status</code></th>
+      <td>integer</td>
+      <td>
+        <p> Event status: </p>
+        <p> 0: OK </p>
+        <p> Otherwise: Failed </p>
+      </td>
+    </tr>
+    <tr>
+      <th><code>connection_id</code></th>
+      <td>unsigned integer</td>
+      <td>ID de conexão</td>
+    </tr>
+    <tr>
+      <th><code>user.str</code></th>
+      <td>string</td>
+      <td>Nome de usuário especificado durante a autenticação</td>
+    </tr>
+    <tr>
+      <th><code>user.length</code></th>
+      <td>unsigned integer</td>
+      <td>Comprimento do nome de usuário</td>
+    </tr>
+    <tr>
+      <th><code>priv_user.str</code></th>
+      <td>string</td>
+      <td>Nome de usuário autenticado (nome de usuário da conta)</td>
+    </tr>
+    <tr>
+      <th><code>priv_user.length</code></th>
+      <td>unsigned integer</td>
+      <td>Comprimento do nome de usuário autenticado</td>
+    </tr>
+    <tr>
+      <th><code>external_user.str</code></th>
+      <td>string</td>
+      <td>Nome de usuário externo (fornecido pelo plugin de autenticação de terceiros)</td>
+    </tr>
+    <tr>
+      <th><code>external_user.length</code></th>
+      <td>unsigned integer</td>
+      <td>Comprimento do nome de usuário externo</td>
+    </tr>
+    <tr>
+      <th><code>proxy_user.str</code></th>
+      <td>string</td>
+      <td>Nome de usuário proxy</td>
+    </tr>
+    <tr>
+      <th><code>proxy_user.length</code></th>
+      <td>unsigned integer</td>
+      <td>Comprimento do nome de usuário proxy</td>
+    </tr>
+    <tr>
+      <th><code>host.str</code></th>
+      <td>string</td>
+      <td>Host de usuário conectado</td>
+    </tr>
+    <tr>
+      <th><code>host.length</code></th>
+      <td>unsigned integer</td>
+      <td>Comprimento do host do usuário conectado</td>
+    </tr>
+    <tr>
+      <th><code>ip.str</code></th>
+      <td>string</td>
+      <td>Endereço IP do usuário conectado</td>
+    </tr>
+    <tr>
+      <th><code>ip.length</code></th>
+      <td>unsigned integer</td>
+      <td>Comprimento do endereço IP do usuário conectado</td>
+    </tr>
+    <tr>
+      <th><code>database.str</code></th>
+      <td>string</td>
+      <td>Nome do banco de dados especificado no momento da conexão</td>
+    </tr>
+    <tr>
+      <th><code>database.length</code></th>
+      <td>unsigned integer</td>
+      <td>Comprimento do nome do banco de dados</td>
+    </tr>
+    <tr>
+      <th><code>connection_type</code></th>
+      <td>integer</td>
+      <td>
+        <p> Tipo de conexão: </p>
+        <p> 0 ou <code>"::undefined"</code>: Undefined </p>
+        <p> 1 ou <code>"::tcp/ip"</code>: TCP/IP </p>
+        <p> 2 ou <code>"::socket"</code>: Socket </p>
+        <p> 3 ou <code>"::named_pipe"</code>: Named pipe </p>
+        <p> 4 ou <code>"::ssl"</code>: TCP/IP with encryption </p>
+        <p> 5 ou <code>"::shared_memory"</code>: Shared memory </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser usados em vez dos valores numéricos literais. Eles devem ser citados como strings e são sensíveis a maiúsculas e minúsculas.
 
@@ -248,7 +467,7 @@ Um evento na classe `general` indica o código de status de uma operação e seu
 
 **Tabela 6.29 Campos Gerais de Evento**
 
-<table summary="Tipos de campos permitidos para eventos gerais."><col style="width: 35%"/><col style="width: 20%"/><col style="width: 45%"/><thead><tr> <th>Nome do campo</th> <th>Tipo de campo</th> <th>Descrição</th> </tr></thead><tbody><tr> <th>[[PH_HTML_CODE_<code>general_sql_command.str</code>]</th> <td>inteiro</td> <td><p>Status do evento:</p><p>0: OK</p><p>Caso contrário: Falha</p></td> </tr><tr> <th>[[PH_HTML_CODE_<code>general_sql_command.str</code>]</th> <td>inteiro não assinado</td> <td>ID de conexão/fio</td> </tr><tr> <th>[[PH_HTML_CODE_<code>general_external_user.str</code>]</th> <td>string</td> <td>Nome do usuário especificado durante a autenticação</td> </tr><tr> <th>[[PH_HTML_CODE_<code>general_external_user.length</code>]</th> <td>inteiro não assinado</td> <td>Comprimento do nome do usuário</td> </tr><tr> <th>[[PH_HTML_CODE_<code>general_ip.str</code>]</th> <td>string</td> <td>Nome do comando</td> </tr><tr> <th>[[PH_HTML_CODE_<code>general_ip.length</code>]</th> <td>inteiro não assinado</td> <td>Nome do comando de comprimento</td> </tr><tr> <th>[[<code>general_query.str</code>]]</th> <td>string</td> <td>Texto da instrução SQL</td> </tr><tr> <th>[[<code>general_query.length</code>]]</th> <td>inteiro não assinado</td> <td>Texto do comando SQL</td> </tr><tr> <th>[[<code>general_host.str</code>]]</th> <td>string</td> <td>Nome do host</td> </tr><tr> <th>[[<code>general_host.length</code>]]</th> <td>inteiro não assinado</td> <td>Nome do host de comprimento</td> </tr><tr> <th>[[<code>general_sql_command.str</code>]]</th> <td>string</td> <td>Nome do tipo de comando SQL</td> </tr><tr> <th>[[<code>general_thread_id</code><code>general_sql_command.str</code>]</th> <td>inteiro não assinado</td> <td>Nome do tipo de comando SQL comprimento</td> </tr><tr> <th>[[<code>general_external_user.str</code>]]</th> <td>string</td> <td>Nome do usuário externo (fornecido pelo plugin de autenticação de terceiros)</td> </tr><tr> <th>[[<code>general_external_user.length</code>]]</th> <td>inteiro não assinado</td> <td>Nome do usuário externo de comprimento</td> </tr><tr> <th>[[<code>general_ip.str</code>]]</th> <td>string</td> <td>Endereço IP do usuário conectado</td> </tr><tr> <th>[[<code>general_ip.length</code>]]</th> <td>inteiro não assinado</td> <td>Comprimento do endereço IP do usuário de conexão</td> </tr></tbody></table>
+<table summary="Tipos de campo permitidos para eventos gerais."><col style="width: 35%"/><col style="width: 20%"/><col style="width: 45%"/><thead><tr> <th>Nome do campo</th> <th>Tipo de campo</th> <th>Descrição</th> </tr></thead><tbody><tr> <th><code>general_error_code</code></th> <td>inteiro</td> <td><p> Status do evento: </p><p> 0: OK </p><p> Caso contrário: falhou </p></td> </tr><tr> <th><code>general_thread_id</code></th> <td>número inteiro não assinado</td> <td>ID de conexão/thread</td> </tr><tr> <th><code>general_user.str</code></th> <td>string</td> <td>Nome de usuário especificado durante a autenticação</td> </tr><tr> <th><code>general_user.length</code></th> <td>número inteiro não assinado</td> <td>Comprimento do nome de usuário</td> </tr><tr> <th><code>general_command.str</code></th> <td>string</td> <td>Nome do comando</td> </tr><tr> <th><code>general_command.length</code></th> <td>número inteiro não assinado</td> <td>Comprimento do nome do comando</td> </tr><tr> <th><code>general_query.str</code></th> <td>string</td> <td>Texto da instrução SQL</td> </tr><tr> <th><code>general_query.length</code></th> <td>número inteiro não assinado</td> <td>comprimento do texto da instrução SQL</td> </tr><tr> <th><code>general_host.str</code></th> <td>string</td> <td>Nome do host</td> </tr><tr> <th><code>general_host.length</code></th> <td>unsigned inteiro</td> <td>Comprimento do nome do host</td> </tr><tr> <th><code>general_sql_command.str</code></th> <td>string</td> <td>Nome do tipo de comando SQL</td> </tr><tr> <th><code>general_sql_command.length</code></th> <td>Inteiro não assinado</td> <td>Comprimento do nome do tipo de comando SQL</td> </tr><tr> <th><code>general_external_user.str</code></th> <td>string</td> <td>Nome de usuário externo (fornecido por plug-in de autenticação de terceiros)</td> </tr><tr> <th><code>general_external_user.length</code></th> <td>número inteiro não assinado</td> <td>Comprimento do nome de usuário externo</td> </tr><tr> <th><code>general_ip.str</code></th> <td>string</td> <td>Endereço IP do usuário conectado</td> </tr><tr> <th><code>general_ip.length</code></th> <td>número inteiro não assinado</td> <td>Comprimento do endereço IP do usuário de conexão</td> </tr></tbody></table>
 
 `general_command.str` indica um nome de comando: `Query`, `Execute`, `Sair` ou `Mudar usuário`.
 
@@ -288,10 +507,10 @@ A lista a seguir mostra quais declarações geram quais eventos de acesso à tab
 
   - `UPDATE ... WHERE` (para tabelas referenciadas na cláusula `WHERE`)
 
-  - `HANDLER ... LEITURA`
+  - `HANDLER ... READ`
 - Evento `delete`:
 
-  - `DELETAR`
+  - `DELETE`
   - `TRUNCATE TABLE`
 - Evento `inserir`:
 
@@ -303,12 +522,12 @@ A lista a seguir mostra quais declarações geram quais eventos de acesso à tab
 
   - `REPLACE ... SELECT` (para a tabela referenciada na cláusula `REPLACE`
 
-  - `CARREGAR DADOS`
+  - `LOAD DATA`
 
-  - `CARREGAR XML`
+  - `LOAD XML`
 - Evento `update`:
 
-  - `ATUALIZAR`
+  - `UPDATE`
   - `UPDATE ... WHERE` (para tabelas referenciadas na cláusula `UPDATE`)
 
 ##### Bloquear a execução de eventos específicos
@@ -317,7 +536,7 @@ A partir do MySQL 5.7.20, os itens `event` podem incluir um item `abort` que ind
 
 O item `abort` deve aparecer dentro de um item `event`. Por exemplo:
 
-```sql
+```json
 "event": {
   "name": qualifying event subclass names
   "abort": condition
@@ -330,7 +549,7 @@ A especificação de *`condition`* pode ser tão simples quanto `true` ou `false
 
 Este filtro bloqueia as instruções `INSERT`, `UPDATE` e `DELETE`:
 
-```sql
+```json
 {
   "filter": {
     "class": {
@@ -346,7 +565,7 @@ Este filtro bloqueia as instruções `INSERT`, `UPDATE` e `DELETE`:
 
 Esse filtro mais complexo bloqueia as mesmas declarações, mas apenas para uma tabela específica (`finances.bank_account`):
 
-```sql
+```json
 {
   "filter": {
     "class": {
@@ -379,7 +598,7 @@ Para tentativas de definir um filtro no qual o item `abort` aparece em outro lug
 
 Os operadores lógicos (`e`, `ou`, `não`) permitem a construção de condições complexas, permitindo a escrita de configurações de filtragem mais avançadas. O item `log` a seguir registra apenas eventos `gerais` com campos `general_command` que tenham um valor e comprimento específicos:
 
-```sql
+```json
 {
   "filter": {
     "class": {
@@ -412,7 +631,7 @@ Os operadores lógicos (`e`, `ou`, `não`) permitem a construção de condiçõe
 
 Para referenciar uma variável predefinida em uma condição `log`, use um item `variable`, que aceita os itens `name` e `value` e testa a igualdade da variável nomeada com um valor dado:
 
-```sql
+```json
 "variable": {
   "name": "variable_name",
   "value": comparison_value
@@ -423,7 +642,7 @@ Isso é verdadeiro se *`variable_name`* tiver o valor *`comparison_value`*, caso
 
 Exemplo:
 
-```sql
+```json
 {
   "filter": {
     "class": {
@@ -454,7 +673,28 @@ A lista a seguir descreve as variáveis pré-definidas permitidas para itens `va
 
   **Tabela 6.31 valores da política de conexão do log de auditoria**
 
-  <table summary="Valores permitidos de audit_log_connection_policy_value e os valores correspondentes de audit_log_connection_policy."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Valor</th> <th>Valor correspondente a audit_log_connection_policy</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CÓDIGO_<code>0</code>] ou [[PH_HTML_CÓDIGO_<code>"::none"</code>]</td> <td>[[<code>NONE</code>]]</td> </tr><tr> <td>[[<code>1</code>]] ou [[<code>"::errors"</code>]]</td> <td>[[<code>ERRORS</code>]]</td> </tr><tr> <td>[[<code>2</code>]] ou [[<code>"::all"</code>]]</td> <td>[[<code>ALL</code>]]</td> </tr></tbody></table>
+  <table summary="Valores audit_log_connection_policy_value permitidos e os valores audit_log_connection_policy correspondentes.">
+    <thead>
+      <tr>
+        <th>Valor</th>
+        <th>Valor correspondente de audit_log_connection_policy</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>0</code> or <code>"::none"</code></td>
+        <td><code>NONE</code></td>
+      </tr>
+      <tr>
+        <td><code>1</code> or <code>"::errors"</code></td>
+        <td><code>ERRORS</code></td>
+      </tr>
+      <tr>
+        <td><code>2</code> or <code>"::all"</code></td>
+        <td><code>ALL</code></td>
+      </tr>
+    </tbody>
+  </table>
 
   Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser usados em vez dos valores numéricos literais. Eles devem ser citados como strings e são sensíveis a maiúsculas e minúsculas.
 
@@ -464,7 +704,34 @@ A lista a seguir descreve as variáveis pré-definidas permitidas para itens `va
 
   **Tabela 6.32 audit_log_policy_value Valores**
 
-  <table summary="Valores permitidos de audit_log_policy_value e os valores correspondentes de audit_log_policy."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Valor</th> <th>Valor correspondente a audit_log_policy</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CÓDIGO_<code>"::queries"</code>] ou [[PH_HTML_CÓDIGO_<code>"::queries"</code>]</td> <td>[[<code>NONE</code>]]</td> </tr><tr> <td>[[<code>1</code>]] ou [[<code>"::logins"</code>]]</td> <td>[[<code>LOGINS</code>]]</td> </tr><tr> <td>[[<code>2</code>]] ou [[<code>"::all"</code>]]</td> <td>[[<code>ALL</code>]]</td> </tr><tr> <td>[[<code>3</code>]] ou [[<code>"::queries"</code>]]</td> <td>[[<code>"::none"</code><code>"::queries"</code>]</td> </tr></tbody></table>
+  <table summary="Valores audit_log_policy_value permitidos e os valores audit_log_policy correspondentes.">
+  <col style="width: 20%"/>
+  <col style="width: 80%"/>
+  <thead>
+    <tr>
+      <th>Valor</th>
+      <th>Valor audit_log_policy correspondente</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0</code> or <code>"::none"</code></td>
+      <td><code>NONE</code></td>
+    </tr>
+    <tr>
+      <td><code>1</code> or <code>"::logins"</code></td>
+      <td><code>LOGINS</code></td>
+    </tr>
+    <tr>
+      <td><code>2</code> or <code>"::all"</code></td>
+      <td><code>ALL</code></td>
+    </tr>
+    <tr>
+      <td><code>3</code> or <code>"::queries"</code></td>
+      <td><code>QUERIES</code></td>
+    </tr>
+  </tbody>
+</table>
 
   Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser usados em vez dos valores numéricos literais. Eles devem ser citados como strings e são sensíveis a maiúsculas e minúsculas.
 
@@ -474,7 +741,30 @@ A lista a seguir descreve as variáveis pré-definidas permitidas para itens `va
 
   **Tabela 6.33 política_valor_declaração_audit_log_statement Valores**
 
-  <table summary="Valores permitidos de audit_log_statement_policy_value e os valores correspondentes de audit_log_statement_policy."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Valor</th> <th>Política de declaração de audit_log_statement correspondente Valor</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CÓDIGO_<code>0</code>] ou [[PH_HTML_CÓDIGO_<code>"::none"</code>]</td> <td>[[<code>NONE</code>]]</td> </tr><tr> <td>[[<code>1</code>]] ou [[<code>"::errors"</code>]]</td> <td>[[<code>ERRORS</code>]]</td> </tr><tr> <td>[[<code>2</code>]] ou [[<code>"::all"</code>]]</td> <td>[[<code>ALL</code>]]</td> </tr></tbody></table>
+  <table summary="Valores audit_log_statement_policy_value permitidos e os valores audit_log_statement_policy correspondentes.">
+  <col style="width: 20%"/>
+  <col style="width: 80%"/>
+  <thead>
+    <tr>
+      <th>Valor</th>
+      <th>Valor correspondente de audit_log_statement_policy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0</code> or <code>"::none"</code></td>
+      <td><code>NONE</code></td>
+    </tr>
+    <tr>
+      <td><code>1</code> or <code>"::errors"</code></td>
+      <td><code>ERRORS</code></td>
+    </tr>
+    <tr>
+      <td><code>2</code> or <code>"::all"</code></td>
+      <td><code>ALL</code></td>
+    </tr>
+  </tbody>
+</table>
 
   Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser usados em vez dos valores numéricos literais. Eles devem ser citados como strings e são sensíveis a maiúsculas e minúsculas.
 
@@ -482,7 +772,7 @@ A lista a seguir descreve as variáveis pré-definidas permitidas para itens `va
 
 Para referenciar uma função predefinida em uma condição `log`, use um item `function`, que aceita os itens `name` e `args` para especificar o nome da função e seus argumentos, respectivamente:
 
-```sql
+```json
 "function": {
   "name": "function_name",
   "args": arguments
@@ -501,7 +791,7 @@ Se o número de argumentos estiver incorreto ou se os argumentos não forem dos 
 
 Exemplo:
 
-```sql
+```json
 {
   "filter": {
     "class": {
@@ -552,7 +842,7 @@ A lista a seguir descreve as funções pré-definidas permitidas para os itens `
 
   - *`millisec`*: Um inteiro não assinado que especifica o número de milissegundos para dormir.
 
-- `find_in_exclude_list(conta)`
+- `find_in_exclude_list(account)`
 
   Verifica se uma string de conta existe na lista de exclusão do log de auditoria (o valor da variável de sistema `audit_log_exclude_accounts`).
 
@@ -560,7 +850,7 @@ A lista a seguir descreve as funções pré-definidas permitidas para os itens `
 
   - *`account`*: Uma string que especifica o nome da conta do usuário.
 
-- `find_in_include_list(conta)`
+- `find_in_include_list(account)`
 
   Verifica se uma string de conta existe na lista de log de auditoria (o valor da variável de sistema `audit_log_include_accounts`).
 
@@ -568,13 +858,13 @@ A lista a seguir descreve as funções pré-definidas permitidas para os itens `
 
   - *`account`*: Uma string que especifica o nome da conta do usuário.
 
-- `string_find(texto, substr)`
+- `string_find(text, substr)`
 
   Verifica se o valor `substr` está contido no valor `text`. Essa pesquisa é case-sensitive.
 
   Argumentos:
 
-  - *`texto`*: A string de texto para pesquisar.
+  - *`text`*: A string de texto para pesquisar.
 
   - *`substr`*: A subcadeia de caracteres a ser pesquisada em *`text`*.
 
@@ -582,7 +872,7 @@ A lista a seguir descreve as funções pré-definidas permitidas para os itens `
 
 Em alguns casos, a definição do filtro pode ser alterada dinamicamente. Para fazer isso, defina uma configuração de `filter` dentro de um `filter` existente. Por exemplo:
 
-```sql
+```json
 {
   "filter": {
     "id": "main",

@@ -4,6 +4,6 @@ For an `InnoDB` table created in a file-per-table tablespace or general tablespa
 
 For `MyISAM` tables, the storage engine creates data and index files. Thus, for each `MyISAM` table *`tbl_name`*, there are two disk files.
 
-<table summary="The purpose of MyISAM table tbl_name disk files."><thead><tr> <th>File</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code><em class="replaceable"><code>tbl_name</code></em>.MYD</code></td> <td>Data file</td> </tr><tr> <td><code><em class="replaceable"><code>tbl_name</code></em>.MYI</code></td> <td>Index file</td> </tr></tbody></table>
+<table summary="The purpose of MyISAM table tbl_name disk files."><thead><tr> <th>File</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code><em><code>tbl_name</code></em>.MYD</code></td> <td>Data file</td> </tr><tr> <td><code><em><code>tbl_name</code></em>.MYI</code></td> <td>Index file</td> </tr></tbody></table>
 
 Chapter 18, *Alternative Storage Engines*, describes what files each storage engine creates to represent tables. If a table name contains special characters, the names for the table files contain encoded versions of those characters as described in Section 11.2.4, “Mapping of Identifiers to File Names”.

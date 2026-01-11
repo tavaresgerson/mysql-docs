@@ -10,7 +10,7 @@ Para instalar o `keyring_file`, use as instruções gerais encontradas em Seçã
 
 Para ser utilizado durante o processo de inicialização do servidor, o `keyring_file` deve ser carregado usando a opção `--early-plugin-load` (opções do servidor.html#opção_mysqld_early-plugin-load). A variável de sistema `keyring_file_data` (variáveis de sistema de keyring) configura opcionalmente a localização do arquivo usado pelo plugin `keyring_file` para armazenamento de dados. O valor padrão é específico da plataforma. Para configurar a localização do arquivo explicitamente, defina o valor da variável durante a inicialização. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor, ajustando o sufixo `.so` e a localização do arquivo para sua plataforma conforme necessário:
 
-```sql
+```
 [mysqld]
 early-plugin-load=keyring_file.so
 keyring_file_data=/usr/local/mysql/mysql-keyring/keyring
