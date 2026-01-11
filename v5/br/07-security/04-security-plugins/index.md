@@ -1,17 +1,5 @@
 ## 6.4 Plugins de segurança
 
-6.4.1 Plugins de autenticação
-
-6.4.2 Plugins de controle de conexão
-
-6.4.3 O Plugin de Validação de Senha
-
-6.4.4 O Keyring do MySQL
-
-6.4.5 Auditoria do MySQL Enterprise
-
-6.4.6 Firewall Empresarial MySQL
-
 O MySQL inclui vários plugins que implementam recursos de segurança:
 
 - Plugins para autenticação de tentativas de conexão de clientes com o MySQL Server. Há plugins disponíveis para vários protocolos de autenticação. Para uma discussão geral sobre o processo de autenticação, consulte Seção 6.2.13, “Autenticação Personalizável”. Para características de plugins de autenticação específicos, consulte Seção 6.4.1, “Plugins de Autenticação”.

@@ -1,3 +1,0 @@
-## Recuperação Ponto no Tempo (Incremental)
-
-A recuperação ponto no tempo refere-se à recuperação de alterações de dados até um determinado ponto no tempo. Tipicamente, esse tipo de recuperação é realizado após a restauração de um backup completo que leva o servidor ao seu estado no momento em que o backup foi feito. (O backup completo pode ser feito de várias maneiras, como as listadas na Seção 9.2, “Métodos de Backup de Banco de Dados”.) A recuperação ponto no tempo então atualiza o servidor incrementalmente a partir do momento do backup completo até um momento mais recente.

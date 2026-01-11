@@ -1,3 +1,0 @@
-### 17.12.4 Gerenciamento de Memória de DDL Online
-
-As operações de DDL online que criam ou reconstroem índices secundários alocam buffers temporários durante diferentes fases da criação do índice. A variável `innodb_ddl_buffer_size` define o tamanho máximo do buffer para operações de DDL online. O valor padrão é de 1048576 bytes (1 MB). O ajuste se aplica aos buffers criados por threads que executam operações de DDL online. Definir um limite de tamanho de buffer apropriado evita possíveis erros de falta de memória para operações de DDL online que criam ou reconstroem índices secundários. O tamanho máximo do buffer por thread de DDL é o tamanho máximo do buffer dividido pelo número de threads de DDL (`innodb_ddl_buffer_size`/`innodb_ddl_threads`).

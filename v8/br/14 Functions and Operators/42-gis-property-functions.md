@@ -1,3 +1,0 @@
-### 14.16.7 Funções de Propriedade Geométrica
-
-Cada função que pertence a este grupo recebe um valor de geometria como argumento e retorna uma propriedade quantitativa ou qualitativa da geometria. Algumas funções restringem o tipo de argumento. Essas funções retornam `NULL` se o argumento for de um tipo de geometria incorreto. Por exemplo, a função `ST_Area()` de polígonos retorna `NULL` se o tipo de objeto não for `Polygon` nem `MultiPolygon`.

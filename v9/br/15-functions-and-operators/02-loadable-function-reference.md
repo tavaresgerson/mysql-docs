@@ -1,9 +1,0 @@
-## 14.2 Referência de Funções Carregáveis
-
-A tabela a seguir lista cada função que pode ser carregada dinamicamente e fornece uma breve descrição de cada uma. Para uma tabela que lista funções e operadores integrados, consulte a Seção 14.1, “Referência de Funções e Operadores Integrados”.
-
-Para informações gerais sobre funções carregáveis, consulte a Seção 7.7, “Funções e Operadores Carregáveis do MySQL Server”.
-
-**Tabela 14.2 Funções Carregáveis**
-
-function_keyring-aws-rotate-cmk-plugin"><code>keyring_aws_rotate_cmk()</code></a></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> <td></td> </tr><tr><th><code>keyring_aws_rotate_cmk()</code></th> <td> Rotate AWS customer master key </td> 

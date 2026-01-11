@@ -1,9 +1,0 @@
-## Visão Geral do Backup Empresarial do MySQL
-
-O Backup Empresarial do MySQL realiza operações de backup em tempo real para bancos de dados do MySQL. O produto é projetado para backups eficientes e confiáveis de tabelas criadas pelo motor de armazenamento InnoDB. Para completar, ele também pode fazer backup de tabelas do MyISAM e outros motores de armazenamento.
-
-A discussão a seguir resume brevemente o Backup Empresarial do MySQL. Para mais informações, consulte o manual do Backup Empresarial do MySQL, disponível em  https://dev.mysql.com/doc/mysql-enterprise-backup/pt_BR/.
-
-Os backups em tempo real são realizados enquanto o banco de dados está em execução e as aplicações estão lendo e escrevendo nele. Esse tipo de backup não bloqueia as operações normais do banco de dados e captura até mesmo as alterações que ocorrem enquanto o backup está sendo realizado. Por essas razões, os backups em tempo real são desejáveis quando o seu banco de dados "cresce" -- quando os dados são grandes o suficiente para que o backup demore significativamente tempo e quando seus dados são importantes o suficiente para o seu negócio que você deve capturar cada última alteração, sem tirar sua aplicação, site ou serviço web do ar.
-
-O Backup Empresarial do MySQL realiza um backup em tempo real de todas as tabelas que usam o motor de armazenamento InnoDB. Para tabelas que usam MyISAM ou outros motores de armazenamento não InnoDB, ele realiza um backup "quente", onde o banco de dados continua em execução, mas essas tabelas não podem ser modificadas enquanto estão sendo backupadas. Para operações de backup eficientes, você pode designar o InnoDB como o motor de armazenamento padrão para novas tabelas ou converter tabelas existentes para usar o motor de armazenamento InnoDB.

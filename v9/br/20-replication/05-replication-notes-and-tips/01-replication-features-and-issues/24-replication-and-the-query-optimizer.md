@@ -1,3 +1,0 @@
-#### 19.5.1.24 Replicação e o Otimizador de Consultas
-
-É possível que os dados da fonte e da replica se tornem diferentes se uma instrução for escrita de maneira que a modificação dos dados seja não determinística; ou seja, deixada ao critério do otimizador de consultas. (Em geral, essa não é uma boa prática, mesmo fora da replicação.) Exemplos de instruções não determinísticas incluem instruções `DELETE` ou `UPDATE` que usam `LIMIT` sem cláusula `ORDER BY`; consulte a Seção 19.5.1.19, “Replicação e LIMIT”, para uma discussão detalhada sobre isso.

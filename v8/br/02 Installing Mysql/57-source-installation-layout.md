@@ -1,3 +1,0 @@
-### 2.8.3 Layout do MySQL para Instalação de Código-Fonte
-
-Por padrão, ao instalar o MySQL após compilar o código-fonte, a etapa de instalação instala os arquivos em `/usr/local/mysql`. Os locais dos componentes sob o diretório de instalação são os mesmos que para as distribuições binárias. Consulte a Tabela 2.3, “Layout de Instalação do MySQL para Pacotes Binários Genéricos Unix/Linux”, e o Layout de Instalação do MySQL no Microsoft Windows. Para configurar locais de instalação diferentes dos padrões, use as opções descritas na Seção 2.8.7, “Opções de Configuração de Código-Fonte do MySQL”.

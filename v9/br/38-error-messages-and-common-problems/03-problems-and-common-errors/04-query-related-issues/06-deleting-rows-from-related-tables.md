@@ -1,3 +1,0 @@
-#### B.3.4.6 Excluindo Linhas de Tabelas Relacionadas
-
-Se o comprimento total da instrução `DELETE` para `related_table` for maior que o valor padrão da variável de sistema `max_allowed_packet`, você deve dividi-la em partes menores e executar múltiplas instruções `DELETE`. Você provavelmente obterá a `DELETE` mais rápida ao especificar apenas 100 a 1.000 valores de `related_column` por instrução, se o `related_column` estiver indexado. Se o `related_column` não estiver indexado, a velocidade é independente do número de argumentos na cláusula `IN`.

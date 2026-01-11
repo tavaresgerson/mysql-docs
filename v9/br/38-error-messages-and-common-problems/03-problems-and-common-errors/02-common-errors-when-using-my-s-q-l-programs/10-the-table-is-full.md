@@ -1,3 +1,0 @@
-#### B.3.2.10 A tabela está cheia
-
-Se ocorrer um erro de tabela cheia, pode ser que o disco esteja cheio ou que a tabela tenha atingido seu tamanho máximo. O tamanho máximo efetivo da tabela para bancos de dados MySQL é geralmente determinado pelas restrições do sistema operacional em relação ao tamanho dos arquivos, e não pelos limites internos do MySQL. Consulte a Seção 10.4.6, “Limites de Tamanho da Tabela”.

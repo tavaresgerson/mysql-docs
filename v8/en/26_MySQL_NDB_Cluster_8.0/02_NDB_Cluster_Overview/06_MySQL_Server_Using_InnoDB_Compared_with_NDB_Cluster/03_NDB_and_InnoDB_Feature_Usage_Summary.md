@@ -1,0 +1,9 @@
+#### 25.2.6.3 NDB and InnoDB Feature Usage Summary
+
+When comparing application feature requirements to the capabilities of `InnoDB` with `NDB`, some are clearly more compatible with one storage engine than the other.
+
+The following table lists supported application features according to the storage engine to which each feature is typically better suited.
+
+**Table 25.4 Supported application features according to the storage engine to which each feature is typically better suited**
+
+<table><thead><tr> <th>Preferred application requirements for <code>InnoDB</code></th> <th>Preferred application requirements for <code>NDB</code></th> </tr></thead><tbody><tr> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> Foreign keys </p> <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"> <div class="admon-title"> Note </div> <p> NDB Cluster 8.0 supports foreign keys </p> </div> </li><li class="listitem"><p> Full table scans </p></li><li class="listitem"><p> Very large databases, rows, or transactions </p></li><li class="listitem"><p> Transactions other than <code>READ COMMITTED</code> </p></li></ul> </div> </td> <td> <div class="itemizedlist"> <ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p> Write scaling </p></li><li class="listitem"><p> 99.999% uptime </p></li><li class="listitem"><p> Online addition of nodes and online schema operations </p></li><li class="listitem"><p> Multiple SQL and NoSQL APIs (see NDB Cluster APIs: Overview and Concepts) </p></li><li class="listitem"><p> Real-time performance </p></li><li class="listitem"><p> Limited use of <code>BLOB</code> columns </p></li><li class="listitem"><p> Foreign keys are supported, although their use may have an impact on performance at high throughput </p></li></ul> </div> </td> </tr></tbody></table>

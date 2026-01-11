@@ -1,0 +1,15 @@
+## A.2 MySQL 9.5 FAQ: Storage Engines
+
+A.2.1. Where can I obtain complete documentation for MySQL storage engines?
+
+A.2.2. Are there any new storage engines in MySQL 9.5?
+
+A.2.3. Have any storage engines been removed in MySQL 9.5?
+
+A.2.4. Can I prevent the use of a particular storage engine?
+
+A.2.5. Is there an advantage to using the InnoDB storage engine exclusively, as opposed to a combination of InnoDB and non-InnoDB storage engines?
+
+A.2.6. What are the unique benefits of the ARCHIVE storage engine?
+
+<table style="width: 100%;"><tbody><tr><td><p><b>A.2.1.</b></p></td><td><p> Where can I obtain complete documentation for MySQL storage engines? </p></td></tr><tr><td></td><td><p> See Chapter 18, <i>Alternative Storage Engines</i>. That chapter contains information about all MySQL storage engines except for the <code>InnoDB</code> storage engine and the <code>NDB</code> storage engine (used for MySQL Cluster). <code>InnoDB</code> is covered in Chapter 17, <i>The InnoDB Storage Engine</i>. <code>NDB</code> is covered in Chapter 25, <i>MySQL NDB Cluster 9.5</i>. </p></td></tr><tr><td><p><b>A.2.2.</b></p></td><td><p> Are there any new storage engines in MySQL 9.5? </p></td></tr><tr><td></td><td><p> No. <code>InnoDB</code> is the default storage engine for new tables. See Section 17.1, “Introduction to InnoDB” for details. </p></td></tr><tr><td><p><b>A.2.3.</b></p></td><td><p> Have any storage engines been removed in MySQL 9.5? </p></td></tr><tr><td></td><td><p> No. </p></td></tr><tr><td><p><b>A.2.4.</b></p></td><td><p> Can I prevent the use of a particular storage engine? </p></td></tr><tr><td></td><td><p> Yes. The <code>disabled_storage_engines</code> configuration option defines which storage engines cannot be used to create tables or tablespaces. By default, <code>disabled_storage_engines</code> is empty (no engines disabled), but it can be set to a comma-separated list of one or more engines. </p></td></tr><tr><td><p><b>A.2.5.</b></p></td><td><p> Is there an advantage to using the <code>InnoDB</code> storage engine exclusively, as opposed to a combination of <code>InnoDB</code> and non-<code>InnoDB</code> storage engines? </p></td></tr><tr><td></td><td><p> Yes. Using <code>InnoDB</code> tables exclusively can simplify backup and recovery operations. MySQL Enterprise Backup does a hot backup of all tables that use the <code>InnoDB</code> storage engine. For tables using <code>MyISAM</code> or other non-<code>InnoDB</code> storage engines, it does a <span>“<span>warm</span>”</span> backup, where the database continues to run, but those tables cannot be modified while being backed up. See Section 32.1, “MySQL Enterprise Backup Overview”. </p></td></tr><tr><td><p><b>A.2.6.</b></p></td><td><p> What are the unique benefits of the <code>ARCHIVE</code> storage engine? </p></td></tr><tr><td></td><td><p> The <code>ARCHIVE</code> storage engine stores large amounts of data without indexes; it has a small footprint, and performs selects using table scans. See Section 18.5, “The ARCHIVE Storage Engine”, for details. </p></td></tr></tbody></table>

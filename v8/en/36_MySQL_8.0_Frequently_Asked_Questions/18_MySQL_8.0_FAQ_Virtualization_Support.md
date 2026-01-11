@@ -1,0 +1,5 @@
+## A.18 MySQL 8.0 FAQ: Virtualization Support
+
+A.18.1. Is MySQL supported on virtualized environments such as Oracle VM, VMWare, Docker, Microsoft Hyper-V, or others?
+
+<table border="0" style="width: 100%;"><colgroup><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.18.1.</b></p></td><td align="left" valign="top"><p> Is MySQL supported on virtualized environments such as Oracle VM, VMWare, Docker, Microsoft Hyper-V, or others? </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> MySQL is supported on virtualized environments, but is certified only for Oracle VM. Contact Oracle Support for more information. </p><p> Be aware of potential problems when using virtualization software. The usual ones are related to performance, performance degradations, slowness, or unpredictability of disk, I/O, network, and memory. </p></td></tr></tbody></table>

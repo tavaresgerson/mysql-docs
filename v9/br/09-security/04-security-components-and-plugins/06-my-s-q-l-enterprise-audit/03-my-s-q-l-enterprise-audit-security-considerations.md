@@ -1,5 +1,0 @@
-#### 8.4.6.3 Considerações de segurança de auditoria do MySQL Enterprise
-
-Por padrão, o conteúdo dos arquivos de registro de auditoria gerados pelo plugin de registro de auditoria não é criptografado e pode conter informações sensíveis, como o texto das instruções SQL. Por razões de segurança, os arquivos de registro de auditoria devem ser escritos em um diretório acessível apenas ao servidor MySQL e aos usuários que tenham um motivo legítimo para visualizar o log. O nome padrão do arquivo é `audit.log` no diretório de dados. Isso pode ser alterado definindo a variável de sistema `audit_log_file` na inicialização do servidor. Outros arquivos de registro de auditoria podem existir devido à rotação do log.
-
-Para maior segurança, habilite a criptografia dos arquivos de registro de auditoria. Consulte Criptografar arquivos de registro de auditoria.

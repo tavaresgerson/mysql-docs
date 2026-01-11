@@ -1,5 +1,0 @@
-#### 19.5.1.2 Replicação e Tabelas BLACKHOLE
-
-O mecanismo de armazenamento `BLACKHOLE` aceita dados, mas os descarta e não os armazena. Ao realizar o registro binário, todos os insertos nessas tabelas são sempre registrados, independentemente do formato de registro em uso. As atualizações e exclusões são tratadas de maneira diferente, dependendo se o registro baseado em declarações ou em linhas está em uso. Com o formato de registro baseado em declarações, todas as declarações que afetam as tabelas `BLACKHOLE` são registradas, mas seus efeitos são ignorados. Ao usar o registro baseado em linhas, as atualizações e exclusões nessas tabelas são simplesmente ignoradas — elas não são escritas no log binário. Um aviso é registrado sempre que isso ocorre.
-
-Por essa razão, recomendamos que, ao replicar para tabelas usando o mecanismo de armazenamento `BLACKHOLE`, você defina a variável de servidor `binlog_format` para `STATEMENT`, e não para `ROW` ou `MIXED`.

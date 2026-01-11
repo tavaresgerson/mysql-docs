@@ -1,8 +1,0 @@
-#### 7.6.6.1 Tokens de Versão Elementos
-
-Os Tokens de Versão são baseados em uma biblioteca de plugins que implementa esses elementos:
-
-* Um plugin do lado do servidor chamado `version_tokens` contém a lista de tokens de versão associados ao servidor e se inscreve para receber notificações sobre eventos de execução de declarações. O plugin `version_tokens` usa a API do plugin de auditoria para monitorar declarações recebidas dos clientes e compara a lista de tokens de versão específicos de sessão de cada cliente com a lista de tokens de versão do servidor. Se houver uma correspondência, o plugin permite que a declaração seja processada e o servidor continua a processá-la. Caso contrário, o plugin retorna um erro ao cliente e a declaração falha.
-* Um conjunto de funções carregáveis fornece uma API de nível SQL para manipular e inspecionar a lista de tokens de versão do servidor mantidos pelo plugin. O privilégio `VERSION_TOKEN_ADMIN` (ou o desatualizado privilégio `SUPER`) é necessário para chamar qualquer uma das funções de Tokens de Versão.
-* Quando o plugin `version_tokens` é carregado, ele define o privilégio dinâmico `VERSION_TOKEN_ADMIN`. Esse privilégio pode ser concedido aos usuários das funções.
-* Uma variável de sistema permite que os clientes especifiquem a lista de tokens de versão que registram o estado do servidor necessário. Se o servidor tiver um estado diferente quando um cliente envia uma declaração, o cliente recebe um erro.

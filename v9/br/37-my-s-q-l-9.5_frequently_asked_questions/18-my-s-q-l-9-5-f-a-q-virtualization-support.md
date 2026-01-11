@@ -1,5 +1,0 @@
-## A.18 Perguntas Frequentes do MySQL 9.5: Suporte à Virtualização
-
-A.18.1. O MySQL é suportado em ambientes virtualizados, como Oracle VM, VMWare, Docker, Microsoft Hyper-V ou outros?
-
-<table border="0" style="width: 100%;"><colgroup><col align="left" width="1%"/><col/></colgroup><tbody><tr class="question"><td align="left" valign="top"><p><b>A.18.1.</b></p></td><td align="left" valign="top"><p> O MySQL é suportado em ambientes virtualizados, mas é certificado apenas para Oracle VM. Entre em contato com o Suporte da Oracle para obter mais informações. </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p> O MySQL é suportado em ambientes virtualizados, mas é certificado apenas para Oracle VM. Entre em contato com o Suporte da Oracle para obter mais informações. </p><p> Esteja ciente dos problemas potenciais ao usar software de virtualização. Os problemas comuns estão relacionados ao desempenho, degradação de desempenho, lentidão ou imprevisibilidade do disco, I/O, rede e memória. </p></td></tr></tbody></table>

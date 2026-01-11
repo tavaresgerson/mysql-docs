@@ -1,5 +1,0 @@
-## 10.9 Controlar o Otimizador de Consultas
-
-O MySQL fornece controle sobre o otimizador por meio de variáveis de sistema que afetam a forma como os planos de consulta são avaliados, otimizações comutadas, dicas de otimizador e índices, e o modelo de custo do otimizador.
-
-O servidor mantém estatísticas de histograma sobre os valores das colunas na tabela `column_statistics` (consulte a Seção 10.9.6, “Estatísticas do Otimizador”). Como outras tabelas do dicionário de dados, essa tabela não é diretamente acessível pelos usuários. Em vez disso, você pode obter informações de histograma fazendo uma consulta à `INFORMATION_SCHEMA.COLUMN_STATISTICS`, que é implementada como uma visão na tabela do dicionário de dados. Você também pode realizar a gestão de histograma usando a instrução `ANALYZE TABLE`.

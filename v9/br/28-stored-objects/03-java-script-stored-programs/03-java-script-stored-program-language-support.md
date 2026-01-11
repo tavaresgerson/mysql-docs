@@ -1,3 +1,0 @@
-### 27.3.3 Suporte a Linguagem de Programa Armazenado em JavaScript
-
-O suporte à linguagem JavaScript no MySQL está de acordo com a [Especificação ECMAScript 2024](https://262.ecma-international.org/15.0/), e usa o modo estrito por padrão. O modo estrito não pode ser desativado. Esta implementação inclui todos os objetos padrão da biblioteca ECMAScript, como `Object`, `Function`, `Math`, `Date`, `String`, e assim por diante. O `console.log()` e o `console.error()` também são suportados (veja a Seção 27.3.12, “Exemplos de Programa Armazenado em JavaScript”).

@@ -1,5 +1,0 @@
-### 12.13.2 Suporte de Colagem de Caracteres para Conjuntos de Caracteres Complexos
-
-Para um conjunto de caracteres simples chamado *`MYSET`*, as regras de ordenação são especificadas no arquivo de configuração `MYSET.xml` usando elementos de matriz `<map>` dentro dos elementos `<collation>`. Se as regras de ordenação para a sua língua forem muito complexas para serem tratadas com matrizes simples, você deve definir funções de ordenação de strings no arquivo fonte `ctype-MYSET.c` no diretório `strings`.
-
-Os conjuntos de caracteres existentes fornecem a melhor documentação e exemplos para mostrar como essas funções são implementadas. Veja os arquivos `ctype-*`.c` no diretório `strings`, como os arquivos para os conjuntos de caracteres `big5`, `czech`, `gbk`, `sjis` e `tis160`. Dê uma olhada nas estruturas `MY_COLLATION_HANDLER` para ver como elas são usadas. Veja também o arquivo `CHARSET_INFO.txt` no diretório `strings` para informações adicionais.

@@ -14,7 +14,7 @@ Esta seção descreve como configurar o MySQL Enterprise Firewall usando instru�
 
 Para habilitar ou desabilitar o firewall, defina a variável de sistema `mysql_firewall_mode`. Por padrão, essa variável está habilitada quando o firewall é instalado. Para controlar explicitamente o estado inicial do firewall, você pode definir a variável no início do servidor. Por exemplo, para habilitar o firewall em um arquivo de opções, use as seguintes linhas:
 
-```sql
+```
 [mysqld]
 mysql_firewall_mode=ON
 ```
@@ -104,17 +104,17 @@ Cada perfil registrado no firewall tem seu próprio modo operacional, escolhido 
 
 - `OFF`: Este modo desativa o perfil. O firewall o considera inativo e o ignora.
 
-- `GRAVAR`: Este é o modo de treinamento do firewall. As declarações recebidas de um cliente que correspondem ao perfil são consideradas aceitáveis para o perfil e tornam-se parte de sua “impressão digital”. O firewall registra a forma normalizada do digest de cada declaração para aprender os padrões de declaração aceitáveis para o perfil. Cada padrão é uma regra, e a união das regras é a lista de permissão do perfil.
+- `RECORDING`: Este é o modo de treinamento do firewall. As declarações recebidas de um cliente que correspondem ao perfil são consideradas aceitáveis para o perfil e tornam-se parte de sua “impressão digital”. O firewall registra a forma normalizada do digest de cada declaração para aprender os padrões de declaração aceitáveis para o perfil. Cada padrão é uma regra, e a união das regras é a lista de permissão do perfil.
 
-- `PROTEGENDO`: Nesse modo, o perfil permite ou impede a execução de declarações. O firewall compara as declarações recebidas com a lista de permissão do perfil, aceitando apenas as que correspondem e rejeitando as que não correspondem. Após treinar um perfil no modo `RECORDING`, mude para o modo `PROTEGENDO` para reforçar o MySQL contra o acesso por declarações que se desviam da lista de permissão. Se a variável de sistema `mysql_firewall_trace` estiver habilitada, o firewall também escreve as declarações rejeitadas no log de erro.
+- `PROTECTING`: Nesse modo, o perfil permite ou impede a execução de declarações. O firewall compara as declarações recebidas com a lista de permissão do perfil, aceitando apenas as que correspondem e rejeitando as que não correspondem. Após treinar um perfil no modo `RECORDING`, mude para o modo `PROTECTING` para reforçar o MySQL contra o acesso por declarações que se desviam da lista de permissão. Se a variável de sistema `mysql_firewall_trace` estiver habilitada, o firewall também escreve as declarações rejeitadas no log de erro.
 
-- `DETECTANDO`: Este modo detecta, mas não bloqueia, intrusões (declarações suspeitas porque não correspondem a nada no perfil allowlist). No modo `DETECTANDO`, o firewall escreve declarações suspeitas no log de erro, mas as aceita sem negar o acesso.
+- `DETECTING`: Este modo detecta, mas não bloqueia, intrusões (declarações suspeitas porque não correspondem a nada no perfil allowlist). No modo `DETECTING`, o firewall escreve declarações suspeitas no log de erro, mas as aceita sem negar o acesso.
 
-Quando um perfil recebe qualquer um dos valores de modo anteriores, o firewall armazena o modo no perfil. As operações de configuração de modo do firewall também permitem um valor de modo `RESET`, mas esse valor não é armazenado: configurar um perfil no modo `RESET` faz com que o firewall exclua todas as regras do perfil e configure seu modo para `DESATIVADO`.
+Quando um perfil recebe qualquer um dos valores de modo anteriores, o firewall armazena o modo no perfil. As operações de configuração de modo do firewall também permitem um valor de modo `RESET`, mas esse valor não é armazenado: configurar um perfil no modo `RESET` faz com que o firewall exclua todas as regras do perfil e configure seu modo para `OFF`.
 
 Nota
 
-Mensagens escritas no log de erros no modo `DETECTANDO` ou porque o `mysql_firewall_trace` está habilitado são escritas como Notas, que são mensagens de informação. Para garantir que essas mensagens apareçam no log de erros e não sejam descartadas, defina a variável de sistema `log_error_verbosity` para um valor de 3.
+Mensagens escritas no log de erros no modo `DETECTING` ou porque o `mysql_firewall_trace` está habilitado são escritas como Notas, que são mensagens de informação. Para garantir que essas mensagens apareçam no log de erros e não sejam descartadas, defina a variável de sistema `log_error_verbosity` para um valor de 3.
 
 Como mencionado anteriormente, o MySQL associa cada sessão do cliente a uma combinação específica de nome de usuário e nome de host, conhecida como *conta de sessão*. O firewall compara a conta de sessão com perfis registrados para determinar qual perfil se aplica ao processamento de declarações recebidas da sessão:
 
@@ -128,23 +128,23 @@ Após associar a conta da sessão aos perfis registrados, o firewall processa ca
 
 - Se houver um perfil aplicável, seu modo determina o tratamento das declarações:
 
-  - No modo `RECORDANDO`, o firewall adiciona a declaração às regras do allowlist do perfil e a aceita.
+  - No modo `RECORDING`, o firewall adiciona a declaração às regras do allowlist do perfil e a aceita.
 
   - No modo `PROTECTING`, o firewall compara a declaração às regras na lista de permissões do perfil. O firewall aceita a declaração se houver uma correspondência e rejeita-a caso contrário. Se a variável de sistema `mysql_firewall_trace` estiver habilitada, o firewall também escreve as declarações rejeitadas no log de erros.
 
-  - No modo `DETECTANDO`, o firewall detecta as instruções sem negar o acesso. O firewall aceita a declaração, mas também a compara com a lista de permissões do perfil, como no modo `PROTEGENDO`. Se a declaração for suspeita (não corresponder), o firewall a escreve no log de erros.
+  - No modo `DETECTING`, o firewall detecta as instruções sem negar o acesso. O firewall aceita a declaração, mas também a compara com a lista de permissões do perfil, como no modo `PROTECTING`. Se a declaração for suspeita (não corresponder), o firewall a escreve no log de erros.
 
 ##### Registrar perfis de conta do firewall
 
 O MySQL Enterprise Firewall permite que perfis sejam registrados que correspondam a contas individuais. Para usar um perfil de conta de firewall para proteger o MySQL contra declarações recebidas de uma conta específica, siga estes passos:
 
-1. Registre o perfil da conta e coloque-o no modo `RECORDANDO`.
+1. Registre o perfil da conta e coloque-o no modo `RECORDING`.
 
 2. Conecte-se ao servidor MySQL usando a conta e execute as instruções que precisam ser aprendidas. Isso treina o perfil da conta e estabelece as regras que formam a lista de permissões do perfil.
 
 3. Mude o perfil da conta para o modo `PROTECTING`. Quando um cliente se conecta ao servidor usando a conta, o allowlist do perfil da conta restringe a execução da declaração.
 
-4. Se for necessário treinamento adicional, mude o perfil da conta para o modo `RECORDANDO` novamente, atualize sua lista de permissão com novos padrões de declaração, e depois mude de volta para o modo `PROTEGENDO`.
+4. Se for necessário treinamento adicional, mude o perfil da conta para o modo `RECORDING` novamente, atualize sua lista de permissão com novos padrões de declaração, e depois mude de volta para o modo `PROTECTING`.
 
 Observe essas diretrizes para referências de contas relacionadas ao firewall:
 
@@ -185,7 +185,7 @@ Use uma conta administrativa do MySQL para executar os passos deste procedimento
    SELECT get_customer_balance(1, NOW());
    ```
 
-   Como o perfil está no modo `RECORDANDO`, o firewall registra a forma normalizada do digest das declarações como regras na lista de permissões do perfil.
+   Como o perfil está no modo `RECORDING`, o firewall registra a forma normalizada do digest das declarações como regras na lista de permissões do perfil.
 
    Nota
 
@@ -193,7 +193,7 @@ Use uma conta administrativa do MySQL para executar os passos deste procedimento
 
    - O perfil da conta não pode ser alterado para o modo `PROTECTING`. Ele rejeitaria todas as declarações, proibindo efetivamente a execução de qualquer declaração pela conta.
 
-   - O perfil da conta pode ser alterado para o modo `DETECTANDO`. Nesse caso, o perfil aceita todas as declarações, mas as registra como suspeitas.
+   - O perfil da conta pode ser alterado para o modo `DETECTING`. Nesse caso, o perfil aceita todas as declarações, mas as registra como suspeitas.
 
 4. Neste ponto, as informações do perfil da conta são armazenadas em cache. Para ver essas informações, consulte as tabelas de firewall do `INFORMATION_SCHEMA`:
 
@@ -233,7 +233,7 @@ Use uma conta administrativa do MySQL para executar os passos deste procedimento
 
    Importante
 
-   A mudança do perfil da conta do modo `RECORDANDO` sincroniza seus dados armazenados em cache com as tabelas do banco de dados do sistema `mysql`, que fornecem armazenamento persistente. Se você não mudar o modo para um perfil que está sendo gravado, os dados armazenados em cache não serão escritos no armazenamento persistente e serão perdidos quando o servidor for reiniciado.
+   A mudança do perfil da conta do modo `RECORDING` sincroniza seus dados armazenados em cache com as tabelas do banco de dados do sistema `mysql`, que fornecem armazenamento persistente. Se você não mudar o modo para um perfil que está sendo gravado, os dados armazenados em cache não serão escritos no armazenamento persistente e serão perdidos quando o servidor for reiniciado.
 
 6. Teste o perfil da conta usando a conta para executar algumas declarações aceitáveis e inaceitáveis. O firewall compara cada declaração da conta com a lista de permissão do perfil e a aceita ou rejeita:
 
@@ -261,7 +261,7 @@ Use uma conta administrativa do MySQL para executar os passos deste procedimento
 
    - Se a variável de sistema `mysql_firewall_trace` estiver habilitada, o firewall também escreve declarações rejeitadas no log de erro. Por exemplo:
 
-     ```sql
+     ```
      [Note] Plugin MYSQL_FIREWALL reported:
      'ACCESS DENIED for fwuser@localhost. Reason: No match in whitelist.
      Statement: TRUNCATE TABLE `mysql` . `slow_log` '
@@ -271,13 +271,13 @@ Use uma conta administrativa do MySQL para executar os passos deste procedimento
 
 O perfil da conta do firewall agora está configurado para a conta `fwuser@localhost`. Quando os clientes se conectam usando essa conta e tentam executar instruções, o perfil protege o MySQL contra instruções que não estão no allowlist do perfil.
 
-É possível detectar intrusões ao registrar declarações que não correspondem como suspeitas, sem negar o acesso. Primeiro, coloque o perfil da conta no modo `DETECTANDO`:
+É possível detectar intrusões ao registrar declarações que não correspondem como suspeitas, sem negar o acesso. Primeiro, coloque o perfil da conta no modo `DETECTING`:
 
 ```sql
 CALL mysql.sp_set_firewall_mode('fwuser@localhost', 'DETECTING');
 ```
 
-Em seguida, usando a conta, execute uma declaração que não corresponda à lista de permissões do perfil da conta. No modo `DETECTANDO`, o firewall permite que a declaração não correspondente seja executada:
+Em seguida, usando a conta, execute uma declaração que não corresponda à lista de permissões do perfil da conta. No modo `DETECTING`, o firewall permite que a declaração não correspondente seja executada:
 
 ```sql
 mysql> SHOW TABLES LIKE 'customer%';
@@ -291,7 +291,7 @@ mysql> SHOW TABLES LIKE 'customer%';
 
 Além disso, o firewall escreve uma mensagem no log de erro:
 
-```sql
+```
 [Note] Plugin MYSQL_FIREWALL reported:
 'SUSPICIOUS STATEMENT from 'fwuser@localhost'. Reason: No match in whitelist.
 Statement: SHOW TABLES LIKE ? '

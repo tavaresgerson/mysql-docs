@@ -1,7 +1,0 @@
-### 20.8.2 Atualização de Replicação em Grupo Offline
-
-Para realizar uma atualização offline de um grupo de Replicação em Grupo, você remove cada membro do grupo, realiza uma atualização do membro e, em seguida, reinicia o grupo como de costume. Em um grupo de múltiplos primários, você pode desligar os membros em qualquer ordem. Em um grupo de único primário, desligue primeiro os secundários e, em seguida, o primário. Veja a Seção 20.8.3.2, “Atualizando um Membro de Replicação em Grupo” para saber como remover membros de um grupo e desligar o MySQL.
-
-Uma vez que o grupo esteja offline, atualize todos os membros. Veja o Capítulo 3, *Atualizando o MySQL* para saber como realizar uma atualização. Quando todos os membros tiverem sido atualizados, reinicie os membros.
-
-Se você atualizar todos os membros de um grupo de replicação quando eles estiverem offline e, em seguida, reiniciar o grupo, os membros se juntarão usando a versão do protocolo de comunicação da Replicação em Grupo da nova versão, tornando-se assim a versão do protocolo de comunicação do grupo. Se você tiver a necessidade de permitir que membros de versões anteriores se juntem, você pode usar a função `group_replication_set_communication_protocol()` para desatualizar a versão do protocolo de comunicação, especificando a versão do servidor MySQL do futuro membro do grupo que tem a versão do servidor instalada mais antiga.

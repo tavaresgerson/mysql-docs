@@ -1,1 +1,0 @@
-### 10.4.2 Otimizando Tipos de Dados do MySQL
