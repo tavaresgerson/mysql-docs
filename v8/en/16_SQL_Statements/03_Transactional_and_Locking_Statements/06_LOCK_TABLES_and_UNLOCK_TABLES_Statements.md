@@ -2,8 +2,8 @@
 
 ```
 LOCK {TABLE | TABLES}
-    tbl_name [[AS] alias] lock_type
-    [, tbl_name [[AS] alias] lock_type] ...
+    tbl_name AS] alias] lock_type
+    [, tbl_name AS] alias] lock_type] ...
 
 lock_type: {
     READ [LOCAL]

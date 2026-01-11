@@ -86,7 +86,7 @@ In the following function descriptions, *`over_clause`* represents the `OVER` cl
 
   Each function uses the rows in the current frame, which, per the window definition shown, extends from the first partition row to the current row. For the `NTH_VALUE()` calls, the current frame does not always include the requested row; in such cases, the return value is `NULL`.
 
-* [`LAG(expr [, N[, default]])`](window-function-descriptions.html#function_lag) [*`null_treatment`*] *`over_clause`*
+* [`LAG(expr [, N[, default)`](window-function-descriptions.html#function_lag) [*`null_treatment`*] *`over_clause`*
 
   Returns the value of *`expr`* from the row that lags (precedes) the current row by *`N`* rows within its partition. If there is no such row, the return value is *`default`*. For example, if *`N`* is 3, the return value is *`default`* for the first three rows. If *`N`* or *`default`* are missing, the defaults are 1 and `NULL`, respectively.
 
@@ -180,7 +180,7 @@ In the following function descriptions, *`over_clause`* represents the `OVER` cl
 
   For an example, see the `FIRST_VALUE()` function description.
 
-* [`LEAD(expr [, N[, default]])`](window-function-descriptions.html#function_lead) [*`null_treatment`*] *`over_clause`*
+* [`LEAD(expr [, N[, default)`](window-function-descriptions.html#function_lead) [*`null_treatment`*] *`over_clause`*
 
   Returns the value of *`expr`* from the row that leads (follows) the current row by *`N`* rows within its partition. If there is no such row, the return value is *`default`*. For example, if *`N`* is 3, the return value is *`default`* for the last three rows. If *`N`* or *`default`* are missing, the defaults are 1 and `NULL`, respectively.
 

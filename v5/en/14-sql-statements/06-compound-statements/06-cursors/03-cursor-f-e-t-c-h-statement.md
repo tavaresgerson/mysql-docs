@@ -1,7 +1,7 @@
 #### 13.6.6.3 Cursor FETCH Statement
 
 ```sql
-FETCH [[NEXT] FROM] cursor_name INTO var_name [, var_name] ...
+FETCH NEXT] FROM] cursor_name INTO var_name [, var_name] ...
 ```
 
 This statement fetches the next row for the [`SELECT`](select.html "13.2.9 SELECT Statement") statement associated with the specified cursor (which must be open), and advances the cursor pointer. If a row exists, the fetched columns are stored in the named variables. The number of columns retrieved by the [`SELECT`](select.html "13.2.9 SELECT Statement") statement must match the number of output variables specified in the [`FETCH`](fetch.html "13.6.6.3 Cursor FETCH Statement") statement.

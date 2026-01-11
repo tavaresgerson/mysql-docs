@@ -4,19 +4,19 @@ Para solucionar problemas com o SELinux, geralmente é necessário colocar o SEL
 
 Para evitar colocar todo o sistema no modo permissivo usando o **setenforce**, você pode permitir que apenas o serviço MySQL seja executado de forma permissiva, colocando seu domínio SELinux (`mysqld_t`) no modo permissivo usando o comando **semanage**:
 
-```sql
+```sh
 semanage permissive -a mysqld_t
 ```
 
 Quando você tiver terminado de solucionar problemas, use este comando para colocar o domínio `mysqld_t` de volta no modo de aplicação:
 
-```sql
+```sh
 semanage permissive -d mysqld_t
 ```
 
 O SELinux escreve logs para operações negadas em `/var/log/audit/audit.log`. Você pode verificar as denúncias procurando por mensagens com a palavra “negado”.
 
-```sql
+```sh
 grep "denied" /var/log/audit/audit.log
 ```
 
@@ -28,7 +28,7 @@ Se um diretório ou arquivo do MySQL tiver um contexto SELinux incorreto, o aces
 
 Tentar iniciar o serviço MySQL em um diretório de dados não padrão com um contexto SELinux inválido causa o seguinte erro de inicialização.
 
-```sql
+```sh
 $> systemctl start mysql.service
 Job for mysqld.service failed because the control process exited with error code.
 See "systemctl status mysqld.service" and "journalctl -xe" for details.
@@ -36,7 +36,7 @@ See "systemctl status mysqld.service" and "journalctl -xe" for details.
 
 Neste caso, uma mensagem de "negação" é registrada em `/var/log/audit/audit.log`:
 
-```sql
+```sh
 $> grep "denied" /var/log/audit/audit.log
 type=AVC msg=audit(1587133719.786:194): avc:  denied  { write } for  pid=7133 comm="mysqld"
 name="mysql" dev="dm-0" ino=51347078 scontext=system_u:system_r:mysqld_t:s0
@@ -51,7 +51,7 @@ O SELinux espera que serviços como o MySQL Server usem portas específicas. Mud
 
 O tipo de porta `mysqld_port_t` define as portas que o MySQL escuta. Se você configurar o servidor MySQL para usar uma porta não padrão, como a porta 3307, e não atualizar a política para refletir a mudança, o serviço MySQL não consegue iniciar:
 
-```sql
+```sh
 $> systemctl start mysqld.service
 Job for mysqld.service failed because the control process exited with error code.
 See "systemctl status mysqld.service" and "journalctl -xe" for details.
@@ -59,7 +59,7 @@ See "systemctl status mysqld.service" and "journalctl -xe" for details.
 
 Neste caso, uma mensagem de negação é registrada em `/var/log/audit/audit.log`:
 
-```sql
+```sh
 $> grep "denied" /var/log/audit/audit.log
 type=AVC msg=audit(1587134375.845:198): avc:  denied  { name_bind } for  pid=7340
 comm="mysqld" src=3307 scontext=system_u:system_r:mysqld_t:s0

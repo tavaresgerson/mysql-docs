@@ -28,25 +28,25 @@ O **myisampack** suporta as seguintes opções. Ele também lê arquivos de opç
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--backup`, `-b`
 
-  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--backup</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup</code></td> </tr></tbody></table>
 
   Faça um backup do arquivo de dados de cada tabela usando o nome `tbl_name.OLD`.
 
 - `--character-sets-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-sets-dir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório onde os conjuntos de caracteres são instalados. Consulte a Seção 10.15, “Configuração de Conjunto de Caracteres”.
 
 - `--debug[=opções_de_depuração]`, `-# [opções_de_depuração]`
 
-  <table frame="box" rules="all" summary="Propriedades para depuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--debug[=debug_option<code>d:t:o</code></code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>d:t:o</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para depuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--debug[=debug_option<code>d:t:o</code></code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>d:t:o</code></td> </tr></tbody></table>
 
   Escreva um log de depuração. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O padrão é `d:t:o`.
 
@@ -54,13 +54,13 @@ O **myisampack** suporta as seguintes opções. Ele também lê arquivos de opç
 
 - `--force`, `-f`
 
-  <table frame="box" rules="all" summary="Propriedades para força"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--force</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para força"><tbody><tr><th>Formato de linha de comando</th> <td><code>--force</code></td> </tr></tbody></table>
 
   Produza uma tabela compactada mesmo que ela fique maior que a original ou se o arquivo intermediário de uma invocação anterior do **myisampack** existir. (O **myisampack** cria um arquivo intermediário chamado `tbl_name.TMD` no diretório do banco de dados enquanto comprime a tabela. Se você interromper o **myisampack**, o arquivo `.TMD` pode não ser excluído.) Normalmente, o **myisampack** sai com um erro se encontrar que `tbl_name.TMD` existe. Com `--force`, o **myisampack** compactua a tabela de qualquer forma.
 
 - `--join=big_tbl_name`, `-j big_tbl_name`
 
-  <table frame="box" rules="all" summary="Propriedades para junção"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--join=big_tbl_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para junção"><tbody><tr><th>Formato de linha de comando</th> <td><code>--join=big_tbl_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Junte todas as tabelas nomeadas na linha de comando em uma única tabela compactada *`big_tbl_name`*. Todas as tabelas que devem ser combinadas *devem* ter estrutura idêntica (mesmos nomes de colunas e tipos, mesmos índices, etc.).
 
@@ -68,37 +68,37 @@ O **myisampack** suporta as seguintes opções. Ele também lê arquivos de opç
 
 - `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para silencioso"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--silent</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para silencioso"><tbody><tr><th>Formato de linha de comando</th> <td><code>--silent</code></td> </tr></tbody></table>
 
   Modo silencioso. Escreva a saída apenas quando ocorrerem erros.
 
 - `--test`, `-t`
 
-  <table frame="box" rules="all" summary="Propriedades para teste"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--test</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para teste"><tbody><tr><th>Formato de linha de comando</th> <td><code>--test</code></td> </tr></tbody></table>
 
   Não embale a mesa, apenas teste a embalagem.
 
 - `--tmpdir=dir_name`, `-T dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para tmpdir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--tmpdir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para tmpdir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--tmpdir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Use o diretório nomeado como o local onde o **myisampack** cria arquivos temporários.
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para verbose"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--verbose</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><tbody><tr><th>Formato de linha de comando</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Modo verbose. Escreva informações sobre o progresso da operação de embalagem e seu resultado.
 
 - `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--backup</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup</code></td> </tr></tbody></table>
 
   Exibir informações da versão e sair.
 
 - `--wait`, `-w`
 
-  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--backup</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para backup"><tbody><tr><th>Formato de linha de comando</th> <td><code>--backup</code></td> </tr></tbody></table>
 
   Aguarde e tente novamente se a tabela estiver em uso. Se o servidor **mysqld** foi invocado com o bloqueio externo desativado, não é uma boa ideia invocar **myisampack** se a tabela for atualizada pelo servidor durante o processo de compactação.
 

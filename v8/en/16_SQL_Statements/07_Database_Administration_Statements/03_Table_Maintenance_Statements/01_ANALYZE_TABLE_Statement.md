@@ -114,7 +114,7 @@ mysql> TABLE information_schema.column_statistics\G
 SCHEMA_NAME: mydb
  TABLE_NAME: t
 COLUMN_NAME: c1
-  HISTOGRAM: {"buckets": [[206, 0.0625], [456, 0.125], [608, 0.1875]],
+  HISTOGRAM: {"buckets": 206, 0.0625], [456, 0.125], [608, 0.1875,
 "data-type": "int", "null-values": 0.0, "collation-id": 8, "last-updated":
 "2022-10-11 16:13:14.563319", "sampling-rate": 1.0, "histogram-type":
 "singleton", "number-of-buckets-specified": 100}
@@ -138,7 +138,7 @@ We can restore the dropped histogram by inserting its JSON representation obtain
 
 ```
 mysql> ANALYZE TABLE t UPDATE HISTOGRAM ON c1
-    ->     USING DATA '{"buckets": [[206, 0.0625], [456, 0.125], [608, 0.1875]],
+    ->     USING DATA '{"buckets": 206, 0.0625], [456, 0.125], [608, 0.1875,
     ->               "data-type": "int", "null-values": 0.0, "collation-id":
     ->               8, "last-updated": "2022-10-11 16:13:14.563319",
     ->               "sampling-rate": 1.0, "histogram-type": "singleton",
@@ -154,7 +154,7 @@ mysql> TABLE information_schema.column_statistics\G
 SCHEMA_NAME: mydb
  TABLE_NAME: t
 COLUMN_NAME: c1
-  HISTOGRAM: {"buckets": [[206, 0.0625], [456, 0.125], [608, 0.1875]],
+  HISTOGRAM: {"buckets": 206, 0.0625], [456, 0.125], [608, 0.1875,
 "data-type": "int", "null-values": 0.0, "collation-id": 8, "last-updated":
 "2022-10-11 16:13:14.563319", "sampling-rate": 1.0, "histogram-type":
 "singleton", "number-of-buckets-specified": 100}

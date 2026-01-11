@@ -4,12 +4,12 @@ Every database has a database character set and a database collation. The `CREAT
 
 ```sql
 CREATE DATABASE db_name
-    [[DEFAULT] CHARACTER SET charset_name]
-    [[DEFAULT] COLLATE collation_name]
+    DEFAULT] CHARACTER SET charset_name]
+    DEFAULT] COLLATE collation_name]
 
 ALTER DATABASE db_name
-    [[DEFAULT] CHARACTER SET charset_name]
-    [[DEFAULT] COLLATE collation_name]
+    DEFAULT] CHARACTER SET charset_name]
+    DEFAULT] COLLATE collation_name]
 ```
 
 The keyword `SCHEMA` can be used instead of `DATABASE`.

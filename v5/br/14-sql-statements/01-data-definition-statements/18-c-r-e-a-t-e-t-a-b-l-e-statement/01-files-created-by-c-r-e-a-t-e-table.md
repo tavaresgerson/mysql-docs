@@ -6,7 +6,7 @@ Para uma tabela `InnoDB` criada em um espaço de tabelas por arquivo ou espaço 
 
 Para as tabelas `MyISAM`, o mecanismo de armazenamento cria arquivos de dados e índices. Assim, para cada tabela `MyISAM *` `tbl_name *`, existem três arquivos no disco.
 
-<table summary="O propósito dos arquivos de disco da tabela MyISAM tbl_name."><thead><tr> <th>Arquivo</th> <th>Objetivo</th> </tr></thead><tbody><tr> <td>[[<code><em><code>tbl_name</code>]]</em>.frm</code></td> <td>Arquivo de formato de tabela (definição)</td> </tr><tr> <td>[[<code><em><code>tbl_name</code>]]</em>.MYD</code></td> <td>Arquivo de dados</td> </tr><tr> <td>[[<code><em><code>tbl_name</code>]]</em>.MYI</code></td> <td>Arquivo de índice</td> </tr></tbody></table>
+<table summary="O propósito dos arquivos de disco da tabela MyISAM tbl_name."><thead><tr> <th>Arquivo</th> <th>Objetivo</th> </tr></thead><tbody><tr> <td><code><em><code>tbl_name</code></em>.frm</code></td> <td>Arquivo de formato de tabela (definição)</td> </tr><tr> <td><code><em><code>tbl_name</code></em>.MYD</code></td> <td>Arquivo de dados</td> </tr><tr> <td><code><em><code>tbl_name</code></em>.MYI</code></td> <td>Arquivo de índice</td> </tr></tbody></table>
 
 [Capítulo 15, *Motores de Armazenamento Alternativos*] (storage-engines.html), descreve quais arquivos cada motor de armazenamento cria para representar tabelas. Se o nome de uma tabela contiver caracteres especiais, os nomes dos arquivos da tabela contêm versões codificadas desses caracteres, conforme descrito em Seção 9.2.4, “Mapeamento de Identificadores a Nomes de Arquivos”.
 

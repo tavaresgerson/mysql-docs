@@ -7,7 +7,7 @@ Index hints apply to `SELECT` and `UPDATE` statements. They also work with multi
 Index hints are specified following a table name. (For the general syntax for specifying tables in a `SELECT` statement, see Section 15.2.13.2, “JOIN Clause”.) The syntax for referring to an individual table, including index hints, looks like this:
 
 ```
-tbl_name [[AS] alias] [index_hint_list]
+tbl_name AS] alias] [index_hint_list]
 
 index_hint_list:
     index_hint [index_hint] ...

@@ -26,7 +26,7 @@ Options that can be used with **ndb_size.pl** are shown in the following table. 
 #### Usage
 
 ```
-perl ndb_size.pl [--database={db_name|ALL}] [--hostname=host[:port]] [--socket=socket] \
+perl ndb_size.pl [--database={db_name|ALL}] [--hostname=host[:port [--socket=socket] \
       [--user=user] [--password=password]  \
       [--help|-h] [--format={html|text}] \
       [--loadqueries=file_name] [--savequeries=file_name]

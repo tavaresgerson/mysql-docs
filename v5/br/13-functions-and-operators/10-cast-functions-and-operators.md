@@ -2,7 +2,7 @@
 
 **Tabela 12.15 Funções e Operadores de Casting**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de referência."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>BINARY</code>]]</td> <td>Converte uma cadeia de caracteres em uma cadeia binária</td> </tr><tr><td>[[<code>CAST()</code>]]</td> <td>Atribua um valor a um determinado tipo</td> </tr><tr><td>[[<code>CONVERT()</code>]]</td> <td>Atribua um valor a um determinado tipo</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de referência."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>BINARY</code></td> <td>Converte uma cadeia de caracteres em uma cadeia binária</td> </tr><tr><td><code>CAST()</code></td> <td>Atribua um valor a um determinado tipo</td> </tr><tr><td><code>CONVERT()</code></td> <td>Atribua um valor a um determinado tipo</td> </tr></tbody></table>
 
 As funções e operadores de cast permitem a conversão de valores de um tipo de dado para outro.
 

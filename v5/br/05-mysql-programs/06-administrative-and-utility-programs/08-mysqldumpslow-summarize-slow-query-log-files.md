@@ -32,7 +32,7 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 - `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
@@ -42,7 +42,7 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 - `--debug`, `-d`
 
-  <table frame="box" rules="all" summary="Propriedades para depuração"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--debug</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para depuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--debug</code></td> </tr></tbody></table>
 
   Execute em modo de depuração.
 
@@ -56,7 +56,7 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 - `-h host_name`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>*</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>*</code></td> </tr></tbody></table>
 
   Nome do host do servidor MySQL para o nome do arquivo `*-slow.log`. O valor pode conter um caractere curinga. O padrão é `*` (concorda com tudo).
 
@@ -82,7 +82,7 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 - `-s sort_type`
 
-  <table frame="box" rules="all" summary="Propriedades para classificação"><tbody><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>at</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para classificação"><tbody><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>at</code></td> </tr></tbody></table>
 
   Como ordenar a saída. O valor de *`sort_type`* deve ser escolhido da seguinte lista:
 
@@ -104,6 +104,6 @@ O **mysqldumpslow** suporta as seguintes opções.
 
 - `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para verbose"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--verbose</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para verbose"><tbody><tr><th>Formato de linha de comando</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Modo verbose. Imprima mais informações sobre o que o programa faz.

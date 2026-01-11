@@ -26,12 +26,12 @@ If the `ORDER BY` clause is specified, the rows are deleted in the order that is
 
 ```sql
 DELETE [LOW_PRIORITY] [QUICK] [IGNORE]
-    tbl_name[.*] [, tbl_name[.*]] ...
+    tbl_name[.*] [, tbl_name[.* ...
     FROM table_references
     [WHERE where_condition]
 
 DELETE [LOW_PRIORITY] [QUICK] [IGNORE]
-    FROM tbl_name[.*] [, tbl_name[.*]] ...
+    FROM tbl_name[.*] [, tbl_name[.* ...
     USING table_references
     [WHERE where_condition]
 ```

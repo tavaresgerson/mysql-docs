@@ -4,7 +4,7 @@
 
 ### C
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### CHARACTER_SETS
 
@@ -128,7 +128,7 @@
 
 ### E
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### ENGINES
 
@@ -162,7 +162,7 @@
 
 ### F
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### FILES
 
@@ -206,7 +206,7 @@
 
 ### G
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### GLOBAL_STATUS
 
@@ -232,7 +232,7 @@
 
 ### I
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### INFORMATION_SCHEMA
 
@@ -640,7 +640,7 @@
 
 ### K
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### KEY_COLUMN_USAGE
 
@@ -654,7 +654,7 @@
 
 ### M
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### MYSQL_FIREWALL_USERS
 
@@ -670,7 +670,7 @@
 
 ### N
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### NDB_TRANSID_MYSQL_CONNECTION_MAP
 
@@ -690,7 +690,7 @@
 
 ### O
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### OPTIMIZER_TRACE
 
@@ -700,7 +700,7 @@
 
 ### P
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### PARAMETERS
 
@@ -822,7 +822,7 @@
 
 ### R
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### REFERENTIAL_CONSTRAINTS
 
@@ -846,7 +846,7 @@
 
 ### S
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### SCHEMA_PRIVILEGES
 
@@ -904,7 +904,7 @@
 
 ### T
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### TABLE_CONSTRAINTS
 
@@ -1000,7 +1000,7 @@
 
 ### U
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### USER_PRIVILEGES
 
@@ -1008,7 +1008,7 @@
 
 ### V
 
-[[index top](dynindex-is.html#is-index-top)]
+index top](dynindex-is.html#is-index-top)]
 
 ### VIEWS
 

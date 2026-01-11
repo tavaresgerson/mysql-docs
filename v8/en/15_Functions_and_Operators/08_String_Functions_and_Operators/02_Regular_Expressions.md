@@ -50,7 +50,7 @@ Prior to MySQL 8.0.22, it was possible to use binary string arguments with these
   +---------------------+
   ```
 
-* [`REGEXP_INSTR(expr, pat[, pos[, occurrence[, return_option[, match_type]]]])`](regexp.html#function_regexp-instr)
+* [`REGEXP_INSTR(expr, pat[, pos[, occurrence[, return_option[, match_type)`](regexp.html#function_regexp-instr)
 
   Returns the starting index of the substring of the string *`expr`* that matches the regular expression specified by the pattern *`pat`*, 0 if there is no match. If *`expr`* or *`pat`* is `NULL`, the return value is `NULL`. Character indexes begin at 1.
 
@@ -170,7 +170,7 @@ Prior to MySQL 8.0.22, it was possible to use binary string arguments with these
   +--------------------------------+
   ```
 
-* [`REGEXP_REPLACE(expr, pat, repl[, pos[, occurrence[, match_type]]])`](regexp.html#function_regexp-replace)
+* [`REGEXP_REPLACE(expr, pat, repl[, pos[, occurrence[, match_type])`](regexp.html#function_regexp-replace)
 
   Replaces occurrences in the string *`expr`* that match the regular expression specified by the pattern *`pat`* with the replacement string *`repl`*, and returns the resulting string. If *`expr`*, *`pat`*, or *`repl`* is `NULL`, the return value is `NULL`.
 
@@ -202,7 +202,7 @@ Prior to MySQL 8.0.22, it was possible to use binary string arguments with these
   +----------------------------------------------------+
   ```
 
-* [`REGEXP_SUBSTR(expr, pat[, pos[, occurrence[, match_type]]])`](regexp.html#function_regexp-substr)
+* [`REGEXP_SUBSTR(expr, pat[, pos[, occurrence[, match_type])`](regexp.html#function_regexp-substr)
 
   Returns the substring of the string *`expr`* that matches the regular expression specified by the pattern *`pat`*, `NULL` if there is no match. If *`expr`* or *`pat`* is `NULL`, the return value is `NULL`.
 
@@ -364,7 +364,7 @@ The following list covers some of the basic special characters and constructs th
 
 * `[=character_class=]`
 
-  Within a bracket expression (written using `[` and `]`), `[=character_class=]` represents an equivalence class. It matches all characters with the same collation value, including itself. For example, if `o` and `(+)` are the members of an equivalence class, `[[=o=]]`, `[[=(+)=]]`, and `[o(+)]` are all synonymous. An equivalence class may not be used as an endpoint of a range.
+  Within a bracket expression (written using `[` and `]`), `[=character_class=]` represents an equivalence class. It matches all characters with the same collation value, including itself. For example, if `o` and `(+)` are the members of an equivalence class, `=o=`, `=(+)=`, and `[o(+)]` are all synonymous. An equivalence class may not be used as an endpoint of a range.
 
 * `[:character_class:]`
 
@@ -373,11 +373,11 @@ The following list covers some of the basic special characters and constructs th
   <table summary="Character class names and the meaning of each class."><thead><tr> <th>Character Class Name</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>alnum</code></td> <td>Alphanumeric characters</td> </tr><tr> <td><code>alpha</code></td> <td>Alphabetic characters</td> </tr><tr> <td><code>blank</code></td> <td>Whitespace characters</td> </tr><tr> <td><code>cntrl</code></td> <td>Control characters</td> </tr><tr> <td><code>digit</code></td> <td>Digit characters</td> </tr><tr> <td><code>graph</code></td> <td>Graphic characters</td> </tr><tr> <td><code>lower</code></td> <td>Lowercase alphabetic characters</td> </tr><tr> <td><code>print</code></td> <td>Graphic or space characters</td> </tr><tr> <td><code>punct</code></td> <td>Punctuation characters</td> </tr><tr> <td><code>space</code></td> <td>Space, tab, newline, and carriage return</td> </tr><tr> <td><code>upper</code></td> <td>Uppercase alphabetic characters</td> </tr><tr> <td><code>xdigit</code></td> <td>Hexadecimal digit characters</td> </tr></tbody></table>
 
   ```
-  mysql> SELECT REGEXP_LIKE('justalnums', '[[:alnum:]]+');       -> 1
-  mysql> SELECT REGEXP_LIKE('!!', '[[:alnum:]]+');               -> 0
+  mysql> SELECT REGEXP_LIKE('justalnums', ':alnum:+');       -> 1
+  mysql> SELECT REGEXP_LIKE('!!', ':alnum:+');               -> 0
   ```
 
-  Because ICU is aware of all alphabetic characters in `utf16_general_ci`, some character classes may not perform as quickly as character ranges. For example, `[a-zA-Z]` is known to work much more quickly than `[[:alpha:]]`, and `[0-9]` is generally much faster than `[[:digit:]]`. If you are migrating applications using `[[:alpha:]]` or `[[:digit:]]` from an older version of MySQL, you should replace these with the equivalent ranges for use with MySQL 8.0.
+  Because ICU is aware of all alphabetic characters in `utf16_general_ci`, some character classes may not perform as quickly as character ranges. For example, `[a-zA-Z]` is known to work much more quickly than `:alpha:`, and `[0-9]` is generally much faster than `:digit:`. If you are migrating applications using `:alpha:` or `:digit:` from an older version of MySQL, you should replace these with the equivalent ranges for use with MySQL 8.0.
 
 To use a literal instance of a special character in a regular expression, precede it by two backslash (\) characters. The MySQL parser interprets one of the backslashes, and the regular expression library interprets the other. For example, to match the string `1+2` that contains the special `+` character, only the last of the following regular expressions is the correct one:
 
@@ -471,7 +471,7 @@ Prior to MySQL 8.0.4, MySQL used the Henry Spencer regular expression library to
 
 * For the `.` operator, the Spencer library matches line-terminator characters (carriage return, newline) anywhere in string expressions, including in the middle. To match line terminator characters in the middle of strings with ICU, specify the `m` match-control character.
 
-* The Spencer library supports word-beginning and word-end boundary markers (`[[:<:]]` and `[[:>:]]` notation). ICU does not. For ICU, you can use `\b` to match word boundaries; double the backslash because MySQL interprets it as the escape character within strings.
+* The Spencer library supports word-beginning and word-end boundary markers (`:<:` and `:>:` notation). ICU does not. For ICU, you can use `\b` to match word boundaries; double the backslash because MySQL interprets it as the escape character within strings.
 
 * The Spencer library supports collating element bracket expressions (`[.characters.]` notation). ICU does not.
 

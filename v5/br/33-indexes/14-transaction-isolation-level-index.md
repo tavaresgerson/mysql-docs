@@ -4,7 +4,7 @@
 
 ### R
 
-[[index superior](dynindex-isolevel.html#isolevel-index-superior)]
+index superior](dynindex-isolevel.html#isolevel-index-superior)]
 
 ### LEIA COM PROMESSA DE COMPROMISSO
 
@@ -118,7 +118,7 @@
 
 ### S
 
-[[index superior](dynindex-isolevel.html#isolevel-index-superior)]
+index superior](dynindex-isolevel.html#isolevel-index-superior)]
 
 ### SERIALIZÁVEL
 

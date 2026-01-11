@@ -82,13 +82,13 @@ O plugin de reescrita de consultas `Rewriter` suporta as seguintes variáveis de
 
 - [`rewriter_enabled`](https://pt-br.github.io/query-rewrite-plugin-reference/sysvar_rewriter_enabled/)
 
-  <table frame="box" rules="all" summary="Propriedades para rewriter_enabled"><tbody><tr><th>Variável do sistema</th> <td>[[<code>rewriter_enabled</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rewriter_enabled"><tbody><tr><th>Variável do sistema</th> <td><code>rewriter_enabled</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Se o plugin de reescrita de consultas `Rewriter` está habilitado.
 
 - `rewriter_verbose`
 
-  <table frame="box" rules="all" summary="Propriedades para rewriter_verbose"><tbody><tr><th>Variável do sistema</th> <td>[[<code>rewriter_verbose</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rewriter_verbose"><tbody><tr><th>Variável do sistema</th> <td><code>rewriter_verbose</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr></tbody></table>
 
   Para uso interno.
 

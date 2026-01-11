@@ -38,7 +38,7 @@ Unless otherwise specified, functions in this section handle their geometry argu
 
 These spatial operator functions are available:
 
-* [`ST_Buffer(g, d [, strategy1 [, strategy2 [, strategy3]]])`](spatial-operator-functions.html#function_st-buffer)
+* [`ST_Buffer(g, d [, strategy1 [, strategy2 [, strategy3])`](spatial-operator-functions.html#function_st-buffer)
 
   Returns a geometry that represents all points whose distance from the geometry value *`g`* is less than or equal to a distance of *`d`*. The result is in the same SRS as the geometry argument.
 

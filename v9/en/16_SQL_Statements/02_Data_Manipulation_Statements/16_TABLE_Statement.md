@@ -5,11 +5,11 @@
 ```
 TABLE table_name
     [ORDER BY column_name]
-    [LIMIT number [OFFSET number]]
+    [LIMIT number [OFFSET number
     [INTO OUTFILE 'file_name'
         [{FIELDS | COLUMNS}
             [TERMINATED BY 'string']
-            [[OPTIONALLY] ENCLOSED BY 'char']
+            OPTIONALLY] ENCLOSED BY 'char']
             [ESCAPED BY 'char']
         ]
         [LINES

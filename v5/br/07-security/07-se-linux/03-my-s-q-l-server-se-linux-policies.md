@@ -7,7 +7,7 @@ Os módulos de políticas do MySQL Server SELinux são instalados normalmente po
 
 Para obter informações sobre os módulos de políticas do MySQL Server SELinux, consulte as páginas do manual do SELinux. As páginas do manual fornecem informações sobre os tipos e os booleanos associados ao serviço MySQL. As páginas do manual são nomeadas no formato `service-name_selinux`.
 
-```sql
+```sh
 man mysqld_selinux
 ```
 

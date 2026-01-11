@@ -73,43 +73,43 @@ Ao instalar usando o instalador de pacotes, os arquivos são instalados em um di
    </thead>
    <tbody>
       <tr>
-         <td>[[<code>bin</code>]]</td>
+         <td><code>bin</code></td>
          <td><strong>mysqld</strong> programas de servidor, cliente e utilitário</td>
       </tr>
       <tr>
-         <td>[[<code>data</code>]]</td>
+         <td><code>data</code></td>
          <td>Arquivos de registro, bancos de dados</td>
       </tr>
       <tr>
-         <td>[[<code>docs</code>]]</td>
+         <td><code>docs</code></td>
          <td>Documentos auxiliares, como as Notas de Lançamento e informações de construção</td>
       </tr>
       <tr>
-         <td>[[<code>include</code>]]</td>
+         <td><code>include</code></td>
          <td>Incluir arquivos (cabeçalho)</td>
       </tr>
       <tr>
-         <td>[[<code>lib</code>]]</td>
+         <td><code>lib</code></td>
          <td>Livrarias</td>
       </tr>
       <tr>
-         <td>[[<code>man</code>]]</td>
+         <td><code>man</code></td>
          <td>Páginas de manual do Unix</td>
       </tr>
       <tr>
-         <td>[[<code>mysql-test</code>]]</td>
+         <td><code>mysql-test</code></td>
          <td>Conjunto de testes do MySQL</td>
       </tr>
       <tr>
-         <td>[[<code>share</code>]]</td>
+         <td><code>share</code></td>
          <td>Arquivos de suporte variados, incluindo mensagens de erro, arquivos de configuração de exemplo, SQL para instalação de banco de dados</td>
       </tr>
       <tr>
-         <td>[[<code>support-files</code>]]</td>
+         <td><code>support-files</code></td>
          <td>Scripts e arquivos de configuração de amostra</td>
       </tr>
       <tr>
-         <td>[[<code>/tmp/mysql.sock</code>]]</td>
+         <td><code>/tmp/mysql.sock</code></td>
          <td>Localização do soquete Unix do MySQL</td>
       </tr>
    </tbody>

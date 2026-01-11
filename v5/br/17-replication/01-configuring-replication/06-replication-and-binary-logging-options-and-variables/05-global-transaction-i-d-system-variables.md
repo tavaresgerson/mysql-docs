@@ -4,7 +4,7 @@ As variáveis de sistema do MySQL Server descritas nesta seção são usadas par
 
 - [`binlog_gtid_simple_recovery`](https://replication-options-gtids.html#sysvar_binlog_gtid_simple_recovery)
 
-  <table frame="box" rules="all" summary="Propriedades para binlog_gtid_simple_recovery"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--binlog-gtid-simple-recovery[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>binlog_gtid_simple_recovery</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para binlog_gtid_simple_recovery"><tbody><tr><th>Formato de linha de comando</th> <td><code>--binlog-gtid-simple-recovery[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>binlog_gtid_simple_recovery</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Essa variável controla a forma como os arquivos de log binários são iterados durante a busca por GTIDs quando o MySQL é iniciado ou reiniciado.
 
@@ -28,7 +28,7 @@ As variáveis de sistema do MySQL Server descritas nesta seção são usadas par
 
 - `enforce_gtid_consistency`
 
-  <table frame="box" rules="all" summary="Propriedades para enforce_gtid_consistency"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--enforce-gtid-consistency[=valu<code>enforce_gtid_consistency</code></code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>enforce_gtid_consistency</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p>[[<code>OFF</code>]]</p><p>[[<code>ON</code>]]</p><p>[[<code>WARN</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para enforce_gtid_consistency"><tbody><tr><th>Formato de linha de comando</th> <td><code>--enforce-gtid-consistency[=valu<code>enforce_gtid_consistency</code></code></td> </tr><tr><th>Variável do sistema</th> <td><code>enforce_gtid_consistency</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>WARN</code></p></td> </tr></tbody></table>
 
   Dependendo do valor dessa variável, o servidor garante a consistência do GTID, permitindo a execução apenas de instruções que podem ser registradas com segurança usando um GTID. Você *deve* definir essa variável para `ON` antes de habilitar a replicação baseada em GTID.
 
@@ -56,7 +56,7 @@ As variáveis de sistema do MySQL Server descritas nesta seção são usadas par
 
 - [`gtid_executed`](https://replication-options-gtids.html#sysvar_gtid_executed)
 
-  <table frame="box" rules="all" summary="Propriedades para gtid_executed"><tbody><tr><th>Variável do sistema</th> <td>[[<code>gtid_executed</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gtid_executed"><tbody><tr><th>Variável do sistema</th> <td><code>gtid_executed</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
 
   Quando usada com escopo global, essa variável contém uma representação do conjunto de todas as transações executadas no servidor e dos GTIDs definidos por uma instrução `SET` `gtid_purged`. Isso é o mesmo que o valor da coluna `Executed_Gtid_Set` na saída de `SHOW MASTER STATUS` e `SHOW SLAVE STATUS`. O valor dessa variável é um conjunto de GTIDs, consulte GTID Sets para mais informações.
 
@@ -70,7 +70,7 @@ As variáveis de sistema do MySQL Server descritas nesta seção são usadas par
 
 - `gtid_executed_compression_period`
 
-  <table frame="box" rules="all" summary="Propriedades para gtid_executed_compression_period"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--gtid-executed-compression-period=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>gtid_executed_compression_period</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1000</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>4294967295</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gtid_executed_compression_period"><tbody><tr><th>Formato de linha de comando</th> <td><code>--gtid-executed-compression-period=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>gtid_executed_compression_period</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   Compressar a tabela `mysql.gtid_executed` a cada número especificado de transações processadas. Quando o registro binário está habilitado no servidor, esse método de compressão não é usado, e, em vez disso, a tabela `mysql.gtid_executed` é comprimida em cada rotação do log binário. Quando o registro binário está desabilitado no servidor, o thread de compressão dorme até que o número especificado de transações seja executado, e então acorda para realizar a compressão da tabela `mysql.gtid_executed`. Definir o valor dessa variável de sistema para 0 significa que o thread nunca acorda, então esse método de compressão explícito não é usado. Em vez disso, a compressão ocorre implicitamente conforme necessário.
 
@@ -80,7 +80,7 @@ As variáveis de sistema do MySQL Server descritas nesta seção são usadas par
 
 - `gtid_mode`
 
-  <table frame="box" rules="all" summary="Propriedades para gtid_mode"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--gtid-mode=MODE</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>gtid_mode</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p>[[<code>OFF</code>]]</p><p>[[<code>OFF_PERMISSIVE</code>]]</p><p>[[<code>ON_PERMISSIVE</code>]]</p><p>[[<code>ON</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gtid_mode"><tbody><tr><th>Formato de linha de comando</th> <td><code>--gtid-mode=MODE</code></td> </tr><tr><th>Variável do sistema</th> <td><code>gtid_mode</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>OFF</code></p><p><code>OFF_PERMISSIVE</code></p><p><code>ON_PERMISSIVE</code></p><p><code>ON</code></p></td> </tr></tbody></table>
 
   Controla se o registro baseado em GTID está habilitado e que tipo de transações os registros podem conter. Antes do MySQL 5.7.6, essa variável era somente de leitura e era definida usando `--gtid-mode` apenas no início do servidor. Antes do MySQL 5.7.5, iniciar o servidor com `--gtid-mode=ON` exigia que o servidor também fosse iniciado com as opções `--log-bin` e `--log-slave-updates`. A partir do MySQL 5.7.5, isso não é mais uma exigência. Veja tabela mysql.gtid_executed.
 
@@ -102,7 +102,7 @@ As variáveis de sistema do MySQL Server descritas nesta seção são usadas par
 
 - `gtid_next`
 
-  <table frame="box" rules="all" summary="Propriedades para gtid_next"><tbody><tr><th>Variável do sistema</th> <td>[[<code>gtid_next</code>]]</td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>AUTOMATIC</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p>[[<code>AUTOMATIC</code>]]</p><p>[[<code>ANONYMOUS</code>]]</p><p>[[<code>&lt;UUID&gt;:&lt;NUMBER&gt;</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gtid_next"><tbody><tr><th>Variável do sistema</th> <td><code>gtid_next</code></td> </tr><tr><th>Âmbito</th> <td>Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>AUTOMATIC</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AUTOMATIC</code></p><p><code>ANONYMOUS</code></p><p><code>&lt;UUID&gt;:&lt;NUMBER&gt;</code></p></td> </tr></tbody></table>
 
   Esta variável é usada para especificar se e como o próximo GTID é obtido.
 
@@ -126,7 +126,7 @@ As variáveis de sistema do MySQL Server descritas nesta seção são usadas par
 
 - [`gtid_owned`](https://replication-options-gtids.html#sysvar_gtid_owned)
 
-  <table frame="box" rules="all" summary="Propriedades para gtid_owned"><tbody><tr><th>Variável do sistema</th> <td>[[<code>gtid_owned</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gtid_owned"><tbody><tr><th>Variável do sistema</th> <td><code>gtid_owned</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
 
   Essa variável somente de leitura é utilizada principalmente para uso interno. Seu conteúdo depende de seu escopo.
 
@@ -136,7 +136,7 @@ As variáveis de sistema do MySQL Server descritas nesta seção são usadas par
 
 - `gtid_purged`
 
-  <table frame="box" rules="all" summary="Propriedades para gtid_purged"><tbody><tr><th>Variável do sistema</th> <td>[[<code>gtid_purged</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gtid_purged"><tbody><tr><th>Variável do sistema</th> <td><code>gtid_purged</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Unidade</th> <td>conjunto de GTIDs</td> </tr></tbody></table>
 
   O valor global da variável de sistema `gtid_purged` (`@@GLOBAL.gtid_purged`) é um conjunto de GTIDs que consiste nos GTIDs de todas as transações que foram comprometidas no servidor, mas não existem em nenhum arquivo de log binário no servidor. `gtid_purged` é um subconjunto de `gtid_executed`. As seguintes categorias de GTIDs estão em `gtid_purged`:
 

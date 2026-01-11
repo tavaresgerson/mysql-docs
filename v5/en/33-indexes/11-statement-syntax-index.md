@@ -4,7 +4,7 @@
 
 ### A
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### ADD PARTITION
 
@@ -900,7 +900,7 @@
 
 ### B
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### BEGIN
 
@@ -980,7 +980,7 @@
 
 ### C
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### CACHE INDEX
 
@@ -2306,7 +2306,7 @@
 
 ### D
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### DEALLOCATE PREPARE
 
@@ -2988,7 +2988,7 @@
 
 ### E
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### ENCRYPTION
 
@@ -3194,7 +3194,7 @@
 
 ### F
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### FETCH
 
@@ -3486,7 +3486,7 @@
 
 ### G
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### GET DIAGNOSTICS
 
@@ -3628,7 +3628,7 @@
 
 ### H
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### HANDLER
 
@@ -3676,7 +3676,7 @@
 
 ### I
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### IF
 
@@ -4232,7 +4232,7 @@
 
 ### K
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### KILL
 
@@ -4284,7 +4284,7 @@
 
 ### L
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### LEAVE
 
@@ -4590,7 +4590,7 @@
 
 ### O
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### OPTIMIZE PARTITION
 
@@ -4706,7 +4706,7 @@
 
 ### P
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### PARTITION BY
 
@@ -4760,7 +4760,7 @@
 
 ### R
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### REBUILD PARTITION
 
@@ -5276,7 +5276,7 @@
 
 ### S
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### SAVEPOINT
 
@@ -7698,7 +7698,7 @@
 
 ### T
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### TABLE
 
@@ -7922,7 +7922,7 @@
 
 ### U
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### UNINSTALL PLUGIN
 
@@ -8418,7 +8418,7 @@
 
 ### W
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### WHERE
 
@@ -8438,7 +8438,7 @@
 
 ### X
 
-[[index top](dynindex-statement.html#stmt-index-top)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### XA BEGIN
 

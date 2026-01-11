@@ -22,13 +22,13 @@ The functions in this section modify JSON values and return the result.
   +----------------------------------+
   | JSON_ARRAY_APPEND(@j, '$[0]', 2) |
   +----------------------------------+
-  | [["a", 2], ["b", "c"], "d"]      |
+  | "a", 2], ["b", "c"], "d"]      |
   +----------------------------------+
   mysql> SELECT JSON_ARRAY_APPEND(@j, '$[1][0]', 3);
   +-------------------------------------+
   | JSON_ARRAY_APPEND(@j, '$[1][0]', 3) |
   +-------------------------------------+
-  | ["a", [["b", 3], "c"], "d"]         |
+  | ["a", "b", 3], "c"], "d"]         |
   +-------------------------------------+
 
   mysql> SET @j = '{"a": 1, "b": [2, 3], "c": 4}';
@@ -65,12 +65,12 @@ The functions in this section modify JSON values and return the result.
   Pairs for which the path does not identify any array in the JSON document are ignored. If a path identifies an array element, the corresponding value is inserted at that element position, shifting any following values to the right. If a path identifies an array position past the end of an array, the value is inserted at the end of the array.
 
   ```
-  mysql> SET @j = '["a", {"b": [1, 2]}, [3, 4]]';
+  mysql> SET @j = '["a", {"b": [1, 2]}, [3, 4';
   mysql> SELECT JSON_ARRAY_INSERT(@j, '$[1]', 'x');
   +------------------------------------+
   | JSON_ARRAY_INSERT(@j, '$[1]', 'x') |
   +------------------------------------+
-  | ["a", "x", {"b": [1, 2]}, [3, 4]]  |
+  | ["a", "x", {"b": [1, 2]}, [3, 4  |
   +------------------------------------+
   mysql> SELECT JSON_ARRAY_INSERT(@j, '$[100]', 'x');
   +--------------------------------------+
@@ -82,19 +82,19 @@ The functions in this section modify JSON values and return the result.
   +-----------------------------------------+
   | JSON_ARRAY_INSERT(@j, '$[1].b[0]', 'x') |
   +-----------------------------------------+
-  | ["a", {"b": ["x", 1, 2]}, [3, 4]]       |
+  | ["a", {"b": ["x", 1, 2]}, [3, 4       |
   +-----------------------------------------+
   mysql> SELECT JSON_ARRAY_INSERT(@j, '$[2][1]', 'y');
   +---------------------------------------+
   | JSON_ARRAY_INSERT(@j, '$[2][1]', 'y') |
   +---------------------------------------+
-  | ["a", {"b": [1, 2]}, [3, "y", 4]]     |
+  | ["a", {"b": [1, 2]}, [3, "y", 4     |
   +---------------------------------------+
   mysql> SELECT JSON_ARRAY_INSERT(@j, '$[0]', 'x', '$[2][1]', 'y');
   +----------------------------------------------------+
   | JSON_ARRAY_INSERT(@j, '$[0]', 'x', '$[2][1]', 'y') |
   +----------------------------------------------------+
-  | ["x", "a", {"b": [1, 2]}, [3, 4]]                  |
+  | ["x", "a", {"b": [1, 2]}, [3, 4                  |
   +----------------------------------------------------+
   ```
 

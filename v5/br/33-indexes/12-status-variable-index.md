@@ -4,7 +4,7 @@
 
 ### A
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### clientes_cancelados
 
@@ -52,7 +52,7 @@
 
 ### B
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Binlog_cache_disk_use
 
@@ -92,7 +92,7 @@
 
 ### C
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Cache_sha2_password_rsa_public_key
 
@@ -186,7 +186,7 @@
 
 ### D
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Erros atrasados
 
@@ -202,7 +202,7 @@
 
 ### F
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Firewall_access_denied
 
@@ -228,7 +228,7 @@
 
 ### G
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### grupo_replication_primary_member
 
@@ -238,7 +238,7 @@
 
 ### H
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Handler_commit
 
@@ -316,7 +316,7 @@
 
 ### Eu
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Innodb_available_undo_logs
 
@@ -556,7 +556,7 @@
 
 ### K
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Blocos-chave não limpos
 
@@ -598,7 +598,7 @@
 
 ### L
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Custo da última consulta
 
@@ -616,7 +616,7 @@
 
 ### M
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Max_execution_time_exceeded
 
@@ -894,7 +894,7 @@
 
 ### N
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Ndb_api_adaptive_send_deferred_count
 
@@ -1464,7 +1464,7 @@
 
 ### O
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Número de transações anônimas em violação ao gtid em andamento
 
@@ -1512,7 +1512,7 @@
 
 ### P
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### schema_de_desempenho_contas_perdidas
 
@@ -1670,7 +1670,7 @@
 
 ### Q
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Qcache_free_blocks
 
@@ -1748,7 +1748,7 @@
 
 ### R
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Reescrevente_número_de_regras_carregadas
 
@@ -1862,7 +1862,7 @@
 
 ### S
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Selecionar_join_completo
 
@@ -2106,7 +2106,7 @@
 
 ### T
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Tabelas_bloques_imediatas
 
@@ -2170,7 +2170,7 @@
 
 ### U
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### Tempo de funcionamento
 
@@ -2184,7 +2184,7 @@
 
 ### V
 
-[[index superior](dynindex-statvar.html#statvar-index-superior)]
+index superior](dynindex-statvar.html#statvar-index-superior)]
 
 ### validar_dicionário_senha_arquivo_último_paralizado
 

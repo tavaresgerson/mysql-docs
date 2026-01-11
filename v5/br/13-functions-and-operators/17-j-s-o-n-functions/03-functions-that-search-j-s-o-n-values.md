@@ -98,21 +98,21 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   O valor de retorno consiste em todos os valores correspondentes aos argumentos `path`. Se for possível que esses argumentos possam retornar múltiplos valores, os valores correspondentes são autoencapsulados como um array, na ordem correspondente aos caminhos que os produziram. Caso contrário, o valor de retorno é o único valor correspondente.
 
   ```sql
-  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40]]', '$[1]');
+  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40', '$[1]');
   +--------------------------------------------+
-  | JSON_EXTRACT('[10, 20, [30, 40]]', '$[1]') |
+  | JSON_EXTRACT('[10, 20, [30, 40', '$[1]') |
   +--------------------------------------------+
   | 20                                         |
   +--------------------------------------------+
-  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40]]', '$[1]', '$[0]');
+  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40', '$[1]', '$[0]');
   +----------------------------------------------------+
-  | JSON_EXTRACT('[10, 20, [30, 40]]', '$[1]', '$[0]') |
+  | JSON_EXTRACT('[10, 20, [30, 40', '$[1]', '$[0]') |
   +----------------------------------------------------+
   | [20, 10]                                           |
   +----------------------------------------------------+
-  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40]]', '$[2][*]');
+  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40', '$[2][*]');
   +-----------------------------------------------+
-  | JSON_EXTRACT('[10, 20, [30, 40]]', '$[2][*]') |
+  | JSON_EXTRACT('[10, 20, [30, 40', '$[2][*]') |
   +-----------------------------------------------+
   | [30, 40]                                      |
   +-----------------------------------------------+
@@ -203,7 +203,7 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   Query OK, 0 rows affected (0.26 sec)
 
   mysql> INSERT INTO tj10
-       > VALUES ("[3,10,5,17,44]", 33), ("[3,10,5,17,[22,44,66]]", 0);
+       > VALUES ("[3,10,5,17,44]", 33), ("[3,10,5,17,[22,44,66", 0);
   Query OK, 1 row affected (0.04 sec)
 
   mysql> SELECT a->"$[4]" FROM tj10;
@@ -220,7 +220,7 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   | a                            | b    |
   +------------------------------+------+
   | [3, 10, 5, 17, 44]           |   33 |
-  | [3, 10, 5, 17, [22, 44, 66]] |    0 |
+  | [3, 10, 5, 17, [22, 44, 66 |    0 |
   +------------------------------+------+
   2 rows in set (0.00 sec)
   ```
@@ -232,7 +232,7 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   +------------------------------+------+
   | a                            | b    |
   +------------------------------+------+
-  | [3, 10, 5, 17, [22, 44, 66]] |    0 |
+  | [3, 10, 5, 17, [22, 44, 66 |    0 |
   +------------------------------+------+
 
   mysql> SELECT a->"$[4][1]" FROM tj10;
@@ -323,7 +323,7 @@ As funções desta seção realizam operações de busca em valores JSON para ex
 
   mysql> INSERT INTO tj10 VALUES
       ->     ('[3,10,5,"x",44]', 33),
-      ->     ('[3,10,5,17,[22,"y",66]]', 0);
+      ->     ('[3,10,5,17,[22,"y",66', 0);
   Query OK, 2 rows affected (0.04 sec)
   Records: 2  Duplicates: 0  Warnings: 0
 

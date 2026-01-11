@@ -3,12 +3,12 @@
 ```
 CREATE
     [DEFINER = user]
-    PROCEDURE [IF NOT EXISTS] sp_name ([proc_parameter[,...]])
+    PROCEDURE [IF NOT EXISTS] sp_name ([proc_parameter[,...)
     [characteristic ...] routine_body
 
 CREATE
     [DEFINER = user]
-    FUNCTION [IF NOT EXISTS] sp_name ([func_parameter[,...]])
+    FUNCTION [IF NOT EXISTS] sp_name ([func_parameter[,...)
     RETURNS type
     [characteristic ...] routine_body
 

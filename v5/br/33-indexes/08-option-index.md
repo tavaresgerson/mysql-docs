@@ -4,7 +4,7 @@
 
 ### Símbolos
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### --
 
@@ -158,7 +158,7 @@
 
 ### A
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -A
 
@@ -438,7 +438,7 @@
 
 ### B
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -B
 
@@ -690,7 +690,7 @@
 
 ### C
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -C
 
@@ -1416,7 +1416,7 @@
 
 ### D
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -D
 
@@ -2298,7 +2298,7 @@
 
 ### E
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -E
 
@@ -2622,7 +2622,7 @@
 
 ### F
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -F
 
@@ -2842,7 +2842,7 @@
 
 ### G
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -G
 
@@ -2936,7 +2936,7 @@
 
 ### H
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -H
 
@@ -3238,7 +3238,7 @@
 
 ### Eu
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -Eu
 
@@ -3662,7 +3662,7 @@
 
 ### J
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -j
 
@@ -3678,7 +3678,7 @@
 
 ### K
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -K
 
@@ -3764,7 +3764,7 @@
 
 ### L
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -L
 
@@ -4202,7 +4202,7 @@
 
 ### M
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -m
 
@@ -4476,7 +4476,7 @@
 
 ### N
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -N
 
@@ -5180,7 +5180,7 @@
 
 ### O
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -O
 
@@ -5302,7 +5302,7 @@
 
 ### P
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -P
 
@@ -6078,7 +6078,7 @@
 
 ### Q
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -Q
 
@@ -6142,7 +6142,7 @@
 
 ### R
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -R
 
@@ -6650,7 +6650,7 @@
 
 ### S
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -S
 
@@ -8102,7 +8102,7 @@
 
 ### T
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -T
 
@@ -8378,7 +8378,7 @@
 
 ### U
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -U
 
@@ -8650,7 +8650,7 @@
 
 ### V
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -V
 
@@ -9026,7 +9026,7 @@
 
 ### W
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -W
 
@@ -9236,7 +9236,7 @@
 
 ### X
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -X
 
@@ -9274,7 +9274,7 @@
 
 ### Y
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -Y
 
@@ -9288,7 +9288,7 @@
 
 ### Z
 
-[[index superior](dynindex-option.html#option-index-superior)]
+index superior](dynindex-option.html#option-index-superior)]
 
 ### -z
 

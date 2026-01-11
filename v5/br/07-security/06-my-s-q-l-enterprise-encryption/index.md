@@ -1,13 +1,5 @@
 ## 6.6. Criptografia da MySQL Enterprise
 
-Instalação de criptografia do MySQL Enterprise
-
-6.6.2 Uso e exemplos de criptografia da MySQL Enterprise
-
-6.6.3 Referência da Função de Criptografia do MySQL Enterprise
-
-6.6.4 Descrições das funções de criptografia do MySQL Enterprise
-
 Nota
 
 O MySQL Enterprise Encryption é uma extensão incluída na MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, <https://www.mysql.com/products/>.

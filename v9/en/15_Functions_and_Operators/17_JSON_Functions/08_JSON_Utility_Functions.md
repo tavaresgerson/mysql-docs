@@ -297,7 +297,7 @@ This section documents utility functions that act on JSON values, or strings tha
   +---------------------------------------------+------+
   | @j                                          | Size |
   +---------------------------------------------+------+
-  | [100, "json", [[10, 20, 30], 3, 5], 425.05] |   56 |
+  | [100, "json", 10, 20, 30], 3, 5], 425.05] |   56 |
   +---------------------------------------------+------+
   1 row in set (0.00 sec)
   ```
@@ -309,7 +309,7 @@ This section documents utility functions that act on JSON values, or strings tha
       ->     JSON_STORAGE_SIZE('[100, "sakila", [1, 3, 5], 425.05]') AS A,
       ->     JSON_STORAGE_SIZE('{"a": 1000, "b": "a", "c": "[1, 3, 5, 7]"}') AS B,
       ->     JSON_STORAGE_SIZE('{"a": 1000, "b": "wxyz", "c": "[1, 3, 5, 7]"}') AS C,
-      ->     JSON_STORAGE_SIZE('[100, "json", [[10, 20, 30], 3, 5], 425.05]') AS D;
+      ->     JSON_STORAGE_SIZE('[100, "json", 10, 20, 30], 3, 5], 425.05]') AS D;
   +----+----+----+----+
   | A  | B  | C  | D  |
   +----+----+----+----+

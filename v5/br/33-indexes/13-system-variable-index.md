@@ -4,7 +4,7 @@
 
 ### A
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### buffer_de_registro_de_auditoria
 
@@ -408,7 +408,7 @@
 
 ### B
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### back_log
 
@@ -642,7 +642,7 @@
 
 ### C
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### caching_sha
 
@@ -964,7 +964,7 @@
 
 ### D
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### daemon_memcached_enable_binlog
 
@@ -1196,7 +1196,7 @@
 
 ### E
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### marcadores_de_fim_em_json
 
@@ -1286,7 +1286,7 @@
 
 ### F
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### lavagem
 
@@ -1378,7 +1378,7 @@
 
 ### G
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### log geral
 
@@ -1784,7 +1784,7 @@
 
 ### H
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### have_compress
 
@@ -1866,7 +1866,7 @@
 
 ### Eu
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### identidade
 
@@ -3430,7 +3430,7 @@
 
 ### J
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### tamanho_buffer_de_conexão
 
@@ -3442,7 +3442,7 @@
 
 ### K
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### keep_files_on_create
 
@@ -3578,7 +3578,7 @@
 
 ### L
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### suporte_para_arquivos_grandes
 
@@ -3924,7 +3924,7 @@
 
 ### M
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### repositório_de_informações_do_mestre
 
@@ -4396,7 +4396,7 @@
 
 ### N
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### named_pipe
 
@@ -4752,7 +4752,7 @@
 
 ### O
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### modo_offline
 
@@ -4920,7 +4920,7 @@
 
 ### P
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### parser_max_mem_size
 
@@ -5346,7 +5346,7 @@
 
 ### Q
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### query_alloc_block_size
 
@@ -5404,7 +5404,7 @@
 
 ### R
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### rand_seed
 
@@ -5686,7 +5686,7 @@
 
 ### S
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### secure_auth
 
@@ -6572,7 +6572,7 @@
 
 ### T
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### cache_de_definição_de_tabela
 
@@ -6848,7 +6848,7 @@
 
 ### U
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### checks únicos
 
@@ -6870,7 +6870,7 @@
 
 ### V
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### validar_senha_verificar_nome_do_usuário
 
@@ -6954,7 +6954,7 @@
 
 ### W
 
-[[index superior](dynindex-sysvar.html#sysvar-index-superior)]
+index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 ### wait_timeout
 

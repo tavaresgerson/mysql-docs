@@ -20,16 +20,16 @@ alter_option: {
         [index_type] (key_part,...) [index_option] ...
   | ADD {FULLTEXT | SPATIAL} [INDEX | KEY] [index_name]
         (key_part,...) [index_option] ...
-  | ADD [CONSTRAINT [symbol]] PRIMARY KEY
+  | ADD [CONSTRAINT [symbol PRIMARY KEY
         [index_type] (key_part,...)
         [index_option] ...
-  | ADD [CONSTRAINT [symbol]] UNIQUE [INDEX | KEY]
+  | ADD [CONSTRAINT [symbol UNIQUE [INDEX | KEY]
         [index_name] [index_type] (key_part,...)
         [index_option] ...
-  | ADD [CONSTRAINT [symbol]] FOREIGN KEY
+  | ADD [CONSTRAINT [symbol FOREIGN KEY
         [index_name] (col_name,...)
         reference_definition
-  | ADD [CONSTRAINT [symbol]] CHECK (expr) [[NOT] ENFORCED]
+  | ADD [CONSTRAINT [symbol CHECK (expr) NOT] ENFORCED]
   | DROP {CHECK | CONSTRAINT} symbol
   | ALTER {CHECK | CONSTRAINT} symbol [NOT] ENFORCED
   | ALGORITHM [=] {DEFAULT | INSTANT | INPLACE | COPY}
@@ -94,7 +94,7 @@ index_option: {
 }
 
 table_options:
-    table_option [[,] table_option] ...
+    table_option ,] table_option] ...
 
 table_option: {
     AUTOEXTEND_SIZE [=] value
@@ -558,7 +558,7 @@ The `ALTER INDEX` operation permits an index to be made visible or invisible. An
 
 #### Foreign Keys and Other Constraints
 
-The `FOREIGN KEY` and `REFERENCES` clauses are supported by the `InnoDB` and `NDB` storage engines, which implement `ADD [CONSTRAINT [symbol]] FOREIGN KEY [index_name] (...) REFERENCES ... (...)`. See Section 15.1.20.5, “FOREIGN KEY Constraints”. For other storage engines, the clauses are parsed but ignored.
+The `FOREIGN KEY` and `REFERENCES` clauses are supported by the `InnoDB` and `NDB` storage engines, which implement `ADD [CONSTRAINT [symbol FOREIGN KEY [index_name] (...) REFERENCES ... (...)`. See Section 15.1.20.5, “FOREIGN KEY Constraints”. For other storage engines, the clauses are parsed but ignored.
 
 For `ALTER TABLE`, unlike `CREATE TABLE`, `ADD FOREIGN KEY` ignores *`index_name`* if given and uses an automatically generated foreign key name. As a workaround, include the `CONSTRAINT` clause to specify the foreign key name:
 
@@ -602,7 +602,7 @@ As of MySQL 8.0.16, `ALTER TABLE` permits `CHECK` constraints for existing table
 
   ```
   ALTER TABLE tbl_name
-      ADD [CONSTRAINT [symbol]] CHECK (expr) [[NOT] ENFORCED];
+      ADD [CONSTRAINT [symbol CHECK (expr) NOT] ENFORCED];
   ```
 
   The meaning of constraint syntax elements is the same as for `CREATE TABLE`. See Section 15.1.20.6, “CHECK Constraints”.

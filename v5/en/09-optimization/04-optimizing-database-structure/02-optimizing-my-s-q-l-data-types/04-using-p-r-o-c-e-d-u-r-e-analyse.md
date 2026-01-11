@@ -1,6 +1,6 @@
 #### 8.4.2.4 Using PROCEDURE ANALYSE
 
-`ANALYSE([max_elements[,max_memory]])`
+`ANALYSE([max_elements[,max_memory)`
 
 Note
 
@@ -9,7 +9,7 @@ Note
 `ANALYSE()` examines the result from a query and returns an analysis of the results that suggests optimal data types for each column that may help reduce table sizes. To obtain this analysis, append `PROCEDURE ANALYSE` to the end of a `SELECT` statement:
 
 ```sql
-SELECT ... FROM ... WHERE ... PROCEDURE ANALYSE([max_elements,[max_memory]])
+SELECT ... FROM ... WHERE ... PROCEDURE ANALYSE([max_elements,[max_memory)
 ```
 
 For example:

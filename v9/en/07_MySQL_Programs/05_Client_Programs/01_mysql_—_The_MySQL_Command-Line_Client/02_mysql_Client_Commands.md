@@ -62,7 +62,7 @@ The use of short-form commands within multiple-line `/* ... */` comments is not 
 
   Clear the current input. Use this if you change your mind about executing the statement that you are entering.
 
-* `connect [db_name [host_name]]`, `\r [db_name [host_name]]`
+* `connect [db_name [host_name`, `\r [db_name [host_name`
 
   Reconnect to the server. The optional database name and host name arguments may be given to specify the default database or the host where the server is running. If omitted, the current values are used.
 

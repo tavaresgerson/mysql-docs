@@ -20,13 +20,13 @@ alter_option: {
         [index_type] (key_part,...) [index_option] ...
   | ADD {FULLTEXT | SPATIAL} [INDEX | KEY] [index_name]
         (key_part,...) [index_option] ...
-  | ADD [CONSTRAINT [symbol]] PRIMARY KEY
+  | ADD [CONSTRAINT [symbol PRIMARY KEY
         [index_type] (key_part,...)
         [index_option] ...
-  | ADD [CONSTRAINT [symbol]] UNIQUE [INDEX | KEY]
+  | ADD [CONSTRAINT [symbol UNIQUE [INDEX | KEY]
         [index_name] [index_type] (key_part,...)
         [index_option] ...
-  | ADD [CONSTRAINT [symbol]] FOREIGN KEY
+  | ADD [CONSTRAINT [symbol FOREIGN KEY
         [index_name] (col_name,...)
         reference_definition
   | ADD CHECK (expr)
@@ -90,7 +90,7 @@ index_option: {
 }
 
 table_options:
-    table_option [[,] table_option] ...
+    table_option ,] table_option] ...
 
 table_option: {
     AUTO_INCREMENT [=] value
@@ -462,7 +462,7 @@ After an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") state
 
 #### Foreign Keys and Other Constraints
 
-The `FOREIGN KEY` and `REFERENCES` clauses are supported by the `InnoDB` and `NDB` storage engines, which implement `ADD [CONSTRAINT [symbol]] FOREIGN KEY [index_name] (...) REFERENCES ... (...)`. See [Section 1.6.3.2, “FOREIGN KEY Constraints”](constraint-foreign-key.html "1.6.3.2 FOREIGN KEY Constraints"). For other storage engines, the clauses are parsed but ignored.
+The `FOREIGN KEY` and `REFERENCES` clauses are supported by the `InnoDB` and `NDB` storage engines, which implement `ADD [CONSTRAINT [symbol FOREIGN KEY [index_name] (...) REFERENCES ... (...)`. See [Section 1.6.3.2, “FOREIGN KEY Constraints”](constraint-foreign-key.html "1.6.3.2 FOREIGN KEY Constraints"). For other storage engines, the clauses are parsed but ignored.
 
 The `CHECK` constraint clause is parsed but ignored by all storage engines. See [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"). The reason for accepting but ignoring syntax clauses is for compatibility, to make it easier to port code from other SQL servers, and to run applications that create tables with references. See [Section 1.6.2, “MySQL Differences from Standard SQL”](differences-from-ansi.html "1.6.2 MySQL Differences from Standard SQL").
 

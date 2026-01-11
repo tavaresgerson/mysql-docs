@@ -1,15 +1,5 @@
 ## 6.5 Mascagem e desidentificação de dados da MySQL Enterprise
 
-6.5.1 Elementos de Máscara de Dados e Desidentificação do MySQL Enterprise
-
-6.5.2 Instalação ou Desinstalação da Máscara de Dados e Desidentificação do MySQL Enterprise
-
-6.5.3 Uso da Máscara de Dados e Desidentificação do MySQL Enterprise
-
-Referência da função de mascaramento e desidentificação de dados do MySQL Enterprise
-
-6.5.5 Descrições das funções de mascaramento e desidentificação de dados do MySQL Enterprise
-
 Nota
 
 O MySQL Enterprise Data Masking and De-Identification é uma extensão incluída na MySQL Enterprise Edition, um produto comercial. Para saber mais sobre produtos comerciais, <https://www.mysql.com/products/>.

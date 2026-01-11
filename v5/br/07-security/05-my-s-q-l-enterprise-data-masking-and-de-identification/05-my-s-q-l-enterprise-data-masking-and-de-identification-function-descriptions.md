@@ -306,8 +306,7 @@ As funções desta seção geram valores aleatórios para diferentes tipos de da
   +-----------------+-----------------+
   ```
 
-- [`gen_rnd_ssn()`](https://data-masking-functions.html#function_gen-rnd-ssn)
-
+- `gen_rnd_ssn()`
   Gera um número de segurança social dos EUA aleatório no formato `AAA-BB-CCCC`. A parte *`AAA`* é maior que 900 e a parte *`BB`* é menor que 70; esses valores estão fora das faixas usadas para números de segurança social legítimos.
 
   Argumentos:
@@ -387,7 +386,7 @@ Quando um dicionário é carregado, ele se torna parte do registro do dicionári
   +---------------------------------------------------+
   ```
 
-- \`gen_dictionary(nome_dicionário)
+- `gen_dictionary(dictionary_name)`
 
   Retorna um termo aleatório de um dicionário.
 
@@ -416,7 +415,7 @@ Quando um dicionário é carregado, ele se torna parte do registro do dicionári
   +--------------------------------+
   ```
 
-- \`gen_dictionary_drop(nome_dicionário)
+- `gen_dictionary_drop(dictionary_name)`
 
   Remove um dicionário do registro de dicionários.
 
@@ -447,7 +446,7 @@ Quando um dicionário é carregado, ele se torna parte do registro do dicionári
   +-------------------------------------+
   ```
 
-- `gen_dictionary_load(caminho_do_dicionário, nome_do_dicionário)`
+- `gen_dictionary_load(dictionary_path, dictionary_name)`
 
   Carrega um arquivo no registro do dicionário e atribui ao dicionário um nome a ser usado com outras funções que exigem um argumento de nome de dicionário.
 
@@ -467,7 +466,7 @@ Quando um dicionário é carregado, ele se torna parte do registro do dicionári
 
   Valor de retorno:
 
-  Uma cadeia que indica se a operação de carregamento foi bem-sucedida. `Sucesso no carregamento do dicionário` indica sucesso. `Erro no carregamento do dicionário` indica falha. A falha no carregamento do dicionário pode ocorrer por várias razões, incluindo:
+  Uma cadeia que indica se a operação de carregamento foi bem-sucedida. `Dictionary load success` indica sucesso. `Dictionary load error` indica falha. A falha no carregamento do dicionário pode ocorrer por várias razões, incluindo:
 
   - Um dicionário com o nome dado já está carregado.
   - O arquivo do dicionário não foi encontrado.

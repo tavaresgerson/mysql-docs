@@ -5,7 +5,7 @@
 Invoke **mysqladmin** like this:
 
 ```sql
-mysqladmin [options] command [command-arg] [command [command-arg]] ...
+mysqladmin [options] command [command-arg] [command [command-arg ...
 ```
 
 **mysqladmin** supports the following commands. Some of the commands take an argument following the command name.

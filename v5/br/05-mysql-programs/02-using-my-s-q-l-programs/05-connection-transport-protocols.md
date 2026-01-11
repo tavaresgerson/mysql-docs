@@ -17,29 +17,29 @@ Para especificar o protocolo explicitamente, use a opção de comando `--protoco
 <table>
    <thead>
       <tr>
-         <th>[[<code>--protocol</code>]]Valor</th>
+         <th><code>--protocol</code>Valor</th>
          <th>Protocolo de transporte utilizado</th>
          <th>Plataformas aplicáveis</th>
       </tr>
    </thead>
    <tbody>
       <tr>
-         <th>[[<code>TCP</code>]]</th>
+         <th><code>TCP</code></th>
          <td>TCP/IP</td>
          <td>Tudo</td>
       </tr>
       <tr>
-         <th>[[<code>SOCKET</code>]]</th>
+         <th><code>SOCKET</code></th>
          <td>Arquivo de soquete Unix</td>
          <td>Unix e sistemas semelhantes ao Unix</td>
       </tr>
       <tr>
-         <th>[[<code>PIPE</code>]]</th>
+         <th><code>PIPE</code></th>
          <td>Canais nomeados</td>
          <td>Windows</td>
       </tr>
       <tr>
-         <th>[[<code>MEMORY</code>]]</th>
+         <th><code>MEMORY</code></th>
          <td>Memória compartilhada</td>
          <td>Windows</td>
       </tr>

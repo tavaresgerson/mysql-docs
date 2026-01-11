@@ -3,14 +3,14 @@
 ```
 CREATE
     [DEFINER = user]
-    PROCEDURE [IF NOT EXISTS] sp_name ([proc_parameter[,...]])
+    PROCEDURE [IF NOT EXISTS] sp_name ([proc_parameter[,...)
     [characteristic ...]
-    [USING library_reference[, library_reference][, ...]]
+    [USING library_reference[, library_reference][, ...
     routine_body
 
 CREATE
     [DEFINER = user]
-    FUNCTION [IF NOT EXISTS] sp_name ([func_parameter[,...]])
+    FUNCTION [IF NOT EXISTS] sp_name ([func_parameter[,...)
     RETURNS type
     [characteristic ...] routine_body
 
@@ -32,7 +32,7 @@ characteristic: {
 }
 
 library_reference:
-    [database.]library_name [[AS] alias]
+    [database.]library_name AS] alias]
 
 routine_body:
     SQL routine | AS JavaScript statements
@@ -227,7 +227,7 @@ The server handles the data type of a routine parameter, local routine variable 
 
   The database character set and collation are given by the value of the `character_set_database` and `collation_database` system variables. For more information, see Section 12.3.3, “Database Character Set and Collation”.
 
-`CREATE PROCEDURE` and `CREATE FUNCTION` support a `USING` option for importing one or more JavaScript libraries, references to these being listed in a set of parentheses following the `USING` keyword. Each reference takes the form `[database.]library_name [[AS] alias]`, made up of the parts listed here:
+`CREATE PROCEDURE` and `CREATE FUNCTION` support a `USING` option for importing one or more JavaScript libraries, references to these being listed in a set of parentheses following the `USING` keyword. Each reference takes the form `[database.]library_name AS] alias]`, made up of the parts listed here:
 
 * The name of the database or schema where the library is located, followed by a period character. This is optional; if not specified, the database in which the stored routine was created is used.
 

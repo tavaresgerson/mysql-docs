@@ -5,7 +5,7 @@ Para realizar transações XA no MySQL, use as seguintes instruções:
 ```sql
 XA {START|BEGIN} xid [JOIN|RESUME]
 
-XA END xid [SUSPEND [FOR MIGRATE]]
+XA END xid [SUSPEND [FOR MIGRATE
 
 XA PREPARE xid
 
@@ -23,7 +23,7 @@ Para `XA END`, a cláusula `SUSPEND [FOR MIGRATE]` é reconhecida, mas não tem 
 Cada declaração XA começa com a palavra-chave `XA`, e a maioria delas requer um valor de *`xid`*. Um *`xid`* é um identificador de transação XA. Ele indica para qual transação a declaração se aplica. Os valores de *`xid`* são fornecidos pelo cliente ou gerados pelo servidor MySQL. Um valor de *`xid`* tem de uma a três partes:
 
 ```sql
-xid: gtrid [, bqual [, formatID ]]
+xid: gtrid [, bqual [, formatID 
 ```
 
 *`gtrid`* é um identificador de transação global, *`bqual`* é um qualificador de ramo e *`formatID`* é um número que identifica o formato usado pelos valores de *`gtrid`* e *`bqual`*. Como indicado pela sintaxe, *`bqual`* e *`formatID`* são opcionais. O valor padrão de *`bqual`* é `''` se não for fornecido. O valor padrão de *`formatID`* é 1 se não for fornecido.

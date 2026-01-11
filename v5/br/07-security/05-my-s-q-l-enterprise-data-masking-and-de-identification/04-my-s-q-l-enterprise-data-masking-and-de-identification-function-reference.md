@@ -2,4 +2,71 @@
 
 **Tabela 6.35 Funções de Máscara e Desidentificação de Dados da MySQL Enterprise**
 
-<table frame="box" rules="all" summary="Uma referência que lista as funções de mascaramento de dados e desidentificação do MySQL Enterprise."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[PH_HTML_CODE_<code>mask_outer()</code>]</td> <td>Realizar a substituição de termos do dicionário</td> </tr><tr><td>[[PH_HTML_CODE_<code>mask_outer()</code>]</td> <td>Remover o dicionário do registro</td> </tr><tr><td>[[PH_HTML_CODE_<code>mask_pan_relaxed()</code>]</td> <td>Carregar o dicionário no registro</td> </tr><tr><td>[[PH_HTML_CODE_<code>mask_ssn()</code>]</td> <td>Retorne um termo aleatório do dicionário</td> </tr><tr><td>[[<code>gen_range()</code>]]</td> <td>Gerar número aleatório dentro do intervalo</td> </tr><tr><td>[[<code>gen_rnd_email()</code>]]</td> <td>Gerar endereço de e-mail aleatório</td> </tr><tr><td>[[<code>gen_rnd_pan()</code>]]</td> <td>Gerar número de conta principal aleatório de cartão de pagamento</td> </tr><tr><td>[[<code>gen_rnd_ssn()</code>]]</td> <td>Gerar um Número de Segurança Social aleatório dos EUA</td> </tr><tr><td>[[<code>gen_rnd_us_phone()</code>]]</td> <td>Gerar número de telefone aleatório dos EUA</td> </tr><tr><td>[[<code>mask_inner()</code>]]</td> <td>Parte interna da máscara da corda</td> </tr><tr><td>[[<code>mask_outer()</code>]]</td> <td>Máscara esquerda e direita da corda</td> </tr><tr><td>[[<code>gen_dictionary_drop()</code><code>mask_outer()</code>]</td> <td>Pagamento do cartão de pagamento Número da Conta Principal parte da string</td> </tr><tr><td>[[<code>mask_pan_relaxed()</code>]]</td> <td>Pagamento do cartão de pagamento Número da Conta Principal parte da string</td> </tr><tr><td>[[<code>mask_ssn()</code>]]</td> <td>Mascarar o Número de Segurança Social dos EUA</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists MySQL Enterprise Data Masking and De-Identification functions.">
+  <col style="width: 28%"/>
+  <col style="width: 71%"/>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>gen_blacklist()</code></td>
+      <td> PSubstituição de termo do dicionário </td>
+    </tr>
+    <tr>
+      <td><code>gen_dictionary_drop()</code></td>
+      <td> Remover dicionário do registro </td>
+    </tr>
+    <tr>
+      <td><code>gen_dictionary_load()</code></td>
+      <td> Carregar dicionário no registro </td>
+    </tr>
+    <tr>
+      <td><code>gen_dictionary()</code></td>
+      <td> Retornar termo aleatório do dicionário </td>
+    </tr>
+    <tr>
+      <td><code>gen_range()</code></td>
+      <td> Gerar número aleatório dentro de um intervalo </td>
+    </tr>
+    <tr>
+      <td><code>gen_rnd_email()</code></td>
+      <td> Gerar endereço de e-mail aleatório </td>
+    </tr>
+    <tr>
+      <td><code>gen_rnd_pan()</code></td>
+      <td> Gerar número de conta principal de cartão de pagamento aleatório </td>
+    </tr>
+    <tr>
+      <td><code>gen_rnd_ssn()</code></td>
+      <td> Gerar número de Seguro Social dos EUA aleatório </td>
+    </tr>
+    <tr>
+      <td><code>gen_rnd_us_phone()</code></td>
+      <td> Gerar número de telefone dos EUA aleatório </td>
+    </tr>
+    <tr>
+      <td><code>mask_inner()</code></td>
+      <td> Mascarar parte interna da string </td>
+    </tr>
+    <tr>
+      <td><code>mask_outer()</code></td>
+      <td> Mascarar partes esquerda e direita da string </td>
+    </tr>
+    <tr>
+      <td><code>mask_pan()</code></td>
+      <td> Mascarar parte da string referente ao número de conta principal do cartão de pagamento </td>
+    </tr>
+    <tr>
+      <td><code>mask_pan_relaxed()</code></td>
+      <td> Mascarar parte da string referente ao número de conta principal do cartão de pagamento </td>
+    </tr>
+    <tr>
+      <td><code>mask_ssn()</code></td>
+      <td>Mascarar número de Seguro Social dos EUA </td>
+    </tr>
+  </tbody>
+</table>

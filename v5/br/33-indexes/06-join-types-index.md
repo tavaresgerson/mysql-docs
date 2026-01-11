@@ -4,7 +4,7 @@
 
 ### A
 
-[[index superior](dynindex-jointype.html#jointype-index-superior)]
+index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### TODOS
 
@@ -18,7 +18,7 @@
 
 ### C
 
-[[index superior](dynindex-jointype.html#jointype-index-superior)]
+index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### const
 
@@ -36,7 +36,7 @@
 
 ### E
 
-[[index superior](dynindex-jointype.html#jointype-index-superior)]
+index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### eq_ref
 
@@ -56,7 +56,7 @@
 
 ### F
 
-[[index superior](dynindex-jointype.html#jointype-index-superior)]
+index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### fulltext
 
@@ -64,7 +64,7 @@
 
 ### Eu
 
-[[index superior](dynindex-jointype.html#jointype-index-superior)]
+index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### índice
 
@@ -90,7 +90,7 @@
 
 ### R
 
-[[index superior](dynindex-jointype.html#jointype-index-superior)]
+index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### alcance
 
@@ -140,7 +140,7 @@
 
 ### S
 
-[[index superior](dynindex-jointype.html#jointype-index-superior)]
+index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### sistema
 
@@ -154,7 +154,7 @@
 
 ### U
 
-[[index superior](dynindex-jointype.html#jointype-index-superior)]
+index superior](dynindex-jointype.html#jointype-index-superior)]
 
 ### subconsulta_única
 

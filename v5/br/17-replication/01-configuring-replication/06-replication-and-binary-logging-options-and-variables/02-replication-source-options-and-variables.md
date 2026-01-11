@@ -12,7 +12,7 @@ A lista a seguir descreve as opções de inicialização para controlar os servi
 
 - `--show-slave-auth-info`
 
-  <table frame="box" rules="all" summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--show-slave-auth-info[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para show-slave-auth-info"><tbody><tr><th>Formato de linha de comando</th> <td><code>--show-slave-auth-info[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Exiba nomes de usuários e senhas replicados na saída de `SHOW SLAVE HOSTS` no servidor de origem para réplicas iniciadas com as opções `--report-user` (`replication-options-replica.html#sysvar_report_user`) e `--report-password` (`replication-options-replica.html#sysvar_report_password`).
 
@@ -22,7 +22,7 @@ As seguintes variáveis de sistema são usadas para controlar as fontes:
 
 - [`auto_increment_increment`](https://replication-options-source.html#sysvar_auto_increment_increment)
 
-  <table frame="box" rules="all" summary="Propriedades para auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-increment-increment=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>auto_increment_increment</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--auto-increment-increment=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   `auto_increment_increment` e `auto_increment_offset` são destinados para uso com replicação de fonte para fonte e podem ser usados para controlar o funcionamento das colunas `AUTO_INCREMENT`. Ambas as variáveis têm valores globais e de sessão, e cada uma pode assumir um valor inteiro entre 1 e 65.535, inclusive. Definir o valor de qualquer uma dessas duas variáveis para 0 faz com que seu valor seja definido para 1 em vez disso. Tentar definir o valor de qualquer uma dessas duas variáveis para um valor inteiro maior que 65.535 ou menor que 0 faz com que seu valor seja definido para 65.535 em vez disso. Tentar definir o valor de `auto_increment_increment` ou `auto_increment_offset` para um valor não inteiro produz um erro, e o valor real da variável permanece inalterado.
 
@@ -172,7 +172,7 @@ As seguintes variáveis de sistema são usadas para controlar as fontes:
 
 - [`auto_increment_offset`](https://replication-options-source.html#sysvar_auto_increment_offset)
 
-  <table frame="box" rules="all" summary="Propriedades para auto_increment_offset"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--auto-increment-offset=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>auto_increment_offset</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para auto_increment_offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--auto-increment-offset=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>auto_increment_offset</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   Esta variável tem um valor padrão de 1. Se for deixada com seu valor padrão e a replicação por grupo for iniciada no servidor, ela será alterada para o ID do servidor. Para mais informações, consulte a descrição de `auto_increment_increment`.
 
@@ -182,7 +182,7 @@ As seguintes variáveis de sistema são usadas para controlar as fontes:
 
 - [`rpl_semi_sync_master_enabled`](https://replication-options-source.html#sysvar_rpl_semi_sync_master_enabled)
 
-  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_enabled"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-enabled[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_enabled</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_enabled"><tbody><tr><th>Formato de linha de comando</th> <td><code>--rpl-semi-sync-master-enabled[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>rpl_semi_sync_master_enabled</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Controla se a replicação semisoincronizada está habilitada na fonte. Para habilitar ou desabilitar o plugin, defina essa variável para `ON` ou `OFF` (ou 1 ou 0), respectivamente. O padrão é `OFF`.
 
@@ -190,7 +190,7 @@ As seguintes variáveis de sistema são usadas para controlar as fontes:
 
 - [`rpl_semi_sync_master_timeout`](https://replication-options-source.html#sysvar_rpl_semi_sync_master_timeout)
 
-  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_timeout"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-timeout=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_timeout</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>10000</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>4294967295</code>]]</td> </tr><tr><th>Unidade</th> <td>milissegundos</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_timeout"><tbody><tr><th>Formato de linha de comando</th> <td><code>--rpl-semi-sync-master-timeout=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>rpl_semi_sync_master_timeout</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>10000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>milissegundos</td> </tr></tbody></table>
 
   Um valor em milissegundos que controla quanto tempo a fonte espera por um commit para receber um reconhecimento de uma réplica antes de expirar e reverter para replicação assíncrona. O valor padrão é 10000 (10 segundos).
 
@@ -198,7 +198,7 @@ As seguintes variáveis de sistema são usadas para controlar as fontes:
 
 - [`rpl_semi_sync_master_trace_level`](https://replication-options-source.html#sysvar_rpl_semi_sync_master_trace_level)
 
-  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_trace_level"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-trace-level=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_trace_level</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>32</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>4294967295</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_trace_level"><tbody><tr><th>Formato de linha de comando</th> <td><code>--rpl-semi-sync-master-trace-level=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>rpl_semi_sync_master_trace_level</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
   O nível de rastreamento de depuração da replicação semiesincronizada na fonte. Quatro níveis são definidos:
 
@@ -214,7 +214,7 @@ As seguintes variáveis de sistema são usadas para controlar as fontes:
 
 - [`rpl_semi_sync_master_wait_for_slave_count`](https://docs.postgresql.org/en/current/replication-options-source.html#sysvar_rpl_semi_sync_master_wait_for_slave_count)
 
-  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_wait_for_slave_count"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-wait-for-slave-count=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_wait_for_slave_count</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>65535</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_wait_for_slave_count"><tbody><tr><th>Formato de linha de comando</th> <td><code>--rpl-semi-sync-master-wait-for-slave-count=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>rpl_semi_sync_master_wait_for_slave_count</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
   O número de confirmações de replicação que a fonte deve receber por transação antes de prosseguir. Por padrão, `rpl_semi_sync_master_wait_for_slave_count` é `1`, o que significa que a replicação semi-sincronizada prossegue após receber uma única confirmação de replicação. O desempenho é melhor para valores pequenos dessa variável.
 
@@ -228,7 +228,7 @@ As seguintes variáveis de sistema são usadas para controlar as fontes:
 
 - [`rpl_semi_sync_master_wait_no_slave`](https://replication-options-source.html#sysvar_rpl_semi_sync_master_wait_no_slave)
 
-  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_wait_no_slave"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-wait-no-slave[={OFF|ON}]</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_wait_no_slave</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_wait_no_slave"><tbody><tr><th>Formato de linha de comando</th> <td><code>--rpl-semi-sync-master-wait-no-slave[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>rpl_semi_sync_master_wait_no_slave</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Controla se a fonte espera que o período de tempo de espera configurado por `rpl_semi_sync_master_timeout` expire, mesmo que o número de réplicas caia para menos que o número de réplicas configurado por `rpl_semi_sync_master_wait_for_slave_count` durante o período de espera.
 
@@ -240,7 +240,7 @@ As seguintes variáveis de sistema são usadas para controlar as fontes:
 
 - [`rpl_semi_sync_master_wait_point`](https://replication-options-source.html#sysvar_rpl_semi_sync_master_wait_point)
 
-  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_wait_point"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--rpl-semi-sync-master-wait-point=value</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>rpl_semi_sync_master_wait_point</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>AFTER_SYNC</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p>[[<code>AFTER_SYNC</code>]]</p><p>[[<code>AFTER_COMMIT</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para rpl_semi_sync_master_wait_point"><tbody><tr><th>Formato de linha de comando</th> <td><code>--rpl-semi-sync-master-wait-point=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code>rpl_semi_sync_master_wait_point</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>AFTER_SYNC</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>AFTER_SYNC</code></p><p><code>AFTER_COMMIT</code></p></td> </tr></tbody></table>
 
   Essa variável controla o ponto em que uma fonte semisoincronizada aguarda o reconhecimento da replicação da recepção da transação antes de retornar um status ao cliente que comprometeu a transação. Esses valores são permitidos:
 

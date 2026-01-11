@@ -20,13 +20,13 @@ alter_option: {
         [index_type] (key_part,...) [index_option] ...
   | ADD {FULLTEXT | SPATIAL} [INDEX | KEY] [index_name]
         (key_part,...) [index_option] ...
-  | ADD [CONSTRAINT [symbol]] PRIMARY KEY
+  | ADD [CONSTRAINT [symbol PRIMARY KEY
         [index_type] (key_part,...)
         [index_option] ...
-  | ADD [CONSTRAINT [symbol]] UNIQUE [INDEX | KEY]
+  | ADD [CONSTRAINT [symbol UNIQUE [INDEX | KEY]
         [index_name] [index_type] (key_part,...)
         [index_option] ...
-  | ADD [CONSTRAINT [symbol]] FOREIGN KEY
+  | ADD [CONSTRAINT [symbol FOREIGN KEY
         [index_name] (col_name,...)
         reference_definition
   | ADD CHECK (expr)
@@ -90,7 +90,7 @@ index_option: {
 }
 
 table_options:
-    table_option [[,] table_option] ...
+    table_option ,] table_option] ...
 
 table_option: {
     AUTO_INCREMENT [=] value
@@ -466,7 +466,7 @@ Após uma declaração de `ALTER TABLE`, pode ser necessário executar `ANALYZE 
 
 #### Chaves Estrangeiras e Outras Restrições
 
-As cláusulas `FOREIGN KEY` e `REFERENCES` são suportadas pelos motores de armazenamento `InnoDB` e `NDB`, que implementam `ADD [CONSTRAINT [símbolo]] FOREIGN KEY [nome_índice] (...) REFERENCES ... (...)`. Veja Seção 1.6.3.2, “Restrições FOREIGN KEY”. Para outros motores de armazenamento, as cláusulas são analisadas, mas ignoradas.
+As cláusulas `FOREIGN KEY` e `REFERENCES` são suportadas pelos motores de armazenamento `InnoDB` e `NDB`, que implementam `ADD [CONSTRAINT [símbolo FOREIGN KEY [nome_índice] (...) REFERENCES ... (...)`. Veja Seção 1.6.3.2, “Restrições FOREIGN KEY”. Para outros motores de armazenamento, as cláusulas são analisadas, mas ignoradas.
 
 A cláusula de restrição `CHECK` é analisada, mas ignorada por todos os mecanismos de armazenamento. Veja Seção 13.1.18, “Instrução CREATE TABLE”. A razão para aceitar, mas ignorar, cláusulas de sintaxe é para compatibilidade, para facilitar a migração de código de outros servidores SQL e para executar aplicações que criam tabelas com referências. Veja Seção 1.6.2, “Diferenças do MySQL em relação ao SQL Padrão”.
 

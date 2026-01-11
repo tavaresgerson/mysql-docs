@@ -7,7 +7,7 @@ A `DELETE` statement can start with a `WITH`") clause to define common table exp
 #### Single-Table Syntax
 
 ```
-DELETE [LOW_PRIORITY] [QUICK] [IGNORE] FROM tbl_name [[AS] tbl_alias]
+DELETE [LOW_PRIORITY] [QUICK] [IGNORE] FROM tbl_name AS] tbl_alias]
     [PARTITION (partition_name [, partition_name] ...)]
     [WHERE where_condition]
     [ORDER BY ...]
@@ -28,12 +28,12 @@ If the `ORDER BY` clause is specified, the rows are deleted in the order that is
 
 ```
 DELETE [LOW_PRIORITY] [QUICK] [IGNORE]
-    tbl_name[.*] [, tbl_name[.*]] ...
+    tbl_name[.*] [, tbl_name[.* ...
     FROM table_references
     [WHERE where_condition]
 
 DELETE [LOW_PRIORITY] [QUICK] [IGNORE]
-    FROM tbl_name[.*] [, tbl_name[.*]] ...
+    FROM tbl_name[.*] [, tbl_name[.* ...
     USING table_references
     [WHERE where_condition]
 ```

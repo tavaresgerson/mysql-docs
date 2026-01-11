@@ -16,10 +16,10 @@ SELECT
     select_expr [, select_expr] ...
     [into_option]
     [FROM table_references
-      [PARTITION partition_list]]
+      [PARTITION partition_list
     [WHERE where_condition]
     [GROUP BY {col_name | expr | position}
-      [ASC | DESC], ... [WITH ROLLUP]]
+      [ASC | DESC], ... [WITH ROLLUP
     [HAVING where_condition]
     [ORDER BY {col_name | expr | position}
       [ASC | DESC], ...]
@@ -39,7 +39,7 @@ into_option: {
 export_options:
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
-        [[OPTIONALLY] ENCLOSED BY 'char']
+        OPTIONALLY] ENCLOSED BY 'char']
         [ESCAPED BY 'char']
     ]
     [LINES
@@ -147,7 +147,7 @@ A lista a seguir fornece informações adicionais sobre outras cláusulas `SELEC
 - A cláusula `FROM table_references` indica a(s) tabela(s) a partir da qual as linhas serão recuperadas. Se você nomear mais de uma tabela, está realizando uma junção. Para obter informações sobre a sintaxe de junção, consulte Seção 13.2.9.2, “Cláusula JOIN”. Para cada tabela especificada, você pode opcionalmente especificar um alias.
 
   ```sql
-  tbl_name [[AS] alias] [index_hint]
+  tbl_name AS] alias] [index_hint]
   ```
 
   O uso de dicas de índice fornece ao otimizador informações sobre como escolher índices durante o processamento de consultas. Para uma descrição da sintaxe para especificar essas dicas, consulte Seção 8.9.4, “Dicas de Índice”.

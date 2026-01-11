@@ -32,49 +32,49 @@ Unless otherwise specified, functions in this section handle their geometry argu
 
 These functions are available for creating geometries from WKB values:
 
-* [`ST_GeomCollFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-geomcollfromwkb), [`ST_GeometryCollectionFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-geomcollfromwkb)
+* [`ST_GeomCollFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-geomcollfromwkb), [`ST_GeometryCollectionFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-geomcollfromwkb)
 
   Constructs a `GeometryCollection` value using its WKB representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_GeomFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-geomfromwkb), [`ST_GeometryFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-geomfromwkb)
+* [`ST_GeomFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-geomfromwkb), [`ST_GeometryFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-geomfromwkb)
 
   Constructs a geometry value of any type using its WKB representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_LineFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-linefromwkb), [`ST_LineStringFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-linefromwkb)
+* [`ST_LineFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-linefromwkb), [`ST_LineStringFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-linefromwkb)
 
   Constructs a `LineString` value using its WKB representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_MLineFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-mlinefromwkb), [`ST_MultiLineStringFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-mlinefromwkb)
+* [`ST_MLineFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-mlinefromwkb), [`ST_MultiLineStringFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-mlinefromwkb)
 
   Constructs a `MultiLineString` value using its WKB representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_MPointFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-mpointfromwkb), [`ST_MultiPointFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-mpointfromwkb)
+* [`ST_MPointFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-mpointfromwkb), [`ST_MultiPointFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-mpointfromwkb)
 
   Constructs a `MultiPoint` value using its WKB representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_MPolyFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-mpolyfromwkb), [`ST_MultiPolygonFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-mpolyfromwkb)
+* [`ST_MPolyFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-mpolyfromwkb), [`ST_MultiPolygonFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-mpolyfromwkb)
 
   Constructs a `MultiPolygon` value using its WKB representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_PointFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-pointfromwkb)
+* [`ST_PointFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-pointfromwkb)
 
   Constructs a `Point` value using its WKB representation and SRID.
 
   `ST_PointFromWKB()` handles its arguments as described in the introduction to this section.
 
-* [`ST_PolyFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-polyfromwkb), [`ST_PolygonFromWKB(wkb [, srid [, options]])`](gis-wkb-functions.html#function_st-polyfromwkb)
+* [`ST_PolyFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-polyfromwkb), [`ST_PolygonFromWKB(wkb [, srid [, options)`](gis-wkb-functions.html#function_st-polyfromwkb)
 
   Constructs a `Polygon` value using its WKB representation and SRID.
 

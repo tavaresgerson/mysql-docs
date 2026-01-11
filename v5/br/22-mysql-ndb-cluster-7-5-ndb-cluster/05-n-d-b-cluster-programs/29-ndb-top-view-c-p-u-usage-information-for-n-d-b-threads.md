@@ -34,89 +34,89 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 **Tabela 21.45 Opções de linha de comando usadas com o programa ndb_top**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p>[[PH_HTML_CODE_<code> --login-path=path </code>],</p><p> [[PH_HTML_CODE_<code> --login-path=path </code>] </p></th> <td>Mostrar gráficos ASCII coloridos; use --skip-colors para desativá-los</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code> -m </code>] </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code> --no-defaults </code>] </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code>--node-id=#</code>] </p></th> <td>Leia também grupos com concatenação(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>[[PH_HTML_CODE_<code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
-                #</a> </code>],</p><p> [[PH_HTML_CODE_<code>--os-load</code>] </p></th> <td>Exiba os dados usando gráficos; use --skip-graphs para desabilitar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code> -o </code>] </p></th> <td>Mostrar informações de uso do programa</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p>[[PH_HTML_CODE_<code>--passwd=password</code>],</p><p> [[PH_HTML_CODE_<code> -p password </code>] </p></th> <td>Nome do host ou endereço IP do servidor MySQL para se conectar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --login-path=path </code>]] </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> -c </code><code> --login-path=path </code>],</p><p> [[<code> -m </code>]] </p></th> <td>Mostrar carga medida por fio</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --no-defaults </code>]] </p></th> <td>Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code>--node-id=#</code>]],</p><p> [[<code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
-                #</a> </code>]] </p></th> <td>Nodo de visualização com este ID de nó</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p>[[<code>--os-load</code>]],</p><p> [[<code> -o </code>]] </p></th> <td>Mostrar a carga medida pelo sistema operacional</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p>[[<code>--passwd=password</code>]],</p><p> [[<code> -p password </code>]] </p></th> <td>Conecte-se usando essa senha (mesma que a opção --password)</td> <td><p>ADICIONADO: NDB 7.6.3</p><p>REMOvido: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --defaults-extra-file=path </code><code> --login-path=path </code>],</p><p> [[<code> --defaults-extra-file=path </code><code> --login-path=path </code>] </p></th> <td>Conecte-se usando essa senha</td> <td><p>ADICIONADO: NDB 7.6.6</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --defaults-extra-file=path </code><code> -m </code>],</p><p>[[<code> --defaults-extra-file=path </code><code> --no-defaults </code>] (&lt;=7.6.5),</p><p>[[<code> --defaults-extra-file=path </code><code>--node-id=#</code>] (&gt;=7.6.6)</p></th> <td>Número de porta a ser usado ao se conectar ao servidor MySQL</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --defaults-extra-file=path </code><code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
-                #</a> </code>] </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --defaults-extra-file=path </code><code>--os-load</code>],</p><p> [[<code> --defaults-extra-file=path </code><code> -o </code>] </p></th> <td>Tempo de espera entre atualizações da tela, em segundos</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --defaults-extra-file=path </code><code>--passwd=password</code>],</p><p> [[<code> --defaults-extra-file=path </code><code> -p password </code>] </p></th> <td>Arquivo de soquete a ser usado para a conexão</td> <td><p>ADICIONADO: NDB 7.6.6</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --defaults-file=path </code><code> --login-path=path </code>],</p><p> [[<code> --defaults-file=path </code><code> --login-path=path </code>] </p></th> <td>Classifique os tópicos por uso; use --skip-sort para desativá-lo</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --defaults-file=path </code><code> -m </code>],</p><p>[[<code> --defaults-file=path </code><code> --no-defaults </code>] (&lt;=7.6.5),</p><p>[[<code> --defaults-file=path </code><code>--node-id=#</code>] (&gt;=7.6.6)</p></th> <td>Exibir dados usando texto</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --defaults-file=path </code><code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
-                #</a> </code>] </p></th> <td>Mostrar informações de uso do programa; o mesmo que --help</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p>[[<code> --defaults-file=path </code><code>--os-load</code>],</p><p> [[<code> --defaults-file=path </code><code> -o </code>] </p></th> <td>Conecte-se como este usuário do MySQL</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p>PH_HTML_CODE_<code> --login-path=path </code>],</p><p> PH_HTML_CODE_<code> --login-path=path </code>] </p></th> <td>Mostrar gráficos ASCII coloridos; use --skip-colors para desativá-los</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> -m </code>] </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --no-defaults </code>] </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code>--node-id=#</code>] </p></th> <td>Leia também grupos com concatenação(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>PH_HTML_CODE_<code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
+                #</a> </code>],</p><p> PH_HTML_CODE_<code>--os-load</code>] </p></th> <td>Exiba os dados usando gráficos; use --skip-graphs para desabilitar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> -o </code>] </p></th> <td>Mostrar informações de uso do programa</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p>PH_HTML_CODE_<code>--passwd=password</code>],</p><p> PH_HTML_CODE_<code> -p password </code>] </p></th> <td>Nome do host ou endereço IP do servidor MySQL para se conectar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> -c </code><code> --login-path=path </code>],</p><p> <code> -m </code> </p></th> <td>Mostrar carga medida por fio</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code>--node-id=#</code>,</p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
+                #</a> </code> </p></th> <td>Nodo de visualização com este ID de nó</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code>--os-load</code>,</p><p> <code> -o </code> </p></th> <td>Mostrar a carga medida pelo sistema operacional</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code>--passwd=password</code>,</p><p> <code> -p password </code> </p></th> <td>Conecte-se usando essa senha (mesma que a opção --password)</td> <td><p>ADICIONADO: NDB 7.6.3</p><p>REMOvido: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-extra-file=path </code><code> --login-path=path </code>],</p><p> <code> --defaults-extra-file=path </code><code> --login-path=path </code>] </p></th> <td>Conecte-se usando essa senha</td> <td><p>ADICIONADO: NDB 7.6.6</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-extra-file=path </code><code> -m </code>],</p><p><code> --defaults-extra-file=path </code><code> --no-defaults </code>] (&lt;=7.6.5),</p><p><code> --defaults-extra-file=path </code><code>--node-id=#</code>] (&gt;=7.6.6)</p></th> <td>Número de porta a ser usado ao se conectar ao servidor MySQL</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code><code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
+                #</a> </code>] </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-extra-file=path </code><code>--os-load</code>],</p><p> <code> --defaults-extra-file=path </code><code> -o </code>] </p></th> <td>Tempo de espera entre atualizações da tela, em segundos</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-extra-file=path </code><code>--passwd=password</code>],</p><p> <code> --defaults-extra-file=path </code><code> -p password </code>] </p></th> <td>Arquivo de soquete a ser usado para a conexão</td> <td><p>ADICIONADO: NDB 7.6.6</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-file=path </code><code> --login-path=path </code>],</p><p> <code> --defaults-file=path </code><code> --login-path=path </code>] </p></th> <td>Classifique os tópicos por uso; use --skip-sort para desativá-lo</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-file=path </code><code> -m </code>],</p><p><code> --defaults-file=path </code><code> --no-defaults </code>] (&lt;=7.6.5),</p><p><code> --defaults-file=path </code><code>--node-id=#</code>] (&gt;=7.6.6)</p></th> <td>Exibir dados usando texto</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code><code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
+                #</a> </code>] </p></th> <td>Mostrar informações de uso do programa; o mesmo que --help</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-file=path </code><code>--os-load</code>],</p><p> <code> --defaults-file=path </code><code> -o </code>] </p></th> <td>Conecte-se como este usuário do MySQL</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody></table>
 
 #### Opções adicionais
 
 - `--color`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Mostre gráficos ASCII coloridos; use `--skip-colors` para desativá-los.
 
 - `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia o arquivo fornecido após a leitura dos arquivos globais.
 
 - `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de falhas"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para arquivo de falhas"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia as opções padrão do arquivo fornecido.
 
 - `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-group-suffix=string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia também grupos com concatenação (grupo, sufixo).
 
 - `--graph`, `-g`
 
-  <table frame="box" rules="all" summary="Propriedades para gráfico"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--graph</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para gráfico"><tbody><tr><th>Formato de linha de comando</th> <td><code>--graph</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Exibir dados usando gráficos; use `--skip-graphs` para desabilitar. Esta opção ou `--text` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Mostrar informações de uso do programa.
 
 - `--host[`=*`nome]`*, `-h`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--host=string</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>localhost</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=string</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
 
   Nome do host ou endereço IP do servidor MySQL para se conectar.
 
 - `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--login-path=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td><code>--login-path=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Leia o caminho fornecido a partir do arquivo de login.
 
 - `--measured-load`, `-m`
 
-  <table frame="box" rules="all" summary="Propriedades para carga medida"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--measured-load</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para carga medida"><tbody><tr><th>Formato de linha de comando</th> <td><code>--measured-load</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Mostre a carga medida por fio. Esta opção ou `--os-load` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
 - `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
 
 - `--node-id[`=*`#`]*`, `-n\`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Acompanhe o nó de dados que tem esse ID de nó.
 
 - `--os-load`, `-o`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Mostrar a carga medida pelo sistema operacional. Esta opção ou `--measured-load` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
 - `--passwd[`=*`senha]`*, `-p`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Conecte-se a um servidor MySQL usando essa senha e o usuário MySQL especificado por `--user`. Sinônimo de `--password`.
 
@@ -124,7 +124,7 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--password[`=*`senha]`*, `-p`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Conecte-se a um servidor MySQL usando essa senha e o usuário MySQL especificado por `--user`.
 
@@ -132,7 +132,7 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--port[`=*`#]`*, `-P`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Número de porta a ser usado ao se conectar ao servidor MySQL.
 
@@ -140,31 +140,31 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Imprima a lista de argumentos do programa e saia.
 
 - `--sleep-time[`=*`segundos]`*, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Tempo de espera entre atualizações da tela, em segundos.
 
 - `--socket=caminho/para/arquivo`, *`-S`*
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Use o arquivo de soquete especificado para a conexão.
 
 - `--sort`, `-r`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--color</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
   Classifique os tópicos por uso; use `--skip-sort` para desativá-lo.
 
 - `--text`, `-t`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Exibir dados usando texto. Esta opção ou `--graph` deve ser verdadeira; ambas as opções podem ser verdadeiras.
 
@@ -172,13 +172,13 @@ A tabela a seguir inclui todas as opções específicas do programa NDB Cluster 
 
 - `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Exibir texto de ajuda e sair; o mesmo que `--help`.
 
 - `--user[`=*`nome]`*, `-u`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-extra-file=path</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Conecte-se como este usuário MySQL. Normalmente requer uma senha fornecida pela opção `--password`.
 

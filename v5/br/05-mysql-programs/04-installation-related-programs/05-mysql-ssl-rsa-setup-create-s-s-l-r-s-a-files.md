@@ -121,36 +121,36 @@ O **mysql_ssl_rsa_setup** suporta as seguintes opções de linha de comando, que
 
 - `--help`, `?`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--datadir=dir_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--datadir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O caminho para o diretório que o **mysql_ssl_rsa_setup** deve verificar para arquivos SSL e RSA padrão e em que ele deve criar arquivos se eles estiverem ausentes. O padrão é o diretório de dados integrado.
 
 - `--suffix=str`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--suffix=str</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--suffix=str</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O sufixo para o atributo Nome Comum em certificados X.509. O valor do sufixo é limitado a 17 caracteres. O padrão é baseado no número da versão do MySQL.
 
 - `--uid=nome`, `-v`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--uid=name</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--uid=name</code></td> </tr></tbody></table>
 
   O nome do usuário que deve ser o proprietário de quaisquer arquivos criados. O valor é um nome de usuário, não um ID de usuário numérico. Na ausência desta opção, os arquivos criados por **mysql_ssl_rsa_setup** são de propriedade do usuário que os executa. Esta opção só é válida se você executar o programa como `root` em um sistema que suporte a chamada de sistema `chown()`.
 
 - `--verbose`, `-v`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--verbose</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--verbose</code></td> </tr></tbody></table>
 
   Modo verbose. Produza mais informações sobre o que o programa faz. Por exemplo, o programa mostra os comandos do **openssl** que ele executa e produz saída para indicar se ele ignora a criação de arquivos SSL ou RSA porque algum arquivo padrão já existe.
 
 - `--version`, `-V`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--version</code></td> </tr></tbody></table>
 
   Exibir informações da versão e sair.

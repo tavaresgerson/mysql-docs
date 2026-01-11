@@ -3,10 +3,10 @@
 ```sql
 GRANT
     priv_type [(column_list)]
-      [, priv_type [(column_list)]] ...
+      [, priv_type [(column_list) ...
     ON [object_type] priv_level
-    TO user [auth_option] [, user [auth_option]] ...
-    [REQUIRE {NONE | tls_option [[AND] tls_option] ...}]
+    TO user [auth_option] [, user [auth_option ...
+    [REQUIRE {NONE | tls_option AND] tls_option] ...}]
     [WITH {GRANT OPTION | resource_option} ...]
 
 GRANT PROXY ON user

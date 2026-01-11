@@ -20,7 +20,7 @@ A tabela a seguir mostra os nomes dos plugins no lado do servidor e no lado do c
 
 **Tabela 6.11 Nomes de plugins e bibliotecas para autenticação SHA-256**
 
-<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha SHA-256."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td>[[<code>sha256_password</code>]]</td> </tr><tr> <td>Plugin no lado do cliente</td> <td>[[<code>sha256_password</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>Nenhum (os plugins são integrados)</td> </tr></tbody></table>
+<table summary="Nomes para os plugins e o arquivo de biblioteca usados para autenticação de senha SHA-256."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do servidor</td> <td><code>sha256_password</code></td> </tr><tr> <td>Plugin no lado do cliente</td> <td><code>sha256_password</code></td> </tr><tr> <td>Arquivo da biblioteca</td> <td>Nenhum (os plugins são integrados)</td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para a autenticação plugável SHA-256:
 

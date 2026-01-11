@@ -4,7 +4,7 @@
 
 ### Symbols
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 ! (logical NOT), [Logical Operators](logical-operators.html)
 
@@ -226,7 +226,7 @@ _rowid :   SELECT statements, [Unique Indexes](create-index.html#create-index-un
 
 ### A
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 abort-on-error option :   ndb_import, [ndb_import — Import CSV Data Into NDB](mysql-cluster-programs-ndb-import.html)
 
@@ -868,7 +868,7 @@ avoid_temporal_upgrade system variable, [Server System Variables](server-system-
 
 ### B
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 B-tree, [MySQL Glossary](glossary.html)
 
@@ -1214,7 +1214,7 @@ Bytes_sent status variable, [Server Status Variables](server-status-variables.ht
 
 ### C
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 C, [MySQL Glossary](glossary.html)
 
@@ -2830,7 +2830,7 @@ cxxflags option :   mysql_config, [mysql_config — Display Options for Compilin
 
 ### D
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 Daemon :   thread command, [Thread Command Values](thread-commands.html)
 
@@ -4224,7 +4224,7 @@ dynamic table characteristics, [Dynamic Table Characteristics](dynamic-format.ht
 
 ### E
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 early adopter, [MySQL Glossary](glossary.html)
 
@@ -4804,7 +4804,7 @@ ExtraSendBufferMemory :   API nodes, [Defining SQL and Other API Nodes in an NDB
 
 ### F
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 failover, [MySQL Glossary](glossary.html) :   in NDB Cluster replication, [Implementing Failover with NDB Cluster Replication](mysql-cluster-replication-failover.html)
 
@@ -5230,7 +5230,7 @@ fuzzy checkpointing, [MySQL Glossary](glossary.html)
 
 ### G
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 GA, [MySQL Glossary](glossary.html) :   MySQL releases, [Which MySQL Version and Distribution to Install](which-version.html)
 
@@ -5746,7 +5746,7 @@ GUID, [MySQL Glossary](glossary.html)
 
 ### H
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 HANDLER, [HANDLER Statement](handler.html) :   new features, [Features Added in MySQL 5.7](mysql-nutshell.html#mysql-nutshell-additions)
 
@@ -6080,7 +6080,7 @@ html option :   mysql, [mysql Client Options](mysql-command-options.html)
 
 ### I
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 i-am-a-dummy option :   mysql, [mysql Client Options](mysql-command-options.html)
 
@@ -7488,7 +7488,7 @@ iterations option :   mysqlslap, [mysqlslap — A Load Emulation Client](mysqlsl
 
 ### J
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 J2EE, [MySQL Glossary](glossary.html)
 
@@ -7636,7 +7636,7 @@ JSON_VALID(), [Functions That Return JSON Value Attributes](json-attribute-funct
 
 ### K
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 keep-state option :   ndb_import, [ndb_import — Import CSV Data Into NDB](mysql-cluster-programs-ndb-import.html)
 
@@ -7838,7 +7838,7 @@ Korean, [MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets](faqs
 
 ### L
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 labels :   stored program block, [Statement Labels](statement-labels.html)
 
@@ -8474,7 +8474,7 @@ lz4_decompress, [Overview of MySQL Programs](programs-overview.html), [lz4_decom
 
 ### M
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 macOS :   installation, [Installing MySQL on macOS](macos-installation.html)
 
@@ -11480,7 +11480,7 @@ my_print_defaults, [Overview of MySQL Programs](programs-overview.html), [my_pri
 
 ### N
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 Name, [Defining the System](mysql-cluster-system-definition.html)
 
@@ -14210,7 +14210,7 @@ NVARCHAR data type, [String Data Type Syntax](string-type-syntax.html)
 
 ### O
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 object :   JSON, [Creating JSON Values](json.html#json-values)
 
@@ -14632,7 +14632,7 @@ overview, [General Information](introduction.html)
 
 ### P
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 PAD SPACE collations, [Trailing Space Handling in Comparisons](charset-binary-collations.html#charset-binary-collations-trailing-space-comparisons), [The CHAR and VARCHAR Types](char.html)
 
@@ -16014,7 +16014,7 @@ Python API, [MySQL Glossary](glossary.html)
 
 ### Q
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 Qcache_free_blocks :   deprecated features, [Features Deprecated in MySQL 5.7](mysql-nutshell.html#mysql-nutshell-deprecations)
 
@@ -16160,7 +16160,7 @@ quoting of identifiers, [Schema Object Names](identifiers.html)
 
 ### R
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 R-tree, [MySQL Glossary](glossary.html)
 
@@ -17104,7 +17104,7 @@ rwlock_instances table :   performance_schema, [The rwlock_instances Table](perf
 
 ### S
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 safe statement (replication) :   defined, [Determination of Safe and Unsafe Statements in Binary Logging](replication-rbr-safe-unsafe.html)
 
@@ -21664,7 +21664,7 @@ sys_get_config() function :   sys schema, [The sys_get_config() Function](sys-sy
 
 ### T
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 tab (\t), [String Literals](string-literals.html), [Functions That Modify JSON Values](json-modification-functions.html), [Field and Line Handling](load-data.html#load-data-field-line-handling)
 
@@ -22732,7 +22732,7 @@ tz-utc option :   mysqldump, [mysqldump — A Database Backup Program](mysqldump
 
 ### U
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 UCASE(), [String Functions and Operators](string-functions.html)
 
@@ -23096,7 +23096,7 @@ UUID_SHORT(), [Miscellaneous Functions](miscellaneous-functions.html)
 
 ### V
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 valid :   GIS values, [Geometry Well-Formedness and Validity](geometry-well-formedness-validity.html)
 
@@ -23432,7 +23432,7 @@ Visual Studio, [MySQL Glossary](glossary.html)
 
 ### W
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 wait, [MySQL Glossary](glossary.html)
 
@@ -23734,7 +23734,7 @@ Writing to net :   thread state, [General Thread States](general-thread-states.h
 
 ### X
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 X Plugin, [X Plugin](x-plugin.html)
 
@@ -23870,7 +23870,7 @@ XPath code injection, [XML Functions](xml-functions.html)
 
 ### Y
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 Y(), [Point Property Functions](gis-point-property-functions.html)
 
@@ -23894,7 +23894,7 @@ Your password does not satisfy the current policy requirements :   password erro
 
 ### Z
 
-[[index top](ix01.html)]
+index top](ix01.html)]
 
 ZEROFILL, [Numeric Data Type Syntax](numeric-type-syntax.html), [Numeric Type Attributes](numeric-type-attributes.html)
 

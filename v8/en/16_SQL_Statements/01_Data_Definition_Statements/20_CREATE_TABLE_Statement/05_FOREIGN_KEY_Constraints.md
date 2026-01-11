@@ -7,7 +7,7 @@ A foreign key relationship involves a parent table that holds the initial column
 The essential syntax for a defining a foreign key constraint in a `CREATE TABLE` or `ALTER TABLE` statement includes the following:
 
 ```
-[CONSTRAINT [symbol]] FOREIGN KEY
+[CONSTRAINT [symbol FOREIGN KEY
     [index_name] (col_name, ...)
     REFERENCES tbl_name (col_name,...)
     [ON DELETE reference_option]
@@ -174,7 +174,7 @@ You can add a foreign key constraint to an existing table using the following `A
 
 ```
 ALTER TABLE tbl_name
-    ADD [CONSTRAINT [symbol]] FOREIGN KEY
+    ADD [CONSTRAINT [symbol FOREIGN KEY
     [index_name] (col_name, ...)
     REFERENCES tbl_name (col_name,...)
     [ON DELETE reference_option]

@@ -84,6 +84,6 @@ A senha pode ser especificada das seguintes maneiras:
 
 A tabela a seguir mostra, para cada método de hashing de senha, o valor permitido de `old_passwords` e quais plugins de autenticação usam o método de hashing.
 
-<table summary="Para cada método de hashing de senha, o valor permitido de old_passwords e quais plugins de autenticação usam o método de hashing"><col style="width: 40%"/><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>Método de Hashing de Senha</th> <th>senhas antigas Valor</th> <th>Plugin de Autenticação Associada</th> </tr></thead><tbody><tr> <th>Hashing nativo do MySQL 4.1</th> <td>0</td> <td>[[<code>mysql_native_password</code>]]</td> </tr><tr> <th>Hashing SHA-256</th> <td>2</td> <td>[[<code>sha256_password</code>]]</td> </tr></tbody></table>
+<table summary="Para cada método de hashing de senha, o valor permitido de old_passwords e quais plugins de autenticação usam o método de hashing"><col style="width: 40%"/><col style="width: 20%"/><col style="width: 40%"/><thead><tr> <th>Método de Hashing de Senha</th> <th>senhas antigas Valor</th> <th>Plugin de Autenticação Associada</th> </tr></thead><tbody><tr> <th>Hashing nativo do MySQL 4.1</th> <td>0</td> <td><code>mysql_native_password</code></td> </tr><tr> <th>Hashing SHA-256</th> <td>2</td> <td><code>sha256_password</code></td> </tr></tbody></table>
 
 Para obter informações adicionais sobre a configuração de senhas e plugins de autenticação, consulte Seção 6.2.10, “Atribuição de Senhas de Conta” e Seção 6.2.13, “Autenticação Personalizável”.

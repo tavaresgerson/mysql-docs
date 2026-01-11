@@ -684,7 +684,7 @@ Section 7.1.8, “Server System Variables”, provides a full description for a
 
   On Unix, this option specifies the Unix socket file to use when listening for local connections. The default value is `/tmp/mysql.sock`. If this option is given, the server creates the file in the data directory unless an absolute path name is given to specify a different directory. On Windows, the option specifies the pipe name to use when listening for local connections that use a named pipe. The default value is `MySQL` (not case-sensitive).
 
-* [`--sql-mode=value[,value[,value...]]`](server-options.html#option_mysqld_sql-mode)
+* [`--sql-mode=value[,value[,value...`](server-options.html#option_mysqld_sql-mode)
 
   <table summary="Properties for character-set-client-handshake"><tbody><tr><th>Command-Line Format</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Deprecated</th> <td>8.0.35</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>3
 

@@ -4,7 +4,7 @@ Esta seção descreve as funções usadas para manipular bloqueios de nível de 
 
 **Tabela 12.19 Funções de bloqueio**
 
-<table frame="box" rules="all" summary="Uma referência que lista as funções de bloqueio."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>GET_LOCK()</code>]]</td> <td>Obtenha uma trava com nome</td> </tr><tr><td>[[<code>IS_FREE_LOCK()</code>]]</td> <td>Se a trava nomeada está livre</td> </tr><tr><td>[[<code>IS_USED_LOCK()</code>]]</td> <td>Se o bloqueio nomeado estiver em uso; retorne o identificador de conexão se for verdadeiro</td> </tr><tr><td>[[<code>RELEASE_ALL_LOCKS()</code>]]</td> <td>Liberar todas as trancas nomeadas atuais</td> </tr><tr><td>[[<code>RELEASE_LOCK()</code>]]</td> <td>Liberar o bloqueio nomeado</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista as funções de bloqueio."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>GET_LOCK()</code></td> <td>Obtenha uma trava com nome</td> </tr><tr><td><code>IS_FREE_LOCK()</code></td> <td>Se a trava nomeada está livre</td> </tr><tr><td><code>IS_USED_LOCK()</code></td> <td>Se o bloqueio nomeado estiver em uso; retorne o identificador de conexão se for verdadeiro</td> </tr><tr><td><code>RELEASE_ALL_LOCKS()</code></td> <td>Liberar todas as trancas nomeadas atuais</td> </tr><tr><td><code>RELEASE_LOCK()</code></td> <td>Liberar o bloqueio nomeado</td> </tr></tbody></table>
 
 - `GET_LOCK(str, timeout)`
 

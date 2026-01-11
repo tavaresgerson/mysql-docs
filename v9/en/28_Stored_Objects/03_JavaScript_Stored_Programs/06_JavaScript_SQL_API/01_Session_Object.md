@@ -20,7 +20,7 @@ The `Session` object is always available as the `session` property of the global
 
 * `quoteName(String name)`: Returns *`name`*, after escaping it.
 
-* `runSql(String query[[, Array statementParameters], Options options])`: Executes a query, with any options specified, and using an optional list of statement parameters; it returns an `SqlResult`.
+* `runSql(String query, Array statementParameters], Options options])`: Executes a query, with any options specified, and using an optional list of statement parameters; it returns an `SqlResult`.
 
 * `setOptions(Object options)`: Sets statement option defaults. Options not specified assume their default values. See the description of `Session.sql()` for option names and possible values.
 

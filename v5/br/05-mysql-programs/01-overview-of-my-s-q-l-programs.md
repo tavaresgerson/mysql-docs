@@ -177,23 +177,23 @@ Os programas clientes do MySQL que se comunicam com o servidor usando a bibliote
    </thead>
    <tbody>
       <tr>
-         <td>[[<code>MYSQL_UNIX_PORT</code>]]</td>
-         <td>O arquivo de socket Unix padrão; usado para conexões a [[<code>localhost</code>]]</td>
+         <td><code>MYSQL_UNIX_PORT</code></td>
+         <td>O arquivo de socket Unix padrão; usado para conexões a <code>localhost</code></td>
       </tr>
       <tr>
-         <td>[[<code>MYSQL_TCP_PORT</code>]]</td>
+         <td><code>MYSQL_TCP_PORT</code></td>
          <td>O número de porta padrão; usado para conexões TCP/IP</td>
       </tr>
       <tr>
-         <td>[[<code>MYSQL_PWD</code>]]</td>
+         <td><code>MYSQL_PWD</code></td>
          <td>A senha padrão</td>
       </tr>
       <tr>
-         <td>[[<code>MYSQL_DEBUG</code>]]</td>
+         <td><code>MYSQL_DEBUG</code></td>
          <td>Opções de rastreamento de debug ao depurar</td>
       </tr>
       <tr>
-         <td>[[<code>TMPDIR</code>]]</td>
+         <td><code>TMPDIR</code></td>
          <td>O diretório onde as tabelas e arquivos temporários são criados</td>
       </tr>
    </tbody>

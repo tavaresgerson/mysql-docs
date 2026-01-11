@@ -4,7 +4,7 @@
 
 ### A
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### Access
 
@@ -48,7 +48,7 @@
 
 ### B
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### bash
 
@@ -76,7 +76,7 @@
 
 ### C
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### c++filt
 
@@ -264,7 +264,7 @@
 
 ### D
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### daemon_memcached
 
@@ -356,7 +356,7 @@
 
 ### E
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### execute()
 
@@ -368,7 +368,7 @@
 
 ### G
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### gcc
 
@@ -478,7 +478,7 @@
 
 ### H
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### help contents
 
@@ -496,7 +496,7 @@
 
 ### I
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### icc
 
@@ -530,7 +530,7 @@
 
 ### J
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### java
 
@@ -538,7 +538,7 @@
 
 ### K
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### kill
 
@@ -564,7 +564,7 @@
 
 ### L
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### launchd
 
@@ -614,7 +614,7 @@
 
 ### M
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### m4
 
@@ -3014,7 +3014,7 @@
 
 ### N
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### nbdmtd
 
@@ -3620,7 +3620,7 @@
 
 ### O
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### okvutil
 
@@ -3654,7 +3654,7 @@
 
 ### P
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### perf
 
@@ -3742,7 +3742,7 @@
 
 ### R
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### rename
 
@@ -3816,7 +3816,7 @@
 
 ### S
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### SC
 
@@ -4014,7 +4014,7 @@
 
 ### T
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### tar
 
@@ -4096,7 +4096,7 @@
 
 ### U
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### u
 
@@ -4134,7 +4134,7 @@
 
 ### V
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### vi
 
@@ -4146,7 +4146,7 @@
 
 ### W
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### watch
 
@@ -4178,7 +4178,7 @@
 
 ### Y
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### yacc
 
@@ -4224,7 +4224,7 @@
 
 ### Z
 
-[[index top](dynindex-command.html#command-index-top)]
+index top](dynindex-command.html#command-index-top)]
 
 ### zip
 

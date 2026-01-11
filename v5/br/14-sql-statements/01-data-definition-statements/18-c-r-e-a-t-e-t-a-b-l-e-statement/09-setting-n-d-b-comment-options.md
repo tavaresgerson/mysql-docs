@@ -138,7 +138,7 @@ Para obter mais informações sobre como o `NDB` armazena colunas de tipos blob,
 Para uma tabela de um cluster NDB, o comentário da tabela em uma instrução `CREATE TABLE` ou `ALTER TABLE` também pode ser usado para especificar uma opção `NDB_TABLE`, que consiste em um ou mais pares nome-valor, separados por vírgulas, se necessário, seguindo a string `NDB_TABLE=`. A sintaxe completa para nomes e valores é mostrada aqui:
 
 ```sql
-COMMENT="NDB_TABLE=ndb_table_option[,ndb_table_option[,...]]"
+COMMENT="NDB_TABLE=ndb_table_option[,ndb_table_option[,..."
 
 ndb_table_option: {
     NOLOGGING={1 | 0}

@@ -1,7 +1,7 @@
 #### 13.6.6.3 Declaração FETCH do cursor
 
 ```sql
-FETCH [[NEXT] FROM] cursor_name INTO var_name [, var_name] ...
+FETCH NEXT] FROM] cursor_name INTO var_name [, var_name] ...
 ```
 
 Essa declaração recupera a próxima linha da declaração `SELECT` associada ao cursor especificado (que deve estar aberto) e avança o ponteiro do cursor. Se uma linha existir, as colunas recuperadas são armazenadas nas variáveis nomeadas. O número de colunas recuperadas pela declaração `SELECT` deve corresponder ao número de variáveis de saída especificadas na declaração `FETCH`.

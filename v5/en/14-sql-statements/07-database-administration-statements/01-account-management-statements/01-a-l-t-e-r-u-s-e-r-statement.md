@@ -2,8 +2,8 @@
 
 ```sql
 ALTER USER [IF EXISTS]
-    user [auth_option] [, user [auth_option]] ...
-    [REQUIRE {NONE | tls_option [[AND] tls_option] ...}]
+    user [auth_option] [, user [auth_option ...
+    [REQUIRE {NONE | tls_option AND] tls_option] ...}]
     [WITH resource_option [resource_option] ...]
     [password_option | lock_option] ...
 

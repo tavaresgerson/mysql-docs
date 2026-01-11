@@ -4,7 +4,7 @@
 
 ### A
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### ALLOW_INVALID_DATES
 
@@ -50,7 +50,7 @@
 
 ### D
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### DB2
 
@@ -60,7 +60,7 @@
 
 ### E
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### ERROR_FOR_DIVISION_BY_ZERO
 
@@ -76,7 +76,7 @@
 
 ### H
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### HIGH_NOT_PRECEDENCE
 
@@ -88,7 +88,7 @@
 
 ### I
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### IGNORE_SPACE
 
@@ -102,7 +102,7 @@
 
 ### M
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### MAXDB
 
@@ -134,7 +134,7 @@
 
 ### N
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### NO_AUTO_CREATE_USER
 
@@ -280,7 +280,7 @@
 
 ### O
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### ONLY_FULL_GROUP_BY
 
@@ -308,7 +308,7 @@
 
 ### P
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### PAD_CHAR_TO_FULL_LENGTH
 
@@ -336,7 +336,7 @@
 
 ### R
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### REAL_AS_FLOAT
 
@@ -348,7 +348,7 @@
 
 ### S
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### STRICT_ALL_TABLES
 
@@ -380,7 +380,7 @@
 
 ### T
 
-[[index top](dynindex-sqlmode.html#sqlmode-index-top)]
+index top](dynindex-sqlmode.html#sqlmode-index-top)]
 
 ### TRADITIONAL
 

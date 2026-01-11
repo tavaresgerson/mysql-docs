@@ -35,7 +35,7 @@ Generated column definitions have this syntax:
 ```sql
 col_name data_type [GENERATED ALWAYS] AS (expr)
   [VIRTUAL | STORED] [NOT NULL | NULL]
-  [UNIQUE [KEY]] [[PRIMARY] KEY]
+  [UNIQUE [KEY PRIMARY] KEY]
   [COMMENT 'string']
 ```
 

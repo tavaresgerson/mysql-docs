@@ -4,7 +4,7 @@
 
 ### R
 
-[[index top](dynindex-isolevel.html#isolevel-index-top)]
+index top](dynindex-isolevel.html#isolevel-index-top)]
 
 ### READ COMMITTED
 
@@ -118,7 +118,7 @@
 
 ### S
 
-[[index top](dynindex-isolevel.html#isolevel-index-top)]
+index top](dynindex-isolevel.html#isolevel-index-top)]
 
 ### SERIALIZABLE
 

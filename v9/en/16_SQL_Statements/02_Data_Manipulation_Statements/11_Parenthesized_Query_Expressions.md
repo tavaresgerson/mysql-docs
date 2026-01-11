@@ -8,7 +8,7 @@ parenthesized_query_expression:
       [into_clause]
 
 query_expression:
-    query_block [set_op query_block [set_op query_block ...]]
+    query_block [set_op query_block [set_op query_block ...
       [order_by_clause]
       [limit_clause]
       [into_clause]

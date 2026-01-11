@@ -81,22 +81,22 @@ O script **mysql.server** suporta as opções mostradas na tabela a seguir. Se e
   </thead>
   <tbody>
     <tr>
-        <th>[[<code>basedir</code>]]</th>
+        <th><code>basedir</code></th>
         <td>Caminho para o diretório de instalação do MySQL</td>
         <td>Nome do diretório</td>
     </tr>
     <tr>
-        <th>[[<code>datadir</code>]]</th>
+        <th><code>datadir</code></th>
         <td>Caminho para o diretório de dados do MySQL</td>
         <td>Nome do diretório</td>
     </tr>
     <tr>
-        <th>[[<code>pid-file</code>]]</th>
+        <th><code>pid-file</code></th>
         <td>Arquivo no qual o servidor deve escrever seu ID de processo</td>
         <td>Nome do arquivo</td>
     </tr>
     <tr>
-        <th>[[<code>service-startup-timeout</code>]]</th>
+        <th><code>service-startup-timeout</code></th>
         <td>Quanto tempo esperar para o servidor ser iniciado</td>
         <td>Inteiro</td>
     </tr>

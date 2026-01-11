@@ -179,7 +179,7 @@ The term “URI-like” signifies connection-string syntax that is similar to bu
 A URI-like connection string has the following syntax:
 
 ```
-[scheme://][user[:[password]]@]host[:port][/schema][?attribute1=value1&attribute2=value2...
+[scheme://][user[:[password@]host[:port][/schema][?attribute1=value1&attribute2=value2...
 ```
 
 Important

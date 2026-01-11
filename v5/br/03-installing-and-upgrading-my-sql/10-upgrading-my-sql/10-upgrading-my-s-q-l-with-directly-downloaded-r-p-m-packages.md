@@ -50,14 +50,14 @@ Devido às relações de dependência entre os pacotes RPM, todos os pacotes ins
       </tr>
       <tr>
          <th>Arquivo de registro de erros</th>
-         <td>Em [[<code>/var/lib/mysql/<em><code>hostname</code>]]</em>.err</code></td>
+         <td>Em <code>/var/lib/mysql/<em><code>hostname</code></em>.err</code></td>
          <td>
-            <p>Para RHEL, Oracle Linux, CentOS e Fedora: em [[<code>/var/log/mysqld.log</code>]]</p>
-            <p>Para SLES: em [[<code>/var/log/mysql/mysqld.log</code>]]</p>
+            <p>Para RHEL, Oracle Linux, CentOS e Fedora: em <code>/var/log/mysqld.log</code></p>
+            <p>Para SLES: em <code>/var/log/mysql/mysqld.log</code></p>
          </td>
       </tr>
       <tr>
-         <th>Fornecido com o arquivo [[<code>/etc/my.cnf</code>]]</th>
+         <th>Fornecido com o arquivo <code>/etc/my.cnf</code></th>
          <td>Não</td>
          <td>Sim</td>
       </tr>

@@ -82,7 +82,7 @@ mysql> SHOW VARIABLES LIKE 'innodb_data_file_path';
 A sintaxe do arquivo de dados completo inclui o nome do arquivo, o tamanho do arquivo, o atributo `autoextend` e o atributo `max`:
 
 ```sql
-file_name:file_size[:autoextend[:max:max_file_size]]
+file_name:file_size[:autoextend[:max:max_file_size
 ```
 
 Os tamanhos dos arquivos são especificados em kilobytes, megabytes ou gigabytes, anexando `K`, `M` ou `G` ao valor do tamanho. Se você especificar o tamanho do arquivo de dados em kilobytes, faça isso em múltiplos de 1024. Caso contrário, os valores em kilobytes são arredondados para o limite mais próximo de megabyte (MB). A soma dos tamanhos dos arquivos deve ser, no mínimo, ligeiramente maior que 12 MB.

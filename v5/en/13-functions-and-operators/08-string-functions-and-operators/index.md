@@ -161,7 +161,7 @@ For functions that take length arguments, noninteger arguments are rounded to th
           -> 'Dd'
   ```
 
-* [`EXPORT_SET(bits,on,off[,separator[,number_of_bits]])`](string-functions.html#function_export-set)
+* [`EXPORT_SET(bits,on,off[,separator[,number_of_bits)`](string-functions.html#function_export-set)
 
   Returns a string such that for every bit set in the value *`bits`*, you get an *`on`* string and for every bit not set in the value, you get an *`off`* string. Bits in *`bits`* are examined from right to left (from low-order to high-order bits). Strings are added to the result from left to right, separated by the *`separator`* string (the default being the comma character `,`). The number of bits examined is given by *`number_of_bits`*, which has a default of 64 if not specified. *`number_of_bits`* is silently clipped to 64 if larger than 64. It is treated as an unsigned integer, so a value of −1 is effectively the same as 64.
 
@@ -676,7 +676,7 @@ For functions that take length arguments, noninteger arguments are rounded to th
 
 * `WEIGHT_STRING(str [AS {CHAR|BINARY}(N)] [LEVEL levels] [flags])`
 
-  `levels: N [ASC|DESC|REVERSE] [, N [ASC|DESC|REVERSE]] ...`
+  `levels: N [ASC|DESC|REVERSE] [, N [ASC|DESC|REVERSE ...`
 
   This function returns the weight string for the input string. The return value is a binary string that represents the comparison and sorting value of the string. It has these properties:
 

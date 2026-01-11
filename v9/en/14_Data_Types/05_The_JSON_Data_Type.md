@@ -85,7 +85,7 @@ As the examples illustrate, JSON arrays and objects can contain scalar values th
 Nesting is permitted within JSON array elements and JSON object key values:
 
 ```
-[99, {"id": "HK500", "cost": 75.99}, ["hot", "cold"]]
+[99, {"id": "HK500", "cost": 75.99}, ["hot", "cold"
 {"k1": "value", "k2": [10, 20]}
 ```
 
@@ -448,7 +448,7 @@ Path syntax uses a leading `$` character to represent the JSON document under co
 Let `$` refer to this JSON array with three elements:
 
 ```
-[3, {"a": [5, 6], "b": 10}, [99, 100]]
+[3, {"a": [5, 6], "b": 10}, [99, 100
 ```
 
 Then:
@@ -489,7 +489,7 @@ mysql> SELECT JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.*');
 +---------------------------------------------------------+
 | JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.*') |
 +---------------------------------------------------------+
-| [1, 2, [3, 4, 5]]                                       |
+| [1, 2, [3, 4, 5                                       |
 +---------------------------------------------------------+
 mysql> SELECT JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.c[*]');
 +------------------------------------------------------------+
@@ -557,7 +557,7 @@ Some functions take an existing JSON document, modify it in some way, and return
 Consider this document:
 
 ```
-mysql> SET @j = '["a", {"b": [true, false]}, [10, 20]]';
+mysql> SET @j = '["a", {"b": [true, false]}, [10, 20';
 ```
 
 `JSON_SET()` replaces values for paths that exist and adds values for paths that do not exist:.
@@ -567,7 +567,7 @@ mysql> SELECT JSON_SET(@j, '$[1].b[0]', 1, '$[2][2]', 2);
 +--------------------------------------------+
 | JSON_SET(@j, '$[1].b[0]', 1, '$[2][2]', 2) |
 +--------------------------------------------+
-| ["a", {"b": [1, false]}, [10, 20, 2]]      |
+| ["a", {"b": [1, false]}, [10, 20, 2      |
 +--------------------------------------------+
 ```
 
@@ -580,7 +580,7 @@ mysql> SELECT JSON_INSERT(@j, '$[1].b[0]', 1, '$[2][2]', 2);
 +-----------------------------------------------+
 | JSON_INSERT(@j, '$[1].b[0]', 1, '$[2][2]', 2) |
 +-----------------------------------------------+
-| ["a", {"b": [true, false]}, [10, 20, 2]]      |
+| ["a", {"b": [true, false]}, [10, 20, 2      |
 +-----------------------------------------------+
 ```
 
@@ -591,7 +591,7 @@ mysql> SELECT JSON_REPLACE(@j, '$[1].b[0]', 1, '$[2][2]', 2);
 +------------------------------------------------+
 | JSON_REPLACE(@j, '$[1].b[0]', 1, '$[2][2]', 2) |
 +------------------------------------------------+
-| ["a", {"b": [1, false]}, [10, 20]]             |
+| ["a", {"b": [1, false]}, [10, 20             |
 +------------------------------------------------+
 ```
 

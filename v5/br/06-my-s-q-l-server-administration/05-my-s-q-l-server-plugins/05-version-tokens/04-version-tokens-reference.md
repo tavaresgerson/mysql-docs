@@ -151,7 +151,7 @@ Variáveis do sistema:
 
 - `version_tokens_session`
 
-  <table frame="box" rules="all" summary="Propriedades para version_tokens_session"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version-tokens-session=value</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>version_tokens_session</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para version_tokens_session"><tbody><tr><th>Formato de linha de comando</th> <td><code>--version-tokens-session=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code>version_tokens_session</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   O valor da sessão desta variável especifica a lista de tokens da versão do cliente e indica os tokens que a sessão do cliente exige que a lista de tokens da versão do servidor tenha.
 
@@ -224,6 +224,6 @@ Variáveis do sistema:
 
 - `version_tokens_session_number`
 
-  <table frame="box" rules="all" summary="Propriedades para version_tokens_session_number"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--version-tokens-session-number=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>version_tokens_session_number</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para version_tokens_session_number"><tbody><tr><th>Formato de linha de comando</th> <td><code>--version-tokens-session-number=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>version_tokens_session_number</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr></tbody></table>
 
   Esta variável é para uso interno.

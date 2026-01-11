@@ -12,14 +12,14 @@ INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]
     [PARTITION (partition_name [, partition_name] ...)]
     [(col_name [, col_name] ...)]
     { {VALUES | VALUE} (value_list) [, (value_list)] ... }
-    [AS row_alias[(col_alias [, col_alias] ...)]]
+    [AS row_alias[(col_alias [, col_alias] ...)
     [ON DUPLICATE KEY UPDATE assignment_list]
 
 INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]
     [INTO] tbl_name
     [PARTITION (partition_name [, partition_name] ...)]
     SET assignment_list
-    [AS row_alias[(col_alias [, col_alias] ...)]]
+    [AS row_alias[(col_alias [, col_alias] ...)
     [ON DUPLICATE KEY UPDATE assignment_list]
 
 INSERT [LOW_PRIORITY | HIGH_PRIORITY] [IGNORE]

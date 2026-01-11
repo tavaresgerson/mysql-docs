@@ -82,7 +82,7 @@ mysql> SHOW VARIABLES LIKE 'innodb_data_file_path';
 The full data file specification syntax includes the file name, file size, `autoextend` attribute, and `max` attribute:
 
 ```sql
-file_name:file_size[:autoextend[:max:max_file_size]]
+file_name:file_size[:autoextend[:max:max_file_size
 ```
 
 File sizes are specified in kilobytes, megabytes, or gigabytes by appending `K`, `M` or `G` to the size value. If specifying the data file size in kilobytes, do so in multiples of 1024. Otherwise, kilobyte values are rounded to nearest megabyte (MB) boundary. The sum of file sizes must be, at a minimum, slightly larger than 12MB.

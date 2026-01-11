@@ -2,7 +2,7 @@
 
 O SELinux está habilitado por padrão em algumas distribuições Linux, incluindo o Oracle Linux, o RHEL, o CentOS e o Fedora. Use o comando **sestatus** para determinar se o SELinux está habilitado na sua distribuição:
 
-```sql
+```sh
 $> sestatus
 SELinux status:                 enabled
 SELinuxfs mount:                /sys/fs/selinux

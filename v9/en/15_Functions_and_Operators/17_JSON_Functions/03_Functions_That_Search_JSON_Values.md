@@ -100,21 +100,21 @@ The functions in this section perform search or comparison operations on JSON va
   The return value consists of all values matched by the *`path`* arguments. If it is possible that those arguments could return multiple values, the matched values are autowrapped as an array, in the order corresponding to the paths that produced them. Otherwise, the return value is the single matched value.
 
   ```
-  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40]]', '$[1]');
+  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40', '$[1]');
   +--------------------------------------------+
-  | JSON_EXTRACT('[10, 20, [30, 40]]', '$[1]') |
+  | JSON_EXTRACT('[10, 20, [30, 40', '$[1]') |
   +--------------------------------------------+
   | 20                                         |
   +--------------------------------------------+
-  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40]]', '$[1]', '$[0]');
+  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40', '$[1]', '$[0]');
   +----------------------------------------------------+
-  | JSON_EXTRACT('[10, 20, [30, 40]]', '$[1]', '$[0]') |
+  | JSON_EXTRACT('[10, 20, [30, 40', '$[1]', '$[0]') |
   +----------------------------------------------------+
   | [20, 10]                                           |
   +----------------------------------------------------+
-  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40]]', '$[2][*]');
+  mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40', '$[2][*]');
   +-----------------------------------------------+
-  | JSON_EXTRACT('[10, 20, [30, 40]]', '$[2][*]') |
+  | JSON_EXTRACT('[10, 20, [30, 40', '$[2][*]') |
   +-----------------------------------------------+
   | [30, 40]                                      |
   +-----------------------------------------------+
@@ -205,7 +205,7 @@ The functions in this section perform search or comparison operations on JSON va
   Query OK, 0 rows affected (0.26 sec)
 
   mysql> INSERT INTO tj10
-       > VALUES ("[3,10,5,17,44]", 33), ("[3,10,5,17,[22,44,66]]", 0);
+       > VALUES ("[3,10,5,17,44]", 33), ("[3,10,5,17,[22,44,66", 0);
   Query OK, 1 row affected (0.04 sec)
 
   mysql> SELECT a->"$[4]" FROM tj10;
@@ -222,7 +222,7 @@ The functions in this section perform search or comparison operations on JSON va
   | a                            | b    |
   +------------------------------+------+
   | [3, 10, 5, 17, 44]           |   33 |
-  | [3, 10, 5, 17, [22, 44, 66]] |    0 |
+  | [3, 10, 5, 17, [22, 44, 66 |    0 |
   +------------------------------+------+
   2 rows in set (0.00 sec)
   ```
@@ -234,7 +234,7 @@ The functions in this section perform search or comparison operations on JSON va
   +------------------------------+------+
   | a                            | b    |
   +------------------------------+------+
-  | [3, 10, 5, 17, [22, 44, 66]] |    0 |
+  | [3, 10, 5, 17, [22, 44, 66 |    0 |
   +------------------------------+------+
 
   mysql> SELECT a->"$[4][1]" FROM tj10;
@@ -325,7 +325,7 @@ The functions in this section perform search or comparison operations on JSON va
 
   mysql> INSERT INTO tj10 VALUES
       ->     ('[3,10,5,"x",44]', 33),
-      ->     ('[3,10,5,17,[22,"y",66]]', 0);
+      ->     ('[3,10,5,17,[22,"y",66', 0);
   Query OK, 2 rows affected (0.04 sec)
   Records: 2  Duplicates: 0  Warnings: 0
 
@@ -440,9 +440,9 @@ The functions in this section perform search or comparison operations on JSON va
   Partial matches are treated as no match, as shown here:
 
   ```
-  mysql> SELECT JSON_OVERLAPS('[[1,2],[3,4],5]', '[1,[2,3],[4,5]]');
+  mysql> SELECT JSON_OVERLAPS('1,2],[3,4],5]', '[1,[2,3],[4,5');
   +-----------------------------------------------------+
-  | JSON_OVERLAPS('[[1,2],[3,4],5]', '[1,[2,3],[4,5]]') |
+  | JSON_OVERLAPS('1,2],[3,4],5]', '[1,[2,3],[4,5') |
   +-----------------------------------------------------+
   |                                                   0 |
   +-----------------------------------------------------+
@@ -894,9 +894,9 @@ The functions in this section perform search or comparison operations on JSON va
   To use this operator with a value which is itself an array, it is necessary to cast it explicitly as a JSON array. You can do this with `CAST(... AS JSON)`:
 
   ```
-  mysql> SELECT CAST('[4,5]' AS JSON) MEMBER OF('[[3,4],[4,5]]');
+  mysql> SELECT CAST('[4,5]' AS JSON) MEMBER OF('3,4],[4,5');
   +--------------------------------------------------+
-  | CAST('[4,5]' AS JSON) MEMBER OF('[[3,4],[4,5]]') |
+  | CAST('[4,5]' AS JSON) MEMBER OF('3,4],[4,5') |
   +--------------------------------------------------+
   |                                                1 |
   +--------------------------------------------------+
@@ -906,9 +906,9 @@ The functions in this section perform search or comparison operations on JSON va
   It is also possible to perform the necessary cast using the `JSON_ARRAY()` function, like this:
 
   ```
-  mysql> SELECT JSON_ARRAY(4,5) MEMBER OF('[[3,4],[4,5]]');
+  mysql> SELECT JSON_ARRAY(4,5) MEMBER OF('3,4],[4,5');
   +--------------------------------------------+
-  | JSON_ARRAY(4,5) MEMBER OF('[[3,4],[4,5]]') |
+  | JSON_ARRAY(4,5) MEMBER OF('3,4],[4,5') |
   +--------------------------------------------+
   |                                          1 |
   +--------------------------------------------+

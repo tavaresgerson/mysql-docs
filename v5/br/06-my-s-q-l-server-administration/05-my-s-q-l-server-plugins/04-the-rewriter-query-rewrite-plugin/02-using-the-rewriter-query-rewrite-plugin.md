@@ -199,7 +199,7 @@ SELECT ?, 3
 
 A tabela a seguir mostra várias instruções preparadas de `SELECT` e se o padrão da regra corresponde a elas.
 
-<table summary="Como o plugin Rewriter compara declarações preparadas com o padrão SELECT ?,3."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Declaração preparada</th> <th>Se a declaração corresponde ao padrão</th> </tr></thead><tbody><tr> <td>[[<code>PREPARE s AS 'SELECT 3, 3'</code>]]</td> <td>Sim</td> </tr><tr> <td>[[<code>PREPARE s AS 'SELECT ?, 3'</code>]]</td> <td>Sim</td> </tr><tr> <td>[[<code>PREPARE s AS 'SELECT 3, ?'</code>]]</td> <td>Não</td> </tr><tr> <td>[[<code>PREPARE s AS 'SELECT ?, ?'</code>]]</td> <td>Não</td> </tr></tbody></table>
+<table summary="Como o plugin Rewriter compara declarações preparadas com o padrão SELECT ?,3."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Declaração preparada</th> <th>Se a declaração corresponde ao padrão</th> </tr></thead><tbody><tr> <td><code>PREPARE s AS 'SELECT 3, 3'</code></td> <td>Sim</td> </tr><tr> <td><code>PREPARE s AS 'SELECT ?, 3'</code></td> <td>Sim</td> </tr><tr> <td><code>PREPARE s AS 'SELECT 3, ?'</code></td> <td>Não</td> </tr><tr> <td><code>PREPARE s AS 'SELECT ?, ?'</code></td> <td>Não</td> </tr></tbody></table>
 
 ##### Informações operacionais do plugin de reescritor
 

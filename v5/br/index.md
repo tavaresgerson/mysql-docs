@@ -2033,7 +2033,7 @@
     - [B.3.7 Problemas Conhecidos no MySQL](/32-error-messages-and-common-problems/03-problems-and-common-errors/07-known-issues-in-my-sql.md)
     - [B.3.2 Erros Comuns ao Usar Programas MySQL](/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/index.md)
       - [B.3.2.1 Acesso negado](/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/01-access-denied.md)
-      - [B.3.2.2 Não consigo me conectar ao servidor MySQL [local]](/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/02-can-t-connect-to-local-my-s-q-l-server.md)
+      - [B.3.2.2 Não consigo me conectar ao servidor MySQL [local(/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/02-can-t-connect-to-local-my-s-q-l-server.md)
       - [B.3.2.3 Conexão perdida com o servidor MySQL](/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/03-lost-connection-to-my-s-q-l-server.md)
       - [B.3.2.4 Senha falha quando inserida interativamente](/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/04-password-fails-when-entered-interactively.md)
       - [B.3.2.5 Muitas conexões](/32-error-messages-and-common-problems/03-problems-and-common-errors/02-common-errors-when-using-my-s-q-l-programs/05-too-many-connections.md)

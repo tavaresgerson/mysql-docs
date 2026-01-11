@@ -55,7 +55,7 @@ Embora a conversão automática não esteja no padrão SQL, o padrão diz que ca
 
 A tabela a seguir ilustra algumas aplicações das regras anteriores.
 
-<table summary="Comparativos e a comparação utilizada para cada comparação."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Comparação</th> <th>Collation Used</th> </tr></thead><tbody><tr> <td>[[<code>column1 = 'A'</code>]]</td> <td>Utilize a colagem de [[<code>column1</code>]]</td> </tr><tr> <td>[[<code>column1 = 'A' COLLATE x</code>]]</td> <td>Utilize a colagem de [[<code>'A' COLLATE x</code>]]</td> </tr><tr> <td>[[<code>column1 COLLATE x = 'A' COLLATE y</code>]]</td> <td>Erro</td> </tr></tbody></table>
+<table summary="Comparativos e a comparação utilizada para cada comparação."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Comparação</th> <th>Collation Used</th> </tr></thead><tbody><tr> <td><code>column1 = 'A'</code></td> <td>Utilize a colagem de <code>column1</code></td> </tr><tr> <td><code>column1 = 'A' COLLATE x</code></td> <td>Utilize a colagem de <code>'A' COLLATE x</code></td> </tr><tr> <td><code>column1 COLLATE x = 'A' COLLATE y</code></td> <td>Erro</td> </tr></tbody></table>
 
 Para determinar a coercibilidade de uma expressão de cadeia, use a função `COERCIBILITY()` (consulte a Seção 12.15, “Funções de Informação”):
 

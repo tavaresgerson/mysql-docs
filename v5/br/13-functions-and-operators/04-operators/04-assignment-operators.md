@@ -2,7 +2,7 @@
 
 **Tabela 12.6 Operadores de Atribuição**
 
-<table frame="box" rules="all" summary="Uma referência que lista os operadores de atribuição."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>:=</code>]]</td> <td>Atribua um valor</td> </tr><tr><td>[[<code>=</code>]]</td> <td>Atribua um valor (como parte de uma[[<code>SET</code>]]declaração, ou como parte da cláusula [[<code>SET</code>]] em um[[<code>UPDATE</code>]]declaração)</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista os operadores de atribuição."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>:=</code></td> <td>Atribua um valor</td> </tr><tr><td><code>=</code></td> <td>Atribua um valor (como parte de uma<code>SET</code>declaração, ou como parte da cláusula <code>SET</code> em um<code>UPDATE</code>declaração)</td> </tr></tbody></table>
 
 - `:=`
 

@@ -47,7 +47,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
    <tbody>
       <tr>
         <th>Formato de linha de comando</th>
-        <td>[[<code>--defaults-extra-file=filename</code>]]</td>
+        <td><code>--defaults-extra-file=filename</code></td>
       </tr>
       <tr>
         <th>Tipo</th>
@@ -55,7 +55,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
       </tr>
       <tr>
         <th>Valor padrão</th>
-        <td>[[<code>[none]</code>]]</td>
+        <td><code>[none]</code></td>
       </tr>
     </tbody>
   </table>
@@ -70,7 +70,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
     <tbody>
       <tr>
         <th>Formato de linha de comando</th>
-        <td>[[<code>--defaults-file=filename</code>]]</td>
+        <td><code>--defaults-file=filename</code></td>
       </tr>
       <tr>
         <th>Tipo</th>
@@ -78,7 +78,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
       </tr>
       <tr>
         <th>Valor padrão</th>
-        <td>[[<code>[none]</code>]]</td>
+        <td><code>[none]</code></td>
       </tr>
     </tbody>
   </table>
@@ -95,7 +95,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
     <tbody>
       <tr>
         <th>Formato de linha de comando</th>
-        <td>[[<code>--defaults-group-suffix=string</code>]]</td>
+        <td><code>--defaults-group-suffix=string</code></td>
       </tr>
       <tr>
         <th>Tipo</th>
@@ -103,7 +103,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
       </tr>
       <tr>
         <th>Valor padrão</th>
-        <td>[[<code>[none]</code>]]</td>
+        <td><code>[none]</code></td>
       </tr>
     </tbody>
   </table>
@@ -116,7 +116,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
     <tbody>
       <tr>
          <th>Formato de linha de comando</th>
-         <td>[[<code>--login-path=name</code>]]</td>
+         <td><code>--login-path=name</code></td>
       </tr>
       <tr>
          <th>Tipo</th>
@@ -124,7 +124,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
       </tr>
       <tr>
          <th>Valor padrão</th>
-         <td>[[<code>[none]</code>]]</td>
+         <td><code>[none]</code></td>
       </tr>
     </tbody>
   </table>
@@ -151,7 +151,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
    <tbody>
       <tr>
          <th>Formato de linha de comando</th>
-         <td>[[<code>--no-defaults</code>]]</td>
+         <td><code>--no-defaults</code></td>
       </tr>
       <tr>
          <th>Tipo</th>
@@ -159,7 +159,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
       </tr>
       <tr>
          <th>Valor padrão</th>
-         <td>[[<code>false</code>]]</td>
+         <td><code>false</code></td>
       </tr>
    </tbody>
 </table>
@@ -174,7 +174,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
     <tbody>
       <tr>
         <th>Formato de linha de comando</th>
-        <td>[[<code>--print-defaults</code>]]</td>
+        <td><code>--print-defaults</code></td>
       </tr>
       <tr>
         <th>Tipo</th>
@@ -182,7 +182,7 @@ Ao especificar nomes de arquivos como valores de opção, evite o uso do caracte
       </tr>
       <tr>
         <th>Valor padrão</th>
-        <td>[[<code>false</code>]]</td>
+        <td><code>false</code></td>
       </tr>
     </tbody>
   </table>

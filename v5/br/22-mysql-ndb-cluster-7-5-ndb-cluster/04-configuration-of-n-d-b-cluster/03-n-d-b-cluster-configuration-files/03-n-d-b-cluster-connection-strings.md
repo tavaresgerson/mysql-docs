@@ -3,7 +3,7 @@
 Com exceção do servidor de gerenciamento do NDB Cluster (**ndb_mgmd**), cada nó que faz parte de um NDB Cluster requer uma string de conexão que aponta para a localização do servidor de gerenciamento. Essa string de conexão é usada para estabelecer uma conexão com o servidor de gerenciamento, bem como para realizar outras tarefas, dependendo do papel do nó no cluster. A sintaxe para uma string de conexão é a seguinte:
 
 ```sql
-[nodeid=node_id, ]host-definition[, host-definition[, ...]]
+[nodeid=node_id, ]host-definition[, host-definition[, ...
 
 host-definition:
     host_name[:port_number]
@@ -27,7 +27,7 @@ Também é possível especificar em uma cadeia de conexão um ou mais endereços
     [bind-address=host-definition, ]
     host-definition[; bind-address=host-definition]
     host-definition[; bind-address=host-definition]
-    [, ...]]
+    [, ...
 
 host-definition:
     host_name[:port_number]

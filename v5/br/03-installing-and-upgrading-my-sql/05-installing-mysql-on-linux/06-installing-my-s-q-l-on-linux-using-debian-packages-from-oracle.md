@@ -13,17 +13,17 @@ A Oracle fornece pacotes do Debian para instalar o MySQL em sistemas Debian ou s
   <table>
     <thead>
       <tr>
-        <th>[[<code>CPU</code>]]Valor</th>
+        <th><code>CPU</code>Valor</th>
         <th>Tipo ou família de processador pretendido</th>
       </tr>
     </thead>
     <tbody>
         <tr>
-          <td>[[<code>i386</code>]]</td>
+          <td><code>i386</code></td>
           <td>Processador Pentium ou superior, 32 bits</td>
         </tr>
         <tr>
-          <td>[[<code>amd64</code>]]</td>
+          <td><code>amd64</code></td>
           <td>Processador x86 de 64 bits</td>
         </tr>
     </tbody>

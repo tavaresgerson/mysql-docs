@@ -2,7 +2,7 @@
 
 **Tabela 12.13 Funções e operadores de comparação de strings**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de comparação de strings."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>LIKE</code>]]</td> <td>Encontre padrões simples</td> </tr><tr><td>[[<code>NOT LIKE</code>]]</td> <td>Negação de correspondência de padrão simples</td> </tr><tr><td>[[<code>STRCMP()</code>]]</td> <td>Compare duas strings</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de comparação de strings."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>LIKE</code></td> <td>Encontre padrões simples</td> </tr><tr><td><code>NOT LIKE</code></td> <td>Negação de correspondência de padrão simples</td> </tr><tr><td><code>STRCMP()</code></td> <td>Compare duas strings</td> </tr></tbody></table>
 
 Se uma função de string receber uma string binária como argumento, a string resultante também será uma string binária. Um número convertido em string é tratado como uma string binária. Isso afeta apenas as comparações.
 

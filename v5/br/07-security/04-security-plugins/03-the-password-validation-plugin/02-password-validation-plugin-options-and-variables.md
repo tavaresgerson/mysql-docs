@@ -12,7 +12,7 @@ Para controlar a ativação do plugin `validate_password`, use esta opção:
 
 - `--validate-password[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para validar senha"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--validate-password[=valu<code>ON</code></code>]]</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p>[[<code>ON</code>]]</p><p>[[<code>OFF</code>]]</p><p>[[<code>FORCE</code>]]</p><p>[[<code>FORCE_PLUS_PERMANENT</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validar senha"><tbody><tr><th>Formato de linha de comando</th> <td><code>--validate-password[=valu<code>ON</code></code></td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>ON</code></p><p><code>OFF</code></p><p><code>FORCE</code></p><p><code>FORCE_PLUS_PERMANENT</code></p></td> </tr></tbody></table>
 
   Esta opção controla como o servidor carrega o plugin `validate_password` ao iniciar. O valor deve ser um dos disponíveis para as opções de carregamento de plugins, conforme descrito em Seção 5.5.1, “Instalando e Desinstalando Plugins”. Por exemplo, `--validate-password=FORCE_PLUS_PERMANENT` indica ao servidor que carregue o plugin ao iniciar e impede que ele seja removido enquanto o servidor estiver em execução.
 
@@ -41,7 +41,7 @@ Para alterar a forma como as senhas são verificadas, você pode definir essas v
 
 - `validate_password_check_user_name`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password_check_user_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--validate-password-check-user-name[={OFF|ON}]</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.15</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>validate_password_check_user_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password_check_user_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--validate-password-check-user-name[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.15</td> </tr><tr><th>Variável do sistema</th> <td><code>validate_password_check_user_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Se `validate_password` compara as senhas com a parte do nome do usuário da conta de usuário efetiva da sessão atual e rejeita-as se elas corresponderem. Esta variável não está disponível, a menos que `validate_password` esteja instalado.
 
@@ -63,7 +63,7 @@ Para alterar a forma como as senhas são verificadas, você pode definir essas v
 
 - `validate_password_dictionary_file`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password_dictionary_file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--validate-password-dictionary-file=file_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>validate_password_dictionary_file</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password_dictionary_file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--validate-password-dictionary-file=file_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>validate_password_dictionary_file</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   O nome do caminho do arquivo de dicionário que o `validate_password` usa para verificar as senhas. Essa variável não está disponível, a menos que o `validate_password` esteja instalado.
 
@@ -77,7 +77,7 @@ Para alterar a forma como as senhas são verificadas, você pode definir essas v
 
 - `validate_password_length`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password_length"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--validate-password-length=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>validate_password_length</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>8</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password_length"><tbody><tr><th>Formato de linha de comando</th> <td><code>--validate-password-length=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>validate_password_length</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>8</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr></tbody></table>
 
   O número mínimo de caracteres que `validate_password` exige para que as senhas tenham. Essa variável não está disponível, a menos que `validate_password` esteja instalado.
 
@@ -93,7 +93,7 @@ Para alterar a forma como as senhas são verificadas, você pode definir essas v
 
 - `validate_password_mixed_case_count`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password_mixed_case_count"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--validate-password-mixed-case-count=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>validate_password_mixed_case_count</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password_mixed_case_count"><tbody><tr><th>Formato de linha de comando</th> <td><code>--validate-password-mixed-case-count=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>validate_password_mixed_case_count</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr></tbody></table>
 
   O número mínimo de caracteres minúsculos e maiúsculos que o `validate_password` exige para que as senhas tenham se a política de senha for `MÉDIA` ou mais forte. Esta variável não está disponível, a menos que o `validate_password` esteja instalado.
 
@@ -101,13 +101,13 @@ Para alterar a forma como as senhas são verificadas, você pode definir essas v
 
 - `validate_password_number_count`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password_number_count"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--validate-password-number-count=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>validate_password_number_count</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password_number_count"><tbody><tr><th>Formato de linha de comando</th> <td><code>--validate-password-number-count=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>validate_password_number_count</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr></tbody></table>
 
   O número mínimo de caracteres numéricos (dígitos) que o `validate_password` exige para que as senhas tenham se a política de senha for `MÉDIA` ou mais forte. Esta variável não está disponível, a menos que o `validate_password` esteja instalado.
 
 - `validate_password_policy`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password_policy"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--validate-password-policy=value</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>validate_password_policy</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valores válidos</th> <td><p>[[<code>0</code>]]</p><p>[[<code>1</code>]]</p><p>[[<code>2</code>]]</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password_policy"><tbody><tr><th>Formato de linha de comando</th> <td><code>--validate-password-policy=value</code></td> </tr><tr><th>Variável do sistema</th> <td><code>validate_password_policy</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>0</code></p><p><code>1</code></p><p><code>2</code></p></td> </tr></tbody></table>
 
   A política de senha aplicada por `validate_password`. Esta variável não está disponível, a menos que `validate_password` esteja instalado.
 
@@ -140,7 +140,7 @@ Para alterar a forma como as senhas são verificadas, você pode definir essas v
 
 - `validate_password_special_char_count`
 
-  <table frame="box" rules="all" summary="Propriedades para validate_password_special_char_count"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--validate-password-special-char-count=#</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>validate_password_special_char_count</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para validate_password_special_char_count"><tbody><tr><th>Formato de linha de comando</th> <td><code>--validate-password-special-char-count=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>validate_password_special_char_count</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr></tbody></table>
 
   O número mínimo de caracteres não alfanuméricos que `validate_password` exige para que as senhas tenham se a política de senha for `MÉDIA` ou mais forte. Essa variável não está disponível, a menos que `validate_password` esteja instalado.
 

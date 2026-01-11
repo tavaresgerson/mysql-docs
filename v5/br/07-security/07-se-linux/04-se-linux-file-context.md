@@ -4,13 +4,13 @@ O MySQL Server lê e escreve em muitos arquivos. Se o contexto SELinux não esti
 
 As instruções a seguir utilizam o binário `semanage` para gerenciar o contexto do arquivo; no RHEL, ele faz parte do pacote `policycoreutils-python-utils`:
 
-```sql
+```sh
 yum install -y policycoreutils-python-utils
 ```
 
 Após instalar o binário `semanage`, você pode listar os contextos de arquivo do MySQL usando `semanage` com a opção `fcontext`.
 
-```sql
+```sh
 semanage fcontext -l | grep -i mysql
 ```
 
@@ -20,7 +20,7 @@ A localização padrão do diretório de dados é `/var/lib/mysql/`; e o context
 
 Se você editar o arquivo de configuração para usar um local diferente para o diretório de dados ou para qualquer um dos arquivos normalmente no diretório de dados (como os logs binários), você pode precisar definir o contexto para o novo local. Por exemplo:
 
-```sql
+```sh
 semanage fcontext -a -t mysqld_db_t "/path/to/my/custom/datadir(/.*)?"
 restorecon -Rv /path/to/my/custom/datadir
 
@@ -34,7 +34,7 @@ O local padrão para os RPMs do RedHat é `/var/log/mysqld.log`; e o tipo de con
 
 Se você editar o arquivo de configuração para usar um local diferente, você pode precisar definir o contexto para o novo local. Por exemplo:
 
-```sql
+```sh
 semanage fcontext -a -t mysqld_log_t "/path/to/my/custom/error.log"
 restorecon -Rv /path/to/my/custom/error.log
 ```
@@ -45,7 +45,7 @@ O local padrão para o arquivo PID é `/var/run/mysqld/mysqld.pid`; e o tipo de 
 
 Se você editar o arquivo de configuração para usar um local diferente, você pode precisar definir o contexto para o novo local. Por exemplo:
 
-```sql
+```sh
 semanage fcontext -a -t mysqld_var_run_t "/path/to/my/custom/pidfile/directory/.*?"
 restorecon -Rv /path/to/my/custom/pidfile/directory
 ```
@@ -56,7 +56,7 @@ O local padrão para o socket de domínio Unix é `/var/lib/mysql/mysql.sock`; e
 
 Se você editar o arquivo de configuração para usar um local diferente, você pode precisar definir o contexto para o novo local. Por exemplo:
 
-```sql
+```sh
 semanage fcontext -a -t mysqld_var_run_t "/path/to/my/custom/mysql\.sock"
 restorecon -Rv /path/to/my/custom/mysql.sock
 ```
@@ -69,7 +69,7 @@ A instalação do RPM do MySQL Server cria um diretório `/var/lib/mysql-files/`
 
 Se você ativou o uso desse diretório configurando `secure_file_priv`, você pode precisar definir o contexto da seguinte forma:
 
-```sql
+```sh
 semanage fcontext -a -t mysqld_db_t "/var/lib/mysql-files/(/.*)?"
 restorecon -Rv /var/lib/mysql-files
 ```

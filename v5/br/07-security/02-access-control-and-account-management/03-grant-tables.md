@@ -419,7 +419,7 @@ Para a verificação de solicitações que envolvem rotinas armazenadas, o servi
 
 **Tabela 6.5 Colunas da tabela procs_priv**
 
-<table><thead><tr> <th>Nome da tabela</th> <th>[[<code>procs_priv</code>]]</th> </tr></thead><tbody><tr> <td><span><strong>Colunas de escopo</strong></span></td> <td>[[<code>Host</code>]]</td> </tr><tr> <td></td> <td>[[<code>Db</code>]]</td> </tr><tr> <td></td> <td>[[<code>User</code>]]</td> </tr><tr> <td></td> <td>[[<code>Routine_name</code>]]</td> </tr><tr> <td></td> <td>[[<code>Routine_type</code>]]</td> </tr><tr> <td><span><strong>Colunas de privilégio</strong></span></td> <td>[[<code>Proc_priv</code>]]</td> </tr><tr> <td><span><strong>Outras colunas</strong></span></td> <td>[[<code>Timestamp</code>]]</td> </tr><tr> <td></td> <td>[[<code>Grantor</code>]]</td> </tr></tbody></table>
+<table><thead><tr> <th>Nome da tabela</th> <th><code>procs_priv</code></th> </tr></thead><tbody><tr> <td><span><strong>Colunas de escopo</strong></span></td> <td><code>Host</code></td> </tr><tr> <td></td> <td><code>Db</code></td> </tr><tr> <td></td> <td><code>User</code></td> </tr><tr> <td></td> <td><code>Routine_name</code></td> </tr><tr> <td></td> <td><code>Routine_type</code></td> </tr><tr> <td><span><strong>Colunas de privilégio</strong></span></td> <td><code>Proc_priv</code></td> </tr><tr> <td><span><strong>Outras colunas</strong></span></td> <td><code>Timestamp</code></td> </tr><tr> <td></td> <td><code>Grantor</code></td> </tr></tbody></table>
 
 A coluna `Routine_type` é uma coluna `[ENUM]` com valores de `'FUNCTION'` ou `'PROCEDURE'` para indicar o tipo de rotina a que a linha se refere. Essa coluna permite que privilégios sejam concedidos separadamente para uma função e um procedimento com o mesmo nome.
 
@@ -445,7 +445,7 @@ As colunas de escopo nas tabelas de concessão contêm cadeias de caracteres. O 
 
 **Tabela 6.6 Comprimento das Colunas da Tabela de Concessão**
 
-<table><thead><tr> <th>Nome da Coluna</th> <th>Máximo de caracteres permitidos</th> </tr></thead><tbody><tr> <td>[[<code>Host</code>]], [[<code>Proxied_host</code>]]</td> <td>60</td> </tr><tr> <td>[[<code>User</code>]], [[<code>Proxied_user</code>]]</td> <td>32</td> </tr><tr> <td>[[<code>Password</code>]]</td> <td>41</td> </tr><tr> <td>[[<code>Db</code>]]</td> <td>64</td> </tr><tr> <td>[[<code>Table_name</code>]]</td> <td>64</td> </tr><tr> <td>[[<code>Column_name</code>]]</td> <td>64</td> </tr><tr> <td>[[<code>Routine_name</code>]]</td> <td>64</td> </tr></tbody></table>
+<table><thead><tr> <th>Nome da Coluna</th> <th>Máximo de caracteres permitidos</th> </tr></thead><tbody><tr> <td><code>Host</code>, <code>Proxied_host</code></td> <td>60</td> </tr><tr> <td><code>User</code>, <code>Proxied_user</code></td> <td>32</td> </tr><tr> <td><code>Password</code></td> <td>41</td> </tr><tr> <td><code>Db</code></td> <td>64</td> </tr><tr> <td><code>Table_name</code></td> <td>64</td> </tr><tr> <td><code>Column_name</code></td> <td>64</td> </tr><tr> <td><code>Routine_name</code></td> <td>64</td> </tr></tbody></table>
 
 Os valores `Host` e `Proxied_host` são convertidos para minúsculas antes de serem armazenados nas tabelas de concessão.
 

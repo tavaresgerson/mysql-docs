@@ -4,7 +4,7 @@
 
 ### C
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### CARACTERÍSTICAS_DE_SETEAMENTO
 
@@ -128,7 +128,7 @@
 
 ### E
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### MOTORES
 
@@ -162,7 +162,7 @@
 
 ### F
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### ARQUIVOS
 
@@ -206,7 +206,7 @@
 
 ### G
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### GLOBAL_STATUS
 
@@ -232,7 +232,7 @@
 
 ### Eu
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### INFORMATION_SCHEMA
 
@@ -640,7 +640,7 @@
 
 ### K
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### KEY_COLUMN_USAGE
 
@@ -654,7 +654,7 @@
 
 ### M
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### MYSQL_FIREWALL_USERS
 
@@ -670,7 +670,7 @@
 
 ### N
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### NDB_TRANSID_MYSQL_CONNECTION_MAP
 
@@ -690,7 +690,7 @@
 
 ### O
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### OPTIMIZER_TRACE
 
@@ -700,7 +700,7 @@
 
 ### P
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### PARÂMETROS
 
@@ -822,7 +822,7 @@
 
 ### R
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### CONSTRAINTS REFERENCIAIS
 
@@ -846,7 +846,7 @@
 
 ### S
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### SCHEMA_PRIVILEGES
 
@@ -904,7 +904,7 @@
 
 ### T
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### TABELA_CONSTRAINTS
 
@@ -1000,7 +1000,7 @@
 
 ### U
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### PRIVILEGIOS_DO_USUÁRIO
 
@@ -1008,7 +1008,7 @@
 
 ### V
 
-[[index superior](dynindex-pt.html#index-superior)]
+index superior](dynindex-pt.html#index-superior)]
 
 ### VISTAS
 

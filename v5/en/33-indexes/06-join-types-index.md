@@ -4,7 +4,7 @@
 
 ### A
 
-[[index top](dynindex-jointype.html#jointype-index-top)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### ALL
 
@@ -18,7 +18,7 @@
 
 ### C
 
-[[index top](dynindex-jointype.html#jointype-index-top)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### const
 
@@ -36,7 +36,7 @@
 
 ### E
 
-[[index top](dynindex-jointype.html#jointype-index-top)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### eq_ref
 
@@ -56,7 +56,7 @@
 
 ### F
 
-[[index top](dynindex-jointype.html#jointype-index-top)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### fulltext
 
@@ -64,7 +64,7 @@
 
 ### I
 
-[[index top](dynindex-jointype.html#jointype-index-top)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### index
 
@@ -90,7 +90,7 @@
 
 ### R
 
-[[index top](dynindex-jointype.html#jointype-index-top)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### range
 
@@ -140,7 +140,7 @@
 
 ### S
 
-[[index top](dynindex-jointype.html#jointype-index-top)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### system
 
@@ -154,7 +154,7 @@
 
 ### U
 
-[[index top](dynindex-jointype.html#jointype-index-top)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### unique_subquery
 

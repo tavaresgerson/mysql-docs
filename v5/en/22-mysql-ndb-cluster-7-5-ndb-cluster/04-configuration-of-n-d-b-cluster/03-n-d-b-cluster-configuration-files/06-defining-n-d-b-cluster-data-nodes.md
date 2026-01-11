@@ -1524,9 +1524,9 @@ To make use of these parameters, the data node process must be run as system roo
   This parameter is used with [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") to assign threads of different types to different CPUs. Its value is a string whose format has the following syntax:
 
   ```sql
-  ThreadConfig := entry[,entry[,...]]
+  ThreadConfig := entry[,entry[,...
 
-  entry := type={param[,param[,...]]}
+  entry := type={param[,param[,...}
 
   type := ldm | main | recv | send | rep | io | tc | watchdog | idxbld
 
@@ -1823,7 +1823,7 @@ To make use of these parameters, the data node process must be run as system roo
     InitialLogFileGroup = [name=name;] [undo_buffer_size=size;] file-specification-list
 
     file-specification-list:
-        file-specification[; file-specification[; ...]]
+        file-specification[; file-specification[; ...
 
     file-specification:
         filename:size

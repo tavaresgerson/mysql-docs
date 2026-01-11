@@ -7,7 +7,7 @@ The **mysqlshow** client can be used to quickly see which databases exist, their
 Invoke **mysqlshow** like this:
 
 ```sql
-mysqlshow [options] [db_name [tbl_name [col_name]]]
+mysqlshow [options] [db_name [tbl_name [col_name]
 ```
 
 * If no database is given, a list of database names is shown.

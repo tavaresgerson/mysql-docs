@@ -4,7 +4,7 @@
 
 ### Symbols
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### -
 
@@ -300,7 +300,7 @@
 
 ### A
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### AND
 
@@ -334,7 +334,7 @@
 
 ### B
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### BETWEEN
 
@@ -366,7 +366,7 @@
 
 ### C
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### CASE
 
@@ -404,7 +404,7 @@
 
 ### D
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### DIV
 
@@ -414,7 +414,7 @@
 
 ### E
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### EXISTS()
 
@@ -466,7 +466,7 @@
 
 ### I
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### IN()
 
@@ -526,7 +526,7 @@
 
 ### L
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### LIKE
 
@@ -630,7 +630,7 @@
 
 ### N
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### N % M
 
@@ -680,7 +680,7 @@
 
 ### O
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### OR
 
@@ -712,7 +712,7 @@
 
 ### R
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### REGEXP
 
@@ -736,7 +736,7 @@
 
 ### X
 
-[[index top](dynindex-operator.html#op-index-top)]
+index top](dynindex-operator.html#op-index-top)]
 
 ### XOR
 

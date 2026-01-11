@@ -8,13 +8,13 @@ As seções a seguir descrevem como definir contextos de porta para recursos do 
 
 Se o SELinux estiver ativado, você deve definir o contexto da porta para a porta de comunicação da replicação de grupo, que é definida pela variável `group_replication_local_address`. O **mysqld** deve ser capaz de se conectar à porta de comunicação da replicação de grupo e ouvir nela. O InnoDB Cluster depende da replicação de grupo, portanto, isso se aplica igualmente às instâncias usadas em um clúster. Para ver as portas atualmente usadas pelo MySQL, execute:
 
-```sql
+```sh
 semanage port -l | grep mysqld
 ```
 
 Supondo que o porto de comunicação da replicação em grupo seja 33061, defina o contexto do porto emitindo:
 
-```sql
+```sh
 semanage port -a -t mysqld_port_t -p tcp 33061
 ```
 
@@ -24,6 +24,6 @@ Se o SELinux estiver ativado, você deve definir o contexto da porta para a port
 
 Supondo que a porta de comunicação do X Plugin seja 33060, defina o contexto da porta emitindo:
 
-```sql
+```sh
 semanage port -a -t mysqld_port_t -p tcp 33060
 ```

@@ -4,7 +4,7 @@
 
 ### Símbolos
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 ! (logical NOT), [Operadores lógicos](logical-operators.html)
 
@@ -236,7 +236,7 @@ _rowid:   Instruções SELECT, [Indekses Únicos](create-index.html#create-index
 
 ### A
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 opção abort-on-error :   ndb_import, [ndb_import — Importar dados CSV no NDB](mysql-cluster-programs-ndb-import.html)
 
@@ -924,7 +924,7 @@ variável de sistema avoid_temporal_upgrade, [Variáveis do sistema do servidor]
 
 ### B
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 árvore B, [Glossário do MySQL](glossary.html)
 
@@ -1296,7 +1296,7 @@ Variável de status de bytes enviados, [Variáveis de Status do Servidor](server
 
 ### C
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 C, [Glossário do MySQL](glossary.html)
 
@@ -3002,7 +3002,7 @@ Opção cxxflags: mysql_config, [mysql_config — Exibir opções de compilaçã
 
 ### D
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 Daemon: comando de thread, [Valores do Comando de Thread](thread-commands.html)
 
@@ -4462,7 +4462,7 @@ características dinâmicas da tabela, [Características Dinâmicas da Tabela](d
 
 ### E
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 adotante precoce, [Glossário MySQL](glossary.html)
 
@@ -5078,7 +5078,7 @@ management nodes, [Defining an NDB Cluster Management Server](mysql-cluster-mgm-
 
 ### F
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 failover, [Glossário do MySQL](glossary.html):   na replicação do NDB Cluster, [Implementando Failover com a Replicação do NDB Cluster](mysql-cluster-replication-failover.html)
 
@@ -5536,7 +5536,7 @@ verificação de pontos de controle borrada, [Glossário do MySQL](glossary.html
 
 ### G
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 GA, [Glossário do MySQL](glossary.html):   Lançamentos do MySQL, [Qual versão e distribuição do MySQL instalar](which-version.html)
 
@@ -6068,7 +6068,7 @@ GUID, [Glossário do MySQL](glossary.html)
 
 ### H
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 HANDLER, [Declaração do HANDLER](handler.html):   novas funcionalidades, [Funcionalidades adicionadas no MySQL 5.7](mysql-nutshell.html#mysql-nutshell-additions)
 
@@ -6416,7 +6416,7 @@ Opção html:   mysql, [Opções do cliente do MySQL](mysql-command-options.html
 
 ### Eu
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 Opção i-am-a-dummy:   mysql, [Opções do cliente do MySQL](mysql-command-options.html)
 
@@ -7872,7 +7872,7 @@ opção de iterações: mysqlslap, [mysqlslap — Um cliente de emulação de ca
 
 ### J
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 J2EE, [Glossário do MySQL](glossary.html)
 
@@ -8026,7 +8026,7 @@ JSON_VALID(), [Funções que retornam atributos de valor JSON](json-attribute-fu
 
 ### K
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 opção keep-state: ndb_import, [ndb_import — Importa dados CSV no NDB](mysql-cluster-programs-ndb-import.html)
 
@@ -8244,7 +8244,7 @@ Coreano, [Perguntas frequentes do MySQL 5.7: conjuntos de caracteres chineses, j
 
 ### L
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 etiquetas: bloco de programa armazenado, [etiquetas de declaração](statement-labels.html)
 
@@ -8938,7 +8938,7 @@ lz4_decompress, [Visão geral dos programas MySQL](programs-overview.html), [lz4
 
 ### M
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 macOS:   instalação, [Instalando o MySQL no macOS](macos-installation.html)
 
@@ -12050,7 +12050,7 @@ version option, [my_print_defaults — Display Options from Option Files](my-pri
 
 ### N
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 Nome, [Definição do Sistema](mysql-cluster-system-definition.html)
 
@@ -14880,7 +14880,7 @@ Tipo de dados NVARCHAR, [Sintaxe do Tipo de Dados de String](string-type-syntax.
 
 ### O
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 objeto: JSON, [Criando valores JSON](json.html#json-values)
 
@@ -15330,7 +15330,7 @@ visão geral, [Informações Gerais](introdução.html)
 
 ### P
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 PAD SPACE collations, [Tratamento de espaço em branco após a vírgula em comparações](charset-binary-collations.html#charset-binary-collations-trailing-space-comparisons), [Os tipos CHAR e VARCHAR](char.html)
 
@@ -16782,7 +16782,7 @@ API do Python, [Glossário do MySQL](glossary.html)
 
 ### Q
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 Qcache_free_blocks: funcionalidades desatualizadas, [Funcionalidades desatualizadas no MySQL 5.7](mysql-nutshell.html#mysql-nutshell-deprecations)
 
@@ -16938,7 +16938,7 @@ citação de identificadores, [Nomes de Objetos do Esquema](identifiers.html)
 
 ### R
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 R-tree, [Glossário do MySQL](glossary.html)
 
@@ -17942,7 +17942,7 @@ tabela rwlock_instances: performance_schema, [A tabela rwlock_instances](perform
 
 ### S
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 declaração segura (replicação): [Determinação de declarações seguras e inseguras no registro binário](replicação-rbr-safe-unsafe.html)
 
@@ -19400,7 +19400,7 @@ COMEÇAR REPLICAÇÃO_GRUPO, [COMEÇAR REPLICAÇÃO_GRUPO Statement](start-group
 
 COMEÇAR SLAVE, [declaração START SLAVE](start-slave.html)
 
-INICIAR TRANSAÇÃO, [Instruções INICIAR TRANSAÇÃO, [COMMIT] e [ROLLBACK]] (commit.html)
+INICIAR TRANSAÇÃO, [Instruções INICIAR TRANSAÇÃO, [COMMIT] e [ROLLBACK (commit.html)
 
 opção start-datetime: mysqlbinlog, [mysqlbinlog — Ferramenta para processar arquivos de log binário](mysqlbinlog.html)
 
@@ -22630,7 +22630,7 @@ Função sys_get_config():   esquema sys, [A função sys_get_config()](sys-sys-
 
 ### T
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 tab (\t), [Literal de String](string-literals.html), [Funções que Modificam Valores JSON](json-modification-functions.html), [Manipulação de Campos e Linhas](load-data.html#load-data-field-line-handling)
 
@@ -23764,7 +23764,7 @@ mysqlpump, [mysqlpump — A Database Backup Program](mysqlpump.html)
 
 ### U
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 UCASE(), [Funções e operadores de string](string-functions.html)
 
@@ -24144,7 +24144,7 @@ UUID_SHORT(), [Funções Diversas](funcoes-diversas.html)
 
 ### V
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 válido:   Valores do SIG, [Formação e validade da geometria](geometry-well-formedness-validity.html)
 
@@ -24500,7 +24500,7 @@ Visual Studio, [Glossário do MySQL](glossary.html)
 
 ### W
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 aguarde, [Glossário MySQL](glossary.html)
 
@@ -24812,7 +24812,7 @@ Escrever para a rede: estado do tópico, [Estados Gerais de Tópicos](general-th
 
 ### X
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 X Plugin, [X Plugin](x-plugin.html)
 
@@ -24954,7 +24954,7 @@ Injeção de código XPath, [Funções XML](xml-functions.html)
 
 ### Y
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 Y(), [Funções de Propriedade de Pontos](gis-point-property-functions.html)
 
@@ -24978,7 +24978,7 @@ Sua senha não atende aos requisitos da política atual: erro de senha, [O Plugi
 
 ### Z
 
-[[index topo](ix01.html)]
+index topo](ix01.html)]
 
 ZEROFILL, [Sintaxe do tipo de dados numérico](numeric-type-syntax.html), [Atributos do tipo de dados numérico](numeric-type-attributes.html)
 

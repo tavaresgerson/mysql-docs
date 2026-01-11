@@ -22,7 +22,7 @@ Options that can be used with [**ndb_size.pl**](mysql-cluster-programs-ndb-size-
 #### Usage
 
 ```sql
-perl ndb_size.pl [--database={db_name|ALL}] [--hostname=host[:port]] [--socket=socket] \
+perl ndb_size.pl [--database={db_name|ALL}] [--hostname=host[:port [--socket=socket] \
       [--user=user] [--password=password]  \
       [--help|-h] [--format={html|text}] \
       [--loadqueries=file_name] [--savequeries=file_name]

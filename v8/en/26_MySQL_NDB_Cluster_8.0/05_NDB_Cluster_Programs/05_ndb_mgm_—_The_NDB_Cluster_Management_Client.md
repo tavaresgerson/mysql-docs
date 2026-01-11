@@ -5,7 +5,7 @@ The **ndb_mgm** management client process is actually not needed to run the clus
 To start the management client, it is necessary to supply the host name and port number of the management server:
 
 ```
-$> ndb_mgm [host_name [port_num]]
+$> ndb_mgm [host_name [port_num
 ```
 
 For example:

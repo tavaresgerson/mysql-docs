@@ -4,7 +4,7 @@
 
 ### A
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### TODOS
 
@@ -54,7 +54,7 @@
 
 ### B
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### BINLOG_ADMIN
 
@@ -62,7 +62,7 @@
 
 ### C
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### Crie
 
@@ -144,7 +144,7 @@
 
 ### D
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### DELETA
 
@@ -216,7 +216,7 @@
 
 ### E
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### Evento
 
@@ -268,7 +268,7 @@
 
 ### F
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### ARQUIVO
 
@@ -304,7 +304,7 @@
 
 ### G
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### CONCEDA A OPÇÃO
 
@@ -328,7 +328,7 @@
 
 ### Eu
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### ÍNDICE
 
@@ -396,7 +396,7 @@
 
 ### L
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### LÂMINAR TÁBUAS
 
@@ -414,7 +414,7 @@
 
 ### N
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### NDB_STORED_USER
 
@@ -422,7 +422,7 @@
 
 ### P
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### PROCESSO
 
@@ -548,7 +548,7 @@
 
 ### R
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### REFERÊNCIAS
 
@@ -624,7 +624,7 @@
 
 ### S
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### SELECIONE
 
@@ -886,7 +886,7 @@
 
 ### T
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### TRIGGER
 
@@ -910,7 +910,7 @@
 
 ### U
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### ATUALIZAÇÃO
 
@@ -964,7 +964,7 @@
 
 ### X
 
-[[index superior](dynindex-priv.html#priv-index-superior)]
+index superior](dynindex-priv.html#priv-index-superior)]
 
 ### XA_RECOVER_ADMIN
 

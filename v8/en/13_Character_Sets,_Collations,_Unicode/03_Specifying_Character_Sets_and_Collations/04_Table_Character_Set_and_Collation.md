@@ -4,11 +4,11 @@ Every table has a table character set and a table collation. The `CREATE TABLE` 
 
 ```
 CREATE TABLE tbl_name (column_list)
-    [[DEFAULT] CHARACTER SET charset_name]
-    [COLLATE collation_name]]
+    DEFAULT] CHARACTER SET charset_name]
+    [COLLATE collation_name
 
 ALTER TABLE tbl_name
-    [[DEFAULT] CHARACTER SET charset_name]
+    DEFAULT] CHARACTER SET charset_name]
     [COLLATE collation_name]
 ```
 

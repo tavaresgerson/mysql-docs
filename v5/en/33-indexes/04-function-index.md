@@ -4,7 +4,7 @@
 
 ### Symbols
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### %
 
@@ -12,7 +12,7 @@
 
 ### A
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### ABS()
 
@@ -206,7 +206,7 @@
 
 ### B
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### BENCHMARK()
 
@@ -264,7 +264,7 @@
 
 ### C
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### CAST()
 
@@ -714,7 +714,7 @@
 
 ### D
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### DATABASE()
 
@@ -870,7 +870,7 @@
 
 ### E
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### ELT()
 
@@ -946,7 +946,7 @@
 
 ### F
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### FIELD()
 
@@ -1022,7 +1022,7 @@
 
 ### G
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### gen_blacklist()
 
@@ -1226,7 +1226,7 @@
 
 ### H
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### HEX()
 
@@ -1256,7 +1256,7 @@
 
 ### I
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### IF()
 
@@ -1382,7 +1382,7 @@
 
 ### J
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### JSON_APPEND()
 
@@ -1596,7 +1596,7 @@
 
 ### K
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### keyring_aws_rotate_cmk()
 
@@ -1636,7 +1636,7 @@
 
 ### L
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### LAST_DAY()
 
@@ -1832,7 +1832,7 @@
 
 ### M
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### MAKE_SET()
 
@@ -2160,7 +2160,7 @@
 
 ### N
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### NAME_CONST()
 
@@ -2228,7 +2228,7 @@
 
 ### O
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### OCT()
 
@@ -2248,7 +2248,7 @@
 
 ### P
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### PASSWORD()
 
@@ -2354,7 +2354,7 @@
 
 ### Q
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### QUARTER()
 
@@ -2370,7 +2370,7 @@
 
 ### R
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### RADIANS()
 
@@ -2504,7 +2504,7 @@
 
 ### S
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### SCHEMA()
 
@@ -3102,7 +3102,7 @@
 
 ### T
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### TAN()
 
@@ -3190,7 +3190,7 @@
 
 ### U
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### UCASE()
 
@@ -3350,7 +3350,7 @@
 
 ### V
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### VALIDATE_PASSWORD_STRENGTH()
 
@@ -3442,7 +3442,7 @@
 
 ### W
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### WAIT_FOR_EXECUTED_GTID_SET()
 
@@ -3496,7 +3496,7 @@
 
 ### X
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### X()
 
@@ -3504,7 +3504,7 @@
 
 ### Y
 
-[[index top](dynindex-function.html#func-index-top)]
+index top](dynindex-function.html#func-index-top)]
 
 ### Y()
 

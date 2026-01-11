@@ -9,7 +9,7 @@ CHECK (expr)
 As of MySQL 8.0.16, `CREATE TABLE` permits the core features of table and column `CHECK` constraints, for all storage engines. `CREATE TABLE` permits the following `CHECK` constraint syntax, for both table constraints and column constraints:
 
 ```
-[CONSTRAINT [symbol]] CHECK (expr) [[NOT] ENFORCED]
+[CONSTRAINT [symbol CHECK (expr) NOT] ENFORCED]
 ```
 
 The optional *`symbol`* specifies a name for the constraint. If omitted, MySQL generates a name from the table name, a literal `_chk_`, and an ordinal number (1, 2, 3, ...). Constraint names have a maximum length of 64 characters. They are case-sensitive, but not accent-sensitive.

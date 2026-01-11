@@ -1,7 +1,7 @@
 ### 13.2.1 CALL Statement
 
 ```sql
-CALL sp_name([parameter[,...]])
+CALL sp_name([parameter[,...)
 CALL sp_name[()]
 ```
 

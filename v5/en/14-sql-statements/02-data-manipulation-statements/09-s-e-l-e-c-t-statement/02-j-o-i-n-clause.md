@@ -18,7 +18,7 @@ table_reference: {
 
 table_factor: {
     tbl_name [PARTITION (partition_names)]
-        [[AS] alias] [index_hint_list]
+        AS] alias] [index_hint_list]
   | table_subquery [AS] alias
   | ( table_references )
 }
@@ -28,7 +28,7 @@ joined_table: {
   | table_reference STRAIGHT_JOIN table_factor
   | table_reference STRAIGHT_JOIN table_factor ON search_condition
   | table_reference {LEFT|RIGHT} [OUTER] JOIN table_reference join_specification
-  | table_reference NATURAL [{LEFT|RIGHT} [OUTER]] JOIN table_factor
+  | table_reference NATURAL [{LEFT|RIGHT} [OUTER JOIN table_factor
 }
 
 join_specification: {

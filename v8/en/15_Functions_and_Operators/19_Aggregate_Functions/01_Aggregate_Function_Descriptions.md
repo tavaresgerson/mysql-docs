@@ -157,7 +157,7 @@ In MySQL 8.0, bit functions and operators permit binary string type arguments (`
   ```
   GROUP_CONCAT([DISTINCT] expr [,expr ...]
                [ORDER BY {unsigned_integer | col_name | expr}
-                   [ASC | DESC] [,col_name ...]]
+                   [ASC | DESC] [,col_name ...
                [SEPARATOR str_val])
   ```
 

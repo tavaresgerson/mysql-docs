@@ -98,19 +98,19 @@ O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na
 
 - `--help`, `-?`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--basedir=dir_name`, `-b dir_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório de base do servidor.
 
 - `--datadir=dir_name`, `-d dir_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--datadir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório de dados do servidor.
 
@@ -120,7 +120,7 @@ O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na
    <tbody>
       <tr>
          <th>Formato de linha de comando</th>
-         <td>[[<code>--my-print-defaults=file_name</code>]]</td>
+         <td><code>--my-print-defaults=file_name</code></td>
       </tr>
       <tr>
          <th>Tipo</th>
@@ -133,13 +133,13 @@ O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na
 
 - `--mysqld=nome_do_arquivo`, `-b nome_do_arquivo`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--mysqld=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--mysqld=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   O caminho para o servidor **mysqld**.
 
 - `--no-defaults`, `-p`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--no-defaults</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--no-defaults</code></td> </tr></tbody></table>
 
   Não leia valores do arquivo de configuração. Esta opção permite que um administrador ignore a leitura dos valores padrão do arquivo de configuração.
 
@@ -147,19 +147,19 @@ O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na
 
 - `--plugin-dir=dir_name`, `-p dir_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--plugin-dir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--plugin-dir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O diretório de plugins do servidor.
 
 - `--plugin-ini=file_name`, `-i file_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--plugin-ini=file_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--plugin-ini=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
 
   O arquivo de configuração do **mysql_plugin**. Os nomes de caminho relativos são interpretados em relação ao diretório atual. Se esta opção não for fornecida, o padrão é `plugin.ini` no diretório do plugin, onde *`plugin`* é o argumento *`plugin`* na linha de comando.
 
 - `--print-defaults`, `-P`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--print-defaults</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--print-defaults</code></td> </tr></tbody></table>
 
   Exiba os valores padrão do arquivo de configuração. Esta opção faz com que o **mysql_plugin** imprima os valores padrão para `--basedir`, `--datadir` e `--plugin-dir` se forem encontrados no arquivo de configuração. Se nenhum valor para uma variável for encontrado, nada será exibido.
 
@@ -167,12 +167,12 @@ O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na
 
 - `--verbose`, `-v`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Modo verbose. Imprima mais informações sobre o que o programa faz. Esta opção pode ser usada várias vezes para aumentar a quantidade de informações.
 
 - `--version`, `-V`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exibir informações da versão e sair.

@@ -10,12 +10,12 @@ As opções que podem ser usadas com **ndb_redo_log_reader** estão mostradas na
 
 **Tabela 21.37 Opções de linha de comando usadas com o programa ndb_redo_log_reader**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> [[PH_HTML_CODE_<code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex">-pageindex
-                #</a> </code>] </p></th> <td>Informações de exclusão de impressão</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[PH_HTML_CODE_<code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex">-pageindex
-                #</a> </code>] </p></th> <td>Imprimir descritores de arquivo apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> --help </code>]] </p></th> <td>Informações de uso da impressão (não tem forma abreviada)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> -lap </code>]] </p></th> <td>Forneça informações sobre a volta, incluindo o máximo de GCI iniciado e concluído</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_mbyte">-mbyte
-                #</a> </code>]] </p></th> <td>Começando em megabytes</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> -mbyteheaders </code>]] </p></th> <td>Mostrar apenas o cabeçalho da primeira página de cada megabyte no arquivo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> -nocheck </code>]] </p></th> <td>Não verifique os registros em busca de erros</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> -noprint </code>]] </p></th> <td>Não imprima registros</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_page">-page
-                #</a> </code>]] </p></th> <td>Comece por esta página</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> -pageheaders </code>]] </p></th> <td>Mostrar apenas os cabeçalhos da página</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex">-pageindex
-                #</a> </code>]] </p></th> <td>Comece com este índice da página</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> [[<code> -filedescriptors </code><code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex">-pageindex
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> PH_HTML_CODE_<code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex">-pageindex
+                #</a> </code>] </p></th> <td>Informações de exclusão de impressão</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex">-pageindex
+                #</a> </code>] </p></th> <td>Imprimir descritores de arquivo apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --help </code> </p></th> <td>Informações de uso da impressão (não tem forma abreviada)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> -lap </code> </p></th> <td>Forneça informações sobre a volta, incluindo o máximo de GCI iniciado e concluído</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_mbyte">-mbyte
+                #</a> </code> </p></th> <td>Começando em megabytes</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> -mbyteheaders </code> </p></th> <td>Mostrar apenas o cabeçalho da primeira página de cada megabyte no arquivo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> -nocheck </code> </p></th> <td>Não verifique os registros em busca de erros</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> -noprint </code> </p></th> <td>Não imprima registros</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_page">-page
+                #</a> </code> </p></th> <td>Comece por esta página</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> -pageheaders </code> </p></th> <td>Mostrar apenas os cabeçalhos da página</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex">-pageindex
+                #</a> </code> </p></th> <td>Comece com este índice da página</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> -filedescriptors </code><code> <a class="link" href="mysql-cluster-programs-ndb-redo-log-reader.html#option_ndb_redo_log_reader_pageindex">-pageindex
                 #</a> </code>] </p></th> <td>Dump com deslocamento de bits</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
 
 #### Uso
@@ -30,53 +30,53 @@ O nome do arquivo a ser lido pode ser seguido por uma ou mais das opções lista
 
 - `-dump`
 
-  <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-dump</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td><code>-dump</code></td> </tr></tbody></table>
 
   Imprima as informações do dump de impressão.
 
-- <table frame="box" rules="all" summary="Propriedades para filedescriptors"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-filedescriptors</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para filedescriptors"><tbody><tr><th>Formato de linha de comando</th> <td><code>-filedescriptors</code></td> </tr></tbody></table>
 
   `-filedescriptors`: Imprima apenas os descritores de arquivo.
 
-- <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   `--help`: Imprima informações de uso.
 
 - `-lap`
 
-  <table frame="box" rules="all" summary="Propriedades para volta"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-lap</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para volta"><tbody><tr><th>Formato de linha de comando</th> <td><code>-lap</code></td> </tr></tbody></table>
 
   Forneça informações sobre a volta, incluindo o GCI máximo iniciado e concluído.
 
-- <table frame="box" rules="all" summary="Propriedades para mbyte"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-mbyte #</code>]]</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>15</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para mbyte"><tbody><tr><th>Formato de linha de comando</th> <td><code>-mbyte #</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>15</code></td> </tr></tbody></table>
 
   `-mbyte #`: Início em megabytes.
 
   *`#`* é um número inteiro no intervalo de 0 a 15, inclusive.
 
-- <table frame="box" rules="all" summary="Propriedades para mbyteheaders"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-mbyteheaders</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para mbyteheaders"><tbody><tr><th>Formato de linha de comando</th> <td><code>-mbyteheaders</code></td> </tr></tbody></table>
 
   `-mbyteheaders`: Mostrar apenas o cabeçalho da primeira página de cada megabyte no arquivo.
 
-- <table frame="box" rules="all" summary="Propriedades para noprint"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-noprint</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para noprint"><tbody><tr><th>Formato de linha de comando</th> <td><code>-noprint</code></td> </tr></tbody></table>
 
   `-noprint`: Não imprima o conteúdo do arquivo de log.
 
-- <table frame="box" rules="all" summary="Propriedades para nocheck"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-nocheck</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para nocheck"><tbody><tr><th>Formato de linha de comando</th> <td><code>-nocheck</code></td> </tr></tbody></table>
 
   `-nocheck`: Não verifique o arquivo de log em busca de erros.
 
-- <table frame="box" rules="all" summary="Propriedades para a página"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-page #</code>]]</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>31</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para a página"><tbody><tr><th>Formato de linha de comando</th> <td><code>-page #</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>31</code></td> </tr></tbody></table>
 
   `-página #`: Comece nesta página.
 
   *`#`* é um número inteiro no intervalo de 0 a 31, inclusive.
 
-- <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-dump</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td><code>-dump</code></td> </tr></tbody></table>
 
   `-pageheaders`: Mostrar apenas os cabeçalhos das páginas.
 
-- <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-dump</code>]]</td> </tr></tbody></table>
+- <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td><code>-dump</code></td> </tr></tbody></table>
 
   `-pageindex #`: Comece nesta página de índice.
 
@@ -84,7 +84,7 @@ O nome do arquivo a ser lido pode ser seguido por uma ou mais das opções lista
 
 - `-twiddle`
 
-  <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>-dump</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para aterro"><tbody><tr><th>Formato de linha de comando</th> <td><code>-dump</code></td> </tr></tbody></table>
 
   Dump com deslocamento de bits.
 

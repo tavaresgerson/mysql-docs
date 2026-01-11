@@ -395,7 +395,7 @@
   The full syntax for a data file specification includes the file name, file size, `autoextend` attribute, and `max` attribute:
 
   ```
-  file_name:file_size[:autoextend[:max:max_file_size]]
+  file_name:file_size[:autoextend[:max:max_file_size
   ```
 
   File sizes are specified in kilobytes, megabytes, or gigabytes by appending `K`, `M` or `G` to the size value. If specifying the data file size in kilobytes, do so in multiples of 1024. Otherwise, KB values are rounded to nearest megabyte (MB) boundary. The sum of file sizes must be, at a minimum, slightly larger than 12MB.
@@ -1563,7 +1563,7 @@
   The syntax for a global temporary tablespace data file specification includes the file name, file size, and `autoextend` and `max` attributes:
 
   ```
-  file_name:file_size[:autoextend[:max:max_file_size]]
+  file_name:file_size[:autoextend[:max:max_file_size
   ```
 
   The global temporary tablespace data file cannot have the same name as another `InnoDB` data file. Any inability or error creating the global temporary tablespace data file is treated as fatal and server startup is refused.

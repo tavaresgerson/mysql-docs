@@ -89,7 +89,7 @@
   mysql> UPDATE t SET i = DEFAULT(i)+1 WHERE id < 100;
   ```
 
-* [`ETAG(col [, col[, ...]])`](miscellaneous-functions.html#function_etag)
+* [`ETAG(col [, col[, ...)`](miscellaneous-functions.html#function_etag)
 
   Computes a 128-bit hash for each row, given a comma-separated list of one or more column values. An item in this list can be a column name, a constant value, or an expression, and can be `NULL`.
 

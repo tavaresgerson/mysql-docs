@@ -52,31 +52,31 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exiba uma breve mensagem de ajuda e saia. Use as opções `--verbose` e `--help` para ver a mensagem completa.
 
 - `--allow-suspicious-udfs`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Esta opção controla se funções carregáveis que têm apenas um símbolo `xxx` para a função principal podem ser carregadas. Por padrão, a opção está desativada e apenas funções carregáveis que têm pelo menos um símbolo auxiliar podem ser carregadas; isso previne tentativas de carregar funções de arquivos de objeto compartilhado que não contenham funções legítimas. Consulte Precauções de segurança de funções carregáveis.
 
 - `--ansi`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Use a sintaxe SQL padrão (ANSI) em vez da sintaxe MySQL. Para um controle mais preciso sobre o modo SQL do servidor, use a opção `--sql-mode` em vez disso. Veja Seção 1.6, “Conformidade com Padrões MySQL” e Seção 5.1.10, “Modos SQL do Servidor”.
 
 - `--basedir=dir_name`, `-b dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   O caminho para o diretório de instalação do MySQL. Esta opção define a variável de sistema `basedir`.
 
 - `--bootstrap`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   Essa opção é usada pelo programa **mysql_install_db** para criar as tabelas de privilégios do MySQL sem precisar iniciar um servidor MySQL completo.
 
@@ -92,19 +92,19 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--character-set-client-handshake`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Não ignore as informações sobre o conjunto de caracteres enviadas pelo cliente. Para ignorar as informações do cliente e usar o conjunto de caracteres padrão do servidor, use `--skip-character-set-client-handshake`; isso faz com que o MySQL se comporte como o MySQL 4.0.
 
 - `--chroot=dir_name`, `-r dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Coloque o servidor **mysqld** em um ambiente fechado durante a inicialização usando a chamada de sistema `chroot()`. Esta é uma medida de segurança recomendada. O uso desta opção limita um pouco a opção `LOAD DATA` e `SELECT ... INTO OUTFILE`.
 
 - `--console`
 
-  <table frame="box" rules="all" summary="Propriedades para console"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--console</code>]]</td> </tr><tr><th>Específico da plataforma</th> <td>Windows</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para console"><tbody><tr><th>Formato de linha de comando</th> <td><code>--console</code></td> </tr><tr><th>Específico da plataforma</th> <td>Windows</td> </tr></tbody></table>
 
   (Apenas para Windows.) Escreva o log de erro em `stderr` e `stdout` (o console). O **mysqld** não fecha a janela do console se essa opção for usada.
 
@@ -112,7 +112,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--core-file</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
   Quando esta opção for usada, escreva um arquivo de núcleo se o **mysqld** falhar; não são necessários (ou aceitos) argumentos. O nome e a localização do arquivo de núcleo dependem do sistema. No Linux, um arquivo de núcleo chamado `core.pid` é escrito no diretório de trabalho atual do processo, que, para o **mysqld**, é o diretório de dados. *`pid`* representa o ID do processo do processo do servidor. No macOS, um arquivo de núcleo chamado `core.pid` é escrito no diretório `/cores`. No Solaris, use o comando **coreadm** para especificar onde escrever o arquivo de núcleo e como nomeá-lo.
 
@@ -120,7 +120,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--daemonize`
 
-  <table frame="box" rules="all" summary="Propriedades para daemonizar"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--daemonize[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para daemonizar"><tbody><tr><th>Formato de linha de comando</th> <td><code>--daemonize[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Essa opção faz com que o servidor seja executado como um daemon tradicional, permitindo que ele trabalhe com sistemas operacionais que usam o systemd para controle de processos. Para mais informações, consulte Seção 2.5.10, “Gerenciamento do servidor MySQL com o systemd”.
 
@@ -128,13 +128,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--datadir=dir_name`, `-h dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   O caminho para o diretório de dados do servidor MySQL. Esta opção define a variável de sistema `datadir`. Veja a descrição dessa variável.
 
 - `--debug[=opções_de_depuração]`, `-# [opções_de_depuração]`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Se o MySQL estiver configurado com a opção **CMake** `-DWITH_DEBUG=1`, você pode usar essa opção para obter um arquivo de registro do que o **mysqld** está fazendo. Uma string típica de *`debug_options`* é `d:t:o,nome_do_arquivo`. O padrão é `d:t:i:o,/tmp/mysqld.trace` no Unix e `d:t:i:O,\mysqld.trace` no Windows.
 
@@ -146,7 +146,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--debug-sync-timeout[=N]`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Controla se a funcionalidade Debug Sync para testes e depuração está habilitada. O uso do Debug Sync requer que o MySQL seja configurado com a opção **CMake** `-DWITH_DEBUG=ON` (consulte Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”). Se o Debug Sync não for compilado, essa opção não estará disponível. O valor da opção é um tempo de espera em segundos. O valor padrão é 0, o que desabilita o Debug Sync. Para ativá-lo, especifique um valor maior que 0; esse valor também se torna o tempo de espera padrão para os pontos de sincronização individuais. Se a opção for fornecida sem um valor, o tempo de espera é definido para 300 segundos.
 
@@ -154,7 +154,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--default-time-zone=timezone`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Defina o fuso horário do servidor padrão. Esta opção define a variável de sistema global `time_zone`. Se esta opção não for fornecida, o fuso horário padrão será o mesmo do fuso horário do sistema (dado pelo valor da variável de sistema `system_time_zone`.
 
@@ -184,7 +184,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--des-key-file=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Leia as chaves DES padrão deste arquivo. Essas chaves são usadas pelas funções [`DES_ENCRYPT()`](https://docs.php.net/en/manual/encryption-functions.html#function_des-encrypt) e [`DES_DECRYPT()`](https://docs.php.net/en/manual/encryption-functions.html#function_des-decrypt).
 
@@ -194,7 +194,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--disable-partition-engine-check`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Se desabilitar a verificação de inicialização para tabelas com particionamento não nativo.
 
@@ -212,7 +212,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--early-plugin-load=plugin_list`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Essa opção indica ao servidor quais plugins devem ser carregados antes de carregar os plugins embutidos obrigatórios e antes da inicialização do mecanismo de armazenamento. O carregamento antecipado é suportado apenas para plugins compilados com `PLUGIN_OPT_ALLOW_EARLY`. Se forem fornecidas várias opções de `--early-plugin-load` (server-options.html#option_mysqld_early-plugin-load), apenas a última opção será aplicada.
 
@@ -244,13 +244,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--exit-info[=flags]`, `-T [flags]`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Este é um bitmask de diferentes flags que você pode usar para depurar o servidor **mysqld**. Não use esta opção a menos que você saiba *exatamente* o que ela faz!
 
 - `--external-locking`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Ative o bloqueio externo (bloqueio do sistema), que está desativado por padrão. Se você usar essa opção em um sistema em que o `lockd` não funciona perfeitamente (como o Linux), é fácil que o **mysqld** fique em um impasse.
 
@@ -260,7 +260,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--flush`
 
-  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--allow-suspicious-udfs[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>OFF</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para permitir-udfs-suspeito"><tbody><tr><th>Formato de linha de comando</th> <td><code>--allow-suspicious-udfs[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
 
   Limpe (sincronize) todas as alterações no disco após cada instrução SQL. Normalmente, o MySQL realiza uma gravação de todas as alterações no disco apenas após cada instrução SQL e permite que o sistema operacional gere a sincronização com o disco. Veja Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar”.
 
@@ -270,13 +270,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--gdb`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Instale um manipulador de interrupção para `SIGINT` (necessário para parar o **mysqld** com `^C` para definir pontos de interrupção) e desative o rastreamento de pilha e o gerenciamento de arquivos de núcleo. Veja Seção 5.8.1.4, “Depuração do mysqld no gdb”.
 
 - `--ignore-db-dir=nome_do_diretório`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Essa opção indica ao servidor que ignore o nome do diretório fornecido para fins da instrução `SHOW DATABASES` ou das tabelas do `INFORMATION_SCHEMA`. Por exemplo, se uma configuração do MySQL localizar o diretório de dados na raiz de um sistema de arquivos no Unix, o sistema pode criar um diretório `lost+found` lá que o servidor deve ignorar. Iniciar o servidor com `--ignore-db-dir=lost+found` faz com que esse nome não seja listado como uma base de dados.
 
@@ -288,7 +288,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--initialize`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Esta opção é usada para inicializar uma instalação do MySQL criando o diretório de dados e preenchendo as tabelas no banco de dados do sistema `mysql`. Para mais informações, consulte Seção 2.9.1, “Inicializando o Diretório de Dados”.
 
@@ -306,7 +306,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--initialize-insecure`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Esta opção é usada para inicializar uma instalação do MySQL criando o diretório de dados e preenchendo as tabelas no banco de dados do sistema `mysql`. Esta opção implica em `--initialize`, e as mesmas restrições e limitações se aplicam; para mais informações, consulte a descrição dessa opção e Seção 2.9.1, “Inicializando o Diretório de Dados”.
 
@@ -320,7 +320,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--install [nome_do_serviço]`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   (Apenas para Windows) Instale o servidor como um serviço do Windows que seja iniciado automaticamente durante o início do Windows. O nome do serviço padrão é `MySQL` se não for fornecido o valor *`service_name`*. Para mais informações, consulte Seção 2.3.4.8, “Iniciar o MySQL como um serviço do Windows”.
 
@@ -330,7 +330,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--install-manual [nome_do_serviço]`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   (Apenas para Windows) Instale o servidor como um serviço do Windows que deve ser iniciado manualmente. Ele não é iniciado automaticamente durante o início do Windows. O nome do serviço padrão é `MySQL` se não for fornecido o valor *`service_name`*. Para mais informações, consulte Seção 2.3.4.8, “Iniciar o MySQL como um Serviço do Windows”.
 
@@ -340,7 +340,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--language=nome_do_idioma, -L nome_do_idioma`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   A linguagem a ser usada para mensagens de erro. *`lang_name`* pode ser fornecido como o nome da linguagem ou como o nome completo do caminho para o diretório onde os arquivos de linguagem estão instalados. Veja Seção 10.12, “Definindo a Linguagem da Mensagem de Erro”.
 
@@ -348,7 +348,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--large-pages`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   Algumas arquiteturas de hardware/sistema operacional suportam páginas de memória maiores que o padrão (geralmente 4 KB). A implementação real deste suporte depende do hardware e do sistema operacional subjacentes. Aplicações que realizam muitos acessos à memória podem obter melhorias de desempenho ao usar páginas grandes devido à redução de erros no Buffer de Busca de Tradução (TLB).
 
@@ -358,25 +358,25 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--lc-messages=nome_do_idioma`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   O local a ser usado para mensagens de erro. O padrão é `en_US`. O servidor converte o argumento em um nome de idioma e o combina com o valor de `--lc-messages-dir` para produzir a localização do arquivo de mensagem de erro. Veja Seção 10.12, “Definindo o Idioma da Mensagem de Erro”.
 
 - `--lc-messages-dir=dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--ansi</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para ansi"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ansi</code></td> </tr></tbody></table>
 
   O diretório onde as mensagens de erro estão localizadas. O servidor usa o valor juntamente com o valor de `--lc-messages` para determinar a localização do arquivo de mensagem de erro. Veja Seção 10.12, “Definindo o Idioma da Mensagem de Erro”.
 
 - `--local-service`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   (Apenas para Windows) A opção `--local-service` após o nome do serviço faz com que o servidor seja executado usando a conta `LocalService` do Windows, que tem privilégios de sistema limitados. Se `--defaults-file` e `--local-service` forem fornecidos após o nome do serviço, eles podem ser usados em qualquer ordem. Veja Seção 2.3.4.8, “Iniciando o MySQL como um Serviço do Windows”.
 
 - `--log-error[=nome_do_arquivo]`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Escreva o log de erros e as mensagens de inicialização neste arquivo. Consulte Seção 5.4.2, “O Log de Erros”.
 
@@ -388,13 +388,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--log-isam[=nome_do_arquivo]`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Registre todas as alterações do `MyISAM` neste arquivo (usado apenas durante a depuração do `MyISAM`).
 
 - `--log-raw`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   As senhas em certas declarações escritas no log de consulta geral, no log de consultas lentas e no log binário são reescritas pelo servidor para não ocorrerem literalmente em texto simples. A reescrita de senhas pode ser suprimida para o log de consulta geral iniciando o servidor com a opção `--log-raw`. Esta opção pode ser útil para fins de diagnóstico, para ver o texto exato das declarações recebidas pelo servidor, mas, por razões de segurança, não é recomendada para uso em produção.
 
@@ -408,25 +408,25 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--log-short-format`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Registre menos informações no registro de consultas lentas, se ele tiver sido ativado.
 
 - `--log-tc=nome_do_arquivo`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   O nome do arquivo de log do coordenador de transação mapeado à memória (para transações XA que afetam múltiplos mecanismos de armazenamento quando o log binário está desativado). O nome padrão é `tc.log`. O arquivo é criado no diretório de dados, se não for fornecido como um nome de caminho completo. Esta opção não é usada.
 
 - `--log-tc-size=tamanho`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   O tamanho, em bytes, do log do coordenador de transações mapeado à memória. Os valores padrão e mínimos são 6 vezes o tamanho da página, e o valor deve ser um múltiplo do tamanho da página. (Antes do MySQL 5.7.21, o tamanho padrão é de 24 KB.)
 
 - `--log-warnings[=nível]`, `-W [nível]`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Nota
 
@@ -436,7 +436,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--memlock`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   Bloquear o processo **mysqld** na memória. Esta opção pode ajudar se você tiver um problema em que o sistema operacional está fazendo com que o **mysqld** troque para o disco.
 
@@ -462,7 +462,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--myisam-block-size=N`
 
-  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>basedir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>configuration-dependent default</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para basedir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Variável do sistema</th> <td><code>basedir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>configuration-dependent default</code></td> </tr></tbody></table>
 
   O tamanho do bloco a ser usado para as páginas de índice do `MyISAM`.
 
@@ -474,13 +474,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--old-style-user-limits`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   Ative os limites de recursos de usuário de estilo antigo. (Antes do MySQL 5.0.3, os limites de recursos da conta eram contados separadamente para cada host a partir do qual um usuário se conectava, em vez de por linha de conta na tabela `user`.) Veja Seção 6.2.16, “Definir Limites de Recursos de Conta”.
 
 - `--partition[=valor]`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   Habilita ou desabilita o suporte à partição definida pelo usuário no MySQL Server.
 
@@ -492,7 +492,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--plugin-load=plugin_list`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   Essa opção indica ao servidor que carregue os plugins nomeados ao iniciar. Se forem fornecidas várias opções de `--plugin-load` (server-options.html#option_mysqld_plugin-load), apenas a última se aplica. Plugins adicionais para carregar podem ser especificados usando as opções `--plugin-load-add` (server-options.html#option_mysqld_plugin-load-add).
 
@@ -516,7 +516,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--plugin-load-add=plugin_list`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   Esta opção complementa a opção `--plugin-load`. `--plugin-load-add` adiciona um plugin ou plugins ao conjunto de plugins a serem carregados ao iniciar. O formato do argumento é o mesmo do `--plugin-load`. `--plugin-load-add` pode ser usado para evitar a especificação de um grande conjunto de plugins como um único argumento longo e complicado do `--plugin-load`.
 
@@ -558,13 +558,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--port=port_num`, `-P port_num`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   O número de porta a ser usado ao ouvir conexões TCP/IP. Em sistemas Unix e Unix-like, o número de porta deve ser 1024 ou superior, a menos que o servidor seja iniciado pelo usuário do sistema operacional `root`. Definir esta opção para 0 faz com que o valor padrão seja usado.
 
 - `--port-open-timeout=num`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   Em alguns sistemas, quando o servidor é desligado, a porta TCP/IP pode não ficar disponível imediatamente. Se o servidor for reiniciado rapidamente depois disso, sua tentativa de reabrir a porta pode falhar. Esta opção indica quantos segundos o servidor deve esperar para que a porta TCP/IP fique livre, caso não consiga ser aberta. O padrão é não esperar.
 
@@ -576,13 +576,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--remove [nome_do_serviço]`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   (Apenas para Windows) Remova um serviço do MySQL no Windows. O nome padrão do serviço é `MySQL` se não for fornecido o valor *`service_name`*. Para obter mais informações, consulte Seção 2.3.4.8, “Iniciar o MySQL como um serviço do Windows”.
 
 - `--safe-user-create`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   Se essa opção estiver habilitada, um usuário não poderá criar novos usuários MySQL usando a instrução `GRANT` a menos que o usuário tenha o privilégio `INSERT` para a tabela de sistema `mysql.user` ou qualquer coluna na tabela. Se você deseja que um usuário tenha a capacidade de criar novos usuários que tenham esses privilégios, o usuário tem o direito de conceder, você deve conceder ao usuário o seguinte privilégio:
 
@@ -594,7 +594,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--skip-grant-tables`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   Esta opção afeta a sequência de inicialização do servidor:
 
@@ -622,7 +622,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--skip-host-cache`
 
-  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--bootstrap</code>]]</td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para bootstrap"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bootstrap</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr></tbody></table>
 
   Desative o uso do cache de host interno para uma resolução mais rápida de nomes para IPs. Com o cache desativado, o servidor realiza uma pesquisa DNS toda vez que um cliente se conecta.
 
@@ -640,13 +640,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--skip-new`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Essa opção desativa (o que costumava ser considerado) novos comportamentos, possivelmente inseguros. Isso resulta nestas configurações: `delay_key_write=OFF`, `concurrent_insert=NEVER`, `automatic_sp_privileges=OFF`. Também faz com que `OPTIMIZE TABLE` seja mapeado para `ALTER TABLE` para os motores de armazenamento para os quais `OPTIMIZE TABLE` não é suportado.
 
 - `--skip-partition`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Desabilita a partição definida pelo usuário. As tabelas particionadas podem ser visualizadas usando `SHOW TABLES` ou consultando a tabela do Schema de Informações `TABLES`, mas não podem ser criadas ou modificadas, nem os dados nessas tabelas podem ser acessados. Todas as colunas específicas de partição na tabela do Schema de Informações `PARTITIONS` exibem `NULL`.
 
@@ -660,31 +660,31 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--skip-show-database`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Essa opção define a variável de sistema `skip_show_database`, que controla quem tem permissão para usar a instrução `SHOW DATABASES`. Veja Seção 5.1.7, “Variáveis de Sistema do Servidor”.
 
 - `--skip-stack-trace`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Não escreva traços de pilha. Esta opção é útil quando você está executando o **mysqld** sob um depurador. Em alguns sistemas, você também deve usar esta opção para obter um arquivo de núcleo. Veja Seção 5.8, “Depuração do MySQL”.
 
 - `--slow-start-timeout=timeout`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Esta opção controla o tempo de espera do gerenciador de controle de serviços do Windows para o início do serviço. O valor é o número máximo de milissegundos que o gerenciador de controle de serviços do Windows espera antes de tentar interromper o serviço do MySQL durante o início. O valor padrão é 15000 (15 segundos). Se o serviço MySQL demorar muito para iniciar, você pode precisar aumentar esse valor. Um valor de 0 significa que não há tempo de espera.
 
 - `--socket=caminho`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   No Unix, essa opção especifica o arquivo de soquete Unix a ser usado ao ouvir conexões locais. O valor padrão é `/tmp/mysql.sock`. Se essa opção for fornecida, o servidor cria o arquivo no diretório de dados, a menos que um nome de caminho absoluto seja fornecido para especificar um diretório diferente. No Windows, a opção especifica o nome do tubo a ser usado ao ouvir conexões locais que usam um tubo nomeado. O valor padrão é `MySQL` (não case-sensitive).
 
-- [`--sql-mode=valor[,valor[,valor...]]`](server-options.html#opção_mysqld_sql-mode)
+- [`--sql-mode=valor[,valor[,valor...`](server-options.html#opção_mysqld_sql-mode)
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Defina o modo SQL. Consulte Seção 5.1.10, “Modos SQL do servidor”.
 
@@ -694,7 +694,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--ssl`, `--skip-ssl`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   A opção `--ssl` especifica que o servidor permite, mas não exige, conexões criptografadas. Esta opção está habilitada por padrão.
 
@@ -704,19 +704,19 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--standalone`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   Disponível apenas no Windows; instrui o servidor MySQL a não ser executado como serviço.
 
 - `--super-large-pages`
 
-  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--character-set-client-handshake[={OFF|ON}]</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>ON</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para handshake de cliente de conjunto de caracteres"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-set-client-handshake[={OFF|ON}]</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
   O uso padrão de páginas grandes no MySQL tenta usar o tamanho maior suportado, até 4 MB. Sob o Solaris, um recurso de "páginas super grandes" permite o uso de páginas de até 256 MB. Esse recurso está disponível para plataformas SPARC recentes. Ele pode ser ativado ou desativado usando as opções `--super-large-pages` ou `--skip-super-large-pages`.
 
 - `--symbolic-links`, `--skip-symbolic-links`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Ative ou desative o suporte a links simbólicos. No Unix, ativar links simbólicos significa que você pode vincular um arquivo de índice `MyISAM` ou um arquivo de dados a outro diretório com a opção `DIR_ÍNDICE` ou `DIR_DADOS` da instrução `CREATE TABLE`. Se você excluir ou renomear a tabela, os arquivos a que seus links simbólicos apontam também serão excluídos ou renomeados. Veja Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix”.
 
@@ -724,13 +724,13 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--sysdate-is-now`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   `SYSDATE()` por padrão retorna a hora em que é executado, e não a hora em que a instrução na qual ocorre começa a ser executada. Isso difere do comportamento de `NOW()`. Esta opção faz com que `SYSDATE()` seja sinônimo de `NOW()`. Para informações sobre as implicações para o registro binário e a replicação, consulte a descrição para `SYSDATE()` em Seção 12.7, “Funções de Data e Hora” e para `SET TIMESTAMP` em Seção 5.1.7, “Variáveis do Sistema do Servidor”.
 
 - `--tc-heuristic-recover={COMMIT|ROLLBACK}`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   A decisão de usar uma recuperação heurística manual.
 
@@ -746,7 +746,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--temp-pool`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Esta opção é ignorada, exceto no Linux. No Linux, ela faz com que a maioria dos arquivos temporários criados pelo servidor use um pequeno conjunto de nomes, em vez de um nome único para cada novo arquivo. Isso resolve um problema no kernel do Linux relacionado à criação de muitos novos arquivos com nomes diferentes. Com o comportamento antigo, o Linux parece estar “vazando” memória, porque está sendo alocado para o cache de entradas de diretório em vez do cache de disco.
 
@@ -754,7 +754,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--transaction-isolation=level`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Define o nível padrão de isolamento de transação. O valor `level` pode ser `READ-UNCOMMITTED`, `READ-COMMITTED`, `REPEATABLE-READ` ou `SERIALIZABLE`. Consulte Seção 13.3.6, “Instrução SET TRANSACTION”.
 
@@ -762,7 +762,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--transaction-read-only`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Define o modo de acesso padrão para transações. Por padrão, o modo apenas de leitura está desativado, portanto, o modo é leitura/escrita.
 
@@ -770,7 +770,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--tmpdir=dir_name`, `-t dir_name`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O caminho do diretório a ser usado para criar arquivos temporários. Isso pode ser útil se o diretório padrão `/tmp` estiver em uma partição que é muito pequena para armazenar tabelas temporárias. Esta opção aceita vários caminhos que são usados de forma rotativa. Os caminhos devem ser separados por colchetes (`:`) no Unix e por pontos e vírgulas (`;`) no Windows.
 
@@ -780,7 +780,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--user={user_name|user_id}`, `-u {user_name|user_id}`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Execute o servidor **mysqld** como o usuário com o nome *`user_name`* ou o ID de usuário numérico *`user_id`*. (“Usuário” neste contexto se refere a uma conta de login do sistema, não a um usuário MySQL listado nas tabelas de concessão.)
 
@@ -790,7 +790,7 @@ Seção 5.1.7, “Variáveis do Sistema do Servidor”, fornece uma descrição 
 
 - `--validate-user-plugins[={OFF|ON}]`
 
-  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--chroot=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para chroot"><tbody><tr><th>Formato de linha de comando</th> <td><code>--chroot=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Se essa opção estiver habilitada (padrão), o servidor verifica cada conta de usuário e emite um aviso se forem encontradas condições que tornem a conta inutilizável:
 

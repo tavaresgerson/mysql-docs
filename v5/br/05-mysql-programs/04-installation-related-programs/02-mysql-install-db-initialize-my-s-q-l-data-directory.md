@@ -203,49 +203,49 @@ O **mysql_install_db** suporta as seguintes opções, que podem ser especificada
 
 - `--help`, `-?`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--admin-auth-plugin=plugin_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-auth-plugin=plugin_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O plugin de autenticação a ser usado para a conta administrativa. O padrão é `mysql_native_password`.
 
 - `--admin-host=nome_do_host`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-host=host_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-host=host_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   A parte do host a ser usada para o nome da conta administrativa. O padrão é `localhost`. Esta opção é ignorada se `--login-path` também for especificado.
 
 - `--admin-require-ssl`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-require-ssl</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-require-ssl</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Se é necessário exigir SSL para a conta administrativa. O padrão é não exigir. Com essa opção ativada, a declaração que o **mysql_install_db** usa para criar a conta inclui uma cláusula `REQUIRE SSL`. Como resultado, a conta administrativa deve usar conexões seguras ao se conectar ao servidor.
 
 - `--admin-user=nome_do_usuário`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-user=user_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-user=user_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   A parte do usuário para usar no nome da conta administrativa. O padrão é `root`. Esta opção é ignorada se `--login-path` também for especificado.
 
 - `--basedir=dir_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--basedir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O caminho para o diretório de instalação do MySQL.
 
 - `--builddir=dir_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--builddir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--builddir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   Para uso com `--srcdir` e compilações fora da fonte. Defina para o local do diretório onde os arquivos compilados residem.
 
 - `--datadir=dir_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--datadir=dir_name</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O caminho para o diretório de dados do MySQL. Apenas o último componente do nome do caminho é criado se ele não existir; o diretório pai deve já existir ou ocorrerá um erro.
 
@@ -255,13 +255,13 @@ O **mysql_install_db** suporta as seguintes opções, que podem ser especificada
 
 - `--defaults`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>FALSE</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>FALSE</code></td> </tr></tbody></table>
 
   Essa opção faz com que o **mysql_install_db** invocando o **mysqld** de tal forma que ele leia os arquivos de opções nos locais padrão. Se fornecido como `--no-defaults` e `--defaults-file` ou `--defaults-extra-file` não for especificado também, o **mysql_install_db** passa `--no-defaults` para o **mysqld**, para evitar que os arquivos de opções sejam lidos. Isso pode ajudar se o início do programa falhar devido à leitura de opções desconhecidas de um arquivo de opções.
 
 - `--defaults-extra-file=nome_do_arquivo`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Leia este arquivo de opção após o arquivo de opção global, mas (no Unix) antes do arquivo de opção do usuário. Se o arquivo não existir ou não for acessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -271,7 +271,7 @@ O **mysql_install_db** suporta as seguintes opções, que podem ser especificada
 
 - `--defaults-file=nome_do_arquivo`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Use apenas o arquivo de opção fornecido. Se o arquivo não existir ou estiver inacessível, ocorrerá um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual.
 
@@ -281,13 +281,13 @@ O **mysql_install_db** suporta as seguintes opções, que podem ser especificada
 
 - `--extra-sql-file=file_name`, `-f file_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Esta opção nomeia um arquivo que contém instruções SQL adicionais a serem executadas após as instruções padrão de inicialização. A sintaxe da instrução aceita no arquivo é semelhante à do cliente de linha de comando **mysql**, incluindo suporte para comentários em C de várias linhas e manipulação de delimitadores para permitir a definição de programas armazenados.
 
 - `--insecure`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Não crie uma senha aleatória para a conta administrativa.
 
@@ -295,25 +295,25 @@ O **mysql_install_db** suporta as seguintes opções, que podem ser especificada
 
 - `--lc-messages=nome`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O local a ser usado para mensagens de erro. O padrão é `en_US`. O argumento é convertido para um nome de idioma e combinado com o valor de `--lc-messages-dir` para produzir a localização do arquivo de mensagem de erro. Veja a Seção 10.12, “Definindo o Idioma da Mensagem de Erro”.
 
 - `--lc-messages-dir=dir_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O diretório onde as mensagens de erro estão localizadas. O valor é usado juntamente com o valor de `--lc-messages` para produzir a localização do arquivo de mensagem de erro. Veja a Seção 10.12, “Definindo o Idioma da Mensagem de Erro”.
 
 - `--login-file=file_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O arquivo a partir do qual ler o caminho de login se a opção `--login-path=file_name` for especificada. O arquivo padrão é `.mylogin.cnf`.
 
 - `--login-path=nome`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Leia as opções do caminho de login nomeado no arquivo de caminho de login `.mylogin.cnf`. O caminho de login padrão é `client`. (Para ler um arquivo diferente, use a opção `--login-file=nome`. Um “caminho de login” é um grupo de opções que contém opções que especificam qual servidor MySQL conectar e qual conta autenticar. Para criar ou modificar um arquivo de caminho de login, use o utilitário **mysql_config_editor**. Veja a Seção 4.6.6, “mysql_config_editor — Utilitário de Configuração MySQL”.
 
@@ -323,7 +323,7 @@ O **mysql_install_db** suporta as seguintes opções, que podem ser especificada
 
 - `--mysqld-file=file_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   O nome do caminho do binário **mysqld** a ser executado. O valor da opção deve ser um nome de caminho absoluto ou ocorrerá um erro.
 
@@ -341,7 +341,7 @@ O **mysql_install_db** suporta as seguintes opções, que podem ser especificada
 
 - `--no-defaults`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Para saber como essa opção funciona, consulte a descrição de `--defaults`.
 
@@ -349,36 +349,36 @@ O **mysql_install_db** suporta as seguintes opções, que podem ser especificada
 
 - `--random-password-file=file_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-auth-plugin=plugin_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O nome do caminho do arquivo no qual será escrito a senha gerada aleatoriamente para a conta administrativa. O valor da opção deve ser um nome de caminho absoluto ou ocorrerá um erro. O padrão é `$HOME/.mysql_secret`.
 
 - `--skip-sys-schema`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-auth-plugin=plugin_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O comando **mysql_install_db** instala o esquema `sys`. A opção `--skip-sys-schema` suprime esse comportamento.
 
 - `--srcdir=dir_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-auth-plugin=plugin_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Para uso interno. Esta opção especifica o diretório em que o **mysql_install_db** procura por arquivos de suporte, como o arquivo de mensagem de erro e o arquivo para preenchimento das tabelas de ajuda.
 
 - `--user=user_name`, `-u user_name`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-auth-plugin=plugin_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O nome de usuário do sistema (login) a ser usado para executar o **mysqld**. Os arquivos e diretórios criados pelo **mysqld** são de propriedade deste usuário. Você deve ser o usuário `root` do sistema para usar esta opção. Por padrão, o **mysqld** é executado usando o nome de login atual; os arquivos e diretórios que ele cria são de sua propriedade.
 
 - `--verbose`, `-v`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-auth-plugin=plugin_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Modo verbose. Imprima mais informações sobre o que o programa faz. Você pode usar essa opção para ver o comando **mysqld** que o **mysql_install_db** invoca para iniciar o servidor no modo de bootstrap.
 
 - `--version`, `-V`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--admin-auth-plugin=plugin_name</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--admin-auth-plugin=plugin_name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   Exibir informações da versão e sair.

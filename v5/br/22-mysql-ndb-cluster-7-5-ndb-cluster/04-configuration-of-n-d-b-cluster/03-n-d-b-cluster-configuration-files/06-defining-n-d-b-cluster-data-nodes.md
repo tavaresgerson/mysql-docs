@@ -110,7 +110,7 @@ Todos esses parâmetros também se aplicam a **ndbmtd** (a versão multithreadin
 
 - `DataDir`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro especifica o diretório onde os arquivos de registro, arquivos de log, arquivos de PID e logs de erro são armazenados.
 
@@ -118,7 +118,7 @@ Todos esses parâmetros também se aplicam a **ndbmtd** (a versão multithreadin
 
 - `FileSystemPath`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro especifica o diretório onde todos os arquivos criados para metadados, logs REDO, logs UNDO (para tabelas de Dados de Disco) e arquivos de dados serão colocados. O padrão é o diretório especificado por `DataDir`.
 
@@ -130,7 +130,7 @@ Todos esses parâmetros também se aplicam a **ndbmtd** (a versão multithreadin
 
 - `BackupDataDir`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro especifica o diretório onde os backups serão armazenados.
 
@@ -898,7 +898,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `HeartbeatOrder`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Os nós de dados enviam batimentos cardíacos uns para os outros de forma circular, onde cada nó de dados monitora o anterior. Se um batimento cardíaco não for detectado por um determinado nó de dados, esse nó declara o nó de dados anterior no círculo como "morto" (ou seja, não mais acessível pelo clúster). A determinação de que um nó de dados está morto é feita globalmente; em outras palavras, uma vez que um nó de dados é declarado morto, ele é considerado como tal por todos os nós do clúster.
 
@@ -910,7 +910,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
   **Tabela 21.9 Quatro nós de dados A, B, C, D, operando em dois computadores hospedeiros host1, host2; cada nó de dados pertence a um dos dois grupos de nós.**
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Suponha que os batimentos cardíacos sejam transmitidos na ordem A->B->C->D->A. Nesse caso, a perda do batimento cardíaco entre os hosts faz com que o nó B declare o nó A como morto e o nó C declare o nó B como morto. Isso resulta na perda do Grupo de Nodos 0, e assim o clúster falha. Por outro lado, se a ordem de transmissão for A->B->D->C->A (e todas as outras condições permanecerem como anteriormente declaradas), a perda do batimento cardíaco faz com que os nós A e D sejam declarados como mortos; nesse caso, cada grupo de nós tem um nó sobrevivente, e o clúster sobrevive.
 
@@ -918,7 +918,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
   **Tabela 21.10 Valores de HeartbeatOrder para forçar uma ordem de transição de heartbeat de A->B->D->C->A.**
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Para usar este parâmetro para alterar a ordem de transmissão do batimento cardíaco em um NDB Cluster em execução, você deve primeiro definir `HeartbeatOrder` para cada nó de dados no cluster no arquivo de configuração global (`config.ini`) (ou arquivos). Para fazer a mudança entrar em vigor, você deve realizar uma das seguintes ações:
 
@@ -929,7 +929,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `ConnectCheckIntervalDelay`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro permite a verificação de conexão entre nós de dados após um deles ter falhado nas verificações de batimentos cardíacos por 5 intervalos de até `HeartbeatIntervalDbDb` milissegundos.
 
@@ -939,7 +939,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `TimeBetweenLocalCheckpoints`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro é uma exceção, pois não especifica um tempo de espera antes de iniciar um novo ponto de verificação local; em vez disso, é usado para garantir que os pontos de verificação locais não sejam realizados em um clúster onde ocorrem relativamente poucas atualizações. Na maioria dos clústeres com taxas de atualização elevadas, é provável que um novo ponto de verificação local seja iniciado imediatamente após o anterior ter sido concluído.
 
@@ -949,7 +949,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `TimeBetweenGlobalCheckpoints`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Quando uma transação é confirmada, ela é confirmada na memória principal em todos os nós nos quais os dados são espelhados. No entanto, os registros do log de transação não são descarregados no disco como parte do commit. O motivo por trás desse comportamento é que ter a transação confirmada com segurança em pelo menos duas máquinas hospedeiras autônomas deve atender a padrões razoáveis de durabilidade.
 
@@ -959,13 +959,13 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `TimeBetweenGlobalCheckpointsTimeout`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro define o tempo máximo mínimo entre os pontos de verificação globais. O valor padrão é de 120000 milissegundos.
 
 - `TimeBetweenEpochs`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro define o intervalo entre as épocas de sincronização para a replicação em cluster do NDB. O valor padrão é de 100 milissegundos.
 
@@ -973,7 +973,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `TimeBetweenEpochsTimeout`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro define um tempo limite para as épocas de sincronização da replicação em cluster NDB. Se um nó não conseguir participar de um ponto de verificação global dentro do tempo determinado por este parâmetro, o nó é desligado. O valor padrão é 0; em outras palavras, o tempo limite está desativado.
 
@@ -985,7 +985,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `MaxBufferedEpochs`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   O número de épocas não processadas pelas quais um nó assinante pode ficar para trás. Exceder esse número faz com que o assinante que está atrasado seja desconectado.
 
@@ -995,13 +995,13 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `MaxBufferedEpochBytes`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   O número total de bytes alocados para buffer de épocas por este nó.
 
 - `TimeBetweenInactiveTransactionAbortCheck`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   O gerenciamento de tempo de espera é realizado verificando um temporizador em cada transação uma vez para cada intervalo especificado por este parâmetro. Assim, se este parâmetro for definido para 1000 milissegundos, cada transação é verificada para tempo de espera uma vez por segundo.
 
@@ -1009,7 +1009,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `TransactionInactiveTimeout`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro define o tempo máximo permitido para o intervalo entre operações na mesma transação antes de a transação ser abortada.
 
@@ -1017,7 +1017,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `TransactionDeadlockDetectionTimeout`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Quando um nó executa uma consulta que envolve uma transação, o nó aguarda a resposta dos outros nós do clúster antes de continuar. Este parâmetro define o tempo que a transação pode gastar executando dentro de um nó de dados, ou seja, o tempo que o coordenador da transação aguarda para cada nó de dados que participa da transação executar uma solicitação.
 
@@ -1035,7 +1035,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `DiskSyncSize`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este é o número máximo de bytes a serem armazenados antes de descartar os dados para um arquivo de ponto de verificação local. Isso é feito para evitar o bufferamento de escrita, o que pode prejudicar significativamente o desempenho. Este parâmetro *não* é destinado a substituir `TimeBetweenLocalCheckpoints`.
 
@@ -1047,7 +1047,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `MaxDiskWriteSpeed`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Defina a taxa máxima de gravação no disco, em bytes por segundo, por pontos de verificação locais e operações de backup quando não houver reinicializações (por este nó de dados ou qualquer outro nó de dados) neste NDB Cluster.
 
@@ -1055,7 +1055,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `MaxDiskWriteSpeedOtherNodeRestart`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Defina a taxa máxima para gravação em disco, em bytes por segundo, por pontos de verificação locais e operações de backup quando um ou mais nós de dados neste NDB Cluster estiverem reiniciando, exceto este nó.
 
@@ -1063,7 +1063,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `MaxDiskWriteSpeedOwnRestart`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Defina a taxa máxima de gravação no disco, em bytes por segundo, por pontos de verificação locais e operações de backup enquanto este nó de dados estiver sendo reiniciado.
 
@@ -1071,7 +1071,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `MinDiskWriteSpeed`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Defina a taxa mínima para gravação em disco, em bytes por segundo, por pontos de verificação locais e operações de backup.
 
@@ -1079,7 +1079,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `ApiFailureHandlingTimeout`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Especifica o tempo máximo (em segundos) que o nó de dados espera para que o tratamento de falha do nó de API seja concluído antes de escalar para o tratamento de falha do nó de dados.
 
@@ -1087,7 +1087,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `ArbitrationTimeout`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro especifica quanto tempo os nós de dados esperam por uma resposta do árbitro a uma mensagem de arbitragem. Se isso for excedido, presume-se que a rede tenha se dividido.
 
@@ -1095,7 +1095,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `Arbitração`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   O parâmetro `Arbitration` permite a escolha de esquemas de arbitragem, correspondendo a um dos 3 valores possíveis para este parâmetro:
 
@@ -1111,7 +1111,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
 - `RestartSubscriberConnectTimeout`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro determina o tempo que um nó de dados espera para os nós de API que se subscrevem se conectarem. Quando esse tempo de espera expirar, quaisquer nós de API "ausentes" são desconectados do clúster. Para desabilitar esse tempo de espera, defina `RestartSubscriberConnectTimeout` para 0.
 
@@ -1125,19 +1125,19 @@ Esses buffers são usados como interfaces do sistema de arquivos ao gravar regis
 
 - `UndoIndexBuffer`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro definia anteriormente o tamanho do buffer do índice de desfazer, mas não tem efeito nas versões atuais do NDB Cluster.
 
 - `UndoDataBuffer`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Este parâmetro definia anteriormente o tamanho do buffer de dados de desfazer, mas não tem efeito nas versões atuais do NDB Cluster.
 
 - `RedoBuffer`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Todas as atividades de atualização também precisam ser registradas. O log REDO permite reproduzir essas atualizações sempre que o sistema for reiniciado. O algoritmo de recuperação NDB usa um ponto de verificação "duro" dos dados junto com o log UNDO e, em seguida, aplica o log REDO para reproduzir todas as alterações até o ponto de restauração.
 
@@ -1149,7 +1149,7 @@ Esses buffers são usados como interfaces do sistema de arquivos ao gravar regis
 
 - `EventLogBufferSize`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   Controla o tamanho do buffer circular usado para eventos de log do NDB dentro dos nós de dados.
 
@@ -1161,7 +1161,7 @@ Um conjunto análogo de níveis pode ser definido para o cliente de gerenciament
 
 - `LogLevelStartup`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   O nível de relatórios para eventos gerados durante o início do processo.
 
@@ -1169,7 +1169,7 @@ Um conjunto análogo de níveis pode ser definido para o cliente de gerenciament
 
 - `LogLevelShutdown`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   O nível de relatórios para eventos gerados como parte do desligamento suave de um nó.
 
@@ -1177,7 +1177,7 @@ Um conjunto análogo de níveis pode ser definido para o cliente de gerenciament
 
 - `LogLevelStatistic`
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com[[<code>--initial</code>]]. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
   O nível de relatórios para eventos estatísticos, como número de leituras da chave primária, número de atualizações, número de inserções, informações relacionadas ao uso do buffer, e assim por diante.
 
@@ -1525,9 +1525,9 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
   Este parâmetro é usado com **ndbmtd** para atribuir threads de diferentes tipos a diferentes CPUs. Seu valor é uma string cujo formato tem a seguinte sintaxe:
 
   ```sql
-  ThreadConfig := entry[,entry[,...]]
+  ThreadConfig := entry[,entry[,...
 
-  entry := type={param[,param[,...]]}
+  entry := type={param[,param[,...}
 
   type := ldm | main | recv | send | rep | io | tc | watchdog | idxbld
 
@@ -1824,7 +1824,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
     InitialLogFileGroup = [name=name;] [undo_buffer_size=size;] file-specification-list
 
     file-specification-list:
-        file-specification[; file-specification[; ...]]
+        file-specification[; file-specification[; ...
 
     file-specification:
         filename:size

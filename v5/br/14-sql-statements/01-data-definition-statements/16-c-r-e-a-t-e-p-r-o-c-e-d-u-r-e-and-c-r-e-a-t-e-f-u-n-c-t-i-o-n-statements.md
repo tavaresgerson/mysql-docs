@@ -3,12 +3,12 @@
 ```sql
 CREATE
     [DEFINER = user]
-    PROCEDURE sp_name ([proc_parameter[,...]])
+    PROCEDURE sp_name ([proc_parameter[,...)
     [characteristic ...] routine_body
 
 CREATE
     [DEFINER = user]
-    FUNCTION sp_name ([func_parameter[,...]])
+    FUNCTION sp_name ([func_parameter[,...)
     RETURNS type
     [characteristic ...] routine_body
 

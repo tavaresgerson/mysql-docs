@@ -4,7 +4,7 @@
 
 ### Símbolos
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### -
 
@@ -300,7 +300,7 @@
 
 ### A
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### E
 
@@ -334,7 +334,7 @@
 
 ### B
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### ENTRE
 
@@ -366,7 +366,7 @@
 
 ### C
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### CASO
 
@@ -404,7 +404,7 @@
 
 ### D
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### DIV
 
@@ -414,7 +414,7 @@
 
 ### E
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### EXISTE()
 
@@ -466,7 +466,7 @@
 
 ### Eu
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### IN()
 
@@ -526,7 +526,7 @@
 
 ### L
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### LIKE
 
@@ -630,7 +630,7 @@
 
 ### N
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### N % M
 
@@ -680,7 +680,7 @@
 
 ### O
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### OU
 
@@ -712,7 +712,7 @@
 
 ### R
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### REGEXP
 
@@ -736,7 +736,7 @@
 
 ### X
 
-[[index superior](dynindex-operator.html#op-index-superior)]
+index superior](dynindex-operator.html#op-index-superior)]
 
 ### XOR
 

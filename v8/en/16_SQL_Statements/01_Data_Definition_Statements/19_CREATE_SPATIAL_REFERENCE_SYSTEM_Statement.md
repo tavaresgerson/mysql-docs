@@ -72,11 +72,11 @@ NAME 'Greek'
 ORGANIZATION 'EPSG' IDENTIFIED BY 4120
 DEFINITION
   'GEOGCS["Greek",DATUM["Greek",SPHEROID["Bessel 1841",
-  6377397.155,299.1528128,AUTHORITY["EPSG","7004"]],
-  AUTHORITY["EPSG","6120"]],PRIMEM["Greenwich",0,
-  AUTHORITY["EPSG","8901"]],UNIT["degree",0.017453292519943278,
-  AUTHORITY["EPSG","9122"]],AXIS["Lat",NORTH],AXIS["Lon",EAST],
-  AUTHORITY["EPSG","4120"]]';
+  6377397.155,299.1528128,AUTHORITY["EPSG","7004",
+  AUTHORITY["EPSG","6120",PRIMEM["Greenwich",0,
+  AUTHORITY["EPSG","8901",UNIT["degree",0.017453292519943278,
+  AUTHORITY["EPSG","9122",AXIS["Lat",NORTH],AXIS["Lon",EAST],
+  AUTHORITY["EPSG","4120"';
 ```
 
 The grammar for SRS definitions is based on the grammar defined in *OpenGIS Implementation Specification: Coordinate Transformation Services*, Revision 1.00, OGC 01-009, January 12, 2001, Section 7.2. This specification is available at <http://www.opengeospatial.org/standards/ct>.

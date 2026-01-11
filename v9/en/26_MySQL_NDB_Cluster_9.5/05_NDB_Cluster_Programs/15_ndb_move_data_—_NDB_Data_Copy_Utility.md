@@ -172,11 +172,11 @@ Options that can be used with **ndb\_move\_data** are shown in the following tab
 
   Allow attribute data to be converted to a larger type.
 
-* `--staging-tries`=*`x[,y[,z]]`*
+* `--staging-tries`=*`x[,y[,z`*
 
   <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>6
 
-  Specify tries on temporary errors. Format is x[,y[,z]] where x=max tries (0=no limit), y=min delay (ms), z=max delay (ms).
+  Specify tries on temporary errors. Format is x[,y[,z where x=max tries (0=no limit), y=min delay (ms), z=max delay (ms).
 
 * `--usage`
 

@@ -105,7 +105,7 @@ The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` aggregate functions perform bit ope
   ```sql
   GROUP_CONCAT([DISTINCT] expr [,expr ...]
                [ORDER BY {unsigned_integer | col_name | expr}
-                   [ASC | DESC] [,col_name ...]]
+                   [ASC | DESC] [,col_name ...
                [SEPARATOR str_val])
   ```
 

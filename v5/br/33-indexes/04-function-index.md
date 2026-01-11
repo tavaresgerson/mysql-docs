@@ -4,7 +4,7 @@
 
 ### Símbolos
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### %
 
@@ -12,7 +12,7 @@
 
 ### A
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### ABS()
 
@@ -206,7 +206,7 @@
 
 ### B
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### BENCHMARK()
 
@@ -264,7 +264,7 @@
 
 ### C
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### CAST()
 
@@ -714,7 +714,7 @@
 
 ### D
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### DATABASE()
 
@@ -870,7 +870,7 @@
 
 ### E
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### ELT()
 
@@ -946,7 +946,7 @@
 
 ### F
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### FIELD()
 
@@ -1022,7 +1022,7 @@
 
 ### G
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### gen_blacklist()
 
@@ -1226,7 +1226,7 @@
 
 ### H
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### HEX()
 
@@ -1256,7 +1256,7 @@
 
 ### Eu
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### SE()
 
@@ -1382,7 +1382,7 @@
 
 ### J
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### JSON_APPEND()
 
@@ -1596,7 +1596,7 @@
 
 ### K
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### chave_aws_rotate_cmk()
 
@@ -1636,7 +1636,7 @@
 
 ### L
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### Último_dia()
 
@@ -1832,7 +1832,7 @@
 
 ### M
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### MAKE_SET()
 
@@ -2160,7 +2160,7 @@
 
 ### N
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### NOME_CONSTANTE()
 
@@ -2228,7 +2228,7 @@
 
 ### O
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### OCT()
 
@@ -2248,7 +2248,7 @@
 
 ### P
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### PASSWORD()
 
@@ -2354,7 +2354,7 @@
 
 ### Q
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### QUARTO()
 
@@ -2370,7 +2370,7 @@
 
 ### R
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### RADIANOS()
 
@@ -2504,7 +2504,7 @@
 
 ### S
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### SCHEMA()
 
@@ -3102,7 +3102,7 @@
 
 ### T
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### TAN()
 
@@ -3190,7 +3190,7 @@
 
 ### U
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### UCASE()
 
@@ -3350,7 +3350,7 @@
 
 ### V
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### VALIDAR_FORÇA_SENHA()
 
@@ -3442,7 +3442,7 @@
 
 ### W
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### WAIT_FOR_EXECUTED_GTID_SET()
 
@@ -3496,7 +3496,7 @@
 
 ### X
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### X()
 
@@ -3504,7 +3504,7 @@
 
 ### Y
 
-[[index superior](dynindex-function.html#func-index-superior)]
+index superior](dynindex-function.html#func-index-superior)]
 
 ### Y()
 

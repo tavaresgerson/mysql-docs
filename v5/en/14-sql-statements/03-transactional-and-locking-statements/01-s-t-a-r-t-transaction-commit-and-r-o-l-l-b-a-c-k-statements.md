@@ -11,8 +11,8 @@ transaction_characteristic: {
 }
 
 BEGIN [WORK]
-COMMIT [WORK] [AND [NO] CHAIN] [[NO] RELEASE]
-ROLLBACK [WORK] [AND [NO] CHAIN] [[NO] RELEASE]
+COMMIT [WORK] [AND [NO] CHAIN] NO] RELEASE]
+ROLLBACK [WORK] [AND [NO] CHAIN] NO] RELEASE]
 SET autocommit = {0 | 1}
 ```
 

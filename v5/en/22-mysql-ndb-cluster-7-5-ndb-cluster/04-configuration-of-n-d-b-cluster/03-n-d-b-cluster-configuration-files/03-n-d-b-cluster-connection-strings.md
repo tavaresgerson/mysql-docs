@@ -3,7 +3,7 @@
 With the exception of the NDB Cluster management server ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")), each node that is part of an NDB Cluster requires a connection string that points to the management server's location. This connection string is used in establishing a connection to the management server as well as in performing other tasks depending on the node's role in the cluster. The syntax for a connection string is as follows:
 
 ```sql
-[nodeid=node_id, ]host-definition[, host-definition[, ...]]
+[nodeid=node_id, ]host-definition[, host-definition[, ...
 
 host-definition:
     host_name[:port_number]
@@ -27,7 +27,7 @@ It is also possible to specify in a connection string one or more bind addresses
     [bind-address=host-definition, ]
     host-definition[; bind-address=host-definition]
     host-definition[; bind-address=host-definition]
-    [, ...]]
+    [, ...
 
 host-definition:
     host_name[:port_number]

@@ -22,7 +22,7 @@ Além disso, a Seção 12.16.7, “Funções de Propriedade Geométrica”, disc
 
 Estes operadores espaciais estão disponíveis:
 
-- [`Buffer(g, d [, estratégia1 [, estratégia2 [, estratégia3]]])`](funções-operadores-espaciais.html#função_buffer)
+- [`Buffer(g, d [, estratégia1 [, estratégia2 [, estratégia3])`](funções-operadores-espaciais.html#função_buffer)
 
   `ST_Buffer()` e `Buffer()` são sinônimos. Para mais informações, consulte a descrição de `ST_Buffer()`.
 
@@ -34,7 +34,7 @@ Estes operadores espaciais estão disponíveis:
 
   `ConvexHull()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_ConvexHull()` em vez disso.
 
-- [`ST_Buffer(g, d [, estratégia1 [, estratégia2 [, estratégia3]]])`](funções-operadores-espaciais.html#função_st-buffer)
+- [`ST_Buffer(g, d [, estratégia1 [, estratégia2 [, estratégia3])`](funções-operadores-espaciais.html#função_st-buffer)
 
   Retorna uma geometria que representa todos os pontos cuja distância do valor da geometria *`g`* é menor ou igual a uma distância de *`d`*, ou `NULL` se algum argumento for `NULL`. O SRID do argumento de geometria deve ser 0 porque o `ST_Buffer()` suporta apenas o sistema de coordenadas cartesianas. Se algum argumento de geometria não for uma geometria sintaticamente bem formada, ocorre um erro `ER_GIS_INVALID_DATA`.
 

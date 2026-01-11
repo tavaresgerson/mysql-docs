@@ -40,13 +40,13 @@ create_definition: {
       [index_option] ...
   | {FULLTEXT | SPATIAL} [INDEX | KEY] [index_name] (key_part,...)
       [index_option] ...
-  | [CONSTRAINT [symbol]] PRIMARY KEY
+  | [CONSTRAINT [symbol PRIMARY KEY
       [index_type] (key_part,...)
       [index_option] ...
-  | [CONSTRAINT [symbol]] UNIQUE [INDEX | KEY]
+  | [CONSTRAINT [symbol UNIQUE [INDEX | KEY]
       [index_name] [index_type] (key_part,...)
       [index_option] ...
-  | [CONSTRAINT [symbol]] FOREIGN KEY
+  | [CONSTRAINT [symbol FOREIGN KEY
       [index_name] (col_name,...)
       reference_definition
   | CHECK (expr)
@@ -54,7 +54,7 @@ create_definition: {
 
 column_definition: {
     data_type [NOT NULL | NULL] [DEFAULT default_value]
-      [AUTO_INCREMENT] [UNIQUE [KEY]] [[PRIMARY] KEY]
+      [AUTO_INCREMENT] [UNIQUE [KEY PRIMARY] KEY]
       [COMMENT 'string']
       [COLLATE collation_name]
       [COLUMN_FORMAT {FIXED | DYNAMIC | DEFAULT}]
@@ -64,7 +64,7 @@ column_definition: {
       [COLLATE collation_name]
       [GENERATED ALWAYS] AS (expr)
       [VIRTUAL | STORED] [NOT NULL | NULL]
-      [UNIQUE [KEY]] [[PRIMARY] KEY]
+      [UNIQUE [KEY PRIMARY] KEY]
       [COMMENT 'string']
       [reference_definition]
 }
@@ -95,7 +95,7 @@ reference_option:
     RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
 
 table_options:
-    table_option [[,] table_option] ...
+    table_option ,] table_option] ...
 
 table_option: {
     AUTO_INCREMENT [=] value
@@ -144,7 +144,7 @@ partition_definition:
             {LESS THAN {(expr | value_list) | MAXVALUE}
             |
             IN (value_list)}]
-        [[STORAGE] ENGINE [=] engine_name]
+        STORAGE] ENGINE [=] engine_name]
         [COMMENT [=] 'string' ]
         [DATA DIRECTORY [=] 'data_dir']
         [INDEX DIRECTORY [=] 'index_dir']
@@ -155,7 +155,7 @@ partition_definition:
 
 subpartition_definition:
     SUBPARTITION logical_name
-        [[STORAGE] ENGINE [=] engine_name]
+        STORAGE] ENGINE [=] engine_name]
         [COMMENT [=] 'string' ]
         [DATA DIRECTORY [=] 'data_dir']
         [INDEX DIRECTORY [=] 'index_dir']
@@ -475,7 +475,7 @@ As opções da tabela são usadas para otimizar o comportamento da tabela. Na ma
 
   Especifica o mecanismo de armazenamento para a tabela, usando um dos nomes mostrados na tabela a seguir. O nome do mecanismo pode ser não citado ou citado. O nome citado `'DEFAULT'` é reconhecido, mas ignorado.
 
-  <table summary="Nomes dos motores de armazenamento permitidos para a opção de tabela ENGINE e uma descrição de cada motor."><col style="width: 25%"/><col style="width: 70%"/><thead><tr> <th>Motor de Armazenamento</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>MERGE</code>]</td> <td>Tabelas seguras para transações com bloqueio de linhas e chaves estrangeiras. O mecanismo de armazenamento padrão para novas tabelas. VejaCapítulo 14,<i>O Motor de Armazenamento InnoDB</i>, e em particularSeção 14.1, “Introdução ao InnoDB”se você tem experiência com MySQL, mas é novo em [[PH_HTML_CODE_<code>MERGE</code>].</td> </tr><tr> <td>[[PH_HTML_CODE_<code>MRG_MyISAM</code>]</td> <td>O motor de armazenamento portátil binário que é usado principalmente para cargas de trabalho de leitura apenas ou quase exclusivamente de leitura. VejaSeção 15.2, “O Motor de Armazenamento MyISAM”.</td> </tr><tr> <td>[[PH_HTML_CODE_<code>NDB</code>]</td> <td>Os dados deste mecanismo de armazenamento são armazenados apenas na memória. VejaSeção 15.3, “O Motor de Armazenamento de MEMÓRIA”.</td> </tr><tr> <td>[[PH_HTML_CODE_<code>NDBCLUSTER</code>]</td> <td>Tabelas que armazenam linhas no formato de valores separados por vírgula. VejaSeção 15.4, “O Motor de Armazenamento CSV”.</td> </tr><tr> <td>[[<code>ARCHIVE</code>]]</td> <td>O mecanismo de armazenamento de arquivamento. VejaSeção 15.5, “O Motor de Armazenamento ARCHIVE”.</td> </tr><tr> <td>[[<code>EXAMPLE</code>]]</td> <td>Um exemplo de motor. VejaSeção 15.9, “O Motor de Armazenamento EXAMPLE”.</td> </tr><tr> <td>[[<code>FEDERATED</code>]]</td> <td>Motor de armazenamento que acessa tabelas remotas. VejaSeção 15.8, “O Motor de Armazenamento FEDERATED”.</td> </tr><tr> <td>[[<code>HEAP</code>]]</td> <td>Este é um sinônimo de [[<code>MEMORY</code>]].</td> </tr><tr> <td>[[<code>MERGE</code>]]</td> <td>Uma coleção de tabelas [[<code>InnoDB</code><code>MERGE</code>] usadas como uma única tabela. Também conhecida como [[<code>MRG_MyISAM</code>]]. VejaSeção 15.7, “O Motor de Armazenamento MERGE”.</td> </tr><tr> <td>[[<code>NDB</code>]]</td> <td>Tabelas baseadas em memória, distribuídas, tolerantes a falhas e que suportam transações e chaves estrangeiras. Também conhecidas como[[<code>NDBCLUSTER</code>]]VejaCapítulo 21,<i>MySQL NDB Cluster 7.5 e NDB Cluster 7.6</i>.</td> </tr></tbody></table>
+  <table summary="Nomes dos motores de armazenamento permitidos para a opção de tabela ENGINE e uma descrição de cada motor."><col style="width: 25%"/><col style="width: 70%"/><thead><tr> <th>Motor de Armazenamento</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>MERGE</code>]</td> <td>Tabelas seguras para transações com bloqueio de linhas e chaves estrangeiras. O mecanismo de armazenamento padrão para novas tabelas. VejaCapítulo 14,<i>O Motor de Armazenamento InnoDB</i>, e em particularSeção 14.1, “Introdução ao InnoDB”se você tem experiência com MySQL, mas é novo em PH_HTML_CODE_<code>MERGE</code>].</td> </tr><tr> <td>PH_HTML_CODE_<code>MRG_MyISAM</code>]</td> <td>O motor de armazenamento portátil binário que é usado principalmente para cargas de trabalho de leitura apenas ou quase exclusivamente de leitura. VejaSeção 15.2, “O Motor de Armazenamento MyISAM”.</td> </tr><tr> <td>PH_HTML_CODE_<code>NDB</code>]</td> <td>Os dados deste mecanismo de armazenamento são armazenados apenas na memória. VejaSeção 15.3, “O Motor de Armazenamento de MEMÓRIA”.</td> </tr><tr> <td>PH_HTML_CODE_<code>NDBCLUSTER</code>]</td> <td>Tabelas que armazenam linhas no formato de valores separados por vírgula. VejaSeção 15.4, “O Motor de Armazenamento CSV”.</td> </tr><tr> <td><code>ARCHIVE</code></td> <td>O mecanismo de armazenamento de arquivamento. VejaSeção 15.5, “O Motor de Armazenamento ARCHIVE”.</td> </tr><tr> <td><code>EXAMPLE</code></td> <td>Um exemplo de motor. VejaSeção 15.9, “O Motor de Armazenamento EXAMPLE”.</td> </tr><tr> <td><code>FEDERATED</code></td> <td>Motor de armazenamento que acessa tabelas remotas. VejaSeção 15.8, “O Motor de Armazenamento FEDERATED”.</td> </tr><tr> <td><code>HEAP</code></td> <td>Este é um sinônimo de <code>MEMORY</code>.</td> </tr><tr> <td><code>MERGE</code></td> <td>Uma coleção de tabelas <code>InnoDB</code><code>MERGE</code>] usadas como uma única tabela. Também conhecida como <code>MRG_MyISAM</code>. VejaSeção 15.7, “O Motor de Armazenamento MERGE”.</td> </tr><tr> <td><code>NDB</code></td> <td>Tabelas baseadas em memória, distribuídas, tolerantes a falhas e que suportam transações e chaves estrangeiras. Também conhecidas como<code>NDBCLUSTER</code>VejaCapítulo 21,<i>MySQL NDB Cluster 7.5 e NDB Cluster 7.6</i>.</td> </tr></tbody></table>
 
   Por padrão, se um mecanismo de armazenamento for especificado que não está disponível, a instrução falha com um erro. Você pode sobrepor esse comportamento removendo `NO_ENGINE_SUBSTITUTION` do modo SQL do servidor (consulte Seção 5.1.10, “Modos SQL do Servidor”) para que o MySQL permita a substituição do mecanismo especificado pelo mecanismo de armazenamento padrão, em vez disso. Normalmente, nesse caso, é o `InnoDB`, que é o valor padrão para a variável de sistema `default_storage_engine`. Quando `NO_ENGINE_SUBSTITUTION` é desativado, um aviso ocorre se a especificação do mecanismo de armazenamento não for atendida.
 

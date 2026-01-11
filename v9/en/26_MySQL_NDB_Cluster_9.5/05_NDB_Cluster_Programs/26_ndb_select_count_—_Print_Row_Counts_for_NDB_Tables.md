@@ -5,7 +5,7 @@
 #### Usage
 
 ```
-ndb_select_count [-c connection_string] -ddb_name tbl_name[, tbl_name2[, ...]]
+ndb_select_count [-c connection_string] -ddb_name tbl_name[, tbl_name2[, ...
 ```
 
 Options that can be used with **ndb\_select\_count** are shown in the following table. Additional descriptions follow the table.

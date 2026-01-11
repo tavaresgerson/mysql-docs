@@ -14,7 +14,7 @@ A Tabela 6.23, “Limites Gerais de Comprimento de Chaves do Keyring” (keyrin
 
 **Tabela 6.23 Limites de comprimento de chave do Keychain Geral**
 
-<table summary="Limites gerais para as comprimentos das chaves do chaveiro."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Operação chave</th> <th>Comprimento máximo de chave</th> </tr></thead><tbody><tr> <td>Chave de acesso</td> <td><p>2.048 bytes; 1.024 para [[<code>keyring_aws</code>]]</p></td> </tr><tr> <td>Armazenar chave</td> <td><p>2.048 bytes</p></td> </tr><tr> <td>Obter a chave</td> <td><p>2.048 bytes</p></td> </tr></tbody></table>
+<table summary="Limites gerais para as comprimentos das chaves do chaveiro."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Operação chave</th> <th>Comprimento máximo de chave</th> </tr></thead><tbody><tr> <td>Chave de acesso</td> <td><p>2.048 bytes; 1.024 para <code>keyring_aws</code></p></td> </tr><tr> <td>Armazenar chave</td> <td><p>2.048 bytes</p></td> </tr><tr> <td>Obter a chave</td> <td><p>2.048 bytes</p></td> </tr></tbody></table>
 
 **Tabela 6.24 Tipos e comprimentos de chaves do plug-in do cartela**
 

@@ -49,31 +49,31 @@ Para instalar uma distribuição binária de um arquivo **tar** compactado, desc
    </thead>
    <tbody>
       <tr>
-         <td>[[<code>bin</code>]]</td>
+         <td><code>bin</code></td>
          <td><strong>mysqld</strong> programas de servidor, cliente e utilitário</td>
       </tr>
       <tr>
-         <td>[[<code>docs</code>]]</td>
+         <td><code>docs</code></td>
          <td>Manual do MySQL no formato Info</td>
       </tr>
       <tr>
-         <td>[[<code>man</code>]]</td>
+         <td><code>man</code></td>
          <td>Páginas de manual do Unix</td>
       </tr>
       <tr>
-         <td>[[<code>include</code>]]</td>
+         <td><code>include</code></td>
          <td>Incluir arquivos (cabeçalho)</td>
       </tr>
       <tr>
-         <td>[[<code>lib</code>]]</td>
+         <td><code>lib</code></td>
          <td>Livrarias</td>
       </tr>
       <tr>
-         <td>[[<code>share</code>]]</td>
+         <td><code>share</code></td>
          <td>Mensagens de erro, dicionário e SQL para instalação do banco de dados</td>
       </tr>
       <tr>
-         <td>[[<code>support-files</code>]]</td>
+         <td><code>support-files</code></td>
          <td>Arquivos de suporte variados</td>
       </tr>
    </tbody>

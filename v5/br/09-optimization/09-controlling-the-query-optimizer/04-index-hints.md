@@ -7,7 +7,7 @@ Os índices indicam que as instruções `SELECT` e `UPDATE` são aplicadas. Eles
 Os índices de dicas são especificados após o nome de uma tabela. (Para a sintaxe geral de especificação de tabelas em uma instrução `SELECT`, consulte a Seção 13.2.9.2, “Cláusula JOIN”.) A sintaxe para referenciar uma tabela individual, incluindo índices de dicas, é a seguinte:
 
 ```sql
-tbl_name [[AS] alias] [index_hint_list]
+tbl_name AS] alias] [index_hint_list]
 
 index_hint_list:
     index_hint [index_hint] ...

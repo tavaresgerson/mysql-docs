@@ -2,7 +2,7 @@
 
 **Tabela 12.9 Operadores Aritméticos**
 
-<table frame="box" rules="all" summary="Uma referência que lista operadores aritméticos."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>%</code>]], [[<code>MOD</code>]]</td> <td>Operador módulo</td> </tr><tr><td>[[<code>*</code>]]</td> <td>Operador de multiplicação</td> </tr><tr><td>[[<code>+</code>]]</td> <td>Operador de adição</td> </tr><tr><td>[[<code>-</code>]]</td> <td>Operador de menos</td> </tr><tr><td>[[<code>-</code>]]</td> <td>Troque o sinal do argumento</td> </tr><tr><td>[[<code>/</code>]]</td> <td>Operador de divisão</td> </tr><tr><td>[[<code>DIV</code>]]</td> <td>Divisão inteira</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista operadores aritméticos."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>%</code>, <code>MOD</code></td> <td>Operador módulo</td> </tr><tr><td><code>*</code></td> <td>Operador de multiplicação</td> </tr><tr><td><code>+</code></td> <td>Operador de adição</td> </tr><tr><td><code>-</code></td> <td>Operador de menos</td> </tr><tr><td><code>-</code></td> <td>Troque o sinal do argumento</td> </tr><tr><td><code>/</code></td> <td>Operador de divisão</td> </tr><tr><td><code>DIV</code></td> <td>Divisão inteira</td> </tr></tbody></table>
 
 Os operadores aritméticos usuais estão disponíveis. O resultado é determinado de acordo com as seguintes regras:
 

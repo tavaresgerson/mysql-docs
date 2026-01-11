@@ -46,13 +46,13 @@ create_definition: {
       [index_option] ...
   | {FULLTEXT | SPATIAL} [INDEX | KEY] [index_name] (key_part,...)
       [index_option] ...
-  | [CONSTRAINT [symbol]] PRIMARY KEY
+  | [CONSTRAINT [symbol PRIMARY KEY
       [index_type] (key_part,...)
       [index_option] ...
-  | [CONSTRAINT [symbol]] UNIQUE [INDEX | KEY]
+  | [CONSTRAINT [symbol UNIQUE [INDEX | KEY]
       [index_name] [index_type] (key_part,...)
       [index_option] ...
-  | [CONSTRAINT [symbol]] FOREIGN KEY
+  | [CONSTRAINT [symbol FOREIGN KEY
       [index_name] (col_name,...)
       reference_definition
   | check_constraint_definition
@@ -61,7 +61,7 @@ create_definition: {
 column_definition: {
     data_type [NOT NULL | NULL] [DEFAULT {literal | (expr)} ]
       [VISIBLE | INVISIBLE]
-      [AUTO_INCREMENT] [UNIQUE [KEY]] [[PRIMARY] KEY]
+      [AUTO_INCREMENT] [UNIQUE [KEY PRIMARY] KEY]
       [COMMENT 'string']
       [COLLATE collation_name]
       [COLUMN_FORMAT {FIXED | DYNAMIC | DEFAULT}]
@@ -75,7 +75,7 @@ column_definition: {
       [GENERATED ALWAYS] AS (expr)
       [VIRTUAL | STORED] [NOT NULL | NULL]
       [VISIBLE | INVISIBLE]
-      [UNIQUE [KEY]] [[PRIMARY] KEY]
+      [UNIQUE [KEY PRIMARY] KEY]
       [COMMENT 'string']
       [reference_definition]
       [check_constraint_definition]
@@ -100,7 +100,7 @@ index_option: {
 }
 
 check_constraint_definition:
-    [CONSTRAINT [symbol]] CHECK (expr) [[NOT] ENFORCED]
+    [CONSTRAINT [symbol CHECK (expr) NOT] ENFORCED]
 
 reference_definition:
     REFERENCES tbl_name (key_part,...)
@@ -112,7 +112,7 @@ reference_option:
     RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
 
 table_options:
-    table_option [[,] table_option] ...
+    table_option ,] table_option] ...
 
 table_option: {
     AUTOEXTEND_SIZE [=] value
@@ -165,7 +165,7 @@ partition_definition:
             {LESS THAN {(expr | value_list) | MAXVALUE}
             |
             IN (value_list)}]
-        [[STORAGE] ENGINE [=] engine_name]
+        STORAGE] ENGINE [=] engine_name]
         [COMMENT [=] 'string' ]
         [DATA DIRECTORY [=] 'data_dir']
         [INDEX DIRECTORY [=] 'index_dir']
@@ -176,7 +176,7 @@ partition_definition:
 
 subpartition_definition:
     SUBPARTITION logical_name
-        [[STORAGE] ENGINE [=] engine_name]
+        STORAGE] ENGINE [=] engine_name]
         [COMMENT [=] 'string' ]
         [DATA DIRECTORY [=] 'data_dir']
         [INDEX DIRECTORY [=] 'index_dir']

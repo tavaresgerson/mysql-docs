@@ -27,7 +27,7 @@ Por padrão, o servidor escreve as instruções `ANALYZE TABLE` no log binário 
 
 `ANALYSE TABELA` retorna um conjunto de resultados com as colunas mostradas na tabela a seguir.
 
-<table summary="Colunas do conjunto de resultados da tabela ANALYZE."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Coluna</th> <th>Valor</th> </tr></thead><tbody><tr> <td>[[<code>Table</code>]]</td> <td>O nome da tabela</td> </tr><tr> <td>[[<code>Op</code>]]</td> <td>Sempre [[<code>analyze</code>]]</td> </tr><tr> <td>[[<code>Msg_type</code>]]</td> <td>[[<code>status</code>]], [[<code>error</code>]], [[<code>info</code>]], [[<code>note</code>]] ou [[<code>warning</code>]]</td> </tr><tr> <td>[[<code>Msg_text</code>]]</td> <td>Uma mensagem informativa</td> </tr></tbody></table>
+<table summary="Colunas do conjunto de resultados da tabela ANALYZE."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Coluna</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>O nome da tabela</td> </tr><tr> <td><code>Op</code></td> <td>Sempre <code>analyze</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code> ou <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>Uma mensagem informativa</td> </tr></tbody></table>
 
 ##### Análise da Distribuição de Chave
 

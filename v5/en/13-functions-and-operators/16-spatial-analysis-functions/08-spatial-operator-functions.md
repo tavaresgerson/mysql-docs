@@ -18,7 +18,7 @@ In addition, Section 12.16.7, “Geometry Property Functions”, discusses seve
 
 These spatial operator functions are available:
 
-* [`Buffer(g, d [, strategy1 [, strategy2 [, strategy3]]])`](spatial-operator-functions.html#function_buffer)
+* [`Buffer(g, d [, strategy1 [, strategy2 [, strategy3])`](spatial-operator-functions.html#function_buffer)
 
   `ST_Buffer()` and `Buffer()` are synonyms. For more information, see the description of `ST_Buffer()`.
 
@@ -30,7 +30,7 @@ These spatial operator functions are available:
 
   `ConvexHull()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_ConvexHull()` instead.
 
-* [`ST_Buffer(g, d [, strategy1 [, strategy2 [, strategy3]]])`](spatial-operator-functions.html#function_st-buffer)
+* [`ST_Buffer(g, d [, strategy1 [, strategy2 [, strategy3])`](spatial-operator-functions.html#function_st-buffer)
 
   Returns a geometry that represents all points whose distance from the geometry value *`g`* is less than or equal to a distance of *`d`*, or `NULL` if any argument is `NULL`. The SRID of the geometry argument must be 0 because `ST_Buffer()` supports only the Cartesian coordinate system. If any geometry argument is not a syntactically well-formed geometry, an `ER_GIS_INVALID_DATA` error occurs.
 

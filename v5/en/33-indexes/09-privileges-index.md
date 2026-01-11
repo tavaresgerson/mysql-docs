@@ -4,7 +4,7 @@
 
 ### A
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### ALL
 
@@ -54,7 +54,7 @@
 
 ### B
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### BINLOG_ADMIN
 
@@ -62,7 +62,7 @@
 
 ### C
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### CREATE
 
@@ -144,7 +144,7 @@
 
 ### D
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### DELETE
 
@@ -216,7 +216,7 @@
 
 ### E
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### EVENT
 
@@ -268,7 +268,7 @@
 
 ### F
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### FILE
 
@@ -304,7 +304,7 @@
 
 ### G
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### GRANT OPTION
 
@@ -328,7 +328,7 @@
 
 ### I
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### INDEX
 
@@ -396,7 +396,7 @@
 
 ### L
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### LOCK TABLES
 
@@ -414,7 +414,7 @@
 
 ### N
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### NDB_STORED_USER
 
@@ -422,7 +422,7 @@
 
 ### P
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### PROCESS
 
@@ -548,7 +548,7 @@
 
 ### R
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### REFERENCES
 
@@ -624,7 +624,7 @@
 
 ### S
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### SELECT
 
@@ -886,7 +886,7 @@
 
 ### T
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### TRIGGER
 
@@ -910,7 +910,7 @@
 
 ### U
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### UPDATE
 
@@ -964,7 +964,7 @@
 
 ### X
 
-[[index top](dynindex-priv.html#priv-index-top)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### XA_RECOVER_ADMIN
 

@@ -132,7 +132,7 @@ A partir do MySQL Installer 1.6.7 (8.0.34), as opções de comando `install`, `l
 
 O comando **MySQLInstallerConsole.exe** pode ser executado com ou sem a extensão de arquivo (`.exe`) e o comando não é case-sensitive.
 
-`mysqlinstallerconsole`[`.exe`] [[[`--`]*`ação`*] [*`lista_blocos_ação`*] [*`lista_opções`*]]
+`mysqlinstallerconsole`[`.exe`] [`--`]*`ação`*] [*`lista_blocos_ação`*] [*`lista_opções`*
 
 Descrição:
 

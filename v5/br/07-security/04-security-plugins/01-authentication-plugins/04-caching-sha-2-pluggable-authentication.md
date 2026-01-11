@@ -40,7 +40,7 @@ A tabela a seguir mostra o nome do plugin no lado do cliente.
 
 **Tabela 6.10 Nomes de plugins e bibliotecas para autenticação SHA-2**
 
-<table summary="Nomes para o plugin e o arquivo de biblioteca usados para autenticação de senha SHA-2."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do cliente</td> <td>[[<code>caching_sha2_password</code>]]</td> </tr><tr> <td>Arquivo da biblioteca</td> <td>Nenhum (o plugin está embutido)</td> </tr></tbody></table>
+<table summary="Nomes para o plugin e o arquivo de biblioteca usados para autenticação de senha SHA-2."><thead><tr> <th>Plugin ou arquivo</th> <th>Nome do Plugin ou do Arquivo</th> </tr></thead><tbody><tr> <td>Plugin no lado do cliente</td> <td><code>caching_sha2_password</code></td> </tr><tr> <td>Arquivo da biblioteca</td> <td>Nenhum (o plugin está embutido)</td> </tr></tbody></table>
 
 As seções a seguir fornecem informações de instalação e uso específicas para o cache de autenticação substituível SHA-2:
 

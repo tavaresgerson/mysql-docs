@@ -4,7 +4,7 @@
 
 ### A
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Aborted_clients
 
@@ -52,7 +52,7 @@
 
 ### B
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Binlog_cache_disk_use
 
@@ -92,7 +92,7 @@
 
 ### C
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Caching_sha2_password_rsa_public_key
 
@@ -186,7 +186,7 @@
 
 ### D
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Delayed_errors
 
@@ -202,7 +202,7 @@
 
 ### F
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Firewall_access_denied
 
@@ -228,7 +228,7 @@
 
 ### G
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### group_replication_primary_member
 
@@ -238,7 +238,7 @@
 
 ### H
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Handler_commit
 
@@ -316,7 +316,7 @@
 
 ### I
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Innodb_available_undo_logs
 
@@ -556,7 +556,7 @@
 
 ### K
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Key_blocks_not_flushed
 
@@ -598,7 +598,7 @@
 
 ### L
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Last_query_cost
 
@@ -616,7 +616,7 @@
 
 ### M
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Max_execution_time_exceeded
 
@@ -894,7 +894,7 @@
 
 ### N
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Ndb_api_adaptive_send_deferred_count
 
@@ -1464,7 +1464,7 @@
 
 ### O
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Ongoing_anonymous_gtid_violating_transaction_count
 
@@ -1512,7 +1512,7 @@
 
 ### P
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Performance_schema_accounts_lost
 
@@ -1670,7 +1670,7 @@
 
 ### Q
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Qcache_free_blocks
 
@@ -1748,7 +1748,7 @@
 
 ### R
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Rewriter_number_loaded_rules
 
@@ -1862,7 +1862,7 @@
 
 ### S
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Select_full_join
 
@@ -2106,7 +2106,7 @@
 
 ### T
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Table_locks_immediate
 
@@ -2170,7 +2170,7 @@
 
 ### U
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Uptime
 
@@ -2184,7 +2184,7 @@
 
 ### V
 
-[[index top](dynindex-statvar.html#statvar-index-top)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### validate_password_dictionary_file_last_parsed
 

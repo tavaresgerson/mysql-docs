@@ -5,7 +5,7 @@
 #### Usage
 
 ```sql
-ndb_select_count [-c connection_string] -ddb_name tbl_name[, tbl_name2[, ...]]
+ndb_select_count [-c connection_string] -ddb_name tbl_name[, tbl_name2[, ...
 ```
 
 Options that can be used with [**ndb_select_count**](mysql-cluster-programs-ndb-select-count.html "21.5.26 ndb_select_count — Print Row Counts for NDB Tables") are shown in the following table. Additional descriptions follow the table.

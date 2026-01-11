@@ -199,7 +199,7 @@ If `OVER()` is empty, the window consists of all query rows and the window funct
 
   ```
   order_clause:
-      ORDER BY expr [ASC|DESC] [, expr [ASC|DESC]] ...
+      ORDER BY expr [ASC|DESC] [, expr [ASC|DESC ...
   ```
 
   Each `ORDER BY` expression optionally can be followed by `ASC` or `DESC` to indicate sort direction. The default is `ASC` if no direction is specified. `NULL` values sort first for ascending sorts, last for descending sorts.

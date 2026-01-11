@@ -1,7 +1,7 @@
 #### 15.7.8.7 RESET PERSIST Statement
 
 ```
-RESET PERSIST [[IF EXISTS] system_var_name]
+RESET PERSIST IF EXISTS] system_var_name]
 ```
 
 `RESET PERSIST` removes persisted global system variable settings from the `mysqld-auto.cnf` option file in the data directory. Removing a persisted system variable causes the variable no longer to be initialized from `mysqld-auto.cnf` at server startup. For more information about persisting system variables and the `mysqld-auto.cnf` file, see Section 7.1.9.3, “Persisted System Variables”.

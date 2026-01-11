@@ -3,7 +3,7 @@
 ```
 SHOW GRANTS
     [FOR user_or_role
-        [USING role [, role] ...]]
+        [USING role [, role] ...
 
 user_or_role: {
     user (see Section 8.2.4, “Specifying Account Names”)

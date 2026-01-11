@@ -14,14 +14,14 @@ SELECT
     select_expr [, select_expr] ...
     [into_option]
     [FROM table_references
-      [PARTITION partition_list]]
+      [PARTITION partition_list
     [WHERE where_condition]
-    [GROUP BY {col_name | expr | position}, ... [WITH ROLLUP]]
+    [GROUP BY {col_name | expr | position}, ... [WITH ROLLUP
     [HAVING where_condition]
     [WINDOW window_name AS (window_spec)
         [, window_name AS (window_spec)] ...]
     [ORDER BY {col_name | expr | position}
-      [ASC | DESC], ... [WITH ROLLUP]]
+      [ASC | DESC], ... [WITH ROLLUP
     [LIMIT {[offset,] row_count | row_count OFFSET offset}]
     [into_option]
     [FOR {UPDATE | SHARE}
@@ -41,7 +41,7 @@ into_option: {
 export_options:
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
-        [[OPTIONALLY] ENCLOSED BY 'char']
+        OPTIONALLY] ENCLOSED BY 'char']
         [ESCAPED BY 'char']
     ]
     [LINES
@@ -149,7 +149,7 @@ The following list provides additional information about other `SELECT` clauses:
 * The `FROM table_references` clause indicates the table or tables from which to retrieve rows. If you name more than one table, you are performing a join. For information on join syntax, see Section 15.2.13.2, “JOIN Clause”. For each table specified, you can optionally specify an alias.
 
   ```
-  tbl_name [[AS] alias] [index_hint]
+  tbl_name AS] alias] [index_hint]
   ```
 
   The use of index hints provides the optimizer with information about how to choose indexes during query processing. For a description of the syntax for specifying these hints, see Section 10.9.4, “Index Hints”.

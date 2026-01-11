@@ -44,7 +44,7 @@ O **mysqld_multi** procura por arquivos de opção da seguinte forma:
     <tbody>
       <tr>
         <th>Formato de linha de comando</th>
-        <td>[[<code>--no-defaults</code>]]</td>
+        <td><code>--no-defaults</code></td>
       </tr>
       <tr>
         <th>Tipo</th>
@@ -52,7 +52,7 @@ O **mysqld_multi** procura por arquivos de opção da seguinte forma:
       </tr>
       <tr>
         <th>Valor padrão</th>
-        <td>[[<code>false</code>]]</td>
+        <td><code>false</code></td>
       </tr>
     </tbody>
   </table>
@@ -63,7 +63,7 @@ O **mysqld_multi** procura por arquivos de opção da seguinte forma:
     <tbody>
       <tr>
         <th>Formato de linha de comando</th>
-        <td>[[<code>--defaults-file=filename</code>]]</td>
+        <td><code>--defaults-file=filename</code></td>
       </tr>
       <tr>
         <th>Tipo</th>
@@ -71,7 +71,7 @@ O **mysqld_multi** procura por arquivos de opção da seguinte forma:
       </tr>
       <tr>
         <th>Valor padrão</th>
-        <td>[[<code>[none]</code>]]</td>
+        <td><code>[none]</code></td>
       </tr>
     </tbody>
   </table>
@@ -82,7 +82,7 @@ O **mysqld_multi** procura por arquivos de opção da seguinte forma:
     <tbody>
         <tr>
           <th>Formato de linha de comando</th>
-          <td>[[<code>--defaults-extra-file=filename</code>]]</td>
+          <td><code>--defaults-extra-file=filename</code></td>
         </tr>
         <tr>
           <th>Tipo</th>
@@ -90,7 +90,7 @@ O **mysqld_multi** procura por arquivos de opção da seguinte forma:
         </tr>
         <tr>
           <th>Valor padrão</th>
-          <td>[[<code>[none]</code>]]</td>
+          <td><code>[none]</code></td>
         </tr>
     </tbody>
   </table>
@@ -105,31 +105,31 @@ O **mysqld_multi** suporta as seguintes opções.
 
 - `--help`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--help</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--example`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--example</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--example</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
   Exibir um arquivo de opção de amostra.
 
 - `--log=nome_do_arquivo`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--log=path</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>/var/log/mysqld_multi.log</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--log=path</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>/var/log/mysqld_multi.log</code></td> </tr></tbody></table>
 
   Especifique o nome do arquivo de registro. Se o arquivo existir, a saída do log será anexada a ele.
 
 - `--mysqladmin=nome_do_programa`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--mysqladmin=file</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--mysqladmin=file</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   O binário **mysqladmin** a ser usado para parar os servidores.
 
 - `--mysqld=nome_do_programa`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--mysqld=file</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--mysqld=file</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   O binário **mysqld** a ser usado. Note que você também pode especificar **mysqld_safe** como o valor para essa opção. Se você usar **mysqld_safe** para iniciar o servidor, pode incluir as opções `mysqld` ou `ledir` no grupo de opções correspondente `[mysqldN]`. Essas opções indicam o nome do servidor que **mysqld_safe** deve iniciar e o nome do caminho do diretório onde o servidor está localizado. (Veja as descrições dessas opções na Seção 4.3.2, “mysqld_safe — Script de Inicialização do Servidor MySQL”.) Exemplo:
 
@@ -141,43 +141,43 @@ O **mysqld_multi** suporta as seguintes opções.
 
 - `--no-log`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--no-log</code>]]</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td>[[<code>false</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--no-log</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>false</code></td> </tr></tbody></table>
 
   Imprima as informações do log no `stdout` em vez de no arquivo de log. Por padrão, a saída vai para o arquivo de log.
 
 - `--password=senha`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--password=string</code>]]</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--password=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   A senha da conta MySQL a ser usada ao invocar o **mysqladmin**. Observe que o valor da senha não é opcional para esta opção, ao contrário de outros programas do MySQL.
 
 - `--silent`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Modo silencioso; desative as advertências.
 
 - `--tcp-ip`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Conecte-se a cada servidor MySQL através da porta TCP/IP em vez do arquivo de soquete Unix. (Se um arquivo de soquete estiver ausente, o servidor ainda pode estar em execução, mas será acessível apenas através da porta TCP/IP.) Por padrão, as conexões são feitas usando o arquivo de soquete Unix. Esta opção afeta as operações `stop` e `report`.
 
 - `--user=nome_do_usuário`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   O nome de usuário da conta MySQL a ser usado ao invocar o **mysqladmin**.
 
 - `--verbose`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Seja mais verbose.
 
 - `--version`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--defaults-file=filename</code>]]</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>[none]</code>]]</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=filename</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
 
   Exibir informações da versão e sair.
 

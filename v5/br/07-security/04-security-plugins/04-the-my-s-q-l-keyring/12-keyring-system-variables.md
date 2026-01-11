@@ -4,7 +4,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `keyring_aws_cmk_id`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_aws_cmk_id"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--keyring-aws-cmk-id=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>keyring_aws_cmk_id</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_aws_cmk_id"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-aws-cmk-id=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>keyring_aws_cmk_id</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O ID da chave mestre do cliente (CMK) obtido do servidor AWS KMS e usado pelo plugin `keyring_aws`. Essa variável não está disponível, a menos que o plugin esteja instalado.
 
@@ -12,7 +12,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `keyring_aws_conf_file`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_aws_conf_file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--keyring-aws-conf-file=file_name</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>keyring_aws_conf_file</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>platform specific</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_aws_conf_file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-aws-conf-file=file_name</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>keyring_aws_conf_file</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>platform specific</code></td> </tr></tbody></table>
 
   Localização do arquivo de configuração do plugin `keyring_aws`. Essa variável não está disponível, a menos que o plugin esteja instalado.
 
@@ -22,7 +22,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `keyring_aws_data_file`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_aws_data_file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--keyring-aws-data-file</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>keyring_aws_data_file</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>platform specific</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_aws_data_file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-aws-data-file</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>keyring_aws_data_file</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>platform specific</code></td> </tr></tbody></table>
 
   O local do arquivo de armazenamento para o plugin `keyring_aws`. Essa variável não está disponível, a menos que o plugin esteja instalado.
 
@@ -141,7 +141,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `keyring_encrypted_file_data`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_encrypted_file_data"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--keyring-encrypted-file-data=file_name</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>keyring_encrypted_file_data</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>platform specific</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_encrypted_file_data"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-encrypted-file-data=file_name</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável do sistema</th> <td><code>keyring_encrypted_file_data</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>platform specific</code></td> </tr></tbody></table>
 
   O nome do caminho do arquivo de dados usado para armazenamento seguro de dados pelo plugin `keyring_encrypted_file`. Essa variável não está disponível a menos que o plugin esteja instalado. A localização do arquivo deve estar em um diretório considerado para uso exclusivo por plugins de keyring. Por exemplo, não localize o arquivo sob o diretório de dados.
 
@@ -190,7 +190,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `senha do arquivo criptografado do carteiro de dados`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_encrypted_file_password"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--keyring-encrypted-file-password=password</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>keyring_encrypted_file_password</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_encrypted_file_password"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-encrypted-file-password=password</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável do sistema</th> <td><code>keyring_encrypted_file_password</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   A senha usada pelo plugin `keyring_encrypted_file`. Essa variável não está disponível, a menos que o plugin esteja instalado.
 
@@ -206,7 +206,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `keyring_file_data`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_file_data"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--keyring-file-data=file_name</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.11</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>keyring_file_data</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>platform specific</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_file_data"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-file-data=file_name</code></td> </tr><tr><th>Introduzido</th> <td>5.7.11</td> </tr><tr><th>Variável do sistema</th> <td><code>keyring_file_data</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>platform specific</code></td> </tr></tbody></table>
 
   O nome do caminho do arquivo de dados usado para armazenamento seguro de dados pelo plugin `keyring_file`. Essa variável não está disponível, a menos que o plugin esteja instalado. A localização do arquivo deve estar em um diretório considerado para uso exclusivo por plugins de gerenciamento de chaves. Por exemplo, não localize o arquivo sob o diretório de dados.
 
@@ -255,7 +255,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `keyring_okv_conf_dir`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_okv_conf_dir"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--keyring-okv-conf-dir=dir_name</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.12</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>keyring_okv_conf_dir</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td>[[<code>empty string</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_okv_conf_dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-okv-conf-dir=dir_name</code></td> </tr><tr><th>Introduzido</th> <td>5.7.12</td> </tr><tr><th>Variável do sistema</th> <td><code>keyring_okv_conf_dir</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr><tr><th>Valor padrão</th> <td><code>empty string</code></td> </tr></tbody></table>
 
   O nome do caminho do diretório que armazena as informações de configuração usadas pelo plugin `keyring_okv`. Essa variável não está disponível a menos que o plugin esteja instalado. O local deve ser um diretório considerado para uso exclusivo pelo plugin `keyring_okv`. Por exemplo, não localize o diretório sob o diretório de dados.
 
@@ -275,6 +275,6 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `operações do carteiro de bolso`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_aws_conf_file"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--keyring-aws-conf-file=file_name</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>keyring_aws_conf_file</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td>[[<code>platform specific</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_aws_conf_file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--keyring-aws-conf-file=file_name</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>keyring_aws_conf_file</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>platform specific</code></td> </tr></tbody></table>
 
   Se as operações de chaveiro estão habilitadas. Esta variável é usada durante as operações de migração de chaves. Consulte Seção 6.4.4.7, “Migração de Chaves entre Keystores de Chaveiro”.

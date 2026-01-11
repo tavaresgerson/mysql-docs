@@ -58,7 +58,7 @@ O uso de comandos de formato curto dentro de comentários de várias linhas `/* 
 
   Limpe a entrada atual. Use isso se você mudar de ideia sobre a execução da declaração que você está inserindo.
 
-- `conecte [nome_do_banco [nome_do_host]]`, `\r [nome_do_banco [nome_do_host]]`
+- `conecte [nome_do_banco [nome_do_host`, `\r [nome_do_banco [nome_do_host`
 
   Recupere a conexão com o servidor. Os argumentos opcionais para o nome do banco de dados e o nome do host podem ser fornecidos para especificar o banco de dados padrão ou o host onde o servidor está sendo executado. Se omitidos, os valores atuais são usados.
 

@@ -4,7 +4,7 @@
 ALTER RESOURCE GROUP group_name
     [VCPU [=] vcpu_spec [, vcpu_spec] ...]
     [THREAD_PRIORITY [=] N]
-    [ENABLE|DISABLE [FORCE]]
+    [ENABLE|DISABLE [FORCE
 
 vcpu_spec: {N | M - N}
 ```

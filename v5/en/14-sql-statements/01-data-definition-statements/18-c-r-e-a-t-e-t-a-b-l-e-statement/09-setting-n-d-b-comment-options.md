@@ -138,7 +138,7 @@ For more information about how [`NDB`](mysql-cluster.html "Chapter 21 MySQL ND
 For an NDB Cluster table, the table comment in a `CREATE TABLE` or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement can also be used to specify an `NDB_TABLE` option, which consists of one or more name-value pairs, separated by commas if need be, following the string `NDB_TABLE=`. Complete syntax for names and values syntax is shown here:
 
 ```sql
-COMMENT="NDB_TABLE=ndb_table_option[,ndb_table_option[,...]]"
+COMMENT="NDB_TABLE=ndb_table_option[,ndb_table_option[,..."
 
 ndb_table_option: {
     NOLOGGING={1 | 0}

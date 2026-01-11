@@ -302,7 +302,7 @@ Options that can be used with [**ndb_restore**](mysql-cluster-programs-ndb-resto
   It also possible to restore only selected databases, or selected tables from a single database, without any `--include-*` (or `--exclude-*`) options, using the syntax shown here:
 
   ```sql
-  ndb_restore other_options db_name,[db_name[,...] | tbl_name[,tbl_name][,...]]
+  ndb_restore other_options db_name,[db_name[,...] | tbl_name[,tbl_name][,...
   ```
 
   In other words, you can specify either of the following to be restored:

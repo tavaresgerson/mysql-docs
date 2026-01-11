@@ -12,7 +12,7 @@ Várias das funções aceitam um argumento de algoritmo de criptografia. A tabel
 
 **Tabela 6.37 Algoritmos suportados por função**
 
-<table summary="Algoritmos de criptografia suportados por função."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Função</th> <th>Algoritmos suportados</th> </tr></thead><tbody><tr> <td>[[<code>asymmetric_decrypt()</code>]]</td> <td>RSA</td> </tr><tr> <td>[[<code>asymmetric_derive()</code>]]</td> <td>DH</td> </tr><tr> <td>[[<code>asymmetric_encrypt()</code>]]</td> <td>RSA</td> </tr><tr> <td>[[<code>asymmetric_sign()</code>]]</td> <td>RSA, DSA</td> </tr><tr> <td>[[<code>asymmetric_verify()</code>]]</td> <td>RSA, DSA</td> </tr><tr> <td>[[<code>create_asymmetric_priv_key()</code>]]</td> <td>RSA, DSA, DH</td> </tr><tr> <td>[[<code>create_asymmetric_pub_key()</code>]]</td> <td>RSA, DSA, DH</td> </tr><tr> <td>[[<code>create_dh_parameters()</code>]]</td> <td>DH</td> </tr></tbody></table>
+<table summary="Algoritmos de criptografia suportados por função."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Função</th> <th>Algoritmos suportados</th> </tr></thead><tbody><tr> <td><code>asymmetric_decrypt()</code></td> <td>RSA</td> </tr><tr> <td><code>asymmetric_derive()</code></td> <td>DH</td> </tr><tr> <td><code>asymmetric_encrypt()</code></td> <td>RSA</td> </tr><tr> <td><code>asymmetric_sign()</code></td> <td>RSA, DSA</td> </tr><tr> <td><code>asymmetric_verify()</code></td> <td>RSA, DSA</td> </tr><tr> <td><code>create_asymmetric_priv_key()</code></td> <td>RSA, DSA, DH</td> </tr><tr> <td><code>create_asymmetric_pub_key()</code></td> <td>RSA, DSA, DH</td> </tr><tr> <td><code>create_dh_parameters()</code></td> <td>DH</td> </tr></tbody></table>
 
 Nota
 
@@ -93,7 +93,7 @@ As descrições a seguir descrevem as sequências de chamada para as funções d
   asymmetric_decrypt('RSA', asymmetric_encrypt('RSA', @s, @pub), @priv) = @s
   ```
 
-- `assinatura assimétrica(algoritmo, digest_str, priv_key_str, digest_type)`
+- `asymmetric_sign(algorithm, digest_str, priv_key_str, digest_type)`
 
   Assina uma string de digest usando uma string de chave privada e retorna a assinatura como uma string binária. Se a assinatura falhar, o resultado é `NULL`.
 
@@ -107,7 +107,7 @@ As descrições a seguir descrevem as sequências de chamada para as funções d
 
   Para um exemplo de uso, consulte a descrição de `asymmetric_verify()`.
 
-- `asymmetric_verify(algoritmo, digest_str, sig_str, chave_pub_str, tipo_digest)`
+- `asymmetric_verify(algorithm, digest_str, sig_str, pub_key_str, digest_type)`
 
   Verifica se a string de assinatura corresponde à string de digestão e retorna 1 ou 0 para indicar se a verificação foi bem-sucedida ou
 
@@ -165,7 +165,7 @@ As descrições a seguir descrevem as sequências de chamada para as funções d
 
   - As funções de criptografia assimétricas são mais lentas do que as funções simétricas. Se o desempenho for um fator importante e as funções forem usadas com frequência, é melhor usar criptografia simétrica. Por exemplo, considere usar [`AES_ENCRYPT()`](https://docs.php.net/en/manual/encryption-functions.html#function_aes-encrypt) e [`AES_DECRYPT()`](https://docs.php.net/en/manual/encryption-functions.html#function_aes-decrypt).
 
-- `criar-chave-pública-asimétrica(algoritmo, priv_key_str)`
+- `create_asymmetric_pub_key(algorithm, priv_key_str)`
 
   Desenha uma chave pública a partir da chave privada fornecida usando o algoritmo fornecido e retorna a chave como uma string binária no formato PEM. Se a derivação da chave falhar, o resultado é `NULL`.
 

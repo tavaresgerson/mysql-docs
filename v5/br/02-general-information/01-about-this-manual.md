@@ -79,7 +79,7 @@ DROP TABLE [IF EXISTS] tbl_name
 Quando um elemento sintático consiste em várias alternativas, as alternativas são separadas por barras verticais (`|`). Quando um membro de um conjunto de escolhas *pode* ser escolhido, as alternativas são listadas entre colchetes (`[` e`]`):
 
 ```sql
-TRIM([[BOTH | LEADING | TRAILING] [remstr] FROM] str)
+TRIM(BOTH | LEADING | TRAILING] [remstr] FROM] str)
 ```
 
 Quando um membro de um conjunto de opções *deve* ser escolhido, as alternativas são listadas entre chaves (“`{`” e “`}`”):

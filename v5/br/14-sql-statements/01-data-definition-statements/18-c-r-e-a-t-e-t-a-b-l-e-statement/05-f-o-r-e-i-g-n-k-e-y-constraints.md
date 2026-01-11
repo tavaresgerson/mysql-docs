@@ -7,7 +7,7 @@ Uma relação de chave estrangeira envolve uma tabela pai que contém os valores
 A sintaxe essencial para definir uma restrição de chave estrangeira em uma instrução `CREATE TABLE` ou `ALTER TABLE` inclui o seguinte:
 
 ```sql
-[CONSTRAINT [symbol]] FOREIGN KEY
+[CONSTRAINT [symbol FOREIGN KEY
     [index_name] (col_name, ...)
     REFERENCES tbl_name (col_name,...)
     [ON DELETE reference_option]
@@ -176,7 +176,7 @@ Você pode adicionar uma restrição de chave estrangeira a uma tabela existente
 
 ```sql
 ALTER TABLE tbl_name
-    ADD [CONSTRAINT [symbol]] FOREIGN KEY
+    ADD [CONSTRAINT [symbol FOREIGN KEY
     [index_name] (col_name, ...)
     REFERENCES tbl_name (col_name,...)
     [ON DELETE reference_option]

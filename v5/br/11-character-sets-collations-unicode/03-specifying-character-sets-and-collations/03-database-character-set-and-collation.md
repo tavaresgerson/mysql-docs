@@ -4,12 +4,12 @@ Cada banco de dados tem um conjunto de caracteres do banco de dados e uma collat
 
 ```sql
 CREATE DATABASE db_name
-    [[DEFAULT] CHARACTER SET charset_name]
-    [[DEFAULT] COLLATE collation_name]
+    DEFAULT] CHARACTER SET charset_name]
+    DEFAULT] COLLATE collation_name]
 
 ALTER DATABASE db_name
-    [[DEFAULT] CHARACTER SET charset_name]
-    [[DEFAULT] COLLATE collation_name]
+    DEFAULT] CHARACTER SET charset_name]
+    DEFAULT] COLLATE collation_name]
 ```
 
 A palavra-chave `SCHEMA` pode ser usada em vez de `DATABASE`.

@@ -129,7 +129,7 @@ Syntax of other join-order hints:
 
 ```
 hint_name([@query_block_name] tbl_name [, tbl_name] ...)
-hint_name(tbl_name[@query_block_name] [, tbl_name[@query_block_name]] ...)
+hint_name(tbl_name[@query_block_name] [, tbl_name[@query_block_name ...)
 ```
 
 The syntax refers to these terms:

@@ -559,6 +559,6 @@ Truncating undo tablespaces is enabled by default in 8.0 which can significantly
 
   *Mediation*: Set innodb_undo_log_truncate = OFF in 8.0, and manually truncate undo logs as needed. For related information, see Truncating Undo Tablespaces.
 
-The character classes `[[:alpha:]]` or `[[:digit:]]` do not perform as well with regular expression functions such as `REGEXP()` and `RLIKE()` in MySQL 8.0 as they did in MySQL 5.7. This is due to the replacement in MySQL 8.0 of the Spencer regular expression library with the ICU library, which uses UTF-16 internally.
+The character classes `:alpha:` or `:digit:` do not perform as well with regular expression functions such as `REGEXP()` and `RLIKE()` in MySQL 8.0 as they did in MySQL 5.7. This is due to the replacement in MySQL 8.0 of the Spencer regular expression library with the ICU library, which uses UTF-16 internally.
 
-*Mediation*: In place of `[[:alpha:]]`, use `[a-zA-Z]`; in place of `[[:digit:]]`, use `[0-9]`.
+*Mediation*: In place of `:alpha:`, use `[a-zA-Z]`; in place of `:digit:`, use `[0-9]`.

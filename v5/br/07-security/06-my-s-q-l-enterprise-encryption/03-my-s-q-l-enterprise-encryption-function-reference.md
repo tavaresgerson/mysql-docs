@@ -2,4 +2,49 @@
 
 **Tabela 6.36 Funções de criptografia do MySQL Enterprise**
 
-<table frame="box" rules="all" summary="Uma referência que lista as funções de criptografia do MySQL Enterprise."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>[[<code>asymmetric_decrypt()</code>]]</td> <td>Descifre o texto cifrado usando uma chave privada ou pública</td> </tr><tr><td>[[<code>asymmetric_derive()</code>]]</td> <td>Derivar chave simétrica a partir de chaves assimétricas</td> </tr><tr><td>[[<code>asymmetric_encrypt()</code>]]</td> <td>Criptografar texto em claro usando chave privada ou pública</td> </tr><tr><td>[[<code>asymmetric_sign()</code>]]</td> <td>Gerar assinatura a partir do digest</td> </tr><tr><td>[[<code>asymmetric_verify()</code>]]</td> <td>Verifique se a assinatura corresponde ao digest</td> </tr><tr><td>[[<code>create_asymmetric_priv_key()</code>]]</td> <td>Criar chave privada</td> </tr><tr><td>[[<code>create_asymmetric_pub_key()</code>]]</td> <td>Criar chave pública</td> </tr><tr><td>[[<code>create_dh_parameters()</code>]]</td> <td>Gerar segredo de DH compartilhado</td> </tr><tr><td>[[<code>create_digest()</code>]]</td> <td>Gerar resumo a partir da string</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Uma referência que lista as funções de criptografia do MySQL Enterprise.">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>asymmetric_decrypt()</code></td>
+      <td>Descifre o texto cifrado usando uma chave privada ou pública</td>
+    </tr>
+    <tr>
+      <td><code>asymmetric_derive()</code></td>
+      <td>Derivar chave simétrica a partir de chaves assimétricas</td>
+    </tr>
+    <tr>
+      <td><code>asymmetric_encrypt()</code></td>
+      <td>Criptografar texto em claro usando chave privada ou pública</td>
+    </tr>
+    <tr>
+      <td><code>asymmetric_sign()</code></td>
+      <td>Gerar assinatura a partir do digest</td>
+    </tr>
+    <tr>
+      <td><code>asymmetric_verify()</code></td>
+      <td>Verifique se a assinatura corresponde ao digest</td>
+    </tr>
+    <tr>
+      <td><code>create_asymmetric_priv_key()</code></td>
+      <td>Criar chave privada</td>
+    </tr>
+    <tr>
+      <td><code>create_asymmetric_pub_key()</code></td>
+      <td>Criar chave pública</td>
+    </tr>
+    <tr>
+      <td><code>create_dh_parameters()</code></td>
+      <td>Gerar segredo de DH compartilhado</td>
+    </tr>
+    <tr>
+      <td><code>create_digest()</code></td>
+      <td>Gerar resumo a partir da string</td>
+    </tr>
+  </tbody>
+</table>

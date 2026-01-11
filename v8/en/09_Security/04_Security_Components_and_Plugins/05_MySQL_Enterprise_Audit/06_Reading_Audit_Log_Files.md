@@ -5,7 +5,7 @@ The audit log plugin supports functions that provide an SQL interface for readin
 When the audit log plugin initializes and is configured for JSON logging, it uses the directory containing the current audit log file as the location to search for readable audit log files. The plugin determines the file location, base name, and suffix from the value of the `audit_log_file` system variable, then looks for files with names that match the following pattern, where `[...]` indicates optional file name parts:
 
 ```
-basename[.timestamp].suffix[.gz][[.pwd_id].enc]
+basename[.timestamp].suffix[.gz].pwd_id].enc]
 ```
 
 If a file name ends with `.enc`, the file is encrypted and reading its unencrypted contents requires a decryption password obtained from the keyring. The audit log plugin determines the keyring ID of the decryption password as follows:

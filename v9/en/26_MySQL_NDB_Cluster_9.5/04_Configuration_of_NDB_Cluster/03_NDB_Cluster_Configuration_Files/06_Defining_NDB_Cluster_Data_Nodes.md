@@ -1713,9 +1713,9 @@ A backup using parallelism on the data nodes requires that multiple LDMs are in 
   This parameter is used with **ndbmtd**") to assign threads of different types to different CPUs. Its value is a string whose format has the following syntax:
 
   ```
-  ThreadConfig := entry[,entry[,...]]
+  ThreadConfig := entry[,entry[,...
 
-  entry := type={param[,param[,...]]}
+  entry := type={param[,param[,...}
 
   type := ldm | query | recover | main | recv | send | rep | io | tc | watchdog | idxbld
 
@@ -2045,7 +2045,7 @@ A backup using parallelism on the data nodes requires that multiple LDMs are in 
     InitialLogFileGroup = [name=name;] [undo_buffer_size=size;] file-specification-list
 
     file-specification-list:
-        file-specification[; file-specification[; ...]]
+        file-specification[; file-specification[; ...
 
     file-specification:
         filename:size

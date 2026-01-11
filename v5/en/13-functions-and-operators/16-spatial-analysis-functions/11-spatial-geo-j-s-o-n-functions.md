@@ -6,7 +6,7 @@ GeoJSON supports the same geometric/geographic data types that MySQL supports. F
 
 MySQL also supports a native `JSON` data type and a set of SQL functions to enable operations on JSON values. For more information, see Section 11.5, “The JSON Data Type”, and Section 12.17, “JSON Functions”.
 
-* [`ST_AsGeoJSON(g [, max_dec_digits [, options]])`](spatial-geojson-functions.html#function_st-asgeojson)
+* [`ST_AsGeoJSON(g [, max_dec_digits [, options)`](spatial-geojson-functions.html#function_st-asgeojson)
 
   Generates a GeoJSON object from the geometry *`g`*. The object string has the connection character set and collation.
 
@@ -29,7 +29,7 @@ MySQL also supports a native `JSON` data type and a set of SQL functions to enab
   +-------------------------------------------------------------+
   ```
 
-* [`ST_GeomFromGeoJSON(str [, options [, srid]])`](spatial-geojson-functions.html#function_st-geomfromgeojson)
+* [`ST_GeomFromGeoJSON(str [, options [, srid)`](spatial-geojson-functions.html#function_st-geomfromgeojson)
 
   Parses a string *`str`* representing a GeoJSON object and returns a geometry.
 

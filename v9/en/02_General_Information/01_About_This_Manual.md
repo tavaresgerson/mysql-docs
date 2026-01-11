@@ -78,7 +78,7 @@ DROP TABLE [IF EXISTS] tbl_name
 When a syntax element consists of a number of alternatives, the alternatives are separated by vertical bars (“`|`”). When one member from a set of choices *may* be chosen, the alternatives are listed within square brackets (“`[`” and “`]`”):
 
 ```
-TRIM([[BOTH | LEADING | TRAILING] [remstr] FROM] str)
+TRIM(BOTH | LEADING | TRAILING] [remstr] FROM] str)
 ```
 
 When one member from a set of choices *must* be chosen, the alternatives are listed within braces (“`{`” and “`}`”):

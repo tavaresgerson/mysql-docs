@@ -57,7 +57,7 @@ Como os exemplos ilustram, os arrays e objetos JSON podem conter valores escalar
 A nidificação é permitida dentro dos elementos de arrays JSON e valores de chaves de objetos JSON:
 
 ```sql
-[99, {"id": "HK500", "cost": 75.99}, ["hot", "cold"]]
+[99, {"id": "HK500", "cost": 75.99}, ["hot", "cold"
 {"k1": "value", "k2": [10, 20]}
 ```
 
@@ -412,7 +412,7 @@ A sintaxe de caminho usa um caractere `$` no início para representar o document
 Vamos chamar esse array JSON de `$`, com três elementos:
 
 ```sql
-[3, {"a": [5, 6], "b": 10}, [99, 100]]
+[3, {"a": [5, 6], "b": 10}, [99, 100
 ```
 
 Então:
@@ -454,7 +454,7 @@ mysql> SELECT JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.*');
 +---------------------------------------------------------+
 | JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.*') |
 +---------------------------------------------------------+
-| [1, 2, [3, 4, 5]]                                       |
+| [1, 2, [3, 4, 5                                       |
 +---------------------------------------------------------+
 mysql> SELECT JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.c[*]');
 +------------------------------------------------------------+
@@ -482,7 +482,7 @@ Algumas funções recebem um documento JSON existente, modificam-no de alguma fo
 Considere este documento:
 
 ```sql
-mysql> SET @j = '["a", {"b": [true, false]}, [10, 20]]';
+mysql> SET @j = '["a", {"b": [true, false]}, [10, 20';
 ```
 
 `JSON_SET()` substitui os valores para caminhos que existem e adiciona valores para caminhos que não existem.
@@ -492,7 +492,7 @@ mysql> SELECT JSON_SET(@j, '$[1].b[0]', 1, '$[2][2]', 2);
 +--------------------------------------------+
 | JSON_SET(@j, '$[1].b[0]', 1, '$[2][2]', 2) |
 +--------------------------------------------+
-| ["a", {"b": [1, false]}, [10, 20, 2]]      |
+| ["a", {"b": [1, false]}, [10, 20, 2      |
 +--------------------------------------------+
 ```
 
@@ -505,7 +505,7 @@ mysql> SELECT JSON_INSERT(@j, '$[1].b[0]', 1, '$[2][2]', 2);
 +-----------------------------------------------+
 | JSON_INSERT(@j, '$[1].b[0]', 1, '$[2][2]', 2) |
 +-----------------------------------------------+
-| ["a", {"b": [true, false]}, [10, 20, 2]]      |
+| ["a", {"b": [true, false]}, [10, 20, 2      |
 +-----------------------------------------------+
 ```
 
@@ -516,7 +516,7 @@ mysql> SELECT JSON_REPLACE(@j, '$[1].b[0]', 1, '$[2][2]', 2);
 +------------------------------------------------+
 | JSON_REPLACE(@j, '$[1].b[0]', 1, '$[2][2]', 2) |
 +------------------------------------------------+
-| ["a", {"b": [1, false]}, [10, 20]]             |
+| ["a", {"b": [1, false]}, [10, 20             |
 +------------------------------------------------+
 ```
 
@@ -738,7 +738,7 @@ A tabela a seguir fornece um resumo das regras que o MySQL segue ao realizar con
 
 **Tabela 11.3 Regras de conversão JSON**
 
-<table summary="Regras de conversão para o tipo de dados JSON"><col style="width: 20%"/><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>outro tipo</th> <th>CAST(outro tipo COMO JSON)</th> <th>CAST(JSON como outro tipo)</th> </tr></thead><tbody><tr> <th>JSON</th> <td>Sem alterações</td> <td>Sem alterações</td> </tr><tr> <th>tipo de caractere utf8 ([[PH_HTML_CODE_<code>ST_GeomFromGeoJSON()</code>], [[PH_HTML_CODE_<code>ST_GeomFromGeoJSON()</code>], [[<code>ascii</code>]])</th> <td>A string é analisada em um valor JSON.</td> <td>O valor JSON é serializado em uma string [[<code>utf8mb4</code>]].</td> </tr><tr> <th>Outros tipos de personagens</th> <td>Outras codificações de caracteres são implicitamente convertidas para [[<code>utf8mb4</code>]] e tratadas conforme descrito para o tipo de caractere utf8.</td> <td>O valor JSON é serializado em uma string [[<code>utf8mb4</code>]] e, em seguida, convertido para outra codificação de caracteres. O resultado pode não ter significado.</td> </tr><tr> <th>[[<code>NULL</code>]]</th> <td>O resultado é um valor [[<code>NULL</code>]] do tipo JSON.</td> <td>Não aplicável.</td> </tr><tr> <th>Tipos de geometria</th> <td>O valor da geometria é convertido em um documento JSON chamando[[<code>ST_AsGeoJSON()</code>]].</td> <td>Operação ilegal. Solução: Passe o resultado de[[<code>CAST(<em><code>json_val</code>]]</em>AS CHAR)</code>para[[<code>ST_GeomFromGeoJSON()</code>]].</td> </tr><tr> <th>Todos os outros tipos</th> <td>O resultado é um documento JSON que consiste em um único valor escalar.</td> <td>É bem-sucedido se o documento JSON contiver um único valor escalar do tipo alvo e se esse valor escalar puder ser convertido para o tipo alvo. Caso contrário, retorna [[<code>utf8</code><code>ST_GeomFromGeoJSON()</code>] e gera uma mensagem de aviso.</td> </tr></tbody></table>
+<table summary="Regras de conversão para o tipo de dados JSON"><col style="width: 20%"/><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>outro tipo</th> <th>CAST(outro tipo COMO JSON)</th> <th>CAST(JSON como outro tipo)</th> </tr></thead><tbody><tr> <th>JSON</th> <td>Sem alterações</td> <td>Sem alterações</td> </tr><tr> <th>tipo de caractere utf8 (PH_HTML_CODE_<code>ST_GeomFromGeoJSON()</code>], PH_HTML_CODE_<code>ST_GeomFromGeoJSON()</code>], <code>ascii</code>)</th> <td>A string é analisada em um valor JSON.</td> <td>O valor JSON é serializado em uma string <code>utf8mb4</code>.</td> </tr><tr> <th>Outros tipos de personagens</th> <td>Outras codificações de caracteres são implicitamente convertidas para <code>utf8mb4</code> e tratadas conforme descrito para o tipo de caractere utf8.</td> <td>O valor JSON é serializado em uma string <code>utf8mb4</code> e, em seguida, convertido para outra codificação de caracteres. O resultado pode não ter significado.</td> </tr><tr> <th><code>NULL</code></th> <td>O resultado é um valor <code>NULL</code> do tipo JSON.</td> <td>Não aplicável.</td> </tr><tr> <th>Tipos de geometria</th> <td>O valor da geometria é convertido em um documento JSON chamando<code>ST_AsGeoJSON()</code>.</td> <td>Operação ilegal. Solução: Passe o resultado de<code>CAST(<em><code>json_val</code></em>AS CHAR)</code>para<code>ST_GeomFromGeoJSON()</code>.</td> </tr><tr> <th>Todos os outros tipos</th> <td>O resultado é um documento JSON que consiste em um único valor escalar.</td> <td>É bem-sucedido se o documento JSON contiver um único valor escalar do tipo alvo e se esse valor escalar puder ser convertido para o tipo alvo. Caso contrário, retorna <code>utf8</code><code>ST_GeomFromGeoJSON()</code>] e gera uma mensagem de aviso.</td> </tr></tbody></table>
 
 O comando `ORDER BY` e `GROUP BY` para valores JSON funcionam de acordo com esses princípios:
 

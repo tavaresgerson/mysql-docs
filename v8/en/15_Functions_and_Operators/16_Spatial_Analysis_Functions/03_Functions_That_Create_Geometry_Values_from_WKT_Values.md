@@ -46,7 +46,7 @@ Unless otherwise specified, functions in this section handle their geometry argu
 
 These functions are available for creating geometries from WKT values:
 
-* [`ST_GeomCollFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-geomcollfromtext), [`ST_GeometryCollectionFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-geomcollfromtext), [`ST_GeomCollFromTxt(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-geomcollfromtext)
+* [`ST_GeomCollFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-geomcollfromtext), [`ST_GeometryCollectionFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-geomcollfromtext), [`ST_GeomCollFromTxt(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-geomcollfromtext)
 
   Constructs a `GeometryCollection` value using its WKT representation and SRID.
 
@@ -62,43 +62,43 @@ These functions are available for creating geometries from WKT values:
   +--------------------------------------------+
   ```
 
-* [`ST_GeomFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-geomfromtext), [`ST_GeometryFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-geomfromtext)
+* [`ST_GeomFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-geomfromtext), [`ST_GeometryFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-geomfromtext)
 
   Constructs a geometry value of any type using its WKT representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_LineFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-linefromtext), [`ST_LineStringFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-linefromtext)
+* [`ST_LineFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-linefromtext), [`ST_LineStringFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-linefromtext)
 
   Constructs a `LineString` value using its WKT representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_MLineFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-mlinefromtext), [`ST_MultiLineStringFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-mlinefromtext)
+* [`ST_MLineFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-mlinefromtext), [`ST_MultiLineStringFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-mlinefromtext)
 
   Constructs a `MultiLineString` value using its WKT representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_MPointFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-mpointfromtext), [`ST_MultiPointFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-mpointfromtext)
+* [`ST_MPointFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-mpointfromtext), [`ST_MultiPointFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-mpointfromtext)
 
   Constructs a `MultiPoint` value using its WKT representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_MPolyFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-mpolyfromtext), [`ST_MultiPolygonFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-mpolyfromtext)
+* [`ST_MPolyFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-mpolyfromtext), [`ST_MultiPolygonFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-mpolyfromtext)
 
   Constructs a `MultiPolygon` value using its WKT representation and SRID.
 
   These functions handle their arguments as described in the introduction to this section.
 
-* [`ST_PointFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-pointfromtext)
+* [`ST_PointFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-pointfromtext)
 
   Constructs a `Point` value using its WKT representation and SRID.
 
   `ST_PointFromText()` handles its arguments as described in the introduction to this section.
 
-* [`ST_PolyFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-polyfromtext), [`ST_PolygonFromText(wkt [, srid [, options]])`](gis-wkt-functions.html#function_st-polyfromtext)
+* [`ST_PolyFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-polyfromtext), [`ST_PolygonFromText(wkt [, srid [, options)`](gis-wkt-functions.html#function_st-polyfromtext)
 
   Constructs a `Polygon` value using its WKT representation and SRID.
 

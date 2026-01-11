@@ -4,7 +4,7 @@
 
 ### A
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### ADICIONAR PARTIÇÃO
 
@@ -900,7 +900,7 @@
 
 ### B
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### COMEÇAR
 
@@ -980,7 +980,7 @@
 
 ### C
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### CACHE INDEX
 
@@ -2306,7 +2306,7 @@
 
 ### D
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### DESLOCAR PREPARAR
 
@@ -2988,7 +2988,7 @@
 
 ### E
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### ENCRIPTAÇÃO
 
@@ -3194,7 +3194,7 @@
 
 ### F
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### FETCH
 
@@ -3486,7 +3486,7 @@
 
 ### G
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### Obtenha diagnósticos
 
@@ -3628,7 +3628,7 @@
 
 ### H
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### HANDLER
 
@@ -3676,7 +3676,7 @@
 
 ### Eu
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### IF
 
@@ -4232,7 +4232,7 @@
 
 ### K
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### MATAR
 
@@ -4284,7 +4284,7 @@
 
 ### L
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### SAÍDA
 
@@ -4590,7 +4590,7 @@
 
 ### O
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO
 
@@ -4706,7 +4706,7 @@
 
 ### P
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### DIVISÃO POR
 
@@ -4760,7 +4760,7 @@
 
 ### R
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### REBUILD PARTIÇÃO
 
@@ -5276,7 +5276,7 @@
 
 ### S
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### SAVEPOINT
 
@@ -7698,7 +7698,7 @@
 
 ### T
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### TABELA
 
@@ -7922,7 +7922,7 @@
 
 ### U
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### DESINSTALE O PLUGIN
 
@@ -8418,7 +8418,7 @@
 
 ### W
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### QUANDO
 
@@ -8438,7 +8438,7 @@
 
 ### X
 
-[[index topo](dynindex-statement.html#stmt-index-topo)]
+index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### XA COMEÇAR
 

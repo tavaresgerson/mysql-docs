@@ -4,11 +4,11 @@ Cada tabela tem um conjunto de caracteres de tabela e uma ordenação de tabela.
 
 ```sql
 CREATE TABLE tbl_name (column_list)
-    [[DEFAULT] CHARACTER SET charset_name]
-    [COLLATE collation_name]]
+    DEFAULT] CHARACTER SET charset_name]
+    [COLLATE collation_name
 
 ALTER TABLE tbl_name
-    [[DEFAULT] CHARACTER SET charset_name]
+    DEFAULT] CHARACTER SET charset_name]
     [COLLATE collation_name]
 ```
 

@@ -1,7 +1,7 @@
 ### 15.2.1 CALL Statement
 
 ```
-CALL sp_name([parameter[,...]])
+CALL sp_name([parameter[,...)
 CALL sp_name[()]
 ```
 

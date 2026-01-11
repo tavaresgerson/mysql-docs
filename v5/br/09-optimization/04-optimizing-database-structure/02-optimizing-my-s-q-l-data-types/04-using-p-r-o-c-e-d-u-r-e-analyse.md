@@ -1,6 +1,6 @@
 #### 8.4.2.4 Usando a ANÁLISE DE PROCEDIMENTOS
 
-`ANALYSE([max_elements[,max_memory]])`
+`ANALYSE([max_elements[,max_memory)`
 
 Nota
 
@@ -9,7 +9,7 @@ A função `PROCEDURE ANALYSE()` foi descontinuada a partir do MySQL 5.7.18 e fo
 `ANALYSE()` analisa o resultado de uma consulta e retorna uma análise dos resultados que sugere tipos de dados ótimos para cada coluna, o que pode ajudar a reduzir o tamanho da tabela. Para obter essa análise, adicione `PROCEDURE ANALYSE` ao final de uma instrução `SELECT`:
 
 ```sql
-SELECT ... FROM ... WHERE ... PROCEDURE ANALYSE([max_elements,[max_memory]])
+SELECT ... FROM ... WHERE ... PROCEDURE ANALYSE([max_elements,[max_memory)
 ```
 
 Por exemplo:

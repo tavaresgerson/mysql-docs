@@ -4,20 +4,20 @@ O SELinux suporta os modos de aplicação, permissivo e desativado. O modo de ap
 
 Para ver o modo atual do SELinux, use o comando **sestatus** mencionado anteriormente ou o utilitário **getenforce**.
 
-```sql
+```sh
 $> getenforce
 Enforcing
 ```
 
 Para alterar o modo SELinux, use o utilitário `setenforce`:
 
-```sql
+```sh
 $> setenforce 0
 $> getenforce
 Permissive
 ```
 
-```sql
+```sh
 $> setenforce 1
 $> getenforce
 Enforcing

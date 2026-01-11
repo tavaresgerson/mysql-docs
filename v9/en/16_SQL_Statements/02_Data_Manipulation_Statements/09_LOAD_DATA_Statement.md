@@ -10,7 +10,7 @@ LOAD DATA
     [CHARACTER SET charset_name]
     [{FIELDS | COLUMNS}
         [TERMINATED BY 'string']
-        [[OPTIONALLY] ENCLOSED BY 'char']
+        OPTIONALLY] ENCLOSED BY 'char']
         [ESCAPED BY 'char']
     ]
     [LINES

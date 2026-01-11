@@ -26,13 +26,13 @@ As funções nesta seção modificam os valores JSON e retornam o resultado.
   +----------------------------------+
   | JSON_ARRAY_APPEND(@j, '$[0]', 2) |
   +----------------------------------+
-  | [["a", 2], ["b", "c"], "d"]      |
+  | "a", 2], ["b", "c"], "d"]      |
   +----------------------------------+
   mysql> SELECT JSON_ARRAY_APPEND(@j, '$[1][0]', 3);
   +-------------------------------------+
   | JSON_ARRAY_APPEND(@j, '$[1][0]', 3) |
   +-------------------------------------+
-  | ["a", [["b", 3], "c"], "d"]         |
+  | ["a", "b", 3], "c"], "d"]         |
   +-------------------------------------+
 
   mysql> SET @j = '{"a": 1, "b": [2, 3], "c": 4}';
@@ -67,12 +67,12 @@ As funções nesta seção modificam os valores JSON e retornam o resultado.
   Os pares para os quais o caminho não identifica nenhum array no documento JSON são ignorados. Se um caminho identificar um elemento de array, o valor correspondente é inserido naquela posição do elemento, deslocando quaisquer valores seguintes para a direita. Se um caminho identificar uma posição de array além do final de um array, o valor é inserido no final do array.
 
   ```sql
-  mysql> SET @j = '["a", {"b": [1, 2]}, [3, 4]]';
+  mysql> SET @j = '["a", {"b": [1, 2]}, [3, 4';
   mysql> SELECT JSON_ARRAY_INSERT(@j, '$[1]', 'x');
   +------------------------------------+
   | JSON_ARRAY_INSERT(@j, '$[1]', 'x') |
   +------------------------------------+
-  | ["a", "x", {"b": [1, 2]}, [3, 4]]  |
+  | ["a", "x", {"b": [1, 2]}, [3, 4  |
   +------------------------------------+
   mysql> SELECT JSON_ARRAY_INSERT(@j, '$[100]', 'x');
   +--------------------------------------+
@@ -84,19 +84,19 @@ As funções nesta seção modificam os valores JSON e retornam o resultado.
   +-----------------------------------------+
   | JSON_ARRAY_INSERT(@j, '$[1].b[0]', 'x') |
   +-----------------------------------------+
-  | ["a", {"b": ["x", 1, 2]}, [3, 4]]       |
+  | ["a", {"b": ["x", 1, 2]}, [3, 4       |
   +-----------------------------------------+
   mysql> SELECT JSON_ARRAY_INSERT(@j, '$[2][1]', 'y');
   +---------------------------------------+
   | JSON_ARRAY_INSERT(@j, '$[2][1]', 'y') |
   +---------------------------------------+
-  | ["a", {"b": [1, 2]}, [3, "y", 4]]     |
+  | ["a", {"b": [1, 2]}, [3, "y", 4     |
   +---------------------------------------+
   mysql> SELECT JSON_ARRAY_INSERT(@j, '$[0]', 'x', '$[2][1]', 'y');
   +----------------------------------------------------+
   | JSON_ARRAY_INSERT(@j, '$[0]', 'x', '$[2][1]', 'y') |
   +----------------------------------------------------+
-  | ["x", "a", {"b": [1, 2]}, [3, 4]]                  |
+  | ["x", "a", {"b": [1, 2]}, [3, 4                  |
   +----------------------------------------------------+
   ```
 
@@ -455,7 +455,7 @@ As funções nesta seção modificam os valores JSON e retornam o resultado.
 
   **Tabela 12.23 Sequências de escape de caracteres especiais JSON_UNQUOTE()**
 
-  <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Sequência de fuga</th> <th>Personagem representado pela sequência</th> </tr></thead><tbody><tr> <td>[[PH_HTML_CODE_<code>XXXX</code>]</td> <td>Um caractere de citação dupla ([[PH_HTML_CODE_<code>XXXX</code>])</td> </tr><tr> <td>[[<code>\b</code>]]</td> <td>Um caractere de retrocesso</td> </tr><tr> <td>[[<code>\f</code>]]</td> <td>Um caractere de quebra de linha</td> </tr><tr> <td>[[<code>\n</code>]]</td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td>[[<code>\r</code>]]</td> <td>Um caractere de retorno de carro</td> </tr><tr> <td>[[<code>\t</code>]]</td> <td>Um caractere de tabulação</td> </tr><tr> <td>[[<code>\\</code>]]</td> <td>Um caractere barra invertida ([[<code>\</code>]])</td> </tr><tr> <td>[[<code>\u<em><code>XXXX</code>]]</em></code></td> <td>Bytes UTF-8 para o valor Unicode<em>[[<code>XXXX</code>]]</em></td> </tr></tbody></table>
+  <table><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Sequência de fuga</th> <th>Personagem representado pela sequência</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>XXXX</code>]</td> <td>Um caractere de citação dupla (PH_HTML_CODE_<code>XXXX</code>])</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de retrocesso</td> </tr><tr> <td><code>\f</code></td> <td>Um caractere de quebra de linha</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\\</code></td> <td>Um caractere barra invertida (<code>\</code>)</td> </tr><tr> <td><code>\u<em><code>XXXX</code></em></code></td> <td>Bytes UTF-8 para o valor Unicode<em><code>XXXX</code></em></td> </tr></tbody></table>
 
   Aqui estão dois exemplos simples do uso dessa função:
 

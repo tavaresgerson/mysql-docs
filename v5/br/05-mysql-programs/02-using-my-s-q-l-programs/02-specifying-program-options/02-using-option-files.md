@@ -37,23 +37,23 @@ No Windows, os programas do MySQL leem as opções de inicialização dos arquiv
    </thead>
    <tbody>
       <tr>
-         <td>[[<code><code>%WINDIR%</code>]]\my.ini</code>, [[<code><code>%WINDIR%</code>]]\my.cnf</code></td>
+         <td><code><code>%WINDIR%</code>\my.ini</code>, <code><code>%WINDIR%</code>\my.cnf</code></td>
          <td>Opções globais</td>
       </tr>
       <tr>
-         <td>[[<code>C:\my.ini</code>]], [[<code>C:\my.cnf</code>]]</td>
+         <td><code>C:\my.ini</code>, <code>C:\my.cnf</code></td>
          <td>Opções globais</td>
       </tr>
       <tr>
-         <td>[[<code><em><code>BASEDIR</code>]]</em>\my.ini</code>, [[<code><em><code>BASEDIR</code>]]</em>\my.cnf</code></td>
+         <td><code><em><code>BASEDIR</code></em>\my.ini</code>, <code><em><code>BASEDIR</code></em>\my.cnf</code></td>
          <td>Opções globais</td>
       </tr>
       <tr>
-         <td>[[<code>defaults-extra-file</code>]]</td>
-         <td>O arquivo especificado com [[<code>--defaults-extra-file</code>]], se houver</td>
+         <td><code>defaults-extra-file</code></td>
+         <td>O arquivo especificado com <code>--defaults-extra-file</code>, se houver</td>
       </tr>
       <tr>
-         <td>[[<code><code>%APPDATA%</code>]]\MySQL\.mylogin.cnf</code></td>
+         <td><code><code>%APPDATA%</code>\MySQL\.mylogin.cnf</code></td>
          <td>Opções de caminho de login (apenas para clientes)</td>
       </tr>
    </tbody>
@@ -94,31 +94,31 @@ Em plataformas Unix, o MySQL ignora arquivos de configuração que são acessív
    </thead>
    <tbody>
       <tr>
-         <td>[[<code>/etc/my.cnf</code>]]</td>
+         <td><code>/etc/my.cnf</code></td>
          <td>Opções globais</td>
       </tr>
       <tr>
-         <td>[[<code>/etc/mysql/my.cnf</code>]]</td>
+         <td><code>/etc/mysql/my.cnf</code></td>
          <td>Opções globais</td>
       </tr>
       <tr>
-         <td>[[<code><em><code>SYSCONFDIR</code>]]</em>/my.cnf</code></td>
+         <td><code><em><code>SYSCONFDIR</code></em>/my.cnf</code></td>
          <td>Opções globais</td>
       </tr>
       <tr>
-         <td>[[<code>$MYSQL_HOME/my.cnf</code>]]</td>
+         <td><code>$MYSQL_HOME/my.cnf</code></td>
          <td>Opções específicas do servidor (apenas para o servidor)</td>
       </tr>
       <tr>
-         <td>[[<code>defaults-extra-file</code>]]</td>
-         <td>O arquivo especificado com [[<code>--defaults-extra-file</code>]], se houver</td>
+         <td><code>defaults-extra-file</code></td>
+         <td>O arquivo especificado com <code>--defaults-extra-file</code>, se houver</td>
       </tr>
       <tr>
-         <td>[[<code>~/.my.cnf</code>]]</td>
+         <td><code>~/.my.cnf</code></td>
          <td>Opções específicas para o usuário</td>
       </tr>
       <tr>
-         <td>[[<code>~/.mylogin.cnf</code>]]</td>
+         <td><code>~/.mylogin.cnf</code></td>
          <td>Opções de caminho de login específicas para o usuário (apenas para clientes)</td>
       </tr>
    </tbody>

@@ -11,7 +11,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_auth_method_name`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Para autenticação SASL LDAP, o nome do método de autenticação. A comunicação entre o plugin de autenticação e o servidor LDAP ocorre de acordo com este método de autenticação para garantir a segurança da senha.
 
@@ -23,7 +23,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_bind_base_dn`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para a autenticação SASL LDAP, o nome distinto de base (DN). Essa variável pode ser usada para limitar o escopo das pesquisas ancorando-as em um determinado local (a "base") dentro da árvore de pesquisa.
 
@@ -48,7 +48,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_bind_root_dn`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_root_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-root-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_root_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_root_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-root-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_root_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para a autenticação SASL LDAP, o nome distinto raiz (DN). Esta variável é usada em conjunto com `authentication_ldap_sasl_bind_root_pwd` como as credenciais para autenticar-se no servidor LDAP com o propósito de realizar pesquisas. A autenticação usa uma ou duas operações de vinculação LDAP, dependendo se a conta MySQL nomeia um DN de usuário LDAP:
 
@@ -58,13 +58,13 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_bind_root_pwd`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_bind_root_pwd"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-root-pwd=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_root_pwd</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_bind_root_pwd"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-root-pwd=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_root_pwd</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação SASL LDAP, a senha para o nome distinto raiz. Esta variável é usada em conjunto com `authentication_ldap_sasl_bind_root_dn`. Veja a descrição dessa variável.
 
 - `authentication_ldap_sasl_ca_path`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_ca_path"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-ca-path=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_ca_path</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_ca_path"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-ca-path=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_ca_path</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação SASL LDAP, o caminho absoluto do arquivo da autoridade de certificação. Especifique este arquivo se desejar que o plugin de autenticação realize a verificação do certificado do servidor LDAP.
 
@@ -74,7 +74,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_group_search_attr`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_group_search_attr"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-group-search-attr=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_group_search_attr</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>cn</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_group_search_attr"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-group-search-attr=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_group_search_attr</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>cn</code></td> </tr></tbody></table>
 
   Para a autenticação SASL LDAP, o nome do atributo que especifica os nomes dos grupos nas entradas de diretório do LDAP. Se `authentication_ldap_sasl_group_search_attr` tiver seu valor padrão de `cn`, as pesquisas retornarão o valor `cn` como o nome do grupo. Por exemplo, se uma entrada do LDAP com um valor de `uid` de `user1` tiver um atributo `cn` de `mygroup`, as pesquisas para `user1` retornarão `mygroup` como o nome do grupo.
 
@@ -84,7 +84,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_group_search_filter`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_group_search_filter"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-group-search-filter=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_group_search_filter</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>(|(&amp;(objectClass=posixGroup)(memberUid=%s))(&amp;(objectClass=group)(member=%s)))</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_group_search_filter"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-group-search-filter=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.21</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_group_search_filter</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>(|(&amp;(objectClass=posixGroup)(memberUid=%s))(&amp;(objectClass=group)(member=%s)))</code></td> </tr></tbody></table>
 
   Para autenticação SASL LDAP, o filtro de pesquisa de grupo personalizado.
 
@@ -101,7 +101,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_init_pool_size`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_init_pool_size"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-init-pool-size=#</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_init_pool_size</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>10</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>0</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>32767</code>]]</td> </tr><tr><th>Unidade</th> <td>conexões</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_init_pool_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-init-pool-size=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_init_pool_size</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>10</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>32767</code></td> </tr><tr><th>Unidade</th> <td>conexões</td> </tr></tbody></table>
 
   Para autenticação SASL LDAP, o tamanho inicial do conjunto de conexões ao servidor LDAP. Escolha o valor para essa variável com base no número médio de solicitações de autenticação concorrentes ao servidor LDAP.
 
@@ -121,13 +121,13 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_log_status`
 
-  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_log_status"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-log-status=#</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_log_status</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor mínimo</th> <td>[[<code>1</code>]]</td> </tr><tr><th>Valor máximo</th> <td>[[<code>5</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para autenticação_ldap_sasl_log_status"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-log-status=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_log_status</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>5</code></td> </tr></tbody></table>
 
   Para autenticação SASL LDAP, o nível de registro para mensagens escritas no log de erro. A tabela a seguir mostra os valores permitidos do nível e seus significados.
 
   **Tabela 6.21 Níveis de registro para autenticação_ldap_sasl_log_status**
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Do lado do cliente, as mensagens podem ser registradas na saída padrão definindo a variável de ambiente `AUTHENTICATION_LDAP_CLIENT_LOG`. Os valores permitidos e padrão são os mesmos que para `authentication_ldap_sasl_log_status`.
 
@@ -135,7 +135,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_max_pool_size`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Para autenticação SASL LDAP, o tamanho máximo do conjunto de conexões ao servidor LDAP. Para desabilitar o agrupamento de conexões, defina essa variável para 0.
 
@@ -143,13 +143,13 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_server_host`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   O host do servidor LDAP para autenticação SASL LDAP; este pode ser um nome de host ou um endereço IP.
 
 - `authentication_ldap_sasl_server_port`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Para autenticação SASL LDAP, o número da porta TCP/IP do servidor LDAP.
 
@@ -157,7 +157,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_tls`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Para autenticação SASL LDAP, se as conexões do plugin com o servidor LDAP são seguras. Se essa variável estiver habilitada, o plugin usa TLS para se conectar de forma segura ao servidor LDAP. Essa variável pode ser definida para substituir a configuração padrão de TLS do OpenLDAP; consulte Autenticação de Autenticação Pluggable LDAP e ldap.conf. Se você habilitar essa variável, também pode querer definir a variável `authentication_ldap_sasl_ca_path`.
 
@@ -167,13 +167,13 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_sasl_user_search_attr`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Para a autenticação SASL LDAP, o nome do atributo que especifica os nomes de usuário nas entradas do diretório LDAP. Se o nome do usuário distinguido não for fornecido, o plugin de autenticação procura pelo nome usando este atributo. Por exemplo, se o valor de `authentication_ldap_sasl_user_search_attr` for `uid`, uma busca pelo nome do usuário `user1` encontra entradas com um valor de `uid` de `user1`.
 
 - `authentication_ldap_simple_auth_method_name`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o nome do método de autenticação. A comunicação entre o plugin de autenticação e o servidor LDAP ocorre de acordo com este método de autenticação.
 
@@ -189,7 +189,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_bind_base_dn`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o nome distinto de base (DN). Essa variável pode ser usada para limitar o escopo das pesquisas ancorando-as em um determinado local (a "base") dentro da árvore de pesquisa.
 
@@ -215,7 +215,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_bind_root_dn`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o nome distinto raiz (DN). Esta variável é usada em conjunto com `authentication_ldap_simple_bind_root_pwd` como as credenciais para autenticar-se no servidor LDAP com o propósito de realizar pesquisas. A autenticação usa uma ou duas operações de vinculação LDAP, dependendo se o nome da conta MySQL atribui um DN de usuário LDAP:
 
@@ -225,13 +225,13 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_bind_root_pwd`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-auth-method-name=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_auth_method_name</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr><tr><th>Valores válidos</th> <td>[[<code>SCRAM-SHA-1</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_auth_method_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-auth-method-name=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_auth_method_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>SCRAM-SHA-1</code></td> </tr><tr><th>Valores válidos</th> <td><code>SCRAM-SHA-1</code></td> </tr></tbody></table>
 
   Para autenticação LDAP simples, a senha para o nome distinto raiz. Esta variável é usada em conjunto com `authentication_ldap_simple_bind_root_dn`. Veja a descrição dessa variável.
 
 - `authentication_ldap_simple_ca_path`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o caminho absoluto do arquivo da autoridade de certificação. Especifique este arquivo se desejar que o plugin de autenticação realize a verificação do certificado do servidor LDAP.
 
@@ -241,7 +241,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_group_search_attr`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação LDAP simples, o nome do atributo que especifica os nomes dos grupos nas entradas de diretório do LDAP. Se `authentication_ldap_simple_group_search_attr` tiver seu valor padrão de `cn`, as pesquisas retornarão o valor `cn` como o nome do grupo. Por exemplo, se uma entrada LDAP com um valor de `uid` de `user1` tiver um atributo `cn` de `mygroup`, pesquisas por `user1` retornarão `mygroup` como o nome do grupo.
 
@@ -249,7 +249,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_group_search_filter`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação LDAP simples, o filtro de pesquisa de grupo personalizado.
 
@@ -266,7 +266,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_init_pool_size`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o tamanho inicial do conjunto de conexões ao servidor LDAP. Escolha o valor para essa variável com base no número médio de solicitações de autenticação concorrentes ao servidor LDAP.
 
@@ -286,17 +286,17 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_log_status`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o nível de registro para mensagens escritas no log de erro. A tabela a seguir mostra os valores permitidos do nível e seus significados.
 
   **Tabela 6.22 Níveis de registro para autenticação_ldap_status_simples_log**
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
 - `authentication_ldap_simple_max_pool_size`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o tamanho máximo do conjunto de conexões ao servidor LDAP. Para desabilitar o agrupamento de conexões, defina essa variável para 0.
 
@@ -304,7 +304,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_server_host`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o host do servidor LDAP. Os valores permitidos para essa variável dependem do método de autenticação:
 
@@ -356,7 +356,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_server_port`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o número da porta TCP/IP do servidor LDAP.
 
@@ -364,7 +364,7 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `autenticação_ldap_simple_tls`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-base-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_base_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_base_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-base-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_base_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação LDAP simples, se as conexões do plugin com o servidor LDAP são seguras. Se essa variável estiver habilitada, o plugin usa TLS para se conectar de forma segura ao servidor LDAP. Essa variável pode ser definida para substituir a configuração padrão de TLS do OpenLDAP; consulte Autenticação de Autenticação Pluggable LDAP e ldap.conf. Se você habilitar essa variável, também pode querer definir a variável `authentication_ldap_simple_ca_path`.
 
@@ -374,6 +374,6 @@ Essas variáveis não estão disponíveis, a menos que o plugin apropriado do la
 
 - `authentication_ldap_simple_user_search_attr`
 
-  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_root_dn"><tbody><tr><th>Formato de linha de comando</th> <td>[[<code>--authentication-ldap-sasl-bind-root-dn=value</code>]]</td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td>[[<code>authentication_ldap_sasl_bind_root_dn</code>]]</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td>[[<code>NULL</code>]]</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Propriedades para authentication_ldap_sasl_bind_root_dn"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-ldap-sasl-bind-root-dn=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19</td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_ldap_sasl_bind_root_dn</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>NULL</code></td> </tr></tbody></table>
 
   Para autenticação simples LDAP, o nome do atributo que especifica os nomes de usuário nas entradas do diretório LDAP. Se o nome do nome distinto de um usuário não for fornecido, o plugin de autenticação procura pelo nome usando este atributo. Por exemplo, se o valor de `authentication_ldap_simple_user_search_attr` for `uid`, uma busca pelo nome do usuário `user1` encontra entradas com um valor de `uid` de `user1`.

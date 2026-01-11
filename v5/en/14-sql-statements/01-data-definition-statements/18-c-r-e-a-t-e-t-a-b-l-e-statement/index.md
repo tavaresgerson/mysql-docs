@@ -40,13 +40,13 @@ create_definition: {
       [index_option] ...
   | {FULLTEXT | SPATIAL} [INDEX | KEY] [index_name] (key_part,...)
       [index_option] ...
-  | [CONSTRAINT [symbol]] PRIMARY KEY
+  | [CONSTRAINT [symbol PRIMARY KEY
       [index_type] (key_part,...)
       [index_option] ...
-  | [CONSTRAINT [symbol]] UNIQUE [INDEX | KEY]
+  | [CONSTRAINT [symbol UNIQUE [INDEX | KEY]
       [index_name] [index_type] (key_part,...)
       [index_option] ...
-  | [CONSTRAINT [symbol]] FOREIGN KEY
+  | [CONSTRAINT [symbol FOREIGN KEY
       [index_name] (col_name,...)
       reference_definition
   | CHECK (expr)
@@ -54,7 +54,7 @@ create_definition: {
 
 column_definition: {
     data_type [NOT NULL | NULL] [DEFAULT default_value]
-      [AUTO_INCREMENT] [UNIQUE [KEY]] [[PRIMARY] KEY]
+      [AUTO_INCREMENT] [UNIQUE [KEY PRIMARY] KEY]
       [COMMENT 'string']
       [COLLATE collation_name]
       [COLUMN_FORMAT {FIXED | DYNAMIC | DEFAULT}]
@@ -64,7 +64,7 @@ column_definition: {
       [COLLATE collation_name]
       [GENERATED ALWAYS] AS (expr)
       [VIRTUAL | STORED] [NOT NULL | NULL]
-      [UNIQUE [KEY]] [[PRIMARY] KEY]
+      [UNIQUE [KEY PRIMARY] KEY]
       [COMMENT 'string']
       [reference_definition]
 }
@@ -95,7 +95,7 @@ reference_option:
     RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
 
 table_options:
-    table_option [[,] table_option] ...
+    table_option ,] table_option] ...
 
 table_option: {
     AUTO_INCREMENT [=] value
@@ -144,7 +144,7 @@ partition_definition:
             {LESS THAN {(expr | value_list) | MAXVALUE}
             |
             IN (value_list)}]
-        [[STORAGE] ENGINE [=] engine_name]
+        STORAGE] ENGINE [=] engine_name]
         [COMMENT [=] 'string' ]
         [DATA DIRECTORY [=] 'data_dir']
         [INDEX DIRECTORY [=] 'index_dir']
@@ -155,7 +155,7 @@ partition_definition:
 
 subpartition_definition:
     SUBPARTITION logical_name
-        [[STORAGE] ENGINE [=] engine_name]
+        STORAGE] ENGINE [=] engine_name]
         [COMMENT [=] 'string' ]
         [DATA DIRECTORY [=] 'data_dir']
         [INDEX DIRECTORY [=] 'index_dir']

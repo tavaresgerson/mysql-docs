@@ -613,7 +613,7 @@ Section 7.1.8, “Server System Variables”, provides a full description for a
 
   On Unix, this option specifies the Unix socket file to use when listening for local connections. The default value is `/tmp/mysql.sock`. If this option is given, the server creates the file in the data directory unless an absolute path name is given to specify a different directory. On Windows, the option specifies the pipe name to use when listening for local connections that use a named pipe. The default value is `MySQL` (not case-sensitive).
 
-* [`--sql-mode=value[,value[,value...]]`](server-options.html#option_mysqld_sql-mode)
+* [`--sql-mode=value[,value[,value...`](server-options.html#option_mysqld_sql-mode)
 
   <table frame="box" rules="all" summary="Properties for check-table-functions"><tbody><tr><th>Command-Line Format</th> <td><code>--check-table-functions=value</code></td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>ABORT</code></td> </tr><tr><th>Valid Values</th> <td><p><code>WARN</code></p><p><code>ABORT</code></p></td> </tr></tbody></table>9
 
