@@ -29,7 +29,7 @@ Suponha que o conjunto de dados tenha essas características:
 
 - A tabela `employee` tem 1024 linhas.
 
-- A tabela `departamento` tem 12 linhas.
+- A tabela `department` tem 12 linhas.
 
 - Ambas as tabelas têm um índice no `dept_no`.
 

@@ -11,7 +11,7 @@ Um algoritmo de junção por laço aninhado (NLJ) lê as linhas da primeira tabe
 
 Suponha que uma junção entre três tabelas `t1`, `t2` e `t3` deve ser executada usando os seguintes tipos de junção:
 
-```sql
+```
 Table   Join Type
 t1      range
 t2      ref

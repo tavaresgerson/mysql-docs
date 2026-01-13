@@ -1,45 +1,5 @@
 ### 8.2.1 Otimizando instruções SELECT
 
-8.2.1.1 Otimização da cláusula WHERE
-
-8.2.1.2 Otimização da Gama
-
-8.2.1.3 Otimização da Mesclagem de Índices
-
-8.2.1.4 Otimização da Depressão da Condição do Motor
-
-8.2.1.5 Otimização da empilhamento da condição do índice
-
-8.2.1.6 Algoritmos de Conjunção com Laços Aninhados
-
-8.2.1.7 Otimização de Conexão Aninhada
-
-8.2.1.8 Otimização de Conexão Externa
-
-8.2.1.9 Simplificação da Conjunção Externa
-
-8.2.1.10 Otimização da leitura em várias faixas de amplitude
-
-8.2.1.11 Conexões de junção de laço aninhado e acesso a chave em lote
-
-8.2.1.12 Filtro de Condição
-
-8.2.1.13 O valor IS NULL: Otimização
-
-8.2.1.14 Ordenação por otimização
-
-8.2.1.15 Otimização por GROUP BY
-
-8.2.1.16 Otimização Distinta
-
-8.2.1.17 Otimização da consulta de LIMITE
-
-8.2.1.18 Otimização de Chamadas de Função
-
-8.2.1.19 Otimização da Expressão de Construção de Linha
-
-8.2.1.20 Evitar varreduras completas da tabela
-
 As consultas, na forma de instruções `SELECT`, realizam todas as operações de busca no banco de dados. A otimização dessas instruções é uma prioridade máxima, seja para alcançar tempos de resposta inferiores a um segundo para páginas web dinâmicas ou para reduzir horas no tempo necessário para gerar relatórios enormes durante a noite.
 
 Além das instruções `SELECT`, as técnicas de ajuste para consultas também se aplicam a construções como `CREATE TABLE...AS SELECT`, `INSERT INTO...SELECT` e cláusulas `WHERE` em instruções `DELETE`. Essas instruções têm considerações de desempenho adicionais porque combinam operações de escrita com operações de consulta orientadas para leitura.

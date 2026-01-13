@@ -160,4 +160,4 @@ possible_keys: i
         Extra: Using index condition; Using filesort
 ```
 
-Veja também a Seção 8.9.2, “Otimizações Desconectables”.
+Veja também a Seção 8.9.2, “Otimizações alternáveis”.

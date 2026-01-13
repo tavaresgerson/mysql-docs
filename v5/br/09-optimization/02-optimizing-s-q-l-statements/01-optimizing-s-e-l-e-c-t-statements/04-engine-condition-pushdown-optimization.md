@@ -65,17 +65,17 @@ possible_keys: a
 
 Outras comparações suportadas para a análise da condição do motor incluem as seguintes:
 
-- `coluna [NÃO] LIKE padrão`
+- `column [NOT] LIKE pattern`
 
   O caractere `*` deve ser uma literal de string que contenha o padrão a ser correspondido. Para obter informações sobre a sintaxe, consulte a Seção 12.8.1, “Funções e operadores de comparação de strings”.
 
-- `coluna É [NÃO] NULL`
+- `column IS [NOT] NULL`
 
-- `coluna EM (lista_de_valores)`
+- `column IN (value_list)`
 
   Cada item na lista *`value_list`* deve ser um valor constante, literal.
 
-- `coluna ENTRE constante1 E constante2`
+- `column BETWEEN constant1 AND constant2`
 
   *`constant1`* e *`constant2`* devem ser constantes, valores literais.
 
@@ -83,7 +83,7 @@ Em todos os casos da lista anterior, é possível converter a condição para a 
 
 A opção de empurrar a condição do motor é ativada por padrão. Para desativá-la ao iniciar o servidor, defina a bandeira `engine_condition_pushdown` da variável de sistema `optimizer_switch` para `off`. Por exemplo, em um arquivo `my.cnf`, use as seguintes linhas:
 
-```sql
+```
 [mysqld]
 optimizer_switch=engine_condition_pushdown=off
 ```

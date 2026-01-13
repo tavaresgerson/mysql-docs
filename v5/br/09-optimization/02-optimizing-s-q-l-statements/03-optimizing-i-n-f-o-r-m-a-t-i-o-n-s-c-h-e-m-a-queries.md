@@ -18,7 +18,62 @@ Você pode aproveitar esse princípio da seguinte forma:
 
 Este princípio se aplica às tabelas `INFORMATION_SCHEMA` mostradas na tabela a seguir, que exibe as colunas para as quais um valor de consulta constante permite que o servidor evite uma varredura de diretório. Por exemplo, se você estiver selecionando de `TABLES`, usar um valor de consulta constante para `TABLE_SCHEMA` na cláusula `WHERE` permite evitar uma varredura de diretório de dados.
 
-<table summary="Tabelas do INFORMATION_SCHEMA e colunas de tabelas para as quais um valor de consulta constante permite que o servidor evite varreduras de diretório."><col style="width: 34%"/><col style="width: 33%"/><col style="width: 33%"/><thead><tr> <th>Tabela</th> <th>Coluna para especificar para evitar a varredura do diretório de dados</th> <th>Coluna para especificar para evitar a varredura do diretório do banco de dados</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>CONSTRAINT_SCHEMA</code>]</th> <td>PH_HTML_CODE_<code>CONSTRAINT_SCHEMA</code>]</td> <td>PH_HTML_CODE_<code>STATISTICS</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>TABLE_SCHEMA</code>]</th> <td>PH_HTML_CODE_<code>TABLE_NAME</code>]</td> <td>PH_HTML_CODE_<code>TABLES</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>TABLE_SCHEMA</code>]</th> <td>PH_HTML_CODE_<code>TABLE_NAME</code>]</td> <td>PH_HTML_CODE_<code>TABLE_CONSTRAINTS</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>TABLE_SCHEMA</code>]</th> <td><code>CONSTRAINT_SCHEMA</code></td> <td><code>TABLE_SCHEMA</code><code>CONSTRAINT_SCHEMA</code>]</td> </tr><tr> <th><code>STATISTICS</code></th> <td><code>TABLE_SCHEMA</code></td> <td><code>TABLE_NAME</code></td> </tr><tr> <th><code>TABLES</code></th> <td><code>TABLE_SCHEMA</code></td> <td><code>TABLE_NAME</code></td> </tr><tr> <th><code>TABLE_CONSTRAINTS</code></th> <td><code>TABLE_SCHEMA</code></td> <td><code>TABLE_NAME</code><code>CONSTRAINT_SCHEMA</code>]</td> </tr><tr> <th><code>TABLE_NAME</code><code>CONSTRAINT_SCHEMA</code>]</th> <td><code>TABLE_NAME</code><code>STATISTICS</code>]</td> <td><code>TABLE_NAME</code><code>TABLE_SCHEMA</code>]</td> </tr><tr> <th><code>TABLE_NAME</code><code>TABLE_NAME</code>]</th> <td><code>TABLE_NAME</code><code>TABLES</code>]</td> <td><code>TABLE_NAME</code><code>TABLE_SCHEMA</code>]</td> </tr></tbody></table>
+<table summary="Tabelas do INFORMATION_SCHEMA e colunas de tabelas para as quais um valor de consulta constante permite que o servidor evite varreduras de diretório.">
+  <thead>
+    <tr>
+      <th>Tabela</th>
+      <th>Coluna a especificar para evitar a verificação do diretório de dados</th>
+      <th>Coluna a especificar para evitar a verificação do diretório do banco de dados</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><code>COLUMNS</code></th>
+      <td><code>TABLE_SCHEMA</code></td>
+      <td><code>TABLE_NAME</code></td>
+    </tr>
+    <tr>
+      <th><code>KEY_COLUMN_USAGE</code></th>
+      <td><code>TABLE_SCHEMA</code></td>
+      <td><code>TABLE_NAME</code></td>
+    </tr>
+    <tr>
+      <th><code>PARTITIONS</code></th>
+      <td><code>TABLE_SCHEMA</code></td>
+      <td><code>TABLE_NAME</code></td>
+    </tr>
+    <tr>
+      <th><code>REFERENTIAL_CONSTRAINTS</code></th>
+      <td><code>CONSTRAINT_SCHEMA</code></td>
+      <td><code>TABLE_NAME</code></td>
+    </tr>
+    <tr>
+      <th><code>STATISTICS</code></th>
+      <td><code>TABLE_SCHEMA</code></td>
+      <td><code>TABLE_NAME</code></td>
+    </tr>
+    <tr>
+      <th><code>TABLES</code></th>
+      <td><code>TABLE_SCHEMA</code></td>
+      <td><code>TABLE_NAME</code></td>
+    </tr>
+    <tr>
+      <th><code>TABLE_CONSTRAINTS</code></th>
+      <td><code>TABLE_SCHEMA</code></td>
+      <td><code>TABLE_NAME</code></td>
+    </tr>
+    <tr>
+      <th><code>TRIGGERS</code></th>
+      <td><code>EVENT_OBJECT_SCHEMA</code></td>
+      <td><code>EVENT_OBJECT_TABLE</code></td>
+    </tr>
+    <tr>
+      <th><code>VIEWS</code></th>
+      <td><code>TABLE_SCHEMA</code></td>
+      <td><code>TABLE_NAME</code></td>
+    </tr>
+  </tbody>
+</table>
 
 A vantagem de uma consulta limitada a um nome específico de banco de dados é que as verificações precisam ser feitas apenas no diretório do banco de dados nomeado. Exemplo:
 
@@ -86,23 +141,234 @@ A lista a seguir indica como os tipos de otimização anteriores se aplicam às 
 
 - `PARTITIONS`: `OPEN_FULL_TABLE` se aplica a todas as colunas
 
-- `REFERENCIÁIS_CONSTRAINTS`: `OPEN_FULL_TABLE` se aplica a todas as colunas
+- `REFERENTIAL_CONSTRAINTS`: `OPEN_FULL_TABLE` se aplica a todas as colunas
 
-- `ESTATÍSTICAS`:
+- `STATISTICS`:
 
-  <table summary="Tipos de otimização que se aplicam às colunas da tabela INFORMATION_SCHEMA STATISTICS."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Coluna</th> <th>Tipo de otimização</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>INDEX_NAME</code>]</td> <td>PH_HTML_CODE_<code>INDEX_NAME</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>SEQ_IN_INDEX</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>COLUMN_NAME</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>COLLATION</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>CARDINALITY</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>INDEX_NAME</code></td> <td><code>OPEN_FRM_ONLY</code><code>INDEX_NAME</code>]</td> </tr><tr> <td><code>SEQ_IN_INDEX</code></td> <td><code>OPEN_FRM_ONLY</code></td> </tr><tr> <td><code>COLUMN_NAME</code></td> <td><code>OPEN_FRM_ONLY</code></td> </tr><tr> <td><code>COLLATION</code></td> <td><code>OPEN_FRM_ONLY</code></td> </tr><tr> <td><code>CARDINALITY</code></td> <td><code>OPEN_FULL_TABLE</code></td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>INDEX_NAME</code>]</td> <td><code>TABLE_SCHEMA</code><code>INDEX_NAME</code>]</td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>SEQ_IN_INDEX</code>]</td> <td><code>TABLE_SCHEMA</code><code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>COLUMN_NAME</code>]</td> <td><code>TABLE_SCHEMA</code><code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>COLLATION</code>]</td> <td><code>TABLE_SCHEMA</code><code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>CARDINALITY</code>]</td> <td><code>TABLE_SCHEMA</code><code>OPEN_FULL_TABLE</code>]</td> </tr></tbody></table>
+  <table summary="Tipos de otimização que se aplicam às colunas da tabela INFORMATION_SCHEMA STATISTICS.">
+    <thead>
+      <tr>
+        <th>Coluna</th>
+        <th>Tipo de otimização</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>TABLE_CATALOG</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_SCHEMA</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_NAME</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>NON_UNIQUE</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>INDEX_SCHEMA</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>INDEX_NAME</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>SEQ_IN_INDEX</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>COLUMN_NAME</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>COLLATION</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>CARDINALITY</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>SUB_PART</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>PACKED</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>NULLABLE</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>INDEX_TYPE</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>COMMENT</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+    </tbody>
+  </table>
 
-- `TABELAS`:
+- `TABLES`:
 
-  <table summary="Tipos de otimização que se aplicam às colunas da tabela INFORMATION_SCHEMA TABLES."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Coluna</th> <th>Tipo de otimização</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>VERSION</code>]</td> <td>PH_HTML_CODE_<code>VERSION</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>ROW_FORMAT</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>TABLE_ROWS</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>AVG_ROW_LENGTH</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>DATA_LENGTH</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>VERSION</code></td> <td><code>SKIP_OPEN_TABLE</code><code>VERSION</code>]</td> </tr><tr> <td><code>ROW_FORMAT</code></td> <td><code>OPEN_FULL_TABLE</code></td> </tr><tr> <td><code>TABLE_ROWS</code></td> <td><code>OPEN_FULL_TABLE</code></td> </tr><tr> <td><code>AVG_ROW_LENGTH</code></td> <td><code>OPEN_FULL_TABLE</code></td> </tr><tr> <td><code>DATA_LENGTH</code></td> <td><code>OPEN_FULL_TABLE</code></td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>VERSION</code>]</td> <td><code>TABLE_SCHEMA</code><code>VERSION</code>]</td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>ROW_FORMAT</code>]</td> <td><code>TABLE_SCHEMA</code><code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>TABLE_ROWS</code>]</td> <td><code>TABLE_SCHEMA</code><code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>AVG_ROW_LENGTH</code>]</td> <td><code>TABLE_SCHEMA</code><code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>TABLE_SCHEMA</code><code>DATA_LENGTH</code>]</td> <td><code>TABLE_SCHEMA</code><code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>SKIP_OPEN_TABLE</code><code>VERSION</code>]</td> <td><code>SKIP_OPEN_TABLE</code><code>VERSION</code>]</td> </tr><tr> <td><code>SKIP_OPEN_TABLE</code><code>ROW_FORMAT</code>]</td> <td><code>SKIP_OPEN_TABLE</code><code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>SKIP_OPEN_TABLE</code><code>TABLE_ROWS</code>]</td> <td><code>SKIP_OPEN_TABLE</code><code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>SKIP_OPEN_TABLE</code><code>AVG_ROW_LENGTH</code>]</td> <td><code>SKIP_OPEN_TABLE</code><code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>SKIP_OPEN_TABLE</code><code>DATA_LENGTH</code>]</td> <td><code>SKIP_OPEN_TABLE</code><code>OPEN_FULL_TABLE</code>]</td> </tr><tr> <td><code>TABLE_NAME</code><code>VERSION</code>]</td> <td><code>TABLE_NAME</code><code>VERSION</code>]</td> </tr></tbody></table>
+  <table summary="Tipos de otimização que se aplicam às colunas da tabela INFORMATION_SCHEMA TABLES.">
+    <thead>
+      <tr>
+        <th>Coluna</th>
+        <th>Tipo de otimização</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>TABLE_CATALOG</code></td>
+        <td><code>SKIP_OPEN_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_SCHEMA</code></td>
+        <td><code>SKIP_OPEN_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_NAME</code></td>
+        <td><code>SKIP_OPEN_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_TYPE</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>ENGINE</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>VERSION</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>ROW_FORMAT</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_ROWS</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>AVG_ROW_LENGTH</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>DATA_LENGTH</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>MAX_DATA_LENGTH</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>INDEX_LENGTH</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>DATA_FREE</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>AUTO_INCREMENT</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>CREATE_TIME</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>UPDATE_TIME</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>CHECK_TIME</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_COLLATION</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>CHECKSUM</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>CREATE_OPTIONS</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_COMMENT</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+    </tbody>
+  </table>
 
 - `TABLE_CONSTRAINTS`: `OPEN_FULL_TABLE` se aplica a todas as colunas
 
 - `TRIGGERS`: `OPEN_TRIGGER_ONLY` se aplica a todas as colunas
 
-- `VISTAS`:
+- `VIEWS`:
 
-  <table summary="Tipos de otimização que se aplicam às colunas da tabela INFORMATION_SCHEMA VIEWS."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Coluna</th> <th>Tipo de otimização</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>IS_UPDATABLE</code>]</td> <td>PH_HTML_CODE_<code>IS_UPDATABLE</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>DEFINER</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>SECURITY_TYPE</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>CHARACTER_SET_CLIENT</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>COLLATION_CONNECTION</code>]</td> <td>PH_HTML_CODE_<code>OPEN_FRM_ONLY</code>]</td> </tr><tr> <td><code>IS_UPDATABLE</code></td> <td><code>OPEN_FRM_ONLY</code><code>IS_UPDATABLE</code>]</td> </tr><tr> <td><code>DEFINER</code></td> <td><code>OPEN_FRM_ONLY</code></td> </tr><tr> <td><code>SECURITY_TYPE</code></td> <td><code>OPEN_FRM_ONLY</code></td> </tr><tr> <td><code>CHARACTER_SET_CLIENT</code></td> <td><code>OPEN_FRM_ONLY</code></td> </tr><tr> <td><code>COLLATION_CONNECTION</code></td> <td><code>OPEN_FRM_ONLY</code></td> </tr></tbody></table>
+  <table>
+    <thead>
+      <tr>
+        <th>Coluna</th>
+        <th>Tipo de otimização</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>TABLE_CATALOG</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_SCHEMA</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>TABLE_NAME</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>VIEW_DEFINITION</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>CHECK_OPTION</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>IS_UPDATABLE</code></td>
+        <td><code>OPEN_FULL_TABLE</code></td>
+      </tr>
+      <tr>
+        <td><code>DEFINER</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>SECURITY_TYPE</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>CHARACTER_SET_CLIENT</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+      <tr>
+        <td><code>COLLATION_CONNECTION</code></td>
+        <td><code>OPEN_FRM_ONLY</code></td>
+      </tr>
+    </tbody>
+  </table>
 
 **3) Use `EXPLAIN` para determinar se o servidor pode usar otimizações do `INFORMATION_SCHEMA` para uma consulta**
 

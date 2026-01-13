@@ -58,21 +58,13 @@ Os seguintes meios estão disponíveis para influenciar se o otimizador tenta co
 - É possível desativar a junção usando na subconsulta quaisquer construções que impeçam a junção, embora essas não sejam tão explícitas em seu efeito na materialização. As construções que impedem a junção são as mesmas para tabelas derivadas e referências de visualização:
 
   - Funções agregadas (`SUM()`, `MIN()`, `MAX()`, `COUNT()`, e assim por diante)
-
-  - DISTINCT
-
+  - `DISTINCT`
   - `GROUP BY`
-
-  - `HAVENDO`
-
-  - `LIMITE`
-
-  - `UNÍON` ou `UNÍON TODO`
-
+  - `HAVING`
+  - `LIMIT`
+  - `UNION` ou `UNION ALL`
   - Subconsultas na lista de seleção
-
   - Atribuições a variáveis de usuário
-
   - Referências apenas a valores literais (neste caso, não há uma tabela subjacente)
 
 A bandeira `derived_merge` também se aplica a visualizações que não contêm nenhuma cláusula `ALGORITHM`. Assim, se ocorrer um erro `ER_UPDATE_TABLE_USED` para uma referência de visualização que usa uma expressão equivalente à subconsulta, adicionar `ALGORITHM=TEMPTABLE` à definição da visualização impede a fusão e tem precedência sobre o valor atual de `derived_merge`.

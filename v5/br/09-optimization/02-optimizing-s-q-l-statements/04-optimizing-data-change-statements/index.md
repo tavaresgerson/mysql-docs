@@ -1,9 +1,3 @@
 ### 8.2.4 Otimização das declarações de alteração de dados
 
-8.2.4.1 Otimização de instruções INSERT
-
-8.2.4.2 Otimização das declarações UPDATE
-
-8.2.4.3 Otimização das instruções DELETE
-
 Esta seção explica como acelerar as declarações de alteração de dados: `INSERT`, `UPDATE` e `DELETE`. Aplicações OLTP tradicionais e aplicações web modernas geralmente realizam muitas operações pequenas de alteração de dados, onde a concorrência é vital. Aplicações de análise e relatórios de dados geralmente executam operações de alteração de dados que afetam muitas linhas de uma vez, onde as principais considerações são o I/O para escrever grandes quantidades de dados e manter os índices atualizados. Para inserir e atualizar grandes volumes de dados (conhecidos na indústria como ETL, para “extrair-transformar-carregar”), às vezes você usa outras declarações SQL ou comandos externos, que imitam os efeitos das declarações `INSERT`, `UPDATE` e `DELETE`.

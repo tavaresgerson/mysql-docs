@@ -169,9 +169,7 @@ As funções de disparo *não* são disparadores do tipo que você cria com `CRE
 As igualdades que estão envolvidas nas funções `trigcond()` não são predicados de primeira classe para o otimizador de consultas. A maioria das otimizações não consegue lidar com predicados que podem ser ativados ou desativados no momento da execução da consulta, então elas assumem que qualquer `trigcond(X)` é uma função desconhecida e a ignoram. As igualdades disparadas podem ser usadas por essas otimizações:
 
 - As otimizações de referência: `trigcond(X=Y [OU Y É NULL])` podem ser usadas para criar acessos de tabela `ref`, `eq_ref` ou `ref_or_null`.
-
 - Motores de execução de subconsultas baseados em busca de índice: `trigcond(X=Y)` pode ser usado para construir acessos `unique_subquery` ou `index_subquery`.
-
 - Gerador de condições de tabela: Se a subconsulta for uma junção de várias tabelas, a condição acionada é verificada o mais rápido possível.
 
 Quando o otimizador usa uma condição acionada para criar algum tipo de acesso baseado em pesquisa de índice (como nos dois primeiros itens da lista anterior), ele deve ter uma estratégia de fallback para o caso em que a condição seja desativada. Essa estratégia de fallback é sempre a mesma: fazer uma varredura completa da tabela. Na saída `EXPLAIN`, o fallback aparece como `Varredura completa em chave NULL` na coluna `Extra`:
@@ -244,4 +242,4 @@ Para ajudar o otimizador de consultas a executar suas consultas de forma mais ef
 
   Isso se aplicaria quando você não precisa distinguir entre os resultados de subconsultas `NULL` e `FALSE`, nesse caso, você pode realmente querer `EXISTS`.
 
-A bandeira `subquery_materialization_cost_based` da variável de sistema `optimizer_switch` permite controlar a escolha entre a materialização de subconsultas e a transformação de subconsultas `IN` para `EXISTS`. Veja a Seção 8.9.2, “Otimizações Desconectables”.
+A flag `subquery_materialization_cost_based` da variável de sistema `optimizer_switch` permite controlar a escolha entre a materialização de subconsultas e a transformação de subconsultas `IN` para `EXISTS`. Veja a Seção 8.9.2, “Otimizações Desconectables”.

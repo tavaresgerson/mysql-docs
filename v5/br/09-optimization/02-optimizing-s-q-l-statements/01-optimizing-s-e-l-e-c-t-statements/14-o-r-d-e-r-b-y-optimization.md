@@ -191,7 +191,7 @@ Com `EXPLAIN` (veja a Seção 8.8.1, “Otimizando consultas com EXPLAIN”), vo
 
 Além disso, se uma `filesort` for realizada, a saída do rastreamento do otimizador inclui um bloco `filesort_summary`. Por exemplo:
 
-```sql
+```json
 "filesort_summary": {
   "rows": 100,
   "examined_rows": 100,

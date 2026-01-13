@@ -56,11 +56,8 @@ T1.B < 3 OR T2.B > 3
 As regras gerais para verificar se uma condição é rejeitada por nulidade em uma operação de junção externa são simples:
 
 - É da forma `A NÃO É NULL`, onde `A` é um atributo de qualquer uma das tabelas internas.
-
 - É um predicado que contém uma referência a uma tabela interna que é avaliada como `UNKNOWN` quando um de seus argumentos é `NULL`
-
 - É uma conjunção que contém uma condição rejeitada como conjunção
-
 - É uma disjunção de condições rejeitadas como nulos
 
 Uma condição pode ser rejeitada como nula para uma operação de junção externa em uma consulta e não ser rejeitada como nula para outra. Nesta consulta, a condição `WHERE` é rejeitada como nula para a segunda operação de junção externa, mas não é rejeitada como nula para a primeira:
