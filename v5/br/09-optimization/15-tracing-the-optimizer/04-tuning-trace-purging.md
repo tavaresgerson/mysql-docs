@@ -8,7 +8,7 @@ Um usuário que deseja ver a traça de um subdeclaração diferente pode habilit
 SET optimizer_trace_offset=offset, optimizer_trace_limit=limit;
 ```
 
-- `offset`\* é um inteiro assinado (padrão `-1`); \* `limit`\* é um inteiro positivo (padrão `1`). Uma declaração `SET` desse tipo tem os seguintes efeitos:
+- `offset` é um inteiro assinado (padrão `-1`); \* `limit`\* é um inteiro positivo (padrão `1`). Uma declaração `SET` desse tipo tem os seguintes efeitos:
 
 - Todos os rastros armazenados anteriormente são apagados da memória.
 - Uma consulta subsequente a partir da tabela `OPTIMIZER_TRACE` retorna os primeiros *`limit`* traços dos traços armazenados mais antigos com *`offset`* (se *`offset`* >= 0) ou os primeiros *`limit`* traços dos traços armazenados mais recentes com *`-offset`* (se *`offset`* < 0).

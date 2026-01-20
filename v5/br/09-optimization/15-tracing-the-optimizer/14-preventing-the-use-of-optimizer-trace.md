@@ -2,7 +2,7 @@
 
 Se, por algum motivo, você quiser impedir que os usuários vejam as marcas de suas consultas, inicie o servidor com as opções mostradas aqui:
 
-```sql
+```sh
 --maximum-optimizer-trace-max-mem-size=0 --optimizer-trace-max-mem-size=0
 ```
 
