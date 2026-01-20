@@ -25,4 +25,4 @@ Para os casos em que o MySQL não faz a coisa "certa", as ferramentas que você 
 
 - `STRAIGHT_JOIN` global e em nível de tabela. Veja [Seção 13.2.9, “Instrução SELECT”](select.html).
 
-- Você pode ajustar variáveis de sistema globais ou específicas de um fio. Por exemplo, inicie o [**mysqld**](mysqld.html) com a opção [`--max-seeks-for-key=1000`](server-system-variables.html#sysvar_max_seeks_for_key) ou use `SET max_seeks_for_key=1000` para informar ao otimizador que nenhuma varredura de chave causa mais de 1.000 buscas de chave. Veja [Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html).
+- Você pode ajustar variáveis de sistema globais ou específicas de um thread. Por exemplo, inicie o [**mysqld**](mysqld.html) com a opção [`--max-seeks-for-key=1000`](server-system-variables.html#sysvar_max_seeks_for_key) ou use `SET max_seeks_for_key=1000` para informar ao otimizador que nenhuma varredura de chave causa mais de 1.000 buscas de chave. Veja [Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html).

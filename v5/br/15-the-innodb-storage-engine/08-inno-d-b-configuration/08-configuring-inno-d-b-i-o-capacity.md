@@ -1,6 +1,6 @@
 ### 14.8.8 Configurando a capacidade de E/S do InnoDB
 
-O fio mestre `InnoDB` e outros fios realizam várias tarefas em segundo plano, a maioria das quais está relacionada ao E/S, como o esvaziamento de páginas sujas do pool de buffers e a escrita de alterações do buffer de alterações nos índices secundários apropriados. O `InnoDB` tenta realizar essas tarefas de uma maneira que não afete negativamente o funcionamento normal do servidor. Ele tenta estimar a largura de banda de E/S disponível e ajustar suas atividades para aproveitar a capacidade disponível.
+O thread mestre `InnoDB` e outros fios realizam várias tarefas em segundo plano, a maioria das quais está relacionada ao E/S, como o esvaziamento de páginas sujas do pool de buffers e a escrita de alterações do buffer de alterações nos índices secundários apropriados. O `InnoDB` tenta realizar essas tarefas de uma maneira que não afete negativamente o funcionamento normal do servidor. Ele tenta estimar a largura de banda de E/S disponível e ajustar suas atividades para aproveitar a capacidade disponível.
 
 A variável `innodb_io_capacity` define a capacidade geral de E/S disponível para o `InnoDB`. Ela deve ser definida para aproximadamente o número de operações de E/S que o sistema pode realizar por segundo (IOPS). Quando `innodb_io_capacity` é definido, o `InnoDB` estima a largura de banda de E/S disponível para tarefas em segundo plano com base no valor definido.
 

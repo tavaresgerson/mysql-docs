@@ -37,7 +37,7 @@ possible_keys: gc
         Extra: Using index condition
 ```
 
-Na verdade, o otimizador substituiu a expressão \`f1
+Na verdade, o otimizador substituiu a expressão `f1 + 1`
 
 - 1 com o nome da coluna gerada que corresponde à expressão. Isso também é evidente na consulta reescrita disponível nas informações `EXPLAIN` detalhadas exibidas pelo `SHOW WARNINGS`:
 

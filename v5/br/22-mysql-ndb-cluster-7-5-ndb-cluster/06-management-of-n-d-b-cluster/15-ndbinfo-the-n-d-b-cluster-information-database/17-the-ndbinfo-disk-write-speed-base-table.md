@@ -10,7 +10,7 @@ A tabela `disk_write_speed_base` contém as seguintes colunas:
 
 - `thr_no`
 
-  ID do fio deste fio LDM
+  ID do thread deste thread LDM
 
 - `millis_ago`
 
@@ -30,4 +30,4 @@ A tabela `disk_write_speed_base` contém as seguintes colunas:
 
 - `target_disk_write_speed`
 
-  Velocidade real de escrita de disco por fio LDM (dados básicos)
+  Velocidade real de escrita de disco por thread LDM (dados básicos)

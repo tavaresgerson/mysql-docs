@@ -36,69 +36,40 @@ As declarações preparadas que são emitidas usando o protocolo binário com `m
 
 Uma consulta não pode ser armazenada em cache se utilizar qualquer uma das seguintes funções:
 
-- `AES_DECRYPT()`
+* `AES_DECRYPT()`
+* `AES_ENCRYPT()`
+* `BENCHMARK()`
+* `CONNECTION_ID()`
+* `CONVERT_TZ()`
+* `CURDATE()`
+* `CURRENT_DATE()`
+* `CURRENT_TIME()`
+* `CURRENT_TIMESTAMP()`
+* `CURRENT_USER()`
+* `CURTIME()`
+* `DATABASE()`
+* `ENCRYPT()` com um parâmetro
 
-- `AES_ENCRYPT()`
+* `FOUND_ROWS()`
+* `GET_LOCK()`
+* `IS_FREE_LOCK()`
+* `IS_USED_LOCK()`
+* `LAST_INSERT_ID()`
+* `LOAD_FILE()`
+* `MASTER_POS_WAIT()`
+* `NOW()`
+* `PASSWORD()`
+* `RAND()`
+* `RANDOM_BYTES()`
+* `RELEASE_ALL_LOCKS()`
+* `RELEASE_LOCK()`
+* `SLEEP()`
+* `SYSDATE()`
+* `UNIX_TIMESTAMP()` sem parâmetros
 
-- `BENCHMARK()`
-
-- `ID_CONEXÃO()`
-
-- `CONVERT_TZ()`
-
-- `CURDATE()`
-
-- `DATA_ATUAL()`
-
-- `CURRENT_TIME()`
-
-- `CURRENT_TIMESTAMP()`
-
-- `USUARIO_CORRENTE()`
-
-- `CURTIME()`
-
-- `DATABASE()`
-
-- `ENCRYPT()` com um parâmetro
-
-- `FOUND_ROWS()`
-
-- `GET_LOCK()`
-
-- `IS_FREE_LOCK()`
-
-- `IS_USED_LOCK()`
-
-- `LAST_INSERT_ID()`
-
-- `LOAD_FILE()`
-
-- `MASTER_POS_WAIT()`
-
-- `Agora()`
-
-- `SENHA()`
-
-- `RAND()`
-
-- `RANDOM_BYTES()`
-
-- `RELEASE_ALL_LOCKS()`
-
-- `RELEASE_LOCK()`
-
-- `ODIAR()`
-
-- `SYSDATE()`
-
-- `UNIX_TIMESTAMP()` sem parâmetros
-
-- `USUARIO()`
-
-- `UUID()`
-
-- `UUID_SHORT()`
+* `USER()`
+* `UUID()`
+* `UUID_SHORT()`
 
 Uma consulta também não é armazenada em cache nessas condições:
 

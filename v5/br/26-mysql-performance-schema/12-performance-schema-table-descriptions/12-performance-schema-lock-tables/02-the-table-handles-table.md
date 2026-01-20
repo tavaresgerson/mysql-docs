@@ -60,7 +60,7 @@ A tabela `table_handles` tem as seguintes colunas:
 
 - `OWNER_THREAD_ID`
 
-  O fio que possui o manipulador da tabela.
+  O thread que possui o manipulador da tabela.
 
 - `OWNER_EVENT_ID`
 

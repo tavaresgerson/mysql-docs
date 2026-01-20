@@ -16,7 +16,7 @@ Os seguintes cenários são relevantes para a existência de transações parcia
 
 2. O **mysqld** é desligado. Tanto o desligamento limpo quanto o não limpo abortam as transações em andamento e podem deixar lacunas e transações meio aplicadas.
 
-3. `KILL` (cancelar) os threads de replicação (o thread SQL ao usar uma replicação de único fio, o thread coordenador ao usar uma replicação de múltiplos fios). Isso interrompe as transações em andamento e pode deixar lacunas e transações meio aplicadas.
+3. `KILL` (cancelar) os threads de replicação (o thread SQL ao usar uma replicação de único thread, o thread coordenador ao usar uma replicação de múltiplos fios). Isso interrompe as transações em andamento e pode deixar lacunas e transações meio aplicadas.
 
 4. Erro nas threads do aplicador. Isso pode deixar lacunas. Se o erro estiver em uma transação mista, essa transação será aplicada parcialmente. Ao usar uma replica multithreaded, os trabalhadores que não receberam um erro completam suas filas, então pode levar tempo para parar todos os threads.
 
@@ -48,6 +48,6 @@ As informações de posição do log binário de origem são mantidas em formato
 
 Aviso
 
-O comando `RESET SLAVE` remove os registros do relé e redefini o posicionamento da replicação. Portanto, ao emitir o comando `RESET SLAVE` em uma replica com lacunas, a replica perde qualquer informação sobre as lacunas, sem corrigir as lacunas.
+O comando `RESET SLAVE` remove os registros do relay e redefini o posicionamento da replicação. Portanto, ao emitir o comando `RESET SLAVE` em uma replica com lacunas, a replica perde qualquer informação sobre as lacunas, sem corrigir as lacunas.
 
 Quando a replicação baseada em GTID está em uso, a partir do MySQL 5.7.28, uma replica multisserializa verifica primeiro se `MASTER_AUTO_POSITION` está definido como `ON`, e se estiver, omite o passo de cálculo das transações que devem ser ignoradas ou não ignoradas. Nessa situação, os logs do retransmissor antigo não são necessários para o processo de recuperação.

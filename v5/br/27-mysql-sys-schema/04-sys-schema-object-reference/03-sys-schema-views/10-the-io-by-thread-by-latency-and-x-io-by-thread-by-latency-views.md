@@ -30,7 +30,7 @@ As vistas `io_by_thread_by_latency` e `x$io_by_thread_by_latency` possuem essas 
 
 - `thread_id`
 
-  O ID do fio.
+  O ID do thread.
 
 - `processlist_id`
 

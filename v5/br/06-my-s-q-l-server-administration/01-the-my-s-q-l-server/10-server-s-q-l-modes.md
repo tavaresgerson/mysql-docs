@@ -392,7 +392,7 @@ Os seguintes modos especiais são fornecidos como abreviações para combinaçõ
 
   - A opção `ENGINE=engine_name` é exibida como `TYPE=engine_name`.
 
-  - Para as tabelas de ``MEMÓRIA`, o mecanismo de armazenamento é exibido como `HEAP\`.
+  - Para as tabelas de ``MEMORY`, o mecanismo de armazenamento é exibido como `HEAP\`.
 
   Nota
 

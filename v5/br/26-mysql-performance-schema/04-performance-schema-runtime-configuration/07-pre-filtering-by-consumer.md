@@ -58,7 +58,7 @@ As listas a seguir descrevem os valores de consumo disponíveis. Para discussão
 - Eventos de transação Consumidores
 - Resumo de declaração do consumidor do esquema de desempenho
 
-#### Consumidores globais e de fio
+#### Consumidores globais e de thread
 
 - `global_instrumentation` é o consumidor de nível mais alto. Se `global_instrumentation` for `NO`, ele desativa a instrumentação global. Todos os outros ajustes são de nível inferior e não são verificados; não importa para o que eles estejam configurados. Nenhuma informação global ou por thread é mantida e nenhum evento individual é coletado nas tabelas de eventos atuais ou histórico de eventos. Se `global_instrumentation` for `YES`, o Schema de Desempenho mantém informações para estados globais e também verifica o consumidor `thread_instrumentation`.
 

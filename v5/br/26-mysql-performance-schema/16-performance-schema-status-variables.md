@@ -153,7 +153,7 @@ As variáveis de status do esquema de desempenho têm os seguintes significados:
 
 - `Performance_schema_thread_classes_lost`
 
-  Quantos instrumentos de fio não puderam ser carregados.
+  Quantos instrumentos de thread não puderam ser carregados.
 
 - `Performance_schema_thread_instances_lost`
 

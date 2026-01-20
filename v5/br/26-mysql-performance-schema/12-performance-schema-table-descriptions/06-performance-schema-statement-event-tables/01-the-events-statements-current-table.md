@@ -2,7 +2,7 @@
 
 A tabela `events_statements_current` contém eventos de declarações atuais. A tabela armazena uma linha por thread, mostrando o status atual do evento de declaração mais recente monitorado da thread, portanto, não há uma variável do sistema para configurar o tamanho da tabela.
 
-Das tabelas que contêm linhas de eventos de declarações, `events_statements_current` é a mais fundamental. Outras tabelas que contêm linhas de eventos de declarações são derivadas logicamente dos eventos atuais. Por exemplo, as tabelas `events_statements_history` e `events_statements_history_long` são coleções dos eventos de declarações mais recentes que terminaram, até um número máximo de linhas por fio e globalmente em todos os fios, respectivamente.
+Das tabelas que contêm linhas de eventos de declarações, `events_statements_current` é a mais fundamental. Outras tabelas que contêm linhas de eventos de declarações são derivadas logicamente dos eventos atuais. Por exemplo, as tabelas `events_statements_history` e `events_statements_history_long` são coleções dos eventos de declarações mais recentes que terminaram, até um número máximo de linhas por thread e globalmente em todos os fios, respectivamente.
 
 Para obter mais informações sobre a relação entre as três tabelas de eventos `events_statements_xxx`, consulte Seção 25.9, “Tabelas do Schema de Desempenho para Eventos Atuais e Históricos”.
 
@@ -12,7 +12,7 @@ A tabela `events_statements_current` tem as seguintes colunas:
 
 - `THREAD_ID`, `EVENT_ID`
 
-  O fio associado ao evento e o número do evento atual do fio quando o evento começa. Os valores `THREAD_ID` e `EVENT_ID` juntos identificam de forma única a linha. Nenhuma linha tem o mesmo par de valores.
+  O thread associado ao evento e o número do evento atual do thread quando o evento começa. Os valores `THREAD_ID` e `EVENT_ID` juntos identificam de forma única a linha. Nenhuma linha tem o mesmo par de valores.
 
 - `END_EVENT_ID`
 

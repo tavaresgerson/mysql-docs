@@ -38,7 +38,7 @@ A tabela [`TP_THREAD_GROUP_STATS`](https://docs.oracle.com/en/database/oracle12/
 
 - `BECOME_CONSUMER_THREAD`
 
-  O número de vezes que o fio foi atribuído ao papel de fio consumidor.
+  O número de vezes que o thread foi atribuído ao papel de thread consumidor.
 
 - `BECOME_RESERVE_THREAD`
 
@@ -50,7 +50,7 @@ A tabela [`TP_THREAD_GROUP_STATS`](https://docs.oracle.com/en/database/oracle12/
 
 - `WAKE_THREAD_STALL_CHECKER`
 
-  O número de vezes que o fio de verificação da barraca decidiu acordar ou criar um fio para possivelmente lidar com algumas declarações ou cuidar do papel do fio do garçom.
+  O número de vezes que o thread de verificação da barraca decidiu acordar ou criar um thread para possivelmente lidar com algumas declarações ou cuidar do papel do thread do garçom.
 
 - `SLEEP_WAITS`
 

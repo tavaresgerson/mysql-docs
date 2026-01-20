@@ -24,7 +24,7 @@ O servidor cria tabelas temporárias em condições como essas:
 
 - Avaliação das expressões `GROUP_CONCAT()` ou `COUNT(DISTINCT)`.
 
-Para determinar se uma declaração requer uma tabela temporária, use `EXPLAIN` e verifique a coluna `Extra` para ver se diz `Usando temporária` (consulte a Seção 8.8.1, “Otimizando consultas com EXPLAIN”). `EXPLAIN` não diz necessariamente `Usando temporária` para tabelas temporárias derivadas ou materializadas.
+Para determinar se uma declaração requer uma tabela temporária, use `EXPLAIN` e verifique a coluna `Extra` para ver se diz `Using temporary` (consulte a Seção 8.8.1, “Otimizando consultas com EXPLAIN”). `EXPLAIN` não diz necessariamente `Using temporary` para tabelas temporárias derivadas ou materializadas.
 
 Algumas condições de consulta impedem o uso de uma tabela temporária de memória, caso em que o servidor usa uma tabela em disco em vez disso:
 

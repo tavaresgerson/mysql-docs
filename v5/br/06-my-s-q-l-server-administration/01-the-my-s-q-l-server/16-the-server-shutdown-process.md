@@ -6,9 +6,9 @@ O processo de desligamento do servidor ocorre da seguinte forma:
 
    Isso pode ocorrer de várias maneiras. Por exemplo, um usuário com o privilégio `SHUTDOWN` pode executar o comando **mysqladmin shutdown**. **mysqladmin** pode ser usado em qualquer plataforma suportada pelo MySQL. Outros métodos de iniciação de desligamento específicos para o sistema operacional também são possíveis: o servidor é desligado no Unix quando recebe um sinal `SIGTERM`. Um servidor que está rodando como um serviço no Windows é desligado quando o gerenciador de serviços o indica.
 
-2. O servidor cria um fio de desligamento, se necessário.
+2. O servidor cria um thread de desligamento, se necessário.
 
-   Dependendo de como o desligamento foi iniciado, o servidor pode criar um fio para lidar com o processo de desligamento. Se o desligamento foi solicitado por um cliente, um fio de desligamento é criado. Se o desligamento for o resultado da recepção de um sinal `SIGTERM`, o fio de sinal pode lidar com o desligamento por si só ou pode criar um fio separado para fazer isso. Se o servidor tentar criar um fio de desligamento e não conseguir (por exemplo, se a memória estiver esgotada), ele emite uma mensagem de diagnóstico que aparece no log de erro:
+   Dependendo de como o desligamento foi iniciado, o servidor pode criar um thread para lidar com o processo de desligamento. Se o desligamento foi solicitado por um cliente, um thread de desligamento é criado. Se o desligamento for o resultado da recepção de um sinal `SIGTERM`, o thread de sinal pode lidar com o desligamento por si só ou pode criar um thread separado para fazer isso. Se o servidor tentar criar um thread de desligamento e não conseguir (por exemplo, se a memória estiver esgotada), ele emite uma mensagem de diagnóstico que aparece no log de erro:
 
    ```sql
    Error: Can't create thread to kill server
@@ -20,7 +20,7 @@ O processo de desligamento do servidor ocorre da seguinte forma:
 
 4. O servidor termina a atividade atual.
 
-   Para cada fio associado a uma conexão com o cliente, o servidor interrompe a conexão com o cliente e marca o fio como morto. Os fios morrem quando percebem que foram marcados como tal. Os fios de conexões ociosas morrem rapidamente. Os fios que estão processando instruções verificam periodicamente seu estado e demoram mais para morrer. Para obter informações adicionais sobre a terminação de fios, consulte Seção 13.7.6.4, “Instrução KILL”, em particular para as instruções sobre as operações `REPAIR TABLE` (`REPAIR TABLE`) ou `OPTIMIZE TABLE` (`OPTIMIZE TABLE`) em tabelas `MyISAM`.
+   Para cada thread associado a uma conexão com o cliente, o servidor interrompe a conexão com o cliente e marca o thread como morto. Os fios morrem quando percebem que foram marcados como tal. Os fios de conexões ociosas morrem rapidamente. Os fios que estão processando instruções verificam periodicamente seu estado e demoram mais para morrer. Para obter informações adicionais sobre a terminação de fios, consulte Seção 13.7.6.4, “Instrução KILL”, em particular para as instruções sobre as operações `REPAIR TABLE` (`REPAIR TABLE`) ou `OPTIMIZE TABLE` (`OPTIMIZE TABLE`) em tabelas `MyISAM`.
 
    Para os threads que têm uma transação aberta, a transação é revertida. Se um thread estiver atualizando uma tabela não transacional, uma operação como uma atualização múltipla de várias linhas (`UPDATE` ou `INSERT`) pode deixar a tabela parcialmente atualizada, pois a operação pode ser encerrada antes de ser concluída.
 

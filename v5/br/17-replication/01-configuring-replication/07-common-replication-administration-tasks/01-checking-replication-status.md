@@ -72,7 +72,7 @@ Os campos principais do relatório de status a serem examinados são:
 
 - `Seconds_Behind_Master`: O número de segundos que o thread de replicação SQL está atrasado no processamento do log binário da fonte. Um número alto (ou um número crescente) pode indicar que a replica não consegue lidar com os eventos da fonte de forma oportuna.
 
-  Um valor de 0 para `Seconds_Behind_Master` geralmente pode ser interpretado como indicando que a replica alcançou o mestre, mas há alguns casos em que isso não é estritamente verdadeiro. Por exemplo, isso pode ocorrer se a conexão de rede entre o mestre e a replica for interrompida, mas o fio de I/O de replicação ainda não notou isso — ou seja, `slave_net_timeout` ainda não expirou.
+  Um valor de 0 para `Seconds_Behind_Master` geralmente pode ser interpretado como indicando que a replica alcançou o mestre, mas há alguns casos em que isso não é estritamente verdadeiro. Por exemplo, isso pode ocorrer se a conexão de rede entre o mestre e a replica for interrompida, mas o thread de I/O de replicação ainda não notou isso — ou seja, `slave_net_timeout` ainda não expirou.
 
   Também é possível que os valores transitórios para `Seconds_Behind_Master` não reflitam a situação com precisão. Quando o thread de replicação SQL alcança o I/O, `Seconds_Behind_Master` exibe 0; mas quando o thread de I/O de replicação ainda está agendando um novo evento, `Seconds_Behind_Master` pode mostrar um valor grande até que o thread SQL termine de executar o novo evento. Isso é especialmente provável quando os eventos têm timestamps antigos; nesses casos, se você executar `SHOW SLAVE STATUS` várias vezes em um período relativamente curto, você pode ver esse valor mudar repetidamente entre 0 e um valor relativamente grande.
 

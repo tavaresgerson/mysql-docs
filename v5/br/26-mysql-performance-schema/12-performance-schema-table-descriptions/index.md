@@ -36,9 +36,9 @@ As tabelas no banco de dados `performance_schema` podem ser agrupadas da seguint
 
 - Configure as tabelas. Essas tabelas são usadas para configurar e exibir as características de monitoramento.
 
-- Tabelas de eventos atuais. A tabela `events_waits_current` contém o evento mais recente para cada fio. Outras tabelas semelhantes contêm eventos atuais em diferentes níveis da hierarquia de eventos: `events_stages_current` para eventos de estágio, `events_statements_current` para eventos de declaração e `events_transactions_current` para eventos de transação.
+- Tabelas de eventos atuais. A tabela `events_waits_current` contém o evento mais recente para cada thread. Outras tabelas semelhantes contêm eventos atuais em diferentes níveis da hierarquia de eventos: `events_stages_current` para eventos de estágio, `events_statements_current` para eventos de declaração e `events_transactions_current` para eventos de transação.
 
-- Tabelas de histórico. Essas tabelas têm a mesma estrutura das tabelas de eventos atuais, mas contêm mais linhas. Por exemplo, para eventos de espera, a tabela `events_waits_history` contém os 10 eventos mais recentes por fio. A tabela `events_waits_history_long` contém os 10.000 eventos mais recentes. Existem outras tabelas semelhantes para históricos de estágios, declarações e transações.
+- Tabelas de histórico. Essas tabelas têm a mesma estrutura das tabelas de eventos atuais, mas contêm mais linhas. Por exemplo, para eventos de espera, a tabela `events_waits_history` contém os 10 eventos mais recentes por thread. A tabela `events_waits_history_long` contém os 10.000 eventos mais recentes. Existem outras tabelas semelhantes para históricos de estágios, declarações e transações.
 
   Para alterar os tamanhos das tabelas de histórico de eventos de espera, defina as variáveis de sistema apropriadas no início do servidor. Por exemplo, para definir os tamanhos das tabelas de histórico de eventos de espera do esquema de desempenho, defina `performance_schema_events_waits_history_size` e `performance_schema_events_waits_history_long_size`.
 

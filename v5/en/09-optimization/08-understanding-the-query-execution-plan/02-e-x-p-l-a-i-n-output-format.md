@@ -29,7 +29,77 @@ Each output row from `EXPLAIN` provides information about one table. Each row co
 
 **Table 8.1 EXPLAIN Output Columns**
 
-<table summary="Output columns produced by the EXPLAIN statement."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th>Column</th> <th>JSON Name</th> <th>Meaning</th> </tr></thead><tbody><tr> <th><code>id</code></th> <td><code>select_id</code></td> <td>The <code>SELECT</code> identifier</td> </tr><tr> <th><code>select_type</code></th> <td>None</td> <td>The <code>SELECT</code> type</td> </tr><tr> <th><code>table</code></th> <td><code>table_name</code></td> <td>The table for the output row</td> </tr><tr> <th><code>partitions</code></th> <td><code>partitions</code></td> <td>The matching partitions</td> </tr><tr> <th><code>type</code></th> <td><code>access_type</code></td> <td>The join type</td> </tr><tr> <th><code>possible_keys</code></th> <td><code>possible_keys</code></td> <td>The possible indexes to choose</td> </tr><tr> <th><code>key</code></th> <td><code>key</code></td> <td>The index actually chosen</td> </tr><tr> <th><code>key_len</code></th> <td><code>key_length</code></td> <td>The length of the chosen key</td> </tr><tr> <th><code>ref</code></th> <td><code>ref</code></td> <td>The columns compared to the index</td> </tr><tr> <th><code>rows</code></th> <td><code>rows</code></td> <td>Estimate of rows to be examined</td> </tr><tr> <th><code>filtered</code></th> <td><code>filtered</code></td> <td>Percentage of rows filtered by table condition</td> </tr><tr> <th><code>Extra</code></th> <td>None</td> <td>Additional information</td> </tr></tbody></table>
+<table summary="Output columns produced by the EXPLAIN statement.">
+   <thead>
+      <tr>
+         <th>Column</th>
+         <th>JSON Name</th>
+         <th>Meaning</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <th><code>id</code></th>
+         <td><code>select_id</code></td>
+         <td>The <code>SELECT</code> identifier</td>
+      </tr>
+      <tr>
+         <th><code>select_type</code></th>
+         <td>None</td>
+         <td>The <code>SELECT</code> type</td>
+      </tr>
+      <tr>
+         <th><code>table</code></th>
+         <td><code>table_name</code></td>
+         <td>The table for the output row</td>
+      </tr>
+      <tr>
+         <th><code>partitions</code></th>
+         <td><code>partitions</code></td>
+         <td>The matching partitions</td>
+      </tr>
+      <tr>
+         <th><code>type</code></th>
+         <td><code>access_type</code></td>
+         <td>The join type</td>
+      </tr>
+      <tr>
+         <th><code>possible_keys</code></th>
+         <td><code>possible_keys</code></td>
+         <td>The possible indexes to choose</td>
+      </tr>
+      <tr>
+         <th><code>key</code></th>
+         <td><code>key</code></td>
+         <td>The index actually chosen</td>
+      </tr>
+      <tr>
+         <th><code>key_len</code></th>
+         <td><code>key_length</code></td>
+         <td>The length of the chosen key</td>
+      </tr>
+      <tr>
+         <th><code>ref</code></th>
+         <td><code>ref</code></td>
+         <td>The columns compared to the index</td>
+      </tr>
+      <tr>
+         <th><code>rows</code></th>
+         <td><code>rows</code></td>
+         <td>Estimate of rows to be examined</td>
+      </tr>
+      <tr>
+         <th><code>filtered</code></th>
+         <td><code>filtered</code></td>
+         <td>Percentage of rows filtered by table condition</td>
+      </tr>
+      <tr>
+         <th><code>Extra</code></th>
+         <td>None</td>
+         <td>Additional information</td>
+      </tr>
+   </tbody>
+</table>
 
 Note
 

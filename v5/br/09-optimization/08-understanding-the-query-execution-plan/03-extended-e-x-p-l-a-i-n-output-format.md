@@ -66,7 +66,7 @@ A lista a seguir descreve marcadores especiais que podem aparecer na saída ampl
 
   A expressão (como uma subconsulta escalar) é executada uma vez e o valor resultante é salvo na memória para uso posterior. Para resultados que consistem em vários valores, pode ser criada uma tabela temporária e você pode ver `<tabela temporária>` em vez disso.
 
-- `<existe>(fragmento da consulta)`
+- `<exists>(fragmento da consulta)`
 
   O predicado da subconsulta é convertido em um predicado `EXISTS` e a subconsulta é transformada para que possa ser usada junto com o predicado `EXISTS`.
 
@@ -86,11 +86,11 @@ A lista a seguir descreve marcadores especiais que podem aparecer na saída ampl
 
   Um teste para verificar se a expressão não avalia como `NULL`.
 
-- `<materializar>(fragmento da consulta)`
+- `<materialize>(fragmento da consulta)`
 
   A materialização de subconsultas é usada.
 
-- "materializado-subquery".col_name
+- `` `materialized-subquery`.col_name ``
 
   Uma referência à coluna *`col_name`* em uma tabela temporária interna materializada para armazenar o resultado da avaliação de uma subconsulta.
 
@@ -106,11 +106,11 @@ A lista a seguir descreve marcadores especiais que podem aparecer na saída ampl
 
   O `SELECT` está associado à linha na saída `EXPLAIN` não estendida que tem um valor `id` de *`N`*.
 
-- `join externo (tarefas internas)`
+- `outer_tables semi join (inner_tables)`
 
   Uma operação de semijoin. *`inner_tables`* mostra as tabelas que não foram extraídas. Veja a Seção 8.2.2.1, “Otimizando subconsultas, tabelas derivadas e referências de visualizações com transformações de semijoin”.
 
-- \<tabela temporária>
+- `<temporary table>`
 
   Isso representa uma tabela temporária interna criada para armazenar um resultado intermediário.
 

@@ -12,7 +12,7 @@ A tabela `OPTIMIZER_TRACE` tem as seguintes colunas:
 
   A trilha, no formato `JSON`.
 
-- `DESLOCAMENTO DE BÔNUS EXCEDENDO O TAMANHO MÁXIMO DE MEMÓRIA`
+- `DESLOCAMENTO DE BÔNUS EXCEDENDO O TAMANHO MÁXIMO DE MEMORY`
 
   Cada rastro lembrado é uma string que é estendida à medida que a otimização avança e adiciona dados a ela. A variável `optimizer_trace_max_mem_size` define um limite para a quantidade total de memória usada por todos os rastros lembrados atualmente. Se esse limite for atingido, o rastro atual não é estendido (e, portanto, é incompleto), e a coluna `MISSING_BYTES_BEYOND_MAX_MEM_SIZE` mostra o número de bytes faltantes do rastro.
 

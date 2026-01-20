@@ -43,7 +43,7 @@ Aqui estão algumas razões pelas quais o erro "Não é possível se conectar ao
 
   Veja [Seção B.3.3.6, “Como proteger ou alterar o arquivo de soquete Unix do MySQL”](problemas-com-mysql-sock.html).
 
-- Você está usando o Linux e um fio do servidor morreu (dumpou o núcleo). Nesse caso, você deve matar os outros fios do [**mysqld**](mysqld.html) (por exemplo, com [**kill**](kill.html)) antes de poder reiniciar o servidor MySQL. Veja [Seção B.3.3.3, “O que fazer se o MySQL continuar travando”](crashing.html).
+- Você está usando o Linux e um thread do servidor morreu (dumpou o núcleo). Nesse caso, você deve matar os outros fios do [**mysqld**](mysqld.html) (por exemplo, com [**kill**](kill.html)) antes de poder reiniciar o servidor MySQL. Veja [Seção B.3.3.3, “O que fazer se o MySQL continuar travando”](crashing.html).
 
 - O servidor ou o programa cliente podem não ter os privilégios de acesso adequados para o diretório que contém o arquivo de soquete Unix ou o próprio arquivo de soquete. Nesse caso, você deve alterar os privilégios de acesso para o diretório ou o arquivo de soquete para que o servidor e os clientes possam acessá-los, ou reiniciar [**mysqld**](mysqld.html) com uma opção [`--socket`](server-options.html#option_mysqld_socket) que especifica o nome de um arquivo de soquete em um diretório onde o servidor pode criá-lo e onde os programas cliente podem acessá-lo.
 

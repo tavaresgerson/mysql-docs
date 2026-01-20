@@ -104,7 +104,7 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
 - `Relay_Log_File`
 
-  O nome do arquivo de registro de relé a partir do qual o thread SQL está lendo e executando atualmente.
+  O nome do arquivo de registro de relay a partir do qual o thread SQL está lendo e executando atualmente.
 
 - `Relay_Log_Pos`
 
@@ -128,7 +128,7 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
 - `Slave_SQL_Running`
 
-  Se o fio SQL foi iniciado.
+  Se o thread SQL foi iniciado.
 
 - `Replicate_Do_DB`, `Replicate_Ignore_DB`
 
@@ -146,7 +146,7 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
   Nota
 
-  Quando o fio de replicação SQL recebe um erro, ele relata o erro primeiro e, em seguida, para o fio SQL. Isso significa que há uma pequena janela de tempo durante a qual `SHOW SLAVE STATUS` mostra um valor diferente de zero para `Last_SQL_Errno`, mesmo que `Slave_SQL_Running` ainda mostre `Sim`.
+  Quando o thread de replicação SQL recebe um erro, ele relata o erro primeiro e, em seguida, para o thread SQL. Isso significa que há uma pequena janela de tempo durante a qual `SHOW SLAVE STATUS` mostra um valor diferente de zero para `Last_SQL_Errno`, mesmo que `Slave_SQL_Running` ainda mostre `Sim`.
 
 - `Contator de pular`
 
@@ -160,7 +160,7 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
 - `Relay_Log_Space`
 
-  O tamanho total combinado de todos os arquivos de registro de relé existentes.
+  O tamanho total combinado de todos os arquivos de registro de relay existentes.
 
 - `Até_Condição`, `Até_Arquivo_Log`, `Até_Pos_Log`
 
@@ -206,11 +206,11 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
   - Quando nenhum evento está sendo processado na replica, esse valor é 0.
 
-  Em essência, este campo mede a diferença de tempo em segundos entre o fio de SQL da replica e o fio de E/S da replica. Se a conexão de rede entre a fonte e a replica for rápida, o fio de E/S da replica estará muito próximo da fonte, então este campo é uma boa aproximação de quão atrasado o fio de SQL da replica está em relação à fonte. Se a rede for lenta, isso *não* é uma boa aproximação; o fio de SQL da replica pode estar frequentemente atrasado em relação ao fio de E/S da replica que lê lentamente, então `Seconds_Behind_Master` muitas vezes mostra um valor de 0, mesmo que o fio de E/S esteja atrasado em relação à fonte. Em outras palavras, *esta coluna é útil apenas para redes rápidas*.
+  Em essência, este campo mede a diferença de tempo em segundos entre o thread de SQL da replica e o thread de E/S da replica. Se a conexão de rede entre a fonte e a replica for rápida, o thread de E/S da replica estará muito próximo da fonte, então este campo é uma boa aproximação de quão atrasado o thread de SQL da replica está em relação à fonte. Se a rede for lenta, isso *não* é uma boa aproximação; o thread de SQL da replica pode estar frequentemente atrasado em relação ao thread de E/S da replica que lê lentamente, então `Seconds_Behind_Master` muitas vezes mostra um valor de 0, mesmo que o thread de E/S esteja atrasado em relação à fonte. Em outras palavras, *esta coluna é útil apenas para redes rápidas*.
 
   Essa computação da diferença de tempo funciona mesmo se a fonte e a réplica não tiverem tempos de relógio idênticos, desde que a diferença, calculada quando a thread de E/S da réplica começa, permaneça constante a partir daí. Quaisquer alterações — incluindo atualizações do NTP — podem levar a desalinhamentos de relógio que podem tornar o cálculo de `Seconds_Behind_Master` menos confiável.
 
-  No MySQL 5.7, este campo é `NULL` (definido como indefinido ou desconhecido) se o fio de SQL da replica não estiver em execução ou se o fio de I/O da replica não estiver em execução e o log de retransmissão tiver sido consumido. (Em versões mais antigas do MySQL, este campo era `NULL` se o fio de SQL da replica ou o fio de I/O da replica não estivesse em execução ou não estivesse conectado à fonte.) Se o fio de I/O estiver em execução, mas o log de retransmissão estiver esgotado, `Seconds_Behind_Master` é definido como 0.
+  No MySQL 5.7, este campo é `NULL` (definido como indefinido ou desconhecido) se o thread de SQL da replica não estiver em execução ou se o thread de I/O da replica não estiver em execução e o log de retransmissão tiver sido consumido. (Em versões mais antigas do MySQL, este campo era `NULL` se o thread de SQL da replica ou o thread de I/O da replica não estivesse em execução ou não estivesse conectado à fonte.) Se o thread de I/O estiver em execução, mas o log de retransmissão estiver esgotado, `Seconds_Behind_Master` é definido como 0.
 
   O valor de `Seconds_Behind_Master` é baseado nos timestamps armazenados nos eventos, que são preservados através da replicação. Isso significa que, se uma fonte M1 for ela mesma uma réplica de M0, qualquer evento do log binário de M1 que tenha origem no log binário de M0 terá o timestamp de M0 para esse evento. Isso permite que o MySQL replique o `TIMESTAMP` (datetime.html) com sucesso. No entanto, o problema para `Seconds_Behind_Master` é que, se M1 também receber atualizações diretas de clientes, o valor de `Seconds_Behind_Master` flutua aleatoriamente porque, às vezes, o último evento de M1 tem origem em M0 e, outras vezes, é o resultado de uma atualização direta em M1.
 
@@ -278,7 +278,7 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
 - `Slave_SQL_Running_State`
 
-  O estado do fio SQL (análogo ao `Slave_IO_State`). O valor é idêntico ao valor `State` do fio SQL SQL, conforme exibido por `SHOW PROCESSLIST`. Seção 8.14.7, “Estados dos fios SQL Replica da Replicação”, fornece uma lista dos possíveis estados
+  O estado do thread SQL (análogo ao `Slave_IO_State`). O valor é idêntico ao valor `State` do thread SQL SQL, conforme exibido por `SHOW PROCESSLIST`. Seção 8.14.7, “Estados dos fios SQL Replica da Replicação”, fornece uma lista dos possíveis estados
 
 - `Master_Retry_Count`
 
@@ -302,7 +302,7 @@ A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obt
 
   Este é o conjunto de todos os GTIDs que existem ou existiram nos registros do retransmissor. Cada GTID é adicionado assim que o `Gtid_log_event` é recebido. Isso pode fazer com que transações parcialmente transmitidas tenham seus GTIDs incluídos no conjunto.
 
-  Quando todos os logs de relé são perdidos devido à execução de `RESET SLAVE` ou `CHANGE MASTER TO`, ou devido aos efeitos da opção `--relay-log-recovery`, o conjunto é limpo. Quando `relay_log_purge = 1`, o log de relé mais recente é sempre mantido e o conjunto não é limpo.
+  Quando todos os logs de relay são perdidos devido à execução de `RESET SLAVE` ou `CHANGE MASTER TO`, ou devido aos efeitos da opção `--relay-log-recovery`, o conjunto é limpo. Quando `relay_log_purge = 1`, o log de relay mais recente é sempre mantido e o conjunto não é limpo.
 
 - `Executed_Gtid_Set`
 

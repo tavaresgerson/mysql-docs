@@ -54,7 +54,7 @@ Valores opcionais *`type`* podem ser especificados para exibir tipos específico
 
 - O `IPC` exibe contagens de mensagens enviadas e recebidas
 
-- A função `MEMÓRIA` não está sendo implementada atualmente
+- A função `MEMORY` não está sendo implementada atualmente
 
 - `PAGE FAULTS` exibe contagens de falhas de página principais e secundárias
 

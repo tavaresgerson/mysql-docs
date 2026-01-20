@@ -59,7 +59,7 @@ Emitir uma declaração de `STOP SLAVE` ou `RESET SLAVE` *não* redefiniria o UU
 
 O `server_uuid` de um servidor também é usado em GTIDs para transações que têm origem nesse servidor. Para obter mais informações, consulte Seção 16.1.3, “Replicação com Identificadores Globais de Transações”.
 
-Ao iniciar, o fio de I/O de replicação gera um erro e é interrompido se o UUID da fonte for igual ao seu próprio, a menos que a opção `--replicate-same-server-id` tenha sido definida. Além disso, o fio de I/O de replicação gera uma mensagem de aviso se qualquer um dos seguintes for verdadeiro:
+Ao iniciar, o thread de I/O de replicação gera um erro e é interrompido se o UUID da fonte for igual ao seu próprio, a menos que a opção `--replicate-same-server-id` tenha sido definida. Além disso, o thread de I/O de replicação gera uma mensagem de aviso se qualquer um dos seguintes for verdadeiro:
 
 - Não existe nenhuma fonte com o `server_uuid` esperado (replication-options.html#sysvar_server_uuid).
 

@@ -14,7 +14,7 @@ As seguintes variáveis de sistema afetam o comportamento das tabelas `MyISAM`. 
 
   Nota
 
-  Este é um limite *por fio*!
+  Este é um limite *por thread*!
 
 - `delay_key_write=ALL`
 

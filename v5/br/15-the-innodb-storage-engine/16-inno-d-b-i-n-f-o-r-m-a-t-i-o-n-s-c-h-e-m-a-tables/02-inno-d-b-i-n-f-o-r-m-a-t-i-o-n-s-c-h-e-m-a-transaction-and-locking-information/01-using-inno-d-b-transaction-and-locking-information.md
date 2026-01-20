@@ -4,7 +4,7 @@
 
 Às vezes, é útil identificar qual transação está bloqueando outra. As tabelas que contêm informações sobre transações e bloqueios de dados do `InnoDB` permitem determinar qual transação está esperando por outra e qual recurso está sendo solicitado. (Para descrições dessas tabelas, consulte a Seção 14.16.2, “Informações de Transações e Bloqueios do InnoDB do Schema de Informações”).
 
-Suponha que três sessões estejam em execução simultaneamente. Cada sessão corresponde a um fio MySQL e executa uma transação após a outra. Considere o estado do sistema quando essas sessões emitiram as seguintes instruções, mas nenhuma ainda comprometeu sua transação:
+Suponha que três sessões estejam em execução simultaneamente. Cada sessão corresponde a um thread MySQL e executa uma transação após a outra. Considere o estado do sistema quando essas sessões emitiram as seguintes instruções, mas nenhuma ainda comprometeu sua transação:
 
 - Sessão A:
 
@@ -58,11 +58,11 @@ FROM sys.innodb_lock_waits;
 
 Se um valor NULL for reportado para a consulta de bloqueio, consulte Identificando uma consulta de bloqueio após a sessão de emissão ficar inativa.
 
-<table summary="O conjunto de resultados de uma consulta nas tabelas INFORMATION_SCHEMA.INNODB_LOCK_WAITS e INFORMATION_SCHEMA.INNODB_TRX, mostrada no texto anterior, indica quais threads do InnoDB estão esperando por quais outras threads."><col style="width: 9%"/><col style="width: 9%"/><col style="width: 33%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 33%"/><thead><tr> <th>id de espera trx</th> <th>fila de espera</th> <th>consulta de espera</th> <th>bloquear o ID trx</th> <th>fio de bloqueio</th> <th>bloquear consulta</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>5</code>]</th> <td>PH_HTML_CODE_<code>5</code>]</td> <td>PH_HTML_CODE_<code>A5</code>]</td> <td>PH_HTML_CODE_<code>7</code>]</td> <td>PH_HTML_CODE_<code>SELECT c FROM t FOR UPDATE</code>]</td> <td>PH_HTML_CODE_<code>A4</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>6</code>]</th> <td>PH_HTML_CODE_<code>SELECT b FROM t FOR UPDATE</code>]</td> <td><code>SELECT c FROM t FOR UPDATE</code></td> <td><code>A3</code></td> <td><code>5</code></td> <td><code>6</code><code>5</code>]</td> </tr><tr> <th><code>A5</code></th> <td><code>7</code></td> <td><code>SELECT c FROM t FOR UPDATE</code></td> <td><code>A4</code></td> <td><code>6</code></td> <td><code>SELECT b FROM t FOR UPDATE</code></td> </tr></tbody></table>
+<table summary="O conjunto de resultados de uma consulta nas tabelas INFORMATION_SCHEMA.INNODB_LOCK_WAITS e INFORMATION_SCHEMA.INNODB_TRX, mostrada no texto anterior, indica quais threads do InnoDB estão esperando por quais outras threads."><col style="width: 9%"/><col style="width: 9%"/><col style="width: 33%"/><col style="width: 10%"/><col style="width: 10%"/><col style="width: 33%"/><thead><tr> <th>id de espera trx</th> <th>fila de espera</th> <th>consulta de espera</th> <th>bloquear o ID trx</th> <th>thread de bloqueio</th> <th>bloquear consulta</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>5</code>]</th> <td>PH_HTML_CODE_<code>5</code>]</td> <td>PH_HTML_CODE_<code>A5</code>]</td> <td>PH_HTML_CODE_<code>7</code>]</td> <td>PH_HTML_CODE_<code>SELECT c FROM t FOR UPDATE</code>]</td> <td>PH_HTML_CODE_<code>A4</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>6</code>]</th> <td>PH_HTML_CODE_<code>SELECT b FROM t FOR UPDATE</code>]</td> <td><code>SELECT c FROM t FOR UPDATE</code></td> <td><code>A3</code></td> <td><code>5</code></td> <td><code>6</code><code>5</code>]</td> </tr><tr> <th><code>A5</code></th> <td><code>7</code></td> <td><code>SELECT c FROM t FOR UPDATE</code></td> <td><code>A4</code></td> <td><code>6</code></td> <td><code>SELECT b FROM t FOR UPDATE</code></td> </tr></tbody></table>
 
 Na tabela anterior, você pode identificar as sessões pelas colunas “consulta de espera” ou “consulta bloqueada”. Como você pode ver:
 
-- A sessão B (id de transação `A4`, fio `6`) e a sessão C (id de transação `A5`, fio `7`) estão ambas aguardando a sessão A (id de transação `A3`, fio `5`).
+- A sessão B (id de transação `A4`, thread `6`) e a sessão C (id de transação `A5`, thread `7`) estão ambas aguardando a sessão A (id de transação `A3`, thread `5`).
 
 - A sessão C está esperando a sessão B, assim como a sessão A.
 

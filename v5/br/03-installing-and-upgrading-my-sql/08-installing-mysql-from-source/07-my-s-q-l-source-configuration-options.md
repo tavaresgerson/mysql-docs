@@ -1246,7 +1246,7 @@ Se nenhum dos parâmetros `-DWITH_engine_STORAGE_ENGINE` ou `-DWITHOUT_engine_ST
 
 - `-DDISABLE_PSI_THREAD=bool`
 
-  Exclua a instrumentação de fio do Schema de Desempenho. O padrão é `OFF` (incluir).
+  Exclua a instrumentação de thread do Schema de Desempenho. O padrão é `OFF` (incluir).
 
   Desative apenas os threads ao compilar sem instrumentação, pois outras instrumentações dependem dos threads.
 

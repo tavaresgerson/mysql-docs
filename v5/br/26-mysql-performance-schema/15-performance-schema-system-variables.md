@@ -90,7 +90,7 @@ As variáveis do sistema do esquema de desempenho têm os seguintes significados
 
   <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-events-stages-history-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>performance_schema_events_stages_history_size</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code>1024</code></td> </tr></tbody></table>
 
-  O número de linhas por fio na tabela `events_stages_history`.
+  O número de linhas por thread na tabela `events_stages_history`.
 
 - `performance_schema_events_statements_history_long_size`
 
@@ -102,7 +102,7 @@ As variáveis do sistema do esquema de desempenho têm os seguintes significados
 
   <table frame="box" rules="all" summary="Propriedades para performance_schema_events_statements_history_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-events-statements-history-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>performance_schema_events_statements_history_size</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code>1024</code></td> </tr></tbody></table>
 
-  O número de linhas por fio na tabela `events_statements_history`.
+  O número de linhas por thread na tabela `events_statements_history`.
 
 - `performance_schema_events_transactions_history_long_size`
 
@@ -114,7 +114,7 @@ As variáveis do sistema do esquema de desempenho têm os seguintes significados
 
   <table frame="box" rules="all" summary="Propriedades para performance_schema_events_transactions_history_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-events-transactions-history-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>performance_schema_events_transactions_history_size</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code>1024</code></td> </tr></tbody></table>
 
-  O número de linhas por fio na tabela `events_transactions_history`.
+  O número de linhas por thread na tabela `events_transactions_history`.
 
 - `performance_schema_events_waits_history_long_size`
 
@@ -126,7 +126,7 @@ As variáveis do sistema do esquema de desempenho têm os seguintes significados
 
   <table frame="box" rules="all" summary="Propriedades para performance_schema_accounts_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-accounts-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>performance_schema_accounts_size</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  O número de linhas por fio na tabela `events_waits_history`.
+  O número de linhas por thread na tabela `events_waits_history`.
 
 - `performance_schema_hosts_size`
 
@@ -294,13 +294,13 @@ As variáveis do sistema do esquema de desempenho têm os seguintes significados
 
   <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-events-stages-history-long-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>performance_schema_events_stages_history_long_size</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  O número máximo de instrumentos de fio. Para obter informações sobre como definir e usar essa variável, consulte Seção 25.7, "Monitoramento do Status do Schema de Desempenho".
+  O número máximo de instrumentos de thread. Para obter informações sobre como definir e usar essa variável, consulte Seção 25.7, "Monitoramento do Status do Schema de Desempenho".
 
 - `performance_schema_max_thread_instances`
 
   <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-events-stages-history-long-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>performance_schema_events_stages_history_long_size</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  O número máximo de objetos de fio instrumentados. O valor controla o tamanho da tabela `threads`. Se esse máximo for excedido, de modo que um fio não possa ser instrumentado, o Schema de Desempenho incrementa a variável de status `Performance_schema_thread_instances_lost`. Para obter informações sobre como definir e usar essa variável, consulte Seção 25.7, “Monitoramento de Status do Schema de Desempenho”.
+  O número máximo de objetos de thread instrumentados. O valor controla o tamanho da tabela `threads`. Se esse máximo for excedido, de modo que um thread não possa ser instrumentado, o Schema de Desempenho incrementa a variável de status `Performance_schema_thread_instances_lost`. Para obter informações sobre como definir e usar essa variável, consulte Seção 25.7, “Monitoramento de Status do Schema de Desempenho”.
 
   A variável de sistema `max_connections` afeta quantos threads podem ser executados no servidor. A variável de sistema `performance_schema_max_thread_instances` afeta quantos desses threads em execução podem ser instrumentados.
 
@@ -310,7 +310,7 @@ As variáveis do sistema do esquema de desempenho têm os seguintes significados
 
   <table frame="box" rules="all" summary="Propriedades para performance_schema_events_stages_history_long_size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--performance-schema-events-stages-history-long-size=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>performance_schema_events_stages_history_long_size</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>-1</code> (significa autoescalonamento; não atribua este valor literal)</td> </tr><tr><th>Valor máximo</th> <td><code>1048576</code></td> </tr></tbody></table>
 
-  A quantidade de memória pré-alocate por fio reservada para armazenar pares chave-valor de atributos de conexão. Se o tamanho agregado dos dados de atributos de conexão enviados por um cliente for maior que essa quantidade, o Gerenciamento de Desempenho truncá-losá os dados do atributo, incrementará a variável de status `Performance_schema_session_connect_attrs_lost` e escreverá uma mensagem no log de erro, indicando que a truncagem ocorreu se o valor da variável de sistema `log_error_verbosity` for maior que 1.
+  A quantidade de memória pré-alocate por thread reservada para armazenar pares chave-valor de atributos de conexão. Se o tamanho agregado dos dados de atributos de conexão enviados por um cliente for maior que essa quantidade, o Gerenciamento de Desempenho truncá-losá os dados do atributo, incrementará a variável de status `Performance_schema_session_connect_attrs_lost` e escreverá uma mensagem no log de erro, indicando que a truncagem ocorreu se o valor da variável de sistema `log_error_verbosity` for maior que 1.
 
   O valor padrão de `performance_schema_session_connect_attrs_size` é dimensionado automaticamente ao iniciar o servidor. Esse valor pode ser pequeno, portanto, se ocorrer uma truncagem (`Performance_schema_session_connect_attrs_lost` tornar-se não nulo), você pode querer definir `performance_schema_session_connect_attrs_size` explicitamente para um valor maior.
 

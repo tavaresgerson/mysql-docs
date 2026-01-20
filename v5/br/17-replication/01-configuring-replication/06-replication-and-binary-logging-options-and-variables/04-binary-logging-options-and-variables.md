@@ -143,7 +143,7 @@ A lista a seguir descreve as opções de inicialização para habilitar e config
 
   Ativação desta opção faz com que a fonte escreva verificações de integridade para eventos escritos no log binário. Defina para `NONE` para desativar ou o nome do algoritmo a ser usado para gerar verificações de integridade; atualmente, apenas verificações de integridade CRC32 são suportadas, e CRC32 é o padrão. Você não pode alterar a configuração desta opção dentro de uma transação.
 
-Para controlar a leitura dos checksums pela replica (do log do relé), use a opção [`--slave-sql-verify-checksum`](https://pt.wikipedia.org/wiki/Op%C3%A9rnia_\(inform%C3%A1tica\)#%C3%8Dndice_de_refer%C3%AAncia:replication-options-replica.html#option_mysqld_slave-sql-verify-checksum).
+Para controlar a leitura dos checksums pela replica (do log do relay), use a opção [`--slave-sql-verify-checksum`](https://pt.wikipedia.org/wiki/Op%C3%A9rnia_\(inform%C3%A1tica\)#%C3%8Dndice_de_refer%C3%AAncia:replication-options-replica.html#option_mysqld_slave-sql-verify-checksum).
 
 **Opções de teste e depuração.** As seguintes opções de log binário são usadas no teste e depuração da replicação. Elas não são destinadas ao uso em operações normais.
 

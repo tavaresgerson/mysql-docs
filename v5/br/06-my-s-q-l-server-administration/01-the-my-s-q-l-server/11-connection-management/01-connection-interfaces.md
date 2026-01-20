@@ -10,11 +10,11 @@ Esta seção descreve aspectos de como o servidor MySQL gerencia as conexões do
 
 O servidor é capaz de ouvir conexões de clientes em várias interfaces de rede. Os threads do gerenciador de conexões lidam com solicitações de conexão de clientes nas interfaces de rede que o servidor escuta:
 
-- Em todas as plataformas, um fio de gerenciamento lida com as solicitações de conexão TCP/IP.
+- Em todas as plataformas, um thread de gerenciamento lida com as solicitações de conexão TCP/IP.
 
-- No Unix, o mesmo fio do gerenciador também lida com solicitações de conexão de arquivos de soquete Unix.
+- No Unix, o mesmo thread do gerenciador também lida com solicitações de conexão de arquivos de soquete Unix.
 
-- No Windows, um fio de gerenciamento lida com os pedidos de conexão de memória compartilhada e outro lida com os pedidos de conexão de tubos nomeados.
+- No Windows, um thread de gerenciamento lida com os pedidos de conexão de memória compartilhada e outro lida com os pedidos de conexão de tubos nomeados.
 
 O servidor não cria threads para lidar com interfaces que ele não escuta. Por exemplo, um servidor Windows que não tem suporte para conexões de canal nomeado habilitado não cria uma thread para lidar com elas.
 
@@ -26,7 +26,7 @@ Os plugins ou componentes de servidor individual podem implementar sua própria 
 
 Os threads do gerenciador de conexões associam cada conexão de cliente a um thread dedicado a ela que lida com a autenticação e o processamento de solicitações para essa conexão. Os threads do gerenciador criam um novo thread quando necessário, mas tentam evitar isso consultando primeiro o cache de threads para ver se ele contém um thread que pode ser usado para a conexão. Quando uma conexão termina, seu thread é devolvido ao cache de threads se o cache não estiver cheio.
 
-Nesse modelo de fio de thread, há tantos fios quanto clientes atualmente conectados, o que tem algumas desvantagens quando a carga de trabalho do servidor precisa escalar para lidar com um grande número de conexões. Por exemplo, a criação e o descarte de threads se tornam caros. Além disso, cada thread requer recursos do servidor e do kernel, como espaço de pilha. Para acomodar um grande número de conexões simultâneas, o tamanho da pilha por thread deve ser mantido pequeno, levando a uma situação em que ela é ou muito pequena ou o servidor consome grandes quantidades de memória. A esgotamento de outros recursos também pode ocorrer, e o overhead de escalonamento pode se tornar significativo.
+Nesse modelo de thread de thread, há tantos fios quanto clientes atualmente conectados, o que tem algumas desvantagens quando a carga de trabalho do servidor precisa escalar para lidar com um grande número de conexões. Por exemplo, a criação e o descarte de threads se tornam caros. Além disso, cada thread requer recursos do servidor e do kernel, como espaço de pilha. Para acomodar um grande número de conexões simultâneas, o tamanho da pilha por thread deve ser mantido pequeno, levando a uma situação em que ela é ou muito pequena ou o servidor consome grandes quantidades de memória. A esgotamento de outros recursos também pode ocorrer, e o overhead de escalonamento pode se tornar significativo.
 
 A Edição Empresarial do MySQL inclui um plugin de pool de threads que oferece um modelo alternativo de gerenciamento de threads, projetado para reduzir o overhead e melhorar o desempenho. Ele implementa um pool de threads que aumenta o desempenho do servidor ao gerenciar eficientemente os threads de execução de instruções para um grande número de conexões de clientes. Veja Seção 5.5.3, “MySQL Enterprise Thread Pool”.
 

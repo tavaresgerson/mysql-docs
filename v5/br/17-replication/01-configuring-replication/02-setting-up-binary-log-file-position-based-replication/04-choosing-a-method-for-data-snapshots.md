@@ -52,7 +52,7 @@ Os seguintes arquivos não são necessários para a replicação:
 
 - Os arquivos de log binários da fonte, com exceção do arquivo de índice do log binário, se você vai usá-lo para localizar as coordenadas do log binário da fonte para a replica.
 
-- Quaisquer arquivos de registro de relé.
+- Quaisquer arquivos de registro de relay.
 
 Dependendo de você estar usando tabelas `InnoDB` ou não, escolha uma das seguintes opções:
 

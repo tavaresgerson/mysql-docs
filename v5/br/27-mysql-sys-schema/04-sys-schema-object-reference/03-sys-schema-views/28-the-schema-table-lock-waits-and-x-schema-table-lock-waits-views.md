@@ -16,7 +16,7 @@ As vistas `schema_table_lock_waits` e `x$schema_table_lock_waits` possuem as seg
 
 - `waiting_thread_id`
 
-  O ID do fio do fio que está aguardando o bloqueio.
+  O ID do thread do thread que está aguardando o bloqueio.
 
 - `waiting_pid`
 
@@ -52,7 +52,7 @@ As vistas `schema_table_lock_waits` e `x$schema_table_lock_waits` possuem as seg
 
 - `blocking_thread_id`
 
-  O ID do fio do fio que está bloqueando o bloqueio de espera.
+  O ID do thread do thread que está bloqueando o bloqueio de espera.
 
 - `blocking_pid`
 

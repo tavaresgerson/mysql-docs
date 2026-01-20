@@ -136,11 +136,11 @@ Para controlar o estado da instrumentação de memória em tempo de execução, 
 
 Para instrumentos de memória, a coluna `TIMED` em `setup_instruments` é ignorada porque as operações de memória não são temporizadas.
 
-Quando um fio no servidor executa uma alocação de memória que foi instrumentada, essas regras se aplicam:
+Quando um thread no servidor executa uma alocação de memória que foi instrumentada, essas regras se aplicam:
 
-- Se o fio não estiver instrumentado ou o instrumento de memória não estiver habilitado, o bloco de memória alocado não será instrumentado.
+- Se o thread não estiver instrumentado ou o instrumento de memória não estiver habilitado, o bloco de memória alocado não será instrumentado.
 
-- Caso contrário (ou seja, se o fio e o instrumento estiverem habilitados), o bloco de memória alocado será instrumentado.
+- Caso contrário (ou seja, se o thread e o instrumento estiverem habilitados), o bloco de memória alocado será instrumentado.
 
 Para a liberação, essas regras se aplicam:
 
@@ -148,7 +148,7 @@ Para a liberação, essas regras se aplicam:
 
 - Se uma operação de alocação de memória não foi instrumentada, a operação de liberação correspondente não será instrumentada, independentemente do status do instrumento ou da thread habilitada atual.
 
-Para as estatísticas por fio, as seguintes regras se aplicam.
+Para as estatísticas por thread, as seguintes regras se aplicam.
 
 Quando um bloco de memória instrumentado de tamanho *`N`* é alocado, o Schema de Desempenho faz essas atualizações nas colunas da tabela de resumo de memória:
 
@@ -188,9 +188,9 @@ Para estimativas mais baixas em tabelas resumidas que não sejam `memory_summary
 
 Aqui está um exemplo de cálculo de estimativa; mas observe que a implementação da estimativa está sujeita a alterações:
 
-O fio 1 utiliza memória na faixa de 1 MB a 2 MB durante a execução, conforme relatado pelas colunas `LOW_NUMBER_OF_BYTES_USED` e `HIGH_NUMBER_OF_BYTES_USED` da tabela `memory_summary_by_thread_by_event_name`.
+O thread 1 utiliza memória na faixa de 1 MB a 2 MB durante a execução, conforme relatado pelas colunas `LOW_NUMBER_OF_BYTES_USED` e `HIGH_NUMBER_OF_BYTES_USED` da tabela `memory_summary_by_thread_by_event_name`.
 
-O fio 2 usa memória na faixa de 10MB a 12MB durante a execução, conforme relatado da mesma forma.
+O thread 2 usa memória na faixa de 10MB a 12MB durante a execução, conforme relatado da mesma forma.
 
 Quando esses dois fios pertencem à mesma conta de usuário, o resumo por conta estima que essa conta usou memória na faixa de 11 MB a 14 MB. Ou seja, o `LOW_NUMBER_OF_BYTES_USED` para o agregado de nível superior é a soma de cada `LOW_NUMBER_OF_BYTES_USED` (assumindo o pior caso). Da mesma forma, o `HIGH_NUMBER_OF_BYTES_USED` para o agregado de nível superior é a soma de cada `HIGH_NUMBER_OF_BYTES_USED` (assumindo o pior caso).
 

@@ -18,7 +18,7 @@ O tamanho físico de um registro do log de desfazer no segmento de rollback é g
 
 No esquema de multiversão `InnoDB`, uma linha não é removida fisicamente do banco de dados imediatamente quando você a exclui com uma instrução SQL. O `InnoDB` remove fisicamente apenas a linha correspondente e seus registros de índice quando descarta o registro do log de desfazer da atualização escrito para a exclusão. Essa operação de remoção é chamada de purga e é bastante rápida, geralmente levando o mesmo tempo que a instrução SQL que fez a exclusão.
 
-Se você inserir e excluir linhas em lotes pequenos e a uma taxa aproximadamente igual na tabela, o fio de purga pode começar a ficar para trás e a tabela pode ficar cada vez maior devido a todas as linhas "mortais", tornando tudo vinculado ao disco e muito lento. Nesses casos, reduza as operações de nova linha e aloque mais recursos ao fio de purga ajustando a variável de sistema `innodb_max_purge_lag`. Para mais informações, consulte a Seção 14.8.10, “Configuração de Purga”.
+Se você inserir e excluir linhas em lotes pequenos e a uma taxa aproximadamente igual na tabela, o thread de purga pode começar a ficar para trás e a tabela pode ficar cada vez maior devido a todas as linhas "mortais", tornando tudo vinculado ao disco e muito lento. Nesses casos, reduza as operações de nova linha e aloque mais recursos ao thread de purga ajustando a variável de sistema `innodb_max_purge_lag`. Para mais informações, consulte a Seção 14.8.10, “Configuração de Purga”.
 
 ### Múltiplas versões e índices secundários
 

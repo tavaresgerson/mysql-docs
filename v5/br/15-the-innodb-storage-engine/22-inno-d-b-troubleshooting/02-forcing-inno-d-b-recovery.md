@@ -25,7 +25,7 @@ Como medida de segurança, o `InnoDB` impede as operações `INSERT`, `UPDATE` o
 
 - `2` (`SRV_FORCE_NO_BACKGROUND`)
 
-  Previne que o fio mestre e quaisquer fios de purga sejam executados. Se uma saída inesperada ocorrer durante a operação de purga, esse valor de recuperação a impede.
+  Previne que o thread mestre e quaisquer fios de purga sejam executados. Se uma saída inesperada ocorrer durante a operação de purga, esse valor de recuperação a impede.
 
 - `3` (`SRV_FORCE_NO_TRX_UNDO`)
 

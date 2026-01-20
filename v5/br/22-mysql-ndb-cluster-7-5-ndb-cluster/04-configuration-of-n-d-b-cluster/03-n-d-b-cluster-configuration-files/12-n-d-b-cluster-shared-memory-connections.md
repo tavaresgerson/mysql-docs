@@ -91,7 +91,7 @@ Os parâmetros que afetam todos os transportadores de memória compartilhada sã
 
 Os nós da API para os quais não são definidos nomes de host usam o transportador TCP para se comunicar com os nós de dados independentemente dos hosts nos quais são iniciados; os parâmetros e valores definidos na seção `[tcp default]` do arquivo de configuração se aplicam a todos os transportadores TCP no clúster.
 
-Para um desempenho ótimo, você pode definir um tempo de rotação para o transportador SHM (parâmetro `ShmSpinTime`) Isso afeta tanto o fio de recebimento do nó de dados quanto o proprietário da solicitação de pesquisa (fio de recebimento ou fio de usuário) no `NDB`.
+Para um desempenho ótimo, você pode definir um tempo de rotação para o transportador SHM (parâmetro `ShmSpinTime`) Isso afeta tanto o thread de recebimento do nó de dados quanto o proprietário da solicitação de pesquisa (thread de recebimento ou thread de usuário) no `NDB`.
 
 - `Checksum`
 

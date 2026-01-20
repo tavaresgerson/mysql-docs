@@ -1190,7 +1190,7 @@ O comando **mysqldump** é frequentemente usado para criar uma instância vazia 
 
   O valor da opção é tratado da mesma maneira que para `--master-data` (definir um valor nulo ou 1 faz com que uma instrução `CHANGE MASTER TO` seja escrita no dump, definir 2 faz com que a instrução seja escrita, mas encapsulada em comentários SQL) e tem o mesmo efeito que `--master-data` em termos de habilitar ou desabilitar outras opções e de como o bloqueio é tratado.
 
-  Essa opção faz com que o **mysqldump** pare o fio de replicação do SQL antes do dump e o reinicie novamente depois.
+  Essa opção faz com que o **mysqldump** pare o thread de replicação do SQL antes do dump e o reinicie novamente depois.
 
   `--dump-slave` envia uma declaração `SHOW SLAVE STATUS` para o servidor para obter informações, portanto, requer privilégios suficientes para executar essa declaração.
 

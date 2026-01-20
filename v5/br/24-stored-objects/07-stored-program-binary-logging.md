@@ -10,7 +10,7 @@ No entanto, se o registro ocorrer no nível de declaração, há certos problema
 
 - Em alguns casos, uma declaração pode afetar diferentes conjuntos de linhas na fonte e na réplica.
 
-- As declarações replicadas executadas em uma replica são processadas pelo fio SQL da replica, que possui privilégios completos. É possível que um procedimento siga caminhos de execução diferentes nos servidores de origem e replicação, portanto, um usuário pode escrever uma rotina que contenha uma declaração perigosa que seja executada apenas na replica, onde é processada por um fio que possui privilégios completos.
+- As declarações replicadas executadas em uma replica são processadas pelo thread SQL da replica, que possui privilégios completos. É possível que um procedimento siga caminhos de execução diferentes nos servidores de origem e replicação, portanto, um usuário pode escrever uma rotina que contenha uma declaração perigosa que seja executada apenas na replica, onde é processada por um thread que possui privilégios completos.
 
 - Se um programa armazenado que modifica dados for não determinístico, ele não pode ser repetido. Isso pode resultar em dados diferentes na fonte e na replica, ou fazer com que os dados restaurados se diferenciem dos dados originais.
 
@@ -126,7 +126,7 @@ O restante desta seção fornece detalhes adicionais sobre a implementação do 
 
   - É possível que uma função siga diferentes caminhos de execução nos servidores de origem e réplica.
 
-  - As declarações executadas em uma réplica são processadas pelo fio SQL da réplica, que possui privilégios completos.
+  - As declarações executadas em uma réplica são processadas pelo thread SQL da réplica, que possui privilégios completos.
 
   A implicação é que, embora um usuário precise ter o privilégio `CREATE ROUTINE` para criar uma função, ele pode escrever uma função que contenha uma declaração perigosa que seja executada apenas na replica onde ela é processada por um thread com privilégios completos. Por exemplo, se os servidores de origem e replica tiverem os valores de ID de servidor 1 e 2, respectivamente, um usuário no servidor de origem poderia criar e invocar uma função insegura `unsafe_func()` da seguinte forma:
 

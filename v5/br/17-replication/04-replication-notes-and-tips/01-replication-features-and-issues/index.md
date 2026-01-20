@@ -38,7 +38,7 @@
 
 16.4.1.19 Replicação e max_allowed_packet
 
-16.4.1.2.20 Replicação e tabelas de MEMÓRIA
+16.4.1.2.20 Replicação e tabelas de MEMORY
 
 16.4.1.21 Replicação do banco de dados do sistema MySQL
 

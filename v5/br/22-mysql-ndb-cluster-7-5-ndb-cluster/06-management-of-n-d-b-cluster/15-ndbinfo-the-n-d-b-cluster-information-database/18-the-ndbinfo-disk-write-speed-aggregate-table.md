@@ -10,7 +10,7 @@ A tabela `disk_write_speed_aggregate` contém as seguintes colunas:
 
 - `thr_no`
 
-  ID do fio deste fio LDM
+  ID do thread deste thread LDM
 
 - `backup_lcp_speed_last_sec`
 
@@ -66,4 +66,4 @@ A tabela `disk_write_speed_aggregate` contém as seguintes colunas:
 
 - `current_target_disk_write_speed`
 
-  Velocidade real de escrita de disco por fio LDM (agregada)
+  Velocidade real de escrita de disco por thread LDM (agregada)

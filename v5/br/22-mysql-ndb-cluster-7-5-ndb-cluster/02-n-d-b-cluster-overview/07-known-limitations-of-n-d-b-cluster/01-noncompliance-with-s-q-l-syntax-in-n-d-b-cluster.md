@@ -121,11 +121,11 @@ Algumas instruções SQL relacionadas a certas funcionalidades do MySQL produzem
 
   - `cpustat`: Fornece estatísticas de CPU por segundo e por thread
 
-  - `cpustat_50ms`: Dados brutos de estatísticas de CPU por fio, coletados a cada 50 ms
+  - `cpustat_50ms`: Dados brutos de estatísticas de CPU por thread, coletados a cada 50 ms
 
-  - `cpustat_1sec`: Dados brutos de estatísticas de CPU por fio, coletados a cada segundo
+  - `cpustat_1sec`: Dados brutos de estatísticas de CPU por thread, coletados a cada segundo
 
-  - `cpustat_20sec`: Dados brutos de estatísticas de CPU por fio, coletados a cada 20 segundos
+  - `cpustat_20sec`: Dados brutos de estatísticas de CPU por thread, coletados a cada 20 segundos
 
   - `threads`: Nomes e descrições dos tipos de threads
 

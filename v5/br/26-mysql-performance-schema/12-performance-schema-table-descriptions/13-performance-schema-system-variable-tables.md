@@ -28,7 +28,7 @@ A tabela `variables_by_thread` tem as seguintes colunas:
 
 - `THREAD_ID`
 
-  O identificador de fio da sessão na qual a variável de sistema é definida.
+  O identificador de thread da sessão na qual a variável de sistema é definida.
 
 - `VARIAVEL_NOME`
 

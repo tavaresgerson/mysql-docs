@@ -74,7 +74,7 @@ A saída `SHOW PROCESSLIST` tem essas colunas:
 
 - `Usuário`
 
-  O usuário MySQL que emitiu a declaração. Um valor de `usuário do sistema` refere-se a um fio não cliente gerado pelo servidor para lidar com tarefas internamente, por exemplo, um fio de manipulador de linha atrasada ou um fio de I/O ou SQL usado em hosts replicados. Para `usuário do sistema`, não há um host especificado na coluna `Host`. `usuário não autenticado` refere-se a um fio que se associou a uma conexão de cliente, mas para o qual a autenticação do usuário do cliente ainda não ocorreu. `event_scheduler` refere-se ao fio que monitora eventos agendados (veja Seção 23.4, “Usando o Agendamento de Eventos”).
+  O usuário MySQL que emitiu a declaração. Um valor de `usuário do sistema` refere-se a um thread não cliente gerado pelo servidor para lidar com tarefas internamente, por exemplo, um thread de manipulador de linha atrasada ou um thread de I/O ou SQL usado em hosts replicados. Para `usuário do sistema`, não há um host especificado na coluna `Host`. `usuário não autenticado` refere-se a um thread que se associou a uma conexão de cliente, mas para o qual a autenticação do usuário do cliente ainda não ocorreu. `event_scheduler` refere-se ao thread que monitora eventos agendados (veja Seção 23.4, “Usando o Agendamento de Eventos”).
 
 - `Anfitrião`
 
@@ -90,14 +90,14 @@ A saída `SHOW PROCESSLIST` tem essas colunas:
 
 - `Tempo`
 
-  O tempo em segundos que o fio esteve em seu estado atual. Para um fio de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o horário real do host da replica. Veja Seção 16.2.3, “Fios de Replicação”.
+  O tempo em segundos que o thread esteve em seu estado atual. Para um thread de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o horário real do host da replica. Veja Seção 16.2.3, “Fios de Replicação”.
 
 - "Estado"
 
-  Uma ação, evento ou estado que indica o que o fio está fazendo. Para descrições dos valores de `State`, consulte Seção 8.14, “Examinando Informações do Fio do Servidor (Processo”.
+  Uma ação, evento ou estado que indica o que o thread está fazendo. Para descrições dos valores de `State`, consulte Seção 8.14, “Examinando Informações do Fio do Servidor (Processo”.
 
-  A maioria dos estados corresponde a operações muito rápidas. Se um fio permanecer em um determinado estado por muitos segundos, pode haver um problema que precisa ser investigado.
+  A maioria dos estados corresponde a operações muito rápidas. Se um thread permanecer em um determinado estado por muitos segundos, pode haver um problema que precisa ser investigado.
 
 - `Info`
 
-  A declaração que o fio está executando, ou `NULL` se não estiver executando nenhuma declaração. A declaração pode ser a enviada ao servidor ou uma declaração mais interna se a declaração executar outras declarações. Por exemplo, se uma declaração `CALL` executar um procedimento armazenado que está executando uma declaração `SELECT`, o valor `Info` mostrará a declaração `SELECT`.
+  A declaração que o thread está executando, ou `NULL` se não estiver executando nenhuma declaração. A declaração pode ser a enviada ao servidor ou uma declaração mais interna se a declaração executar outras declarações. Por exemplo, se uma declaração `CALL` executar um procedimento armazenado que está executando uma declaração `SELECT`, o valor `Info` mostrará a declaração `SELECT`.

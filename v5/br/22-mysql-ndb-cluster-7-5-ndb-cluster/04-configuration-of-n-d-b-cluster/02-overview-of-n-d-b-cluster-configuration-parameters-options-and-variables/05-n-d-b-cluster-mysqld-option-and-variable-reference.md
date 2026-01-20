@@ -90,15 +90,15 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 - `Ndb_api_event_bytes_count`: Número de bytes de eventos recebidos por este servidor MySQL (nó SQL).
 
-- `Ndb_api_event_bytes_count_injector`: Número de bytes de dados de eventos recebidos pelo fio de injetor de log binário NDB.
+- `Ndb_api_event_bytes_count_injector`: Número de bytes de dados de eventos recebidos pelo thread de injetor de log binário NDB.
 
 - `Ndb_api_event_data_count`: Número de eventos de alteração de linha recebidos por este servidor MySQL (nó SQL).
 
-- `Ndb_api_event_data_count_injector`: Número de eventos de alteração de linha recebidos pelo fio de injeção de log binário NDB.
+- `Ndb_api_event_data_count_injector`: Número de eventos de alteração de linha recebidos pelo thread de injeção de log binário NDB.
 
 - `Ndb_api_event_nondata_count`: Número de eventos recebidos, exceto eventos de alteração de linha, por este servidor MySQL (nó SQL).
 
-- `Ndb_api_event_nondata_count_injector`: Número de eventos recebidos, exceto eventos de alteração de linha, pelo fio de injeção de log binário NDB.
+- `Ndb_api_event_nondata_count_injector`: Número de eventos recebidos, exceto eventos de alteração de linha, pelo thread de injeção de log binário NDB.
 
 - `Ndb_api_pk_op_count`: Número de operações baseadas em ou que utilizam chaves primárias por este servidor MySQL (nó SQL).
 
@@ -172,17 +172,17 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 - `Ndb_api_uk_op_count_slave`: Número de operações baseadas em ou que utilizam chaves únicas por esta réplica.
 
-- `Ndb_api_wait_exec_complete_count`: Número de vezes que o fio foi bloqueado enquanto aguardava a conclusão da execução da operação por este servidor MySQL (nó SQL).
+- `Ndb_api_wait_exec_complete_count`: Número de vezes que o thread foi bloqueado enquanto aguardava a conclusão da execução da operação por este servidor MySQL (nó SQL).
 
-- `Ndb_api_wait_exec_complete_count_session`: Número de vezes que o fio foi bloqueado enquanto aguardava a conclusão da execução da operação nesta sessão do cliente.
+- `Ndb_api_wait_exec_complete_count_session`: Número de vezes que o thread foi bloqueado enquanto aguardava a conclusão da execução da operação nesta sessão do cliente.
 
-- `Ndb_api_wait_exec_complete_count_slave`: Número de vezes que o fio foi bloqueado enquanto aguardava a conclusão da execução da operação por esta réplica.
+- `Ndb_api_wait_exec_complete_count_slave`: Número de vezes que o thread foi bloqueado enquanto aguardava a conclusão da execução da operação por esta réplica.
 
-- `Ndb_api_wait_meta_request_count`: Número de vezes que o fio foi bloqueado esperando por um sinal baseado em metadados por este servidor MySQL (nó SQL).
+- `Ndb_api_wait_meta_request_count`: Número de vezes que o thread foi bloqueado esperando por um sinal baseado em metadados por este servidor MySQL (nó SQL).
 
-- `Ndb_api_wait_meta_request_count_session`: Número de vezes que o fio foi bloqueado esperando por um sinal baseado em metadados nesta sessão do cliente.
+- `Ndb_api_wait_meta_request_count_session`: Número de vezes que o thread foi bloqueado esperando por um sinal baseado em metadados nesta sessão do cliente.
 
-- `Ndb_api_wait_meta_request_count_slave`: Número de vezes que o fio foi bloqueado esperando por um sinal baseado em metadados por esta réplica.
+- `Ndb_api_wait_meta_request_count_slave`: Número de vezes que o thread foi bloqueado esperando por um sinal baseado em metadados por esta réplica.
 
 - `Ndb_api_wait_nanos_count`: Tempo total (em nanosegundos) gasto esperando por algum tipo de sinal dos nós de dados por este servidor MySQL (nó SQL).
 
@@ -190,11 +190,11 @@ A lista a seguir inclui opções de linha de comando, variáveis de sistema e va
 
 - `Ndb_api_wait_nanos_count_slave`: Tempo total (em nanosegundos) gasto esperando por algum tipo de sinal dos nós de dados por esta réplica.
 
-- `Ndb_api_wait_scan_result_count`: Número de vezes que o fio foi bloqueado enquanto aguardava por um sinal baseado em varredura por este servidor MySQL (nó SQL).
+- `Ndb_api_wait_scan_result_count`: Número de vezes que o thread foi bloqueado enquanto aguardava por um sinal baseado em varredura por este servidor MySQL (nó SQL).
 
-- `Ndb_api_wait_scan_result_count_session`: Número de vezes que o fio foi bloqueado enquanto aguardava por um sinal baseado em varredura nesta sessão do cliente.
+- `Ndb_api_wait_scan_result_count_session`: Número de vezes que o thread foi bloqueado enquanto aguardava por um sinal baseado em varredura nesta sessão do cliente.
 
-- `Ndb_api_wait_scan_result_count_slave`: Número de vezes que o fio foi bloqueado enquanto aguardava por um sinal baseado em varredura por esta réplica.
+- `Ndb_api_wait_scan_result_count_slave`: Número de vezes que o thread foi bloqueado enquanto aguardava por um sinal baseado em varredura por esta réplica.
 
 - `ndb_autoincrement_prefetch_sz`: Tamanho de pré-carga de autoincremento NDB.
 

@@ -185,7 +185,7 @@ OBJECT_INSTANCE_BEGIN: 142270668
 ...
 ```
 
-Esse evento indica que o fio 0 estava esperando por 86.526 picosegundos para adquirir um bloqueio no `THR_LOCK::mutex`, um mutex no subsistema `mysys`. As primeiras colunas fornecem as seguintes informações:
+Esse evento indica que o thread 0 estava esperando por 86.526 picosegundos para adquirir um bloqueio no `THR_LOCK::mutex`, um mutex no subsistema `mysys`. As primeiras colunas fornecem as seguintes informações:
 
 - As colunas ID indicam de qual thread o evento vem e o número do evento.
 
@@ -193,7 +193,7 @@ Esse evento indica que o fio 0 estava esperando por 86.526 picosegundos para adq
 
 - As colunas do temporizador mostram quando o evento começou e parou e quanto tempo levou. Se um evento ainda estiver em andamento, os valores `TIMER_END` e `TIMER_WAIT` são `NULL`. Os valores do temporizador são aproximados e expressos em picosegundos. Para informações sobre temporizadores e coleta de tempo de eventos, consulte Seção 25.4.1, “Cronometragem de Eventos do Schema de Desempenho”.
 
-As tabelas de histórico contêm o mesmo tipo de linhas que a tabela de eventos atuais, mas têm mais linhas e mostram o que o servidor tem feito "recentemente" em vez de "atualmente". As tabelas `events_waits_history` e `events_waits_history_long` contêm os 10 eventos mais recentes por fio e, respectivamente, os 10.000 eventos mais recentes. Por exemplo, para ver informações sobre eventos recentes produzidos pelo fio 13, faça o seguinte:
+As tabelas de histórico contêm o mesmo tipo de linhas que a tabela de eventos atuais, mas têm mais linhas e mostram o que o servidor tem feito "recentemente" em vez de "atualmente". As tabelas `events_waits_history` e `events_waits_history_long` contêm os 10 eventos mais recentes por thread e, respectivamente, os 10.000 eventos mais recentes. Por exemplo, para ver informações sobre eventos recentes produzidos pelo thread 13, faça o seguinte:
 
 ```sql
 mysql> SELECT EVENT_ID, EVENT_NAME, TIMER_WAIT

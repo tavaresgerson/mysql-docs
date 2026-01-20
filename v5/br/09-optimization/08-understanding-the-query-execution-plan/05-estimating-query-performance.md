@@ -2,9 +2,9 @@
 
 Na maioria dos casos, você pode estimar o desempenho da consulta contando os acessos ao disco. Para tabelas pequenas, geralmente é possível encontrar uma linha em um único acesso ao disco (porque o índice provavelmente está em cache). Para tabelas maiores, você pode estimar que, usando índices de árvore B, você precisa desse número de acessos para encontrar uma linha: `log(número_de_linhas) / log(tamanho_do_bloco_do_índice / 3 * 2 / (tamanho_do_índice + tamanho_do_ponteiro_de_dados)) + 1`.
 
-No MySQL, um bloco de índice geralmente tem 1.024 bytes e o ponteiro de dados geralmente tem quatro bytes. Para uma tabela de 500.000 linhas com um comprimento do valor da chave de três bytes (o tamanho de `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT`)), a fórmula indica `log(500.000)/log(1024/3\*2/(3+4)) + 1`=`4\` buscas.
+No MySQL, um bloco de índice geralmente tem 1.024 bytes e o ponteiro de dados geralmente tem quatro bytes. Para uma tabela de 500.000 linhas com um comprimento do valor da chave de três bytes (o tamanho de `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT), a fórmula indica `log(500,000)/log(1024/3*2/(3+4)) + 1` = `4` buscas.
 
-Esse índice exigiria o armazenamento de cerca de 500.000 \* 7 \* 3/2 = 5,2 MB (assumindo uma taxa típica de preenchimento do buffer do índice de 2/3), então você provavelmente tem grande parte do índice na memória e, portanto, precisa de apenas uma ou duas chamadas para ler os dados para encontrar a linha.
+Esse índice exigiria o armazenamento de cerca de 500.000 * 7 * 3/2 = 5,2 MB (assumindo uma taxa típica de preenchimento do buffer do índice de 2/3), então você provavelmente tem grande parte do índice na memória e, portanto, precisa de apenas uma ou duas chamadas para ler os dados para encontrar a linha.
 
 Para os escritores, no entanto, você precisa de quatro solicitações de busca para encontrar onde colocar um novo valor de índice e normalmente duas buscas para atualizar o índice e escrever a linha.
 

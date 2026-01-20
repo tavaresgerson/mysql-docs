@@ -141,7 +141,7 @@ mysql> SELECT * FROM old_x;
 
 Se a ordem de aquisição de bloqueio em declarações concorrentes fizer diferença no resultado da aplicação, como no exemplo anterior, você pode ajustar os nomes das tabelas para afetar a ordem de aquisição de bloqueio.
 
-#### Liberação da Bloqueio de Metadados
+#### Liberação do Bloqueio de Metadados
 
 Para garantir a serializabilidade das transações, o servidor não deve permitir que uma sessão execute uma instrução de linguagem de definição de dados (DDL) em uma tabela que é usada em uma transação iniciada explicitamente ou implicitamente incompleta em outra sessão. O servidor alcança isso ao adquirir bloqueios de metadados em tabelas usadas dentro de uma transação e adiando a liberação desses bloqueios até que a transação termine. Um bloqueio de metadados em uma tabela impede alterações na estrutura da tabela. Essa abordagem de bloqueio implica que uma tabela que está sendo usada por uma transação em uma sessão não pode ser usada em instruções DDL por outras sessões até que a transação termine.
 

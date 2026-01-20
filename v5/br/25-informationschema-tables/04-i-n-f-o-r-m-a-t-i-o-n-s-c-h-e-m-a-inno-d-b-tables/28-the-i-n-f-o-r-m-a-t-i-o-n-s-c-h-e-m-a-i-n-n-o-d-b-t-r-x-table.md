@@ -32,7 +32,7 @@ A tabela `INNODB_TRX` tem as seguintes colunas:
 
 - `TRX_MYSQL_THREAD_ID`
 
-  O ID do fio do MySQL. Para obter detalhes sobre o fio, junte esta coluna com a coluna `ID` da tabela `INFORMATION_SCHEMA` `PROCESSLIST`, mas consulte Seção 14.16.2.3, “Persistência e Consistência das Informações de Transação e Bloqueio do InnoDB”.
+  O ID do thread do MySQL. Para obter detalhes sobre o thread, junte esta coluna com a coluna `ID` da tabela `INFORMATION_SCHEMA` `PROCESSLIST`, mas consulte Seção 14.16.2.3, “Persistência e Consistência das Informações de Transação e Bloqueio do InnoDB”.
 
 - `TRX_QUERY`
 

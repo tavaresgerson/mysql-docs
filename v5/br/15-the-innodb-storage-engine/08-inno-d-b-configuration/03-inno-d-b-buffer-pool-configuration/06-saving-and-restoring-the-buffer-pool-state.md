@@ -10,9 +10,9 @@ Embora um pool de buffers possa ter vários gigabytes de tamanho, os dados do po
 
 Como os dados são armazenados na memória cache e excluídos dela conforme as operações normais do banco de dados, não há problema se as páginas do disco forem atualizadas recentemente ou se uma operação de manipulação de dados (DML) envolver dados que ainda não foram carregados. O mecanismo de carregamento ignora as páginas solicitadas que já não existem.
 
-O mecanismo subjacente envolve um fio de fundo que é enviado para realizar as operações de dump e carregamento.
+O mecanismo subjacente envolve um thread de fundo que é enviado para realizar as operações de dump e carregamento.
 
-As páginas de disco de tabelas compactadas são carregadas no pool de buffers na sua forma compactada. As páginas são descompactadas normalmente quando o conteúdo das páginas é acessado durante operações DML. Como a descompactação das páginas é um processo intensivo em CPU, é mais eficiente que a concorrência realize a operação em um fio de conexão em vez de no único fio que realiza a operação de restauração do pool de buffers.
+As páginas de disco de tabelas compactadas são carregadas no pool de buffers na sua forma compactada. As páginas são descompactadas normalmente quando o conteúdo das páginas é acessado durante operações DML. Como a descompactação das páginas é um processo intensivo em CPU, é mais eficiente que a concorrência realize a operação em um thread de conexão em vez de no único thread que realiza a operação de restauração do pool de buffers.
 
 As operações relacionadas à salvamento e restauração do estado do pool de buffers são descritas nos seguintes tópicos:
 

@@ -10,7 +10,7 @@ A tabela `replication_applier_status_by_coordinator` tem as seguintes colunas:
 
 - `THREAD_ID`
 
-  O ID do fio do coordenador SQL.
+  O ID do thread do coordenador SQL.
 
 - `ESTADO_SERVIÇO`
 

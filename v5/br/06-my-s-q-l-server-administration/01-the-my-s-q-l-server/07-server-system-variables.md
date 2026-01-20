@@ -129,7 +129,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   <table frame="box" rules="all" summary="Propriedades para back_log"><tbody><tr><th>Formato de linha de comando</th> <td><code>--back-log=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>back_log</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>-1</code> (significa autodimensionamento; não atribua este valor literal)</td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O número de solicitações de conexão pendentes que o MySQL pode ter. Isso entra em jogo quando o principal fio do MySQL recebe muitas solicitações de conexão em um curto período de tempo. Em seguida, leva algum tempo (embora muito pouco) para o fio principal verificar a conexão e iniciar um novo fio. O valor de `back_log` indica quantos pedidos podem ser empilhados durante esse curto período antes de o MySQL parar momentaneamente de responder a novos pedidos. Você precisa aumentar isso apenas se você esperar um grande número de conexões em um curto período de tempo.
+  O número de solicitações de conexão pendentes que o MySQL pode ter. Isso entra em jogo quando o principal thread do MySQL recebe muitas solicitações de conexão em um curto período de tempo. Em seguida, leva algum tempo (embora muito pouco) para o thread principal verificar a conexão e iniciar um novo thread. O valor de `back_log` indica quantos pedidos podem ser empilhados durante esse curto período antes de o MySQL parar momentaneamente de responder a novos pedidos. Você precisa aumentar isso apenas se você esperar um grande número de conexões em um curto período de tempo.
 
   Em outras palavras, esse valor é o tamanho da fila de espera para conexões TCP/IP de entrada. Seu sistema operacional tem seu próprio limite para o tamanho dessa fila. A página manual da chamada de sistema Unix `listen()` deve ter mais detalhes. Verifique a documentação do seu SO para o valor máximo para essa variável. `back_log` não pode ser definido como maior que o limite do seu sistema operacional.
 
@@ -1310,7 +1310,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   Essa variável também é usada em conjunto com `tmp_table_size` para limitar o tamanho das tabelas internas de memória. Veja Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”.
 
-  `max_heap_table_size` não é replicado. Consulte Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA” e Seção 16.4.1.37, “Replicação e Variáveis” para obter mais informações.
+  `max_heap_table_size` não é replicado. Consulte Seção 16.4.1.20, “Replicação e Tabelas de MEMORY” e Seção 16.4.1.37, “Replicação e Variáveis” para obter mais informações.
 
 - `max_insert_delayed_threads`
 
@@ -1536,7 +1536,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
-  Cada fio de cliente está associado a um buffer de conexão e um buffer de resultados. Ambos começam com um tamanho definido por `net_buffer_length`, mas são ampliados dinamicamente até [`max_allowed_packet`]\(server-system-variables.html#sysvar_max_allowed_packet] bytes conforme necessário. O buffer de resultados diminui para [`net_buffer_length`]\(server-system-variables.html#sysvar_net_buffer_length] após cada instrução SQL.
+  Cada thread de cliente está associado a um buffer de conexão e um buffer de resultados. Ambos começam com um tamanho definido por `net_buffer_length`, mas são ampliados dinamicamente até [`max_allowed_packet`]\(server-system-variables.html#sysvar_max_allowed_packet] bytes conforme necessário. O buffer de resultados diminui para [`net_buffer_length`]\(server-system-variables.html#sysvar_net_buffer_length] após cada instrução SQL.
 
   Essa variável normalmente não deve ser alterada, mas se você tiver muito pouca memória, pode configurá-la para o comprimento esperado das declarações enviadas pelos clientes. Se as declarações ultrapassarem esse comprimento, o buffer de conexão será automaticamente ampliado. O valor máximo para o qual `net_buffer_length` pode ser configurado é de 1 MB.
 
@@ -1920,7 +1920,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   <table summary="Valores permitidos para a variável de sistema authentication_windows."><col style="width: 10%"/><col style="width: 75%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem registro</td> </tr><tr> <td>1</td> <td>Registrar apenas mensagens de erro</td> </tr><tr> <td>2</td> <td>Mensagens de nível de log 1 e mensagens de alerta</td> </tr><tr> <td>3</td> <td>Mensagens de nível de log 2 e notas de informações</td> </tr><tr> <td>4</td> <td>Mensagens de nível de log 3 e mensagens de depuração</td> </tr></tbody></table>
 
-  Cada fio que realiza uma varredura sequencial em uma tabela `MyISAM` aloca um buffer desse tamanho (em bytes) para cada tabela que ele varre. Se você fizer muitas varreduras sequenciais, talvez queira aumentar esse valor, que tem o valor padrão de 131072. O valor dessa variável deve ser um múltiplo de 4KB. Se ele for definido para um valor que não é um múltiplo de 4KB, seu valor é arredondado para baixo para o próximo múltiplo de 4KB.
+  Cada thread que realiza uma varredura sequencial em uma tabela `MyISAM` aloca um buffer desse tamanho (em bytes) para cada tabela que ele varre. Se você fizer muitas varreduras sequenciais, talvez queira aumentar esse valor, que tem o valor padrão de 131072. O valor dessa variável deve ser um múltiplo de 4KB. Se ele for definido para um valor que não é um múltiplo de 4KB, seu valor é arredondado para baixo para o próximo múltiplo de 4KB.
 
   Essa opção também é usada no seguinte contexto para todos os motores de armazenamento:
 
@@ -2385,7 +2385,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Se a criação de um fio levar mais tempo do que esse número de segundos, o servidor incrementa a variável de status `Slow_launch_threads`.
+  Se a criação de um thread levar mais tempo do que esse número de segundos, o servidor incrementa a variável de status `Slow_launch_threads`.
 
 - `slow_query_log`
 
@@ -2653,7 +2653,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   <table frame="box" rules="all" summary="Propriedades para autenticação_windows_use_principal_name"><tbody><tr><th>Formato de linha de comando</th> <td><code>--authentication-windows-use-principal-name[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>authentication_windows_use_principal_name</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Quantos fios o servidor deve armazenar para reutilização. Quando um cliente se desconecta, os fios do cliente são colocados na cache se houver menos de `thread_cache_size` fios. As solicitações de fios são atendidas reutilizando fios da cache, se possível, e apenas quando a cache estiver vazia, um novo fio é criado. Essa variável pode ser aumentada para melhorar o desempenho se você tiver muitas novas conexões. Normalmente, isso não proporciona uma melhoria notável no desempenho se você tiver uma boa implementação de fios. No entanto, se o seu servidor receber centenas de conexões por segundo, você deve definir `thread_cache_size` o suficiente para que a maioria das novas conexões use fios armazenados na cache. Ao examinar a diferença entre as variáveis de status `Connections` e `Threads_created`, você pode ver quão eficiente é a cache de fios. Para detalhes, consulte Seção 5.1.9, “Variáveis de Status do Servidor”.
+  Quantos fios o servidor deve armazenar para reutilização. Quando um cliente se desconecta, os fios do cliente são colocados na cache se houver menos de `thread_cache_size` fios. As solicitações de fios são atendidas reutilizando fios da cache, se possível, e apenas quando a cache estiver vazia, um novo thread é criado. Essa variável pode ser aumentada para melhorar o desempenho se você tiver muitas novas conexões. Normalmente, isso não proporciona uma melhoria notável no desempenho se você tiver uma boa implementação de fios. No entanto, se o seu servidor receber centenas de conexões por segundo, você deve definir `thread_cache_size` o suficiente para que a maioria das novas conexões use fios armazenados na cache. Ao examinar a diferença entre as variáveis de status `Connections` e `Threads_created`, você pode ver quão eficiente é a cache de fios. Para detalhes, consulte Seção 5.1.9, “Variáveis de Status do Servidor”.
 
   O valor padrão é baseado na seguinte fórmula, limitada a um limite de 100:
 
@@ -2699,7 +2699,7 @@ Algumas variáveis do sistema aceitam valores de nomes de arquivos. A menos que 
 
   Um valor de 0 (o padrão) significa que não há limite no número de threads em espera. Um valor de *`N`* onde *`N`* é maior que 0 significa 1 thread consumidor e *`N`−1* threads de reserva. Nesse caso, se uma thread estiver pronta para dormir, mas o número de threads em espera já estiver no máximo, a thread sai em vez de dormir.
 
-  Um fio de sono está dormindo como um fio de consumo ou um fio de reserva. O pool de fios permite que um fio seja o fio de consumo quando estiver dormindo. Se um fio for colocado em sono e não houver um fio de consumo existente, ele dormirá como um fio de consumo. Quando um fio precisa ser acordado, um fio de consumo é selecionado, se houver um. Um fio de reserva é selecionado apenas quando não houver um fio de consumo para ser acordado.
+  Um thread de sono está dormindo como um thread de consumo ou um thread de reserva. O pool de fios permite que um thread seja o thread de consumo quando estiver dormindo. Se um thread for colocado em sono e não houver um thread de consumo existente, ele dormirá como um thread de consumo. Quando um thread precisa ser acordado, um thread de consumo é selecionado, se houver um. Um thread de reserva é selecionado apenas quando não houver um thread de consumo para ser acordado.
 
   Esta variável está disponível apenas se o plugin de pilha de threads estiver habilitado. Consulte Seção 5.5.3, "Pilha de Threads do MySQL Enterprise".
 

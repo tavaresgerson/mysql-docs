@@ -88,7 +88,7 @@
 8.6.3 Optimizing REPAIR TABLE Statements
 ```
 
-8.7 Otimização para tabelas de MEMÓRIA
+8.7 Otimização para tabelas de MEMORY
 
 8.8 Entendendo o Plano de Execução da Consulta:   8.8.1 Otimizando Consultas com EXPLAIN
 
@@ -154,7 +154,7 @@
 8.13.3 Measuring Performance with performance_schema
 ```
 
-8.14 Exame das informações do fio (processo) do servidor:   8.14.1 Acesso à lista de processos
+8.14 Exame das informações do thread (processo) do servidor:   8.14.1 Acesso à lista de processos
 
 ```
 8.14.2 Thread Command Values

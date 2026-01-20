@@ -474,7 +474,7 @@ alterar:   banco de dados, [Instrução ALTER DATABASE](alter-database.html)
 schema, [ALTER DATABASE Statement](alter-database.html)
 ```
 
-alterar tabela: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+alterar tabela: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 alterar contas de usuários, [Instrução ALTER USER](alter-user.html)
 
@@ -492,7 +492,7 @@ ANALISE TABELA: [Manutenção de Partições](partitioning-maintenance.html)
 
 declaração ANALYZE TABLE, [declaração ANALYZE TABLE](analyze-table.html)
 
-Analisando: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+Analisando: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 E:   bitwise, [Funções e operadores de bits](bit-functions.html)
 
@@ -1404,7 +1404,7 @@ socket location, [mysql.server — MySQL Server Startup Script](mysql-server.htm
 table, [ALTER TABLE Statement](alter-table.html), [Problems with ALTER TABLE](alter-table-problems.html)
 ```
 
-Mudar mestre: estado do fio, [Estados de Conexão de Replicação de Replica](replica-connection-thread-states.html)
+Mudar mestre: estado do thread, [Estados de Conexão de Replicação de Replica](replica-connection-thread-states.html)
 
 canal:   comandos, [Comandos para Operações em um Canal Único](channels-commands-single-channel.html)
 
@@ -1576,7 +1576,7 @@ Opção de verificação de atualização: mysqlcheck, [mysqlcheck — Um progra
 
 verificação: tabelas para erros, [Como verificar as tabelas MyISAM para erros](myisam-check.html)
 
-Verificar a versão mestre: estado do fio, [Estados de E/S de Replicação Replica I/O](replica-io-thread-states.html)
+Verificar a versão mestre: estado do thread, [Estados de E/S de Replicação Replica I/O](replica-io-thread-states.html)
 
 verificar permissões: estado do tópico, [Estados Gerais de Tópicos](general-thread-states.html)
 
@@ -1584,7 +1584,7 @@ verificando privilégios em consulta armazenada em cache: estado do thread, [Est
 
 verificar o cache de consultas para a consulta: estado do thread, [Estados de Threads do Cache de Consultas](query-cache-thread-states.html)
 
-Verificar tabela: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+Verificar tabela: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 ponto de controle, [Glossário MySQL](glossary.html)
 
@@ -1692,11 +1692,11 @@ página limpa, [Glossário MySQL](glossary.html)
 
 desativação limpa, [O processo de desligamento do servidor](server-shutdown.html), [Configurando múltiplos diretórios de dados](multiple-data-directories.html), [Replicação e desligamentos de fontes ou réplicas](replication-features-shutdowns.html), [Glossário do MySQL](glossary.html)
 
-limpar:   estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+limpar:   estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 comando claro:   mysql, [Comandos do cliente do MySQL](mysql-commands.html)
 
-Limpeza: estado do fio, [Estados dos Fios do Agendamento de Eventos](event-scheduler-thread-states.html)
+Limpeza: estado do thread, [Estados dos Fios do Agendamento de Eventos](event-scheduler-thread-states.html)
 
 limpar: caches, [declaração de FLUSH](flush.html)
 
@@ -1724,7 +1724,7 @@ Instrução de encerramento: comando de thread, [Valores do comando de thread](t
 
 fechar:   tabelas, [Como o MySQL abre e fecha tabelas](table-cache.html)
 
-Tabelas de encerramento: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+Tabelas de encerramento: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 banco de dados em cluster (DESUTILIZADO) (consulte [replicação em cluster NDB](#entry-id342477))
 
@@ -2610,7 +2610,7 @@ to the server, [Connecting to and Disconnecting from the Server](connecting-disc
 verification, [Access Control, Stage 1: Connection Verification](connection-access.html)
 ```
 
-Conectar ao mestre: estado do fio, [Estados de I/O de réplica da réplica](replica-io-thread-states.html)
+Conectar ao mestre: estado do thread, [Estados de I/O de réplica da réplica](replica-io-thread-states.html)
 
 conexão, [Glossário MySQL](glossary.html):   abortada, [Erros de Comunicação e Conexões Abortadas](communication-errors.html)
 
@@ -2956,7 +2956,7 @@ Criar índice: estado do tópico, [Estados Gerais de Tópicos](general-thread-st
 
 Criar índice de classificação: estado do tópico, [Estados Gerais de Tópicos](general-thread-states.html)
 
-criando tabela: estado do fio, [Estados Gerais do Fóruns](general-thread-states.html)
+criando tabela: estado do thread, [Estados Gerais do Fóruns](general-thread-states.html)
 
 Criando tabela temporária: estado do thread, [Estados Gerais do Thread](general-thread-states.html)
 
@@ -4536,7 +4536,7 @@ criptografia, [Tornando o MySQL Seguro Contra Ataque](security-against-attack.ht
 
 funções de criptografia, [Funções de Criptografia e Compressão](encryption-functions.html)
 
-fim: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+fim: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
 FIM, [INICIO ... FIM de uma declaração composta](begin-end.html)
 
@@ -4980,7 +4980,7 @@ ExecuteOnComputer, [Definindo um servidor de gerenciamento de cluster NDB](mysql
 
 procedimento execute_prepared_stmt(): esquema sys, [O procedimento execute_prepared_stmt](sys-execute-prepared-stmt.html)
 
-executando: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+executando: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 executando instruções SQL a partir de arquivos de texto, [Usando o mysql no modo de lote](batch-mode.html), [Executando instruções SQL a partir de um arquivo de texto](mysql-batch-commands.html)
 
@@ -5410,7 +5410,7 @@ FRAGMENT_COUNT_TYPE (NDB_TABLE) (OBSOLETE):   Nível de agregação NDB, [Config
 
 Solução de problemas do FreeBSD, [Lidando com problemas de compilação do MySQL](compilation-problems.html)
 
-liberar itens: estado do fio, [Estados Gerais do Fóruns](general-thread-states.html)
+liberar itens: estado do thread, [Estados Gerais do Fóruns](general-thread-states.html)
 
 .frm, [Glossário do MySQL](glossary.html)
 
@@ -6158,7 +6158,7 @@ Opção de cabeçalho:   ndb_select_all, [ndb_select_all — Imprimir linhas de 
 
 opção de arquivo de cabeçalho: comp_err, [arquivo de mensagem de erro do MySQL comp_err](comp-err.html)
 
-Motor de armazenamento HEAP, [Motores de Armazenamento Alternativos](storage-engines.html), [O Motor de Armazenamento de MEMÓRIA](memory-storage-engine.html)
+Motor de armazenamento HEAP, [Motores de Armazenamento Alternativos](storage-engines.html), [O Motor de Armazenamento de MEMORY](memory-storage-engine.html)
 
 batimento cardíaco, [Glossário MySQL](glossary.html)
 
@@ -8234,9 +8234,9 @@ Kill: comando de thread, [Valores do Comando de Thread](thread-commands.html)
 
 declaração KILL, [declaração KILL](kill.html)
 
-Eliminado: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Eliminado: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
-Estado do fio de escravo: [Estados de Conexão de Replicação de Replica](replica-connection-thread-states.html)
+Estado do thread de escravo: [Estados de Conexão de Replicação de Replica](replica-connection-thread-states.html)
 
 erros conhecidos, [Problemas Conhecidos no MySQL](known-issues.html)
 
@@ -8964,7 +8964,7 @@ Criar um arquivo temporário (criar) antes de refazer o comando LOAD DATA INFILE
 
 declarações SQL maliciosas: e NDB Cluster, [NDB Cluster e privilégios do MySQL](mysql-cluster-security-mysql-privileges.html)
 
-gerenciar chaves: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+gerenciar chaves: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 cliente de gerenciamento (NDB Cluster), [ndb_mgm — O Cliente de Gerenciamento do NDB Cluster](mysql-cluster-programs-ndb-mgm.html):   (veja também mgm)
 
@@ -9282,7 +9282,7 @@ biblioteca de alocação de memória, [Configurando o systemd para MySQL](using-
 
 Alocador de memória: innodb_use_sys_malloc, [Configurando o Alocador de Memória para o InnoDB](innodb-performance-use_sys_malloc.html)
 
-Motor de armazenamento de MEMÓRIA, [Motores de Armazenamento Alternativos](storage-engines.html), [O Motor de Armazenamento de MEMÓRIA](memory-storage-engine.html): e replicação, [Replicação e Tabelas de MEMÓRIA](replication-features-memory.html)
+Motor de armazenamento de MEMORY, [Motores de Armazenamento Alternativos](storage-engines.html), [O Motor de Armazenamento de MEMORY](memory-storage-engine.html): e replicação, [Replicação e Tabelas de MEMORY](replication-features-memory.html)
 
 ```
 optimization, [Indexes in the MEMORY Storage Engine](column-indexes.html#column-indexes-memory-storage-engine)
@@ -15004,7 +15004,7 @@ Abrir a tabela mestre de descarte: estado do thread, [Estados de Conexão de Rep
 
 Abrir mysql.ndb_apply_status : estado do thread, [Estados de Thread do NDB Cluster](mysql-cluster-thread-states.html)
 
-Tabelas de abertura: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+Tabelas de abertura: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 Configuração do OpenLDAP: arquivo ldap.conf, [Autenticação Pluggable LDAP e ldap.conf](ldap-pluggable-authentication.html#ldap-pluggable-authentication-ldap-conf)
 
@@ -16310,7 +16310,7 @@ tabela prepared_statements_instances: performance_schema, [Tabelas de Resumo de 
 
 Variável de status Prepared_stmt_count, [Variáveis de Status do Servidor](server-status-variables.html)
 
-preparando: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+preparando: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 preparar para alter table: estado do tópico, [Estados Gerais de Tópicos](general-thread-states.html)
 
@@ -16566,7 +16566,7 @@ monitoring, [Examining Server Thread (Process) Information](thread-information.h
 ndbinfo table, [The ndbinfo processes Table](mysql-cluster-ndbinfo-processes.html)
 ```
 
-Processamento de eventos: estado do fio, [Estados de Fios do NDB Cluster](mysql-cluster-thread-states.html)
+Processamento de eventos: estado do thread, [Estados de Fios do NDB Cluster](mysql-cluster-thread-states.html)
 
 Processamento de eventos da tabela de esquema: estado do thread, [Estados de thread do cluster do NDB](mysql-cluster-thread-states.html)
 
@@ -16770,9 +16770,9 @@ PURGE MASTER LOGS, [Declaração de PURGE BINARY LOGS](purge-binary-logs.html)
 
 agendamento de purga, [Configuração de purga](innodb-purge-configuration.html)
 
-purgar o fio, [Glossário do MySQL](glossary.html)
+purgar o thread, [Glossário do MySQL](glossary.html)
 
-Limpar logs de relés antigos: estado do tópico, [Estados Gerais de Tópicos](general-thread-states.html)
+Limpar logs de relays antigos: estado do tópico, [Estados Gerais de Tópicos](general-thread-states.html)
 
 conexões pushdown (NDB), [Variáveis do Sistema de Clúster NDB](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
 
@@ -17016,7 +17016,7 @@ opção de leitura somente: myisamchk, [Verificar opções de myisamchk](myisamc
 
 transação de leitura apenas, [Glossário do MySQL](glossary.html)
 
-Evento de leitura do log de retransmissão: estado do fio, [Estados de Fios de Replicação SQL](replica-sql-thread-states.html)
+Evento de leitura do log de retransmissão: estado do thread, [Estados de Fios de Replicação SQL](replica-sql-thread-states.html)
 
 Leitura dos dados da tabela mestre de descarte: estado do thread, [Estados de Conexão de Replicação Replica](replica-connection-thread-states.html)
 
@@ -17048,7 +17048,7 @@ Reestruturar o índice na tabela de descargas mestre: estado do thread, [Estados
 
 ReceberBufferMemory, [Conexões de TCP/IP do NDB Cluster](mysql-cluster-tcp-definition.html)
 
-Recebendo do cliente: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+Recebendo do cliente: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 reconfigurando, [Lidando com problemas de compilação do MySQL](compilation-problems.html)
 
@@ -17056,7 +17056,7 @@ opção de reconexão:   mysql, [Opções do cliente do MySQL](mysql-command-opt
 
 Reconectar após um pedido de dump de binlog falhado: estado do thread, [Estados de I/O de Replicação Replica](replica-io-thread-states.html)
 
-Reconectar após um evento mestre falhado: leia o estado do fio, [Estados de E/S de Replicação de Replica I/O](replica-io-thread-states.html)
+Reconectar após um evento mestre falhado: leia o estado do thread, [Estados de E/S de Replicação de Replica I/O](replica-io-thread-states.html)
 
 reconexão:   automática, [Tabela de threads](performance-schema-threads-table.html)
 
@@ -17300,9 +17300,9 @@ Reabrir tabelas: estado do tópico, [Estados Gerais de Tópicos](general-thread-
 
 reparação: mesas, [mysqlcheck — Um programa de manutenção de tabelas](mysqlcheck.html)
 
-Reparo por classificação: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Reparo por classificação: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
-Reparo feito: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Reparo feito: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
 Opção de reparo: mysqlcheck, [mysqlcheck — Um programa de manutenção de tabelas](mysqlcheck.html)
 
@@ -17782,7 +17782,7 @@ segmento de rollback, [Desfazer Espaços de Tabela](innodb-undo-tablespaces.html
 
 REDESCREVER PARA SAVEPOINT, [Declarações SAVEPOINT, REDESCREVER PARA SAVEPOINT e LIBERAR SAVEPOINT](savepoint.html)
 
-Reverter: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Reverter: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
 reinício contínuo (Nível de cluster NDB), [Realizando um Reinício Contínuo de um Nível de Cluster NDB](mysql-cluster-rolling-restart.html)
 
@@ -18184,7 +18184,7 @@ Enviar evento binlog para o escravo: estado do thread, [Estados de Threads da Fo
 
 enviar o resultado armazenado na cache para o cliente: estado do thread, [Estados de Threads de Cache de Consulta](query-cache-thread-states.html)
 
-Enviando ao cliente: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Enviando ao cliente: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
 SendSignalId, [Conexões de NDB Cluster TCP/IP](mysql-cluster-tcp-definition.html), [Conexões de Memória Compartilhada de NDB Cluster](mysql-cluster-shm-definition.html)
 
@@ -18824,7 +18824,7 @@ variável de sistema skip_networking, [Variáveis do sistema do servidor](server
 
 variável de sistema skip_show_database, [Variáveis do sistema do servidor](server-system-variables.html)
 
-O escravo leu todo o log de relé; aguardando mais atualizações: estado do thread, [Estados de Threads de Replicação SQL](replica-sql-thread-states.html)
+O escravo leu todo o log de relay; aguardando mais atualizações: estado do thread, [Estados de Threads de Replicação SQL](replica-sql-thread-states.html)
 
 opção slave-skip-errors:   mysqld, [Opções de inicialização para réplicas](replication-options-replica.html#replication-optvars-slaves)
 
@@ -19000,9 +19000,9 @@ Ordenar por grupo: estado do tópico, [Estados Gerais de Tópicos](general-threa
 
 Ordenar por ordem:   estado do tópico, [Estados Gerais de Tópicos](general-thread-states.html)
 
-Índice de classificação: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Índice de classificação: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
-Resultado da classificação: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Resultado da classificação: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
 tamanho_buffer_de_sorteio variável myisamchk, [Opções Gerais do myisamchk](myisamchk-general-options.html)
 
@@ -21050,7 +21050,7 @@ variáveis do sistema e status: novas funcionalidades, [Funcionalidades adiciona
 
 comando do sistema:   mysql, [Comandos do cliente do MySQL](mysql-commands.html)
 
-Bloqueio do sistema: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Bloqueio do sistema: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
 Otimização do sistema, [Fatores do sistema](system-optimization.html)
 
@@ -22954,9 +22954,9 @@ O comando usado não é permitido com esta versão do MySQL: mensagem de erro, [
 
 fios, [Glossário do MySQL](glossary.html)
 
-cache de fio, [Interfaces de conexão](connection-interfaces.html)
+cache de thread, [Interfaces de conexão](connection-interfaces.html)
 
-comando de fio :   Dump de Binlog, [Valores do Comando de Fio](thread-commands.html)
+comando de thread :   Dump de Binlog, [Valores do Comando de Fio](thread-commands.html)
 
 ```
 Change user, [Thread Command Values](thread-commands.html)
@@ -23022,7 +23022,7 @@ comandos de thread, [Valores de comandos de thread](thread-commands.html)
 
 referência da tabela do pool de threads:   INFORMATION_SCHEMA, [Referência da tabela do pool de threads do INFORMATION_SCHEMA](information-schema-thread-pool-table-reference.html)
 
-estado do fio:   Após criar, [Estados gerais do fio](general-thread-states.html)
+estado do thread:   Após criar, [Estados gerais do thread](general-thread-states.html)
 
 ```
 altering table, [General Thread States](general-thread-states.html)
@@ -23330,7 +23330,7 @@ variável de sistema thread_cache_size, [Variáveis do sistema do servidor](serv
 
 thread_concurrency: removidos recursos, [Recursos removidos no MySQL 5.7](mysql-nutshell.html#mysql-nutshell-removals)
 
-variável do sistema de manipulação de fio, [Variáveis do Sistema do Servidor](server-system-variables.html)
+variável do sistema de manipulação de thread, [Variáveis do Sistema do Servidor](server-system-variables.html)
 
 variável de sistema thread_pool_algorithm, [Variáveis do sistema do servidor](server-system-variables.html)
 
@@ -23892,7 +23892,7 @@ Atualização: estado do tópico, [Estados Gerais de Tópicos](general-thread-st
 
 atualizar a tabela principal: estado do tópico, [Estados Gerais de Tópicos](general-thread-states.html)
 
-atualização das tabelas de referência: estado do fio, [Estados Gerais do Fio](general-thread-states.html)
+atualização das tabelas de referência: estado do thread, [Estados Gerais do Fio](general-thread-states.html)
 
 ação de atualização: MySQLInstallerConsole, [Ações de comando](MySQLInstallerConsole.html#mi-console-actions)
 
@@ -24062,7 +24062,7 @@ dropping, [DROP USER Statement](drop-user.html)
 revoking, [Revoking Account Privileges](creating-accounts.html#revoking-account-privileges)
 ```
 
-Estado do usuário: estado do fio, [Estados gerais do fio](general-thread-states.html)
+Estado do usuário: estado do thread, [Estados gerais do thread](general-thread-states.html)
 
 tabela de usuário: coluna account_locked, [Tabelas de concessão de banco de dados e usuário](grant-tables.html#grant-tables-user-db)
 
@@ -24522,7 +24522,7 @@ opção wait-nodes: ndb_waiter, [ndb_waiter — Aguarde o NDB Cluster atingir um
 
 A espera para permitir a aquisição do bloqueio de esquema global ndbcluster: estado do thread, [Estados de Thread do NDB Cluster](mysql-cluster-thread-states.html)
 
-Esperando por um evento do Coordenador: estado do fio, [Estados de Fios de Replicação SQL](replica-sql-thread-states.html)
+Esperando por um evento do Coordenador: estado do thread, [Estados de Fios de Replicação SQL](replica-sql-thread-states.html)
 
 Esperando por bloqueio de commit: estado do thread, [Estados Gerais de Threads](general-thread-states.html)
 
@@ -24536,11 +24536,11 @@ Esperando pelo primeiro evento do ndbcluster: estado do thread, [Estados de Thre
 
 Esperando por bloqueio de leitura global: estado do thread, [Estados Gerais de Threads](general-thread-states.html)
 
-Esperando sua vez de se comprometer: estado do fio, [Estados de I/O de Replicação de Replica I](replica-io-thread-states.html)
+Esperando sua vez de se comprometer: estado do thread, [Estados de I/O de Replicação de Replica I](replica-io-thread-states.html)
 
-Esperando que o mestre envie o evento: estado do fio, [Estados de E/S de Replicação Replica I/O](replica-io-thread-states.html)
+Esperando que o mestre envie o evento: estado do thread, [Estados de E/S de Replicação Replica I/O](replica-io-thread-states.html)
 
-Esperando pela atualização do mestre: estado do fio, [Estados de I/O de Replicação de Replica](replica-io-thread-states.html)
+Esperando pela atualização do mestre: estado do thread, [Estados de I/O de Replicação de Replica](replica-io-thread-states.html)
 
 Esperando que a atualização do binlog do ndbcluster atinja a posição atual: estado do thread, [Estados de Thread do NDB Cluster](mysql-cluster-thread-states.html)
 
@@ -24548,25 +24548,25 @@ Esperando por bloqueio do esquema global ndbcluster: estado do thread, [Estados 
 
 Esperando que o ndbcluster comece: estado do thread, [Estados de Thread do NDB Cluster](mysql-cluster-thread-states.html)
 
-Aguardando próxima ativação: estado do fio, [Estados de Fios do Agendamento de Eventos](event-scheduler-thread-states.html)
+Aguardando próxima ativação: estado do thread, [Estados de Fios do Agendamento de Eventos](event-scheduler-thread-states.html)
 
 Esperando por bloqueio do cache de consulta: estado do thread, [Estados de Threads do Cache de Consulta](query-cache-thread-states.html)
 
 Esperando que o agendamento pare: estado do thread, [Estados dos Threads do Agendamento de Eventos](event-scheduler-thread-states.html)
 
-Esperando pela época do esquema: [Estado do fio de NDB Cluster](mysql-cluster-thread-states.html)
+Esperando pela época do esquema: [Estado do thread de NDB Cluster](mysql-cluster-thread-states.html)
 
 Esperando por bloqueio de metadados do esquema: estado do thread, [Estados Gerais de Thread](general-thread-states.html)
 
 Esperando por mutex escravo na saída: estado do thread, [Estados de I/O de Replicação Replica](replica-io-thread-states.html), [Estados de Thread SQL de Replicação Replica](replica-sql-thread-states.html)
 
-Esperando por trabalhadores escravos para liberar eventos pendentes: estado do fio, [Estados de Fios de Replicação SQL](replica-sql-thread-states.html)
+Esperando por trabalhadores escravos para liberar eventos pendentes: estado do thread, [Estados de Fios de Replicação SQL](replica-sql-thread-states.html)
 
 Esperando por bloqueio de metadados de função armazenada: estado do thread, [Estados Gerais de Thread](general-thread-states.html)
 
 Esperando por bloqueio de metadados de procedimento armazenado: estado do thread, [Estados Gerais de Threads](general-thread-states.html)
 
-Esperar por limpeza da mesa: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Esperar por limpeza da mesa: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
 Esperando por bloqueio de nível de mesa: estado do thread, [Estados Gerais de Threads](general-thread-states.html)
 
@@ -24574,21 +24574,21 @@ Esperando por bloqueio de metadados da tabela: estado do thread, [Estados Gerais
 
 Esperando mesas: estado do tópico, [Estados Gerais de Tópicos](general-thread-states.html)
 
-Esperando pelo próximo evento no log de relé: estado do fio, [Estados de Fios de Replicação SQL](replica-sql-thread-states.html)
+Esperando pelo próximo evento no log de relay: estado do thread, [Estados de Fios de Replicação SQL](replica-sql-thread-states.html)
 
-Esperando que o fio de SQL escravo libere espaço suficiente para o log de relé: estado do fio, [Estados de I/O de Replicação de Replica](replica-io-thread-states.html)
+Esperando que o thread de SQL escravo libere espaço suficiente para o log de relay: estado do thread, [Estados de I/O de Replicação de Replica](replica-io-thread-states.html)
 
 Esperando por bloqueio de metadados do gatilho: estado do thread, [Estados Gerais de Threads](general-thread-states.html)
 
-Esperando por cond: estado do fio, [Estados Gerais de Fios](general-thread-states.html)
+Esperando por cond: estado do thread, [Estados Gerais de Fios](general-thread-states.html)
 
 Aguardar em fila vazia: estado do thread, [Estados dos Threads do Agendamento de Eventos](event-scheduler-thread-states.html)
 
-Esperando finalizar a terminação: estado do fio, [Estados de Fios de Fonte de Replicação](source-thread-states.html)
+Esperando finalizar a terminação: estado do thread, [Estados de Fios de Fonte de Replicação](source-thread-states.html)
 
 Esperando reconectar após um pedido de dump de binlog falhado: estado do thread, [Estados de I/O de Replicação Replica](replica-io-thread-states.html)
 
-Esperando reconectar após um evento mestre falhado. Leia: estado do fio, [Estados de E/S de Replicação de Replica](replica-io-thread-states.html)
+Esperando reconectar após um evento mestre falhado. Leia: estado do thread, [Estados de E/S de Replicação de Replica](replica-io-thread-states.html)
 
 Esperar até MASTER_DELAY segundos após o evento ser executado pelo mestre: estado do thread, [Estados de Threads SQL de Replicação](replica-sql-thread-states.html)
 

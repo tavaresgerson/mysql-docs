@@ -230,7 +230,7 @@ A estratégia de registro assíncrono tem essas características:
 
 - Bloqueio de threads que geram eventos de auditoria por um período o mais curto possível; ou seja, tempo para alocar o buffer mais tempo para copiar o evento para o buffer.
 
-- A saída vai para o buffer. Um fio separado lida com as escritas do buffer no arquivo de log.
+- A saída vai para o buffer. Um thread separado lida com as escritas do buffer no arquivo de log.
 
 Com o registro assíncrono, a integridade do arquivo de registro pode ser comprometida se um problema ocorrer durante uma gravação no arquivo ou se o plugin não fechar corretamente (por exemplo, caso o host do servidor saia inesperadamente). Para reduzir esse risco, defina `audit_log_strategy` para usar o registro síncrono.
 

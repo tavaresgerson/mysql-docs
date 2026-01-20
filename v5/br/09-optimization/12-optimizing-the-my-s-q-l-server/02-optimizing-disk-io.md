@@ -12,9 +12,9 @@ Esta seção descreve as maneiras de configurar dispositivos de armazenamento qu
 
     Os links simbólicos não são suportados para uso com tabelas `InnoDB`. No entanto, é possível colocar os arquivos de dados e log do `InnoDB` em discos físicos diferentes. Para obter mais informações, consulte a Seção 8.5.8, “Otimizando o I/O de disco do InnoDB”.
 
-  - Stripação
+  - Striping
 
-    A faixa significa que você tem muitos discos e coloca o primeiro bloco no primeiro disco, o segundo bloco no segundo disco e o `N`-ésimo bloco no disco (`N MOD número_de_discos`), e assim por diante. Isso significa que, se o tamanho normal dos seus dados for menor que o tamanho da faixa (ou perfeitamente alinhado), você obterá um desempenho muito melhor. A faixa depende muito do sistema operacional e do tamanho da faixa, então faça uma medição de desempenho com diferentes tamanhos de faixa. Veja a Seção 8.13.2, “Usando seus próprios benchmarks”.
+    Striping significa que você tem muitos discos e coloca o primeiro bloco no primeiro disco, o segundo bloco no segundo disco e o `N`-ésimo bloco no disco (`N MOD número_de_discos`), e assim por diante. Isso significa que, se o tamanho normal dos seus dados for menor que o tamanho da faixa (ou perfeitamente alinhado), você obterá um desempenho muito melhor. A faixa depende muito do sistema operacional e do tamanho da faixa, então faça uma medição de desempenho com diferentes tamanhos de faixa. Veja a Seção 8.13.2, “Usando seus próprios benchmarks”.
 
     A diferença de velocidade para striping é *muito* dependente dos parâmetros. Dependendo da forma como você define os parâmetros de striping e o número de discos, você pode obter diferenças medidas em ordens de grandeza. Você precisa escolher se deseja otimizar para acesso aleatório ou sequencial.
 

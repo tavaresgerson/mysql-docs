@@ -8,7 +8,7 @@ As views `processlist` e `x$processlist` têm essas colunas:
 
 - `thd_id`
 
-  O ID do fio.
+  O ID do thread.
 
 - `conn_id`
 
@@ -28,15 +28,15 @@ As views `processlist` e `x$processlist` têm essas colunas:
 
 - "estado"
 
-  Uma ação, evento ou estado que indica o que o fio está fazendo.
+  Uma ação, evento ou estado que indica o que o thread está fazendo.
 
 - `tempo`
 
-  O tempo em segundos que o fio esteve em seu estado atual.
+  O tempo em segundos que o thread esteve em seu estado atual.
 
 - `declaração_atual`
 
-  A declaração que o fio está executando, ou `NULL` se não estiver executando nenhuma declaração.
+  A declaração que o thread está executando, ou `NULL` se não estiver executando nenhuma declaração.
 
 - `statement_latency`
 
@@ -76,7 +76,7 @@ As views `processlist` e `x$processlist` têm essas colunas:
 
 - `última_declaração`
 
-  A última instrução executada pelo fio, se não houver nenhuma instrução atualmente em execução ou espera.
+  A última instrução executada pelo thread, se não houver nenhuma instrução atualmente em execução ou espera.
 
 - `last_statement_latency`
 
@@ -88,11 +88,11 @@ As views `processlist` e `x$processlist` têm essas colunas:
 
 - `last_wait`
 
-  O nome do evento de espera mais recente para o fio.
+  O nome do evento de espera mais recente para o thread.
 
 - `last_wait_latency`
 
-  O tempo de espera do evento de espera mais recente para o fio.
+  O tempo de espera do evento de espera mais recente para o thread.
 
 - `fonte`
 
@@ -100,11 +100,11 @@ As views `processlist` e `x$processlist` têm essas colunas:
 
 - `trx_latency`
 
-  O tempo de espera da transação atual para o fio.
+  O tempo de espera da transação atual para o thread.
 
 - `trx_state`
 
-  O estado para a transação atual para o fio.
+  O estado para a transação atual para o thread.
 
 - `trx_autocommit`
 

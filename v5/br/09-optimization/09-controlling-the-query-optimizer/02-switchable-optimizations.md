@@ -160,13 +160,13 @@ A lista a seguir descreve os nomes permitidos da bandeira *`opt_name`*, agrupado
 
   Se a estratégia de junção semijunta `duplicateweedout` estiver desativada, ela não será usada, a menos que todas as outras estratégias aplicáveis também estejam desativadas.
 
-  Se `semijoin` e `materialização` estiverem ambos ativados, os semijoins também utilizam a materialização quando aplicável. Essas opções estão ativadas por padrão.
+  Se `semijoin` e `materialization` estiverem ambos ativados, os semijoins também utilizam a materialização quando aplicável. Essas opções estão ativadas por padrão.
 
   Para obter mais informações, consulte a Seção 8.2.2.1, “Otimização de subconsultas, tabelas derivadas e referências de visualizações com transformações Semijoin”.
 
 - Marcadores de materialização de subconsultas
 
-  - `materialização` (padrão `on`)
+  - `materialization` (padrão `on`)
 
     Controla a materialização (incluindo a materialização por junção parcial).
 
@@ -174,7 +174,7 @@ A lista a seguir descreve os nomes permitidos da bandeira *`opt_name`*, agrupado
 
     Use a opção de materialização baseada no custo.
 
-  A bandeira `materialização` controla se a materialização de subconsultas é usada. Se `semijoin` e `materialização` estiverem ambos em `on`, os semijoins também usam materialização quando aplicável. Essas bandeiras estão em `on` por padrão.
+  A bandeira `materialization` controla se a materialização de subconsultas é usada. Se `semijoin` e `materialization` estiverem ambos em `on`, os semijoins também usam materialização quando aplicável. Essas bandeiras estão em `on` por padrão.
 
   A bandeira `subquery_materialization_cost_based` permite controlar a escolha entre a materialização de subconsultas e a transformação de subconsultas `IN` para `EXISTS`. Se a bandeira estiver `on` (padrão), o otimizador realiza uma escolha baseada no custo entre a materialização de subconsultas e a transformação de subconsultas `IN` para `EXISTS`, se qualquer um dos métodos puder ser usado. Se a bandeira estiver `off`, o otimizador escolhe a materialização de subconsultas em detrimento da transformação de subconsultas `IN` para `EXISTS`.
 

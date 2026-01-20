@@ -86,7 +86,7 @@ Quando a variável `innodb_undo_log_truncate` estiver habilitada:
 
 ###### Acelerar a truncação de tabelas de desfazer
 
-O fio de purga é responsável por esvaziar e truncar os espaços de tabelas de reversão. Por padrão, o fio de purga procura por espaços de tabelas de reversão para truncar uma vez a cada 128 vezes que a purga é invocada. A frequência com que o fio de purga procura por espaços de tabelas de reversão para truncar é controlada pela variável `innodb_purge_rseg_truncate_frequency`, que tem um valor padrão de 128.
+O thread de purga é responsável por esvaziar e truncar os espaços de tabelas de reversão. Por padrão, o thread de purga procura por espaços de tabelas de reversão para truncar uma vez a cada 128 vezes que a purga é invocada. A frequência com que o thread de purga procura por espaços de tabelas de reversão para truncar é controlada pela variável `innodb_purge_rseg_truncate_frequency`, que tem um valor padrão de 128.
 
 ```sql
 mysql> SELECT @@innodb_purge_rseg_truncate_frequency;
@@ -103,7 +103,7 @@ Para aumentar a frequência, diminua o ajuste `innodb_purge_rseg_truncate_freque
 mysql> SET GLOBAL innodb_purge_rseg_truncate_frequency=32;
 ```
 
-Quando o fio de purga encontra um espaço de tabelas de desfazer que requer truncação, o fio de purga retorna com maior frequência para esvaziar e truncar rapidamente o espaço de tabelas de desfazer.
+Quando o thread de purga encontra um espaço de tabelas de desfazer que requer truncação, o thread de purga retorna com maior frequência para esvaziar e truncar rapidamente o espaço de tabelas de desfazer.
 
 ###### Impacto no desempenho de truncar arquivos do espaço de recuperação de tabelas
 

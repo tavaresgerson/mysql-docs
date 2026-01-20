@@ -8,17 +8,17 @@ As capacidades de replicação do MySQL são implementadas usando três threads 
 
 - **Thread de exclusão de log binário.** A fonte cria um thread para enviar o conteúdo do log binário para uma réplica quando a réplica se conecta. Esse thread pode ser identificado na saída de `SHOW PROCESSLIST` na fonte como o thread `Exclusão de Log Binário`.
 
-  O fio de exclusão de log binário obtém um bloqueio no log binário da fonte para ler cada evento que será enviado para a réplica. Assim que o evento é lido, o bloqueio é liberado, mesmo antes de o evento ser enviado para a réplica.
+  O thread de exclusão de log binário obtém um bloqueio no log binário da fonte para ler cada evento que será enviado para a réplica. Assim que o evento é lido, o bloqueio é liberado, mesmo antes de o evento ser enviado para a réplica.
 
 - **Spool de I/O de replicação.** Quando uma instrução `START SLAVE` é emitida em um servidor replica, a replica cria um spool de I/O, que se conecta à fonte e pede que ela envie as atualizações registradas em seus logs binários.
 
   A thread de I/O de replicação lê as atualizações enviadas pela thread `Binlog Dump` da fonte (veja o item anterior) e as copia para arquivos locais que compõem o log de retransmissão da replica.
 
-  O estado deste fio é exibido como `Slave_IO_running` na saída de `SHOW SLAVE STATUS`.
+  O estado deste thread é exibido como `Slave_IO_running` na saída de `SHOW SLAVE STATUS`.
 
 - **Fuso de replicação SQL.** A replica cria um fuso de SQL para ler o log de retransmissão que é escrito pelo fuso de E/S de replicação e executar as transações contidas nele.
 
-Há três fios principais para cada conexão de fonte/replica. Uma fonte que tem múltiplas réplicas cria um fio de exibição de dump de log binário para cada replica conectada atualmente, e cada replica tem seus próprios fios de I/O de replicação e SQL.
+Há três fios principais para cada conexão de fonte/replica. Uma fonte que tem múltiplas réplicas cria um thread de exibição de dump de log binário para cada replica conectada atualmente, e cada replica tem seus próprios fios de I/O de replicação e SQL.
 
 Uma replica usa dois threads para separar as atualizações de leitura da fonte e executá-las em tarefas independentes. Assim, a tarefa de leitura das transações não é retardada se o processo de aplicação delas for lento. Por exemplo, se o servidor de replica não estiver em execução há algum tempo, seu thread de I/O pode rapidamente obter todos os conteúdos do log binário da fonte quando a replica começar, mesmo que o thread de SQL esteja muito atrasado. Se a replica parar antes que o thread de SQL tenha executado todas as declarações obtidas, o thread de I/O pelo menos obteve tudo, de modo que uma cópia segura das transações seja armazenada localmente nos logs de retransmissão da replica, pronta para execução na próxima vez que a replica começar.
 

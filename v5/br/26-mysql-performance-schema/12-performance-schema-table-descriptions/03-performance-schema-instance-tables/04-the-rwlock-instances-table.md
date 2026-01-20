@@ -16,11 +16,11 @@ A tabela `rwlock_instances` tem as seguintes colunas:
 
 - `WRITE_LOCKED_BY_THREAD_ID`
 
-  Quando um fio atualmente tem um `rwlock` bloqueado no modo exclusivo (escrita), `WRITE_LOCKED_BY_THREAD_ID` é o `THREAD_ID` do fio que está bloqueando, caso contrário, é `NULL`.
+  Quando um thread atualmente tem um `rwlock` bloqueado no modo exclusivo (escrita), `WRITE_LOCKED_BY_THREAD_ID` é o `THREAD_ID` do thread que está bloqueando, caso contrário, é `NULL`.
 
 - `READ_LOCKED_BY_COUNT`
 
-  Quando um fio atualmente tem um `rwlock` bloqueado no modo compartilhado (leitura), `READ_LOCKED_BY_COUNT` é incrementado por
+  Quando um thread atualmente tem um `rwlock` bloqueado no modo compartilhado (leitura), `READ_LOCKED_BY_COUNT` é incrementado por
 
   1. Este é um contador apenas, então não pode ser usado diretamente para descobrir qual thread possui uma trava de leitura, mas pode ser usado para verificar se há uma disputa de leitura em um `rwlock` e ver quantos leitores estão atualmente ativos.
 
@@ -30,6 +30,6 @@ Ao realizar consultas em ambas as tabelas a seguir, um aplicativo de monitoramen
 
 - `events_waits_current`, para ver por que uma thread está esperando por um `rwlock`
 
-- `rwlock_instances`, para ver qual outro fio atualmente possui um `rwlock`
+- `rwlock_instances`, para ver qual outro thread atualmente possui um `rwlock`
 
 Há uma limitação: o `rwlock_instances` pode ser usado apenas para identificar o thread que está segurando um bloqueio de escrita, mas não os threads que estão segurando um bloqueio de leitura.

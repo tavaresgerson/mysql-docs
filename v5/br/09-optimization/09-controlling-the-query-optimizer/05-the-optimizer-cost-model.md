@@ -32,21 +32,21 @@ O modelo de banco de dados de custo do otimizador consiste em duas tabelas no ba
 
 A tabela `server_cost` contém as seguintes colunas:
 
-- `nome_custo`
+- `cost_name`
 
   O nome de uma estimativa de custo usada no modelo de custo. O nome não é case-sensitive. Se o servidor não reconhecer o nome do custo ao ler esta tabela, ele escreve uma mensagem de aviso no log de erros.
 
-- `valor_custo`
+- `cost_value`
 
   O valor da estimativa de custo. Se o valor não for `NULL`, o servidor usa-o como o custo. Caso contrário, ele usa a estimativa padrão (o valor embutido). Os administradores de banco de dados podem alterar uma estimativa de custo atualizando esta coluna. Se o servidor encontrar que o valor do custo é inválido (não positivo) ao ler esta tabela, ele escreve uma mensagem de aviso no log de erros.
 
   Para substituir uma estimativa de custo padrão (para uma entrada que especifica `NULL`), defina o custo para um valor que não seja `NULL`. Para retornar ao padrão, defina o valor para `NULL`. Em seguida, execute `FLUSH OPTIMIZER_COSTS` para informar ao servidor para reler as tabelas de custo.
 
-- `última atualização`
+- `last_update`
 
   O horário da última atualização da última linha.
 
-- `comentário`
+- `comment`
 
   Um comentário descritivo associado à estimativa de custo. Os DBAs podem usar essa coluna para fornecer informações sobre por que uma linha de estimativa de custo armazena um valor específico.
 
@@ -76,27 +76,27 @@ O servidor reconhece esses valores `cost_name` para a tabela `server_cost`:
 
 A tabela `engine_cost` contém as seguintes colunas:
 
-- `nome_do_motor`
+- `engine_name`
 
   O nome do mecanismo de armazenamento ao qual esta estimativa de custo se aplica. O nome não é case-sensitive. Se o valor for `default`, ele se aplica a todos os mecanismos de armazenamento que não têm uma entrada nomeada própria. Se o servidor não reconhecer o nome do motor ao ler esta tabela, ele escreve uma mensagem de aviso no log de erros.
 
-- `tipo_dispositivo`
+- `device_type`
 
   O tipo de dispositivo para o qual esta estimativa de custo se aplica. A coluna é destinada a especificar diferentes estimativas de custo para diferentes tipos de dispositivos de armazenamento, como discos rígidos em comparação com unidades de estado sólido. Atualmente, essa informação não é usada e 0 é o único valor permitido.
 
-- `nome_custo`
+- `cost_name`
 
   O mesmo que na tabela `server_cost`.
 
-- `valor_custo`
+- `cost_value`
 
   O mesmo que na tabela `server_cost`.
 
-- `última atualização`
+- `last_update`
 
   O mesmo que na tabela `server_cost`.
 
-- `comentário`
+- `comment`
 
   O mesmo que na tabela `server_cost`.
 

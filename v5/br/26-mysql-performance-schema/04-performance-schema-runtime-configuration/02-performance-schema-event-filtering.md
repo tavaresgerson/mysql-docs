@@ -17,7 +17,7 @@ Os eventos são processados de forma produtor/consumidor:
   ...
   ```
 
-  A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou fio sendo monitorado, outras tabelas podem ser usadas conforme descrito em Seção 25.4.3, “Pré-filtragem de Eventos”.
+  A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou thread sendo monitorado, outras tabelas podem ser usadas conforme descrito em Seção 25.4.3, “Pré-filtragem de Eventos”.
 
 - As tabelas do Schema de Desempenho são os destinos dos eventos e os consumidores que os consomem. A tabela `setup_consumers` lista os tipos de consumidores para os quais as informações dos eventos podem ser enviadas e se eles estão habilitados:
 

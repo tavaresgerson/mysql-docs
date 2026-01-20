@@ -408,7 +408,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
 
-[Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
+[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
 
 [Seção 15.2, “O Motor de Armazenamento MyISAM”](myisam-storage-engine.html)
 
@@ -516,9 +516,9 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-### ALTER TABLE ... ENGINE = MEMÓRIA
+### ALTER TABLE ... ENGINE = MEMORY
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA”](replication-features-memory.html)
+[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
 
 ### ALTER TABLE ... ENGINE = NDB
 
@@ -1550,7 +1550,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 21.6.12, "Operações online com ALTER TABLE no NDB Cluster"](mysql-cluster-online-operations.html)
 
-[Seção 8.7, “Otimização para Tabelas de MEMÓRIA”](optimizing-memory-tables.html)
+[Seção 8.7, “Otimização para Tabelas de MEMORY”](optimizing-memory-tables.html)
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
@@ -1934,7 +1934,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
 
-[Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
+[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
 
 [Seção 15.2, “O Motor de Armazenamento MyISAM”](myisam-storage-engine.html)
 
@@ -2510,7 +2510,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 16.4.1.17, “Replicação e LIMIT”](replication-features-limit.html)
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA”](replication-features-memory.html)
+[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
 
 [Seção 16.4.1.22, "Replicação e o otimizador de consultas"](replication-features-optimizer.html)
 
@@ -2552,7 +2552,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 1.2.2, “Principais características do MySQL”](features.html)
 
-[Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
+[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
 
 [Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
 
@@ -2882,7 +2882,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
 
-[Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
+[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
 
 [Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
 
@@ -4126,13 +4126,13 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 1.6.2.1, “Diferenças para Selecionar em Tabela”](ansi-diff-select-into-table.html)
 
-[Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
+[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
 
 [Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
 
 ### INSERT INTO ... SELECT FROM memory_table
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA”](replication-features-memory.html)
+[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
 
 ### INSERT INTO...SELECT
 
@@ -4236,7 +4236,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 ### MATAR
 
-[Seção 8.14, “Examinando informações de fio (processo) do servidor”](thread-information.html)
+[Seção 8.14, “Examinando informações de thread (processo) do servidor”](thread-information.html)
 
 [Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
 
@@ -4416,7 +4416,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 11.3.5, “O Tipo ENUM”](enum.html)
 
-[Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
+[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
 
 [Seção 13.2.10.1, “A subconsulta como operando escalar”](scalar-subqueries.html)
 
@@ -7788,7 +7788,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA”](replication-features-memory.html)
+[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
 
 [Seção 16.4.1.35, “Replicação e TRUNCATE TABLE”](replication-features-truncate.html)
 
@@ -7846,7 +7846,7 @@ index topo](dynindex-statement.html#stmt-index-topo)]
 
 [Seção 14.21.6, “O Plugin InnoDB memcached e Replicação”](innodb-memcached-replication.html)
 
-[Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
+[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
 
 [Seção 25.12.12.1, “A tabela metadata_locks”](performance-schema-metadata-locks-table.html)
 

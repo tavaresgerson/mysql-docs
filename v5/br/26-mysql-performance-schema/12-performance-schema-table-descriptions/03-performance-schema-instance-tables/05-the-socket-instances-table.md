@@ -34,7 +34,7 @@ Os instrumentos de soquete têm nomes na forma `wait/io/socket/sql/socket_type` 
 
 1. O servidor possui uma porta de escuta para cada protocolo de rede que ele suporta. Os instrumentos associados às portas de escuta para conexões de arquivos de socket TCP/IP ou Unix têm um valor de *`socket_type`* de `server_tcpip_socket` ou `server_unix_socket`, respectivamente.
 
-2. Quando uma porta de escuta detecta uma conexão, o servidor transfere a conexão para uma nova porta gerenciada por um fio separado. O instrumento para o novo fio de conexão tem um valor de *`socket_type`* de `client_connection`.
+2. Quando uma porta de escuta detecta uma conexão, o servidor transfere a conexão para uma nova porta gerenciada por um thread separado. O instrumento para o novo thread de conexão tem um valor de *`socket_type`* de `client_connection`.
 
 3. Quando uma conexão é encerrada, a linha na tabela `socket_instances` correspondente a ela é excluída.
 
@@ -50,7 +50,7 @@ A tabela `socket_instances` tem as seguintes colunas:
 
 - `THREAD_ID`
 
-  O identificador de fio interno atribuído pelo servidor. Cada soquete é gerenciado por um único fio, então cada soquete pode ser mapeado para um fio que pode ser mapeado para um processo do servidor.
+  O identificador de thread interno atribuído pelo servidor. Cada soquete é gerenciado por um único thread, então cada soquete pode ser mapeado para um thread que pode ser mapeado para um processo do servidor.
 
 - `SOCKET_ID`
 

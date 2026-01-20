@@ -6,19 +6,19 @@ A tabela `threads` contém as seguintes colunas:
 
 - `node_id`
 
-  ID do nó onde o fio está sendo executado
+  ID do nó onde o thread está sendo executado
 
 - `thr_no`
 
-  ID do fio (específico para este nó)
+  ID do thread (específico para este nó)
 
 - `nome_do_thread`
 
-  Nome do fio (tipo de fio)
+  Nome do thread (tipo de thread)
 
 - `descrição_do_thread`
 
-  Descrição do fio (tipo)
+  Descrição do thread (tipo)
 
 ##### Notas
 

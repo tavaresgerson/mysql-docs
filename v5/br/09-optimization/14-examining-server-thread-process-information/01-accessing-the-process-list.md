@@ -40,7 +40,7 @@ A visualização `sys` `processlist` do esquema apresenta informações da tabel
 
 #### Privilegios necessários para acessar a lista de processos
 
-Para a maioria das fontes de informações de processo, se você tiver o privilégio `PROCESSO`, poderá ver todas as threads, mesmo aquelas pertencentes a outros usuários. Caso contrário (sem o privilégio `PROCESSO`), os usuários não anônimos têm acesso às informações sobre suas próprias threads, mas não sobre as threads de outros usuários, e os usuários anônimos não têm acesso às informações das threads.
+Para a maioria das fontes de informações de processo, se você tiver o privilégio `PROCCESS`, poderá ver todas as threads, mesmo aquelas pertencentes a outros usuários. Caso contrário (sem o privilégio `PROCCESS`), os usuários não anônimos têm acesso às informações sobre suas próprias threads, mas não sobre as threads de outros usuários, e os usuários anônimos não têm acesso às informações das threads.
 
 A tabela do Schema de Desempenho `threads` também fornece informações sobre os threads, mas o acesso à tabela utiliza um modelo de privilégio diferente. Consulte a Seção 25.12.16.4, “A tabela threads”.
 
@@ -50,13 +50,13 @@ Cada entrada da lista de processos contém várias informações. A lista a segu
 
 - `Id` é o identificador de conexão do cliente associado à thread.
 
-- `Usuário` e `Host` indicam a conta associada à thread.
+- `User` e `Host` indicam a conta associada à thread.
 
 - `db` é o banco de dados padrão para o thread, ou `NULL` se nenhum tiver sido selecionado.
 
 - `Command` e `State` indicam o que a thread está fazendo.
 
-  A maioria dos estados corresponde a operações muito rápidas. Se um fio permanecer em um determinado estado por muitos segundos, pode haver um problema que precisa ser investigado.
+  A maioria dos estados corresponde a operações muito rápidas. Se um thread permanecer em um determinado estado por muitos segundos, pode haver um problema que precisa ser investigado.
 
   As seções a seguir listam os possíveis valores de `Command` e os valores de `State` agrupados por categoria. O significado de alguns desses valores é evidente. Para outros, uma descrição adicional é fornecida.
 
@@ -64,6 +64,6 @@ Cada entrada da lista de processos contém várias informações. A lista a segu
 
   As aplicações que examinam as informações da lista de processos devem estar cientes de que os comandos e estados estão sujeitos a alterações.
 
-- `Tempo` indica quanto tempo o fio esteve em seu estado atual. A noção do tempo atual do fio pode ser alterada em alguns casos: o fio pode alterar o tempo com `SET TIMESTAMP = valor`. Para um fio de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o tempo real do host da replica. Veja a Seção 16.2.3, “Fios de Replicação”.
+- `Time` indica quanto tempo o thread esteve em seu estado atual. A noção do tempo atual do thread pode ser alterada em alguns casos: o thread pode alterar o tempo com `SET TIMESTAMP = valor`. Para um thread de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o tempo real do host da replica. Veja a Seção 16.2.3, “Fios de Replicação”.
 
 - `Info` indica a instrução que a thread está executando, ou `NULL` se não estiver executando nenhuma instrução. Para `SHOW PROCESSLIST`, esse valor contém apenas os primeiros 100 caracteres da instrução. Para ver instruções completas, use `SHOW FULL PROCESSLIST` (ou consulte uma fonte de informações de processo diferente).

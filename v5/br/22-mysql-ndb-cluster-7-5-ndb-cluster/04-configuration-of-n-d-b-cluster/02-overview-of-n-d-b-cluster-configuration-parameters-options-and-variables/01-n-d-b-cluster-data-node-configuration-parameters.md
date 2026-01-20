@@ -104,7 +104,7 @@ Esses parâmetros também se aplicam a **ndbmtd**, a versão multithread do **nd
 
 - `InitialLogFileGroup`: Descreve o grupo de arquivos de registro criado durante o início inicial. Consulte a documentação para o formato.
 
-- `InitialNoOfOpenFiles`: Número inicial de arquivos abertos por nó de dados. (Um fio é criado por arquivo).
+- `InitialNoOfOpenFiles`: Número inicial de arquivos abertos por nó de dados. (Um thread é criado por arquivo).
 
 - `InitialTablespace`: Descreve o espaço de tabelas criado durante o início inicial. Consulte a documentação para o formato.
 

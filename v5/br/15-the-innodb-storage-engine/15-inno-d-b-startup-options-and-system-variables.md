@@ -1136,7 +1136,7 @@
 
   Um valor menor que o padrão é geralmente adequado para a maioria das cargas de trabalho. Um valor muito maior do que o necessário pode afetar o desempenho. Considere apenas aumentar o valor se você tiver capacidade de E/S adicional sob uma carga de trabalho típica. Por outro lado, se uma carga de trabalho intensiva em escrita saturar sua capacidade de E/S, diminua o valor, especialmente no caso de um grande pool de buffers.
 
-  Ao ajustar `innodb_lru_scan_depth`, comece com um valor baixo e configure o ajuste para cima, com o objetivo de raramente ver páginas livres iguais a zero. Além disso, considere ajustar `innodb_lru_scan_depth` ao alterar o número de instâncias do pool de buffers, pois `innodb_lru_scan_depth` \* `innodb_buffer_pool_instances` define a quantidade de trabalho realizada pelo fio de limpeza de páginas a cada segundo.
+  Ao ajustar `innodb_lru_scan_depth`, comece com um valor baixo e configure o ajuste para cima, com o objetivo de raramente ver páginas livres iguais a zero. Além disso, considere ajustar `innodb_lru_scan_depth` ao alterar o número de instâncias do pool de buffers, pois `innodb_lru_scan_depth` \* `innodb_buffer_pool_instances` define a quantidade de trabalho realizada pelo thread de limpeza de páginas a cada segundo.
 
   Para informações relacionadas, consulte a Seção 14.8.3.5, “Configurando o Limpeza do Pool de Armazenamento de Buffer”. Para conselhos gerais sobre o ajuste de E/S, consulte a Seção 8.5.8, “Otimizando o E/S de Disco do InnoDB”.
 
@@ -1268,7 +1268,7 @@
 
   <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb[=valu<code>ON</code></code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  O número de threads de limpeza de páginas que limpam páginas sujas das instâncias do pool de buffers. Os threads de limpeza de páginas realizam a listagem de limpeza e a limpeza LRU. Um único thread de limpeza de páginas foi introduzido no MySQL 5.6 para desviar o trabalho de limpeza do pool de buffers do fio mestre do `InnoDB`. No MySQL 5.7, o `InnoDB` oferece suporte para múltiplos threads de limpeza de páginas. Um valor de 1 mantém a configuração anterior ao MySQL 5.7, na qual há um único thread de limpeza de páginas. Quando há múltiplos threads de limpeza de páginas, as tarefas de limpeza do pool de buffers para cada instância do pool de buffers são enviadas para threads de limpeza de páginas ociosos. O valor padrão `innodb_page_cleaners` foi alterado de 1 para 4 no MySQL 5.7. Se o número de threads de limpeza de páginas exceder o número de instâncias do pool de buffers, o `innodb_page_cleaners` é automaticamente definido para o mesmo valor que o `innodb_buffer_pool_instances`.
+  O número de threads de limpeza de páginas que limpam páginas sujas das instâncias do pool de buffers. Os threads de limpeza de páginas realizam a listagem de limpeza e a limpeza LRU. Um único thread de limpeza de páginas foi introduzido no MySQL 5.6 para desviar o trabalho de limpeza do pool de buffers do thread mestre do `InnoDB`. No MySQL 5.7, o `InnoDB` oferece suporte para múltiplos threads de limpeza de páginas. Um valor de 1 mantém a configuração anterior ao MySQL 5.7, na qual há um único thread de limpeza de páginas. Quando há múltiplos threads de limpeza de páginas, as tarefas de limpeza do pool de buffers para cada instância do pool de buffers são enviadas para threads de limpeza de páginas ociosos. O valor padrão `innodb_page_cleaners` foi alterado de 1 para 4 no MySQL 5.7. Se o número de threads de limpeza de páginas exceder o número de instâncias do pool de buffers, o `innodb_page_cleaners` é automaticamente definido para o mesmo valor que o `innodb_buffer_pool_instances`.
 
   Se sua carga de trabalho estiver ligada à escrita de I/O ao descartar páginas sujas das instâncias do pool de buffers para os arquivos de dados, e se o hardware do seu sistema tiver capacidade disponível, aumentar o número de threads do limpador de páginas pode ajudar a melhorar o desempenho da escrita de I/O.
 
@@ -1342,7 +1342,7 @@
 
   <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb[=valu<code>ON</code></code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Define o número de páginas do log de desfazer que são limpas e processadas em um único lote da lista de histórico. Em uma configuração de limpeza multissulíngula, o fio de limpeza do coordenador divide `innodb_purge_batch_size` por `innodb_purge_threads` e atribui esse número de páginas a cada fio de limpeza. A variável `innodb_purge_batch_size` também define o número de páginas do log de desfazer que são liberadas após cada 128 iterações pelos logs de desfazer.
+  Define o número de páginas do log de desfazer que são limpas e processadas em um único lote da lista de histórico. Em uma configuração de limpeza multissulíngula, o thread de limpeza do coordenador divide `innodb_purge_batch_size` por `innodb_purge_threads` e atribui esse número de páginas a cada thread de limpeza. A variável `innodb_purge_batch_size` também define o número de páginas do log de desfazer que são liberadas após cada 128 iterações pelos logs de desfazer.
 
   A opção `innodb_purge_batch_size` é destinada a ajustes avançados de desempenho em combinação com a configuração `innodb_purge_threads`. A maioria dos usuários não precisa alterar `innodb_purge_batch_size` do seu valor padrão.
 
@@ -1404,7 +1404,7 @@
 
   <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb[=valu<code>ON</code></code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  O atraso do fio de replicação em milissegundos em um servidor de replicação quando o `innodb_thread_concurrency` é atingido.
+  O atraso do thread de replicação em milissegundos em um servidor de replicação quando o `innodb_thread_concurrency` é atingido.
 
 - `innodb_rollback_on_timeout`
 
@@ -1560,7 +1560,7 @@
 
   <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb[=valu<code>ON</code></code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  Habilita o suporte `InnoDB` para o commit de duas fases em transações XA, causando um esvaziamento adicional do disco para a preparação da transação. O mecanismo XA é usado internamente e é essencial para qualquer servidor que tenha seu log binário ativado e esteja aceitando alterações em seus dados de mais de um fio. Se você desabilitar `innodb_support_xa`, as transações podem ser escritas no log binário em uma ordem diferente da ordem em que o banco de dados ao vivo as está commitando, o que pode produzir dados diferentes quando o log binário é reexibido na recuperação de desastres ou em uma replica. Não desabilite `innodb_support_xa` em um servidor de origem de replicação, a menos que você tenha uma configuração incomum em que apenas um fio seja capaz de alterar dados.
+  Habilita o suporte `InnoDB` para o commit de duas fases em transações XA, causando um esvaziamento adicional do disco para a preparação da transação. O mecanismo XA é usado internamente e é essencial para qualquer servidor que tenha seu log binário ativado e esteja aceitando alterações em seus dados de mais de um thread. Se você desabilitar `innodb_support_xa`, as transações podem ser escritas no log binário em uma ordem diferente da ordem em que o banco de dados ao vivo as está commitando, o que pode produzir dados diferentes quando o log binário é reexibido na recuperação de desastres ou em uma replica. Não desabilite `innodb_support_xa` em um servidor de origem de replicação, a menos que você tenha uma configuração incomum em que apenas um thread seja capaz de alterar dados.
 
   `innodb_support_xa` está desatualizado; espere-se que ele seja removido em uma futura versão do MySQL. O suporte `InnoDB` para o commit de duas fases em transações XA está sempre ativado a partir do MySQL 5.7.10. Desativar `innodb_support_xa` não é mais permitido, pois isso torna a replicação insegura e impede ganhos de desempenho associados ao commit de grupo de log binário.
 
@@ -1574,7 +1574,7 @@
 
   <table frame="box" rules="all" summary="Propriedades para innodb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--innodb[=valu<code>ON</code></code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>OFF</code></p><p><code>ON</code></p><p><code>FORCE</code></p></td> </tr></tbody></table>
 
-  O número de vezes que um fio aguarda por um mutex do InnoDB ser liberado antes de o fio ser suspenso.
+  O número de vezes que um thread aguarda por um mutex do InnoDB ser liberado antes de o thread ser suspenso.
 
 - `innodb_sync_debug`
 

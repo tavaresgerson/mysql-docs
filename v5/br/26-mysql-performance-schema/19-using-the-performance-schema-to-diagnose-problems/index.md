@@ -32,9 +32,9 @@ O exemplo a seguir apresenta uma metodologia que você pode usar para analisar u
 
 As colunas `mutex_instances.LOCKED_BY_THREAD_ID` e `rwlock_instances.WRITE_LOCKED_BY_THREAD_ID` são extremamente importantes para investigar gargalos de desempenho ou deadlocks. Isso é possível graças à instrumentação do Performance Schema, conforme descrito a seguir:
 
-1. Suponha que o fio 1 esteja preso, esperando por um mutex.
+1. Suponha que o thread 1 esteja preso, esperando por um mutex.
 
-2. Você pode determinar o que o fio está esperando:
+2. Você pode determinar o que o thread está esperando:
 
    ```sql
    SELECT * FROM performance_schema.events_waits_current
@@ -43,16 +43,16 @@ As colunas `mutex_instances.LOCKED_BY_THREAD_ID` e `rwlock_instances.WRITE_LOCKE
 
    Diga que o resultado da consulta identifica que o thread está aguardando o mutex A, encontrado em `events_waits_current.OBJECT_INSTANCE_BEGIN`.
 
-3. Você pode determinar qual fio está segurando o mutex A:
+3. Você pode determinar qual thread está segurando o mutex A:
 
    ```sql
    SELECT * FROM performance_schema.mutex_instances
    WHERE OBJECT_INSTANCE_BEGIN = mutex_A;
    ```
 
-   Diga que o resultado da consulta identifica que é o fio 2 que está segurando o mutex A, conforme encontrado em `mutex_instances.LOCKED_BY_THREAD_ID`.
+   Diga que o resultado da consulta identifica que é o thread 2 que está segurando o mutex A, conforme encontrado em `mutex_instances.LOCKED_BY_THREAD_ID`.
 
-4. Você pode ver o que o fio 2 está fazendo:
+4. Você pode ver o que o thread 2 está fazendo:
 
    ```sql
    SELECT * FROM performance_schema.events_waits_current

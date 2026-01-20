@@ -10,7 +10,7 @@ Ao usar **mysqldump**, você deve interromper a replicação na replica antes de
    $> mysqladmin stop-slave
    ```
 
-   Alternativamente, você pode interromper apenas o fio de replicação SQL para pausar a execução do evento:
+   Alternativamente, você pode interromper apenas o thread de replicação SQL para pausar a execução do evento:
 
    ```sql
    $> mysql -e 'STOP SLAVE SQL_THREAD;'

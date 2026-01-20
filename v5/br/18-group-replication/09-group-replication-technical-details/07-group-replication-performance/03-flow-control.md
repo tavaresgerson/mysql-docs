@@ -48,7 +48,7 @@ Os dados de monitoramento são compartilhados com outros membros do grupo period
 
 Com base nas métricas coletadas em todos os servidores do grupo, um mecanismo de controle é ativado e decide se é necessário limitar a taxa na qual um membro pode executar/confirmar novas transações.
 
-Portanto, as métricas adquiridas de todos os membros são a base para calcular a capacidade de cada membro: se um membro tiver uma fila grande (para certificação ou para o fio de solicitação), então a capacidade de executar novas transações deve estar próxima àquelas certificadas ou aplicadas no último período.
+Portanto, as métricas adquiridas de todos os membros são a base para calcular a capacidade de cada membro: se um membro tiver uma fila grande (para certificação ou para o thread de solicitação), então a capacidade de executar novas transações deve estar próxima àquelas certificadas ou aplicadas no último período.
 
 A capacidade mais baixa de todos os membros do grupo determina a capacidade real do grupo, enquanto o número de transações locais determina quantos membros estão escrevendo nele e, consequentemente, quantos membros essa capacidade disponível deve ser compartilhada.
 

@@ -14,7 +14,7 @@
 15.2.4 MyISAM Table Problems
 ```
 
-15.3 O Motor de Armazenamento de MEMÓRIA
+15.3 O Motor de Armazenamento de MEMORY
 
 15.4 O Motor de Armazenamento CSV:   15.4.1 Reparo e verificação de tabelas CSV
 

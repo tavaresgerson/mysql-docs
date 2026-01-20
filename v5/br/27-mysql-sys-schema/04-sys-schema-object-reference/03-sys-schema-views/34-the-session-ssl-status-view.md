@@ -6,7 +6,7 @@ A visualização `session_ssl_status` tem essas colunas:
 
 - `thread_id`
 
-  O ID do fio para a conexão.
+  O ID do thread para a conexão.
 
 - `ssl_version`
 

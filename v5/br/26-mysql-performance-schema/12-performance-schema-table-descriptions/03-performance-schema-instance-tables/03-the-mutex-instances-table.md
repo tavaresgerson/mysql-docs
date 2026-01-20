@@ -18,7 +18,7 @@ A tabela `mutex_instances` tem as seguintes colunas:
 
 - `LOCKED_BY_THREAD_ID`
 
-  Quando um fio atualmente tem um mutex bloqueado, `LOCKED_BY_THREAD_ID` é o `THREAD_ID` do fio de bloqueio, caso contrário, é `NULL`.
+  Quando um thread atualmente tem um mutex bloqueado, `LOCKED_BY_THREAD_ID` é o `THREAD_ID` do thread de bloqueio, caso contrário, é `NULL`.
 
 A operação `TRUNCATE TABLE` não é permitida para a tabela `mutex_instances`.
 
@@ -28,9 +28,9 @@ Para cada mutex instrumentado no código, o Gerenciamento de Desempenho fornece 
 
 - Quando algum código cria um mutex, uma linha é adicionada à tabela `mutex_instances`. A coluna `OBJECT_INSTANCE_BEGIN` é uma propriedade que identifica de forma única o mutex.
 
-- Quando um fio tenta bloquear um mutex, a tabela `events_waits_current` mostra uma linha para esse fio, indicando que ele está aguardando um mutex (na coluna `EVENT_NAME`) e indicando qual mutex está sendo aguardado (na coluna `OBJECT_INSTANCE_BEGIN`).
+- Quando um thread tenta bloquear um mutex, a tabela `events_waits_current` mostra uma linha para esse thread, indicando que ele está aguardando um mutex (na coluna `EVENT_NAME`) e indicando qual mutex está sendo aguardado (na coluna `OBJECT_INSTANCE_BEGIN`).
 
-- Quando um fio consegue bloquear um mutex:
+- Quando um thread consegue bloquear um mutex:
 
   - `eventos_waits_current` mostra que a espera no mutex foi concluída (nas colunas `TIMER_END` e `TIMER_WAIT`)
 
@@ -38,7 +38,7 @@ Para cada mutex instrumentado no código, o Gerenciamento de Desempenho fornece 
 
   - `mutex_instances` mostra que o mutex agora pertence ao thread (na coluna `THREAD_ID`).
 
-- Quando um fio desbloqueia um mutex, `mutex_instances` mostra que o mutex agora não tem proprietário (a coluna `THREAD_ID` é `NULL`).
+- Quando um thread desbloqueia um mutex, `mutex_instances` mostra que o mutex agora não tem proprietário (a coluna `THREAD_ID` é `NULL`).
 
 - Quando um objeto de mutex é destruído, a linha correspondente é removida de `mutex_instances`.
 

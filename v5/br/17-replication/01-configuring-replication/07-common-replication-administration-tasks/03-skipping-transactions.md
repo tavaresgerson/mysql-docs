@@ -1,6 +1,6 @@
 #### 16.1.7.3 Ignorar transações
 
-Se a replicação parar devido a um problema com um evento em uma transação replicada, você pode retomar a replicação ignorando a transação falha na replica. Antes de ignorar uma transação, certifique-se de que o fio de I/O de replicação e o fio de SQL de replicação também estejam parados.
+Se a replicação parar devido a um problema com um evento em uma transação replicada, você pode retomar a replicação ignorando a transação falha na replica. Antes de ignorar uma transação, certifique-se de que o thread de I/O de replicação e o thread de SQL de replicação também estejam parados.
 
 Primeiro, você precisa identificar o evento replicado que causou o erro. Os detalhes do erro e a última transação aplicada com sucesso são registrados na tabela do Schema de Desempenho `replication_applier_status_by_worker`. Você pode usar **mysqlbinlog** para recuperar e exibir os eventos que foram registrados na época do erro. Para obter instruções sobre como fazer isso, consulte Seção 7.5, “Recuperação Ponto no Tempo (Incremental) ”. Alternativamente, você pode emitir `SHOW RELAYLOG EVENTS` na replica ou `SHOW BINLOG EVENTS` na fonte.
 
@@ -80,7 +80,7 @@ A instrução `SET GLOBAL sql_slave_skip_counter` não tem efeito imediato. Quan
 
 ###### 16.1.7.3.2.2 Ignorar Transações com `ALTERAR MASTER PARA`
 
-Depois de avaliar a transação falha para qualquer outra ação apropriada, conforme descrito anteriormente (como considerações de segurança), identifique as coordenadas (arquivo e posição) no log binário da fonte que representem uma posição adequada para reiniciar a replicação. Isso pode ser o início do grupo de eventos após o evento que causou o problema ou o início da próxima transação. O fio de I/O de replicação começa a ler a partir da fonte nessas coordenadas na próxima vez que o fio começar, ignorando o evento falhando. Certifique-se de que você identificou a posição com precisão, porque essa declaração não leva em conta os grupos de eventos.
+Depois de avaliar a transação falha para qualquer outra ação apropriada, conforme descrito anteriormente (como considerações de segurança), identifique as coordenadas (arquivo e posição) no log binário da fonte que representem uma posição adequada para reiniciar a replicação. Isso pode ser o início do grupo de eventos após o evento que causou o problema ou o início da próxima transação. O thread de I/O de replicação começa a ler a partir da fonte nessas coordenadas na próxima vez que o thread começar, ignorando o evento falhando. Certifique-se de que você identificou a posição com precisão, porque essa declaração não leva em conta os grupos de eventos.
 
 Emita a declaração `CHANGE MASTER TO` da seguinte forma, onde *`source_log_name`* é o arquivo de log binário que contém a posição de reinício e *`source_log_pos`* é o número que representa a posição de reinício conforme declarado no arquivo de log binário:
 

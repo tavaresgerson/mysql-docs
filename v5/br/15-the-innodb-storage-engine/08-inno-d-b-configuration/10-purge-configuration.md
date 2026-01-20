@@ -12,7 +12,7 @@ O ajuste `innodb_purge_threads` é o número máximo de threads de purga permiti
 
 #### Configurar o tamanho da batch de limpeza
 
-A variável `innodb_purge_batch_size` define o número de páginas do log de desfazer que são limpas e processadas em um lote da lista de histórico. O valor padrão é 300. Em uma configuração de purga multisserial, o fio de purga do coordenador divide `innodb_purge_batch_size` por `innodb_purge_threads` e atribui esse número de páginas a cada fio de purga.
+A variável `innodb_purge_batch_size` define o número de páginas do log de desfazer que são limpas e processadas em um lote da lista de histórico. O valor padrão é 300. Em uma configuração de purga multisserial, o thread de purga do coordenador divide `innodb_purge_batch_size` por `innodb_purge_threads` e atribui esse número de páginas a cada thread de purga.
 
 O sistema de purga também libera as páginas do registro de desfazer que não são mais necessárias. Isso é feito a cada 128 iterações pelos registros de desfazer. Além de definir o número de páginas do registro de desfazer analisadas e processadas em um lote, a variável `innodb_purge_batch_size` define o número de páginas do registro de desfazer que a purga libera a cada 128 iterações pelos registros de desfazer.
 

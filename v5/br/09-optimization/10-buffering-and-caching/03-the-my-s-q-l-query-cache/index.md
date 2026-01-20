@@ -1,13 +1,5 @@
 ### 8.10.3 Cache de consultas MySQL
 
-8.10.3.1 Como o Cache de Consultas Funciona
-
-8.10.3.2 Opções de cache de consulta SELECT
-
-8.10.3.3 Configuração do Cache de Consultas
-
-8.10.3.4 Verificar o status e a manutenção do cache de consultas
-
 Nota
 
 O cache de consultas é descontinuado a partir do MySQL 5.7.20 e é removido no MySQL 8.0.

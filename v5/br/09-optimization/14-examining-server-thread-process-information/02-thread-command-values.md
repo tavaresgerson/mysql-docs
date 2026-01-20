@@ -1,121 +1,120 @@
-### 8.14.2 Valores dos comandos de fio
+### 8.14.2 Valores dos comandos de thread
 
-Um fio pode ter qualquer um dos seguintes valores `Command`:
+Um thread pode ter qualquer um dos seguintes valores `Command`:
 
-- `Dump de Binlog`
+- `Binlog Dump`
 
-  Este é um fio sobre uma fonte de replicação para enviar o conteúdo do log binário para uma replica.
+  Este é um thread sobre uma fonte de replicação para enviar o conteúdo do log binário para uma replica.
 
-- `Alterar usuário`
+- `Change user`
 
-  O fio está executando uma operação de alteração de usuário.
+  O thread está executando uma operação de alteração de usuário.
 
-- `Fechar stmt`
+- `Close stmt`
 
-  O fio está fechando uma declaração preparada.
+  O thread está fechando uma declaração preparada.
 
-- Conectar
+- `Connect`
 
   Uma réplica está conectada à sua fonte.
 
-- Conecte-se para fora
+- `Connect Out`
 
   Uma réplica está se conectando à sua fonte.
 
-- `Criar DB`
+- `Create DB`
 
-  O fio está executando uma operação de criação de banco de dados.
+  O thread está executando uma operação de criação de banco de dados.
 
 - `Daemon`
 
-  Esse fio é interno ao servidor, não é um fio que atende a uma conexão com o cliente.
+  Esse thread é interno ao servidor, não é um thread que atende a uma conexão com o cliente.
 
-- `Depuração`
+- `Debug`
 
-  O fio está gerando informações de depuração.
+  O thread está gerando informações de depuração.
 
-- `Inserção atrasada`
+- `Delayed insert`
 
-  O fio é um manipulador de inserção retardada.
+  O thread é um manipulador de inserção retardada.
 
-- "Descarregar o banco de dados"
+- `Drop DB`
 
-  O fio está executando uma operação de drop de banco de dados.
+  O thread está executando uma operação de drop de banco de dados.
 
-- `Erro`
+* `Error`
+* `Execute`
 
-- Executar
-
-  O fio está executando uma declaração preparada.
+  O thread está executando uma declaração preparada.
 
 - `Fetch`
 
-  O fio está obtendo os resultados da execução de uma declaração preparada.
+  O thread está obtendo os resultados da execução de uma declaração preparada.
 
-- Lista de campos
+* `Field List`
 
-  O fio está recuperando informações para as colunas da tabela.
+  O thread está recuperando informações para as colunas da tabela.
 
-- `Inicie o banco de dados`
+* `Init DB`
 
-  O fio está selecionando um banco de dados padrão.
+  O thread está selecionando um banco de dados padrão.
 
-- "Matar"
+* `Kill`
 
-  O fio está matando outro fio.
+  O thread está matando outro thread.
 
 - `Long Data`
 
-  O fio está recuperando dados longos como resultado da execução de uma declaração preparada.
+  O thread está recuperando dados longos como resultado da execução de uma declaração preparada.
 
 - `Ping`
 
-  O fio está tratando de um pedido de ping do servidor.
+  O thread está tratando de um pedido de ping do servidor.
 
-- "Prepare-se"
+* `Prepare`
 
-  O fio está preparando uma declaração preparada.
+  O thread está preparando uma declaração preparada.
 
-- `Processlist`
+* `Processlist`
 
-  O fio está produzindo informações sobre os fios do servidor.
+  O thread está produzindo informações sobre os threads do servidor.
 
-- `Consulta`
+* `Query`
 
-  O fio está executando uma declaração.
+  O thread está executando uma declaração.
 
-- `Sair`
+* `Quit`
 
-  O fio está terminando.
+  O thread está terminando.
 
-- Atualizar
+* `Refresh`
 
-  O fio está limpando a tabela, os logs ou os caches, ou redefinindo a variável de status ou as informações do servidor de replicação.
+  O thread está limpando a tabela, os logs ou os caches, ou redefinindo a variável de status ou as informações do servidor de replicação.
 
-- `Registrar escravo`
+* `Register Slave`
 
-  O fio está registrando um servidor replica.
+  O thread está registrando um servidor replica.
 
-- `Reiniciar stmt`
+* `Reset stmt`
 
-  O fio está redefinindo uma declaração preparada.
+  O thread está redefinindo uma declaração preparada.
 
-- `Definir opção`
+* `Set option`
 
-  O fio está definindo ou redefinindo uma opção de execução de uma declaração do cliente.
+  O thread está definindo ou redefinindo uma opção de execução de uma declaração do cliente.
 
-- `Desligar`
+* `Shutdown`
 
-  O fio está desligando o servidor.
+  O thread está desligando o servidor.
 
-- "Dormir"
+* `Sleep`
 
-  O fio está esperando que o cliente envie uma nova declaração para ele.
+  O thread está esperando que o cliente envie uma nova declaração para ele.
 
-- "Estatísticas"
+* `Statistics`
 
-  O fio está produzindo informações sobre o status do servidor.
+  O thread está produzindo informações sobre o status do servidor.
 
-- `Tempo`
+* `Time`
 
-  Inexercitado.
+  Não utilizado.

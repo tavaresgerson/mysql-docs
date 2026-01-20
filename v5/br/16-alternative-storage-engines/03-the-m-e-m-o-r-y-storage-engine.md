@@ -1,23 +1,23 @@
-## 15.3 O Motor de Armazenamento de MEMÓRIA
+## 15.3 O Motor de Armazenamento de MEMORY
 
 O mecanismo de armazenamento `MEMORY` (anteriormente conhecido como `HEAP`) cria tabelas de propósito especial com conteúdos armazenados na memória. Como os dados são vulneráveis a falhas, problemas de hardware ou interrupções de energia, use essas tabelas apenas como áreas de trabalho temporárias ou caches de leitura apenas para dados extraídos de outras tabelas.
 
-**Tabela 15.4 Características do Motor de Armazenamento de MEMÓRIA**
+**Tabela 15.4 Características do Motor de Armazenamento de MEMORY**
 
 <table frame="box" rules="all" summary="Recursos suportados pelo motor de armazenamento MEMORY."><col style="width: 60%"/><col style="width: 40%"/><thead><tr><th>Característica</th> <th>Suporte</th> </tr></thead><tbody><tr><td><span><strong>Índices de árvores B</strong></span></td> <td>Sim</td> </tr><tr><td><span><strong>Backup/recuperação em ponto no tempo</strong></span>(Implementado no servidor, e não no motor de armazenamento.)</td> <td>Sim</td> </tr><tr><td><span><strong>Suporte a bancos de dados em cluster</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Índices agrupados</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Dados comprimidos</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Caches de dados</strong></span></td> <td>N/A</td> </tr><tr><td><span><strong>Dados criptografados</strong></span></td> <td>Sim (implementado no servidor por meio de funções de criptografia.)</td> </tr><tr><td><span><strong>Suporte para chave estrangeira</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Índices de pesquisa de texto completo</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Suporte ao tipo de dados geográficos</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Suporte de indexação geospacial</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Índices de hash</strong></span></td> <td>Sim</td> </tr><tr><td><span><strong>Caches de índice</strong></span></td> <td>N/A</td> </tr><tr><td><span><strong>Granularidade de bloqueio</strong></span></td> <td>Tabela</td> </tr><tr><td><span><strong>MVCC</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Suporte à replicação</strong></span>(Implementado no servidor, e não no motor de armazenamento.)</td> <td>Limita (veja a discussão mais adiante nesta seção.)</td> </tr><tr><td><span><strong>Limites de armazenamento</strong></span></td> <td>RAM</td> </tr><tr><td><span><strong>Índices de T-tree</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Transações</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Atualizar estatísticas para o dicionário de dados</strong></span></td> <td>Sim</td> </tr></tbody></table>
 
-- Quando usar MEMÓRIA ou NDB Cluster
+- Quando usar MEMORY ou NDB Cluster
 - Características de desempenho
-- Características das Tabelas de MEMÓRIA
-- Operações DDL para tabelas de MEMÓRIA
+- Características das Tabelas de MEMORY
+- Operações DDL para tabelas de MEMORY
 - Índices
 - Tabelas criadas pelo usuário e temporárias
 - Carregando dados
-- MEMÓRIA Tabelas e Replicação
+- MEMORY Tabelas e Replicação
 - Gerenciamento do uso da memória
 - Recursos adicionais
 
-### Quando usar MEMÓRIA ou NDB Cluster
+### Quando usar MEMORY ou NDB Cluster
 
 Os desenvolvedores que pretendem implantar aplicações que utilizam o motor de armazenamento `MEMORY` para dados importantes, altamente disponíveis ou frequentemente atualizados devem considerar se o NDB Cluster é uma escolha melhor. Um caso de uso típico do motor `MEMORY` envolve essas características:
 
@@ -43,17 +43,17 @@ O NDB Cluster oferece as mesmas funcionalidades do motor `MEMORY`, com níveis d
 
 ### Características de desempenho
 
-O desempenho da função `MEMORY` é limitado pela concorrência decorrente da execução em um único fio e pelo overhead de bloqueio de tabelas ao processar atualizações. Isso limita a escalabilidade quando a carga aumenta, especialmente para misturas de instruções que incluem escritas.
+O desempenho da função `MEMORY` é limitado pela concorrência decorrente da execução em um único thread e pelo overhead de bloqueio de tabelas ao processar atualizações. Isso limita a escalabilidade quando a carga aumenta, especialmente para misturas de instruções que incluem escritas.
 
 Apesar do processamento em memória para as tabelas `MEMORY`, elas não são necessariamente mais rápidas que as tabelas `InnoDB` em um servidor ocupado, para consultas de uso geral, ou sob uma carga de trabalho de leitura/escrita. Em particular, o bloqueio da tabela envolvido na realização de atualizações pode atrasar o uso concorrente das tabelas `MEMORY` por várias sessões.
 
 Dependendo do tipo de consulta realizada em uma tabela `MEMORY`, você pode criar índices como a estrutura de dados hash padrão (para procurar valores únicos com base em uma chave única) ou uma estrutura de dados B-tree de propósito geral (para todos os tipos de consultas que envolvem operadores de igualdade, desigualdade ou intervalo, como menor que ou maior que). As seções a seguir ilustram a sintaxe para criar ambos os tipos de índices. Um problema comum de desempenho é o uso dos índices hash padrão em cargas de trabalho onde os índices B-tree são mais eficientes.
 
-### Características das Tabelas de MEMÓRIA
+### Características das Tabelas de MEMORY
 
 O mecanismo de armazenamento `MEMORY` associa cada tabela a um arquivo de disco, que armazena a definição da tabela (não os dados). O nome do arquivo começa com o nome da tabela e tem a extensão `.frm`.
 
-As tabelas `MEMÓRIA` têm as seguintes características:
+As tabelas `MEMORY` têm as seguintes características:
 
 - O espaço para as tabelas `MEMORY` é alocado em blocos pequenos. As tabelas usam hashing dinâmico de 100% para inserções. Não é necessário uma área de overflow ou espaço de chave extra. Não é necessário espaço extra para listas livres. As linhas excluídas são colocadas em uma lista encadeada e são reutilizadas quando você insere novos dados na tabela. As tabelas `MEMORY` também não apresentam nenhum dos problemas comumente associados a exclusões mais inserções em tabelas hash.
 
@@ -65,7 +65,7 @@ As tabelas `MEMÓRIA` têm as seguintes características:
 
 - As tabelas que não são `TEMPORARY` são compartilhadas entre todos os clientes, assim como qualquer outra tabela que não seja `TEMPORARY`.
 
-### Operações DDL para tabelas de MEMÓRIA
+### Operações DDL para tabelas de MEMORY
 
 Para criar uma tabela `MEMORY`, especifique a cláusula `ENGINE=MEMORY` na instrução `CREATE TABLE`.
 
@@ -122,7 +122,7 @@ O conteúdo da tabela `MEMORY` é armazenado na memória, que é uma propriedade
 
 Para povoar uma tabela `MEMORY` quando o servidor MySQL for iniciado, você pode usar a variável de sistema `init_file`. Por exemplo, você pode colocar instruções como `INSERT INTO ... SELECT` ou `LOAD DATA` em um arquivo para carregar a tabela de uma fonte de dados persistente e usar `init_file` para nomear o arquivo. Veja a Seção 5.1.7, “Variáveis de Sistema do Servidor”, e a Seção 13.2.6, “Instrução LOAD DATA”.
 
-### MEMÓRIA Tabelas e Replicação
+### MEMORY Tabelas e Replicação
 
 Quando um servidor de origem de replicação é desligado e reiniciado, suas tabelas `MEMORY` ficam vazias. Para replicar esse efeito nas réplicas, na primeira vez que a fonte usar uma tabela `MEMORY` específica após a inicialização, ela registra um evento que notifica as réplicas de que a tabela deve ser esvaziada, escrevendo uma instrução `DELETE` ou (a partir do MySQL 5.7.32) `TRUNCATE TABLE` para que a tabela seja escrita no log binário. Quando um servidor de réplica é desligado e reiniciado, suas tabelas `MEMORY` também ficam vazias, e ele escreve uma instrução `DELETE` ou (a partir do MySQL 5.7.32) `TRUNCATE TABLE` em seu próprio log binário, que é passado para quaisquer réplicas subsequentes.
 

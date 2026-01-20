@@ -12,9 +12,9 @@ Na hierarquia de eventos, os eventos de espera estão dentro dos eventos de est�
 
 Essas tabelas armazenam eventos de estágio:
 
-- `eventos_stages_current`: O evento atual da etapa para cada fio.
+- `eventos_stages_current`: O evento atual da etapa para cada thread.
 
-- `eventos_stages_history`: Os eventos mais recentes dos estágios que terminaram por fio.
+- `eventos_stages_history`: Os eventos mais recentes dos estágios que terminaram por thread.
 
 - `eventos_stages_history_long`: Os eventos mais recentes dos estágios que terminaram globalmente (em todos os threads).
 

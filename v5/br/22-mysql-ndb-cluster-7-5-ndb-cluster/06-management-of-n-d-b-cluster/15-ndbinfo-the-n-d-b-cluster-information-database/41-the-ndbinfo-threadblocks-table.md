@@ -10,7 +10,7 @@ A tabela `threadblocks` contém as seguintes colunas:
 
 - `thr_no`
 
-  ID do fio
+  ID do thread
 
 - `nome_do_bloco`
 

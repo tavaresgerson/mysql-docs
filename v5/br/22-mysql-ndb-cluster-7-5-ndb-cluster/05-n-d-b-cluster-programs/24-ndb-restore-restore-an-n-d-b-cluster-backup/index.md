@@ -434,7 +434,7 @@ As opções que podem ser usadas com **ndb_restore** estão mostradas na tabela 
 
   **ndb_restore** utiliza transações de uma única linha para aplicar muitas linhas simultaneamente. Este parâmetro determina o número de transações paralelas (linhas concorrentes) que uma instância de **ndb_restore** tenta usar. Por padrão, este é 128; o mínimo é 1 e o máximo é 1024.
 
-  O trabalho de execução dos insertos é realizado em paralelo em todos os fios dos nós de dados envolvidos. Esse mecanismo é empregado para restaurar dados em massa a partir do arquivo `.Data`, ou seja, o instantâneo desfocado dos dados; ele não é usado para criar ou reconstruir índices. O log de alterações é aplicado seriamente; as operações de criação e reconstrução de índices são operações DDL e são tratadas separadamente. Não há paralelismo em nível de fio no lado do cliente do restauro.
+  O trabalho de execução dos insertos é realizado em paralelo em todos os fios dos nós de dados envolvidos. Esse mecanismo é empregado para restaurar dados em massa a partir do arquivo `.Data`, ou seja, o instantâneo desfocado dos dados; ele não é usado para criar ou reconstruir índices. O log de alterações é aplicado seriamente; as operações de criação e reconstrução de índices são operações DDL e são tratadas separadamente. Não há paralelismo em nível de thread no lado do cliente do restauro.
 
 - `--preserve-trailing-spaces`, `-P`
 

@@ -55,7 +55,7 @@ Query OK, 0 rows affected (1.25 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-Esta declaração falha se a opção `MEMÓRIA DE ARMAZENAMENTO` for omitida:
+Esta declaração falha se a opção `MEMORY DE ARMAZENAMENTO` for omitida:
 
 ```sql
 mysql> ALTER TABLE t1

@@ -60,7 +60,7 @@ A tabela [`TP_THREAD_GROUP_STATE`](https://pt.wikipedia.org/wiki/TP_THREAD_GROUP
 
 - `WAITING_THREAD_NUMBER`
 
-  Se houver um fio que lida com a consulta de declarações no grupo de fios, isso especifica o número do fio dentro deste grupo de fios. É possível que este fio esteja executando uma declaração.
+  Se houver um thread que lida com a consulta de declarações no grupo de fios, isso especifica o número do thread dentro deste grupo de fios. É possível que este thread esteja executando uma declaração.
 
 - `MAIOR_EM_A_ORDEM`
 
@@ -68,7 +68,7 @@ A tabela [`TP_THREAD_GROUP_STATE`](https://pt.wikipedia.org/wiki/TP_THREAD_GROUP
 
 - `MAX_THREAD_IDS_IN_GROUP`
 
-  O ID máximo do fio dos fios no grupo. Isso é o mesmo que `MAX(TP_THREAD_NUMBER)` para os fios quando selecionados da tabela `TP_THREAD_STATE`. Ou seja, essas duas consultas são equivalentes:
+  O ID máximo do thread dos fios no grupo. Isso é o mesmo que `MAX(TP_THREAD_NUMBER)` para os fios quando selecionados da tabela `TP_THREAD_STATE`. Ou seja, essas duas consultas são equivalentes:
 
   ```sql
   SELECT TP_GROUP_ID, MAX_THREAD_IDS_IN_GROUP

@@ -293,7 +293,7 @@ Quando a instrução `ALTER TABLE ... DISCARD TABLESPACE` é executada na instâ
 Quando o comando `FLUSH TABLES ... FOR EXPORT` é executado na instância de origem:
 
 - A tabela que está sendo limpa para exportação está bloqueada no modo compartilhado.
-- O fio do coordenador da purga foi interrompido.
+- O thread do coordenador da purga foi interrompido.
 - As páginas sujas são sincronizadas com o disco.
 - Os metadados da tabela são escritos no arquivo binário `.cfg`.
 
@@ -309,7 +309,7 @@ Mensagens esperadas de log de erro para esta operação:
 Quando o comando `UNLOCK TABLES` é executado na instância de origem:
 
 - O arquivo binário `.cfg` é excluído.
-- O bloqueio compartilhado da(s) tabela(s) sendo importada(s) é liberado e o fio do coordenador de purga é reiniciado.
+- O bloqueio compartilhado da(s) tabela(s) sendo importada(s) é liberado e o thread do coordenador de purga é reiniciado.
 
 Mensagens esperadas de log de erro para esta operação:
 

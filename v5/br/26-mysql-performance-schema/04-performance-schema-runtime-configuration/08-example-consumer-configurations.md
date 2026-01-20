@@ -38,7 +38,7 @@ Cada uma das seguintes descrições de configuração indica quais elementos de 
 - Apenas para Instrumentação Global
 - Apenas para Instrumentação Global e de Fio
 - Instrumentação de esquema de desempenho, thread e evento atual
-- Instrumentação de esquema de desempenho, fio, evento atual e histórico de eventos
+- Instrumentação de esquema de desempenho, thread, evento atual e histórico de eventos
 
 #### Sem Instrumentação
 
@@ -114,7 +114,7 @@ Tabelas de saída adicionais mantidas, em relação à configuração anterior:
 - `eventos_estatísticas_resumo_global_por_nome_de_evento`
 - `eventos_transações_resumo_global_por_nome_evento`
 
-#### Instrumentação global e de fio apenas
+#### Instrumentação global e de thread apenas
 
 Estado de configuração do servidor:
 
@@ -136,7 +136,7 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-Nessa configuração, a instrumentação é mantida globalmente e por fio. Nenhum evento individual é coletado nas tabelas de eventos atuais ou histórico de eventos.
+Nessa configuração, a instrumentação é mantida globalmente e por thread. Nenhum evento individual é coletado nas tabelas de eventos atuais ou histórico de eventos.
 
 Elementos de configuração adicionais verificados, em relação à configuração anterior:
 
@@ -150,7 +150,7 @@ Tabelas de saída adicionais mantidas, em relação à configuração anterior:
 
 - `eventos_xxx_resumo_por_yyy_por_nome_do_evento`, onde *`xxx`* é `waits`, `stages`, `statements`, `transactions`; e *`yyy`* é `thread`, `user`, `host`, `account`
 
-#### Instrumentação global, de fio e de evento atual
+#### Instrumentação global, de thread e de evento atual
 
 Estado de configuração do servidor:
 
@@ -177,7 +177,7 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-Nessa configuração, a instrumentação é mantida globalmente e por fio. Os eventos individuais são coletados na tabela eventos atuais, mas não nas tabelas de histórico de eventos.
+Nessa configuração, a instrumentação é mantida globalmente e por thread. Os eventos individuais são coletados na tabela eventos atuais, mas não nas tabelas de histórico de eventos.
 
 Elementos de configuração adicionais verificados, em relação à configuração anterior:
 

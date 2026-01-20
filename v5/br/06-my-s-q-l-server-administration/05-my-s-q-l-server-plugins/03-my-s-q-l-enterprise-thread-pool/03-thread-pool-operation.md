@@ -30,9 +30,9 @@ O pool de threads tenta garantir que, em qualquer momento, no máximo uma thread
 
   - A fila ocorre se a instrução não puder começar a ser executada imediatamente.
 
-- Se a execução imediata ocorrer, o fio de escuta executará essa tarefa. (Isso significa que, temporariamente, nenhum fio do grupo está ouvindo.) Se a instrução for concluída rapidamente, o fio executando retorna para ouvir outras instruções. Caso contrário, o pool de fios considera a instrução como travada e inicia outro fio como fio de escuta (criando-o, se necessário). Para garantir que nenhum grupo de fios seja bloqueado por instruções travadas, o pool de fios tem um fio de fundo que monitora regularmente os estados dos grupos de fios.
+- Se a execução imediata ocorrer, o thread de escuta executará essa tarefa. (Isso significa que, temporariamente, nenhum thread do grupo está ouvindo.) Se a instrução for concluída rapidamente, o thread executando retorna para ouvir outras instruções. Caso contrário, o pool de fios considera a instrução como travada e inicia outro thread como thread de escuta (criando-o, se necessário). Para garantir que nenhum grupo de fios seja bloqueado por instruções travadas, o pool de fios tem um thread de fundo que monitora regularmente os estados dos grupos de fios.
 
-  Ao usar o fio de escuta para executar uma instrução que pode começar imediatamente, não é necessário criar um fio adicional se a instrução terminar rapidamente. Isso garante a execução mais eficiente possível no caso de um número baixo de threads concorrentes.
+  Ao usar o thread de escuta para executar uma instrução que pode começar imediatamente, não é necessário criar um thread adicional se a instrução terminar rapidamente. Isso garante a execução mais eficiente possível no caso de um número baixo de threads concorrentes.
 
   Quando o plugin de pool de threads é iniciado, ele cria um thread por grupo (o thread do ouvinte), além do thread de fundo. Threads adicionais são criados conforme necessário para executar instruções.
 
@@ -52,15 +52,15 @@ O pool de threads tenta garantir que, em qualquer momento, no máximo uma thread
 
 - O pool de threads reutiliza os threads mais ativos para obter um uso muito melhor dos caches da CPU. Esse é um pequeno ajuste que tem um grande impacto no desempenho.
 
-- Enquanto um fio executa uma instrução de uma conexão de usuário, a instrumentação do Schema de Desempenho registra a atividade do fio na conexão de usuário. Caso contrário, o Schema de Desempenho registra a atividade no pool de threads.
+- Enquanto um thread executa uma instrução de uma conexão de usuário, a instrumentação do Schema de Desempenho registra a atividade do thread na conexão de usuário. Caso contrário, o Schema de Desempenho registra a atividade no pool de threads.
 
 Aqui estão exemplos de condições em que um grupo de threads pode ter múltiplos threads iniciados para executar instruções:
 
-- Um fio começa a executar uma instrução, mas permanece o tempo suficiente para ser considerado parado. O grupo de fios permite que outro fio comece a executar outra instrução, mesmo que o primeiro fio ainda esteja executando.
+- Um thread começa a executar uma instrução, mas permanece o tempo suficiente para ser considerado parado. O grupo de fios permite que outro thread comece a executar outra instrução, mesmo que o primeiro thread ainda esteja executando.
 
-- Um fio começa a executar uma instrução, depois é bloqueado e relata isso de volta para o grupo de fios. O grupo de fios permite que outro fio comece a executar outra instrução.
+- Um thread começa a executar uma instrução, depois é bloqueado e relata isso de volta para o grupo de fios. O grupo de fios permite que outro thread comece a executar outra instrução.
 
-- Um fio começa a executar uma instrução, fica bloqueado, mas não relata que está bloqueado porque o bloqueio não ocorre em código instrumentado com chamadas de retorno do pool de threads. Nesse caso, o fio parece para o grupo de threads que ainda está em execução. Se o bloqueio durar o tempo suficiente para que a instrução seja considerada travada, o grupo permite que outro fio comece a executar outra instrução.
+- Um thread começa a executar uma instrução, fica bloqueado, mas não relata que está bloqueado porque o bloqueio não ocorre em código instrumentado com chamadas de retorno do pool de threads. Nesse caso, o thread parece para o grupo de threads que ainda está em execução. Se o bloqueio durar o tempo suficiente para que a instrução seja considerada travada, o grupo permite que outro thread comece a executar outra instrução.
 
 O conjunto de threads é projetado para ser escalável em um número crescente de conexões. Ele também é projetado para evitar deadlocks que podem surgir ao limitar o número de instruções executadas ativamente. É importante que os threads que não retornem ao conjunto de threads não impeçam que outras instruções sejam executadas, causando assim um deadlock no conjunto de threads. Exemplos de tais instruções são:
 

@@ -26,4 +26,4 @@ O botão `SHOW SLAVE STATUS` tem três campos que fornecem informações sobre o
 
 - `Slave_SQL_Running_State`: Uma string que indica o estado do thread SQL (análogo ao `Slave_IO_State`). O valor é idêntico ao valor `State` do thread SQL, conforme exibido por `SHOW PROCESSLIST`.
 
-Quando o fio de replicação SQL está aguardando o término do atraso antes de executar um evento, o `SHOW PROCESSLIST` exibe seu valor `State` como `Aguardando até os segundos `MASTER_DELAY` após o evento ser executado pelo mestre`.
+Quando o thread de replicação SQL está aguardando o término do atraso antes de executar um evento, o `SHOW PROCESSLIST` exibe seu valor `State` como `Aguardando até os segundos `MASTER_DELAY` após o evento ser executado pelo mestre`.

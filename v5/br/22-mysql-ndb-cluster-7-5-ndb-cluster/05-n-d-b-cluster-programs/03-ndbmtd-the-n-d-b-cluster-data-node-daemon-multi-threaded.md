@@ -8,7 +8,7 @@ As opções de linha de comando e os parâmetros de configuração usados com **
 
 Usar **ndbmtd** difere do uso de **ndbd** em dois aspectos principais:
 
-1. Como o **ndbmtd** é executado por padrão no modo de único fio (ou seja, ele se comporta como o **ndbd**), você deve configurá-lo para usar múltiplos fios. Isso pode ser feito definindo um valor apropriado no arquivo `config.ini` para o parâmetro de configuração `MaxNoOfExecutionThreads` ou o parâmetro de configuração `ThreadConfig`. Usar `MaxNoOfExecutionThreads` é mais simples, mas `ThreadConfig` oferece mais flexibilidade. Para obter mais informações sobre esses parâmetros de configuração e seu uso, consulte Parâmetros de Configuração de Multithreading (ndbmtd).
+1. Como o **ndbmtd** é executado por padrão no modo de único thread (ou seja, ele se comporta como o **ndbd**), você deve configurá-lo para usar múltiplos fios. Isso pode ser feito definindo um valor apropriado no arquivo `config.ini` para o parâmetro de configuração `MaxNoOfExecutionThreads` ou o parâmetro de configuração `ThreadConfig`. Usar `MaxNoOfExecutionThreads` é mais simples, mas `ThreadConfig` oferece mais flexibilidade. Para obter mais informações sobre esses parâmetros de configuração e seu uso, consulte Parâmetros de Configuração de Multithreading (ndbmtd).
 
 2. Os arquivos de registro são gerados por erros críticos nos processos do **ndbmtd** de uma maneira um pouco diferente daquela em que são gerados por falhas do **ndbd**. Essas diferenças são discutidas com mais detalhes nos próximos parágrafos.
 

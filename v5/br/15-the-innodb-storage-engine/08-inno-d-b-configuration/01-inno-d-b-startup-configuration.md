@@ -208,7 +208,7 @@ Aviso
 
 No GNU/Linux x86 de 32 bits, se o uso de memória for configurado muito alto, o `glibc` pode permitir que o heap do processo cresça além das pilhas de threads, causando uma falha no servidor. Esse é um risco se a memória alocada para o processo **mysqld** para buffers e caches globais e por thread estiver próxima ou exceder 2 GB.
 
-Uma fórmula semelhante à seguinte, que calcula a alocação de memória global e por fio para o MySQL, pode ser usada para estimar o uso de memória do MySQL. Você pode precisar modificar a fórmula para levar em conta os buffers e caches na sua versão e configuração do MySQL. Para uma visão geral dos buffers e caches do MySQL, consulte a Seção 8.12.4.1, “Como o MySQL Usa a Memória”.
+Uma fórmula semelhante à seguinte, que calcula a alocação de memória global e por thread para o MySQL, pode ser usada para estimar o uso de memória do MySQL. Você pode precisar modificar a fórmula para levar em conta os buffers e caches na sua versão e configuração do MySQL. Para uma visão geral dos buffers e caches do MySQL, consulte a Seção 8.12.4.1, “Como o MySQL Usa a Memória”.
 
 ```sql
 innodb_buffer_pool_size
@@ -217,6 +217,6 @@ innodb_buffer_pool_size
 + max_connections*2MB
 ```
 
-Cada fio usa uma pilha (geralmente 2 MB, mas apenas 256 KB nos binários do MySQL fornecidos pela Oracle Corporation.) e, no pior dos casos, também usa `sort_buffer_size + read_buffer_size` memória adicional.
+Cada thread usa uma pilha (geralmente 2 MB, mas apenas 256 KB nos binários do MySQL fornecidos pela Oracle Corporation.) e, no pior dos casos, também usa `sort_buffer_size + read_buffer_size` memória adicional.
 
 No Linux, se o kernel estiver habilitado para suporte a páginas grandes, o `InnoDB` pode usar páginas grandes para alocar memória para seu pool de buffers. Veja a Seção 8.12.4.3, “Habilitar Suporte a Páginas Grandes”.

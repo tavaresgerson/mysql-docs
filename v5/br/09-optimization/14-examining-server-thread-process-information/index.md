@@ -1,24 +1,4 @@
-## 8.14 Análise das informações do fio (processo) do servidor
-
-8.14.1 Acessar a Lista de Processos
-
-8.14.2 Valores dos comandos de fio
-
-8.14.3 Estados gerais de fios
-
-8.14.4 Estados de threads do cache de consultas
-
-8.14.5 Estados de fios de origem de replicação
-
-8.14.6 Estados de Threads de E/S de Replicação
-
-8.14.7 Replicação Estados de Fila de Tarefas SQL do Replicando
-
-8.14.8 Replicação Estados de Conexão de Fila de Conexão da Replica
-
-8.14.9 Estados de fios de clúster do NDB
-
-8.14.10 Estados de threads do Agendamento de Eventos
+## 8.14 Análise das informações do thread (processo) do servidor
 
 Para verificar o que seu servidor MySQL está fazendo, pode ser útil examinar a lista de processos, que indica as operações atualmente sendo realizadas pelo conjunto de threads que estão executando dentro do servidor. Por exemplo:
 

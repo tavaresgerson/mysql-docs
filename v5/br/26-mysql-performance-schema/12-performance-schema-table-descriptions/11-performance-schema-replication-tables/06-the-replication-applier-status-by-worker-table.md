@@ -14,7 +14,7 @@ A tabela `replication_applier_status_by_worker` tem as seguintes colunas:
 
 - `THREAD_ID`
 
-  O identificador do fio do trabalhador.
+  O identificador do thread do trabalhador.
 
 - `ESTADO_SERVIÇO`
 
@@ -39,7 +39,7 @@ A tabela `replication_applier_status_by_worker` tem as seguintes colunas:
     FROM performance_schema.replication_applier_status_by_worker;
     ```
 
-    Se a declaração retornar zero, a transação ainda não foi confirmada, porque ainda está sendo processada ou porque o fio de trabalho foi interrompido enquanto estava sendo processado. Se a declaração retornar um valor diferente de zero, a transação foi confirmada.
+    Se a declaração retornar zero, a transação ainda não foi confirmada, porque ainda está sendo processada ou porque o thread de trabalho foi interrompido enquanto estava sendo processado. Se a declaração retornar um valor diferente de zero, a transação foi confirmada.
 
 - `LAST_ERROR_NUMBER`, `LAST_ERROR_MESSAGE`
 

@@ -25,10 +25,10 @@ Um servidor de replicação cria um novo arquivo de log de retransmissão nas se
 
 - Quando os logs são limpos (por exemplo, com `FLUSH LOGS` ou **mysqladmin flush-logs**).
 
-- Quando o tamanho do arquivo de registro do relé atual se torna muito grande, isso é determinado da seguinte forma:
+- Quando o tamanho do arquivo de registro do relay atual se torna muito grande, isso é determinado da seguinte forma:
 
   - Se o valor de `max_relay_log_size` for maior que 0, isso é o tamanho máximo do arquivo de log do retransmissor.
 
   - Se o valor de `max_relay_log_size` for 0, o `max_binlog_size` determina o tamanho máximo do arquivo de log de retransmissão.
 
-O fio de replicação SQL exclui automaticamente cada arquivo de log de relevo após ele ter executado todos os eventos no arquivo e não precisar mais dele. Não há um mecanismo explícito para excluir logs de relevo, pois o fio de replicação SQL cuida disso. No entanto, o `FLUSH LOGS` roda logs de relevo, o que influencia quando o fio de replicação SQL os exclui.
+O thread de replicação SQL exclui automaticamente cada arquivo de log de relevo após ele ter executado todos os eventos no arquivo e não precisar mais dele. Não há um mecanismo explícito para excluir logs de relevo, pois o thread de replicação SQL cuida disso. No entanto, o `FLUSH LOGS` roda logs de relevo, o que influencia quando o thread de replicação SQL os exclui.

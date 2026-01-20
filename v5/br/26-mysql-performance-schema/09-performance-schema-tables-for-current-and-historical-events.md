@@ -18,11 +18,11 @@ As tabelas _history e _history_long mostram o que aconteceu no passado recente. 
 
 - `_history` é destinado a investigar os threads individuais, independentemente da carga global do servidor.
 
-- `_history_long` é destinado a investigar o servidor globalmente, não cada fio.
+- `_history_long` é destinado a investigar o servidor globalmente, não cada thread.
 
 A diferença entre os dois tipos de tabelas de histórico está relacionada à política de retenção de dados. Ambas as tabelas contêm os mesmos dados quando um evento é visto pela primeira vez. No entanto, os dados em cada tabela expiram de maneira diferente ao longo do tempo, de modo que os dados podem ser preservados por um período mais longo ou mais curto em cada tabela:
 
-- Para _history, quando a tabela contém o número máximo de linhas para um determinado fio, a linha mais antiga do fio é descartada quando uma nova linha para esse fio é adicionada.
+- Para _history, quando a tabela contém o número máximo de linhas para um determinado thread, a linha mais antiga do thread é descartada quando uma nova linha para esse thread é adicionada.
 
 - Para `_history_long`, quando a tabela ficar cheia, a linha mais antiga será descartada quando uma nova linha for adicionada, independentemente de qual thread tenha gerado a linha.
 
@@ -30,19 +30,19 @@ Quando um tópico é encerrado, todas as suas linhas são descartadas da tabela 
 
 O exemplo a seguir ilustra as diferenças na forma como os eventos são adicionados e descartados nas duas tabelas de histórico. Os princípios se aplicam igualmente a todos os tipos de eventos. O exemplo é baseado nesses pressupostos:
 
-- O Schema de Desempenho é configurado para reter 10 linhas por fio na tabela _history e 10.000 linhas no total na tabela _history_long.
+- O Schema de Desempenho é configurado para reter 10 linhas por thread na tabela _history e 10.000 linhas no total na tabela _history_long.
 
-- O fio A gera 1 evento por segundo.
+- O thread A gera 1 evento por segundo.
 
-  O fio B gera 100 eventos por segundo.
+  O thread B gera 100 eventos por segundo.
 
-- Nenhum outro fio está em execução.
+- Nenhum outro thread está em execução.
 
 Após 5 segundos de execução:
 
 - A e B geraram 5 e 500 eventos, respectivamente.
 
-- `_history` contém 5 linhas para A e 10 linhas para B. Como o armazenamento por fio é limitado a 10 linhas, nenhuma linha foi descartada para A, enquanto 490 linhas foram descartadas para B.
+- `_history` contém 5 linhas para A e 10 linhas para B. Como o armazenamento por thread é limitado a 10 linhas, nenhuma linha foi descartada para A, enquanto 490 linhas foram descartadas para B.
 
 - `_history_long` contém 5 linhas para A e 500 linhas para B. Como a tabela tem um tamanho máximo de 10.000 linhas, nenhuma linha foi descartada para nenhuma das threads.
 
@@ -50,6 +50,6 @@ Após 5 minutos (300 segundos) de execução:
 
 - A e B geraram 300 e 30.000 eventos, respectivamente.
 
-- `_history` contém 10 linhas para A e 10 linhas para B. Como o armazenamento por fio é limitado a 10 linhas, 290 linhas foram descartadas para A, enquanto 29.990 linhas foram descartadas para B. As linhas para A incluem dados de até 10 segundos de idade, enquanto as linhas para B incluem dados de apenas 0,1 segundo de idade.
+- `_history` contém 10 linhas para A e 10 linhas para B. Como o armazenamento por thread é limitado a 10 linhas, 290 linhas foram descartadas para A, enquanto 29.990 linhas foram descartadas para B. As linhas para A incluem dados de até 10 segundos de idade, enquanto as linhas para B incluem dados de apenas 0,1 segundo de idade.
 
 - `_history_long` contém 10.000 linhas. Como A e B geram juntos 101 eventos por segundo, a tabela contém dados até aproximadamente 10.000/101 = 99 segundos, com uma mistura de linhas aproximadamente de 100 a 1 de B em oposição a A.

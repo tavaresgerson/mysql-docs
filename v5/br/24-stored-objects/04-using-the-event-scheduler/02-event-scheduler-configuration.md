@@ -4,13 +4,13 @@ Os eventos são executados por uma thread especial do planejador de eventos; qua
 
 A variável de sistema global `event_scheduler` determina se o Agendamento de Eventos está habilitado e em execução no servidor. Ela tem um dos seguintes valores, que afetam o agendamento de eventos conforme descrito:
 
-- `OFF`: O Agendamento de Eventos está parado. O fio do agendamento de eventos não é executado, não é exibido na saída do `SHOW PROCESSLIST` e nenhum evento agendado é executado. `OFF` é o valor padrão do `event_scheduler`.
+- `OFF`: O Agendamento de Eventos está parado. O thread do agendamento de eventos não é executado, não é exibido na saída do `SHOW PROCESSLIST` e nenhum evento agendado é executado. `OFF` é o valor padrão do `event_scheduler`.
 
   Quando o Agendamento de Eventos é interrompido (`event_scheduler` está em `OFF`), ele pode ser iniciado definindo o valor de `event_scheduler` para `ON`. (Veja o próximo item.)
 
 - `ON`: O Agendamento de Eventos é iniciado; a thread do agendamento de eventos é executada e executa todos os eventos agendados.
 
-  Quando o Agendamento de Eventos está ativado, o fio do agendamento de eventos é listado na saída do comando `SHOW PROCESSLIST` como um processo daemon, e seu estado é representado conforme mostrado aqui:
+  Quando o Agendamento de Eventos está ativado, o thread do agendamento de eventos é listado na saída do comando `SHOW PROCESSLIST` como um processo daemon, e seu estado é representado conforme mostrado aqui:
 
   ```sql
   mysql> SHOW PROCESSLIST\G
@@ -37,7 +37,7 @@ A variável de sistema global `event_scheduler` determina se o Agendamento de Ev
 
   A programação de eventos pode ser interrompida definindo o valor de `event_scheduler` para `OFF`.
 
-- `DESATIVADO`: Esse valor torna o Agendamento de Eventos inoperante. Quando o Agendamento de Eventos está em `DESATIVADO`, o fio do agendamento de eventos não é executado (e, portanto, não aparece na saída do `SHOW PROCESSLIST`). Além disso, o estado do Agendamento de Eventos não pode ser alterado em tempo de execução.
+- `DESATIVADO`: Esse valor torna o Agendamento de Eventos inoperante. Quando o Agendamento de Eventos está em `DESATIVADO`, o thread do agendamento de eventos não é executado (e, portanto, não aparece na saída do `SHOW PROCESSLIST`). Além disso, o estado do Agendamento de Eventos não pode ser alterado em tempo de execução.
 
 Se o status do Agendamento de Eventos não estiver definido como `DESABILITADO`, o `event_scheduler` pode ser alternado entre `ON` e `OFF` (usando `SET`). Também é possível usar `0` para `OFF` e `1` para `ON` ao definir essa variável. Assim, qualquer uma das seguintes 4 instruções pode ser usada no cliente **mysql** para ativar o Agendamento de Eventos:
 
@@ -89,7 +89,7 @@ Para habilitar o Agendamento de Eventos, reinicie o servidor sem a opção de li
 
 Nota
 
-Você pode emitir declarações de manipulação de eventos quando `event_scheduler` estiver definido como `DISABLED`. Nesse caso, não serão gerados avisos ou erros (desde que as próprias declarações sejam válidas). No entanto, os eventos agendados não podem ser executados até que essa variável seja definida como `ON` (ou `1`). Uma vez feito isso, o fio do agendador de eventos executa todos os eventos cujas condições de agendamento são atendidas.
+Você pode emitir declarações de manipulação de eventos quando `event_scheduler` estiver definido como `DISABLED`. Nesse caso, não serão gerados avisos ou erros (desde que as próprias declarações sejam válidas). No entanto, os eventos agendados não podem ser executados até que essa variável seja definida como `ON` (ou `1`). Uma vez feito isso, o thread do agendador de eventos executa todos os eventos cujas condições de agendamento são atendidas.
 
 Iniciar o servidor MySQL com a opção `--skip-grant-tables` faz com que `event_scheduler` seja definido como `DISABLED`, substituindo qualquer outro valor definido na linha de comando ou no arquivo `my.cnf` ou `my.ini` (Bug #26807).
 

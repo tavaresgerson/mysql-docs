@@ -12,7 +12,7 @@ Essas tabelas armazenam eventos de transação:
 
 - `eventos_transacoes_atual`: O evento de transação atual para cada thread.
 
-- `eventos_transações_história`: Os eventos de transação mais recentes que terminaram por fio.
+- `eventos_transações_história`: Os eventos de transação mais recentes que terminaram por thread.
 
 - `eventos_transacoes_historico_longo`: Os eventos de transação mais recentes que terminaram globalmente (em todas as threads).
 

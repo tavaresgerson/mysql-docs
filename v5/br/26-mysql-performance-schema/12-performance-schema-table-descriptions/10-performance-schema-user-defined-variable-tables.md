@@ -6,7 +6,7 @@ A tabela `user_variables_by_thread` tem as seguintes colunas:
 
 - `THREAD_ID`
 
-  O identificador do fio da sessão em que a variável é definida.
+  O identificador do thread da sessão em que a variável é definida.
 
 - `VARIAVEL_NOME`
 

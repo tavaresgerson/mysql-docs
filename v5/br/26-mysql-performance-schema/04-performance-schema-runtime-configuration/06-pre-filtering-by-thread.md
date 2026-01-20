@@ -48,7 +48,7 @@ As colunas `HOST` e `USER` devem conter um nome de host ou usuário literal ou `
 
 As colunas `ENABLED` e `HISTORY` indicam se a instrumentação e o registro de eventos históricos devem ser habilitados para os threads correspondentes, conforme as outras condições descritas anteriormente.
 
-Quando o Schema de Desempenho verifica uma correspondência para cada novo fio em primeiro plano em `setup_actors`, ele tenta encontrar correspondências mais específicas primeiro, usando as colunas `USER` e `HOST` (`ROLE` é inutilizado):
+Quando o Schema de Desempenho verifica uma correspondência para cada novo thread em primeiro plano em `setup_actors`, ele tenta encontrar correspondências mais específicas primeiro, usando as colunas `USER` e `HOST` (`ROLE` é inutilizado):
 
 - Linhas com `USER='literal'` e `HOST='literal'`.
 

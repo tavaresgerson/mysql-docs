@@ -305,7 +305,7 @@ As variáveis do sistema específicas do plugin de replicação em grupo são as
 
   <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O número de vezes que o fio de comunicação do grupo aguarda pelo mutex do motor de comunicação ser liberado antes que o fio espere por mais mensagens de rede recebidas.
+  O número de vezes que o thread de comunicação do grupo aguarda pelo mutex do motor de comunicação ser liberado antes que o thread espere por mais mensagens de rede recebidas.
 
 - `grupo_replication_recovery_complete_at`
 

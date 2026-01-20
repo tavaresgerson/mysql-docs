@@ -2,89 +2,89 @@
 
 A lista a seguir descreve os valores do atributo `State` associados ao processamento de consultas gerais e não a atividades mais especializadas, como a replicação. Muitos deles são úteis apenas para encontrar erros no servidor.
 
-- `Após criar`
+- `After create`
 
-  Isso ocorre quando o fio cria uma tabela (incluindo tabelas temporárias internas), no final da função que cria a tabela. Esse estado é usado mesmo se a tabela não puder ser criada devido a algum erro.
+  Isso ocorre quando o thread cria uma tabela (incluindo tabelas temporárias internas), no final da função que cria a tabela. Esse estado é usado mesmo se a tabela não puder ser criada devido a algum erro.
 
-- "alterar a tabela"
+* `altering table`
 
   O servidor está executando uma alteração `ALTER TABLE` in-place.
 
-- "Analisando"
+* `Analyzing`
 
-  O fio está calculando as distribuições de chaves de tabelas `MyISAM` (por exemplo, para `ANALYZE TABLE`).
+  O thread está calculando as distribuições de chaves de tabelas `MyISAM` (por exemplo, para `ANALYZE TABLE`).
 
-- `verificar permissões`
+* `checking permissions`
 
-  O fio está verificando se o servidor tem os privilégios necessários para executar a declaração.
+  O thread está verificando se o servidor tem os privilégios necessários para executar a declaração.
 
-- `Verificar tabela`
+* `Checking table`
 
-  O fio está realizando uma operação de verificação de tabela.
+  O thread está realizando uma operação de verificação de tabela.
 
-- "limpar"
+* `cleaning up`
 
-  O fio processou um comando e está se preparando para liberar memória e reiniciar certas variáveis de estado.
+  O thread processou um comando e está se preparando para liberar memória e reiniciar certas variáveis de estado.
 
-- `comitir alter table para o mecanismo de armazenamento`
+* `committing alter table to storage engine`
 
   O servidor terminou uma alteração `ALTER TABLE` in-place e está commitando o resultado.
 
-- "mesas de encerramento"
+* `closing tables`
 
-  O fio está descarregando os dados da tabela alterados no disco e fechando as tabelas usadas. Isso deve ser uma operação rápida. Se não for, verifique se não há disco cheio e se o disco não está sendo muito utilizado.
+  O thread está descarregando os dados da tabela alterados no disco e fechando as tabelas usadas. Isso deve ser uma operação rápida. Se não for, verifique se não há disco cheio e se o disco não está sendo muito utilizado.
 
-- `converter HEAP para ondisk`
+* `converting HEAP to ondisk`
 
-  O fio está convertendo uma tabela temporária interna de uma tabela `MEMORY` para uma tabela em disco.
+  O thread está convertendo uma tabela temporária interna de uma tabela `MEMORY` para uma tabela em disco.
 
-- `copiar para a tabela tmp`
+* `copy to tmp table`
 
-  O fio está processando uma declaração `ALTER TABLE`. Esse estado ocorre após a tabela com a nova estrutura ter sido criada, mas antes de as linhas serem copiadas nela.
+  O thread está processando uma declaração `ALTER TABLE`. Esse estado ocorre após a tabela com a nova estrutura ter sido criada, mas antes de as linhas serem copiadas nela.
 
-  Para um fio nesse estado, o Schema de Desempenho pode ser usado para obter informações sobre o progresso da operação de cópia. Veja a Seção 25.12.5, “Tabelas de Eventos de Estágio do Schema de Desempenho”.
+  Para um thread nesse estado, o Schema de Desempenho pode ser usado para obter informações sobre o progresso da operação de cópia. Veja a Seção 25.12.5, “Tabelas de Eventos de Estágio do Schema de Desempenho”.
 
-- `Copiar para tabela de grupo`
+* `Copying to group table`
 
   Se uma declaração tiver critérios diferentes de `ORDER BY` e `GROUP BY`, as linhas são ordenadas por grupo e copiadas para uma tabela temporária.
 
-- `Copiar para a tabela tmp`
+* `Copying to tmp table`
 
   O servidor está copiando para uma tabela temporária na memória.
 
-- `Copiar para a tabela tmp no disco`
+* `Copying to tmp table on disk`
 
   O servidor está copiando para uma tabela temporária no disco. O conjunto de resultados temporário tornou-se muito grande (consulte a Seção 8.4.4, “Uso de Tabela Temporária Interna no MySQL”). Consequentemente, o thread está alterando a tabela temporária do formato de memória para o formato baseado em disco para economizar memória.
 
-- `Criar índice`
+* `Creating index`
 
-  O fio está processando `ALTER TABLE ... ENABLE KEYS` para uma tabela `MyISAM`.
+  O thread está processando `ALTER TABLE ... ENABLE KEYS` para uma tabela `MyISAM`.
 
-- `Criar índice de classificação`
+* `Creating sort index`
 
-  O fio está processando uma `SELECT` que é resolvida usando uma tabela temporária interna.
+  O thread está processando uma `SELECT` que é resolvida usando uma tabela temporária interna.
 
-- `criando tabela`
+* `creating table`
 
-  O fio está criando uma tabela. Isso inclui a criação de tabelas temporárias.
+  O thread está criando uma tabela. Isso inclui a criação de tabelas temporárias.
 
-- `Criar tabela temporária`
+* `Creating tmp table`
 
-  O fio está criando uma tabela temporária na memória ou no disco. Se a tabela for criada na memória, mas posteriormente convertida para uma tabela no disco, o estado durante essa operação será `Copiando para tabela temporária no disco`.
+  O thread está criando uma tabela temporária na memória ou no disco. Se a tabela for criada na memória, mas posteriormente convertida para uma tabela no disco, o estado durante essa operação será `Copiando para tabela temporária no disco`.
 
-- "excluindo da tabela principal"
+* `deleting from main table`
 
   O servidor está executando a primeira parte de uma exclusão de múltiplas tabelas. Ele está excluindo apenas da primeira tabela e salvando as colunas e deslocamentos a serem usados para excluir das outras tabelas (referência).
 
-- "excluindo das tabelas de referência"
+* `deleting from reference tables`
 
   O servidor está executando a segunda parte de uma exclusão de múltiplas tabelas e excluindo as linhas correspondentes das outras tabelas.
 
-- `discard_or_import_tablespace`
+* `discard_or_import_tablespace`
 
-  O fio está processando uma declaração `ALTER TABLE ... DISCARD TABLESPACE` ou `ALTER TABLE ... IMPORT TABLESPACE`.
+  O thread está processando uma declaração `ALTER TABLE ... DISCARD TABLESPACE` ou `ALTER TABLE ... IMPORT TABLESPACE`.
 
-- `final`
+- `end`
 
   Isso ocorre no final, mas antes da limpeza das instruções `ALTER TABLE`, `CREATE VIEW`, `DELETE`, `INSERT`, `SELECT` ou `UPDATE`.
 
@@ -96,19 +96,19 @@ A lista a seguir descreve os valores do atributo `State` associados ao processam
 
   - Liberando buffers de memória, incluindo para blobs
 
-- "executando"
+* `executing`
 
-  O fio começou a executar uma declaração.
+  O thread começou a executar uma declaração.
 
-- `Execução do comando init`
+* `Execution of init_command`
 
-  O fio está executando instruções no valor da variável de sistema `init_command`.
+  O thread está executando instruções no valor da variável de sistema `init_command`.
 
-- "libertar itens"
+* `freeing items`
 
-  O fio executou um comando. Algum liberamento de itens foi feito durante este estado, envolvendo o cache de consultas. Este estado é geralmente seguido pela `limpeza`.
+  O thread executou um comando. Algum liberamento de itens foi feito durante este estado, envolvendo o cache de consultas. Este estado é geralmente seguido pela `cleaning up`.
 
-- `Inicialização de FULLTEXT`
+- `FULLTEXT initialization`
 
   O servidor está se preparando para realizar uma pesquisa de texto completo em linguagem natural.
 
@@ -116,210 +116,204 @@ A lista a seguir descreve os valores do atributo `State` associados ao processam
 
   Isso ocorre antes da inicialização das instruções `ALTER TABLE`, `DELETE`, `INSERT`, `SELECT` ou `UPDATE`. As ações realizadas pelo servidor nesse estado incluem o descarte do log binário, do log `InnoDB` e algumas operações de limpeza do cache de consultas.
 
-- "Assassinado"
+* `Killed`
 
   Alguém enviou uma declaração `KILL` para o thread e ela deve abortar na próxima vez que verificar a bandeira de kill. A bandeira é verificada em cada grande loop no MySQL, mas, em alguns casos, ainda pode levar um curto tempo para o thread morrer. Se o thread estiver bloqueado por outro thread, o kill entra em vigor assim que o outro thread liberar sua trava.
 
-- `registrando consultas lentas`
+* `logging slow query`
 
-  O fio está escrevendo uma declaração no log de consulta lenta.
+  O thread está escrevendo uma declaração no log de consulta lenta.
 
 - `login`
 
-  O estado inicial de um fio de conexão até que o cliente seja autenticado com sucesso.
+  O estado inicial de um thread de conexão até que o cliente seja autenticado com sucesso.
 
-- gerenciar chaves
+* `manage keys`
 
   O servidor está habilitando ou desabilitando um índice de tabela.
 
-- `Abrir tabelas`
+* `Opening tables`
 
-  O fio está tentando abrir uma tabela. Este deve ser um procedimento muito rápido, a menos que algo impeça a abertura. Por exemplo, uma instrução `ALTER TABLE` ou `LOCK TABLE` pode impedir a abertura de uma tabela até que a instrução seja concluída. Também vale a pena verificar se o valor da `table_open_cache` é grande o suficiente.
+  O thread está tentando abrir uma tabela. Este deve ser um procedimento muito rápido, a menos que algo impeça a abertura. Por exemplo, uma instrução `ALTER TABLE` ou `LOCK TABLE` pode impedir a abertura de uma tabela até que a instrução seja concluída. Também vale a pena verificar se o valor da `table_open_cache` é grande o suficiente.
 
-- "otimizar"
+* `optimizing`
 
   O servidor está realizando otimizações iniciais para uma consulta.
 
-- "preparando"
+* `preparing`
 
   Esse estado ocorre durante a otimização da consulta.
 
-- `preparando para alter table`
+* `preparing for alter table`
 
   O servidor está se preparando para executar uma alteração `ALTER TABLE` in-place.
 
-- `Limpar logs de relé antigos`
+* `Purging old relay logs`
 
-  O fio está removendo arquivos de log de relé desnecessários.
+  O thread está removendo arquivos de log de relay desnecessários.
 
-- `finalizar consulta`
+* `query end`
 
   Esse estado ocorre após o processamento de uma consulta, mas antes do estado de "livrar itens".
 
-- `Receber do cliente`
+* `Receiving from client`
 
   O servidor está lendo um pacote do cliente. Esse estado é chamado de `Lendo da rede` antes do MySQL 5.7.8.
 
-- `Remover duplicatas`
+* `Removing duplicates`
 
   A consulta estava usando `SELECT DISTINCT` de uma maneira que o MySQL não conseguia otimizar a operação de distinção em uma fase inicial. Por isso, o MySQL exige uma etapa extra para remover todas as linhas duplicadas antes de enviar o resultado ao cliente.
 
-- `remover a tabela tmp`
+* `removing tmp table`
 
-  O fio está removendo uma tabela temporária interna após o processamento de uma instrução `SELECT`. Esse estado não é usado se nenhuma tabela temporária foi criada.
+  O thread está removendo uma tabela temporária interna após o processamento de uma instrução `SELECT`. Esse estado não é usado se nenhuma tabela temporária foi criada.
 
-- `renomear`
+* `rename`
 
-  O fio está renomeando uma tabela.
+  O thread está renomeando uma tabela.
 
-- `renomear a tabela de resultados`
+* `rename result table`
 
-  O fio está processando uma declaração `ALTER TABLE`, criou a nova tabela e está renomeando-a para substituir a tabela original.
+  O thread está processando uma declaração `ALTER TABLE`, criou a nova tabela e está renomeando-a para substituir a tabela original.
 
-- "Reabrir mesas"
+* `Reopen tables`
 
-  O fio obteve um bloqueio para a tabela, mas percebeu, após obter o bloqueio, que a estrutura subjacente da tabela havia mudado. Ele liberou o bloqueio, fechou a tabela e está tentando reabri-la.
+  O thread obteve um bloqueio para a tabela, mas percebeu, após obter o bloqueio, que a estrutura subjacente da tabela havia mudado. Ele liberou o bloqueio, fechou a tabela e está tentando reabri-la.
 
-- "Reparação por triagem"
+* `Repair by sorting`
 
   O código de reparo está usando uma classificação para criar índices.
 
-- "A reparação foi feita"
+* `Repair done`
 
-  O fio concluiu uma reparação multifiltrada para uma tabela `MyISAM`.
+  O thread concluiu uma reparação multifiltrada para uma tabela `MyISAM`.
 
-- `Reparação com keycache`
+* `Repair with keycache`
 
   O código de reparo está usando a criação de chaves uma por uma através do cache de chaves. Isso é muito mais lento do que a opção "Reparar por classificação".
 
-- "Reverter"
+* `Rolling back`
 
-  O fio está revertendo uma transação.
+  O thread está revertendo uma transação.
 
-- `Salvar estado`
+* `Saving state`
 
-  Para operações de tabela `MyISAM`, como reparo ou análise, o fio está salvando o novo estado da tabela no cabeçalho do arquivo `.MYI`. O estado inclui informações como o número de linhas, o contador `AUTO_INCREMENT` e as distribuições de chaves.
+  Para operações de tabela `MyISAM`, como reparo ou análise, o thread está salvando o novo estado da tabela no cabeçalho do arquivo `.MYI`. O estado inclui informações como o número de linhas, o contador `AUTO_INCREMENT` e as distribuições de chaves.
 
-- `Pesquisar linhas para atualização`
+* `Searching rows for update`
 
-  O fio está realizando uma primeira fase para encontrar todas as linhas correspondentes antes de atualizá-las. Isso precisa ser feito se a `UPDATE` estiver alterando o índice que é usado para encontrar as linhas envolvidas.
+  O thread está realizando uma primeira fase para encontrar todas as linhas correspondentes antes de atualizá-las. Isso precisa ser feito se a `UPDATE` estiver alterando o índice que é usado para encontrar as linhas envolvidas.
 
-- `Enviar dados`
+* `Sending data`
 
-  O fio está lendo e processando linhas para uma instrução `SELECT` e enviando dados ao cliente. Como as operações que ocorrem durante esse estado tendem a realizar grandes quantidades de acesso ao disco (leitura), é frequentemente o estado de execução mais longo ao longo da vida útil de uma consulta específica.
+  O thread está lendo e processando linhas para uma instrução `SELECT` e enviando dados ao cliente. Como as operações que ocorrem durante esse estado tendem a realizar grandes quantidades de acesso ao disco (leitura), é frequentemente o estado de execução mais longo ao longo da vida útil de uma consulta específica.
 
-- `Enviar para o cliente`
+* `Sending to client`
 
   O servidor está escrevendo um pacote para o cliente. Esse estado é chamado de `Escrevendo para a rede` antes do MySQL 5.7.8.
 
-- `configuração`
+* `setup`
 
-  O fio está iniciando uma operação `ALTER TABLE`.
+  O thread está iniciando uma operação `ALTER TABLE`.
 
-- `Ordenar por grupo`
+* `Sorting for group`
 
-  O fio está fazendo uma classificação para satisfazer um `GROUP BY`.
+  O thread está fazendo uma classificação para satisfazer um `GROUP BY`.
 
-- `Ordenar por ordem`
+* `Sorting for order`
 
-  O fio está fazendo uma classificação para satisfazer uma `ORDER BY`.
+  O thread está fazendo uma classificação para satisfazer uma `ORDER BY`.
 
-- Índice de classificação
+* `Sorting index`
 
   O índice de threads está classificando as páginas de índice para um acesso mais eficiente durante uma operação de otimização de tabela `MyISAM`.
 
-- `Resultado de classificação`
+* `Sorting result`
 
   Para uma instrução `SELECT`, isso é semelhante a "Criar índice de classificação", mas para tabelas não temporárias.
 
-- `começando`
+* `starting`
 
   A primeira etapa no início da execução da declaração.
 
-- "estatísticas"
+* `statistics`
 
-  O servidor está calculando estatísticas para desenvolver um plano de execução de consulta. Se um fio estiver nesse estado por muito tempo, o servidor provavelmente está preso no disco, realizando outro trabalho.
+  O servidor está calculando estatísticas para desenvolver um plano de execução de consulta. Se um thread estiver nesse estado por muito tempo, o servidor provavelmente está preso no disco, realizando outro trabalho.
 
-- Bloqueio do sistema
+* `System lock`
 
-  O fio chamou `mysql_lock_tables()` e o estado do fio não foi atualizado desde então. Este é um estado muito geral que pode ocorrer por várias razões.
+  O thread chamou `mysql_lock_tables()` e o estado do thread não foi atualizado desde então. Este é um estado muito geral que pode ocorrer por várias razões.
 
-  Por exemplo, o fio vai solicitar ou está aguardando uma bloqueio interno ou externo do sistema para a tabela. Isso pode ocorrer quando o `InnoDB` aguarda um bloqueio de nível de tabela durante a execução de `LOCK TABLES`. Se este estado estiver sendo causado por solicitações de bloqueios externos e você não estiver usando múltiplos servidores **mysqld** que estão acessando as mesmas tabelas `MyISAM`, você pode desabilitar bloqueios de sistema externos com a opção `--skip-external-locking`. No entanto, o bloqueio externo é desativado por padrão, então é provável que esta opção não tenha efeito. Para `SHOW PROFILE`, este estado significa que o fio está solicitando o bloqueio (e não aguardando por ele).
+  Por exemplo, o thread vai solicitar ou está aguardando uma bloqueio interno ou externo do sistema para a tabela. Isso pode ocorrer quando o `InnoDB` aguarda um bloqueio de nível de tabela durante a execução de `LOCK TABLES`. Se este estado estiver sendo causado por solicitações de bloqueios externos e você não estiver usando múltiplos servidores **mysqld** que estão acessando as mesmas tabelas `MyISAM`, você pode desabilitar bloqueios de sistema externos com a opção `--skip-external-locking`. No entanto, o bloqueio externo é desativado por padrão, então é provável que esta opção não tenha efeito. Para `SHOW PROFILE`, este estado significa que o thread está solicitando o bloqueio (e não aguardando por ele).
 
-- `atualizar`
+* `update`
 
-  O fio está se preparando para começar a atualizar a tabela.
+  O thread está se preparando para começar a atualizar a tabela.
 
-- `Atualizando`
+* `Updating`
 
-  O fio está procurando linhas para atualizar e as está atualizando.
+  O thread está procurando linhas para atualizar e as está atualizando.
 
-- `atualizando a tabela principal`
+* `updating main table`
 
   O servidor está executando a primeira parte de uma atualização de várias tabelas. Ele está atualizando apenas a primeira tabela e salvando as colunas e deslocamentos a serem usados para atualizar as outras tabelas (referência).
 
-- "atualizando tabelas de referência"
+* `updating reference tables`
 
   O servidor está executando a segunda parte de uma atualização de várias tabelas e atualizando as linhas correspondentes das outras tabelas.
 
-- Bloqueio do usuário
+* `User lock`
 
-  O fio vai solicitar ou está aguardando uma bloqueio de aconselhamento solicitado com uma chamada `GET_LOCK()`. Para `SHOW PROFILE`, este estado significa que o fio está solicitando o bloqueio (e não aguardando por ele).
+  O thread vai solicitar ou está aguardando uma bloqueio de aconselhamento solicitado com uma chamada `GET_LOCK()`. Para `SHOW PROFILE`, este estado significa que o thread está solicitando o bloqueio (e não aguardando por ele).
 
-- `Sono do usuário`
+* `User sleep`
 
-  O fio invocou uma chamada `SLEEP()`.
+  O thread invocou uma chamada `SLEEP()`.
 
-- `Aguardando bloqueio de commit`
+* `Waiting for commit lock`
 
   `FLUSH TABLES WITH READ LOCK` está aguardando um bloqueio de commit.
 
-- `Aguardando bloqueio de leitura global`
+* `Waiting for global read lock`
 
   `FLUSH TABLES WITH READ LOCK` está aguardando uma bloqueadora de leitura global ou a variável de sistema `read_only` global está sendo definida.
 
-- "Esperando mesas"
+* `Waiting for tables`
 
-  O fio recebeu uma notificação de que a estrutura subjacente de uma tabela mudou e que ele precisa reabrir a tabela para obter a nova estrutura. No entanto, para reabrir a tabela, ele deve esperar até que todos os outros fios tenham fechado a tabela em questão.
+  O thread recebeu uma notificação de que a estrutura subjacente de uma tabela mudou e que ele precisa reabrir a tabela para obter a nova estrutura. No entanto, para reabrir a tabela, ele deve esperar até que todos os outros fios tenham fechado a tabela em questão.
 
-  Essa notificação ocorre se outro fio tiver usado `FLUSH TABLES` ou uma das seguintes instruções na tabela em questão: `FLUSH TABLES tbl_name`, `ALTER TABLE`, `RENAME TABLE`, `REPAIR TABLE`, `ANALYZE TABLE` ou `OPTIMIZE TABLE`.
+  Essa notificação ocorre se outro thread tiver usado `FLUSH TABLES` ou uma das seguintes instruções na tabela em questão: `FLUSH TABLES tbl_name`, `ALTER TABLE`, `RENAME TABLE`, `REPAIR TABLE`, `ANALYZE TABLE` ou `OPTIMIZE TABLE`.
 
-- `Aguardando o esvaziamento da mesa`
+* `Waiting for table flush`
 
-  O fio está executando `FLUSH TABLES` e está esperando que todos os fios fechem suas tabelas, ou o fio recebeu uma notificação de que a estrutura subjacente de uma tabela mudou e precisa reabrir a tabela para obter a nova estrutura. No entanto, para reabrir a tabela, ele deve esperar até que todos os outros fios tenham fechado a tabela em questão.
+  O thread está executando `FLUSH TABLES` e está esperando que todos os fios fechem suas tabelas, ou o thread recebeu uma notificação de que a estrutura subjacente de uma tabela mudou e precisa reabrir a tabela para obter a nova estrutura. No entanto, para reabrir a tabela, ele deve esperar até que todos os outros fios tenham fechado a tabela em questão.
 
-  Essa notificação ocorre se outro fio tiver usado `FLUSH TABLES` ou uma das seguintes instruções na tabela em questão: `FLUSH TABLES tbl_name`, `ALTER TABLE`, `RENAME TABLE`, `REPAIR TABLE`, `ANALYZE TABLE` ou `OPTIMIZE TABLE`.
+  Essa notificação ocorre se outro thread tiver usado `FLUSH TABLES` ou uma das seguintes instruções na tabela em questão: `FLUSH TABLES tbl_name`, `ALTER TABLE`, `RENAME TABLE`, `REPAIR TABLE`, `ANALYZE TABLE` ou `OPTIMIZE TABLE`.
 
-- `Aguardando lock_type lock`
+* `Waiting for lock_type lock`
 
   O servidor está aguardando para adquirir uma trava `THR_LOCK` ou uma trava do subsistema de bloqueio de metadados, onde *`lock_type`* indica o tipo de trava.
 
   Esse estado indica uma espera por um `THR_LOCK`:
 
-  - `Esperando por bloqueio de nível de mesa`
+  + `Waiting for table level lock`
 
   Estes estados indicam uma espera por um bloqueio de metadados:
 
-  - `Esperando por bloqueio dos metadados do evento`
-
-  - `Aguardando bloqueio de leitura global`
-
-  - `Esperando por bloqueio de metadados do esquema`
-
-  - `Aguardando bloqueio de metadados da função armazenada`
-
-  - `Esperando por bloqueio de metadados do procedimento armazenado`
-
-  - `Esperando por bloqueio de metadados da tabela`
-
-  - `Aguardando bloqueio de metadados do gatilho`
+    + `Waiting for event metadata lock`
+    + `Waiting for global read lock`
+    + `Waiting for schema metadata lock`
+    + `Waiting for stored function metadata lock`
+    + `Waiting for stored procedure metadata lock`
+    + `Waiting for table metadata lock`
+    + `Waiting for trigger metadata lock`
 
   Para obter informações sobre indicadores de bloqueio de tabelas, consulte a Seção 8.11.1, “Métodos de bloqueio interno”. Para obter informações sobre bloqueio de metadados, consulte a Seção 8.11.4, “Bloqueio de metadados”. Para ver quais bloqueios estão bloqueando solicitações de bloqueio, use as tabelas de bloqueio do Schema de desempenho descritas na Seção 25.12.12, “Tabelas de bloqueio do Schema de desempenho”.
 
-- `Aguardando cond`
+* `Waiting on cond`
 
-  Um estado genérico em que o fio está aguardando que uma condição se torne verdadeira. Não há informações específicas sobre o estado.
+  Um estado genérico em que o thread está aguardando que uma condição se torne verdadeira. Não há informações específicas sobre o estado.
 
-- `Escrever para a rede`
+* `Writing to net`
 
   O servidor está escrevendo um pacote na rede. Esse estado é chamado de "Enviando para cliente" a partir do MySQL 5.7.8.

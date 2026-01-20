@@ -8,7 +8,7 @@ A discussão nos parágrafos seguintes não se aplica quando [`binlog_format=ROW
 
 2. Use `SHOW STATUS` para verificar o valor da variável `Slave_open_temp_tables`.
 
-3. Se o valor não for 0, reinicie o fio de replicação SQL com `START SLAVE SQL_THREAD` e repita o procedimento mais tarde.
+3. Se o valor não for 0, reinicie o thread de replicação SQL com `START SLAVE SQL_THREAD` e repita o procedimento mais tarde.
 
 4. Quando o valor for 0, execute o comando **mysqladmin shutdown** para interromper a replica.
 

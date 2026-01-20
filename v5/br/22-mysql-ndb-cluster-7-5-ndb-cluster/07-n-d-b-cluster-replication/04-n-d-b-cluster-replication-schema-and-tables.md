@@ -92,7 +92,7 @@ A figura a seguir mostra a relação entre o servidor de origem da replicação 
 
 **Figura 21.16: O clúster de origem de replicação**
 
-![A maioria dos conceitos é descrita no texto ao redor. Esta imagem complexa tem três áreas principais. A área superior esquerda é dividida em três seções: MySQL Server (mysqld), manipulador de tabela NDBCLUSTER e mutex. Um fio de conexão conecta esses elementos, e os fios de receptor e injeção conectam o manipulador de tabela NDBCLUSTER e o mutex. A área inferior mostra quatro nós de dados (ndbd). Todos eles produzem eventos representados por setas apontando para o fio de receptor, e o fio de receptor também aponta para os fios de conexão e injeção. Um nó envia e recebe para a área do mutex. A seta representando o fio de injeção aponta para um log binário, bem como para a tabela ndb_binlog_index, que é descrita no texto ao redor.](images/cluster-replication-binlog-injector.png)
+![A maioria dos conceitos é descrita no texto ao redor. Esta imagem complexa tem três áreas principais. A área superior esquerda é dividida em três seções: MySQL Server (mysqld), manipulador de tabela NDBCLUSTER e mutex. Um thread de conexão conecta esses elementos, e os fios de receptor e injeção conectam o manipulador de tabela NDBCLUSTER e o mutex. A área inferior mostra quatro nós de dados (ndbd). Todos eles produzem eventos representados por setas apontando para o thread de receptor, e o thread de receptor também aponta para os fios de conexão e injeção. Um nó envia e recebe para a área do mutex. A seta representando o thread de injeção aponta para um log binário, bem como para a tabela ndb_binlog_index, que é descrita no texto ao redor.](images/cluster-replication-binlog-injector.png)
 
 #### tabela ndb_replication
 

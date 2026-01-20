@@ -18,7 +18,7 @@ A lista a seguir descreve algumas das maneiras pelas quais o MySQL utiliza a mem
 
 - Todos os threads compartilham o buffer de chave `MyISAM`. A variável de sistema `key_buffer_size` determina seu tamanho.
 
-  Para cada tabela `MyISAM` que o servidor abre, o arquivo de índice é aberto uma vez; o arquivo de dados é aberto uma vez para cada fio de execução concorrente que acessa a tabela. Para cada fio de execução concorrente, uma estrutura de tabela, estruturas de coluna para cada coluna e um buffer do tamanho `3 * N` são alocados (onde *`N`* é o comprimento máximo da linha, excluindo as colunas `BLOB`). Uma coluna `BLOB` requer de cinco a oito bytes mais o comprimento dos dados `BLOB`. O mecanismo de armazenamento `MyISAM` mantém um buffer de linha extra para uso interno.
+  Para cada tabela `MyISAM` que o servidor abre, o arquivo de índice é aberto uma vez; o arquivo de dados é aberto uma vez para cada thread de execução concorrente que acessa a tabela. Para cada thread de execução concorrente, uma estrutura de tabela, estruturas de coluna para cada coluna e um buffer do tamanho `3 * N` são alocados (onde *`N`* é o comprimento máximo da linha, excluindo as colunas `BLOB`). Uma coluna `BLOB` requer de cinco a oito bytes mais o comprimento dos dados `BLOB`. O mecanismo de armazenamento `MyISAM` mantém um buffer de linha extra para uso interno.
 
 - A variável de sistema `myisam_use_mmap` pode ser definida como 1 para habilitar a mapeamento de memória para todas as tabelas `MyISAM`.
 
@@ -28,7 +28,7 @@ A lista a seguir descreve algumas das maneiras pelas quais o MySQL utiliza a mem
 
 - O Schema de Desempenho do MySQL é uma funcionalidade para monitorar a execução do servidor MySQL em um nível baixo. O Schema de Desempenho aloca dinamicamente a memória incrementalmente, ajustando seu uso de memória à carga real do servidor, em vez de alocar a memória necessária durante o início do servidor. Uma vez que a memória é alocada, ela não é liberada até que o servidor seja reiniciado. Para mais informações, consulte a Seção 25.17, “O Modelo de Alocação de Memória do Schema de Desempenho”.
 
-- Cada fio que o servidor usa para gerenciar as conexões dos clientes requer um espaço específico para cada fio. A lista a seguir indica esses espaços e quais variáveis do sistema controlam seu tamanho:
+- Cada thread que o servidor usa para gerenciar as conexões dos clientes requer um espaço específico para cada thread. A lista a seguir indica esses espaços e quais variáveis do sistema controlam seu tamanho:
 
   - Uma pilha (`thread_stack`)
 
@@ -38,11 +38,11 @@ A lista a seguir descreve algumas das maneiras pelas quais o MySQL utiliza a mem
 
   O buffer de conexão e o buffer de resultados começam com um tamanho igual a `net_buffer_length` bytes, mas são ampliados dinamicamente até `max_allowed_packet` bytes conforme necessário. O buffer de resultados diminui para `net_buffer_length` bytes após cada instrução SQL. Enquanto uma instrução está sendo executada, uma cópia da string atual da instrução também é alocada.
 
-  Cada fio de conexão usa memória para calcular os resumos das instruções. O servidor aloca `max_digest_length` bytes por sessão. Veja a Seção 25.10, “Resumo de instruções do Schema de desempenho”.
+  Cada thread de conexão usa memória para calcular os resumos das instruções. O servidor aloca `max_digest_length` bytes por sessão. Veja a Seção 25.10, “Resumo de instruções do Schema de desempenho”.
 
 - Todos os fios compartilham a mesma memória básica.
 
-- Quando um fio não é mais necessário, a memória alocada para ele é liberada e devolvida ao sistema, a menos que o fio volte para a cache de threads. Nesse caso, a memória permanece alocada.
+- Quando um thread não é mais necessário, a memória alocada para ele é liberada e devolvida ao sistema, a menos que o thread volte para a cache de threads. Nesse caso, a memória permanece alocada.
 
 - Cada solicitação que realiza uma varredura sequencial de uma tabela aloca um buffer de leitura. A variável de sistema `read_buffer_size` determina o tamanho do buffer.
 

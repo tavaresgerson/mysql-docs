@@ -7,7 +7,7 @@ Uptime: 426 Running threads: 1 Questions: 11082
 Reloads: 1 Open tables: 12
 ```
 
-O valor `Mesas abertas` de 12 pode ser um pouco confuso se você tiver menos de 12 mesas.
+O valor `Open tables` de 12 pode ser um pouco confuso se você tiver menos de 12 mesas.
 
 O MySQL é multithread, então pode haver muitos clientes emitindo consultas para uma tabela específica simultaneamente. Para minimizar o problema de várias sessões de clientes com estados diferentes na mesma tabela, a tabela é aberta de forma independente por cada sessão concorrente. Isso utiliza memória adicional, mas normalmente aumenta o desempenho. Com as tabelas `MyISAM`, um descritor de arquivo extra é necessário para o arquivo de dados para cada cliente que tem a tabela aberta. (Em contraste, o descritor de arquivo de índice é compartilhado entre todas as sessões.)
 
@@ -23,7 +23,7 @@ O cache de tabelas abertas é mantido em um nível de `table_open_cache` entrada
 
 O MySQL fecha uma tabela não utilizada e a remove do cache de tabelas nas seguintes circunstâncias:
 
-- Quando o cache está cheio e um fio de execução tenta abrir uma tabela que não está no cache.
+- Quando o cache está cheio e um thread de execução tenta abrir uma tabela que não está no cache.
 
 - Quando o cache contém mais de `table_open_cache` entradas e uma tabela no cache não está mais sendo usada por nenhum dos threads.
 

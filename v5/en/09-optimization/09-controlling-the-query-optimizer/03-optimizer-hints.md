@@ -44,7 +44,65 @@ The following table summarizes the available optimizer hints, the optimizer stra
 
 **Table 8.2 Optimizer Hints Available**
 
-<table summary="Optimizer hint names, descriptions, and contexts in which they apply."><col style="width: 30%"/><col style="width: 40%"/><col style="width: 30%"/><thead><tr> <th>Hint Name</th> <th>Description</th> <th>Applicable Scopes</th> </tr></thead><tbody><tr> <th><code>BKA</code>, <code>NO_BKA</code></th> <td>Affects Batched Key Access join processing</td> <td>Query block, table</td> </tr><tr> <th><code>BNL</code>, <code>NO_BNL</code></th> <td>Affects Block Nested-Loop join processing</td> <td>Query block, table</td> </tr><tr> <th><code>MAX_EXECUTION_TIME</code></th> <td>Limits statement execution time</td> <td>Global</td> </tr><tr> <th><code>MRR</code>, <code>NO_MRR</code></th> <td>Affects Multi-Range Read optimization</td> <td>Table, index</td> </tr><tr> <th><code>NO_ICP</code></th> <td>Affects Index Condition Pushdown optimization</td> <td>Table, index</td> </tr><tr> <th><code>NO_RANGE_OPTIMIZATION</code></th> <td>Affects range optimization</td> <td>Table, index</td> </tr><tr> <th><code>QB_NAME</code></th> <td>Assigns name to query block</td> <td>Query block</td> </tr><tr> <th><code>SEMIJOIN</code>, <code>NO_SEMIJOIN</code></th> <td>semijoin strategies</td> <td>Query block</td> </tr><tr> <th><code>SUBQUERY</code></th> <td>Affects materialization, <code>IN</code>-to-<code>EXISTS</code> subquery stratgies</td> <td>Query block</td> </tr></tbody></table>
+<table summary="Optimizer hint names, descriptions, and contexts in which they apply.">
+  <col style="width: 30%"/>
+  <col style="width: 40%"/>
+  <col style="width: 30%"/>
+  <thead>
+    <tr>
+      <th>Hint Name</th>
+      <th>Description</th>
+      <th>Applicable Scopes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><code>BKA</code>, <code>NO_BKA</code></th>
+      <td>Affects Batched Key Access join processing</td>
+      <td>Query block, table</td>
+    </tr>
+    <tr>
+      <th><code>BNL</code>, <code>NO_BNL</code></th>
+      <td>Affects Block Nested-Loop join processing</td>
+      <td>Query block, table</td>
+    </tr>
+    <tr>
+      <th><code>MAX_EXECUTION_TIME</code></th>
+      <td>Limits statement execution time</td>
+      <td>Global</td>
+    </tr>
+    <tr>
+      <th><code>MRR</code>, <code>NO_MRR</code></th>
+      <td>Affects Multi-Range Read optimization</td>
+      <td>Table, index</td>
+    </tr>
+    <tr>
+      <th><code>NO_ICP</code></th>
+      <td>Affects Index Condition Pushdown optimization</td>
+      <td>Table, index</td>
+    </tr>
+    <tr>
+      <th><code>NO_RANGE_OPTIMIZATION</code></th>
+      <td>Affects range optimization</td>
+      <td>Table, index</td>
+    </tr>
+    <tr>
+      <th><code>QB_NAME</code></th>
+      <td>Assigns name to query block</td>
+      <td>Query block</td>
+    </tr>
+    <tr>
+      <th><code>SEMIJOIN</code>, <code>NO_SEMIJOIN</code></th>
+      <td>semijoin strategies</td>
+      <td>Query block</td>
+    </tr>
+    <tr>
+      <th><code>SUBQUERY</code></th>
+      <td>Affects materialization, <code>IN</code>-to-<code>EXISTS</code> subquery stratgies</td>
+      <td>Query block</td>
+    </tr>
+  </tbody>
+</table>
 
 Disabling an optimization prevents the optimizer from using it. Enabling an optimization means the optimizer is free to use the strategy if it applies to statement execution, not that the optimizer necessarily uses it.
 

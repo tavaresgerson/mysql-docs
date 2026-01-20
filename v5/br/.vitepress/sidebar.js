@@ -2073,7 +2073,7 @@ export default [
 				link: '/09-optimization/01-optimization-overview.md',
 			},
 			{
-				text: '8.7 Otimização para tabelas de MEMÓRIA',
+				text: '8.7 Otimização para tabelas de MEMORY',
 				link: '/09-optimization/07-optimizing-for-m-e-m-o-r-y-tables.md',
 			},
 			{
@@ -2629,7 +2629,7 @@ export default [
 				link: '/09-optimization/13-measuring-performance-benchmarking/index.md',
 			},
 			{
-				text: '8.14 Análise das informações do fio (processo) do servidor',
+				text: '8.14 Análise das informações do thread (processo) do servidor',
 				collapsed: true,
 				items: [
 					{
@@ -2637,7 +2637,7 @@ export default [
 						link: '/09-optimization/14-examining-server-thread-process-information/01-accessing-the-process-list.md',
 					},
 					{
-						text: '8.14.2 Valores dos comandos de fio',
+						text: '8.14.2 Valores dos comandos de thread',
 						link: '/09-optimization/14-examining-server-thread-process-information/02-thread-command-values.md',
 					},
 					{
@@ -2657,7 +2657,7 @@ export default [
 						link: '/09-optimization/14-examining-server-thread-process-information/06-replication-replica-i-o-thread-states.md',
 					},
 					{
-						text: '8.14.7 Replicação Estados de fio de replicação SQL',
+						text: '8.14.7 Replicação Estados de thread de replicação SQL',
 						link: '/09-optimization/14-examining-server-thread-process-information/07-replication-replica-s-q-l-thread-states.md',
 					},
 					{
@@ -5356,7 +5356,7 @@ export default [
 				link: '/16-alternative-storage-engines/01-setting-the-storage-engine.md',
 			},
 			{
-				text: '15.3 O Motor de Armazenamento de MEMÓRIA',
+				text: '15.3 O Motor de Armazenamento de MEMORY',
 				link: '/16-alternative-storage-engines/03-the-m-e-m-o-r-y-storage-engine.md',
 			},
 			{
@@ -5971,7 +5971,7 @@ export default [
 								link: '/17-replication/04-replication-notes-and-tips/01-replication-features-and-issues/19-replication-and-max-allowed-packet.md',
 							},
 							{
-								text: '16.4.1.20 Replicação e tabelas de MEMÓRIA',
+								text: '16.4.1.20 Replicação e tabelas de MEMORY',
 								link: '/17-replication/04-replication-notes-and-tips/01-replication-features-and-issues/20-replication-and-m-e-m-o-r-y-tables.md',
 							},
 							{

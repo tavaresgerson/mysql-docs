@@ -1,17 +1,5 @@
 ### 8.10.2 Cache de Chave MyISAM
 
-8.10.2.1 Acesso ao Cache de Chave Compartilhada
-
-8.10.2.2 Caches de Chave Múltiplos
-
-8.10.2.3 Estratégia de Inserção no Ponto Médio
-
-8.10.2.4 Pré-carregamento do índice
-
-8.10.2.5 Tamanho da cache de bloco chave
-
-8.10.2.6 Reestruturação de um Cache Principal
-
 Para minimizar o I/O do disco, o mecanismo de armazenamento `MyISAM` utiliza uma estratégia que é usada por muitos sistemas de gerenciamento de banco de dados. Ele emprega um mecanismo de cache para manter os blocos de tabela mais acessados na memória:
 
 - Para os blocos de índice, uma estrutura especial chamada cache de chaves (ou buffer de chaves) é mantida. A estrutura contém vários buffers de blocos onde os blocos de índice mais utilizados são armazenados.

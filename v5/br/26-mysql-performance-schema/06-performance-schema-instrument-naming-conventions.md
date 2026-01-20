@@ -100,7 +100,7 @@ Os instrumentos de estágio têm nomes na forma `estágio/área_código/nome_est
 
   - `wait/io/socket`
 
-    Uma operação de soquete instrumentado. Os instrumentos de soquete têm nomes na forma `wait/io/socket/sql/socket_type`. O servidor tem um soquete de escuta para cada protocolo de rede que ele suporta. Os instrumentos associados aos soquetes de escuta para conexões de arquivos de soquete TCP/IP ou Unix têm um valor de *`socket_type`* de `server_tcpip_socket` ou `server_unix_socket`, respectivamente. Quando um soquete de escuta detecta uma conexão, o servidor transfere a conexão para um novo soquete gerenciado por um fio separado. O instrumento para o novo fio de conexão tem um valor de *`socket_type`* de `client_connection`.
+    Uma operação de soquete instrumentado. Os instrumentos de soquete têm nomes na forma `wait/io/socket/sql/socket_type`. O servidor tem um soquete de escuta para cada protocolo de rede que ele suporta. Os instrumentos associados aos soquetes de escuta para conexões de arquivos de soquete TCP/IP ou Unix têm um valor de *`socket_type`* de `server_tcpip_socket` ou `server_unix_socket`, respectivamente. Quando um soquete de escuta detecta uma conexão, o servidor transfere a conexão para um novo soquete gerenciado por um thread separado. O instrumento para o novo thread de conexão tem um valor de *`socket_type`* de `client_connection`.
 
   - `wait/io/table`
 
@@ -128,7 +128,7 @@ Os instrumentos de estágio têm nomes na forma `estágio/área_código/nome_est
 
   - `wait/synch/cond`
 
-    Uma condição é usada por um fio para sinalizar para outros fios que algo pelo qual eles estavam esperando aconteceu. Se um único fio estava esperando por uma condição, ele pode acordar e prosseguir com sua execução. Se vários fios estavam esperando, eles podem acordar e competir pelo recurso pelo qual estavam esperando.
+    Uma condição é usada por um thread para sinalizar para outros fios que algo pelo qual eles estavam esperando aconteceu. Se um único thread estava esperando por uma condição, ele pode acordar e prosseguir com sua execução. Se vários fios estavam esperando, eles podem acordar e competir pelo recurso pelo qual estavam esperando.
 
   - `wait/synch/mutex`
 

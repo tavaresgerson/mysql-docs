@@ -4,7 +4,7 @@ Existem dois tipos de monitor `InnoDB`:
 
 - O monitor padrão `InnoDB` exibe os seguintes tipos de informações:
 
-  - Trabalho realizado pelo fio de fundo principal
+  - Trabalho realizado pelo thread de fundo principal
   - Semaphore aguarda
   - Dados sobre os erros mais recentes de chave estrangeira e bloqueio
   - Lock aguarda transações

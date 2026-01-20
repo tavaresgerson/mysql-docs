@@ -110,7 +110,7 @@ A tabela `metadata_locks` tem as seguintes colunas:
 
 - `OWNER_THREAD_ID`
 
-  O fio que solicita uma bloqueio de metadados.
+  O thread que solicita uma bloqueio de metadados.
 
 - `OWNER_EVENT_ID`
 

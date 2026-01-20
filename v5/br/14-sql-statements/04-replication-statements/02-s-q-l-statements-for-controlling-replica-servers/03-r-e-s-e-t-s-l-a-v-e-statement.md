@@ -11,7 +11,7 @@ channel_option:
 
 Nota
 
-Todos os arquivos de registro de relé são excluídos, mesmo que não tenham sido completamente executados pelo thread de replicação do SQL. (Essa é uma condição que provavelmente existe em uma replica se você emitir uma declaração `STOP SLAVE` ou se a replica estiver muito carregada.)
+Todos os arquivos de registro de relay são excluídos, mesmo que não tenham sido completamente executados pelo thread de replicação do SQL. (Essa é uma condição que provavelmente existe em uma replica se você emitir uma declaração `STOP SLAVE` ou se a replica estiver muito carregada.)
 
 Para um servidor onde os GTIDs estão em uso (`gtid_mode` é `ON`), emitir `RESET SLAVE` não tem efeito no histórico de execução do GTID. A declaração não altera os valores de `gtid_executed` ou `gtid_purged`, nem a tabela `mysql.gtid_executed`. Se você precisar reiniciar o histórico de execução do GTID, use `RESET MASTER`, mesmo que o servidor habilitado para GTID seja uma replica onde o registro binário está desativado.
 
@@ -31,7 +31,7 @@ Se você quiser redefinir os parâmetros de conexão intencionalmente, você pre
 
 O comando `RESET SLAVE` causa um commit implícito de uma transação em andamento. Veja Seção 13.3.3, “Instruções que causam um commit implícito”.
 
-Se o fio de replicação SQL estivesse em meio à replicação de tabelas temporárias quando foi interrompido e o comando `RESET SLAVE` for emitido, essas tabelas temporárias replicadas serão excluídas na replica.
+Se o thread de replicação SQL estivesse em meio à replicação de tabelas temporárias quando foi interrompido e o comando `RESET SLAVE` for emitido, essas tabelas temporárias replicadas serão excluídas na replica.
 
 Antes do MySQL 5.7.5, o comando `RESET SLAVE` também tinha o efeito de reiniciar tanto o período do batimento cardíaco (`Slave_heartbeat_period`) quanto `SSL_VERIFY_SERVER_CERT`. Esse problema foi corrigido no MySQL 5.7.5 e em versões posteriores. (Bug #18777899, Bug #18778485)
 

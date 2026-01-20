@@ -75,7 +75,7 @@ O uso da memória e as informações relacionadas mostradas mais adiante nesta s
 
 Nota
 
-Neste exemplo, mostramos o processo de nó de dados sendo executado com o **ndbd** em execução em um único fio. Você também pode aplicar este exemplo, se estiver usando o **ndbmtd** em multithread, substituindo **ndbmtd** por **ndbd** sempre que aparecer nas etapas que se seguem.
+Neste exemplo, mostramos o processo de nó de dados sendo executado com o **ndbd** em execução em um único thread. Você também pode aplicar este exemplo, se estiver usando o **ndbmtd** em multithread, substituindo **ndbmtd** por **ndbd** sempre que aparecer nas etapas que se seguem.
 
 **Passo 1: Atualize o arquivo de configuração.** Abra o arquivo de configuração global do cluster em um editor de texto e adicione as seções `[ndbd]` correspondentes aos 2 novos nós de dados. (Damos esses nós de dados os IDs 3 e 4, e assumimos que eles devem ser executados em máquinas hospedeiras nos endereços 198.51.100.3 e 198.51.100.4, respectivamente.) Após adicionar as novas seções, o conteúdo do arquivo `config.ini` deve parecer o que está mostrado aqui, onde as adições ao arquivo são mostradas em negrito:
 

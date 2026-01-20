@@ -1,11 +1,5 @@
 ## 8.13 Medição de Desempenho (Benchmarking)
 
-8.13.1 Medindo a Velocidade de Expressões e Funções
-
-8.13.2 Usar seus próprios benchmarks
-
-8.13.3 Medição de desempenho com performance_schema
-
 Para medir o desempenho, considere os seguintes fatores:
 
 - Seja medindo a velocidade de uma única operação em um sistema silencioso ou como um conjunto de operações (uma "carga de trabalho") funciona ao longo de um período de tempo. Com testes simples, você geralmente testa como a mudança de um aspecto (uma configuração, o conjunto de índices em uma tabela, as cláusulas SQL em uma consulta) afeta o desempenho. Os benchmarks são, normalmente, testes de desempenho de longa duração e elaborados, onde os resultados podem ditar escolhas de alto nível, como a configuração do hardware e do armazenamento, ou quão cedo deve-se atualizar para uma nova versão do MySQL.

@@ -137,7 +137,7 @@ Nota
 
 Quando o registro binário está habilitado, o valor de `gtid_executed_compression_period` *não* é usado e a tabela `mysql.gtid_executed` é comprimida em cada rotação do log binário.
 
-A compressão da tabela `mysql.gtid_executed` é realizada por um fio de primeiro plano dedicado chamado `thread/sql/compress_gtid_table`. Esse fio não está listado na saída de `SHOW PROCESSLIST`, mas pode ser visualizado como uma linha na tabela `threads`, conforme mostrado aqui:
+A compressão da tabela `mysql.gtid_executed` é realizada por um thread de primeiro plano dedicado chamado `thread/sql/compress_gtid_table`. Esse thread não está listado na saída de `SHOW PROCESSLIST`, mas pode ser visualizado como uma linha na tabela `threads`, conforme mostrado aqui:
 
 ```sql
 mysql> SELECT * FROM performance_schema.threads WHERE NAME LIKE '%gtid%'\G

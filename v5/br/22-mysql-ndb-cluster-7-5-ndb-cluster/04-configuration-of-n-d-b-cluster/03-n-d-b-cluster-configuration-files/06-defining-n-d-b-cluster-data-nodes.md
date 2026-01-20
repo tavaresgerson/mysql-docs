@@ -822,7 +822,7 @@ Existem vários parâmetros `[ndbd]` que especificam tempos de espera e interval
 
   <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
-  Para evitar que o fio principal fique preso em um loop infinito em algum momento, um fio "guarda-costas" verifica o fio principal. Este parâmetro especifica o número de milissegundos entre as verificações. Se o processo permanecer no mesmo estado após três verificações, o fio guarda-costas o encerra.
+  Para evitar que o thread principal fique preso em um loop infinito em algum momento, um thread "guarda-costas" verifica o thread principal. Este parâmetro especifica o número de milissegundos entre as verificações. Se o processo permanecer no mesmo estado após três verificações, o thread guarda-costas o encerra.
 
   Esse parâmetro pode ser facilmente alterado para fins de experimentação ou para se adaptar às condições locais. Pode ser especificado por nó, embora pareça haver pouca razão para isso.
 
@@ -1386,7 +1386,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
 
-  Quando usado com **ndbd**, este parâmetro (agora uma string) especifica o ID da CPU atribuído para lidar com o fio de execução do `NDBCLUSTER`. Quando usado com **ndbmtd**, o valor deste parâmetro é uma lista de IDs de CPU separados por vírgula, atribuídos para lidar com os fios de execução. Cada ID de CPU na lista deve ser um inteiro no intervalo de 0 a 65535 (inclusivo).
+  Quando usado com **ndbd**, este parâmetro (agora uma string) especifica o ID da CPU atribuído para lidar com o thread de execução do `NDBCLUSTER`. Quando usado com **ndbmtd**, o valor deste parâmetro é uma lista de IDs de CPU separados por vírgula, atribuídos para lidar com os fios de execução. Cada ID de CPU na lista deve ser um inteiro no intervalo de 0 a 65535 (inclusivo).
 
   O número de IDs especificados deve corresponder ao número de threads de execução determinado por `MaxNoOfExecutionThreads`. No entanto, não há garantia de que as threads sejam atribuídas às CPUs em qualquer ordem específica ao usar este parâmetro. Você pode obter um controle mais detalhado desse tipo usando `ThreadConfig`.
 
@@ -1450,7 +1450,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   Você também deve definir `BuildIndexThreads` para um valor diferente de zero.
 
-**Parâmetros de Configuração de Multithreading (ndbmtd).** **ndbmtd** é executado, por padrão, como um processo de único fio e deve ser configurado para usar múltiplos fios, utilizando um dos dois métodos, ambos os quais exigem a definição de parâmetros de configuração no arquivo `config.ini`. O primeiro método é simplesmente definir um valor apropriado para o parâmetro de configuração `MaxNoOfExecutionThreads`. Um segundo método permite configurar regras mais complexas para o multithreading do **ndbmtd** usando `ThreadConfig`. Os próximos parágrafos fornecem informações sobre esses parâmetros e seu uso com nós de dados multithreaded.
+**Parâmetros de Configuração de Multithreading (ndbmtd).** **ndbmtd** é executado, por padrão, como um processo de único thread e deve ser configurado para usar múltiplos fios, utilizando um dos dois métodos, ambos os quais exigem a definição de parâmetros de configuração no arquivo `config.ini`. O primeiro método é simplesmente definir um valor apropriado para o parâmetro de configuração `MaxNoOfExecutionThreads`. Um segundo método permite configurar regras mais complexas para o multithreading do **ndbmtd** usando `ThreadConfig`. Os próximos parágrafos fornecem informações sobre esses parâmetros e seu uso com nós de dados multithreaded.
 
 - `MaxNoOfExecutionThreads`
 
@@ -1472,7 +1472,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   Adicionar grandes tabelaspaces para tabelas de Dados de Disco ao usar mais do que o número padrão de threads do LDM pode causar problemas com o uso de recursos e CPU se o buffer de página de disco for insuficientemente grande; consulte a descrição do parâmetro de configuração `DiskPageBufferMemory` para obter mais informações.
 
-  Os tipos de fio são descritos mais adiante nesta seção (consulte `ThreadConfig`).
+  Os tipos de thread são descritos mais adiante nesta seção (consulte `ThreadConfig`).
 
   Definir este parâmetro fora do intervalo de valores permitido faz com que o servidor de gerenciamento abordem no início com o erro Erro linha *`número`*: Valor ilegal *`valor`* para o parâmetro MaxNoOfExecutionThreads.
 
@@ -1482,9 +1482,9 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   O processo do nó de dados multithread sempre gera, no mínimo, os seguintes threads:
 
-  - 1 fio de manipulador de consulta local (LDM)
-  - 1 fio de recebimento
-  - 1 fio de gerenciador de assinaturas (SUMA ou replicação)
+  - 1 thread de manipulador de consulta local (LDM)
+  - 1 thread de recebimento
+  - 1 thread de gerenciador de assinaturas (SUMA ou replicação)
 
   Para um valor de `MaxNoOfExecutionThreads` de 8 ou menos, nenhuma thread TC é criada, e o gerenciamento do TC é realizado pela thread principal.
 
@@ -1494,7 +1494,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   - Caso contrário (ou seja, se o número de threads do LDM mudar), ainda é possível efetuar a alteração usando um reinício inicial do nó (*NI*) desde que as duas condições a seguir sejam atendidas:
 
-    1. Cada fio LDM lida com um máximo de 8 fragmentos, e
+    1. Cada thread LDM lida com um máximo de 8 fragmentos, e
 
     2. O número total de fragmentos de tabela é um múltiplo inteiro do número de threads LDM.
 
@@ -1566,11 +1566,11 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
     `realtime` não pode ser definido para threads de construção de índice offline.
 
-  - Ao definir `nosend` para 1, você pode impedir que um fio `main`, `ldm`, `rep` ou `tc` ajude os fios de envio. Esse parâmetro é 0 por padrão e não pode ser usado com outros tipos de fios.
+  - Ao definir `nosend` para 1, você pode impedir que um thread `main`, `ldm`, `rep` ou `tc` ajude os fios de envio. Esse parâmetro é 0 por padrão e não pode ser usado com outros tipos de fios.
 
   - `thread_prio` é um nível de prioridade de thread que pode ser definido de 0 a 10, sendo 10 a maior prioridade. O padrão é 5. Os efeitos precisos deste parâmetro são específicos da plataforma e são descritos mais adiante nesta seção.
 
-    O nível de prioridade do fio não pode ser definido para os fios de construção de índice offline.
+    O nível de prioridade do thread não pode ser definido para os fios de construção de índice offline.
 
   **Configurações e efeitos de `thread_prio` por plataforma.** A implementação de `thread_prio` difere entre Linux/FreeBSD, Solaris e Windows. Na lista a seguir, discutimos seus efeitos em cada uma dessas plataformas, uma após a outra:
 
@@ -1606,13 +1606,13 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   - `tc`: Fio do coordenador de transação (`DBTC` bloco do kernel) que contém o estado de uma transação em andamento. O número máximo de fios TC é de 32.
 
-    Idealmente, cada nova transação pode ser atribuída a um novo fio TC. Na maioria dos casos, 1 fio TC por 2 fios LDM é suficiente para garantir que isso possa acontecer. Em casos em que o número de escritas é relativamente pequeno em comparação com o número de leituras, pode ser necessário apenas 1 fio TC por 4 fios LQH para manter os estados das transações. Por outro lado, em aplicações que realizam muitas atualizações, pode ser necessário que a proporção de fios TC para fios LDM se aproxime de 1 (por exemplo, 3 fios TC para 4 fios LDM).
+    Idealmente, cada nova transação pode ser atribuída a um novo thread TC. Na maioria dos casos, 1 thread TC por 2 fios LDM é suficiente para garantir que isso possa acontecer. Em casos em que o número de escritas é relativamente pequeno em comparação com o número de leituras, pode ser necessário apenas 1 thread TC por 4 fios LQH para manter os estados das transações. Por outro lado, em aplicações que realizam muitas atualizações, pode ser necessário que a proporção de fios TC para fios LDM se aproxime de 1 (por exemplo, 3 fios TC para 4 fios LDM).
 
     Definir `tc` para 0 faz com que o gerenciamento de TC seja feito pela thread principal. Na maioria dos casos, isso é praticamente o mesmo que definir para 1.
 
     Faixa: 0 - 32
 
-  - `main`: Dicionário de dados e blocos do kernel `DBTC` e `DBDIH` (`DBDIH` e `DBTC`), que fornecem gerenciamento de esquema. Isso é sempre gerenciado por um único fio dedicado.
+  - `main`: Dicionário de dados e blocos do kernel `DBTC` e `DBDIH` (`DBDIH` e `DBTC`), que fornecem gerenciamento de esquema. Isso é sempre gerenciado por um único thread dedicado.
 
     Alcance: apenas 1.
 
@@ -1626,7 +1626,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
     Faixa: 0 - 16
 
-  - `rep`: Fundo de replicação (`SUMA` bloco do kernel `SUMA`). As operações de replicação assíncronas são sempre tratadas por um único fio dedicado.
+  - `rep`: Fundo de replicação (`SUMA` bloco do kernel `SUMA`). As operações de replicação assíncronas são sempre tratadas por um único thread dedicado.
 
     Alcance: apenas 1.
 
@@ -1650,7 +1650,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
     Alcance: 0 - 1.
 
-    Este tipo de fio foi adicionado no NDB 7.6. (Bug #25835748, Bug #26928111)
+    Este tipo de thread foi adicionado no NDB 7.6. (Bug #25835748, Bug #26928111)
 
   Antes da versão 7.6 do NDB, a alteração do `ThreadCOnfig` exigia um reinício inicial do sistema. Na versão 7.6 (e em versões posteriores), essa exigência pode ser relaxada em determinadas circunstâncias:
 
@@ -1658,7 +1658,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   - Caso contrário (ou seja, se o número de threads do LDM mudar), ainda é possível efetuar a alteração usando um reinício inicial do nó (*NI*) desde que as duas condições a seguir sejam atendidas:
 
-    1. Cada fio LDM lida com um máximo de 8 fragmentos, e
+    1. Cada thread LDM lida com um máximo de 8 fragmentos, e
 
     2. O número total de fragmentos de tabela é um múltiplo inteiro do número de threads LDM.
 
@@ -1666,7 +1666,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   O NDB 7.6 pode distinguir entre os tipos de rosca com base nos seguintes critérios:
 
-  - Se o fio é um fio de execução. Fios do tipo `main`, `ldm`, `recv`, `rep`, `tc` e `send` são fios de execução; os fios `io`, `watchdog` e `idxbld` não são considerados fios de execução.
+  - Se o thread é um thread de execução. Fios do tipo `main`, `ldm`, `recv`, `rep`, `tc` e `send` são fios de execução; os fios `io`, `watchdog` e `idxbld` não são considerados fios de execução.
 
   - Se a alocação de threads para uma tarefa específica é permanente ou temporária. Atualmente, todos os tipos de threads, exceto `idxbld`, são considerados permanentes; as threads `idxbld` são consideradas threads temporárias.
 
@@ -1690,7 +1690,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
   send{count=3,cpubind=18,19,20}
   ```
 
-  Na maioria dos casos, deve ser possível vincular o fio principal (gestão do esquema) e o fio de E/S à mesma CPU, como fizemos no exemplo que acabamos de mostrar.
+  Na maioria dos casos, deve ser possível vincular o thread principal (gestão do esquema) e o thread de E/S à mesma CPU, como fizemos no exemplo que acabamos de mostrar.
 
   O exemplo a seguir incorpora grupos de CPUs definidos usando `cpuset` e `cpubind`, além do uso da priorização de threads.
 
@@ -1756,7 +1756,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
 
   Se o valor para `DiskPageBufferMemory` for definido muito baixo em conjunto com o uso de mais do número padrão de threads do LDM em `ThreadConfig` (por exemplo, `{ldm=6...}`), problemas podem surgir ao tentar adicionar um arquivo de dados grande (por exemplo, 500G) a uma tabela `NDB` baseada em disco, onde o processo leva um tempo indefinidamente longo, ocupando um dos núcleos da CPU.
 
-  Isso ocorre porque, ao adicionar um arquivo de dados a um espaço de tabelas, as páginas de extensão são bloqueadas na memória em um fio de trabalhador PGMAN adicional, para acesso rápido aos metadados. Ao adicionar um arquivo grande, esse trabalhador tem memória insuficiente para todos os metadados do arquivo de dados. Nesses casos, você deve aumentar `DiskPageBufferMemory` ou adicionar arquivos de espaço de tabelas menores. Você também pode precisar ajustar `DiskPageBufferEntries`.
+  Isso ocorre porque, ao adicionar um arquivo de dados a um espaço de tabelas, as páginas de extensão são bloqueadas na memória em um thread de trabalhador PGMAN adicional, para acesso rápido aos metadados. Ao adicionar um arquivo grande, esse trabalhador tem memória insuficiente para todos os metadados do arquivo de dados. Nesses casos, você deve aumentar `DiskPageBufferMemory` ou adicionar arquivos de espaço de tabelas menores. Você também pode precisar ajustar `DiskPageBufferEntries`.
 
   Você pode consultar a tabela `ndbinfo.diskpagebuffer` para ajudar a determinar se o valor desse parâmetro deve ser aumentado para minimizar buscas desnecessárias no disco. Consulte Seção 21.6.15.20, “A tabela ndbinfo diskpagebuffer” para obter mais informações.
 

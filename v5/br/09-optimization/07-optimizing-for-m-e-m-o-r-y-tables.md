@@ -1,4 +1,4 @@
-## 8.7 Otimização para tabelas de MEMÓRIA
+## 8.7 Otimização para tabelas de MEMORY
 
 Considere usar tabelas `MEMORY` para dados não críticos que são acessados frequentemente e são apenas de leitura ou raramente atualizados. Compare sua aplicação com tabelas equivalentes `InnoDB` ou `MyISAM` sob uma carga de trabalho realista, para confirmar se qualquer desempenho adicional vale o risco de perder dados ou o overhead de copiar dados de uma tabela baseada em disco no início da aplicação.
 

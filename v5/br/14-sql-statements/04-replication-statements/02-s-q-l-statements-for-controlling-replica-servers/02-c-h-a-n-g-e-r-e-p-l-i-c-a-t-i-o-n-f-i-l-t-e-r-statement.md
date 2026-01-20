@@ -30,7 +30,7 @@ db_pair:
 
 `REPLICAÇÃO DE FILTRO` define uma ou mais regras de filtragem de replicação na replica da mesma maneira que iniciar a replica **mysqld** com opções de filtragem de replicação, como `--replicate-do-db` ou `--replicate-wild-ignore-table`. Os filtros definidos usando essa declaração diferem dos definidos usando as opções do servidor em dois aspectos-chave:
 
-1. A declaração não exige o reinício do servidor para entrar em vigor, apenas que o fio de replicação do SQL seja interrompido usando `STOP SLAVE SQL_THREAD` primeiro (e reiniciado com `START SLAVE SQL_THREAD` depois).
+1. A declaração não exige o reinício do servidor para entrar em vigor, apenas que o thread de replicação do SQL seja interrompido usando `STOP SLAVE SQL_THREAD` primeiro (e reiniciado com `START SLAVE SQL_THREAD` depois).
 
 2. Os efeitos da declaração não são persistentes; quaisquer filtros definidos usando `CHANGE REPLICATION FILTER` são perdidos após o reinício da replica **mysqld**.
 

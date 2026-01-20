@@ -9,7 +9,7 @@ Para obter informações adicionais sobre índices de colunas, consulte a Seçã
 - Prefixos do índice
 - Índices FULLTEXT
 - Índices Espaciais
-- Índices no Motor de Armazenamento de MEMÓRIA
+- Índices no Motor de Armazenamento de MEMORY
 
 #### Prefixos do índice
 

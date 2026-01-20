@@ -27,7 +27,7 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   A variável de sistema `log_error_verbosity` é preferida e deve ser usada em vez da opção `--log-warnings` ou da variável de sistema `log_warnings`. Para mais informações, consulte as descrições de `log_error_verbosity` e `log_warnings`. A opção de linha de comando `--log-warnings` e a variável de sistema `log_warnings` são desatualizadas; espere-se que sejam removidas em uma futura versão do MySQL.
 
-  Faz com que o servidor registre mais mensagens no log de erro sobre o que está fazendo. Com relação à replicação, o servidor gera avisos de que conseguiu reconectar após uma falha na rede ou na conexão e fornece informações sobre como cada fio de replicação foi iniciado. Esta variável é definida como 2 por padrão. Para desabilitar, defina-a como 0. O servidor registra mensagens sobre instruções que são inseguras para o registro baseado em instruções se o valor for maior que 0. Conexões abortadas e erros de acesso negado para novas tentativas de conexão são registrados se o valor for maior que
+  Faz com que o servidor registre mais mensagens no log de erro sobre o que está fazendo. Com relação à replicação, o servidor gera avisos de que conseguiu reconectar após uma falha na rede ou na conexão e fornece informações sobre como cada thread de replicação foi iniciado. Esta variável é definida como 2 por padrão. Para desabilitar, defina-a como 0. O servidor registra mensagens sobre instruções que são inseguras para o registro baseado em instruções se o valor for maior que 0. Conexões abortadas e erros de acesso negado para novas tentativas de conexão são registrados se o valor for maior que
 
   1. Consulte seção B.3.2.9, “Erros de comunicação e conexões interrompidas”.
 
@@ -59,13 +59,13 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   <table frame="box" rules="all" summary="Propriedades para relay_log_purge"><tbody><tr><th>Formato de linha de comando</th> <td><code>--relay-log-purge[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>relay_log_purge</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Desative ou ative a limpeza automática dos logs do relé assim que eles não forem mais necessários. O valor padrão é 1 (ativado). Esta é uma variável global que pode ser alterada dinamicamente com `SET GLOBAL relay_log_purge = N`. A desativação da limpeza dos logs do relé ao habilitar a opção [`--relay-log-recovery`](https://docs.mariadb.org/replication-options-replica.html#sysvar_relay_log_recovery) coloca a consistência dos dados em risco.
+  Desative ou ative a limpeza automática dos logs do relay assim que eles não forem mais necessários. O valor padrão é 1 (ativado). Esta é uma variável global que pode ser alterada dinamicamente com `SET GLOBAL relay_log_purge = N`. A desativação da limpeza dos logs do relay ao habilitar a opção [`--relay-log-recovery`](https://docs.mariadb.org/replication-options-replica.html#sysvar_relay_log_recovery) coloca a consistência dos dados em risco.
 
 - `--relay-log-space-limit=tamanho`
 
   <table frame="box" rules="all" summary="Propriedades para relay_log_space_limit"><tbody><tr><th>Formato de linha de comando</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
-  Esta opção estabelece um limite superior para o tamanho total em bytes de todos os logs de relevo na replica. Um valor de 0 significa “sem limite”. Isso é útil para um servidor de replica que tem espaço em disco limitado. Quando o limite é atingido, o fio de I/O de replicação para de ler eventos de log binário da fonte até que o fio de SQL de replicação consiga recuperar e excluir alguns logs de relevo não utilizados. Observe que esse limite não é absoluto: há casos em que o fio de SQL precisa de mais eventos antes de poder excluir logs de relevo. Nesse caso, o fio de I/O excede o limite até que seja possível para o fio de SQL excluir alguns logs de relevo, pois não fazer isso causaria um impasse. Você não deve definir `--relay-log-space-limit` para menos que o dobro do valor de `--max-relay-log-size` (ou `--max-binlog-size` se `--max-relay-log-size` for 0). Nesse caso, há uma chance de que o fio de I/O espere por espaço livre porque `--relay-log-space-limit` é excedido, mas o fio de SQL não tem nenhum log de relevo para purgar e não consegue satisfazer o fio de I/O. Isso obriga o fio de I/O a ignorar `--relay-log-space-limit` temporariamente.
+  Esta opção estabelece um limite superior para o tamanho total em bytes de todos os logs de relevo na replica. Um valor de 0 significa “sem limite”. Isso é útil para um servidor de replica que tem espaço em disco limitado. Quando o limite é atingido, o thread de I/O de replicação para de ler eventos de log binário da fonte até que o thread de SQL de replicação consiga recuperar e excluir alguns logs de relevo não utilizados. Observe que esse limite não é absoluto: há casos em que o thread de SQL precisa de mais eventos antes de poder excluir logs de relevo. Nesse caso, o thread de I/O excede o limite até que seja possível para o thread de SQL excluir alguns logs de relevo, pois não fazer isso causaria um impasse. Você não deve definir `--relay-log-space-limit` para menos que o dobro do valor de `--max-relay-log-size` (ou `--max-binlog-size` se `--max-relay-log-size` for 0). Nesse caso, há uma chance de que o thread de I/O espere por espaço livre porque `--relay-log-space-limit` é excedido, mas o thread de SQL não tem nenhum log de relevo para purgar e não consegue satisfazer o thread de I/O. Isso obriga o thread de I/O a ignorar `--relay-log-space-limit` temporariamente.
 
 - `--replicate-do-db=nome_do_db`
 
@@ -77,7 +77,7 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   Os filtros de replicação não podem ser usados em uma instância do servidor MySQL configurada para replicação por grupo, porque filtrar transações em alguns servidores tornaria o grupo incapaz de chegar a um acordo sobre um estado consistente.
 
-  **Replicação baseada em declarações.** Diga ao fio de SQL de replicação para restringir a replicação a declarações onde o banco de dados padrão (ou seja, aquele selecionado por `USE`) é *`db_name`*. Para especificar mais de um banco de dados, use esta opção várias vezes, uma vez para cada banco de dados; no entanto, isso *não* replica declarações entre bancos, como `UPDATE some_db.some_table SET foo='bar'` enquanto um banco de dados diferente (ou nenhum banco de dados) é selecionado.
+  **Replicação baseada em declarações.** Diga ao thread de SQL de replicação para restringir a replicação a declarações onde o banco de dados padrão (ou seja, aquele selecionado por `USE`) é *`db_name`*. Para especificar mais de um banco de dados, use esta opção várias vezes, uma vez para cada banco de dados; no entanto, isso *não* replica declarações entre bancos, como `UPDATE some_db.some_table SET foo='bar'` enquanto um banco de dados diferente (ou nenhum banco de dados) é selecionado.
 
   Aviso
 
@@ -92,7 +92,7 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   A principal razão para esse comportamento de "verificar apenas o banco de dados padrão" é que, a partir da declaração sozinha, é difícil saber se ele deve ser replicado (por exemplo, se você estiver usando várias declarações de `DELETE` (delete.html) ou várias declarações de `UPDATE` (update.html) que atuam em vários bancos de dados). Também é mais rápido verificar apenas o banco de dados padrão em vez de todos os bancos de dados, se não houver necessidade.
 
-  **Replicação baseada em linhas.** Diz ao fio de SQL de replicação para restringir a replicação ao banco de dados *`db_name`*. Somente as tabelas pertencentes a *`db_name`* são alteradas; o banco de dados atual não tem efeito sobre isso. Suponha que a replica seja iniciada com `--replicate-do-db=sales` e a replicação baseada em linhas estiver em vigor, e então as seguintes instruções são executadas na fonte:
+  **Replicação baseada em linhas.** Diz ao thread de SQL de replicação para restringir a replicação ao banco de dados *`db_name`*. Somente as tabelas pertencentes a *`db_name`* são alteradas; o banco de dados atual não tem efeito sobre isso. Suponha que a replica seja iniciada com `--replicate-do-db=sales` e a replicação baseada em linhas estiver em vigor, e então as seguintes instruções são executadas na fonte:
 
   ```sql
   USE prices;
@@ -142,9 +142,9 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   Os filtros de replicação não podem ser usados em uma instância do servidor MySQL configurada para replicação por grupo, porque filtrar transações em alguns servidores tornaria o grupo incapaz de chegar a um acordo sobre um estado consistente.
 
-  **Replicação baseada em declarações.** Diz ao fio de SQL de replicação que não replique nenhuma declaração onde o banco de dados padrão (ou seja, aquele selecionado por `USE`) é *`db_name`*.
+  **Replicação baseada em declarações.** Diz ao thread de SQL de replicação que não replique nenhuma declaração onde o banco de dados padrão (ou seja, aquele selecionado por `USE`) é *`db_name`*.
 
-  **Replicação baseada em linhas.** Diz ao fio de SQL de replicação para não atualizar nenhuma tabela no banco de dados *`db_name`*. O banco de dados padrão não tem efeito.
+  **Replicação baseada em linhas.** Diz ao thread de SQL de replicação para não atualizar nenhuma tabela no banco de dados *`db_name`*. O banco de dados padrão não tem efeito.
 
   Ao usar a replicação baseada em declarações, o seguinte exemplo não funciona conforme o esperado. Suponha que a replicação seja iniciada com `--replicate-ignore-db=sales` e você emitir as seguintes declarações na fonte:
 
@@ -171,7 +171,7 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   <table frame="box" rules="all" summary="Propriedades para replicate-do-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--replicate-do-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  Cria um filtro de replicação, informando ao fio SQL de replicação para restringir a replicação a uma determinada tabela. Para especificar mais de uma tabela, use essa opção várias vezes, uma vez para cada tabela. Isso funciona tanto para atualizações cruzadas entre bancos de dados quanto para atualizações padrão de bancos de dados, em contraste com `--replicate-do-db`. Veja Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_DO_TABLE`.
+  Cria um filtro de replicação, informando ao thread SQL de replicação para restringir a replicação a uma determinada tabela. Para especificar mais de uma tabela, use essa opção várias vezes, uma vez para cada tabela. Isso funciona tanto para atualizações cruzadas entre bancos de dados quanto para atualizações padrão de bancos de dados, em contraste com `--replicate-do-db`. Veja Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_DO_TABLE`.
 
   Importante
 
@@ -183,7 +183,7 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   <table frame="box" rules="all" summary="Propriedades para replicar-ignorar-tabela"><tbody><tr><th>Formato de linha de comando</th> <td><code>--replicate-ignore-table=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
-  Cria um filtro de replicação dizendo ao fio SQL de replicação para não replicar qualquer declaração que atualize a tabela especificada, mesmo que outras tabelas possam ser atualizadas pela mesma declaração. Para especificar mais de uma tabela a ser ignorada, use essa opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos de dados, em contraste com `--replicate-ignore-db`. Veja Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_IGNORE_TABLE`.
+  Cria um filtro de replicação dizendo ao thread SQL de replicação para não replicar qualquer declaração que atualize a tabela especificada, mesmo que outras tabelas possam ser atualizadas pela mesma declaração. Para especificar mais de uma tabela a ser ignorada, use essa opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos de dados, em contraste com `--replicate-ignore-db`. Veja Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_IGNORE_TABLE`.
 
   Nota
 
@@ -231,7 +231,7 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   <table frame="box" rules="all" summary="Propriedades para master-info-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--master-info-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>master.info</code></td> </tr></tbody></table>
 
-  Cria um filtro de replicação, informando ao fio SQL de replicação para restringir a replicação a instruções nas quais qualquer uma das tabelas atualizadas corresponda aos padrões especificados de nome de banco de dados e tabela. Os padrões podem conter os caracteres `%` e `_` de caractere curinga, que têm o mesmo significado que o operador de correspondência de padrões `LIKE`. Para especificar mais de uma tabela, use essa opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos. Veja Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_WILD_DO_TABLE`.
+  Cria um filtro de replicação, informando ao thread SQL de replicação para restringir a replicação a instruções nas quais qualquer uma das tabelas atualizadas corresponda aos padrões especificados de nome de banco de dados e tabela. Os padrões podem conter os caracteres `%` e `_` de caractere curinga, que têm o mesmo significado que o operador de correspondência de padrões `LIKE`. Para especificar mais de uma tabela, use essa opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos. Veja Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_WILD_DO_TABLE`.
 
   Nota
 
@@ -253,7 +253,7 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   <table frame="box" rules="all" summary="Propriedades para master-info-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--master-info-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>master.info</code></td> </tr></tbody></table>
 
-  Cria um filtro de replicação que impede que o fio de SQL de replicação replique uma instrução em que qualquer tabela corresponda ao padrão de caracteres curinga fornecido. Para especificar mais de uma tabela a ser ignorada, use essa opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos de dados. Veja Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_WILD_IGNORE_TABLE`.
+  Cria um filtro de replicação que impede que o thread de SQL de replicação replique uma instrução em que qualquer tabela corresponda ao padrão de caracteres curinga fornecido. Para especificar mais de uma tabela a ser ignorada, use essa opção várias vezes, uma vez para cada tabela. Isso funciona para atualizações entre bancos de dados. Veja Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”. Você também pode criar tal filtro emitindo uma declaração `CHANGE REPLICATION FILTER REPLICATE_WILD_IGNORE_TABLE`.
 
   Importante
 
@@ -286,7 +286,7 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   <table frame="box" rules="all" summary="Propriedades para master-info-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--master-info-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code>master.info</code></td> </tr></tbody></table>
 
-  Normalmente, a replicação é interrompida quando ocorre um erro na replica, o que lhe dá a oportunidade de resolver a inconsistência nos dados manualmente. Esta opção faz com que o fio de replicação SQL continue a replicar quando uma instrução retorna qualquer um dos erros listados no valor da opção.
+  Normalmente, a replicação é interrompida quando ocorre um erro na replica, o que lhe dá a oportunidade de resolver a inconsistência nos dados manualmente. Esta opção faz com que o thread de replicação SQL continue a replicar quando uma instrução retorna qualquer um dos erros listados no valor da opção.
 
   Não use esta opção a menos que entenda completamente por que está recebendo erros. Se não houver erros na configuração de replicação e nos programas do cliente, e nenhum erro no próprio MySQL, um erro que interrompa a replicação nunca deve ocorrer. O uso indiscriminado desta opção resulta em réplicas ficando desesperadamente fora de sincronia com a fonte, sem que você tenha a menor ideia do porquê isso ocorreu.
 
@@ -296,7 +296,7 @@ Esta seção explica as opções de inicialização para controlar os servidores
 
   Você também pode (mas não deve) usar o valor muito não recomendado de `all` para fazer com que a replica ignore todas as mensagens de erro e continue avançando, independentemente do que aconteça. Sem necessidade de dizer, se você usar `all`, não há garantias quanto à integridade dos seus dados. Por favor, não reclame (ou faça relatórios de bugs) neste caso se os dados da replica não estiverem nem perto do que estão na fonte. *Você foi avisado*.
 
-  Esta opção não funciona da mesma maneira ao replicar entre clusters NDB, devido ao mecanismo interno do `NDB` para verificar os números de sequência do epoc; assim que o `NDB` detecta um número de epoc ausente ou fora de sequência, ele interrompe imediatamente o fio do aplicador de réplica.
+  Esta opção não funciona da mesma maneira ao replicar entre clusters NDB, devido ao mecanismo interno do `NDB` para verificar os números de sequência do epoc; assim que o `NDB` detecta um número de epoc ausente ou fora de sequência, ele interrompe imediatamente o thread do aplicador de réplica.
 
   Exemplos:
 
@@ -355,7 +355,7 @@ A lista a seguir descreve as variáveis de sistema para controlar os servidores 
 
   Nota
 
-  O fio de replicação SQL envia um reconhecimento ao cliente antes de executar `init_slave`. Portanto, não é garantido que `init_slave` tenha sido executado quando o `START SLAVE` retornar. Consulte Seção 13.4.2.5, “Instrução START SLAVE” para obter mais informações.
+  O thread de replicação SQL envia um reconhecimento ao cliente antes de executar `init_slave`. Portanto, não é garantido que `init_slave` tenha sido executado quando o `START SLAVE` retornar. Consulte Seção 13.4.2.5, “Instrução START SLAVE” para obter mais informações.
 
 - [`log_slow_slave_statements`](https://replication-options-replica.html#sysvar_log_slow_slave_statements)
 
@@ -395,7 +395,7 @@ A lista a seguir descreve as variáveis de sistema para controlar os servidores 
 
   Devido à maneira como o MySQL analisa as opções do servidor, se você especificar essa variável na inicialização do servidor, você deve fornecer um valor; *o nome de base padrão é usado apenas se a opção não for especificada realmente*. Se você especificar a variável de sistema `relay_log` na inicialização do servidor sem especificar um valor, é provável que ocorra um comportamento inesperado; esse comportamento depende das outras opções usadas, da ordem em que são especificadas e se são especificadas na linha de comando ou em um arquivo de opção. Para mais informações sobre como o MySQL lida com as opções do servidor, consulte Seção 4.2.2, “Especificação de Opções de Programa”.
 
-  Se você especificar essa variável, o valor especificado também será usado como o nome base do arquivo de índice do log de relé. Você pode substituir esse comportamento especificando um nome de base de arquivo de índice de log de relé diferente usando a variável de sistema [`relay_log_index`](https://docs.mariadb.org/replication-options-replica.html#sysvar_relay_log_index).
+  Se você especificar essa variável, o valor especificado também será usado como o nome base do arquivo de índice do log de relay. Você pode substituir esse comportamento especificando um nome de base de arquivo de índice de log de relay diferente usando a variável de sistema [`relay_log_index`](https://docs.mariadb.org/replication-options-replica.html#sysvar_relay_log_index).
 
   Quando o servidor lê uma entrada do arquivo de índice, ele verifica se a entrada contém um caminho relativo. Se estiver presente, a parte relativa do caminho é substituída pelo caminho absoluto definido usando a variável de sistema `relay_log`. Um caminho absoluto permanece inalterado; nesse caso, o índice deve ser editado manualmente para permitir que o novo caminho ou caminhos sejam usados.
 
@@ -449,19 +449,19 @@ A lista a seguir descreve as variáveis de sistema para controlar os servidores 
 
   <table frame="box" rules="all" summary="Propriedades para master-retry-count"><tbody><tr><th>Formato de linha de comando</th> <td><code>--master-retry-count=#</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>86400</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (plataformas de 64 bits)</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Valor máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Desabilita ou habilita a limpeza automática dos arquivos de registro do relé assim que eles não forem mais necessários. O valor padrão é 1 (`ON`).
+  Desabilita ou habilita a limpeza automática dos arquivos de registro do relay assim que eles não forem mais necessários. O valor padrão é 1 (`ON`).
 
 - [`relay_log_recovery`](https://replication-options-replica.html#sysvar_relay_log_recovery)
 
   <table frame="box" rules="all" summary="Propriedades para master-retry-count"><tbody><tr><th>Formato de linha de comando</th> <td><code>--master-retry-count=#</code></td> </tr><tr><th>Desatualizado</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>86400</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (plataformas de 64 bits)</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Valor máximo (plataformas de 32 bits)</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Se habilitada, essa variável permite a recuperação automática do log do relé imediatamente após a inicialização do servidor. O processo de recuperação cria um novo arquivo de log do relé, inicializa a posição do fio SQL para esse novo log do relé e inicializa o fio de E/S para a posição do fio SQL. A leitura do log do relé da fonte continua então.
+  Se habilitada, essa variável permite a recuperação automática do log do relay imediatamente após a inicialização do servidor. O processo de recuperação cria um novo arquivo de log do relay, inicializa a posição do thread SQL para esse novo log do relay e inicializa o thread de E/S para a posição do thread SQL. A leitura do log do relay da fonte continua então.
 
   Essa variável global é somente de leitura durante a execução. Seu valor pode ser definido com a opção `--relay-log-recovery` no início da inicialização do servidor de replica, que deve ser usada após uma parada inesperada de uma replica para garantir que nenhum log de retransmissão possivelmente corrompido seja processado, e deve ser usada para garantir uma replica resistente a falhas. O valor padrão é 0 (desativado). Para informações sobre a combinação de configurações em uma replica que é mais resistente a paradas inesperadas, consulte Seção 16.3.2, “Tratamento de uma Parada Inesperada de uma Replica”.
 
   Essa variável também interage com a variável `relay_log_purge`, que controla a purga dos logs quando eles não são mais necessários. Habilitar `relay_log_recovery` quando `relay_log_purge` está desativado pode comprometer a leitura do log do retransmissor a partir de arquivos que não foram purgados, levando à inconsistência dos dados.
 
-  Para uma replica multithread (onde `slave_parallel_workers` é maior que 0), a partir do MySQL 5.7.13, definir `relay_log_recovery = ON` automaticamente lida com quaisquer inconsistências e lacunas na sequência de transações executadas a partir do log de retransmissão. Essas lacunas podem ocorrer quando a replicação baseada em posição de arquivo está em uso. (Para mais detalhes, consulte Seção 16.4.1.32, “Inconsistências de Replicação e Transações”.) O processo de recuperação do log de retransmissão lida com as lacunas usando o mesmo método que a instrução `START SLAVE UNTIL SQL_AFTER_MTS_GAPS` faria. Quando a replica atinge um estado consistente sem lacunas, o processo de recuperação do log de retransmissão continua a buscar transações adicionais a partir da fonte, começando na posição do fio de SQL de retransmissão. Em versões do MySQL anteriores ao MySQL 5.7.13, esse processo não era automático e exigia iniciar o servidor com `relay_log_recovery=0`, iniciar a replica com `START SLAVE UNTIL SQL_AFTER_MTS_GAPS` para corrigir quaisquer inconsistências de transações, e então reiniciar a replica com `relay_log_recovery=1`. Quando a replicação baseada em GTID está em uso, a partir do MySQL 5.7.28, uma replica multithread verifica primeiro se `MASTER_AUTO_POSITION` está definido como `ON`, e se estiver, omite o passo de calcular as transações que devem ser ignoradas ou não ignoradas, para que os antigos logs de retransmissão não sejam necessários para o processo de recuperação.
+  Para uma replica multithread (onde `slave_parallel_workers` é maior que 0), a partir do MySQL 5.7.13, definir `relay_log_recovery = ON` automaticamente lida com quaisquer inconsistências e lacunas na sequência de transações executadas a partir do log de retransmissão. Essas lacunas podem ocorrer quando a replicação baseada em posição de arquivo está em uso. (Para mais detalhes, consulte Seção 16.4.1.32, “Inconsistências de Replicação e Transações”.) O processo de recuperação do log de retransmissão lida com as lacunas usando o mesmo método que a instrução `START SLAVE UNTIL SQL_AFTER_MTS_GAPS` faria. Quando a replica atinge um estado consistente sem lacunas, o processo de recuperação do log de retransmissão continua a buscar transações adicionais a partir da fonte, começando na posição do thread de SQL de retransmissão. Em versões do MySQL anteriores ao MySQL 5.7.13, esse processo não era automático e exigia iniciar o servidor com `relay_log_recovery=0`, iniciar a replica com `START SLAVE UNTIL SQL_AFTER_MTS_GAPS` para corrigir quaisquer inconsistências de transações, e então reiniciar a replica com `relay_log_recovery=1`. Quando a replicação baseada em GTID está em uso, a partir do MySQL 5.7.28, uma replica multithread verifica primeiro se `MASTER_AUTO_POSITION` está definido como `ON`, e se estiver, omite o passo de calcular as transações que devem ser ignoradas ou não ignoradas, para que os antigos logs de retransmissão não sejam necessários para o processo de recuperação.
 
   Nota
 
@@ -592,7 +592,7 @@ A lista a seguir descreve as variáveis de sistema para controlar os servidores 
 
   <table frame="box" rules="all" summary="Propriedades para relay_log_purge"><tbody><tr><th>Formato de linha de comando</th> <td><code>--relay-log-purge[={OFF|ON}]</code></td> </tr><tr><th>Variável do sistema</th> <td><code>relay_log_purge</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Controla como um fio de replicação resolve conflitos e erros durante a replicação. O modo `IDEMPOTENT` causa a supressão de erros de chave duplicada e sem chave encontrada; o modo `STRICT` significa que essa supressão não ocorre.
+  Controla como um thread de replicação resolve conflitos e erros durante a replicação. O modo `IDEMPOTENT` causa a supressão de erros de chave duplicada e sem chave encontrada; o modo `STRICT` significa que essa supressão não ocorre.
 
   O modo `IDEMPOTENT` é destinado ao uso na replicação de múltiplas fontes, replicação circular e outros cenários de replicação especiais para a replicação do NDB Cluster. (Consulte Seção 21.7.10, “Replicação do NDB Cluster: Replicação Bidirecional e Circular” e Seção 21.7.11, “Resolução de Conflitos na Replicação do NDB Cluster” para obter mais informações.) O NDB Cluster ignora qualquer valor explicitamente definido para `slave_exec_mode` e sempre o trata como `IDEMPOTENT`.
 
@@ -606,7 +606,7 @@ A lista a seguir descreve as variáveis de sistema para controlar os servidores 
 
   O nome do diretório onde a replica cria arquivos temporários. Definir essa variável tem efeito imediatamente em todos os canais de replicação, incluindo os canais em execução. O valor da variável é, por padrão, igual ao valor da variável de sistema `tmpdir`, ou ao valor padrão que se aplica quando essa variável de sistema não é especificada.
 
-  Quando o fio de replicação do SQL replica uma instrução `LOAD DATA`, ele extrai o arquivo a ser carregado do log de retransmissão para arquivos temporários e, em seguida, carrega esses arquivos na tabela. Se o arquivo carregado na fonte for enorme, os arquivos temporários na replica também serão enormes. Portanto, pode ser aconselhável usar essa opção para dizer à replica para colocar os arquivos temporários em um diretório localizado em algum sistema de arquivos que tenha muito espaço disponível. Nesse caso, os logs de retransmissão também serão enormes, então você também pode querer definir a variável de sistema `relay_log` para colocar os logs de retransmissão nesse sistema de arquivos.
+  Quando o thread de replicação do SQL replica uma instrução `LOAD DATA`, ele extrai o arquivo a ser carregado do log de retransmissão para arquivos temporários e, em seguida, carrega esses arquivos na tabela. Se o arquivo carregado na fonte for enorme, os arquivos temporários na replica também serão enormes. Portanto, pode ser aconselhável usar essa opção para dizer à replica para colocar os arquivos temporários em um diretório localizado em algum sistema de arquivos que tenha muito espaço disponível. Nesse caso, os logs de retransmissão também serão enormes, então você também pode querer definir a variável de sistema `relay_log` para colocar os logs de retransmissão nesse sistema de arquivos.
 
   O diretório especificado por esta opção deve estar localizado em um sistema de arquivos baseado em disco (não em um sistema de arquivos baseado em memória) para que os arquivos temporários usados para replicar as instruções de `LOAD DATA` (load-data.html) possam sobreviver a reinicializações da máquina. O diretório também não deve ser aquele que seja limpo pelo sistema operacional durante o processo de inicialização do sistema. No entanto, a replicação agora pode continuar após um reinício se os arquivos temporários tiverem sido removidos.
 
@@ -654,7 +654,7 @@ A lista a seguir descreve as variáveis de sistema para controlar os servidores 
 
   As réplicas multithread não são atualmente suportadas pelo NDB Cluster, que ignora silenciosamente a configuração desta variável. Consulte Seção 21.7.3, “Problemas Conhecidos na Replicação do NDB Cluster” para obter mais informações.
 
-  Uma replica multithreading oferece execução paralela usando um fio coordenador e o número de fios aplicadores configurados por esta variável. A forma como as transações são distribuídas entre os fios aplicadores é configurada por `slave_parallel_type`. As transações que a replica aplica em paralelo podem ser confirmadas fora de ordem, a menos que `slave_preserve_commit_order=1`. Portanto, verificar a transação mais recentemente executada não garante que todas as transações anteriores da fonte tenham sido executadas na replica. Isso tem implicações para o registro e a recuperação ao usar uma replica multithreading. Por exemplo, em uma replica multithreading, a declaração `START SLAVE UNTIL` só suporta o uso de `SQL_AFTER_MTS_GAPS`.
+  Uma replica multithreading oferece execução paralela usando um thread coordenador e o número de fios aplicadores configurados por esta variável. A forma como as transações são distribuídas entre os fios aplicadores é configurada por `slave_parallel_type`. As transações que a replica aplica em paralelo podem ser confirmadas fora de ordem, a menos que `slave_preserve_commit_order=1`. Portanto, verificar a transação mais recentemente executada não garante que todas as transações anteriores da fonte tenham sido executadas na replica. Isso tem implicações para o registro e a recuperação ao usar uma replica multithreading. Por exemplo, em uma replica multithreading, a declaração `START SLAVE UNTIL` só suporta o uso de `SQL_AFTER_MTS_GAPS`.
 
   No MySQL 5.7, o reprocessamento de transações é suportado quando o multithreading está habilitado em uma replica. Em versões anteriores, o `slave_transaction_retries` era tratado como igual a 0 ao usar replicas multithread.
 
@@ -706,13 +706,13 @@ A lista a seguir descreve as variáveis de sistema para controlar os servidores 
 
   <table frame="box" rules="all" summary="Propriedades para relay_log_space_limit"><tbody><tr><th>Formato de linha de comando</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
-  Normalmente, a replicação é interrompida quando ocorre um erro na replica, o que lhe dá a oportunidade de resolver a inconsistência nos dados manualmente. Esta variável faz com que o fio de replicação SQL continue a replicação quando uma instrução retorna qualquer um dos erros listados no valor da variável.
+  Normalmente, a replicação é interrompida quando ocorre um erro na replica, o que lhe dá a oportunidade de resolver a inconsistência nos dados manualmente. Esta variável faz com que o thread de replicação SQL continue a replicação quando uma instrução retorna qualquer um dos erros listados no valor da variável.
 
 - [`slave_sql_verify_checksum`](https://replication-options-replica.html#sysvar_slave_sql_verify_checksum)
 
   <table frame="box" rules="all" summary="Propriedades para relay_log_space_limit"><tbody><tr><th>Formato de linha de comando</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
-  Faça com que o fio de replicação SQL verifique os dados usando os checksums lidos do log de retransmissão. Em caso de discrepância, a replica pára com um erro. A definição desta variável entra em vigor imediatamente para todos os canais de replicação, incluindo os canais em execução.
+  Faça com que o thread de replicação SQL verifique os dados usando os checksums lidos do log de retransmissão. Em caso de discrepância, a replica pára com um erro. A definição desta variável entra em vigor imediatamente para todos os canais de replicação, incluindo os canais em execução.
 
   Nota
 
@@ -722,7 +722,7 @@ A lista a seguir descreve as variáveis de sistema para controlar os servidores 
 
   <table frame="box" rules="all" summary="Propriedades para relay_log_space_limit"><tbody><tr><th>Formato de linha de comando</th> <td><code>--relay-log-space-limit=#</code></td> </tr><tr><th>Variável do sistema</th> <td><code>relay_log_space_limit</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>18446744073709551615</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
-  Se um fio de SQL de replicação não conseguir executar uma transação devido a um deadlock no motor de armazenamento `[InnoDB]` (innodb-storage-engine.html) ou porque o tempo de execução da transação excedeu o valor de `[InnoDB]` (innodb-storage-engine.html) `innodb_lock_wait_timeout` (innodb-parameters.html#sysvar_innodb_lock_wait_timeout) ou `NDB` (mysql-cluster.html) `TransactionDeadlockDetectionTimeout` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-transactiondeadlockdetectiontimeout) ou `TransactionInactiveTimeout` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-transactioninactivetimeout), ele tentará novamente `[slave_transaction_retries]` (replication-options-replica.html#sysvar_slave_transaction_retries) vezes antes de parar com um erro. As transações com um erro não temporário não são reatadas.
+  Se um thread de SQL de replicação não conseguir executar uma transação devido a um deadlock no motor de armazenamento `[InnoDB]` (innodb-storage-engine.html) ou porque o tempo de execução da transação excedeu o valor de `[InnoDB]` (innodb-storage-engine.html) `innodb_lock_wait_timeout` (innodb-parameters.html#sysvar_innodb_lock_wait_timeout) ou `NDB` (mysql-cluster.html) `TransactionDeadlockDetectionTimeout` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-transactiondeadlockdetectiontimeout) ou `TransactionInactiveTimeout` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-transactioninactivetimeout), ele tentará novamente `[slave_transaction_retries]` (replication-options-replica.html#sysvar_slave_transaction_retries) vezes antes de parar com um erro. As transações com um erro não temporário não são reatadas.
 
   O valor padrão para [`slave_transaction_retries`](https://pt.wikipedia.org/wiki/Replicação_\(database\)#Op%C3%A7%C3%B5es_de_replicação) é 10. Definir a variável para 0 desabilita a repetição automática de transações. A definição da variável entra em vigor imediatamente para todos os canais de replicação, incluindo os canais em execução.
 

@@ -4,7 +4,7 @@ In most cases, you can estimate query performance by counting disk seeks. For sm
 
 In MySQL, an index block is usually 1,024 bytes and the data pointer is usually four bytes. For a 500,000-row table with a key value length of three bytes (the size of `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")), the formula indicates `log(500,000)/log(1024/3*2/(3+4)) + 1` = `4` seeks.
 
-This index would require storage of about 500,000 \* 7 \* 3/2 = 5.2MB (assuming a typical index buffer fill ratio of 2/3), so you probably have much of the index in memory and so need only one or two calls to read data to find the row.
+This index would require storage of about 500,000 * 7 * 3/2 = 5.2MB (assuming a typical index buffer fill ratio of 2/3), so you probably have much of the index in memory and so need only one or two calls to read data to find the row.
 
 For writes, however, you need four seek requests to find where to place a new index value and normally two seeks to update the index and write the row.
 

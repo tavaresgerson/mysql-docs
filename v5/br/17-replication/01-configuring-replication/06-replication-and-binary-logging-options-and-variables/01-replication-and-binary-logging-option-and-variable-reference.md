@@ -66,19 +66,19 @@ As opções de linha de comando e as variáveis de sistema na lista a seguir se 
 
 - `relay_log_info_file`: Nome do arquivo para o repositório de metadados do aplicativo no qual os registros de replica armazenam informações sobre os logs do retransmissor.
 
-- `relay_log_info_repository`: Se deve escrever a localização do fio de replicação SQL nos logs do relay em um arquivo ou tabela.
+- `relay_log_info_repository`: Se deve escrever a localização do thread de replicação SQL nos logs do relay em um arquivo ou tabela.
 
 - `relay_log_purge`: Determina se os logs do retransmissor são limpos.
 
-- `relay_log_recovery`: Se a recuperação automática dos arquivos de log do relé da fonte ao iniciar o sistema está habilitada; deve ser habilitada para a replica segura em caso de falha.
+- `relay_log_recovery`: Se a recuperação automática dos arquivos de log do relay da fonte ao iniciar o sistema está habilitada; deve ser habilitada para a replica segura em caso de falha.
 
 - `relay_log_space_limit`: Espaço máximo a ser usado para todos os logs do retransmissor.
 
-- `replicate-do-db`: Diz ao fio de SQL de replicação para restringir a replicação ao banco de dados especificado.
+- `replicate-do-db`: Diz ao thread de SQL de replicação para restringir a replicação ao banco de dados especificado.
 
-- `replicate-do-table`: Diz ao fio de SQL de replicação para restringir a replicação à tabela especificada.
+- `replicate-do-table`: Diz ao thread de SQL de replicação para restringir a replicação à tabela especificada.
 
-- `replicate-ignore-db`: Diz ao fio de SQL de replicação que não deve replicar para o banco de dados especificado.
+- `replicate-ignore-db`: Diz ao thread de SQL de replicação que não deve replicar para o banco de dados especificado.
 
 - `replicate-ignore-table`: Diz ao thread de SQL de replicação para não replicar para a tabela especificada.
 
@@ -86,7 +86,7 @@ As opções de linha de comando e as variáveis de sistema na lista a seguir se 
 
 - `replicate-same-server-id`: Na replicação, se habilitado, não ignore eventos com nosso ID de servidor.
 
-- `replicate-wild-do-table`: Diz ao fio de SQL de replicação para restringir a replicação às tabelas que correspondem ao padrão de caracteres curinga especificado.
+- `replicate-wild-do-table`: Diz ao thread de SQL de replicação para restringir a replicação às tabelas que correspondem ao padrão de caracteres curinga especificado.
 
 - `replicate-wild-ignore-table`: Diz ao thread de SQL de replicação para não replicar para tabelas que correspondem ao padrão de caracteres curinga fornecido.
 
@@ -188,7 +188,7 @@ As opções de linha de comando e as variáveis de sistema na lista a seguir se 
 
 - `Slave_received_heartbeats`: Número de batimentos cardíacos recebidos pela réplica desde o último reinicialização.
 
-- `Slave_retried_transactions`: Número total de vezes desde o início que o fio de replicação do SQL tentou novamente as transações.
+- `Slave_retried_transactions`: Número total de vezes desde o início que o thread de replicação do SQL tentou novamente as transações.
 
 - `Slave_rows_last_search_algorithm_used`: Algoritmo de pesquisa mais recentemente utilizado por esta replica para localizar linhas para a replicação baseada em linhas (pesquisa por índice, tabela ou hash).
 
@@ -196,7 +196,7 @@ As opções de linha de comando e as variáveis de sistema na lista a seguir se 
 
 - `Slave_running`: Estado deste servidor como replica (status da thread de I/O de replicação).
 
-- `slave_transaction_retries`: Número de vezes que o fio de replicação do SQL tenta novamente a transação caso ela falhe devido a um deadlock ou ao tempo limite de espera de bloqueio, antes de desistir e parar.
+- `slave_transaction_retries`: Número de vezes que o thread de replicação do SQL tenta novamente a transação caso ela falhe devido a um deadlock ou ao tempo limite de espera de bloqueio, antes de desistir e parar.
 
 - `slave_type_conversions`: Controla o modo de conversão de tipo na replica. O valor é uma lista de zero ou mais elementos desta lista: ALL_LOSSY, ALL_NON_LOSSY. Defina como uma string vazia para impedir conversões de tipo entre a fonte e a replica.
 
@@ -278,7 +278,7 @@ As opções de linha de comando e as variáveis do sistema na lista a seguir est
 
 - `log_bin_use_v1_row_events`: Se o servidor está usando eventos de linha de log binário da versão 1.
 
-- `log_slave_updates`: Se a replica deve registrar as atualizações realizadas por seu fio de replicação SQL em seu próprio log binário.
+- `log_slave_updates`: Se a replica deve registrar as atualizações realizadas por seu thread de replicação SQL em seu próprio log binário.
 
 - `master_verify_checksum`: Faça com que a fonte examine os checksums ao ler o log binário.
 

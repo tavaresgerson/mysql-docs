@@ -45,7 +45,7 @@ Essas operações de sinônimos de tabela não são suportadas:
   $> ln -s tbl1.MYI tbl2.MYI
   ```
 
-  Há problemas se um fio lê `db1.tbl1` e outro fio atualiza `db1.tbl2`:
+  Há problemas se um thread lê `db1.tbl1` e outro thread atualiza `db1.tbl2`:
 
   - O cache de consultas é "enganado" (ele não tem como saber que `tbl1` não foi atualizado, então ele retorna resultados desatualizados).
 

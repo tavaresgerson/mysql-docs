@@ -540,7 +540,7 @@ index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 [Seção 16.4.1.18, “Replicação e LOAD DATA”](replication-features-load-data.html)
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA”](replication-features-memory.html)
+[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
 
 [Seção 16.4.1.29, “Replicação e Tabelas Temporárias”](replication-features-temptables.html)
 
@@ -1904,7 +1904,7 @@ index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 [Seção 25.4, “Configuração de Execução do Schema de Desempenho”](performance-schema-runtime-configuration.html)
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA”](replication-features-memory.html)
+[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
 
 [Seção B.3.3.2.2, “Redefinindo a Senha de Root: Sistemas Unix e Unix-like”](resetting-permissions.html#resetting-permissions-unix)
 
@@ -1914,7 +1914,7 @@ index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
+[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
 
 ### init_slave
 
@@ -4104,7 +4104,7 @@ index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 [Seção 8.4.6, “Limites de tamanho da tabela”](table-size-limit.html)
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA”](replication-features-memory.html)
+[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
 
 [Seção 16.4.1.37, “Replicação e Variáveis”](replication-features-variables.html)
 
@@ -4112,7 +4112,7 @@ index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
 
-[Seção 15.3, “O Motor de Armazenamento de MEMÓRIA”](memory-storage-engine.html)
+[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
 
 ### max_insert_delayed_threads
 
@@ -6032,7 +6032,7 @@ index superior](dynindex-sysvar.html#sysvar-index-superior)]
 
 [Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMÓRIA”](replication-features-memory.html)
+[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
 
 [Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
 

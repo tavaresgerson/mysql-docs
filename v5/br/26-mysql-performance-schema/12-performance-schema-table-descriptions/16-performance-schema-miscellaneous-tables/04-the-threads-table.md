@@ -62,7 +62,7 @@ A tabela `threads` tem essas colunas:
 
 - `THREAD_ID`
 
-  Um identificador único de fio.
+  Um identificador único de thread.
 
 - `NOME`
 
@@ -70,13 +70,13 @@ A tabela `threads` tem essas colunas:
 
 - `TIPO`
 
-  O tipo de fio, `FOREGROUND` ou `BACKGROUND`. Os fios de conexão do usuário são fios de primeiro plano. Os fios associados à atividade do servidor interno são fios de segundo plano. Exemplos são os fios internos do `InnoDB`, os fios de "dump do binlog" que enviam informações para as réplicas e os fios de I/O de replicação e SQL.
+  O tipo de thread, `FOREGROUND` ou `BACKGROUND`. Os fios de conexão do usuário são fios de primeiro plano. Os fios associados à atividade do servidor interno são fios de segundo plano. Exemplos são os fios internos do `InnoDB`, os fios de "dump do binlog" que enviam informações para as réplicas e os fios de I/O de replicação e SQL.
 
 - `PROCESSLIST_ID`
 
-  Para um fio de plano de fundo (associado a uma conexão de usuário), este é o identificador de conexão. Este é o mesmo valor exibido na coluna `ID` da tabela `INFORMATION_SCHEMA `PROCESSLIST``, exibida na coluna `Id` do `SHOW PROCESSLIST` (show-processlist.html) saída, e retornada pela função `[`CONNECTION_ID()\`]\(information-functions.html#function_connection-id) dentro do fio.
+  Para um thread de plano de fundo (associado a uma conexão de usuário), este é o identificador de conexão. Este é o mesmo valor exibido na coluna `ID` da tabela `INFORMATION_SCHEMA `PROCESSLIST``, exibida na coluna `Id` do `SHOW PROCESSLIST` (show-processlist.html) saída, e retornada pela função `[`CONNECTION_ID()\`]\(information-functions.html#function_connection-id) dentro do thread.
 
-  Para um fio de plano de fundo (não associado a uma conexão de usuário), `PROCESSLIST_ID` é `NULL`, então os valores não são únicos.
+  Para um thread de plano de fundo (não associado a uma conexão de usuário), `PROCESSLIST_ID` é `NULL`, então os valores não são únicos.
 
 - `PROCESSLIST_USER`
 
@@ -130,21 +130,21 @@ A tabela `threads` tem essas colunas:
 
 - `PROCESSLIST_TIME`
 
-  O tempo em segundos que o fio esteve em seu estado atual. Para um fio de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o horário real do host da replica. Veja Seção 16.2.3, “Fios de Replicação”.
+  O tempo em segundos que o thread esteve em seu estado atual. Para um thread de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o horário real do host da replica. Veja Seção 16.2.3, “Fios de Replicação”.
 
 - `PROCESSLIST_STATE`
 
-  Uma ação, evento ou estado que indica o que o fio está fazendo. Para descrições dos valores de `PROCESSLIST_STATE`, consulte [Seção 8.14, “Examinando Informações do Fio do Servidor (Processo”] (thread-information.html). Se o valor for `NULL`, o fio pode corresponder a uma sessão de cliente inativo ou o trabalho que ele está fazendo não está instrumentado com estágios.
+  Uma ação, evento ou estado que indica o que o thread está fazendo. Para descrições dos valores de `PROCESSLIST_STATE`, consulte [Seção 8.14, “Examinando Informações do Fio do Servidor (Processo”] (thread-information.html). Se o valor for `NULL`, o thread pode corresponder a uma sessão de cliente inativo ou o trabalho que ele está fazendo não está instrumentado com estágios.
 
-  A maioria dos estados corresponde a operações muito rápidas. Se um fio permanecer em um determinado estado por muitos segundos, pode haver um problema que precisa ser investigado.
+  A maioria dos estados corresponde a operações muito rápidas. Se um thread permanecer em um determinado estado por muitos segundos, pode haver um problema que precisa ser investigado.
 
 - `PROCESSLIST_INFO`
 
-  A declaração que o fio está executando, ou `NULL` se não estiver executando nenhuma declaração. A declaração pode ser a enviada ao servidor ou uma declaração mais interna se a declaração executar outras declarações. Por exemplo, se uma declaração `CALL` executar um procedimento armazenado que está executando uma declaração `SELECT`, o valor `PROCESSLIST_INFO` mostrará a declaração `SELECT`.
+  A declaração que o thread está executando, ou `NULL` se não estiver executando nenhuma declaração. A declaração pode ser a enviada ao servidor ou uma declaração mais interna se a declaração executar outras declarações. Por exemplo, se uma declaração `CALL` executar um procedimento armazenado que está executando uma declaração `SELECT`, o valor `PROCESSLIST_INFO` mostrará a declaração `SELECT`.
 
 - `PARENT_THREAD_ID`
 
-  Se este fio for um subfio (gerado por outro fio), este é o valor `THREAD_ID` do fio gerador.
+  Se este thread for um subfio (gerado por outro thread), este é o valor `THREAD_ID` do thread gerador.
 
 - `ROL`
 
@@ -152,17 +152,17 @@ A tabela `threads` tem essas colunas:
 
 - `INSTRUMENTADO`
 
-  Se os eventos executados pelo fio estão instrumentados. O valor é `SIM` ou `NÃO`.
+  Se os eventos executados pelo thread estão instrumentados. O valor é `SIM` ou `NÃO`.
 
   - Para os threads de primeiro plano, o valor inicial `INSTRUMENTED` é determinado se a conta de usuário associada ao thread corresponde a qualquer linha na tabela `setup_actors`. A correspondência é baseada nos valores das colunas `PROCESSLIST_USER` e `PROCESSLIST_HOST`.
 
-    Se o fio gerar um subfio, a correspondência ocorre novamente para a linha da tabela `threads` criada para o subfio.
+    Se o thread gerar um subfio, a correspondência ocorre novamente para a linha da tabela `threads` criada para o subfio.
 
   - Para os threads de segundo plano, `INSTRUMENTED` é `YES` por padrão. `setup_actors` não é consultado porque não há um usuário associado aos threads de segundo plano.
 
   - Para qualquer thread, seu valor `INSTRUMENTED` pode ser alterado durante a vida útil da thread.
 
-  Para que o monitoramento de eventos executados pelo fio ocorra, essas coisas devem ser verdadeiras:
+  Para que o monitoramento de eventos executados pelo thread ocorra, essas coisas devem ser verdadeiras:
 
   - O consumidor `thread_instrumentation` na tabela `setup_consumers` (performance-schema-setup-consumers-table.html) deve ser `YES`.
 
@@ -176,7 +176,7 @@ A tabela `threads` tem essas colunas:
 
   - Para os threads de primeiro plano, o valor inicial de `HISTORY` é determinado se a conta de usuário associada ao thread corresponde a qualquer linha na tabela `setup_actors`. A correspondência é baseada nos valores das colunas `PROCESSLIST_USER` e `PROCESSLIST_HOST`.
 
-    Se o fio gerar um subfio, a correspondência ocorre novamente para a linha da tabela `threads` criada para o subfio.
+    Se o thread gerar um subfio, a correspondência ocorre novamente para a linha da tabela `threads` criada para o subfio.
 
   - Para os threads de segundo plano, `HISTORY` é `YES` por padrão. O `setup_actors` não é consultado porque não há um usuário associado aos threads de segundo plano.
 
@@ -196,11 +196,11 @@ A tabela `threads` tem essas colunas:
 
 - `THREAD_OS_ID`
 
-  O identificador do fio ou tarefa, conforme definido pelo sistema operacional subjacente, se houver:
+  O identificador do thread ou tarefa, conforme definido pelo sistema operacional subjacente, se houver:
 
-  - Quando um fio MySQL está associado ao mesmo fio do sistema operacional durante toda a sua vida útil, o `THREAD_OS_ID` contém o ID do fio do sistema operacional.
+  - Quando um thread MySQL está associado ao mesmo thread do sistema operacional durante toda a sua vida útil, o `THREAD_OS_ID` contém o ID do thread do sistema operacional.
 
-  - Quando um fio MySQL não está associado ao mesmo fio do sistema operacional ao longo de sua vida útil, o `THREAD_OS_ID` contém `NULL`. Isso é típico de sessões de usuário quando o plugin do pool de threads é usado (veja Seção 5.5.3, “MySQL Enterprise Thread Pool”).
+  - Quando um thread MySQL não está associado ao mesmo thread do sistema operacional ao longo de sua vida útil, o `THREAD_OS_ID` contém `NULL`. Isso é típico de sessões de usuário quando o plugin do pool de threads é usado (veja Seção 5.5.3, “MySQL Enterprise Thread Pool”).
 
   Para o Windows, `THREAD_OS_ID` corresponde ao ID de thread visível no Process Explorer (<https://technet.microsoft.com/en-us/sysinternals/bb896653.aspx>).
 

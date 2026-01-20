@@ -558,11 +558,11 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
 
   1. O nó SQL usa promixity para determinar o coordenador da transação; ou seja, o nó de dados "mais próximo" do nó SQL é escolhido como o coordenador da transação. Para esse propósito, um nó de dados que tenha uma conexão de memória compartilhada com o nó SQL é considerado "mais próximo" do nó SQL; os próximos mais próximos (em ordem decrescente de proximidade) são: conexão TCP com `localhost`, seguida por conexão TCP de um host diferente de `localhost`.
 
-  2. O fio SQL usa a consciência de distribuição para selecionar o nó de dados. Ou seja, o nó de dados que abriga a partição do clúster acessada pelo primeiro comando de uma determinada transação é usado como coordenador da transação para toda a transação. (Isso só é eficaz se o primeiro comando da transação não acessar mais de uma partição do clúster.)
+  2. O thread SQL usa a consciência de distribuição para selecionar o nó de dados. Ou seja, o nó de dados que abriga a partição do clúster acessada pelo primeiro comando de uma determinada transação é usado como coordenador da transação para toda a transação. (Isso só é eficaz se o primeiro comando da transação não acessar mais de uma partição do clúster.)
 
   Esta opção aceita um dos valores inteiros `0`, `1`, `2` ou `3`. O valor `3` é o padrão. Esses valores afetam a seleção de nós da seguinte forma:
 
-  - `0`: A seleção de nós não está otimizada. Cada nó de dados é empregado como coordenador de transação 8 vezes antes que o fio SQL prossiga para o próximo nó de dados.
+  - `0`: A seleção de nós não está otimizada. Cada nó de dados é empregado como coordenador de transação 8 vezes antes que o thread SQL prossiga para o próximo nó de dados.
 
   - `1`: A proximidade com o nó SQL é usada para determinar o coordenador da transação.
 
@@ -612,7 +612,7 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
 
   <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  No NDB 7.5.4 e versões posteriores, isso representa o limite para o número de épocas completamente armazenadas no buffer de eventos, mas ainda não consumidas pelo fio injetor do binlog. Quando esse grau de atraso (lag) é excedido, uma mensagem de status do buffer de eventos é relatada, com `BUFFERED_EPOCHS_OVER_THRESHOLD` fornecido como a razão (veja Seção 21.6.2.3, “Relatório do Buffer de Eventos no Log do Clúster”). O atraso aumenta quando uma época é recebida dos nós de dados e armazenada completamente no buffer de eventos; diminui quando uma época é consumida pelo fio injetor do binlog, sendo reduzida. Eras vazias são armazenadas e colocadas em fila, e, portanto, incluídas neste cálculo apenas quando isso é habilitado usando o método `Ndb::setEventBufferQueueEmptyEpoch()` da API NDB.
+  No NDB 7.5.4 e versões posteriores, isso representa o limite para o número de épocas completamente armazenadas no buffer de eventos, mas ainda não consumidas pelo thread injetor do binlog. Quando esse grau de atraso (lag) é excedido, uma mensagem de status do buffer de eventos é relatada, com `BUFFERED_EPOCHS_OVER_THRESHOLD` fornecido como a razão (veja Seção 21.6.2.3, “Relatório do Buffer de Eventos no Log do Clúster”). O atraso aumenta quando uma época é recebida dos nós de dados e armazenada completamente no buffer de eventos; diminui quando uma época é consumida pelo thread injetor do binlog, sendo reduzida. Eras vazias são armazenadas e colocadas em fila, e, portanto, incluídas neste cálculo apenas quando isso é habilitado usando o método `Ndb::setEventBufferQueueEmptyEpoch()` da API NDB.
 
   Antes da NDB 7.5.4, o valor desse variável servia como um limite para o número de épocas que deveriam ser ultrapassadas antes de relatar o status do log binário. Nesses lançamentos anteriores, um valor de `3` — o padrão — significa que, se a diferença entre a época que foi recebida dos nós de armazenamento e a época que foi aplicada ao log binário for de 3 ou mais, uma mensagem de status é então enviada para o log do clúster.
 
@@ -638,7 +638,7 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
 
   <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
 
-  Determine o papel deste nó SQL (e do NDB Cluster) em uma configuração de replicação circular ("ativa-ativa"). `ndb_slave_conflict_role` pode assumir qualquer um dos valores `PRIMARY`, `SECONDARY`, `PASS` ou `NULL` (o padrão). O fio SQL do replica deve ser parado antes que você possa alterar `ndb_slave_conflict_role`. Além disso, não é possível alterar diretamente entre `PASS` e `PRIMARY` ou `SECONDARY` diretamente; nesses casos, você deve garantir que o fio SQL seja parado, depois executar `SET @@GLOBAL.ndb_slave_conflict_role = 'NONE'` primeiro.
+  Determine o papel deste nó SQL (e do NDB Cluster) em uma configuração de replicação circular ("ativa-ativa"). `ndb_slave_conflict_role` pode assumir qualquer um dos valores `PRIMARY`, `SECONDARY`, `PASS` ou `NULL` (o padrão). O thread SQL do replica deve ser parado antes que você possa alterar `ndb_slave_conflict_role`. Além disso, não é possível alterar diretamente entre `PASS` e `PRIMARY` ou `SECONDARY` diretamente; nesses casos, você deve garantir que o thread SQL seja parado, depois executar `SET @@GLOBAL.ndb_slave_conflict_role = 'NONE'` primeiro.
 
   Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
 
@@ -890,7 +890,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_event_data_count_injector`
 
-  O número de eventos de alteração de linha recebidos pelo fio de injeção binlog do NDB.
+  O número de eventos de alteração de linha recebidos pelo thread de injeção binlog do NDB.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
 
@@ -906,7 +906,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_event_nondata_count_injector`
 
-  O número de eventos recebidos, exceto eventos de alteração de linha, pelo fio de injeção de log binário do NDB.
+  O número de eventos recebidos, exceto eventos de alteração de linha, pelo thread de injeção de log binário do NDB.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
 
@@ -922,7 +922,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_event_bytes_count_injector`
 
-  O número de bytes de eventos recebidos pelo fio de injeção binlog do NDB.
+  O número de bytes de eventos recebidos pelo thread de injeção binlog do NDB.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
 
@@ -1228,7 +1228,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_wait_exec_complete_count_session`
 
-  O número de vezes que um fio foi bloqueado nesta sessão do cliente enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e autoincremento que não são visíveis para os clientes.
+  O número de vezes que um thread foi bloqueado nesta sessão do cliente enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e autoincremento que não são visíveis para os clientes.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
@@ -1236,7 +1236,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_wait_exec_complete_count_slave`
 
-  O número de vezes que um fio foi bloqueado por esta replica enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e auto-incremento que não são visíveis para os clientes.
+  O número de vezes que um thread foi bloqueado por esta replica enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e auto-incremento que não são visíveis para os clientes.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
 
@@ -1244,7 +1244,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_wait_exec_complete_count`
 
-  O número de vezes que um fio foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava a conclusão da execução de uma operação. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e autoincremento que não são visíveis para os clientes.
+  O número de vezes que um thread foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava a conclusão da execução de uma operação. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e autoincremento que não são visíveis para os clientes.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
 
@@ -1252,7 +1252,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_wait_meta_request_count_session`
 
-  O número de vezes que um fio foi bloqueado nesta sessão do cliente enquanto aguardava por um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transações.
+  O número de vezes que um thread foi bloqueado nesta sessão do cliente enquanto aguardava por um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transações.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
@@ -1260,7 +1260,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_wait_meta_request_count_slave`
 
-  O número de vezes que um fio foi bloqueado por essa replica enquanto aguardava por um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transações.
+  O número de vezes que um thread foi bloqueado por essa replica enquanto aguardava por um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transações.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
 
@@ -1268,7 +1268,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_wait_meta_request_count`
 
-  O número de vezes que um fio foi bloqueado por este servidor MySQL (nó SQL) aguardando um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transação.
+  O número de vezes que um thread foi bloqueado por este servidor MySQL (nó SQL) aguardando um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transação.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
 
@@ -1300,7 +1300,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_wait_scan_result_count_session`
 
-  O número de vezes que um fio foi bloqueado nesta sessão do cliente enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que a varredura seja concluída.
+  O número de vezes que um thread foi bloqueado nesta sessão do cliente enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que a varredura seja concluída.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
 
@@ -1308,7 +1308,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_wait_scan_result_count_slave`
 
-  O número de vezes que um fio foi bloqueado por esta réplica enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que a varredura seja concluída.
+  O número de vezes que um thread foi bloqueado por esta réplica enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que a varredura seja concluída.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
 
@@ -1316,7 +1316,7 @@ Esta seção fornece informações detalhadas sobre as variáveis de status do s
 
 - `Ndb_api_wait_scan_result_count`
 
-  O número de vezes que um fio foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que uma varredura seja concluída.
+  O número de vezes que um thread foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que uma varredura seja concluída.
 
   Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
 

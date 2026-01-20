@@ -12,7 +12,7 @@ Essas tabelas armazenam eventos de espera:
 
 - `eventos_waits_current`: O evento de espera atual para cada thread.
 
-- `eventos_waits_history`: Os eventos de espera mais recentes que terminaram por fio.
+- `eventos_waits_history`: Os eventos de espera mais recentes que terminaram por thread.
 
 - `eventos_waits_history_long`: Os eventos de espera mais recentes que terminaram globalmente (em todas as threads).
 

@@ -10,7 +10,7 @@ Quando o alocador de memória `InnoDB` é desativado, o `InnoDB` ignora o valor 
 
 Em sistemas semelhantes ao Unix que utilizam vincular dinamicamente, substituir o alocador de memória pode ser tão fácil quanto fazer a variável de ambiente `LD_PRELOAD` ou `LD_LIBRARY_PATH` apontar para a biblioteca dinâmica que implementa o alocador. Em outros sistemas, pode ser necessário algum relinking. Consulte a documentação da biblioteca de alocador de memória que você escolher.
 
-Como o `InnoDB` não pode rastrear todo o uso de memória quando o alocador de memória do sistema é usado (`innodb_use_sys_malloc` está ativado), a seção “POOL DE BUFFER E MEMÓRIA” no resultado do comando `SHOW ENGINE INNODB STATUS` inclui apenas as estatísticas do pool de buffers na opção “Memória total alocada”. Qualquer memória alocada usando o subsistema `mem` ou usando `ut_malloc` é excluída.
+Como o `InnoDB` não pode rastrear todo o uso de memória quando o alocador de memória do sistema é usado (`innodb_use_sys_malloc` está ativado), a seção “POOL DE BUFFER E MEMORY” no resultado do comando `SHOW ENGINE INNODB STATUS` inclui apenas as estatísticas do pool de buffers na opção “Memória total alocada”. Qualquer memória alocada usando o subsistema `mem` ou usando `ut_malloc` é excluída.
 
 Nota
 

@@ -43,7 +43,7 @@ interval:
 
 `START SLAVE` inicia os threads de replicação, juntos ou separadamente. A instrução requer o privilégio `SUPER`. `START SLAVE` causa um commit implícito de uma transação em andamento (veja Seção 13.3.3, “Instruções que Causam um Commit Implícito”).
 
-Para as opções de tipo de fio, você pode especificar `IO_THREAD`, `SQL_THREAD`, ambos ou nenhum deles. Somente os threads iniciados são afetados pela declaração.
+Para as opções de tipo de thread, você pode especificar `IO_THREAD`, `SQL_THREAD`, ambos ou nenhum deles. Somente os threads iniciados são afetados pela declaração.
 
 - `START SLAVE` sem opções de tipo de thread inicia todas as threads de replicação, assim como `START SLAVE` com ambas as opções de tipo de thread.
 
@@ -57,7 +57,7 @@ Importante
 
 A cláusula opcional `FOR CHANNEL channel` permite que você nomeie qual canal de replicação a declaração se aplica. Ao fornecer uma cláusula `FOR CHANNEL channel`, a declaração `START SLAVE` é aplicada a um canal de replicação específico. Se nenhuma cláusula for nomeada e não houver canais extras, a declaração se aplica ao canal padrão. Se uma declaração `START SLAVE` não tiver um canal definido ao usar múltiplos canais, essa declaração inicia os threads especificados para todos os canais. Consulte Seção 16.2.2, “Canais de Replicação” para obter mais informações.
 
-Os canais de replicação para a Replicação em Grupo (`group_replication_applier` e `group_replication_recovery`) são gerenciados automaticamente pela instância do servidor. O único canal de Replicação em Grupo com o qual você pode interagir é o canal `group_replication_applier`. Esse canal tem apenas um fio de aplicador e não tem fio de receptor, portanto, ele pode ser iniciado usando a opção `SQL_THREAD` sem a opção `IO_THREAD`. O `START SLAVE` não pode ser usado com o canal `group_replication_recovery` de forma alguma.
+Os canais de replicação para a Replicação em Grupo (`group_replication_applier` e `group_replication_recovery`) são gerenciados automaticamente pela instância do servidor. O único canal de Replicação em Grupo com o qual você pode interagir é o canal `group_replication_applier`. Esse canal tem apenas um thread de aplicador e não tem thread de receptor, portanto, ele pode ser iniciado usando a opção `SQL_THREAD` sem a opção `IO_THREAD`. O `START SLAVE` não pode ser usado com o canal `group_replication_recovery` de forma alguma.
 
 `START SLAVE` suporta autenticação de usuário e senha intercambiáveis (consulte Seção 6.2.13, “Autenticação Intercambiável”) com as opções `USER`, `PASSWORD`, `DEFAULT_AUTH` e `PLUGIN_DIR`, conforme descrito na lista a seguir. Ao usar essas opções, você deve iniciar o thread do receptor (`IO_THREAD` opção) ou todos os threads de replicação; você não pode iniciar o thread do aplicador de replicação (`SQL_THREAD` opção) sozinho.
 
@@ -83,9 +83,9 @@ A cláusula `UNTIL` opera na thread do aplicador de replicação (`opção SQL_T
 
 O ponto que você especificar na cláusula `UNTIL` pode ser qualquer uma (e apenas uma) das seguintes opções:
 
-`SOURCE_LOG_FILE` e `SOURCE_LOG_POS`: Essas opções fazem com que o processo de aplicação de replicação processe transações até uma posição em seu log de retransmissão, identificada pelo nome do arquivo e pela posição do arquivo do ponto correspondente no log binário no servidor de origem. O fio de aplicação encontra o limite de transação mais próximo na posição especificada ou após ela, termina a aplicação da transação e para por aí.
+`SOURCE_LOG_FILE` e `SOURCE_LOG_POS`: Essas opções fazem com que o processo de aplicação de replicação processe transações até uma posição em seu log de retransmissão, identificada pelo nome do arquivo e pela posição do arquivo do ponto correspondente no log binário no servidor de origem. O thread de aplicação encontra o limite de transação mais próximo na posição especificada ou após ela, termina a aplicação da transação e para por aí.
 
-`RELAY_LOG_FILE` e `RELAY_LOG_POS`: Essas opções fazem com que o processo de aplicação de replicação transações até uma posição no log de retransmissão da replica, identificada pelo nome do arquivo de log de retransmissão e uma posição nesse arquivo. O fio de aplicação encontra o limite de transação mais próximo na posição especificada ou após ela, termina a aplicação da transação e para por aí.
+`RELAY_LOG_FILE` e `RELAY_LOG_POS`: Essas opções fazem com que o processo de aplicação de replicação transações até uma posição no log de retransmissão da replica, identificada pelo nome do arquivo de log de retransmissão e uma posição nesse arquivo. O thread de aplicação encontra o limite de transação mais próximo na posição especificada ou após ela, termina a aplicação da transação e para por aí.
 
 `SQL_BEFORE_GTIDS` : Esta opção faz com que o aplicativo de replicação comece a processar transações e pare quando encontrar qualquer transação que esteja no conjunto de GTID especificado. A transação encontrada no conjunto de GTID não é aplicada, assim como nenhuma das outras transações no conjunto de GTID. A opção aceita um conjunto de GTID contendo um ou mais identificadores globais de transação como argumento (consulte conjuntos de GTID). As transações em um conjunto de GTID não aparecem necessariamente na sequência de seus GTIDs no fluxo de replicação, portanto, a transação antes da qual o aplicativo para não é necessariamente a mais antiga.
 

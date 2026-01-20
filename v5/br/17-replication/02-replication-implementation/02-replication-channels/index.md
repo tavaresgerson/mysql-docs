@@ -8,7 +8,7 @@
 
 16.2.2.4 Convenções de Nomenclatura de Canais de Replicação
 
-Na replicação multi-fonte do MySQL, uma replica abre múltiplos canais de replicação, um para cada servidor de fonte de replicação. Os canais de replicação representam o caminho das transações que fluem de uma fonte para a replica. Cada canal de replicação tem seu próprio fio de receptor (I/O), um ou mais fios de aplicador (SQL) e um log de relevo. Quando as transações de uma fonte são recebidas pelo fio de receptor de um canal, elas são adicionadas ao arquivo de log de relevo do canal e passadas para os fios de aplicador do canal. Isso permite que cada canal funcione de forma independente.
+Na replicação multi-fonte do MySQL, uma replica abre múltiplos canais de replicação, um para cada servidor de fonte de replicação. Os canais de replicação representam o caminho das transações que fluem de uma fonte para a replica. Cada canal de replicação tem seu próprio thread de receptor (I/O), um ou mais fios de aplicador (SQL) e um log de relevo. Quando as transações de uma fonte são recebidas pelo thread de receptor de um canal, elas são adicionadas ao arquivo de log de relevo do canal e passadas para os fios de aplicador do canal. Isso permite que cada canal funcione de forma independente.
 
 Esta seção descreve como os canais podem ser usados em uma topologia de replicação e o impacto que eles têm na replicação de fonte única. Para obter instruções sobre como configurar fontes e réplicas para replicação de múltiplas fontes, para iniciar, parar e reiniciar réplicas de múltiplas fontes e para monitorar a replicação de múltiplas fontes, consulte Seção 16.1.5, “Replicação de Múltiplas Fontes do MySQL”.
 

@@ -63,7 +63,7 @@ A lista a seguir descreve os valores permitidos da instrução `FLUSH` *`flush_o
 
   Fecha e reabre qualquer arquivo de registro binário para o qual o servidor está escrevendo. Se o registro binário estiver habilitado, o número de sequência do arquivo de registro binário é incrementado em um em relação ao arquivo anterior.
 
-  Esta operação não afeta as tabelas usadas para os logs binários e de relé (conforme controlado pelas variáveis de sistema `master_info_repository` e `relay_log_info_repository`).
+  Esta operação não afeta as tabelas usadas para os logs binários e de relay (conforme controlado pelas variáveis de sistema `master_info_repository` e `relay_log_info_repository`).
 
 - `FLUSH DES_KEY_FILE`
 
@@ -142,7 +142,7 @@ A lista a seguir descreve os valores permitidos da instrução `FLUSH` *`flush_o
 
   A cláusula `FOR CHANNEL` permite que você nomeie qual canal de replicação a operação se aplica. Execute `FLUSH RELAY LOGS FOR CHANNEL channel` para limpar o log do retransmissor para um canal de replicação específico. Se nenhum canal estiver nomeado e não houver canais de replicação extras, a operação se aplica ao canal padrão. Se nenhum canal estiver nomeado e houver vários canais de replicação, a operação se aplica a todos os canais de replicação, com exceção do canal `group_replication_applier`. Para mais informações, consulte Seção 16.2.2, “Canais de Replicação”.
 
-  Esta operação não afeta as tabelas usadas para os logs binários e de relé (conforme controlado pelas variáveis de sistema `master_info_repository` e `relay_log_info_repository`).
+  Esta operação não afeta as tabelas usadas para os logs binários e de relay (conforme controlado pelas variáveis de sistema `master_info_repository` e `relay_log_info_repository`).
 
 - `Limpar logs lentas`
 

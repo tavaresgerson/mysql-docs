@@ -29,7 +29,77 @@ Cada linha de saída do `EXPLAIN` fornece informações sobre uma tabela. Cada l
 
 **Tabela 8.1 Colunas de Saída do Resultado EXPLAIN**
 
-<table summary="Colunas de saída produzidas pelo comando EXPLAIN."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th>Coluna</th> <th>Nome JSON</th> <th>Significado</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>access_type</code>]</th> <td>PH_HTML_CODE_<code>access_type</code>]</td> <td>O identificador PH_HTML_CODE_<code>possible_keys</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>key</code>]</th> <td>Nenhum</td> <td>O tipo PH_HTML_CODE_<code>key</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>key_len</code>]</th> <td>PH_HTML_CODE_<code>key_length</code>]</td> <td>A tabela para a linha de saída</td> </tr><tr> <th>PH_HTML_CODE_<code>ref</code>]</th> <td>PH_HTML_CODE_<code>ref</code>]</td> <td>As divisórias correspondentes</td> </tr><tr> <th>PH_HTML_CODE_<code>rows</code>]</th> <td><code>access_type</code></td> <td>O tipo de conexão</td> </tr><tr> <th><code>select_id</code><code>access_type</code>]</th> <td><code>possible_keys</code></td> <td>Os possíveis índices para escolher</td> </tr><tr> <th><code>key</code></th> <td><code>key</code></td> <td>O índice escolhido na verdade</td> </tr><tr> <th><code>key_len</code></th> <td><code>key_length</code></td> <td>O comprimento da chave escolhida</td> </tr><tr> <th><code>ref</code></th> <td><code>ref</code></td> <td>As colunas em comparação com o índice</td> </tr><tr> <th><code>rows</code></th> <td><code>SELECT</code><code>access_type</code>]</td> <td>Estimativa de linhas a serem examinadas</td> </tr><tr> <th><code>SELECT</code><code>access_type</code>]</th> <td><code>SELECT</code><code>possible_keys</code>]</td> <td>Porcentagem de linhas filtradas por condição da tabela</td> </tr><tr> <th><code>SELECT</code><code>key</code>]</th> <td>Nenhum</td> <td>Informações adicionais</td> </tr></tbody></table>
+<table summary="Colunas de saída produzidas pelo comando EXPLAIN.">
+  <thead>
+    <tr>
+      <th>Coluna</th>
+      <th>Nome JSON</th>
+      <th>Significado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+         <th><code>id</code></th>
+         <td><code>select_id</code></td>
+         <td>O identificador <code>SELECT</code></td>
+      </tr>
+      <tr>
+         <th><code>select_type</code></th>
+         <td>None</td>
+         <td>O tipo <code>SELECT</code></td>
+      </tr>
+      <tr>
+         <th><code>table</code></th>
+         <td><code>table_name</code></td>
+         <td>A tabela para a linha de saída</td>
+      </tr>
+      <tr>
+         <th><code>partitions</code></th>
+         <td><code>partitions</code></td>
+         <td>As partições correspondentes</td>
+      </tr>
+      <tr>
+         <th><code>type</code></th>
+         <td><code>access_type</code></td>
+         <td>O tipo de junção</td>
+      </tr>
+      <tr>
+         <th><code>possible_keys</code></th>
+         <td><code>possible_keys</code></td>
+         <td>Os índices possíveis para escolher</td>
+      </tr>
+      <tr>
+         <th><code>key</code></th>
+         <td><code>key</code></td>
+         <td>O índice realmente escolhido</td>
+      </tr>
+      <tr>
+         <th><code>key_len</code></th>
+         <td><code>key_length</code></td>
+         <td>O comprimento da chave escolhida</td>
+      </tr>
+      <tr>
+         <th><code>ref</code></th>
+         <td><code>ref</code></td>
+         <td>As colunas comparadas ao índice</td>
+      </tr>
+      <tr>
+         <th><code>rows</code></th>
+         <td><code>rows</code></td>
+         <td>Estimativa de linhas a serem examinadas</td>
+      </tr>
+      <tr>
+         <th><code>filtered</code></th>
+         <td><code>filtered</code></td>
+         <td>Porcentagem de linhas filtradas pela condição da tabela</td>
+      </tr>
+      <tr>
+         <th><code>Extra</code></th>
+         <td>None</td>
+         <td>Informações adicionais</td>
+      </tr>
+  </tbody>
+</table>
 
 Nota
 
@@ -43,7 +113,72 @@ As propriedades do JSON que são `NULL` não são exibidas na saída `EXPLAIN` f
 
   O tipo de `SELECT`, que pode ser qualquer um dos mostrados na tabela a seguir. Um `EXPLAIN` formatado em JSON expõe o tipo de `SELECT` como uma propriedade de um `query_block`, a menos que seja `SIMPLE` ou `PRIMARY`. Os nomes do JSON (quando aplicável) também são mostrados na tabela.
 
-  <table summary="valores de select_type e o significado de cada valor."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 50%"/><thead><tr> <th>PH_HTML_CODE_<code>dependent</code>] Valor</th> <th>Nome JSON</th> <th>Significado</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>dependent</code>]</th> <td>Nenhum</td> <td>SimplesPH_HTML_CODE_<code>SELECT</code>](não usandoPH_HTML_CODE_<code>UNION</code>]ou subconsultas)</td> </tr><tr> <th>PH_HTML_CODE_<code>UNION RESULT</code>]</th> <td>Nenhum</td> <td>Mais distantePH_HTML_CODE_<code>union_result</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>UNION</code>]</th> <td>Nenhum</td> <td>Segunda ou posteriorPH_HTML_CODE_<code>SUBQUERY</code>]declaração em umPH_HTML_CODE_<code>SELECT</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>DEPENDENT SUBQUERY</code>]</th> <td><code>dependent</code> (<code>SIMPLE</code><code>dependent</code>])</td> <td>Segunda ou posterior<code>SELECT</code>declaração em um<code>UNION</code>, dependente da consulta externa</td> </tr><tr> <th><code>UNION RESULT</code></th> <td><code>union_result</code></td> <td>Resultado de um<code>UNION</code>.</td> </tr><tr> <th><code>SUBQUERY</code></th> <td>Nenhum</td> <td>Primeiro<code>SELECT</code>em subconsulta</td> </tr><tr> <th><code>DEPENDENT SUBQUERY</code></th> <td><code>SELECT</code><code>dependent</code>] (<code>SELECT</code><code>dependent</code>])</td> <td>Primeiro<code>SELECT</code><code>SELECT</code>]em subconsulta, dependente da consulta externa</td> </tr><tr> <th><code>SELECT</code><code>UNION</code>]</th> <td>Nenhum</td> <td>Tabela derivada</td> </tr><tr> <th><code>SELECT</code><code>UNION RESULT</code>]</th> <td><code>SELECT</code><code>union_result</code>]</td> <td>Subconsulta materializada</td> </tr><tr> <th><code>SELECT</code><code>UNION</code>]</th> <td><code>SELECT</code><code>SUBQUERY</code>] (<code>SELECT</code><code>SELECT</code>])</td> <td>Uma subconsulta para a qual o resultado não pode ser armazenado em cache e deve ser reavaliado para cada linha da consulta externa</td> </tr><tr> <th><code>SELECT</code><code>DEPENDENT SUBQUERY</code>]</th> <td><code>UNION</code><code>dependent</code>] (<code>UNION</code><code>dependent</code>])</td> <td>A segunda ou a posterior seleção em uma<code>UNION</code><code>SELECT</code>]que pertence a uma subconsulta não cacheável (veja <code>UNION</code><code>UNION</code>])</td> </tr></tbody></table>
+  <table summary="select_type values and the meaning of each value.">
+    <thead>
+      <tr>
+        <th><code>select_type</code> Valor</th>
+        <th>Nome JSON</th>
+        <th>Significado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><code>SIMPLE</code></th>
+        <td>None</td>
+        <td>SELECT simples (sem usar UNION ou subconsultas)</td>
+      </tr>
+      <tr>
+        <th><code>PRIMARY</code></th>
+        <td>None</td>
+        <td>SELECT mais externo</td>
+      </tr>
+      <tr>
+        <th><code>UNION</code></th>
+        <td>None</td>
+        <td>Segundo ou posterior instrução SELECT em um UNION</td>
+      </tr>
+      <tr>
+        <th><code>DEPENDENT UNION</code></th>
+        <td><code>dependent</code> (<code>true</code>)</td>
+        <td>Segundo ou posterior instrução SELECT em um UNION, dependente da consulta externa</td>
+      </tr>
+      <tr>
+        <th><code>UNION RESULT</code></th>
+        <td><code>union_result</code></td>
+        <td>Resultado de um UNION.</td>
+      </tr>
+      <tr>
+        <th><code>SUBQUERY</code></th>
+        <td>None</td>
+        <td>Primeiro SELECT em uma subconsulta</td>
+      </tr>
+      <tr>
+        <th><code>DEPENDENT SUBQUERY</code></th>
+        <td><code>dependent</code> (<code>true</code>)</td>
+        <td>Primeiro SELECT em uma subconsulta, dependente da consulta externa</td>
+      </tr>
+      <tr>
+        <th><code>DERIVED</code></th>
+        <td>None</td>
+        <td>Tabela derivada</td>
+      </tr>
+      <tr>
+        <th><code>MATERIALIZED</code></th>
+        <td><code>materialized_from_subquery</code></td>
+        <td>Subconsulta materializada</td>
+      </tr>
+      <tr>
+        <th><code>UNCACHEABLE SUBQUERY</code></th>
+        <td><code>cacheable</code> (<code>false</code>)</td>
+        <td>Uma subconsulta cujo resultado não pode ser armazenado em cache e deve ser reavaliado para cada linha da consulta externa</td>
+      </tr>
+      <tr>
+        <th><code>UNCACHEABLE UNION</code></th>
+        <td><code>cacheable</code> (<code>false</code>)</td>
+        <td>O segundo ou posterior SELECT em um UNION que pertence a uma subconsulta não armazenável em cache (consulte SUBCONSULTA NÃO ARMAZENÁVEL EM CACHE)</td>
+      </tr>
+    </tbody>
+  </table>
 
   `DEPENDENT` geralmente indica o uso de uma subconsulta correlacionada. Veja a Seção 13.2.10.7, “Subconsultas Correlacionadas”.
 
@@ -83,7 +218,7 @@ As propriedades do JSON que são `NULL` não são exibidas na saída `EXPLAIN` f
 
 - `key` (nome JSON: `key`)
 
-  A coluna `chave` indica a chave (índice) que o MySQL realmente decidiu usar. Se o MySQL decidir usar um dos índices `possíveis_chaves` para procurar linhas, esse índice é listado como o valor da chave.
+  A coluna `key` indica a chave (índice) que o MySQL realmente decidiu usar. Se o MySQL decidir usar um dos índices `possible_keys` para procurar linhas, esse índice é listado como o valor da chave.
 
   É possível que `key` nomeie um índice que não está presente no valor `possible_keys`. Isso pode acontecer se nenhum dos índices `possible_keys` for adequado para buscar linhas, mas todas as colunas selecionadas pela consulta forem colunas de algum outro índice. Ou seja, o índice nomeado cobre as colunas selecionadas, então, embora não seja usado para determinar quais linhas serão recuperadas, uma varredura de índice é mais eficiente do que uma varredura de linha de dados.
 
@@ -121,11 +256,11 @@ As propriedades do JSON que são `NULL` não são exibidas na saída `EXPLAIN` f
 
   Não há uma única propriedade JSON correspondente à coluna `Extra`; no entanto, os valores que podem ocorrer nesta coluna são exibidos como propriedades JSON ou como o texto da propriedade `message`.
 
-#### EXPLIQUE Tipos de Conexão
+#### EXPLAIN Tipos de Conexão
 
 A coluna `type` da saída `EXPLAIN` descreve como as tabelas são unidas. Na saída formatada em JSON, esses valores são encontrados como propriedades do `access_type`. A lista a seguir descreve os tipos de junção, ordenados do melhor tipo para o pior:
 
-- `sistema`
+- `system`
 
   A tabela tem apenas uma linha (= tabela de sistema). Este é um caso especial do tipo de junção `const`.
 
@@ -231,17 +366,17 @@ A coluna `type` da saída `EXPLAIN` descreve como as tabelas são unidas. Na sa�
     WHERE key_part1 = 10 AND key_part2 IN (10,20,30);
   ```
 
-- `índice`
+- `index`
 
   O tipo de junção `index` é o mesmo que `ALL`, exceto que a árvore de índice é percorrida. Isso ocorre de duas maneiras:
 
   - Se o índice for um índice de cobertura para as consultas e puder ser usado para satisfazer todos os dados necessários da tabela, apenas a árvore do índice será percorrida. Nesse caso, a coluna `Extra` indica que o índice está sendo usado. Um varredura apenas com índice geralmente é mais rápida do que `ALL` porque o tamanho do índice geralmente é menor que os dados da tabela.
 
-  - Um varrimento completo da tabela é realizado usando leituras do índice para buscar linhas de dados na ordem do índice. `Usa índice` não aparece na coluna `Extra`.
+  - Um varrimento completo da tabela é realizado usando leituras do índice para buscar linhas de dados na ordem do índice. `Uses index` não aparece na coluna `Extra`.
 
   O MySQL pode usar esse tipo de junção quando a consulta usa apenas colunas que fazem parte de um único índice.
 
-- `TODOS`
+- `ALL`
 
   Um varredura completa da tabela é realizada para cada combinação de linhas das tabelas anteriores. Isso normalmente não é bom se a tabela for a primeira tabela não marcada como `const`, e geralmente é *muito* ruim em todos os outros casos. Normalmente, você pode evitar `ALL` adicionando índices que permitem a recuperação de linhas da tabela com base em valores constantes ou valores de coluna de tabelas anteriores.
 
@@ -251,15 +386,15 @@ A coluna `Extra` da saída `EXPLAIN` contém informações adicionais sobre como
 
 Se você deseja realizar suas consultas o mais rápido possível, procure por valores na coluna `Extra` dos parâmetros `Using filesort` e `Using temporary`, ou, na saída `EXPLAIN` formatada em JSON, por propriedades `using_filesort` e `using_temporary_table` iguais a `true`.
 
-- `Child de 'table' empurrado para join@1` (texto `message` em JSON)
+- `Child of 'table' pushed join@1` (texto `message` em JSON)
 
   Essa tabela é referenciada como a filha de *`table`* em uma junção que pode ser empurrada para o kernel NDB. Aplica-se apenas no NDB Cluster, quando as junções empurradas estão habilitadas. Consulte a descrição da variável de sistema `ndb_join_pushdown` para obter mais informações e exemplos.
 
-- `const linha não encontrada` (propriedade JSON: `const_row_not_found`)
+- `const row not found` (propriedade JSON: `const_row_not_found`)
 
   Para uma consulta como `SELECT ... FROM tbl_name`, a tabela estava vazia.
 
-- `Excluir todas as linhas` (propriedade JSON: `message`)
+- `Deleting all rows` (propriedade JSON: `message`)
 
   Para `DELETE`, alguns motores de armazenamento (como `MyISAM`) suportam um método de manipulador que remove todas as linhas da tabela de maneira simples e rápida. Este valor `Extra` é exibido se o motor usar essa otimização.
 
@@ -275,15 +410,15 @@ Se você deseja realizar suas consultas o mais rápido possível, procure por va
 
   Isso ocorre para a otimização de subconsultas como uma estratégia de fallback quando o otimizador não pode usar um método de acesso de consulta por índice.
 
-- `Impossível HAVING` (propriedade JSON: `message`)
+- `Impossible HAVING` (propriedade JSON: `message`)
 
   A cláusula `HAVING` é sempre falsa e não pode selecionar nenhuma linha.
 
-- `Impossível WHERE` (propriedade JSON: `message`)
+- `Impossible WHERE` (propriedade JSON: `message`)
 
   A cláusula `WHERE` é sempre falsa e não pode selecionar nenhuma linha.
 
-- `Impossível notar WHERE após a leitura de tabelas estáticas` (propriedade JSON: `message`)
+- `Impossible WHERE noticed after reading const tables` (propriedade JSON: `message`)
 
   O MySQL leu todas as tabelas `const` (e `system`) e percebeu que a cláusula `WHERE` sempre é falsa.
 
@@ -291,25 +426,25 @@ Se você deseja realizar suas consultas o mais rápido possível, procure por va
 
   A estratégia semijoin LooseScan é utilizada. *`m`* e *`n`* são números de peça-chave.
 
-- `Nenhuma linha mínima/máxima correspondente` (propriedade JSON: `message`)
+- `No matching min/max row` (propriedade JSON: `message`)
 
   Nenhuma linha satisfaz a condição para uma consulta como `SELECT MIN(...) FROM ... WHERE condição`.
 
-- `nenhuma linha correspondente na tabela const` (propriedade JSON: `message`)
+- `no matching row in const table` (propriedade JSON: `message`)
 
   Para uma consulta com uma junção, havia uma tabela vazia ou uma tabela sem linhas que satisfaçam uma condição de índice único.
 
-- `Nenhuma linha correspondente após o corte de partição` (propriedade JSON: `message`)
+- `No matching rows after partition pruning` (propriedade JSON: `message`)
 
   Para `DELETE` ou `UPDATE`, o otimizador não encontrou nada para excluir ou atualizar após a poda de partição. Isso é semelhante ao significado de `Impossível WHERE` para instruções `SELECT`.
 
-- `Nenhuma tabela usada` (propriedade JSON: `message`)
+- `No tables used` (propriedade JSON: `message`)
 
   A consulta não tem a cláusula `FROM`, ou tem a cláusula `FROM DUAL`.
 
   Para as instruções `INSERT` ou `REPLACE`, o `EXPLAIN` exibe esse valor quando não há uma parte `SELECT`. Por exemplo, ele aparece para `EXPLAIN INSERT INTO t VALUES(10)`, pois é equivalente a `EXPLAIN INSERT INTO t SELECT 10 FROM DUAL`.
 
-- `Não existe` (propriedade JSON: `message`)
+- `Not exists` (propriedade JSON: `message`)
 
   O MySQL conseguiu otimizar a consulta com uma `JOIN LEFT` e não examina mais linhas nesta tabela para a combinação da linha anterior após encontrar uma linha que corresponda aos critérios da `JOIN LEFT`. Aqui está um exemplo do tipo de consulta que pode ser otimizada dessa maneira:
 
@@ -324,17 +459,17 @@ Se você deseja realizar suas consultas o mais rápido possível, procure por va
 
   Esse valor ocorre com `EXPLAIN FOR CONNECTION` quando o otimizador ainda não terminou de criar o plano de execução para a instrução que está sendo executada na conexão nomeada. Se o resultado do plano de execução contiver várias linhas, qualquer uma delas ou todas elas podem ter esse valor `Extra`, dependendo do progresso do otimizador na determinação do plano de execução completo.
 
-- `Verificação de intervalo para cada registro (mapa de índice: N)` (propriedade JSON: `message`)
+- `Range checked for each record (index map: N)` (propriedade JSON: `message`)
 
   O MySQL não encontrou um bom índice para usar, mas descobriu que alguns índices podem ser usados depois que os valores das colunas das tabelas anteriores são conhecidos. Para cada combinação de linha nas tabelas anteriores, o MySQL verifica se é possível usar um método de acesso `range` ou `index_merge` para recuperar as linhas. Isso não é muito rápido, mas é mais rápido do que realizar uma junção sem nenhum índice. Os critérios de aplicabilidade são descritos nas Seções 8.2.1.2, “Otimização de Faixa”, e 8.2.1.3, “Otimização de Fusão de Índices”, com a exceção de que todos os valores das colunas da tabela anterior são conhecidos e considerados constantes.
 
   Os índices são numerados a partir do número 1, na mesma ordem que é exibida pelo comando `SHOW INDEX` para a tabela. O valor do mapa do índice *`N`* é um valor de máscara de bits que indica quais índices são candidatos. Por exemplo, um valor de `0x19` (binário 11001) significa que os índices 1, 4 e 5 são considerados.
 
-- `Bancos de dados digitalizados N` (propriedade JSON: `mensagem`)
+- `Scanned N databases` (propriedade JSON: `mensagem`)
 
   Isso indica quantas varreduras de diretório o servidor realiza ao processar uma consulta para as tabelas do `INFORMATION_SCHEMA`, conforme descrito na Seção 8.2.3, “Otimizando consultas do INFORMATION_SCHEMA”. O valor de *`N`* pode ser 0, 1 ou `all`.
 
-- `Selecionar tabelas otimizadas` (propriedade JSON: `message`)
+- `Select tables optimized away` (propriedade JSON: `message`)
 
   O otimizador determinou 1) que, no máximo, uma linha deve ser retornada e 2) que, para produzir essa linha, um conjunto determinístico de linhas deve ser lido. Quando as linhas a serem lidas podem ser lidas durante a fase de otimização (por exemplo, lendo linhas de índice), não há necessidade de ler nenhuma tabela durante a execução da consulta.
 
@@ -374,11 +509,11 @@ Se você deseja realizar suas consultas o mais rápido possível, procure por va
 
   - `Open_full_table`: Busca de informações não otimizada. Os arquivos `.frm`, `.MYD` e `.MYI` devem ser abertos.
 
-- `Início temporário`, `Fim temporário` (propriedade JSON: `mensagem`)
+- `Start temporary`, `End temporary` (propriedade JSON: `mensagem`)
 
   Isso indica o uso temporário da tabela para a estratégia de semijoin Duplicate Weedout.
 
-- `linha única não encontrada` (propriedade JSON: `mensagem`)
+- `unique row not found` (propriedade JSON: `mensagem`)
 
   Para uma consulta como `SELECT ... FROM tbl_name`, nenhuma linha satisfaz a condição para um índice `UNIQUE` ou `PRIMARY KEY` na tabela.
 
@@ -386,51 +521,51 @@ Se você deseja realizar suas consultas o mais rápido possível, procure por va
 
   O MySQL deve fazer uma passagem extra para descobrir como recuperar as linhas em ordem classificada. A classificação é feita percorrendo todas as linhas de acordo com o tipo de junção e armazenando a chave de classificação e o ponteiro para a linha para todas as linhas que correspondem à cláusula `WHERE`. As chaves são então classificadas e as linhas são recuperadas em ordem classificada. Veja a Seção 8.2.1.14, “Otimização de ORDER BY”.
 
-- `Usando índice` (propriedade JSON: `using_index`)
+- `Using index` (propriedade JSON: `using_index`)
 
   As informações da coluna são recuperadas da tabela usando apenas as informações na árvore de índice, sem precisar fazer uma busca adicional para ler a linha real. Essa estratégia pode ser usada quando a consulta usa apenas colunas que fazem parte de um único índice.
 
   Para tabelas `InnoDB` que possuem um índice agrupado definido pelo usuário, esse índice pode ser usado mesmo quando a opção `Using index` está ausente na coluna `Extra`. Esse é o caso se `type` for `index` e `key` for `PRIMARY`.
 
-- `Usando a condição de índice` (propriedade JSON: `using_index_condition`)
+- `Using index condition` (propriedade JSON: `using_index_condition`)
 
   As tabelas são lidas acessando tuplas de índice e testando-as primeiro para determinar se é necessário ler linhas inteiras da tabela. Dessa forma, as informações do índice são usadas para adiar (“empurrar para baixo”) a leitura de linhas inteiras da tabela, a menos que seja necessário. Veja a Seção 8.2.1.5, “Otimização de Empurrão de Condição de Índice”.
 
-- `Usar índice para agrupamento` (propriedade JSON: `using_index_for_group_by`)
+- `Using index for group-by` (propriedade JSON: `using_index_for_group_by`)
 
-  Assim como o método de acesso à tabela `Usando índice`, `Usando índice para agrupamento` indica que o MySQL encontrou um índice que pode ser usado para recuperar todas as colunas de uma consulta `GROUP BY` ou `DISTINCT` sem qualquer acesso adicional ao disco à tabela real. Além disso, o índice é usado da maneira mais eficiente, de modo que, para cada grupo, apenas algumas entradas do índice são lidas. Para obter detalhes, consulte a Seção 8.2.1.15, “Otimização de GROUP BY”.
+  Assim como o método de acesso à tabela `Using index`, `Using index for group-by` indica que o MySQL encontrou um índice que pode ser usado para recuperar todas as colunas de uma consulta `GROUP BY` ou `DISTINCT` sem qualquer acesso adicional ao disco à tabela real. Além disso, o índice é usado da maneira mais eficiente, de modo que, para cada grupo, apenas algumas entradas do índice são lidas. Para obter detalhes, consulte a Seção 8.2.1.15, “Otimização de GROUP BY”.
 
-- `Usando o buffer de junção (Loop Aninhado Bloco)`, `Usando o buffer de junção (Acesso de Chave em Batelamento)` (Propriedade JSON: `using_join_buffer`)
+- `Using join buffer (Block Nested Loop)`, `Using join buffer (Batched Key Access)` (Propriedade JSON: `using_join_buffer`)
 
-  As tabelas de junções anteriores são lidas em porções no buffer de junção e, em seguida, suas linhas são usadas a partir do buffer para realizar a junção com a tabela atual. `(Loop Aninhado de Bloco)` indica o uso do algoritmo Loop Aninhado de Bloco e `(Acesso de Chave em Batelada)` indica o uso do algoritmo Acesso de Chave em Batelada. Ou seja, as chaves da tabela na linha anterior do resultado do `EXPLAIN` são armazenadas no buffer, e as linhas correspondentes são recuperadas em lotes da tabela representada pela linha na qual `Usando buffer de junção` aparece.
+  As tabelas de junções anteriores são lidas em porções no buffer de junção e, em seguida, suas linhas são usadas a partir do buffer para realizar a junção com a tabela atual. `(Block Nested Loop)` indica o uso do algoritmo Loop Aninhado de Bloco e `(Batched Key Access)` indica o uso do algoritmo Acesso de Chave em Batelada. Ou seja, as chaves da tabela na linha anterior do resultado do `EXPLAIN` são armazenadas no buffer, e as linhas correspondentes são recuperadas em lotes da tabela representada pela linha na qual `Using join buffer` aparece.
 
   Na saída formatada em JSON, o valor de `using_join_buffer` é sempre um dos seguintes: `Block Nested Loop` ou `Batched Key Access`.
 
   Para obter mais informações sobre esses algoritmos, consulte Algoritmo de Conclusão de Join de Nó Fechado e Conclusão de Join de Acesso a Chave em lote.
 
-- `Usando MRR` (propriedade JSON: `message`)
+- `Using MRR` (propriedade JSON: `message`)
 
   As tabelas são lidas usando a estratégia de otimização de leitura de Multi-Range. Veja a Seção 8.2.1.10, “Otimização de Leitura de Multi-Range”.
 
-- `Usando sort_union(...)`, `Usando union(...)`, `Usando intersect(...)` (propriedade JSON: `message`)
+- `Using sort_union(...)`, `Using union(...)`, `Using intersect(...)` (propriedade JSON: `message`)
 
   Esses indicam o algoritmo específico que mostra como as consultas de índice são unidas para o tipo de junção `index_merge`. Veja a Seção 8.2.1.3, “Otimização da Junção de Índices”.
 
-- `Usando temporário` (propriedade JSON: `using_temporary_table`)
+- `Using temporary` (propriedade JSON: `using_temporary_table`)
 
   Para resolver a consulta, o MySQL precisa criar uma tabela temporária para armazenar o resultado. Isso geralmente acontece se a consulta contiver cláusulas `GROUP BY` e `ORDER BY` que listam colunas de maneira diferente.
 
-- `Usando onde` (propriedade JSON: `attached_condition`)
+- `Using where` (propriedade JSON: `attached_condition`)
 
   Uma cláusula `WHERE` é usada para restringir quais linhas devem ser correspondidas à próxima tabela ou enviadas ao cliente. A menos que você tenha a intenção específica de recuperar ou examinar todas as linhas da tabela, pode haver algo errado em sua consulta se o valor `Extra` não for `Using where` e o tipo de junção da tabela for `ALL` ou `index`.
 
   A opção `Using where` não tem correspondência direta na saída formatada em JSON; a propriedade `attached_condition` contém qualquer condição `WHERE` usada.
 
-- `Usando onde com condição pressionada` (propriedade JSON: `message`)
+- `Using where with pushed condition` (propriedade JSON: `message`)
 
   Este item se aplica apenas às tabelas `NDB`. Isso significa que o NDB Cluster está usando a otimização de empurrar a condição para melhorar a eficiência de uma comparação direta entre uma coluna não indexada e uma constante. Nesse caso, a condição é "empurrada" para os nós de dados do cluster e é avaliada em todos os nós de dados simultaneamente. Isso elimina a necessidade de enviar linhas não correspondentes pela rede e pode acelerar essas consultas em um fator de 5 a 10 vezes em relação aos casos em que a otimização de empurrar a condição do motor poderia ser usada, mas não é. Para mais informações, consulte a Seção 8.2.1.4, "Otimização de Empurrar a Condição do Motor".
 
-- `Limite zero` (propriedade JSON: `mensagem`)
+- `Zero limit` (propriedade JSON: `message`)
 
   A consulta tinha uma cláusula `LIMIT 0` e não pode selecionar nenhuma linha.
 
@@ -461,12 +596,76 @@ Para este exemplo, faça as seguintes suposições:
 
 - As colunas que estão sendo comparadas foram declaradas da seguinte forma.
 
-  <table summary="Nomes de tabelas, nomes de colunas e tipos de dados para as colunas que estão sendo comparadas no exemplo EXPLAIN descrito no texto anterior."><col style="width: 10%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Tabela</th> <th>Coluna</th> <th>Tipo de dados</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>EMPLOYID</code>]</th> <td>PH_HTML_CODE_<code>EMPLOYID</code>]</td> <td>PH_HTML_CODE_<code>do</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>CUSTNMBR</code>]</th> <td>PH_HTML_CODE_<code>CHAR(15)</code>]</td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>tt</code></th> <td><code>ClientID</code></td> <td><code>CHAR(10)</code></td> </tr><tr> <th><code>et</code></th> <td><code>EMPLOYID</code></td> <td><code>ActualPC</code><code>EMPLOYID</code>]</td> </tr><tr> <th><code>do</code></th> <td><code>CUSTNMBR</code></td> <td><code>CHAR(15)</code></td> </tr></tbody></table>
+  <table summary="Nomes das tabelas, nomes das colunas e tipos de dados das colunas que estão sendo comparadas no exemplo EXPLAIN descrito no texto anterior.">
+    <thead>
+      <tr>
+        <th>Tabela</th>
+        <th>Coluna</th>
+        <th>Tipo de dados</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><code>tt</code></th>
+        <td><code>ActualPC</code></td>
+        <td><code>CHAR(10)</code></td>
+      </tr>
+      <tr>
+        <th><code>tt</code></th>
+        <td><code>AssignedPC</code></td>
+        <td><code>CHAR(10)</code></td>
+      </tr>
+      <tr>
+        <th><code>tt</code></th>
+        <td><code>ClientID</code></td>
+        <td><code>CHAR(10)</code></td>
+      </tr>
+      <tr>
+        <th><code>et</code></th>
+        <td><code>EMPLOYID</code></td>
+        <td><code>CHAR(15)</code></td>
+      </tr>
+      <tr>
+        <th><code>do</code></th>
+        <td><code>CUSTNMBR</code></td>
+        <td><code>CHAR(15)</code></td>
+      </tr>
+    </tbody>
+  </table>
 
 - As tabelas têm os seguintes índices.
 
-  <table summary="Índices para cada uma das tabelas que fazem parte do exemplo EXPLAIN descrito no texto anterior."><col style="width: 10%"/><col style="width: 40%"/><thead><tr> <th>Tabela</th> <th>Índice</th> </tr></thead><tbody><tr> <td><code>tt</code></td> <td><code>ActualPC</code></td> </tr><tr> <td><code>tt</code></td> <td><code>AssignedPC</code></td> </tr><tr> <td><code>tt</code></td> <td><code>ClientID</code></td> </tr><tr> <td><code>et</code></td> <td><code>EMPLOYID</code> (chave primária)</td> </tr><tr> <td><code>do</code></td> <td><code>CUSTNMBR</code> (chave primária)</td> </tr></tbody></table>
-
+  <table summary="Índices para cada uma das tabelas que fazem parte do exemplo EXPLAIN descrito no texto anterior.">
+    <thead>
+      <tr>
+        <th>Tabela</th>
+        <th>Índice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>tt</code></td>
+        <td><code>ActualPC</code></td>
+      </tr>
+      <tr>
+        <td><code>tt</code></td>
+        <td><code>AssignedPC</code></td>
+      </tr>
+      <tr>
+        <td><code>tt</code></td>
+        <td><code>ClientID</code></td>
+      </tr>
+      <tr>
+        <td><code>et</code></td>
+        <td><code>EMPLOYID</code> (chave primária)</td>
+      </tr>
+      <tr>
+        <td><code>do</code></td>
+        <td><code>CUSTNMBR</code> (chave primária)</td>
+      </tr>
+    </tbody>
+  </table>
+  
 - Os valores de `tt.ActualPC` não estão distribuídos de forma uniforme.
 
 Inicialmente, antes que qualquer otimização tenha sido realizada, a instrução `EXPLAIN` produz as seguintes informações:

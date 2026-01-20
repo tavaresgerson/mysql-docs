@@ -4,7 +4,7 @@ Quando você tiver determinado que não há erro do usuário envolvido e a repli
 
 Se você tiver um caso de teste repetiível que demonstre o erro, insira-o em nosso banco de dados de bugs usando as instruções fornecidas em Seção 1.5, “Como Relatar Erros ou Problemas”. Se você tiver um problema “fantasma” (um que você não consegue duplicar à vontade), use o seguinte procedimento:
 
-1. Verifique se não há erro do usuário envolvido. Por exemplo, se você atualizar a replica fora do fio de replicação, os dados saem de sincronia e você pode ter violações de chave única nas atualizações. Nesse caso, o fio de SQL de replicação para e espera que você limpe as tabelas manualmente para colocá-las em sincronia. *Isso não é um problema de replicação. É um problema de interferência externa que faz com que a replicação falhe.*
+1. Verifique se não há erro do usuário envolvido. Por exemplo, se você atualizar a replica fora do thread de replicação, os dados saem de sincronia e você pode ter violações de chave única nas atualizações. Nesse caso, o thread de SQL de replicação para e espera que você limpe as tabelas manualmente para colocá-las em sincronia. *Isso não é um problema de replicação. É um problema de interferência externa que faz com que a replicação falhe.*
 
 2. Execute a replica com as opções [`--log-slave-updates`](https://pt.wikipedia.org/wiki/Replicação_\(database\)#Op%C3%A9rnicas_de_replicac%C3%A3o) e [`--log-bin`](https://pt.wikipedia.org/wiki/Replicação_\(database\)#Op%C3%A9rnicas_de_replicac%C3%A3o) no arquivo de opções binárias de replicação. Essas opções fazem com que a replica registre as atualizações que recebe do banco de dados fonte em seus próprios logs binários.
 

@@ -20,7 +20,7 @@ As seguintes opções de inicialização agora afetam *todos* os canais em uma t
 
 - [`--relay-log-purge`](https://replication-options-replica.html#sysvar_relay_log_purge)
 
-  Quando configurado, cada canal limpa seu próprio log de relé automaticamente.
+  Quando configurado, cada canal limpa seu próprio log de relay automaticamente.
 
 - `--slave_transaction_retries`
 
@@ -28,7 +28,7 @@ As seguintes opções de inicialização agora afetam *todos* os canais em uma t
 
 - [`--skip-slave-start`](https://pt.wikipedia.org/wiki/Op%C3%A9rnia_replication-options-replica.html#op%C3%A3%C3%B5%C3%A7%C3%A3o_mysqld_skip-slave-start)
 
-  Nenhum fio de replicação é iniciado em nenhum canal.
+  Nenhum thread de replicação é iniciado em nenhum canal.
 
 - `--slave-skip-errors`
 
@@ -38,11 +38,11 @@ Os valores definidos para as seguintes opções de inicialização da startup s�
 
 - `--max-relay-log-size=tamanho`
 
-  Tamanho máximo do arquivo de registro individual do relé para cada canal; após atingir esse limite, o arquivo é rotado.
+  Tamanho máximo do arquivo de registro individual do relay para cada canal; após atingir esse limite, o arquivo é rotado.
 
 - `--relay-log-space-limit=tamanho`
 
-  Limite superior para o tamanho total de todos os registros de relé combinados, para cada canal individual. Para *`N`* canais, o tamanho combinado desses registros é limitado a `relay_log_space_limit * N`.
+  Limite superior para o tamanho total de todos os registros de relay combinados, para cada canal individual. Para *`N`* canais, o tamanho combinado desses registros é limitado a `relay_log_space_limit * N`.
 
 - `--slave-parallel-workers=valor`
 

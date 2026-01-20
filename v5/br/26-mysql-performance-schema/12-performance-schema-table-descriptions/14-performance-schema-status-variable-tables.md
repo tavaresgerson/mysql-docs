@@ -40,7 +40,7 @@ A tabela `status_by_thread` contém o status de cada thread ativa. Ela possui as
 
 - `THREAD_ID`
 
-  O identificador do fio da sessão em que a variável de status é definida.
+  O identificador do thread da sessão em que a variável de status é definida.
 
 - `VARIAVEL_NOME`
 

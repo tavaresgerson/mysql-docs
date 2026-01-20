@@ -6,7 +6,7 @@ Para obter o plano de execução de uma declaração explicável que esteja send
 EXPLAIN [options] FOR CONNECTION connection_id;
 ```
 
-`EXPLAIN PARA CONEXÃO` retorna as informações `EXPLAIN` que estão sendo usadas atualmente para executar uma consulta em uma conexão específica. Devido às alterações nos dados (e nas estatísticas de suporte), isso pode produzir um resultado diferente da execução de `EXPLAIN` no texto equivalente da consulta. Essa diferença de comportamento pode ser útil no diagnóstico de problemas de desempenho mais transitórios. Por exemplo, se você estiver executando uma declaração em uma sessão que leva muito tempo para ser concluída, usar `EXPLAIN PARA CONEXÃO` em outra sessão pode fornecer informações úteis sobre a causa do atraso.
+`EXPLAIN FOR CONNECTION` retorna as informações `EXPLAIN` que estão sendo usadas atualmente para executar uma consulta em uma conexão específica. Devido às alterações nos dados (e nas estatísticas de suporte), isso pode produzir um resultado diferente da execução de `EXPLAIN` no texto equivalente da consulta. Essa diferença de comportamento pode ser útil no diagnóstico de problemas de desempenho mais transitórios. Por exemplo, se você estiver executando uma declaração em uma sessão que leva muito tempo para ser concluída, usar `EXPLAIN FOR CONNECTION` em outra sessão pode fornecer informações úteis sobre a causa do atraso.
 
 *`connection_id`* é o identificador de conexão, obtido da tabela `INFORMATION_SCHEMA` `PROCESSLIST` ou da instrução `SHOW PROCESSLIST`. Se você tiver o privilégio `PROCESS`, pode especificar o identificador para qualquer conexão. Caso contrário, pode especificar o identificador apenas para suas próprias conexões.
 

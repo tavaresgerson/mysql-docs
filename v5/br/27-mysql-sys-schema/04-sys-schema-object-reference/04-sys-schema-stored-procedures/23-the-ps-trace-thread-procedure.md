@@ -1,6 +1,6 @@
 #### 26.4.4.23 O procedimento ps_trace_thread()
 
-Descarrega todos os dados do Schema de Desempenho de um fio instrumentado em um arquivo de gráfico formatado em `.dot` (para a linguagem de descrição de gráficos DOT). Cada conjunto de resultados retornado pelo procedimento deve ser usado para um gráfico completo.
+Descarrega todos os dados do Schema de Desempenho de um thread instrumentado em um arquivo de gráfico formatado em `.dot` (para a linguagem de descrição de gráficos DOT). Cada conjunto de resultados retornado pelo procedimento deve ser usado para um gráfico completo.
 
 Esse procedimento desabilita o registro binário durante sua execução, manipulando o valor da sessão da variável de sistema `sql_log_bin`. Essa é uma operação restrita, portanto, o procedimento requer privilégios suficientes para definir variáveis de sessão restritas. Consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
 

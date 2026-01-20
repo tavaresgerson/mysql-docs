@@ -25,7 +25,6 @@
 
 * `Waiting for first event from ndbcluster`
 * `Waiting for ndbcluster binlog update to reach current position`
-
 * `Waiting for ndbcluster global schema lock`
 
   The thread is waiting for a global schema lock held by another thread to be released.

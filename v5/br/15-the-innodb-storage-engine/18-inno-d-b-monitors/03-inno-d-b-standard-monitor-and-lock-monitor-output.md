@@ -295,7 +295,7 @@ Para uma descrição de cada métrica relatada pelo Monitor Padrão, consulte o 
 
   Esta seção exibe informações sobre o log do `InnoDB`. Os conteúdos incluem o número atual da sequência do log, até onde o log foi descarregado no disco e a posição em que o `InnoDB` fez o último ponto de verificação. (Veja a Seção 14.12.3, “Pontos de Verificação do InnoDB”.) A seção também exibe informações sobre as escritas pendentes e as estatísticas de desempenho das escritas.
 
-- `POOL DE BUFFER E MEMÓRIA`
+- `POOL DE BUFFER E MEMORY`
 
   Esta seção fornece estatísticas sobre as páginas lidas e escritas. Você pode calcular, a partir desses números, quantas operações de E/S de arquivos suas consultas estão realizando atualmente.
 
@@ -303,4 +303,4 @@ Para uma descrição de cada métrica relatada pelo Monitor Padrão, consulte o 
 
 - `OPERACOES EM LINHAS`
 
-  Esta seção mostra o que o fio principal está fazendo, incluindo o número e a taxa de desempenho para cada tipo de operação de linha.
+  Esta seção mostra o que o thread principal está fazendo, incluindo o número e a taxa de desempenho para cada tipo de operação de linha.

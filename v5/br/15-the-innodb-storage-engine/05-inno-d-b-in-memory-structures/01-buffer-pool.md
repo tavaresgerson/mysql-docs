@@ -34,7 +34,7 @@ Por padrão, o algoritmo funciona da seguinte forma:
 
 Por padrão, as páginas lidas por consultas são imediatamente movidas para a nova sublista, o que significa que permanecem no buffer pool por mais tempo. Um varredura de tabela, realizada para uma operação de **mysqldump** ou uma instrução `SELECT` sem cláusula `WHERE`, por exemplo, pode trazer uma grande quantidade de dados para o buffer pool e expulsar uma quantidade equivalente de dados mais antigos, mesmo que os novos dados nunca sejam usados novamente. Da mesma forma, as páginas que são carregadas pelo thread de pré-leitura em segundo plano e acessadas apenas uma vez são movidas para a frente da nova lista. Essas situações podem empurrar páginas frequentemente usadas para a sublista antiga, onde elas se tornam sujeitas à expulsão. Para obter informações sobre como otimizar esse comportamento, consulte a Seção 14.8.3.3, “Tornando a varredura do buffer pool resistente”, e a Seção 14.8.3.4, “Configurando o pré-enchimento do buffer pool do InnoDB (Pré-leitura)”).
 
-A saída do Monitor Padrão do `InnoDB` contém vários campos na seção `POOL DE BUFFER E MEMÓRIA` sobre o funcionamento do algoritmo LRU do pool de buffers. Para obter detalhes, consulte Monitoramento do Pool de Buffers Usando o Monitor Padrão do InnoDB.
+A saída do Monitor Padrão do `InnoDB` contém vários campos na seção `POOL DE BUFFER E MEMORY` sobre o funcionamento do algoritmo LRU do pool de buffers. Para obter detalhes, consulte Monitoramento do Pool de Buffers Usando o Monitor Padrão do InnoDB.
 
 #### Configuração do Pool de Armazenamento de Buffer
 

@@ -39,7 +39,7 @@ Para controlar se um instrumento está habilitado, defina a coluna `ENABLED` com
 
 As modificações na maioria das linhas de `setup_instruments` afetam o monitoramento imediatamente. Para alguns instrumentos, as modificações só são eficazes ao iniciar o servidor; alterá-las em tempo de execução não tem efeito. Isso afeta principalmente mútues, condições e rwlocks no servidor, embora possa haver outros instrumentos para os quais isso seja verdade.
 
-A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou fio sendo monitorado, outras tabelas podem ser usadas conforme descrito em Seção 25.4.3, “Pré-filtragem de Eventos”.
+A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou thread sendo monitorado, outras tabelas podem ser usadas conforme descrito em Seção 25.4.3, “Pré-filtragem de Eventos”.
 
 Os exemplos a seguir demonstram possíveis operações na tabela `setup_instruments`. Essas alterações, assim como outras operações de pré-filtragem, afetam todos os usuários. Algumas dessas consultas usam o operador `LIKE` e uma correspondência de padrões com nomes de instrumentos. Para obter informações adicionais sobre como especificar padrões para selecionar instrumentos, consulte Seção 25.4.9, “Nomeando Instrumentos ou Consumidores para Operações de Filtragem”.
 

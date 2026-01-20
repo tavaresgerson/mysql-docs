@@ -4,7 +4,7 @@
 KILL [CONNECTION | QUERY] processlist_id
 ```
 
-Cada conexão com **mysqld** é executada em um fio separado. Você pode matar um fio com a instrução `KILL processlist_id`.
+Cada conexão com **mysqld** é executada em um thread separado. Você pode matar um thread com a instrução `KILL processlist_id`.
 
 Os identificadores do processo do `PROCESSLIST` podem ser determinados a partir da coluna `ID` da tabela `INFORMATION_SCHEMA `PROCESSLIST``, da coluna `Id` da saída do comando `SHOW PROCESSLIST` e da coluna `PROCESSLIST_ID` da tabela `threads` do Schema de Desempenho. O valor do processo atual é retornado pela função `CONNECTION_ID()` (funções de informações.html#function_connection-id).
 
@@ -44,9 +44,9 @@ Quando você usa `KILL`, uma bandeira de morte específica para a thread é defi
 
 - `GET_LOCK()` interrompe e retorna `NULL`.
 
-- Se o fio estiver no manipulador de bloqueio de tabela (estado: `Bloqueado`), o bloqueio de tabela será rapidamente abortado.
+- Se o thread estiver no manipulador de bloqueio de tabela (estado: `Bloqueado`), o bloqueio de tabela será rapidamente abortado.
 
-- Se o fio estiver aguardando espaço livre no disco em uma chamada de escrita, a escrita será abortada com uma mensagem de erro "disco cheio".
+- Se o thread estiver aguardando espaço livre no disco em uma chamada de escrita, a escrita será abortada com uma mensagem de erro "disco cheio".
 
 Aviso
 

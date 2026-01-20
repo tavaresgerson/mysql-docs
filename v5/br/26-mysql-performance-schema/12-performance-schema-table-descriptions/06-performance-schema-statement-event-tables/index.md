@@ -12,9 +12,9 @@ A execução da declaração do Instrumento do Schema de Desempenho. Os eventos 
 
 Essas tabelas armazenam eventos de declaração:
 
-- `eventos_estatuto_atual`: O evento de estatuto atual para cada fio.
+- `eventos_estatuto_atual`: O evento de estatuto atual para cada thread.
 
-- `eventos_estatuto_histórico`: Os eventos de estatuto mais recentes que terminaram por fio.
+- `eventos_estatuto_histórico`: Os eventos de estatuto mais recentes que terminaram por thread.
 
 - `eventos_estatuto_histórico_longo`: Os eventos de estatuto mais recentes que terminaram globalmente (em todas as threads).
 
@@ -153,7 +153,7 @@ Para obter informações adicionais sobre a configuração da coleta de eventos,
 
 #### Monitoramento de declarações
 
-O monitoramento das declarações começa no momento em que o servidor percebe que uma atividade é solicitada em um fio, até o momento em que toda a atividade cessa. Normalmente, isso significa desde o momento em que o servidor recebe o primeiro pacote do cliente até o momento em que o servidor concluiu a transmissão da resposta. As declarações dentro dos programas armazenados são monitoradas como outras declarações.
+O monitoramento das declarações começa no momento em que o servidor percebe que uma atividade é solicitada em um thread, até o momento em que toda a atividade cessa. Normalmente, isso significa desde o momento em que o servidor recebe o primeiro pacote do cliente até o momento em que o servidor concluiu a transmissão da resposta. As declarações dentro dos programas armazenados são monitoradas como outras declarações.
 
 Quando o Schema de Desempenho instrumenta uma solicitação (comando do servidor ou instrução SQL), ele usa nomes de instrumentos que progridem em etapas, de mais gerais (ou "abstratos") para mais específicos, até chegar a um nome de instrumento final.
 
@@ -173,7 +173,7 @@ Um pedido pode ser obtido em qualquer uma dessas fontes:
 
 - Como um pedido de comando ou declaração de um cliente, que envia o pedido como pacotes
 
-- Como uma string de declaração lida do log do relé em uma réplica
+- Como uma string de declaração lida do log do relay em uma réplica
 
 - Como um evento do Agendamento de Eventos
 

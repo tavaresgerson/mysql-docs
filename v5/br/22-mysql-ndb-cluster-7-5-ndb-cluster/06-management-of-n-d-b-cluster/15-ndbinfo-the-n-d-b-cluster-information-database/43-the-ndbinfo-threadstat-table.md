@@ -10,11 +10,11 @@ A tabela `threadstat` contém as seguintes colunas:
 
 - `thr_no`
 
-  ID do fio
+  ID do thread
 
 - `thr_nm`
 
-  Nome do fio
+  Nome do thread
 
 - `c_loop`
 
@@ -46,7 +46,7 @@ A tabela `threadstat` contém as seguintes colunas:
 
 - `os_tid`
 
-  ID do fio do sistema operacional
+  ID do thread do sistema operacional
 
 - `os_now`
 

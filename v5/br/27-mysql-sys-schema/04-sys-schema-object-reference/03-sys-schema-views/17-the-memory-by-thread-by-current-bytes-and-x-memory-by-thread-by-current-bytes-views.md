@@ -6,7 +6,7 @@ As vistas `memory_by_thread_by_current_bytes` e `x$memory_by_thread_by_current_b
 
 - `thread_id`
 
-  O ID do fio.
+  O ID do thread.
 
 - `usuário`
 

@@ -804,7 +804,7 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
 - `Slave_open_temp_tables`
 
-  O número de tabelas temporárias que o fio de replicação SQL atual tem aberto. Se o valor for maior que zero, não é seguro desligar a replica; veja Seção 16.4.1.29, “Replicação e Tabelas Temporárias”. Esta variável relata o total de tabelas temporárias abertas para *todos* os canais de replicação.
+  O número de tabelas temporárias que o thread de replicação SQL atual tem aberto. Se o valor for maior que zero, não é seguro desligar a replica; veja Seção 16.4.1.29, “Replicação e Tabelas Temporárias”. Esta variável relata o total de tabelas temporárias abertas para *todos* os canais de replicação.
 
 - `Slave_received_heartbeats`
 
@@ -818,7 +818,7 @@ As variáveis de status têm os significados mostrados na lista a seguir.
 
 - `Slave_retried_transactions`
 
-  O número total de vezes desde a inicialização em que o fio de replicação SQL tentou novamente as transações.
+  O número total de vezes desde a inicialização em que o thread de replicação SQL tentou novamente as transações.
 
   Essa variável é afetada pelo valor da variável de sistema `show_compatibility_56`. Para obter detalhes, consulte Efeito de show_compatibility_56 nas variáveis de status do escravo.
 

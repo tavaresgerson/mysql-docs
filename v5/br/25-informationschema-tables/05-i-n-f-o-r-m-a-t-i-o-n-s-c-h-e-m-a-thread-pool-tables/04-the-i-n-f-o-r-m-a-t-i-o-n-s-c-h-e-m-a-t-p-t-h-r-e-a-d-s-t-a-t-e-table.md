@@ -18,7 +18,7 @@ A tabela [`TP_THREAD_STATE`](https://pt.wikipedia.org/wiki/TP_THREAD_STATE) tem 
 
 - `WAIT_TYPE`
 
-  O tipo de espera para o fio. `NULL` significa que o fio não está bloqueado. Caso contrário, o fio está bloqueado por uma chamada a `thd_wait_begin()`, e o valor especifica o tipo de espera. As colunas `xxx_WAIT` da tabela `[TP_THREAD_GROUP_STATS]` (information-schema-tp-thread-group-stats-table.html) acumulam contagens para cada tipo de espera.
+  O tipo de espera para o thread. `NULL` significa que o thread não está bloqueado. Caso contrário, o thread está bloqueado por uma chamada a `thd_wait_begin()`, e o valor especifica o tipo de espera. As colunas `xxx_WAIT` da tabela `[TP_THREAD_GROUP_STATS]` (information-schema-tp-thread-group-stats-table.html) acumulam contagens para cada tipo de espera.
 
   O valor `WAIT_TYPE` é uma string que descreve o tipo de espera, conforme mostrado na tabela a seguir.
 
