@@ -2,25 +2,16 @@
 
 As declarações que são rastreáveis estão listadas aqui:
 
-- `SELECT`
-
-- `INSERT`
-
-- `REPLACAR`
-
-- `ATUALIZAR`
-
-- `DELETAR`
-
-- `EXPLAIN` com qualquer uma das declarações anteriores
-
-- `SET`
-
-- `DO`
-
-- `DECLARE`, `CASE`, `IF` e `RETURN` como usados em rotinas armazenadas
-
-- `CHAMAR`
+* `SELECT`
+* `INSERT`
+* `REPLACE`
+* `UPDATE`
+* `DELETE`
+* `EXPLAIN` com qualquer uma das declarações anteriores
+* `SET`
+* `DO`
+* `DECLARE`, `CASE`, `IF` e `RETURN` como usados em rotinas armazenadas
+- `CALL`
 
 O rastreamento é suportado tanto para as instruções `INSERT` quanto `REPLACE` usando `VALUES`, `VALUES ROW` ou `SELECT`.
 
