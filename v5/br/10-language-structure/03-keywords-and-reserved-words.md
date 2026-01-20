@@ -661,7 +661,7 @@ T
 - `TRANSAÇÃO`
 - `TRIGGER` (R)
 - `TRIGGERS`
-- `VERDADEIRO` (R)
+- `TRUE` (R)
 - `TRUNCATE`
 - `TIPO`
 - `TIPOS`

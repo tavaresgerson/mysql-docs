@@ -1,4 +1,4 @@
-#### 8.2.1.9 Simplificação da Conjunção Externa
+#### 8.2.1.9 Simplificação de OUTER JOIN
 
 As expressões de tabela na cláusula `FROM` de uma consulta são simplificadas em muitos casos.
 

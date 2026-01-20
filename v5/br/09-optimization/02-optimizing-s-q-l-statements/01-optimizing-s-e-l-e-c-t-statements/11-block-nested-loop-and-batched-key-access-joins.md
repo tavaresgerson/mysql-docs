@@ -1,4 +1,4 @@
-#### 8.2.1.11 Conexões de junção em laço aninhado e acesso a chave em lote
+#### 8.2.1.11 Blocos de Loop Aninhado e Junções de Acesso a Chaves em Lote
 
 No MySQL, está disponível um algoritmo de junção de acesso a chave em lote (BKA, na sigla em inglês) que utiliza tanto o acesso ao índice da tabela juncionada quanto um buffer de junção. O algoritmo BKA suporta operações de junção interna, externa e semiestruturada, incluindo junções externas aninhadas. Os benefícios do BKA incluem um desempenho de junção melhorado devido à varredura mais eficiente da tabela. Além disso, o algoritmo de junção Block Nested-Loop (BNL, na sigla em inglês) anteriormente usado apenas para junções internas foi estendido e pode ser empregado para operações de junção externa e semiestruturada, incluindo junções externas aninhadas.
 
@@ -9,7 +9,7 @@ As seções a seguir discutem a gestão do buffer de junção que está por trá
 * Junções com Acesso a Chaves em Lote
 * Dicas de Otimização para Algoritmos de Loop Aninhado em Blocos e Acesso a Chaves em Lote
 
-##### Gerenciamento de Buffer de Junção para Algoritmos de Acesso a Chaves em Blocos e Loops Aninhados
+##### Gerenciamento de buffer integrado para algoritmos de acesso a chaves em lote e loops aninhados em bloco.
 
 O MySQL pode utilizar buffers de junção para executar não apenas junções internas sem acesso a índices na tabela interna, mas também junções externas e semijunções que surgem após o achatamento de subconsultas. Além disso, um buffer de junção pode ser usado de forma eficaz quando há acesso a índices na tabela interna.
 

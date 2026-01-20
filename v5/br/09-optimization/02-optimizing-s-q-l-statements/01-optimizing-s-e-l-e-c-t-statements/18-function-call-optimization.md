@@ -1,4 +1,4 @@
-#### 8.2.1.18 Otimização da Chamada de Função
+#### 8.2.1.18 Otimização das Chamadas de Função
 
 As funções do MySQL são marcadas internamente como determinísticas ou não determinísticas. Uma função é não determinística se, dados valores fixos para seus argumentos, ela pode retornar resultados diferentes para diferentes chamadas. Exemplos de funções não determinísticas: `RAND()`, `UUID()`.
 

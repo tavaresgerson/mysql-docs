@@ -1,4 +1,4 @@
-#### 8.2.1.7 Otimização de Conexão Aninhada
+#### 8.2.1.7 Otimização de JOIN Aninhada
 
 A sintaxe para expressar junções permite junções aninhadas. A discussão a seguir se refere à sintaxe de junção descrita na Seção 13.2.9.2, “Cláusula JOIN”.
 

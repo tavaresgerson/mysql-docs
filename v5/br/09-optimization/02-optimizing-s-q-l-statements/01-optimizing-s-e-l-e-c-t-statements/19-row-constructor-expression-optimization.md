@@ -1,4 +1,4 @@
-#### 8.2.1.19 Otimização da expressão do construtor de linha
+#### 8.2.1.19 Otimização de Expressões do Construtor de Linhas
 
 Os construtores de linhas permitem comparações simultâneas de múltiplos valores. Por exemplo, essas duas declarações são semanticamente equivalentes:
 

@@ -64,7 +64,7 @@ A capacidade de busca de texto completo booleano suporta os seguintes operadores
 
 - @distance
 
-  Este operador funciona apenas em tabelas `InnoDB`. Ele testa se duas ou mais palavras começam todas dentro de uma distância especificada uma da outra, medida em palavras. Especifique as palavras de busca dentro de uma string entre aspas imediatamente antes do operador `@distance`, por exemplo, `MATCH(col1) CONTRA(`palavra1 palavra2 palavra3" @8' EM MODO VERDADEIRO)\`
+  Este operador funciona apenas em tabelas `InnoDB`. Ele testa se duas ou mais palavras começam todas dentro de uma distância especificada uma da outra, medida em palavras. Especifique as palavras de busca dentro de uma string entre aspas imediatamente antes do operador `@distance`, por exemplo, `MATCH(col1) CONTRA(`palavra1 palavra2 palavra3" @8' EM MODO TRUE)\`
 
 - `> <`
 

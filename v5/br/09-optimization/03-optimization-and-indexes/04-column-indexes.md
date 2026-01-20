@@ -51,6 +51,6 @@ As consultas de pesquisa de texto completo podem exibir `Selecionar tabelas otim
 
 Você pode criar índices em tipos de dados espaciais. `MyISAM` e `InnoDB` suportam índices de árvore R em tipos espaciais. Outros motores de armazenamento usam árvores B para indexar tipos espaciais (exceto para `ARCHIVE`, que não suporta indexação de tipos espaciais).
 
-#### Índices no Motor de Armazenamento de MEMÓRIA
+#### Índices no Motor de Armazenamento de MEMORY
 
 O mecanismo de armazenamento `MEMORY` usa índices `HASH` por padrão, mas também suporta índices `BTREE`.

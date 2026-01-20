@@ -1,4 +1,4 @@
-#### 8.2.1.10 Otimização da leitura em várias faixas de amplitude
+#### 8.2.1.10 Otimização de leitura de múltiplos intervalos
 
 A leitura de linhas usando uma varredura de intervalo em um índice secundário pode resultar em muitos acessos aleatórios ao disco à tabela base quando a tabela é grande e não está armazenada no cache do mecanismo de armazenamento. Com a otimização de Leitura Multi-Intervalo de Varredura de Disco (MRR), o MySQL tenta reduzir o número de acessos aleatórios ao disco para varreduras de intervalo, primeiro escaneando o índice apenas e coletando as chaves para as linhas relevantes. Em seguida, as chaves são ordenadas e, finalmente, as linhas são recuperadas da tabela base usando a ordem da chave primária. A motivação para o MRR de varredura de disco é reduzir o número de acessos aleatórios ao disco e, em vez disso, alcançar uma varredura mais sequencial dos dados da tabela base.
 

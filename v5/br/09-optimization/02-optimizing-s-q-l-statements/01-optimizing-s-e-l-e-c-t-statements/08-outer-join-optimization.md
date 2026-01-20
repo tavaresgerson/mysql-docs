@@ -1,4 +1,4 @@
-#### 8.2.1.8 Otimização de Conexão Externa
+#### 8.2.1.8 Otimização de OUTER JOIN
 
 As junções externas incluem `LEFT JOIN` e `RIGHT JOIN`.
 

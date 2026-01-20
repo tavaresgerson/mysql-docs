@@ -1,4 +1,4 @@
-#### 8.2.1.13 Otimização IS NULL
+#### 8.2.1.13 Otimização de IS NULL
 
 O MySQL pode realizar a mesma otimização em *`col_name`* `IS NULL` que ele pode usar para *`col_name`* `=` *`constant_value`*. Por exemplo, o MySQL pode usar índices e faixas para pesquisar por `NULL` com `IS NULL`.
 

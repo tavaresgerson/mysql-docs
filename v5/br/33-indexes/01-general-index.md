@@ -23684,7 +23684,7 @@ with MySQL Enterprise Monitor, [MySQL Enterprise Monitor Overview](mysql-enterpr
 with MySQL Performance Schema, [Using the Performance Schema to Diagnose Problems](performance-schema-examples.html)
 ```
 
-VERDADEIRO, [Literais Numéricos](number-literals.html), [Literais Booleanos](boolean-literals.html):   teste para, [Funções e Operadores de Comparação](comparison-operators.html)
+TRUE, [Literais Numéricos](number-literals.html), [Literais Booleanos](boolean-literals.html):   teste para, [Funções e Operadores de Comparação](comparison-operators.html)
 
 verdadeiro literal: JSON, [Criando valores JSON](json.html#json-values)
 

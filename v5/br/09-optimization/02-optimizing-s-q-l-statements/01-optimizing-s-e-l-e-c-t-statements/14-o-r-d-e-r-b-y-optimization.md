@@ -1,4 +1,4 @@
-#### 8.2.1.14 ORDEM POR Otimização
+#### 8.2.1.14 Otimização de ORDER BY
 
 Esta seção descreve quando o MySQL pode usar um índice para satisfazer uma cláusula `ORDER BY`, a operação `filesort` usada quando um índice não pode ser usado e as informações do plano de execução disponíveis do otimizador sobre `ORDER BY`.
 

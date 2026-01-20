@@ -1,4 +1,4 @@
-#### 8.2.1.16 Otimização DISTINCT
+#### 8.2.1.16 Otimização de DISTINCT
 
 `DISTINCT` combinado com `ORDER BY` precisa de uma tabela temporária em muitos casos.
 

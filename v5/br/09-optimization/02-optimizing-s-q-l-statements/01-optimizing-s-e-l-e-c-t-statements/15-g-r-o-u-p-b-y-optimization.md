@@ -1,4 +1,4 @@
-#### 8.2.1.15 Otimização por GRUPO
+#### 8.2.1.15 Otimização de GROUP BY
 
 A maneira mais geral de satisfazer uma cláusula `GROUP BY` é percorrer toda a tabela e criar uma nova tabela temporária onde todas as linhas de cada grupo estejam consecutivas, e, em seguida, usar essa tabela temporária para descobrir os grupos e aplicar funções agregadas (se houver). Em alguns casos, o MySQL consegue fazer muito melhor do que isso e evitar a criação de tabelas temporárias usando o acesso a índices.
 

@@ -79,7 +79,7 @@ O processo de extração para a chave `key1` é o seguinte:
 
 3. Condições de colapso que são sempre verdadeiras ou falsas:
 
-   - `(key1 LIKE 'abcde%' OU VERDADEIRO)` é sempre verdadeiro
+   - `(key1 LIKE 'abcde%' OU TRUE)` é sempre verdadeiro
 
    - `(key1 < 'uux' E key1 > 'z')` é sempre falsa
 
