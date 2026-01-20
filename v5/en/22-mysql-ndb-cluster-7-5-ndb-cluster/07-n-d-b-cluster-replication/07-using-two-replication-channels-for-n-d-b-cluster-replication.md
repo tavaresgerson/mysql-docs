@@ -4,7 +4,7 @@ In a more complete example scenario, we envision two replication channels to pro
 
 **Table 21.67 NDB Cluster replication servers described in the text**
 
-<table><thead><tr> <th>Server ID</th> <th>Description</th> </tr></thead><tbody><tr> <td>1</td> <td>Source - primary replication channel (<span class="emphasis"><em>S</em></span>)</td> </tr><tr> <td>2</td> <td>Source - secondary replication channel (<span class="emphasis"><em>S'</em></span>)</td> </tr><tr> <td>3</td> <td>Replica - primary replication channel (<span class="emphasis"><em>R</em></span>)</td> </tr><tr> <td>4</td> <td>replica - secondary replication channel (<span class="emphasis"><em>R'</em></span>)</td> </tr></tbody></table>
+<table><thead><tr> <th>Server ID</th> <th>Description</th> </tr></thead><tbody><tr> <td>1</td> <td>Source - primary replication channel (<span><em>S</em></span>)</td> </tr><tr> <td>2</td> <td>Source - secondary replication channel (<span><em>S'</em></span>)</td> </tr><tr> <td>3</td> <td>Replica - primary replication channel (<span><em>R</em></span>)</td> </tr><tr> <td>4</td> <td>replica - secondary replication channel (<span><em>R'</em></span>)</td> </tr></tbody></table>
 
 Setting up replication with two channels is not radically different from setting up a single replication channel. First, the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes for the primary and secondary replication source servers must be started, followed by those for the primary and secondary replicas. The replication processes can be initiated by issuing the [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement on each of the replicas. The commands and the order in which they need to be issued are shown here:
 

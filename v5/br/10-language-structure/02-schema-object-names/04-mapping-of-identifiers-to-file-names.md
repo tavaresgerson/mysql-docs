@@ -10,7 +10,108 @@ Qualquer caractere é válido para identificadores de banco de dados ou tabelas,
 
 - Todas as outras letras nacionais de alfabetos que possuem mapeamento maiúsculo/minúsculo são codificadas conforme mostrado na tabela a seguir. Os valores na coluna Código de intervalo são valores UCS-2.
 
-  <table summary="O codificação para letras nacionais de alfabetos que têm mapeamento maiúsculas/minúsculas, excluindo letras latinas básicas (a..zA..Z), dígitos (0..9) e sublinhado (_), que são codificados como estão."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 25%"/><thead><tr> <th>Faixa de código</th> <th>Padrão</th> <th>Número</th> <th>Usado</th> <th>Inexercitado</th> <th>Blocos</th> </tr></thead><tbody><tr> <th>00C0..017F</th> <td>[@][0..4][g..z]</td> <td>5*20= 100</td> <td>97</td> <td>3</td> <td>Suplémento Latin-1 + Latin Extended-A</td> </tr><tr> <th>0370..03FF</th> <td>[@][5..9][g..z]</td> <td>5*20= 100</td> <td>88</td> <td>12</td> <td>Grego e copta</td> </tr><tr> <th>0400..052F</th> <td>[@][g..z][0..6]</td> <td>20*7= 140</td> <td>137</td> <td>3</td> <td>Cirílico + Suplemento Cirílico</td> </tr><tr> <th>0530..058F</th> <td>[@][g..z][7..8]</td> <td>20*2= 40</td> <td>38</td> <td>2</td> <td>Armênio</td> </tr><tr> <th>2160..217F</th> <td>[@][g..z][9]</td> <td>20*1= 20</td> <td>16</td> <td>4</td> <td>Formas numéricas</td> </tr><tr> <th>0180..02AF</th> <td>[@][g..z][a..k]</td> <td>20*11=220</td> <td>203</td> <td>17</td> <td>Latin Extended-B + Extensões IPA</td> </tr><tr> <th>1E00..1EFF</th> <td>[@][g..z][l..r]</td> <td>20*7= 140</td> <td>136</td> <td>4</td> <td>Latim Extendido Adicional</td> </tr><tr> <th>1F00..1FFF</th> <td>[@][g..z][s..z]</td> <td>20*8= 160</td> <td>144</td> <td>16</td> <td>Grego Expandido</td> </tr><tr> <th>....</th> <td>[@][a..f][g..z]</td> <td>6 * 20 = 120</td> <td>0</td> <td>120</td> <td>RESERVADO</td> </tr><tr> <th>24B6..24E9</th> <td>[@][@][a..z]</td> <td>26</td> <td>26</td> <td>0</td> <td>Alfanuméricos anexados</td> </tr><tr> <th>FF21..FF5A</th> <td>[@][a..z][@]</td> <td>26</td> <td>26</td> <td>0</td> <td>Formulários de largura média e largura total</td> </tr></tbody></table>
+  <table summary="A codificação para letras nacionais de alfabetos que possuem mapeamento de maiúsculas/minúsculas, excluindo letras latinas básicas (a..zA..Z), dígitos (0..9) e sublinhado (_), que são codificados como estão.">
+    <thead>
+      <tr>
+        <th>Code Range</th>
+        <th>Pattern</th>
+        <th>Number</th>
+        <th>Used</th>
+        <th>Unused</th>
+        <th>Blocks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>00C0..017F</th>
+        <td>[@][0..4][g..z]</td>
+        <td>5*20= 100</td>
+        <td>97</td>
+        <td>3</td>
+        <td>Latin-1 Supplement + Latin Extended-A</td>
+      </tr>
+      <tr>
+        <th>0370..03FF</th>
+        <td>[@][5..9][g..z]</td>
+        <td>5*20= 100</td>
+        <td>88</td>
+        <td>12</td>
+        <td>Greek and Coptic</td>
+      </tr>
+      <tr>
+        <th>0400..052F</th>
+        <td>[@][g..z][0..6]</td>
+        <td>20*7= 140</td>
+        <td>137</td>
+        <td>3</td>
+        <td>Cyrillic + Cyrillic Supplement</td>
+      </tr>
+      <tr>
+        <th>0530..058F</th>
+        <td>[@][g..z][7..8]</td>
+        <td>20*2= 40</td>
+        <td>38</td>
+        <td>2</td>
+        <td>Armenian</td>
+      </tr>
+      <tr>
+        <th>2160..217F</th>
+        <td>[@][g..z][9]</td>
+        <td>20*1= 20</td>
+        <td>16</td>
+        <td>4</td>
+        <td>Number Forms</td>
+      </tr>
+      <tr>
+        <th>0180..02AF</th>
+        <td>[@][g..z][a..k]</td>
+        <td>20*11=220</td>
+        <td>203</td>
+        <td>17</td>
+        <td>Latin Extended-B + IPA Extensions</td>
+      </tr>
+      <tr>
+        <th>1E00..1EFF</th>
+        <td>[@][g..z][l..r]</td>
+        <td>20*7= 140</td>
+        <td>136</td>
+        <td>4</td>
+        <td>Latin Extended Additional</td>
+      </tr>
+      <tr>
+        <th>1F00..1FFF</th>
+        <td>[@][g..z][s..z]</td>
+        <td>20*8= 160</td>
+        <td>144</td>
+        <td>16</td>
+        <td>Greek Extended</td>
+      </tr>
+      <tr>
+        <th>.... ....</th>
+        <td>[@][a..f][g..z]</td>
+        <td>6*20= 120</td>
+        <td>0</td>
+        <td>120</td>
+        <td>RESERVED</td>
+      </tr>
+      <tr>
+        <th>24B6..24E9</th>
+        <td>[@][@][a..z]</td>
+        <td>26</td>
+        <td>26</td>
+        <td>0</td>
+        <td>Enclosed Alphanumerics</td>
+      </tr>
+      <tr>
+        <th>FF21..FF5A</th>
+        <td>[@][a..z][@]</td>
+        <td>26</td>
+        <td>26</td>
+        <td>0</td>
+        <td>Halfwidth and Fullwidth forms</td>
+      </tr>
+    </tbody>
+  </table>
 
   Um dos bytes na sequência codifica a maiúscula. Por exemplo: `LATIN CAPITAL LETTER A WITH GRAVE` é codificado como `@0G`, enquanto `LATIN SMALL LETTER A WITH GRAVE` é codificado como `@0g`. Aqui, o terceiro byte (`G` ou `g`) indica a maiúscula. (Em um sistema de arquivos que não é case-sensitive, ambas as letras são tratadas como a mesma.)
 

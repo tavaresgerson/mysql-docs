@@ -69,11 +69,11 @@ Os valores especificados como cadeias de texto não delimitadas são interpretad
 
 O MySQL reconhece os valores `TIME` nesses formatos:
 
-- Como uma string no formato *`'D hh:mm:ss'`*. Você também pode usar uma das seguintes sintáticas "relaxadas": \*`'hh:mm:ss'`, \*`'hh:mm'`, \*`'D hh:mm'`, \*`'D hh'`, ou \*`'ss'`. Aqui *`D`* representa dias e pode ter um valor de 0 a 34.
+- Como uma string no formato *`'D hh:mm:ss'`*. Você também pode usar uma das seguintes sintáticas "relaxadas": `'hh:mm:ss'`, `'hh:mm'`, `'D hh:mm'`, `'D hh'`, ou `'ss'`. Aqui *`D`* representa dias e pode ter um valor de 0 a 34.
 
 - Como uma string sem delimitadores no formato *`'hhmmss'`*, desde que faça sentido como uma hora. Por exemplo, `'101112'` é entendido como `'10:11:12'`, mas `'109712'` é ilegal (tem uma parte de minuto sem sentido) e se torna `'00:00:00'`.
 
-- Como um número no formato *`hhmmss``, desde que faça sentido como uma hora. Por exemplo, `101112`é entendido como`'10:11:12'`. Os seguintes formatos alternativos também são entendidos: *`ss`*, *`mmss`* ou *`hhmmss\`*.
+* Como um número no formato *`hhmmss`*, desde que faça sentido como hora. Por exemplo, `101112` é entendido como `'10:11:12'`. Os seguintes formatos alternativos também são compreendidos: *`ss`*, *`mmss`* ou *`hhmmss`*.
 
 Uma parte fracionária de segundos é reconhecida nos formatos de hora *`'D hh:mm:ss.fraction'`*, *`'hh:mm:ss.fraction'`*, *`'hhmmss.fraction'`* e *`'hhmmss.fraction'`*, onde `fraction` é a parte fracionária em precisão de até microsegundos (6 dígitos). A parte fracionária deve ser sempre separada do resto da hora por um ponto decimal; nenhum outro delimitador de segundos fracionários é reconhecido. Para informações sobre o suporte a segundos fracionários no MySQL, consulte a Seção 11.2.7, “Segundos Fracionários em Valores de Hora”.
 

@@ -52,7 +52,60 @@ Dentro de uma cadeia, certas sequências têm um significado especial, a menos q
 
 **Tabela 9.1 Sequências de Escape de Caracteres Especiais**
 
-<table summary="Sequências de escape e os caracteres que elas representam."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Sequência de fuga</th> <th>Personagem representado pela sequência</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>\Z</code>]</td> <td>Um caractere ASCII NUL (PH_HTML_CODE_<code>\Z</code>])</td> </tr><tr> <td>PH_HTML_CODE_<code>\</code>]</td> <td>Um único caractere de citação (PH_HTML_CODE_<code>\%</code>])</td> </tr><tr> <td>PH_HTML_CODE_<code>%</code>]</td> <td>Um caractere de citação dupla (PH_HTML_CODE_<code>_</code>])</td> </tr><tr> <td>PH_HTML_CODE_<code>_</code>]</td> <td>Um caractere de retrocesso</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Control+Z); consulte a nota após a tabela</td> </tr><tr> <td><code>X'00'</code><code>\Z</code>]</td> <td>Um caractere barra invertida (<code>\</code>)</td> </tr><tr> <td><code>\%</code></td> <td>Um caractere <code>%</code>; veja a nota após a tabela</td> </tr><tr> <td><code>_</code></td> <td>Um caractere <code>_</code>; veja a nota após a tabela</td> </tr></tbody></table>
+<table summary="Sequências de escape e os caracteres que elas representam.">
+  <thead>
+    <tr>
+      <th>Sequência de fuga</th>
+      <th>Personagem representado pela sequência</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr> 
+      <td><code>\0</code></td> 
+      <td>Um caractere ASCII NUL (<code>X'00'</code>)</td> 
+    </tr> 
+    <tr> 
+      <td><code>\'</code></td> 
+      <td>Um caractere de aspas simples (<code>'</code>)</td> 
+    </tr> 
+    <tr> 
+      <td><code>\"</code></td> 
+      <td>Um caractere de aspas duplas (<code>"</code>)</td> 
+    </tr> 
+    <tr> 
+      <td><code>\b</code></td> 
+      <td>Um caractere de retrocesso</td> 
+    </tr> 
+    <tr> 
+      <td><code>\n</code></td> 
+      <td>Um caractere de nova linha (linefeed)</td> 
+    </tr> 
+    <tr> 
+      <td><code>\r</code></td> 
+      <td>Um caractere de retorno de carro</td> 
+    </tr> 
+    <tr> 
+      <td><code>\t</code></td> 
+      <td>Um caractere de tabulação</td> 
+    </tr> 
+    <tr> 
+      <td><code>\Z</code></td> 
+      <td>ASCII 26 (Control+Z); veja a nota após a tabela</td> 
+    </tr> 
+    <tr> 
+      <td><code>\\</code></td> 
+      <td>Um caractere de barra invertida (<code>\</code>)</td> 
+    </tr> 
+    <tr> 
+      <td><code>\%</code></td> 
+      <td>Um caractere <code>%</code>; veja a nota após a tabela</td> 
+    </tr> 
+    <tr> 
+      <td><code>_</code></td> 
+      <td>Um caractere <code>_</code>; veja a nota após a tabela</td> 
+    </tr>
+  </tbody>
+</table>
 
 O caractere ASCII 26 pode ser codificado como `\Z` para permitir que você trabalhe ao redor do problema de que o ASCII 26 representa o FIM DE ARQUIVO no Windows. O ASCII 26 dentro de um arquivo causa problemas se você tentar usar `mysql db_name < nome_arquivo`.
 

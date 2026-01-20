@@ -25,7 +25,30 @@ No entanto, essa mesma declaração é permitida no Windows. Para evitar problem
 
 A forma como os nomes de tabelas e bancos de dados são armazenados no disco e usados no MySQL é afetada pela variável de sistema `lower_case_table_names`, que você pode definir ao iniciar o **mysqld**. `lower_case_table_names` pode assumir os valores mostrados na tabela a seguir. Essa variável *não* afeta a sensibilidade de maiúsculas e minúsculas dos identificadores de gatilho. No Unix, o valor padrão de `lower_case_table_names` é 0. No Windows, o valor padrão é 1. No macOS, o valor padrão é 2.
 
-<table summary="Valores para a variável de sistema lower_case_table_names."><col style="width: 10%"/><col style="width: 90%"/><thead><tr> <th>Valor</th> <th>Significado</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>lower_case_table_names=1</code>]</td> <td>Os nomes de tabelas e bancos de dados são armazenados no disco usando a letra maiúscula especificada noPH_HTML_CODE_<code>lower_case_table_names=1</code>]ou<code>CREATE DATABASE</code>A comparação de nomes é case-sensitive. Você deve<span class="emphasis"><em>não</em></span>defina essa variável para 0 se estiver executando o MySQL em um sistema que tem nomes de arquivos não sensíveis a maiúsculas e minúsculas (como o Windows ou o macOS). Se você forçar essa variável para 0 com<code>--lower-case-table-names=0</code>Em um sistema de arquivos sensível a maiúsculas e minúsculas, o acesso a nomes de tabelas <code>MyISAM</code> usando diferentes letras pode resultar em corrupção de índice.</td> </tr><tr> <td><code>1</code></td> <td>Os nomes das tabelas são armazenados em minúsculas no disco e as comparações de nomes não são sensíveis ao maiúsculas e minúsculas. O MySQL converte todos os nomes das tabelas para minúsculas durante o armazenamento e a pesquisa. Esse comportamento também se aplica aos nomes dos bancos de dados e aos aliases das tabelas.</td> </tr><tr> <td><code>2</code></td> <td>Os nomes de tabelas e bancos de dados são armazenados no disco usando a letra maiúscula especificada no<code>CREATE TABLE</code>ou<code>CREATE DATABASE</code>A declaração, mas o MySQL as converte para minúsculas na busca. As comparações de nomes não são case-sensitive. Isso funciona<span class="emphasis"><em>apenas</em></span>nos sistemas de arquivos que não são case-sensitive! Os nomes de tabelas e vistas são armazenados em minúsculas, como no <code>lower_case_table_names=1</code>.</td> </tr></tbody></table>
+<table summary="Valores para a variável de sistema lower_case_table_names.">
+  <col style="width: 10%"/>
+  <col style="width: 90%"/>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0</code></td>
+      <td>Os nomes de tabelas e bancos de dados são armazenados no disco usando letras maiúsculas especificadas na instrução <code>CREATE TABLE</code> ou <code>CREATE DATABASE</code>. As comparações de nomes diferenciam maiúsculas de minúsculas. Você não deve <span><em>não</em></span> definir esta variável como 0 se estiver executando o MySQL em um sistema que possui nomes de arquivos que não diferenciam maiúsculas de minúsculas (como Windows ou macOS). Se você forçar esta variável para 0 com <code>--lower-case-table-names=0</code> em um sistema de arquivos que não diferencia maiúsculas de minúsculas e acessar nomes de tabelas <code>MyISAM</code> usando letras diferentes, poderá ocorrer corrupção do índice.</td>
+    </tr>
+    <tr>
+      <td><code>1</code></td>
+      <td>Os nomes das tabelas são armazenados em letras minúsculas no disco e as comparações de nomes não diferenciam maiúsculas de minúsculas. O MySQL converte todos os nomes de tabelas em letras minúsculas no armazenamento e na pesquisa. Esse comportamento também se aplica a nomes de bancos de dados e aliases de tabelas.</td>
+    </tr>
+    <tr>
+      <td><code>2</code></td>
+      <td>Os nomes de tabelas e bancos de dados são armazenados no disco usando letras maiúsculas especificadas na instrução <code>CREATE TABLE</code> ou <code>CREATE DATABASE</code>, mas o MySQL os converte para letras minúsculas na pesquisa. As comparações de nomes não diferenciam maiúsculas de minúsculas. Isso funciona <span><em>somente</em></span> em sistemas de arquivos que não diferenciam maiúsculas de minúsculas! Os nomes de tabelas e nomes de visualizações do <code>InnoDB</code> são armazenados em letras minúsculas, como em <code>lower_case_table_names=1</code>.</td>
+    </tr>
+  </tbody>
+</table>
 
 Se você estiver usando o MySQL em apenas uma plataforma, normalmente não precisa alterar a variável `lower_case_table_names` do seu valor padrão. No entanto, você pode encontrar dificuldades se quiser transferir tabelas entre plataformas que diferem na sensibilidade ao caso de letras do sistema de arquivos. Por exemplo, no Unix, você pode ter duas tabelas diferentes chamadas `my_table` e `MY_TABLE`, mas no Windows esses dois nomes são considerados idênticos. Para evitar problemas de transferência de dados decorrentes da letra maiúscula ou minúscula dos nomes de bancos de dados ou tabelas, você tem duas opções:
 

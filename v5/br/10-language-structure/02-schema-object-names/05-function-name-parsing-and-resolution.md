@@ -28,38 +28,38 @@ O requisito de que as chamadas de função sejam escritas sem espaços em branco
 
 A lista a seguir indica as funções no MySQL 5.7 que são afetadas pelo ajuste `IGNORE_SPACE` e listadas como especiais no arquivo fonte `sql/lex.h`. Você pode achar mais fácil tratar a exigência de ausência de espaços em branco como aplicável a todas as chamadas de função.
 
-- `ADDDATE`
-- `BIT_AND`
-- `BIT_OR`
-- `BIT_XOR`
-- `CAST`
-- `CONTAR`
-- `CURDATE`
-- `CURTIME`
-- `DATE_ADD`
-- `DATE_SUB`
-- `EXTRIR`
-- `GROUP_CONCAT`
-- `MAX`
-- `MID`
-- `MIN`
-- `Agora`
-- `POSIÇÃO`
-- `SESSION_USER`
-- `STD`
-- `STDDEV`
-- `STDDEV_POP`
-- `STDDEV_SAMP`
-- `SUBDATE`
-- `SUBSTR`
-- `SUBSTRING`
-- `SOMAR`
-- `SYSDATE`
-- `SISTEMA_USUARIO`
-- `TRIM`
-- VARIAÇÃO
-- `VAR_POP`
-- `VAR_SAMP`
+* `ADDDATE`
+* `BIT_AND`
+* `BIT_OR`
+* `BIT_XOR`
+* `CAST`
+* `COUNT`
+* `CURDATE`
+* `CURTIME`
+* `DATE_ADD`
+* `DATE_SUB`
+* `EXTRACT`
+* `GROUP_CONCAT`
+* `MAX`
+* `MID`
+* `MIN`
+* `NOW`
+* `POSITION`
+* `SESSION_USER`
+* `STD`
+* `STDDEV`
+* `STDDEV_POP`
+* `STDDEV_SAMP`
+* `SUBDATE`
+* `SUBSTR`
+* `SUBSTRING`
+* `SUM`
+* `SYSDATE`
+* `SYSTEM_USER`
+* `TRIM`
+* `VARIANCE`
+* `VAR_POP`
+* `VAR_SAMP`
 
 Para funções não listadas como especiais em `sql/lex.h`, o espaço em branco não importa. Elas são interpretadas como chamadas de função apenas quando usadas em contexto de expressão e podem ser usadas livremente como identificadores caso contrário. `ASCII` é um desses nomes. No entanto, para esses nomes de funções não afetados, a interpretação pode variar em contexto de expressão: `func_name ()` é interpretado como uma função embutida se houver uma com o nome dado; se não houver, `func_name ()` é interpretado como uma função carregável ou armazenada se existir com esse nome.
 

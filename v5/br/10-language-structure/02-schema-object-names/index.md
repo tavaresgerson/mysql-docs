@@ -1,15 +1,5 @@
 ## 9.2 Nomes de Objetos de Esquema
 
-9.2.1 Limites de comprimento do identificador
-
-9.2.2 Identificadores qualificadores
-
-9.2.3 Sensibilidade do identificador à maiúscula e minúscula
-
-9.2.4 Mapeamento de Identificadores para Nomes de Arquivos
-
-9.2.5 Análise e resolução do nome da função
-
 Certos objetos dentro do MySQL, incluindo banco de dados, tabela, índice, coluna, alias, visualização, procedimento armazenado, partição, tablespace e outros nomes de objetos, são conhecidos como identificadores. Esta seção descreve a sintaxe permitida para identificadores no MySQL. A Seção 9.2.1, “Limites de comprimento de identificadores”, indica o comprimento máximo de cada tipo de identificador. A Seção 9.2.3, “Sensibilidade ao caso das letras dos identificadores”, descreve quais tipos de identificadores são sensíveis ao caso e sob quais condições.
 
 Um identificador pode ser citado ou não. Se um identificador contém caracteres especiais ou é uma palavra reservada, você *deve* citá-lo sempre que se referir a ele. (Exceção: uma palavra reservada que segue um ponto em um nome qualificado deve ser um identificador, portanto, não precisa ser citada.) As palavras reservadas estão listadas na Seção 9.3, “Palavras-chave e Palavras Reservadas”.
