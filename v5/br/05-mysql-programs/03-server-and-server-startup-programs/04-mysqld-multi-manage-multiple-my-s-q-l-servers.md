@@ -40,60 +40,15 @@ O **mysqld_multi** procura por arquivos de opção da seguinte forma:
 
 - Com `--no-defaults`, nenhum arquivo de opção é lido.
 
-  <table>
-    <tbody>
-      <tr>
-        <th>Formato de linha de comando</th>
-        <td><code>--no-defaults</code></td>
-      </tr>
-      <tr>
-        <th>Tipo</th>
-        <td>Boolean</td>
-      </tr>
-      <tr>
-        <th>Valor padrão</th>
-        <td><code>false</code></td>
-      </tr>
-    </tbody>
-  </table>
+  <table><tbody><tr><th>Formato de linha de comando</th><td><code>--no-defaults</code></td></tr><tr><th>Tipo</th><td>Boolean</td></tr><tr><th>Valor padrão</th><td><code>false</code></td></tr></tbody></table>
 
 - Com `--defaults-file=file_name`, apenas o arquivo nomeado é lido.
 
-  <table>
-    <tbody>
-      <tr>
-        <th>Formato de linha de comando</th>
-        <td><code>--defaults-file=filename</code></td>
-      </tr>
-      <tr>
-        <th>Tipo</th>
-        <td>Nome do arquivo</td>
-      </tr>
-      <tr>
-        <th>Valor padrão</th>
-        <td><code>[none]</code></td>
-      </tr>
-    </tbody>
-  </table>
+  <table><tbody><tr><th>Formato de linha de comando</th><td><code>--defaults-file=filename</code></td></tr><tr><th>Tipo</th><td>Nome do arquivo</td></tr><tr><th>Valor padrão</th><td><code>[none]</code></td></tr></tbody></table>
 
 - Caso contrário, os arquivos de opções na lista padrão de locais são lidos, incluindo qualquer arquivo nomeado pela opção `--defaults-extra-file=file_name`, se um for fornecido. (Se a opção for fornecida várias vezes, o último valor é usado.)
 
-  <table>
-    <tbody>
-        <tr>
-          <th>Formato de linha de comando</th>
-          <td><code>--defaults-extra-file=filename</code></td>
-        </tr>
-        <tr>
-          <th>Tipo</th>
-          <td>Nome do arquivo</td>
-        </tr>
-        <tr>
-          <th>Valor padrão</th>
-          <td><code>[none]</code></td>
-        </tr>
-    </tbody>
-  </table>
+  <table><tbody><tr><th>Formato de linha de comando</th><td><code>--defaults-extra-file=filename</code></td></tr><tr><th>Tipo</th><td>Nome do arquivo</td></tr><tr><th>Valor padrão</th><td><code>[none]</code></td></tr></tbody></table>
 
 Para obter informações adicionais sobre essas e outras opções de arquivo de opções, consulte a Seção 4.2.2.3, “Opções de linha de comando que afetam o tratamento de arquivos de opções”.
 

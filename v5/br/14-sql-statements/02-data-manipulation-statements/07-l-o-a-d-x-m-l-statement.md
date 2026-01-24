@@ -36,19 +36,13 @@ This statement supports three different XML formats:
 * Column names as tags and column values as the content of these tags:
 
   ```sql
-  <row>
-    <column1>value1</column1>
-    <column2>value2</column2>
-  </row>
+  <row><column1>value1</column1><column2>value2</column2></row>
   ```
 
 * Column names are the `name` attributes of `<field>` tags, and values are the contents of these tags:
 
   ```sql
-  <row>
-    <field name='column1'>value1</field>
-    <field name='column2'>value2</field>
-  </row>
+  <row><field name='column1'>value1</field><field name='column2'>value2</field></row>
   ```
 
   This is the format used by other MySQL tools, such as [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program").
@@ -90,18 +84,7 @@ Suppose further that this table is initially empty.
 Now suppose that we have a simple XML file `person.xml`, whose contents are as shown here:
 
 ```sql
-<list>
-  <person person_id="1" fname="Kapek" lname="Sainnouine"/>
-  <person person_id="2" fname="Sajon" lname="Rondela"/>
-  <person person_id="3"><fname>Likame</fname><lname>Örrtmons</lname></person>
-  <person person_id="4"><fname>Slar</fname><lname>Manlanth</lname></person>
-  <person><field name="person_id">5</field><field name="fname">Stoma</field>
-    <field name="lname">Milu</field></person>
-  <person><field name="person_id">6</field><field name="fname">Nirtam</field>
-    <field name="lname">Sklöd</field></person>
-  <person person_id="7"><fname>Sungam</fname><lname>Dulbåd</lname></person>
-  <person person_id="8" fname="Sraref" lname="Encmelt"/>
-</list>
+<list><person person_id="1" fname="Kapek" lname="Sainnouine"/><person person_id="2" fname="Sajon" lname="Rondela"/><person person_id="3"><fname>Likame</fname><lname>Örrtmons</lname></person><person person_id="4"><fname>Slar</fname><lname>Manlanth</lname></person><person><field name="person_id">5</field><field name="fname">Stoma</field><field name="lname">Milu</field></person><person><field name="person_id">6</field><field name="fname">Nirtam</field><field name="lname">Sklöd</field></person><person person_id="7"><fname>Sungam</fname><lname>Dulbåd</lname></person><person person_id="8" fname="Sraref" lname="Encmelt"/></list>
 ```
 
 Each of the permissible XML formats discussed previously is represented in this example file.
@@ -151,57 +134,7 @@ The inverse of the import operation just shown—that is, dumping MySQL table da
 ```sql
 $> mysql --xml -e "SELECT * FROM test.person" > person-dump.xml
 $> cat person-dump.xml
-<?xml version="1.0"?>
-
-<resultset statement="SELECT * FROM test.person" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <row>
-	<field name="person_id">1</field>
-	<field name="fname">Kapek</field>
-	<field name="lname">Sainnouine</field>
-  </row>
-
-  <row>
-	<field name="person_id">2</field>
-	<field name="fname">Sajon</field>
-	<field name="lname">Rondela</field>
-  </row>
-
-  <row>
-	<field name="person_id">3</field>
-	<field name="fname">Likema</field>
-	<field name="lname">Örrtmons</field>
-  </row>
-
-  <row>
-	<field name="person_id">4</field>
-	<field name="fname">Slar</field>
-	<field name="lname">Manlanth</field>
-  </row>
-
-  <row>
-	<field name="person_id">5</field>
-	<field name="fname">Stoma</field>
-	<field name="lname">Nilu</field>
-  </row>
-
-  <row>
-	<field name="person_id">6</field>
-	<field name="fname">Nirtam</field>
-	<field name="lname">Sklöd</field>
-  </row>
-
-  <row>
-	<field name="person_id">7</field>
-	<field name="fname">Sungam</field>
-	<field name="lname">Dulbåd</field>
-  </row>
-
-  <row>
-	<field name="person_id">8</field>
-	<field name="fname">Sreraf</field>
-	<field name="lname">Encmelt</field>
-  </row>
-</resultset>
+<?xml version="1.0"?><resultset statement="SELECT * FROM test.person" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><row><field name="person_id">1</field><field name="fname">Kapek</field><field name="lname">Sainnouine</field></row><row><field name="person_id">2</field><field name="fname">Sajon</field><field name="lname">Rondela</field></row><row><field name="person_id">3</field><field name="fname">Likema</field><field name="lname">Örrtmons</field></row><row><field name="person_id">4</field><field name="fname">Slar</field><field name="lname">Manlanth</field></row><row><field name="person_id">5</field><field name="fname">Stoma</field><field name="lname">Nilu</field></row><row><field name="person_id">6</field><field name="fname">Nirtam</field><field name="lname">Sklöd</field></row><row><field name="person_id">7</field><field name="fname">Sungam</field><field name="lname">Dulbåd</field></row><row><field name="person_id">8</field><field name="fname">Sreraf</field><field name="lname">Encmelt</field></row></resultset>
 ```
 
 Note
@@ -329,24 +262,7 @@ The names of the user variables *must* match those of the corresponding fields f
 Using a `ROWS IDENTIFIED BY '<tagname>'` clause, it is possible to import data from the same XML file into database tables with different definitions. For this example, suppose that you have a file named `address.xml` which contains the following XML:
 
 ```sql
-<?xml version="1.0"?>
-
-<list>
-  <person person_id="1">
-    <fname>Robert</fname>
-    <lname>Jones</lname>
-    <address address_id="1" street="Mill Creek Road" zip="45365" city="Sidney"/>
-    <address address_id="2" street="Main Street" zip="28681" city="Taylorsville"/>
-  </person>
-
-  <person person_id="2">
-    <fname>Mary</fname>
-    <lname>Smith</lname>
-    <address address_id="3" street="River Road" zip="80239" city="Denver"/>
-    <!-- <address address_id="4" street="North Street" zip="37920" city="Knoxville"/> -->
-  </person>
-
-</list>
+<?xml version="1.0"?><list><person person_id="1"><fname>Robert</fname><lname>Jones</lname><address address_id="1" street="Mill Creek Road" zip="45365" city="Sidney"/><address address_id="2" street="Main Street" zip="28681" city="Taylorsville"/></person><person person_id="2"><fname>Mary</fname><lname>Smith</lname><address address_id="3" street="River Road" zip="80239" city="Denver"/><!-- <address address_id="4" street="North Street" zip="37920" city="Knoxville"/> --></person></list>
 ```
 
 You can again use the `test.person` table as defined previously in this section, after clearing all the existing records from the table and then showing its structure as shown here:

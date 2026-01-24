@@ -67,66 +67,7 @@ A partir do MySQL Installer 1.6.7 (8.0.34), as opções de comando `install`, `l
 
 **Tabela 2.6 Frases de produtos MySQL para uso com o comando MySQLInstallerConsole.exe**
 
-<table>
-   <thead>
-      <tr>
-         <th>Frase</th>
-         <th>Produto MySQL</th>
-      </tr>
-   </thead>
-   <tr>
-      <td><code>server</code></td>
-      <td>MySQL Server</td>
-   </tr>
-   <tr>
-      <td><code>workbench</code></td>
-      <td>MySQL Workbench</td>
-   </tr>
-   <tr>
-      <td><code>shell</code></td>
-      <td>MySQL Shell</td>
-   </tr>
-   <tr>
-      <td><code>visual</code></td>
-      <td>MySQL for Visual Studio</td>
-   </tr>
-   <tr>
-      <td><code>router</code></td>
-      <td>MySQL Router</td>
-   </tr>
-   <tr>
-      <td><code>backup</code></td>
-      <td>MySQL Enterprise Backup (requires the commercial release)</td>
-   </tr>
-   <tr>
-      <td><code>net</code></td>
-      <td>MySQL Connector/NET</td>
-   </tr>
-   <tr>
-      <td><code>odbc</code></td>
-      <td>MySQL Connector/ODBC</td>
-   </tr>
-   <tr>
-      <td><code>c++</code></td>
-      <td>MySQL Connector/C++</td>
-   </tr>
-   <tr>
-      <td><code>python</code></td>
-      <td>MySQL Connector/Python</td>
-   </tr>
-   <tr>
-      <td><code>j</code></td>
-      <td>MySQL Connector/J</td>
-   </tr>
-   <tr>
-      <td><code>documentation</code></td>
-      <td>MySQL Server Documentation</td>
-   </tr>
-   <tr>
-      <td><code>samples</code></td>
-      <td>MySQL Samples (sakila and world databases)</td>
-   </tr>
-</table>
+<table><thead><tr><th>Frase</th><th>Produto MySQL</th></tr></thead><tr><td><code>server</code></td><td>MySQL Server</td></tr><tr><td><code>workbench</code></td><td>MySQL Workbench</td></tr><tr><td><code>shell</code></td><td>MySQL Shell</td></tr><tr><td><code>visual</code></td><td>MySQL for Visual Studio</td></tr><tr><td><code>router</code></td><td>MySQL Router</td></tr><tr><td><code>backup</code></td><td>MySQL Enterprise Backup (requires the commercial release)</td></tr><tr><td><code>net</code></td><td>MySQL Connector/NET</td></tr><tr><td><code>odbc</code></td><td>MySQL Connector/ODBC</td></tr><tr><td><code>c++</code></td><td>MySQL Connector/C++</td></tr><tr><td><code>python</code></td><td>MySQL Connector/Python</td></tr><tr><td><code>j</code></td><td>MySQL Connector/J</td></tr><tr><td><code>documentation</code></td><td>MySQL Server Documentation</td></tr><tr><td><code>samples</code></td><td>MySQL Samples (sakila and world databases)</td></tr></table>
 
 ##### Sintaxe de comando
 

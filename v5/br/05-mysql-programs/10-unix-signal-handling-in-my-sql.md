@@ -54,38 +54,9 @@ O **mysqld** responde a sinais da seguinte forma:
   Open streams:           0
 
   Memory status:
-  <malloc version="1">
-  <heap nr="0">
-  <sizes>
-    <size from="17" to="32" total="32" count="1"/>
-    <size from="33" to="48" total="96" count="2"/>
-    <size from="33" to="33" total="33" count="1"/>
-    <size from="97" to="97" total="6014" count="62"/>
-    <size from="113" to="113" total="904" count="8"/>
-    <size from="193" to="193" total="193" count="1"/>
-    <size from="241" to="241" total="241" count="1"/>
-    <size from="609" to="609" total="609" count="1"/>
-    <size from="16369" to="16369" total="49107" count="3"/>
-    <size from="24529" to="24529" total="98116" count="4"/>
-    <size from="32689" to="32689" total="32689" count="1"/>
-    <unsorted from="241" to="7505" total="7746" count="2"/>
-  </sizes>
-  <total type="fast" count="3" size="128"/>
-  <total type="rest" count="84" size="195652"/>
-  <system type="current" size="690774016"/>
-  <system type="max" size="690774016"/>
-  <aspace type="total" size="690774016"/>
-  <aspace type="mprotect" size="690774016"/>
-  </heap>
+  <malloc version="1"><heap nr="0"><sizes><size from="17" to="32" total="32" count="1"/><size from="33" to="48" total="96" count="2"/><size from="33" to="33" total="33" count="1"/><size from="97" to="97" total="6014" count="62"/><size from="113" to="113" total="904" count="8"/><size from="193" to="193" total="193" count="1"/><size from="241" to="241" total="241" count="1"/><size from="609" to="609" total="609" count="1"/><size from="16369" to="16369" total="49107" count="3"/><size from="24529" to="24529" total="98116" count="4"/><size from="32689" to="32689" total="32689" count="1"/><unsorted from="241" to="7505" total="7746" count="2"/></sizes><total type="fast" count="3" size="128"/><total type="rest" count="84" size="195652"/><system type="current" size="690774016"/><system type="max" size="690774016"/><aspace type="total" size="690774016"/><aspace type="mprotect" size="690774016"/></heap>
   :
-  <total type="fast" count="85" size="5520"/>
-  <total type="rest" count="116" size="316820"/>
-  <total type="mmap" count="82" size="939954176"/>
-  <system type="current" size="695717888"/>
-  <system type="max" size="695717888"/>
-  <aspace type="total" size="695717888"/>
-  <aspace type="mprotect" size="695717888"/>
-  </malloc>
+  <total type="fast" count="85" size="5520"/><total type="rest" count="116" size="316820"/><total type="mmap" count="82" size="939954176"/><system type="current" size="695717888"/><system type="max" size="695717888"/><aspace type="total" size="695717888"/><aspace type="mprotect" size="695717888"/></malloc>
 
   Events status:
   LLA = Last Locked At  LUA = Last Unlocked At

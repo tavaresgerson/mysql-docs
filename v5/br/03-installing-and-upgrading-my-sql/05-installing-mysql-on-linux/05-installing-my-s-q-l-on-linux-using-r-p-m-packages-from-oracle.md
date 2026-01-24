@@ -17,101 +17,11 @@ Os pacotes RPM para o MySQL estão listados nas seguintes tabelas:
 
 **Tabela 2.9 Pacotes RPM para a Edição Comunitária do MySQL**
 
-<table>
-   <thead>
-      <tr>
-         <th>Nome do pacote</th>
-         <th>Resumo</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td><code>mysql-community-server</code></td>
-         <td>Servidor de banco de dados e ferramentas relacionadas</td>
-      </tr>
-      <tr>
-         <td><code>mysql-community-client</code></td>
-         <td>Aplicativos e ferramentas de cliente MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-community-common</code></td>
-         <td>Arquivos comuns para bibliotecas de servidor e cliente</td>
-      </tr>
-      <tr>
-         <td><code>mysql-community-devel</code></td>
-         <td>Arquivos de cabeçalho e bibliotecas de desenvolvimento para aplicações cliente de banco de dados MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-community-libs</code></td>
-         <td>Bibliotecas compartilhadas para aplicações de clientes de banco de dados MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-community-libs-compat</code></td>
-         <td>Bibliotecas de compatibilidade compartilhadas para instalações anteriores do MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-community-embedded</code></td>
-         <td>Biblioteca integrada MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-community-embedded-devel</code></td>
-         <td>Arquivos de cabeçalho e bibliotecas de desenvolvimento para MySQL como uma biblioteca incorporável</td>
-      </tr>
-      <tr>
-         <td><code>mysql-community-test</code></td>
-         <td>Conjunto de testes para o servidor MySQL</td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Nome do pacote</th><th>Resumo</th></tr></thead><tbody><tr><td><code>mysql-community-server</code></td><td>Servidor de banco de dados e ferramentas relacionadas</td></tr><tr><td><code>mysql-community-client</code></td><td>Aplicativos e ferramentas de cliente MySQL</td></tr><tr><td><code>mysql-community-common</code></td><td>Arquivos comuns para bibliotecas de servidor e cliente</td></tr><tr><td><code>mysql-community-devel</code></td><td>Arquivos de cabeçalho e bibliotecas de desenvolvimento para aplicações cliente de banco de dados MySQL</td></tr><tr><td><code>mysql-community-libs</code></td><td>Bibliotecas compartilhadas para aplicações de clientes de banco de dados MySQL</td></tr><tr><td><code>mysql-community-libs-compat</code></td><td>Bibliotecas de compatibilidade compartilhadas para instalações anteriores do MySQL</td></tr><tr><td><code>mysql-community-embedded</code></td><td>Biblioteca integrada MySQL</td></tr><tr><td><code>mysql-community-embedded-devel</code></td><td>Arquivos de cabeçalho e bibliotecas de desenvolvimento para MySQL como uma biblioteca incorporável</td></tr><tr><td><code>mysql-community-test</code></td><td>Conjunto de testes para o servidor MySQL</td></tr></tbody></table>
 
 **Tabela 2.10 Pacotes RPM para a Edição Empresarial do MySQL**
 
-<table>
-  <thead>
-      <tr>
-        <th>Nome do pacote</th>
-        <th>Resumo</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td><code>mysql-commercial-server</code></td>
-         <td>Servidor de banco de dados e ferramentas relacionadas</td>
-      </tr>
-      <tr>
-         <td><code>mysql-commercial-client</code></td>
-         <td>Aplicativos e ferramentas de cliente MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-commercial-common</code></td>
-         <td>Arquivos comuns para bibliotecas de servidor e cliente</td>
-      </tr>
-      <tr>
-         <td><code>mysql-commercial-devel</code></td>
-         <td>Arquivos de cabeçalho e bibliotecas de desenvolvimento para aplicações cliente de banco de dados MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-commercial-libs</code></td>
-         <td>Bibliotecas compartilhadas para aplicações de clientes de banco de dados MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-commercial-libs-compat</code></td>
-         <td>Bibliotecas de compatibilidade compartilhadas para instalações anteriores do MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-commercial-embedded</code></td>
-         <td>Biblioteca integrada MySQL</td>
-      </tr>
-      <tr>
-         <td><code>mysql-commercial-embedded-devel</code></td>
-         <td>Arquivos de cabeçalho e bibliotecas de desenvolvimento para MySQL como uma biblioteca incorporável</td>
-      </tr>
-      <tr>
-         <td><code>mysql-commercial-test</code></td>
-         <td>Conjunto de testes para o servidor MySQL</td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Nome do pacote</th><th>Resumo</th></tr></thead><tbody><tr><td><code>mysql-commercial-server</code></td><td>Servidor de banco de dados e ferramentas relacionadas</td></tr><tr><td><code>mysql-commercial-client</code></td><td>Aplicativos e ferramentas de cliente MySQL</td></tr><tr><td><code>mysql-commercial-common</code></td><td>Arquivos comuns para bibliotecas de servidor e cliente</td></tr><tr><td><code>mysql-commercial-devel</code></td><td>Arquivos de cabeçalho e bibliotecas de desenvolvimento para aplicações cliente de banco de dados MySQL</td></tr><tr><td><code>mysql-commercial-libs</code></td><td>Bibliotecas compartilhadas para aplicações de clientes de banco de dados MySQL</td></tr><tr><td><code>mysql-commercial-libs-compat</code></td><td>Bibliotecas de compatibilidade compartilhadas para instalações anteriores do MySQL</td></tr><tr><td><code>mysql-commercial-embedded</code></td><td>Biblioteca integrada MySQL</td></tr><tr><td><code>mysql-commercial-embedded-devel</code></td><td>Arquivos de cabeçalho e bibliotecas de desenvolvimento para MySQL como uma biblioteca incorporável</td></tr><tr><td><code>mysql-commercial-test</code></td><td>Conjunto de testes para o servidor MySQL</td></tr></tbody></table>
 
 Os nomes completos dos RPMs têm a seguinte sintaxe:
 
@@ -123,24 +33,7 @@ Os valores de *`distribution`* e *`arch`* indicam a distribuição Linux e o tip
 
 **Tabela 2.11 Identificadores de distribuição de pacotes RPM do MySQL Linux**
 
-<table>
-   <thead>
-      <tr>
-         <th>distribuição Valor</th>
-         <th>Uso pretendido</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>el <code>{version}</code> onde <code>{version}</code> é a principal versão do Enterprise Linux, como <code>el8</code></td>
-         <td>Plataformas baseadas no EL6 (8.0), EL7, EL8, EL9 e EL10 (por exemplo, as versões correspondentes do Oracle Linux, Red Hat Enterprise Linux e CentOS)</td>
-      </tr>
-      <tr>
-         <td><code>sles12</code></td>
-         <td>SUSE Linux Enterprise Server 12</td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>distribuição Valor</th><th>Uso pretendido</th></tr></thead><tbody><tr><td>el <code>{version}</code> onde <code>{version}</code> é a principal versão do Enterprise Linux, como <code>el8</code></td><td>Plataformas baseadas no EL6 (8.0), EL7, EL8, EL9 e EL10 (por exemplo, as versões correspondentes do Oracle Linux, Red Hat Enterprise Linux e CentOS)</td></tr><tr><td><code>sles12</code></td><td>SUSE Linux Enterprise Server 12</td></tr></tbody></table>
 
 Para ver todos os arquivos de um pacote RPM (por exemplo, `mysql-community-server`), use o seguinte comando:
 
@@ -184,87 +77,9 @@ $> sudo yum install mysql-community-{client,common,libs}-* mysql-5.*
 
 Uma instalação padrão do MySQL usando os pacotes RPM resulta em arquivos e recursos criados sob os diretórios do sistema, mostrados na tabela a seguir.
 
-**Tabela 2.12 Estrutura de instalação do MySQL para pacotes RPM do Linux da MySQL Developer Zone**
+**Tabela 2.12 Estrutura de instalação do MySQL para pacotes RPM do Linux da MySQL Developer Zone**
 
-<table>
-   <thead>
-      <tr>
-         <th>Arquivos ou Recursos</th>
-         <th>Localização</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>Programas e scripts para clientes</td>
-         <td><code>mysqld</code></td>
-      </tr>
-      <tr>
-         <td><strong>mysqld</strong> servidor</td>
-         <td><code>mysqld</code></td>
-      </tr>
-      <tr>
-         <td>Arquivo de configuração</td>
-         <td><code> /var/run/mysql/mysqld.pid</code></td>
-      </tr>
-      <tr>
-         <td>Diretório de dados</td>
-         <td><code>/var/lib/mysql/mysql.sock</code></td>
-      </tr>
-      <tr>
-         <td>Arquivo de registro de erros</td>
-         <td>
-            <p>Para plataformas RHEL, Oracle Linux, CentOS ou Fedora: <code>/var/lib/mysql-keyring</code></p>
-            <p>Para SLES: <code>/usr/share/man</code></p>
-         </td>
-      </tr>
-      <tr>
-         <td>Valor de <code>/usr/include/mysql</code></a></td>
-         <td><code>/usr/lib/mysql</code></td>
-      </tr>
-      <tr>
-         <td>Roteiro de inicialização do Sistema V</td>
-         <td>
-            <p>Para plataformas RHEL, Oracle Linux, CentOS ou Fedora: <code>/usr/share/mysql</code></p>
-            <p>Para SLES: <code>/etc/init.d/mysql</code></p>
-         </td>
-      </tr>
-      <tr>
-         <td>Serviço Systemd</td>
-         <td>
-            <p>Para plataformas RHEL, Oracle Linux, CentOS ou Fedora: <code>mysqld</code></p>
-            <p>Para SLES: <code>/usr/sbin</code><code>mysqld</code></p>
-         </td>
-      </tr>
-      <tr>
-         <td>Arquivo Pid</td>
-         <td><code> /var/run/mysql/mysqld.pid</code></td>
-      </tr>
-      <tr>
-         <td>Soquete</td>
-         <td><code>/var/lib/mysql/mysql.sock</code></td>
-      </tr>
-      <tr>
-         <td>Diretório de carteiras de identificação</td>
-         <td><code>/var/lib/mysql-keyring</code></td>
-      </tr>
-      <tr>
-         <td>Páginas de manual do Unix</td>
-         <td><code>/usr/share/man</code></td>
-      </tr>
-      <tr>
-         <td>Incluir arquivos (cabeçalho)</td>
-         <td><code>/usr/include/mysql</code></td>
-      </tr>
-      <tr>
-         <td>Livrarias</td>
-         <td><code>/usr/lib/mysql</code></td>
-      </tr>
-      <tr>
-         <td>Arquivos de suporte variados (por exemplo, mensagens de erro e arquivos de conjunto de caracteres)</td>
-         <td><code>/usr/share/mysql</code></td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Arquivos ou Recursos</th><th>Localização</th></tr></thead><tbody><tr><td>Programas e scripts para clientes</td><td><code>mysqld</code></td></tr><tr><td><strong>mysqld</strong> servidor</td><td><code>mysqld</code></td></tr><tr><td>Arquivo de configuração</td><td><code> /var/run/mysql/mysqld.pid</code></td></tr><tr><td>Diretório de dados</td><td><code>/var/lib/mysql/mysql.sock</code></td></tr><tr><td>Arquivo de registro de erros</td><td><p>Para plataformas RHEL, Oracle Linux, CentOS ou Fedora: <code>/var/lib/mysql-keyring</code></p><p>Para SLES: <code>/usr/share/man</code></p></td></tr><tr><td>Valor de <code>/usr/include/mysql</code></td><td><code>/usr/lib/mysql</code></td></tr><tr><td>Roteiro de inicialização do Sistema V</td><td><p>Para plataformas RHEL, Oracle Linux, CentOS ou Fedora: <code>/usr/share/mysql</code></p><p>Para SLES: <code>/etc/init.d/mysql</code></p></td></tr><tr><td>Serviço Systemd</td><td><p>Para plataformas RHEL, Oracle Linux, CentOS ou Fedora: <code>mysqld</code></p><p>Para SLES: <code>/usr/sbin</code><code>mysqld</code></p></td></tr><tr><td>Arquivo Pid</td><td><code> /var/run/mysql/mysqld.pid</code></td></tr><tr><td>Soquete</td><td><code>/var/lib/mysql/mysql.sock</code></td></tr><tr><td>Diretório de carteiras de identificação</td><td><code>/var/lib/mysql-keyring</code></td></tr><tr><td>Páginas de manual do Unix</td><td><code>/usr/share/man</code></td></tr><tr><td>Incluir arquivos (cabeçalho)</td><td><code>/usr/include/mysql</code></td></tr><tr><td>Livrarias</td><td><code>/usr/lib/mysql</code></td></tr><tr><td>Arquivos de suporte variados (por exemplo, mensagens de erro e arquivos de conjunto de caracteres)</td><td><code>/usr/share/mysql</code></td></tr></tbody></table>
 
 A instalação também cria um usuário chamado `mysql` e um grupo chamado `mysql` no sistema.
 

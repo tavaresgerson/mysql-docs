@@ -115,28 +115,7 @@ Para alterar a forma como as senhas são verificadas, você pode definir essas v
 
   O valor de `validate_password_policy` pode ser especificado usando valores numéricos 0, 1, 2 ou os valores simbólicos correspondentes `LOW`, `MEDIUM`, `STRONG`. A tabela a seguir descreve os testes realizados para cada política. Para o teste de comprimento, o comprimento necessário é o valor da variável de sistema `validate_password_length`. Da mesma forma, os valores necessários para os outros testes são fornecidos por outras variáveis `validate_password_xxx`.
 
-  <table summary="Políticas de senha aplicadas pelo plugin validate_password e os testes realizados para cada política.">
-    <thead>
-      <tr>
-        <th>Política</th>
-        <th>Testes Realizados</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>0</code> ou <code>LOW</code></td>
-        <td>Comprimento</td>
-      </tr>
-      <tr>
-        <td><code>1</code> ou <code>MEDIUM</code></td>
-        <td>Comprimento; numérico, letras minúsculas/maiúsculas e caracteres especiais</td>
-      </tr>
-      <tr>
-        <td><code>2</code> ou <code>STRONG</code></td>
-        <td>Comprimento; numérico, letras minúsculas/maiúsculas e caracteres especiais; arquivo de dicionário</td>
-      </tr>
-    </tbody>
-  </table>
+  <table summary="Políticas de senha aplicadas pelo plugin validate_password e os testes realizados para cada política."><thead><tr><th>Política</th><th>Testes Realizados</th></tr></thead><tbody><tr><td><code>0</code> ou <code>LOW</code></td><td>Comprimento</td></tr><tr><td><code>1</code> ou <code>MEDIUM</code></td><td>Comprimento; numérico, letras minúsculas/maiúsculas e caracteres especiais</td></tr><tr><td><code>2</code> ou <code>STRONG</code></td><td>Comprimento; numérico, letras minúsculas/maiúsculas e caracteres especiais; arquivo de dicionário</td></tr></tbody></table>
 
 - `validate_password_special_char_count`
 

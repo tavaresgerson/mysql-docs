@@ -19,20 +19,11 @@ Para usar as instruções a seguir, você deve ter uma *source distribution* do 
 1. Adicione um elemento `<charset>` para *`MYSET`* ao arquivo `sql/share/charsets/Index.xml`. Use o conteúdo existente no arquivo como guia para adicionar novo conteúdo. Segue uma listagem parcial para o elemento `<charset>` de `latin1`:
 
    ```sql
-   <charset name="latin1">
-     <family>Western</family>
-     <description>cp1252 West European</description>
+   <charset name="latin1"><family>Western</family><description>cp1252 West European</description>
      ...
-     <collation name="latin1_swedish_ci" id="8" order="Finnish, Swedish">
-       <flag>primary</flag>
-       <flag>compiled</flag>
-     </collation>
-     <collation name="latin1_danish_ci" id="15" order="Danish"/>
+     <collation name="latin1_swedish_ci" id="8" order="Finnish, Swedish"><flag>primary</flag><flag>compiled</flag></collation><collation name="latin1_danish_ci" id="15" order="Danish"/>
      ...
-     <collation name="latin1_bin" id="47" order="Binary">
-       <flag>binary</flag>
-       <flag>compiled</flag>
-     </collation>
+     <collation name="latin1_bin" id="47" order="Binary"><flag>binary</flag><flag>compiled</flag></collation>
      ...
    </charset>
    ```

@@ -210,20 +210,7 @@ Para obter instruções de descarte e recarga, consulte a Seção 2.10.12, “Re
   Exemplo de novo formato:
 
   ```xml
-  <AUDIT_RECORD>
-   <TIMESTAMP>2013-04-15T15:27:27 UTC</TIMESTAMP>
-   <RECORD_ID>3998_2013-04-15T15:27:27</RECORD_ID>
-   <NAME>Query</NAME>
-   <CONNECTION_ID>3</CONNECTION_ID>
-   <STATUS>0</STATUS>
-   <STATUS_CODE>0</STATUS_CODE>
-   <USER>root[root] @ localhost [127.0.0.1]</USER>
-   <OS_LOGIN></OS_LOGIN>
-   <HOST>localhost</HOST>
-   <IP>127.0.0.1</IP>
-   <COMMAND_CLASS>select</COMMAND_CLASS>
-   <SQLTEXT>SELECT 1</SQLTEXT>
-  </AUDIT_RECORD>
+  <AUDIT_RECORD><TIMESTAMP>2013-04-15T15:27:27 UTC</TIMESTAMP><RECORD_ID>3998_2013-04-15T15:27:27</RECORD_ID><NAME>Query</NAME><CONNECTION_ID>3</CONNECTION_ID><STATUS>0</STATUS><STATUS_CODE>0</STATUS_CODE><USER>root[root] @ localhost [127.0.0.1]</USER><OS_LOGIN></OS_LOGIN><HOST>localhost</HOST><IP>127.0.0.1</IP><COMMAND_CLASS>select</COMMAND_CLASS><SQLTEXT>SELECT 1</SQLTEXT></AUDIT_RECORD>
   ```
 
   Se você já usou uma versão mais antiga do plugin de registro de auditoria, use este procedimento para evitar a gravação de novas entradas de log em um arquivo de log existente que contém entradas de formato antigo:

@@ -38,46 +38,7 @@ Para instalar uma distribuição binária de um arquivo **tar** compactado, desc
 
 **Tabela 2.3. Configuração de Instalação do MySQL para Pacotes Binários Genéricos Unix/Linux**
 
-<table>
-   <col style="width: 45%"/>
-   <col style="width: 55%"/>
-   <thead>
-      <tr>
-         <th>Diretório</th>
-         <th>Conteúdo do diretório</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td><code>bin</code></td>
-         <td><strong>mysqld</strong> programas de servidor, cliente e utilitário</td>
-      </tr>
-      <tr>
-         <td><code>docs</code></td>
-         <td>Manual do MySQL no formato Info</td>
-      </tr>
-      <tr>
-         <td><code>man</code></td>
-         <td>Páginas de manual do Unix</td>
-      </tr>
-      <tr>
-         <td><code>include</code></td>
-         <td>Incluir arquivos (cabeçalho)</td>
-      </tr>
-      <tr>
-         <td><code>lib</code></td>
-         <td>Livrarias</td>
-      </tr>
-      <tr>
-         <td><code>share</code></td>
-         <td>Mensagens de erro, dicionário e SQL para instalação do banco de dados</td>
-      </tr>
-      <tr>
-         <td><code>support-files</code></td>
-         <td>Arquivos de suporte variados</td>
-      </tr>
-   </tbody>
-</table>
+<table><col style="width: 45%"/><col style="width: 55%"/><thead><tr><th>Diretório</th><th>Conteúdo do diretório</th></tr></thead><tbody><tr><td><code>bin</code></td><td><strong>mysqld</strong> programas de servidor, cliente e utilitário</td></tr><tr><td><code>docs</code></td><td>Manual do MySQL no formato Info</td></tr><tr><td><code>man</code></td><td>Páginas de manual do Unix</td></tr><tr><td><code>include</code></td><td>Incluir arquivos (cabeçalho)</td></tr><tr><td><code>lib</code></td><td>Livrarias</td></tr><tr><td><code>share</code></td><td>Mensagens de erro, dicionário e SQL para instalação do banco de dados</td></tr><tr><td><code>support-files</code></td><td>Arquivos de suporte variados</td></tr></tbody></table>
 
 Versões de depuração do binário **mysqld** estão disponíveis como **mysqld-debug**. Para compilar sua própria versão de depuração do MySQL a partir de uma distribuição de código-fonte, use as opções de configuração apropriadas para habilitar o suporte de depuração. Consulte a Seção 2.8, “Instalando o MySQL a partir de código-fonte”.
 

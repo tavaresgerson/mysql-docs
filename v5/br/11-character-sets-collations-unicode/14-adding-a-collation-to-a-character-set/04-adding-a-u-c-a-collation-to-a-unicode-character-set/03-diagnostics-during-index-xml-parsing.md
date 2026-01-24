@@ -14,8 +14,7 @@ O servidor MySQL gera diagnósticos quando encontra problemas durante a análise
 * Problemas com *collations* geram *warnings* que os *clients* podem exibir usando `SHOW WARNINGS`. Suponha que uma regra de *reset* contenha uma expansão maior do que o comprimento máximo suportado de 6 caracteres:
 
   ```sql
-  <reset>abcdefghi</reset>
-  <i>x</i>
+  <reset>abcdefghi</reset><i>x</i>
   ```
 
   Uma tentativa de usar o *collation* produz *warnings*:

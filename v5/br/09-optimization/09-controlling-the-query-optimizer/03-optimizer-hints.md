@@ -45,62 +45,7 @@ A tabela a seguir resume as dicas de otimização disponíveis, as estratégias 
 
 **Tabela 8.2 Sugestões de otimizador disponíveis**
 
-<table summary="Nomeie, descreva e explique os contextos em que os otimizadores são aplicados.">
-  <thead>
-    <tr>
-      <th>Nome do Sugestão</th>
-      <th>Descrição</th>
-      <th>Âmbito de aplicação</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th><code>BKA</code>, <code>NO_BKA</code></th>
-      <td>Afeta o processamento de junção de acesso de chave em lote</td>
-      <td>Bloco de consulta, tabela</td>
-    </tr>
-    <tr>
-      <th><code>BNL</code>, <code>NO_BNL</code></th>
-      <td>Afeta o processamento de junção de laço aninhado</td>
-      <td>Bloco de consulta, tabela</td>
-    </tr>
-    <tr>
-      <th><code>MAX_EXECUTION_TIME</code></th>
-      <td>Limites para a execução do tempo de declaração</td>
-      <td>Global</td>
-    </tr>
-    <tr>
-      <th><code>MRR</code>,<code>NO_MRR</code></th>
-      <td>Afeta a otimização da leitura de Multi-Range</td>
-      <td>Tabela, índice</td>
-    </tr>
-    <tr>
-      <th><code>NO_ICP</code></th>
-      <td>Afeta a otimização da condição do índice Pushdown</td>
-      <td>Tabela, índice</td>
-    </tr>
-    <tr>
-      <th><code>NO_RANGE_OPTIMIZATION</code></th>
-      <td>Otimização da faixa de efeitos</td>
-      <td>Tabela, índice</td>
-    </tr>
-    <tr>
-      <th><code>QB_NAME</code></th>
-      <td>Atribui nome ao bloco de consulta</td>
-      <td>Bloco de consulta</td>
-    </tr>
-    <tr>
-      <th><code>SEMIJOIN</code>,<code>NO_BKA</code><code>SEMIJOIN</code>]</th>
-      <td>estratégias semijoin</td>
-      <td>Bloco de consulta</td>
-    </tr>
-    <tr>
-      <th><code>SUBQUERY</code></th>
-      <td>Afeta as estratégias de subconsulta <code>IN</code>-a-<code>EXISTS</code> de materialização</td>
-      <td>Bloco de consulta</td>
-    </tr>
-  </tbody>
-</table>
+<table summary="Nomeie, descreva e explique os contextos em que os otimizadores são aplicados."><thead><tr><th>Nome do Sugestão</th><th>Descrição</th><th>Âmbito de aplicação</th></tr></thead><tbody><tr><th><code>BKA</code>, <code>NO_BKA</code></th><td>Afeta o processamento de junção de acesso de chave em lote</td><td>Bloco de consulta, tabela</td></tr><tr><th><code>BNL</code>, <code>NO_BNL</code></th><td>Afeta o processamento de junção de laço aninhado</td><td>Bloco de consulta, tabela</td></tr><tr><th><code>MAX_EXECUTION_TIME</code></th><td>Limites para a execução do tempo de declaração</td><td>Global</td></tr><tr><th><code>MRR</code>,<code>NO_MRR</code></th><td>Afeta a otimização da leitura de Multi-Range</td><td>Tabela, índice</td></tr><tr><th><code>NO_ICP</code></th><td>Afeta a otimização da condição do índice Pushdown</td><td>Tabela, índice</td></tr><tr><th><code>NO_RANGE_OPTIMIZATION</code></th><td>Otimização da faixa de efeitos</td><td>Tabela, índice</td></tr><tr><th><code>QB_NAME</code></th><td>Atribui nome ao bloco de consulta</td><td>Bloco de consulta</td></tr><tr><th><code>SEMIJOIN</code>,<code>NO_BKA</code><code>SEMIJOIN</code>]</th><td>estratégias semijoin</td><td>Bloco de consulta</td></tr><tr><th><code>SUBQUERY</code></th><td>Afeta as estratégias de subconsulta <code>IN</code>-a-<code>EXISTS</code> de materialização</td><td>Bloco de consulta</td></tr></tbody></table>
 
 Desativar uma otimização impede que o otimizador a use. Habilitar uma otimização significa que o otimizador pode usar a estratégia se ela se aplicar à execução da instrução, não que o otimizador a use necessariamente.
 

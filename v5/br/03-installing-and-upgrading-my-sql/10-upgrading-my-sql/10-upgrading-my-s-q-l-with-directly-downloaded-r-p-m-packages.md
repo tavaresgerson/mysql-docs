@@ -26,48 +26,7 @@ Devido às relações de dependência entre os pacotes RPM, todos os pacotes ins
 
 **Tabela 2.16 Diferenças entre os pacotes RPM anteriores e atuais para instalação do MySQL**
 
-<table>
-   <thead>
-      <tr>
-         <th>Característica</th>
-         <th>Comportamento de pacotes anteriores</th>
-         <th>Comportamento dos Pacotes Atuais</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <th>O serviço começa após a instalação estar concluída</th>
-         <td>Sim</td>
-         <td>Não, a menos que seja uma instalação de atualização e o servidor estivesse em execução quando a atualização começou.</td>
-      </tr>
-      <tr>
-         <th>Nome do serviço</th>
-         <td>mysql</td>
-         <td>
-            <p>Para RHEL, Oracle Linux, CentOS e Fedora:<strong>mysqld</strong></p>
-            <p>Para SLES:<strong>mysql</strong></p>
-         </td>
-      </tr>
-      <tr>
-         <th>Arquivo de registro de erros</th>
-         <td>Em <code>/var/lib/mysql/<em><code>hostname</code></em>.err</code></td>
-         <td>
-            <p>Para RHEL, Oracle Linux, CentOS e Fedora: em <code>/var/log/mysqld.log</code></p>
-            <p>Para SLES: em <code>/var/log/mysql/mysqld.log</code></p>
-         </td>
-      </tr>
-      <tr>
-         <th>Fornecido com o arquivo <code>/etc/my.cnf</code></th>
-         <td>Não</td>
-         <td>Sim</td>
-      </tr>
-      <tr>
-         <th>Suporte Multilib</th>
-         <td>Não</td>
-         <td>Sim</td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Característica</th><th>Comportamento de pacotes anteriores</th><th>Comportamento dos Pacotes Atuais</th></tr></thead><tbody><tr><th>O serviço começa após a instalação estar concluída</th><td>Sim</td><td>Não, a menos que seja uma instalação de atualização e o servidor estivesse em execução quando a atualização começou.</td></tr><tr><th>Nome do serviço</th><td>mysql</td><td><p>Para RHEL, Oracle Linux, CentOS e Fedora:<strong>mysqld</strong></p><p>Para SLES:<strong>mysql</strong></p></td></tr><tr><th>Arquivo de registro de erros</th><td>Em <code>/var/lib/mysql/<em><code>hostname</code></em>.err</code></td><td><p>Para RHEL, Oracle Linux, CentOS e Fedora: em <code>/var/log/mysqld.log</code></p><p>Para SLES: em <code>/var/log/mysql/mysqld.log</code></p></td></tr><tr><th>Fornecido com o arquivo <code>/etc/my.cnf</code></th><td>Não</td><td>Sim</td></tr><tr><th>Suporte Multilib</th><td>Não</td><td>Sim</td></tr></tbody></table>
 
 ::: info Nota
 A instalação de versões anteriores do MySQL usando pacotes mais antigos pode ter criado um arquivo de configuração chamado `/usr/my.cnf`. É altamente recomendável que você examine o conteúdo do arquivo e migre as configurações desejadas para o arquivo `/etc/my.cnf`, depois remova o `/usr/my.cnf`.

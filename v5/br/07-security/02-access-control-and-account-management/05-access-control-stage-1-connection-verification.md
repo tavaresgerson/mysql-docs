@@ -31,62 +31,7 @@ Do ponto de vista do servidor MySQL, a senha criptografada é a *real* senha, en
 
 A tabela a seguir mostra como várias combinações de valores de `User` e `Host` na tabela `user` se aplicam às conexões de entrada.
 
-<table summary="Como as várias combinações de valores de Usuário e Host na tabela de usuários se aplicam às conexões recebidas em um servidor MySQL.">
-  <thead>
-    <tr>
-      <th>Valor <code>User</code></th>
-      <th>Valor <code>Host</code></th>
-      <th>Conexões permitidas</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th><code>'fred'</code></th>
-      <td><code>'h1.example.net'</code></td>
-      <td><code>fred</code>, connecting from <code>h1.example.net</code></td>
-    </tr>
-    <tr>
-      <th><code>''</code></th>
-      <td><code>'h1.example.net'</code></td>
-      <td>Any user, connecting from <code>h1.example.net</code></td>
-    </tr>
-    <tr>
-      <th><code>'fred'</code></th>
-      <td><code>'%'</code></td>
-      <td><code>fred</code>, connecting from any host</td>
-    </tr>
-    <tr>
-      <th><code>''</code></th>
-      <td><code>'%'</code></td>
-      <td>Any user, connecting from any host</td>
-    </tr>
-    <tr>
-      <th><code>'fred'</code></th>
-      <td><code>'%.example.net'</code></td>
-      <td><code>fred</code>, connecting from any host in the <code>example.net</code> domain</td>
-    </tr>
-    <tr>
-      <th><code>'fred'</code></th>
-      <td><code>'x.example.%'</code></td>
-      <td><code>fred</code>, connecting from <code>x.example.net</code>, <code>x.example.com</code>, <code>x.example.edu</code>, and so on; this is probably not useful</td>
-    </tr>
-    <tr>
-      <th><code>'fred'</code></th>
-      <td><code>'198.51.100.177'</code></td>
-      <td><code>fred</code>, connecting from the host with IP address <code>198.51.100.177</code></td>
-    </tr>
-    <tr>
-      <th><code>'fred'</code></th>
-      <td><code>'198.51.100.%'</code></td>
-      <td><code>fred</code>, connecting from any host in the <code>198.51.100</code> class C subnet</td>
-    </tr>
-    <tr>
-      <th><code>'fred'</code></th>
-      <td><code>'198.51.100.0/255.255.255.0'</code></td>
-      <td>Same as previous example</td>
-    </tr>
-  </tbody>
-</table>
+<table summary="Como as várias combinações de valores de Usuário e Host na tabela de usuários se aplicam às conexões recebidas em um servidor MySQL."><thead><tr><th>Valor <code>User</code></th><th>Valor <code>Host</code></th><th>Conexões permitidas</th></tr></thead><tbody><tr><th><code>'fred'</code></th><td><code>'h1.example.net'</code></td><td><code>fred</code>, connecting from <code>h1.example.net</code></td></tr><tr><th><code>''</code></th><td><code>'h1.example.net'</code></td><td>Any user, connecting from <code>h1.example.net</code></td></tr><tr><th><code>'fred'</code></th><td><code>'%'</code></td><td><code>fred</code>, connecting from any host</td></tr><tr><th><code>''</code></th><td><code>'%'</code></td><td>Any user, connecting from any host</td></tr><tr><th><code>'fred'</code></th><td><code>'%.example.net'</code></td><td><code>fred</code>, connecting from any host in the <code>example.net</code> domain</td></tr><tr><th><code>'fred'</code></th><td><code>'x.example.%'</code></td><td><code>fred</code>, connecting from <code>x.example.net</code>, <code>x.example.com</code>, <code>x.example.edu</code>, and so on; this is probably not useful</td></tr><tr><th><code>'fred'</code></th><td><code>'198.51.100.177'</code></td><td><code>fred</code>, connecting from the host with IP address <code>198.51.100.177</code></td></tr><tr><th><code>'fred'</code></th><td><code>'198.51.100.%'</code></td><td><code>fred</code>, connecting from any host in the <code>198.51.100</code> class C subnet</td></tr><tr><th><code>'fred'</code></th><td><code>'198.51.100.0/255.255.255.0'</code></td><td>Same as previous example</td></tr></tbody></table>
 
 É possível que o nome do host do cliente e o nome do usuário de uma conexão de entrada correspondam a mais de uma linha na tabela `user`. O conjunto de exemplos anteriores demonstra isso: Várias das entradas mostradas correspondem a uma conexão de `h1.example.net` por `fred`.
 

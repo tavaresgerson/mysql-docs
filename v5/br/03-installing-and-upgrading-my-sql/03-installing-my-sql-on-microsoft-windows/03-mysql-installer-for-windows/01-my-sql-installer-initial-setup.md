@@ -97,39 +97,4 @@ Os produtos instalados do MySQL não são alterados nem removidos quando você a
 
 **Tabela 2.5 Arquivos de configuração do instalador do MySQL**
 
-<table>
-   <thead>
-      <tr>
-         <th>Arquivo ou Pasta</th>
-         <th>Descrição</th>
-         <th>Hierarquia de Pasta</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <th><code>MySQL Installer for Windows</code></th>
-         <td>Esta pasta contém todos os arquivos necessários para executar o MySQL Installer e o <strong>MySQLInstallerConsole.exe</strong>, um programa de linha de comando com funcionalidade semelhante.</td>
-         <td><code>C:\Program Files (x86)</code></td>
-      </tr>
-      <tr>
-         <th><code>Templates</code></th>
-         <td>A pasta <code>Templates</code> contém um arquivo para cada versão do servidor MySQL. Os arquivos de modelo contêm chaves e fórmulas para calcular alguns valores dinamicamente.</td>
-         <td><code>C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest</code></td>
-      </tr>
-      <tr>
-         <th><code>package-rules.xml</code></th>
-         <td>Este arquivo contém os pré-requisitos para a instalação de todos os produtos.</td>
-         <td><code>C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest</code></td>
-      </tr>
-      <tr>
-         <th><code>products.xml</code></th>
-         <td>O arquivo <code>products</code> (ou catálogo de produtos) contém uma lista de todos os produtos disponíveis para download.</td>
-         <td><code>C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest</code></td>
-      </tr>
-      <tr>
-         <th><code>Product Cache</code></th>
-         <td>A pasta <code>Product Cache</code> contém todos os arquivos <code>.msi</code> independentes incluídos no pacote completo ou baixados posteriormente.</td>
-         <td><code>C:\ProgramData\MySQL\MySQL Installer for Windows</code></td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Arquivo ou Pasta</th><th>Descrição</th><th>Hierarquia de Pasta</th></tr></thead><tbody><tr><th><code>MySQL Installer for Windows</code></th><td>Esta pasta contém todos os arquivos necessários para executar o MySQL Installer e o <strong>MySQLInstallerConsole.exe</strong>, um programa de linha de comando com funcionalidade semelhante.</td><td><code>C:\Program Files (x86)</code></td></tr><tr><th><code>Templates</code></th><td>A pasta <code>Templates</code> contém um arquivo para cada versão do servidor MySQL. Os arquivos de modelo contêm chaves e fórmulas para calcular alguns valores dinamicamente.</td><td><code>C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest</code></td></tr><tr><th><code>package-rules.xml</code></th><td>Este arquivo contém os pré-requisitos para a instalação de todos os produtos.</td><td><code>C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest</code></td></tr><tr><th><code>products.xml</code></th><td>O arquivo <code>products</code> (ou catálogo de produtos) contém uma lista de todos os produtos disponíveis para download.</td><td><code>C:\ProgramData\MySQL\MySQL Installer for Windows\Manifest</code></td></tr><tr><th><code>Product Cache</code></th><td>A pasta <code>Product Cache</code> contém todos os arquivos <code>.msi</code> independentes incluídos no pacote completo ou baixados posteriormente.</td><td><code>C:\ProgramData\MySQL\MySQL Installer for Windows</code></td></tr></tbody></table>

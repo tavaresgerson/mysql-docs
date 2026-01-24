@@ -95,40 +95,7 @@ Aqui, também, observe o prompt. Ele volta para `mysql>` depois que você digita
 
 A tabela a seguir mostra cada um dos prompts que você pode ver e resume o que eles significam sobre o estado em que o **mysql** está.
 
-<table>
-   <thead>
-      <tr>
-         <th>Prompt</th>
-         <th>Significado</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td><code>mysql&gt;</code></td>
-         <td>Pronto para nova consulta</td>
-      </tr>
-      <tr>
-         <td><code>-&gt;</code></td>
-         <td>Esperando pela próxima linha da consulta de várias linhas</td>
-      </tr>
-      <tr>
-         <td><code>'&gt;</code></td>
-         <td>Esperando pela próxima linha, esperando pela conclusão de uma string que começou com uma única aspas (<code>'</code>)</td>
-      </tr>
-      <tr>
-         <td><code>"&gt;</code></td>
-         <td>Esperando pela próxima linha, esperando pela conclusão de uma string que começou com uma aspas duplas (<code>"</code>)</td>
-      </tr>
-      <tr>
-         <td><code>`&gt;</code></td>
-         <td>Esperando pela próxima linha, esperando pela conclusão de um identificador que começou com uma barra invertida (<code>`</code>)</td>
-      </tr>
-      <tr>
-         <td><code>/*&gt;</code></td>
-         <td>Esperando pela próxima linha, esperando pela conclusão de um comentário que começou com <code>/*</code></td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Prompt</th><th>Significado</th></tr></thead><tbody><tr><td><code>mysql&gt;</code></td><td>Pronto para nova consulta</td></tr><tr><td><code>-&gt;</code></td><td>Esperando pela próxima linha da consulta de várias linhas</td></tr><tr><td><code>'&gt;</code></td><td>Esperando pela próxima linha, esperando pela conclusão de uma string que começou com uma única aspas (<code>'</code>)</td></tr><tr><td><code>"&gt;</code></td><td>Esperando pela próxima linha, esperando pela conclusão de uma string que começou com uma aspas duplas (<code>"</code>)</td></tr><tr><td><code>`&gt;</code></td><td>Esperando pela próxima linha, esperando pela conclusão de um identificador que começou com uma barra invertida (<code>`</code>)</td></tr><tr><td><code>/*&gt;</code></td><td>Esperando pela próxima linha, esperando pela conclusão de um comentário que começou com <code>/*</code></td></tr></tbody></table>
 
 Declarações de várias linhas geralmente ocorrem acidentalmente quando você pretende emitir uma consulta em uma única linha, mas esquece o ponto e vírgula final. Nesse caso, **mysql** espera por mais entrada:
 

@@ -29,77 +29,7 @@ Cada linha de saída do `EXPLAIN` fornece informações sobre uma tabela. Cada l
 
 **Tabela 8.1 Colunas de Saída do Resultado EXPLAIN**
 
-<table summary="Colunas de saída produzidas pelo comando EXPLAIN.">
-  <thead>
-    <tr>
-      <th>Coluna</th>
-      <th>Nome JSON</th>
-      <th>Significado</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-         <th><code>id</code></th>
-         <td><code>select_id</code></td>
-         <td>O identificador <code>SELECT</code></td>
-      </tr>
-      <tr>
-         <th><code>select_type</code></th>
-         <td>None</td>
-         <td>O tipo <code>SELECT</code></td>
-      </tr>
-      <tr>
-         <th><code>table</code></th>
-         <td><code>table_name</code></td>
-         <td>A tabela para a linha de saída</td>
-      </tr>
-      <tr>
-         <th><code>partitions</code></th>
-         <td><code>partitions</code></td>
-         <td>As partições correspondentes</td>
-      </tr>
-      <tr>
-         <th><code>type</code></th>
-         <td><code>access_type</code></td>
-         <td>O tipo de junção</td>
-      </tr>
-      <tr>
-         <th><code>possible_keys</code></th>
-         <td><code>possible_keys</code></td>
-         <td>Os índices possíveis para escolher</td>
-      </tr>
-      <tr>
-         <th><code>key</code></th>
-         <td><code>key</code></td>
-         <td>O índice realmente escolhido</td>
-      </tr>
-      <tr>
-         <th><code>key_len</code></th>
-         <td><code>key_length</code></td>
-         <td>O comprimento da chave escolhida</td>
-      </tr>
-      <tr>
-         <th><code>ref</code></th>
-         <td><code>ref</code></td>
-         <td>As colunas comparadas ao índice</td>
-      </tr>
-      <tr>
-         <th><code>rows</code></th>
-         <td><code>rows</code></td>
-         <td>Estimativa de linhas a serem examinadas</td>
-      </tr>
-      <tr>
-         <th><code>filtered</code></th>
-         <td><code>filtered</code></td>
-         <td>Porcentagem de linhas filtradas pela condição da tabela</td>
-      </tr>
-      <tr>
-         <th><code>Extra</code></th>
-         <td>None</td>
-         <td>Informações adicionais</td>
-      </tr>
-  </tbody>
-</table>
+<table summary="Colunas de saída produzidas pelo comando EXPLAIN."><thead><tr><th>Coluna</th><th>Nome JSON</th><th>Significado</th></tr></thead><tbody><tr><th><code>id</code></th><td><code>select_id</code></td><td>O identificador <code>SELECT</code></td></tr><tr><th><code>select_type</code></th><td>None</td><td>O tipo <code>SELECT</code></td></tr><tr><th><code>table</code></th><td><code>table_name</code></td><td>A tabela para a linha de saída</td></tr><tr><th><code>partitions</code></th><td><code>partitions</code></td><td>As partições correspondentes</td></tr><tr><th><code>type</code></th><td><code>access_type</code></td><td>O tipo de junção</td></tr><tr><th><code>possible_keys</code></th><td><code>possible_keys</code></td><td>Os índices possíveis para escolher</td></tr><tr><th><code>key</code></th><td><code>key</code></td><td>O índice realmente escolhido</td></tr><tr><th><code>key_len</code></th><td><code>key_length</code></td><td>O comprimento da chave escolhida</td></tr><tr><th><code>ref</code></th><td><code>ref</code></td><td>As colunas comparadas ao índice</td></tr><tr><th><code>rows</code></th><td><code>rows</code></td><td>Estimativa de linhas a serem examinadas</td></tr><tr><th><code>filtered</code></th><td><code>filtered</code></td><td>Porcentagem de linhas filtradas pela condição da tabela</td></tr><tr><th><code>Extra</code></th><td>None</td><td>Informações adicionais</td></tr></tbody></table>
 
 Nota
 
@@ -113,72 +43,7 @@ As propriedades do JSON que são `NULL` não são exibidas na saída `EXPLAIN` f
 
   O tipo de `SELECT`, que pode ser qualquer um dos mostrados na tabela a seguir. Um `EXPLAIN` formatado em JSON expõe o tipo de `SELECT` como uma propriedade de um `query_block`, a menos que seja `SIMPLE` ou `PRIMARY`. Os nomes do JSON (quando aplicável) também são mostrados na tabela.
 
-  <table summary="select_type values and the meaning of each value.">
-    <thead>
-      <tr>
-        <th><code>select_type</code> Valor</th>
-        <th>Nome JSON</th>
-        <th>Significado</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th><code>SIMPLE</code></th>
-        <td>None</td>
-        <td>SELECT simples (sem usar UNION ou subconsultas)</td>
-      </tr>
-      <tr>
-        <th><code>PRIMARY</code></th>
-        <td>None</td>
-        <td>SELECT mais externo</td>
-      </tr>
-      <tr>
-        <th><code>UNION</code></th>
-        <td>None</td>
-        <td>Segundo ou posterior instrução SELECT em um UNION</td>
-      </tr>
-      <tr>
-        <th><code>DEPENDENT UNION</code></th>
-        <td><code>dependent</code> (<code>true</code>)</td>
-        <td>Segundo ou posterior instrução SELECT em um UNION, dependente da consulta externa</td>
-      </tr>
-      <tr>
-        <th><code>UNION RESULT</code></th>
-        <td><code>union_result</code></td>
-        <td>Resultado de um UNION.</td>
-      </tr>
-      <tr>
-        <th><code>SUBQUERY</code></th>
-        <td>None</td>
-        <td>Primeiro SELECT em uma subconsulta</td>
-      </tr>
-      <tr>
-        <th><code>DEPENDENT SUBQUERY</code></th>
-        <td><code>dependent</code> (<code>true</code>)</td>
-        <td>Primeiro SELECT em uma subconsulta, dependente da consulta externa</td>
-      </tr>
-      <tr>
-        <th><code>DERIVED</code></th>
-        <td>None</td>
-        <td>Tabela derivada</td>
-      </tr>
-      <tr>
-        <th><code>MATERIALIZED</code></th>
-        <td><code>materialized_from_subquery</code></td>
-        <td>Subconsulta materializada</td>
-      </tr>
-      <tr>
-        <th><code>UNCACHEABLE SUBQUERY</code></th>
-        <td><code>cacheable</code> (<code>false</code>)</td>
-        <td>Uma subconsulta cujo resultado não pode ser armazenado em cache e deve ser reavaliado para cada linha da consulta externa</td>
-      </tr>
-      <tr>
-        <th><code>UNCACHEABLE UNION</code></th>
-        <td><code>cacheable</code> (<code>false</code>)</td>
-        <td>O segundo ou posterior SELECT em um UNION que pertence a uma subconsulta não armazenável em cache (consulte SUBCONSULTA NÃO ARMAZENÁVEL EM CACHE)</td>
-      </tr>
-    </tbody>
-  </table>
+  <table summary="select_type values and the meaning of each value."><thead><tr><th><code>select_type</code> Valor</th><th>Nome JSON</th><th>Significado</th></tr></thead><tbody><tr><th><code>SIMPLE</code></th><td>None</td><td>SELECT simples (sem usar UNION ou subconsultas)</td></tr><tr><th><code>PRIMARY</code></th><td>None</td><td>SELECT mais externo</td></tr><tr><th><code>UNION</code></th><td>None</td><td>Segundo ou posterior instrução SELECT em um UNION</td></tr><tr><th><code>DEPENDENT UNION</code></th><td><code>dependent</code> (<code>true</code>)</td><td>Segundo ou posterior instrução SELECT em um UNION, dependente da consulta externa</td></tr><tr><th><code>UNION RESULT</code></th><td><code>union_result</code></td><td>Resultado de um UNION.</td></tr><tr><th><code>SUBQUERY</code></th><td>None</td><td>Primeiro SELECT em uma subconsulta</td></tr><tr><th><code>DEPENDENT SUBQUERY</code></th><td><code>dependent</code> (<code>true</code>)</td><td>Primeiro SELECT em uma subconsulta, dependente da consulta externa</td></tr><tr><th><code>DERIVED</code></th><td>None</td><td>Tabela derivada</td></tr><tr><th><code>MATERIALIZED</code></th><td><code>materialized_from_subquery</code></td><td>Subconsulta materializada</td></tr><tr><th><code>UNCACHEABLE SUBQUERY</code></th><td><code>cacheable</code> (<code>false</code>)</td><td>Uma subconsulta cujo resultado não pode ser armazenado em cache e deve ser reavaliado para cada linha da consulta externa</td></tr><tr><th><code>UNCACHEABLE UNION</code></th><td><code>cacheable</code> (<code>false</code>)</td><td>O segundo ou posterior SELECT em um UNION que pertence a uma subconsulta não armazenável em cache (consulte SUBCONSULTA NÃO ARMAZENÁVEL EM CACHE)</td></tr></tbody></table>
 
   `DEPENDENT` geralmente indica o uso de uma subconsulta correlacionada. Veja a Seção 13.2.10.7, “Subconsultas Correlacionadas”.
 
@@ -596,75 +461,11 @@ Para este exemplo, faça as seguintes suposições:
 
 - As colunas que estão sendo comparadas foram declaradas da seguinte forma.
 
-  <table summary="Nomes das tabelas, nomes das colunas e tipos de dados das colunas que estão sendo comparadas no exemplo EXPLAIN descrito no texto anterior.">
-    <thead>
-      <tr>
-        <th>Tabela</th>
-        <th>Coluna</th>
-        <th>Tipo de dados</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th><code>tt</code></th>
-        <td><code>ActualPC</code></td>
-        <td><code>CHAR(10)</code></td>
-      </tr>
-      <tr>
-        <th><code>tt</code></th>
-        <td><code>AssignedPC</code></td>
-        <td><code>CHAR(10)</code></td>
-      </tr>
-      <tr>
-        <th><code>tt</code></th>
-        <td><code>ClientID</code></td>
-        <td><code>CHAR(10)</code></td>
-      </tr>
-      <tr>
-        <th><code>et</code></th>
-        <td><code>EMPLOYID</code></td>
-        <td><code>CHAR(15)</code></td>
-      </tr>
-      <tr>
-        <th><code>do</code></th>
-        <td><code>CUSTNMBR</code></td>
-        <td><code>CHAR(15)</code></td>
-      </tr>
-    </tbody>
-  </table>
+  <table summary="Nomes das tabelas, nomes das colunas e tipos de dados das colunas que estão sendo comparadas no exemplo EXPLAIN descrito no texto anterior."><thead><tr><th>Tabela</th><th>Coluna</th><th>Tipo de dados</th></tr></thead><tbody><tr><th><code>tt</code></th><td><code>ActualPC</code></td><td><code>CHAR(10)</code></td></tr><tr><th><code>tt</code></th><td><code>AssignedPC</code></td><td><code>CHAR(10)</code></td></tr><tr><th><code>tt</code></th><td><code>ClientID</code></td><td><code>CHAR(10)</code></td></tr><tr><th><code>et</code></th><td><code>EMPLOYID</code></td><td><code>CHAR(15)</code></td></tr><tr><th><code>do</code></th><td><code>CUSTNMBR</code></td><td><code>CHAR(15)</code></td></tr></tbody></table>
 
 - As tabelas têm os seguintes índices.
 
-  <table summary="Índices para cada uma das tabelas que fazem parte do exemplo EXPLAIN descrito no texto anterior.">
-    <thead>
-      <tr>
-        <th>Tabela</th>
-        <th>Índice</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>tt</code></td>
-        <td><code>ActualPC</code></td>
-      </tr>
-      <tr>
-        <td><code>tt</code></td>
-        <td><code>AssignedPC</code></td>
-      </tr>
-      <tr>
-        <td><code>tt</code></td>
-        <td><code>ClientID</code></td>
-      </tr>
-      <tr>
-        <td><code>et</code></td>
-        <td><code>EMPLOYID</code> (chave primária)</td>
-      </tr>
-      <tr>
-        <td><code>do</code></td>
-        <td><code>CUSTNMBR</code> (chave primária)</td>
-      </tr>
-    </tbody>
-  </table>
+  <table summary="Índices para cada uma das tabelas que fazem parte do exemplo EXPLAIN descrito no texto anterior."><thead><tr><th>Tabela</th><th>Índice</th></tr></thead><tbody><tr><td><code>tt</code></td><td><code>ActualPC</code></td></tr><tr><td><code>tt</code></td><td><code>AssignedPC</code></td></tr><tr><td><code>tt</code></td><td><code>ClientID</code></td></tr><tr><td><code>et</code></td><td><code>EMPLOYID</code> (chave primária)</td></tr><tr><td><code>do</code></td><td><code>CUSTNMBR</code> (chave primária)</td></tr></tbody></table>
   
 - Os valores de `tt.ActualPC` não estão distribuídos de forma uniforme.
 

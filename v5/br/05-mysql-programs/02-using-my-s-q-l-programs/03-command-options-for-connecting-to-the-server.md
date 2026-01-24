@@ -11,129 +11,23 @@ Esta seção descreve as opções que controlam a forma como os programas client
 
 **Tabela 4.4 Resumo da Opção de Estabelecimento de Conexão**
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome da Opção</th>
-      <th>Descrição</th>
-      <th>Desatualizado</th>
-    </tr>
-   </thead>
-   <tbody>
-      <tr>
-        <th>--default-auth</th>
-        <td>Plugin de autenticação a ser usado</td>
-        <td></td>
-      </tr>
-      <tr>
-        <th>--host</th>
-        <td>Anfitrião no qual o servidor MySQL está localizado</td>
-        <td></td>
-      </tr>
-      <tr>
-         <th>--password</th>
-         <td>Senha para usar ao se conectar ao servidor</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--pipe</th>
-         <td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--plugin-dir</th>
-         <td>Diretório onde os plugins são instalados</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--port</th>
-         <td>Número de porta TCP/IP para a conexão</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--protocol</th>
-         <td>Protocolo de transporte a ser utilizado</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--secure-auth</th>
-         <td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td>
-         <td>Sim</td>
-      </tr>
-      <tr>
-         <th>--shared-memory-base-name</th>
-         <td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--socket</th>
-         <td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--user</th>
-         <td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td>
-         <td></td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Nome da Opção</th><th>Descrição</th><th>Desatualizado</th></tr></thead><tbody><tr><th>--default-auth</th><td>Plugin de autenticação a ser usado</td><td></td></tr><tr><th>--host</th><td>Anfitrião no qual o servidor MySQL está localizado</td><td></td></tr><tr><th>--password</th><td>Senha para usar ao se conectar ao servidor</td><td></td></tr><tr><th>--pipe</th><td>Conecte-se ao servidor usando o pipe nomeado (apenas Windows)</td><td></td></tr><tr><th>--plugin-dir</th><td>Diretório onde os plugins são instalados</td><td></td></tr><tr><th>--port</th><td>Número de porta TCP/IP para a conexão</td><td></td></tr><tr><th>--protocol</th><td>Protocolo de transporte a ser utilizado</td><td></td></tr><tr><th>--secure-auth</th><td>Não envie senhas para o servidor no formato antigo (pré-4.1)</td><td>Sim</td></tr><tr><th>--shared-memory-base-name</th><td>Nome de memória compartilhada para conexões de memória compartilhada (apenas Windows)</td><td></td></tr><tr><th>--socket</th><td>Arquivo de soquete Unix ou tubo nomeado do Windows a ser usado</td><td></td></tr><tr><th>--user</th><td>Nome do usuário do MySQL a ser usado ao se conectar ao servidor</td><td></td></tr></tbody></table>
 
 - `--default-auth=plugin`
 
-  <table>
-    <tbody>
-      <tr>
-         <th>Formato de linha de comando</th>
-         <td><code>--default-auth=plugin</code></td>
-      </tr>
-      <tr>
-         <th>Tipo</th>
-         <td>String</td>
-      </tr>
-    </tbody>
-  </table>
+  <table><tbody><tr><th>Formato de linha de comando</th><td><code>--default-auth=plugin</code></td></tr><tr><th>Tipo</th><td>String</td></tr></tbody></table>
 
   Uma dica sobre qual plugin de autenticação do lado do cliente deve ser usado. Veja a Seção 6.2.13, “Autenticação Personalizável”.
 
 - `--host=host_name`, `-h host_name`
 
-  <table>
-    <tbody>
-      <tr>
-        <th>Formato de linha de comando</th>
-        <td><code>--host=host_name</code></td>
-      </tr>
-      <tr>
-        <th>Tipo</th>
-        <td>String</td>
-      </tr>
-      <tr>
-        <th>Valor padrão</th>
-        <td><code>localhost</code></td>
-      </tr>
-    </tbody>
-  </table>
+  <table><tbody><tr><th>Formato de linha de comando</th><td><code>--host=host_name</code></td></tr><tr><th>Tipo</th><td>String</td></tr><tr><th>Valor padrão</th><td><code>localhost</code></td></tr></tbody></table>
 
   O host em que o servidor MySQL está rodando. O valor pode ser um nome de host, endereço IPv4 ou endereço IPv6. O valor padrão é `localhost`.
 
 - `--password[=pass_val]`, `-p[pass_val]`
 
-  <table>
-    <tbody>
-      <tr>
-         <th>Formato de linha de comando</th>
-         <td><code>--password[=passwor<code>[none]</code></code></td>
-      </tr>
-      <tr>
-         <th>Tipo</th>
-         <td>String</td>
-      </tr>
-      <tr>
-         <th>Valor padrão</th>
-         <td><code>[none]</code></td>
-      </tr>
-    </tbody>
-  </table>
+  <table><tbody><tr><th>Formato de linha de comando</th><td><code>--password[=pass_val]</code></td></tr><tr><th>Tipo</th><td>String</td></tr><tr><th>Valor padrão</th><td><code>[none]</code></td></tr></tbody></table>
 
   A senha da conta MySQL usada para se conectar ao servidor. O valor da senha é opcional. Se não for fornecido, o programa cliente solicitará uma senha. Se for fornecida, não deve haver *espaço* entre `--password=` ou `-p` e a senha que a segue. Se nenhuma opção de senha for especificada, o padrão é não enviar nenhuma senha.
 
@@ -161,31 +55,7 @@ Esta seção descreve as opções que controlam a forma como os programas client
 
 - `--protocol={TCP|SOCKET|PIPE|MEMORY}`
 
-  <table>
-   <tbody>
-      <tr>
-        <th>Formato de linha de comando</th>
-        <td><code>--protocol=type</code></td>
-      </tr>
-      <tr>
-         <th>Tipo</th>
-         <td>String</td>
-      </tr>
-      <tr>
-         <th>Valor padrão</th>
-         <td><code>see text]</code></td>
-      </tr>
-      <tr>
-        <th>Valores válidos</th>
-        <td>
-          <p><code>TCP</code></p>
-          <p><code>SOCKET</code></p>
-          <p><code>PIPE</code></p>
-          <p><code>MEMORY</code></p>
-        </td>
-      </tr>
-   </tbody>
-</table>
+  <table><tbody><tr><th>Formato de linha de comando</th><td><code>--protocol=type</code></td></tr><tr><th>Tipo</th><td>String</td></tr><tr><th>Valor padrão</th><td><code>see text]</code></td></tr><tr><th>Valores válidos</th><td><p><code>TCP</code></p><p><code>SOCKET</code></p><p><code>PIPE</code></p><p><code>MEMORY</code></p></td></tr></tbody></table>
 
   Esta opção especifica explicitamente qual protocolo de transporte usar para se conectar ao servidor. É útil quando outros parâmetros de conexão normalmente resultam no uso de um protocolo diferente do que você deseja. Por exemplo, as conexões no Unix para `localhost` são feitas usando um arquivo de socket Unix por padrão:
 
@@ -201,37 +71,7 @@ Esta seção descreve as opções que controlam a forma como os programas client
 
   A tabela a seguir mostra os valores permitidos da opção `--protocol` e indica as plataformas aplicáveis para cada valor. Os valores não são sensíveis ao caso.
 
-  <table>
-    <thead>
-      <tr>
-         <th><code>--protocol</code>Valor</th>
-         <th>Protocolo de transporte utilizado</th>
-         <th>Plataformas aplicáveis</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-         <th><code>TCP</code></th>
-         <td>Transporte TCP/IP para servidor local ou remoto</td>
-         <td>Tudo</td>
-      </tr>
-      <tr>
-         <th><code>SOCKET</code></th>
-         <td>Transporte de arquivo de soquete Unix para servidor local</td>
-         <td>Unix e sistemas semelhantes ao Unix</td>
-      </tr>
-      <tr>
-         <th><code>PIPE</code></th>
-         <td>Transporte de tubos nomeados para servidor local</td>
-         <td>Windows</td>
-      </tr>
-      <tr>
-         <th><code>MEMORY</code></th>
-         <td>Transporte de memória compartilhada para servidor local</td>
-         <td>Windows</td>
-      </tr>
-    </tbody>
-  </table>
+  <table><thead><tr><th><code>--protocol</code>Valor</th><th>Protocolo de transporte utilizado</th><th>Plataformas aplicáveis</th></tr></thead><tbody><tr><th><code>TCP</code></th><td>Transporte TCP/IP para servidor local ou remoto</td><td>Tudo</td></tr><tr><th><code>SOCKET</code></th><td>Transporte de arquivo de soquete Unix para servidor local</td><td>Unix e sistemas semelhantes ao Unix</td></tr><tr><th><code>PIPE</code></th><td>Transporte de tubos nomeados para servidor local</td><td>Windows</td></tr><tr><th><code>MEMORY</code></th><td>Transporte de memória compartilhada para servidor local</td><td>Windows</td></tr></tbody></table>
 
   Veja também a Seção 4.2.5, “Protocolos de Transporte de Conexão”
 
@@ -309,9 +149,7 @@ Para obter informações sobre o uso de conexões criptografadas a partir da API
 
 - `--ssl`, `--skip-ssl`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
-
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--default-auth=plugin</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th><td><code>--ssl</code></td></tr><tr><th>Tipo</th><td>String</td></tr></tbody></table>
 
 
   ::: info Nota

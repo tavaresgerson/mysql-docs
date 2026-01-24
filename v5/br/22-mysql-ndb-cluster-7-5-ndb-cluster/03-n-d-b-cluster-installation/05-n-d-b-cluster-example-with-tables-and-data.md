@@ -134,15 +134,8 @@ Applications that use MySQL can employ standard APIs to access [`NDB`](mysql-clu
 
 ```sql
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-  "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type"
-           content="text/html; charset=iso-8859-1">
-  <title>SIMPLE mysqli SELECT</title>
-</head>
-<body>
-<?php
+  "http://www.w3.org/TR/html4/loose.dtd"><html><head><meta http-equiv="Content-Type"
+           content="text/html; charset=iso-8859-1"><title>SIMPLE mysqli SELECT</title></head><body><?php
   # connect to SQL node:
   $link = new mysqli('198.51.100.20', 'root', 'root_password', 'world');
   # parameters for mysqli constructor are:
@@ -159,22 +152,13 @@ Applications that use MySQL can employ standard APIs to access [`NDB`](mysql-clu
   # if no errors...
   if( $result = $link->query($query) )
   {
-?>
-<table border="1" width="40%" cellpadding="4" cellspacing ="1">
-  <tbody>
-  <tr>
-    <th width="10%">City</th>
-    <th>Population</th>
-  </tr>
-<?
+?><table border="1" width="40%" cellpadding="4" cellspacing ="1"><tbody><tr><th width="10%">City</th><th>Population</th></tr><?
     # then display the results...
     while($row = $result->fetch_object())
       printf("<tr>\n  <td align=\"center\">%s</td><td>%d</td>\n</tr>\n",
               $row->Name, $row->Population);
-?>
-  </tbody
-</table>
-<?
+?></tbody
+</table><?
   # ...and verify the number of rows that were retrieved
     printf("<p>Affected rows: %d</p>\n", $link->affected_rows);
   }
@@ -185,9 +169,7 @@ Applications that use MySQL can employ standard APIs to access [`NDB`](mysql-clu
   # free the result set and the mysqli connection object
   $result->close();
   $link->close();
-?>
-</body>
-</html>
+?></body></html>
 ```
 
 We assume that the process running on the Web server can reach the IP address of the SQL node.

@@ -27,206 +27,35 @@ Para compatibilidade com versões anteriores, o **mysqld_safe** também lê seç
 
 **Tabela 4.6 Opções do mysqld_safe**
 
-<table>
-   <thead>
-      <tr>
-         <th>Nome da Opção</th>
-         <th>Descrição</th>
-         <th>Introduzido</th>
-         <th>Desatualizado</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <th>--basedir</th>
-         <td>Caminho para o diretório de instalação do MySQL</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--core-file-size</th>
-         <td>Tamanho do arquivo de núcleo que o mysqld deve ser capaz de criar</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--datadir</th>
-         <td>Caminho para o diretório de dados</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--defaults-extra-file</th>
-         <td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--defaults-file</th>
-         <td>Arquivo de opção de leitura apenas nomeado</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--help</th>
-         <td>Exibir mensagem de ajuda e sair</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--ledir</th>
-         <td>Caminho para o diretório onde o servidor está localizado</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--log-error</th>
-         <td>Escreva o log de erros em um arquivo nomeado</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--malloc-lib</th>
-         <td>Biblioteca malloc alternativa para usar no mysqld</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--mysqld</th>
-         <td>Nome do programa do servidor para iniciar (no diretório ledir)</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--mysqld-safe-log-timestamps</th>
-         <td>Formato de data e hora para registro</td>
-         <td>5.7.11</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--mysqld-version</th>
-         <td>Sufixo para o nome do programa do servidor</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--nice</th>
-         <td>Use um bom programa para definir a prioridade de agendamento do servidor</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--no-defaults</th>
-         <td>Não ler arquivos de opção</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--limite-de-arquivos-abertos</th>
-         <td>Número de arquivos que o mysqld deve ser capaz de abrir</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--pid-file</th>
-         <td>Nome do caminho do arquivo de ID do processo do servidor</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--plugin-dir</th>
-         <td>Diretório onde os plugins são instalados</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--port</th>
-         <td>Número de porta para ouvir conexões TCP/IP</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--skip-kill-mysqld</th>
-         <td>Não tente matar processos de mysqld errantes</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--skip-syslog</th>
-         <td>Não escreva mensagens de erro no syslog; use o arquivo de log de erro</td>
-         <td></td>
-         <td>Sim</td>
-      </tr>
-      <tr>
-         <th>--socket</th>
-         <td>Arquivo de soquete para ouvir conexões de soquete Unix</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--syslog</th>
-         <td>Escreva mensagens de erro no syslog</td>
-         <td></td>
-         <td>Sim</td>
-      </tr>
-      <tr>
-         <th>--syslog-tag</th>
-         <td>Sufixo de etiqueta para mensagens escritas no syslog</td>
-         <td></td>
-         <td>Sim</td>
-      </tr>
-      <tr>
-         <th>--timezone</th>
-         <td>Defina a variável de ambiente de fuso horário TZ para o valor nomeado</td>
-         <td></td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>--user</th>
-         <td>Execute o mysqld como usuário com o nome user_name ou ID de usuário numérico user_id</td>
-         <td></td>
-         <td></td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Nome da Opção</th><th>Descrição</th><th>Introduzido</th><th>Desatualizado</th></tr></thead><tbody><tr><th>--basedir</th><td>Caminho para o diretório de instalação do MySQL</td><td></td><td></td></tr><tr><th>--core-file-size</th><td>Tamanho do arquivo de núcleo que o mysqld deve ser capaz de criar</td><td></td><td></td></tr><tr><th>--datadir</th><td>Caminho para o diretório de dados</td><td></td><td></td></tr><tr><th>--defaults-extra-file</th><td>Leia o arquivo de opção nomeado, além dos arquivos de opção usuais</td><td></td><td></td></tr><tr><th>--defaults-file</th><td>Arquivo de opção de leitura apenas nomeado</td><td></td><td></td></tr><tr><th>--help</th><td>Exibir mensagem de ajuda e sair</td><td></td><td></td></tr><tr><th>--ledir</th><td>Caminho para o diretório onde o servidor está localizado</td><td></td><td></td></tr><tr><th>--log-error</th><td>Escreva o log de erros em um arquivo nomeado</td><td></td><td></td></tr><tr><th>--malloc-lib</th><td>Biblioteca malloc alternativa para usar no mysqld</td><td></td><td></td></tr><tr><th>--mysqld</th><td>Nome do programa do servidor para iniciar (no diretório ledir)</td><td></td><td></td></tr><tr><th>--mysqld-safe-log-timestamps</th><td>Formato de data e hora para registro</td><td>5.7.11</td><td></td></tr><tr><th>--mysqld-version</th><td>Sufixo para o nome do programa do servidor</td><td></td><td></td></tr><tr><th>--nice</th><td>Use um bom programa para definir a prioridade de agendamento do servidor</td><td></td><td></td></tr><tr><th>--no-defaults</th><td>Não ler arquivos de opção</td><td></td><td></td></tr><tr><th>--limite-de-arquivos-abertos</th><td>Número de arquivos que o mysqld deve ser capaz de abrir</td><td></td><td></td></tr><tr><th>--pid-file</th><td>Nome do caminho do arquivo de ID do processo do servidor</td><td></td><td></td></tr><tr><th>--plugin-dir</th><td>Diretório onde os plugins são instalados</td><td></td><td></td></tr><tr><th>--port</th><td>Número de porta para ouvir conexões TCP/IP</td><td></td><td></td></tr><tr><th>--skip-kill-mysqld</th><td>Não tente matar processos de mysqld errantes</td><td></td><td></td></tr><tr><th>--skip-syslog</th><td>Não escreva mensagens de erro no syslog; use o arquivo de log de erro</td><td></td><td>Sim</td></tr><tr><th>--socket</th><td>Arquivo de soquete para ouvir conexões de soquete Unix</td><td></td><td></td></tr><tr><th>--syslog</th><td>Escreva mensagens de erro no syslog</td><td></td><td>Sim</td></tr><tr><th>--syslog-tag</th><td>Sufixo de etiqueta para mensagens escritas no syslog</td><td></td><td>Sim</td></tr><tr><th>--timezone</th><td>Defina a variável de ambiente de fuso horário TZ para o valor nomeado</td><td></td><td></td></tr><tr><th>--user</th><td>Execute o mysqld como usuário com o nome user_name ou ID de usuário numérico user_id</td><td></td><td></td></tr></tbody></table>
 
 - `--help`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
-
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table><table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Exiba uma mensagem de ajuda e saia.
 
 - `--basedir=nome_do_diretório`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
-
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table><table><tbody><tr><th>Formato de linha de comando</th> <td><code>--basedir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O caminho para o diretório de instalação do MySQL.
 
 - `--core-file-size=tamanho`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file-size=size</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
-
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file-size=size</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file-size=size</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table><table><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file-size=size</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
 
   O tamanho do arquivo de núcleo que o **mysqld** deve ser capaz de criar. O valor da opção é passado para **ulimit -c**.
 
 - `--datadir=nome_do_diretório`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
-
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table><table><tbody><tr><th>Formato de linha de comando</th> <td><code>--datadir=dir_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do diretório</td> </tr></tbody></table>
 
   O caminho para o diretório de dados.
 
 - `--defaults-extra-file=nome_do_arquivo`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table>
-
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr></tbody></table><table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   Leia este arquivo de opção em adição aos arquivos de opção usuais. Se o arquivo não existir ou estiver inacessível, o servidor sai com um erro. Se *`file_name`* não for um nome de caminho absoluto, ele será interpretado em relação ao diretório atual. Isso deve ser a primeira opção na linha de comando se ela for usada.
 
@@ -392,9 +221,7 @@ Para compatibilidade com versões anteriores, o **mysqld_safe** também lê seç
 
 - `--syslog`, `--skip-syslog`
 
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
-
-  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
+  <table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table><table><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr></tbody></table>
 
   `--syslog` faz com que as mensagens de erro sejam enviadas para o `syslog` em sistemas que suportam o programa **logger**. `--skip-syslog` suprime o uso do `syslog`; as mensagens são escritas em um arquivo de log de erro.
 

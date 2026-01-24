@@ -32,108 +32,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
 - `keyring_aws_region`
 
-  <table frame="box" rules="all" summary="Propriedades para keyring_aws_region">
-  <tbody>
-    <tr>
-      <th>Formato de linha de comando</th>
-      <td><code>--keyring-aws-region=value</code></td>
-    </tr>
-    <tr>
-      <th>Introduzido</th>
-      <td>5.7.19</td>
-    </tr>
-    <tr>
-      <th>Variável de sistema</th>
-      <td><code>keyring_aws_region</code></td>
-    </tr>
-    <tr>
-      <th>Escopo</th>
-      <td>Globais</td>
-    </tr>
-    <tr>
-      <th>Dinâmico</th>
-      <td>Sim</td>
-    </tr>
-    <tr>
-      <th>Tipo</th>
-      <td>Enumeração</td>
-    </tr>
-    <tr>
-      <th>Valor padrão</th>
-      <td><code>us-east-1</code></td>
-    </tr>
-    <tr>
-      <th>Valid Values (≥ 5.7.39)</th>
-      <td>
-        <p><code>af-south-1</code></p>
-        <p><code>ap-east-1</code></p>
-        <p><code>ap-northeast-1</code></p>
-        <p><code>ap-northeast-2</code></p>
-        <p><code>ap-northeast-3</code></p>
-        <p><code>ap-south-1</code></p>
-        <p><code>ap-southeast-1</code></p>
-        <p><code>ap-southeast-2</code></p>
-        <p><code>ca-central-1</code></p>
-        <p><code>cn-north-1</code></p>
-        <p><code>cn-northwest-1</code></p>
-        <p><code>eu-central-1</code></p>
-        <p><code>eu-north-1</code></p>
-        <p><code>eu-south-1</code></p>
-        <p><code>eu-west-1</code></p>
-        <p><code>eu-west-2</code></p>
-        <p><code>eu-west-3</code></p>
-        <p><code>me-south-1</code></p>
-        <p><code>sa-east-1</code></p>
-        <p><code>us-east-1</code></p>
-        <p><code>us-east-2</code></p>
-        <p><code>us-gov-east-1</code></p>
-        <p><code>us-iso-east-1</code></p>
-        <p><code>us-iso-west-1</code></p>
-        <p><code>us-isob-east-1</code></p>
-        <p><code>us-west-1</code></p>
-        <p><code>us-west-2</code></p>
-      </td>
-    </tr>
-    <tr>
-      <th>Valores válidos (≥ 5.7.27, ≤ 5.7.38)</th>
-      <td>
-        <p><code>ap-northeast-1</code></p>
-        <p><code>ap-northeast-2</code></p>
-        <p><code>ap-south-1</code></p>
-        <p><code>ap-southeast-1</code></p>
-        <p><code>ap-southeast-2</code></p>
-        <p><code>ca-central-1</code></p>
-        <p><code>cn-north-1</code></p>
-        <p><code>cn-northwest-1</code></p>
-        <p><code>eu-central-1</code></p>
-        <p><code>eu-west-1</code></p>
-        <p><code>eu-west-2</code></p>
-        <p><code>eu-west-3</code></p>
-        <p><code>sa-east-1</code></p>
-        <p><code>us-east-1</code></p>
-        <p><code>us-east-2</code></p>
-        <p><code>us-west-1</code></p>
-        <p><code>us-west-2</code></p>
-      </td>
-    </tr>
-    <tr>
-      <th>Valores válidos (≥ 5.7.19, ≤ 5.7.26)</th>
-      <td>
-        <p><code>ap-northeast-1</code></p>
-        <p><code>ap-northeast-2</code></p>
-        <p><code>ap-south-1</code></p>
-        <p><code>ap-southeast-1</code></p>
-        <p><code>ap-southeast-2</code></p>
-        <p><code>eu-central-1</code></p>
-        <p><code>eu-west-1</code></p>
-        <p><code>sa-east-1</code></p>
-        <p><code>us-east-1</code></p>
-        <p><code>us-west-1</code></p>
-        <p><code>us-west-2</code></p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <table frame="box" rules="all" summary="Propriedades para keyring_aws_region"><tbody><tr><th>Formato de linha de comando</th><td><code>--keyring-aws-region=value</code></td></tr><tr><th>Introduzido</th><td>5.7.19</td></tr><tr><th>Variável de sistema</th><td><code>keyring_aws_region</code></td></tr><tr><th>Escopo</th><td>Globais</td></tr><tr><th>Dinâmico</th><td>Sim</td></tr><tr><th>Tipo</th><td>Enumeração</td></tr><tr><th>Valor padrão</th><td><code>us-east-1</code></td></tr><tr><th>Valid Values (≥ 5.7.39)</th><td><p><code>af-south-1</code></p><p><code>ap-east-1</code></p><p><code>ap-northeast-1</code></p><p><code>ap-northeast-2</code></p><p><code>ap-northeast-3</code></p><p><code>ap-south-1</code></p><p><code>ap-southeast-1</code></p><p><code>ap-southeast-2</code></p><p><code>ca-central-1</code></p><p><code>cn-north-1</code></p><p><code>cn-northwest-1</code></p><p><code>eu-central-1</code></p><p><code>eu-north-1</code></p><p><code>eu-south-1</code></p><p><code>eu-west-1</code></p><p><code>eu-west-2</code></p><p><code>eu-west-3</code></p><p><code>me-south-1</code></p><p><code>sa-east-1</code></p><p><code>us-east-1</code></p><p><code>us-east-2</code></p><p><code>us-gov-east-1</code></p><p><code>us-iso-east-1</code></p><p><code>us-iso-west-1</code></p><p><code>us-isob-east-1</code></p><p><code>us-west-1</code></p><p><code>us-west-2</code></p></td></tr><tr><th>Valores válidos (≥ 5.7.27, ≤ 5.7.38)</th><td><p><code>ap-northeast-1</code></p><p><code>ap-northeast-2</code></p><p><code>ap-south-1</code></p><p><code>ap-southeast-1</code></p><p><code>ap-southeast-2</code></p><p><code>ca-central-1</code></p><p><code>cn-north-1</code></p><p><code>cn-northwest-1</code></p><p><code>eu-central-1</code></p><p><code>eu-west-1</code></p><p><code>eu-west-2</code></p><p><code>eu-west-3</code></p><p><code>sa-east-1</code></p><p><code>us-east-1</code></p><p><code>us-east-2</code></p><p><code>us-west-1</code></p><p><code>us-west-2</code></p></td></tr><tr><th>Valores válidos (≥ 5.7.19, ≤ 5.7.26)</th><td><p><code>ap-northeast-1</code></p><p><code>ap-northeast-2</code></p><p><code>ap-south-1</code></p><p><code>ap-southeast-1</code></p><p><code>ap-southeast-2</code></p><p><code>eu-central-1</code></p><p><code>eu-west-1</code></p><p><code>sa-east-1</code></p><p><code>us-east-1</code></p><p><code>us-west-1</code></p><p><code>us-west-2</code></p></td></tr></tbody></table>
 
   A região da AWS para o plugin `keyring_aws`. Essa variável não está disponível, a menos que o plugin esteja instalado.
 
@@ -151,24 +50,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
   O nome padrão do arquivo é `keyring_encrypted`, localizado em um diretório específico da plataforma e depende do valor da opção **CMake** `INSTALL_LAYOUT`, conforme mostrado na tabela a seguir. Para especificar o diretório padrão do arquivo explicitamente se você estiver compilando a partir da fonte, use a opção **CMake** `INSTALL_MYSQLKEYRINGDIR`.
 
-  <table summary="O valor padrão keyring_encrypted_file_data para diferentes valores de INSTALL_LAYOUT.">
-    <thead>
-      <tr>
-        <th><code>INSTALL_LAYOUT</code> Value</th>
-        <th>Valor padrão de <code>keyring_encrypted_file_data</code></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>DEB</code>, <code>RPM</code>, <code>SLES</code>, <code>SVR4</code></td>
-        <td><code>/var/lib/mysql-keyring/keyring_encrypted</code></td>
-      </tr>
-      <tr>
-        <td>Caso contrário</td>
-        <td><code>keyring/keyring_encrypted</code> sob o valor <code>CMAKE_INSTALL_PREFIX</code></td>
-      </tr>
-    </tbody>
-  </table>
+  <table summary="O valor padrão keyring_encrypted_file_data para diferentes valores de INSTALL_LAYOUT."><thead><tr><th><code>INSTALL_LAYOUT</code> Value</th><th>Valor padrão de <code>keyring_encrypted_file_data</code></th></tr></thead><tbody><tr><td><code>DEB</code>, <code>RPM</code>, <code>SLES</code>, <code>SVR4</code></td><td><code>/var/lib/mysql-keyring/keyring_encrypted</code></td></tr><tr><td>Caso contrário</td><td><code>keyring/keyring_encrypted</code> sob o valor <code>CMAKE_INSTALL_PREFIX</code></td></tr></tbody></table>
 
   Ao iniciar o plugin, se o valor atribuído a `keyring_encrypted_file_data` especificar um arquivo que não existe, o plugin `keyring_encrypted_file` tentará criá-lo (assim como seu diretório pai, se necessário).
 
@@ -216,24 +98,7 @@ Os plugins do Keyring do MySQL suportam as seguintes variáveis de sistema. Use-
 
   O nome padrão do arquivo é `keyring`, localizado em um diretório específico da plataforma e depende do valor da opção **CMake** `INSTALL_LAYOUT`, conforme mostrado na tabela a seguir. Para especificar o diretório padrão do arquivo explicitamente se você estiver compilando a partir da fonte, use a opção **CMake** `INSTALL_MYSQLKEYRINGDIR`.
 
-  <table summary="O valor padrão keyring_file_data para diferentes valores de INSTALL_LAYOUT.">
-    <thead>
-      <tr>
-        <th><code>INSTALL_LAYOUT</code> Value</th>
-        <th>Valor padrão de <code>keyring_file_data</code></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>DEB</code>, <code>RPM</code>, <code>SLES</code>, <code>SVR4</code></td>
-        <td><code>/var/lib/mysql-keyring/keyring</code></td>
-      </tr>
-      <tr>
-        <td>Caso contrário</td>
-        <td><code>chaveiro/chaveiro</code> sob o valor <code>CMAKE_INSTALL_PREFIX</code></td>
-      </tr>
-    </tbody>
-  </table>
+  <table summary="O valor padrão keyring_file_data para diferentes valores de INSTALL_LAYOUT."><thead><tr><th><code>INSTALL_LAYOUT</code> Value</th><th>Valor padrão de <code>keyring_file_data</code></th></tr></thead><tbody><tr><td><code>DEB</code>, <code>RPM</code>, <code>SLES</code>, <code>SVR4</code></td><td><code>/var/lib/mysql-keyring/keyring</code></td></tr><tr><td>Caso contrário</td><td><code>chaveiro/chaveiro</code> sob o valor <code>CMAKE_INSTALL_PREFIX</code></td></tr></tbody></table>
 
   Ao iniciar o plugin, se o valor atribuído a `keyring_file_data` especificar um arquivo que não existe, o plugin `keyring_file` tentará criá-lo (assim como seu diretório pai, se necessário).
 

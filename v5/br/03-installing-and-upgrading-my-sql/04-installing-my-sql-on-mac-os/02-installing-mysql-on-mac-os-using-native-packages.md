@@ -62,57 +62,6 @@ Ao instalar usando o instalador de pacotes, os arquivos são instalados em um di
 
 **Tabela 2.7. Estrutura de instalação do MySQL no macOS**
 
-<table>
-   <col style="width: 45%"/>
-   <col style="width: 55%"/>
-   <thead>
-      <tr>
-         <th>Diretório</th>
-         <th>Conteúdo do diretório</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td><code>bin</code></td>
-         <td><strong>mysqld</strong> programas de servidor, cliente e utilitário</td>
-      </tr>
-      <tr>
-         <td><code>data</code></td>
-         <td>Arquivos de registro, bancos de dados</td>
-      </tr>
-      <tr>
-         <td><code>docs</code></td>
-         <td>Documentos auxiliares, como as Notas de Lançamento e informações de construção</td>
-      </tr>
-      <tr>
-         <td><code>include</code></td>
-         <td>Incluir arquivos (cabeçalho)</td>
-      </tr>
-      <tr>
-         <td><code>lib</code></td>
-         <td>Livrarias</td>
-      </tr>
-      <tr>
-         <td><code>man</code></td>
-         <td>Páginas de manual do Unix</td>
-      </tr>
-      <tr>
-         <td><code>mysql-test</code></td>
-         <td>Conjunto de testes do MySQL</td>
-      </tr>
-      <tr>
-         <td><code>share</code></td>
-         <td>Arquivos de suporte variados, incluindo mensagens de erro, arquivos de configuração de exemplo, SQL para instalação de banco de dados</td>
-      </tr>
-      <tr>
-         <td><code>support-files</code></td>
-         <td>Scripts e arquivos de configuração de amostra</td>
-      </tr>
-      <tr>
-         <td><code>/tmp/mysql.sock</code></td>
-         <td>Localização do soquete Unix do MySQL</td>
-      </tr>
-   </tbody>
-</table>
+<table><col style="width: 45%"/><col style="width: 55%"/><thead><tr><th>Diretório</th><th>Conteúdo do diretório</th></tr></thead><tbody><tr><td><code>bin</code></td><td><strong>mysqld</strong> programas de servidor, cliente e utilitário</td></tr><tr><td><code>data</code></td><td>Arquivos de registro, bancos de dados</td></tr><tr><td><code>docs</code></td><td>Documentos auxiliares, como as Notas de Lançamento e informações de construção</td></tr><tr><td><code>include</code></td><td>Incluir arquivos (cabeçalho)</td></tr><tr><td><code>lib</code></td><td>Livrarias</td></tr><tr><td><code>man</code></td><td>Páginas de manual do Unix</td></tr><tr><td><code>mysql-test</code></td><td>Conjunto de testes do MySQL</td></tr><tr><td><code>share</code></td><td>Arquivos de suporte variados, incluindo mensagens de erro, arquivos de configuração de exemplo, SQL para instalação de banco de dados</td></tr><tr><td><code>support-files</code></td><td>Scripts e arquivos de configuração de amostra</td></tr><tr><td><code>/tmp/mysql.sock</code></td><td>Localização do soquete Unix do MySQL</td></tr></tbody></table>
 
 Durante o processo de instalação do pacote, um link simbólico de `/usr/local/mysql` para o diretório específico da versão/plataforma criado durante a instalação é criado automaticamente.

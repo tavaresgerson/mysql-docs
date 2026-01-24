@@ -168,36 +168,7 @@ A Oracle Corporation também fornece a ferramenta de interface gráfica MySQL Wo
 
 Os programas clientes do MySQL que se comunicam com o servidor usando a biblioteca cliente/servidor do MySQL utilizam as seguintes variáveis de ambiente.
 
-<table>
-   <thead>
-      <tr>
-         <th>Variável de ambiente</th>
-         <th>Significado</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td><code>MYSQL_UNIX_PORT</code></td>
-         <td>O arquivo de socket Unix padrão; usado para conexões a <code>localhost</code></td>
-      </tr>
-      <tr>
-         <td><code>MYSQL_TCP_PORT</code></td>
-         <td>O número de porta padrão; usado para conexões TCP/IP</td>
-      </tr>
-      <tr>
-         <td><code>MYSQL_PWD</code></td>
-         <td>A senha padrão</td>
-      </tr>
-      <tr>
-         <td><code>MYSQL_DEBUG</code></td>
-         <td>Opções de rastreamento de debug ao depurar</td>
-      </tr>
-      <tr>
-         <td><code>TMPDIR</code></td>
-         <td>O diretório onde as tabelas e arquivos temporários são criados</td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Variável de ambiente</th><th>Significado</th></tr></thead><tbody><tr><td><code>MYSQL_UNIX_PORT</code></td><td>O arquivo de socket Unix padrão; usado para conexões a <code>localhost</code></td></tr><tr><td><code>MYSQL_TCP_PORT</code></td><td>O número de porta padrão; usado para conexões TCP/IP</td></tr><tr><td><code>MYSQL_PWD</code></td><td>A senha padrão</td></tr><tr><td><code>MYSQL_DEBUG</code></td><td>Opções de rastreamento de debug ao depurar</td></tr><tr><td><code>TMPDIR</code></td><td>O diretório onde as tabelas e arquivos temporários são criados</td></tr></tbody></table>
 
 Para uma lista completa das variáveis de ambiente usadas pelos programas do MySQL, consulte a Seção 4.9, “Variáveis de Ambiente”.
 

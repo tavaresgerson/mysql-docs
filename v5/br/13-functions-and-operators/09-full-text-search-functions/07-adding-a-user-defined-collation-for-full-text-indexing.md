@@ -9,15 +9,13 @@ To add a collation for full-text indexing, use the following procedure. The inst
    ```sql
    <charset name="latin1">
    ...
-   <collation name="latin1_fulltext_ci" id="1025"/>
-   </charset>
+   <collation name="latin1_fulltext_ci" id="1025"/></charset>
    ```
 
 2. Declare the sort order for the collation in the `latin1.xml` file. In this case, the order can be copied from `latin1_swedish_ci`:
 
    ```sql
-   <collation name="latin1_fulltext_ci">
-   <map>
+   <collation name="latin1_fulltext_ci"><map>
    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
    10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F
    20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F
@@ -34,15 +32,13 @@ To add a collation for full-text indexing, use the following procedure. The inst
    44 4E 4F 4F 4F 4F 5D D7 D8 55 55 55 59 59 DE DF
    41 41 41 41 5C 5B 5C 43 45 45 45 45 49 49 49 49
    44 4E 4F 4F 4F 4F 5D F7 D8 55 55 55 59 59 DE FF
-   </map>
-   </collation>
+   </map></collation>
    ```
 
 3. Modify the `ctype` array in `latin1.xml`. Change the value corresponding to 0x2D (which is the code for the `'-'` character) from 10 (punctuation) to 01 (uppercase letter). In the following array, this is the element in the fourth row down, third value from the end.
 
    ```sql
-   <ctype>
-   <map>
+   <ctype><map>
    00
    20 20 20 20 20 20 20 20 20 28 28 28 28 28 20 20
    20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
@@ -60,8 +56,7 @@ To add a collation for full-text indexing, use the following procedure. The inst
    01 01 01 01 01 01 01 10 01 01 01 01 01 01 01 02
    02 02 02 02 02 02 02 02 02 02 02 02 02 02 02 02
    02 02 02 02 02 02 02 10 02 02 02 02 02 02 02 02
-   </map>
-   </ctype>
+   </map></ctype>
    ```
 
 4. Restart the server.

@@ -84,40 +84,7 @@ O **mysql_ssl_rsa_setup** suporta as seguintes opções de linha de comando, que
 
 **Tabela 4.11 Opções de mysql_ssl_rsa_setup**
 
-<table>
-   <thead>
-      <tr>
-         <th>Nome da Opção</th>
-         <th>Descrição</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>--datadir</td>
-         <td>Caminho para o diretório de dados</td>
-      </tr>
-      <tr>
-         <td>--help</td>
-         <td>Exibir mensagem de ajuda e sair</td>
-      </tr>
-      <tr>
-         <td>--suffix</td>
-         <td>Sufixo para o atributo Nome comum do certificado X.509</td>
-      </tr>
-      <tr>
-         <td>--uid</td>
-         <td>Nome do usuário efetivo a ser usado para permissões de arquivo</td>
-      </tr>
-      <tr>
-         <td>--verbose</td>
-         <td>Modo verbosos</td>
-      </tr>
-      <tr>
-         <td>--version</td>
-         <td>Exibir informações da versão e sair</td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Nome da Opção</th><th>Descrição</th></tr></thead><tbody><tr><td>--datadir</td><td>Caminho para o diretório de dados</td></tr><tr><td>--help</td><td>Exibir mensagem de ajuda e sair</td></tr><tr><td>--suffix</td><td>Sufixo para o atributo Nome comum do certificado X.509</td></tr><tr><td>--uid</td><td>Nome do usuário efetivo a ser usado para permissões de arquivo</td></tr><tr><td>--verbose</td><td>Modo verbosos</td></tr><tr><td>--version</td><td>Exibir informações da versão e sair</td></tr></tbody></table>
 
 - `--help`, `?`
 

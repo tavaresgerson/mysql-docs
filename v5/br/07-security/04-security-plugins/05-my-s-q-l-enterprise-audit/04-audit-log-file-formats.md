@@ -27,95 +27,21 @@ As seções a seguir descrevem os formatos de registro de auditoria disponíveis
 Aqui está um arquivo de registro de exemplo no formato XML de novo estilo (`audit_log_format=NEW`), reformatado ligeiramente para melhor legibilidade:
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<AUDIT>
- <AUDIT_RECORD>
-  <TIMESTAMP>2019-10-03T14:06:33 UTC</TIMESTAMP>
-  <RECORD_ID>1_2019-10-03T14:06:33</RECORD_ID>
-  <NAME>Audit</NAME>
-  <SERVER_ID>1</SERVER_ID>
-  <VERSION>1</VERSION>
-  <STARTUP_OPTIONS>/usr/local/mysql/bin/mysqld
+<?xml version="1.0" encoding="utf-8"?><AUDIT><AUDIT_RECORD><TIMESTAMP>2019-10-03T14:06:33 UTC</TIMESTAMP><RECORD_ID>1_2019-10-03T14:06:33</RECORD_ID><NAME>Audit</NAME><SERVER_ID>1</SERVER_ID><VERSION>1</VERSION><STARTUP_OPTIONS>/usr/local/mysql/bin/mysqld
     --socket=/usr/local/mysql/mysql.sock
-    --port=3306</STARTUP_OPTIONS>
-  <OS_VERSION>i686-Linux</OS_VERSION>
-  <MYSQL_VERSION>5.7.21-log</MYSQL_VERSION>
- </AUDIT_RECORD>
- <AUDIT_RECORD>
-  <TIMESTAMP>2019-10-03T14:09:38 UTC</TIMESTAMP>
-  <RECORD_ID>2_2019-10-03T14:06:33</RECORD_ID>
-  <NAME>Connect</NAME>
-  <CONNECTION_ID>5</CONNECTION_ID>
-  <STATUS>0</STATUS>
-  <STATUS_CODE>0</STATUS_CODE>
-  <USER>root</USER>
-  <OS_LOGIN/>
-  <HOST>localhost</HOST>
-  <IP>127.0.0.1</IP>
-  <COMMAND_CLASS>connect</COMMAND_CLASS>
-  <CONNECTION_TYPE>SSL/TLS</CONNECTION_TYPE>
-  <PRIV_USER>root</PRIV_USER>
-  <PROXY_USER/>
-  <DB>test</DB>
- </AUDIT_RECORD>
+    --port=3306</STARTUP_OPTIONS><OS_VERSION>i686-Linux</OS_VERSION><MYSQL_VERSION>5.7.21-log</MYSQL_VERSION></AUDIT_RECORD><AUDIT_RECORD><TIMESTAMP>2019-10-03T14:09:38 UTC</TIMESTAMP><RECORD_ID>2_2019-10-03T14:06:33</RECORD_ID><NAME>Connect</NAME><CONNECTION_ID>5</CONNECTION_ID><STATUS>0</STATUS><STATUS_CODE>0</STATUS_CODE><USER>root</USER><OS_LOGIN/><HOST>localhost</HOST><IP>127.0.0.1</IP><COMMAND_CLASS>connect</COMMAND_CLASS><CONNECTION_TYPE>SSL/TLS</CONNECTION_TYPE><PRIV_USER>root</PRIV_USER><PROXY_USER/><DB>test</DB></AUDIT_RECORD>
 
 ...
 
- <AUDIT_RECORD>
-  <TIMESTAMP>2019-10-03T14:09:38 UTC</TIMESTAMP>
-  <RECORD_ID>6_2019-10-03T14:06:33</RECORD_ID>
-  <NAME>Query</NAME>
-  <CONNECTION_ID>5</CONNECTION_ID>
-  <STATUS>0</STATUS>
-  <STATUS_CODE>0</STATUS_CODE>
-  <USER>root[root] @ localhost [127.0.0.1]</USER>
-  <OS_LOGIN/>
-  <HOST>localhost</HOST>
-  <IP>127.0.0.1</IP>
-  <COMMAND_CLASS>drop_table</COMMAND_CLASS>
-  <SQLTEXT>DROP TABLE IF EXISTS t</SQLTEXT>
- </AUDIT_RECORD>
+ <AUDIT_RECORD><TIMESTAMP>2019-10-03T14:09:38 UTC</TIMESTAMP><RECORD_ID>6_2019-10-03T14:06:33</RECORD_ID><NAME>Query</NAME><CONNECTION_ID>5</CONNECTION_ID><STATUS>0</STATUS><STATUS_CODE>0</STATUS_CODE><USER>root[root] @ localhost [127.0.0.1]</USER><OS_LOGIN/><HOST>localhost</HOST><IP>127.0.0.1</IP><COMMAND_CLASS>drop_table</COMMAND_CLASS><SQLTEXT>DROP TABLE IF EXISTS t</SQLTEXT></AUDIT_RECORD>
 
 ...
 
- <AUDIT_RECORD>
-  <TIMESTAMP>2019-10-03T14:09:39 UTC</TIMESTAMP>
-  <RECORD_ID>8_2019-10-03T14:06:33</RECORD_ID>
-  <NAME>Quit</NAME>
-  <CONNECTION_ID>5</CONNECTION_ID>
-  <STATUS>0</STATUS>
-  <STATUS_CODE>0</STATUS_CODE>
-  <USER>root</USER>
-  <OS_LOGIN/>
-  <HOST>localhost</HOST>
-  <IP>127.0.0.1</IP>
-  <COMMAND_CLASS>connect</COMMAND_CLASS>
-  <CONNECTION_TYPE>SSL/TLS</CONNECTION_TYPE>
- </AUDIT_RECORD>
+ <AUDIT_RECORD><TIMESTAMP>2019-10-03T14:09:39 UTC</TIMESTAMP><RECORD_ID>8_2019-10-03T14:06:33</RECORD_ID><NAME>Quit</NAME><CONNECTION_ID>5</CONNECTION_ID><STATUS>0</STATUS><STATUS_CODE>0</STATUS_CODE><USER>root</USER><OS_LOGIN/><HOST>localhost</HOST><IP>127.0.0.1</IP><COMMAND_CLASS>connect</COMMAND_CLASS><CONNECTION_TYPE>SSL/TLS</CONNECTION_TYPE></AUDIT_RECORD>
 
 ...
 
- <AUDIT_RECORD>
-  <TIMESTAMP>2019-10-03T14:09:43 UTC</TIMESTAMP>
-  <RECORD_ID>11_2019-10-03T14:06:33</RECORD_ID>
-  <NAME>Quit</NAME>
-  <CONNECTION_ID>6</CONNECTION_ID>
-  <STATUS>0</STATUS>
-  <STATUS_CODE>0</STATUS_CODE>
-  <USER>root</USER>
-  <OS_LOGIN/>
-  <HOST>localhost</HOST>
-  <IP>127.0.0.1</IP>
-  <COMMAND_CLASS>connect</COMMAND_CLASS>
-  <CONNECTION_TYPE>SSL/TLS</CONNECTION_TYPE>
- </AUDIT_RECORD>
- <AUDIT_RECORD>
-  <TIMESTAMP>2019-10-03T14:09:45 UTC</TIMESTAMP>
-  <RECORD_ID>12_2019-10-03T14:06:33</RECORD_ID>
-  <NAME>NoAudit</NAME>
-  <SERVER_ID>1</SERVER_ID>
- </AUDIT_RECORD>
-</AUDIT>
+ <AUDIT_RECORD><TIMESTAMP>2019-10-03T14:09:43 UTC</TIMESTAMP><RECORD_ID>11_2019-10-03T14:06:33</RECORD_ID><NAME>Quit</NAME><CONNECTION_ID>6</CONNECTION_ID><STATUS>0</STATUS><STATUS_CODE>0</STATUS_CODE><USER>root</USER><OS_LOGIN/><HOST>localhost</HOST><IP>127.0.0.1</IP><COMMAND_CLASS>connect</COMMAND_CLASS><CONNECTION_TYPE>SSL/TLS</CONNECTION_TYPE></AUDIT_RECORD><AUDIT_RECORD><TIMESTAMP>2019-10-03T14:09:45 UTC</TIMESTAMP><RECORD_ID>12_2019-10-03T14:06:33</RECORD_ID><NAME>NoAudit</NAME><SERVER_ID>1</SERVER_ID></AUDIT_RECORD></AUDIT>
 ```
 
 O arquivo de registro de auditoria é escrito em formato XML, usando UTF-8 (até 4 bytes por caractere). O elemento raiz é `<AUDIT>`. O elemento raiz contém elementos `<AUDIT_RECORD>`, cada um dos quais fornece informações sobre um evento auditado. Quando o plugin de registro de auditoria começa a escrever um novo arquivo de log, ele escreve a declaração XML e a tag de abertura do elemento raiz `<AUDIT>`. Quando o plugin fecha um arquivo de log, ele escreve a tag de fechamento do elemento raiz `<AUDIT>`. A tag de fechamento não está presente enquanto o arquivo estiver aberto.
@@ -408,9 +334,7 @@ Os seguintes elementos são opcionais nos elementos `<AUDIT_RECORD>` Muitos dele
 Aqui está um arquivo de registro de exemplo no formato XML antigo (`audit_log_format=OLD`), reformatado levemente para melhor legibilidade:
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<AUDIT>
-  <AUDIT_RECORD
+<?xml version="1.0" encoding="utf-8"?><AUDIT><AUDIT_RECORD
     TIMESTAMP="2019-10-03T14:25:00 UTC"
     RECORD_ID="1_2019-10-03T14:25:00"
     NAME="Audit"
@@ -418,8 +342,7 @@ Aqui está um arquivo de registro de exemplo no formato XML antigo (`audit_log_f
     VERSION="1"
     STARTUP_OPTIONS="--port=3306"
     OS_VERSION="i686-Linux"
-    MYSQL_VERSION="5.7.21-log"/>
-  <AUDIT_RECORD
+    MYSQL_VERSION="5.7.21-log"/><AUDIT_RECORD
     TIMESTAMP="2019-10-03T14:25:24 UTC"
     RECORD_ID="2_2019-10-03T14:25:00"
     NAME="Connect"
@@ -466,13 +389,11 @@ Aqui está um arquivo de registro de exemplo no formato XML antigo (`audit_log_f
     HOST="localhost"
     IP="127.0.0.1"
     COMMAND_CLASS="connect"
-    CONNECTION_TYPE="SSL/TLS"/>
-  <AUDIT_RECORD
+    CONNECTION_TYPE="SSL/TLS"/><AUDIT_RECORD
     TIMESTAMP="2019-10-03T14:25:32 UTC"
     RECORD_ID="12_2019-10-03T14:25:00"
     NAME="NoAudit"
-    SERVER_ID="1"/>
-</AUDIT>
+    SERVER_ID="1"/></AUDIT>
 ```
 
 O arquivo de registro de auditoria é escrito em formato XML, usando UTF-8 (até 4 bytes por caractere). O elemento raiz é `<AUDIT>`. O elemento raiz contém elementos `<AUDIT_RECORD>`, cada um dos quais fornece informações sobre um evento auditado. Quando o plugin de registro de auditoria começa a escrever um novo arquivo de log, ele escreve a declaração XML e a tag de abertura do elemento raiz `<AUDIT>`. Quando o plugin fecha um arquivo de log, ele escreve a tag de fechamento do elemento raiz `<AUDIT>`. A tag de fechamento não está presente enquanto o arquivo estiver aberto.
@@ -834,32 +755,7 @@ Os itens da lista a seguir aparecem no nível superior dos registros de auditori
 
   **Tabela 6.25 Combinações de Classe e Evento do Registro de Auditoria**
 
-  <table summary="Combinações permitidas de classe de registro de auditoria e valores de evento.">
-    <thead>
-      <tr>
-        <th>Valor da classe</th>
-        <th>Valores de eventos permitidos</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>audit</code></td>
-        <td><code>startup</code>, <code>shutdown</code></td>
-      </tr>
-      <tr>
-        <td><code>connection</code></td>
-        <td><code>connect</code>, <code>change_user</code>, <code>disconnect</code></td>
-      </tr>
-      <tr>
-        <td><code>general</code></td>
-        <td><code>status</code></td>
-      </tr>
-      <tr>
-        <td><code>table_access_data</code></td>
-        <td><code>read</code>, <code>delete</code>, <code>insert</code>, <code>update</code></td>
-      </tr>
-    </tbody>
-  </table>
+  <table summary="Combinações permitidas de classe de registro de auditoria e valores de evento."><thead><tr><th>Valor da classe</th><th>Valores de eventos permitidos</th></tr></thead><tbody><tr><td><code>audit</code></td><td><code>startup</code>, <code>shutdown</code></td></tr><tr><td><code>connection</code></td><td><code>connect</code>, <code>change_user</code>, <code>disconnect</code></td></tr><tr><td><code>general</code></td><td><code>status</code></td></tr><tr><td><code>table_access_data</code></td><td><code>read</code>, <code>delete</code>, <code>insert</code>, <code>update</code></td></tr></tbody></table>
 
 - `connection_data`
 

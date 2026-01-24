@@ -2,24 +2,7 @@
 
 A tabela a seguir mostra os servidores disponíveis para Windows no MySQL 5.7.
 
-<table>
-   <thead>
-      <tr>
-         <th>Binário</th>
-         <th>Descrição</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td><code>mysqld</code></td>
-         <td>Binário otimizado com suporte a pipe nomeado</td>
-      </tr>
-      <tr>
-         <td><code>mysqld-debug</code></td>
-         <td>Como <code>mysqld</code>, mas compilada com depuração completa e verificação automática de alocação de memória</td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Binário</th><th>Descrição</th></tr></thead><tbody><tr><td><code>mysqld</code></td><td>Binário otimizado com suporte a pipe nomeado</td></tr><tr><td><code>mysqld-debug</code></td><td>Como <code>mysqld</code>, mas compilada com depuração completa e verificação automática de alocação de memória</td></tr></tbody></table>
 
 Todos os binários anteriores são otimizados para processadores Intel modernos, mas devem funcionar em qualquer processador da classe i386 ou superior da Intel.
 

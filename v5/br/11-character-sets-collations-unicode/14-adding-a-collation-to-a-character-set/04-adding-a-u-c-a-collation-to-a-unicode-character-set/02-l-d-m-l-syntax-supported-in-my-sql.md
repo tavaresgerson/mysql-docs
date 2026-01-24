@@ -17,9 +17,7 @@ LDML possui Reset Rules e Shift Rules para especificar a ordenação de caracter
 * Uma `<reset>` rule não especifica nenhuma ordenação por si só. Em vez disso, ela "reseta" a ordenação para Shift Rules subsequentes, fazendo com que sejam consideradas em relação a um determinado caractere. Qualquer uma das regras a seguir reseta as Shift Rules subsequentes para serem consideradas em relação à letra `'A'`:
 
   ```sql
-  <reset>A</reset>
-
-  <reset>\u0041</reset>
+  <reset>A</reset><reset>\u0041</reset>
   ```
 
 * As Shift Rules `<p>`, `<s>` e `<t>` definem as diferenças primary, secondary e tertiary de um caractere em relação a outro caractere:
@@ -33,16 +31,13 @@ LDML possui Reset Rules e Shift Rules para especificar a ordenação de caracter
   Qualquer uma destas regras especifica uma Primary Shift Rule para o caractere `'G'`:
 
   ```sql
-  <p>G</p>
-
-  <p>\u0047</p>
+  <p>G</p><p>\u0047</p>
   ```
 
 * A Shift Rule `<i>` indica que um caractere se ordena de forma idêntica a outro. As regras a seguir fazem com que `'b'` se ordene da mesma forma que `'a'`:
 
   ```sql
-  <reset>a</reset>
-  <i>b</i>
+  <reset>a</reset><i>b</i>
   ```
 
 * A sintaxe de Shift abreviada especifica múltiplas Shift Rules usando um único par de tags. A tabela a seguir mostra a correspondência entre regras de sintaxe abreviada e as regras não abreviadas equivalentes.
@@ -54,36 +49,31 @@ LDML possui Reset Rules e Shift Rules para especificar a ordenação de caracter
 * Uma Expansion (Expansão) é uma Reset Rule que estabelece um Anchor Point para uma sequência de múltiplos caracteres. O MySQL suporta Expansions de 2 a 6 caracteres. As regras a seguir colocam `'z'` como maior no nível primary do que a sequência de três caracteres `'abc'`:
 
   ```sql
-  <reset>abc</reset>
-  <p>z</p>
+  <reset>abc</reset><p>z</p>
   ```
 
 * Uma Contraction (Contração) é uma Shift Rule que ordena uma sequência de múltiplos caracteres. O MySQL suporta Contractions de 2 a 6 caracteres. As regras a seguir colocam a sequência de três caracteres `'xyz'` como maior no nível primary do que `'a'`:
 
   ```sql
-  <reset>a</reset>
-  <p>xyz</p>
+  <reset>a</reset><p>xyz</p>
   ```
 
 * Long Expansions e Long Contractions podem ser usadas juntas. Estas regras colocam a sequência de três caracteres `'xyz'` como maior no nível primary do que a sequência de três caracteres `'abc'`:
 
   ```sql
-  <reset>abc</reset>
-  <p>xyz</p>
+  <reset>abc</reset><p>xyz</p>
   ```
 
 * A sintaxe de Normal Expansion usa `<x>` mais elementos `<extend>` para especificar uma Expansion. As regras a seguir colocam o caractere `'k'` como maior no nível secondary do que a sequência `'ch'`. Ou seja, `'k'` se comporta como se expandisse para um caractere depois de `'c'` seguido por `'h'`:
 
   ```sql
-  <reset>c</reset>
-  <x><s>k</s><extend>h</extend></x>
+  <reset>c</reset><x><s>k</s><extend>h</extend></x>
   ```
 
   Esta sintaxe permite sequências longas. Estas regras ordenam a sequência `'ccs'` como maior no nível tertiary do que a sequência `'cscs'`:
 
   ```sql
-  <reset>cs</reset>
-  <x><t>ccs</t><extend>cs</extend></x>
+  <reset>cs</reset><x><t>ccs</t><extend>cs</extend></x>
   ```
 
   A especificação LDML descreve a sintaxe de Normal Expansion como "complicada" (tricky). Consulte essa especificação para detalhes.
@@ -91,59 +81,37 @@ LDML possui Reset Rules e Shift Rules para especificar a ordenação de caracter
 * A sintaxe de Previous Context (Contexto Anterior) usa `<x>` mais elementos `<context>` para especificar que o contexto antes de um caractere afeta como ele se ordena. As regras a seguir colocam `'-'` como maior no nível secondary do que `'a'`, mas somente quando `'-'` ocorre após `'b'`:
 
   ```sql
-  <reset>a</reset>
-  <x><context>b</context><s>-</s></x>
+  <reset>a</reset><x><context>b</context><s>-</s></x>
   ```
 
 * A sintaxe de Previous Context pode incluir o elemento `<extend>`. Estas regras colocam `'def'` como maior no nível primary do que `'aghi'`, mas somente quando `'def'` vem depois de `'abc'`:
 
   ```sql
-  <reset>a</reset>
-  <x><context>abc</context><p>def</p><extend>ghi</extend></x>
+  <reset>a</reset><x><context>abc</context><p>def</p><extend>ghi</extend></x>
   ```
 
 * Reset Rules permitem um Attribute `before`. Normalmente, Shift Rules após uma Reset Rule indicam caracteres que se ordenam após o caractere de reset. Shift Rules após uma Reset Rule que tem o Attribute `before` indicam caracteres que se ordenam antes do caractere de reset. As regras a seguir colocam o caractere `'b'` imediatamente antes de `'a'` no nível primary:
 
   ```sql
-  <reset before="primary">a</reset>
-  <p>b</p>
+  <reset before="primary">a</reset><p>b</p>
   ```
 
   Os valores permissíveis do Attribute `before` especificam o nível de ordenação por nome ou pelo valor numérico equivalente:
 
   ```sql
-  <reset before="primary">
-  <reset before="1">
-
-  <reset before="secondary">
-  <reset before="2">
-
-  <reset before="tertiary">
-  <reset before="3">
+  <reset before="primary"><reset before="1"><reset before="secondary"><reset before="2"><reset before="tertiary"><reset before="3">
   ```
 
 * Uma Reset Rule pode nomear uma Logical Reset Position (Posição de Reset Lógica) em vez de um caractere literal:
 
   ```sql
-  <first_tertiary_ignorable/>
-  <last_tertiary_ignorable/>
-  <first_secondary_ignorable/>
-  <last_secondary_ignorable/>
-  <first_primary_ignorable/>
-  <last_primary_ignorable/>
-  <first_variable/>
-  <last_variable/>
-  <first_non_ignorable/>
-  <last_non_ignorable/>
-  <first_trailing/>
-  <last_trailing/>
+  <first_tertiary_ignorable/><last_tertiary_ignorable/><first_secondary_ignorable/><last_secondary_ignorable/><first_primary_ignorable/><last_primary_ignorable/><first_variable/><last_variable/><first_non_ignorable/><last_non_ignorable/><first_trailing/><last_trailing/>
   ```
 
   Estas regras colocam `'z'` como maior no nível primary do que caracteres não-ignoráveis que possuem uma entrada Default Unicode Collation Element Table (DUCET) e que não são CJK:
 
   ```sql
-  <reset><last_non_ignorable/></reset>
-  <p>z</p>
+  <reset><last_non_ignorable/></reset><p>z</p>
   ```
 
   As Posições Lógicas têm os Code Points mostrados na tabela a seguir.
@@ -161,8 +129,7 @@ LDML possui Reset Rules e Shift Rules para especificar a ordenação de caracter
   Suponha que `'0'` e `'1'` tenham pesos de `0E29` e `0E2A` e queiramos colocar todas as letras Latinas básicas entre `'0'` e `'1'`:
 
   ```sql
-  <reset>0</reset>
-  <pc>abcdefghijklmnopqrstuvwxyz</pc>
+  <reset>0</reset><pc>abcdefghijklmnopqrstuvwxyz</pc>
   ```
 
   Para o modo de Shift `simple`, os pesos são calculados da seguinte forma:

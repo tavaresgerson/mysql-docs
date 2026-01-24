@@ -32,16 +32,7 @@ O problema levantado ao lidar com esses tipos de valores é que os diversos form
    ```sql
    <charset name="utf8">
      ...
-     <collation name="utf8_phone_ci" id="1029">
-       <rules>
-         <reset>\u0000</reset>
-         <i>\u0020</i> <!-- space -->
-         <i>\u0028</i> <!-- left parenthesis -->
-         <i>\u0029</i> <!-- right parenthesis -->
-         <i>\u002B</i> <!-- plus -->
-         <i>\u002D</i> <!-- hyphen -->
-       </rules>
-     </collation>
+     <collation name="utf8_phone_ci" id="1029"><rules><reset>\u0000</reset><i>\u0020</i> <!-- space --><i>\u0028</i> <!-- left parenthesis --><i>\u0029</i> <!-- right parenthesis --><i>\u002B</i> <!-- plus --><i>\u002D</i> <!-- hyphen --></rules></collation>
      ...
    </charset>
    ```

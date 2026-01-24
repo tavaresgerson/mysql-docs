@@ -147,125 +147,13 @@ A Tabela 6.26, “Combinações de Classe e Subclasse de Eventos” (audit-log-f
 
 **Tabela 6.26 Combinações de Classe e Subclasse de Eventos**
 
-<table summary="Combinações permitidas de valores de classe e subclasse de evento.">
-  <col style="width: 20%"/>
-  <col style="width: 20%"/>
-  <col style="width: 60%"/>
-  <thead>
-    <tr>
-      <th>Classe de Evento</th>
-      <th>Subclasse de Evento</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th><code>connection</code></th>
-      <td><code>connect</code></td>
-      <td>Iniciação da conexão (bem-sucedida ou malsucedida)</td>
-    </tr>
-    <tr>
-      <th><code>connection</code></th>
-      <td><code>change_user</code></td>
-      <td>Reautenticação de usuário com usuário/senha diferente durante a sessão</td>
-    </tr>
-    <tr>
-      <th><code>connection</code></th>
-      <td><code>disconnect</code></td>
-      <td>Término da conexão</td>
-    </tr>
-    <tr>
-      <th><code>general</code></th>
-      <td><code>status</code></td>
-      <td>Informações gerais de operação</td>
-    </tr>
-    <tr>
-      <th><code>table_access</code></th>
-      <td><code>read</code></td>
-      <td>Instruções de leitura de tabela, como <code>SELECT</code> ou <code>INSERT INTO ... SELECT</code></td>
-    </tr>
-    <tr>
-      <th><code>table_access</code></th>
-      <td><code>delete</code></td>
-      <td>Instruções de exclusão de tabela, como <code>DELETE</code> ou <code>TRUNCATE TABLE</code></td>
-    </tr>
-    <tr>
-      <th><code>table_access</code></th>
-      <td><code>insert</code></td>
-      <td>Instruções de inserção de tabela, como <code>INSERT</code> ou <code>REPLACE</code></td>
-    </tr>
-    <tr>
-      <th><code>table_access</code></th>
-      <td><code>update</code></td>
-      <td>Instruções de atualização de tabela, como <code>UPDATE</code></td>
-    </tr>
-  </tbody>
-</table>
+<table summary="Combinações permitidas de valores de classe e subclasse de evento."><col style="width: 20%"/><col style="width: 20%"/><col style="width: 60%"/><thead><tr><th>Classe de Evento</th><th>Subclasse de Evento</th><th>Descrição</th></tr></thead><tbody><tr><th><code>connection</code></th><td><code>connect</code></td><td>Iniciação da conexão (bem-sucedida ou malsucedida)</td></tr><tr><th><code>connection</code></th><td><code>change_user</code></td><td>Reautenticação de usuário com usuário/senha diferente durante a sessão</td></tr><tr><th><code>connection</code></th><td><code>disconnect</code></td><td>Término da conexão</td></tr><tr><th><code>general</code></th><td><code>status</code></td><td>Informações gerais de operação</td></tr><tr><th><code>table_access</code></th><td><code>read</code></td><td>Instruções de leitura de tabela, como <code>SELECT</code> ou <code>INSERT INTO ... SELECT</code></td></tr><tr><th><code>table_access</code></th><td><code>delete</code></td><td>Instruções de exclusão de tabela, como <code>DELETE</code> ou <code>TRUNCATE TABLE</code></td></tr><tr><th><code>table_access</code></th><td><code>insert</code></td><td>Instruções de inserção de tabela, como <code>INSERT</code> ou <code>REPLACE</code></td></tr><tr><th><code>table_access</code></th><td><code>update</code></td><td>Instruções de atualização de tabela, como <code>UPDATE</code></td></tr></tbody></table>
 
 Tabela 6.27, “Características de registro e interrupção por combinação de classe e subclasse de evento” descreve, para cada subclasse de evento, se ela pode ser registrada ou interrompida.
 
 **Tabela 6.27 Características de registro e interrupção por classe de evento e combinação de subclasses**
 
-<table summary="Características de registro e interrupção para combinações de classe e subclasse de eventos.">
-  <thead>
-    <tr>
-      <th>Classe de Evento</th>
-      <th>Subclasse de Evento</th>
-      <th>Pode ser registrado</th>
-      <th>Pode ser abortado</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th><code>connection</code></th>
-      <td><code>connect</code></td>
-      <td>Sim</td>
-      <td>Não</td>
-    </tr>
-    <tr>
-      <th><code>connection</code></th>
-      <td><code>change_user</code></td>
-      <td>Sim</td>
-      <td>Não</td>
-    </tr>
-    <tr>
-      <th><code>connection</code></th>
-      <td><code>disconnect</code></td>
-      <td>Sim</td>
-      <td>Não</td>
-    </tr>
-    <tr>
-      <th><code>general</code></th>
-      <td><code>status</code></td>
-      <td>Sim</td>
-      <td>Não</td>
-    </tr>
-    <tr>
-      <th><code>table_access</code></th>
-      <td><code>read</code></td>
-      <td>Sim</td>
-      <td>Sim</td>
-    </tr>
-    <tr>
-      <th><code>table_access</code></th>
-      <td><code>delete</code></td>
-      <td>Sim</td>
-      <td>Sim</td>
-    </tr>
-    <tr>
-      <th><code>table_access</code></th>
-      <td><code>insert</code></td>
-      <td>Sim</td>
-      <td>Sim</td>
-    </tr>
-    <tr>
-      <th><code>table_access</code></th>
-      <td><code>update</code></td>
-      <td>Sim</td>
-      <td>Sim</td>
-    </tr>
-  </tbody>
-</table>
+<table summary="Características de registro e interrupção para combinações de classe e subclasse de eventos."><thead><tr><th>Classe de Evento</th><th>Subclasse de Evento</th><th>Pode ser registrado</th><th>Pode ser abortado</th></tr></thead><tbody><tr><th><code>connection</code></th><td><code>connect</code></td><td>Sim</td><td>Não</td></tr><tr><th><code>connection</code></th><td><code>change_user</code></td><td>Sim</td><td>Não</td></tr><tr><th><code>connection</code></th><td><code>disconnect</code></td><td>Sim</td><td>Não</td></tr><tr><th><code>general</code></th><td><code>status</code></td><td>Sim</td><td>Não</td></tr><tr><th><code>table_access</code></th><td><code>read</code></td><td>Sim</td><td>Sim</td></tr><tr><th><code>table_access</code></th><td><code>delete</code></td><td>Sim</td><td>Sim</td></tr><tr><th><code>table_access</code></th><td><code>insert</code></td><td>Sim</td><td>Sim</td></tr><tr><th><code>table_access</code></th><td><code>update</code></td><td>Sim</td><td>Sim</td></tr></tbody></table>
 
 ##### Registros inclusivos e exclusivos
 
@@ -352,114 +240,7 @@ Um evento na classe `connection` indica quando uma atividade relacionada à cone
 
 **Tabela 6.28 Campos de Eventos de Conexão**
 
-<table summary="Campos permitidos para eventos de conexão.">
-  <thead>
-    <tr>
-      <th>Nome do campo</th>
-      <th>Tipo de campo</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th><code>status</code></th>
-      <td>integer</td>
-      <td>
-        <p> Event status: </p>
-        <p> 0: OK </p>
-        <p> Otherwise: Failed </p>
-      </td>
-    </tr>
-    <tr>
-      <th><code>connection_id</code></th>
-      <td>unsigned integer</td>
-      <td>ID de conexão</td>
-    </tr>
-    <tr>
-      <th><code>user.str</code></th>
-      <td>string</td>
-      <td>Nome de usuário especificado durante a autenticação</td>
-    </tr>
-    <tr>
-      <th><code>user.length</code></th>
-      <td>unsigned integer</td>
-      <td>Comprimento do nome de usuário</td>
-    </tr>
-    <tr>
-      <th><code>priv_user.str</code></th>
-      <td>string</td>
-      <td>Nome de usuário autenticado (nome de usuário da conta)</td>
-    </tr>
-    <tr>
-      <th><code>priv_user.length</code></th>
-      <td>unsigned integer</td>
-      <td>Comprimento do nome de usuário autenticado</td>
-    </tr>
-    <tr>
-      <th><code>external_user.str</code></th>
-      <td>string</td>
-      <td>Nome de usuário externo (fornecido pelo plugin de autenticação de terceiros)</td>
-    </tr>
-    <tr>
-      <th><code>external_user.length</code></th>
-      <td>unsigned integer</td>
-      <td>Comprimento do nome de usuário externo</td>
-    </tr>
-    <tr>
-      <th><code>proxy_user.str</code></th>
-      <td>string</td>
-      <td>Nome de usuário proxy</td>
-    </tr>
-    <tr>
-      <th><code>proxy_user.length</code></th>
-      <td>unsigned integer</td>
-      <td>Comprimento do nome de usuário proxy</td>
-    </tr>
-    <tr>
-      <th><code>host.str</code></th>
-      <td>string</td>
-      <td>Host de usuário conectado</td>
-    </tr>
-    <tr>
-      <th><code>host.length</code></th>
-      <td>unsigned integer</td>
-      <td>Comprimento do host do usuário conectado</td>
-    </tr>
-    <tr>
-      <th><code>ip.str</code></th>
-      <td>string</td>
-      <td>Endereço IP do usuário conectado</td>
-    </tr>
-    <tr>
-      <th><code>ip.length</code></th>
-      <td>unsigned integer</td>
-      <td>Comprimento do endereço IP do usuário conectado</td>
-    </tr>
-    <tr>
-      <th><code>database.str</code></th>
-      <td>string</td>
-      <td>Nome do banco de dados especificado no momento da conexão</td>
-    </tr>
-    <tr>
-      <th><code>database.length</code></th>
-      <td>unsigned integer</td>
-      <td>Comprimento do nome do banco de dados</td>
-    </tr>
-    <tr>
-      <th><code>connection_type</code></th>
-      <td>integer</td>
-      <td>
-        <p> Tipo de conexão: </p>
-        <p> 0 ou <code>"::undefined"</code>: Undefined </p>
-        <p> 1 ou <code>"::tcp/ip"</code>: TCP/IP </p>
-        <p> 2 ou <code>"::socket"</code>: Socket </p>
-        <p> 3 ou <code>"::named_pipe"</code>: Named pipe </p>
-        <p> 4 ou <code>"::ssl"</code>: TCP/IP with encryption </p>
-        <p> 5 ou <code>"::shared_memory"</code>: Shared memory </p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<table summary="Campos permitidos para eventos de conexão."><thead><tr><th>Nome do campo</th><th>Tipo de campo</th><th>Descrição</th></tr></thead><tbody><tr><th><code>status</code></th><td>integer</td><td><p> Event status: </p><p> 0: OK </p><p> Otherwise: Failed </p></td></tr><tr><th><code>connection_id</code></th><td>unsigned integer</td><td>ID de conexão</td></tr><tr><th><code>user.str</code></th><td>string</td><td>Nome de usuário especificado durante a autenticação</td></tr><tr><th><code>user.length</code></th><td>unsigned integer</td><td>Comprimento do nome de usuário</td></tr><tr><th><code>priv_user.str</code></th><td>string</td><td>Nome de usuário autenticado (nome de usuário da conta)</td></tr><tr><th><code>priv_user.length</code></th><td>unsigned integer</td><td>Comprimento do nome de usuário autenticado</td></tr><tr><th><code>external_user.str</code></th><td>string</td><td>Nome de usuário externo (fornecido pelo plugin de autenticação de terceiros)</td></tr><tr><th><code>external_user.length</code></th><td>unsigned integer</td><td>Comprimento do nome de usuário externo</td></tr><tr><th><code>proxy_user.str</code></th><td>string</td><td>Nome de usuário proxy</td></tr><tr><th><code>proxy_user.length</code></th><td>unsigned integer</td><td>Comprimento do nome de usuário proxy</td></tr><tr><th><code>host.str</code></th><td>string</td><td>Host de usuário conectado</td></tr><tr><th><code>host.length</code></th><td>unsigned integer</td><td>Comprimento do host do usuário conectado</td></tr><tr><th><code>ip.str</code></th><td>string</td><td>Endereço IP do usuário conectado</td></tr><tr><th><code>ip.length</code></th><td>unsigned integer</td><td>Comprimento do endereço IP do usuário conectado</td></tr><tr><th><code>database.str</code></th><td>string</td><td>Nome do banco de dados especificado no momento da conexão</td></tr><tr><th><code>database.length</code></th><td>unsigned integer</td><td>Comprimento do nome do banco de dados</td></tr><tr><th><code>connection_type</code></th><td>integer</td><td><p> Tipo de conexão: </p><p> 0 ou <code>"::undefined"</code>: Undefined </p><p> 1 ou <code>"::tcp/ip"</code>: TCP/IP </p><p> 2 ou <code>"::socket"</code>: Socket </p><p> 3 ou <code>"::named_pipe"</code>: Named pipe </p><p> 4 ou <code>"::ssl"</code>: TCP/IP with encryption </p><p> 5 ou <code>"::shared_memory"</code>: Shared memory </p></td></tr></tbody></table>
 
 Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser usados em vez dos valores numéricos literais. Eles devem ser citados como strings e são sensíveis a maiúsculas e minúsculas.
 
@@ -673,28 +454,7 @@ A lista a seguir descreve as variáveis pré-definidas permitidas para itens `va
 
   **Tabela 6.31 valores da política de conexão do log de auditoria**
 
-  <table summary="Valores audit_log_connection_policy_value permitidos e os valores audit_log_connection_policy correspondentes.">
-    <thead>
-      <tr>
-        <th>Valor</th>
-        <th>Valor correspondente de audit_log_connection_policy</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>0</code> or <code>"::none"</code></td>
-        <td><code>NONE</code></td>
-      </tr>
-      <tr>
-        <td><code>1</code> or <code>"::errors"</code></td>
-        <td><code>ERRORS</code></td>
-      </tr>
-      <tr>
-        <td><code>2</code> or <code>"::all"</code></td>
-        <td><code>ALL</code></td>
-      </tr>
-    </tbody>
-  </table>
+  <table summary="Valores audit_log_connection_policy_value permitidos e os valores audit_log_connection_policy correspondentes."><thead><tr><th>Valor</th><th>Valor correspondente de audit_log_connection_policy</th></tr></thead><tbody><tr><td><code>0</code> or <code>"::none"</code></td><td><code>NONE</code></td></tr><tr><td><code>1</code> or <code>"::errors"</code></td><td><code>ERRORS</code></td></tr><tr><td><code>2</code> or <code>"::all"</code></td><td><code>ALL</code></td></tr></tbody></table>
 
   Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser usados em vez dos valores numéricos literais. Eles devem ser citados como strings e são sensíveis a maiúsculas e minúsculas.
 
@@ -704,34 +464,7 @@ A lista a seguir descreve as variáveis pré-definidas permitidas para itens `va
 
   **Tabela 6.32 audit_log_policy_value Valores**
 
-  <table summary="Valores audit_log_policy_value permitidos e os valores audit_log_policy correspondentes.">
-  <col style="width: 20%"/>
-  <col style="width: 80%"/>
-  <thead>
-    <tr>
-      <th>Valor</th>
-      <th>Valor audit_log_policy correspondente</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>0</code> or <code>"::none"</code></td>
-      <td><code>NONE</code></td>
-    </tr>
-    <tr>
-      <td><code>1</code> or <code>"::logins"</code></td>
-      <td><code>LOGINS</code></td>
-    </tr>
-    <tr>
-      <td><code>2</code> or <code>"::all"</code></td>
-      <td><code>ALL</code></td>
-    </tr>
-    <tr>
-      <td><code>3</code> or <code>"::queries"</code></td>
-      <td><code>QUERIES</code></td>
-    </tr>
-  </tbody>
-</table>
+  <table summary="Valores audit_log_policy_value permitidos e os valores audit_log_policy correspondentes."><col style="width: 20%"/><col style="width: 80%"/><thead><tr><th>Valor</th><th>Valor audit_log_policy correspondente</th></tr></thead><tbody><tr><td><code>0</code> or <code>"::none"</code></td><td><code>NONE</code></td></tr><tr><td><code>1</code> or <code>"::logins"</code></td><td><code>LOGINS</code></td></tr><tr><td><code>2</code> or <code>"::all"</code></td><td><code>ALL</code></td></tr><tr><td><code>3</code> or <code>"::queries"</code></td><td><code>QUERIES</code></td></tr></tbody></table>
 
   Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser usados em vez dos valores numéricos literais. Eles devem ser citados como strings e são sensíveis a maiúsculas e minúsculas.
 
@@ -741,30 +474,7 @@ A lista a seguir descreve as variáveis pré-definidas permitidas para itens `va
 
   **Tabela 6.33 política_valor_declaração_audit_log_statement Valores**
 
-  <table summary="Valores audit_log_statement_policy_value permitidos e os valores audit_log_statement_policy correspondentes.">
-  <col style="width: 20%"/>
-  <col style="width: 80%"/>
-  <thead>
-    <tr>
-      <th>Valor</th>
-      <th>Valor correspondente de audit_log_statement_policy</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>0</code> or <code>"::none"</code></td>
-      <td><code>NONE</code></td>
-    </tr>
-    <tr>
-      <td><code>1</code> or <code>"::errors"</code></td>
-      <td><code>ERRORS</code></td>
-    </tr>
-    <tr>
-      <td><code>2</code> or <code>"::all"</code></td>
-      <td><code>ALL</code></td>
-    </tr>
-  </tbody>
-</table>
+  <table summary="Valores audit_log_statement_policy_value permitidos e os valores audit_log_statement_policy correspondentes."><col style="width: 20%"/><col style="width: 80%"/><thead><tr><th>Valor</th><th>Valor correspondente de audit_log_statement_policy</th></tr></thead><tbody><tr><td><code>0</code> or <code>"::none"</code></td><td><code>NONE</code></td></tr><tr><td><code>1</code> or <code>"::errors"</code></td><td><code>ERRORS</code></td></tr><tr><td><code>2</code> or <code>"::all"</code></td><td><code>ALL</code></td></tr></tbody></table>
 
   Os valores `"::xxx"` são pseudo-constantes simbólicas que podem ser usados em vez dos valores numéricos literais. Eles devem ser citados como strings e são sensíveis a maiúsculas e minúsculas.
 

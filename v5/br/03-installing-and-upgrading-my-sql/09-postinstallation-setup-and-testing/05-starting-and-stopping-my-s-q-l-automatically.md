@@ -24,30 +24,7 @@ A tabela a seguir mostra quais grupos de opções agrupam os scripts de iniciali
 
 **Tabela 2.15 Scripts de inicialização do MySQL e grupos de opções de servidor suportados**
 
-<table summary="MySQL startup scripts and the server option groups they support.">
-   <col style="width: 20%"/>
-   <col style="width: 80%"/>
-   <thead>
-      <tr>
-         <th>Script</th>
-         <th>Option Groups</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td><span><strong>mysqld</strong></span></td>
-         <td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld-<em><code>major_version</code></em>]</code></td>
-      </tr>
-      <tr>
-         <td><span><strong>mysqld_safe</strong></span></td>
-         <td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld_safe]</code></td>
-      </tr>
-      <tr>
-         <td><span><strong>mysql.server</strong></span></td>
-         <td><code>[mysqld]</code>, <code>[mysql.server]</code>, <code>[server]</code></td>
-      </tr>
-   </tbody>
-</table>
+<table summary="MySQL startup scripts and the server option groups they support."><col style="width: 20%"/><col style="width: 80%"/><thead><tr><th>Script</th><th>Option Groups</th></tr></thead><tbody><tr><td><span><strong>mysqld</strong></span></td><td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld-<em><code>major_version</code></em>]</code></td></tr><tr><td><span><strong>mysqld_safe</strong></span></td><td><code>[mysqld]</code>, <code>[server]</code>, <code>[mysqld_safe]</code></td></tr><tr><td><span><strong>mysql.server</strong></span></td><td><code>[mysqld]</code>, <code>[mysql.server]</code>, <code>[server]</code></td></tr></tbody></table>
 
 `[mysqld-major_version]` significa que grupos com nomes como `[mysqld-5.6]` e `[mysqld-5.7]` são lidos por servidores com versões 5.6.x, 5.7.x, e assim por diante. Esse recurso pode ser usado para especificar opções que só podem ser lidas por servidores dentro de uma determinada série de lançamentos.
 

@@ -41,60 +41,7 @@ O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na
 
 **Tabela 4.9 Opções do mysql_plugin**
 
-<table>
-   <thead>
-      <tr>
-         <th>Nome da Opção</th>
-         <th>Descrição</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>--basedir</td>
-         <td>O diretório de base do servidor</td>
-      </tr>
-      <tr>
-         <td>--datadir</td>
-         <td>O diretório de dados do servidor</td>
-      </tr>
-      <tr>
-         <td>--help</td>
-         <td>Exibir mensagem de ajuda e sair</td>
-      </tr>
-      <tr>
-         <td>--my-print-defaults</td>
-         <td>Caminho para my_print_defaults</td>
-      </tr>
-      <tr>
-         <td>--mysqld</td>
-         <td>Caminho para o servidor</td>
-      </tr>
-      <tr>
-         <td>--no-defaults</td>
-         <td>Não leia o arquivo de configuração</td>
-      </tr>
-      <tr>
-         <td>--plugin-dir</td>
-         <td>Diretório onde os plugins são instalados</td>
-      </tr>
-      <tr>
-         <td>--plugin-ini</td>
-         <td>O arquivo de configuração do plugin</td>
-      </tr>
-      <tr>
-         <td>--print-defaults</td>
-         <td>Mostrar configurações padrão do arquivo de configuração</td>
-      </tr>
-      <tr>
-         <td>--verbose</td>
-         <td>Modo verbosos</td>
-      </tr>
-      <tr>
-         <td>--version</td>
-         <td>Exibir informações da versão e sair</td>
-      </tr>
-   </tbody>
-</table>
+<table><thead><tr><th>Nome da Opção</th><th>Descrição</th></tr></thead><tbody><tr><td>--basedir</td><td>O diretório de base do servidor</td></tr><tr><td>--datadir</td><td>O diretório de dados do servidor</td></tr><tr><td>--help</td><td>Exibir mensagem de ajuda e sair</td></tr><tr><td>--my-print-defaults</td><td>Caminho para my_print_defaults</td></tr><tr><td>--mysqld</td><td>Caminho para o servidor</td></tr><tr><td>--no-defaults</td><td>Não leia o arquivo de configuração</td></tr><tr><td>--plugin-dir</td><td>Diretório onde os plugins são instalados</td></tr><tr><td>--plugin-ini</td><td>O arquivo de configuração do plugin</td></tr><tr><td>--print-defaults</td><td>Mostrar configurações padrão do arquivo de configuração</td></tr><tr><td>--verbose</td><td>Modo verbosos</td></tr><tr><td>--version</td><td>Exibir informações da versão e sair</td></tr></tbody></table>
 
 - `--help`, `-?`
 
@@ -116,18 +63,7 @@ O **mysql_plugin** suporta as seguintes opções, que podem ser especificadas na
 
 - `--my-print-defaults=nome_do_arquivo`, `-b nome_do_arquivo`
 
-  <table>
-   <tbody>
-      <tr>
-         <th>Formato de linha de comando</th>
-         <td><code>--my-print-defaults=file_name</code></td>
-      </tr>
-      <tr>
-         <th>Tipo</th>
-         <td>Nome do arquivo</td>
-      </tr>
-   </tbody>
-</table>
+  <table><tbody><tr><th>Formato de linha de comando</th><td><code>--my-print-defaults=file_name</code></td></tr><tr><th>Tipo</th><td>Nome do arquivo</td></tr></tbody></table>
 
   O caminho para o programa **my_print_defaults**.
 

@@ -293,25 +293,14 @@ Options that can be used with [**ndb_config**](mysql-cluster-programs-ndb-config
 
   <configvariables protocolversion="1" ndbversionstring="5.7.44-ndb-7.5.36"
                       ndbversion="460032" ndbversionmajor="7" ndbversionminor="5"
-                      ndbversionbuild="0">
-    <section name="SYSTEM">
-      <param name="Name" comment="Name of system (NDB Cluster)" type="string"
-                mandatory="true"/>
-      <param name="PrimaryMGMNode" comment="Node id of Primary ndb_mgmd(MGM) node"
-                type="unsigned" default="0" min="0" max="4294967039"/>
-      <param name="ConfigGenerationNumber" comment="Configuration generation number"
-                type="unsigned" default="0" min="0" max="4294967039"/>
-    </section>
-    <section name="MYSQLD" primarykeys="NodeId">
-      <param name="wan" comment="Use WAN TCP setting as default" type="bool"
-                default="false"/>
-      <param name="HostName" comment="Name of computer for this node"
-                type="string" default=""/>
-      <param name="Id" comment="NodeId" type="unsigned" mandatory="true"
-                min="1" max="255" deprecated="true"/>
-      <param name="NodeId" comment="Number identifying application node (mysqld(API))"
-                type="unsigned" mandatory="true" min="1" max="255"/>
-      <param name="ExecuteOnComputer" comment="HostName" type="string"
+                      ndbversionbuild="0"><section name="SYSTEM"><param name="Name" comment="Name of system (NDB Cluster)" type="string"
+                mandatory="true"/><param name="PrimaryMGMNode" comment="Node id of Primary ndb_mgmd(MGM) node"
+                type="unsigned" default="0" min="0" max="4294967039"/><param name="ConfigGenerationNumber" comment="Configuration generation number"
+                type="unsigned" default="0" min="0" max="4294967039"/></section><section name="MYSQLD" primarykeys="NodeId"><param name="wan" comment="Use WAN TCP setting as default" type="bool"
+                default="false"/><param name="HostName" comment="Name of computer for this node"
+                type="string" default=""/><param name="Id" comment="NodeId" type="unsigned" mandatory="true"
+                min="1" max="255" deprecated="true"/><param name="NodeId" comment="Number identifying application node (mysqld(API))"
+                type="unsigned" mandatory="true" min="1" max="255"/><param name="ExecuteOnComputer" comment="HostName" type="string"
                 deprecated="true"/>
 
       …

@@ -20,60 +20,7 @@ Como uma variante dessas instruções, os administradores de banco de dados pode
 
 A tabela a seguir lista os tipos de contas `mysql.user` considerados nesta discussão.
 
-<table summary="Características das contas do MySQL e o que deve ser feito para atualizá-las.">
-  <thead>
-    <tr>
-      <th>Coluna <code>plugin</code></th>
-      <th>Coluna <code>password</code></th>
-      <th>Resultado da Autenticação</th>
-      <th>Ação de Atualização</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Vazio</th>
-      <td>Vazio</td>
-      <td>Utiliza implicitamente <code>mysql_native_password</code></td>
-      <td>Atribuir plugin</td>
-    </tr>
-    <tr>
-      <th>Vazio</th>
-      <td>4.1 hash</td>
-      <td>Utiliza implicitamente <code>mysql_native_password</code></td>
-      <td>Atribuir plugin</td>
-    </tr>
-    <tr>
-      <th>Vazio</th>
-      <td>Pre-4.1 hash</td>
-      <td>Usa implicitamente <code>mysql_old_password</code></td>
-      <td>Atribuir plugin, recalcular senha</td>
-    </tr>
-    <tr>
-      <th><code>mysql_native_password</code></th>
-      <td>Vazio</td>
-      <td>Usa explicitamente <code>mysql_native_password</code></td>
-      <td>Nenhum</td>
-    </tr>
-    <tr>
-      <th><code>mysql_native_password</code></th>
-      <td>4.1 hash</td>
-      <td>Usa explicitamente <code>mysql_native_password</code></td>
-      <td>Nenhum</td>
-    </tr>
-    <tr>
-      <th><code>mysql_old_password</code></th>
-      <td>Vazio</td>
-      <td>Usa explicitamente <code>mysql_old_password</code></td>
-      <td>Atualizar plugin</td>
-    </tr>
-    <tr>
-      <th><code>mysql_old_password</code></th>
-      <td>Pre-4.1 hash</td>
-      <td>Usa explicitamente <code>mysql_old_password</code></td>
-      <td>Atualizar plugin, recalcular senha</td>
-    </tr>
-  </tbody>
-</table>
+<table summary="Características das contas do MySQL e o que deve ser feito para atualizá-las."><thead><tr><th>Coluna <code>plugin</code></th><th>Coluna <code>password</code></th><th>Resultado da Autenticação</th><th>Ação de Atualização</th></tr></thead><tbody><tr><th>Vazio</th><td>Vazio</td><td>Utiliza implicitamente <code>mysql_native_password</code></td><td>Atribuir plugin</td></tr><tr><th>Vazio</th><td>4.1 hash</td><td>Utiliza implicitamente <code>mysql_native_password</code></td><td>Atribuir plugin</td></tr><tr><th>Vazio</th><td>Pre-4.1 hash</td><td>Usa implicitamente <code>mysql_old_password</code></td><td>Atribuir plugin, recalcular senha</td></tr><tr><th><code>mysql_native_password</code></th><td>Vazio</td><td>Usa explicitamente <code>mysql_native_password</code></td><td>Nenhum</td></tr><tr><th><code>mysql_native_password</code></th><td>4.1 hash</td><td>Usa explicitamente <code>mysql_native_password</code></td><td>Nenhum</td></tr><tr><th><code>mysql_old_password</code></th><td>Vazio</td><td>Usa explicitamente <code>mysql_old_password</code></td><td>Atualizar plugin</td></tr><tr><th><code>mysql_old_password</code></th><td>Pre-4.1 hash</td><td>Usa explicitamente <code>mysql_old_password</code></td><td>Atualizar plugin, recalcular senha</td></tr></tbody></table>
 
 As contas correspondentes às linhas do plugin `mysql_native_password` não requerem nenhuma ação de atualização (porque não é necessário alterar o plugin ou o formato do hash). Para contas correspondentes a linhas nas quais a senha está vazia, considere pedir aos proprietários das contas que escolham uma senha (ou exija-a usando `ALTER USER` para expirar senhas de contas vazias).
 

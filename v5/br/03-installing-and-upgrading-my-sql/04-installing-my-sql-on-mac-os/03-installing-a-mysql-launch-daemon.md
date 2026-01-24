@@ -5,34 +5,7 @@ O macOS usa daemons de inicialização para iniciar, parar e gerenciar automatic
 Por padrão, o pacote de instalação (DMG) no macOS instala um arquivo launchd chamado `/Library/LaunchDaemons/com.oracle.oss.mysql.mysqld.plist` que contém uma definição plist semelhante a:
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>             <string>com.oracle.oss.mysql.mysqld</string>
-    <key>ProcessType</key>       <string>Interactive</string>
-    <key>Disabled</key>          <false/>
-    <key>RunAtLoad</key>         <true/>
-    <key>KeepAlive</key>         <true/>
-    <key>SessionCreate</key>     <true/>
-    <key>LaunchOnlyOnce</key>    <false/>
-    <key>UserName</key>          <string>_mysql</string>
-    <key>GroupName</key>         <string>_mysql</string>
-    <key>ExitTimeOut</key>       <integer>600</integer>
-    <key>Program</key>           <string>/usr/local/mysql/bin/mysqld</string>
-    <key>ProgramArguments</key>
-        <array>
-            <string>/usr/local/mysql/bin/mysqld</string>
-            <string>--user=_mysql</string>
-            <string>--basedir=/usr/local/mysql</string>
-            <string>--datadir=/usr/local/mysql/data</string>
-            <string>--plugin-dir=/usr/local/mysql/lib/plugin</string>
-            <string>--log-error=/usr/local/mysql/data/mysqld.local.err</string>
-            <string>--pid-file=/usr/local/mysql/data/mysqld.local.pid</string>
-        </array>
-    <key>WorkingDirectory</key>  <string>/usr/local/mysql</string>
-</dict>
-</plist>
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>Label</key>             <string>com.oracle.oss.mysql.mysqld</string><key>ProcessType</key>       <string>Interactive</string><key>Disabled</key>          <false/><key>RunAtLoad</key>         <true/><key>KeepAlive</key>         <true/><key>SessionCreate</key>     <true/><key>LaunchOnlyOnce</key>    <false/><key>UserName</key>          <string>_mysql</string><key>GroupName</key>         <string>_mysql</string><key>ExitTimeOut</key>       <integer>600</integer><key>Program</key>           <string>/usr/local/mysql/bin/mysqld</string><key>ProgramArguments</key><array><string>/usr/local/mysql/bin/mysqld</string><string>--user=_mysql</string><string>--basedir=/usr/local/mysql</string><string>--datadir=/usr/local/mysql/data</string><string>--plugin-dir=/usr/local/mysql/lib/plugin</string><string>--log-error=/usr/local/mysql/data/mysqld.local.err</string><string>--pid-file=/usr/local/mysql/data/mysqld.local.pid</string></array><key>WorkingDirectory</key>  <string>/usr/local/mysql</string></dict></plist>
 ```
 
 ::: info Nota
@@ -83,29 +56,7 @@ Informações adicionais relacionadas ao **launchd**:
 Como a definição padrão do `plist` define vários **ProgramArguments**, você pode remover a maioria desses argumentos e, em vez disso, confiar no arquivo de configuração MySQL `my.cnf` para defini-los. Por exemplo:
 
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>             <string>com.oracle.oss.mysql.mysqld</string>
-    <key>ProcessType</key>       <string>Interactive</string>
-    <key>Disabled</key>          <false/>
-    <key>RunAtLoad</key>         <true/>
-    <key>KeepAlive</key>         <true/>
-    <key>SessionCreate</key>     <true/>
-    <key>LaunchOnlyOnce</key>    <false/>
-    <key>UserName</key>          <string>_mysql</string>
-    <key>GroupName</key>         <string>_mysql</string>
-    <key>ExitTimeOut</key>       <integer>600</integer>
-    <key>Program</key>           <string>/usr/local/mysql/bin/mysqld</string>
-    <key>WorkingDirectory</key>  <string>/usr/local/mysql</string>
-    <key>ProgramArguments</key>
-        <array>
-            <string>/usr/local/mysql/bin/mysqld</string>
-            <string>--user=_mysql</string>
-        </array>
-</dict>
-</plist>
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>Label</key>             <string>com.oracle.oss.mysql.mysqld</string><key>ProcessType</key>       <string>Interactive</string><key>Disabled</key>          <false/><key>RunAtLoad</key>         <true/><key>KeepAlive</key>         <true/><key>SessionCreate</key>     <true/><key>LaunchOnlyOnce</key>    <false/><key>UserName</key>          <string>_mysql</string><key>GroupName</key>         <string>_mysql</string><key>ExitTimeOut</key>       <integer>600</integer><key>Program</key>           <string>/usr/local/mysql/bin/mysqld</string><key>WorkingDirectory</key>  <string>/usr/local/mysql</string><key>ProgramArguments</key><array><string>/usr/local/mysql/bin/mysqld</string><string>--user=_mysql</string></array></dict></plist>
 ```
 
 Neste caso, as opções `basedir`, `datadir`, `plugin_dir`, `log_error` e `pid_file` foram removidas da definição do plist, e então você pode defini-las no `my.cnf`.

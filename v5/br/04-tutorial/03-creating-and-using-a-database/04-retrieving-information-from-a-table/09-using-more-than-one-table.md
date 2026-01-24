@@ -16,78 +16,7 @@ mysql> CREATE TABLE event (name VARCHAR(20), date DATE,
 
 Assim como na tabela `pet`, é mais fácil carregar os registros iniciais ao criar um arquivo de texto delimitado por tabulação contendo as seguintes informações.
 
-<table summary="Os dados do registro de animais aparecem em um arquivo de texto delimitado por tabulação, conforme descrito no texto anterior.">
-   <thead>
-      <tr>
-         <th>name</th>
-         <th>date</th>
-         <th>type</th>
-         <th>remark</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <th>Fluffy</th>
-         <td>1995-05-15</td>
-         <td>litter</td>
-         <td>4 kittens, 3 female, 1 male</td>
-      </tr>
-      <tr>
-         <th>Buffy</th>
-         <td>1993-06-23</td>
-         <td>litter</td>
-         <td>5 puppies, 2 female, 3 male</td>
-      </tr>
-      <tr>
-         <th>Buffy</th>
-         <td>1994-06-19</td>
-         <td>litter</td>
-         <td>3 puppies, 3 female</td>
-      </tr>
-      <tr>
-         <th>Chirpy</th>
-         <td>1999-03-21</td>
-         <td>vet</td>
-         <td>needed beak straightened</td>
-      </tr>
-      <tr>
-         <th>Slim</th>
-         <td>1997-08-03</td>
-         <td>vet</td>
-         <td>broken rib</td>
-      </tr>
-      <tr>
-         <th>Bowser</th>
-         <td>1991-10-12</td>
-         <td>kennel</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>Fang</th>
-         <td>1991-10-12</td>
-         <td>kennel</td>
-         <td></td>
-      </tr>
-      <tr>
-         <th>Fang</th>
-         <td>1998-08-28</td>
-         <td>birthday</td>
-         <td>Gave him a new chew toy</td>
-      </tr>
-      <tr>
-         <th>Claws</th>
-         <td>1998-03-17</td>
-         <td>birthday</td>
-         <td>Gave him a new flea collar</td>
-      </tr>
-      <tr>
-         <th>Whistler</th>
-         <td>1998-12-09</td>
-         <td>birthday</td>
-         <td>First birthday</td>
-      </tr>
-   </tbody>
-</table>
+<table summary="Os dados do registro de animais aparecem em um arquivo de texto delimitado por tabulação, conforme descrito no texto anterior."><thead><tr><th>name</th><th>date</th><th>type</th><th>remark</th></tr></thead><tbody><tr><th>Fluffy</th><td>1995-05-15</td><td>litter</td><td>4 kittens, 3 female, 1 male</td></tr><tr><th>Buffy</th><td>1993-06-23</td><td>litter</td><td>5 puppies, 2 female, 3 male</td></tr><tr><th>Buffy</th><td>1994-06-19</td><td>litter</td><td>3 puppies, 3 female</td></tr><tr><th>Chirpy</th><td>1999-03-21</td><td>vet</td><td>needed beak straightened</td></tr><tr><th>Slim</th><td>1997-08-03</td><td>vet</td><td>broken rib</td></tr><tr><th>Bowser</th><td>1991-10-12</td><td>kennel</td><td></td></tr><tr><th>Fang</th><td>1991-10-12</td><td>kennel</td><td></td></tr><tr><th>Fang</th><td>1998-08-28</td><td>birthday</td><td>Gave him a new chew toy</td></tr><tr><th>Claws</th><td>1998-03-17</td><td>birthday</td><td>Gave him a new flea collar</td></tr><tr><th>Whistler</th><td>1998-12-09</td><td>birthday</td><td>First birthday</td></tr></tbody></table>
 
 Carregue os registros da seguinte forma:
 
